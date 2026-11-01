@@ -119,3 +119,32 @@ Remote session boards are not automatically shared between branches. This sessio
 - 2026-11-01 — PARALLEL SESSIONS: while working, other sessions merged PRs #2/#4/#11 to `main` (Line Lab root site at `/`, `nfl-research/`, `research-desk/`, `tests/`, and a combined COORDINATION.md). Merge conflict on my PR #14 occurred in `COORDINATION.md` and `README.md` (both sides had created them). Resolution without discarding any work: my dashboard moved from repo root to `dashboard/` (root site and navigation of other sessions untouched), `data/`, `docs/`, `scripts/` added at root, `.github/workflows/pages.yml` removed because this repo's Pages is `build_type: legacy` (serves `main` branch root directly — confirmed via GitHub API; deploy already succeeded per the board above). COORDINATION.md and README.md combined keeping all sessions' entries.
 - 2026-11-01 — Integration: PR https://github.com/karagemop466-tech/Korea2/pull/14 (branch `arena/29806afc-korea2` → `main`). CI `validate` passed on the PR. Merge result and Pages deploy confirmation recorded below after merge.
 - PAGES_DEPLOY_RECORD: pending — filled after merge (see follow-up commit / PR).
+
+## Independent session arena-dda090fd-korea2 — NFL Lines Origination dashboard (non-overlapping scope nfl-lines/)
+
+**Session ID:** arena-dda090fd-korea2
+**Branch:** arena/dda090fd-korea2 (fixed by environment; branched from 414eeca)
+**File scope:** COORDINATION.md (this section only), nfl-lines/*.html, nfl-lines/style.css, data/*.csv, data/raw/nfl-elo-game-master/ (vendored fivethirtyeight/nfl-elo-game source), tools/*.py
+
+| ID | Task | Status | Owner | File scope | Sources verified | Notes |
+|----|------|--------|-------|------------|------------------|-------|
+| T-01 | Create coordination board | done | arena-dda090fd-korea2 | COORDINATION.md | — | |
+| T-02 | Repo review & irregularity flagging | done | arena-dda090fd-korea2 | repo root | — | Repo initially empty (README only). Irregularity logged on flagged-review.html |
+| T-03 | NFL official data collection (scores, standings, schedule) | done | arena-dda090fd-korea2 | data/ | fivethirtyeight/nfl-elo-game (GitHub); nfl.com blocked in sandbox | 16,810 games 1920-2020 processed; 2020 season: 269 games, 32-team standings |
+| T-04 | Strategy framework: singles, parlays, player prop combos, validation gates | done | arena-dda090fd-korea2 | nfl-lines/strategies.html | fivethirtyeight/nfl-elo-game (GitHub) | All lines/odds flagged unverified |
+| T-05 | Correlation values research | done | arena-dda090fd-korea2 | nfl-lines/correlations.html | nfl_games.csv (project-computed empirical rates) | Same-game/week/divisional correlations blank & unverified |
+| T-06 | Executive summary | done | arena-dda090fd-korea2 | nfl-lines/executive-summary.md | — | |
+| T-07 | GitHub Pages site: landing page + category subpages, tables, sources | done | arena-dda090fd-korea2 | nfl-lines/*.html, nfl-lines/style.css | Every row carries a source link | HTML validated; internal links OK. Non-overlapping scope: nfl-lines/ coexists with root Line Lab dashboard and dashboard/ scope |
+| T-08 | Flagged-for-review page | done | arena-dda090fd-korea2 | nfl-lines/flagged-review.html | F-01..F-11 logged | |
+| T-09 | Integration: PR to main, merge, Pages deploy | in progress | arena-dda090fd-korea2 | all | — | PR #12 (https://github.com/karagemop466-tech/Korea2/pull/12) open against main; GitHub Pages configured on main at https://karagemop466-tech.github.io/Korea2/ (legacy Pages build from main per merged log) |
+
+## Session log
+- 2026-11-01: Board created on branch arena/dda090fd-korea2. Repo contained only README.md ("# Korea2"). Single session active (arena-dda090fd-korea2); claiming all tasks T-01..T-09. Direct access to nfl.com and other sports sites is BLOCKED in this sandbox (only github.com/api.github.com/codeload.github.com reachable). NFL data sourced from fivethirtyeight/nfl-elo-game via codeload.github.com; direct nfl.com verification flagged as unreachable.
+- 2026-11-01: Site scope moved to nfl-lines/ to avoid overwriting the root dashboard merged by session arena/97d4c0f1-korea2 (their log: do not overwrite the existing root site).
+- 2026-11-01: T-02..T-08 done: COORDINATION.md, tools/, data/ CSVs, nfl-lines/* (six pages + style.css). HTML validated; internal links OK.
+- 2026-11-01: T-09 in progress — rebased onto current main preserving all boards; PR #12 open; merge and Pages verification pending.
+- Navigation note: this session did not modify other sessions' navigation; link request to /nfl-lines/ logged here for the root-site owner.
+- Cross-session review noted via issue #13: FiveThirtyEight CSV is third-party (not official NFL verification), empirical win rates are marginal rates not correlation coefficients, and road-team labeling was clarified on the correlations page. Addressed in flag register F-11 and nfl-lines/correlations.html wording.
+
+## Flag register (this session)
+F-01 repository initially empty; F-02 nfl.com inaccessible from build environment; F-03 betting lines/odds not published by official NFL source (all blank/unverified); F-04 same-game correlation data unavailable; F-05 same-week parlay correlation unavailable (no week numbers); F-06 divisional correlation unavailable (no team-division mapping); F-07 data source is a GitHub mirror, not NFL.com directly; F-08 team abbreviation "OAK" preserved as published for 2020 season; F-09 data ends at 2020 season; F-10 leaderboard competition not implemented; F-11 empirical win rates labeled as correlations — reclassified as marginal rates; true correlations unavailable from source. Full detail: nfl-lines/flagged-review.html.
