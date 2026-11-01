@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import site_common as sc
 from site_common import (DOCS, ROOT, blank, card, e, load, note, num, page, pctp, pill,
-                         roi, src, status_pill, table, units, md_to_html)
+                         roi, spts, src, status_pill, table, units, md_to_html)
 
 INTEG = load("integrity.json")
 LINES = load("lines.json")
@@ -155,18 +155,22 @@ def pg_index():
     for r in LINES["slate"]["rows"][:8]:
         slate_rows.append([
             f'{e(r["away"])} @ {e(r["home"])}', e(r["gameday"]), num(r["week"], 0),
-            num(r["our_spread"], 1), num(r["market_spread"], 1),
-            pctp((r["edge_home_pts"] or 0) / 10, 1) if r["edge_home_pts"] is not None else blank(),
+            num(r["our_spread"], 1), num(r.get("market_home_line"), 1),
+            spts(r["edge_home_pts"], 1),
             num(r["our_total"], 1), num(r["market_total"], 1),
             e(f'{r["our_home_ml"]:+d}/{r["our_away_ml"]:+d}'),
         ])
     slate = table(
-        [("Game", False), ("Date", False), ("Wk", True), ("Our line", True), ("Market", True),
-         ("Edge", True), ("Our total", True), ("Mkt total", True), ("Our ML H/A", False)],
+        [("Game", False), ("Date", False), ("Wk", True), ("Our line (home)", True),
+         ("Market (home)", True), ("Edge, pts", True), ("Our total", True), ("Mkt total", True),
+         ("Our ML H/A", False)],
         slate_rows, caption="Live slate: originated lines next to the market",
         sub=f"{len(LINES['slate']['rows'])} unplayed games, {sum(1 for r in LINES['slate']['rows'] if r['verified'])} with a market line",
         col_cls=[None, None, "n", "n", "n", "n", "n", "n", "t"],
-        note=src(SOURCES, ["S1"]) + " edge = our line minus the market's expected home margin")
+        note=src(SOURCES, ["S1"]) + " Lines are the home team's handicap: a negative number means the "
+             "home team gives points. Edge = our home line minus the market's home line, so a positive "
+             "edge means we rate the home side weaker than the market does and the away team is the "
+             "disagreement.")
 
     body = f"""
 <div class="grid g4">
@@ -291,26 +295,31 @@ def pg_lines():
         slate_rows.append([
             e(r["gameday"]), num(r["week"], 0),
             f'<b>{e(r["away"])} @ {e(r["home"])}</b>',
-            num(r["our_spread"], 1), num(r["market_spread"], 1), num(r["edge_home_pts"], 2),
-            num(r["our_total"], 1), num(r["market_total"], 1), num(r["edge_total_pts"], 2),
+            num(r["our_spread"], 1), num(r.get("market_home_line"), 1),
+            spts(r["edge_home_pts"], 1),
+            num(r["our_total"], 1), num(r["market_total"], 1), spts(r["edge_total_pts"], 1),
             num(r["our_home_ml"], 0), num(r["market_home_ml"], 0),
             num(r["our_home_win_prob"] * 100, 1),
         ])
     slate = table(
-        [("Date", False), ("Wk", True), ("Game", False), ("Our line", True), ("Mkt line", True),
-         ("Edge", True), ("Our total", True), ("Mkt total", True), ("Edge", True),
-         ("Our H ML", True), ("Mkt H ML", True), ("Our P(home)", True)],
+        [("Date", False), ("Wk", True), ("Game", False), ("Our line (home)", True),
+         ("Mkt line (home)", True), ("Spread edge, pts", True), ("Our total", True),
+         ("Mkt total", True), ("Total edge, pts", True), ("Our H ML", True), ("Mkt H ML", True),
+         ("Our P(home)", True)],
         slate_rows, caption="Originated lines for the live slate",
         sub=f"as of {LINES['slate']['asof']} · {len(slate_rows)} games with a market line",
-        col_cls=[None, "n", None] + ["n"] * 9, note=src(SOURCES, ["S1", "S3"]))
+        col_cls=[None, "n", None] + ["n"] * 9,
+        note=src(SOURCES, ["S1", "S3"]) + " Home handicap convention: negative means the home team gives "
+             "points. A positive spread edge means we rate the home side weaker than the market does; a "
+             "positive total edge means our total is higher than the market's.")
 
     unplayed = [r for r in LINES["slate"]["rows"] if not r["verified"]]
     un_rows = [[e(r["gameday"]), num(r["week"], 0), f'{e(r["away"])} @ {e(r["home"])}',
                 num(r["our_spread"], 1), blank(), blank(), num(r["our_total"], 1),
                 num(r["our_home_ml"], 0)] for r in unplayed]
     unplayed_tbl = table(
-        [("Date", False), ("Wk", True), ("Game", False), ("Our line", True), ("Mkt line", True),
-         ("Edge", True), ("Our total", True), ("Our H ML", True)],
+        [("Date", False), ("Wk", True), ("Game", False), ("Our line (home)", True),
+         ("Mkt line (home)", True), ("Spread edge", True), ("Our total", True), ("Our H ML", True)],
         un_rows, caption="Unplayed games with no market line yet",
         sub="market cells left blank on purpose — nothing is inferred",
         col_cls=[None, "n", None, "n", "n", "n", "n", "n"],

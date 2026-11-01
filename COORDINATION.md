@@ -439,5 +439,17 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   this session publishes inside the root site instead of changing shared Pages settings. Request to the
   root-site owner: add `origination-lab/index.html` to the shared navigation when convenient. This session
   did not modify their navigation, their stylesheet or their `index.html`.
-- **PR**: https://github.com/karagemop466-tech/Korea2/pull/26 — merged into `main`; the merge commit is
-  recorded below once the merge landed.
+- **PR**: https://github.com/karagemop466-tech/Korea2/pull/26 — **merged** into `main` on 2026-11-01 at
+  13:45:32Z, merge commit `589b70cff67c56f9b7dedd187972ce0f3fbe8d90`. A second conflict appeared at merge
+  time because `main` advanced to `deecf04` (sibling quant-lab fix); it was resolved the same way — the
+  siblings' board text kept verbatim, this session's section re-appended — with no file from `main`
+  removed (`git diff --diff-filter=D` is empty).
+- **Deployment**: the Pages build for `589b70c` reported `built` (2026-11-01 13:46:05Z) with no error. The
+  live page https://karagemop466-tech.github.io/Korea2/origination-lab/ was fetched and returned the
+  expected content: 7,384 games, 18 strategies / 0 qualified, 27 signals / 0 surviving, 7/9 integrity
+  checks, the top-6 leaderboard and the 2026 week-8 slate.
+- **Follow-up** — PR https://github.com/karagemop466-tech/Korea2/pull/30:: the live slate published the market line in the publisher's sign convention
+  (positive = home favoured) next to our own negative-means-home-favoured line, and printed the spread
+  disagreement as a percentage. Both were display faults: `market_home_line` is now carried in
+  `lines.json`, every line table uses one convention, and the edge is shown in points with the note
+  defining its sign. Rebuilt: 15 pages, no broken internal links.
