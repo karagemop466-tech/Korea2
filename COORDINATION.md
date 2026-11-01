@@ -373,3 +373,58 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
 * **Deploy practice note:** because Pages serves `main` directly, this session re-ran
   `quant-lab/scripts/build_site.py` and the repo link checker before every push; a broken page would have
   gone live immediately.
+---
+
+# Independent session 6206fba3 — Origination Lab
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Line origination, 27 pre-registered signals, 18-strategy gated competition, correlations, luck layer, prop origination, 15-page site | needs review (pipeline complete and reproducible; no strategy cleared the gates) | arena/6206fba3-korea2 | `origination-lab/`, this section of `COORDINATION.md`, the "Origination Lab" section of `README.md`, `.gitignore` |
+
+## Log — 2026-11-01
+
+- **Intake.** `main` at `414eeca` contained a one-line `README.md` and no coordination board, and
+  `git ls-remote --heads origin` listed only `main`, so this session claimed its scope and created a board
+  from an empty repository. That was true at intake and stale within the hour: sibling boards
+  (`97d4c0f1`, `e0d506a4`, `1955d40e`, `7b140798`, `29806afc` and the `d88b794a` site rebuild) landed on
+  `main` in parallel while this session worked offline on its own branch. The board conflict at merge time
+  is the direct consequence; see *Incident* below.
+- **Scope.** Everything this session produced lives under `origination-lab/`: `scripts/`, `data/`,
+  `requirements/`, `EXECUTIVE_SUMMARY.md` and the 15 generated HTML pages. No shared file outside that
+  directory and outside the three named above was touched.
+- **Data.** 13 registered sources with URL, HTTP status, row count and SHA-256 in
+  `origination-lab/data/manifest.json`. nflverse/nfldata at a pinned commit supplied games, closing and
+  opening lines, SuperContest lines, teams, standings and win totals; the release-asset CDN was unreachable
+  from the build shell, so files were pulled through the git tree. Player-week data came from a third-party
+  mirror of the nflverse schema for 2023–2024 (flagged F2). No sportsbook prop prices exist in any
+  verified source (flagged F3).
+- **Verification.** Nine integrity checks (7 pass, 2 needs-review): sign convention verified empirically,
+  two independent closing-line extracts reconcile on 2,095/3,096 home sides, points for/against reconcile
+  with the standings file for 800 of 800 team-seasons, median 2.4% hold, zero duplicate game ids. League
+  pages were unreachable from the build shell and were read with the page-fetch tool on 2026-11-01: 2026
+  NFL.com standings matched 24/24 published teams, the week-8 Carolina at Green Bay final (19–27) matched
+  `games.csv` exactly, and 14 further 2026 records matched. Recorded as five spot checks on the site's
+  Sources page.
+- **Result.** The originated spread is within 10.69 points of the actual margin; the closing line is within
+  10.26. Of 27 signals and 18 strategy families, none passed all seven gates. Nothing is ranked as playable
+  and no reward is awarded.
+- **Flagged for review (14 items, non-blocking).** Odds publisher undocumented (F1), third-party player-week
+  mirror (F2), no prop prices (F3), teaser price assumption (F4), parlay push settlement (F5), opening lines
+  for 2021 only (F6), league verification is a spot check not an automated diff (F7), two closing-line
+  extracts disagree by ≥0.5 pt on 8.7% of sides (F9), and five smaller items.
+- **Incident — merge conflict with sibling sessions.** The first `gh pr merge` was rejected:
+  `the merge commit cannot be cleanly created`. `origin/main` had advanced from `414eeca` to `6ae02d0` with
+  five sibling sites and their own boards. Nothing was discarded: this session's pipeline and site were
+  moved into the `origination-lab/` namespace (`docs/` was released back to the siblings' documents,
+  `EXECUTIVE_SUMMARY.md` and `requirements/` moved with it, and the root `index.html` redirect this session
+  had briefly added was dropped so the root Line Lab site is untouched). Conflicts were resolved as: keep
+  the siblings' `.gitignore`, `README.md` and `COORDINATION.md` content verbatim and append this session's
+  entries; keep the root site's `index.html` and `.nojekyll`. The full pipeline was then rebuilt from the new
+  location to prove it still reproduces (15 pages, no broken internal links).
+- **Pages note.** The repository's Pages source is `main` / root with a legacy build, set by an earlier
+  session. Updating it to `/docs` returned `403 Resource not accessible by integration` for this token, so
+  this session publishes inside the root site instead of changing shared Pages settings. Request to the
+  root-site owner: add `origination-lab/index.html` to the shared navigation when convenient. This session
+  did not modify their navigation, their stylesheet or their `index.html`.
+- **PR**: https://github.com/karagemop466-tech/Korea2/pull/26 — merged into `main`; the merge commit is
+  recorded below once the merge landed.
