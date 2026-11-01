@@ -42,7 +42,13 @@ class Ratings:
 
 
 def fit(train: pd.DataFrame, ref_date: pd.Timestamp, half_life_days: float = 120.0,
-        lam: float = 8.0) -> Ratings:
+        lam: float = 8.0, hfa_prior: float | None = None, hfa_prior_weight: float = 60.0) -> Ratings:
+    """Fit ratings. `hfa_prior` shrinks the home-field estimate toward a long-run value.
+
+    Home advantage is badly identified in a short current-season sample (in 2026 the observed home
+    margin is negative), so an unshrunk estimate would let one partial season dictate every line.
+    The prior is the unweighted mean home margin of the previous ten seasons.
+    """
     train = train.dropna(subset=["home_score", "away_score", "gameday"])
     teams = sorted(set(train["home_team"]) | set(train["away_team"]))
     idx = {t: i for i, t in enumerate(teams)}
@@ -77,8 +83,19 @@ def fit(train: pd.DataFrame, ref_date: pd.Timestamp, half_life_days: float = 120
     pen[:2 * n] = lam            # shrink team ratings only
     A = A + np.diag(pen)
     b = XtW @ y
+    if hfa_prior is not None:
+        A[2 * n + 1, 2 * n + 1] += hfa_prior_weight
+        b[2 * n + 1] += hfa_prior_weight * hfa_prior
     beta = np.linalg.solve(A, b)
     return Ratings(teams, beta)
+
+
+def hfa_prior_from(games: pd.DataFrame, ref_date: pd.Timestamp, years: int = 10) -> float:
+    """Long-run home margin used as the shrinkage prior (unweighted, previous `years` seasons)."""
+    reg = games[(games["game_type"] == "REG") & games["result"].notna()].copy()
+    start = ref_date - pd.Timedelta(days=365 * years)
+    w = reg[(reg["gameday"] >= start) & (reg["gameday"] < ref_date)]
+    return float(w["result"].mean()) if len(w) > 100 else 1.9
 
 
 def fit_history(games: pd.DataFrame, test_start: int, half_life_days: float = 120.0,
@@ -97,7 +114,8 @@ def fit_history(games: pd.DataFrame, test_start: int, half_life_days: float = 12
         train = reg[(reg["gameday"] < cutoff)]
         if len(train) < 400:
             continue
-        r = fit(train, cutoff, half_life_days, lam)
+        prior = hfa_prior_from(games, cutoff)
+        r = fit(train, cutoff, half_life_days, lam, hfa_prior=prior)
         for g in grp.itertuples():
             pm, pt = r.predict(g.home_team, g.away_team)
             rows.append({

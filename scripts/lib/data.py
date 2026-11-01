@@ -116,8 +116,11 @@ def team_game_rows(games: pd.DataFrame) -> pd.DataFrame:
     out = pd.concat([home, away], ignore_index=True)
     out["margin"] = out["pf"] - out["pa"]
     out["game_total"] = out["pf"] + out["pa"]
-    out["team_spread"] = np.where(out["is_home"] == 1, out["market_spread"], -out["market_spread"])
-    # ATS result from the team's own perspective, pushes removed later
+    # Proven convention (see diag_signs.json): market_spread is the home team's EXPECTED MARGIN.
+    # A team's handicap is therefore -expected_margin (home lays points when it is favoured).
+    out["expected_margin"] = np.where(out["is_home"] == 1, out["market_spread"], -out["market_spread"])
+    out["team_spread"] = -out["expected_margin"]
+    # ATS result from the team's own perspective; pushes (== 0) are dropped by callers
     out["ats_margin"] = out["margin"] + out["team_spread"]
     return out.sort_values(["season", "week", "gameday"]).reset_index(drop=True)
 

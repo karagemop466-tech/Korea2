@@ -56,14 +56,36 @@ def main() -> None:
     out: dict = {}
     games, checks = D.load_games()
 
+    # ------------------------------------------------------- hyper-parameters on validation only
+    grid = [(90, 4.0), (90, 10.0), (180, 4.0), (180, 10.0), (120, 8.0)]
+    best_hp, best_score, curve = (120, 8.0), 1e9, []
+    for hl, lam in grid:
+        f = R.fit_history(games, VAL_SEASONS[0], half_life_days=hl, lam=lam)
+        f = f[f["season"].isin(VAL_SEASONS)].dropna(subset=["result"])
+        if len(f) < 100:
+            continue
+        mae = float(np.abs(f["model_margin"] - f["result"]).mean())
+        curve.append({"half_life_days": hl, "lambda": lam, "n": int(len(f)),
+                      "validation_spread_mae": round(mae, 3)})
+        if mae < best_score:
+            best_hp, best_score = (hl, lam), mae
+    out["hyperparameter_selection"] = {
+        "grid": curve, "chosen_half_life_days": best_hp[0], "chosen_lambda": best_hp[1],
+        "validation_mae": round(best_score, 3),
+        "note": ("Chosen on 2021-2022 games only, then frozen for the 2023+ test window. "
+                 "A validation-season win rate is NOT evidence of edge."),
+    }
+
     # ------------------------------------------------------- walk-forward predictions
-    val = R.fit_history(games, VAL_SEASONS[0])
+    val = R.fit_history(games, VAL_SEASONS[0], half_life_days=best_hp[0], lam=best_hp[1])
     val = val[val["season"].isin(VAL_SEASONS)]
-    test = R.fit_history(games, TEST_START)
+    test = R.fit_history(games, TEST_START, half_life_days=best_hp[0], lam=best_hp[1])
     out["model_spec"] = {
         "form": "home = mu + off_home - def_away + hfa ; away = mu + off_away - def_home",
         "estimator": "weighted least squares (ridge lambda=8 on team ratings)",
-        "recency_half_life_days": 120,
+        "recency_half_life_days": best_hp[0],
+        "ridge_lambda": best_hp[1],
+        "home_field_shrinkage": "hfa shrunk toward the 10-season mean with 60 pseudo-observations",
         "train_window": "all regular-season games strictly before the predicted week's first kickoff",
         "validation_seasons": list(VAL_SEASONS),
         "test_seasons": [int(test["season"].min()), int(test["season"].max())],
@@ -162,6 +184,11 @@ def main() -> None:
                     "model_mae": round(model_err, 3), "market_mae": round(market_err, 3)})
     out["disagreement_accuracy"] = dis
 
+    # ------------------------------------------------------- committed predictions for audit
+    t_out = t[["season", "week", "game_id", "home_team", "away_team", "model_margin", "model_total",
+               "market_margin", "market_total", "result", "total"]].copy()
+    t_out.round(4).to_csv(os.path.join(DERIVED, "predictions.csv"), index=False)
+
     # ------------------------------------------------------- originate lines for the next slate
     played = games.dropna(subset=["home_score", "away_score"])
     reg = games[games["game_type"] == "REG"]
@@ -172,7 +199,9 @@ def main() -> None:
     orig = []
     if len(upcoming):
         cutoff = upcoming["gameday"].min()
-        r = R.fit(played_reg[played_reg["gameday"] < cutoff], cutoff)
+        r = R.fit(played_reg[played_reg["gameday"] < cutoff], cutoff,
+                  half_life_days=best_hp[0], lam=best_hp[1],
+                  hfa_prior=R.hfa_prior_from(games, cutoff))
         for g in upcoming.itertuples():
             neutral = str(getattr(g, "location", "")) == "Neutral"
             pm, pt = r.predict(g.home_team, g.away_team)
