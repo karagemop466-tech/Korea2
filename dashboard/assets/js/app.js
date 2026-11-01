@@ -3,7 +3,9 @@
  * official source links. BASE resolves whether we are at root or /pages/. */
 (function () {
   "use strict";
-  var BASE = window.location.pathname.indexOf("/pages/") !== -1 ? ".." : ".";
+  var IN_PAGES = /\/pages\//.test(window.location.pathname);
+  var BASE = IN_PAGES ? "../.." : "..";  // data/*.json lives at the repo root
+  var NAV_PREFIX = IN_PAGES ? "../" : "";  // links relative to dashboard/ root
 
   var NAV = [
     { href: "index.html", label: "Dashboard" },
@@ -206,9 +208,9 @@
     var here = window.location.pathname.split("/").pop() || "index.html";
     var links = NAV.map(function (n) {
       var isActive = (n.href === here) || (n.href === "index.html" && here === "");
-      return '<a class="' + (isActive ? "active" : "") + '" href="' + (window.location.pathname.indexOf("/pages/") !== -1 ? "../" : "") + n.href + '">' + esc(n.label) + "</a>";
+      return '<a class="' + (isActive ? "active" : "") + '" href="' + NAV_PREFIX + n.href + '">' + esc(n.label) + "</a>";
     }).join("");
-    return '<div class="topbar"><a class="brand" href="' + (window.location.pathname.indexOf("/pages/") !== -1 ? "../index.html" : "index.html") + '">🏈 Korea2 · NFL Line Origination<small>skill-based strategy lab · verified 2026-11-01</small></a><nav class="nav">' + links + "</nav></div>";
+    return '<div class="topbar"><a class="brand" href="' + NAV_PREFIX + 'index.html">🏈 Korea2 · NFL Line Origination<small>skill-based strategy lab · verified 2026-11-01</small></a><nav class="nav">' + links + '<a href="' + BASE + '/index.html">⌂ Line Lab (root site)</a></nav></div>';
   }
 
   function footer() {

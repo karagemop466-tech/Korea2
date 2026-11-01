@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-HTML = list(ROOT.glob("*.html")) + list(ROOT.glob("pages/*.html"))
+HTML = [p for p in ROOT.rglob("*.html") if ".git" not in p.parts]
 ATTR = re.compile(r'(?:href|src)\s*=\s*"([^"]+)"')
 
 
@@ -34,7 +34,7 @@ def main() -> int:
             if not (page.parent / target).resolve().exists():
                 errors.append(f"{page.relative_to(ROOT)}: broken local link -> {link}")
     # data files referenced from JS
-    js = list(ROOT.glob("assets/js/*.js"))
+    js = list(ROOT.glob("dashboard/assets/js/*.js"))  # data refs are scanned in our dashboard JS
     for j in js:
         for m in re.finditer(r'data/([a-z_]+\.json)', j.read_text(encoding="utf-8")):
             checked += 1
