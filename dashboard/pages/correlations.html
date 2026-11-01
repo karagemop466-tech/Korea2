@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Correlation Framework — determining and controlling values · Korea2</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <div class="page-head">
+    <h1>Correlation Framework — determining and controlling values</h1>
+    <p>Pearson r (NIST formula + F-test) between legs; high-correlation and book-restricted pairs rejected. Numeric values are blank until computed from our own logged data (no official source publishes them) — flagged, not invented.</p>
+    <div class="meta-line"></div>
+  </div>
+  <section class="panel">
+    <div id="table"></div>
+  </section>
+</main>
+<script src="../assets/js/app.js"></script>
+<script>App.init({ data: "correlations.json", renderer: "correlations" }).catch(function (e) { document.getElementById("table").innerHTML = '<div class="notice">' + App.esc(e.message) + "</div>"; });</script>
+</body>
+</html>

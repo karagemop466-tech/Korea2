@@ -115,7 +115,7 @@ def render(slug: str, title: str, crumb: str, body: str) -> str:
 <div class="sidebar-note">EVIDENCE STATUS<strong>0 ranked</strong><span>5 strategies gated &middot; 32/32 verified</span></div></aside>
 <main><header><span>RESEARCH / {esc(crumb)}</span><a href="{depth}pages/flagged.html" class="review-link">Review flags &#8599;</a></header>
 {body}
-<footer>Research, not betting advice. Every figure is computed from the files in this repository and reconciled against NFL.com.<a href="{depth}pages/sources.html">Source register</a></footer></main></body></html>"""
+<footer>Research, not betting advice. Every figure is computed from the files in this repository and reconciled against NFL.com. Wager only where legal and only if of age; free, confidential help is available through the <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling</a>.<a href="{depth}pages/sources.html">Source register</a></footer></main></body></html>"""
 
 
 def section(eyebrow: str, heading: str, link: str | None = None) -> str:
@@ -664,6 +664,12 @@ def page_flagged() -> str:
         ("Historical seasons not reconciled team by team",
          "Only 2026 is reconciled against NFL.com field by field. Seasons 1999-2025 share the pipeline but were not individually checked against the league's site.",
          "Partial verification", "warn", NFL["results"]),
+        ("Legal, jurisdictional and licensing status",
+         "Nothing here is licensed betting advice and the project provides no access to any sportsbook. Whether a wager is lawful depends on where the reader is; that was not assessed. Singapore, where this research was produced, has its own regime.",
+         "Not assessed", "bad", NFL["results"]),
+        ("No opening lines or line movement",
+         "Only closing prices exist in the data. Closing-line value, the standard test of execution skill, therefore cannot be measured, and every return on this site assumes a price a real bettor may not obtain.",
+         "Structural limitation", "warn", NFL["results"]),
         ("Model still loses to the market",
          "The rating model's Brier skill against the close is negative. Anyone reading the originated-lines page should treat the gaps as model error until a strategy clears the gates.",
          "Open", "bad", NFL["team_stats"]),

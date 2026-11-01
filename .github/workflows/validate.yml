@@ -1,0 +1,22 @@
+name: validate
+
+on:
+  push:
+    branches: [main, arena/29806afc-korea2]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate data rows and official-source policy
+        run: python3 scripts/validate_data.py
+      - name: Check internal site links
+        run: python3 scripts/check_links.py

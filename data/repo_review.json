@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "Line-by-line repository review (as of 2026-11-01)",
+    "base_commit": "414eecadb2cb82d482c6bd5e2550d087b63f7e49 (main)",
+    "note": "The repository was reviewed file-by-file, line-by-line at the base commit before any changes. Findings and irregularities are listed per row; external claims introduced by this project are verified in data/sources.json, not here."
+  },
+  "rows": [
+    {"file": ".git/ (repository metadata)", "lines": "n/a (metadata)", "content": "Single commit 'Initial commit' (414eeca) on main; branch arena/29806afc-korea2 created from it; remote = github.com/karagemop466-tech/Korea2 (public repo)", "status": "reviewed", "irregularity": "None. No secrets, no credentials, no unexpected files in history (single commit).", "sources": ["SRC-GH-REPO"]},
+    {"file": "README.md", "lines": "1", "content": "Line 1: '# Korea2' — markdown H1 title only", "status": "reviewed", "irregularity": "None. Content is minimal but valid; replaced with a full project README by this session (see git history).", "sources": ["SRC-GH-README-BASE"]}
+  ],
+  "summary": {
+    "files_at_base": 1,
+    "lines_at_base": 1,
+    "irregularities_found": 0,
+    "notes": "Repo was effectively empty at base commit: one README line, no code, no configs, no CI, no docs, no data. No hidden files besides .git. No irregularities flagged. All project content added by session arena-29806afc is listed in COORDINATION.md."
+  }
+}

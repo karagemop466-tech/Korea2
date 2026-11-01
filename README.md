@@ -1,73 +1,92 @@
-# Line Lab — NFL line origination research
+# Korea2 — NFL Line Origination & Skill-Based Strategy Research
 
-Originate our own NFL lines, test whether they carry skill, and publish only what
-survives validation. The generated site is at
-**<https://karagemop466-tech.github.io/Korea2/>**.
+Parallel, verified research into **originating our own NFL betting lines** from
+official data, **signal generation**, **validation gates that remove luck**,
+**correlation control for parlays and player-prop combos**, and a **leaderboard
+design with rewards for top-performing strategies** — covering single bets,
+parlays and player-prop combos.
 
-> Research, not betting advice. Nothing in this repository is ranked for betting.
+## Live sites (GitHub Pages, served from `main`)
 
-## What is in here
+- **Line Lab** — root site: <https://karagemop466-tech.github.io/Korea2/>
+  (`index.html`, `pages/`, `assets/`). This session (`arena/d88b794a-korea2`)
+  rebuilt it into a measured, fully sourced research site.
+- **NFL Line Origination Dashboard** (`arena-29806afc`):
+  <https://karagemop466-tech.github.io/Korea2/dashboard/>
+- Independent research from other sessions: `nfl-research/`, `research-desk/`
 
-```
-index.html, pages/        generated site (do not hand-edit; run the build)
-assets/style.css          shared layout
-scripts/analysis/         the whole pipeline
-  common.py               loaders, odds maths, bootstrap, permutation, BH-FDR
-  prepare.py              prune nflverse extracts -> data/derived, write provenance
-  market.py               line calibration, blind-bet returns, 12 public angles
-  strategies.py           rating model, 5 strategies, 6 gates, parlay pricing
-  correlations.py         11 measured correlation pairs, SGP pricing
-  props.py                player projections, median-line calibration
-  originate.py            spread + total for every unplayed game
-  verification.py         reconcile 2026 against NFL.com
-  build_site.py           render every page from results/*.json
-  build.py                run all of the above
-data/derived/            committed pruned extracts (raw downloads are gitignored)
-data/provenance.json     URL, row count and SHA-256 of every source file
-results/                 committed JSON outputs, the single source for the site
-tests/check_site.py      links, nav, one source link per table row
-tests/check_data.py      statistical invariants the prose depends on
-.github/workflows/       data refresh + build verification
-```
+## Repository map
 
-## Run it
+| Path | Contents |
+| --- | --- |
+| `index.html`, `pages/` | Line Lab site — 12 pages generated from `results/*.json` |
+| `scripts/analysis/` | The quantitative pipeline: data prep, market baseline, strategy engine, correlation study, props, line origination, verification, site render |
+| `data/derived/` | Committed pruned nflverse extracts (raw downloads are gitignored) |
+| `data/provenance.json` | URL, row count and SHA-256 of every source file used |
+| `results/` | Committed JSON outputs; the single source of truth for the site |
+| `tests/check_data.py` | Statistical invariants the prose depends on |
+| `tests/check_site.py` | Links, navigation, one source link per table row |
+| `dashboard/` | Line-origination dashboard site from session `arena-29806afc` |
+| `data/*.json` | Verified data layer from session `arena-29806afc` (source registry, league facts, signals, gates G1–G8) |
+| `docs/` | `EXECUTIVE_SUMMARY.md`, `REPO_REVIEW.md` |
+| `scripts/` | `validate_data.py`, `check_links.py` from other sessions |
+| `.github/workflows/` | `build-verify.yml` (this session), `validate.yml` (dashboard), `fetch-nflverse.yml` (data refresh) |
+| `COORDINATION.md` | Shared task board and session logs for all parallel sessions |
+
+## Run the quantitative build
 
 ```bash
 pip install pandas numpy scipy
-python scripts/analysis/build.py     # regenerate results/ and the site
+python scripts/analysis/build.py     # regenerate results/ and every page
 python tests/check_data.py           # statistical invariants
 python tests/check_site.py           # links and source coverage
 ```
 
-`build.py` makes no network calls. If `data/derived/` is missing, refresh it with
-the `refresh-data` workflow, which downloads the nflverse releases and re-runs
-`prepare.py`.
+`build.py` makes no network calls and is deterministic: CI re-runs it and fails if
+the committed output differs.
 
-## Method in one paragraph
+## Method
 
 Every rule is fixed before outcomes are examined and only uses pre-kickoff
-information. Seasons are walked forward: each season is predicted using earlier
+information. Seasons are walked forward — each season is predicted using earlier
 seasons only. Bets settle at the closing price stored in the data, never an
 assumed −110. A strategy enters the leaderboard only after clearing six gates:
-sample size, two-sided significance, Benjamini–Hochberg correction across all
-strategies tried, positive return with a bootstrap interval that excludes zero, a
+sample size, two-sided significance, Benjamini–Hochberg correction across every
+strategy tried, positive return with a bootstrap interval that excludes zero, a
 permutation test against random portfolios of the same size, and a minimum
-track-record length. No strategy currently clears all six.
+track-record length. **No strategy currently clears all six.**
 
-## Sources
+## Verification policy
 
-Two tiers, never blurred:
+Two tiers of source, never blurred:
 
-* **Official.** NFL.com standings, schedules, player stats and team stats. Every
-  headline figure is reconciled against these. All 32 team records for 2026 match
-  exactly, as do three quarterback passing lines.
-* **Third-party.** nflverse publishes machine-readable extracts of the NFL's own
-  play-by-play and box scores, including the historical closing prices that no
-  league source publishes. It is a redistributor, not the league. Byte sizes and
-  SHA-256 of every file used are recorded in `data/provenance.json`.
+- **Official** — NFL.com standings, schedules, player stats and team stats. All
+  **32 of 32** 2026 team records (W, L, T, PF, PA) reconcile exactly, as do three
+  quarterback passing lines across yards, touchdowns, interceptions, completions
+  and attempts.
+- **Third-party** — nflverse publishes machine-readable extracts of the NFL's own
+  play-by-play and box scores, including historical closing prices that no league
+  source publishes. Byte sizes and SHA-256 of every file are in
+  `data/provenance.json`.
 
-## Known limitations
+Every table row on the Line Lab site carries an https source link; the build fails
+if one does not. Any value that cannot be confirmed from an official source is
+rendered as **unverified** and published on the **Flagged for review** page.
 
-Listed in full on the site's **Flagged for review** page. The short version:
-closing prices only, no historical prop prices, incomplete weather fields, 2026
-only is reconciled team by team, and the rating model loses to the market.
+Other sessions' policy (see `data/sources.json`): every row carries official
+source links checked on 2026-11-01; unconfirmable values are left blank and listed
+on `dashboard/pages/flagged.html`.
+
+Run the other sessions' checks too:
+
+```bash
+python3 scripts/validate_data.py   # data rows + official-source policy
+python3 scripts/check_links.py     # internal site links (whole repo)
+```
+
+## Responsible gambling
+
+Analytics research only — not a guarantee of profit. Wager only where legal and
+only if 21+. Free, confidential help 24/7/365 in all 50 states and U.S.
+territories via the
+[National Council on Problem Gambling](https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/).
