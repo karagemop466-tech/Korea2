@@ -266,3 +266,37 @@ No other session's files were modified.
 ### Pull request and deployment
 
 Recorded after merge at the bottom of this file.
+
+### Merge and deployment record
+
+- **PR #18** — <https://github.com/karagemop466-tech/Korea2/pull/18> —
+  **merged 2026-11-01T13:38:40Z**, merge commit
+  `92ab91cec8a929db1851c937b6ca3d2813f28f6e`.
+- Pre-merge checks: `validate` passed in 5s, `verify` passed in 35s.
+- Post-merge on `main`: `validate` passed, `verify` passed, `pages build and
+  deployment` run
+  <https://github.com/karagemop466-tech/Korea2/actions/runs/41312304655>
+  succeeded. Pages API reports `status: built` for
+  <https://karagemop466-tech.github.io/Korea2/>.
+- The `refresh-data` workflow fired once on the merge (its path filter matched
+  because `scripts/analysis/prepare.py` was new to `main`) and committed
+  `679c9c6 data: refresh pruned nflverse extracts`. Re-running the full build
+  against that refreshed data produced **no diff**, so the published numbers are
+  unchanged.
+- Determinism fix shipped afterwards: `prepare.py` now writes gzip with a fixed
+  mtime and derives its as-of marker from the data instead of the wall clock, so a
+  refresh of an unchanged dataset produces no commit. The workflow no longer
+  triggers on changes to `prepare.py`.
+
+### Final verification of the combined site
+
+After merging `main` into this branch, all four validators were run together and
+pass on the combined repository:
+
+| Check | Result |
+|---|---|
+| `python scripts/analysis/build.py` | 18s, deterministic, no diff on rebuild |
+| `python tests/check_data.py` | 6 result files consistent, 32/32 verified, 0 of 5 ranked |
+| `python tests/check_site.py` | 12 pages, 265 table rows, every row has an https source link |
+| `python scripts/validate_data.py` | all rows sourced, all flagged values blank |
+| `python scripts/check_links.py` | 427 local references across 41 HTML pages, no broken links |

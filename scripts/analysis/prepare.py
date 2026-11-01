@@ -6,6 +6,7 @@ the manifest (URL, byte size, sha256, row count) are committed.
 from __future__ import annotations
 
 import datetime as dt
+import gzip
 from pathlib import Path
 
 import pandas as pd
@@ -46,13 +47,22 @@ PLAYER_COLS = [
 ]
 
 
+def write_csv_gz(df, path):
+    """Deterministic gzip: fixed mtime and header, so an unchanged dataset
+    produces an unchanged file. Without this every refresh commits a diff."""
+    with open(path, "wb") as raw:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0, compresslevel=9) as gz:
+            df.to_csv(gz, index=False)
+
+
 def main():
-    manifest = {"generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-                "files": []}
+    # Deterministic provenance: the "as of" marker is derived from the data, not
+    # from the clock, so refreshing an unchanged dataset changes nothing.
+    manifest = {"files": []}
 
     g = load_games()
     keep = [c for c in GAMES_COLS if c in g.columns]
-    g[keep].to_csv(DERIVED / "games.csv.gz", index=False, compression="gzip")
+    write_csv_gz(g[keep], DERIVED / "games.csv.gz")
     manifest["files"].append({
         "name": "games.csv.gz", "source_url": SOURCES["games"],
         "rows": int(len(g)), "season_min": int(g.season.min()), "season_max": int(g.season.max()),
@@ -67,7 +77,7 @@ def main():
             tw.append(df[[c for c in TEAM_COLS if c in df.columns]])
     if tw:
         tw = pd.concat(tw, ignore_index=True)
-        tw.to_csv(DERIVED / "team_week.csv.gz", index=False, compression="gzip")
+        write_csv_gz(tw, DERIVED / "team_week.csv.gz")
         manifest["files"].append({"name": "team_week.csv.gz", "rows": int(len(tw)),
                                   "source_url_pattern": SOURCES["team_week"],
                                   "seasons": sorted(tw.season.unique().tolist())})
@@ -88,11 +98,20 @@ def main():
             missing.append(y)
     if pw:
         pw = pd.concat(pw, ignore_index=True)
-        pw.to_csv(DERIVED / "player_week.csv.gz", index=False, compression="gzip")
+        write_csv_gz(pw, DERIVED / "player_week.csv.gz")
         manifest["files"].append({"name": "player_week.csv.gz", "rows": int(len(pw)),
                                   "source_url_pattern": SOURCES["player_week"],
                                   "seasons": sorted(pw.season.unique().tolist())})
     manifest["missing_player_seasons"] = missing
+    # data-defined as-of marker (deterministic)
+    gd = g.copy()
+    gd["gameday"] = pd.to_datetime(gd.get("gameday"), errors="coerce")
+    settled = gd[pd.to_numeric(gd.get("result"), errors="coerce").notna()]
+    manifest = {
+        "data_as_of_gameday": str(settled.gameday.max().date()) if len(settled) else None,
+        "games_settled": int(len(settled)),
+        **manifest,
+    }
     jdump(manifest, DERIVED.parent / "provenance.json")
     print("prepared:", manifest)
 

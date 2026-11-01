@@ -627,7 +627,7 @@ def page_sources() -> str:
 <p class="intro">Two tiers of source are used and they are never blurred: the league itself, and a third-party redistributor of the league's own play-by-play.</p>
 {section("FILES", "Committed extracts")}
 {table(["FILE", "ROWS", "SEASONS", "SHA-256 OF RAW SOURCE", "DOWNLOAD", "OFFICIAL CHECK"], rows)}
-<p class="disclaimer">Generated {esc(prov.get('generated_utc', ''))}. Raw downloads are excluded from the repository and rebuilt by <code>.github/workflows/fetch-nflverse.yml</code>; the SHA-256 above pins exactly what was used.</p>
+<p class="disclaimer">Data as of gameday {esc(prov.get('data_as_of_gameday', 'unknown'))} ({integer(prov.get('games_settled'))} settled games in the source file). Raw downloads are excluded from the repository and rebuilt by <code>.github/workflows/fetch-nflverse.yml</code>; the SHA-256 above pins exactly what was used, and the build is byte-for-byte reproducible.</p>
 {section("SOURCE REGISTER", "Official and third-party, labelled")}
 {table(["SOURCE", "WHAT IT IS USED FOR", "TIER", "LINK"], src_rows)}
 {section("NOT AVAILABLE", "What we could not obtain")}
