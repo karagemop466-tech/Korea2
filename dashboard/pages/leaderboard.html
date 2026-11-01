@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaderboard Competition — rewards for top gate-validated strategies · Korea2</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <div class="page-head">
+    <h1>Leaderboard Competition — rewards for top gate-validated strategies</h1>
+    <p>Public in-season scoreboard for feedback; private held-out final ranking decides rewards. Modeled on Kaggle public/private leaderboards and the NFL Big Data Bowl (00,000 prize pool, NFL-judged).</p>
+    <div class="meta-line"></div>
+  </div>
+  <section class="panel">
+    <div id="table"></div>
+  </section>
+</main>
+<script src="../assets/js/app.js"></script>
+<script>App.init({ data: "leaderboard.json", renderer: "leaderboard" }).catch(function (e) { document.getElementById("table").innerHTML = '<div class="notice">' + App.esc(e.message) + "</div>"; });</script>
+</body>
+</html>

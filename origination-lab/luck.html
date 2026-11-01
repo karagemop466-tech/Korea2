@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Removing luck · NFL Line Lab</title>
+<meta name="description" content="Permutation nulls, reliability tests, per-strategy skill/luck decomposition and the number of bets an edge needs before anyone should believe it.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316233c'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='14' font-weight='700' fill='%23c8102e' text-anchor='middle'%3ENFL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="mark">NFL</span> Line Lab</a>
+  <nav class="main"><a href="index.html">Dashboard</a><a href="lines.html">Originated lines</a><a href="signals.html">Signals</a><a href="strategies.html">Leaderboard</a><a href="gates.html">Validation gates</a><a href="parlays.html">Parlays</a><a href="props.html">Player props</a><a href="correlation.html">Correlation</a><a href="luck.html" aria-current="page">Luck removal</a></nav>
+</div></header>
+<div class="subnav"><div class="wrap"><a href="executive-summary.html">Executive summary</a><a href="requirements.html">Requirements</a><a href="data.html">Data</a><a href="sources.html">Sources</a><a href="methods.html">Methods</a><a href="flagged.html">Flagged for review</a></div></div>
+<main class="wrap">
+<div class="page-head"><h1>Removing luck</h1><p class="lede">Permutation nulls, reliability tests, per-strategy skill/luck decomposition and the number of bets an edge needs before anyone should believe it.</p></div>
+
+<div class="grid g4">
+  <div class="card"><h3>Null bettor σ</h3><div class="kpi">3.01%</div><p>over 1,000 bets at -110</p></div>
+  <div class="card"><h3>Best of 100 nulls</h3><div class="kpi">3.12%</div><p>the winner of 100 zero-edge bettors</p></div>
+  <div class="card"><h3>Team ATS skill</h3><div class="kpi">none detected</div><p>permutation null ≥ observed dispersion</p></div>
+  <div class="card"><h3>Split-half reliability</h3><div class="kpi">-0.058</div><p>team ATS, first half vs second half</p></div>
+</div>
+
+<div class="note "><b>The core claim:</b> a bettor with no edge still wins sometimes, and the winner of a large pool of no-edge bettors looks exactly like a skilled one. Everything on this page exists to separate those two things. The null simulation gives the shape of luck; the permutation null gives the shape of luck <i>given the structure of the schedule</i>; the reliability tests ask whether the past predicts the future at all.</div>
+
+<h2>1 · What luck looks like</h2>
+<p>Twenty thousand zero-edge bettors, 1,000 bets each. The 95th percentile is
+0.4% and the best of every hundred such bettors averages
+3.1%. Any strategy returning less than that has not demonstrated
+anything.</p>
+<div class="tablewrap"><table class=""><caption>20,000 simulated bettors, 1,000 bets each at -110</caption><thead><tr><th class="">Return bucket</th><th class="n">Simulated bettors</th><th class=""></th></tr></thead><tbody><tr><td class="">-14% to -12%</td><td class="n">119</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:2.4%"></div></div><span class="lbl">+2.4%</span></div></td></tr><tr><td class="">-12% to -10%</td><td class="n">558</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:11.3%"></div></div><span class="lbl">+11.3%</span></div></td></tr><tr><td class="">-10% to -8%</td><td class="n">1,714</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:34.8%"></div></div><span class="lbl">+34.8%</span></div></td></tr><tr><td class="">-8% to -6%</td><td class="n">3,959</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:80.3%"></div></div><span class="lbl">+80.3%</span></div></td></tr><tr><td class="">-6% to -4%</td><td class="n">4,928</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:100.0%"></div></div><span class="lbl">+100.0%</span></div></td></tr><tr><td class="">-4% to -2%</td><td class="n">4,737</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:96.1%"></div></div><span class="lbl">+96.1%</span></div></td></tr><tr><td class="">-2% to 0%</td><td class="n">2,615</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:53.1%"></div></div><span class="lbl">+53.1%</span></div></td></tr><tr><td class="">0% to 2%</td><td class="n">1,069</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:21.7%"></div></div><span class="lbl">+21.7%</span></div></td></tr><tr><td class="">2% to 4%</td><td class="n">240</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:4.9%"></div></div><span class="lbl">+4.9%</span></div></td></tr><tr><td class="">4% to 6%</td><td class="n">45</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:0.9%"></div></div><span class="lbl">+0.9%</span></div></td></tr><tr><td class="">6% to 8%</td><td class="n">3</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:0.1%"></div></div><span class="lbl">+0.1%</span></div></td></tr><tr><td class="">8% to 10%</td><td class="n">1</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:0.0%"></div></div><span class="lbl">+0.0%</span></div></td></tr><tr><td class="">10% to 12%</td><td class="n">0</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:0.0%"></div></div><span class="lbl">+0.0%</span></div></td></tr><tr><td class="">12% to 14%</td><td class="n">0</td><td class=""><div class="bar"><div class="track"><div class="fill neg" style="width:0.0%"></div></div><span class="lbl">+0.0%</span></div></td></tr></tbody></table><div class="tnote">A zero-edge bettor is not a break-even bettor: the price itself costs about 5%.</div></div>
+
+<h2>2 · Team-level skill does not survive a permutation null</h2>
+<p>no detectable team-level ATS skill. Observed dispersion of team-season ATS rates is
+0.01301; the permutation benchmark that reassigns ATS winners inside each
+game — preserving the one-winner-per-game constraint — gives 0.01521
+± 0.00085. The point estimate of skill variance is negative, so it is
+reported as zero rather than clipped into a claim.</p>
+<ul>
+<li>Team-seasons in the test: 640</li>
+<li>Games per team-season: 16.5</li>
+<li>Implied 95% band for a team's true ATS rate: 50.0% to 50.0%</li>
+</ul>
+
+<h2>3 · Reliability</h2>
+<p>If teams had persistent ATS skill, a team's first half would predict its second half. It does not:
+r = -0.058 over 640 team-seasons, and year over year
+r = -0.035. Spearman-Brown reliability is
+-0.122.</p>
+
+<h2>4 · Each strategy, decomposed</h2>
+<p>The luck share compares the observed dispersion of a strategy's season returns with the dispersion
+pure chance would generate at the same number of bets. Numbers near 100% mean the season-to-season
+pattern is noise.</p>
+<div class="tablewrap"><table class=""><caption>Skill / luck decomposition per strategy</caption><thead><tr><th class="">Strategy</th><th class="n">Bets 2016+</th><th class="n">ROI 2016+</th><th class="n">Season ROI σ</th><th class="n">Chance σ</th><th class="n">Luck share</th><th class="n">Skill share</th><th class="n">p</th><th class="n">Max-stat p</th></tr></thead><tbody><tr><td class=""><b>3-leg parlay: top-3 model spread edges each week</b><br><span class="muted">S15_model_ats_parlay3</span></td><td class="n">193</td><td class="n"><span class="neg">-15.10%</span></td><td class="n">55.64%</td><td class="n">25.47%</td><td class="n">21.0%</td><td class="n">79.0%</td><td class="n">0.818</td><td class="n">0.984</td></tr><tr><td class=""><b>Model moneyline edge &gt;= 3 pts</b><br><span class="muted">S4_model_ml_3</span></td><td class="n">2,302</td><td class="n"><span class="neg">-6.38%</span></td><td class="n">14.46%</td><td class="n">7.13%</td><td class="n">24.3%</td><td class="n">75.7%</td><td class="n">0.938</td><td class="n">1.000</td></tr><tr><td class=""><b>2-leg parlay: top-2 model spread edges each week</b><br><span class="muted">S14_model_ats_parlay2</span></td><td class="n">1,186</td><td class="n"><span class="pos">+1.16%</span></td><td class="n">16.73%</td><td class="n">10.05%</td><td class="n">36.1%</td><td class="n">63.9%</td><td class="n">0.400</td><td class="n">0.739</td></tr><tr><td class=""><b>Fade home favourites of 7+ (ATS)</b><br><span class="muted">S7_fade_home_fav7</span></td><td class="n">572</td><td class="n"><span class="neg">-4.34%</span></td><td class="n">19.65%</td><td class="n">14.43%</td><td class="n">53.9%</td><td class="n">46.1%</td><td class="n">0.867</td><td class="n">1.000</td></tr><tr><td class=""><b>Wind 15+ mph (Under)</b><br><span class="muted">S11_wind_under</span></td><td class="n">202</td><td class="n"><span class="pos">+8.12%</span></td><td class="n">27.63%</td><td class="n">22.86%</td><td class="n">68.4%</td><td class="n">31.6%</td><td class="n">0.117</td><td class="n">0.863</td></tr><tr><td class=""><b>2-leg moneyline parlay: two shortest-priced favourites each week</b><br><span class="muted">S16_ml_fav_parlay2</span></td><td class="n">211</td><td class="n"><span class="neg">-6.14%</span></td><td class="n">27.59%</td><td class="n">23.57%</td><td class="n">73.0%</td><td class="n">27.0%</td><td class="n">0.907</td><td class="n">1.000</td></tr><tr><td class=""><b>2-team 6-pt teaser on Wong legs (+1.5/+2.5 dogs, -7.5/-8.5 favs)</b><br><span class="muted">S18_wong_teaser6</span></td><td class="n">120</td><td class="n"><span class="neg">-20.45%</span></td><td class="n">34.73%</td><td class="n">30.69%</td><td class="n">78.1%</td><td class="n">21.9%</td><td class="n">0.993</td><td class="n">1.000</td></tr><tr><td class=""><b>Same-game parlay: model spread + model total in one game</b><br><span class="muted">S17_sgp_spread_total</span></td><td class="n">1,225</td><td class="n"><span class="neg">-1.76%</span></td><td class="n">10.23%</td><td class="n">9.79%</td><td class="n">91.7%</td><td class="n">8.3%</td><td class="n">0.663</td><td class="n">0.610</td></tr><tr><td class=""><b>Model spread edge &gt;= 2 pts (ATS)</b><br><span class="muted">S2_model_ats_2</span></td><td class="n">1,687</td><td class="n"><span class="neg">-1.11%</span></td><td class="n">6.44%</td><td class="n">8.41%</td><td class="n">100.0%</td><td class="n">0.0%</td><td class="n">0.681</td><td class="n">0.999</td></tr><tr><td class=""><b>Divisional home underdogs (ATS)</b><br><span class="muted">S8_div_home_dog</span></td><td class="n">395</td><td class="n"><span class="neg">-2.19%</span></td><td class="n">13.09%</td><td class="n">17.28%</td><td class="n">100.0%</td><td class="n">0.0%</td><td class="n">0.689</td><td class="n">1.000</td></tr><tr><td class=""><b>Home underdogs of 3+ (ATS)</b><br><span class="muted">S6_home_dog_3</span></td><td class="n">749</td><td class="n"><span class="neg">-1.90%</span></td><td class="n">12.05%</td><td class="n">12.63%</td><td class="n">100.0%</td><td class="n">0.0%</td><td class="n">0.720</td><td class="n">1.000</td></tr><tr><td class=""><b>Home underdogs (ATS)</b><br><span class="muted">S5_home_dog</span></td><td class="n">1,065</td><td class="n"><span class="neg">-2.51%</span></td><td class="n">7.89%</td><td class="n">10.45%</td><td class="n">100.0%</td><td class="n">0.0%</td><td class="n">0.807</td><td class="n">1.000</td></tr><tr><td class=""><b>Dome games (Over)</b><br><span class="muted">S12_dome_over</span></td><td class="n">821</td><td class="n"><span class="neg">-1.79%</span></td><td class="n">8.02%</td><td class="n">11.93%</td><td class="n">100.0%</td><td class="n">0.0%</td><td class="n">0.720</td><td class="n">0.983</td></tr><tr><td class=""><b>Model total edge &gt;= 2 pts</b><br><span class="muted">S3_model_total_2</span></td><td class="n">1,495</td><td class="n"><span class="neg">-2.47%</span></td><td class="n">5.37%</td><td class="n">8.79%</td><td class="n">100.0%</td><td class="n">0.0%</td><td class="n">0.848</td><td class="n">0.980</td></tr><tr><td class=""><b>Home rest advantage 3+ days (ATS)</b><br><span class="muted">S9_rest_home</span></td><td class="n">303</td><td class="n"><span class="neg">-3.96%</span></td><td class="n">19.57%</td><td class="n">19.81%</td><td class="n">100.0%</td><td class="n">0.0%</td><td class="n">0.778</td><td class="n">1.000</td></tr><tr><td class=""><b>Model spread edge &gt;= 1 pt (ATS)</b><br><span class="muted">S1_model_ats_1</span></td><td class="n">2,228</td><td class="n"><span class="neg">-4.53%</span></td><td class="n">5.89%</td><td class="n">7.25%</td><td class="n">100.0%</td><td class="n">0.0%</td><td class="n">0.987</td><td class="n">1.000</td></tr><tr><td class=""><b>Buy cold home teams (avg margin &lt;= -7 last 3) (ATS)</b><br><span class="muted">S10_buy_cold</span></td><td class="n">656</td><td class="n"><span class="neg">-4.64%</span></td><td class="n">10.55%</td><td class="n">13.25%</td><td class="n">100.0%</td><td class="n">0.0%</td><td class="n">0.901</td><td class="n">1.000</td></tr></tbody></table><div class="tnote">Luck share compares the observed season-to-season spread of returns with the spread pure chance would produce at the same bet counts.</div></div>
+
+<h2>5 · The evidence bar</h2>
+<p>This table is the reason gate G1 exists. An edge of 2% needs thousands of settled bets before a
+one-sided 95% test can see it; a 150-bet season cannot distinguish a good bettor from a lucky one, no
+matter how good the story is.</p>
+<div class="tablewrap"><table class=""><caption>The evidence bar</caption><thead><tr><th class="n">True edge</th><th class="n">Bets (95% one-sided)</th><th class="n">Bets (80% power)</th><th class="n">Seasons at 150/yr</th></tr></thead><tbody><tr><td class="n">1%</td><td class="n">24,623</td><td class="n">56,190</td><td class="n">164</td></tr><tr><td class="n">2%</td><td class="n">6,156</td><td class="n">14,048</td><td class="n">41</td></tr><tr><td class="n">3%</td><td class="n">2,736</td><td class="n">6,244</td><td class="n">18</td></tr><tr><td class="n">5%</td><td class="n">985</td><td class="n">2,248</td><td class="n">7</td></tr><tr><td class="n">10%</td><td class="n">247</td><td class="n">562</td><td class="n">2</td></tr></tbody></table></div>
+
+<h2>6 · Multiple testing</h2>
+<ul>
+<li>Signals tested: <b>27</b>; expected false positives at p &lt; 0.05:
+<b>1.35</b>.</li>
+<li>Strategies tested: <b>18</b>; family size for the FDR correction:
+<b>45</b>.</li>
+<li>Signals surviving FDR and out-of-sample: <b>0</b>.</li>
+<li>Best strategy against the best-of-N null:
+p = <b>0.610</b>.</li>
+</ul>
+
+</main>
+<footer><div class="wrap">
+  <div><b>NFL Line Lab</b> — line origination, signal research and a gated strategy competition.<br>
+  Built from hashed open datasets; every table row carries its source id. Not betting advice.</div>
+  <div><a href="sources.html">Source registry</a> · <a href="flagged.html">Flagged for review</a> ·
+  <a href="methods.html">Methods</a> · <a href="requirements.html">Requirements</a></div>
+</div></footer>
+</body></html>

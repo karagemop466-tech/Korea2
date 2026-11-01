@@ -1,0 +1,62 @@
+name: refresh-data
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/fetch/fetch_nflverse.sh'
+      - '.github/workflows/fetch-nflverse.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install
+        run: pip install --quiet pandas numpy scipy
+
+      - name: Download nflverse release assets
+        run: |
+          set -uo pipefail
+          mkdir -p data/raw
+          BASE="https://github.com/nflverse/nflverse-data/releases/download"
+          get () {
+            if curl -sSL --retry 4 --retry-delay 3 --max-time 180 -o "$2" "$1" && [ -s "$2" ] && [ "$(stat -c%s "$2")" -gt 1000 ]; then
+              echo "OK   $(stat -c%s "$2") bytes  $2"
+            else
+              echo "FAIL $1"; rm -f "$2"
+            fi
+          }
+          get "$BASE/schedules/games.csv" data/raw/games.csv
+          for y in 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026; do
+            get "$BASE/stats_team/stats_team_week_${y}.csv" "data/raw/stats_team_week_${y}.csv"
+            get "$BASE/stats_player/stats_player_week_${y}.csv" "data/raw/stats_player_week_${y}.csv"
+          done
+
+      - name: Prepare pruned datasets
+        working-directory: scripts/analysis
+        run: PYTHONPATH=. python prepare.py
+
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name  "nfl-research-bot"
+          git config user.email "nfl-research-bot@users.noreply.github.com"
+          git add data/derived data/provenance.json
+          if git diff --cached --quiet; then
+            echo "no data changes"
+          else
+            git commit -m "data: refresh pruned nflverse extracts [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

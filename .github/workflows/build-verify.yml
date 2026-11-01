@@ -1,0 +1,35 @@
+name: build-verify
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: pip install --quiet pandas numpy scipy
+      - name: Rebuild every result and page from the committed data
+        run: python scripts/analysis/build.py
+      - name: Results are reproducible (no diff after rebuild)
+        run: |
+          if ! git diff --quiet -- results index.html pages; then
+            git --no-pager diff --stat -- results index.html pages
+            echo "::error::build output differs from what is committed"
+            exit 1
+          fi
+      - name: Statistical invariants
+        run: python tests/check_data.py
+      - name: Links, navigation and source coverage
+        run: python tests/check_site.py

@@ -1,0 +1,14 @@
+{
+ "n_games": 6123,
+ "pearson_margin_vs_total": 0.0162,
+ "phi_home_cover_vs_over": 0.0101,
+ "n_ats_total": 6123,
+ "phi_ml_win_vs_ats_cover": 0.6493,
+ "n_ml_ats": 5173,
+ "cross_game_leg_independence": {
+  "n_pairs": 3061,
+  "phi": -0.0192,
+  "note": "random adjacent pairs of games, ATS-home outcomes"
+ },
+ "sgp_note": "rho is the phi coefficient between the home side covering and the game going over; it is what a same-game parlay price must reflect."
+}

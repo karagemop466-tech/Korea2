@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for review · NFL Line Lab</title>
+<meta name="description" content="14 items that need a human decision: unverifiable values, assumptions, and places where two trusted sources disagree.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316233c'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='14' font-weight='700' fill='%23c8102e' text-anchor='middle'%3ENFL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="mark">NFL</span> Line Lab</a>
+  <nav class="main"><a href="index.html">Dashboard</a><a href="lines.html">Originated lines</a><a href="signals.html">Signals</a><a href="strategies.html">Leaderboard</a><a href="gates.html">Validation gates</a><a href="parlays.html">Parlays</a><a href="props.html">Player props</a><a href="correlation.html">Correlation</a><a href="luck.html">Luck removal</a></nav>
+</div></header>
+<div class="subnav"><div class="wrap"><a href="executive-summary.html">Executive summary</a><a href="requirements.html">Requirements</a><a href="data.html">Data</a><a href="sources.html">Sources</a><a href="methods.html">Methods</a><a href="flagged.html" aria-current="page">Flagged for review</a></div></div>
+<main class="wrap">
+<div class="page-head"><h1>Flagged for review</h1><p class="lede">14 items that need a human decision: unverifiable values, assumptions, and places where two trusted sources disagree.</p></div>
+
+<div class="note warn"><b>Nothing here blocks the release.</b> These are the items a reviewer should look at first: values that could not be confirmed from a primary source, assumptions that had to be made, and places where two sources disagree. Each carries its sources, the effect on the published numbers, and the action that would close it. 14 items.</div>
+
+<div class="grid g2">
+
+<div class="card" id="F1">
+  <h3>F1 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Odds provenance is undocumented by the publisher</p>
+  <p><b>What.</b> <code>spread_line</code>, <code>total_line</code>, <code>away_moneyline</code> and <code>home_moneyline</code> in nflverse/nfldata carry no documented sportsbook, snapshot time, or open/close label. The publisher's own data dictionary describes the fields but not their source.</p>
+  <p><b>Why it matters.</b> Every ROI in this project depends on those prices. If they are a single book's closing snapshot, the results are internally consistent but not reproducible against a specific sportsbook the reader can bet at.</p>
+  <p><b>Impact on published results.</b> Directional: results are usable as a market benchmark, not as a live betting plan.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv" title="nflverse/nfldata - games.csv" target="_blank" rel="noopener">S1</a> · <a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/closing_lines.csv" title="nflverse/nfldata - closing_lines.csv" target="_blank" rel="noopener">S2</a></span></p>
+  <p><b>Requested action.</b> Ask the publisher / reconcile against a licensed odds feed.</p>
+</div>
+<div class="card" id="F2">
+  <h3>F2 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Player-week data is a third-party mirror, two seasons only</p>
+  <p><b>What.</b> The canonical nflverse <code>player_stats</code> release CDN is unreachable from the build shell, so 2023-2024 weekly player data comes from a third-party repository that uses the nflverse schema.</p>
+  <p><b>Why it matters.</b> The prop layer therefore rests on 11,250 player-weeks, not the full history.</p>
+  <p><b>Impact on published results.</b> Limits the player-prop conclusions to two seasons; no season-to-season stability test.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/kadetownsend4/ML-Betting/tree/main/NFL/weekly_nfl_stats_season" title="kadetownsend4/ML-Betting - weekly_stats_2023/2024.csv (nflverse schema)" target="_blank" rel="noopener">S9</a> · <a href="https://github.com/nflverse/nflverse-data/releases/tag/player_stats" title="nflverse-data - player_stats release (canonical)" target="_blank" rel="noopener">S8</a></span></p>
+  <p><b>Requested action.</b> Re-run scripts/build_props.py with the canonical release.</p>
+</div>
+<div class="card" id="F3">
+  <h3>F3 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">No sportsbook player-prop prices exist in any verified source</p>
+  <p><b>What.</b> The extracts contain game-level spread/total/moneyline prices only. There is no prop line, price, or settled prop market anywhere in the data.</p>
+  <p><b>Why it matters.</b> A prop strategy cannot be settled against a market, so it cannot pass the significance or price-shock gates. Prop entries are published as an unpriced research tier and are excluded from the ranked leaderboard.</p>
+  <p><b>Impact on published results.</b> A9/A10 (prop combos) are met in research terms only.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/kadetownsend4/ML-Betting/tree/main/NFL/weekly_nfl_stats_season" title="kadetownsend4/ML-Betting - weekly_stats_2023/2024.csv (nflverse schema)" target="_blank" rel="noopener">S9</a></span></p>
+  <p><b>Requested action.</b> Supply a licensed prop-odds history to price these strategies.</p>
+</div>
+<div class="card" id="F4">
+  <h3>F4 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Teaser price is an assumption, not a sourced number</p>
+  <p><b>What.</b> The 2-team 6-point teaser is settled at −110, the conventional price. No teaser price exists in the verified extracts.</p>
+  <p><b>Why it matters.</b> A teaser's profitability is extremely price-sensitive (−110 vs −120).</p>
+  <p><b>Impact on published results.</b> The teaser entry is reported with the assumption exposed; at −110 it loses 13.5% per ticket, so no plausible price rescues it.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv" title="nflverse/nfldata - games.csv" target="_blank" rel="noopener">S1</a></span></p>
+  <p><b>Requested action.</b> Replace the assumption with a sourced teaser price.</p>
+</div>
+<div class="card" id="F5">
+  <h3>F5 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Parlay push settlement is conservative and provider-specific</p>
+  <p><b>What.</b> When one leg of a parlay pushes and the others win, this project settles the whole ticket as a push. Sportsbooks usually reduce the ticket instead.</p>
+  <p><b>Why it matters.</b> The convention understates parlay returns, never overstates them.</p>
+  <p><b>Impact on published results.</b> Parlay ROIs are lower bounds.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv" title="nflverse/nfldata - games.csv" target="_blank" rel="noopener">S1</a></span></p>
+  <p><b>Requested action.</b> Adopt the settlement rule of the book you actually bet.</p>
+</div>
+<div class="card" id="F6">
+  <h3>F6 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Opening lines exist for the 2021 season only</p>
+  <p><b>What.</b> <code>initial_lines.csv</code> covers 2021 weeks 1-18 and nothing else.</p>
+  <p><b>Why it matters.</b> Closing-line-value analysis needs opening prices; a single season is too small.</p>
+  <p><b>Impact on published results.</b> The line-movement probe (S13) is exploratory and fails the sample gate by design.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv" title="nflverse/nfldata - initial_lines.csv" target="_blank" rel="noopener">S3</a></span></p>
+  <p><b>Requested action.</b> Source a multi-season opening-line history.</p>
+</div>
+<div class="card" id="F7">
+  <h3>F7 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">League-official numeric verification is a spot check, not automated</p>
+  <p><b>What.</b> nfl.com is blocked from the build shell. League-official pages were read with the agent's page-fetch tool and compared by hand: (a) the 2026 NFL.com standings matched the nflverse standings file on 24 of 24 published teams (W-L-T, points for, points against); (b) the 2026 week-8 final Carolina at Green Bay is 19-27 on the league scores page and 19-27 in the game file; (c) 14 further 2026 win-loss records matched.</p>
+  <p><b>Why it matters.</b> Everything else is reconciled between two nflverse extracts, not against the league.</p>
+  <p><b>Impact on published results.</b> No numeric claim here is contradicted by a league source, but most are not league-verified.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://www.nfl.com/standings/" title="NFL.com standings (league official)" target="_blank" rel="noopener">S10</a> · <a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/standings.csv" title="nflverse/nfldata - standings.csv" target="_blank" rel="noopener">S6</a></span></p>
+  <p><b>Requested action.</b> Run a scheduled diff against NFL.com with network access.</p>
+</div>
+<div class="card" id="F8">
+  <h3>F8 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">The 2026 season is in progress at build time</p>
+  <p><b>What.</b> The source was refreshed 2026-11-01T13:06Z. 164 games are unplayed and only 28 carry a market line.</p>
+  <p><b>Why it matters.</b> Slate numbers are a snapshot, not a settlement.</p>
+  <p><b>Impact on published results.</b> Originated lines for the live slate are reproducible only against the pinned commit.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv" title="nflverse/nfldata - games.csv" target="_blank" rel="noopener">S1</a></span></p>
+  <p><b>Requested action.</b> Re-run the pipeline after each source refresh.</p>
+</div>
+<div class="card" id="F9">
+  <h3>F9 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">The two closing-line extracts disagree on 8.7% of game-sides</p>
+  <p><b>What.</b> Reconciling <code>games.csv</code> against <code>closing_lines.csv</code> over 2006-2018: 2,095 of 3,096 home-side lines match exactly, 91.3% agree within 0.5 pt, 97.2% within 1 pt, and the largest gap is 5.5 pts.</p>
+  <p><b>Why it matters.</b> Sub-point gaps are plausible (different books or snapshots); large gaps are not.</p>
+  <p><b>Impact on published results.</b> Settlement uses <code>games.csv</code> throughout; the alternative extract is not used for ROI.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv" title="nflverse/nfldata - games.csv" target="_blank" rel="noopener">S1</a> · <a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/closing_lines.csv" title="nflverse/nfldata - closing_lines.csv" target="_blank" rel="noopener">S2</a></span></p>
+  <p><b>Requested action.</b> Resolve the residual gaps against a licensed feed.</p>
+</div>
+<div class="card" id="F10">
+  <h3>F10 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Franchise continuity is a modelling choice</p>
+  <p><b>What.</b> OAK→LV, SD→LAC and STL→LA are mapped to one code so ratings carry across relocations.</p>
+  <p><b>Why it matters.</b> Without the mapping the rating model would restart a franchise at league average.</p>
+  <p><b>Impact on published results.</b> Affects 2016-2020 ratings for three franchises only.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/teams.csv" title="nflverse/nfldata - teams.csv" target="_blank" rel="noopener">S5</a></span></p>
+  <p><b>Requested action.</b> Confirm the intended treatment for relocated franchises.</p>
+</div>
+<div class="card" id="F11">
+  <h3>F11 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Implied team totals are derived, not quoted</p>
+  <p><b>What.</b> Team totals used in the prop-correlation layer are arithmetic: (total ± spread)/2.</p>
+  <p><b>Why it matters.</b> No team-total market exists in the extracts.</p>
+  <p><b>Impact on published results.</b> Affects the prop-vs-team-total correlation rows only.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv" title="nflverse/nfldata - games.csv" target="_blank" rel="noopener">S1</a></span></p>
+  <p><b>Requested action.</b> Replace with sourced team-total prices.</p>
+</div>
+<div class="card" id="F12">
+  <h3>F12 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Our prop lines are our own numbers</p>
+  <p><b>What.</b> The prop lines published on the Player props page are model output, not market prices.</p>
+  <p><b>Why it matters.</b> They are the deliverable of the line-origination layer, but they cannot be bet into.</p>
+  <p><b>Impact on published results.</b> Over/under rates at our lines measure calibration only.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/kadetownsend4/ML-Betting/tree/main/NFL/weekly_nfl_stats_season" title="kadetownsend4/ML-Betting - weekly_stats_2023/2024.csv (nflverse schema)" target="_blank" rel="noopener">S9</a></span></p>
+  <p><b>Requested action.</b> None - by design; see F3.</p>
+</div>
+<div class="card" id="F13">
+  <h3>F13 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Weather fields have no documented measurement protocol</p>
+  <p><b>What.</b> <code>temp</code> and <code>wind</code> in games.csv have no stated station, time, or unit convention.</p>
+  <p><b>Why it matters.</b> The wind-under signal is the strongest entry on the board and it depends on this field.</p>
+  <p><b>Impact on published results.</b> If wind is measured at a different time/place than kickoff, the signal weakens.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv" title="nflverse/nfldata - games.csv" target="_blank" rel="noopener">S1</a></span></p>
+  <p><b>Requested action.</b> Source stadium-level kickoff weather with a documented protocol.</p>
+</div>
+<div class="card" id="F14">
+  <h3>F14 · <span class="pill warn">needs review</span></h3>
+  <p style="font-size:15px;font-weight:600;margin:2px 0 8px">Season win totals are collected but unused</p>
+  <p><b>What.</b> <code>win_totals.csv</code> is downloaded and hashed but no analysis depends on it.</p>
+  <p><b>Why it matters.</b> Included for completeness; no verified cross-check was performed on it.</p>
+  <p><b>Impact on published results.</b> None on published results; listed so nothing is implied about its quality.</p>
+  <p><b>Sources.</b> <span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/win_totals.csv" title="nflverse/nfldata - win_totals.csv" target="_blank" rel="noopener">S7</a></span></p>
+  <p><b>Requested action.</b> Either verify and use it, or drop it from scope.</p>
+</div>
+</div>
+
+<h2>Values deliberately left blank</h2>
+<p>The following are blank on the site rather than estimated:</p>
+<ul>
+<li><b>Market lines for the 136 unplayed games
+without a recorded price</b> — see the live slate tables on the Originated lines page.</li>
+<li><b>Player-prop market prices</b> — do not exist in any verified source, so no prop ROI is published (F3).</li>
+<li><b>Teaser and parlay payout multipliers</b> — provider-specific and not in the data; the teaser is
+priced at a stated assumption and the parlay push rule is stated explicitly (F4, F5).</li>
+<li><b>Closing-line-value figures</b> beyond 2021 — opening prices exist for one season only (F6).</li>
+</ul>
+
+</main>
+<footer><div class="wrap">
+  <div><b>NFL Line Lab</b> — line origination, signal research and a gated strategy competition.<br>
+  Built from hashed open datasets; every table row carries its source id. Not betting advice.</div>
+  <div><a href="sources.html">Source registry</a> · <a href="flagged.html">Flagged for review</a> ·
+  <a href="methods.html">Methods</a> · <a href="requirements.html">Requirements</a></div>
+</div></footer>
+</body></html>

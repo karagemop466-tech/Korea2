@@ -1,11 +1,12 @@
-# Raw and intermediate data are re-downloadable from pinned upstream commits.
-# See data/PROVENANCE.md for URLs and SHA-256 checksums.
+# Raw downloads are reproducible from data/provenance.json and quant-lab/data/raw/PROVENANCE.txt.
 data/raw/
-data/interim/
-pipeline/__pycache__/
-**/__pycache__/
+quant-lab/data/raw/
+__pycache__/
 *.pyc
 .venv/
-venv/
-.ipynb_checkpoints/
 .DS_Store
+origination-lab/data/raw/
+
+# Session arena-3f5af27c (origination/)
+data/interim/
+data/raw/_tarballs/

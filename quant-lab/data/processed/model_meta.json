@@ -1,0 +1,117 @@
+{
+ "params": {
+  "half_life": 90.0,
+  "psw": 0.5,
+  "ridge": 6.0
+ },
+ "grid": [
+  {
+   "half_life": 90.0,
+   "psw": 0.5,
+   "ridge": 6.0,
+   "mae_margin": 10.9585,
+   "mae_total": 10.8801,
+   "n": 3376
+  },
+  {
+   "half_life": 90.0,
+   "psw": 0.35,
+   "ridge": 6.0,
+   "mae_margin": 10.9783,
+   "mae_total": 10.8926,
+   "n": 3376
+  },
+  {
+   "half_life": 90.0,
+   "psw": 0.2,
+   "ridge": 6.0,
+   "mae_margin": 11.003,
+   "mae_total": 10.9089,
+   "n": 3376
+  },
+  {
+   "half_life": 90.0,
+   "psw": 0.5,
+   "ridge": 12.0,
+   "mae_margin": 11.0469,
+   "mae_total": 10.8723,
+   "n": 3376
+  },
+  {
+   "half_life": 60.0,
+   "psw": 0.5,
+   "ridge": 6.0,
+   "mae_margin": 11.0212,
+   "mae_total": 10.9087,
+   "n": 3376
+  },
+  {
+   "half_life": 90.0,
+   "psw": 0.35,
+   "ridge": 12.0,
+   "mae_margin": 11.0623,
+   "mae_total": 10.8815,
+   "n": 3376
+  },
+  {
+   "half_life": 60.0,
+   "psw": 0.35,
+   "ridge": 6.0,
+   "mae_margin": 11.0304,
+   "mae_total": 10.9144,
+   "n": 3376
+  },
+  {
+   "half_life": 60.0,
+   "psw": 0.2,
+   "ridge": 6.0,
+   "mae_margin": 11.0407,
+   "mae_total": 10.9205,
+   "n": 3376
+  },
+  {
+   "half_life": 90.0,
+   "psw": 0.2,
+   "ridge": 12.0,
+   "mae_margin": 11.0806,
+   "mae_total": 10.8931,
+   "n": 3376
+  },
+  {
+   "half_life": 45.0,
+   "psw": 0.5,
+   "ridge": 6.0,
+   "mae_margin": 11.0583,
+   "mae_total": 10.9184,
+   "n": 3376
+  },
+  {
+   "half_life": 45.0,
+   "psw": 0.35,
+   "ridge": 6.0,
+   "mae_margin": 11.0619,
+   "mae_total": 10.9204,
+   "n": 3376
+  },
+  {
+   "half_life": 45.0,
+   "psw": 0.2,
+   "ridge": 6.0,
+   "mae_margin": 11.0656,
+   "mae_total": 10.9225,
+   "n": 3376
+  }
+ ],
+ "grid_size": 36,
+ "sigma": {
+  "n": 6123,
+  "mae": 10.647,
+  "rmse": 13.67,
+  "sigma": 13.671
+ },
+ "mae_market_spread": 10.239,
+ "mae_model_spread": 10.647,
+ "mae_market_total": 10.53,
+ "mae_model_total": 10.869,
+ "n": 6123
+}

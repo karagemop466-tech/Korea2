@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Korea2 · NFL Line Origination Dashboard</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <div class="page-head">
+    <h1>NFL Line Origination &amp; Skill-Based Strategy Dashboard</h1>
+    <p>Originate our own NFL lines from official data, validate every strategy through statistical gates, control parlay correlation, and rank strategies on a Kaggle-style public/private leaderboard with rewards for top performers.</p>
+    <div class="meta-line">All values verified against official sources on 2026-11-01 · unverifiable values are blank and flagged · no manual input required</div>
+  </div>
+
+  <div class="notice blue"><strong>How to read this site:</strong> every table row ends with <em>official source link(s)</em> (chips like <span class="chip">SRC-NFL-NGS ↗</span>). Hover a chip for the source; click to open the official page. Rows marked <span class="badge warn">UNVERIFIED — BLANK</span> could not be confirmed from any official source, so the value is deliberately left blank and listed on the <a href="pages/flagged.html">⚑ Flagged for Review</a> page.</div>
+
+  <div class="cards" id="cards"></div>
+
+  <div class="grid2">
+    <section class="panel">
+      <h2>League snapshot (verified facts)</h2>
+      <p class="sub">Official NFL sources — dynamic values carry an as-of date.</p>
+      <div id="facts"></div>
+    </section>
+    <section class="panel">
+      <h2>⚑ Flagged for review (summary)</h2>
+      <p class="sub">Values that could not be confirmed from an official source are blank, not inferred.</p>
+      <div id="flags"></div>
+      <p style="margin:10px 0 0"><a href="pages/flagged.html">Open the full Flagged for Review page →</a></p>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Project map</h2>
+    <p class="sub">Subpages organized by category.</p>
+    <ul class="tight">
+      <li><a href="pages/executive-summary.html">Executive Summary</a> — the important details in one page.</li>
+      <li><a href="pages/strategies.html">Strategies</a> — 9 line-origination strategies across single bets, parlays, and player-prop combos.</li>
+      <li><a href="pages/signals.html">Signals</a> — 12 officially-sourced signal inputs for models.</li>
+      <li><a href="pages/bet-types.html">Bet Types</a> — spread / moneyline / total / props / parlays / SGP / teaser / round robin / live, with official definitions.</li>
+      <li><a href="pages/validation.html">Validation Gates</a> — G1–G8 gates that remove luck (significance tests, CLV, sample sizes, Bonferroni).</li>
+      <li><a href="pages/correlations.html">Correlations</a> — how correlation values are determined (Pearson r, NIST) and controlled in combos.</li>
+      <li><a href="pages/leaderboard.html">Leaderboard</a> — public/private competition design with rewards (Kaggle / NFL Big Data Bowl model).</li>
+      <li><a href="pages/data-sources.html">Data &amp; Sources</a> — league facts plus the full registry of 40 official sources.</li>
+      <li><a href="pages/repo-review.html">Repo Review</a> — line-by-line review of this repository with irregularities.</li>
+      <li><a href="pages/flagged.html">⚑ Flagged for Review</a> — unverified items with reasons and source links.</li>
+    </ul>
+  </section>
+</main>
+<script src="assets/js/app.js"></script>
+<script>
+(function () {
+  document.body.insertAdjacentHTML("afterbegin", App.navBar());
+  document.body.insertAdjacentHTML("beforeend", App.footer());
+  Promise.all([
+    App.fetchJSON("sources.json"), App.fetchJSON("league_facts.json"), App.fetchJSON("flagged.json"),
+    App.fetchJSON("strategies.json"), App.fetchJSON("signals.json"), App.fetchJSON("validation_gates.json"),
+    App.fetchJSON("bet_types.json"), App.fetchJSON("correlations.json"), App.fetchJSON("leaderboard.json")
+  ]).then(function (r) {
+    var sources = r[0], facts = r[1], flagged = r[2];
+    r[0].sources.forEach(function (s) { App.state.sources[s.id] = s; });
+    var cards = [
+      ["40", "official sources", "pages/data-sources.html"],
+      [String(r[3].rows.length), "strategies", "pages/strategies.html"],
+      [String(r[4].rows.length), "signals", "pages/signals.html"],
+      [String(r[6].rows.length), "bet types", "pages/bet-types.html"],
+      [String(r[5].rows.length), "validation gates", "pages/validation.html"],
+      [String(r[7].rows.length), "correlation rules", "pages/correlations.html"],
+      [String(r[8].rows.length), "leaderboard elements", "pages/leaderboard.html"],
+      [String(flagged.rows.length), "flagged items", "pages/flagged.html"],
+      [String(facts.rows.length), "verified league facts", "pages/data-sources.html"]
+    ];
+    document.getElementById("cards").innerHTML = cards.map(function (c) {
+      return '<a class="card cardlink" href="' + c[2] + '"><div class="num">' + c[0] + '</div><div class="lbl">' + c[1] + "</div></a>";
+    }).join("");
+    App.renderTable(document.getElementById("facts"), facts.rows.slice(0, 8), [
+      App.idCell,
+      { key: "fact", label: "Fact" },
+      { key: "value", label: "Value" },
+      { key: "verified", label: "Status", render: App.verifiedBadge },
+      App.srcCol
+    ]);
+    App.renderTable(document.getElementById("flags"), flagged.rows, [
+      App.idCell,
+      { key: "item", label: "Flagged item" },
+      { key: "value", label: "Value", render: function (row) { return App.valCell(row, "value"); } },
+      { key: "reason", label: "Reason" },
+      App.srcCol
+    ]);
+  }).catch(function (e) { document.getElementById("cards").innerHTML = '<div class="notice">' + App.esc(e.message) + "</div>"; });
+})();
+</script>
+</body>
+</html>

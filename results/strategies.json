@@ -1,0 +1,566 @@
+{
+ "strategies": {
+  "S1_away_blanket": {
+   "label": "S1 \u00b7 Blanket away",
+   "n": 7075,
+   "roi": -0.008426,
+   "sd": 0.95677,
+   "t": -0.740728,
+   "p": 0.458883,
+   "ci_lo": -0.030307,
+   "ci_hi": 0.014008,
+   "max_dd": 98.468992,
+   "req_n": 49534.258341,
+   "units": -59.611386,
+   "family": "single",
+   "thesis": "Fade the home team on the road-team cover rate gap observed in the data.",
+   "hit_rate": 0.497244,
+   "push_rate": 0.027562,
+   "hit_rate_nonpush": 0.511337,
+   "binom_p": 0.061666,
+   "legs": [
+    {
+     "side": "away",
+     "market": "ats",
+     "n": 7075,
+     "hit": 0.497244,
+     "push_rate": 0.027562,
+     "avg_price": -73.11265
+    }
+   ],
+   "perm_p": 0.02295,
+   "splits": {
+    "develop_2018_2022": {
+     "n": 1311,
+     "roi": 0.017933,
+     "t": 0.674763,
+     "p": 0.499945
+    },
+    "validate_2023_2024": {
+     "n": 544,
+     "roi": -0.049662,
+     "t": -1.230651,
+     "p": 0.218986
+    },
+    "holdout_2025_2026": {
+     "n": 380,
+     "roi": -0.000298,
+     "t": -0.006135,
+     "p": 0.995109
+    },
+    "pre_2018": {
+     "n": 4840,
+     "roi": -0.011569,
+     "t": -0.840322,
+     "p": 0.400769
+    }
+   }
+  },
+  "S2_rest_spot": {
+   "label": "S2 \u00b7 Rest-differential spot",
+   "n": 1340,
+   "roi": -0.00686,
+   "sd": 0.960997,
+   "t": -0.261305,
+   "p": 0.793897,
+   "ci_lo": -0.058327,
+   "ci_hi": 0.04562,
+   "max_dd": 37.098624,
+   "req_n": 75388.509715,
+   "units": -9.19226,
+   "family": "single",
+   "thesis": "Bet the team with at least three extra rest days.",
+   "hit_rate": 0.5,
+   "push_rate": 0.022388,
+   "hit_rate_nonpush": 0.51145,
+   "binom_p": 0.422993,
+   "legs": [
+    {
+     "side": "home",
+     "market": "ats",
+     "n": 632,
+     "hit": 0.481013,
+     "push_rate": 0.023734,
+     "avg_price": -72.193038
+    },
+    {
+     "side": "away",
+     "market": "ats",
+     "n": 708,
+     "hit": 0.516949,
+     "push_rate": 0.021186,
+     "avg_price": -69.89548
+    }
+   ],
+   "perm_p": 0.1796,
+   "splits": {
+    "develop_2018_2022": {
+     "n": 281,
+     "roi": -0.030707,
+     "t": -0.530819,
+     "p": 0.595965
+    },
+    "validate_2023_2024": {
+     "n": 121,
+     "roi": -0.018441,
+     "t": -0.2128,
+     "p": 0.831844
+    },
+    "holdout_2025_2026": {
+     "n": 78,
+     "roi": 0.022603,
+     "t": 0.212384,
+     "p": 0.832368
+    },
+    "pre_2018": {
+     "n": 860,
+     "roi": -0.000111,
+     "t": -0.003374,
+     "p": 0.997309
+    }
+   }
+  },
+  "S3_weather_under": {
+   "label": "S3 \u00b7 Weather under",
+   "n": 649,
+   "roi": 0.086546,
+   "sd": 0.955545,
+   "t": 2.30737,
+   "p": 0.021348,
+   "ci_lo": 0.010962,
+   "ci_hi": 0.160183,
+   "max_dd": 13.482267,
+   "req_n": 468.280833,
+   "units": 56.168214,
+   "family": "single",
+   "thesis": "Bet under when the recorded wind is 15 mph or more.",
+   "hit_rate": 0.55624,
+   "push_rate": 0.010786,
+   "hit_rate_nonpush": 0.562305,
+   "binom_p": 0.001822,
+   "legs": [
+    {
+     "side": "under",
+     "market": "total",
+     "n": 649,
+     "hit": 0.55624,
+     "push_rate": 0.010786,
+     "avg_price": -81.878274
+    }
+   ],
+   "perm_p": 0.00075,
+   "splits": {
+    "develop_2018_2022": {
+     "n": 107,
+     "roi": 0.124381,
+     "t": 1.335952,
+     "p": 0.184426
+    },
+    "validate_2023_2024": {
+     "n": 27,
+     "roi": 0.026862,
+     "t": 0.146628,
+     "p": 0.884557
+    },
+    "holdout_2025_2026": {
+     "n": 19,
+     "roi": -0.002358,
+     "t": -0.010569,
+     "p": 0.991684
+    },
+    "pre_2018": {
+     "n": 496,
+     "roi": 0.085038,
+     "t": 1.981139,
+     "p": 0.048129
+    }
+   }
+  },
+  "S4_div_home_dog": {
+   "label": "S4 \u00b7 Divisional home dog",
+   "n": 999,
+   "roi": -0.041465,
+   "sd": 0.954493,
+   "t": -1.373075,
+   "p": 0.170037,
+   "ci_lo": -0.099727,
+   "ci_hi": 0.017643,
+   "max_dd": 60.960866,
+   "req_n": 2035.509775,
+   "units": -41.42379,
+   "family": "single",
+   "thesis": "Bet the home underdog inside the division.",
+   "hit_rate": 0.48048,
+   "push_rate": 0.029029,
+   "hit_rate_nonpush": 0.494845,
+   "binom_p": 0.772602,
+   "legs": [
+    {
+     "side": "home",
+     "market": "ats",
+     "n": 999,
+     "hit": 0.48048,
+     "push_rate": 0.029029,
+     "avg_price": -73.640641
+    }
+   ],
+   "perm_p": 0.63415,
+   "splits": {
+    "develop_2018_2022": {
+     "n": 188,
+     "roi": -0.017032,
+     "t": -0.24126,
+     "p": 0.809618
+    },
+    "validate_2023_2024": {
+     "n": 82,
+     "roi": -0.052066,
+     "t": -0.498062,
+     "p": 0.61979
+    },
+    "holdout_2025_2026": {
+     "n": 54,
+     "roi": 0.032124,
+     "t": 0.243806,
+     "p": 0.808323
+    },
+    "pre_2018": {
+     "n": 675,
+     "roi": -0.05287,
+     "t": -1.442377,
+     "p": 0.149661
+    }
+   }
+  },
+  "S5_model_edge": {
+   "label": "S5 \u00b7 Model edge vs close",
+   "n": 1649,
+   "roi": -0.046969,
+   "sd": 0.962495,
+   "t": -1.981615,
+   "p": 0.047688,
+   "ci_lo": -0.093626,
+   "ci_hi": -0.000341,
+   "max_dd": 88.008884,
+   "req_n": 1613.163152,
+   "units": -77.451166,
+   "family": "single",
+   "thesis": "Bet the side when the walk-forward rating model disagrees with the closing line by at least 2 points and the model probability clears the price by 2 percentage points.",
+   "hit_rate": 0.478472,
+   "push_rate": 0.022438,
+   "hit_rate_nonpush": 0.489454,
+   "binom_p": 0.41112,
+   "legs": [
+    {
+     "side": "home",
+     "market": "ats",
+     "n": 812,
+     "hit": 0.474138,
+     "push_rate": 0.023399,
+     "avg_price": -70.077586
+    },
+    {
+     "side": "away",
+     "market": "ats",
+     "n": 837,
+     "hit": 0.482676,
+     "push_rate": 0.021505,
+     "avg_price": -65.968937
+    }
+   ],
+   "perm_p": 0.75685,
+   "splits": {
+    "develop_2018_2022": {
+     "n": 782,
+     "roi": -0.055655,
+     "t": -1.6093,
+     "p": 0.107955
+    },
+    "validate_2023_2024": {
+     "n": 333,
+     "roi": -0.032042,
+     "t": -0.615245,
+     "p": 0.538815
+    },
+    "holdout_2025_2026": {
+     "n": 235,
+     "roi": -0.04257,
+     "t": -0.687674,
+     "p": 0.492339
+    },
+    "pre_2018": {
+     "n": 299,
+     "roi": -0.044332,
+     "t": -0.783139,
+     "p": 0.434167
+    }
+   }
+  }
+ },
+ "model": {
+  "n": 2676,
+  "logloss_model": 0.715063,
+  "logloss_market": 0.694431,
+  "brier_model": 0.260132,
+  "brier_market": 0.250641,
+  "brier_skill_vs_market": -0.037865,
+  "market_brier_skill_vs_coinflip": -0.002566,
+  "accuracy": 0.487668,
+  "model_vs_market_r2": 0.673374,
+  "sigma": 16.104578,
+  "season_r2": {}
+ },
+ "parlays": {
+  "parlay3_model": {
+   "n_tickets": 182,
+   "mean_naive_p": 0.274425,
+   "hit_rate": 0.104396,
+   "roi": -0.309017,
+   "t": -2.014017,
+   "p": 0.045488,
+   "mean_mean_gap": 8.31847,
+   "expected_hits_if_independent": 49.945381,
+   "actual_hits": 19,
+   "note": "Naive pricing multiplies the three leg probabilities. The ticket count is the number of weeks where the model had three qualifying legs."
+  },
+  "parlay_hold": {
+   "mean_leg_implied_sum": 7.362627,
+   "note": "sum of the three decimal prices; >1 is the theoretical margin a book earns"
+  },
+  "cross_game_independence": {
+   "n": 7075,
+   "autocorr_lag1": -0.007058,
+   "week_mean_autocorr_lag1": 0.051803
+  }
+ },
+ "gates": {
+  "by_strategy": {
+   "S1_away_blanket": {
+    "name": "S1 \u00b7 Blanket away",
+    "gates": [
+     {
+      "gate": "G1 Sample size",
+      "pass": true,
+      "value": "n = 7075",
+      "rule": "n >= 300 settled bets"
+     },
+     {
+      "gate": "G2 Significance",
+      "pass": false,
+      "value": "p = 0.459",
+      "rule": "two-sided p < 0.05"
+     },
+     {
+      "gate": "G3 Multiple testing",
+      "pass": false,
+      "value": "fails BH-FDR",
+      "rule": "Benjamini-Hochberg q = 0.10 across all strategies"
+     },
+     {
+      "gate": "G4 Positive after vig",
+      "pass": false,
+      "value": "ROI -0.84%, 95% CI low -3.03%",
+      "rule": "ROI > 0 and bootstrap CI excludes 0"
+     },
+     {
+      "gate": "G5 Luck",
+      "pass": true,
+      "value": "permutation p = 0.023",
+      "rule": "random portfolios of the same size beat it < 5% of the time"
+     },
+     {
+      "gate": "G6 Track-record length",
+      "pass": false,
+      "value": "needs n >= 49,535",
+      "rule": "n at least the sample needed for the observed effect to be significant"
+     }
+    ],
+    "passed": 2,
+    "of": 6,
+    "status": "NOT RANKED"
+   },
+   "S2_rest_spot": {
+    "name": "S2 \u00b7 Rest-differential spot",
+    "gates": [
+     {
+      "gate": "G1 Sample size",
+      "pass": true,
+      "value": "n = 1340",
+      "rule": "n >= 300 settled bets"
+     },
+     {
+      "gate": "G2 Significance",
+      "pass": false,
+      "value": "p = 0.794",
+      "rule": "two-sided p < 0.05"
+     },
+     {
+      "gate": "G3 Multiple testing",
+      "pass": false,
+      "value": "fails BH-FDR",
+      "rule": "Benjamini-Hochberg q = 0.10 across all strategies"
+     },
+     {
+      "gate": "G4 Positive after vig",
+      "pass": false,
+      "value": "ROI -0.69%, 95% CI low -5.83%",
+      "rule": "ROI > 0 and bootstrap CI excludes 0"
+     },
+     {
+      "gate": "G5 Luck",
+      "pass": false,
+      "value": "permutation p = 0.180",
+      "rule": "random portfolios of the same size beat it < 5% of the time"
+     },
+     {
+      "gate": "G6 Track-record length",
+      "pass": false,
+      "value": "needs n >= 75,389",
+      "rule": "n at least the sample needed for the observed effect to be significant"
+     }
+    ],
+    "passed": 1,
+    "of": 6,
+    "status": "NOT RANKED"
+   },
+   "S3_weather_under": {
+    "name": "S3 \u00b7 Weather under",
+    "gates": [
+     {
+      "gate": "G1 Sample size",
+      "pass": true,
+      "value": "n = 649",
+      "rule": "n >= 300 settled bets"
+     },
+     {
+      "gate": "G2 Significance",
+      "pass": true,
+      "value": "p = 0.021",
+      "rule": "two-sided p < 0.05"
+     },
+     {
+      "gate": "G3 Multiple testing",
+      "pass": false,
+      "value": "fails BH-FDR",
+      "rule": "Benjamini-Hochberg q = 0.10 across all strategies"
+     },
+     {
+      "gate": "G4 Positive after vig",
+      "pass": true,
+      "value": "ROI +8.65%, 95% CI low +1.10%",
+      "rule": "ROI > 0 and bootstrap CI excludes 0"
+     },
+     {
+      "gate": "G5 Luck",
+      "pass": true,
+      "value": "permutation p = 0.001",
+      "rule": "random portfolios of the same size beat it < 5% of the time"
+     },
+     {
+      "gate": "G6 Track-record length",
+      "pass": true,
+      "value": "needs n >= 469",
+      "rule": "n at least the sample needed for the observed effect to be significant"
+     }
+    ],
+    "passed": 5,
+    "of": 6,
+    "status": "NOT RANKED"
+   },
+   "S4_div_home_dog": {
+    "name": "S4 \u00b7 Divisional home dog",
+    "gates": [
+     {
+      "gate": "G1 Sample size",
+      "pass": true,
+      "value": "n = 999",
+      "rule": "n >= 300 settled bets"
+     },
+     {
+      "gate": "G2 Significance",
+      "pass": false,
+      "value": "p = 0.170",
+      "rule": "two-sided p < 0.05"
+     },
+     {
+      "gate": "G3 Multiple testing",
+      "pass": false,
+      "value": "fails BH-FDR",
+      "rule": "Benjamini-Hochberg q = 0.10 across all strategies"
+     },
+     {
+      "gate": "G4 Positive after vig",
+      "pass": false,
+      "value": "ROI -4.15%, 95% CI low -9.97%",
+      "rule": "ROI > 0 and bootstrap CI excludes 0"
+     },
+     {
+      "gate": "G5 Luck",
+      "pass": false,
+      "value": "permutation p = 0.634",
+      "rule": "random portfolios of the same size beat it < 5% of the time"
+     },
+     {
+      "gate": "G6 Track-record length",
+      "pass": false,
+      "value": "needs n >= 2,036",
+      "rule": "n at least the sample needed for the observed effect to be significant"
+     }
+    ],
+    "passed": 1,
+    "of": 6,
+    "status": "NOT RANKED"
+   },
+   "S5_model_edge": {
+    "name": "S5 \u00b7 Model edge vs close",
+    "gates": [
+     {
+      "gate": "G1 Sample size",
+      "pass": true,
+      "value": "n = 1649",
+      "rule": "n >= 300 settled bets"
+     },
+     {
+      "gate": "G2 Significance",
+      "pass": true,
+      "value": "p = 0.048",
+      "rule": "two-sided p < 0.05"
+     },
+     {
+      "gate": "G3 Multiple testing",
+      "pass": false,
+      "value": "fails BH-FDR",
+      "rule": "Benjamini-Hochberg q = 0.10 across all strategies"
+     },
+     {
+      "gate": "G4 Positive after vig",
+      "pass": false,
+      "value": "ROI -4.70%, 95% CI low -9.36%",
+      "rule": "ROI > 0 and bootstrap CI excludes 0"
+     },
+     {
+      "gate": "G5 Luck",
+      "pass": false,
+      "value": "permutation p = 0.757",
+      "rule": "random portfolios of the same size beat it < 5% of the time"
+     },
+     {
+      "gate": "G6 Track-record length",
+      "pass": true,
+      "value": "needs n >= 1,614",
+      "rule": "n at least the sample needed for the observed effect to be significant"
+     }
+    ],
+    "passed": 3,
+    "of": 6,
+    "status": "NOT RANKED"
+   }
+  },
+  "ranked": [],
+  "fdr": {
+   "q": 0.1,
+   "n_tests": 5,
+   "n_pass": 0
+  }
+ }
+}
