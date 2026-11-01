@@ -431,6 +431,19 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   time because `main` advanced to `deecf04` (sibling quant-lab fix); it was resolved the same way — the
   siblings' board text kept verbatim, this session's section re-appended — with no file from `main`
   removed (`git diff --diff-filter=D` is empty).
+- **Post-deployment review (three follow-up PRs, all merged).** Reading the deployed pages found four
+  presentation faults that the build could not catch. Each was fixed, rebuilt, re-checked and shipped:
+  - **#30** (merge `6cf0317`, 13:47:56Z) — the live slate showed the market line in the publisher's sign
+    convention beside our own line, and printed the spread disagreement as a percentage. `lines.json` now
+    carries `market_home_line`, every line table uses the home-handicap convention, and the edge is in
+    points with its sign defined in the note.
+  - **#33** (merge `9c58ea5`) — seasons rendered through the integer formatter (`2,026` instead of `2026`)
+    and the originated home probability lacked its percent sign.
+  - **#38** (merge `58c72a3`) — literal backticks reached the Flagged cards and the integrity-check
+    questions, and one bold span in the executive summary was split across a line break.
+  - Final static audit of all 15 pages: 0 stray backticks or asterisks outside code spans, 0 unbalanced
+    tags, 0 tables whose row cells disagree with the header (an earlier count of 1,051 was my scanner
+    matching `<thead>` as `<th>`; the corrected pattern returns zero), 0 `None`/`nan` cells.
 - **Deployment**: the Pages build for `589b70c` reported `built` (2026-11-01 13:46:05Z) with no error. The
   live page https://karagemop466-tech.github.io/Korea2/origination-lab/ was fetched and returned the
   expected content: 7,384 games, 18 strategies / 0 qualified, 27 signals / 0 surviving, 7/9 integrity
