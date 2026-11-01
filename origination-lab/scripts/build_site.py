@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the static GitHub Pages site in docs/ from the derived JSON artefacts.
+"""Generate the static GitHub Pages site in origination-lab/ from the derived JSON artefacts.
 
 Nothing is typed by hand: every number comes from data/derived/*.json, each of
 which is produced by a committed script from the hashed raw extracts.
@@ -1338,7 +1338,7 @@ def main():
                          ROOT / "EXECUTIVE_SUMMARY.md"))
     built.append("executive-summary.html")
 
-    print(f"built {len(built)} pages into docs/: {', '.join(built)}")
+    print(f"built {len(built)} pages into origination-lab/: {', '.join(built)}")
     # sanity: every nav target exists
     missing = [f for f, _ in sc.ALL_PAGES if not (DOCS / f).exists()]
     if missing:

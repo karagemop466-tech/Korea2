@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Line origination: build our own spread / total / moneyline, and grade it.
 
-Outputs data/derived/lines.json  (consumed by docs/lines.html).
+Outputs data/derived/lines.json  (consumed by lines.html).
 
 Convention note (verified empirically, see data_integrity.json):
   nflverse `spread_line` is POSITIVE when the HOME team is favoured, i.e. it is

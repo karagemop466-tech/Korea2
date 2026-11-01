@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Link checker for the generated site.
 
-  * internal page links must resolve to a file that exists in docs/
+  * internal page links must resolve to a file that exists in origination-lab/
   * in-page anchors must resolve to an id on the target page
   * external http(s) links are probed with curl; hosts that the build sandbox
     cannot reach (documented in COORDINATION.md §5) are reported separately as
     "unreachable from sandbox" rather than silently passed
 
 Exit code is non-zero if any internal link or anchor is broken.
-Writes docs/link-check.json (used by the site footer/flagged page statistics).
+Writes link-check.json (used by the site footer/flagged page statistics).
 """
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCS = ROOT / "docs"
+DOCS = ROOT
 KNOWN_BLOCKED = {"www.nfl.com", "nfl.com", "operations.nfl.com"}
 
 HREF = re.compile(r'(?:href|src)="([^"]+)"')

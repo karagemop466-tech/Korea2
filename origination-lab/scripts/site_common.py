@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCS = ROOT / "docs"
+DOCS = ROOT  # this session's site is published from origination-lab/ itself
 DERIVED = ROOT / "data" / "derived"
 
 RESEARCH = [

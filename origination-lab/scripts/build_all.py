@@ -5,7 +5,7 @@
     python3 scripts/build_all.py --site     # site only (uses cached derived data)
 
 Inputs are the hashed raw extracts described in data/manifest.json (fetch them with
-scripts/fetch_data.py). Outputs are data/derived/*.json and docs/**.
+scripts/fetch_data.py). Outputs are data/derived/*.json and the site in origination-lab/*.html.
 """
 from __future__ import annotations
 
