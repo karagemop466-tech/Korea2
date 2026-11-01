@@ -66,7 +66,7 @@ def main() -> None:
 
     # ------------------------------------------------ ATS efficiency
     ats = played.copy()
-    ats["ats_edge"] = ats["result"] + ats["spread_line"]  # >0 means home cover
+    ats["ats_edge"] = ats["result"] - ats["spread_line"]  # >0 means home cover (convention PROVEN in diag_signs.json)
     ats["ats"] = np.sign(ats["ats_edge"]).where(ats["ats_edge"].abs() > 1e-9, 0)
     decided = ats[ats["ats"] != 0]
     k = int((decided["ats"] > 0).sum())
@@ -97,7 +97,7 @@ def main() -> None:
 
     # ------------------------------------------------ key numbers
     margins = played["result"].abs().astype(int)
-    counts = margins.value_counts().normalize().sort_index()
+    counts = margins.value_counts(normalize=True).sort_index()
     out["key_numbers"] = {
         "top_absolute_margins": [
             {"margin": int(m), "share": round(float(s), 4)}

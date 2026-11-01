@@ -29,7 +29,7 @@ jobs:
         run: python scripts/profile.py 2>&1 | tee -a data/derived/run_log.txt
       - name: Analysis
         run: |
-          for s in analyze_market analyze_model analyze_correlation analyze_strategies analyze_props; do
+          for s in diag_signs analyze_market analyze_model analyze_correlation analyze_strategies analyze_props; do
             if [ -f "scripts/$s.py" ]; then
               echo "=== $s ===" | tee -a data/derived/run_log.txt
               python "scripts/$s.py" 2>&1 | tee -a data/derived/run_log.txt || echo "FAILED: $s" | tee -a data/derived/run_log.txt
