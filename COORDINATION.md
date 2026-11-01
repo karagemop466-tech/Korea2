@@ -171,3 +171,98 @@ F-01 repository initially empty; F-02 nfl.com inaccessible from build environmen
 - 2026-11-01 — PARALLEL SESSIONS: while working, other sessions merged PRs #2/#4/#11 to `main` (Line Lab root site at `/`, `nfl-research/`, `research-desk/`, `tests/`, and a combined COORDINATION.md). Merge conflict on my PR #14 occurred in `COORDINATION.md` and `README.md` (both sides had created them). Resolution without discarding any work: my dashboard moved from repo root to `dashboard/` (root site and navigation of other sessions untouched), `data/`, `docs/`, `scripts/` added at root, `.github/workflows/pages.yml` removed because this repo's Pages is `build_type: legacy` (serves `main` branch root directly — confirmed via GitHub API; deploy already succeeded per the board above). COORDINATION.md and README.md combined keeping all sessions' entries.
 - 2026-11-01 — Integration: PR https://github.com/karagemop466-tech/Korea2/pull/14 (branch `arena/29806afc-korea2` → `main`). CI `validate` passed on the PR. Merge result and Pages deploy confirmation recorded below after merge.
 - PAGES_DEPLOY_RECORD: PR https://github.com/karagemop466-tech/Korea2/pull/14 MERGED on 2026-11-01 (merge commit 170e1575f0f82a436f1bdb48561087a3a957dae9, `gh pr merge 14 --merge`); PR CI `validate` passed (run 41311721273). GitHub Pages (build_type: legacy, source branch `main`, path `/`) rebuilt after merge — status `built` confirmed via GitHub API; live-verified by fetching https://karagemop466-tech.github.io/Korea2/ (Line Lab root, intact), https://karagemop466-tech.github.io/Korea2/dashboard/ (dashboard: cards + league-facts + flagged tables render), https://karagemop466-tech.github.io/Korea2/dashboard/pages/strategies.html and .../pages/flagged.html (all 9 strategy rows and 10 flagged rows render with per-row official source links; unverified values render blank). No broken links: `scripts/check_links.py` PASS over 31 HTML pages / 268 local references; `scripts/validate_data.py` PASS over all data/*.json.
+
+---
+
+## Quantitative build and final integration — `arena/d88b794a-korea2`
+
+Branch is fixed to `arena/d88b794a-korea2` by the runtime, so the branch name is the
+session id. Started from the empty repository plus the `arena/97d4c0f1-korea2` shell
+(merge commit `597e815`). Did not overwrite `dashboard/`, `nfl-research/`,
+`research-desk/`, `data/*.json` or any other session's log.
+
+### Task board
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Data pipeline from nflverse releases + provenance manifest | done | arena/d88b794a-korea2 | `scripts/analysis/prepare.py`, `data/derived/`, `data/provenance.json`, `.github/workflows/fetch-nflverse.yml` |
+| Market baseline, calibration, 12 public angles with FDR control | done | arena/d88b794a-korea2 | `scripts/analysis/market.py`, `results/market.json` |
+| Strategy engine, 6 validation gates, luck permutation test | done | arena/d88b794a-korea2 | `scripts/analysis/strategies.py`, `results/strategies.json` |
+| Correlation study and same-game parlay pricing | done | arena/d88b794a-korea2 | `scripts/analysis/correlations.py`, `results/correlations.json` |
+| Player-prop projection skill and median line calibration | done | arena/d88b794a-korea2 | `scripts/analysis/props.py`, `results/props.json` |
+| Line origination for the unplayed 2026 slate | done | arena/d88b794a-korea2 | `scripts/analysis/originate.py`, `results/originate.json` |
+| Official-source verification against NFL.com | done | arena/d88b794a-korea2 | `scripts/analysis/verification.py`, `results/verification.json` |
+| Line Lab site render (12 pages) | needs review | arena/d88b794a-korea2 | `index.html`, `pages/`, `assets/style.css` (appended rules only) |
+| CI: reproducibility + invariant checks | done | arena/d88b794a-korea2 | `.github/workflows/build-verify.yml`, `tests/check_data.py`, `tests/check_site.py` |
+
+### What was measured
+
+- 7,075 settled regular-season games (1999-2026) with a closing spread and total.
+  Blind betting loses at every side; the mean spread overround in the file is 2.7%.
+- The closing spread is unbiased in points: mean line error +0.037 pts, t = 0.23,
+  p = 0.81; median error exactly zero.
+- 12 pre-registered public angles; **zero** survive Benjamini-Hochberg at q = 0.10.
+- Five strategies walked forward season by season; **zero** clear all six gates.
+  The best partial result (weather under, +8.65% over 649 bets) misses FDR by 0.001
+  and is flat in the 2025-2026 holdout.
+- The opponent-adjusted rating model scores a Brier skill of **-0.078** against the
+  closing line: the model loses to the market.
+- QB passing yards and WR1 receiving yards correlate at **r = 0.624** (n = 4,725);
+  pricing that same-game pair as independent understates the joint probability by a
+  factor of **1.44**.
+- A player line set at the model's mean is beaten only **39.1%** of the time; the
+  walk-forward median calibration brings it to **48.7%**.
+- 28 unplayed games carry an originated spread and total; mean absolute disagreement
+  with the market is **3.82 points**, correlation with the market line **0.810**.
+
+### Sources (all fetched and read during this session)
+
+- <https://www.nfl.com/standings/division/2026/REG> — 2026 division standings
+- <https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc>
+- <https://www.nfl.com/stats/team-stats/> — 2026 team offence
+- <https://www.nfl.com/schedules/2026/by-week/week-8>
+- <https://github.com/nflverse/nflverse-data/releases> — third-party redistributor of
+  NFL play-by-play; historical closing prices live only here
+
+### Verification performed
+
+- Sign convention of `spread_line` proved from the file before any settlement:
+  2,920 games with a positive line have a negative home moneyline (100.0%); 1,553
+  games with a negative line have a positive home moneyline (0.0% negative).
+- 32/32 team records (W, L, T, PF, PA) for 2026 reconcile exactly with NFL.com
+  across 108 settled games.
+- 3/3 quarterback passing lines (yards, TD, INT, completions, attempts) rebuild
+  exactly from the player feed and match NFL.com.
+- `python scripts/analysis/build.py` is deterministic; a rebuild produces no diff.
+- `tests/check_data.py` and `tests/check_site.py` both pass (12 pages, 263 table
+  rows, every row carrying an https source link).
+
+### Irregularities logged (published on the Flagged for review page)
+
+1. `spread_line` is positive when the **home** team is favoured, the opposite of the
+   commonly documented reading. Proved and handled, documentation mismatch open.
+2. Wind-under angle misses BH-FDR by 0.001 (p = 0.021 vs a 0.020 threshold) and is
+   flat in the holdout.
+3. Weather fields cover ~57% of 2020-2026 games, outdoor venues only.
+4. Closing prices only; no opening-line history, so CLV cannot be measured.
+5. No free official historical player-prop prices exist; no prop ROI is claimed.
+6. Only 2026 is reconciled team by team; 1999-2025 shares the pipeline but was not
+   individually checked.
+7. Push handling reduces a parlay ticket to its remaining legs; not every book does.
+8. Legal and jurisdictional status of wagering was not assessed.
+9. Session `arena/70a33596-korea2` was independently running a spread
+   sign-convention test during this work — duplicate effort, noted not merged.
+
+### Conflict log
+
+Merging `origin/main` (which had advanced through PRs #4, #5, #11, #12, #14, #15)
+conflicted on `COORDINATION.md`, `README.md` and `pages/flagged.html`.
+Resolution: both coordination logs retained in full (this section appended, nothing
+deleted); `README.md` rewritten to describe every session's directory so no published
+site is dropped from the map; `pages/flagged.html` is generated, so it was rebuilt
+from `results/*.json` with the shell's five original flags folded into the new list.
+No other session's files were modified.
+
+### Pull request and deployment
+
+Recorded after merge at the bottom of this file.
