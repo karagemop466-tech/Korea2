@@ -84,8 +84,89 @@ def attach_features(g: pd.DataFrame) -> pd.DataFrame:
     return g
 
 
+
 # ---------------------------------------------------------------------------
-# the model
+# opponent-adjusted ratings (Massey / least-squares on scoring margin)
+# ---------------------------------------------------------------------------
+def massey(hist: pd.DataFrame, half_life_weeks: float = 8.0, as_of: tuple | None = None):
+    """Solve margin = rating[home] - rating[away] + HFA by least squares.
+
+    A ridge term keeps the system full rank. Recent games are weighted more
+    heavily with an exponential half-life measured in weeks.
+    """
+    if not len(hist):
+        return None
+    teams = sorted(set(hist.home_team) | set(hist.away_team))
+    pos = {t: i for i, t in enumerate(teams)}
+    n_teams = len(teams)
+    rows = len(hist)
+    A = np.zeros((rows, n_teams + 1))
+    ar = np.arange(rows)
+    A[ar, [pos[t] for t in hist.home_team]] = 1.0
+    A[ar, [pos[t] for t in hist.away_team]] = -1.0
+    A[:, n_teams] = 1.0                                     # home field
+    y = hist.result.to_numpy(float)
+    # exponential decay: age measured backwards from the slate being predicted
+    if as_of is not None:
+        season0, week0 = as_of
+        age = (season0 - hist.season.to_numpy()) * 18.0 + (week0 - hist.week.to_numpy())
+        w = 0.5 ** (np.clip(age, 0, None) / half_life_weeks)
+    else:
+        w = np.ones(rows)
+    Aw = A * w[:, None]
+    yw = y * w
+    ridge = np.eye(n_teams + 1) * 1e-4
+    ridge[n_teams, n_teams] = 0.0
+    beta, *_ = np.linalg.lstsq(np.vstack([Aw, ridge]), np.concatenate([yw, np.zeros(n_teams + 1)]), rcond=None)
+    resid = y - A @ beta
+    # residual scale must be measured unweighted, otherwise the decay weights
+    # silently shrink it and every probability becomes over-confident.
+    return {"rating": {t: float(beta[pos[t]]) for t in teams},
+            "hfa": float(beta[n_teams]),
+            "sigma": float(resid.std(ddof=max(1, n_teams + 1))),
+            "n": int(rows), "team": teams}
+
+
+def massey_margin(model: dict, home: str, away: str, rest_diff: float = 0.0) -> float:
+    r = model["rating"]
+    return r.get(home, 0.0) - r.get(away, 0.0) + model["hfa"] + 0.03 * (rest_diff or 0.0)
+
+
+def walk_forward_massey(g: pd.DataFrame, start_season: int = 2016, half_life: float = 8.0) -> pd.DataFrame:
+    """Re-solve the ratings before every week; predict that week only."""
+    from math import erf, sqrt
+    out = []
+    seasons = sorted(g.season.unique())
+    for season in seasons:
+        if season < start_season:
+            continue
+        weeks = sorted(g[g.season == season].week.dropna().unique())
+        for week in weeks:
+            hist = g[(g.season < season) | ((g.season == season) & (g.week < week))]
+            hist = hist[hist.season >= season - 5]
+            cur = g[(g.season == season) & (g.week == week)]
+            if len(hist) < 400 or not len(cur):
+                continue
+            model = massey(hist, half_life_weeks=half_life, as_of=(season, week))
+            if model is None:
+                continue
+            cur = cur.copy()
+            cur["model_margin"] = [
+                massey_margin(model, h, a, rd)
+                for h, a, rd in zip(cur.home_team, cur.away_team, cur.rest_diff.fillna(0))
+            ]
+            sigma = max(model["sigma"], 10.0)
+            cur["model_sigma"] = sigma
+            z = (cur.model_margin - cur.spread_line) / (sigma * 1.41421356)
+            cur["p_home_cover"] = z.apply(lambda v: 0.5 * (1 + erf(v / sqrt(2))) if pd.notna(v) else np.nan)
+            cur["train_n"] = model["n"]
+            cur["train_r2"] = np.nan
+            out.append(cur)
+    return pd.concat(out, ignore_index=True) if out else pd.DataFrame()
+
+
+# ---------------------------------------------------------------------------
+# the EPA model (kept for comparison; weaker than the ratings model)
 # ---------------------------------------------------------------------------
 def fit_forecast(train: pd.DataFrame) -> dict:
     d = train.dropna(subset=["h_off", "h_def", "a_off", "a_def"])
@@ -274,13 +355,10 @@ def evaluate(defn: dict, label_returns: np.ndarray) -> dict:
 
 def main() -> dict:
     g = attach_features(build_games())
-    wf = walk_forward(g)
+    wf = walk_forward_massey(g)
     g = g.merge(wf[["game_id", "model_margin", "p_home_cover", "model_sigma"]],
                 on="game_id", how="left") if len(wf) else g
-    if len(wf):
-        r2 = wf.groupby("season").train_r2.first().to_dict()
-    else:
-        r2 = {}
+    r2 = {}
 
     # universe of every settle-able game at the same prices (the luck null)
     all_ret = np.concatenate([
