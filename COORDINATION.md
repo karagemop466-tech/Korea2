@@ -370,6 +370,13 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   `scripts/check_links.py` 523 local references / 49 pages — no broken internal links; `scripts/validate_data.py`
   PASS; `tests/check_site.py` PASS. The root Line Lab site, `dashboard/`, `nfl-lines/`, `nfl-research/` and
   `research-desk/` were not modified by this session.
+* **2026-11-01** — PR **#27** (https://github.com/karagemop466-tech/Korea2/pull/27, merged `deecf04`) carried the
+  prop-count and U3-link corrections plus this record. PR **#29** (https://github.com/karagemop466-tech/Korea2/pull/29,
+  merged `82e4b73`) made the verification register's official-standings column readable and percent-formatted the
+  confidence interval on the leaderboard. Both PRs ran with PR checks `validate` and `verify` green, and Pages
+  rebuilt to `built` after each merge. `main` continued to receive sibling merges throughout (PR #18, #30); this
+  session re-merged main before every PR and never force-pushed, never deleted a sibling branch, and never edited
+  another session's pages.
 * **Deploy practice note:** because Pages serves `main` directly, this session re-ran
   `quant-lab/scripts/build_site.py` and the repo link checker before every push; a broken page would have
   gone live immediately.
