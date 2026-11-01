@@ -1,0 +1,4914 @@
+{
+ "generated": "deterministic",
+ "family_size": 19,
+ "fdr_q": 0.1,
+ "vig_roi": -0.0455,
+ "gate_thresholds": {
+  "G1_sample": 100,
+  "G1_sample_prop": 60,
+  "G5_calibration_pp": 5.0,
+  "G5_brier_max": 0.25,
+  "G6_stability_frac": 0.6,
+  "G6_min_seasons": 3,
+  "G7_worst_loso_roi": -0.05,
+  "G8_concentration_max": 0.6
+ },
+ "leaderboard": [
+  {
+   "strategy": "S10_wind15_under",
+   "desc": "UNDER outdoors when wind >= 15 mph.",
+   "kind": "single",
+   "n_all": 532,
+   "n_holdout": 114,
+   "roi_holdout": 0.0383,
+   "roi_discovery": 0.0687,
+   "roi_all": 0.0622,
+   "hit_holdout": 0.5439,
+   "units_holdout": 4.36,
+   "ci95_holdout": [
+    -0.1292,
+    0.2057
+   ],
+   "luck_z": 0.937,
+   "p_value": 0.17438,
+   "excess_roi_holdout": 0.0838,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 114
+    },
+    "G2_holdout_roi": {
+     "pass": true,
+     "value": 0.0383
+    },
+    "G3_discovery_roi": {
+     "pass": true,
+     "value": 0.0687
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": 13.32,
+      "brier": 0.2887
+     }
+    },
+    "G6_stability": {
+     "pass": true,
+     "value": {
+      "profitable_frac": 0.667,
+      "seasons_scored": 6
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.0791
+    },
+    "G8_concentration": {
+     "pass": true,
+     "value": 0.208
+    },
+    "G9_price_sensitivity": {
+     "pass": true,
+     "value": 0.0618
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1292,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.17438
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 9,
+     "units": 0.55,
+     "wins": 5,
+     "roi": 0.0606
+    },
+    {
+     "season": 2003,
+     "n": 24,
+     "units": 0.82,
+     "wins": 13,
+     "roi": 0.0341
+    },
+    {
+     "season": 2004,
+     "n": 37,
+     "units": 12.64,
+     "wins": 26,
+     "roi": 0.3415
+    },
+    {
+     "season": 2005,
+     "n": 23,
+     "units": -0.09,
+     "wins": 12,
+     "roi": -0.004
+    },
+    {
+     "season": 2006,
+     "n": 24,
+     "units": -3.0,
+     "wins": 11,
+     "roi": -0.125
+    },
+    {
+     "season": 2007,
+     "n": 23,
+     "units": -2.0,
+     "wins": 11,
+     "roi": -0.087
+    },
+    {
+     "season": 2008,
+     "n": 38,
+     "units": 15.45,
+     "wins": 28,
+     "roi": 0.4067
+    },
+    {
+     "season": 2009,
+     "n": 18,
+     "units": 3.0,
+     "wins": 11,
+     "roi": 0.1667
+    },
+    {
+     "season": 2010,
+     "n": 30,
+     "units": -9.0,
+     "wins": 11,
+     "roi": -0.3
+    },
+    {
+     "season": 2011,
+     "n": 28,
+     "units": 2.55,
+     "wins": 16,
+     "roi": 0.0909
+    },
+    {
+     "season": 2012,
+     "n": 24,
+     "units": 4.64,
+     "wins": 15,
+     "roi": 0.1932
+    },
+    {
+     "season": 2013,
+     "n": 18,
+     "units": -0.82,
+     "wins": 9,
+     "roi": -0.0455
+    },
+    {
+     "season": 2014,
+     "n": 20,
+     "units": -0.91,
+     "wins": 10,
+     "roi": -0.0455
+    },
+    {
+     "season": 2015,
+     "n": 23,
+     "units": 1.82,
+     "wins": 13,
+     "roi": 0.0791
+    },
+    {
+     "season": 2016,
+     "n": 22,
+     "units": -4.82,
+     "wins": 9,
+     "roi": -0.219
+    },
+    {
+     "season": 2017,
+     "n": 18,
+     "units": 1.09,
+     "wins": 10,
+     "roi": 0.0606
+    },
+    {
+     "season": 2018,
+     "n": 17,
+     "units": 7.82,
+     "wins": 13,
+     "roi": 0.4599
+    },
+    {
+     "season": 2019,
+     "n": 22,
+     "units": -1.0,
+     "wins": 11,
+     "roi": -0.0455
+    },
+    {
+     "season": 2020,
+     "n": 26,
+     "units": -8.82,
+     "wins": 9,
+     "roi": -0.3392
+    },
+    {
+     "season": 2021,
+     "n": 29,
+     "units": 11.09,
+     "wins": 21,
+     "roi": 0.3824
+    },
+    {
+     "season": 2022,
+     "n": 13,
+     "units": 2.27,
+     "wins": 8,
+     "roi": 0.1748
+    },
+    {
+     "season": 2023,
+     "n": 12,
+     "units": 3.27,
+     "wins": 8,
+     "roi": 0.2727
+    },
+    {
+     "season": 2024,
+     "n": 15,
+     "units": -3.55,
+     "wins": 6,
+     "roi": -0.2364
+    },
+    {
+     "season": 2025,
+     "n": 19,
+     "units": 0.09,
+     "wins": 10,
+     "roi": 0.0048
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 6,
+   "gates_failed": [
+    "G5_calibration",
+    "G7_robustness",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": 3.385,
+   "rank": null
+  },
+  {
+   "strategy": "S12_div_dog_home",
+   "desc": "Home divisional underdog on the spread.",
+   "kind": "single",
+   "n_all": 838,
+   "n_holdout": 248,
+   "roi_holdout": 0.0007,
+   "roi_discovery": -0.1328,
+   "roi_all": -0.0933,
+   "hit_holdout": 0.5242,
+   "units_holdout": 0.18,
+   "ci95_holdout": [
+    -0.1147,
+    0.1162
+   ],
+   "luck_z": 0.762,
+   "p_value": 0.22303,
+   "excess_roi_holdout": 0.0462,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 248
+    },
+    "G2_holdout_roi": {
+     "pass": true,
+     "value": 0.0007
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.1328
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -5.57,
+      "brier": 0.265
+     }
+    },
+    "G6_stability": {
+     "pass": true,
+     "value": {
+      "profitable_frac": 0.714,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": true,
+     "value": -0.0362
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": 10.0
+    },
+    "G9_price_sensitivity": {
+     "pass": true,
+     "value": 0.0234
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1147,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.22303
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 6,
+     "units": -0.27,
+     "wins": 3,
+     "roi": -0.0455
+    },
+    {
+     "season": 2003,
+     "n": 29,
+     "units": -2.27,
+     "wins": 14,
+     "roi": -0.0784
+    },
+    {
+     "season": 2004,
+     "n": 31,
+     "units": -2.36,
+     "wins": 15,
+     "roi": -0.0762
+    },
+    {
+     "season": 2005,
+     "n": 31,
+     "units": -13.82,
+     "wins": 9,
+     "roi": -0.4457
+    },
+    {
+     "season": 2006,
+     "n": 31,
+     "units": 5.27,
+     "wins": 19,
+     "roi": 0.1701
+    },
+    {
+     "season": 2007,
+     "n": 38,
+     "units": -11.27,
+     "wins": 14,
+     "roi": -0.2967
+    },
+    {
+     "season": 2008,
+     "n": 29,
+     "units": -9.91,
+     "wins": 10,
+     "roi": -0.3417
+    },
+    {
+     "season": 2009,
+     "n": 42,
+     "units": -5.73,
+     "wins": 19,
+     "roi": -0.1364
+    },
+    {
+     "season": 2010,
+     "n": 38,
+     "units": 0.18,
+     "wins": 20,
+     "roi": 0.0048
+    },
+    {
+     "season": 2011,
+     "n": 32,
+     "units": -3.36,
+     "wins": 15,
+     "roi": -0.1051
+    },
+    {
+     "season": 2012,
+     "n": 39,
+     "units": -4.64,
+     "wins": 18,
+     "roi": -0.1189
+    },
+    {
+     "season": 2013,
+     "n": 31,
+     "units": -2.36,
+     "wins": 15,
+     "roi": -0.0762
+    },
+    {
+     "season": 2014,
+     "n": 30,
+     "units": -1.36,
+     "wins": 15,
+     "roi": -0.0455
+    },
+    {
+     "season": 2015,
+     "n": 31,
+     "units": -6.18,
+     "wins": 13,
+     "roi": -0.1994
+    },
+    {
+     "season": 2016,
+     "n": 34,
+     "units": 0.36,
+     "wins": 18,
+     "roi": 0.0107
+    },
+    {
+     "season": 2017,
+     "n": 42,
+     "units": -7.64,
+     "wins": 18,
+     "roi": -0.1818
+    },
+    {
+     "season": 2018,
+     "n": 34,
+     "units": -3.45,
+     "wins": 16,
+     "roi": -0.1016
+    },
+    {
+     "season": 2019,
+     "n": 42,
+     "units": -9.55,
+     "wins": 17,
+     "roi": -0.2273
+    },
+    {
+     "season": 2020,
+     "n": 42,
+     "units": 7.64,
+     "wins": 26,
+     "roi": 0.1818
+    },
+    {
+     "season": 2021,
+     "n": 38,
+     "units": -1.73,
+     "wins": 19,
+     "roi": -0.0455
+    },
+    {
+     "season": 2022,
+     "n": 32,
+     "units": 0.45,
+     "wins": 17,
+     "roi": 0.0142
+    },
+    {
+     "season": 2023,
+     "n": 41,
+     "units": -10.45,
+     "wins": 16,
+     "roi": -0.255
+    },
+    {
+     "season": 2024,
+     "n": 41,
+     "units": 2.91,
+     "wins": 23,
+     "roi": 0.071
+    },
+    {
+     "season": 2025,
+     "n": 41,
+     "units": 1.0,
+     "wins": 22,
+     "roi": 0.0244
+    },
+    {
+     "season": 2026,
+     "n": 13,
+     "units": 0.36,
+     "wins": 7,
+     "roi": 0.028
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 5,
+   "gates_failed": [
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G8_concentration",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": 0.072,
+   "rank": null
+  },
+  {
+   "strategy": "S11_dome_over",
+   "desc": "OVER in dome / closed-roof games.",
+   "kind": "single",
+   "n_all": 1575,
+   "n_holdout": 554,
+   "roi_holdout": -0.0179,
+   "roi_discovery": -0.037,
+   "roi_all": -0.0303,
+   "hit_holdout": 0.5144,
+   "units_holdout": -9.91,
+   "ci95_holdout": [
+    -0.1006,
+    0.0614
+   ],
+   "luck_z": 0.68,
+   "p_value": 0.24825,
+   "excess_roi_holdout": 0.0276,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 554
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0179
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.037
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": 2.05,
+      "brier": 0.2578
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.286,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": true,
+     "value": -0.0351
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": true,
+     "value": 0.0044
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1006,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.24825
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 11,
+     "units": 4.27,
+     "wins": 8,
+     "roi": 0.3884
+    },
+    {
+     "season": 2003,
+     "n": 53,
+     "units": -1.45,
+     "wins": 27,
+     "roi": -0.0274
+    },
+    {
+     "season": 2004,
+     "n": 51,
+     "units": -7.09,
+     "wins": 23,
+     "roi": -0.139
+    },
+    {
+     "season": 2005,
+     "n": 46,
+     "units": -4.0,
+     "wins": 22,
+     "roi": -0.087
+    },
+    {
+     "season": 2006,
+     "n": 58,
+     "units": -4.55,
+     "wins": 28,
+     "roi": -0.0784
+    },
+    {
+     "season": 2007,
+     "n": 58,
+     "units": 8.82,
+     "wins": 35,
+     "roi": 0.152
+    },
+    {
+     "season": 2008,
+     "n": 50,
+     "units": 3.45,
+     "wins": 28,
+     "roi": 0.0691
+    },
+    {
+     "season": 2009,
+     "n": 62,
+     "units": -10.45,
+     "wins": 27,
+     "roi": -0.1686
+    },
+    {
+     "season": 2010,
+     "n": 65,
+     "units": 1.82,
+     "wins": 35,
+     "roi": 0.028
+    },
+    {
+     "season": 2011,
+     "n": 68,
+     "units": -6.91,
+     "wins": 32,
+     "roi": -0.1016
+    },
+    {
+     "season": 2012,
+     "n": 68,
+     "units": -1.18,
+     "wins": 35,
+     "roi": -0.0174
+    },
+    {
+     "season": 2013,
+     "n": 70,
+     "units": 8.27,
+     "wins": 41,
+     "roi": 0.1182
+    },
+    {
+     "season": 2014,
+     "n": 61,
+     "units": -3.73,
+     "wins": 30,
+     "roi": -0.0611
+    },
+    {
+     "season": 2015,
+     "n": 60,
+     "units": -4.64,
+     "wins": 29,
+     "roi": -0.0773
+    },
+    {
+     "season": 2016,
+     "n": 62,
+     "units": -8.55,
+     "wins": 28,
+     "roi": -0.1378
+    },
+    {
+     "season": 2017,
+     "n": 59,
+     "units": -9.36,
+     "wins": 26,
+     "roi": -0.1587
+    },
+    {
+     "season": 2018,
+     "n": 60,
+     "units": -8.45,
+     "wins": 27,
+     "roi": -0.1409
+    },
+    {
+     "season": 2019,
+     "n": 59,
+     "units": 5.91,
+     "wins": 34,
+     "roi": 0.1002
+    },
+    {
+     "season": 2020,
+     "n": 91,
+     "units": 6.36,
+     "wins": 51,
+     "roi": 0.0699
+    },
+    {
+     "season": 2021,
+     "n": 79,
+     "units": -0.73,
+     "wins": 41,
+     "roi": -0.0092
+    },
+    {
+     "season": 2022,
+     "n": 84,
+     "units": 1.91,
+     "wins": 45,
+     "roi": 0.0227
+    },
+    {
+     "season": 2023,
+     "n": 81,
+     "units": -8.45,
+     "wins": 38,
+     "roi": -0.1044
+    },
+    {
+     "season": 2024,
+     "n": 94,
+     "units": -4.27,
+     "wins": 47,
+     "roi": -0.0455
+    },
+    {
+     "season": 2025,
+     "n": 92,
+     "units": -4.18,
+     "wins": 46,
+     "roi": -0.0455
+    },
+    {
+     "season": 2026,
+     "n": 33,
+     "units": -0.55,
+     "wins": 17,
+     "roi": -0.0165
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 3,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G8_concentration",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -1.412,
+   "rank": null
+  },
+  {
+   "strategy": "S13_parlay2_edge2",
+   "desc": "2-leg parlay from the >=2pt spread/total edge pool (one parlay per week).",
+   "kind": "parlay2",
+   "n_all": 406,
+   "n_holdout": 114,
+   "roi_holdout": -0.0394,
+   "roi_discovery": -0.2927,
+   "roi_all": -0.2216,
+   "hit_holdout": 0.2719,
+   "units_holdout": -4.49,
+   "ci95_holdout": [
+    -0.3271,
+    0.2636
+   ],
+   "luck_z": 0.541,
+   "p_value": 0.29425,
+   "excess_roi_holdout": 0.0061,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 114
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0394
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.2927
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -23.02,
+      "brier": 0.2567
+     }
+    },
+    "G6_stability": {
+     "pass": true,
+     "value": {
+      "profitable_frac": 0.667,
+      "seasons_scored": 6
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.1449
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.4691
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.3271,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.29425
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 3,
+     "units": -3.0,
+     "wins": 0,
+     "roi": -1.0
+    },
+    {
+     "season": 2003,
+     "n": 17,
+     "units": -9.71,
+     "wins": 2,
+     "roi": -0.5712
+    },
+    {
+     "season": 2004,
+     "n": 17,
+     "units": -17.0,
+     "wins": 0,
+     "roi": -1.0
+    },
+    {
+     "season": 2005,
+     "n": 17,
+     "units": -9.71,
+     "wins": 2,
+     "roi": -0.5712
+    },
+    {
+     "season": 2006,
+     "n": 17,
+     "units": -5.89,
+     "wins": 4,
+     "roi": -0.3466
+    },
+    {
+     "season": 2007,
+     "n": 17,
+     "units": 8.69,
+     "wins": 8,
+     "roi": 0.5109
+    },
+    {
+     "season": 2008,
+     "n": 17,
+     "units": -7.8,
+     "wins": 3,
+     "roi": -0.4589
+    },
+    {
+     "season": 2009,
+     "n": 17,
+     "units": -0.51,
+     "wins": 5,
+     "roi": -0.0301
+    },
+    {
+     "season": 2010,
+     "n": 17,
+     "units": 4.87,
+     "wins": 6,
+     "roi": 0.2863
+    },
+    {
+     "season": 2011,
+     "n": 17,
+     "units": 3.13,
+     "wins": 6,
+     "roi": 0.1842
+    },
+    {
+     "season": 2012,
+     "n": 17,
+     "units": -9.71,
+     "wins": 2,
+     "roi": -0.5712
+    },
+    {
+     "season": 2013,
+     "n": 17,
+     "units": 1.22,
+     "wins": 5,
+     "roi": 0.0719
+    },
+    {
+     "season": 2014,
+     "n": 17,
+     "units": -6.07,
+     "wins": 3,
+     "roi": -0.3568
+    },
+    {
+     "season": 2015,
+     "n": 17,
+     "units": -9.71,
+     "wins": 2,
+     "roi": -0.5712
+    },
+    {
+     "season": 2016,
+     "n": 17,
+     "units": -13.36,
+     "wins": 1,
+     "roi": -0.7856
+    },
+    {
+     "season": 2017,
+     "n": 17,
+     "units": 1.22,
+     "wins": 5,
+     "roi": 0.0719
+    },
+    {
+     "season": 2018,
+     "n": 17,
+     "units": -2.42,
+     "wins": 4,
+     "roi": -0.1424
+    },
+    {
+     "season": 2019,
+     "n": 17,
+     "units": -9.71,
+     "wins": 2,
+     "roi": -0.5712
+    },
+    {
+     "season": 2020,
+     "n": 17,
+     "units": -6.07,
+     "wins": 3,
+     "roi": -0.3568
+    },
+    {
+     "season": 2021,
+     "n": 18,
+     "units": 9.42,
+     "wins": 8,
+     "roi": 0.5234
+    },
+    {
+     "season": 2022,
+     "n": 18,
+     "units": 2.13,
+     "wins": 6,
+     "roi": 0.1185
+    },
+    {
+     "season": 2023,
+     "n": 18,
+     "units": -10.71,
+     "wins": 2,
+     "roi": -0.595
+    },
+    {
+     "season": 2024,
+     "n": 18,
+     "units": 0.22,
+     "wins": 5,
+     "roi": 0.0124
+    },
+    {
+     "season": 2025,
+     "n": 18,
+     "units": 3.87,
+     "wins": 6,
+     "roi": 0.2149
+    },
+    {
+     "season": 2026,
+     "n": 7,
+     "units": -3.36,
+     "wins": 1,
+     "roi": -0.4793
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 2,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -3.132,
+   "rank": null
+  },
+  {
+   "strategy": "S9_off_bye",
+   "desc": "Bet teams playing after a bye.",
+   "kind": "single",
+   "n_all": 608,
+   "n_holdout": 148,
+   "roi_holdout": -0.11,
+   "roi_discovery": -0.004,
+   "roi_all": -0.0298,
+   "hit_holdout": 0.4662,
+   "units_holdout": -16.27,
+   "ci95_holdout": [
+    -0.2647,
+    0.0319
+   ],
+   "luck_z": -0.822,
+   "p_value": 0.79446,
+   "excess_roi_holdout": -0.0645,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 148
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.11
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.004
+    },
+    "G5_calibration": {
+     "pass": true,
+     "value": {
+      "gap_pp": 0.37,
+      "brier": 0.2496
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.333,
+      "seasons_scored": 6
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.1515
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.0898
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.2647,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.79446
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2003,
+     "n": 28,
+     "units": 0.64,
+     "wins": 15,
+     "roi": 0.0227
+    },
+    {
+     "season": 2004,
+     "n": 28,
+     "units": -3.18,
+     "wins": 13,
+     "roi": -0.1136
+    },
+    {
+     "season": 2005,
+     "n": 30,
+     "units": 6.27,
+     "wins": 19,
+     "roi": 0.2091
+    },
+    {
+     "season": 2006,
+     "n": 28,
+     "units": 4.45,
+     "wins": 17,
+     "roi": 0.1591
+    },
+    {
+     "season": 2007,
+     "n": 30,
+     "units": 4.36,
+     "wins": 18,
+     "roi": 0.1455
+    },
+    {
+     "season": 2008,
+     "n": 24,
+     "units": 4.64,
+     "wins": 15,
+     "roi": 0.1932
+    },
+    {
+     "season": 2009,
+     "n": 28,
+     "units": -5.09,
+     "wins": 12,
+     "roi": -0.1818
+    },
+    {
+     "season": 2010,
+     "n": 28,
+     "units": 0.64,
+     "wins": 15,
+     "roi": 0.0227
+    },
+    {
+     "season": 2011,
+     "n": 32,
+     "units": -3.36,
+     "wins": 15,
+     "roi": -0.1051
+    },
+    {
+     "season": 2012,
+     "n": 25,
+     "units": 3.64,
+     "wins": 15,
+     "roi": 0.1455
+    },
+    {
+     "season": 2013,
+     "n": 28,
+     "units": -3.18,
+     "wins": 13,
+     "roi": -0.1136
+    },
+    {
+     "season": 2014,
+     "n": 22,
+     "units": -10.55,
+     "wins": 6,
+     "roi": -0.4793
+    },
+    {
+     "season": 2015,
+     "n": 23,
+     "units": 1.82,
+     "wins": 13,
+     "roi": 0.0791
+    },
+    {
+     "season": 2016,
+     "n": 29,
+     "units": 5.36,
+     "wins": 18,
+     "roi": 0.185
+    },
+    {
+     "season": 2017,
+     "n": 26,
+     "units": -1.18,
+     "wins": 13,
+     "roi": -0.0455
+    },
+    {
+     "season": 2018,
+     "n": 24,
+     "units": -1.09,
+     "wins": 12,
+     "roi": -0.0455
+    },
+    {
+     "season": 2019,
+     "n": 27,
+     "units": -6.0,
+     "wins": 11,
+     "roi": -0.2222
+    },
+    {
+     "season": 2020,
+     "n": 29,
+     "units": -2.27,
+     "wins": 14,
+     "roi": -0.0784
+    },
+    {
+     "season": 2021,
+     "n": 23,
+     "units": -7.73,
+     "wins": 8,
+     "roi": -0.336
+    },
+    {
+     "season": 2022,
+     "n": 21,
+     "units": -1.91,
+     "wins": 10,
+     "roi": -0.0909
+    },
+    {
+     "season": 2023,
+     "n": 21,
+     "units": 0.0,
+     "wins": 11,
+     "roi": 0.0
+    },
+    {
+     "season": 2024,
+     "n": 26,
+     "units": -8.82,
+     "wins": 9,
+     "roi": -0.3392
+    },
+    {
+     "season": 2025,
+     "n": 22,
+     "units": 2.82,
+     "wins": 13,
+     "roi": 0.1281
+    },
+    {
+     "season": 2026,
+     "n": 6,
+     "units": 1.64,
+     "wins": 4,
+     "roi": 0.2727
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 2,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -5.462,
+   "rank": null
+  },
+  {
+   "strategy": "S16_tnf_under",
+   "desc": "UNDER when both teams had <=5 days rest (short-week / Thursday games).",
+   "kind": "single",
+   "n_all": 294,
+   "n_holdout": 112,
+   "roi_holdout": -0.0284,
+   "roi_discovery": -0.0769,
+   "roi_all": -0.0584,
+   "hit_holdout": 0.5089,
+   "units_holdout": -3.18,
+   "ci95_holdout": [
+    -0.2159,
+    0.142
+   ],
+   "luck_z": 0.189,
+   "p_value": 0.42505,
+   "excess_roi_holdout": 0.0171,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 112
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0284
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0769
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": 2.91,
+      "brier": 0.2619
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.5,
+      "seasons_scored": 6
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.0852
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.0064
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.2159,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.42505
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2003,
+     "n": 2,
+     "units": -0.09,
+     "wins": 1,
+     "roi": -0.0455
+    },
+    {
+     "season": 2004,
+     "n": 3,
+     "units": 0.82,
+     "wins": 2,
+     "roi": 0.2727
+    },
+    {
+     "season": 2005,
+     "n": 3,
+     "units": -1.09,
+     "wins": 1,
+     "roi": -0.3636
+    },
+    {
+     "season": 2006,
+     "n": 7,
+     "units": 0.64,
+     "wins": 4,
+     "roi": 0.0909
+    },
+    {
+     "season": 2007,
+     "n": 6,
+     "units": -2.18,
+     "wins": 2,
+     "roi": -0.3636
+    },
+    {
+     "season": 2008,
+     "n": 9,
+     "units": -7.09,
+     "wins": 1,
+     "roi": -0.7879
+    },
+    {
+     "season": 2009,
+     "n": 9,
+     "units": 4.36,
+     "wins": 7,
+     "roi": 0.4848
+    },
+    {
+     "season": 2010,
+     "n": 9,
+     "units": -1.36,
+     "wins": 4,
+     "roi": -0.1515
+    },
+    {
+     "season": 2011,
+     "n": 9,
+     "units": 4.36,
+     "wins": 7,
+     "roi": 0.4848
+    },
+    {
+     "season": 2012,
+     "n": 16,
+     "units": 1.18,
+     "wins": 9,
+     "roi": 0.0739
+    },
+    {
+     "season": 2013,
+     "n": 16,
+     "units": -8.36,
+     "wins": 4,
+     "roi": -0.5227
+    },
+    {
+     "season": 2014,
+     "n": 16,
+     "units": -0.73,
+     "wins": 8,
+     "roi": -0.0455
+    },
+    {
+     "season": 2015,
+     "n": 16,
+     "units": 1.18,
+     "wins": 9,
+     "roi": 0.0739
+    },
+    {
+     "season": 2016,
+     "n": 16,
+     "units": 3.09,
+     "wins": 10,
+     "roi": 0.1932
+    },
+    {
+     "season": 2017,
+     "n": 15,
+     "units": -1.64,
+     "wins": 7,
+     "roi": -0.1091
+    },
+    {
+     "season": 2018,
+     "n": 15,
+     "units": -7.36,
+     "wins": 4,
+     "roi": -0.4909
+    },
+    {
+     "season": 2019,
+     "n": 15,
+     "units": 0.27,
+     "wins": 8,
+     "roi": 0.0182
+    },
+    {
+     "season": 2020,
+     "n": 14,
+     "units": -2.55,
+     "wins": 6,
+     "roi": -0.1818
+    },
+    {
+     "season": 2021,
+     "n": 16,
+     "units": 5.0,
+     "wins": 11,
+     "roi": 0.3125
+    },
+    {
+     "season": 2022,
+     "n": 17,
+     "units": 2.09,
+     "wins": 10,
+     "roi": 0.123
+    },
+    {
+     "season": 2023,
+     "n": 18,
+     "units": -8.45,
+     "wins": 5,
+     "roi": -0.4697
+    },
+    {
+     "season": 2024,
+     "n": 20,
+     "units": 2.91,
+     "wins": 12,
+     "roi": 0.1455
+    },
+    {
+     "season": 2025,
+     "n": 20,
+     "units": -0.91,
+     "wins": 10,
+     "roi": -0.0455
+    },
+    {
+     "season": 2026,
+     "n": 7,
+     "units": -1.27,
+     "wins": 3,
+     "roi": -0.1818
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -1.824,
+   "rank": null
+  },
+  {
+   "strategy": "S8_rest_edge_4d",
+   "desc": "Bet the side with >=4 days more rest.",
+   "kind": "single",
+   "n_all": 680,
+   "n_holdout": 175,
+   "roi_holdout": -0.0509,
+   "roi_discovery": -0.0133,
+   "roi_all": -0.023,
+   "hit_holdout": 0.4971,
+   "units_holdout": -8.91,
+   "ci95_holdout": [
+    -0.1927,
+    0.0909
+   ],
+   "luck_z": -0.076,
+   "p_value": 0.53029,
+   "excess_roi_holdout": -0.0054,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 175
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0509
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0133
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": 2.87,
+      "brier": 0.2525
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.333,
+      "seasons_scored": 6
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.074
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.0294
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1927,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.53029
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2003,
+     "n": 28,
+     "units": 0.64,
+     "wins": 15,
+     "roi": 0.0227
+    },
+    {
+     "season": 2004,
+     "n": 28,
+     "units": -3.18,
+     "wins": 13,
+     "roi": -0.1136
+    },
+    {
+     "season": 2005,
+     "n": 30,
+     "units": 6.27,
+     "wins": 19,
+     "roi": 0.2091
+    },
+    {
+     "season": 2006,
+     "n": 29,
+     "units": 3.45,
+     "wins": 17,
+     "roi": 0.1191
+    },
+    {
+     "season": 2007,
+     "n": 31,
+     "units": 5.27,
+     "wins": 19,
+     "roi": 0.1701
+    },
+    {
+     "season": 2008,
+     "n": 24,
+     "units": 4.64,
+     "wins": 15,
+     "roi": 0.1932
+    },
+    {
+     "season": 2009,
+     "n": 28,
+     "units": -5.09,
+     "wins": 12,
+     "roi": -0.1818
+    },
+    {
+     "season": 2010,
+     "n": 30,
+     "units": 0.55,
+     "wins": 16,
+     "roi": 0.0182
+    },
+    {
+     "season": 2011,
+     "n": 35,
+     "units": -4.45,
+     "wins": 16,
+     "roi": -0.1273
+    },
+    {
+     "season": 2012,
+     "n": 31,
+     "units": -2.36,
+     "wins": 15,
+     "roi": -0.0762
+    },
+    {
+     "season": 2013,
+     "n": 32,
+     "units": -3.36,
+     "wins": 15,
+     "roi": -0.1051
+    },
+    {
+     "season": 2014,
+     "n": 27,
+     "units": -11.73,
+     "wins": 8,
+     "roi": -0.4343
+    },
+    {
+     "season": 2015,
+     "n": 30,
+     "units": 4.36,
+     "wins": 18,
+     "roi": 0.1455
+    },
+    {
+     "season": 2016,
+     "n": 32,
+     "units": 8.09,
+     "wins": 21,
+     "roi": 0.2528
+    },
+    {
+     "season": 2017,
+     "n": 32,
+     "units": -1.45,
+     "wins": 16,
+     "roi": -0.0455
+    },
+    {
+     "season": 2018,
+     "n": 26,
+     "units": 0.73,
+     "wins": 14,
+     "roi": 0.028
+    },
+    {
+     "season": 2019,
+     "n": 32,
+     "units": -9.09,
+     "wins": 12,
+     "roi": -0.2841
+    },
+    {
+     "season": 2020,
+     "n": 30,
+     "units": -1.36,
+     "wins": 15,
+     "roi": -0.0455
+    },
+    {
+     "season": 2021,
+     "n": 29,
+     "units": -6.09,
+     "wins": 12,
+     "roi": -0.21
+    },
+    {
+     "season": 2022,
+     "n": 27,
+     "units": 1.64,
+     "wins": 15,
+     "roi": 0.0606
+    },
+    {
+     "season": 2023,
+     "n": 23,
+     "units": -0.09,
+     "wins": 12,
+     "roi": -0.004
+    },
+    {
+     "season": 2024,
+     "n": 33,
+     "units": -8.18,
+     "wins": 13,
+     "roi": -0.2479
+    },
+    {
+     "season": 2025,
+     "n": 25,
+     "units": 1.73,
+     "wins": 14,
+     "roi": 0.0691
+    },
+    {
+     "season": 2026,
+     "n": 8,
+     "units": 3.45,
+     "wins": 6,
+     "roi": 0.4318
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -2.993,
+   "rank": null
+  },
+  {
+   "strategy": "S2_spread_edge_3",
+   "desc": "Model spread differs from the closing line by >=3 points.",
+   "kind": "single",
+   "n_all": 2278,
+   "n_holdout": 712,
+   "roi_holdout": -0.0535,
+   "roi_discovery": -0.0759,
+   "roi_all": -0.0689,
+   "hit_holdout": 0.4958,
+   "units_holdout": -38.09,
+   "ci95_holdout": [
+    -0.1259,
+    0.0189
+   ],
+   "luck_z": -0.225,
+   "p_value": 0.58901,
+   "excess_roi_holdout": -0.008,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 712
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0535
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0759
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -15.13,
+      "brier": 0.2751
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.143,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.0737
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.032
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1259,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.58901
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 15,
+     "units": -5.45,
+     "wins": 5,
+     "roi": -0.3636
+    },
+    {
+     "season": 2003,
+     "n": 61,
+     "units": -20.91,
+     "wins": 21,
+     "roi": -0.3428
+    },
+    {
+     "season": 2004,
+     "n": 83,
+     "units": -0.91,
+     "wins": 43,
+     "roi": -0.011
+    },
+    {
+     "season": 2005,
+     "n": 109,
+     "units": -25.0,
+     "wins": 44,
+     "roi": -0.2294
+    },
+    {
+     "season": 2006,
+     "n": 98,
+     "units": -4.45,
+     "wins": 49,
+     "roi": -0.0455
+    },
+    {
+     "season": 2007,
+     "n": 98,
+     "units": -6.36,
+     "wins": 48,
+     "roi": -0.0649
+    },
+    {
+     "season": 2008,
+     "n": 85,
+     "units": -10.55,
+     "wins": 39,
+     "roi": -0.1241
+    },
+    {
+     "season": 2009,
+     "n": 113,
+     "units": -13.73,
+     "wins": 52,
+     "roi": -0.1215
+    },
+    {
+     "season": 2010,
+     "n": 95,
+     "units": -7.18,
+     "wins": 46,
+     "roi": -0.0756
+    },
+    {
+     "season": 2011,
+     "n": 98,
+     "units": 5.09,
+     "wins": 54,
+     "roi": 0.0519
+    },
+    {
+     "season": 2012,
+     "n": 77,
+     "units": -2.55,
+     "wins": 39,
+     "roi": -0.0331
+    },
+    {
+     "season": 2013,
+     "n": 83,
+     "units": -4.73,
+     "wins": 41,
+     "roi": -0.057
+    },
+    {
+     "season": 2014,
+     "n": 90,
+     "units": -2.18,
+     "wins": 46,
+     "roi": -0.0242
+    },
+    {
+     "season": 2015,
+     "n": 67,
+     "units": 3.64,
+     "wins": 37,
+     "roi": 0.0543
+    },
+    {
+     "season": 2016,
+     "n": 76,
+     "units": -9.18,
+     "wins": 35,
+     "roi": -0.1208
+    },
+    {
+     "season": 2017,
+     "n": 92,
+     "units": -15.64,
+     "wins": 40,
+     "roi": -0.17
+    },
+    {
+     "season": 2018,
+     "n": 102,
+     "units": -0.82,
+     "wins": 53,
+     "roi": -0.008
+    },
+    {
+     "season": 2019,
+     "n": 124,
+     "units": 2.0,
+     "wins": 66,
+     "roi": 0.0161
+    },
+    {
+     "season": 2020,
+     "n": 104,
+     "units": 6.73,
+     "wins": 58,
+     "roi": 0.0647
+    },
+    {
+     "season": 2021,
+     "n": 120,
+     "units": -9.27,
+     "wins": 58,
+     "roi": -0.0773
+    },
+    {
+     "season": 2022,
+     "n": 107,
+     "units": -0.09,
+     "wins": 56,
+     "roi": -0.0008
+    },
+    {
+     "season": 2023,
+     "n": 108,
+     "units": -18.27,
+     "wins": 47,
+     "roi": -0.1692
+    },
+    {
+     "season": 2024,
+     "n": 112,
+     "units": -12.73,
+     "wins": 52,
+     "roi": -0.1136
+    },
+    {
+     "season": 2025,
+     "n": 108,
+     "units": -1.09,
+     "wins": 56,
+     "roi": -0.0101
+    },
+    {
+     "season": 2026,
+     "n": 53,
+     "units": -3.36,
+     "wins": 26,
+     "roi": -0.0635
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -3.057,
+   "rank": null
+  },
+  {
+   "strategy": "S18_div_under",
+   "desc": "UNDER in divisional games.",
+   "kind": "single",
+   "n_all": 2263,
+   "n_holdout": 609,
+   "roi_holdout": -0.0596,
+   "roi_discovery": -0.0108,
+   "roi_all": -0.0239,
+   "hit_holdout": 0.4926,
+   "units_holdout": -36.27,
+   "ci95_holdout": [
+    -0.1348,
+    0.0157
+   ],
+   "luck_z": -0.365,
+   "p_value": 0.64244,
+   "excess_roi_holdout": -0.0141,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 609
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0596
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0108
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": 2.37,
+      "brier": 0.2635
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.286,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.0882
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.0382
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1348,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.64244
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 22,
+     "units": 0.91,
+     "wins": 12,
+     "roi": 0.0413
+    },
+    {
+     "season": 2003,
+     "n": 96,
+     "units": 3.27,
+     "wins": 52,
+     "roi": 0.0341
+    },
+    {
+     "season": 2004,
+     "n": 96,
+     "units": -0.55,
+     "wins": 50,
+     "roi": -0.0057
+    },
+    {
+     "season": 2005,
+     "n": 96,
+     "units": -4.36,
+     "wins": 48,
+     "roi": -0.0455
+    },
+    {
+     "season": 2006,
+     "n": 96,
+     "units": -6.27,
+     "wins": 47,
+     "roi": -0.0653
+    },
+    {
+     "season": 2007,
+     "n": 96,
+     "units": -19.64,
+     "wins": 40,
+     "roi": -0.2045
+    },
+    {
+     "season": 2008,
+     "n": 96,
+     "units": -8.18,
+     "wins": 46,
+     "roi": -0.0852
+    },
+    {
+     "season": 2009,
+     "n": 96,
+     "units": 7.09,
+     "wins": 54,
+     "roi": 0.0739
+    },
+    {
+     "season": 2010,
+     "n": 96,
+     "units": -4.36,
+     "wins": 48,
+     "roi": -0.0455
+    },
+    {
+     "season": 2011,
+     "n": 96,
+     "units": -2.45,
+     "wins": 49,
+     "roi": -0.0256
+    },
+    {
+     "season": 2012,
+     "n": 96,
+     "units": 3.27,
+     "wins": 52,
+     "roi": 0.0341
+    },
+    {
+     "season": 2013,
+     "n": 96,
+     "units": 10.91,
+     "wins": 56,
+     "roi": 0.1136
+    },
+    {
+     "season": 2014,
+     "n": 96,
+     "units": 3.27,
+     "wins": 52,
+     "roi": 0.0341
+    },
+    {
+     "season": 2015,
+     "n": 96,
+     "units": 3.27,
+     "wins": 52,
+     "roi": 0.0341
+    },
+    {
+     "season": 2016,
+     "n": 96,
+     "units": -15.82,
+     "wins": 42,
+     "roi": -0.1648
+    },
+    {
+     "season": 2017,
+     "n": 96,
+     "units": 12.82,
+     "wins": 57,
+     "roi": 0.1335
+    },
+    {
+     "season": 2018,
+     "n": 96,
+     "units": 1.36,
+     "wins": 51,
+     "roi": 0.0142
+    },
+    {
+     "season": 2019,
+     "n": 96,
+     "units": -2.45,
+     "wins": 49,
+     "roi": -0.0256
+    },
+    {
+     "season": 2020,
+     "n": 96,
+     "units": -15.82,
+     "wins": 42,
+     "roi": -0.1648
+    },
+    {
+     "season": 2021,
+     "n": 96,
+     "units": -4.36,
+     "wins": 48,
+     "roi": -0.0455
+    },
+    {
+     "season": 2022,
+     "n": 96,
+     "units": 9.0,
+     "wins": 55,
+     "roi": 0.0938
+    },
+    {
+     "season": 2023,
+     "n": 96,
+     "units": 1.36,
+     "wins": 51,
+     "roi": 0.0142
+    },
+    {
+     "season": 2024,
+     "n": 96,
+     "units": -19.64,
+     "wins": 40,
+     "roi": -0.2045
+    },
+    {
+     "season": 2025,
+     "n": 96,
+     "units": -0.55,
+     "wins": 50,
+     "roi": -0.0057
+    },
+    {
+     "season": 2026,
+     "n": 33,
+     "units": -6.27,
+     "wins": 14,
+     "roi": -0.1901
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -3.831,
+   "rank": null
+  },
+  {
+   "strategy": "S15_sgp_spread_total",
+   "desc": "Same-game parlay (spread + total) where both legs clear a 2-point model edge; joint probability priced with the measured rho = 0.0101.",
+   "kind": "sgp",
+   "n_all": 1672,
+   "n_holdout": 532,
+   "roi_holdout": -0.0601,
+   "roi_discovery": -0.1255,
+   "roi_all": -0.1047,
+   "hit_holdout": 0.265,
+   "units_holdout": -31.99,
+   "ci95_holdout": [
+    -0.1906,
+    0.0733
+   ],
+   "luck_z": 0.801,
+   "p_value": 0.21157,
+   "excess_roi_holdout": -0.0146,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 532
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0601
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.1255
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": 12.08,
+      "brier": 0.2098
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.429,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.0994
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.4825
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1906,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.21157
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 16,
+     "units": -5.07,
+     "wins": 3,
+     "roi": -0.3166
+    },
+    {
+     "season": 2003,
+     "n": 49,
+     "units": -27.13,
+     "wins": 6,
+     "roi": -0.5537
+    },
+    {
+     "season": 2004,
+     "n": 72,
+     "units": -15.42,
+     "wins": 16,
+     "roi": -0.2142
+    },
+    {
+     "season": 2005,
+     "n": 64,
+     "units": -9.33,
+     "wins": 15,
+     "roi": -0.1458
+    },
+    {
+     "season": 2006,
+     "n": 56,
+     "units": 8.04,
+     "wins": 19,
+     "roi": 0.1436
+    },
+    {
+     "season": 2007,
+     "n": 75,
+     "units": -1.93,
+     "wins": 21,
+     "roi": -0.0258
+    },
+    {
+     "season": 2008,
+     "n": 78,
+     "units": -6.67,
+     "wins": 21,
+     "roi": -0.0855
+    },
+    {
+     "season": 2009,
+     "n": 73,
+     "units": -14.51,
+     "wins": 17,
+     "roi": -0.1988
+    },
+    {
+     "season": 2010,
+     "n": 70,
+     "units": -22.45,
+     "wins": 14,
+     "roi": -0.3207
+    },
+    {
+     "season": 2011,
+     "n": 79,
+     "units": 30.69,
+     "wins": 32,
+     "roi": 0.3884
+    },
+    {
+     "season": 2012,
+     "n": 58,
+     "units": -16.0,
+     "wins": 12,
+     "roi": -0.2759
+    },
+    {
+     "season": 2013,
+     "n": 70,
+     "units": 2.89,
+     "wins": 20,
+     "roi": 0.0413
+    },
+    {
+     "season": 2014,
+     "n": 41,
+     "units": -11.84,
+     "wins": 8,
+     "roi": -0.2889
+    },
+    {
+     "season": 2015,
+     "n": 52,
+     "units": 6.31,
+     "wins": 16,
+     "roi": 0.1214
+    },
+    {
+     "season": 2016,
+     "n": 50,
+     "units": -2.62,
+     "wins": 13,
+     "roi": -0.0524
+    },
+    {
+     "season": 2017,
+     "n": 81,
+     "units": -28.07,
+     "wins": 15,
+     "roi": -0.3465
+    },
+    {
+     "season": 2018,
+     "n": 84,
+     "units": -18.22,
+     "wins": 19,
+     "roi": -0.2169
+    },
+    {
+     "season": 2019,
+     "n": 72,
+     "units": -11.78,
+     "wins": 17,
+     "roi": -0.1636
+    },
+    {
+     "season": 2020,
+     "n": 89,
+     "units": 2.12,
+     "wins": 25,
+     "roi": 0.0238
+    },
+    {
+     "season": 2021,
+     "n": 92,
+     "units": -4.36,
+     "wins": 25,
+     "roi": -0.0473
+    },
+    {
+     "season": 2022,
+     "n": 70,
+     "units": -9.6,
+     "wins": 18,
+     "roi": -0.1372
+    },
+    {
+     "season": 2023,
+     "n": 78,
+     "units": -32.18,
+     "wins": 14,
+     "roi": -0.4126
+    },
+    {
+     "season": 2024,
+     "n": 90,
+     "units": -2.53,
+     "wins": 24,
+     "roi": -0.0281
+    },
+    {
+     "season": 2025,
+     "n": 78,
+     "units": 13.12,
+     "wins": 25,
+     "roi": 0.1682
+    },
+    {
+     "season": 2026,
+     "n": 35,
+     "units": 1.45,
+     "wins": 10,
+     "roi": 0.0413
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -5.439,
+   "rank": null
+  },
+  {
+   "strategy": "S1_spread_edge_2",
+   "desc": "Model spread differs from the closing line by >=2 points.",
+   "kind": "single",
+   "n_all": 3405,
+   "n_holdout": 1032,
+   "roi_holdout": -0.0603,
+   "roi_discovery": -0.07,
+   "roi_all": -0.067,
+   "hit_holdout": 0.4922,
+   "units_holdout": -62.18,
+   "ci95_holdout": [
+    -0.1195,
+    -0.0011
+   ],
+   "luck_z": -0.498,
+   "p_value": 0.69076,
+   "excess_roi_holdout": -0.0148,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 1032
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0603
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.07
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -13.21,
+      "brier": 0.2699
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.143,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.0807
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.0389
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1195,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.69076
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 22,
+     "units": -2.91,
+     "wins": 10,
+     "roi": -0.1322
+    },
+    {
+     "season": 2003,
+     "n": 106,
+     "units": -27.73,
+     "wins": 41,
+     "roi": -0.2616
+    },
+    {
+     "season": 2004,
+     "n": 135,
+     "units": 0.55,
+     "wins": 71,
+     "roi": 0.004
+    },
+    {
+     "season": 2005,
+     "n": 152,
+     "units": -31.73,
+     "wins": 63,
+     "roi": -0.2087
+    },
+    {
+     "season": 2006,
+     "n": 146,
+     "units": 6.73,
+     "wins": 80,
+     "roi": 0.0461
+    },
+    {
+     "season": 2007,
+     "n": 151,
+     "units": -9.73,
+     "wins": 74,
+     "roi": -0.0644
+    },
+    {
+     "season": 2008,
+     "n": 144,
+     "units": -14.18,
+     "wins": 68,
+     "roi": -0.0985
+    },
+    {
+     "season": 2009,
+     "n": 161,
+     "units": -14.0,
+     "wins": 77,
+     "roi": -0.087
+    },
+    {
+     "season": 2010,
+     "n": 137,
+     "units": -12.91,
+     "wins": 65,
+     "roi": -0.0942
+    },
+    {
+     "season": 2011,
+     "n": 139,
+     "units": 4.18,
+     "wins": 75,
+     "roi": 0.0301
+    },
+    {
+     "season": 2012,
+     "n": 126,
+     "units": -7.64,
+     "wins": 62,
+     "roi": -0.0606
+    },
+    {
+     "season": 2013,
+     "n": 128,
+     "units": -9.64,
+     "wins": 62,
+     "roi": -0.0753
+    },
+    {
+     "season": 2014,
+     "n": 138,
+     "units": -0.55,
+     "wins": 72,
+     "roi": -0.004
+    },
+    {
+     "season": 2015,
+     "n": 116,
+     "units": 2.36,
+     "wins": 62,
+     "roi": 0.0204
+    },
+    {
+     "season": 2016,
+     "n": 117,
+     "units": -19.64,
+     "wins": 51,
+     "roi": -0.1678
+    },
+    {
+     "season": 2017,
+     "n": 141,
+     "units": -26.45,
+     "wins": 60,
+     "roi": -0.1876
+    },
+    {
+     "season": 2018,
+     "n": 145,
+     "units": 3.91,
+     "wins": 78,
+     "roi": 0.027
+    },
+    {
+     "season": 2019,
+     "n": 169,
+     "units": -6.73,
+     "wins": 85,
+     "roi": -0.0398
+    },
+    {
+     "season": 2020,
+     "n": 166,
+     "units": 7.73,
+     "wins": 91,
+     "roi": 0.0465
+    },
+    {
+     "season": 2021,
+     "n": 171,
+     "units": -12.55,
+     "wins": 83,
+     "roi": -0.0734
+    },
+    {
+     "season": 2022,
+     "n": 150,
+     "units": -4.91,
+     "wins": 76,
+     "roi": -0.0327
+    },
+    {
+     "season": 2023,
+     "n": 156,
+     "units": -26.18,
+     "wins": 68,
+     "roi": -0.1678
+    },
+    {
+     "season": 2024,
+     "n": 162,
+     "units": -13.09,
+     "wins": 78,
+     "roi": -0.0808
+    },
+    {
+     "season": 2025,
+     "n": 156,
+     "units": -9.0,
+     "wins": 77,
+     "roi": -0.0577
+    },
+    {
+     "season": 2026,
+     "n": 71,
+     "units": -4.18,
+     "wins": 35,
+     "roi": -0.0589
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -3.446,
+   "rank": null
+  },
+  {
+   "strategy": "S3_spread_edge_5",
+   "desc": "Model spread differs from the closing line by >=5 points.",
+   "kind": "single",
+   "n_all": 868,
+   "n_holdout": 290,
+   "roi_holdout": -0.0652,
+   "roi_discovery": -0.095,
+   "roi_all": -0.085,
+   "hit_holdout": 0.4897,
+   "units_holdout": -18.91,
+   "ci95_holdout": [
+    -0.1705,
+    0.0401
+   ],
+   "luck_z": -0.352,
+   "p_value": 0.63758,
+   "excess_roi_holdout": -0.0197,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 290
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0652
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.095
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -20.34,
+      "brier": 0.2921
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.286,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.0969
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.044
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1705,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.63758
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 4,
+     "units": -0.18,
+     "wins": 2,
+     "roi": -0.0455
+    },
+    {
+     "season": 2003,
+     "n": 19,
+     "units": -7.55,
+     "wins": 6,
+     "roi": -0.3971
+    },
+    {
+     "season": 2004,
+     "n": 36,
+     "units": 0.27,
+     "wins": 19,
+     "roi": 0.0076
+    },
+    {
+     "season": 2005,
+     "n": 41,
+     "units": -16.18,
+     "wins": 13,
+     "roi": -0.3947
+    },
+    {
+     "season": 2006,
+     "n": 36,
+     "units": -5.45,
+     "wins": 16,
+     "roi": -0.1515
+    },
+    {
+     "season": 2007,
+     "n": 34,
+     "units": 2.27,
+     "wins": 19,
+     "roi": 0.0668
+    },
+    {
+     "season": 2008,
+     "n": 32,
+     "units": 0.45,
+     "wins": 17,
+     "roi": 0.0142
+    },
+    {
+     "season": 2009,
+     "n": 49,
+     "units": -14.64,
+     "wins": 18,
+     "roi": -0.2987
+    },
+    {
+     "season": 2010,
+     "n": 41,
+     "units": -0.91,
+     "wins": 21,
+     "roi": -0.0222
+    },
+    {
+     "season": 2011,
+     "n": 35,
+     "units": -0.64,
+     "wins": 18,
+     "roi": -0.0182
+    },
+    {
+     "season": 2012,
+     "n": 23,
+     "units": -3.91,
+     "wins": 10,
+     "roi": -0.17
+    },
+    {
+     "season": 2013,
+     "n": 37,
+     "units": 5.0,
+     "wins": 22,
+     "roi": 0.1351
+    },
+    {
+     "season": 2014,
+     "n": 29,
+     "units": 1.55,
+     "wins": 16,
+     "roi": 0.0533
+    },
+    {
+     "season": 2015,
+     "n": 22,
+     "units": -4.82,
+     "wins": 9,
+     "roi": -0.219
+    },
+    {
+     "season": 2016,
+     "n": 20,
+     "units": -2.82,
+     "wins": 9,
+     "roi": -0.1409
+    },
+    {
+     "season": 2017,
+     "n": 33,
+     "units": -4.36,
+     "wins": 15,
+     "roi": -0.1322
+    },
+    {
+     "season": 2018,
+     "n": 34,
+     "units": -9.18,
+     "wins": 13,
+     "roi": -0.2701
+    },
+    {
+     "season": 2019,
+     "n": 53,
+     "units": 6.18,
+     "wins": 31,
+     "roi": 0.1166
+    },
+    {
+     "season": 2020,
+     "n": 45,
+     "units": -4.91,
+     "wins": 21,
+     "roi": -0.1091
+    },
+    {
+     "season": 2021,
+     "n": 55,
+     "units": -7.27,
+     "wins": 25,
+     "roi": -0.1322
+    },
+    {
+     "season": 2022,
+     "n": 49,
+     "units": 4.45,
+     "wins": 28,
+     "roi": 0.0909
+    },
+    {
+     "season": 2023,
+     "n": 34,
+     "units": -5.36,
+     "wins": 15,
+     "roi": -0.1578
+    },
+    {
+     "season": 2024,
+     "n": 43,
+     "units": -4.82,
+     "wins": 20,
+     "roi": -0.1121
+    },
+    {
+     "season": 2025,
+     "n": 42,
+     "units": -5.73,
+     "wins": 19,
+     "roi": -0.1364
+    },
+    {
+     "season": 2026,
+     "n": 22,
+     "units": 4.73,
+     "wins": 14,
+     "roi": 0.2149
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -4.156,
+   "rank": null
+  },
+  {
+   "strategy": "S0_baseline_all_home",
+   "desc": "CONTROL: back every home team ATS. This is the vig floor (~-4.5% ROI), not a signal.",
+   "kind": "single",
+   "n_all": 6123,
+   "n_holdout": 1723,
+   "roi_holdout": -0.0826,
+   "roi_discovery": -0.0971,
+   "roi_all": -0.093,
+   "hit_holdout": 0.4806,
+   "units_holdout": -142.27,
+   "ci95_holdout": [
+    -0.128,
+    -0.0394
+   ],
+   "luck_z": -1.614,
+   "p_value": 0.94674,
+   "excess_roi_holdout": -0.0371,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 1723
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0826
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0971
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -1.83,
+      "brier": 0.2609
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.0,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.0908
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.0618
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.128,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.94674
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 48,
+     "units": 5.45,
+     "wins": 28,
+     "roi": 0.1136
+    },
+    {
+     "season": 2003,
+     "n": 256,
+     "units": -13.55,
+     "wins": 127,
+     "roi": -0.0529
+    },
+    {
+     "season": 2004,
+     "n": 256,
+     "units": -34.55,
+     "wins": 116,
+     "roi": -0.1349
+    },
+    {
+     "season": 2005,
+     "n": 256,
+     "units": -23.09,
+     "wins": 122,
+     "roi": -0.0902
+    },
+    {
+     "season": 2006,
+     "n": 256,
+     "units": -25.0,
+     "wins": 121,
+     "roi": -0.0977
+    },
+    {
+     "season": 2007,
+     "n": 256,
+     "units": -11.64,
+     "wins": 128,
+     "roi": -0.0455
+    },
+    {
+     "season": 2008,
+     "n": 256,
+     "units": -40.27,
+     "wins": 113,
+     "roi": -0.1573
+    },
+    {
+     "season": 2009,
+     "n": 256,
+     "units": -36.45,
+     "wins": 115,
+     "roi": -0.1424
+    },
+    {
+     "season": 2010,
+     "n": 256,
+     "units": -19.27,
+     "wins": 124,
+     "roi": -0.0753
+    },
+    {
+     "season": 2011,
+     "n": 256,
+     "units": -23.09,
+     "wins": 122,
+     "roi": -0.0902
+    },
+    {
+     "season": 2012,
+     "n": 256,
+     "units": -30.73,
+     "wins": 118,
+     "roi": -0.12
+    },
+    {
+     "season": 2013,
+     "n": 256,
+     "units": -4.0,
+     "wins": 132,
+     "roi": -0.0156
+    },
+    {
+     "season": 2014,
+     "n": 256,
+     "units": -21.18,
+     "wins": 123,
+     "roi": -0.0827
+    },
+    {
+     "season": 2015,
+     "n": 256,
+     "units": -38.36,
+     "wins": 114,
+     "roi": -0.1499
+    },
+    {
+     "season": 2016,
+     "n": 256,
+     "units": -21.18,
+     "wins": 123,
+     "roi": -0.0827
+    },
+    {
+     "season": 2017,
+     "n": 256,
+     "units": -7.82,
+     "wins": 130,
+     "roi": -0.0305
+    },
+    {
+     "season": 2018,
+     "n": 256,
+     "units": -28.82,
+     "wins": 119,
+     "roi": -0.1126
+    },
+    {
+     "season": 2019,
+     "n": 256,
+     "units": -53.64,
+     "wins": 106,
+     "roi": -0.2095
+    },
+    {
+     "season": 2020,
+     "n": 256,
+     "units": -13.55,
+     "wins": 127,
+     "roi": -0.0529
+    },
+    {
+     "season": 2021,
+     "n": 272,
+     "units": -25.73,
+     "wins": 129,
+     "roi": -0.0946
+    },
+    {
+     "season": 2022,
+     "n": 271,
+     "units": -24.73,
+     "wins": 129,
+     "roi": -0.0912
+    },
+    {
+     "season": 2023,
+     "n": 272,
+     "units": -27.64,
+     "wins": 128,
+     "roi": -0.1016
+    },
+    {
+     "season": 2024,
+     "n": 272,
+     "units": -10.45,
+     "wins": 137,
+     "roi": -0.0384
+    },
+    {
+     "season": 2025,
+     "n": 272,
+     "units": -14.27,
+     "wins": 135,
+     "roi": -0.0525
+    },
+    {
+     "season": 2026,
+     "n": 108,
+     "units": -25.91,
+     "wins": 43,
+     "roi": -0.2399
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -4.13,
+   "rank": null
+  },
+  {
+   "strategy": "S19_prop_singles",
+   "kind": "prop",
+   "desc": "Player-yardage over/under from the prop origination engine, expanding-window, settled at the -110 assumption because no prop price exists in any reachable source.",
+   "n_all": 23,
+   "n_holdout": 23,
+   "roi_holdout": -0.0869,
+   "roi_discovery": null,
+   "roi_all": -0.0869,
+   "hit_holdout": 0.4783,
+   "units_holdout": null,
+   "ci95_holdout": [
+    null,
+    null
+   ],
+   "luck_z": null,
+   "p_value": null,
+   "excess_roi_holdout": null,
+   "gates": {
+    "G1_sample": {
+     "pass": false,
+     "value": 23
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.0869
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": null
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "note": "no price, no CI"
+     }
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": null,
+      "brier": 0.25
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.0,
+      "seasons_scored": 0
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": null
+    },
+    "G8_concentration": {
+     "pass": true,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": null
+    }
+   },
+   "by_season": [],
+   "status": "needs review",
+   "note": "Gate G1 blocks this strategy on sample size alone. It stays on the board so the gate can be seen doing its job.",
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G1_sample",
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G4_significance",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G9_price_sensitivity"
+   ],
+   "qualified": false,
+   "score": -2.774,
+   "rank": null
+  },
+  {
+   "strategy": "S6_ml_value_5pct",
+   "desc": "Moneyline with >=5% modelled expected value.",
+   "kind": "single",
+   "n_all": 4075,
+   "n_holdout": 1322,
+   "roi_holdout": -0.1091,
+   "roi_discovery": -0.0274,
+   "roi_all": -0.0539,
+   "hit_holdout": 0.3041,
+   "units_holdout": -144.24,
+   "ci95_holdout": [
+    -0.1861,
+    -0.0288
+   ],
+   "luck_z": -2.926,
+   "p_value": 0.99828,
+   "excess_roi_holdout": -0.0636,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 1322
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.1091
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0274
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -13.99,
+      "brier": 0.227
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.143,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.1217
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.4063
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1861,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.99828
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2006,
+     "n": 179,
+     "units": 74.25,
+     "wins": 80,
+     "roi": 0.4148
+    },
+    {
+     "season": 2007,
+     "n": 222,
+     "units": -19.62,
+     "wins": 67,
+     "roi": -0.0884
+    },
+    {
+     "season": 2008,
+     "n": 145,
+     "units": -24.49,
+     "wins": 42,
+     "roi": -0.1689
+    },
+    {
+     "season": 2009,
+     "n": 213,
+     "units": -2.74,
+     "wins": 61,
+     "roi": -0.0128
+    },
+    {
+     "season": 2010,
+     "n": 206,
+     "units": 8.45,
+     "wins": 72,
+     "roi": 0.041
+    },
+    {
+     "season": 2011,
+     "n": 210,
+     "units": -18.27,
+     "wins": 63,
+     "roi": -0.087
+    },
+    {
+     "season": 2012,
+     "n": 199,
+     "units": -22.28,
+     "wins": 65,
+     "roi": -0.112
+    },
+    {
+     "season": 2013,
+     "n": 194,
+     "units": -14.29,
+     "wins": 62,
+     "roi": -0.0737
+    },
+    {
+     "season": 2014,
+     "n": 195,
+     "units": -17.27,
+     "wins": 63,
+     "roi": -0.0886
+    },
+    {
+     "season": 2015,
+     "n": 183,
+     "units": 16.7,
+     "wins": 66,
+     "roi": 0.0913
+    },
+    {
+     "season": 2016,
+     "n": 186,
+     "units": -5.76,
+     "wins": 67,
+     "roi": -0.031
+    },
+    {
+     "season": 2017,
+     "n": 195,
+     "units": -34.34,
+     "wins": 55,
+     "roi": -0.1761
+    },
+    {
+     "season": 2018,
+     "n": 213,
+     "units": -10.18,
+     "wins": 67,
+     "roi": -0.0478
+    },
+    {
+     "season": 2019,
+     "n": 213,
+     "units": -5.57,
+     "wins": 70,
+     "roi": -0.0261
+    },
+    {
+     "season": 2020,
+     "n": 207,
+     "units": -27.89,
+     "wins": 61,
+     "roi": -0.1347
+    },
+    {
+     "season": 2021,
+     "n": 232,
+     "units": -11.61,
+     "wins": 70,
+     "roi": -0.05
+    },
+    {
+     "season": 2022,
+     "n": 206,
+     "units": -39.48,
+     "wins": 57,
+     "roi": -0.1916
+    },
+    {
+     "season": 2023,
+     "n": 197,
+     "units": -14.17,
+     "wins": 66,
+     "roi": -0.0719
+    },
+    {
+     "season": 2024,
+     "n": 190,
+     "units": -30.99,
+     "wins": 58,
+     "roi": -0.1631
+    },
+    {
+     "season": 2025,
+     "n": 200,
+     "units": -20.15,
+     "wins": 61,
+     "roi": -0.1007
+    },
+    {
+     "season": 2026,
+     "n": 90,
+     "units": 0.04,
+     "wins": 29,
+     "roi": 0.0004
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -6.234,
+   "rank": null
+  },
+  {
+   "strategy": "S4_total_edge_2",
+   "desc": "Model total differs from the closing total by >=2 points.",
+   "kind": "single",
+   "n_all": 2917,
+   "n_holdout": 848,
+   "roi_holdout": -0.1242,
+   "roi_discovery": -0.0893,
+   "roi_all": -0.0994,
+   "hit_holdout": 0.4587,
+   "units_holdout": -105.36,
+   "ci95_holdout": [
+    -0.1918,
+    -0.0612
+   ],
+   "luck_z": -2.404,
+   "p_value": 0.99189,
+   "excess_roi_holdout": -0.0787,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 848
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.1242
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0893
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -15.74,
+      "brier": 0.2774
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.0,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.1449
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.1044
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.1918,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.99189
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 32,
+     "units": -9.09,
+     "wins": 12,
+     "roi": -0.2841
+    },
+    {
+     "season": 2003,
+     "n": 117,
+     "units": -19.64,
+     "wins": 51,
+     "roi": -0.1678
+    },
+    {
+     "season": 2004,
+     "n": 124,
+     "units": -13.27,
+     "wins": 58,
+     "roi": -0.107
+    },
+    {
+     "season": 2005,
+     "n": 117,
+     "units": -12.0,
+     "wins": 55,
+     "roi": -0.1026
+    },
+    {
+     "season": 2006,
+     "n": 107,
+     "units": -13.45,
+     "wins": 49,
+     "roi": -0.1257
+    },
+    {
+     "season": 2007,
+     "n": 115,
+     "units": -15.73,
+     "wins": 52,
+     "roi": -0.1368
+    },
+    {
+     "season": 2008,
+     "n": 144,
+     "units": -6.55,
+     "wins": 72,
+     "roi": -0.0455
+    },
+    {
+     "season": 2009,
+     "n": 110,
+     "units": -1.18,
+     "wins": 57,
+     "roi": -0.0107
+    },
+    {
+     "season": 2010,
+     "n": 126,
+     "units": -15.27,
+     "wins": 58,
+     "roi": -0.1212
+    },
+    {
+     "season": 2011,
+     "n": 125,
+     "units": 6.73,
+     "wins": 69,
+     "roi": 0.0538
+    },
+    {
+     "season": 2012,
+     "n": 120,
+     "units": -20.73,
+     "wins": 52,
+     "roi": -0.1727
+    },
+    {
+     "season": 2013,
+     "n": 135,
+     "units": 6.27,
+     "wins": 74,
+     "roi": 0.0465
+    },
+    {
+     "season": 2014,
+     "n": 72,
+     "units": -26.18,
+     "wins": 24,
+     "roi": -0.3636
+    },
+    {
+     "season": 2015,
+     "n": 119,
+     "units": -4.45,
+     "wins": 60,
+     "roi": -0.0374
+    },
+    {
+     "season": 2016,
+     "n": 111,
+     "units": 1.64,
+     "wins": 59,
+     "roi": 0.0147
+    },
+    {
+     "season": 2017,
+     "n": 148,
+     "units": -16.27,
+     "wins": 69,
+     "roi": -0.11
+    },
+    {
+     "season": 2018,
+     "n": 133,
+     "units": -18.45,
+     "wins": 60,
+     "roi": -0.1388
+    },
+    {
+     "season": 2019,
+     "n": 114,
+     "units": -7.09,
+     "wins": 56,
+     "roi": -0.0622
+    },
+    {
+     "season": 2020,
+     "n": 131,
+     "units": -10.73,
+     "wins": 63,
+     "roi": -0.0819
+    },
+    {
+     "season": 2021,
+     "n": 129,
+     "units": -27.82,
+     "wins": 53,
+     "roi": -0.2156
+    },
+    {
+     "season": 2022,
+     "n": 127,
+     "units": -14.36,
+     "wins": 59,
+     "roi": -0.1131
+    },
+    {
+     "season": 2023,
+     "n": 138,
+     "units": -13.91,
+     "wins": 65,
+     "roi": -0.1008
+    },
+    {
+     "season": 2024,
+     "n": 138,
+     "units": -2.45,
+     "wins": 71,
+     "roi": -0.0178
+    },
+    {
+     "season": 2025,
+     "n": 128,
+     "units": -11.55,
+     "wins": 61,
+     "roi": -0.0902
+    },
+    {
+     "season": 2026,
+     "n": 57,
+     "units": -24.55,
+     "wins": 17,
+     "roi": -0.4306
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -6.21,
+   "rank": null
+  },
+  {
+   "strategy": "S5_total_edge_3",
+   "desc": "Model total differs from the closing total by >=3 points.",
+   "kind": "single",
+   "n_all": 1802,
+   "n_holdout": 539,
+   "roi_holdout": -0.1322,
+   "roi_discovery": -0.0613,
+   "roi_all": -0.0825,
+   "hit_holdout": 0.4545,
+   "units_holdout": -71.27,
+   "ci95_holdout": [
+    -0.2102,
+    -0.0508
+   ],
+   "luck_z": -2.111,
+   "p_value": 0.98261,
+   "excess_roi_holdout": -0.0867,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 539
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.1322
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0613
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -18.56,
+      "brier": 0.2867
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.286,
+      "seasons_scored": 7
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.1687
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.1126
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.2102,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.98261
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 22,
+     "units": -4.82,
+     "wins": 9,
+     "roi": -0.219
+    },
+    {
+     "season": 2003,
+     "n": 67,
+     "units": -11.64,
+     "wins": 29,
+     "roi": -0.1737
+    },
+    {
+     "season": 2004,
+     "n": 88,
+     "units": -2.09,
+     "wins": 45,
+     "roi": -0.0238
+    },
+    {
+     "season": 2005,
+     "n": 62,
+     "units": -6.64,
+     "wins": 29,
+     "roi": -0.107
+    },
+    {
+     "season": 2006,
+     "n": 72,
+     "units": -9.0,
+     "wins": 33,
+     "roi": -0.125
+    },
+    {
+     "season": 2007,
+     "n": 63,
+     "units": -1.91,
+     "wins": 32,
+     "roi": -0.0303
+    },
+    {
+     "season": 2008,
+     "n": 94,
+     "units": 1.45,
+     "wins": 50,
+     "roi": 0.0155
+    },
+    {
+     "season": 2009,
+     "n": 65,
+     "units": 7.55,
+     "wins": 38,
+     "roi": 0.1161
+    },
+    {
+     "season": 2010,
+     "n": 78,
+     "units": -3.55,
+     "wins": 39,
+     "roi": -0.0455
+    },
+    {
+     "season": 2011,
+     "n": 72,
+     "units": 8.18,
+     "wins": 42,
+     "roi": 0.1136
+    },
+    {
+     "season": 2012,
+     "n": 83,
+     "units": -18.09,
+     "wins": 34,
+     "roi": -0.218
+    },
+    {
+     "season": 2013,
+     "n": 92,
+     "units": -0.36,
+     "wins": 48,
+     "roi": -0.004
+    },
+    {
+     "season": 2014,
+     "n": 33,
+     "units": -15.82,
+     "wins": 9,
+     "roi": -0.4793
+    },
+    {
+     "season": 2015,
+     "n": 71,
+     "units": -2.27,
+     "wins": 36,
+     "roi": -0.032
+    },
+    {
+     "season": 2016,
+     "n": 68,
+     "units": -5.0,
+     "wins": 33,
+     "roi": -0.0735
+    },
+    {
+     "season": 2017,
+     "n": 91,
+     "units": -5.09,
+     "wins": 45,
+     "roi": -0.0559
+    },
+    {
+     "season": 2018,
+     "n": 77,
+     "units": -6.36,
+     "wins": 37,
+     "roi": -0.0826
+    },
+    {
+     "season": 2019,
+     "n": 65,
+     "units": -2.0,
+     "wins": 33,
+     "roi": -0.0308
+    },
+    {
+     "season": 2020,
+     "n": 74,
+     "units": -9.09,
+     "wins": 34,
+     "roi": -0.1229
+    },
+    {
+     "season": 2021,
+     "n": 79,
+     "units": -14.09,
+     "wins": 34,
+     "roi": -0.1784
+    },
+    {
+     "season": 2022,
+     "n": 87,
+     "units": -18.27,
+     "wins": 36,
+     "roi": -0.21
+    },
+    {
+     "season": 2023,
+     "n": 88,
+     "units": -21.18,
+     "wins": 35,
+     "roi": -0.2407
+    },
+    {
+     "season": 2024,
+     "n": 86,
+     "units": 1.82,
+     "wins": 46,
+     "roi": 0.0211
+    },
+    {
+     "season": 2025,
+     "n": 82,
+     "units": 5.82,
+     "wins": 46,
+     "roi": 0.071
+    },
+    {
+     "season": 2026,
+     "n": 43,
+     "units": -16.27,
+     "wins": 14,
+     "roi": -0.3784
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -8.499,
+   "rank": null
+  },
+  {
+   "strategy": "S14_parlay3_edge2",
+   "desc": "3-leg parlay from the >=2pt spread/total edge pool (one parlay per week).",
+   "kind": "parlay3",
+   "n_all": 406,
+   "n_holdout": 114,
+   "roi_holdout": -0.3286,
+   "roi_discovery": -0.3044,
+   "roi_all": -0.3112,
+   "hit_holdout": 0.0965,
+   "units_holdout": -37.46,
+   "ci95_holdout": [
+    -0.6948,
+    0.0986
+   ],
+   "luck_z": -0.92,
+   "p_value": 0.82121,
+   "excess_roi_holdout": -0.2831,
+   "gates": {
+    "G1_sample": {
+     "pass": true,
+     "value": 114
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.3286
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.3044
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -24.04,
+      "brier": 0.1514
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.333,
+      "seasons_scored": 6
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.4202
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.8116
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.6948,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.82121
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 3,
+     "units": -3.0,
+     "wins": 0,
+     "roi": -1.0
+    },
+    {
+     "season": 2003,
+     "n": 17,
+     "units": -10.04,
+     "wins": 1,
+     "roi": -0.5907
+    },
+    {
+     "season": 2004,
+     "n": 17,
+     "units": -17.0,
+     "wins": 0,
+     "roi": -1.0
+    },
+    {
+     "season": 2005,
+     "n": 17,
+     "units": -10.04,
+     "wins": 1,
+     "roi": -0.5907
+    },
+    {
+     "season": 2006,
+     "n": 17,
+     "units": -13.36,
+     "wins": 1,
+     "roi": -0.7856
+    },
+    {
+     "season": 2007,
+     "n": 17,
+     "units": 4.21,
+     "wins": 4,
+     "roi": 0.2474
+    },
+    {
+     "season": 2008,
+     "n": 17,
+     "units": -13.36,
+     "wins": 1,
+     "roi": -0.7856
+    },
+    {
+     "season": 2009,
+     "n": 17,
+     "units": -6.4,
+     "wins": 2,
+     "roi": -0.3763
+    },
+    {
+     "season": 2010,
+     "n": 17,
+     "units": 3.87,
+     "wins": 3,
+     "roi": 0.2279
+    },
+    {
+     "season": 2011,
+     "n": 17,
+     "units": 14.48,
+     "wins": 5,
+     "roi": 0.8515
+    },
+    {
+     "season": 2012,
+     "n": 17,
+     "units": -3.08,
+     "wins": 2,
+     "roi": -0.1814
+    },
+    {
+     "season": 2013,
+     "n": 17,
+     "units": 7.52,
+     "wins": 4,
+     "roi": 0.4423
+    },
+    {
+     "season": 2014,
+     "n": 17,
+     "units": 3.87,
+     "wins": 3,
+     "roi": 0.2279
+    },
+    {
+     "season": 2015,
+     "n": 17,
+     "units": -3.08,
+     "wins": 2,
+     "roi": -0.1814
+    },
+    {
+     "season": 2016,
+     "n": 17,
+     "units": -17.0,
+     "wins": 0,
+     "roi": -1.0
+    },
+    {
+     "season": 2017,
+     "n": 17,
+     "units": -3.08,
+     "wins": 2,
+     "roi": -0.1814
+    },
+    {
+     "season": 2018,
+     "n": 17,
+     "units": -6.4,
+     "wins": 2,
+     "roi": -0.3763
+    },
+    {
+     "season": 2019,
+     "n": 17,
+     "units": -17.0,
+     "wins": 0,
+     "roi": -1.0
+    },
+    {
+     "season": 2020,
+     "n": 17,
+     "units": -3.08,
+     "wins": 2,
+     "roi": -0.1814
+    },
+    {
+     "season": 2021,
+     "n": 18,
+     "units": 2.87,
+     "wins": 3,
+     "roi": 0.1597
+    },
+    {
+     "season": 2022,
+     "n": 18,
+     "units": -11.04,
+     "wins": 1,
+     "roi": -0.6134
+    },
+    {
+     "season": 2023,
+     "n": 18,
+     "units": -4.08,
+     "wins": 2,
+     "roi": -0.2269
+    },
+    {
+     "season": 2024,
+     "n": 18,
+     "units": -18.0,
+     "wins": 0,
+     "roi": -1.0
+    },
+    {
+     "season": 2025,
+     "n": 18,
+     "units": 2.87,
+     "wins": 3,
+     "roi": 0.1597
+    },
+    {
+     "season": 2026,
+     "n": 7,
+     "units": -7.0,
+     "wins": 0,
+     "roi": -1.0
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 1,
+   "gates_failed": [
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -17.705,
+   "rank": null
+  },
+  {
+   "strategy": "S17_cold_under",
+   "desc": "UNDER outdoors at <=32 F.",
+   "kind": "single",
+   "n_all": 265,
+   "n_holdout": 59,
+   "roi_holdout": -0.1911,
+   "roi_discovery": -0.0918,
+   "roi_all": -0.1139,
+   "hit_holdout": 0.4237,
+   "units_holdout": -11.27,
+   "ci95_holdout": [
+    -0.4176,
+    0.0354
+   ],
+   "luck_z": -1.172,
+   "p_value": 0.8794,
+   "excess_roi_holdout": -0.1456,
+   "gates": {
+    "G1_sample": {
+     "pass": false,
+     "value": 59
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.1911
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0918
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -0.69,
+      "brier": 0.262
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.333,
+      "seasons_scored": 3
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": -0.334
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.1727
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": -0.4176,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.8794
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2002,
+     "n": 2,
+     "units": -0.09,
+     "wins": 1,
+     "roi": -0.0455
+    },
+    {
+     "season": 2003,
+     "n": 12,
+     "units": -0.55,
+     "wins": 6,
+     "roi": -0.0455
+    },
+    {
+     "season": 2004,
+     "n": 14,
+     "units": -2.55,
+     "wins": 6,
+     "roi": -0.1818
+    },
+    {
+     "season": 2005,
+     "n": 14,
+     "units": 1.27,
+     "wins": 8,
+     "roi": 0.0909
+    },
+    {
+     "season": 2006,
+     "n": 9,
+     "units": -7.09,
+     "wins": 1,
+     "roi": -0.7879
+    },
+    {
+     "season": 2007,
+     "n": 10,
+     "units": -6.18,
+     "wins": 2,
+     "roi": -0.6182
+    },
+    {
+     "season": 2008,
+     "n": 17,
+     "units": -1.73,
+     "wins": 8,
+     "roi": -0.1016
+    },
+    {
+     "season": 2009,
+     "n": 15,
+     "units": 0.27,
+     "wins": 8,
+     "roi": 0.0182
+    },
+    {
+     "season": 2010,
+     "n": 19,
+     "units": -3.73,
+     "wins": 8,
+     "roi": -0.1962
+    },
+    {
+     "season": 2011,
+     "n": 8,
+     "units": -2.27,
+     "wins": 3,
+     "roi": -0.2841
+    },
+    {
+     "season": 2012,
+     "n": 7,
+     "units": 2.55,
+     "wins": 5,
+     "roi": 0.3636
+    },
+    {
+     "season": 2013,
+     "n": 18,
+     "units": -12.27,
+     "wins": 3,
+     "roi": -0.6818
+    },
+    {
+     "season": 2014,
+     "n": 11,
+     "units": -1.45,
+     "wins": 5,
+     "roi": -0.1322
+    },
+    {
+     "season": 2015,
+     "n": 8,
+     "units": 3.45,
+     "wins": 6,
+     "roi": 0.4318
+    },
+    {
+     "season": 2016,
+     "n": 13,
+     "units": 2.27,
+     "wins": 8,
+     "roi": 0.1748
+    },
+    {
+     "season": 2017,
+     "n": 16,
+     "units": 5.0,
+     "wins": 11,
+     "roi": 0.3125
+    },
+    {
+     "season": 2018,
+     "n": 7,
+     "units": 0.64,
+     "wins": 4,
+     "roi": 0.0909
+    },
+    {
+     "season": 2019,
+     "n": 6,
+     "units": 3.55,
+     "wins": 5,
+     "roi": 0.5909
+    },
+    {
+     "season": 2020,
+     "n": 3,
+     "units": -3.0,
+     "wins": 0,
+     "roi": -1.0
+    },
+    {
+     "season": 2021,
+     "n": 8,
+     "units": -0.36,
+     "wins": 4,
+     "roi": -0.0455
+    },
+    {
+     "season": 2022,
+     "n": 16,
+     "units": 3.09,
+     "wins": 10,
+     "roi": 0.1932
+    },
+    {
+     "season": 2023,
+     "n": 4,
+     "units": -2.09,
+     "wins": 1,
+     "roi": -0.5227
+    },
+    {
+     "season": 2024,
+     "n": 13,
+     "units": -1.55,
+     "wins": 6,
+     "roi": -0.1189
+    },
+    {
+     "season": 2025,
+     "n": 15,
+     "units": -7.36,
+     "wins": 4,
+     "roi": -0.4909
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 0,
+   "gates_failed": [
+    "G1_sample",
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -9.195,
+   "rank": null
+  },
+  {
+   "strategy": "S7_fade_short_week",
+   "desc": "Fade a team on <=5 days rest against a better-rested opponent.",
+   "kind": "single",
+   "n_all": 5,
+   "n_holdout": 3,
+   "roi_holdout": -0.3636,
+   "roi_discovery": -0.0455,
+   "roi_all": -0.2364,
+   "hit_holdout": 0.3333,
+   "units_holdout": -1.09,
+   "ci95_holdout": [
+    null,
+    null
+   ],
+   "luck_z": -0.577,
+   "p_value": 0.71803,
+   "excess_roi_holdout": -0.3181,
+   "gates": {
+    "G1_sample": {
+     "pass": false,
+     "value": 3
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": -0.3636
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": -0.0455
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": {
+      "gap_pp": -18.75,
+      "brier": 0.3103
+     }
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": {
+      "profitable_frac": 0.0,
+      "seasons_scored": 0
+     }
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": null
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": -0.3492
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": {
+      "ci_lower": null,
+      "bh_fdr_pass": false,
+      "family_size": 19,
+      "q": 0.1,
+      "raw_p": 0.71803
+     }
+    }
+   },
+   "by_season": [
+    {
+     "season": 2010,
+     "n": 2,
+     "units": -0.09,
+     "wins": 1,
+     "roi": -0.0455
+    },
+    {
+     "season": 2020,
+     "n": 3,
+     "units": -1.09,
+     "wins": 1,
+     "roi": -0.3636
+    }
+   ],
+   "bh_fdr_pass": false,
+   "gates_passed": 0,
+   "gates_failed": [
+    "G1_sample",
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity",
+    "G4_significance"
+   ],
+   "qualified": false,
+   "score": -9.999,
+   "rank": null
+  },
+  {
+   "strategy": "S20_prop_sgp_qb_wr",
+   "kind": "prop",
+   "desc": "Same-game parlay of a quarterback passing-yards leg and his own No.1 receiver's receiving-yards leg. Correlation measured; price cannot be tested.",
+   "n_all": 0,
+   "n_holdout": 0,
+   "roi_holdout": null,
+   "roi_discovery": null,
+   "roi_all": null,
+   "hit_holdout": null,
+   "units_holdout": null,
+   "ci95_holdout": [
+    null,
+    null
+   ],
+   "luck_z": null,
+   "p_value": null,
+   "excess_roi_holdout": null,
+   "gates": {
+    "G1_sample": {
+     "pass": false,
+     "value": null
+    },
+    "G2_holdout_roi": {
+     "pass": false,
+     "value": null
+    },
+    "G3_discovery_roi": {
+     "pass": false,
+     "value": null
+    },
+    "G4_significance": {
+     "pass": false,
+     "value": null
+    },
+    "G5_calibration": {
+     "pass": false,
+     "value": null
+    },
+    "G6_stability": {
+     "pass": false,
+     "value": null
+    },
+    "G7_robustness": {
+     "pass": false,
+     "value": null
+    },
+    "G8_concentration": {
+     "pass": false,
+     "value": null
+    },
+    "G9_price_sensitivity": {
+     "pass": false,
+     "value": null
+    }
+   },
+   "by_season": [],
+   "status": "needs review",
+   "note": "Measured r = 0.6236 (n=14) between QB1 passing yards and WR1 receiving yards in the same game. No prop price is reachable from this environment, so no return, no ROI and no rank are published.",
+   "bh_fdr_pass": false,
+   "gates_passed": 0,
+   "gates_failed": [
+    "G1_sample",
+    "G2_holdout_roi",
+    "G3_discovery_roi",
+    "G4_significance",
+    "G5_calibration",
+    "G6_stability",
+    "G7_robustness",
+    "G8_concentration",
+    "G9_price_sensitivity"
+   ],
+   "qualified": false,
+   "score": 0.0,
+   "rank": null
+  }
+ ],
+ "summary": {
+  "strategies_tested": 21,
+  "qualified": 0,
+  "top": null,
+  "holdout_years": [
+   2020,
+   2026
+  ],
+  "discovery_years": [
+   2002,
+   2019
+  ]
+ }
+}
