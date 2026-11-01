@@ -237,105 +237,8 @@
    ],
    "reality_check_p": 0.8627,
    "score": 90.32,
-   "rank": null,
-   "tier": "Unranked"
-  },
-  {
-   "key": "S13_off_market_total",
-   "name": "Unders when the total moves down 1.5+ from the open (2021 only)",
-   "category": "single",
-   "market": "total",
-   "thesis": "Follow reverse line movement in the totals market (opening lines exist in the source extract for the 2021 season only, so this is a one-season probe, not a validated strategy).",
-   "notes": "Exploratory: one season, fails G1 by construction.",
-   "_units_series": "[ 0.90909091  0.87719298  0.95238095 -1.          1.04        0.94339623\n  0.99009901  0.89285714  0.96153846 -1.          0.87719298 -1.\n  0.90909091  0.94339623 -1.         -1.          0.97087379 -1.\n -1.         -1.         -1.         -1.         -1.          0.94339623\n -1.         -1.          0.95238095  0.9009009  -1.         -1.\n  0.94339623  0.95238095 -1.          1.01       -1.         -1.\n  0.98039216  0.9009009  -1.          0.99009901  0.95238095 -1.\n -1.         -1.         -1.         -1.          0.97087379  0.98039216\n  0.91743119  1.         -1.          0.94339623 -1.          0.87719298\n  0.92592593  0.88495575  0.96153846  0.97087379  0.90909091 -1.\n -1.         -1.          0.90909091  0.97087379 -1.          0.92592593\n -1.          0.97087379 -1.         -1.          0.94339623 -1.\n  0.91743119  0.92592593  0.93457944  1.          0.98039216 -1.\n -1.         -1.         -1.         -1.          0.92592593 -1.\n  0.89285714 -1.         -1.          1.03       -1.          1.04\n -1.         -1.          0.99009901 -1.          0.95238095  1.\n -1.          0.94339623 -1.         -1.         -1.          0.88495575\n  1.02       -1.         -1.         -1.          0.88495575 -1.\n  0.95238095  0.97087379  1.         -1.          0.98039216 -1.\n  1.01        0.96153846  0.98039216 -1.          0.90909091  0.90909091\n -1.         -1.          0.90909091  0.86956522 -1.          1.        ]",
-   "_weekly": "season  week\n2021    1       0.912888\n        2       0.327799\n        3       0.286948\n        4      -0.029440\n        5      -0.722372\n        6      -0.229344\n        7       0.126596\n        8      -0.026103\n        9      -0.016413\n        10      0.436629\n        11      0.103780\n        12     -0.027904\n        13      0.671675\n        14     -0.618122\n        15      0.001248\n        16     -0.192859\n        17      0.487900\n        18      0.066315\nName: units, dtype: float64",
-   "_season_units": "season\n2021    2.630485\nName: units, dtype: float64",
-   "_bets_frame": "     season  week    gameday  ...                legs     units  paid\n0      2021     1 2021-09-12  ...    under 49.0 GB@NO  0.909091  True\n1      2021     1 2021-09-12  ...  under 48.0 PIT@BUF  0.877193  True\n2      2021     1 2021-09-12  ...  under 49.0 SEA@IND  0.952381  True\n3      2021     2 2021-09-19  ...   under 48.0 LA@IND -1.000000  True\n4      2021     2 2021-09-19  ...   under 46.5 LV@PIT  1.040000  True\n..      ...   ...        ...  ...                 ...       ...   ...\n123    2021    18 2022-01-09  ...   under 40.0 NO@ATL -1.000000  True\n124    2021    18 2022-01-09  ...  under 43.0 NYJ@BUF  0.909091  True\n125    2021    18 2022-01-09  ...  under 41.0 PIT@BAL  0.869565  True\n126    2021    18 2022-01-09  ...  under 43.0 TEN@HOU -1.000000  True\n127    2021    18 2022-01-09  ...  under 36.0 WAS@NYG  1.000000  True\n\n[126 rows x 11 columns]",
-   "full": {
-    "bets": 126,
-    "wins": 66,
-    "losses": 60,
-    "pushes": 2,
-    "hit_rate": 0.5238,
-    "breakeven_rate": 0.5121,
-    "roi": 0.0209,
-    "units": 2.63,
-    "avg_odds": -70.2,
-    "wilson_lo": 0.4372,
-    "wilson_hi": 0.609,
-    "p_value": 0.4314,
-    "t_stat": 0.24,
-    "boot_ci": [
-     -0.1495,
-     0.2034
-    ],
-    "max_drawdown": 10.5,
-    "positive_seasons": 1,
-    "n_seasons": 1,
-    "per_season": {
-     "2021": 0.021
-    },
-    "bet_counts_by_season": {
-     "2021": 126
-    },
-    "max_season_units": 2.63
-   },
-   "discovery": null,
-   "validation": {
-    "bets": 126,
-    "wins": 66,
-    "losses": 60,
-    "pushes": 2,
-    "hit_rate": 0.5238,
-    "breakeven_rate": 0.5121,
-    "roi": 0.0209,
-    "units": 2.63,
-    "avg_odds": -70.2,
-    "wilson_lo": 0.4372,
-    "wilson_hi": 0.609,
-    "p_value": 0.4314,
-    "t_stat": 0.24,
-    "boot_ci": [
-     -0.1495,
-     0.2034
-    ],
-    "max_drawdown": 10.5,
-    "positive_seasons": 1,
-    "n_seasons": 1,
-    "per_season": {
-     "2021": 0.021
-    },
-    "bet_counts_by_season": {
-     "2021": 126
-    },
-    "max_season_units": 2.63
-   },
-   "price_shock_roi": -0.0017,
-   "teaser_price": null,
-   "q_value": 0.99975,
-   "gates": {
-    "G1_sample": false,
-    "G2_significance": false,
-    "G3_consistency": false,
-    "G4_price_shock": false,
-    "G5_drawdown": false,
-    "G6_reality_check": false,
-    "G7_coverage": true
-   },
-   "gates_passed": 1,
-   "gates_total": 7,
-   "eligible": false,
-   "failed_gates": [
-    "G1_sample",
-    "G2_significance",
-    "G3_consistency",
-    "G4_price_shock",
-    "G5_drawdown",
-    "G6_reality_check"
-   ],
-   "reality_check_p": 0.9993,
-   "score": 75.85,
-   "rank": null,
+   "rank": 1,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -537,7 +440,8 @@
    ],
    "reality_check_p": 0.7393,
    "score": 75.37,
-   "rank": null,
+   "rank": 2,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -740,7 +644,8 @@
    ],
    "reality_check_p": 0.999,
    "score": 66.9,
-   "rank": null,
+   "rank": 3,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -943,7 +848,8 @@
    ],
    "reality_check_p": 0.61,
    "score": 66.64,
-   "rank": null,
+   "rank": 4,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -1146,7 +1052,8 @@
    ],
    "reality_check_p": 1.0,
    "score": 65.56,
-   "rank": null,
+   "rank": 5,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -1349,7 +1256,8 @@
    ],
    "reality_check_p": 1.0,
    "score": 63.56,
-   "rank": null,
+   "rank": 6,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -1552,7 +1460,8 @@
    ],
    "reality_check_p": 0.9997,
    "score": 63.4,
-   "rank": null,
+   "rank": 7,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -1755,7 +1664,8 @@
    ],
    "reality_check_p": 0.983,
    "score": 62.47,
-   "rank": null,
+   "rank": 8,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -1958,7 +1868,8 @@
    ],
    "reality_check_p": 0.9797,
    "score": 62.14,
-   "rank": null,
+   "rank": 9,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -2161,7 +2072,8 @@
    ],
    "reality_check_p": 1.0,
    "score": 57.46,
-   "rank": null,
+   "rank": 10,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -2364,7 +2276,8 @@
    ],
    "reality_check_p": 1.0,
    "score": 57.05,
-   "rank": null,
+   "rank": 11,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -2567,7 +2480,8 @@
    ],
    "reality_check_p": 1.0,
    "score": 54.26,
-   "rank": null,
+   "rank": 12,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -2770,7 +2684,8 @@
    ],
    "reality_check_p": 1.0,
    "score": 53.98,
-   "rank": null,
+   "rank": 13,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -2973,7 +2888,107 @@
    ],
    "reality_check_p": 1.0,
    "score": 51.0,
-   "rank": null,
+   "rank": 14,
+   "qualified": false,
+   "tier": "Unranked"
+  },
+  {
+   "key": "S13_off_market_total",
+   "name": "Unders when the total moves down 1.5+ from the open (2021 only)",
+   "category": "single",
+   "market": "total",
+   "thesis": "Follow reverse line movement in the totals market (opening lines exist in the source extract for the 2021 season only, so this is a one-season probe, not a validated strategy).",
+   "notes": "Exploratory: one season, fails G1 by construction.",
+   "_units_series": "[ 0.90909091  0.87719298  0.95238095 -1.          1.04        0.94339623\n  0.99009901  0.89285714  0.96153846 -1.          0.87719298 -1.\n  0.90909091  0.94339623 -1.         -1.          0.97087379 -1.\n -1.         -1.         -1.         -1.         -1.          0.94339623\n -1.         -1.          0.95238095  0.9009009  -1.         -1.\n  0.94339623  0.95238095 -1.          1.01       -1.         -1.\n  0.98039216  0.9009009  -1.          0.99009901  0.95238095 -1.\n -1.         -1.         -1.         -1.          0.97087379  0.98039216\n  0.91743119  1.         -1.          0.94339623 -1.          0.87719298\n  0.92592593  0.88495575  0.96153846  0.97087379  0.90909091 -1.\n -1.         -1.          0.90909091  0.97087379 -1.          0.92592593\n -1.          0.97087379 -1.         -1.          0.94339623 -1.\n  0.91743119  0.92592593  0.93457944  1.          0.98039216 -1.\n -1.         -1.         -1.         -1.          0.92592593 -1.\n  0.89285714 -1.         -1.          1.03       -1.          1.04\n -1.         -1.          0.99009901 -1.          0.95238095  1.\n -1.          0.94339623 -1.         -1.         -1.          0.88495575\n  1.02       -1.         -1.         -1.          0.88495575 -1.\n  0.95238095  0.97087379  1.         -1.          0.98039216 -1.\n  1.01        0.96153846  0.98039216 -1.          0.90909091  0.90909091\n -1.         -1.          0.90909091  0.86956522 -1.          1.        ]",
+   "_weekly": "season  week\n2021    1       0.912888\n        2       0.327799\n        3       0.286948\n        4      -0.029440\n        5      -0.722372\n        6      -0.229344\n        7       0.126596\n        8      -0.026103\n        9      -0.016413\n        10      0.436629\n        11      0.103780\n        12     -0.027904\n        13      0.671675\n        14     -0.618122\n        15      0.001248\n        16     -0.192859\n        17      0.487900\n        18      0.066315\nName: units, dtype: float64",
+   "_season_units": "season\n2021    2.630485\nName: units, dtype: float64",
+   "_bets_frame": "     season  week    gameday  ...                legs     units  paid\n0      2021     1 2021-09-12  ...    under 49.0 GB@NO  0.909091  True\n1      2021     1 2021-09-12  ...  under 48.0 PIT@BUF  0.877193  True\n2      2021     1 2021-09-12  ...  under 49.0 SEA@IND  0.952381  True\n3      2021     2 2021-09-19  ...   under 48.0 LA@IND -1.000000  True\n4      2021     2 2021-09-19  ...   under 46.5 LV@PIT  1.040000  True\n..      ...   ...        ...  ...                 ...       ...   ...\n123    2021    18 2022-01-09  ...   under 40.0 NO@ATL -1.000000  True\n124    2021    18 2022-01-09  ...  under 43.0 NYJ@BUF  0.909091  True\n125    2021    18 2022-01-09  ...  under 41.0 PIT@BAL  0.869565  True\n126    2021    18 2022-01-09  ...  under 43.0 TEN@HOU -1.000000  True\n127    2021    18 2022-01-09  ...  under 36.0 WAS@NYG  1.000000  True\n\n[126 rows x 11 columns]",
+   "full": {
+    "bets": 126,
+    "wins": 66,
+    "losses": 60,
+    "pushes": 2,
+    "hit_rate": 0.5238,
+    "breakeven_rate": 0.5121,
+    "roi": 0.0209,
+    "units": 2.63,
+    "avg_odds": -70.2,
+    "wilson_lo": 0.4372,
+    "wilson_hi": 0.609,
+    "p_value": 0.4314,
+    "t_stat": 0.24,
+    "boot_ci": [
+     -0.1495,
+     0.2034
+    ],
+    "max_drawdown": 10.5,
+    "positive_seasons": 1,
+    "n_seasons": 1,
+    "per_season": {
+     "2021": 0.021
+    },
+    "bet_counts_by_season": {
+     "2021": 126
+    },
+    "max_season_units": 2.63
+   },
+   "discovery": null,
+   "validation": {
+    "bets": 126,
+    "wins": 66,
+    "losses": 60,
+    "pushes": 2,
+    "hit_rate": 0.5238,
+    "breakeven_rate": 0.5121,
+    "roi": 0.0209,
+    "units": 2.63,
+    "avg_odds": -70.2,
+    "wilson_lo": 0.4372,
+    "wilson_hi": 0.609,
+    "p_value": 0.4314,
+    "t_stat": 0.24,
+    "boot_ci": [
+     -0.1495,
+     0.2034
+    ],
+    "max_drawdown": 10.5,
+    "positive_seasons": 1,
+    "n_seasons": 1,
+    "per_season": {
+     "2021": 0.021
+    },
+    "bet_counts_by_season": {
+     "2021": 126
+    },
+    "max_season_units": 2.63
+   },
+   "price_shock_roi": -0.0017,
+   "teaser_price": null,
+   "q_value": 0.99975,
+   "gates": {
+    "G1_sample": false,
+    "G2_significance": false,
+    "G3_consistency": false,
+    "G4_price_shock": false,
+    "G5_drawdown": false,
+    "G6_reality_check": false,
+    "G7_coverage": true
+   },
+   "gates_passed": 1,
+   "gates_total": 7,
+   "eligible": false,
+   "failed_gates": [
+    "G1_sample",
+    "G2_significance",
+    "G3_consistency",
+    "G4_price_shock",
+    "G5_drawdown",
+    "G6_reality_check"
+   ],
+   "reality_check_p": 0.9993,
+   "score": 75.85,
+   "rank": 15,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -3177,7 +3192,8 @@
    ],
    "reality_check_p": 1.0,
    "score": 47.2,
-   "rank": null,
+   "rank": 16,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -3381,7 +3397,8 @@
    ],
    "reality_check_p": 0.9843,
    "score": 28.29,
-   "rank": null,
+   "rank": 17,
+   "qualified": false,
    "tier": "Unranked"
   },
   {
@@ -3578,7 +3595,8 @@
    ],
    "reality_check_p": 1.0,
    "score": 9.45,
-   "rank": null,
+   "rank": 18,
+   "qualified": false,
    "tier": "Unranked"
   }
  ]

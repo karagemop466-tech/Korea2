@@ -590,21 +590,26 @@ def main():
         score += 10.0 * (r["gates_passed"] / r["gates_total"])
         r["score"] = MD(score, 2)
 
-    ranked = sorted([r for r in results if r["eligible"]], key=lambda r: -r["score"])
-    unranked = sorted([r for r in results if not r["eligible"]],
-                      key=lambda r: -(r["score"] or 0))
-    for i, r in enumerate(ranked):
+    # Qualification first (all seven gates), then gate count, then composite score.
+    # Every entry gets an ordinal rank so the board is a real ranking even when the
+    # competition pays nobody.
+    order = sorted(results, key=lambda r: (0 if r["eligible"] else 1,
+                                           -r["gates_passed"], -(r["score"] or 0)))
+    qualified = [r for r in order if r["eligible"]]
+    unranked = [r for r in order if not r["eligible"]]
+    for i, r in enumerate(order):
         r["rank"] = i + 1
-        r["tier"] = "Gold" if r["gates_passed"] == r["gates_total"] else (
-            "Silver" if r["gates_passed"] == r["gates_total"] - 1 else "Bronze")
-    for r in unranked:
-        r["rank"] = None
-        r["tier"] = "Unranked"
+        r["qualified"] = bool(r["eligible"])
+        if r["eligible"]:
+            r["tier"] = "Gold" if r["gates_passed"] == r["gates_total"] else (
+                "Silver" if r["gates_passed"] == r["gates_total"] - 1 else "Bronze")
+        else:
+            r["tier"] = "Unranked"
 
     payload = {
         "windows": {"discovery": "2006-2015", "validation": "2016-2026"},
         "n_strategies": len(results),
-        "n_eligible": len(ranked),
+        "n_eligible": len(qualified),
         "multiple_testing_family": payload_family,
         "gates": {
             "G1_sample": f"n >= {MIN_BETS_G1} settled bets in the validation window",
@@ -621,11 +626,11 @@ def main():
             {"tier": "Bronze", "condition": "5 of 7 gates", "pool_share": 0.10},
             {"tier": "Unranked", "condition": "4 or fewer gates", "pool_share": 0.0},
         ],
-        "leaderboard": ranked + unranked,
+        "leaderboard": order,
     }
     OUT.write_text(json.dumps(payload, indent=1, default=str) + "\n")
-    print(f"strategies={len(results)} eligible={len(ranked)}")
-    for r in (ranked + unranked):
+    print(f"strategies={len(results)} eligible={len(qualified)}")
+    for r in order:
         v = r.get("validation") or {}
         print(f"{r['key']:26s} n={r['full']['bets']:5d} roi={r['full']['roi']:+.4f} "
               f"val_roi={(v.get('roi') if v.get('roi') is not None else float('nan')):+.4f} "
