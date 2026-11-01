@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategies — Korea2</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Korea2</h1>
+    <span class="tag">Strategy Framework</span>
+  </div>
+</header>
+<nav>
+  <ul>
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a href="data.html">NFL Data</a></li>
+    <li><a href="strategies.html" class="active">Strategies</a></li>
+    <li><a href="correlations.html">Correlations</a></li>
+    <li><a href="executive-summary.html">Executive Summary</a></li>
+    <li><a href="flagged-review.html">Flagged for Review</a></li>
+  </ul>
+</nav>
+<main>
+  <div class="section">
+    <h2>Strategy Framework — Singles, Parlays, Player-Prop Combos</h2>
+    <p class="lead">Each strategy below is a template that must pass every validation gate (G-1 &hellip; G-8) before it can be considered. Betting lines, odds, and player-prop prices are <strong>not published by the NFL or any official league source</strong>; all line/odds fields are therefore left blank and flagged <span class="badge warn">unverified</span>. Historical game results used for backtesting are from the verified source file.</p>
+  </div>
+
+  <div class="section">
+    <h3>Validation gates (all strategies must pass every gate)</h3>
+    <table>
+      <thead>
+        <tr><th>Gate</th><th>Requirement</th><th class="source">Source / basis</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cen"><strong>G-1</strong></td><td>Edge after vig: |model probability &minus; implied probability from line| &ge; edge threshold (default 4%).</td><td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a> (elo_prob1) — line source: none (unverified)</td></tr>
+        <tr><td class="cen"><strong>G-2</strong></td><td>Minimum backtest sample: signal tested on &ge; 100 games from source data.</td><td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a> (16,810 games, 1920&ndash;2020)</td></tr>
+        <tr><td class="cen"><strong>G-3</strong></td><td>Out-of-sample check: signal evaluated on seasons not used for tuning.</td><td class="source">Project methodology; data: <a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td></tr>
+        <tr><td class="cen"><strong>G-4</strong></td><td>Correlation disclosure: correlation between parlay legs estimated and payout adjusted; same-game legs require same-game correlation data.</td><td class="source"><a href="correlations.html">Correlations page</a> — same-game data unavailable (unverified)</td></tr>
+        <tr><td class="cen"><strong>G-5</strong></td><td>Bankroll rule: stake sized by Kelly fraction, capped (default 2% of bankroll per bet).</td><td class="source">Project risk rule (no external source)</td></tr>
+        <tr><td class="cen"><strong>G-6</strong></td><td>No luck-only strategies: strategy must show positive expected value over the backtest window; variance-driven signals rejected.</td><td class="source">Project rule; computed from <a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td></tr>
+        <tr><td class="cen"><strong>G-7</strong></td><td>Every input cited: each input value carries a source link or is flagged unverified and left blank.</td><td class="source">This site’s verification standard</td></tr>
+        <tr><td class="cen"><strong>G-8</strong></td><td>Selectively skill-based: strategy restricted to setups where model probability exceeds market-implied probability by the gate threshold.</td><td class="source">Project rule; lines unverified</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>Strategy templates</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Type</th><th>Strategy</th><th>Signal / logic</th><th>Data required</th><th>Lines / odds</th><th>Source</th><th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="flagged">
+          <td class="cen"><strong>S-01</strong></td>
+          <td>Single</td>
+          <td>Moneyline edge vs Elo-implied probability</td>
+          <td>Bet team when \|elo_prob &minus; implied(line)\| &ge; 4% after vig removal</td>
+          <td>Game results + Elo probabilities (source CSV)</td>
+          <td class="cen"><span class="badge blank">— blank —</span></td>
+          <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td>
+          <td><span class="badge warn">unverified</span> — lines not published by NFL</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>S-02</strong></td>
+          <td>Single</td>
+          <td>Road underdog when road team favored by Elo</td>
+          <td>Bet road team when team2 (road) is Elo-favorite and moneyline edge &ge; 4%</td>
+          <td>Game results + Elo probabilities (source CSV)</td>
+          <td class="cen"><span class="badge blank">— blank —</span></td>
+          <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td>
+          <td><span class="badge warn">unverified</span> — lines not published by NFL</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>P-01</strong></td>
+          <td>Parlay</td>
+          <td>2–3 leg moneyline parlay, correlation-gated</td>
+          <td>Combine S-01/S-02 edges across games in same week; joint probability adjusted by G-4 correlation</td>
+          <td>Game results + Elo probabilities + same-week schedule</td>
+          <td class="cen"><span class="badge blank">— blank —</span></td>
+          <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a>; schedule data missing (unverified)</td>
+          <td><span class="badge warn">unverified</span> — lines + schedule not in source</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>P-02</strong></td>
+          <td>Parlay</td>
+          <td>Same-game parlay</td>
+          <td><strong>Rejected by gate G-4</strong> until same-game correlation data is available</td>
+          <td>Play-by-play / same-game joint outcomes</td>
+          <td class="cen"><span class="badge blank">— blank —</span></td>
+          <td class="source"><a href="flagged-review.html">Flagged for Review (F-04)</a></td>
+          <td><span class="badge warn">unverified</span> — data not in source</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>PR-01</strong></td>
+          <td>Player-prop combo</td>
+          <td>Receiver receiving-yards over + team points over (same game)</td>
+          <td>Correlated prop legs; requires player prop market prices</td>
+          <td>Player prop data (not in source)</td>
+          <td class="cen"><span class="badge blank">— blank —</span></td>
+          <td class="source">No official source; <a href="flagged-review.html">Flagged for Review (F-03)</a></td>
+          <td><span class="badge warn">unverified</span> — player props not published officially</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>PR-02</strong></td>
+          <td>Player-prop combo</td>
+          <td>QB passing-yards over + game total over</td>
+          <td>Positive correlation leg pair; requires player prop market prices</td>
+          <td>Player prop data (not in source)</td>
+          <td class="cen"><span class="badge blank">— blank —</span></td>
+          <td class="source">No official source; <a href="flagged-review.html">Flagged for Review (F-03)</a></td>
+          <td><span class="badge warn">unverified</span> — player props not published officially</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>Leaderboard competition concept (not yet implemented)</h3>
+    <ul>
+      <li>Strategies are ranked by backtest expected value over the verified source window (G-2/G-3).</li>
+      <li>Top-performing strategies (passing all gates) receive rewards; no real-money component is part of this repository.</li>
+      <li>No manual input is required: signals are generated from the source data files automatically.</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  Korea2 — NFL Lines Origination. Source: <a href="https://github.com/fivethirtyeight/nfl-elo-game" target="_blank" rel="noopener">fivethirtyeight/nfl-elo-game</a>.
+</footer>
+</body>
+</html>
