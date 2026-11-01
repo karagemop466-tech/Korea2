@@ -1,0 +1,637 @@
+{
+ "convention_check": {
+  "corr_spreadline_vs_home_margin": 0.429826,
+  "mean_home_margin_when_spread_ge_3": 6.998412,
+  "n_spread_ge_3": 3779,
+  "mean_home_margin_when_spread_le_minus3": -5.976165,
+  "n_spread_le_minus3": 1846,
+  "share_home_ml_negative_when_spread_gt_2": 1.0,
+  "n_ml_check_pos": 2920,
+  "share_home_ml_negative_when_spread_lt_minus2": 0.0,
+  "n_ml_check_neg": 1553,
+  "note": "Verified empirically and against the same file's moneylines: spread_line is positive when the HOME team is the favourite. The home team covers when result - spread_line > 0. The commonly quoted 'negative means home favourite' reading of this field is wrong for this dataset and is flagged on the review page."
+ },
+ "calibration": {
+  "spread_all": {
+   "n": 7075,
+   "slope": 1.048376,
+   "intercept": -0.067852,
+   "r2": 0.18475,
+   "rmse": 13.167693,
+   "slope_se": 0.026186,
+   "slope_t": 1.847391,
+   "corr": 0.429826
+  },
+  "total_all": {
+   "n": 7075,
+   "slope": 0.936284,
+   "intercept": 3.463524,
+   "r2": 0.103445,
+   "rmse": 13.383084,
+   "slope_se": 0.032775,
+   "slope_t": -1.944074,
+   "corr": 0.321629
+  },
+  "spread_1999-2009": {
+   "n": 2792,
+   "slope": 1.042521,
+   "intercept": -0.024554,
+   "r2": 0.179853,
+   "rmse": 13.377006,
+   "slope_se": 0.042147,
+   "slope_t": 1.008872,
+   "corr": 0.424091
+  },
+  "total_1999-2009": {
+   "n": 2792,
+   "slope": 0.896858,
+   "intercept": 5.220425,
+   "r2": 0.087618,
+   "rmse": 13.673827,
+   "slope_se": 0.054792,
+   "slope_t": -1.88243,
+   "corr": 0.296003
+  },
+  "spread_2010-2019": {
+   "n": 2560,
+   "slope": 1.063068,
+   "intercept": -0.187718,
+   "r2": 0.17831,
+   "rmse": 13.302437,
+   "slope_se": 0.045121,
+   "slope_t": 1.39775,
+   "corr": 0.422268
+  },
+  "total_2010-2019": {
+   "n": 2560,
+   "slope": 0.968418,
+   "intercept": 1.831012,
+   "r2": 0.087821,
+   "rmse": 13.299912,
+   "slope_se": 0.06171,
+   "slope_t": -0.511776,
+   "corr": 0.296345
+  },
+  "spread_2020-2026": {
+   "n": 1723,
+   "slope": 1.03891,
+   "intercept": 0.029376,
+   "r2": 0.201597,
+   "rmse": 12.611492,
+   "slope_se": 0.049838,
+   "slope_t": 0.78073,
+   "corr": 0.448996
+  },
+  "total_2020-2026": {
+   "n": 1723,
+   "slope": 1.001402,
+   "intercept": 0.598132,
+   "r2": 0.106299,
+   "rmse": 13.015417,
+   "slope_se": 0.069992,
+   "slope_t": 0.020025,
+   "corr": 0.326036
+  }
+ },
+ "line_bias": {
+  "mean_points": 0.036749,
+  "n": 7075,
+  "t": 0.234674,
+  "p": 0.814469,
+  "ci_lo": -0.272099,
+  "ci_hi": 0.33336,
+  "interpretation": "negative = the home team beat its closing line less often than the line implied; i.e. the closing line sits high on home teams in this file.",
+  "by_era": {
+   "1999-2009": {
+    "n": 2792,
+    "mean_points": 0.081483
+   },
+   "2010-2019": {
+    "n": 2560,
+    "mean_points": -0.046875
+   },
+   "2020-2026": {
+    "n": 1723,
+    "mean_points": 0.088508
+   }
+  },
+  "spread_median_points": 0.0,
+  "total_mean_points": 0.691873,
+  "total_median_points": 0.0,
+  "total_t": 4.346969,
+  "total_p": 1.4e-05,
+  "over_hit_rate": 0.488339,
+  "over_hit_rate_nonpush": 0.495269,
+  "total_note": "Totals are right-skewed: the average total beats the number by ~0.7 points but the over still cashes less than half the time, so the mean is not evidence of a soft total. Only the hit rate is actionable."
+ },
+ "blind": {
+  "home": {
+   "label": "blind home",
+   "n": 7075,
+   "roi": -0.051371,
+   "sd": 0.956503,
+   "t": -4.51744,
+   "p": 6e-06,
+   "ci_lo": -0.073925,
+   "ci_hi": -0.029626,
+   "max_dd": 366.902233,
+   "req_n": 1331.796278,
+   "units": -363.447688,
+   "win_rate": 0.475194,
+   "push_rate": 0.027562
+  },
+  "away": {
+   "label": "blind away",
+   "n": 7075,
+   "roi": -0.008426,
+   "sd": 0.95677,
+   "t": -0.740728,
+   "p": 0.458883,
+   "ci_lo": -0.030307,
+   "ci_hi": 0.014008,
+   "max_dd": 98.468992,
+   "req_n": 49534.258341,
+   "units": -59.611386,
+   "win_rate": 0.497244,
+   "push_rate": 0.027562
+  },
+  "over": {
+   "label": "blind over",
+   "n": 7075,
+   "roi": -0.042177,
+   "sd": 0.960047,
+   "t": -3.69523,
+   "p": 0.000221,
+   "ci_lo": -0.064568,
+   "ci_hi": -0.019444,
+   "max_dd": 317.972142,
+   "req_n": 1990.39722,
+   "units": -298.398994,
+   "win_rate": 0.488339,
+   "push_rate": 0.013993
+  },
+  "under": {
+   "label": "blind under",
+   "n": 7075,
+   "roi": -0.022031,
+   "sd": 0.962197,
+   "t": -1.925893,
+   "p": 0.054158,
+   "ci_lo": -0.044712,
+   "ci_hi": 0.000399,
+   "max_dd": 167.647556,
+   "req_n": 7327.542158,
+   "units": -155.8689,
+   "win_rate": 0.497668,
+   "push_rate": 0.013993
+  }
+ },
+ "overround": {
+  "spread_n": 5173,
+  "spread_mean": 0.027002,
+  "total_n": 5171,
+  "total_mean": 0.029116
+ },
+ "hfa": {
+  "by_season": [
+   {
+    "season": 1999,
+    "n": 248,
+    "mean_margin": 3.06
+   },
+   {
+    "season": 2000,
+    "n": 248,
+    "mean_margin": 2.82
+   },
+   {
+    "season": 2001,
+    "n": 248,
+    "mean_margin": 2.01
+   },
+   {
+    "season": 2002,
+    "n": 256,
+    "mean_margin": 2.25
+   },
+   {
+    "season": 2003,
+    "n": 256,
+    "mean_margin": 3.55
+   },
+   {
+    "season": 2004,
+    "n": 256,
+    "mean_margin": 2.51
+   },
+   {
+    "season": 2005,
+    "n": 256,
+    "mean_margin": 3.65
+   },
+   {
+    "season": 2006,
+    "n": 256,
+    "mean_margin": 0.85
+   },
+   {
+    "season": 2007,
+    "n": 256,
+    "mean_margin": 2.87
+   },
+   {
+    "season": 2008,
+    "n": 256,
+    "mean_margin": 2.56
+   },
+   {
+    "season": 2009,
+    "n": 256,
+    "mean_margin": 2.21
+   },
+   {
+    "season": 2010,
+    "n": 256,
+    "mean_margin": 1.89
+   },
+   {
+    "season": 2011,
+    "n": 256,
+    "mean_margin": 3.27
+   },
+   {
+    "season": 2012,
+    "n": 256,
+    "mean_margin": 2.43
+   },
+   {
+    "season": 2013,
+    "n": 256,
+    "mean_margin": 3.11
+   },
+   {
+    "season": 2014,
+    "n": 256,
+    "mean_margin": 2.49
+   },
+   {
+    "season": 2015,
+    "n": 256,
+    "mean_margin": 1.56
+   },
+   {
+    "season": 2016,
+    "n": 256,
+    "mean_margin": 2.57
+   },
+   {
+    "season": 2017,
+    "n": 256,
+    "mean_margin": 2.48
+   },
+   {
+    "season": 2018,
+    "n": 256,
+    "mean_margin": 2.2
+   },
+   {
+    "season": 2019,
+    "n": 256,
+    "mean_margin": -0.14
+   },
+   {
+    "season": 2020,
+    "n": 256,
+    "mean_margin": 0.05
+   },
+   {
+    "season": 2021,
+    "n": 272,
+    "mean_margin": 1.71
+   },
+   {
+    "season": 2022,
+    "n": 271,
+    "mean_margin": 1.98
+   },
+   {
+    "season": 2023,
+    "n": 272,
+    "mean_margin": 2.68
+   },
+   {
+    "season": 2024,
+    "n": 272,
+    "mean_margin": 1.87
+   },
+   {
+    "season": 2025,
+    "n": 272,
+    "mean_margin": 2.07
+   },
+   {
+    "season": 2026,
+    "n": 108,
+    "mean_margin": -0.43
+   }
+  ],
+  "all": {
+   "n": 7075,
+   "mean": 2.199011
+  },
+  "era": {
+   "1999-2009": {
+    "n": 2792,
+    "mean": 2.575215
+   },
+   "2010-2019": {
+    "n": 2560,
+    "mean": 2.186328
+   },
+   "2020-2026": {
+    "n": 1723,
+    "mean": 1.608241
+   }
+  }
+ },
+ "bias_tests": {
+  "home_dog": {
+   "label": "home_dog",
+   "n": 2500,
+   "roi": -0.031595,
+   "sd": 0.955471,
+   "t": -1.65339,
+   "p": 0.098377,
+   "ci_lo": -0.069361,
+   "ci_hi": 0.006532,
+   "max_dd": 96.872493,
+   "req_n": 3513.059654,
+   "units": -78.98834,
+   "desc": "Bet the home team whenever it is an underdog",
+   "market": "ats",
+   "side": "home",
+   "hit_rate": 0.4864,
+   "push_rate": 0.0272,
+   "avg_price": -76.2516,
+   "fdr_q10_pass": false
+  },
+  "home_big_dog": {
+   "label": "home_big_dog",
+   "n": 518,
+   "roi": 0.055545,
+   "sd": 0.939993,
+   "t": 1.344892,
+   "p": 0.17925,
+   "ci_lo": -0.025421,
+   "ci_hi": 0.136543,
+   "max_dd": 23.682641,
+   "req_n": 1100.148447,
+   "units": 28.772436,
+   "desc": "Bet home underdogs of a touchdown or more",
+   "market": "ats",
+   "side": "home",
+   "hit_rate": 0.540541,
+   "push_rate": 0.023166,
+   "avg_price": -98.702703,
+   "fdr_q10_pass": false
+  },
+  "away_fav": {
+   "label": "away_fav",
+   "n": 4545,
+   "roi": 0.003264,
+   "sd": 0.955609,
+   "t": 0.230242,
+   "p": 0.817914,
+   "ci_lo": -0.024183,
+   "ci_hi": 0.031117,
+   "max_dd": 61.001233,
+   "req_n": 329353.577663,
+   "units": 14.833073,
+   "desc": "Bet the road favourite",
+   "market": "ats",
+   "side": "away",
+   "hit_rate": 0.50341,
+   "push_rate": 0.027943,
+   "avg_price": -76.126733,
+   "fdr_q10_pass": false
+  },
+  "away_fav_7": {
+   "label": "away_fav_7",
+   "n": 1605,
+   "roi": -0.024929,
+   "sd": 0.945939,
+   "t": -1.055812,
+   "p": 0.291213,
+   "ci_lo": -0.071205,
+   "ci_hi": 0.021043,
+   "max_dd": 64.961856,
+   "req_n": 5530.928886,
+   "units": -40.011722,
+   "desc": "Bet road favourites laying 7+",
+   "market": "ats",
+   "side": "away",
+   "hit_rate": 0.493458,
+   "push_rate": 0.02866,
+   "avg_price": -91.456698,
+   "fdr_q10_pass": false
+  },
+  "div_dog": {
+   "label": "div_dog",
+   "n": 999,
+   "roi": -0.041465,
+   "sd": 0.954493,
+   "t": -1.373075,
+   "p": 0.170037,
+   "ci_lo": -0.099727,
+   "ci_hi": 0.017643,
+   "max_dd": 60.960866,
+   "req_n": 2035.509775,
+   "units": -41.42379,
+   "desc": "Bet the underdog in divisional games",
+   "market": "ats",
+   "side": "home",
+   "hit_rate": 0.48048,
+   "push_rate": 0.029029,
+   "avg_price": -73.640641,
+   "fdr_q10_pass": false
+  },
+  "rest_advantage": {
+   "label": "rest_advantage",
+   "n": 632,
+   "roi": -0.043303,
+   "sd": 0.959794,
+   "t": -1.134229,
+   "p": 0.257129,
+   "ci_lo": -0.116062,
+   "ci_hi": 0.032329,
+   "max_dd": 34.274558,
+   "req_n": 1887.174127,
+   "units": -27.367623,
+   "desc": "Bet the team with 3+ extra rest days",
+   "market": "ats",
+   "side": "home",
+   "hit_rate": 0.481013,
+   "push_rate": 0.023734,
+   "avg_price": -72.193038,
+   "fdr_q10_pass": false
+  },
+  "rest_disadvantage": {
+   "label": "rest_disadvantage",
+   "n": 708,
+   "roi": -0.081437,
+   "sd": 0.961345,
+   "t": -2.254038,
+   "p": 0.024499,
+   "ci_lo": -0.151486,
+   "ci_hi": -0.009647,
+   "max_dd": 61.203134,
+   "req_n": 535.312048,
+   "units": -57.65768,
+   "desc": "Bet the team with 3+ fewer rest days",
+   "market": "ats",
+   "side": "home",
+   "hit_rate": 0.461864,
+   "push_rate": 0.021186,
+   "avg_price": -67.224576,
+   "fdr_q10_pass": false
+  },
+  "tnf_home": {
+   "label": "tnf_home",
+   "n": 337,
+   "roi": 0.000443,
+   "sd": 0.956681,
+   "t": 0.008508,
+   "p": 0.993217,
+   "ci_lo": -0.102568,
+   "ci_hi": 0.103885,
+   "max_dd": 20.816856,
+   "req_n": 17885572.502551,
+   "units": 0.149415,
+   "desc": "Bet the home team on Thursday",
+   "market": "ats",
+   "side": "home",
+   "hit_rate": 0.498516,
+   "push_rate": 0.032641,
+   "avg_price": -64.243323,
+   "fdr_q10_pass": false
+  },
+  "wind15_under": {
+   "label": "wind15_under",
+   "n": 649,
+   "roi": 0.086546,
+   "sd": 0.955545,
+   "t": 2.30737,
+   "p": 0.021348,
+   "ci_lo": 0.010962,
+   "ci_hi": 0.160183,
+   "max_dd": 13.482267,
+   "req_n": 468.280833,
+   "units": 56.168214,
+   "desc": "Bet under when wind >= 15 mph",
+   "market": "total",
+   "side": "under",
+   "hit_rate": 0.55624,
+   "push_rate": 0.010786,
+   "avg_price": -81.878274,
+   "fdr_q10_pass": false
+  },
+  "dome_over": {
+   "label": "dome_over",
+   "n": 1767,
+   "roi": -0.009267,
+   "sd": 0.962016,
+   "t": -0.404922,
+   "p": 0.685584,
+   "ci_lo": -0.055052,
+   "ci_hi": 0.035378,
+   "max_dd": 36.316914,
+   "req_n": 41398.922276,
+   "units": -16.374659,
+   "desc": "Bet over in domes",
+   "market": "total",
+   "side": "over",
+   "hit_rate": 0.505942,
+   "push_rate": 0.011885,
+   "avg_price": -89.970006,
+   "fdr_q10_pass": false
+  },
+  "div_under": {
+   "label": "div_under",
+   "n": 2727,
+   "roi": 0.000107,
+   "sd": 0.960681,
+   "t": 0.005823,
+   "p": 0.995355,
+   "ci_lo": -0.035996,
+   "ci_hi": 0.035328,
+   "max_dd": 43.010607,
+   "req_n": 308991369.254824,
+   "units": 0.292105,
+   "desc": "Bet under in divisional games",
+   "market": "total",
+   "side": "under",
+   "hit_rate": 0.508618,
+   "push_rate": 0.015402,
+   "avg_price": -84.320499,
+   "fdr_q10_pass": false
+  },
+  "cold_under": {
+   "label": "cold_under",
+   "n": 305,
+   "roi": -0.096939,
+   "sd": 0.957835,
+   "t": -1.76749,
+   "p": 0.078149,
+   "ci_lo": -0.200864,
+   "ci_hi": 0.011029,
+   "max_dd": 36.594691,
+   "req_n": 375.044075,
+   "units": -29.566332,
+   "desc": "Bet under when temperature <= 32F",
+   "market": "total",
+   "side": "under",
+   "hit_rate": 0.459016,
+   "push_rate": 0.016393,
+   "avg_price": -89.770492,
+   "fdr_q10_pass": false
+  }
+ },
+ "fdr": {
+  "method": "Benjamini-Hochberg",
+  "q": 0.1,
+  "n_tests": 12,
+  "n_pass": 0
+ },
+ "by_era": {
+  "1999-2009": {
+   "n": 2792,
+   "favourite_win_rate": 0.667025,
+   "tie_rate": 0.000716,
+   "mean_total": 42.217765,
+   "mean_abs_spread": 5.494448
+  },
+  "2010-2019": {
+   "n": 2560,
+   "favourite_win_rate": 0.663009,
+   "tie_rate": 0.003125,
+   "mean_total": 45.286328,
+   "mean_abs_spread": 5.205078
+  },
+  "2020-2026": {
+   "n": 1723,
+   "favourite_win_rate": 0.666278,
+   "tie_rate": 0.003482,
+   "mean_total": 45.763784,
+   "mean_abs_spread": 5.253918
+  }
+ },
+ "season_2026": {
+  "games_with_result": 108,
+  "through_week": 8,
+  "last_gameday": "2026-10-29",
+  "ats_home_covers": 43,
+  "ats_home_nonpush": 102,
+  "overs": 56,
+  "total_nonpush": 108
+ }
+}
