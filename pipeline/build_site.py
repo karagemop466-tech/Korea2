@@ -127,6 +127,18 @@ IRREGULARITIES = [
         "links": [SRC["scrapr"]],
         "status": "flagged",
     },
+    {
+        "id": "IR-09", "severity": "medium",
+        "title": "Prop over/under probabilities are over-confident",
+        "detail": "Expected calibration error runs from 2.7% to 9.2% across the five prop markets, and the worst "
+                  "large bin is off by up to 11 probability points (players rated 65% beat the reference line "
+                  "about 55% of the time). Residuals are assumed normal, and player output is not.",
+        "impact": "Prop skill is therefore reported with the Brier score only, and the prop probabilities are "
+                  "never used to price a combo or an ROI. Anyone reusing them has to recalibrate on a held-out "
+                  "season first.",
+        "links": [SRC["props"], SRC["scrapr"]],
+        "status": "flagged",
+    },
 ]
 
 NAV = [
@@ -166,11 +178,17 @@ def src_cell(*keys_or_pairs, sep: str = " · ") -> str:
     return f'<span class="srclink">{sep.join(bits)}</span>'
 
 
-def maybe_link(text: str, label: str) -> str:
+def short_url(u: str, width: int = 46) -> str:
+    t = u.replace("https://", "").replace("http://", "").rstrip("/")
+    return t if len(t) <= width else t[: width - 1] + "…"
+
+
+def maybe_link(text: str, label: str | None = None) -> str:
     """Render a URL as a link; render anything else as plain text (never a fake link)."""
     t = (text or "").strip()
     if t.startswith(("http://", "https://")):
-        return f'<a href="{h(t)}">{h(label)}</a>'
+        lab = label or short_url(t)
+        return f'<a href="{h(t)}">{h(lab)}</a>'
     return f'<span class="muted">{h(t)}</span>' if t else "—"
 
 
@@ -269,7 +287,8 @@ def layout(title: str, nav_key: str, body: str, prefix: str = "") -> str:
   Every figure on this site is generated from <code>site_data/*.json</code> by
   <a href="{PIPE_BLOB}/build_site.py">pipeline/build_site.py</a>.
   Data provenance and checksums: <a href="{REPO}/blob/main/data/PROVENANCE.md">PROVENANCE.md</a>.
-  Task board: <a href="{REPO}/blob/main/COORDINATION.md">COORDINATION.md</a>.
+  Task board: <a href="{REPO}/blob/main/COORDINATION.md">COORDINATION.md</a>.<br>
+  Other work in this repository: <a href="https://karagemop466-tech.github.io/Korea2/">project hub</a>.
   No number on this page is hand-typed.
 </footer>
 <script src="{prefix}assets/site.js"></script>
@@ -396,7 +415,7 @@ def page_origination() -> str:
             ("num", fmt(r["n_games"])),
             ("num", fmt(r["mae_margin"], 3)),
             ("num", fmt(r["mae_total"], 3)),
-            ("num", pct(r["beat_close_rate"]) if r["beat_close_rate"] is not None else "—"),
+            ("num", pct(r["beat_close_rate"], signed=False) if r["beat_close_rate"] is not None else "—"),
             ("srclink", src_cell("games", "originate")),
         ])
     tune = [[("num", fmt(r["alpha"], 0)), ("num", fmt(r["dev_mae_margin"], 4)),
@@ -436,7 +455,7 @@ close <i>where they differ</i>, the quantity <code>(actual − close)</code> wou
   {card("Slope", fmt(info["slope"], 4), f'95% CI {fmt(info["slope_ci95"][0], 3)} to {fmt(info["slope_ci95"][1], 3)}', src_cell("originate"))}
   {card("Correlation", fmt(info["corr_model_minus_close_vs_actual_minus_close"], 4), f'n = {fmt(info["n"])} games', src_cell("games"))}
   {card("Mean absolute disagreement", fmt(info["mean_abs_disagreement"], 2) + " pts", "spread, held-out window", src_cell("originate"))}
-  {card("Games disagreeing by 2+ pts", pct(info["share_disagreement_ge_2"]), "half of all games", src_cell("originate"))}
+  {card("Games disagreeing by 2+ pts", pct(info["share_disagreement_ge_2"], signed=False), "half of all games", src_cell("originate"))}
 </div>
 {note("The slope is indistinguishable from zero, so the engine's disagreements with the market are noise. "
       "That single number is why the model-versus-market strategies later fail their gates; the gates are "
@@ -652,6 +671,7 @@ def page_props() -> str:
             ("num", fmt(m["brier_naive"], 4)),
             ("num", f'<span class="{pct_cls(m["brier_skill"])}">{pct(m["brier_skill"], 2)}</span>'),
             ("num", f'{fmt(m["brier_skill_ci95"][0], 3)} to {fmt(m["brier_skill_ci95"][1], 3)}'),
+            ("num", pct(m["calibration_ece"], 1, signed=False) if m.get("calibration_ece") is not None else "—"),
             ("num", "—"),
             ("srclink", src_cell("scrapr", "props")),
         ])
@@ -691,17 +711,27 @@ reference line.</p>
 Naive probability: the base over-rate measured on training seasons only. Evaluation {d['markets'][0]['seasons'][0]}-{d['markets'][0]['seasons'][1]},
 walk-forward (each season is scored by a model trained only on earlier seasons).</p>
 {table(["Market", "Type", "Player-games", "Players", "MAE ours", "MAE naive", "MAE gain",
-        "Mean line gap", "Brier ours", "Brier naive", "Brier skill", "95% CI", "Prop ROI", "Source"],
+        "Mean line gap", "Brier ours", "Brier naive", "Brier skill", "95% CI", "Calib. ECE", "Prop ROI", "Source"],
        rows, "props")}
-{note("<b>What clears zero and what does not.</b> Receiving yards improves error but its probability skill is "
-      "indistinguishable from zero; receptions, passing yards and anytime touchdown clear zero; rushing yards sits "
-      "on the boundary. That pattern is credible: passing volume is the most forecastable thing in football, and a "
-      "trailing average already captures most of it.", "")}
+{note("<b>What clears zero and what does not.</b> Passing yards (+"
+      f"{fmt(max(m['brier_skill'] for m in d['markets']) * 100, 1)}% Brier skill), receptions and anytime touchdown clear "
+      "zero; receiving yards is indistinguishable from zero and rushing yards is slightly worse than the base rate. "
+      "The pattern is credible: passing volume is the most forecastable thing in football, and a trailing average "
+      "already captures most of it, so what is left to beat is small.", "")}
 
 <h2>Calibration</h2>
 <p class="small">Predicted probability against realised frequency. A model that is calibrated sits on the
 diagonal; the tables below are the raw bins so you can check it yourself.</p>
 {''.join(rel_blocks)}
+{note("<b>These probabilities are over-confident, and the site says so.</b> Expected calibration error runs from "
+      f"{pct(min(m['calibration_ece'] for m in d['markets']), 1, signed=False)} to "
+      f"{pct(max(m['calibration_ece'] for m in d['markets']), 1, signed=False)} across the five markets, and the worst "
+      "large bin misses by "
+      f"{fmt(max((m['calibration_worst_bin']['predicted'] - m['calibration_worst_bin']['actual']) for m in d['markets'] if m.get('calibration_worst_bin')), 3)} "
+      "probability points (for example, players the model rates at 65% beat the reference line about 55% of the time). "
+      "So the prop probabilities on this page are <b>not</b> used to price anything: skill is measured with the Brier "
+      "score, which is a proper scoring rule and stays honest even when the bins are off. Anybody reusing these "
+      "numbers should recalibrate them on a held-out season first.", "warn")}
 
 <h2>Correlations that matter for prop combos</h2>
 <p class="small">Same-game dependencies, measured on the same player-game data. These are the numbers that decide
@@ -754,6 +784,7 @@ def page_correlation() -> str:
                 cells.append(("num", f'<span style="display:block;background:{color};border-radius:3px">{v:+.2f}</span>'))
         mrows.append(cells)
 
+    pf = st["portfolio"]
     pc_rows = [[("name", h(c["pair"])), ("num", f'{c["r"]:+.3f}'),
                 ("num", f'{c["ci95"][0]:+.3f} to {c["ci95"][1]:+.3f}'), ("num", fmt(c["n"])),
                 ("srclink", src_cell("scrapr", "props"))] for c in pr["correlations"]]
@@ -784,9 +815,10 @@ the game. The buckets are the test.</p>
 <p class="small">Correlation of weekly P&amp;L between the {len(names)} most-traded strategies in the held-out
 window. High values mean two "independent" entries on the leaderboard are the same bet wearing different clothes.</p>
 <p class="small">Mean absolute pairwise correlation: <b>{fmt(st['mean_pairwise_corr'], 3)}</b>.
-Equal-weight portfolio of all strategies: {fmt(st['portfolio']['units'], 1)} units over
-{fmt(st['portfolio']['n_weeks'])} weeks
-({pct(st['portfolio']['roi_per_ticket'])} per ticket).</p>
+Equal-weight portfolio of the {fmt(pf['n_tickets'])} tickets from every non-control strategy:
+{fmt(pf['units'], 1)} units over {fmt(pf['n_weeks'])} weeks ({pct(pf['roi_per_ticket'])} per ticket).
+Including the controls it would read {fmt(pf['units_including_controls'], 1)} units — and the difference is
+almost entirely the lookahead control, which is exactly why it is excluded here.</p>
 {table(head, mrows, "smat", extra_class="matrix")}
 <h3>Most correlated pairs</h3>
 {table(["Strategy A", "Strategy B", "Correlation"],
@@ -945,7 +977,7 @@ def page_verification() -> str:
                           + (" · " + link(x["game_book"], "game book (PDF)") if x.get("game_book") else "")),
               ("srclink", link(x["line_source"], "lines"))] for x in v["spot_checks"]]
     unp = [[("name", h(u["item"])), ("", h(u["why"])), ("", h(u["consequence"])),
-            ("", maybe_link(u["source_that_would_settle_it"], "settling source"))] for u in v["unverified"]]
+            ("", maybe_link(u["source_that_would_settle_it"]))] for u in v["unverified"]]
     cs = v["cross_source_detail"]
 
     body = f"""
@@ -957,7 +989,7 @@ register of what could not be confirmed. {s['n_pass']} checks pass, {s['n_flag']
   {card("Structural checks", f"{s['n_pass']}/{s['n_checks']}", "passing", src_cell("verify"))}
   {card("Flagged", fmt(s["n_flag"]), "contradictions between upstream files", src_cell("closing"))}
   {card("Official spot checks", fmt(s["n_spot_checks"]), "all matched", src_cell("nfl_sched"))}
-  {card("Coverage of official check", pct(s["share_of_games_officially_checked"], 3), f"of {fmt(s['played_games'])} played games", "")}
+  {card("Coverage of official check", pct(s["share_of_games_officially_checked"], 3, signed=False), f"of {fmt(s['played_games'])} played games", "")}
 </div>
 
 {note("<b>What 'verified' means here, precisely.</b> A row is verified when the value can be reproduced from a "
@@ -970,11 +1002,11 @@ register of what could not be confirmed. {s['n_pass']} checks pass, {s['n_flag']
 
 <h2>Cross-file disagreement, quantified</h2>
 <p class="small">games.csv and closing_lines.csv overlap on {fmt(cs['SPREAD']['n_games'])} games. They agree exactly
-on {pct(cs['SPREAD']['exact_match_rate'])} of spreads and {pct(cs['TOTAL']['exact_match_rate'])} of totals; almost all
+on {pct(cs['SPREAD']['exact_match_rate'], signed=False)} of spreads and {pct(cs['TOTAL']['exact_match_rate'], signed=False)} of totals; almost all
 disagreement is half a point, but the tails reach {fmt(cs['SPREAD']['max_abs_diff'], 1)} points on spreads.</p>
 {table(["Market", "Games in both", "Identical", "Within 0.5", "Over 1.0", "Median diff", "90th pct", "Max"],
-       [[("name", k), ("num", fmt(d["n_games"])), ("num", pct(d["exact_match_rate"])),
-         ("num", pct(d["within_half_point"])), ("num", pct(d["share_over_one_point"])),
+       [[("name", k), ("num", fmt(d["n_games"])), ("num", pct(d["exact_match_rate"], signed=False)),
+         ("num", pct(d["within_half_point"], signed=False)), ("num", pct(d["share_over_one_point"], signed=False)),
          ("num", fmt(d["median_abs_diff"], 2)), ("num", fmt(d["p90_abs_diff"], 2)),
          ("num", fmt(d["max_abs_diff"], 2))] for k, d in cs.items()],
        "cstab")}
@@ -998,7 +1030,7 @@ def page_flagged() -> str:
               ("", h(x["detail"])), ("", h(x["impact"])),
               ("srclink", " · ".join(link(u, t) for u, t in x["links"]))] for x in IRREGULARITIES]
     unp = [[("name", h(u["item"])), ("", status_badge("FLAG")), ("", h(u["why"])), ("", h(u["consequence"])),
-            ("", maybe_link(u["source_that_would_settle_it"], "settling source"))] for u in v["unverified"]]
+            ("", maybe_link(u["source_that_would_settle_it"]))] for u in v["unverified"]]
     small = [m for m in d["strategies"] if m["tier"] == "NEEDS_REVIEW"]
     small_rows = [[("name", h(m["strategy"])), ("num", fmt(m["n_graded"])),
                    ("num", f'<span class="{pct_cls(m.get("roi"))}">{pct(m.get("roi"))}</span>'),

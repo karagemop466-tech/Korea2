@@ -16,6 +16,11 @@ parlays and player-prop combos.
 - **Quant Lab** (`arena/7b140798-korea2`):
   <https://karagemop466-tech.github.io/Korea2/quant-lab/> — originated lines, 21 gated
   strategies, measured correlations, 77-check verification register (self-contained in `quant-lab/`).
+- **Origination lab** (`arena/3f5af27c-korea2`):
+  <https://karagemop466-tech.github.io/Korea2/origination/> — self-contained pipeline and 13-page site:
+  own spread/total/moneyline for 7,548 games, 31 strategies through ten gates, prop origination,
+  correlations, 18-check verification register. Everything the page shows comes from
+  `origination/site_data/*.json`; run it with `python pipeline/run_all.py`.
 - Independent research from other sessions: `nfl-research/`, `research-desk/`, `nfl-lines/`.
 
 ## Repository map
@@ -35,6 +40,7 @@ parlays and player-prop combos.
 | `docs/` | `EXECUTIVE_SUMMARY.md`, `REPO_REVIEW.md` |
 | `scripts/` | `validate_data.py`, `check_links.py` from other sessions |
 | `.github/workflows/` | `build-verify.yml` (this session), `validate.yml` (dashboard), `fetch-nflverse.yml` (data refresh) |
+| `pipeline/`, `origination/` | Session `3f5af27c`: the origination/strategy/gating pipeline and its 13-page site |
 | `COORDINATION.md` | Shared task board and session logs for all parallel sessions |
 
 ## Run the quantitative build

@@ -189,6 +189,13 @@ def evaluate_market(df: pd.DataFrame, target: str) -> dict:
                                            "n": len(x)}), include_groups=False)
                .reset_index(drop=True))
 
+    # Calibration is measured on bins big enough to mean something; tail bins with a
+    # handful of player-games are reported in the curve but excluded from the summary.
+    curve["gap"] = (curve["pred"] - curve["actual"]).abs()
+    big = curve[curve["n"] >= 100].reset_index(drop=True)
+    ece = float(np.sum(big["n"] * big["gap"]) / max(1, big["n"].sum())) if len(big) else float("nan")
+    worst = int(big["gap"].idxmax()) if len(big) else 0
+
     return {
         "market": target,
         "label": {"rec_yds": "Receiving yards", "rec": "Receptions", "rush_yds": "Rushing yards",
@@ -208,6 +215,14 @@ def evaluate_market(df: pd.DataFrame, target: str) -> dict:
         "brier_skill": 1 - b_model / b_naive,
         "brier_skill_ci95": [float(np.quantile(skill, 0.025)), float(np.quantile(skill, 0.975))],
         "reliability": curve.to_dict("records"),
+        "calibration_ece": ece,
+        "calibration_worst_bin": {
+            "predicted": float(big["pred"].iloc[worst]) if len(big) else None,
+            "actual": float(big["actual"].iloc[worst]) if len(big) else None,
+            "n": int(big["n"].iloc[worst]) if len(big) else 0,
+        } if len(big) else None,
+        "calibration_bins_used": int(len(big)),
+        "calibrated": bool(len(big) and big["gap"].max() <= 0.03),
     }
 
 

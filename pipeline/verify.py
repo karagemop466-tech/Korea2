@@ -268,7 +268,7 @@ def main() -> None:
          "why": "No licensed prop feed reachable from the build environment (IR-03).",
          "consequence": "Every prop ROI / profit cell is blank; prop skill is measured only against the "
                         "pre-declared naive reference line.",
-         "source_that_would_settle_it": "https://www.nfl.com/ or a licensed odds provider"},
+         "source_that_would_settle_it": "a licensed odds provider; NFL.com does not publish historical prop prices"},
         {"item": "Player-game statistics for 2018-2026",
          "why": "The reachable player-game dataset ends with the 2017 season (IR-02).",
          "consequence": "No prop lines or prop combos are published for 2018-2026; those cells are blank.",
@@ -282,7 +282,7 @@ def main() -> None:
                 "the pinned open dataset.",
          "consequence": "Rows without an official link carry the dataset link only and are marked unverified "
                         "on the verification page.",
-         "source_that_would_settle_it": "https://www.nfl.com/schedules/ (per-season pages)"},
+         "source_that_would_settle_it": "https://www.nfl.com/schedules/"},
         {"item": "Closing-line provenance (which book, which snapshot)",
          "why": "Neither games.csv nor closing_lines.csv documents the book or timestamp behind its prices.",
          "consequence": "Prices are used as the evaluation price; no claim is made that they are the best "

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-01T13:46:04Z",
+ "generated": "2026-11-01T14:07:25Z",
  "market": {
   "overall": {
    "corr_margin_resid_total_resid": {
@@ -468,8 +468,11 @@
   "mean_pairwise_corr": 0.24961538461538466,
   "portfolio": {
    "n_weeks": 244,
-   "units": 1527.8487957938967,
-   "roi_per_ticket": 0.03947113764064009
+   "units": -1010.4991089261938,
+   "roi_per_ticket": -0.034389433328552745,
+   "n_tickets": 29384,
+   "units_including_controls": 1527.8487957938967,
+   "n_weeks_including_controls": 244
   }
  },
  "parlay_legs": {
