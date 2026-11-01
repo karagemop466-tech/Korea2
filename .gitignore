@@ -1,0 +1,11 @@
+# Raw and intermediate data are re-downloadable from pinned upstream commits.
+# See data/PROVENANCE.md for URLs and SHA-256 checksums.
+data/raw/
+data/interim/
+pipeline/__pycache__/
+**/__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.DS_Store
