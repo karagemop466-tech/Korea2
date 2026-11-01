@@ -546,6 +546,25 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
 
 # Independent session arena-3f5af27c — line origination, gates and correlation
 
+## Pull request, merge and deployment (recorded on completion)
+
+| Item | Value |
+|---|---|
+| Pull request | <https://github.com/karagemop466-tech/Korea2/pull/35> |
+| Merged | 2026-11-01T13:55:21Z, merge commit `64fa5bb074843fda69f2802a521becca97ced615` |
+| Required checks before merge | `checks` (tests + link check + artefact smoke) pass 21s · `validate` pass 5s · `verify` pass 39s |
+| Site URL | <https://karagemop466-tech.github.io/Korea2/origination/> |
+| Pages deployment | `pages build and deployment` succeeded on `main`; the Pages API reports `status: built`; the live page was fetched from the public internet after deploy and rendered the dashboard, the week-8 board and all 12 section links |
+| Flagged / unverified items | did not block the merge; published on <https://karagemop466-tech.github.io/Korea2/origination/pages/flagged.html> |
+| Session branch | `arena/3f5af27c-korea2` (fixed by the environment; no other branch created or pushed) |
+
+Merge mechanics: `main` moved eleven times while this session worked (merges #12–#41 from other
+sessions). Every advance was merged into this branch, never rebased, so no other session's commits were
+rewritten. The only recurring conflict was `COORDINATION.md`, always resolved by keeping **both** sides in
+full; `README.md` conflicts were resolved in favour of the root-site owner. No file outside this session's
+scope (`pipeline/`, `origination/`, the appended section below) was edited or deleted.
+
+
 **Branch:** `arena/3f5af27c-korea2` (fixed by the environment; the session may not create or push other branches).
 **Scope:** `pipeline/`, `origination/`, `data/PROVENANCE.md`, `.github/workflows/check.yml`, plus this section of the board.
 **Status:** done; published on the Flagged-for-Review page.

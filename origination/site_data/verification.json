@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-01T13:52:32Z",
+ "generated": "2026-11-01T13:57:02Z",
  "summary": {
-  "n_checks": 16,
-  "n_pass": 14,
+  "n_checks": 18,
+  "n_pass": 16,
   "n_flag": 2,
   "n_fail": 0,
   "n_spot_checks": 3,
@@ -108,6 +108,18 @@
    "status": "PASS",
    "detail": "842 games (2024-2026) recomputed from prior games only; 0 mismatches",
    "source": "pipeline/build_features.py"
+  },
+  {
+   "name": "Every official NFL.com spot check reproduces the dataset",
+   "status": "PASS",
+   "detail": "3 games fetched from nfl.com and compared score by score; 0 mismatches",
+   "source": "https://www.nfl.com/schedules/"
+  },
+  {
+   "name": "Transcribed quarter totals add up to the transcribed final score",
+   "status": "PASS",
+   "detail": "2 games with quarter detail; 0 internal inconsistencies",
+   "source": "https://www.nfl.com/games/panthers-at-packers-2026-reg-8"
   }
  ],
  "cross_source_detail": {
@@ -136,10 +148,11 @@
    "gameday": "2026-10-29",
    "matchup": "CAR at GB",
    "dataset_score": "CAR 19, GB 27",
-   "official_score": "Panthers 19, Packers 27, FINAL (Oct 29)",
+   "official_score": "Panthers 19, Packers 27, FINAL, Oct 29",
    "official_url": "https://www.nfl.com/games/panthers-at-packers-2026-reg-8",
-   "official_source_note": "https://www.nfl.com/schedules/ (2026 week 8 list)",
-   "checked": "Final score of the Thursday night game in week 8 of the 2026 season",
+   "game_book": "https://static.www.nfl.com/image/upload/v1793361096/gamecenter/aaf70a66-4feb-11f1-abca-2c54536568a9.pdf",
+   "quarters_checked": true,
+   "checked": "Final score and quarter totals, 2026 week 8 (Thursday, Oct 29)",
    "verdict": "MATCH",
    "closing_spread": 3.5,
    "closing_total": 47.5,
@@ -151,10 +164,11 @@
    "gameday": "2015-09-10",
    "matchup": "PIT at NE",
    "dataset_score": "PIT 21, NE 28",
-   "official_score": "Steelers 21, Patriots 28 (0-0, 3-14, 8-7, 10-7)",
+   "official_score": "Steelers 21, Patriots 28 (quarters 0-0, 3-14, 8-7, 10-7)",
    "official_url": "https://www.nfl.com/games/steelers-at-patriots-2015-reg-1",
-   "official_source_note": "",
-   "checked": "Final score and quarter-by-quarter totals, 2015 week 1",
+   "game_book": "",
+   "quarters_checked": true,
+   "checked": "Final score and quarter totals, 2015 week 1",
    "verdict": "MATCH",
    "closing_spread": 7.5,
    "closing_total": 51.0,
@@ -168,7 +182,8 @@
    "dataset_score": "GB 10, CHI 3",
    "official_score": "Packers 10, Bears 3",
    "official_url": "https://www.nfl.com/games/packers-at-bears-2019-reg-1",
-   "official_source_note": "",
+   "game_book": "",
+   "quarters_checked": false,
    "checked": "Final score, 2019 week 1 kickoff game",
    "verdict": "MATCH",
    "closing_spread": 3.5,

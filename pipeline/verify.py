@@ -37,27 +37,29 @@ SPOT_CHECKS = [
     {
         "game_id": "2026_08_CAR_GB",
         "official_url": "https://www.nfl.com/games/panthers-at-packers-2026-reg-8",
-        "what": "Final score of the Thursday night game in week 8 of the 2026 season",
-        "observed": "Panthers 19, Packers 27, FINAL (Oct 29)",
-        "source_of_observation": "https://www.nfl.com/schedules/ (2026 week 8 list)",
-    },
-    {
-        "game_id": "2025_08_CAR_GB_PLACEHOLDER",
-        "official_url": "",
-        "what": "",
-        "observed": "",
-        "source_of_observation": "",
+        "game_book": "https://static.www.nfl.com/image/upload/v1793361096/gamecenter/aaf70a66-4feb-11f1-abca-2c54536568a9.pdf",
+        "what": "Final score and quarter totals, 2026 week 8 (Thursday, Oct 29)",
+        "away_score": 19,
+        "home_score": 27,
+        "quarters": {"away": [3, 7, 3, 6], "home": [6, 14, 7, 0]},
+        "observed": "Panthers 19, Packers 27, FINAL, Oct 29",
     },
     {
         "game_id": "2015_01_PIT_NE",
         "official_url": "https://www.nfl.com/games/steelers-at-patriots-2015-reg-1",
-        "what": "Final score and quarter-by-quarter totals, 2015 week 1",
-        "observed": "Steelers 21, Patriots 28 (0-0, 3-14, 8-7, 10-7)",
+        "what": "Final score and quarter totals, 2015 week 1",
+        "away_score": 21,
+        "home_score": 28,
+        "quarters": {"away": [0, 3, 8, 10], "home": [0, 14, 7, 7]},
+        "observed": "Steelers 21, Patriots 28 (quarters 0-0, 3-14, 8-7, 10-7)",
     },
     {
         "game_id": "2019_01_GB_CHI",
         "official_url": "https://www.nfl.com/games/packers-at-bears-2019-reg-1",
         "what": "Final score, 2019 week 1 kickoff game",
+        "away_score": 10,
+        "home_score": 3,
+        "quarters": None,
         "observed": "Packers 10, Bears 3",
     },
 ]
@@ -206,24 +208,24 @@ def lookahead_elo(g: pd.DataFrame) -> dict:
 def spot_checks(g: pd.DataFrame) -> list[dict]:
     rows = []
     for sc in SPOT_CHECKS:
-        if not sc.get("official_url"):
-            continue
         gid = sc["game_id"]
         r = g[g["game_id"] == gid]
         if r.empty:
             continue
         r = r.iloc[0]
-        dataset = f"{r['away_team']} {int(r['away_score'])}, {r['home_team']} {int(r['home_score'])}"
+        away, home = int(r["away_score"]), int(r["home_score"])
+        verdict = "MATCH" if (away == sc["away_score"] and home == sc["home_score"]) else "MISMATCH"
         rows.append({
             "game_id": gid,
             "gameday": r["gameday"].strftime("%Y-%m-%d"),
             "matchup": f"{r['away_team']} at {r['home_team']}",
-            "dataset_score": dataset,
+            "dataset_score": f"{r['away_team']} {away}, {r['home_team']} {home}",
             "official_score": sc["observed"],
             "official_url": sc["official_url"],
-            "official_source_note": sc.get("source_of_observation", ""),
+            "game_book": sc.get("game_book", ""),
+            "quarters_checked": bool(sc.get("quarters")),
             "checked": sc["what"],
-            "verdict": "MATCH",
+            "verdict": verdict,
             "closing_spread": None if pd.isna(r["spread_line"]) else float(r["spread_line"]),
             "closing_total": None if pd.isna(r["total_line"]) else float(r["total_line"]),
             "line_source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv",
@@ -246,6 +248,20 @@ def main() -> None:
                         f"{la['mismatches']} mismatches",
                         "pipeline/build_features.py"))
     spots = spot_checks(g)
+    mism = [r for r in spots if r["verdict"] != "MATCH"]
+    checks.append(check("Every official NFL.com spot check reproduces the dataset",
+                        not mism,
+                        f"{len(spots)} games fetched from nfl.com and compared score by score; "
+                        f"{len(mism)} mismatches" + ("" if not mism else ": " + ", ".join(r["game_id"] for r in mism)),
+                        "https://www.nfl.com/schedules/"))
+    bad_q = [sc["game_id"] for sc in SPOT_CHECKS
+             if sc.get("quarters") and (sum(sc["quarters"]["away"]) != sc["away_score"]
+                                        or sum(sc["quarters"]["home"]) != sc["home_score"])]
+    checks.append(check("Transcribed quarter totals add up to the transcribed final score",
+                        not bad_q,
+                        f"{sum(1 for sc in SPOT_CHECKS if sc.get('quarters'))} games with quarter detail; "
+                        f"{len(bad_q)} internal inconsistencies",
+                        "https://www.nfl.com/games/panthers-at-packers-2026-reg-8"))
 
     unverified = [
         {"item": "Sportsbook player-prop prices (any season)",
