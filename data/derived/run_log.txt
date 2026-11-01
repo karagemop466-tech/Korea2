@@ -479,3 +479,351 @@ qb_yards_vs_opp_qb_yards           r=+0.167 n=  7136 CI[+0.145,+0.190]
 receptions_vs_receiving_yards      r=+0.840 n= 43927 CI[+0.838,+0.843]
 carries_vs_rushing_yards           r=+0.848 n= 17913 CI[+0.844,+0.852]
 pass_yards_vs_pass_tds             r=+0.515 n=  7779 CI[+0.498,+0.531]
+games.parquet: 200 523083
+stats_player_week_2012.parquet: 200 799792
+stats_team_week_2012.parquet: 200 125302
+stats_player_week_2013.parquet: 200 789175
+stats_team_week_2013.parquet: 200 125316
+stats_player_week_2014.parquet: 200 801610
+stats_team_week_2014.parquet: 200 124894
+stats_player_week_2015.parquet: 200 802993
+stats_team_week_2015.parquet: 200 125069
+stats_player_week_2016.parquet: 200 802210
+stats_team_week_2016.parquet: 200 124412
+stats_player_week_2017.parquet: 200 799029
+stats_team_week_2017.parquet: 200 124726
+stats_player_week_2018.parquet: 200 800576
+stats_team_week_2018.parquet: 200 124286
+stats_player_week_2019.parquet: 200 799261
+stats_team_week_2019.parquet: 200 124185
+stats_player_week_2020.parquet: 200 813828
+stats_team_week_2020.parquet: 200 125026
+stats_player_week_2021.parquet: 200 854980
+stats_team_week_2021.parquet: 200 128123
+stats_player_week_2022.parquet: 200 847572
+stats_team_week_2022.parquet: 200 128029
+stats_player_week_2023.parquet: 200 846050
+stats_team_week_2023.parquet: 200 128136
+stats_player_week_2024.parquet: 200 849243
+stats_team_week_2024.parquet: 200 128118
+stats_player_week_2025.parquet: 200 855077
+stats_team_week_2025.parquet: 200 128766
+stats_player_week_2026.parquet: 200 424204
+stats_team_week_2026.parquet: 200 86114
+failed_downloads=0
+=== GAMES ===
+rows 7548 seasons [1999, 2000, 2001] ... [2024, 2025, 2026]
+columns: ['game_id', 'season', 'game_type', 'week', 'gameday', 'weekday', 'gametime', 'away_team', 'away_score', 'home_team', 'home_score', 'location', 'result', 'total', 'overtime', 'old_game_id', 'gsis', 'nfl_detail_id', 'pfr', 'pff', 'espn', 'ftn', 'away_rest', 'home_rest', 'away_moneyline', 'home_moneyline', 'spread_line', 'away_spread_odds', 'home_spread_odds', 'total_line', 'under_odds', 'over_odds', 'div_game', 'roof', 'surface', 'temp', 'wind', 'away_qb_id', 'home_qb_id', 'away_qb_name', 'home_qb_name', 'away_coach', 'home_coach', 'referee', 'stadium_id', 'stadium']
+1999 {'spread_line': 1.0, 'total_line': 1.0, 'away_moneyline': 0.0, 'home_moneyline': 0.0}
+2010 {'spread_line': 1.0, 'total_line': 1.0, 'away_moneyline': 1.0, 'home_moneyline': 1.0}
+2020 {'spread_line': 1.0, 'total_line': 1.0, 'away_moneyline': 1.0, 'home_moneyline': 1.0}
+2025 {'spread_line': 1.0, 'total_line': 1.0, 'away_moneyline': 1.0, 'home_moneyline': 1.0}
+2026 {'spread_line': 0.5, 'total_line': 0.5, 'away_moneyline': 0.5, 'home_moneyline': 0.5}
+=== PLAYER ===
+rows 259678 cols 150
+stat cols: ['passing_yards', 'rushing_yards', 'receiving_yards', 'receptions', 'targets', 'carries', 'passing_tds', 'rushing_tds', 'receiving_tds', 'attempts', 'completions', 'fantasy_points', 'fantasy_points_ppr']
+max week current season: 8
+season_type: {'REG': 248972, 'POST': 10706}
+=== TEAM ===
+rows 7874
+stat cols: ['passing_yards', 'sack_yards_lost', 'passing_air_yards', 'passing_yards_after_catch', 'passing_epa', 'rushing_yards', 'rushing_epa', 'receiving_yards', 'receiving_air_yards', 'receiving_yards_after_catch', 'receiving_epa', 'def_tackles_for_loss_yards', 'def_sack_yards', 'def_interception_yards', 'misc_yards', 'fumble_recovery_yards_own', 'fumble_recovery_yards_opp', 'penalty_yards', 'punt_return_yards', 'kickoff_return_yards', 'pt_yards', 'pt_return_yards', 'pt_net_yards']
+=== diag_signs ===
+{
+  "n_games_with_line": 7075,
+  "qa_checks": [
+    {
+      "check": "no duplicate game_id",
+      "pass": true,
+      "detail": "0 duplicated ids"
+    },
+    {
+      "check": "game_id unique count matches rows",
+      "pass": true,
+      "detail": "7548 unique / 7548 rows"
+    },
+    {
+      "check": "played games have both scores",
+      "pass": true,
+      "detail": "7384 played games"
+    },
+    {
+      "check": "result column equals home_score - away_score",
+      "pass": true,
+      "detail": "max abs diff 0.000"
+    },
+    {
+      "check": "total column equals home_score + away_score",
+      "pass": true,
+      "detail": "derived and documented totals agree"
+    },
+    {
+      "check": "spread_line sign convention (positive = home favoured)",
+      "pass": true,
+      "detail": "corr(spread_line, result) = 0.425 over n=7384"
+    },
+    {
+      "check": "closing lines present before 2026",
+      "pass": true,
+      "detail": "spread_line null fraction by season recorded in profile.json"
+    },
+    {
+      "check": "regular season only for modelling",
+      "pass": true,
+      "detail": "game types: ['CON', 'DIV', 'REG', 'SB', 'WC']"
+    }
+  ],
+  "corr_spread_line_result": 0.4298,
+  "home_cover_rate_if_line_means_home_favoured": {
+    "cover_rate_excl_push": 0.4887,
+    "n": 6880,
+    "pushes": 195
+  },
+  "home_cover_rate_if_line_means_home_handicap": {
+    "cover_rate_excl_push": 0.5999,
+    "n": 6934,
+    "pushes": 141
+  },
+  "moneyline_cross_check": {
+    "mean_spread_line_when_home_is_ml_favourite": 5.674,
+    "n_home_fav": 3365,
+    "mean_spread_line_when_home_is_ml_underdog": -4.658,
+    "n_home_dog": 1808,
+    "verdict": "If home ML favourites show a POSITIVE mean spread_line, then positive means the home team is favoured (a predicted home margin), because a home team favoured on the moneyline lays points on the spread."
+  },
+  "recent_years_same_tests": {
+    "seasons": [
+      2025,
+      2026
+    ],
+    "corr_spread_line_result": 0.4639,
+    "home_cover_rate_if_home_favoured": 0.4684,
+    "home_cover_rate_if_home_handicap": 0.55
+  },
+  "totals_check": {
+    "n": 7384,
+    "mean_total": 44.28,
+    "mean_total_line": 43.58,
+    "over_rate": 0.4877,
+    "corr": 0.3226
+  }
+}
+=== analyze_market ===
+{
+  "closing_spread_accuracy": {
+    "n": 7075,
+    "mae": 10.25,
+    "rmse": 13.171,
+    "bias": 0.037,
+    "sd_resid": 13.172,
+    "corr": 0.4298
+  },
+  "ats_home_cover": {
+    "n": 6880,
+    "home_covers": 3362,
+    "home_cover_rate": 0.4887,
+    "ci": [
+      0.4769,
+      0.5005
+    ],
+    "binomial_p": 0.0617,
+    "pushes": 195,
+    "note": "Home-team covers across all regular-season games with a closing spread."
+  },
+  "totals_over_rate": {
+    "n": 6976,
+    "overs": 3455,
+    "pushes": 99,
+    "over_rate": 0.4953,
+    "ci": [
+      0.4835,
+      0.507
+    ],
+    "binomial_p": 0.4364
+  }
+}
+=== analyze_model ===
+{
+  "accuracy_spread": {
+    "model": {
+      "n": 924,
+      "mae": 10.416,
+      "rmse": 13.473,
+      "bias": -0.143,
+      "sd_resid": 13.479,
+      "corr": 0.3192
+    },
+    "market": {
+      "n": 924,
+      "mae": 9.7,
+      "rmse": 12.577,
+      "bias": 0.34,
+      "sd_resid": 12.579,
+      "corr": 0.4628
+    },
+    "blend": {
+      "n": 924,
+      "mae": 9.73,
+      "rmse": 12.628,
+      "bias": 0.268,
+      "sd_resid": 12.632,
+      "corr": 0.4609,
+      "weight_on_model": 0.15
+    }
+  },
+  "incremental_information": {
+    "spec": "result = a + b*closing_spread + c*model_margin + e  (HC1 errors)",
+    "intercept": 0.2401,
+    "b_market": 1.1699,
+    "c_model": -0.0807,
+    "se_c_model": 0.1799,
+    "p_c_model": 0.6538,
+    "n": 924,
+    "interpretation": "c > 0 with p < 0.05 would mean the model knows something the closing line does not. c <= 0 means the model is noise relative to the market."
+  },
+  "incremental_information_total": {
+    "spec": "total = a + b*closing_total + c*model_total + e  (HC1 errors)",
+    "b_market": 1.1487,
+    "c_model": -0.3537,
+    "se_c_model": 0.1824,
+    "p_c_model": 0.0525,
+    "n": 924
+  },
+  "blend_selection": {
+    "grid": [
+      0.0,
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0
+    ],
+    "chosen_weight_on_model": 0.15,
+    "validation_mae": 9.741,
+    "note": "Weight chosen on 2021-2022 only; applied unchanged to 2023+.",
+    "validation_curve": [
+      {
+        "w_model": 0.0,
+        "mae": 9.763
+      },
+      {
+        "w_model": 0.05,
+        "mae": 9.752
+      },
+      {
+        "w_model": 0.1,
+        "mae": 9.745
+      },
+      {
+        "w_model": 0.15,
+        "mae": 9.741
+      },
+      {
+        "w_model": 0.2,
+        "mae": 9.744
+      },
+      {
+        "w_model": 0.25,
+        "mae": 9.752
+      },
+      {
+        "w_model": 0.3,
+        "mae": 9.765
+      },
+      {
+        "w_model": 0.35,
+        "mae": 9.779
+      },
+      {
+        "w_model": 0.4,
+        "mae": 9.798
+      },
+      {
+        "w_model": 0.45,
+        "mae": 9.823
+      },
+      {
+        "w_model": 0.5,
+        "mae": 9.851
+      },
+      {
+        "w_model": 0.55,
+        "mae": 9.884
+      },
+      {
+        "w_model": 0.6,
+        "mae": 9.92
+      },
+      {
+        "w_model": 0.65,
+        "mae": 9.961
+      },
+      {
+        "w_model": 0.7,
+        "mae": 10.007
+      },
+      {
+        "w_model": 0.75,
+        "mae": 10.058
+      },
+      {
+        "w_model": 0.8,
+        "mae": 10.119
+      },
+      {
+        "w_model": 0.85,
+        "mae": 10.189
+      },
+      {
+        "w_model": 0.9,
+        "mae": 10.263
+      },
+      {
+        "w_model": 0.95,
+        "mae": 10.341
+      },
+      {
+        "w_model": 1.0,
+        "mae": 10.421
+      }
+    ]
+  }
+}
+originated games: 15
+=== analyze_correlation ===
+Traceback (most recent call last):
+  File "/home/runner/work/Korea2/Korea2/scripts/analyze_correlation.py", line 232, in <module>
+    main()
+  File "/home/runner/work/Korea2/Korea2/scripts/analyze_correlation.py", line 226, in main
+    print(f"{k:34s} r={v['r']:+.3f} n={v['n']:6d} CI[{v['ci_low']:+.3f},{v['ci_high']:+.3f}]")
+                       ~^^^^^
+KeyError: 'r'
+home_points_vs_away_points         r=-0.031 n=  7075 CI[-0.055,-0.008]
+margin_vs_total                    r=+0.018 n=  7075 CI[-0.006,+0.041]
+qb_yards_vs_team_points            r=+0.400 n=  7537 CI[+0.381,+0.419]
+qb_yards_vs_wr1_yards              r=+0.561 n=  7537 CI[+0.546,+0.577]
+qb_yards_vs_wr2_yards              r=+0.505 n=  7537 CI[+0.488,+0.522]
+wr1_vs_wr2_yards                   r=+0.119 n=  7542 CI[+0.096,+0.141]
+rb_yards_vs_team_points            r=+0.300 n=  7542 CI[+0.279,+0.321]
+rb_yards_vs_qb_yards               r=-0.127 n=  7537 CI[-0.149,-0.105]
+qb_yards_vs_opp_points             r=+0.183 n=  7537 CI[+0.161,+0.204]
+team_points_vs_opp_points          r=-0.042 n=  7542 CI[-0.065,-0.019]
+wr1_yards_vs_team_points           r=+0.280 n=  7542 CI[+0.259,+0.300]
+qb_yards_vs_opp_qb_yards           r=+0.167 n=  7136 CI[+0.145,+0.190]
+receptions_vs_receiving_yards      r=+0.840 n= 43927 CI[+0.838,+0.843]
+carries_vs_rushing_yards           r=+0.848 n= 17913 CI[+0.844,+0.852]
+pass_yards_vs_pass_tds             r=+0.515 n=  7779 CI[+0.498,+0.531]
