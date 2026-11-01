@@ -10,17 +10,23 @@ Run the offline checks from the repository root:
 ```sh
 python3 -m unittest discover -s audit -p 'test_*.py'
 python3 audit/check_site.py
+# Optional strict provenance gate (exits nonzero for source-domain flags):
+python3 audit/check_site.py --strict-sources
 ```
 
-The checker walks HTML files, checks local file targets and HTML anchors, and
-requires each data row to link to an explicitly recognized primary publisher
-or this repository's own GitHub pages for repository facts. It is intentionally
-conservative; add a publisher only after its authority has been checked. A
-recognized domain is not evidence that the particular claim is true. The script
-does not access the network, validate external URLs, review source content,
-reconcile statistics, or validate models. Those require separate human or
-independent source review. It also does not claim a complete HTML conformance or
-accessibility audit.
+The checker walks static HTML, checks local targets and anchors, and inspects
+source IDs in the JSON data rendered by `dashboard/`. It reports rows lacking an
+explicitly recognized publisher link, including this repository's GitHub pages
+for repository facts. The default exits nonzero for broken links or unreadable
+JSON; source-domain and ID findings are printed as nonblocking review flags.
+`--strict-sources` makes those findings fail too. It is intentionally conservative;
+add a publisher only after its authority has been checked.
+
+A recognized domain is not evidence that the particular claim is true. The script
+does not access the network, render the runtime DOM, validate external URLs,
+review source content, reconcile statistics, or validate models. Those require
+separate independent source review. It does not claim complete HTML conformance
+or accessibility testing.
 
 See the report and `COORDINATION.md` for primary-source links, reviewed values,
 unresolved discrepancies, and the specific scope of each finding.

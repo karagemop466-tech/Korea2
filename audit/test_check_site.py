@@ -1,8 +1,9 @@
+import json
 import tempfile
 import unittest
 from pathlib import Path
 
-from check_site import audit, official_source
+from check_site import audit, audit_dashboard_data, official_source
 
 
 class SourceChecks(unittest.TestCase):
@@ -68,6 +69,47 @@ class LinkChecks(unittest.TestCase):
         errors, _, _ = audit(self.root)
         self.assertTrue(any('escapes site root' in e for e in errors))
         self.assertTrue(any('javascript URL' in e for e in errors))
+
+
+class DashboardDataChecks(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        self.data = self.root / 'data'
+        self.data.mkdir()
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def write(self, name, obj):
+        (self.data / name).write_text(json.dumps(obj), encoding='utf-8')
+
+    def test_source_ids_and_input_fallback(self):
+        self.write('sources.json', {'sources': [{'id': 'NFL', 'url': 'https://nfl.com/'}]})
+        self.write('signals.json', {'rows': [{'sources': ['NFL']}, {'inputs': ['NFL']}]})
+        errors, warnings, sources, rows = audit_dashboard_data(self.root)
+        self.assertEqual((errors, warnings, sources, rows), ([], [], 1, 2))
+
+    def test_unknown_and_unrecognized_source_warnings(self):
+        self.write('sources.json', {'sources': [{'id': 'third-party', 'url': 'https://example.com/'}]})
+        self.write('signals.json', {'rows': [{'sources': ['missing']}, {'sources': ['third-party']}]})
+        errors, warnings, _, rows = audit_dashboard_data(self.root)
+        self.assertEqual(errors, [])
+        self.assertEqual(rows, 2)
+        self.assertTrue(any('unknown sources' in w for w in warnings))
+        self.assertTrue(any('no recognized primary-publisher URL' in w for w in warnings))
+        self.assertTrue(any('row 2 lacks a recognized' in w for w in warnings))
+
+    def test_invalid_json_and_duplicate_ids_are_errors(self):
+        self.write('sources.json', {'sources': [{'id': 'NFL', 'url': 'https://nfl.com/'},
+                                                {'id': 'NFL', 'url': 'https://nfl.com/'}]})
+        (self.data / 'signals.json').write_text('{broken', encoding='utf-8')
+        errors, _, _, _ = audit_dashboard_data(self.root)
+        self.assertTrue(any('duplicate source ID' in e for e in errors))
+        self.assertTrue(any('cannot read JSON' in e for e in errors))
+
+    def test_absent_registry_is_skipped(self):
+        self.assertEqual(audit_dashboard_data(self.root), ([], [], 0, 0))
 
 
 if __name__ == '__main__':
