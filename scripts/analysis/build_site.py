@@ -147,6 +147,7 @@ def page_index() -> str:
                     if c["name"].startswith("QB passing yards")), {})
     best = max((v for v in (strat.get("strategies") or {}).values() if v.get("n")),
                key=lambda v: v["roi"], default={})
+    s5 = (strat.get("strategies") or {}).get("S5_model_edge") or {}
 
     cards = f"""<div class="cards">
 <article><span>01 / SAMPLE</span><strong>{integer(settled)}</strong><p>Settled regular-season games with a closing line, 1999&ndash;2026.</p><a href="pages/market.html">Market baseline &#8594;</a></article>
@@ -178,7 +179,8 @@ def page_index() -> str:
          td("A walk-forward opponent-adjusted rating model scores a Brier skill of "
             f"<strong>{num((strat.get('model') or {}).get('brier_skill_vs_market'), 4)}</strong> "
             "against the closing line. Negative means worse than the market. Betting its "
-            f"disagreements returns {pct(best.get('roi'))}."),
+            f"disagreements returned {pct(s5.get('roi'))} over {integer(s5.get('n'))} bets "
+            f"(p = {num(s5.get('p'), 3)})."),
          td(badge("bad", "Negative skill")),
          td(ext(NFL["team_stats"], "NFL.com team stats"))),
         (th("Same-game legs are not independent"),
