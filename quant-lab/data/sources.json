@@ -4,7 +4,7 @@
  "official": [
   {
    "id": "nfl-standings-2025",
-   "name": "NFL.com — 2025 League Standings (regular season)",
+   "name": "NFL.com \u2014 2025 League Standings (regular season)",
    "url": "https://www.nfl.com/standings/league/2025/REG",
    "used_for": "Official authority for every team's W-L-T, points for and points against in 2025. 32 rows cross-checked against results computed from the game-level data.",
    "retrieved": "2026-11-01",
@@ -12,7 +12,7 @@
   },
   {
    "id": "nfl-standings-2026",
-   "name": "NFL.com — 2026 League Standings (regular season, through the games completed on 2026-11-01)",
+   "name": "NFL.com \u2014 2026 League Standings (regular season, through the games completed on 2026-11-01)",
    "url": "https://www.nfl.com/standings/league/2026/REG",
    "used_for": "Same verification for the in-progress 2026 season (32 rows).",
    "retrieved": "2026-11-01",
@@ -20,7 +20,7 @@
   },
   {
    "id": "nfl-player-jsn",
-   "name": "NFL.com — Jaxon Smith-Njigba stats (2026 game log)",
+   "name": "NFL.com \u2014 Jaxon Smith-Njigba stats (2026 game log)",
    "url": "https://www.nfl.com/players/jaxon-smith-njigba/stats/",
    "used_for": "Player-prop game log and season total (SEA WR). Weekly values sum to the published season total.",
    "retrieved": "2026-11-01",
@@ -28,7 +28,7 @@
   },
   {
    "id": "nfl-player-watson",
-   "name": "NFL.com — Christian Watson stats (2026 game log)",
+   "name": "NFL.com \u2014 Christian Watson stats (2026 game log)",
    "url": "https://www.nfl.com/players/christian-watson/stats/",
    "used_for": "Prop game log (GB WR); pairs with Jordan Love for the quarterback/receiver correlation.",
    "retrieved": "2026-11-01",
@@ -36,7 +36,7 @@
   },
   {
    "id": "nfl-player-love",
-   "name": "NFL.com — Jordan Love stats (2026 game log)",
+   "name": "NFL.com \u2014 Jordan Love stats (2026 game log)",
    "url": "https://www.nfl.com/players/jordan-love/stats/",
    "used_for": "Prop game log (GB QB); pairs with Christian Watson.",
    "retrieved": "2026-11-01",
@@ -44,7 +44,7 @@
   },
   {
    "id": "nfl-player-goff",
-   "name": "NFL.com — Jared Goff stats (2026 game log)",
+   "name": "NFL.com \u2014 Jared Goff stats (2026 game log)",
    "url": "https://www.nfl.com/players/jared-goff/stats/",
    "used_for": "Prop game log (DET QB); pairs with Amon-Ra St. Brown.",
    "retrieved": "2026-11-01",
@@ -52,7 +52,7 @@
   },
   {
    "id": "nfl-player-arsb",
-   "name": "NFL.com — Amon-Ra St. Brown stats (2026 game log)",
+   "name": "NFL.com \u2014 Amon-Ra St. Brown stats (2026 game log)",
    "url": "https://www.nfl.com/players/amon-ra-st-brown/stats/",
    "used_for": "Prop game log (DET WR); pairs with Jared Goff.",
    "retrieved": "2026-11-01",
@@ -60,7 +60,7 @@
   },
   {
    "id": "nfl-player-walker",
-   "name": "NFL.com — Kenneth Walker III stats (2026 game log)",
+   "name": "NFL.com \u2014 Kenneth Walker III stats (2026 game log)",
    "url": "https://www.nfl.com/players/kenneth-walker-iii/stats/",
    "used_for": "Prop game log (KC RB) for the rushing-yards market.",
    "retrieved": "2026-11-01",
@@ -68,7 +68,7 @@
   },
   {
    "id": "nfl-schedule-2026-w8",
-   "name": "NFL.com — 2026 Week 8 schedule and results",
+   "name": "NFL.com \u2014 2026 Week 8 schedule and results",
    "url": "https://www.nfl.com/schedules/2026/by-week/week-8",
    "used_for": "Official fixture list and final scores; source of the exact game-page URLs recorded in data/official/game_urls_verified.json.",
    "retrieved": "2026-11-01",
@@ -76,7 +76,7 @@
   },
   {
    "id": "nfl-schedule-2026-w9",
-   "name": "NFL.com — 2026 Week 9 schedule",
+   "name": "NFL.com \u2014 2026 Week 9 schedule",
    "url": "https://www.nfl.com/schedules/2026/by-week/week-9",
    "used_for": "Official fixture list for the published Week 9 board (kickoff times, venues, international game).",
    "retrieved": "2026-11-01",
@@ -84,7 +84,7 @@
   },
   {
    "id": "nfl-stats-leaderboard",
-   "name": "NFL.com — 2026 player-stats category pages (passing / rushing / receiving)",
+   "name": "NFL.com \u2014 2026 player-stats category pages (passing / rushing / receiving)",
    "url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
    "used_for": "Selecting WHICH players to capture. No statistic from these pages is published: the text extraction drops the column headers, so any label would be a guess. See irregularity I6.",
    "retrieved": "2026-11-01",
@@ -94,10 +94,16 @@
  "mirror": [
   {
    "id": "nflverse-nfldata",
-   "name": "nflverse/nfldata — open data mirror (games, closing lines, teams, standings)",
+   "name": "nflverse/nfldata \u2014 open data mirror (games, closing lines, teams, standings)",
    "url": "https://github.com/nflverse/nfldata",
    "pinned_commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
-   "files": ["data/games.csv", "data/closing_lines.csv", "data/teams.csv", "data/standings.csv", "data/initial_lines.csv"],
+   "files": [
+    "data/games.csv",
+    "data/closing_lines.csv",
+    "data/teams.csv",
+    "data/standings.csv",
+    "data/initial_lines.csv"
+   ],
    "used_for": "Every game result, rest day, roof/surface, temperature and wind value, and every closing spread / total / moneyline in the backtests and on the originated board.",
    "official": false,
    "trust_evidence": "The mirror's game results reproduce the official NFL standings exactly for all 32 teams in both 2025 and 2026 (64/64 team-seasons, 77/77 checks). See verification.html.",
@@ -105,7 +111,7 @@
   },
   {
    "id": "nflverse-data-releases",
-   "name": "nflverse/nflverse-data — weekly player and team statistics releases",
+   "name": "nflverse/nflverse-data \u2014 weekly player and team statistics releases",
    "url": "https://github.com/nflverse/nflverse-data/releases/tag/stats_player",
    "used_for": "Attempted ingestion of game-level player statistics for a full prop backtest.",
    "official": false,
@@ -131,48 +137,118 @@
   {
    "id": "U3",
    "name": "Opening lines for the modern era",
-   "url": "https://github.com/nflverse/nfldata (data/initial_lines.csv)",
-   "status": "present but only 2021 and 1,088 rows, one book",
+   "url": "https://github.com/nflverse/nfldata",
+   "status": "present, but only 2021 and 1,088 rows from a single book (data/initial_lines.csv)",
    "effect": "No opening-to-closing (line-movement) strategy was tested; only closing prices are used."
   }
  ],
  "assumptions": [
-  {"id": "A1", "assumption": "Spread and total legs settle at -110 (decimal 1.9091).", "why": "The mirror stores closing prices only for moneylines; the two-way spread/total market is conventionally priced at -110.", "impact": "All non-moneyline ROI numbers scale linearly with this price.", "severity": "material"},
-  {"id": "A2", "assumption": "Player props settle at -110.", "why": "No prop price is reachable.", "impact": "Prop ROI is illustrative only.", "severity": "material"},
-  {"id": "A3", "assumption": "Flat 1-unit stakes, no line shopping, no bet limits, no vig rebates.", "why": "Keeps every strategy comparable.", "impact": "Real-world ROI after shopping would differ.", "severity": "moderate"},
-  {"id": "A4", "assumption": "The closing line is the price taken.", "why": "It is the only price in the data.", "impact": "A bettor who must play earlier would face different numbers.", "severity": "material"},
-  {"id": "A5", "assumption": "Leaderboard rewards are virtual points and badges, not money.", "why": "This is a skill competition, not a wagering product.", "impact": "None on the analysis.", "severity": "none"}
+  {
+   "id": "A1",
+   "assumption": "Spread and total legs settle at -110 (decimal 1.9091).",
+   "why": "The mirror stores closing prices only for moneylines; the two-way spread/total market is conventionally priced at -110.",
+   "impact": "All non-moneyline ROI numbers scale linearly with this price.",
+   "severity": "material"
+  },
+  {
+   "id": "A2",
+   "assumption": "Player props settle at -110.",
+   "why": "No prop price is reachable.",
+   "impact": "Prop ROI is illustrative only.",
+   "severity": "material"
+  },
+  {
+   "id": "A3",
+   "assumption": "Flat 1-unit stakes, no line shopping, no bet limits, no vig rebates.",
+   "why": "Keeps every strategy comparable.",
+   "impact": "Real-world ROI after shopping would differ.",
+   "severity": "moderate"
+  },
+  {
+   "id": "A4",
+   "assumption": "The closing line is the price taken.",
+   "why": "It is the only price in the data.",
+   "impact": "A bettor who must play earlier would face different numbers.",
+   "severity": "material"
+  },
+  {
+   "id": "A5",
+   "assumption": "Leaderboard rewards are virtual points and badges, not money.",
+   "why": "This is a skill competition, not a wagering product.",
+   "impact": "None on the analysis.",
+   "severity": "none"
+  }
  ],
  "irregularities": [
-  {"id": "I1", "finding": "nflverse `spread_line` sign convention disagrees with its own documentation.",
+  {
+   "id": "I1",
+   "finding": "nflverse `spread_line` sign convention disagrees with its own documentation.",
    "detail": "nflfastR documentation describes +7.5 as the home team being a 7.5-point underdog. In this file the opposite holds: over 108 completed 2026 games, corr(spread_line, home_moneyline) = -0.976 and corr(spread_line, home_margin) = +0.334, i.e. a positive value means the HOME team is favoured. The pipeline therefore uses the empirical convention and build_dataset.py fails loudly if the correlation ever flips.",
-   "resolution": "Empirical convention adopted and unit-guarded.", "source": "https://github.com/nflverse/nfldata"},
-  {"id": "I2", "finding": "Two different club abbreviations for Arizona.",
+   "resolution": "Empirical convention adopted and unit-guarded.",
+   "source": "https://github.com/nflverse/nfldata"
+  },
+  {
+   "id": "I2",
+   "finding": "Two different club abbreviations for Arizona.",
    "detail": "nfl.com prints 'AZ'; the mirror prints 'ARI'. An explicit alias map is applied before comparing (also LAR->LA, OHSH->WAS, JAC->JAX and relocations).",
-   "resolution": "Alias map in scripts/verify_official.py; no rows dropped.", "source": "https://www.nfl.com/standings/league/2026/REG"},
-  {"id": "I3", "finding": "Weekly player/team statistics releases are unreachable, so the prop sample is tiny.",
-   "detail": "Every nflverse-data release asset redirects to release-assets.githubusercontent.com and the TLS handshake is refused from this sandbox. Prop work therefore rests on six hand-captured nfl.com game logs (44 player-games) instead of a full season of game-level data.",
-   "resolution": "Prop strategies are published but blocked by gate G1 (sample) and marked 'needs review'.", "source": "https://github.com/nflverse/nfldata"},
-  {"id": "I4", "finding": "No player-prop prices anywhere in reach.",
+   "resolution": "Alias map in scripts/verify_official.py; no rows dropped.",
+   "source": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "id": "I3",
+   "finding": "Weekly player/team statistics releases are unreachable, so the prop sample is tiny.",
+   "detail": "Every nflverse-data release asset redirects to release-assets.githubusercontent.com and the TLS handshake is refused from this sandbox. Prop work therefore rests on six hand-captured nfl.com game logs (41 player-games) instead of a full season of game-level data.",
+   "resolution": "Prop strategies are published but blocked by gate G1 (sample) and marked 'needs review'.",
+   "source": "https://github.com/nflverse/nfldata"
+  },
+  {
+   "id": "I4",
+   "finding": "No player-prop prices anywhere in reach.",
    "detail": "Prop ROI uses the -110 assumption (A2). No edge is claimed for any prop.",
-   "resolution": "Flagged; prop rows carry no rank.", "source": ""},
-  {"id": "I5", "finding": "NFL.com does not publish betting lines, so 'our line vs the market' compares against a third-party record of sportsbook closes.",
+   "resolution": "Flagged; prop rows carry no rank.",
+   "source": ""
+  },
+  {
+   "id": "I5",
+   "finding": "NFL.com does not publish betting lines, so 'our line vs the market' compares against a third-party record of sportsbook closes.",
    "detail": "The market column comes from the nflverse mirror, not from the league.",
-   "resolution": "Labelled 'market (third-party)' everywhere it appears.", "source": "https://github.com/nflverse/nfldata"},
-  {"id": "I6", "finding": "NFL.com player-stats category pages lose their column headers in text extraction.",
+   "resolution": "Labelled 'market (third-party)' everywhere it appears.",
+   "source": "https://github.com/nflverse/nfldata"
+  },
+  {
+   "id": "I6",
+   "finding": "NFL.com player-stats category pages lose their column headers in text extraction.",
    "detail": "Rows arrive as bare number sequences whose order cannot be proven, so publishing a 'receiving yards' value from those pages would be a guess. They are used only to pick players, never as a value source.",
-   "resolution": "Values come from each player's own page, where every column has a printed header.", "source": "https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingyards/desc"},
-  {"id": "I7", "finding": "The mirror snapshot is mid-round for 2026 Week 8.",
+   "resolution": "Values come from each player's own page, where every column has a printed header.",
+   "source": "https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingyards/desc"
+  },
+  {
+   "id": "I7",
+   "finding": "The mirror snapshot is mid-round for 2026 Week 8.",
    "detail": "108 of 272 scheduled 2026 regular-season games were complete at capture (through the Thursday Week 8 game). Week 8 is therefore excluded from the published board and only Weeks 9 and 10 are originated.",
-   "resolution": "Board limited to Weeks 9-10.", "source": "https://www.nfl.com/schedules/2026/by-week/week-8"},
-  {"id": "I8", "finding": "Closing lines are single-sourced.",
+   "resolution": "Board limited to Weeks 9-10.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-8"
+  },
+  {
+   "id": "I8",
+   "finding": "Closing lines are single-sourced.",
    "detail": "One mirror, no independent sportsbook cross-check. A stale or mis-keyed price would propagate into every ROI figure.",
-   "resolution": "Accepted with disclosure; totals/spreads still reproduce every official game result.", "source": "https://github.com/nflverse/nfldata"},
-  {"id": "I9", "finding": "Game-page URLs verified only for a subset of fixtures.",
+   "resolution": "Accepted with disclosure; totals/spreads still reproduce every official game result.",
+   "source": "https://github.com/nflverse/nfldata"
+  },
+  {
+   "id": "I9",
+   "finding": "Game-page URLs verified only for a subset of fixtures.",
    "detail": "The page-fetch tool returned the Week 8 and Week 9 schedule pages in chunks; eight Week 9 game-page URLs were seen verbatim and are stored. Every other board row links to the official weekly schedule page instead of a constructed URL, so no dead link is published.",
-   "resolution": "Rows fall back to the verified weekly page.", "source": "https://www.nfl.com/schedules/2026/by-week/week-9"},
-  {"id": "I10", "finding": "NFL rulebook is not cited.",
+   "resolution": "Rows fall back to the verified weekly page.",
+   "source": "https://www.nfl.com/schedules/2026/by-week/week-9"
+  },
+  {
+   "id": "I10",
+   "finding": "NFL rulebook is not cited.",
    "detail": "The rulebook URL this project would have used returns a 404 from nfl.com, and no rule text was independently verified, so no rule is quoted.",
-   "resolution": "Rules removed from the analysis entirely.", "source": "https://www.nfl.com/the-rules/"}
+   "resolution": "Rules removed from the analysis entirely.",
+   "source": "https://www.nfl.com/the-rules/"
+  }
  ]
 }
