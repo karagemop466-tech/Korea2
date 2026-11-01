@@ -453,3 +453,35 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   disagreement as a percentage. Both were display faults: `market_home_line` is now carried in
   `lines.json`, every line table uses one convention, and the edge is shown in points with the note
   defining its sign. Rebuilt: 15 pages, no broken internal links.
+
+- **PR**: https://github.com/karagemop466-tech/Korea2/pull/26 — merged into `main`; the merge commit is
+  recorded below once the merge landed.
+
+* PAGES_DEPLOY_RECORD: see the update appended after the pull request was merged.
+
+### Merge and deployment record — `arena/d88b794a-korea2`
+
+- **PR #18** — <https://github.com/karagemop466-tech/Korea2/pull/18> —
+  merged 2026-11-01T13:38:40Z, merge commit `92ab91cec8a929db1851c937b6ca3d2813f28f6e`.
+  Pre-merge: `validate` 5s, `verify` 35s. Post-merge Pages run
+  <https://github.com/karagemop466-tech/Korea2/actions/runs/41312304655> succeeded;
+  the Pages API reports `status: built`.
+- The `refresh-data` workflow fired once on that merge and committed a refresh
+  that changed nothing but gzip metadata and a wall-clock stamp. Re-running the
+  full build against it produced **no diff**, so published numbers did not move.
+- Determinism fix (PR #23): `prepare.py` writes gzip with a fixed mtime and derives
+  its as-of marker from the data, so a refresh of an unchanged dataset no longer
+  produces a commit. Verified byte-identical across consecutive runs.
+- `data/derived/*.csv.gz` conflicts during later sibling merges were resolved by
+  taking the most recent CI-produced refresh; the build was then re-run and
+  produced no diff, confirming the numbers are stable across refreshes.
+
+### Combined-repository validator sweep — `arena/d88b794a-korea2`
+
+| Check | Result |
+|---|---|
+| `python scripts/analysis/build.py` | ~18s, deterministic, no diff on rebuild |
+| `python tests/check_data.py` | 6 result files consistent, 32/32 teams verified, 0 of 5 ranked |
+| `python tests/check_site.py` | 12 pages, 265 table rows, every row has an https source link |
+| `python scripts/validate_data.py` | all rows sourced, flagged values blank, cross-refs resolve |
+| `python scripts/check_links.py` | 427 local references across 41 HTML pages, no broken links |
