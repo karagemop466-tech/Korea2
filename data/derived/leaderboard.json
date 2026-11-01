@@ -34,7 +34,7 @@
       ],
       "win_rate": 0.5113,
       "p_value": 0.862403,
-      "bh_adjusted_p": 1.0,
+      "bh_adjusted_p": 0.91572,
       "deflated_sharpe_p": 0.946839,
       "reward": "none - gate failure",
       "failed_gates": [
@@ -47,6 +47,33 @@
     },
     {
       "rank": 2,
+      "id": "S5_bye_week_team",
+      "name": "Team coming off a bye (13+ days rest) vs a normal-rest opponent",
+      "family": "single bet (situational)",
+      "verdict": "REJECTED",
+      "gates_passed": "5/10",
+      "n_bets": 82,
+      "decided": 81,
+      "roi": -0.082,
+      "roi_ci": [
+        -0.2858,
+        0.1231
+      ],
+      "win_rate": 0.4815,
+      "p_value": 0.824313,
+      "bh_adjusted_p": 0.91572,
+      "deflated_sharpe_p": 0.984481,
+      "reward": "none - gate failure",
+      "failed_gates": [
+        "G2",
+        "G4",
+        "G5",
+        "G8",
+        "G9"
+      ]
+    },
+    {
+      "rank": 3,
       "id": "S7_wind_under",
       "name": "Under when wind >= 15 mph outdoors",
       "family": "single bet (total)",
@@ -61,7 +88,7 @@
       ],
       "win_rate": 0.5333,
       "p_value": 0.765992,
-      "bh_adjusted_p": 1.0,
+      "bh_adjusted_p": 0.91572,
       "deflated_sharpe_p": 0.899929,
       "reward": "none - gate failure",
       "failed_gates": [
@@ -74,7 +101,7 @@
       ]
     },
     {
-      "rank": 3,
+      "rank": 4,
       "id": "S4_rest_advantage",
       "name": "Rest advantage >= 3 days",
       "family": "single bet (situational)",
@@ -89,7 +116,7 @@
       ],
       "win_rate": 0.5231,
       "p_value": 0.566831,
-      "bh_adjusted_p": 1.0,
+      "bh_adjusted_p": 0.91572,
       "deflated_sharpe_p": 0.922469,
       "reward": "none - gate failure",
       "failed_gates": [
@@ -102,7 +129,7 @@
       ]
     },
     {
-      "rank": 4,
+      "rank": 5,
       "id": "S3_model_total_edge",
       "name": "Model total edge >= 3.0 pts",
       "family": "single bet (total)",
@@ -117,7 +144,7 @@
       ],
       "win_rate": 0.5042,
       "p_value": 0.91572,
-      "bh_adjusted_p": 1.0,
+      "bh_adjusted_p": 0.91572,
       "deflated_sharpe_p": 0.983511,
       "reward": "none - gate failure",
       "failed_gates": [
@@ -130,7 +157,7 @@
       ]
     },
     {
-      "rank": 5,
+      "rank": 6,
       "id": "S1_model_edge_2",
       "name": "Model spread edge >= 2.0 pts",
       "family": "single bet",
@@ -145,7 +172,7 @@
       ],
       "win_rate": 0.4964,
       "p_value": 0.898227,
-      "bh_adjusted_p": 1.0,
+      "bh_adjusted_p": 0.91572,
       "deflated_sharpe_p": 0.995866,
       "reward": "none - gate failure",
       "failed_gates": [
@@ -158,7 +185,7 @@
       ]
     },
     {
-      "rank": 6,
+      "rank": 7,
       "id": "C1_all_home_control",
       "name": "Control - back every home team",
       "family": "control",
@@ -173,7 +200,7 @@
       ],
       "win_rate": 0.4928,
       "p_value": 0.689016,
-      "bh_adjusted_p": 1.0,
+      "bh_adjusted_p": 0.91572,
       "deflated_sharpe_p": 0.999349,
       "reward": "none - gate failure",
       "failed_gates": [
@@ -186,7 +213,7 @@
       ]
     },
     {
-      "rank": 7,
+      "rank": 8,
       "id": "C2_all_under_control",
       "name": "Control - under every game",
       "family": "control",
@@ -201,7 +228,7 @@
       ],
       "win_rate": 0.4918,
       "p_value": 0.644236,
-      "bh_adjusted_p": 1.0,
+      "bh_adjusted_p": 0.91572,
       "deflated_sharpe_p": 0.999482,
       "reward": "none - gate failure",
       "failed_gates": [
@@ -214,7 +241,7 @@
       ]
     },
     {
-      "rank": 8,
+      "rank": 9,
       "id": "S2_model_edge_3",
       "name": "Model spread edge >= 3.0 pts",
       "family": "single bet",
@@ -229,33 +256,8 @@
       ],
       "win_rate": 0.4795,
       "p_value": 0.447562,
-      "bh_adjusted_p": 1.0,
+      "bh_adjusted_p": 0.91572,
       "deflated_sharpe_p": 0.998991,
-      "reward": "none - gate failure",
-      "failed_gates": [
-        "G2",
-        "G4",
-        "G5",
-        "G6",
-        "G8",
-        "G9"
-      ]
-    },
-    {
-      "rank": 9,
-      "id": "S5_short_week_fade",
-      "name": "Fade team whose opponent is on short rest",
-      "family": "single bet (situational)",
-      "verdict": "REJECTED",
-      "gates_passed": "4/10",
-      "n_bets": 0,
-      "decided": null,
-      "roi": null,
-      "roi_ci": null,
-      "win_rate": null,
-      "p_value": null,
-      "bh_adjusted_p": 1.0,
-      "deflated_sharpe_p": null,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",

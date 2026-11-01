@@ -22,9 +22,10 @@
       "mae_improvement_vs_season_mean_pct": -0.33,
       "corr_forecast_actual": 0.5809,
       "resid_sd": 28.196,
-      "originated_line_over_rate": 0.4267,
-      "n_decided": 8374,
-      "pushes_at_originated_line": 364,
+      "median_residual_correction": -3.173,
+      "originated_line_over_rate": 0.5237,
+      "n_decided": 8633,
+      "pushes_at_originated_line": 105,
       "calibration_note": "The line is placed at the forecast, so an unbiased model should show an over rate of 50%. The published rate is the observed one.",
       "calibration_by_quartile": [
         {
@@ -62,9 +63,10 @@
       "mae_improvement_vs_season_mean_pct": 0.55,
       "corr_forecast_actual": 0.6491,
       "resid_sd": 1.89,
-      "originated_line_over_rate": 0.4577,
-      "n_decided": 7380,
-      "pushes_at_originated_line": 1358,
+      "median_residual_correction": -0.163,
+      "originated_line_over_rate": 0.5103,
+      "n_decided": 7219,
+      "pushes_at_originated_line": 1519,
       "calibration_note": "The line is placed at the forecast, so an unbiased model should show an over rate of 50%. The published rate is the observed one.",
       "calibration_by_quartile": [
         {
@@ -102,9 +104,10 @@
       "mae_improvement_vs_season_mean_pct": 0.53,
       "corr_forecast_actual": 0.6425,
       "resid_sd": 28.72,
-      "originated_line_over_rate": 0.4332,
-      "n_decided": 3458,
-      "pushes_at_originated_line": 144,
+      "median_residual_correction": -1.738,
+      "originated_line_over_rate": 0.4989,
+      "n_decided": 3546,
+      "pushes_at_originated_line": 56,
       "calibration_note": "The line is placed at the forecast, so an unbiased model should show an over rate of 50%. The published rate is the observed one.",
       "calibration_by_quartile": [
         {
@@ -142,9 +145,10 @@
       "mae_improvement_vs_season_mean_pct": 0.89,
       "corr_forecast_actual": 0.4443,
       "resid_sd": 85.22,
-      "originated_line_over_rate": 0.5184,
-      "n_decided": 1437,
-      "pushes_at_originated_line": 4,
+      "median_residual_correction": -5.405,
+      "originated_line_over_rate": 0.5453,
+      "n_decided": 1436,
+      "pushes_at_originated_line": 5,
       "calibration_note": "The line is placed at the forecast, so an unbiased model should show an over rate of 50%. The published rate is the observed one.",
       "calibration_by_quartile": [
         {
@@ -183,8 +187,8 @@
           "team": "SEA",
           "games_used": 7,
           "weighted_forecast": 125.1,
-          "originated_line": 125.0,
-          "p_over": 0.501,
+          "originated_line": 122.0,
+          "p_over": 0.537,
           "resid_sd": 32.62
         },
         {
@@ -192,8 +196,8 @@
           "team": "BAL",
           "games_used": 6,
           "weighted_forecast": 99.7,
-          "originated_line": 99.5,
-          "p_over": 0.502,
+          "originated_line": 96.5,
+          "p_over": 0.522,
           "resid_sd": 58.49
         },
         {
@@ -201,8 +205,8 @@
           "team": "NYG",
           "games_used": 7,
           "weighted_forecast": 99.6,
-          "originated_line": 99.5,
-          "p_over": 0.5,
+          "originated_line": 96.5,
+          "p_over": 0.522,
           "resid_sd": 54.46
         },
         {
@@ -210,8 +214,8 @@
           "team": "CIN",
           "games_used": 6,
           "weighted_forecast": 99.3,
-          "originated_line": 99.5,
-          "p_over": 0.499,
+          "originated_line": 96.0,
+          "p_over": 0.514,
           "resid_sd": 90.28
         },
         {
@@ -219,8 +223,8 @@
           "team": "LA",
           "games_used": 5,
           "weighted_forecast": 94.5,
-          "originated_line": 94.5,
-          "p_over": 0.5,
+          "originated_line": 91.5,
+          "p_over": 0.529,
           "resid_sd": 40.74
         },
         {
@@ -228,8 +232,8 @@
           "team": "DET",
           "games_used": 6,
           "weighted_forecast": 92.2,
-          "originated_line": 92.0,
-          "p_over": 0.501,
+          "originated_line": 89.0,
+          "p_over": 0.516,
           "resid_sd": 78.34
         },
         {
@@ -237,8 +241,8 @@
           "team": "DAL",
           "games_used": 7,
           "weighted_forecast": 87.7,
-          "originated_line": 87.5,
-          "p_over": 0.501,
+          "originated_line": 84.5,
+          "p_over": 0.513,
           "resid_sd": 98.3
         },
         {
@@ -246,8 +250,8 @@
           "team": "ATL",
           "games_used": 7,
           "weighted_forecast": 87.7,
-          "originated_line": 87.5,
-          "p_over": 0.501,
+          "originated_line": 84.5,
+          "p_over": 0.516,
           "resid_sd": 79.15
         },
         {
@@ -255,8 +259,8 @@
           "team": "GB",
           "games_used": 8,
           "weighted_forecast": 87.7,
-          "originated_line": 87.5,
-          "p_over": 0.501,
+          "originated_line": 84.5,
+          "p_over": 0.517,
           "resid_sd": 74.31
         },
         {
@@ -264,8 +268,8 @@
           "team": "LV",
           "games_used": 5,
           "weighted_forecast": 87.5,
-          "originated_line": 87.5,
-          "p_over": 0.5,
+          "originated_line": 84.5,
+          "p_over": 0.54,
           "resid_sd": 30.19
         },
         {
@@ -273,8 +277,8 @@
           "team": "NYJ",
           "games_used": 3,
           "weighted_forecast": 87.5,
-          "originated_line": 87.5,
-          "p_over": 0.5,
+          "originated_line": 84.5,
+          "p_over": 0.519,
           "resid_sd": 62.84
         },
         {
@@ -282,8 +286,8 @@
           "team": "NO",
           "games_used": 7,
           "weighted_forecast": 78.7,
-          "originated_line": 78.5,
-          "p_over": 0.501,
+          "originated_line": 75.5,
+          "p_over": 0.521,
           "resid_sd": 61.85
         },
         {
@@ -291,8 +295,8 @@
           "team": "CHI",
           "games_used": 7,
           "weighted_forecast": 78.5,
-          "originated_line": 78.5,
-          "p_over": 0.5,
+          "originated_line": 75.5,
+          "p_over": 0.541,
           "resid_sd": 29.24
         },
         {
@@ -300,8 +304,8 @@
           "team": "CAR",
           "games_used": 7,
           "weighted_forecast": 77.9,
-          "originated_line": 78.0,
-          "p_over": 0.5,
+          "originated_line": 74.5,
+          "p_over": 0.515,
           "resid_sd": 93.09
         },
         {
@@ -309,8 +313,8 @@
           "team": "PHI",
           "games_used": 4,
           "weighted_forecast": 77.6,
-          "originated_line": 77.5,
-          "p_over": 0.501,
+          "originated_line": 74.5,
+          "p_over": 0.525,
           "resid_sd": 50.0
         },
         {
@@ -318,8 +322,8 @@
           "team": "SF",
           "games_used": 6,
           "weighted_forecast": 76.4,
-          "originated_line": 76.5,
-          "p_over": 0.499,
+          "originated_line": 73.5,
+          "p_over": 0.54,
           "resid_sd": 29.2
         },
         {
@@ -327,8 +331,8 @@
           "team": "GB",
           "games_used": 8,
           "weighted_forecast": 76.3,
-          "originated_line": 76.5,
-          "p_over": 0.499,
+          "originated_line": 73.0,
+          "p_over": 0.522,
           "resid_sd": 61.27
         },
         {
@@ -336,8 +340,8 @@
           "team": "DAL",
           "games_used": 7,
           "weighted_forecast": 73.0,
-          "originated_line": 73.0,
-          "p_over": 0.5,
+          "originated_line": 70.0,
+          "p_over": 0.53,
           "resid_sd": 41.17
         },
         {
@@ -345,8 +349,8 @@
           "team": "LV",
           "games_used": 7,
           "weighted_forecast": 72.6,
-          "originated_line": 72.5,
-          "p_over": 0.501,
+          "originated_line": 69.5,
+          "p_over": 0.522,
           "resid_sd": 56.13
         },
         {
@@ -354,8 +358,8 @@
           "team": "LA",
           "games_used": 6,
           "weighted_forecast": 72.5,
-          "originated_line": 72.5,
-          "p_over": 0.5,
+          "originated_line": 69.5,
+          "p_over": 0.512,
           "resid_sd": 96.01
         }
       ]
@@ -414,8 +418,8 @@
           "team": "DAL",
           "games_used": 7,
           "weighted_forecast": 7.4,
-          "originated_line": 7.5,
-          "p_over": 0.496,
+          "originated_line": 7.0,
+          "p_over": 0.52,
           "resid_sd": 8.22
         },
         {
@@ -423,8 +427,8 @@
           "team": "BAL",
           "games_used": 6,
           "weighted_forecast": 6.9,
-          "originated_line": 7.0,
-          "p_over": 0.481,
+          "originated_line": 6.5,
+          "p_over": 0.582,
           "resid_sd": 1.97
         },
         {
@@ -513,8 +517,8 @@
           "team": "CIN",
           "games_used": 6,
           "weighted_forecast": 5.4,
-          "originated_line": 5.5,
-          "p_over": 0.488,
+          "originated_line": 5.0,
+          "p_over": 0.536,
           "resid_sd": 4.15
         },
         {
@@ -522,8 +526,8 @@
           "team": "DAL",
           "games_used": 7,
           "weighted_forecast": 5.4,
-          "originated_line": 5.5,
-          "p_over": 0.487,
+          "originated_line": 5.0,
+          "p_over": 0.535,
           "resid_sd": 4.12
         },
         {
@@ -540,8 +544,8 @@
           "team": "SF",
           "games_used": 7,
           "weighted_forecast": 5.3,
-          "originated_line": 5.5,
-          "p_over": 0.468,
+          "originated_line": 5.0,
+          "p_over": 0.559,
           "resid_sd": 2.19
         }
       ]
@@ -555,8 +559,8 @@
           "team": "KC",
           "games_used": 6,
           "weighted_forecast": 108.7,
-          "originated_line": 108.5,
-          "p_over": 0.501,
+          "originated_line": 107.0,
+          "p_over": 0.509,
           "resid_sd": 77.1
         },
         {
@@ -564,8 +568,8 @@
           "team": "DET",
           "games_used": 6,
           "weighted_forecast": 104.8,
-          "originated_line": 105.0,
-          "p_over": 0.499,
+          "originated_line": 103.0,
+          "p_over": 0.509,
           "resid_sd": 78.53
         },
         {
@@ -573,8 +577,8 @@
           "team": "BUF",
           "games_used": 6,
           "weighted_forecast": 104.5,
-          "originated_line": 104.5,
-          "p_over": 0.5,
+          "originated_line": 102.5,
+          "p_over": 0.514,
           "resid_sd": 57.41
         },
         {
@@ -582,8 +586,8 @@
           "team": "ATL",
           "games_used": 7,
           "weighted_forecast": 94.6,
-          "originated_line": 94.5,
-          "p_over": 0.501,
+          "originated_line": 93.0,
+          "p_over": 0.511,
           "resid_sd": 60.03
         },
         {
@@ -591,8 +595,8 @@
           "team": "TB",
           "games_used": 7,
           "weighted_forecast": 84.7,
-          "originated_line": 84.5,
-          "p_over": 0.501,
+          "originated_line": 83.0,
+          "p_over": 0.509,
           "resid_sd": 74.94
         },
         {
@@ -600,8 +604,8 @@
           "team": "CHI",
           "games_used": 4,
           "weighted_forecast": 84.2,
-          "originated_line": 84.0,
-          "p_over": 0.501,
+          "originated_line": 82.5,
+          "p_over": 0.51,
           "resid_sd": 72.1
         },
         {
@@ -609,8 +613,8 @@
           "team": "IND",
           "games_used": 7,
           "weighted_forecast": 83.7,
-          "originated_line": 83.5,
-          "p_over": 0.502,
+          "originated_line": 82.0,
+          "p_over": 0.521,
           "resid_sd": 32.72
         },
         {
@@ -618,8 +622,8 @@
           "team": "PIT",
           "games_used": 7,
           "weighted_forecast": 83.2,
-          "originated_line": 83.0,
-          "p_over": 0.502,
+          "originated_line": 81.5,
+          "p_over": 0.514,
           "resid_sd": 49.31
         },
         {
@@ -627,8 +631,8 @@
           "team": "CAR",
           "games_used": 7,
           "weighted_forecast": 78.5,
-          "originated_line": 78.5,
-          "p_over": 0.5,
+          "originated_line": 77.0,
+          "p_over": 0.513,
           "resid_sd": 46.77
         },
         {
@@ -636,8 +640,8 @@
           "team": "TEN",
           "games_used": 7,
           "weighted_forecast": 75.7,
-          "originated_line": 75.5,
-          "p_over": 0.503,
+          "originated_line": 74.0,
+          "p_over": 0.523,
           "resid_sd": 30.55
         },
         {
@@ -645,8 +649,8 @@
           "team": "DAL",
           "games_used": 7,
           "weighted_forecast": 75.7,
-          "originated_line": 75.5,
-          "p_over": 0.501,
+          "originated_line": 74.0,
+          "p_over": 0.512,
           "resid_sd": 56.19
         },
         {
@@ -654,8 +658,8 @@
           "team": "MIA",
           "games_used": 5,
           "weighted_forecast": 75.7,
-          "originated_line": 75.5,
-          "p_over": 0.501,
+          "originated_line": 74.0,
+          "p_over": 0.514,
           "resid_sd": 45.98
         },
         {
@@ -663,8 +667,8 @@
           "team": "BAL",
           "games_used": 7,
           "weighted_forecast": 75.5,
-          "originated_line": 75.5,
-          "p_over": 0.5,
+          "originated_line": 73.5,
+          "p_over": 0.517,
           "resid_sd": 46.5
         },
         {
@@ -672,8 +676,8 @@
           "team": "NYG",
           "games_used": 6,
           "weighted_forecast": 74.4,
-          "originated_line": 74.5,
-          "p_over": 0.499,
+          "originated_line": 72.5,
+          "p_over": 0.521,
           "resid_sd": 35.97
         },
         {
@@ -681,8 +685,8 @@
           "team": "LA",
           "games_used": 7,
           "weighted_forecast": 71.9,
-          "originated_line": 72.0,
-          "p_over": 0.499,
+          "originated_line": 70.0,
+          "p_over": 0.524,
           "resid_sd": 31.92
         },
         {
@@ -690,8 +694,8 @@
           "team": "MIN",
           "games_used": 6,
           "weighted_forecast": 71.7,
-          "originated_line": 71.5,
-          "p_over": 0.501,
+          "originated_line": 70.0,
+          "p_over": 0.512,
           "resid_sd": 57.21
         },
         {
@@ -699,8 +703,8 @@
           "team": "NYJ",
           "games_used": 7,
           "weighted_forecast": 70.4,
-          "originated_line": 70.5,
-          "p_over": 0.499,
+          "originated_line": 68.5,
+          "p_over": 0.52,
           "resid_sd": 37.95
         },
         {
@@ -708,8 +712,8 @@
           "team": "CHI",
           "games_used": 7,
           "weighted_forecast": 64.5,
-          "originated_line": 64.5,
-          "p_over": 0.5,
+          "originated_line": 62.5,
+          "p_over": 0.517,
           "resid_sd": 46.44
         },
         {
@@ -717,8 +721,8 @@
           "team": "SEA",
           "games_used": 7,
           "weighted_forecast": 63.8,
-          "originated_line": 64.0,
-          "p_over": 0.499,
+          "originated_line": 62.0,
+          "p_over": 0.511,
           "resid_sd": 63.25
         },
         {
@@ -726,8 +730,8 @@
           "team": "JAX",
           "games_used": 6,
           "weighted_forecast": 62.7,
-          "originated_line": 62.5,
-          "p_over": 0.506,
+          "originated_line": 61.0,
+          "p_over": 0.547,
           "resid_sd": 14.47
         }
       ]
@@ -741,8 +745,8 @@
           "team": "DET",
           "games_used": 6,
           "weighted_forecast": 303.3,
-          "originated_line": 303.5,
-          "p_over": 0.499,
+          "originated_line": 298.0,
+          "p_over": 0.518,
           "resid_sd": 116.46
         },
         {
@@ -750,8 +754,8 @@
           "team": "GB",
           "games_used": 8,
           "weighted_forecast": 281.7,
-          "originated_line": 281.5,
-          "p_over": 0.5,
+          "originated_line": 276.5,
+          "p_over": 0.514,
           "resid_sd": 145.57
         },
         {
@@ -759,8 +763,8 @@
           "team": "LV",
           "games_used": 7,
           "weighted_forecast": 279.4,
-          "originated_line": 279.5,
-          "p_over": 0.5,
+          "originated_line": 274.0,
+          "p_over": 0.523,
           "resid_sd": 94.92
         },
         {
@@ -768,8 +772,8 @@
           "team": "CIN",
           "games_used": 6,
           "weighted_forecast": 278.7,
-          "originated_line": 278.5,
-          "p_over": 0.501,
+          "originated_line": 273.5,
+          "p_over": 0.515,
           "resid_sd": 139.01
         },
         {
@@ -777,8 +781,8 @@
           "team": "LA",
           "games_used": 7,
           "weighted_forecast": 278.1,
-          "originated_line": 278.0,
-          "p_over": 0.5,
+          "originated_line": 272.5,
+          "p_over": 0.519,
           "resid_sd": 119.32
         },
         {
@@ -786,8 +790,8 @@
           "team": "NE",
           "games_used": 7,
           "weighted_forecast": 270.1,
-          "originated_line": 270.0,
-          "p_over": 0.5,
+          "originated_line": 264.5,
+          "p_over": 0.525,
           "resid_sd": 90.28
         },
         {
@@ -795,8 +799,8 @@
           "team": "DAL",
           "games_used": 7,
           "weighted_forecast": 264.6,
-          "originated_line": 264.5,
-          "p_over": 0.501,
+          "originated_line": 259.0,
+          "p_over": 0.533,
           "resid_sd": 68.01
         },
         {
@@ -804,8 +808,8 @@
           "team": "CHI",
           "games_used": 4,
           "weighted_forecast": 261.6,
-          "originated_line": 261.5,
-          "p_over": 0.5,
+          "originated_line": 256.0,
+          "p_over": 0.518,
           "resid_sd": 121.86
         },
         {
@@ -813,8 +817,8 @@
           "team": "JAX",
           "games_used": 6,
           "weighted_forecast": 258.6,
-          "originated_line": 258.5,
-          "p_over": 0.5,
+          "originated_line": 253.0,
+          "p_over": 0.539,
           "resid_sd": 56.69
         },
         {
@@ -822,8 +826,8 @@
           "team": "HOU",
           "games_used": 7,
           "weighted_forecast": 257.0,
-          "originated_line": 257.0,
-          "p_over": 0.5,
+          "originated_line": 251.5,
+          "p_over": 0.516,
           "resid_sd": 133.37
         },
         {
@@ -831,8 +835,8 @@
           "team": "CAR",
           "games_used": 7,
           "weighted_forecast": 256.8,
-          "originated_line": 257.0,
-          "p_over": 0.499,
+          "originated_line": 251.5,
+          "p_over": 0.529,
           "resid_sd": 73.22
         },
         {
@@ -840,8 +844,8 @@
           "team": "SF",
           "games_used": 7,
           "weighted_forecast": 252.4,
-          "originated_line": 252.5,
-          "p_over": 0.5,
+          "originated_line": 247.0,
+          "p_over": 0.536,
           "resid_sd": 60.41
         },
         {
@@ -849,8 +853,8 @@
           "team": "BUF",
           "games_used": 6,
           "weighted_forecast": 245.2,
-          "originated_line": 245.0,
-          "p_over": 0.501,
+          "originated_line": 240.0,
+          "p_over": 0.531,
           "resid_sd": 67.15
         },
         {
@@ -858,8 +862,8 @@
           "team": "PIT",
           "games_used": 7,
           "weighted_forecast": 242.6,
-          "originated_line": 242.5,
-          "p_over": 0.501,
+          "originated_line": 237.0,
+          "p_over": 0.54,
           "resid_sd": 55.78
         },
         {
@@ -867,8 +871,8 @@
           "team": "KC",
           "games_used": 6,
           "weighted_forecast": 238.1,
-          "originated_line": 238.0,
-          "p_over": 0.5,
+          "originated_line": 232.5,
+          "p_over": 0.518,
           "resid_sd": 122.08
         },
         {
@@ -876,8 +880,8 @@
           "team": "NYJ",
           "games_used": 7,
           "weighted_forecast": 235.2,
-          "originated_line": 235.0,
-          "p_over": 0.501,
+          "originated_line": 230.0,
+          "p_over": 0.521,
           "resid_sd": 97.68
         },
         {
@@ -885,8 +889,8 @@
           "team": "ARI",
           "games_used": 7,
           "weighted_forecast": 235.1,
-          "originated_line": 235.0,
-          "p_over": 0.5,
+          "originated_line": 229.5,
+          "p_over": 0.517,
           "resid_sd": 133.35
         },
         {
@@ -894,8 +898,8 @@
           "team": "BAL",
           "games_used": 4,
           "weighted_forecast": 234.6,
-          "originated_line": 234.5,
-          "p_over": 0.5,
+          "originated_line": 229.0,
+          "p_over": 0.529,
           "resid_sd": 78.07
         },
         {
@@ -903,8 +907,8 @@
           "team": "NO",
           "games_used": 7,
           "weighted_forecast": 229.9,
-          "originated_line": 230.0,
-          "p_over": 0.5,
+          "originated_line": 224.5,
+          "p_over": 0.516,
           "resid_sd": 134.84
         },
         {
@@ -912,8 +916,8 @@
           "team": "ATL",
           "games_used": 5,
           "weighted_forecast": 228.5,
-          "originated_line": 228.5,
-          "p_over": 0.501,
+          "originated_line": 223.0,
+          "p_over": 0.592,
           "resid_sd": 23.9
         }
       ]
