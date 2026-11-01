@@ -1,0 +1,218 @@
+{
+ "generated": "2026-11-01T13:46:05Z",
+ "summary": {
+  "n_checks": 16,
+  "n_pass": 14,
+  "n_flag": 2,
+  "n_fail": 0,
+  "n_spot_checks": 3,
+  "n_unverified_items": 6,
+  "games_in_dataset": 7548,
+  "played_games": 7384,
+  "games_officially_spot_checked": 3,
+  "share_of_games_officially_checked": 0.00040628385698808235
+ },
+ "checks": [
+  {
+   "name": "Result equals home minus away score",
+   "status": "PASS",
+   "detail": "7,384 played games checked, max abs difference 0",
+   "source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv"
+  },
+  {
+   "name": "Total equals home plus away score",
+   "status": "PASS",
+   "detail": "max abs difference 0",
+   "source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv"
+  },
+  {
+   "name": "Game identifiers are unique",
+   "status": "PASS",
+   "detail": "7,548 unique of 7,548 rows",
+   "source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv"
+  },
+  {
+   "name": "Every played game has a closing spread and total",
+   "status": "PASS",
+   "detail": "7,384 of 7,384",
+   "source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv"
+  },
+  {
+   "name": "Regular-season game counts match the published schedule sizes",
+   "status": "PASS",
+   "detail": "all seasons match",
+   "source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv"
+  },
+  {
+   "name": "American prices are inside a plausible range",
+   "status": "PASS",
+   "detail": "5,400 priced rows, min 100, max 5000",
+   "source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv"
+  },
+  {
+   "name": "No duplicate player-game rows (keyed on player id)",
+   "status": "PASS",
+   "detail": "0 duplicates on (game_id, player_id)",
+   "source": "https://github.com/ryurko/nflscrapR-data"
+  },
+  {
+   "name": "Display-name collisions are separated by player id",
+   "status": "PASS",
+   "detail": "262 rows share a display name inside a game; they are distinct players and stay distinct because every stat is keyed on the upstream player id",
+   "source": "https://github.com/ryurko/nflscrapR-data"
+  },
+  {
+   "name": "Counting statistics are non-negative",
+   "status": "PASS",
+   "detail": "0 negative values",
+   "source": "https://github.com/ryurko/nflscrapR-data"
+  },
+  {
+   "name": "Negative yardage totals are rare enough to be genuine",
+   "status": "PASS",
+   "detail": "1169 negative yardage values out of 136,317 yardage cells (0.86%) - legitimate lost-yardage games",
+   "source": "https://github.com/ryurko/nflscrapR-data"
+  },
+  {
+   "name": "Receptions never exceed targets",
+   "status": "PASS",
+   "detail": "0 violations",
+   "source": "https://github.com/ryurko/nflscrapR-data"
+  },
+  {
+   "name": "Completions never exceed attempts",
+   "status": "PASS",
+   "detail": "0 violations",
+   "source": "https://github.com/ryurko/nflscrapR-data"
+  },
+  {
+   "name": "Every player row joins to a game",
+   "status": "PASS",
+   "detail": "0 unjoined rows",
+   "source": "https://github.com/ryurko/nflscrapR-data"
+  },
+  {
+   "name": "Spread lines agree between games.csv and closing_lines.csv",
+   "status": "FLAG",
+   "detail": "67.3% identical across 3,368 overlapping games (median difference 0.0, 90th pct 0.5)",
+   "source": "https://github.com/nflverse/nfldata/blob/main/data/closing_lines.csv"
+  },
+  {
+   "name": "Total lines agree between games.csv and closing_lines.csv",
+   "status": "FLAG",
+   "detail": "61.7% identical across 3,368 overlapping games (median difference 0.0, 90th pct 0.5)",
+   "source": "https://github.com/nflverse/nfldata/blob/main/data/closing_lines.csv"
+  },
+  {
+   "name": "Pre-game Elo recomputation has no lookahead",
+   "status": "PASS",
+   "detail": "842 games (2024-2026) recomputed from prior games only; 0 mismatches",
+   "source": "pipeline/build_features.py"
+  }
+ ],
+ "cross_source_detail": {
+  "SPREAD": {
+   "n_games": 3368,
+   "exact_match_rate": 0.6730997624703088,
+   "within_half_point": 0.9112232779097387,
+   "share_over_one_point": 0.028503562945368172,
+   "median_abs_diff": 0.0,
+   "p90_abs_diff": 0.5,
+   "max_abs_diff": 5.5
+  },
+  "TOTAL": {
+   "n_games": 3368,
+   "exact_match_rate": 0.6169833729216152,
+   "within_half_point": 0.9584323040380047,
+   "share_over_one_point": 0.0056413301662707836,
+   "median_abs_diff": 0.0,
+   "p90_abs_diff": 0.5,
+   "max_abs_diff": 3.0
+  }
+ },
+ "spot_checks": [
+  {
+   "game_id": "2026_08_CAR_GB",
+   "gameday": "2026-10-29",
+   "matchup": "CAR at GB",
+   "dataset_score": "CAR 19, GB 27",
+   "official_score": "Panthers 19, Packers 27, FINAL (Oct 29)",
+   "official_url": "https://www.nfl.com/games/panthers-at-packers-2026-reg-8",
+   "official_source_note": "https://www.nfl.com/schedules/ (2026 week 8 list)",
+   "checked": "Final score of the Thursday night game in week 8 of the 2026 season",
+   "verdict": "MATCH",
+   "closing_spread": 3.5,
+   "closing_total": 47.5,
+   "line_source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv",
+   "line_official_verification": ""
+  },
+  {
+   "game_id": "2015_01_PIT_NE",
+   "gameday": "2015-09-10",
+   "matchup": "PIT at NE",
+   "dataset_score": "PIT 21, NE 28",
+   "official_score": "Steelers 21, Patriots 28 (0-0, 3-14, 8-7, 10-7)",
+   "official_url": "https://www.nfl.com/games/steelers-at-patriots-2015-reg-1",
+   "official_source_note": "",
+   "checked": "Final score and quarter-by-quarter totals, 2015 week 1",
+   "verdict": "MATCH",
+   "closing_spread": 7.5,
+   "closing_total": 51.0,
+   "line_source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv",
+   "line_official_verification": ""
+  },
+  {
+   "game_id": "2019_01_GB_CHI",
+   "gameday": "2019-09-05",
+   "matchup": "GB at CHI",
+   "dataset_score": "GB 10, CHI 3",
+   "official_score": "Packers 10, Bears 3",
+   "official_url": "https://www.nfl.com/games/packers-at-bears-2019-reg-1",
+   "official_source_note": "",
+   "checked": "Final score, 2019 week 1 kickoff game",
+   "verdict": "MATCH",
+   "closing_spread": 3.5,
+   "closing_total": 47.0,
+   "line_source": "https://github.com/nflverse/nfldata/blob/main/data/games.csv",
+   "line_official_verification": ""
+  }
+ ],
+ "unverified": [
+  {
+   "item": "Sportsbook player-prop prices (any season)",
+   "why": "No licensed prop feed reachable from the build environment (IR-03).",
+   "consequence": "Every prop ROI / profit cell is blank; prop skill is measured only against the pre-declared naive reference line.",
+   "source_that_would_settle_it": "https://www.nfl.com/ or a licensed odds provider"
+  },
+  {
+   "item": "Player-game statistics for 2018-2026",
+   "why": "The reachable player-game dataset ends with the 2017 season (IR-02).",
+   "consequence": "No prop lines or prop combos are published for 2018-2026; those cells are blank.",
+   "source_that_would_settle_it": "https://github.com/nflverse/nflverse-data/releases/tag/player_stats"
+  },
+  {
+   "item": "Opening (Wednesday) lines outside the 2021 season",
+   "why": "initial_lines.csv upstream contains 2021 only (544 games) (IR-04).",
+   "consequence": "Opening-line value is reported for 2021 only and fails the sample-size gate.",
+   "source_that_would_settle_it": "https://github.com/nflverse/nfldata/blob/main/data/initial_lines.csv"
+  },
+  {
+   "item": "Official-league verification of every historical game",
+   "why": "Only three games could be checked against NFL.com inside this session; the rest rely on the pinned open dataset.",
+   "consequence": "Rows without an official link carry the dataset link only and are marked unverified on the verification page.",
+   "source_that_would_settle_it": "https://www.nfl.com/schedules/ (per-season pages)"
+  },
+  {
+   "item": "Closing-line provenance (which book, which snapshot)",
+   "why": "Neither games.csv nor closing_lines.csv documents the book or timestamp behind its prices.",
+   "consequence": "Prices are used as the evaluation price; no claim is made that they are the best available price at bet time.",
+   "source_that_would_settle_it": "book-level historical odds feed"
+  },
+  {
+   "item": "Injury reports, depth charts, weather forecasts at bet time",
+   "why": "Not present in any reachable dataset.",
+   "consequence": "No injury or depth-chart signal is claimed anywhere in this project.",
+   "source_that_would_settle_it": "https://www.nfl.com/injuries/"
+  }
+ ]
+}

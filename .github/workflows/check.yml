@@ -1,0 +1,45 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests-and-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pandas numpy scipy pyarrow
+
+      - name: Unit tests (settlement, odds, statistics, published artefacts)
+        run: python -m unittest discover -s pipeline/tests -t pipeline -v
+
+      - name: Static link check (no network required)
+        run: python pipeline/check_links.py
+
+      - name: Confirm every page renders from site_data
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          files = sorted(pathlib.Path("site_data").glob("*.json"))
+          assert files, "site_data is empty"
+          for f in files:
+              json.loads(f.read_text())
+          print(f"{len(files)} JSON artefacts parse")
+          pages = list(pathlib.Path("pages").glob("*.html")) + [pathlib.Path("index.html")]
+          assert len(pages) >= 13, f"only {len(pages)} pages"
+          for p in pages:
+              assert p.stat().st_size > 2000, f"{p} looks empty"
+          print(f"{len(pages)} pages present")
+          PY
