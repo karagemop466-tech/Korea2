@@ -135,6 +135,7 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(page_title)} | Line Lab</title>
 <meta name="description" content="Independent NFL line origination, correlation measurement and strategy validation research.">
+<meta name="generator" content="line-lab/scripts/build_site.py">
 <link rel="stylesheet" href="{'../' if current.startswith('pages/') else ''}assets/style.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>

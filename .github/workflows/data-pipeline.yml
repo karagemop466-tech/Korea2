@@ -38,7 +38,17 @@ jobs:
       - name: Build site
         run: python scripts/build_site.py 2>&1 | tee -a data/derived/run_log.txt
       - name: Verify site
-        run: python tests/check_site.py 2>&1 | tee -a data/derived/run_log.txt
+        run: |
+          # The published root site must be this generator's output, not a sibling session's rebuild
+          # of the same paths. Fail loudly if ownership has been taken over.
+          python - <<'EOF'
+          import sys
+          html = open("index.html").read()
+          ok = "line-lab/scripts/build_site.py" in html
+          print("published site owner:", "line-lab" if ok else "UNKNOWN - sibling generator")
+          sys.exit(0 if ok else 1)
+          EOF
+          python tests/check_site.py 2>&1 | tee -a data/derived/run_log.txt
       - name: Commit derived data and site
         run: |
           git config user.name "line-lab-bot"

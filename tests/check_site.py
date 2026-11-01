@@ -39,6 +39,7 @@ class Doc(HTMLParser):
         self._cell_has_link = False
         self._row_index = 0
         self._in_tbody = False
+        self.generator = ""
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -46,6 +47,8 @@ class Doc(HTMLParser):
             self.links.append(a["href"])
         if a.get("id"):
             self.ids.add(a["id"])
+        if tag == "meta" and a.get("name") == "generator":
+            self.generator = a.get("content", "")
         if tag == "title":
             self._in_title = True
         if tag == "table":
@@ -79,9 +82,17 @@ class Doc(HTMLParser):
             self.title += data
 
 
-def is_published(path: str) -> bool:
+def is_published(path: str, doc: "Doc | None" = None) -> bool:
+    """A page is 'published' only if the integration builder generated it.
+
+    Sibling sessions' generators write to the same index.html/pages/ paths, so ownership is detected
+    from the page itself (the <meta name="generator"> marker) instead of from the path name.
+    """
     p = path.replace("./", "")
-    return p == "index.html" or p.startswith("pages/")
+    in_scope = p == "index.html" or p.startswith("pages/")
+    if doc is not None:
+        return in_scope and "line-lab/scripts/build_site.py" in (doc.generator or "")
+    return in_scope
 
 
 legacy_notes: list[str] = []
@@ -106,6 +117,7 @@ def main() -> int:
         print("FAIL: no HTML files found")
         return 1
 
+    # pass 1: parse
     for f in files:
         with open(f) as fh:
             html = fh.read()
@@ -114,6 +126,17 @@ def main() -> int:
         docs[f] = d
         if not d.title.strip():
             errors.append(f"{f}: missing <title>")
+
+    # Publication scope is only claimed when the ROOT index.html is the integrated build. A sibling
+    # generator may own the same paths at any moment; in that case everything is link-checked only.
+    root = docs.get("index.html")
+    site_is_ours = bool(root and "line-lab/scripts/build_site.py" in (root.generator or ""))
+    owned = [f for f in files if site_is_ours and is_published(f, docs.get(f))]
+
+    # pass 2: links and source discipline
+    legacy_notes: list[str] = []
+    for f in files:
+        d = docs[f]
         for href in d.links:
             if href.startswith(("http://", "https://", "mailto:")):
                 if href.startswith("http://"):
@@ -129,29 +152,26 @@ def main() -> int:
                 errors.append(f"{f}: broken internal link {href} -> {path}")
             elif anchor and anchor not in docs.get(path, Doc()).ids:
                 errors.append(f"{f}: broken anchor {href} on {path}")
-        # The source-link rule is enforced on the site this project publishes (root index + pages/).
-        # Sibling session artefacts are retained verbatim for audit and are only link-checked.
-        if is_published(f) and d.rows_without_source:
+        if site_is_ours and is_published(f, d) and d.rows_without_source:
             errors.append(f"{f}: {len(d.rows_without_source)} table row(s) without a source link "
                           f"(rows {d.rows_without_source[:5]})")
         elif d.rows_without_source:
             legacy_notes.append(f"{f}: {len(d.rows_without_source)} row(s) without a source column (sibling artefact)")
 
-    for req in REQUIRED:
-        if req not in docs:
-            errors.append(f"missing required page {req}")
+    if owned:
+        for req in REQUIRED:
+            if req not in docs:
+                errors.append(f"missing required page {req}")
+        for req in REQUIRED[1:]:
+            if not any(req in docs[f].links for f in owned):
+                errors.append(f"{req} is not linked from any published page")
 
-    nav_links = set(re.findall(r'<nav[^>]*>(.*?)</nav>', open("index.html").read(), re.S))
-    for req in REQUIRED[1:]:
-        if not any(req in d.links for d in docs.values()):
-            errors.append(f"{req} is not linked from any page")
-
-    published = [f for f in files if is_published(f)]
-    print(f"checked {len(files)} pages ({len(published)} published, {len(files) - len(published)} archived), "
+    print(f"checked {len(files)} pages ({len(owned)} published by this build, "
+          f"{len(files) - len(owned)} other), "
           f"{sum(d.tables for d in docs.values())} tables, {sum(len(d.links) for d in docs.values())} links")
     if legacy_notes:
-        print(f"note: {len(legacy_notes)} archived sibling page(s) do not carry per-row source columns; "
-              "they are excluded from the published navigation.")
+        print(f"note: {len(legacy_notes)} page(s) outside the published build do not carry per-row "
+              "source columns and are link-checked only.")
     if errors:
         print(f"\nFAILED with {len(errors)} issue(s):")
         for e in errors[:40]:
