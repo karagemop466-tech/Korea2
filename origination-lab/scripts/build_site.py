@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import site_common as sc
 from site_common import (DOCS, ROOT, blank, card, e, load, note, num, page, pctp, pill,
-                         roi, spts, src, status_pill, table, units, md_to_html)
+                         roi, season, spts, src, status_pill, table, units, md_to_html)
 
 INTEG = load("integrity.json")
 LINES = load("lines.json")
@@ -275,7 +275,7 @@ def pg_lines():
     season_rows = []
     for s in reversed(LINES["by_season"]):
         season_rows.append([
-            num(s["season"], 0), num(s["games"], 0),
+            season(s["season"]), num(s["games"], 0),
             num(s["model_mae_margin"]), num(s["market_mae_margin"]),
             num(s["model_mae_total"]), num(s["market_mae_total"]),
             num(s["corr_model_market_margin"], 3), num(s["corr_model_market_total"], 3),
@@ -299,7 +299,7 @@ def pg_lines():
             spts(r["edge_home_pts"], 1),
             num(r["our_total"], 1), num(r["market_total"], 1), spts(r["edge_total_pts"], 1),
             num(r["our_home_ml"], 0), num(r["market_home_ml"], 0),
-            num(r["our_home_win_prob"] * 100, 1),
+            num(r["our_home_win_prob"] * 100, 1, "%"),
         ])
     slate = table(
         [("Date", False), ("Wk", True), ("Game", False), ("Our line (home)", True),
@@ -743,7 +743,7 @@ def pg_props():
                    sub="share of outcomes that finished over the line at each offset",
                    note=src(SOURCES, ["S9"]))
 
-    ex_rows = [[num(x["season"], 0), num(x["week"], 0), e(x["player"]), e(x["team"]), e(x["opp"]),
+    ex_rows = [[season(x["season"]), num(x["week"], 0), e(x["player"]), e(x["team"]), e(x["opp"]),
                 e(x["market"]), num(x["our_line"], 1), num(x["actual"], 0),
                 pill(x["result"], {"over": "info", "under": "neutral", "push": "warn"}[x["result"]])]
                for x in reversed(PROPS["examples"])]
@@ -1022,7 +1022,7 @@ def pg_data():
                  col_cls=[None, "wrap-cell", "wrap-cell", "wrap-cell", "t", None])
 
     cov = INTEG["coverage_by_season"]
-    covrows = [[num(c["season"], 0), num(c["games"], 0), num(c["with_line"], 0)] for c in cov]
+    covrows = [[season(c["season"]), num(c["games"], 0), num(c["with_line"], 0)] for c in cov]
     covtbl = table([("Season", True), ("Games", True), ("With a line", True)], covrows,
                    col_cls=["n"] * 3, caption="Coverage by season",
                    note=src(SOURCES, ["S1"]))
