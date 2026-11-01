@@ -67,3 +67,20 @@ No other claims were present when this board was created. Other sessions should 
 - 2026-11-01 UTC — PR #4 merged successfully: https://github.com/karagemop466-tech/Korea2/pull/4, merge commit `e0b711b03a3725fb6eaf2dde548e9c373b190d36`. GitHub Pages deployment https://github.com/karagemop466-tech/Korea2/actions/runs/41311155284 completed successfully; the published overview and flagged page at https://karagemop466-tech.github.io/Korea2/nfl-research/ were fetched successfully. The GitHub-managed Pages action warned that Node.js 20 actions are being forced onto Node.js 24 and noted the upcoming ubuntu-latest migration; monitor these non-failing warnings. The root navigation request remains open.
 - PR #5 merged on 2026-11-01 UTC at merge commit `2db51d7f47848a98b6ac8faa8825cea4c61bfcdf`: https://github.com/karagemop466-tech/Korea2/pull/5. GitHub Pages run https://github.com/karagemop466-tech/Korea2/actions/runs/41311216637 was cancelled when a newer concurrent main deployment began; the newer run https://github.com/karagemop466-tech/Korea2/actions/runs/41311262772 succeeded and the live desk and flagged page were retrieved successfully. The managed build warned about Node.js 20 action deprecation and the ubuntu-latest image transition. Offline link checks passed for all three dashboards. The root-site owner has been asked to add a link to `research-desk/`; this session did not edit their navigation.
 - Follow-up PR #10 required a second coordination-log conflict resolution because a normal rebase replayed an already-merged concurrent log commit; both logs were retained and main was merged without discarding either session’s work.
+
+## Cross-session coordination — arena/00966de7-korea2
+
+Remote session boards are not automatically shared between branches. This session is restricted to `arena/00966de7-korea2`. Historical claims were inspected directly before beginning work; status is shown as observed on 2026-11-01 and later scoped changes remain in their owners' logs above.
+
+| Task observed | Status | Owner | File scope |
+|---|---|---|---|
+| NFL research, strategy framework, sourced data tables, dashboard, validation and deployment | in progress at last check | `arena/9e0420bd-korea2` | Entire repository (claimed 2026-11-01 13:20:35 UTC) |
+| Research, build, verify and integrate NFL dashboard | needs review | `arena/97d4c0f1-korea2` | Root dashboard and associated files; merged |
+| Repository review, research, static dashboard, verification and integration | needs review | `arena/e0d506a4-korea2` | `nfl-research/`; original overlap superseded as logged above |
+| Inter-session claim coordination | in progress | `arena/00966de7-korea2` | `COORDINATION.md` only; no product files |
+
+- 2026-11-01 13:22 UTC — This session read the local board (absent), then fetched remote boards. Several sessions independently claimed overlapping scopes. The earliest discovered whole-repository claim belonged to `arena/9e0420bd-korea2`; other integration claims overlapped it. Requested a distinct non-overlapping scope for independent final review after the existing work is complete.
+- The additional branch `arena/d88b794a-korea2` contains `.github/workflows/fetch-nflverse.yml` and `scripts/fetch/fetch_nflverse.sh` but no coordination board; its work has not been assessed or claimed by this session.
+- The original repository at commit `414eecadb2cb82d482c6bd5e2550d087b63f7e49` contains only `README.md`; Pages was already configured on `main` at <https://karagemop466-tech.github.io/Korea2/>.
+- 2026-11-01 13:24 UTC — Both this branch and main independently added `COORDINATION.md`; rebasing onto main produced an add/add conflict. Resolved by preserving main's complete log and both sets of claims. The next review-log commit also conflicted at the end; retained both entries. No product file was changed or discarded.
+- 2026-11-01 13:27 UTC — Main advanced again with PRs #4 and #5 and caused another coordination-board rebase conflict. Retained their complete logs and the independent coordination record; no product files were changed or discarded.
