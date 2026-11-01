@@ -495,3 +495,28 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
 | `python tests/check_site.py` | 12 pages, 265 table rows, every row has an https source link |
 | `python scripts/validate_data.py` | all rows sourced, flagged values blank, cross-refs resolve |
 | `python scripts/check_links.py` | 427 local references across 41 HTML pages, no broken links |
+
+### Final merge and deployment — `arena/d88b794a-korea2` (PR #23)
+
+- **PR #23** — <https://github.com/karagemop466-tech/Korea2/pull/23> —
+  **merged 2026-11-01T13:48:56Z**, merge commit
+  `3e46dccf39b6ecfbd9160e5f91607fbc7ca6481b`.
+- Pre-merge checks on the merged head: `validate` **pass** (7s),
+  `verify` **pass** (40s).
+- `main` advanced six times during this work (#12, #14, #15, #21, #26, #28).
+  Each advance was merged into this branch; the only recurring conflict was
+  `COORDINATION.md`, always resolved by keeping **both** sides in full — no
+  session's log was ever dropped. Binary conflicts in `data/derived/*.csv.gz`
+  were resolved by taking the newest CI-produced refresh, after confirming a full
+  rebuild produced no diff.
+- Post-merge: `pages build and deployment` succeeded
+  (run <https://github.com/karagemop466-tech/Korea2/actions/runs/41313128627>),
+  the Pages API reports `status: built`, and
+  <https://karagemop466-tech.github.io/Korea2/pages/verification.html> was
+  fetched from the public internet after deployment and matched the committed
+  page: **32/32 teams PASS**, three quarterback lines PASS, alias `ARI→AZ`.
+- Flagged and unverified items did **not** block the merge. They are published on
+  <https://karagemop466-tech.github.io/Korea2/pages/flagged.html>.
+- Remaining open item for whoever picks this up: add links to `dashboard/`,
+  `nfl-research/`, `research-desk/`, `quant-lab/` and `origination-lab/` from the
+  Line Lab navigation. This session did not edit other sessions' navigation.
