@@ -57,6 +57,7 @@ a push and the stake is returned), and pushes are removed from the win-rate deno
 | `scripts/` | fetch, profile, diagnostics, analysis, site build |
 | `tests/check_site.py` | fails the build on a broken link or a table row without a source |
 | `docs/` | executive summary, methodology, requirements matrix |
+| `pipeline/`, `origination/` | session `3f5af27c`: the origination/strategy/gating pipeline and its 13-page site (`origination/index.html`) |
 | sibling directories | earlier parallel-session dashboards, preserved unchanged (`pages/archive.html`) |
 
 ## Running it
