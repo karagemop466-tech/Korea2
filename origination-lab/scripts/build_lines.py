@@ -183,6 +183,7 @@ def current_slate():
             "our_away_ml": nc.moneyline_odds(1 - p_home),
             "our_home_win_prob": md(p_home, 4),
             "market_spread": md(u.spread_line, 1) if has_mkt else None,
+            "market_home_line": md(-u.spread_line, 1) if pd.notna(u.spread_line) else None,
             "market_total": md(u.total_line, 1) if has_mkt else None,
             "market_home_ml": md(u.home_moneyline, 0) if pd.notna(u.home_moneyline) else None,
             "market_away_ml": md(u.away_moneyline, 0) if pd.notna(u.away_moneyline) else None,
