@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods and reproducibility · NFL Line Lab</title>
+<meta name="description" content="How every number on this site is produced, settled and tested — with the code path that regenerates it.">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316233c'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='14' font-weight='700' fill='%23c8102e' text-anchor='middle'%3ENFL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="mark">NFL</span> Line Lab</a>
+  <nav class="main"><a href="index.html">Dashboard</a><a href="lines.html">Originated lines</a><a href="signals.html">Signals</a><a href="strategies.html">Leaderboard</a><a href="gates.html">Validation gates</a><a href="parlays.html">Parlays</a><a href="props.html">Player props</a><a href="correlation.html">Correlation</a><a href="luck.html">Luck removal</a></nav>
+</div></header>
+<div class="subnav"><div class="wrap"><a href="executive-summary.html">Executive summary</a><a href="requirements.html">Requirements</a><a href="data.html">Data</a><a href="sources.html">Sources</a><a href="methods.html" aria-current="page">Methods</a><a href="flagged.html">Flagged for review</a></div></div>
+<main class="wrap">
+<div class="page-head"><h1>Methods and reproducibility</h1><p class="lede">How every number on this site is produced, settled and tested — with the code path that regenerates it.</p></div>
+
+<h2>Pipeline</h2>
+<pre><code>scripts/fetch_data.py     # pull 9 extracts, hash them, write data/manifest.json
+scripts/build_integrity.py # 9 checks: signs, reconciliation, coherence, coverage
+scripts/build_lines.py    # walk-forward rating model -> spread / total / moneyline
+scripts/build_signals.py  # 27 pre-registered signals, FDR + out-of-sample
+scripts/build_strategies.py # 18 strategy families, 7 gates, leaderboard
+scripts/build_props.py    # player prop origination + calibration
+scripts/build_correlations.py # phi coefficients, copula pricing, key numbers
+scripts/build_luck.py     # permutation nulls, reliability, evidence bar
+scripts/build_site.py     # this site
+scripts/check_links.py    # internal links + external source links</code></pre>
+<p><code>python3 scripts/build_all.py</code> runs the lot in dependency order. No step requires network
+access except <code>fetch_data.py</code>.</p>
+
+<h2>The rating model</h2>
+<p>Points scored is modelled as an additive function of team offence, opponent defence, a home-field
+constant and a rest differential, fitted by weighted ridge regression on the stacked home and away
+equations. Weights decay with a 1.15-year half-life. For every (season, week) block the fit uses
+only games that kicked off earlier; the block is then predicted. Ratings carried into a new season are
+shrunk 40% toward league average. Franchise relocations are mapped to one code (F10).</p>
+<ul>
+<li><b>Spread</b> = predicted home margin, rounded to the nearest half point.</li>
+<li><b>Total</b> = sum of the two predicted scores, rounded to the nearest half point.</li>
+<li><b>Moneyline</b> = Φ(margin / 13.6). The 13.6-point sigma is the residual scale of NFL margins.</li>
+</ul>
+
+<h2>Settlement rules</h2>
+<ul>
+<li>Every bet is 1 unit and settles at the American price recorded in the source extract.</li>
+<li>Push → stake returned, zero profit, excluded from the hit-rate denominator.</li>
+<li>Parlay price = product of the leg decimal prices, expressed back as American odds.</li>
+<li>Parlay with a pushed leg → whole ticket treated as a push (conservative; F5).</li>
+<li>Teaser → fixed two-team price of −110 (assumption; F4).</li>
+<li>Returns are never compounded and no stake sizing is applied.</li>
+</ul>
+
+<h2>Statistics</h2>
+<ul>
+<li><b>Break-even test:</b> one-sided exact binomial against the win rate implied by the prices actually
+taken (not against 50%).</li>
+<li><b>Wilson intervals</b> for every hit rate.</li>
+<li><b>Benjamini-Hochberg</b> false-discovery control across the whole research programme
+(45 tests).</li>
+<li><b>Max-statistic block bootstrap</b> (4-week blocks) for the best-of-N correction.</li>
+<li><b>Permutation null</b> for team-season ATS dispersion, preserving the one-winner-per-game constraint.</li>
+<li><b>Bootstrap</b> confidence intervals for strategy ROI.</li>
+<li><b>Brier score and log loss</b> for probability forecasts.</li>
+<li><b>Phi coefficient</b> with a Fisher-z interval for binary leg correlation.</li>
+</ul>
+
+<h2>Discovery / validation split</h2>
+<p>Signals and strategies are developed on 2002-2015 (discovery) and judged on 2016-2026 (validation).
+Gate G2 uses the full sample for power, because discarding half the data makes a real 2% edge effectively
+invisible; the untouched window is then required to agree in sign and to be positive.</p>
+
+<h2>Reproducing any number on this site</h2>
+<ol>
+<li><code>python3 scripts/fetch_data.py</code> — downloads and hashes the extracts; compare against
+<code>data/manifest.json</code>.</li>
+<li><code>python3 scripts/build_all.py</code> — rebuilds every JSON artefact and the site.</li>
+<li>Every published figure is a field in <code>data/derived/*.json</code>; the site renders those files
+directly, so a discrepancy means a stale build, never a hand-edited page.</li>
+</ol>
+
+<h2>Limitations</h2>
+<ul>
+<li>Closing prices from a single undocumented source (F1); no line shopping, no live or prop markets.</li>
+<li>No injury, roster, practice or travel data; weather fields are undocumented (F13).</li>
+<li>Player-week data covers two seasons only (F2).</li>
+<li>League-official verification is a spot check, not an automated diff (F7).</li>
+<li>Results are historical and in-sample to the sport, not a forecast of any future season.</li>
+</ul>
+
+<h2>Not betting advice</h2>
+<p>This is a research artefact. Nothing here is a recommendation to place a wager, and the project's own
+conclusion is that none of its strategies has yet demonstrated an edge that survives validation.</p>
+
+</main>
+<footer><div class="wrap">
+  <div><b>NFL Line Lab</b> — line origination, signal research and a gated strategy competition.<br>
+  Built from hashed open datasets; every table row carries its source id. Not betting advice.</div>
+  <div><a href="sources.html">Source registry</a> · <a href="flagged.html">Flagged for review</a> ·
+  <a href="methods.html">Methods</a> · <a href="requirements.html">Requirements</a></div>
+</div></footer>
+</body></html>
