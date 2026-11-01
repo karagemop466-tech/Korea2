@@ -881,33 +881,45 @@ not modelled.</li>
 # ---------------------------------------------------------------- sources
 def page_sources() -> str:
     ss = W.sources()
-    rows = []
+    rows_own, rows_sib = [], []
     for sid, s in ss.items():
+        title = s.get("title") or s.get("label") or sid
+        pub = s.get("publisher") or s.get("org") or ""
         kind = {"official": "ok", "regulator": "ok", "academic": "ok", "community": "warn",
                 "unverified": "bad"}.get(s.get("type"), "warn")
-        rows.append([esc(s["title"]), esc(s["publisher"]), badge(kind, s.get("type", "")),
-                     esc(s.get("confirmed", "")),
-                     f'<a href="{esc(s["url"])}" rel="noopener">Open source</a>'])
-    body = (f'''<div class="hero compact"><div class="eyebrow">SOURCE REGISTER</div>
-<h1>Every claim has a link.</h1>
-<p class="lede">Each row below was opened and its content confirmed on '''
-        + '2026-11-01' 
-        + f'''.
-Sources that could not be confirmed are not listed here; they are on the Flagged for Review page
-with the reason.</p></div>
+        confirmed = s.get("confirmed") or s.get("note") or ""
+        if len(confirmed) > 240:
+            confirmed = confirmed[:237].rstrip() + "..."
+        row = [esc(title), esc(pub), badge(kind, str(s.get("type", ""))[:18]), esc(confirmed),
+               f'<a href="{esc(s["url"])}" rel="noopener">Open</a>']
+        if (s.get("verified_by") or "").startswith("integration session"):
+            rows_own.append(row)
+        else:
+            rows_sib.append(row)
 
-'''
-        + section("Verified sources", table(
-    ["Source", "Publisher", "Type", "What was confirmed", "Link"], rows,
-    caption="Type 'community' redistributes official NFL data and is labelled as such wherever used."))
-        + section("How sources are used", '''<ul class="ticks">
-<li><strong>Official NFL</strong> documents define rules, statistics and data distribution.</li>
-<li><strong>Regulator</strong> filings define how bets settle, including pushes and parlay mechanics.</li>
-<li><strong>Academic</strong> work supplies the statistical methods (FDR control, bet sizing).</li>
-<li><strong>Community</strong> feeds supply the numbers, with file hashes recorded in the manifest.</li>
-</ul>'''))
+    body = (
+        '<div class="hero compact"><div class="eyebrow">SOURCE REGISTER</div>'
+        '<h1>Every claim has a link.</h1>'
+        '<p class="lede">Two groups are shown separately because they were verified by different '
+        'sessions on the same day. Group 1 was opened and read by this build; group 2 was contributed '
+        'by sibling sessions working in parallel on this repository, and is reproduced with their '
+        'confirmation notes rather than re-asserted as verified here.</p></div>'
+        + section("1. Verified by this build", table(
+            ["Source", "Publisher", "Type", "What was confirmed", "Link"], rows_own,
+            caption="Each entry was opened on 2026-11-01 and its content read; sources that could not be "
+                    "confirmed are excluded and appear on the Flagged for review page instead."))
+        + section("2. Registry entries from sibling sessions", table(
+            ["Source", "Publisher", "Type", "Confirmation note as recorded", "Link"], rows_sib,
+            caption="Carried over unchanged from the shared registry so the two sessions do not "
+                    "overwrite each other's work. Verify before relying on any of these."))
+        + section("How sources are used", '<ul class="ticks">'
+                  '<li><strong>Official NFL</strong> documents define rules, statistics and data distribution.</li>'
+                  '<li><strong>Regulator</strong> filings define how bets settle, including pushes and parlay mechanics.</li>'
+                  '<li><strong>Academic</strong> work supplies the statistical methods (FDR control, bet sizing).</li>'
+                  '<li><strong>Community</strong> feeds supply the numbers, with file hashes recorded in the manifest.</li>'
+                  '</ul>'))
     return W.layout("Source register", "pages/sources.html", body,
-                    subtitle="Verified sources, with what each one actually supports.")
+                    subtitle="Verified sources, grouped by who verified them.")
 
 
 # ---------------------------------------------------------------- flagged

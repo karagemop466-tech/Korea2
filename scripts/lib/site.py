@@ -57,7 +57,7 @@ def src(sid: str, label: str | None = None) -> str:
     s = sources().get(sid)
     if not s:
         return '<span class="flag">source missing</span>'
-    text = label or s.get("short") or s["title"]
+    text = label or s.get("short") or s.get("title") or s.get("label") or sid
     if len(text) > 44:
         text = text[:41].rstrip() + "..."
     return f'<a href="{_html.escape(s["url"])}" rel="noopener">{_html.escape(text)}</a>'

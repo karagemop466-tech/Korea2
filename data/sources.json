@@ -1,87 +1,482 @@
 {
-  "note": "Every entry below was opened and its content confirmed by this session on the date shown. Entries that could not be confirmed are NOT listed here; they appear on the Flagged for Review page instead. 'community' sources redistribute official NFL data and are labelled as such wherever they are used.",
-  "verified_on": "2026-11-01",
+  "meta": {
+    "title": "Master source registry \u2014 all citations used across this project",
+    "verified_on": "2026-11-01",
+    "verification_method": "Every URL below was opened and its content read on 2026-11-01 (UTC) via direct page fetch or full-content search result. No URL is included that was not checked on that date. Dynamic pages (odds boards, standings, injury reports) are cited as live official sources; snapshot values are recorded in league_facts.json with an as-of date.",
+    "policy": "Only official / first-party sources are used: the NFL and its official properties, licensed-sportsbook official help pages, state gaming regulators, NIST (US government statistics), Princeton University (hosting the original Kelly paper), Kaggle (official competition platform), NOAA/NWS, and the National Council on Problem Gambling. Third-party blogs are NOT used as sources; anything that could only be found there is left blank and listed in data/flagged.json.",
+    "integration_note": "Two independent registries were merged by the integration session (arena/70a33596-korea2): the SRC-* entries below were built by the sibling data/quant sessions, and the entries appended after them were opened and confirmed by the integration session for the published dashboard. Both sets were verified on 2026-11-01."
+  },
   "sources": [
     {
+      "id": "SRC-NFL-SCHED-2026",
+      "label": "NFL Media \u2014 \u201c2026 NFL Schedule Announced\u201d (May 14, 2026)",
+      "url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced",
+      "org": "NFL (media.nfl.com)",
+      "type": "league official",
+      "note": "18-week, 272-game 2026 regular season; each team plays 17 regular-season + 3 preseason games; season kicks off Wed Sept 9, 2026; Week 18 on Jan 9-10, 2027 with all 16 games divisional; 14-team playoff (7 per conference) since 2020; 9 international games incl. Week 9 Madrid (Bengals at Falcons).",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-TEAMS",
+      "label": "NFL.com \u2014 official directory of all 32 NFL teams and their official sites",
+      "url": "https://www.nfl.com/teams/",
+      "org": "NFL (nfl.com)",
+      "type": "league official",
+      "note": "Lists all 32 clubs across NFC/AFC with links to each team's official website.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-PLAYER-STATS",
+      "label": "NFL.com \u2014 official player statistics (passing, rushing, receiving, etc., seasons back to 1920)",
+      "url": "https://www.nfl.com/stats/player-stats/",
+      "org": "NFL (nfl.com)",
+      "type": "league official stats",
+      "note": "2026 passing leaders page confirmed live on 2026-11-01 (e.g., Jordan Love 2,246 yds through Week 8).",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-TEAM-STATS",
+      "label": "NFL.com \u2014 official team statistics (offense / defense / special teams)",
+      "url": "https://www.nfl.com/stats/team-stats/",
+      "org": "NFL (nfl.com)",
+      "type": "league official stats",
+      "note": "2026 REG offense passing team stats confirmed live on 2026-11-01.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-NGS",
+      "label": "NFL Next Gen Stats \u2014 official player-tracking platform (charts, stats, highlights)",
+      "url": "https://nextgenstats.nfl.com/",
+      "org": "NFL (nextgenstats.nfl.com)",
+      "type": "league official tracking data",
+      "note": "Confirmed live 2026-11-01; shows 2026 Week 8 highlights, route/carry/pass charts, stat leaders.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-NGS-TECH",
+      "label": "NFL Football Operations \u2014 Next Gen Stats technology page (RFID tags, 10 Hz tracking, AWS, 200+ data points/play)",
+      "url": "https://operations.nfl.com/gameday/technology/nfl-next-gen-stats",
+      "org": "NFL Football Operations (operations.nfl.com)",
+      "type": "league official",
+      "note": "Describes stadium tracking system: 20-30 UWB receivers, 2-3 RFID tags per player, ball/officials/pylons tagged; location/speed/acceleration at 10x/sec; metrics via ML on AWS.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-PRO-FAQ",
+      "label": "NFL Support \u2014 NFL Pro FAQ (Next Gen Stats data collection; matchup advantage built from success rate and EPA per play)",
+      "url": "https://support.nfl.com/hc/en-us/articles/35869706651156-NFL-Pro-FAQ-s-and-Answers",
+      "org": "NFL (support.nfl.com)",
+      "type": "league official",
+      "note": "Confirms NGS is NFL-operated tracking of every player on every play; NGS stats available the day after each game; NFL's own matchup-advantage scores use success rate and EPA per play.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-NGS-HUB",
+      "label": "NFL.com Next Gen Stats hub (incl. official explainer videos for Expected Points Added & Success Rate, Completion Probability/CPOE)",
+      "url": "https://www.nfl.com/next-gen-stats/",
+      "org": "NFL (nfl.com)",
+      "type": "league official",
+      "note": "Hub page lists official NGS stat explainers, including \u201cExpected Points Added & Success Rate\u201d.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-INJURIES",
+      "label": "NFL.com \u2014 official weekly NFL Injury Report",
+      "url": "https://www.nfl.com/injuries/",
+      "org": "NFL (nfl.com)",
+      "type": "league official injury data",
+      "note": "Live page on 2026-11-01 showed the Week 8, 2026 injury report (practice status + game status per player). Weekly deep links follow /injuries/league/<season>/<regN>.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-INJURY-POLICY",
+      "label": "NFL.com \u2014 Competition Committee revisions to the Injury Report Policy (status definitions)",
+      "url": "https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693",
+      "org": "NFL (nfl.com)",
+      "type": "league official policy",
+      "note": "Practice Report: Did Not Participate / Limited / Full. Game Status Report: Questionable = uncertain; Doubtful = unlikely to play; Out = will not play; \u201cProbable\u201d eliminated.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-IMPORTANT-DATES",
+      "label": "NFL.com \u2014 2026-27 NFL important dates (Personnel (Injury) Report Policy filing deadlines)",
+      "url": "https://www.nfl.com/news/2026-27-national-football-league-important-dates",
+      "org": "NFL (nfl.com)",
+      "type": "league official policy",
+      "note": "Clubs must file Practice Reports by 4:00 p.m. ET on practice days and a weekly Game Status Report by 4:00 p.m. ET on the designated day before each game; updates required on any change.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-SCHED-W9",
+      "label": "NFL.com \u2014 2026 regular-season schedule, Week 9",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+      "org": "NFL (nfl.com)",
+      "type": "league official schedule",
+      "note": "Week 9, 2026: TNF Nov 5 Jaguars at Ravens 8:15 PM; Madrid international game Nov 8 Bengals at Falcons 9:30 AM; Sunday Nov 8 slate incl. Broncos-Panthers, Cowboys-Colts, Jets-Chiefs, Lions-Dolphins, Browns-Saints, Giants-Eagles, etc.; byes: Steelers, Titans.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-STANDINGS",
+      "label": "NFL.com \u2014 official 2026 regular-season standings (league view)",
+      "url": "https://www.nfl.com/standings/league/2026/reg",
+      "org": "NFL (nfl.com)",
+      "type": "league official standings",
+      "note": "Snapshot 2026-11-01 (through Week 8): MIN 6-0-0, SF 6-1-0, BUF 5-1-0, KC 5-1-0 lead the league; dynamic page \u2014 values change weekly.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-ROSTER",
+      "label": "NFL.com \u2014 team roster pages incl. depth-chart order (e.g., Patriots 2026 roster)",
+      "url": "https://www.nfl.com/teams/new-england-patriots/roster",
+      "org": "NFL (nfl.com)",
+      "type": "league official roster/depth chart",
+      "note": "Team pages under /teams/<team>/roster show the official roster with depth chart order (pattern confirmed for NE, DET, NYJ, BUF, AZ).",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-RULEBOOK",
+      "label": "NFL Football Operations \u2014 official 2026 NFL Rulebook",
+      "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "org": "NFL Football Operations (operations.nfl.com)",
+      "type": "league official rules",
+      "note": "Full official 2026 rulebook with 2026 rule changes; PDF downloadable from the page.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-DK-GLOSSARY",
+      "label": "DraftKings Support \u2014 Glossary of Betting Terms (ATS, point spread, moneyline, over/under, teaser, push, related contingencies, settlement)",
+      "url": "https://support.draftkings.com/dk/en-us/glossary-of-betting-terms?id=kb_article_view&sysparm_article=KB0010398",
+      "org": "DraftKings (licensed sportsbook) \u2014 official help",
+      "type": "sportsbook official rules/help",
+      "note": "Defines point spread (+/- handicap, \u201ccovers\u201d), against the spread, over/unders, teaser (adjusted spreads/totals at lower payout), push handling in parlays, \u201crelated contingencies\u201d (correlated picks restricted), settlement based on official results.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-DK-PARLAY",
+      "label": "DraftKings Support \u2014 \u201cWhat is a parlay bet?\u201d (all legs must win; push leg removed and odds recalculated; correlated selections restricted; SGP / Player Prop Parlay types)",
+      "url": "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
+      "org": "DraftKings \u2014 official help",
+      "type": "sportsbook official rules/help",
+      "note": "\u201cA parlay is a bet that combines two or more single wagers into one bet\u2026 All added bets must win\u2026 If one selection loses, the whole parlay loses. If a selection results in a push, it is removed from the parlay and the odds are recalculated.\u201d Correlated outcomes may be restricted.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-DK-PROP",
+      "label": "DraftKings Support \u2014 \u201cWhat is a prop bet?\u201d (wager on individual player or specific in-game event, not the game outcome; examples)",
+      "url": "https://support.draftkings.com/dk/en-us/what-is-a-prop-bet?id=kb_article_view&sysparm_article=KB0010778",
+      "org": "DraftKings \u2014 official help",
+      "type": "sportsbook official rules/help",
+      "note": "\u201cA prop bet or proposition bet is a wager on an individual player or specific event in a game/match that is not directly connected to the outcome of a game.\u201d",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-DK-NFL-BOARD",
+      "label": "DraftKings Sportsbook \u2014 NFL odds board (live spread / total / moneyline, game lines, alternate lines, player props, halves, specials)",
+      "url": "https://sportsbook.draftkings.com/leagues/football/nfl",
+      "org": "DraftKings \u2014 official sportsbook",
+      "type": "sportsbook official odds",
+      "note": "Snapshot 2026-11-01 (Week 8 Sunday): e.g., BAL at BUF +3.5 -120 / O54.5 -110 / +142; CLE at PIT +3.5 -110 / O39.5 -102 / +160. Dynamic \u2014 always re-check at the book.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-DK-FB-FAQ",
+      "label": "DraftKings Sportsbook \u2014 Football betting FAQ (moneyline, point spread, over/under definitions)",
+      "url": "https://sportsbook.draftkings.com/sports/football",
+      "org": "DraftKings \u2014 official sportsbook",
+      "type": "sportsbook official rules/help",
+      "note": "Moneyline = odds to win outright; point spread = handicap factored into final score (favorite must win by more than the line to cover); over/under = wager on combined final score vs posted total.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-FD-TERMS",
+      "label": "FanDuel Support \u2014 Sports Betting Terms and How to Bet (spread at standard 11-to-10 / -110, moneyline, over/under, SGP, round robin, teaser, prop glossary)",
+      "url": "https://support.fanduel.com/s/article/Sports-Betting-Terms",
+      "org": "FanDuel (licensed sportsbook) \u2014 official help",
+      "type": "sportsbook official rules/help",
+      "note": "\u201cBets on the point spread are usually offered at 11-to-10 odds\u2026 With odds at -110, you would bet $11 to win $10.\u201d Glossary: money line expressed as 3-digit number (-150 = bet $150 to win $100); propositions/props = outcomes within an event; teaser = parlay with adjusted spread/total at lower payoff.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NV-REG22",
+      "label": "Nevada Gaming Control Board \u2014 Regulation 22, Race Books and Sports Pools (Rev. 1/26)",
+      "url": "https://www.gaming.nv.gov/siteassets/content/regs/regulation-22-as-of-1-26.pdf",
+      "org": "State of Nevada \u2014 gaming regulator (gaming.nv.gov)",
+      "type": "government regulator",
+      "note": "Official definitions: \u201csports pool\u201d accepts wagers on sporting events incl. parlay card wagers; \u201cparlay card wager\u201d = wager on outcomes of 2+ games or 2+ contingencies within games; permitted wagers include professional sport sanctioned by a governing body; outcomes must be confirmable from official public records of the league/governing body or its designated statistics provider; house rules must be posted.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-PIN-ORIGINATOR",
+      "label": "Pinnacle Betting Resources \u2014 \u201cBottom-Up Betting Explained: What is an Originator and How Do You Build a Basic Model?\u201d",
+      "url": "https://www.pinnacle.com/betting-resources/en/educational/bottom-up-betting-explained-what-is-an-originator-and-how-do-you-build-a-basic-model",
+      "org": "Pinnacle (licensed sportsbook) \u2014 official educational content",
+      "type": "sportsbook official education",
+      "note": "Defines an originator as someone who \u201caim[s] to originate their own lines using raw data and their own models\u201d; for NFL models the article names the input data: player stats, team stats, injury reports, and weather data for outdoor games; compare own probability vs the sportsbook's implied probability to find value.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-PIN-CLV",
+      "label": "Pinnacle Betting Resources \u2014 \u201cWhat Is Closing Line Value (CLV) in Sports Betting?\u201d",
+      "url": "https://www.pinnacle.com/betting-resources/en/educational/what-is-closing-line-value-clv-in-sports-betting",
+      "org": "Pinnacle \u2014 official educational content",
+      "type": "sportsbook official education",
+      "note": "CLV = how the odds you bet compare to the final (closing) odds just before the event; positive CLV = better line than the close and one of the strongest indicators of skill/long-term profitability; tips: bet early, track injuries/weather/market sentiment, use multiple sportsbooks for best price.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-PIN-ODDS",
+      "label": "Pinnacle Betting Resources \u2014 \u201cBetting odds explained: How do odds work?\u201d (probability \u2194 odds; bookmaker margin = implied probability sum minus 100%)",
+      "url": "https://www.pinnacle.com/betting-resources/en/betting-strategy/betting-odds-explained-how-do-odds-work/qen2dcqrvncnv4jf",
+      "org": "Pinnacle \u2014 official educational content",
+      "type": "sportsbook official education",
+      "note": "1/decimal odds = implied probability; \u201cthe amount by which the implied probability diverges from 100% is the margin the bookmaker has added to that particular market.\u201d",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-PIN-AMER-IP",
+      "label": "Pinnacle \u2014 \u201cImplied probability\u201d odds-conversion guide (American odds formulas: negative |odds|/(|odds|+100); positive 100/(odds+100))",
+      "url": "https://www.pinnacle.com/en/esports-hub/betting-articles/educational/implied-probability-odds-conversion/72m2z3g3g22m5tps",
+      "org": "Pinnacle \u2014 official educational content",
+      "type": "sportsbook official education",
+      "note": "Worked American-odds conversion examples (e.g., -520 \u2192 520/620 = 83.89%; +381 \u2192 100/481 = 20.79%). Applying to -110: 110/210 = 52.38% implied per side (arithmetic from these official formulas).",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-PIN-KELLY",
+      "label": "Pinnacle Betting Resources \u2014 \u201cThe Kelly Criterion: A stock trader and betting expert's perspective\u201d (stake proportional to perceived edge; variance argument for fractional Kelly)",
+      "url": "https://www.pinnacle.com/betting-resources/en/betting-strategy/the-kelly-criterion-a-stock-trader-and-betting-experts-perspective/h8k2p3f2r8b7rzdp",
+      "org": "Pinnacle \u2014 official educational content",
+      "type": "sportsbook official education",
+      "note": "Kelly = staking method where stake is proportional to perceived edge; full Kelly variance can be \u201cuninvestably\u201d high for sports models, motivating fractional (e.g., half) Kelly.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-KELLY-1956",
+      "label": "Kelly, J.L. Jr. (1956), \u201cA New Interpretation of Information Rate\u201d, Bell System Technical Journal 35, pp. 917-926 \u2014 original paper, hosted by Princeton University",
+      "url": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+      "org": "Princeton University (princeton.edu) hosting the original Bell Labs paper",
+      "type": "primary academic source",
+      "note": "Full text verified 2026-11-01: derives the fraction of capital to bet to maximize exponential growth rate of capital.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NIST-CORR",
+      "label": "NIST/SEMATECH e-Handbook (Dataplot reference) \u2014 CORRELATION: Pearson r formula r = Sxy / sqrt(Sxx\u00b7Syy), range -1..+1, and significance test via F(1, N-2)",
+      "url": "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm",
+      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "type": "government statistics reference",
+      "note": "Formula and p-value test for correlation verified 2026-11-01.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NIST-GLOSSARY",
+      "label": "NIST/SEMATECH e-Handbook glossary \u2014 \u201ccorrelation\u201d: Pearson correlation coefficient ranges from -1 to +1",
+      "url": "https://www.itl.nist.gov/div898/handbook/glossary.htm",
+      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "type": "government statistics reference",
+      "note": "Definition of correlation and Pearson coefficient range.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NIST-PROP-TEST",
+      "label": "NIST/SEMATECH e-Handbook 7.2.4 \u2014 one-proportion test (binomial; z = (p\u0302 \u2212 p0)/sqrt(p0(1\u2212p0)/N), valid N>30, min{Np0, N(1\u2212p0)} \u2265 5)",
+      "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm",
+      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "type": "government statistics reference",
+      "note": "Used for the \u201cskill vs luck\u201d gate: test whether a strategy's win rate exceeds the break-even rate implied by the price. Verified 2026-11-01.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NIST-SAMPLESIZE",
+      "label": "NIST/SEMATECH e-Handbook 7.2.4.2 \u2014 sample sizes required to detect a change in a proportion (\u03b4)",
+      "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc242.htm",
+      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "type": "government statistics reference",
+      "note": "Formula for required N when testing proportions; used to set minimum bet-count gates.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NIST-BONFERRONI",
+      "label": "NIST/SEMATECH e-Handbook 7.4.7.3 \u2014 Bonferroni's method for multiple comparisons (overall confidence 1\u2212\u03b1 with per-comparison \u03b1/g)",
+      "url": "https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm",
+      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "type": "government statistics reference",
+      "note": "Used to correct for data-mining bias when many candidate signals are tested. Verified 2026-11-01.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-KAGGLE-DOCS",
+      "label": "Kaggle official docs \u2014 Competitions: public vs private leaderboard, overfitting warning, data leakage definition",
+      "url": "https://www.kaggle.com/docs/competitions",
+      "org": "Kaggle (kaggle.com) \u2014 official platform documentation",
+      "type": "platform official docs",
+      "note": "\u201cPublic Leaderboard: visible during the competition; based on a sample of test data. Private Leaderboard: the final ranking based on the remainder of the test data. Overfitting: a high public score doesn't guarantee a high private score.\u201d Also defines leakage. Verified 2026-11-01.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-KAGGLE-BDB2027",
+      "label": "Kaggle \u2014 NFL Big Data Bowl 2027 (hosted by the National Football League; $100,000 prize pool; judges are analytics staff of the 32 NFL clubs; Open + University tracks; deadline Jan 6, 2027)",
+      "url": "https://www.kaggle.com/competitions/nfl-big-data-bowl-2027",
+      "org": "Kaggle + NFL",
+      "type": "official competition",
+      "note": "Real example of a leaderboard competition with cash rewards run by the NFL itself using Next Gen Stats data. Verified 2026-11-01.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NFL-BDB-ANNOUNCE",
+      "label": "NFL Media \u2014 \u201cNational Football League Announces Seventh Annual Big Data Bowl Powered by AWS\u201d ($100,000 in prizes on Kaggle, judged by NFL team data analysts)",
+      "url": "https://media.nfl.com/news-and-releases/corporate-communications/national-football-league-announces-seventh-annual-big-data-bowl-",
+      "org": "NFL (media.nfl.com)",
+      "type": "league official",
+      "note": "Confirms NFL runs analytics leaderboard competitions on Kaggle with six-figure prize money. Verified 2026-11-01.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NWS",
+      "label": "NOAA National Weather Service \u2014 official point forecasts (forecast.weather.gov MapClick point forecast; weather.gov)",
+      "url": "https://forecast.weather.gov/MapClick.php?lat=40.7128&lon=-74.006",
+      "org": "NOAA / National Weather Service (weather.gov)",
+      "type": "government official data",
+      "note": "Point forecast verified 2026-11-01 (7-day forecast for a lat/lon point, incl. hourly). Use stadium lat/lon for outdoor-game weather inputs.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-GH-REPO",
+      "label": "This repository on GitHub (official location for repo review) \u2014 karagemop466-tech/Korea2",
+      "url": "https://github.com/karagemop466-tech/Korea2",
+      "org": "GitHub \u2014 repo host",
+      "type": "repository official",
+      "note": "Repo verified public via GitHub API on 2026-11-01; default branch main; base commit 414eecadb2cb82d482c6bd5e2550d087b63f7e49.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-GH-README-BASE",
+      "label": "README.md at base commit 414eeca (manual review link)",
+      "url": "https://github.com/karagemop466-tech/Korea2/blob/414eecadb2cb82d482c6bd5e2550d087b63f7e49/README.md",
+      "org": "GitHub \u2014 repo host",
+      "type": "repository official",
+      "note": "Single line '# Korea2' at base commit \u2014 the entire repo content reviewed line-by-line.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
+      "id": "SRC-NCPG",
+      "label": "National Council on Problem Gambling \u2014 About the National Problem Gambling Helpline (24/7/365 call, text, chat; all 50 states + U.S. territories)",
+      "url": "https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/",
+      "org": "National Council on Problem Gambling (ncpgambling.org)",
+      "type": "official responsible-gambling resource",
+      "note": "Page (verified 2026-11-01) states the helpline is currently reached at 1-800-MY-RESET; the long-standing number 1-800-GAMBLER (1-800-426-2537) is documented on state government resource pages (e.g., mn.gov). Both are official NCPG helpline references.",
+      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+    },
+    {
       "id": "nfl-rulebook-2026",
+      "label": "2026 NFL Rulebook",
       "title": "2026 NFL Rulebook",
+      "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "org": "NFL Football Operations",
       "publisher": "NFL Football Operations",
       "type": "official",
-      "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "note": "Page returns the official 2026 rulebook with the 2026 rule-change table (6-1-3, 6-1-5, 6-1-6, 19-2) and a link to the downloadable ops-2026-NFL-Rulebook-FINAL PDF.",
       "confirmed": "Page returns the official 2026 rulebook with the 2026 rule-change table (6-1-3, 6-1-5, 6-1-6, 19-2) and a link to the downloadable ops-2026-NFL-Rulebook-FINAL PDF.",
       "supports": "Scoring, timing and overtime rules that determine how spread and total bets settle.",
+      "short": "2026 NFL rulebook",
+      "verified_on": "2026-11-01",
       "used_on": [
         "market",
         "validation"
       ],
-      "short": "2026 NFL rulebook"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "nfl-guide-statisticians",
+      "label": "Guide for Statisticians (2025 edition, 38 pp.)",
       "title": "Guide for Statisticians (2025 edition, 38 pp.)",
+      "url": "https://www.nflgsis.com/gsis/documentation/stadiumguides/guide_for_statisticians.pdf",
+      "org": "NFL Game Statistics & Information System (GSIS)",
       "publisher": "NFL Game Statistics & Information System (GSIS)",
       "type": "official",
-      "url": "https://www.nflgsis.com/gsis/documentation/stadiumguides/guide_for_statisticians.pdf",
+      "note": "PDF opened: 'Copyright 2025, National Football League', 'Last Modified: 2025', contents list including Rushing, Passing and Sacks, Fumbles, Qualifications for Individual Leaders.",
       "confirmed": "PDF opened: 'Copyright 2025, National Football League', 'Last Modified: 2025', contents list including Rushing, Passing and Sacks, Fumbles, Qualifications for Individual Leaders.",
       "supports": "The NFL's own rules for how player statistics are credited, which is what player-prop markets settle on. Prop-model results are only meaningful because a stat line is defined by this document.",
+      "short": "NFL stat rules",
+      "verified_on": "2026-11-01",
       "used_on": [
         "props",
         "flagged"
       ],
-      "short": "NFL stat rules"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "nfl-genius",
+      "label": "NFL extends strategic partnership with Genius Sports as exclusive official NFL data, Watch and Bet distribution partner",
       "title": "NFL extends strategic partnership with Genius Sports as exclusive official NFL data, Watch and Bet distribution partner",
+      "url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "org": "NFL.com",
       "publisher": "NFL.com",
       "type": "official",
-      "url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "note": "Article confirms Genius Sports is the NFL's exclusive distributor of real-time official play-by-play statistics, Next Gen Stats and the official sports-betting data feed, and that official NFL data powers 'player props, micro-betting, same-game parlays'.",
       "confirmed": "Article confirms Genius Sports is the NFL's exclusive distributor of real-time official play-by-play statistics, Next Gen Stats and the official sports-betting data feed, and that official NFL data powers 'player props, micro-betting, same-game parlays'.",
       "supports": "Why official data, not third-party estimates, governs prop and same-game-parlay settlement; and why a prop strategy cannot be validated without a price feed derived from that data.",
+      "short": "NFL official data partner",
+      "verified_on": "2026-11-01",
       "used_on": [
         "props",
         "flagged",
         "strategies"
       ],
-      "short": "NFL official data partner"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "nfl-ngs",
+      "label": "Performance Tracking Data (Next Gen Stats)",
       "title": "Performance Tracking Data (Next Gen Stats)",
+      "url": "https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/",
+      "org": "NFL Football Operations",
       "publisher": "NFL Football Operations",
       "type": "official",
-      "url": "https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/",
+      "note": "Page describes venue tracking (20-30 ultra-wide band receivers, RFID tags), sampling 'location, speed, distance traveled and acceleration at a rate of 10 times per second'.",
       "confirmed": "Page describes venue tracking (20-30 ultra-wide band receivers, RFID tags), sampling 'location, speed, distance traveled and acceleration at a rate of 10 times per second'.",
       "supports": "Availability and nature of tracking data; relevant to features this project does not yet use.",
+      "short": "NFL Next Gen Stats",
+      "verified_on": "2026-11-01",
       "used_on": [
         "method",
         "flagged"
       ],
-      "short": "NFL Next Gen Stats"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "nflreadr-dictionary",
+      "label": "Data Dictionary - Schedules (nflreadr)",
       "title": "Data Dictionary - Schedules (nflreadr)",
+      "url": "https://nflreadr.nflverse.com/articles/dictionary_schedules.html",
+      "org": "nflverse project",
       "publisher": "nflverse project",
       "type": "community",
-      "url": "https://nflreadr.nflverse.com/articles/dictionary_schedules.html",
+      "note": "Dictionary confirms result = home score minus away score, total = sum of both scores, away_rest/home_rest as days of rest, and the moneyline fields.",
       "confirmed": "Dictionary confirms result = home score minus away score, total = sum of both scores, away_rest/home_rest as days of rest, and the moneyline fields.",
       "supports": "Column semantics for the dataset this project computes with. The spread sign convention itself is proven empirically in data/derived/diag_signs.json rather than assumed from documentation.",
+      "short": "nflverse data dictionary",
+      "verified_on": "2026-11-01",
       "used_on": [
         "market",
         "lines",
         "validation"
       ],
-      "short": "nflverse data dictionary"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "nflverse-data",
+      "label": "nflverse-data releases (schedules, stats_player, stats_team)",
       "title": "nflverse-data releases (schedules, stats_player, stats_team)",
+      "url": "https://github.com/nflverse/nflverse-data",
+      "org": "nflverse project (redistributes NFL official feeds)",
       "publisher": "nflverse project (redistributes NFL official feeds)",
       "type": "community",
-      "url": "https://github.com/nflverse/nflverse-data",
+      "note": "Release assets downloaded by the repository's own CI run; per-file size and SHA-256 recorded in data/derived/manifest.json.",
       "confirmed": "Release assets downloaded by the repository's own CI run; per-file size and SHA-256 recorded in data/derived/manifest.json.",
       "supports": "The play-by-play-derived box scores and game lines behind every number on this site.",
+      "short": "nflverse feed (official NFL data)",
+      "verified_on": "2026-11-01",
       "used_on": [
         "lines",
         "props",
@@ -90,75 +485,100 @@
         "leaderboard",
         "market"
       ],
-      "short": "nflverse feed (official NFL data)"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "dk-house-rules",
+      "label": "DraftKings Sportsbook Betting Rules (filed with the Massachusetts Gaming Commission)",
       "title": "DraftKings Sportsbook Betting Rules (filed with the Massachusetts Gaming Commission)",
+      "url": "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-8.1.24.pdf",
+      "org": "DraftKings / Massachusetts Gaming Commission",
       "publisher": "DraftKings / Massachusetts Gaming Commission",
       "type": "regulator",
-      "url": "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-8.1.24.pdf",
+      "note": "PDF opened. States that a point-spread bet 'will be settled as push if the outcome is tied once the spread has been applied'; that a total exactly equal to the line is void; defines Parlay, Same Game Parlay, Progressive Parlay and Teaser, including Football Super Teaser '3 team teaser - buying 10 points, ties lose, odds -120/1.83' and Monster Teaser '-140/1.71'.",
       "confirmed": "PDF opened. States that a point-spread bet 'will be settled as push if the outcome is tied once the spread has been applied'; that a total exactly equal to the line is void; defines Parlay, Same Game Parlay, Progressive Parlay and Teaser, including Football Super Teaser '3 team teaser - buying 10 points, ties lose, odds -120/1.83' and Monster Teaser '-140/1.71'.",
       "supports": "Settlement conventions used in the backtester, and the verified teaser prices in the parlay/teaser EV table.",
+      "short": "DraftKings rules (regulator-filed)",
+      "verified_on": "2026-11-01",
       "used_on": [
         "validation",
         "strategies",
         "leaderboard"
       ],
-      "short": "DraftKings rules (regulator-filed)"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "kelly-1956",
+      "label": "A New Interpretation of Information Rate (Bell System Technical Journal 35:4, pp. 917-926)",
       "title": "A New Interpretation of Information Rate (Bell System Technical Journal 35:4, pp. 917-926)",
+      "url": "https://archive.org/details/bstj35-4-917",
+      "org": "J. L. Kelly Jr. / Internet Archive scan",
       "publisher": "J. L. Kelly Jr. / Internet Archive scan",
       "type": "academic",
-      "url": "https://archive.org/details/bstj35-4-917",
+      "note": "Scanned article opened; abstract on the page matches the 1956 paper on bet sizing and exponential growth.",
       "confirmed": "Scanned article opened; abstract on the page matches the 1956 paper on bet sizing and exponential growth.",
       "supports": "The staking rule behind the reward tiers (bankroll growth per unit of edge).",
+      "short": "Kelly (1956)",
+      "verified_on": "2026-11-01",
       "used_on": [
         "leaderboard"
       ],
-      "short": "Kelly (1956)"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "bh-1995",
+      "label": "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing",
       "title": "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing",
+      "url": "https://www.stat.purdue.edu/~doerge/BIOINFORM.D/FALL06/Benjamini%20and%20Y%20FDR.pdf",
+      "org": "Benjamini & Hochberg, JRSS-B 57(1) 289-300",
       "publisher": "Benjamini & Hochberg, JRSS-B 57(1) 289-300",
       "type": "academic",
-      "url": "https://www.stat.purdue.edu/~doerge/BIOINFORM.D/FALL06/Benjamini%20and%20Y%20FDR.pdf",
+      "note": "Full text PDF opened; procedure and FDR definition read from the paper itself.",
       "confirmed": "Full text PDF opened; procedure and FDR definition read from the paper itself.",
       "supports": "Gate G4: the multiple-testing correction applied across all tested strategies.",
+      "short": "Benjamini-Hochberg (1995)",
+      "verified_on": "2026-11-01",
       "used_on": [
         "validation",
         "leaderboard"
       ],
-      "short": "Benjamini-Hochberg (1995)"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "nist-t-table",
+      "label": "NIST/SEMATECH e-Handbook 1.3.6.7.2 - Critical Values of the Student's-t Distribution",
       "title": "NIST/SEMATECH e-Handbook 1.3.6.7.2 - Critical Values of the Student's-t Distribution",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3672.htm",
+      "org": "National Institute of Standards and Technology",
       "publisher": "National Institute of Standards and Technology",
       "type": "official",
-      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3672.htm",
+      "note": "Table page opened and read (two-sided test instructions and critical values).",
       "confirmed": "Table page opened and read (two-sided test instructions and critical values).",
       "supports": "The t-based significance checks behind the gate evaluation.",
+      "short": "NIST t-table",
+      "verified_on": "2026-11-01",
       "used_on": [
         "validation"
       ],
-      "short": "NIST t-table"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     },
     {
       "id": "nfl-injury-policy",
+      "label": "NFL Injury Report Policy",
       "title": "NFL Injury Report Policy",
+      "url": "https://operations.nfl.com/football-ops/league-governance/injury-report/",
+      "org": "NFL Football Operations",
       "publisher": "NFL Football Operations",
       "type": "unverified",
-      "url": "https://operations.nfl.com/football-ops/league-governance/injury-report/",
+      "note": "NOT CONFIRMED - this URL returned HTTP 404 when fetched on 2026-11-01. A 2017 policy PDF at operations.nfl.com/media/2683/2017-nfl-injury-report-policy.pdf was referenced by third parties but was not fetched or confirmed by this session.",
       "confirmed": "NOT CONFIRMED - this URL returned HTTP 404 when fetched on 2026-11-01. A 2017 policy PDF at operations.nfl.com/media/2683/2017-nfl-injury-report-policy.pdf was referenced by third parties but was not fetched or confirmed by this session.",
       "supports": "Nothing is published on this site that depends on it. Injury-report timing would be a required input for any injury-based strategy, so those strategies are marked blocked.",
+      "short": "NFL injury policy (404 - unverified)",
+      "verified_on": "2026-11-01",
       "used_on": [
         "flagged"
       ],
-      "short": "NFL injury policy (404 - unverified)"
+      "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
     }
   ]
 }
