@@ -1,0 +1,116 @@
+{
+  "note": "Every entry below was opened and its content confirmed by this session on the date shown. Entries that could not be confirmed are NOT listed here; they appear on the Flagged for Review page instead. 'community' sources redistribute official NFL data and are labelled as such wherever they are used.",
+  "verified_on": "2026-11-01",
+  "sources": [
+    {
+      "id": "nfl-rulebook-2026",
+      "title": "2026 NFL Rulebook",
+      "publisher": "NFL Football Operations",
+      "type": "official",
+      "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "confirmed": "Page returns the official 2026 rulebook with the 2026 rule-change table (6-1-3, 6-1-5, 6-1-6, 19-2) and a link to the downloadable ops-2026-NFL-Rulebook-FINAL PDF.",
+      "supports": "Scoring, timing and overtime rules that determine how spread and total bets settle.",
+      "used_on": ["market", "validation"]
+    },
+    {
+      "id": "nfl-guide-statisticians",
+      "title": "Guide for Statisticians (2025 edition, 38 pp.)",
+      "publisher": "NFL Game Statistics & Information System (GSIS)",
+      "type": "official",
+      "url": "https://www.nflgsis.com/gsis/documentation/stadiumguides/guide_for_statisticians.pdf",
+      "confirmed": "PDF opened: 'Copyright 2025, National Football League', 'Last Modified: 2025', contents list including Rushing, Passing and Sacks, Fumbles, Qualifications for Individual Leaders.",
+      "supports": "The NFL's own rules for how player statistics are credited, which is what player-prop markets settle on. Prop-model results are only meaningful because a stat line is defined by this document.",
+      "used_on": ["props", "flagged"]
+    },
+    {
+      "id": "nfl-genius",
+      "title": "NFL extends strategic partnership with Genius Sports as exclusive official NFL data, Watch and Bet distribution partner",
+      "publisher": "NFL.com",
+      "type": "official",
+      "url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "confirmed": "Article confirms Genius Sports is the NFL's exclusive distributor of real-time official play-by-play statistics, Next Gen Stats and the official sports-betting data feed, and that official NFL data powers 'player props, micro-betting, same-game parlays'.",
+      "supports": "Why official data, not third-party estimates, governs prop and same-game-parlay settlement; and why a prop strategy cannot be validated without a price feed derived from that data.",
+      "used_on": ["props", "flagged", "strategies"]
+    },
+    {
+      "id": "nfl-ngs",
+      "title": "Performance Tracking Data (Next Gen Stats)",
+      "publisher": "NFL Football Operations",
+      "type": "official",
+      "url": "https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/",
+      "confirmed": "Page describes venue tracking (20-30 ultra-wide band receivers, RFID tags), sampling 'location, speed, distance traveled and acceleration at a rate of 10 times per second'.",
+      "supports": "Availability and nature of tracking data; relevant to features this project does not yet use.",
+      "used_on": ["method", "flagged"]
+    },
+    {
+      "id": "nflreadr-dictionary",
+      "title": "Data Dictionary - Schedules (nflreadr)",
+      "publisher": "nflverse project",
+      "type": "community",
+      "url": "https://nflreadr.nflverse.com/articles/dictionary_schedules.html",
+      "confirmed": "Dictionary confirms result = home score minus away score, total = sum of both scores, away_rest/home_rest as days of rest, and the moneyline fields.",
+      "supports": "Column semantics for the dataset this project computes with. The spread sign convention itself is proven empirically in data/derived/diag_signs.json rather than assumed from documentation.",
+      "used_on": ["market", "lines", "validation"]
+    },
+    {
+      "id": "nflverse-data",
+      "title": "nflverse-data releases (schedules, stats_player, stats_team)",
+      "publisher": "nflverse project (redistributes NFL official feeds)",
+      "type": "community",
+      "url": "https://github.com/nflverse/nflverse-data",
+      "confirmed": "Release assets downloaded by the repository's own CI run; per-file size and SHA-256 recorded in data/derived/manifest.json.",
+      "supports": "The play-by-play-derived box scores and game lines behind every number on this site.",
+      "used_on": ["lines", "props", "correlation", "luck", "leaderboard", "market"]
+    },
+    {
+      "id": "dk-house-rules",
+      "title": "DraftKings Sportsbook Betting Rules (filed with the Massachusetts Gaming Commission)",
+      "publisher": "DraftKings / Massachusetts Gaming Commission",
+      "type": "regulator",
+      "url": "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-8.1.24.pdf",
+      "confirmed": "PDF opened. States that a point-spread bet 'will be settled as push if the outcome is tied once the spread has been applied'; that a total exactly equal to the line is void; defines Parlay, Same Game Parlay, Progressive Parlay and Teaser, including Football Super Teaser '3 team teaser - buying 10 points, ties lose, odds -120/1.83' and Monster Teaser '-140/1.71'.",
+      "supports": "Settlement conventions used in the backtester, and the verified teaser prices in the parlay/teaser EV table.",
+      "used_on": ["validation", "strategies", "leaderboard"]
+    },
+    {
+      "id": "kelly-1956",
+      "title": "A New Interpretation of Information Rate (Bell System Technical Journal 35:4, pp. 917-926)",
+      "publisher": "J. L. Kelly Jr. / Internet Archive scan",
+      "type": "academic",
+      "url": "https://archive.org/details/bstj35-4-917",
+      "confirmed": "Scanned article opened; abstract on the page matches the 1956 paper on bet sizing and exponential growth.",
+      "supports": "The staking rule behind the reward tiers (bankroll growth per unit of edge).",
+      "used_on": ["leaderboard"]
+    },
+    {
+      "id": "bh-1995",
+      "title": "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing",
+      "publisher": "Benjamini & Hochberg, JRSS-B 57(1) 289-300",
+      "type": "academic",
+      "url": "https://www.stat.purdue.edu/~doerge/BIOINFORM.D/FALL06/Benjamini%20and%20Y%20FDR.pdf",
+      "confirmed": "Full text PDF opened; procedure and FDR definition read from the paper itself.",
+      "supports": "Gate G4: the multiple-testing correction applied across all tested strategies.",
+      "used_on": ["validation", "leaderboard"]
+    },
+    {
+      "id": "nist-t-table",
+      "title": "NIST/SEMATECH e-Handbook 1.3.6.7.2 - Critical Values of the Student's-t Distribution",
+      "publisher": "National Institute of Standards and Technology",
+      "type": "official",
+      "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3672.htm",
+      "confirmed": "Table page opened and read (two-sided test instructions and critical values).",
+      "supports": "The t-based significance checks behind the gate evaluation.",
+      "used_on": ["validation"]
+    },
+    {
+      "id": "nfl-injury-policy",
+      "title": "NFL Injury Report Policy",
+      "publisher": "NFL Football Operations",
+      "type": "unverified",
+      "url": "https://operations.nfl.com/football-ops/league-governance/injury-report/",
+      "confirmed": "NOT CONFIRMED - this URL returned HTTP 404 when fetched on 2026-11-01. A 2017 policy PDF at operations.nfl.com/media/2683/2017-nfl-injury-report-policy.pdf was referenced by third parties but was not fetched or confirmed by this session.",
+      "supports": "Nothing is published on this site that depends on it. Injury-report timing would be a required input for any injury-based strategy, so those strategies are marked blocked.",
+      "used_on": ["flagged"]
+    }
+  ]
+}
