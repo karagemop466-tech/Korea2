@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-01T13:28:14Z",
+ "generated_utc": "2026-11-01T13:39:12Z",
  "files": [
   {
    "name": "games.csv.gz",
@@ -7,7 +7,7 @@
    "rows": 7548,
    "season_min": 1999,
    "season_max": 2026,
-   "raw_sha256": "c69d93edd6d90d89b7f00c50006f1d4d959f82b3aac7a2cc2c164468278d54dd"
+   "raw_sha256": "2fc32b121619303c044cfc99f806375e3652ba36894d72ddb6e3554b95676226"
   },
   {
    "name": "team_week.csv.gz",
