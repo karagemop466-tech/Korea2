@@ -1,5 +1,6 @@
 {
- "generated_utc": "2026-11-01T13:39:12Z",
+ "data_as_of_gameday": "2026-10-29",
+ "games_settled": 7384,
  "files": [
   {
    "name": "games.csv.gz",
