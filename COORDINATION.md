@@ -38,3 +38,28 @@ Sessions must claim non-overlapping file scopes here before starting work. The A
 - Conflict resolution: `main` changed concurrently after this session's initial claim, resulting in add/add or content conflicts in COORDINATION.md, README.md, index.html and assets/style.css. Retained the root-site owner's versions of README, index and stylesheet, retained both coordination logs, and preserved this session's independent site and tools under `nfl-research/`. Request to root-site owner: add a navigation link to `nfl-research/index.html` after reviewing it; this session did not modify their navigation.
 
 - Integration PR: https://github.com/karagemop466-tech/Korea2/pull/4. After merging main, a regular `pull --rebase` attempted to replay the other session’s commits and conflicted on the board; the rebase was aborted without discarding work. `pull --rebase=merges` then succeeded, preserving the merge and both histories.
+
+
+## Independent session arena-1955d40e / additional research desk
+
+# Coordination board
+
+Session ID: arena-1955d40e (integration session; branch name fixed by environment).
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Independent research desk and integration | needs review | arena-1955d40e | research-desk/, session log in COORDINATION.md |
+
+No other claims were present when this board was created. Other sessions should avoid this scope and record requests here. Last claim: 2026-11-01 UTC.
+
+## Integration log — 2026-11-01 UTC
+
+- Repository review: initial `README.md` contained only `# Korea2`; no existing data, models, tasks, or site. No parallel claims existed at intake. Environment requires the fixed `arena/1955d40e-korea2` branch rather than session-named branches.
+- Claim push: the requested branch did not yet exist on the remote, so the initial `pull --rebase` from that branch failed; rebased against `origin/main`, then pushed the claim. No conflict occurred.
+- Research verification: checked the NFL's [Bo Nix career table](https://www.nfl.com/players/bo-nix/stats/career), [Hurts Super Bowl report](https://www.nfl.com/news/eagles-qb-jalen-hurts-named-super-bowl-lix-most-valuable-player), and [Kelce Super Bowl report](https://www.nfl.com/news/travis-kelce-non-factor-in-chiefs-super-bowl-lix-loss-we-haven-t-played-that-bad-all-year) against each displayed extract. Checked [NFL injury report](https://www.nfl.com/injuries/league/2026/reg7), [scikit-learn leakage](https://scikit-learn.org/stable/common_pitfalls.html), [scoring](https://scikit-learn.org/stable/modules/model_evaluation.html), [time splitting](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html), [NWS API](https://www.weather.gov/documentation/services-web-api), and [NIST correlation/forecast caution](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=921446). The source links on proposed methods are context, not endorsement of proposed gates or results.
+- Irregularities: the injury page title says Week 8 but its in-page heading says WEEK 7 and URL says reg7. Official historic odds, as-of snapshots, correlations, trained models and performance evidence were not obtained. All corresponding values or rankings are blank or pending. Items are published on Flagged for Review.
+- Built six static pages and ran `python3 scripts/check_site.py`: local links/assets exist, generated pages match source, and every table row links to an official/context source. External source content was reviewed individually using web retrieval; no claim of automated external link checking is made.
+- Site work is complete for this research snapshot; the broad task remains in progress until the pull request and deployment result are recorded. No strategy is represented as validated or live.
+- Integration pull request: https://github.com/karagemop466-tech/Korea2/pull/5 — merge and deployment pending.
+- Concurrent integration discovered when PR #5 could not merge: sessions arena/97d4c0f1-korea2 and arena/e0d506a4-korea2 independently claimed overlapping scopes from the initially empty repository, and their work reached main first. Their root dashboard and `nfl-research/` scope must not be overwritten. This session is relocating its independent dashboard and tools to `research-desk/`, and requests that the root-site owner add a link to it after review. The integration task scope is now `research-desk/` and this log in COORDINATION.md. Reconciling conflicts while preserving both published sites and logs.
+- Merge conflict resolution: retained main's root README and dashboard, and retained both versions of the coordination board in full. The independently built dashboard was moved to `research-desk/` before merging; no other session's files were overwritten. This claim is needs review because inputs and quantitative validation remain missing. PR #5 remains the integration PR for this independent research addition.
