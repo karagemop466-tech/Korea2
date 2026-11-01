@@ -15,6 +15,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: scripts
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -22,9 +24,17 @@ jobs:
           python-version: '3.12'
       - run: pip install -r requirements.txt
       - name: Fetch upstream data
-        run: python scripts/fetch_data.py
+        run: python scripts/fetch_data.py 2>&1 | tee -a data/derived/run_log.txt
       - name: Profile dataset
-        run: python scripts/profile.py
+        run: python scripts/profile.py 2>&1 | tee -a data/derived/run_log.txt
+      - name: Analysis
+        run: |
+          for s in analyze_market analyze_model analyze_correlation analyze_strategies analyze_props; do
+            if [ -f "scripts/$s.py" ]; then
+              echo "=== $s ===" | tee -a data/derived/run_log.txt
+              python "scripts/$s.py" 2>&1 | tee -a data/derived/run_log.txt || echo "FAILED: $s" | tee -a data/derived/run_log.txt
+            fi
+          done
       - name: Commit derived data
         run: |
           git config user.name "line-lab-bot"
