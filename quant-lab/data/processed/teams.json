@@ -1,0 +1,247 @@
+{
+ "ARI": {
+  "abbr": "ARI",
+  "conf": "NFC",
+  "division": "NFC West",
+  "full": "Arizona Cardinals",
+  "nick": "Cardinals"
+ },
+ "ATL": {
+  "abbr": "ATL",
+  "conf": "NFC",
+  "division": "NFC South",
+  "full": "Atlanta Falcons",
+  "nick": "Falcons"
+ },
+ "BAL": {
+  "abbr": "BAL",
+  "conf": "AFC",
+  "division": "AFC North",
+  "full": "Baltimore Ravens",
+  "nick": "Ravens"
+ },
+ "BUF": {
+  "abbr": "BUF",
+  "conf": "AFC",
+  "division": "AFC East",
+  "full": "Buffalo Bills",
+  "nick": "Bills"
+ },
+ "CAR": {
+  "abbr": "CAR",
+  "conf": "NFC",
+  "division": "NFC South",
+  "full": "Carolina Panthers",
+  "nick": "Panthers"
+ },
+ "CHI": {
+  "abbr": "CHI",
+  "conf": "NFC",
+  "division": "NFC North",
+  "full": "Chicago Bears",
+  "nick": "Bears"
+ },
+ "CIN": {
+  "abbr": "CIN",
+  "conf": "AFC",
+  "division": "AFC North",
+  "full": "Cincinnati Bengals",
+  "nick": "Bengals"
+ },
+ "CLE": {
+  "abbr": "CLE",
+  "conf": "AFC",
+  "division": "AFC North",
+  "full": "Cleveland Browns",
+  "nick": "Browns"
+ },
+ "DAL": {
+  "abbr": "DAL",
+  "conf": "NFC",
+  "division": "NFC East",
+  "full": "Dallas Cowboys",
+  "nick": "Cowboys"
+ },
+ "DEN": {
+  "abbr": "DEN",
+  "conf": "AFC",
+  "division": "AFC West",
+  "full": "Denver Broncos",
+  "nick": "Broncos"
+ },
+ "DET": {
+  "abbr": "DET",
+  "conf": "NFC",
+  "division": "NFC North",
+  "full": "Detroit Lions",
+  "nick": "Lions"
+ },
+ "GB": {
+  "abbr": "GB",
+  "conf": "NFC",
+  "division": "NFC North",
+  "full": "Green Bay Packers",
+  "nick": "Packers"
+ },
+ "HOU": {
+  "abbr": "HOU",
+  "conf": "AFC",
+  "division": "AFC South",
+  "full": "Houston Texans",
+  "nick": "Texans"
+ },
+ "IND": {
+  "abbr": "IND",
+  "conf": "AFC",
+  "division": "AFC South",
+  "full": "Indianapolis Colts",
+  "nick": "Colts"
+ },
+ "JAX": {
+  "abbr": "JAX",
+  "conf": "AFC",
+  "division": "AFC South",
+  "full": "Jacksonville Jaguars",
+  "nick": "Jaguars"
+ },
+ "KC": {
+  "abbr": "KC",
+  "conf": "AFC",
+  "division": "AFC West",
+  "full": "Kansas City Chiefs",
+  "nick": "Chiefs"
+ },
+ "LA": {
+  "abbr": "LA",
+  "conf": "NFC",
+  "division": "NFC West",
+  "full": "Los Angeles Rams",
+  "nick": "Rams"
+ },
+ "LAC": {
+  "abbr": "LAC",
+  "conf": "AFC",
+  "division": "AFC West",
+  "full": "Los Angeles Chargers",
+  "nick": "Chargers"
+ },
+ "LV": {
+  "abbr": "LV",
+  "conf": "AFC",
+  "division": "AFC West",
+  "full": "Las Vegas Raiders",
+  "nick": "Raiders"
+ },
+ "MIA": {
+  "abbr": "MIA",
+  "conf": "AFC",
+  "division": "AFC East",
+  "full": "Miami Dolphins",
+  "nick": "Dolphins"
+ },
+ "MIN": {
+  "abbr": "MIN",
+  "conf": "NFC",
+  "division": "NFC North",
+  "full": "Minnesota Vikings",
+  "nick": "Vikings"
+ },
+ "NE": {
+  "abbr": "NE",
+  "conf": "AFC",
+  "division": "AFC East",
+  "full": "New England Patriots",
+  "nick": "Patriots"
+ },
+ "NO": {
+  "abbr": "NO",
+  "conf": "NFC",
+  "division": "NFC South",
+  "full": "New Orleans Saints",
+  "nick": "Saints"
+ },
+ "NYG": {
+  "abbr": "NYG",
+  "conf": "NFC",
+  "division": "NFC East",
+  "full": "New York Giants",
+  "nick": "Giants"
+ },
+ "NYJ": {
+  "abbr": "NYJ",
+  "conf": "AFC",
+  "division": "AFC East",
+  "full": "New York Jets",
+  "nick": "Jets"
+ },
+ "OAK": {
+  "abbr": "OAK",
+  "conf": "AFC",
+  "division": "AFC West",
+  "full": "Oakland Raiders",
+  "nick": "Raiders"
+ },
+ "PHI": {
+  "abbr": "PHI",
+  "conf": "NFC",
+  "division": "NFC East",
+  "full": "Philadelphia Eagles",
+  "nick": "Eagles"
+ },
+ "PIT": {
+  "abbr": "PIT",
+  "conf": "AFC",
+  "division": "AFC North",
+  "full": "Pittsburgh Steelers",
+  "nick": "Steelers"
+ },
+ "SD": {
+  "abbr": "SD",
+  "conf": "AFC",
+  "division": "AFC West",
+  "full": "San Diego Chargers",
+  "nick": "Chargers"
+ },
+ "SEA": {
+  "abbr": "SEA",
+  "conf": "NFC",
+  "division": "NFC West",
+  "full": "Seattle Seahawks",
+  "nick": "Seahawks"
+ },
+ "SF": {
+  "abbr": "SF",
+  "conf": "NFC",
+  "division": "NFC West",
+  "full": "San Francisco 49ers",
+  "nick": "49ers"
+ },
+ "STL": {
+  "abbr": "STL",
+  "conf": "NFC",
+  "division": "NFC West",
+  "full": "St Louis Rams",
+  "nick": "Rams"
+ },
+ "TB": {
+  "abbr": "TB",
+  "conf": "NFC",
+  "division": "NFC South",
+  "full": "Tampa Bay Buccaneers",
+  "nick": "Buccaneers"
+ },
+ "TEN": {
+  "abbr": "TEN",
+  "conf": "AFC",
+  "division": "AFC South",
+  "full": "Tennessee Titans",
+  "nick": "Titans"
+ },
+ "WAS": {
+  "abbr": "WAS",
+  "conf": "NFC",
+  "division": "NFC East",
+  "full": "Washington Redskins",
+  "nick": "Redskins"
+ }
+}

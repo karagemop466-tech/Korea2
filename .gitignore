@@ -1,5 +1,7 @@
-# Raw downloads are reproducible from data/provenance.json and are not committed.
+# Raw downloads are reproducible from data/provenance.json and quant-lab/data/raw/PROVENANCE.txt.
 data/raw/
+quant-lab/data/raw/
 __pycache__/
 *.pyc
 .venv/
+.DS_Store

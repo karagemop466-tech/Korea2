@@ -1,0 +1,1452 @@
+{
+ "summary": {
+  "checks_total": 77,
+  "passed": 77,
+  "failed": 0,
+  "flags": [],
+  "generated_from": {
+   "official": [
+    "https://www.nfl.com/standings/league/2025/REG",
+    "https://www.nfl.com/standings/league/2026/REG",
+    "https://www.nfl.com/players/jaxon-smith-njigba/stats/",
+    "https://www.nfl.com/players/christian-watson/stats/",
+    "https://www.nfl.com/players/jordan-love/stats/",
+    "https://www.nfl.com/players/jared-goff/stats/",
+    "https://www.nfl.com/players/amon-ra-st-brown/stats/",
+    "https://www.nfl.com/players/kenneth-walker-iii/stats/"
+   ],
+   "mirror": [
+    "https://github.com/nflverse/nfldata (pinned commit a270278f3ac4e937295fe6a27814b3c4a2b62645)"
+   ]
+  }
+ },
+ "checks": [
+  {
+   "check": "official_2025_internal_balance",
+   "scope": "official capture",
+   "detail": {
+    "sum_w": 271,
+    "sum_l": 271,
+    "sum_pf": 12519,
+    "sum_pa": 12519
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_ATL",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 353,
+    "pa": 401
+   },
+   "official": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 353,
+    "pa": 401
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_AZ",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 3,
+    "l": 14,
+    "t": 0,
+    "pf": 355,
+    "pa": 488
+   },
+   "official": {
+    "w": 3,
+    "l": 14,
+    "t": 0,
+    "pf": 355,
+    "pa": 488
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_BAL",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 424,
+    "pa": 398
+   },
+   "official": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 424,
+    "pa": 398
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_BUF",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 12,
+    "l": 5,
+    "t": 0,
+    "pf": 481,
+    "pa": 365
+   },
+   "official": {
+    "w": 12,
+    "l": 5,
+    "t": 0,
+    "pf": 481,
+    "pa": 365
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_CAR",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 311,
+    "pa": 380
+   },
+   "official": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 311,
+    "pa": 380
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_CHI",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 11,
+    "l": 6,
+    "t": 0,
+    "pf": 441,
+    "pa": 415
+   },
+   "official": {
+    "w": 11,
+    "l": 6,
+    "t": 0,
+    "pf": 441,
+    "pa": 415
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_CIN",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 6,
+    "l": 11,
+    "t": 0,
+    "pf": 414,
+    "pa": 492
+   },
+   "official": {
+    "w": 6,
+    "l": 11,
+    "t": 0,
+    "pf": 414,
+    "pa": 492
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_CLE",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 5,
+    "l": 12,
+    "t": 0,
+    "pf": 279,
+    "pa": 379
+   },
+   "official": {
+    "w": 5,
+    "l": 12,
+    "t": 0,
+    "pf": 279,
+    "pa": 379
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_DAL",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 7,
+    "l": 9,
+    "t": 1,
+    "pf": 471,
+    "pa": 511
+   },
+   "official": {
+    "w": 7,
+    "l": 9,
+    "t": 1,
+    "pf": 471,
+    "pa": 511
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_DEN",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 14,
+    "l": 3,
+    "t": 0,
+    "pf": 401,
+    "pa": 311
+   },
+   "official": {
+    "w": 14,
+    "l": 3,
+    "t": 0,
+    "pf": 401,
+    "pa": 311
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_DET",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 9,
+    "l": 8,
+    "t": 0,
+    "pf": 481,
+    "pa": 413
+   },
+   "official": {
+    "w": 9,
+    "l": 8,
+    "t": 0,
+    "pf": 481,
+    "pa": 413
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_GB",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 9,
+    "l": 7,
+    "t": 1,
+    "pf": 391,
+    "pa": 360
+   },
+   "official": {
+    "w": 9,
+    "l": 7,
+    "t": 1,
+    "pf": 391,
+    "pa": 360
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_HOU",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 12,
+    "l": 5,
+    "t": 0,
+    "pf": 404,
+    "pa": 295
+   },
+   "official": {
+    "w": 12,
+    "l": 5,
+    "t": 0,
+    "pf": 404,
+    "pa": 295
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_IND",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 466,
+    "pa": 412
+   },
+   "official": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 466,
+    "pa": 412
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_JAX",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 13,
+    "l": 4,
+    "t": 0,
+    "pf": 474,
+    "pa": 336
+   },
+   "official": {
+    "w": 13,
+    "l": 4,
+    "t": 0,
+    "pf": 474,
+    "pa": 336
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_KC",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 6,
+    "l": 11,
+    "t": 0,
+    "pf": 362,
+    "pa": 328
+   },
+   "official": {
+    "w": 6,
+    "l": 11,
+    "t": 0,
+    "pf": 362,
+    "pa": 328
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_LA",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 12,
+    "l": 5,
+    "t": 0,
+    "pf": 518,
+    "pa": 346
+   },
+   "official": {
+    "w": 12,
+    "l": 5,
+    "t": 0,
+    "pf": 518,
+    "pa": 346
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_LAC",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 11,
+    "l": 6,
+    "t": 0,
+    "pf": 368,
+    "pa": 340
+   },
+   "official": {
+    "w": 11,
+    "l": 6,
+    "t": 0,
+    "pf": 368,
+    "pa": 340
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_LV",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 3,
+    "l": 14,
+    "t": 0,
+    "pf": 241,
+    "pa": 432
+   },
+   "official": {
+    "w": 3,
+    "l": 14,
+    "t": 0,
+    "pf": 241,
+    "pa": 432
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_MIA",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 7,
+    "l": 10,
+    "t": 0,
+    "pf": 347,
+    "pa": 424
+   },
+   "official": {
+    "w": 7,
+    "l": 10,
+    "t": 0,
+    "pf": 347,
+    "pa": 424
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_MIN",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 9,
+    "l": 8,
+    "t": 0,
+    "pf": 344,
+    "pa": 333
+   },
+   "official": {
+    "w": 9,
+    "l": 8,
+    "t": 0,
+    "pf": 344,
+    "pa": 333
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_NE",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 14,
+    "l": 3,
+    "t": 0,
+    "pf": 490,
+    "pa": 320
+   },
+   "official": {
+    "w": 14,
+    "l": 3,
+    "t": 0,
+    "pf": 490,
+    "pa": 320
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_NO",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 6,
+    "l": 11,
+    "t": 0,
+    "pf": 306,
+    "pa": 383
+   },
+   "official": {
+    "w": 6,
+    "l": 11,
+    "t": 0,
+    "pf": 306,
+    "pa": 383
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_NYG",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 4,
+    "l": 13,
+    "t": 0,
+    "pf": 381,
+    "pa": 439
+   },
+   "official": {
+    "w": 4,
+    "l": 13,
+    "t": 0,
+    "pf": 381,
+    "pa": 439
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_NYJ",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 3,
+    "l": 14,
+    "t": 0,
+    "pf": 300,
+    "pa": 503
+   },
+   "official": {
+    "w": 3,
+    "l": 14,
+    "t": 0,
+    "pf": 300,
+    "pa": 503
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_PHI",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 11,
+    "l": 6,
+    "t": 0,
+    "pf": 379,
+    "pa": 325
+   },
+   "official": {
+    "w": 11,
+    "l": 6,
+    "t": 0,
+    "pf": 379,
+    "pa": 325
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_PIT",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 10,
+    "l": 7,
+    "t": 0,
+    "pf": 397,
+    "pa": 387
+   },
+   "official": {
+    "w": 10,
+    "l": 7,
+    "t": 0,
+    "pf": 397,
+    "pa": 387
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_SEA",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 14,
+    "l": 3,
+    "t": 0,
+    "pf": 483,
+    "pa": 292
+   },
+   "official": {
+    "w": 14,
+    "l": 3,
+    "t": 0,
+    "pf": 483,
+    "pa": 292
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_SF",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 12,
+    "l": 5,
+    "t": 0,
+    "pf": 437,
+    "pa": 371
+   },
+   "official": {
+    "w": 12,
+    "l": 5,
+    "t": 0,
+    "pf": 437,
+    "pa": 371
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_TB",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 380,
+    "pa": 411
+   },
+   "official": {
+    "w": 8,
+    "l": 9,
+    "t": 0,
+    "pf": 380,
+    "pa": 411
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_TEN",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 3,
+    "l": 14,
+    "t": 0,
+    "pf": 284,
+    "pa": 478
+   },
+   "official": {
+    "w": 3,
+    "l": 14,
+    "t": 0,
+    "pf": 284,
+    "pa": 478
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "standings_2025_WAS",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 5,
+    "l": 12,
+    "t": 0,
+    "pf": 356,
+    "pa": 451
+   },
+   "official": {
+    "w": 5,
+    "l": 12,
+    "t": 0,
+    "pf": 356,
+    "pa": 451
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2025/REG"
+  },
+  {
+   "check": "official_2026_internal_balance",
+   "scope": "official capture",
+   "detail": {
+    "sum_w": 107,
+    "sum_l": 107,
+    "sum_pf": 4972,
+    "sum_pa": 4972
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_ATL",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 171,
+    "pa": 173
+   },
+   "official": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 171,
+    "pa": 173
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_AZ",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 142,
+    "pa": 208
+   },
+   "official": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 142,
+    "pa": 208
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_BAL",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 4,
+    "l": 3,
+    "t": 0,
+    "pf": 169,
+    "pa": 167
+   },
+   "official": {
+    "w": 4,
+    "l": 3,
+    "t": 0,
+    "pf": 169,
+    "pa": 167
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_BUF",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 5,
+    "l": 1,
+    "t": 0,
+    "pf": 197,
+    "pa": 171
+   },
+   "official": {
+    "w": 5,
+    "l": 1,
+    "t": 0,
+    "pf": 197,
+    "pa": 171
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_CAR",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 178,
+    "pa": 193
+   },
+   "official": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 178,
+    "pa": 193
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_CHI",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 5,
+    "l": 2,
+    "t": 0,
+    "pf": 180,
+    "pa": 143
+   },
+   "official": {
+    "w": 5,
+    "l": 2,
+    "t": 0,
+    "pf": 180,
+    "pa": 143
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_CIN",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 4,
+    "l": 2,
+    "t": 0,
+    "pf": 163,
+    "pa": 122
+   },
+   "official": {
+    "w": 4,
+    "l": 2,
+    "t": 0,
+    "pf": 163,
+    "pa": 122
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_CLE",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 5,
+    "l": 2,
+    "t": 0,
+    "pf": 133,
+    "pa": 146
+   },
+   "official": {
+    "w": 5,
+    "l": 2,
+    "t": 0,
+    "pf": 133,
+    "pa": 146
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_DAL",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 189,
+    "pa": 180
+   },
+   "official": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 189,
+    "pa": 180
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_DEN",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 5,
+    "l": 2,
+    "t": 0,
+    "pf": 144,
+    "pa": 141
+   },
+   "official": {
+    "w": 5,
+    "l": 2,
+    "t": 0,
+    "pf": 144,
+    "pa": 141
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_DET",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 4,
+    "l": 2,
+    "t": 0,
+    "pf": 184,
+    "pa": 165
+   },
+   "official": {
+    "w": 4,
+    "l": 2,
+    "t": 0,
+    "pf": 184,
+    "pa": 165
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_GB",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 5,
+    "l": 3,
+    "t": 0,
+    "pf": 171,
+    "pa": 164
+   },
+   "official": {
+    "w": 5,
+    "l": 3,
+    "t": 0,
+    "pf": 171,
+    "pa": 164
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_HOU",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 165,
+    "pa": 170
+   },
+   "official": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 165,
+    "pa": 170
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_IND",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 154,
+    "pa": 180
+   },
+   "official": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 154,
+    "pa": 180
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_JAX",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 4,
+    "l": 2,
+    "t": 0,
+    "pf": 154,
+    "pa": 104
+   },
+   "official": {
+    "w": 4,
+    "l": 2,
+    "t": 0,
+    "pf": 154,
+    "pa": 104
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_KC",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 5,
+    "l": 1,
+    "t": 0,
+    "pf": 143,
+    "pa": 103
+   },
+   "official": {
+    "w": 5,
+    "l": 1,
+    "t": 0,
+    "pf": 143,
+    "pa": 103
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_LA",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 170,
+    "pa": 159
+   },
+   "official": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 170,
+    "pa": 159
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_LAC",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 0,
+    "l": 6,
+    "t": 0,
+    "pf": 90,
+    "pa": 151
+   },
+   "official": {
+    "w": 0,
+    "l": 6,
+    "t": 0,
+    "pf": 90,
+    "pa": 151
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_LV",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 183,
+    "pa": 197
+   },
+   "official": {
+    "w": 3,
+    "l": 4,
+    "t": 0,
+    "pf": 183,
+    "pa": 197
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_MIA",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 1,
+    "l": 5,
+    "t": 0,
+    "pf": 98,
+    "pa": 157
+   },
+   "official": {
+    "w": 1,
+    "l": 5,
+    "t": 0,
+    "pf": 98,
+    "pa": 157
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_MIN",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 6,
+    "l": 0,
+    "t": 0,
+    "pf": 125,
+    "pa": 74
+   },
+   "official": {
+    "w": 6,
+    "l": 0,
+    "t": 0,
+    "pf": 125,
+    "pa": 74
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_NE",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 4,
+    "l": 3,
+    "t": 0,
+    "pf": 160,
+    "pa": 143
+   },
+   "official": {
+    "w": 4,
+    "l": 3,
+    "t": 0,
+    "pf": 160,
+    "pa": 143
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_NO",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 162,
+    "pa": 194
+   },
+   "official": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 162,
+    "pa": 194
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_NYG",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 4,
+    "l": 2,
+    "t": 1,
+    "pf": 163,
+    "pa": 161
+   },
+   "official": {
+    "w": 4,
+    "l": 2,
+    "t": 1,
+    "pf": 163,
+    "pa": 161
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_NYJ",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 137,
+    "pa": 150
+   },
+   "official": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 137,
+    "pa": 150
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_PHI",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 127,
+    "pa": 175
+   },
+   "official": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 127,
+    "pa": 175
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_PIT",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 5,
+    "l": 2,
+    "t": 0,
+    "pf": 153,
+    "pa": 138
+   },
+   "official": {
+    "w": 5,
+    "l": 2,
+    "t": 0,
+    "pf": 153,
+    "pa": 138
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_SEA",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 4,
+    "l": 3,
+    "t": 0,
+    "pf": 168,
+    "pa": 125
+   },
+   "official": {
+    "w": 4,
+    "l": 3,
+    "t": 0,
+    "pf": 168,
+    "pa": 125
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_SF",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 6,
+    "l": 1,
+    "t": 0,
+    "pf": 197,
+    "pa": 139
+   },
+   "official": {
+    "w": 6,
+    "l": 1,
+    "t": 0,
+    "pf": 197,
+    "pa": 139
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_TB",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 162,
+    "pa": 151
+   },
+   "official": {
+    "w": 2,
+    "l": 5,
+    "t": 0,
+    "pf": 162,
+    "pa": 151
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_TEN",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 1,
+    "l": 6,
+    "t": 0,
+    "pf": 108,
+    "pa": 156
+   },
+   "official": {
+    "w": 1,
+    "l": 6,
+    "t": 0,
+    "pf": 108,
+    "pa": 156
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "standings_2026_WAS",
+   "scope": "mirror vs nfl.com",
+   "computed": {
+    "w": 1,
+    "l": 4,
+    "t": 1,
+    "pf": 132,
+    "pa": 172
+   },
+   "official": {
+    "w": 1,
+    "l": 4,
+    "t": 1,
+    "pf": 132,
+    "pa": 172
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/standings/league/2026/REG"
+  },
+  {
+   "check": "player_sum_jaxon-smith-njigba",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "games": 7,
+    "official_games": 7,
+    "sum_weekly_yards": 867,
+    "official_season_yards": 867
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/jaxon-smith-njigba/stats/"
+  },
+  {
+   "check": "player_sum_jaxon-smith-njigba_rec",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "sum_weekly": 58,
+    "official_season": 58
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/jaxon-smith-njigba/stats/"
+  },
+  {
+   "check": "player_sum_christian-watson",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "games": 8,
+    "official_games": 8,
+    "sum_weekly_yards": 708,
+    "official_season_yards": 708
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/christian-watson/stats/"
+  },
+  {
+   "check": "player_sum_christian-watson_rec",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "sum_weekly": 42,
+    "official_season": 42
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/christian-watson/stats/"
+  },
+  {
+   "check": "player_sum_jordan-love",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "games": 8,
+    "official_games": 8,
+    "sum_weekly_yards": 2246,
+    "official_season_yards": 2246
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/jordan-love/stats/"
+  },
+  {
+   "check": "player_sum_jared-goff",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "games": 6,
+    "official_games": 6,
+    "sum_weekly_yards": 1788,
+    "official_season_yards": 1788
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/jared-goff/stats/"
+  },
+  {
+   "check": "player_sum_amon-ra-st-brown",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "games": 6,
+    "official_games": 6,
+    "sum_weekly_yards": 525,
+    "official_season_yards": 525
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/amon-ra-st-brown/stats/"
+  },
+  {
+   "check": "player_sum_amon-ra-st-brown_rec",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "sum_weekly": 46,
+    "official_season": 46
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/amon-ra-st-brown/stats/"
+  },
+  {
+   "check": "player_sum_kenneth-walker-iii",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "games": 6,
+    "official_games": 6,
+    "sum_weekly_yards": 701,
+    "official_season_yards": 701
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/kenneth-walker-iii/stats/"
+  },
+  {
+   "check": "player_sum_kenneth-walker-iii_att",
+   "scope": "nfl.com page internal consistency",
+   "detail": {
+    "sum_weekly": 120,
+    "official_season": 120
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/kenneth-walker-iii/stats/"
+  },
+  {
+   "check": "cross_source_2026_W08_CAR_at_GB",
+   "scope": "mirror vs two nfl.com player logs",
+   "detail": {
+    "mirror": "CAR 19 - GB 27",
+    "love_log": "CAR 19 - GB 27",
+    "watson_log": "CAR 19 - GB 27"
+   },
+   "status": "pass",
+   "source_url": "https://www.nfl.com/players/jordan-love/stats/"
+  }
+ ]
+}
