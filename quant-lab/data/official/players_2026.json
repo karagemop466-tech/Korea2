@@ -1,0 +1,532 @@
+{
+ "season": 2026,
+ "regular_season": true,
+ "retrieved_utc": "2026-11-01T13:31:00Z",
+ "retrieved_by": "agent page-fetch of each player's official nfl.com stats page",
+ "note": "Only players whose official page was captured are included. Each game row is copied from the page's 'Recent Games' table; the season total is copied from the 'Career Stats' 2026 row and is used to prove the transcription by summation.",
+ "players": [
+  {
+   "name": "Jaxon Smith-Njigba",
+   "slug": "jaxon-smith-njigba",
+   "team": "SEA",
+   "team_name": "Seattle Seahawks",
+   "pos": "WR",
+   "market": "receiving_yards",
+   "stat_label": "REC YDS",
+   "source_url": "https://www.nfl.com/players/jaxon-smith-njigba/stats/",
+   "season_total": {
+    "g": 7,
+    "rec": 58,
+    "yds": 867
+   },
+   "games": [
+    {
+     "week": 1,
+     "opp": "Patriots",
+     "result": "W",
+     "team_pts": 13,
+     "opp_pts": 10,
+     "value": 122,
+     "extra": {
+      "rec": 8
+     }
+    },
+    {
+     "week": 2,
+     "opp": "@Cardinals",
+     "result": "W",
+     "team_pts": 31,
+     "opp_pts": 7,
+     "value": 155,
+     "extra": {
+      "rec": 9
+     }
+    },
+    {
+     "week": 3,
+     "opp": "@Commanders",
+     "result": "L",
+     "team_pts": 31,
+     "opp_pts": 33,
+     "value": 128,
+     "extra": {
+      "rec": 10
+     }
+    },
+    {
+     "week": 4,
+     "opp": "Chargers",
+     "result": "W",
+     "team_pts": 30,
+     "opp_pts": 23,
+     "value": 76,
+     "extra": {
+      "rec": 5
+     }
+    },
+    {
+     "week": 5,
+     "opp": "49ers",
+     "result": "L",
+     "team_pts": 29,
+     "opp_pts": 32,
+     "value": 102,
+     "extra": {
+      "rec": 5
+     }
+    },
+    {
+     "week": 6,
+     "opp": "@Broncos",
+     "result": "L",
+     "team_pts": 14,
+     "opp_pts": 17,
+     "value": 134,
+     "extra": {
+      "rec": 12
+     }
+    },
+    {
+     "week": 7,
+     "opp": "Chiefs",
+     "result": "W",
+     "team_pts": 20,
+     "opp_pts": 3,
+     "value": 150,
+     "extra": {
+      "rec": 9
+     }
+    }
+   ]
+  },
+  {
+   "name": "Christian Watson",
+   "slug": "christian-watson",
+   "team": "GB",
+   "team_name": "Green Bay Packers",
+   "pos": "WR",
+   "market": "receiving_yards",
+   "stat_label": "REC YDS",
+   "source_url": "https://www.nfl.com/players/christian-watson/stats/",
+   "season_total": {
+    "g": 8,
+    "rec": 42,
+    "yds": 708
+   },
+   "games": [
+    {
+     "week": 1,
+     "opp": "@Vikings",
+     "result": "L",
+     "team_pts": 22,
+     "opp_pts": 39,
+     "value": 147,
+     "extra": {
+      "rec": 6
+     }
+    },
+    {
+     "week": 2,
+     "opp": "@Jets",
+     "result": "W",
+     "team_pts": 20,
+     "opp_pts": 17,
+     "value": 41,
+     "extra": {
+      "rec": 4
+     }
+    },
+    {
+     "week": 3,
+     "opp": "Falcons",
+     "result": "L",
+     "team_pts": 14,
+     "opp_pts": 35,
+     "value": 96,
+     "extra": {
+      "rec": 7
+     }
+    },
+    {
+     "week": 4,
+     "opp": "@Buccaneers",
+     "result": "W",
+     "team_pts": 17,
+     "opp_pts": 14,
+     "value": 47,
+     "extra": {
+      "rec": 3
+     }
+    },
+    {
+     "week": 5,
+     "opp": "Bears",
+     "result": "W",
+     "team_pts": 31,
+     "opp_pts": 7,
+     "value": 143,
+     "extra": {
+      "rec": 6
+     }
+    },
+    {
+     "week": 6,
+     "opp": "Cowboys",
+     "result": "W",
+     "team_pts": 23,
+     "opp_pts": 13,
+     "value": 64,
+     "extra": {
+      "rec": 3
+     }
+    },
+    {
+     "week": 7,
+     "opp": "@Lions",
+     "result": "L",
+     "team_pts": 17,
+     "opp_pts": 20,
+     "value": 57,
+     "extra": {
+      "rec": 5
+     }
+    },
+    {
+     "week": 8,
+     "opp": "Panthers",
+     "result": "W",
+     "team_pts": 27,
+     "opp_pts": 19,
+     "value": 113,
+     "extra": {
+      "rec": 8
+     }
+    }
+   ]
+  },
+  {
+   "name": "Jordan Love",
+   "slug": "jordan-love",
+   "team": "GB",
+   "team_name": "Green Bay Packers",
+   "pos": "QB",
+   "market": "passing_yards",
+   "stat_label": "PASS YDS",
+   "source_url": "https://www.nfl.com/players/jordan-love/stats/",
+   "season_total": {
+    "g": 8,
+    "yds": 2246
+   },
+   "games": [
+    {
+     "week": 1,
+     "opp": "@Vikings",
+     "result": "L",
+     "team_pts": 22,
+     "opp_pts": 39,
+     "value": 387,
+     "extra": {}
+    },
+    {
+     "week": 2,
+     "opp": "@Jets",
+     "result": "W",
+     "team_pts": 20,
+     "opp_pts": 17,
+     "value": 145,
+     "extra": {}
+    },
+    {
+     "week": 3,
+     "opp": "Falcons",
+     "result": "L",
+     "team_pts": 14,
+     "opp_pts": 35,
+     "value": 312,
+     "extra": {}
+    },
+    {
+     "week": 4,
+     "opp": "@Buccaneers",
+     "result": "W",
+     "team_pts": 17,
+     "opp_pts": 14,
+     "value": 197,
+     "extra": {}
+    },
+    {
+     "week": 5,
+     "opp": "Bears",
+     "result": "W",
+     "team_pts": 31,
+     "opp_pts": 7,
+     "value": 367,
+     "extra": {}
+    },
+    {
+     "week": 6,
+     "opp": "Cowboys",
+     "result": "W",
+     "team_pts": 23,
+     "opp_pts": 13,
+     "value": 276,
+     "extra": {}
+    },
+    {
+     "week": 7,
+     "opp": "@Lions",
+     "result": "L",
+     "team_pts": 17,
+     "opp_pts": 20,
+     "value": 274,
+     "extra": {}
+    },
+    {
+     "week": 8,
+     "opp": "Panthers",
+     "result": "W",
+     "team_pts": 27,
+     "opp_pts": 19,
+     "value": 288,
+     "extra": {}
+    }
+   ]
+  },
+  {
+   "name": "Jared Goff",
+   "slug": "jared-goff",
+   "team": "DET",
+   "team_name": "Detroit Lions",
+   "pos": "QB",
+   "market": "passing_yards",
+   "stat_label": "PASS YDS",
+   "source_url": "https://www.nfl.com/players/jared-goff/stats/",
+   "season_total": {
+    "g": 6,
+    "yds": 1788
+   },
+   "games": [
+    {
+     "week": 1,
+     "opp": "Saints",
+     "result": "W",
+     "team_pts": 31,
+     "opp_pts": 30,
+     "value": 206,
+     "extra": {}
+    },
+    {
+     "week": 2,
+     "opp": "@Bills",
+     "result": "L",
+     "team_pts": 31,
+     "opp_pts": 41,
+     "value": 327,
+     "extra": {}
+    },
+    {
+     "week": 3,
+     "opp": "Jets",
+     "result": "W",
+     "team_pts": 31,
+     "opp_pts": 24,
+     "value": 269,
+     "extra": {}
+    },
+    {
+     "week": 4,
+     "opp": "@Panthers",
+     "result": "L",
+     "team_pts": 26,
+     "opp_pts": 32,
+     "value": 412,
+     "extra": {}
+    },
+    {
+     "week": 5,
+     "opp": "@Cardinals",
+     "result": "W",
+     "team_pts": 45,
+     "opp_pts": 21,
+     "value": 271,
+     "extra": {}
+    },
+    {
+     "week": 7,
+     "opp": "Packers",
+     "result": "W",
+     "team_pts": 20,
+     "opp_pts": 17,
+     "value": 303,
+     "extra": {}
+    }
+   ]
+  },
+  {
+   "name": "Amon-Ra St. Brown",
+   "slug": "amon-ra-st-brown",
+   "team": "DET",
+   "team_name": "Detroit Lions",
+   "pos": "WR",
+   "market": "receiving_yards",
+   "stat_label": "REC YDS",
+   "source_url": "https://www.nfl.com/players/amon-ra-st-brown/stats/",
+   "season_total": {
+    "g": 6,
+    "rec": 46,
+    "yds": 525
+   },
+   "games": [
+    {
+     "week": 1,
+     "opp": "Saints",
+     "result": "W",
+     "team_pts": 31,
+     "opp_pts": 30,
+     "value": 67,
+     "extra": {
+      "rec": 10
+     }
+    },
+    {
+     "week": 2,
+     "opp": "@Bills",
+     "result": "L",
+     "team_pts": 31,
+     "opp_pts": 41,
+     "value": 142,
+     "extra": {
+      "rec": 9
+     }
+    },
+    {
+     "week": 3,
+     "opp": "Jets",
+     "result": "W",
+     "team_pts": 31,
+     "opp_pts": 24,
+     "value": 19,
+     "extra": {
+      "rec": 4
+     }
+    },
+    {
+     "week": 4,
+     "opp": "@Panthers",
+     "result": "L",
+     "team_pts": 26,
+     "opp_pts": 32,
+     "value": 75,
+     "extra": {
+      "rec": 8
+     }
+    },
+    {
+     "week": 5,
+     "opp": "@Cardinals",
+     "result": "W",
+     "team_pts": 45,
+     "opp_pts": 21,
+     "value": 69,
+     "extra": {
+      "rec": 6
+     }
+    },
+    {
+     "week": 7,
+     "opp": "Packers",
+     "result": "W",
+     "team_pts": 20,
+     "opp_pts": 17,
+     "value": 153,
+     "extra": {
+      "rec": 9
+     }
+    }
+   ]
+  },
+  {
+   "name": "Kenneth Walker III",
+   "slug": "kenneth-walker-iii",
+   "team": "KC",
+   "team_name": "Kansas City Chiefs",
+   "pos": "RB",
+   "market": "rushing_yards",
+   "stat_label": "RUSH YDS",
+   "source_url": "https://www.nfl.com/players/kenneth-walker-iii/stats/",
+   "season_total": {
+    "g": 6,
+    "att": 120,
+    "yds": 701
+   },
+   "games": [
+    {
+     "week": 1,
+     "opp": "Broncos",
+     "result": "W",
+     "team_pts": 31,
+     "opp_pts": 10,
+     "value": 173,
+     "extra": {
+      "att": 23
+     }
+    },
+    {
+     "week": 2,
+     "opp": "Colts",
+     "result": "W",
+     "team_pts": 33,
+     "opp_pts": 30,
+     "value": 117,
+     "extra": {
+      "att": 24
+     }
+    },
+    {
+     "week": 3,
+     "opp": "@Dolphins",
+     "result": "W",
+     "team_pts": 24,
+     "opp_pts": 10,
+     "value": 70,
+     "extra": {
+      "att": 18
+     }
+    },
+    {
+     "week": 4,
+     "opp": "@Raiders",
+     "result": "W",
+     "team_pts": 30,
+     "opp_pts": 27,
+     "value": 177,
+     "extra": {
+      "att": 22
+     }
+    },
+    {
+     "week": 6,
+     "opp": "Chargers",
+     "result": "W",
+     "team_pts": 22,
+     "opp_pts": 6,
+     "value": 128,
+     "extra": {
+      "att": 19
+     }
+    },
+    {
+     "week": 7,
+     "opp": "@Seahawks",
+     "result": "L",
+     "team_pts": 3,
+     "opp_pts": 20,
+     "value": 36,
+     "extra": {
+      "att": 14
+     }
+    }
+   ]
+  }
+ ]
+}

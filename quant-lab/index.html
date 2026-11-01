@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Line Lab — dashboard · NFL Line Lab</title>
+<meta name="description" content="Originated NFL lines, gated strategies, empirical correlations and a line-by-line verification register.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand">NFL <span>Line Lab</span></div>
+  <nav class="main"><a href="index.html" class="active">Dashboard</a><a href="lines.html">Originated lines</a><a href="props.html">Player props &amp; SGP</a><a href="strategies.html">Strategies</a><a href="leaderboard.html">Leaderboard</a><a href="correlation.html">Correlations</a><a href="validation.html">Validation gates</a><a href="verification.html">Verification</a><a href="flagged.html">Flagged for review</a><a href="methodology.html">Method</a><a href="sources.html">Sources</a><a href="executive-summary.html">Executive summary</a></nav>
+</div></header>
+<main><div class="wrap">
+<h1>NFL Line Lab — dashboard</h1>
+<p class="lede">Originated NFL lines, a gated strategy competition, measured correlations and a line-by-line audit against nfl.com. Built end-to-end by an automated agent.</p>
+<div class="grid cards">
+  <div class="card"><div class="k">Games in the dataset</div><div class="v">6,607</div>
+    <div class="s">6,331 regular season · 2002–2026</div></div>
+  <div class="card"><div class="k">Strategies tested</div><div class="v">21</div>
+    <div class="s">single · parlay · same-game · player prop</div></div>
+  <div class="card"><div class="k">Passed every gate</div><div class="v">0</div>
+    <div class="s">9 gates, FDR q = 0.1</div></div>
+  <div class="card"><div class="k">Official checks</div><div class="v">77/77</div>
+    <div class="s">mirror vs nfl.com, line by line</div></div>
+  <div class="card"><div class="k">Model error (margin)</div><div class="v">10.647</div>
+    <div class="s">MAE in points · market close 10.239</div></div>
+  <div class="card"><div class="k">Model error (total)</div><div class="v">10.869</div>
+    <div class="s">MAE in points · market close 10.53</div></div>
+</div>
+<h2>Headline findings</h2>
+<ul class="tight"><li><b>No tested strategy cleared all nine gates.</b> The best of the 21 is <code>S10_wind15_under</code> (+3.8% holdout ROI, 6 of 9 gates) — it fails significance and calibration, so it is published as a lead, not a result.</li><li><b>Closing lines are hard to beat, and this model does not beat them.</b> Its spread error is 10.647 points against 10.239 for the market close; every model-vs-market strategy loses money before and after vig.</li><li><b>Correlations are where the real value sits.</b> Home cover and over are almost independent (phi = 0.0101), but moneyline and spread legs in the same game are not (phi = 0.6493) — mispricing those two together is a pricing problem, not a prediction problem.</li><li><b>Quarterback and receiver prop legs are strongly correlated</b> in the one same-team pair with a clean log (Green Bay: r = 0.9029, n = 8); pricing those legs independently understates the joint probability by 71.72%.</li><li><b>Control strategies behave as expected</b>: backing every home team returns -8.26% on the holdout, which is the vig floor and the benchmark any 'skill' claim has to clear.</li></ul>
+<div class="note"><b>How to read this site.</b> A green value is a number that exists; an
+<span class="chip">unverified</span> chip means the value could not be tied to an official source and was
+left blank rather than estimated. Nothing on this site is a betting recommendation, and no prop strategy
+carries a rank because no prop price was reachable.</div>
+<h2>Sections</h2>
+<div class="grid navcards">
+  <a class="navcard" href="lines.html"><h3>Originated lines</h3><p>Our spread, total and moneyline for Week 9 and 10, beside the market close and the edge between them.</p></a>
+  <a class="navcard" href="props.html"><h3>Player props &amp; SGP</h3><p>Player-yardage lines from official game logs, plus measured quarterback/receiver correlation and what it does to a same-game price.</p></a>
+  <a class="navcard" href="strategies.html"><h3>Strategies</h3><p>All 21 pre-registered rules with discovery and holdout performance, side by side.</p></a>
+  <a class="navcard" href="leaderboard.html"><h3>Leaderboard</h3><p>The competition, its scoring formula and rewards, and who is on it.</p></a>
+  <a class="navcard" href="correlation.html"><h3>Correlations</h3><p>Every correlation value used for parlay pricing, with sample sizes and confidence intervals.</p></a>
+  <a class="navcard" href="validation.html"><h3>Validation gates</h3><p>The nine gates, their thresholds, and a pass/fail matrix for every strategy.</p></a>
+  <a class="navcard" href="verification.html"><h3>Verification</h3><p>77 line-by-line checks of the underlying data against official nfl.com pages.</p></a>
+  <a class="navcard" href="flagged.html"><h3>Flagged for review</h3><p>Every unverified item, assumption and irregularity, with its source link.</p></a>
+  <a class="navcard" href="methodology.html"><h3>Method</h3><p>The rating model, the walk-forward design, and how luck is separated from skill.</p></a>
+  <a class="navcard" href="sources.html"><h3>Sources</h3><p>Official pages, the pinned data mirror, hashes, and what each source is used for.</p></a>
+</div>
+</div></main>
+<footer><div class="wrap">
+Built by an automated agent session (branch <code>arena/7b140798-korea2</code>) with no manual input.
+Every published value traces to a source in <a href="sources.html">Sources</a>; anything unverifiable is
+listed on <a href="flagged.html">Flagged for review</a>. Data capture: 2026-11-01T13:37:20Z.
+</div></footer>
+</body></html>

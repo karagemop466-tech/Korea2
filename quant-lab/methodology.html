@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method · NFL Line Lab</title>
+<meta name="description" content="Originated NFL lines, gated strategies, empirical correlations and a line-by-line verification register.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand">NFL <span>Line Lab</span></div>
+  <nav class="main"><a href="index.html">Dashboard</a><a href="lines.html">Originated lines</a><a href="props.html">Player props &amp; SGP</a><a href="strategies.html">Strategies</a><a href="leaderboard.html">Leaderboard</a><a href="correlation.html">Correlations</a><a href="validation.html">Validation gates</a><a href="verification.html">Verification</a><a href="flagged.html">Flagged for review</a><a href="methodology.html" class="active">Method</a><a href="sources.html">Sources</a><a href="executive-summary.html">Executive summary</a></nav>
+</div></header>
+<main><div class="wrap">
+<h1>Method</h1>
+<p class="lede">How the lines are built, how the rules are tested, and how luck is taken out of the answer.</p>
+
+<p class="lede">The whole project is three ideas: build a line from data only, test rules against prices, and
+gate the survivors until luck cannot explain them.</p>
+<h2>1. Line origination</h2>
+<pre>home_points = mu + HFA + OFF[home] + DEF[away]
+away_points = mu        + OFF[away] + DEF[home]
+
+Fit: weighted ridge least squares on every completed game before kickoff.
+  weight = 2^(-age_days / 90.0)   (previous season x 0.5)
+  penalty = 6.0 on OFF and DEF, none on mu or HFA
+Outputs: spread = home - away, total = home + away, P(home) = Phi(spread / sigma)
+sigma = 13.671 points, estimated from the model's own out-of-sample residuals.</pre>
+<p>Hyper-parameters were selected on 2002–2015 by spread+total MAE
+(36 combinations), then frozen. 2020–2026 was never used for tuning, so every holdout
+number is genuinely out of sample.</p>
+<h2>2. Walk-forward discipline</h2>
+<p>Predictions for a week are produced by a model fitted only on games with an earlier kickoff date. There is no
+lookahead anywhere: the ratings used for Week 9 of 2026 know nothing about Week 9 of 2026.</p>
+<h2>3. Strategy families</h2>
+<ul class="tight">
+<li><b>Singles</b> — model-vs-closing-line edges on spread and total, and modelled EV on moneylines.</li>
+<li><b>Situational singles</b> — short weeks, rest differentials, byes, wind, temperature, dome, divisional games.</li>
+<li><b>Parlays</b> — 2- and 3-leg combinations drawn from the edge pool across different games, one per week.</li>
+<li><b>Same-game parlay</b> — spread + total in one game, priced with the measured correlation rather than multiplied.</li>
+<li><b>Player props</b> — yardage lines from official game logs; the ROI question is flagged, not answered, because
+no prop price exists in reachable data.</li>
+<li><b>Control</b> — back every home team. This is the vig floor a real strategy must beat.</li>
+</ul>
+<h2>4. Luck removal</h2>
+<pre>luck z     = (wins - SUM p_market) / sqrt(SUM p_market (1 - p_market))
+excess ROI = ROI(detail) - (-4.55%)          # -110 both sides, no edge
+bootstrap  = 4,000 resamples of settled bets -> 95% interval on ROI
+FDR        = Benjamini-Hochberg over all 19 strategies, q = 0.1</pre>
+<p>The discipline matters more than any single number: with 19 strategies and no correction, roughly one would
+look significant by chance. The FDR step is what converts "interesting" into "supported".</p>
+<h2>5. Reproducing it</h2>
+<pre>bash scripts/fetch_data.sh        # pinned raw data (GitHub only)
+python3 scripts/build_dataset.py  # parse + normalise
+python3 scripts/model.py          # originate lines, walk-forward
+python3 scripts/backtest.py       # settle every strategy
+python3 scripts/props.py          # prop board + correlations
+python3 scripts/validation.py     # gates, FDR, leaderboard
+python3 scripts/verify_official.py# 77 checks vs nfl.com
+python3 scripts/build_site.py     # regenerate this site</pre>
+<h2>6. Limitations, stated plainly</h2>
+<ul class="tight">
+<li>The model is deliberately simple. It is not competitive with a closing line, and the results say so.</li>
+<li>Closing prices come from one mirror; a stale price would propagate into every ROI.</li>
+<li>No injury, weather-forecast, or lineup data is used. Rest, roof, surface, temperature and wind are the only
+situational inputs available in reachable data.</li>
+<li>Player props are a method demonstration on six players, not a tested market.</li>
+<li>Nothing here is betting advice.</li>
+</ul>
+</div></main>
+<footer><div class="wrap">
+Built by an automated agent session (branch <code>arena/7b140798-korea2</code>) with no manual input.
+Every published value traces to a source in <a href="sources.html">Sources</a>; anything unverifiable is
+listed on <a href="flagged.html">Flagged for review</a>. Data capture: 2026-11-01T13:37:20Z.
+</div></footer>
+</body></html>

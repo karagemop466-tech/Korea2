@@ -1,0 +1,199 @@
+{
+ "pairs": [
+  {
+   "team": "GB",
+   "leg_a": "Jordan Love",
+   "leg_b": "Christian Watson",
+   "market_a": "passing_yards",
+   "market_b": "receiving_yards",
+   "n": 8,
+   "r": 0.9029,
+   "r_ci95": [
+    0.545,
+    0.982
+   ],
+   "weeks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "sources": [
+    "https://www.nfl.com/players/jordan-love/stats/",
+    "https://www.nfl.com/players/christian-watson/stats/"
+   ]
+  },
+  {
+   "team": "DET",
+   "leg_a": "Jared Goff",
+   "leg_b": "Amon-Ra St. Brown",
+   "market_a": "passing_yards",
+   "market_b": "receiving_yards",
+   "n": 6,
+   "r": 0.2768,
+   "r_ci95": [
+    -0.69,
+    0.889
+   ],
+   "weeks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7
+   ],
+   "sources": [
+    "https://www.nfl.com/players/jared-goff/stats/",
+    "https://www.nfl.com/players/amon-ra-st-brown/stats/"
+   ]
+  }
+ ],
+ "pooled_qb_wr": {
+  "r": 0.6236,
+  "n": 14,
+  "ci95": [
+   0.139,
+   0.867
+  ]
+ },
+ "player_team": [
+  {
+   "player": "Jaxon Smith-Njigba",
+   "team": "SEA",
+   "market": "receiving_yards",
+   "n": 7,
+   "r_vs_team_points": -0.2497,
+   "r_vs_team_points_ci95": [
+    -0.844,
+    0.62
+   ],
+   "r_vs_team_margin": 0.4992,
+   "r_vs_team_margin_ci95": [
+    -0.407,
+    0.91
+   ],
+   "source_url": "https://www.nfl.com/players/jaxon-smith-njigba/stats/"
+  },
+  {
+   "player": "Christian Watson",
+   "team": "GB",
+   "market": "receiving_yards",
+   "n": 8,
+   "r_vs_team_points": 0.5907,
+   "r_vs_team_points_ci95": [
+    -0.195,
+    0.915
+   ],
+   "r_vs_team_margin": -0.0151,
+   "r_vs_team_margin_ci95": [
+    -0.712,
+    0.697
+   ],
+   "source_url": "https://www.nfl.com/players/christian-watson/stats/"
+  },
+  {
+   "player": "Jordan Love",
+   "team": "GB",
+   "market": "passing_yards",
+   "n": 8,
+   "r_vs_team_points": 0.4044,
+   "r_vs_team_points_ci95": [
+    -0.42,
+    0.863
+   ],
+   "r_vs_team_margin": -0.1242,
+   "r_vs_team_margin_ci95": [
+    -0.762,
+    0.636
+   ],
+   "source_url": "https://www.nfl.com/players/jordan-love/stats/"
+  },
+  {
+   "player": "Jared Goff",
+   "team": "DET",
+   "market": "passing_yards",
+   "n": 6,
+   "r_vs_team_points": -0.3512,
+   "r_vs_team_points_ci95": [
+    -0.905,
+    0.644
+   ],
+   "r_vs_team_margin": -0.4615,
+   "r_vs_team_margin_ci95": [
+    -0.926,
+    0.56
+   ],
+   "source_url": "https://www.nfl.com/players/jared-goff/stats/"
+  },
+  {
+   "player": "Amon-Ra St. Brown",
+   "team": "DET",
+   "market": "receiving_yards",
+   "n": 6,
+   "r_vs_team_points": -0.4375,
+   "r_vs_team_points_ci95": [
+    -0.922,
+    0.58
+   ],
+   "r_vs_team_margin": -0.4025,
+   "r_vs_team_margin_ci95": [
+    -0.915,
+    0.608
+   ],
+   "source_url": "https://www.nfl.com/players/amon-ra-st-brown/stats/"
+  },
+  {
+   "player": "Kenneth Walker III",
+   "team": "KC",
+   "market": "rushing_yards",
+   "n": 6,
+   "r_vs_team_points": 0.7868,
+   "r_vs_team_points_ci95": [
+    -0.069,
+    0.975
+   ],
+   "r_vs_team_margin": 0.5912,
+   "r_vs_team_margin_ci95": [
+    -0.424,
+    0.948
+   ],
+   "source_url": "https://www.nfl.com/players/kenneth-walker-iii/stats/"
+  }
+ ],
+ "sgp_cases": [
+  {
+   "team": "GB",
+   "leg_a": "Jordan Love",
+   "leg_b": "Christian Watson",
+   "r": 0.9029,
+   "n_pairs": 8,
+   "p_over_a": 0.4995,
+   "p_over_b": 0.5004,
+   "p_joint_independent": 0.2499,
+   "p_joint_correlated": 0.4292,
+   "fair_odds_independent": 300,
+   "fair_odds_correlated": 133,
+   "rel_mispricing_pct": 71.72
+  },
+  {
+   "team": "DET",
+   "leg_a": "Jared Goff",
+   "leg_b": "Amon-Ra St. Brown",
+   "r": 0.2768,
+   "n_pairs": 6,
+   "p_over_a": 0.4996,
+   "p_over_b": 0.4988,
+   "p_joint_independent": 0.2492,
+   "p_joint_correlated": 0.2938,
+   "fair_odds_independent": 301,
+   "fair_odds_correlated": 240,
+   "rel_mispricing_pct": 17.92
+  }
+ ],
+ "source": "nfl.com player stats pages (2026 regular season game logs)"
+}

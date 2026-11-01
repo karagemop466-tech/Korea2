@@ -9,11 +9,14 @@ parlays and player-prop combos.
 ## Live sites (GitHub Pages, served from `main`)
 
 - **Line Lab** — root site: <https://karagemop466-tech.github.io/Korea2/>
-  (`index.html`, `pages/`, `assets/`). This session (`arena/d88b794a-korea2`)
-  rebuilt it into a measured, fully sourced research site.
+  (`index.html`, `pages/`, `assets/`). Rebuilt by `arena/d88b794a-korea2` into a measured,
+  fully sourced research site.
 - **NFL Line Origination Dashboard** (`arena-29806afc`):
   <https://karagemop466-tech.github.io/Korea2/dashboard/>
-- Independent research from other sessions: `nfl-research/`, `research-desk/`
+- **Quant Lab** (`arena/7b140798-korea2`):
+  <https://karagemop466-tech.github.io/Korea2/quant-lab/> — originated lines, 21 gated
+  strategies, measured correlations, 77-check verification register (self-contained in `quant-lab/`).
+- Independent research from other sessions: `nfl-research/`, `research-desk/`, `nfl-lines/`.
 
 ## Repository map
 
@@ -21,6 +24,7 @@ parlays and player-prop combos.
 | --- | --- |
 | `index.html`, `pages/` | Line Lab site — 12 pages generated from `results/*.json` |
 | `scripts/analysis/` | The quantitative pipeline: data prep, market baseline, strategy engine, correlation study, props, line origination, verification, site render |
+| `quant-lab/` | Self-contained quant lab (session `7b140798`): pipeline, 21-strategy backtest, nine gates, correlations, 77-check verification register, 12-page site |
 | `data/derived/` | Committed pruned nflverse extracts (raw downloads are gitignored) |
 | `data/provenance.json` | URL, row count and SHA-256 of every source file used |
 | `results/` | Committed JSON outputs; the single source of truth for the site |
@@ -83,6 +87,46 @@ Run the other sessions' checks too:
 python3 scripts/validate_data.py   # data rows + official-source policy
 python3 scripts/check_links.py     # internal site links (whole repo)
 ```
+
+## Quant Lab — originated lines, gated strategies, verification (session `7b140798`)
+
+**Live site:** https://karagemop466-tech.github.io/Korea2/quant-lab/
+
+An end-to-end quantitative lab that lives entirely in `quant-lab/` and touches no other
+session's files:
+
+| Path | Contents |
+| --- | --- |
+| `quant-lab/index.html` | landing dashboard (KPIs, headline findings, navigation) |
+| `quant-lab/lines.html` | originated spread/total for Weeks 9-10 next to the market close |
+| `quant-lab/props.html` | player-prop board, QB/WR correlation, same-game pricing error |
+| `quant-lab/strategies.html` | 21 pre-registered strategies, discovery vs holdout |
+| `quant-lab/leaderboard.html` | competition rules, scoring, rewards, results |
+| `quant-lab/correlation.html` | every correlation value with n and 95% CI |
+| `quant-lab/validation.html` | nine gates and the pass/fail matrix |
+| `quant-lab/verification.html` | 77 line-by-line checks against nfl.com |
+| `quant-lab/flagged.html` | unverified items, assumptions, 10 irregularities |
+| `quant-lab/methodology.html` | model, walk-forward design, luck removal |
+| `quant-lab/sources.html` | provenance, pinned commit, file hashes |
+| `quant-lab/EXECUTIVE_SUMMARY.md` | one-page summary |
+
+Reproduce (no manual input, no hand-typed values):
+
+```bash
+cd quant-lab
+bash scripts/fetch_data.sh        # pinned raw data from github.com only
+python3 scripts/build_dataset.py  # -> data/processed/games.json
+python3 scripts/model.py          # originate lines, walk-forward
+python3 scripts/backtest.py       # settle all 21 strategies
+python3 scripts/props.py          # prop board + correlations
+python3 scripts/validation.py     # nine gates, FDR, leaderboard
+python3 scripts/verify_official.py# 77 checks vs nfl.com
+python3 scripts/build_site.py     # regenerate the site + link check
+```
+
+Result: **0 of 21 strategies clear all nine gates**; the closing line is not beaten. What does
+hold up is measured correlation for parlay pricing and a verification register that proves the
+bulk data against official nfl.com standings, 64 team-seasons for 64.
 
 ## Responsible gambling
 

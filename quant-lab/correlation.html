@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Correlations · NFL Line Lab</title>
+<meta name="description" content="Originated NFL lines, gated strategies, empirical correlations and a line-by-line verification register.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="brand">NFL <span>Line Lab</span></div>
+  <nav class="main"><a href="index.html">Dashboard</a><a href="lines.html">Originated lines</a><a href="props.html">Player props &amp; SGP</a><a href="strategies.html">Strategies</a><a href="leaderboard.html">Leaderboard</a><a href="correlation.html" class="active">Correlations</a><a href="validation.html">Validation gates</a><a href="verification.html">Verification</a><a href="flagged.html">Flagged for review</a><a href="methodology.html">Method</a><a href="sources.html">Sources</a><a href="executive-summary.html">Executive summary</a></nav>
+</div></header>
+<main><div class="wrap">
+<h1>Correlations</h1>
+<p class="lede">Measured correlations, with sample sizes, for every parlay and same-game combination the lab prices.</p>
+
+<p class="lede">Every number here is computed from the data in this repository — no correlation is quoted from
+an outside source, and none is assumed. Sample sizes and confidence intervals are shown because a correlation
+without an n is an opinion.</p>
+<h2>Game-level legs</h2>
+<div class="tablewrap"><table><caption>Correlations between legs of the same game, and between games</caption><thead><tr><th>Relationship</th><th>Value</th><th>n</th><th class="wrap">What it means for pricing</th></tr></thead><tbody><tr><td>Home cover vs over, same game</td><td>phi = 0.0101</td><td><span class="num">6,123</span></td><td class="wrap">Essentially zero. Spread and total legs of one game can be priced as independent.</td></tr><tr><td>Home margin vs total points</td><td>r = 0.0162</td><td><span class="num">6,123</span></td><td class="wrap">Same story on the continuous scale: knowing the margin tells you almost nothing about the total.</td></tr><tr><td>Moneyline win vs spread cover, same game</td><td>phi = 0.6493</td><td><span class="num">5,173</span></td><td class="wrap">Very strong. These two legs must never be priced as independent.</td></tr><tr><td>Two legs from different games</td><td>phi = -0.0192</td><td><span class="num">3,061</span></td><td class="wrap">Indistinguishable from zero, which is the assumption a cross-game parlay price rests on.</td></tr></tbody></table></div>
+<h2>Player-level legs</h2>
+<div class="tablewrap"><table><caption>Same-team prop correlations from official nfl.com game logs</caption><thead><tr><th>Team</th><th class="wrap">Legs</th><th>r</th><th>n games</th><th>95% CI</th></tr></thead><tbody><tr><td>GB</td><td class="wrap">Jordan Love (QB pass yds) · Christian Watson (rec yds)</td><td><span class="num">0.903</span></td><td><span class="num">8</span></td><td>0.545 to 0.982</td></tr><tr><td>DET</td><td class="wrap">Jared Goff (QB pass yds) · Amon-Ra St. Brown (rec yds)</td><td><span class="num">0.277</span></td><td><span class="num">6</span></td><td>-0.69 to 0.889</td></tr><tr><td><b>pooled</b></td><td class="wrap">QB1 passing yards · WR1 receiving yards</td><td><span class="num">0.624</span></td><td><span class="num">14</span></td><td>[0.139, 0.867]</td></tr></tbody></table></div>
+<h2>How a correlated parlay should be priced</h2>
+<pre>independent:  P(A and B) = p(A) x p(B)                      decimal odds = 1 / P
+correlated:   P(A and B) = P(Z1 &gt; z1, Z2 &gt; z2 ; rho)        bivariate normal
+              with z_i = (line_i - projection_i) / sigma_i</pre>
+<p>For the Green Bay pair this is not a rounding error: pricing the two legs independently returns a joint
+probability of 0.2499
+against 0.4292
+with the measured correlation — the independent price is wrong by
+71.72%.</p>
+<div class="note"><b>Correlations are not stable.</b> The Detroit pair (r =
+0.2768, n = 6) shows how much a
+point estimate can move on a short sample. Any production pricing engine should re-estimate these on a rolling
+window and widen the interval rather than trusting a single number.</div>
+</div></main>
+<footer><div class="wrap">
+Built by an automated agent session (branch <code>arena/7b140798-korea2</code>) with no manual input.
+Every published value traces to a source in <a href="sources.html">Sources</a>; anything unverifiable is
+listed on <a href="flagged.html">Flagged for review</a>. Data capture: 2026-11-01T13:37:20Z.
+</div></footer>
+</body></html>
