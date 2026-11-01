@@ -222,7 +222,7 @@ def main() -> None:
     with open(os.path.join(DERIVED, "correlation.json"), "w") as fh:
         json.dump(out, fh, indent=2, default=str)
     for k, v in out.items():
-        if isinstance(v, dict) and v.get("status") == "measured":
+        if isinstance(v, dict) and v.get("status") == "measured" and "r" in v:
             print(f"{k:34s} r={v['r']:+.3f} n={v['n']:6d} CI[{v['ci_low']:+.3f},{v['ci_high']:+.3f}]")
     print(json.dumps(out.get("sgp_4leg_same_team", {}), indent=2, default=str)[:1500])
 

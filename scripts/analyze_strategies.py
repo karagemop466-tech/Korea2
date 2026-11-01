@@ -108,15 +108,20 @@ def build_strategies(df: pd.DataFrame) -> dict[str, dict]:
         "bets": spread_bets(df, lambda r: "home" if r.rest_diff >= 3 else ("away" if r.rest_diff <= -3 else None),
                             "S4_rest_advantage", "Schedule-spot signal"),
     }
-    strat["S5_short_week_fade"] = {
-        "name": "Fade team whose opponent is on short rest",
+    # NOTE on a rejected design: "fade the team on short rest" produced 0 qualifying bets in
+    # 2023-2026, because Thursday games put BOTH teams on short rest. It is kept here as a record of
+    # a hypothesis that could not be expressed as a bet, rather than silently deleted.
+    strat["S5_bye_week_team"] = {
+        "name": "Team coming off a bye (13+ days rest) vs a normal-rest opponent",
         "family": "single bet (situational)",
-        "hypothesis": "Thursday/short-week teams are systematically overvalued after a short turnaround.",
+        "hypothesis": "Extra preparation time after a bye is worth more than the closing line implies.",
         "bets": spread_bets(
             df,
-            lambda r: ("home" if (r.away_rest <= 5 and r.home_rest >= 7)
-                       else ("away" if (r.home_rest <= 5 and r.away_rest >= 7) else None)),
-            "S5_short_week_fade", "Schedule-spot signal"),
+            lambda r: ("home" if (r.home_rest >= 13 and r.away_rest < 13)
+                       else ("away" if (r.away_rest >= 13 and r.home_rest < 13) else None)),
+            "S5_bye_week_team", "Bye-week signal"),
+        "rejected_variant": ("An earlier 'short-week fade' version (rest <= 5 vs rest >= 7) selected "
+                             "zero games because short-rest games involve two short-rest teams."),
     }
     strat["S6_divisional_home_dog"] = {
         "name": "Divisional home underdog",

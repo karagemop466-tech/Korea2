@@ -46,7 +46,7 @@ def predict_frame(pg: pd.DataFrame, spec: dict) -> pd.DataFrame:
     return d.dropna(subset=["forecast", "baseline_season_mean", "baseline_last3"])
 
 
-def evaluate(d: pd.DataFrame, spec: dict) -> dict:
+def evaluate(d: pd.DataFrame, spec: dict, median_resid: float = 0.0) -> dict:
     ev = d[d["season"] >= TEST_START].copy()
     if len(ev) < 200:
         return {"status": "insufficient_data", "n": int(len(ev))}
@@ -56,7 +56,9 @@ def evaluate(d: pd.DataFrame, spec: dict) -> dict:
     b3 = ev["baseline_last3"].to_numpy(float)
     resid = y - f
     sd = float(np.std(resid, ddof=1))
-    line = np.round(f * 2) / 2  # originate the line at the nearest half-unit
+    # Performance stats are right-skewed, so P(Y > forecast) < 50%. The line is therefore centred on
+    # the forecast plus the median residual measured ONLY on pre-test seasons.
+    line = np.round((f + median_resid) * 2) / 2
     over = (y > line).astype(int)
     push = (y == line).astype(int)
     decided = over[push == 0]
@@ -68,6 +70,7 @@ def evaluate(d: pd.DataFrame, spec: dict) -> dict:
         "mae_improvement_vs_season_mean_pct": round(100 * (1 - np.abs(resid).mean() / np.abs(y - b).mean()), 2),
         "corr_forecast_actual": round(float(np.corrcoef(f, y)[0, 1]), 4),
         "resid_sd": round(sd, 3),
+        "median_residual_correction": round(float(median_resid), 3),
         "originated_line_over_rate": round(float(decided.mean()), 4),
         "n_decided": int(len(decided)),
         "pushes_at_originated_line": int(push.sum()),
@@ -92,7 +95,7 @@ def _calib_quartiles(f: np.ndarray, y: np.ndarray, sd: float) -> list[dict]:
     return rows
 
 
-def originate(pg: pd.DataFrame, spec: dict) -> list[dict]:
+def originate(pg: pd.DataFrame, spec: dict, median_resid: float = 0.0) -> list[dict]:
     """Lines for the next unplayed week for the most-used qualified players."""
     latest = int(pg["season"].max())
     d = pg[pg["position"].isin(spec["positions"])].copy()
@@ -112,7 +115,7 @@ def originate(pg: pd.DataFrame, spec: dict) -> list[dict]:
         fc = float(np.average(recent, weights=w))
         resid_hist = hist[spec["stat"]].to_numpy(float) - hist[spec["stat"]].shift(1).fillna(hist[spec["stat"]].mean()).to_numpy(float)
         sd = float(np.std(resid_hist, ddof=1)) if len(resid_hist) > 2 else float(hist[spec["stat"]].std(ddof=1))
-        line = round(fc * 2) / 2
+        line = round((fc + median_resid) * 2) / 2
         p_over = float(1 - sps.norm.cdf(line, loc=fc, scale=max(sd, 1e-6)))
         rows.append({"player": player["player_display_name"], "team": player["team"],
                      "games_used": int(len(hist)), "weighted_forecast": round(fc, 1),
@@ -137,15 +140,17 @@ def main() -> None:
     }
     for spec in SPECS:
         d = predict_frame(pg, spec)
-        ev = evaluate(d, spec)
+        pre = d[d["season"] < TEST_START]
+        median_resid = float(np.median(pre[spec["stat"]] - pre["forecast"])) if len(pre) > 200 else 0.0
+        ev = evaluate(d, spec, median_resid)
         out["evaluations"].append(ev)
         out["originated"][spec["stat"]] = {
             "label": spec["label"],
             "week": int(pg["week"].max()) + 1,
-            "players": originate(pg, spec),
+            "players": originate(pg, spec, median_resid),
         }
         print(spec["stat"], ev.get("n"), ev.get("mae_forecast"), ev.get("mae_baseline_season_mean"),
-              ev.get("originated_line_over_rate"))
+              "median_resid", round(median_resid, 2), "over_rate", ev.get("originated_line_over_rate"))
 
     with open(os.path.join(DERIVED, "props.json"), "w") as fh:
         json.dump(out, fh, indent=2, default=str)
