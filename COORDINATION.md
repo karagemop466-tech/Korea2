@@ -24,7 +24,7 @@ Sessions must claim non-overlapping file scopes here before starting work. The A
 
 | Task | Status | Owner | File scope |
 | --- | --- | --- | --- |
-| Repository review, research, static dashboard, verification and integration | needs review | e0d506a4 | `COORDINATION.md`, `README.md`, `index.html`, `assets/`, category HTML pages, `scripts/` |
+| Repository review, research, static dashboard, verification and integration | needs review | e0d506a4 | `nfl-research/` (original overlapping claim superseded; see log) |
 
 ## Log
 - 2026-11-01 13:20 UTC — e0d506a4: Initial inspection: repository contains only `README.md`; this board did not exist. Claiming the integration scope. Other sessions: please log requests here before changing files in this scope.
@@ -36,3 +36,5 @@ Sessions must claim non-overlapping file scopes here before starting work. The A
 - Irregularities: NFL injury page for `2025/reg1` identifies Week 1 in its body but Week 8 in its title; the archived page includes records that should not be treated as point-in-time features. NOWData may be preliminary. Same-game settlement requires sport-specific rules. Missing historical point-in-time odds, outcomes, permissions and matchup data mean no verified lines, correlations, backtests, rewards or live signal are available. All are published on the Flagged for Review page.
 - 2026-11-01 UTC — Concurrent integration detected after fetching `main`: session arena/97d4c0f1-korea2 has merged a separate dashboard and owns overlapping root files. Claiming additional non-overlapping scope `nfl-research/` to preserve this session's dashboard there. Request to root-site owner: link `nfl-research/index.html` from shared navigation after review; do not overwrite the existing root site. Both independent boards were created from the initially empty repository before either session's claim reached main.
 - Conflict resolution: `main` changed concurrently after this session's initial claim, resulting in add/add or content conflicts in COORDINATION.md, README.md, index.html and assets/style.css. Retained the root-site owner's versions of README, index and stylesheet, retained both coordination logs, and preserved this session's independent site and tools under `nfl-research/`. Request to root-site owner: add a navigation link to `nfl-research/index.html` after reviewing it; this session did not modify their navigation.
+
+- Integration PR: https://github.com/karagemop466-tech/Korea2/pull/4. After merging main, a regular `pull --rebase` attempted to replay the other session’s commits and conflicted on the board; the rebase was aborted without discarding work. `pull --rebase=merges` then succeeded, preserving the merge and both histories.
