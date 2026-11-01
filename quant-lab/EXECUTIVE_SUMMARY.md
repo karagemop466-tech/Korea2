@@ -25,7 +25,7 @@
 
 ## What is explicitly not claimed
 
-- **No prop strategy is ranked.** No player-prop price exists in any source reachable from this environment, so prop ROI uses a −110 assumption and the sample (44 player-games across 6 players) is far below the 60-observation gate. The prop module demonstrates method; it does not claim an edge.
+- **No prop strategy is ranked.** No player-prop price exists in any source reachable from this environment, so prop ROI uses a −110 assumption and the sample (41 player-games across 6 players) is far below the 60-observation gate. The prop module demonstrates method; it does not claim an edge.
 - **No line beats a sportsbook.** Closing prices come from a single third-party mirror, not from a sportsbook, and the model is deliberately simple. There is no claim of profitability.
 - **No rule text is quoted.** The NFL rulebook URL this project would have used returned a 404 on 2026-11-01, so the analysis is empirical rather than rule-derived.
 - **Nothing here is betting advice.** Leaderboard rewards are virtual points and badges.

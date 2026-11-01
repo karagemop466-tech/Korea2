@@ -310,7 +310,7 @@ and `README.md`.
 I1 `spread_line` sign convention in the mirror contradicts its own documentation (resolved
 empirically: corr with home moneyline = -0.976, with home margin = +0.334; unit-guarded) ·
 I2 nfl.com prints `AZ` where the mirror prints `ARI` (alias map) · I3 nflverse-data release assets
-unreachable, so the prop sample is 44 player-games instead of a full season · I4 no player-prop
+unreachable, so the prop sample is 41 player-games instead of a full season · I4 no player-prop
 price exists anywhere reachable -> -110 assumption, no prop strategy ranked · I5 closing lines are
 a third-party sportsbook record, not a league publication · I6 nfl.com category leaderboards lose
 their column headers in text extraction, so no value is published from them · I7 mirror is mid-round
@@ -353,8 +353,26 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   standings exactly.
 * **2026-11-01** — Pipeline, model, backtest, gates, props, verification and site built; link check 0 broken.
 * **2026-11-01** — Merged `origin/main`; conflicts resolved as described above; moved to `quant-lab/`.
-* PAGES_DEPLOY_RECORD: see the update appended after the pull request was merged.
-
+* **2026-11-01** — Second `origin/main` advance (sibling PR #18 merged its own pipeline and refreshed
+  `data/derived/*.gz`) produced fresh conflicts in `README.md`, `COORDINATION.md` and `.gitignore`. Resolved
+  the same way: every board and every README section kept, `quant-lab/` untouched, `.gitignore` unioned.
+  A sibling workflow (`refresh-data`) also pushed an automated data-refresh commit onto this branch; it was
+  fast-forwarded in, not overwritten.
+* **2026-11-01** — Post-deploy correction: the flagged register and executive summary said "44
+  player-games"; the captured logs actually hold **41** (7+8+8+6+6+6). Corrected in `data/sources.json`
+  and the summary, and the site regenerated. A malformed U3 link (space inside the URL field) was also fixed.
+* PAGES_DEPLOY_RECORD: PR **#21** https://github.com/karagemop466-tech/Korea2/pull/21 MERGED to `main` on
+  2026-11-01 at merge commit **6ae02d0** (`gh pr merge 21 --merge`). PR checks: `validate` **success**,
+  `verify` **success**, `fetch` **success**. GitHub Pages is `build_type: legacy` (source `main`, path `/`);
+  `GET /repos/.../pages/builds/latest` reports **status built** for commit `6ae02d0` at 2026-11-01T13:42:45Z.
+  Live-verified: <https://karagemop466-tech.github.io/Korea2/quant-lab/> (dashboard KPIs and findings render),
+  `/quant-lab/flagged.html` (all U/A/I rows with source links render). Repo-wide checks after merge:
+  `scripts/check_links.py` 523 local references / 49 pages — no broken internal links; `scripts/validate_data.py`
+  PASS; `tests/check_site.py` PASS. The root Line Lab site, `dashboard/`, `nfl-lines/`, `nfl-research/` and
+  `research-desk/` were not modified by this session.
+* **Deploy practice note:** because Pages serves `main` directly, this session re-ran
+  `quant-lab/scripts/build_site.py` and the repo link checker before every push; a broken page would have
+  gone live immediately.
 ---
 
 # Independent session 6206fba3 — Origination Lab
