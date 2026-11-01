@@ -1,20 +1,8 @@
-# Local tooling / caches
-.venv/
-venv/
+# Raw downloads are reproducible from data/provenance.json and quant-lab/data/raw/PROVENANCE.txt.
+data/raw/
+quant-lab/data/raw/
 __pycache__/
 *.pyc
-.pytest_cache/
-.cache/
-node_modules/
-
-# Raw downloaded datasets (large, reproducible via scripts/fetch_data.py)
-# Only the provenance manifest is committed.
-data/raw/**/*.csv
-data/raw/**/*.gz
-data/raw/**/*.parquet
-!data/manifest.json
-
-# Interim build scratch
-data/interim/
-build/
-*.log
+.venv/
+.DS_Store
+origination-lab/data/raw/

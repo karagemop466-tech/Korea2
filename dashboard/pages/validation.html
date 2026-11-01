@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validation Gates — removing luck from the equation · Korea2</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <div class="page-head">
+    <h1>Validation Gates — removing luck from the equation</h1>
+    <p>G1–G8: official-data-only, out-of-sample holdout, binomial significance vs price-implied break-even, minimum sample size, CLV, Bonferroni correction, correlation & bankroll, settlement integrity.</p>
+    <div class="meta-line"></div>
+  </div>
+  <section class="panel">
+    <div id="table"></div>
+  </section>
+</main>
+<script src="../assets/js/app.js"></script>
+<script>App.init({ data: "validation_gates.json", renderer: "validation_gates" }).catch(function (e) { document.getElementById("table").innerHTML = '<div class="notice">' + App.esc(e.message) + "</div>"; });</script>
+</body>
+</html>
