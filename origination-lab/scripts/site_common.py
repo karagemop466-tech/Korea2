@@ -65,6 +65,14 @@ def pctp(x, dp=1, signed=True) -> str:
     return f'<span class="{cls}">{sign}{v:.{dp}f}%</span>'
 
 
+def spts(x, dp=1) -> str:
+    """Signed points, coloured: a spread disagreement expressed in points."""
+    if x is None:
+        return blank()
+    cls = "pos" if x > 0 else ("neg" if x < 0 else "muted")
+    return f'<span class="{cls}">{x:+.{dp}f}</span>'
+
+
 def roi(x) -> str:
     return pctp(x, 2)
 
