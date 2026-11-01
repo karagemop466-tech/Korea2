@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bet Types — official definitions · Korea2</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <div class="page-head">
+    <h1>Bet Types — official definitions</h1>
+    <p>Single bets, parlays, player props, SGP, teaser, round robin and live betting — every definition verified against official sportsbook help pages and the state regulator.</p>
+    <div class="meta-line"></div>
+  </div>
+  <section class="panel">
+    <div id="table"></div>
+  </section>
+</main>
+<script src="../assets/js/app.js"></script>
+<script>App.init({ data: "bet_types.json", renderer: "bet_types" }).catch(function (e) { document.getElementById("table").innerHTML = '<div class="notice">' + App.esc(e.message) + "</div>"; });</script>
+</body>
+</html>

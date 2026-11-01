@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Catalog — useful, officially-sourced inputs · Korea2</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <div class="page-head">
+    <h1>Signal Catalog — useful, officially-sourced inputs</h1>
+    <p>Candidate signals for model building. Each input is mapped to official sources (NFL stats, Next Gen Stats, injury report, NWS weather, sportsbook prices).</p>
+    <div class="meta-line"></div>
+  </div>
+  <section class="panel">
+    <div id="table"></div>
+  </section>
+</main>
+<script src="../assets/js/app.js"></script>
+<script>App.init({ data: "signals.json", renderer: "signals" }).catch(function (e) { document.getElementById("table").innerHTML = '<div class="notice">' + App.esc(e.message) + "</div>"; });</script>
+</body>
+</html>

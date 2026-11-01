@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Bet types covered by the strategy framework (all definitions verified against official sportsbook help pages / regulator)",
+    "verified_on": "2026-11-01"
+  },
+  "rows": [
+    {"id": "BT-01", "name": "Single bet — point spread (ATS)", "definition": "Handicap (+/-) applied to the final score; favorite must win by more than the line to cover; underdog covers by winning or losing by less; push = refund if the margin lands exactly on the number", "typical_price": "Usually -110 (11-to-10: risk $11 to win $10)", "sources": ["SRC-DK-GLOSSARY", "SRC-DK-FB-FAQ", "SRC-FD-TERMS"]},
+    {"id": "BT-02", "name": "Single bet — moneyline", "definition": "Wager on which team wins outright; margin does not matter; American 3-digit odds (e.g., -150 = risk $150 to win $100; +150 = risk $100 to win $150)", "typical_price": "Varies with favorite/underdog strength", "sources": ["SRC-DK-FB-FAQ", "SRC-FD-TERMS", "SRC-DK-GLOSSARY"]},
+    {"id": "BT-03", "name": "Single bet — total (over/under)", "definition": "Wager on whether the combined final score of both teams is over or under the posted number (e.g., O/U 47.5: 48+ wins the over, 47 or fewer wins the under)", "typical_price": "Usually -110", "sources": ["SRC-DK-FB-FAQ", "SRC-DK-GLOSSARY", "SRC-FD-TERMS"]},
+    {"id": "BT-04", "name": "Player prop (proposition bet)", "definition": "Wager on an individual player's performance or a specific in-game event not directly tied to the game outcome (e.g., QB passing yards over/under, anytime TD scorer); settled on official statistics", "typical_price": "Varies (often -110 to -120+ per side)", "sources": ["SRC-DK-PROP", "SRC-FD-TERMS", "SRC-NV-REG22"]},
+    {"id": "BT-05", "name": "Parlay (multi-game / traditional)", "definition": "Two or more single wagers combined into one bet; every leg must win; one loss voids the whole ticket; a pushed leg is removed and odds recalculated; regulator definition of parlay card wager = outcomes of 2+ games or 2+ contingencies", "typical_price": "Combined odds = product of leg odds", "sources": ["SRC-DK-PARLAY", "SRC-NV-REG22", "SRC-DK-GLOSSARY"]},
+    {"id": "BT-06", "name": "Same-game parlay (SGP)", "definition": "Parlay combining 2+ selections from a single game (spread/total/props); because legs are correlated, books price SGPs with correlation models and may restrict ‘too closely related’ combinations", "typical_price": "Correlation-adjusted (not the naive product of leg odds)", "sources": ["SRC-DK-PARLAY", "SRC-FD-TERMS", "SRC-DK-GLOSSARY"]},
+    {"id": "BT-07", "name": "Player-prop parlay", "definition": "Parlay built from multiple player-prop legs (may span games); same all-legs-must-win rule; correlated same-player/same-game legs can be restricted as related contingencies", "typical_price": "Product of leg odds, subject to correlation restrictions", "sources": ["SRC-DK-PARLAY", "SRC-DK-PROP", "SRC-DK-GLOSSARY"]},
+    {"id": "BT-08", "name": "Teaser", "definition": "Parlay on spreads/totals where each line is adjusted (‘teased’) in the bettor's favor in exchange for lower payout odds", "typical_price": "Reduced payout for moved lines", "sources": ["SRC-DK-GLOSSARY", "SRC-FD-TERMS"]},
+    {"id": "BT-09", "name": "Round robin", "definition": "A series of parlays from one set of selections (e.g., 3-team round robin = three 2-team parlays + one 3-team parlay), so not every leg must win for a payout", "typical_price": "Combined from component parlays", "sources": ["SRC-FD-TERMS"]},
+    {"id": "BT-10", "name": "Live / in-game betting", "definition": "Wagers placed after kickoff on live markets (game spread, moneyline, total, quarter/half markets, eligible player props)", "typical_price": "Re-priced continuously", "sources": ["SRC-DK-NFL-BOARD"]}
+  ]
+}

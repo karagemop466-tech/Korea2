@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive Summary — Korea2</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Korea2</h1>
+    <span class="tag">Executive Summary</span>
+  </div>
+</header>
+<nav>
+  <ul>
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a href="data.html">NFL Data</a></li>
+    <li><a href="strategies.html">Strategies</a></li>
+    <li><a href="correlations.html">Correlations</a></li>
+    <li><a href="executive-summary.html" class="active">Executive Summary</a></li>
+    <li><a href="flagged-review.html">Flagged for Review</a></li>
+  </ul>
+</nav>
+<main>
+  <div class="section">
+    <h2>Executive Summary — NFL Lines Origination Program</h2>
+    <p class="kicker">Prepared 2026-11-01 &bull; Repo: karagemop466-tech/Korea2 (branch arena/dda090fd-korea2) &bull; Status: initial build, all line/odds values unverified</p>
+  </div>
+
+  <div class="section">
+    <h3>1. Objective</h3>
+    <p>Originate NFL betting lines from first principles rather than copying market prices. Generate useful signals for single bets, parlays, and player-prop combinations; run the program like a leaderboard competition that rewards top-performing strategies; remove luck and keep only selectively skill-based setups.</p>
+  </div>
+
+  <div class="section">
+    <h3>2. Approach</h3>
+    <ul>
+      <li><strong>Data:</strong> historical NFL game results (scores, dates, teams, Elo win probabilities) from the verified source file covering 1920–2020 seasons (16,810 games).</li>
+      <li><strong>Signals:</strong> model-implied probabilities (Elo) compared against market-implied probabilities from betting lines; edges above a threshold are candidate bets.</li>
+      <li><strong>Bet types:</strong> single bets (moneyline), parlays (2–3 legs with correlation adjustment), player-prop combos.</li>
+      <li><strong>Validation gates:</strong> G-1 edge after vig, G-2 minimum sample (&ge;100 games), G-3 out-of-sample check, G-4 correlation disclosure, G-5 bankroll/Kelly cap, G-6 no luck-only signals, G-7 sourced inputs, G-8 skill-selectivity.</li>
+      <li><strong>No manual input:</strong> all signals generated from the source data files.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>3. Strategies defined (6 templates)</h3>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Type</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cen"><strong>S-01</strong></td><td>Single — moneyline edge vs Elo-implied probability</td><td><span class="badge warn">unverified</span> (lines not published by NFL)</td></tr>
+        <tr><td class="cen"><strong>S-02</strong></td><td>Single — road underdog when road team favored by Elo</td><td><span class="badge warn">unverified</span> (lines not published by NFL)</td></tr>
+        <tr><td class="cen"><strong>P-01</strong></td><td>Parlay — 2–3 leg moneyline parlay, correlation-gated</td><td><span class="badge warn">unverified</span> (lines + schedule data not in source)</td></tr>
+        <tr><td class="cen"><strong>P-02</strong></td><td>Parlay — same-game parlay (rejected pending same-game correlation data)</td><td><span class="badge warn">unverified</span> (data not in source)</td></tr>
+        <tr><td class="cen"><strong>PR-01</strong></td><td>Player-prop combo — receiver over + team over</td><td><span class="badge warn">unverified</span> (player-prop prices not published officially)</td></tr>
+        <tr><td class="cen"><strong>PR-02</strong></td><td>Player-prop combo — QB passing-yards over + game total over</td><td><span class="badge warn">unverified</span> (player-prop prices not published officially)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>4. Correlation findings (2018–2020, computed from source)</h3>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Value</th><th>Basis</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Home-team win rate</td><td class="num">53.82%</td><td class="num">409 / 760 games</td></tr>
+        <tr><td>Home-favorite win rate</td><td class="num">62.93%</td><td class="num">331 / 526 games</td></tr>
+        <tr><td>Road-underdog win rate (road team favored)</td><td class="num">65.38%</td><td class="num">153 / 234 games</td></tr>
+        <tr><td>Same-game prop correlation</td><td class="cen"><span class="badge blank">— blank —</span></td><td>not in source</td></tr>
+        <tr><td>Same-week parlay correlation</td><td class="cen"><span class="badge blank">— blank —</span></td><td>not in source</td></tr>
+        <tr><td>Divisional correlation</td><td class="cen"><span class="badge blank">— blank —</span></td><td>not in source</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>5. Key findings</h3>
+    <ul>
+      <li>Home teams won 53.82% of regular-season games 2018–2020; home favorites won 62.93%. These are reproducible project computations from the verified source.</li>
+      <li>No official NFL betting lines exist: the NFL does not publish odds. Every line/odds field in this program is blank and unverified until a sportsbook data source is added and reviewed.</li>
+      <li>Player-prop data and same-week schedules are absent from the source file; same-game and same-week correlations cannot be measured yet.</li>
+      <li>All six strategy templates fail to be "verified" today solely because lines/odds are unverified — not because the logic is flawed. Gate G-7 blocks promotion until sources exist.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>6. Recommendations</h3>
+    <ul>
+      <li>Add a sportsbook odds source (e.g., DraftKings/FanDuel/Caesars published lines) and mark those pages with their own source links; re-run gate G-1.</li>
+      <li>Add play-by-play and schedule data to enable same-game and same-week correlation measurement (flags F-04, F-05).</li>
+      <li>Add team-to-division mapping for divisional correlation (flag F-06).</li>
+      <li>Implement the leaderboard: rank strategies by backtest expected value over the verified window; reward top performers.</li>
+      <li>Review all items on the <a href="flagged-review.html">Flagged for Review</a> page before any real-money use.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>7. Sources</h3>
+    <ul>
+      <li><a href="https://github.com/fivethirtyeight/nfl-elo-game" target="_blank" rel="noopener">fivethirtyeight/nfl-elo-game</a> — NFL game records with Elo probabilities, seasons 1920–2020 (data file: data/nfl_games.csv). Verified by download via codeload.github.com; processed by tools/process_nfl_data.py.</li>
+      <li><a href="flagged-review.html">Flagged for Review</a> — irregularities and unverified items with links.</li>
+      <li>Note: direct access to nfl.com was blocked in this build environment; the GitHub repository above is the verified source used.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>8. Disclaimer</h3>
+    <p>This repository is a research/dashboard artifact. No values are inferred or filled in where sources are missing. Betting involves risk; nothing here is financial or betting advice, and no real-money component is included.</p>
+  </div>
+</main>
+<footer>
+  Korea2 — NFL Lines Origination. Source: <a href="https://github.com/fivethirtyeight/nfl-elo-game" target="_blank" rel="noopener">fivethirtyeight/nfl-elo-game</a>.
+</footer>
+</body>
+</html>
