@@ -188,6 +188,19 @@ def main() -> None:
     print(f"games with closing spread+total: {played[['spread_line','total_line']].notna().all(axis=1).sum():,}")
     print(f"games with priced spread: {played[['away_spread_odds','home_spread_odds']].notna().all(axis=1).sum():,}")
 
+    from lib.common import write_json
+    coverage = []
+    for season, grp in out.groupby("season"):
+        pl = grp[grp["played"]]
+        coverage.append({
+            "season": int(season), "games": int(len(grp)), "played": int(len(pl)),
+            "with_lines": int(pl[["spread_line", "total_line"]].notna().all(axis=1).sum()),
+            "priced": int(pl[["away_spread_odds", "home_spread_odds"]].notna().all(axis=1).sum()),
+            "dome": int(pl["is_dome"].sum()),
+        })
+    write_json("coverage.json", {"generated": pd.Timestamp.now("UTC").strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                 "seasons": coverage})
+
 
 if __name__ == "__main__":
     main()

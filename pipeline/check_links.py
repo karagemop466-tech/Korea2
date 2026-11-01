@@ -24,7 +24,8 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-HTML_FILES = sorted([ROOT / "index.html"] + list((ROOT / "pages").glob("*.html")))
+SITE = ROOT / "origination"
+HTML_FILES = sorted([SITE / "index.html"] + list((SITE / "pages").glob("*.html")))
 LINK_RE = re.compile(r'(?:href|src)="([^"]+)"')
 ID_RE = re.compile(r'id="([^"]+)"')
 
@@ -65,7 +66,7 @@ def check(external: bool = False) -> tuple[list[str], dict]:
                 if anchor not in ids:
                     problems.append(f"{rel}: missing anchor #{anchor} in {target.relative_to(ROOT)}")
 
-    for jf in sorted((ROOT / "site_data").glob("*.json")):
+    for jf in sorted((SITE / "site_data").glob("*.json")):
         try:
             json.loads(jf.read_text())
         except Exception as exc:  # noqa: BLE001

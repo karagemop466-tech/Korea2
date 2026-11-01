@@ -66,14 +66,14 @@ class TestSettlement(unittest.TestCase):
 
     def test_control_lands_near_the_vig(self):
         """A no-information control should return roughly minus the vig, not zero."""
-        lb = json.loads((ROOT / "site_data" / "leaderboard.json").read_text())
+        lb = json.loads((ROOT / "origination" / "site_data" / "leaderboard.json").read_text())
         rows = {m["strategy"]: m for m in lb["strategies"]}
         for name in ("CTRL_ALL_HOME", "CTRL_ALL_OVER"):
             self.assertLess(rows[name]["roi"], 0.0)
             self.assertGreater(rows[name]["roi"], -0.12, f"{name} is outside any plausible vig range")
 
     def test_lookahead_control_is_rejected(self):
-        lb = json.loads((ROOT / "site_data" / "leaderboard.json").read_text())
+        lb = json.loads((ROOT / "origination" / "site_data" / "leaderboard.json").read_text())
         leak = [m for m in lb["strategies"] if m["strategy"] == "CTRL_LEAK"][0]
         self.assertEqual(leak["tier"], "REJECTED")
         gates = {g["gate"]: g["status"] for g in leak["gates"]}
@@ -123,20 +123,20 @@ class TestOutputs(unittest.TestCase):
             "strategy_registry.json": ["single", "parlay"],
         }
         for fname, keys in needed.items():
-            path = ROOT / "site_data" / fname
+            path = ROOT / "origination" / "site_data" / fname
             self.assertTrue(path.exists(), f"{fname} missing")
             data = json.loads(path.read_text())
             for k in keys:
                 self.assertIn(k, data, f"{fname} missing key {k}")
 
     def test_every_strategy_has_ten_gates(self):
-        lb = json.loads((ROOT / "site_data" / "leaderboard.json").read_text())
+        lb = json.loads((ROOT / "origination" / "site_data" / "leaderboard.json").read_text())
         for m in lb["strategies"]:
             self.assertEqual(len(m["gates"]), 10, m["strategy"])
             self.assertIn(m["tier"], {"GOLD", "SILVER", "BRONZE", "NEEDS_REVIEW", "REJECTED"})
 
     def test_unverified_items_are_listed(self):
-        v = json.loads((ROOT / "site_data" / "verification.json").read_text())
+        v = json.loads((ROOT / "origination" / "site_data" / "verification.json").read_text())
         self.assertGreaterEqual(len(v["unverified"]), 5)
         for u in v["unverified"]:
             self.assertTrue(u["why"])
@@ -144,7 +144,7 @@ class TestOutputs(unittest.TestCase):
 
     def test_props_publish_no_roi(self):
         """Prop ROI must not exist anywhere: there is no price feed."""
-        pr = json.loads((ROOT / "site_data" / "props.json").read_text())
+        pr = json.loads((ROOT / "origination" / "site_data" / "props.json").read_text())
         for m in pr["markets"]:
             self.assertNotIn("roi", m)
             self.assertNotIn("units", m)

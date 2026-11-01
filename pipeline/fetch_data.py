@@ -188,6 +188,9 @@ def main() -> int:
             tar.unlink()
 
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+    site_manifest = ROOT / "origination" / "site_data"
+    site_manifest.mkdir(parents=True, exist_ok=True)
+    (site_manifest / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     write_provenance(manifest)
     print(f"\nwrote {manifest_path.relative_to(ROOT)} and data/PROVENANCE.md")
     return 0

@@ -12,7 +12,8 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / "data" / "raw"
 INTERIM = ROOT / "data" / "interim"
-SITE_DATA = ROOT / "site_data"
+SITE = ROOT / "origination"
+SITE_DATA = SITE / "site_data"
 for _p in (INTERIM, SITE_DATA):
     _p.mkdir(parents=True, exist_ok=True)
 

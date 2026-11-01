@@ -17,7 +17,7 @@ from pathlib import Path
 
 from lib.common import ROOT, SITE_DATA
 
-SITE = ROOT
+SITE = ROOT / "origination"
 PAGES = SITE / "pages"
 
 REPO = "https://github.com/karagemop466-tech/Korea2"
@@ -882,22 +882,11 @@ def page_data() -> str:
     v = load("verification.json")
     pr = load("props.json")
     orig = load("origination.json")
-    import pandas as pd
-    g = pd.read_parquet(ROOT / "data" / "interim" / "games.parquet")
-    cov = []
-    for season, grp in g.groupby("season"):
-        played = grp[grp["played"]]
-        priced = played[played[["away_spread_odds", "home_spread_odds"]].notna().all(axis=1)]
-        cov.append([
-            ("num", fmt(int(season))),
-            ("num", fmt(len(grp))),
-            ("num", fmt(len(played))),
-            ("num", fmt(int(played[["spread_line", "total_line"]].notna().all(axis=1).sum()))),
-            ("num", fmt(len(priced))),
-            ("num", fmt(int(played["is_dome"].sum()))),
-            ("srclink", src_cell("games")),
-        ])
-    manifest = json.loads((ROOT / "data" / "raw" / "manifest.json").read_text())
+    coverage = load("coverage.json")["seasons"]
+    cov = [[("num", fmt(c["season"])), ("num", fmt(c["games"])), ("num", fmt(c["played"])),
+            ("num", fmt(c["with_lines"])), ("num", fmt(c["priced"])), ("num", fmt(c["dome"])),
+            ("srclink", src_cell("games"))] for c in coverage]
+    manifest = load("manifest.json")
     frows = [[("name", f'<code>{h(k)}</code>'), ("num", fmt(m["bytes"])),
               ("", f'<a href="{h(m["url"])}">{h(m["path"])}</a>'),
               ("num", f'<code>{m["sha256"][:16]}…</code>'),
@@ -911,7 +900,7 @@ so the exact bytes behind every number on this site can be re-fetched and re-che
 <div class="cards">
   {card("Games", fmt(v['summary']['games_in_dataset']), f"{fmt(v['summary']['played_games'])} played", src_cell("games"))}
   {card("Seasons", "1999-2026", "regular season and playoffs", src_cell("games"))}
-  {card("Priced games", fmt(int(g[g['played']][['away_spread_odds','home_spread_odds']].notna().all(axis=1).sum())), "spread, total and moneyline prices", src_cell("games"))}
+  {card("Priced games", fmt(sum(c["priced"] for c in coverage)), "spread, total and moneyline prices", src_cell("games"))}
   {card("Player-games", fmt(pr['coverage']['player_games']), f"{pr['coverage']['seasons'][0]}-{pr['coverage']['seasons'][1]}", src_cell("scrapr"))}
 </div>
 
@@ -1111,7 +1100,7 @@ python pipeline/run_all.py           # features → models → gates → props �
 
 
 def page_requirements() -> str:
-    md = (ROOT / "REQUIREMENTS.md").read_text()
+    md = (SITE / "REQUIREMENTS.md").read_text()
     import re
     rows = []
     for line in md.splitlines():
@@ -1136,7 +1125,7 @@ evidence that settles it. Source of truth: <a href="{REPO}/blob/main/REQUIREMENT
 
 
 def page_summary() -> str:
-    md = (ROOT / "EXECUTIVE_SUMMARY.md").read_text()
+    md = (SITE / "EXECUTIVE_SUMMARY.md").read_text()
     # render a constrained markdown subset: headings, paragraphs, bullets, bold, code, tables, links
     body = mini_markdown(md)
     return layout("Executive summary", "summary", body, prefix="../")

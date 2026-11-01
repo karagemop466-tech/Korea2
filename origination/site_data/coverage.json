@@ -1,0 +1,229 @@
+{
+ "generated": "2026-11-01T13:52:31Z",
+ "seasons": [
+  {
+   "season": 1999,
+   "games": 259,
+   "played": 259,
+   "with_lines": 259,
+   "priced": 0,
+   "dome": 62
+  },
+  {
+   "season": 2000,
+   "games": 259,
+   "played": 259,
+   "with_lines": 259,
+   "priced": 0,
+   "dome": 50
+  },
+  {
+   "season": 2001,
+   "games": 259,
+   "played": 259,
+   "with_lines": 259,
+   "priced": 0,
+   "dome": 51
+  },
+  {
+   "season": 2002,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 0,
+   "dome": 51
+  },
+  {
+   "season": 2003,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 0,
+   "dome": 56
+  },
+  {
+   "season": 2004,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 0,
+   "dome": 53
+  },
+  {
+   "season": 2005,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 0,
+   "dome": 48
+  },
+  {
+   "season": 2006,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 220,
+   "dome": 61
+  },
+  {
+   "season": 2007,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 266,
+   "dome": 60
+  },
+  {
+   "season": 2008,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 194,
+   "dome": 53
+  },
+  {
+   "season": 2009,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 253,
+   "dome": 69
+  },
+  {
+   "season": 2010,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 267,
+   "dome": 68
+  },
+  {
+   "season": 2011,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 267,
+   "dome": 71
+  },
+  {
+   "season": 2012,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 267,
+   "dome": 72
+  },
+  {
+   "season": 2013,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 267,
+   "dome": 71
+  },
+  {
+   "season": 2014,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 267,
+   "dome": 64
+  },
+  {
+   "season": 2015,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 267,
+   "dome": 62
+  },
+  {
+   "season": 2016,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 267,
+   "dome": 67
+  },
+  {
+   "season": 2017,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 266,
+   "dome": 62
+  },
+  {
+   "season": 2018,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 267,
+   "dome": 65
+  },
+  {
+   "season": 2019,
+   "games": 267,
+   "played": 267,
+   "with_lines": 267,
+   "priced": 267,
+   "dome": 61
+  },
+  {
+   "season": 2020,
+   "games": 269,
+   "played": 269,
+   "with_lines": 269,
+   "priced": 269,
+   "dome": 93
+  },
+  {
+   "season": 2021,
+   "games": 285,
+   "played": 285,
+   "with_lines": 285,
+   "priced": 285,
+   "dome": 83
+  },
+  {
+   "season": 2022,
+   "games": 284,
+   "played": 284,
+   "with_lines": 284,
+   "priced": 284,
+   "dome": 86
+  },
+  {
+   "season": 2023,
+   "games": 285,
+   "played": 285,
+   "with_lines": 285,
+   "priced": 285,
+   "dome": 86
+  },
+  {
+   "season": 2024,
+   "games": 285,
+   "played": 285,
+   "with_lines": 285,
+   "priced": 285,
+   "dome": 98
+  },
+  {
+   "season": 2025,
+   "games": 285,
+   "played": 285,
+   "with_lines": 285,
+   "priced": 285,
+   "dome": 92
+  },
+  {
+   "season": 2026,
+   "games": 272,
+   "played": 108,
+   "with_lines": 108,
+   "priced": 108,
+   "dome": 33
+  }
+ ]
+}
