@@ -112,8 +112,8 @@ somebody, but it will only pay a strategy that clears all seven gates.
 * **9 integrity checks**: 7 pass, 2 `needs review` (closing-line reconciliation gap, player-week mirror).
 * **Internal reconciliation**: points scored/allowed from the game file equal the standings file for
   **800 of 800** team-seasons.
-* **Cross-extract reconciliation**: two independent closing-line extracts agree exactly on **2,095 of
-  3,096** home sides, within 0.5 pt on 91.3%, within 1 pt on 97.2%, max gap 5.5 pts.
+* **Cross-extract reconciliation**: two independent closing-line extracts agree exactly on
+  **2,095 of 3,096** home sides, within 0.5 pt on 91.3%, within 1 pt on 97.2%, max gap 5.5 pts.
 * **League-official spot checks** (2026-11-01, read from nfl.com with the page-fetch tool): the 2026
   NFL.com standings matched the nflverse standings file on **24 of 24** published teams (W-L-T, points
   for, points against); the week-8 final Carolina at Green Bay is **19-27** on the league scores page and

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods · NFL line origination</title>
+<meta name="description" content="NFL line origination, strategy leaderboard and validation gates, with sources for every row.">
+<link rel="stylesheet" href="../assets/site.css">
+</head><body>
+<header class="topbar"><div class="topbar-inner">
+  <div class="brand">NFL Lines <span>/ origination &amp; validation</span></div>
+  <nav class="mainnav"><a class="" href="../index.html">Dashboard</a><a class="" href="../pages/summary.html">Summary</a><a class="" href="../pages/requirements.html">Requirements</a><a class="" href="../pages/origination.html">Our lines</a><a class="" href="../pages/strategies.html">Leaderboard</a><a class="" href="../pages/parlays.html">Parlays</a><a class="" href="../pages/props.html">Props</a><a class="" href="../pages/correlation.html">Correlation</a><a class="" href="../pages/validation.html">Gates</a><a class="" href="../pages/data.html">Data</a><a class="" href="../pages/verification.html">Verification</a><a class="" href="../pages/flagged.html">Flagged</a><a class="active" href="../pages/methods.html">Methods</a></nav>
+</div></header>
+<main>
+
+<h1>Methods</h1>
+<p class="lede">The exact formulas, windows and thresholds, so the work can be checked or rebuilt without reading
+the code first. Code: <a href="https://github.com/karagemop466-tech/Korea2/tree/main/pipeline">pipeline/</a>.</p>
+
+<h2>Line origination</h2>
+<p>Points-scored model, two rows per game:</p>
+<pre class="mono" style="background:var(--panel);padding:12px;border:1px solid var(--line);border-radius:8px;overflow-x:auto">
+home_points = μ + hfa·1[home] + attack[home] + defence[away]
+away_points = μ              + attack[away] + defence[home]
+
+minimise  Σ w_i (y_i − x_iβ)²  +  α Σ β_j²   over the attack and defence coefficients only
+w_i = 0.5 ^ (age_in_days / 200)      refit for every (season, week)
+α   = 5    (selected on 1999-2014 only, see the origination page)
+</pre>
+<p>Own spread = <code>home_points − away_points</code>. Own total = <code>home_points + away_points</code>.
+Own moneyline = <code>Φ(margin / σ)</code> where σ is the recency-weighted residual standard deviation of the
+training window, floored at 10 points.</p>
+<p><b>No-lookahead contract.</b> A fit for week W uses only games with a gameday before that week's first kickoff.
+The contract is tested by recomputing pre-game Elo for 2024-2026 from prior games only and comparing to the stored
+values: 842 games (2024-2026) recomputed from prior games only; 0 mismatches.</p>
+
+<h2>Bet settlement</h2>
+<ul class="tight">
+  <li>Spread: bet wins if <code>margin − line</code> is positive for a home bet, negative for an away bet; equal is a push.</li>
+  <li>Total: over wins if <code>points − line &gt; 0</code>, under wins if <code>&lt; 0</code>, equal is a push.</li>
+  <li>Moneyline: a tie is a push.</li>
+  <li>P&amp;L: one unit staked; win pays <code>decimal − 1</code>, loss pays <code>−1</code>, push pays <code>0</code>.</li>
+  <li>Parlay: leg decimal prices multiplied; all legs must win, any push voids.</li>
+</ul>
+
+<h2>Gates</h2>
+<ul class="tight">
+  <li><b>G4 bootstrap.</b> 10,000 percentile resamples of per-ticket P&amp;L; the 2.5th percentile is the statistic that must exceed zero.</li>
+  <li><b>G5 permutation.</b> For each ticket, the null win probability is the market's de-vigged probability for that side. 20,000 simulated tournaments; p is the share whose ROI is at least the observed ROI.</li>
+  <li><b>G6 Benjamini-Hochberg.</b> Applied to the G5 p-values of all strategies; q &lt; 0.10 required.</li>
+  <li><b>G7 deflated Sharpe.</b> Bailey &amp; López de Prado (2014), non-annualised per-bet Sharpe, deflator built from the number of trials with the Euler–Mascheroni approximation to the expected maximum.</li>
+  <li><b>G8 calibration.</b> Brier score of our model probability versus the market's de-vigged probability on exactly the same tickets.</li>
+  <li><b>G9/G10 stability.</b> 60% of seasons with at least 20 tickets must be positive, and both halves of the evaluation window must be positive.</li>
+</ul>
+
+<h2>Prop models</h2>
+<p>Ridge regression per market, trained on all seasons strictly before the season being predicted, with a
+minimum of two training seasons. Features: last-3 mean, last-5 mean, season-to-date mean, career games, home/away,
+the team's market-implied total, and the opponent's exponentially-weighted yards allowed to that position group.
+Reference line for grading: trailing five-game mean, rounded to the half point. Naive probability: the base
+over-rate measured on training seasons only. Anytime touchdown has no line, so it is compared against the
+position-group base rate.</p>
+
+<h2>Reproducing</h2>
+<pre class="mono" style="background:var(--panel);padding:12px;border:1px solid var(--line);border-radius:8px;overflow-x:auto">
+python -m venv .venv && . .venv/bin/activate
+pip install -r requirements.txt
+python pipeline/fetch_data.py        # pinned downloads + hashes
+python pipeline/fetch_data.py --check
+python pipeline/run_all.py           # features → models → gates → props → correlation → verify → site
+</pre>
+<p class="small">Runtime on a laptop-class machine: about five minutes. The ridge refit loop dominates.</p>
+
+</main>
+<footer>
+  Every figure on this site is generated from <code>site_data/*.json</code> by
+  <a href="https://github.com/karagemop466-tech/Korea2/blob/main/pipeline/build_site.py">pipeline/build_site.py</a>.
+  Data provenance and checksums: <a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md">PROVENANCE.md</a>.
+  Task board: <a href="https://github.com/karagemop466-tech/Korea2/blob/main/COORDINATION.md">COORDINATION.md</a>.
+  No number on this page is hand-typed.
+</footer>
+<script src="../assets/site.js"></script>
+</body></html>

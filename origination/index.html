@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard · NFL line origination</title>
+<meta name="description" content="NFL line origination, strategy leaderboard and validation gates, with sources for every row.">
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="topbar"><div class="topbar-inner">
+  <div class="brand">NFL Lines <span>/ origination &amp; validation</span></div>
+  <nav class="mainnav"><a class="active" href="index.html">Dashboard</a><a class="" href="pages/summary.html">Summary</a><a class="" href="pages/requirements.html">Requirements</a><a class="" href="pages/origination.html">Our lines</a><a class="" href="pages/strategies.html">Leaderboard</a><a class="" href="pages/parlays.html">Parlays</a><a class="" href="pages/props.html">Props</a><a class="" href="pages/correlation.html">Correlation</a><a class="" href="pages/validation.html">Gates</a><a class="" href="pages/data.html">Data</a><a class="" href="pages/verification.html">Verification</a><a class="" href="pages/flagged.html">Flagged</a><a class="" href="pages/methods.html">Methods</a></nav>
+</div></header>
+<main>
+
+<h1>NFL line origination, strategies and validation</h1>
+<p class="lede">We originate our own spread, total and moneyline for every NFL game, turn the disagreements
+into strategies, and then try to break those strategies before trusting them: sample-size gates, bootstrap
+confidence intervals, permutation tests against the market's own de-vigged prices, Benjamini-Hochberg
+correction across every strategy tested, a deflated Sharpe ratio, and season-by-season stability.
+31 strategies were built and 31 were graded on 38,708 held-out
+tickets. <b>None of them cleared every gate.</b> That is the headline finding, and it is reported as such.</p>
+
+<div class="cards">
+  <div class="card"><div class="k">Games in the dataset</div><div class="v">7,548</div><div class="s">7,384 played, 1999-2026</div><span class="srclink"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv">games.csv (nflverse/nfldata)</a></span></div>
+  <div class="card"><div class="k">Our spread error (held out)</div><div class="v">10.15 pts</div><div class="s">market: 9.79 pts</div><span class="srclink"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/pipeline/originate.py">originate.py</a></span></div>
+  <div class="card"><div class="k">Strategies graded</div><div class="v">31</div><div class="s">0 gold · 0 silver · 0 bronze</div><span class="srclink"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/pipeline/gates.py">gates.py</a></span></div>
+  <div class="card"><div class="k">Flagged for review</div><div class="v">14</div><div class="s">irregularities + unconfirmed items</div><span class="srclink"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/pipeline/verify.py">verify.py</a></span></div>
+</div>
+
+<h2>What the work found</h2>
+<div class="cards">
+  <div class="card">
+    <div class="k">1 · Origination</div>
+    <div class="v" style="font-size:17px;line-height:1.4">Our line is honest but not sharp</div>
+    <div class="s">Held-out 2015-2026: our spread misses by 10.15 pts,
+    the close by 9.79. Where we disagree with the close, the disagreement carries
+    essentially no information (slope 0.010,
+    95% CI -0.125 to
+    0.150).</div>
+  </div>
+  <div class="card">
+    <div class="k">2 · Strategies</div>
+    <div class="v" style="font-size:17px;line-height:1.4">Vig wins; nothing survives the gates</div>
+    <div class="s">The control that bets every home team returns -5.4%
+    — almost exactly the bookmaker's margin. Nothing else produced a positive lower confidence bound on ROI.</div>
+  </div>
+  <div class="card">
+    <div class="k">3 · Luck removal</div>
+    <div class="v" style="font-size:17px;line-height:1.4">The best-looking rule is a small sample</div>
+    <div class="s">The strongest raw result, <b>SIT_WINDY_UNDER</b>, returns +9.2% on 225 tickets with permutation p = 0.0293, but it fails the 300-ticket sample gate, the confidence-interval gate and the multiple-testing gate.</div>
+  </div>
+  <div class="card">
+    <div class="k">4 · Correlation</div>
+    <div class="v" style="font-size:17px;line-height:1.4">Spread and total are near-orthogonal</div>
+    <div class="s">Cover/over correlation is 0.0159.
+    Player props are where correlation bites: QB yards vs his leading receiver
+    r = 0.674.</div>
+  </div>
+</div>
+
+<h2>Explore</h2>
+<div class="navcards">
+  <a class="navcard" href="pages/summary.html"><div class="t">Executive summary</div><div class="d">The whole project in one page: findings, limits, what to do next.</div></a>
+  <a class="navcard" href="pages/origination.html"><div class="t">Our own lines</div><div class="d">The ratings engine, its error against the market, and this week's board.</div></a>
+  <a class="navcard" href="pages/strategies.html"><div class="t">Strategy leaderboard</div><div class="d">31 strategies, every gate, every source, ranked.</div></a>
+  <a class="navcard" href="pages/parlays.html"><div class="t">Parlays &amp; combos</div><div class="d">Cross-game parlays, same-game legs, and what correlation does to the price.</div></a>
+  <a class="navcard" href="pages/props.html"><div class="t">Player props</div><div class="d">Prop lines we originate, graded against a naive reference line (unpriced).</div></a>
+  <a class="navcard" href="pages/correlation.html"><div class="t">Correlation values</div><div class="d">Market, strategy and player-level correlations with confidence intervals.</div></a>
+  <a class="navcard" href="pages/validation.html"><div class="t">Validation gates</div><div class="d">The ten gates, the thresholds, and the pass/fail matrix.</div></a>
+  <a class="navcard" href="pages/data.html"><div class="t">Data &amp; sources</div><div class="d">Coverage, checksums, and where every byte came from.</div></a>
+  <a class="navcard" href="pages/verification.html"><div class="t">Verification</div><div class="d">16 structural checks, 3 official NFL.com spot checks, and what is unverified.</div></a>
+  <a class="navcard" href="pages/flagged.html"><div class="t">Flagged for review</div><div class="d">Everything doubtful, missing or contradictory — with links.</div></a>
+  <a class="navcard" href="pages/requirements.html"><div class="t">Requirements</div><div class="d">The full requirement list, each line with its status and evidence.</div></a>
+  <a class="navcard" href="pages/methods.html"><div class="t">Methods</div><div class="d">Formulas, gate thresholds, reproducibility.</div></a>
+</div>
+
+<h2>This week's board (2026 week 8)</h2>
+<p class="small">Our own line next to the market line for games that had not kicked off at data-pull time.
+Computers do not know about injuries or late scratches; the market does. Treat the board as an input, not a signal.</p>
+<div class="tablewrap"><table id="board" class="sortable "><thead><tr><th class="">Matchup</th><th class="">Date</th><th class="">Our spread</th><th class="">Market</th><th class="">Diff</th><th class="">Our total</th><th class="">Market</th><th class="">Diff</th><th class="">P(home)</th><th class="">Source</th></tr></thead><tbody><tr ><td class="name">BAL @ BUF</td><td class="num">2026-11-01</td><td class="num">-4.46</td><td class="num">3.50</td><td class="num"><span class="pos">0.96</span></td><td class="num">54.42</td><td class="num">54.50</td><td class="num"><span class="neg">-0.08</span></td><td class="num">64.4%</td><td class="srclink"><span class="srclink"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv">games.csv (nflverse/nfldata)</a> · <a href="https://www.nfl.com/schedules/2026/by-week/week-8">NFL.com week</a></span></td></tr><tr ><td class="name">TEN @ CIN</td><td class="num">2026-11-01</td><td class="num">-9.11</td><td class="num">12.50</td><td class="num"><span class="neg">-3.39</span></td><td class="num">46.92</td><td class="num">46.50</td><td class="num"><span class="pos">0.42</span></td><td class="num">77.5%</td><td class="srclink"><span class="srclink"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv">games.csv (nflverse/nfldata)</a> · <a href="https://www.nfl.com/schedules/2026/by-week/week-8">NFL.com week</a></span></td></tr><tr ><td class="name">ARI @ DAL</td><td class="num">2026-11-01</td><td class="num">-4.42</td><td class="num">7.00</td><td class="num"><span class="neg">-2.58</span></td><td class="num">54.46</td><td class="num">54.50</td><td class="num"><span class="neg">-0.04</span></td><td class="num">64.3%</td><td class="srclink"><span class="srclink"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv">games.csv (nflverse/nfldata)</a> · <a href="https://www.nfl.com/schedules/2026/by-week/week-8">NFL.com week</a></span></td></tr><tr ><td class="name">MIN @ DET</td><td class="num">2026-11-01</td><td class="num">-0.66</td><td class="num">3.00</td><td class="num"><span class="neg">-2.34</span></td><td class="num">45.76</td><td class="num">46.50</td><td class="num"><span class="neg">-0.74</span></td><td class="num">52.2%</td><td class="srclink"><span class="srclink"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv">games.csv (nflverse/nfldata)</a> · <a href="https://www.nfl.com/schedules/2026/by-week/week-8">NFL.com week</a></span></td></tr><tr ><td class="name">IND @ JAX</td><td class="num">2026-11-01</td><td class="num">-6.61</td><td class="num">10.00</td><td class="num"><span class="neg">-3.39</span></td><td class="num">49.59</td><td class="num">46.50</td><td class="num"><span class="pos">3.09</span></td><td class="num">70.8%</td><td class="srclink"><span class="srclink"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv">games.csv (nflverse/nfldata)</a> · <a href="https://www.nfl.com/schedules/2026/by-week/week-8">NFL.com week</a></span></td></tr><tr ><td class="name">LV @ NYJ</td><td class="num">2026-11-01</td><td class="num">-0.90</td><td class="num">1.50</td><td class="num"><span class="neg">-0.60</span></td><td class="num">46.18</td><td class="num">46.50</td><td class="num"><span class="neg">-0.32</span></td><td class="num">53.0%</td><td class="srclink"><span class="srclink"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv">games.csv (nflverse/nfldata)</a> · <a href="https://www.nfl.com/schedules/2026/by-week/week-8">NFL.com week</a></span></td></tr></tbody></table></div>
+<p class="small"><a href="pages/origination.html">Full board and the engine behind it →</a></p>
+
+</main>
+<footer>
+  Every figure on this site is generated from <code>site_data/*.json</code> by
+  <a href="https://github.com/karagemop466-tech/Korea2/blob/main/pipeline/build_site.py">pipeline/build_site.py</a>.
+  Data provenance and checksums: <a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md">PROVENANCE.md</a>.
+  Task board: <a href="https://github.com/karagemop466-tech/Korea2/blob/main/COORDINATION.md">COORDINATION.md</a>.
+  No number on this page is hand-typed.
+</footer>
+<script src="assets/site.js"></script>
+</body></html>

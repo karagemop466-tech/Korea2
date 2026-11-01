@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary · NFL line origination</title>
+<meta name="description" content="NFL line origination, strategy leaderboard and validation gates, with sources for every row.">
+<link rel="stylesheet" href="../assets/site.css">
+</head><body>
+<header class="topbar"><div class="topbar-inner">
+  <div class="brand">NFL Lines <span>/ origination &amp; validation</span></div>
+  <nav class="mainnav"><a class="" href="../index.html">Dashboard</a><a class="active" href="../pages/summary.html">Summary</a><a class="" href="../pages/requirements.html">Requirements</a><a class="" href="../pages/origination.html">Our lines</a><a class="" href="../pages/strategies.html">Leaderboard</a><a class="" href="../pages/parlays.html">Parlays</a><a class="" href="../pages/props.html">Props</a><a class="" href="../pages/correlation.html">Correlation</a><a class="" href="../pages/validation.html">Gates</a><a class="" href="../pages/data.html">Data</a><a class="" href="../pages/verification.html">Verification</a><a class="" href="../pages/flagged.html">Flagged</a><a class="" href="../pages/methods.html">Methods</a></nav>
+</div></header>
+<main>
+<h1>Executive summary</h1>
+<p><b>Project:</b> originate our own NFL lines, turn them into betting strategies, and keep only the strategies that</p>
+<p>survive validation. <b>Scope executed:</b> 7,548 games (1999-2026, 7,384 played), 45,439 player-games (2009-2017),</p>
+<p>31 strategies, 38,708 held-out tickets, 10 validation gates, and a published register of everything that could not</p>
+<p>be verified. **Bottom line: no strategy cleared every gate. The bookmaker&#x27;s margin was not beaten, and the report</p>
+<p>says so with the arithmetic attached.**</p>
+<p>---</p>
+<h2>1. What was built</h2>
+<p>1. <b>A market-free line-origination engine.</b> A shrunk attack/defence points model, refit for every week using</p>
+<p>only games played before that week&#x27;s first kickoff, produces a spread, a total and a moneyline for every game</p>
+<p>from 1999 to 2026. Ridge penalty selected on 1999-2014 and then frozen; 2015-2026 is held out and never used</p>
+<p>for tuning.</p>
+<p>2. <b>A strategy factory.</b> 31 rules across six families: model-versus-market (spread, total, moneyline),</p>
+<p>situational (weather, rest, bye weeks, divisional games, domes), parlays (2-leg, 3-leg, same-game),</p>
+<p>player props (five markets), and three controls — two no-information benchmarks plus one deliberate</p>
+<p>lookahead leak used to prove the integrity gate fires.</p>
+<p>3. <b>A gate set that can say no.</b> Ten gates: lookahead audit, sample size, out-of-sample-only, bootstrap</p>
+<p>confidence interval, permutation test against the market&#x27;s own de-vigged prices, Benjamini-Hochberg</p>
+<p>correction across all 31 strategies, deflated Sharpe ratio, calibration versus the market, season</p>
+<p>stability, and split-half consistency.</p>
+<p>4. <b>A correlation engine.</b> Market correlations, strategy-return correlations and player-prop correlations,</p>
+<p>each with a bootstrap confidence interval and a sample size.</p>
+<p>5. <b>A verified, reproducible data layer.</b> 13 files from four upstream repositories, each pinned to a commit</p>
+<p>SHA and hashed with SHA-256, plus 16 structural checks and three official NFL.com spot checks.</p>
+<h2>2. Headline findings</h2>
+<div class="tablewrap"><table  class=" "><thead><tr><th class="nosort">#</th><th class="nosort">Finding</th><th class="nosort">Number</th><th class="nosort">What it means</th></tr></thead><tbody><tr ><td>1</td><td>Our line is worse than the closing market</td><td>spread MAE 10.15 pts vs 9.79; total MAE 10.81 vs 10.44</td><td>Expected, and it sets the handicap every model strategy starts from.</td></tr><tr ><td>2</td><td>Our disagreements with the close carry no information</td><td>slope of (actual − close) on (ours − close) = +0.010, 95% CI −0.125 to +0.150, n = 3,136</td><td>Where the engine differs from the market, it is noise. This single test predicts the failure of every model-versus-market strategy below.</td></tr><tr ><td>3</td><td>The vig is the dominant force</td><td>control "back every home team" returns −5.40% on 3,054 tickets; the de-vigged baseline at these prices is −3.07%</td><td>Accounting is calibrated: a rule with no information lands on the margin.</td></tr><tr ><td>4</td><td>Nothing cleared the gates</td><td>0 gold, 0 silver, 0 bronze, 23 rejected, 8 needs-review</td><td>The competition paid 0 reward points.</td></tr><tr ><td>5</td><td>The best raw result is a small sample</td><td>`SIT_WINDY_UNDER` +9.22% on 225 tickets, permutation p = 0.029, but BH q = 0.32 and a 95% CI of −3.6% to +21.7%</td><td>Consistent with luck at 225 tickets; published as needs-review, not as a winner.</td></tr><tr ><td>6</td><td>The study is underpowered for small edges</td><td>per-ticket SD 1.10 units; 10,598 tickets needed to detect a 3% edge at 80% power, 3,815 for 5%; the largest strategy has 3,107</td><td>Even a real 3% edge would not be provable with this much data. Sample-size gate failures are honest, not arbitrary.</td></tr><tr ><td>7</td><td>Spread and total are effectively independent</td><td>cover/over r = +0.0159 (95% CI −0.006 to +0.039), n = 7,080</td><td>Same-game spread+total parlays can be priced as a product; correlation is not the leak there.</td></tr><tr ><td>8</td><td>Player props are where correlation bites</td><td>QB passing yards vs his leading receiver r = +0.670; ignoring it under-states the joint probability by 11.8%</td><td>Two-prop combos on the same passing game need correlation-adjusted pricing.</td></tr><tr ><td>9</td><td>Prop models show real but modest skill against a naive line</td><td>passing yards Brier skill +8.0% (CI +6.0% to +10.2%); receptions +3.8%; receiving yards +0.5% (CI includes zero)</td><td>Forecasting is demonstrable. Beating a book is not, because no prop prices exist here.</td></tr><tr ><td>10</td><td>The "independent" strategies are not independent</td><td>mean absolute pairwise weekly-P&L correlation 0.237; `ML_OWN_3` vs `ML_OWN_DOG` = 0.963</td><td>The leaderboard is not 31 independent attempts, which is why the deflated Sharpe uses the full trial count.</td></tr></tbody></table></div>
+<h2>3. The competition and its rewards</h2>
+<p>The rubric pays for evidence, not for returns: <b>gold</b> (all gates pass) 10 points, <b>silver</b> (one gate missed)</p>
+<p>5, <b>bronze</b> (positive ROI interval, other gates missed) 2, needs-review and rejected 0. Ranking is by deflated</p>
+<p>Sharpe among strategies that have a rank at all.</p>
+<p><b>Payout this run: 0 points.</b> The closest entry, <code>SIT_WINDY_UNDER</code> (under in games with wind of 15 mph or more),</p>
+<p>passes the permutation gate individually (p = 0.029) but fails six others, including the sample-size gate and the</p>
+<p>multiple-testing correction (q = 0.32). If a later run wants a genuine gold, it needs either far more tickets or a</p>
+<p>signal that survives at a materially larger effect size — and the power analysis above says exactly how many</p>
+<p>tickets that means.</p>
+<h2>4. What is verified, and what is not</h2>
+<p><b>Verified.</b> Every arithmetic identity in the dataset (result = home − away, total = home + away, across 7,384</p>
+<p>games, zero violations). Unique identifiers. Complete spread and total coverage. Eight player-layer checks</p>
+<p>(no duplicate player-games once keyed on the upstream id, counting stats non-negative, receptions never exceed</p>
+<p>targets, completions never exceed attempts). A recomputation of 842 pre-game Elo values from prior games only,</p>
+<p>with zero mismatches. Three games checked by hand against NFL.com, all matching.</p>
+<p><b>Not verified, and therefore blank.</b> Every player-prop ROI (no prop price feed exists), every player-prop value</p>
+<p>for 2018-2026 (the player data stops at 2017), opening-line value outside 2021 (544 games only), official</p>
+<p>verification of historical closing lines (no official line feed exists at all), and official verification of the</p>
+<p>bulk of historical results (3 of 7,384 games checked). Six items are listed on the Flagged page with the source</p>
+<p>that would settle each one.</p>
+<p><b>Two irregularities worth your attention.</b> (a) The two upstream odds files — both labelled &quot;closing&quot; — agree on</p>
+<p>only 67.3% of spreads and 61.7% of totals across the 3,368 games they share, with differences up to 5.5 points.</p>
+<p>They are snapshots of different books or different times. (b) The canonical <code>nflverse-data</code> release assets are</p>
+<p>unreachable from this environment, so the historical bulk rests on the same feeds as committed inside</p>
+<p><code>nflverse/nfldata</code> and <code>ryurko/nflscrapR-data</code>, pinned and hashed.</p>
+<h2>5. What would change the answer</h2>
+<p>1. <b>A licensed prop-price feed.</b> Prop models already beat a naive line on passing yards, receptions and anytime</p>
+<p>touchdown. Pricing them is the only way to know whether that skill survives a bookmaker&#x27;s margin.</p>
+<p>2. <b>Player data for 2018-2026.</b> Current player form is the binding constraint on any live prop product.</p>
+<p>3. <b>More seasons of priced tickets.</b> To prove a 3% edge you need roughly 10,600 tickets, which is about 27</p>
+<p>NFL seasons of betting one rule per game. Anything less than that is a hypothesis, not a result.</p>
+<p>4. <b>Better inputs than public box scores.</b> Injuries, depth charts, snap counts, pressure rates and travel are</p>
+<p>not in any dataset reachable here. A model built only on scores and weather should not be expected to beat a</p>
+<p>market that prices all of it.</p>
+<h2>6. Where to look</h2>
+<ul class='tight'><li>Landing page and dashboard: the repository root <code>index.html</code> (live on GitHub Pages).</li><li>Strategy leaderboard with every gate: <code>pages/strategies.html</code>.</li><li>Our own lines and this week&#x27;s board: <code>pages/origination.html</code>.</li><li>Correlation values: <code>pages/correlation.html</code>.</li><li>Verification and the unverified register: <code>pages/verification.html</code>.</li><li>Flagged for review: <code>pages/flagged.html</code>.</li><li>Requirements, line by line: <code>REQUIREMENTS.md</code> and <code>pages/requirements.html</code>.</li><li>Reproduce: <code>python pipeline/fetch_data.py</code>, <code>python pipeline/fetch_data.py --check</code>, <code>python pipeline/run_all.py</code>.</li></ul>
+<h2>7. Honest assessment</h2>
+<p>The framework is sound and the arithmetic is checked: settlement, pricing, pushes, vig and parlay chaining all</p>
+<p>reproduce a known baseline when applied to a rule with no information. The strategies are the weak part, and not</p>
+<p>because they were badly chosen — they cover the families that the public literature says are worth testing, and</p>
+<p>they were all rejected by tests that were fixed before the results were seen. The most useful output of this</p>
+<p>project is not a betting system. It is a reusable, auditable machine for killing ideas quickly, plus the two or</p>
+<p>three places (prop pricing, correlated combos) where a real edge could still hide.</p>
+</main>
+<footer>
+  Every figure on this site is generated from <code>site_data/*.json</code> by
+  <a href="https://github.com/karagemop466-tech/Korea2/blob/main/pipeline/build_site.py">pipeline/build_site.py</a>.
+  Data provenance and checksums: <a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md">PROVENANCE.md</a>.
+  Task board: <a href="https://github.com/karagemop466-tech/Korea2/blob/main/COORDINATION.md">COORDINATION.md</a>.
+  No number on this page is hand-typed.
+</footer>
+<script src="../assets/site.js"></script>
+</body></html>
