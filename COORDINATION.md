@@ -390,6 +390,12 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   rebuilt to `built` after each merge. `main` continued to receive sibling merges throughout (PR #18, #30); this
   session re-merged main before every PR and never force-pushed, never deleted a sibling branch, and never edited
   another session's pages.
+* **2026-11-01** — PR **#31** (https://github.com/karagemop466-tech/Korea2/pull/31, merged `494ef07`) shipped the
+  percent-formatted interval and this record. `main` advanced mid-merge again (sibling PRs #30, #33 added
+  `origination-lab/`); main was merged in a second time, resolving cleanly with every session's site intact —
+  `quant-lab/`, `origination-lab/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/` and the root
+  Line Lab all coexist. Final state on `main`: `quant-lab/` = 46 files, 12 pages, 265 table rows, each row
+  carrying an https source link; repo link check PASS; Pages `built`.
 * **Deploy practice note:** because Pages serves `main` directly, this session re-ran
   `quant-lab/scripts/build_site.py` and the repo link checker before every push; a broken page would have
   gone live immediately.
