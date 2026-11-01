@@ -65,6 +65,13 @@ def pctp(x, dp=1, signed=True) -> str:
     return f'<span class="{cls}">{sign}{v:.{dp}f}%</span>'
 
 
+def season(x) -> str:
+    """A season is a label, never a quantity: 1999, not 1,999."""
+    if x is None:
+        return blank()
+    return f"{int(x)}"
+
+
 def spts(x, dp=1) -> str:
     """Signed points, coloured: a spread disagreement expressed in points."""
     if x is None:
