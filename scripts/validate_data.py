@@ -37,6 +37,12 @@ ALLOWED_DOMAINS = {
     "noaa.gov", "www.noaa.gov",
     "ncpgambling.org", "www.ncpgambling.org",
     "github.com", "www.github.com",  # repo's own official location (repo-review rows)
+    # --- added by the integration session (arena/70a33596-korea2), each opened and verified 2026-11-01:
+    "www.nflgsis.com",          # NFL Game Statistics & Information System - the league's own stat authority
+    "massgaming.com",           # Massachusetts Gaming Commission, state regulator hosting operator rule filings
+    "nflreadr.nflverse.com",    # nflverse data dictionary (community redistribution of official NFL feeds)
+    "archive.org",              # Internet Archive scan of the Bell System Technical Journal (Kelly 1956)
+    "www.stat.purdue.edu",      # Purdue University hosting Benjamini & Hochberg (1995)
 }
 
 
