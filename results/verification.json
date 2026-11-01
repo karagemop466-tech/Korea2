@@ -1,0 +1,369 @@
+{
+ "season": 2026,
+ "retrieved": "2026-11-01",
+ "official_source": "https://www.nfl.com/standings/division/2026/REG",
+ "official_source_note": "NFL.com does not expose a stable per-team deep link for this table; the division standings view at this URL is the canonical page, select 2026 / Regular season.",
+ "teams_checked": 32,
+ "teams_matched": 32,
+ "teams_failed": 0,
+ "all_matched": true,
+ "games_settled": 108,
+ "wins_reconcile": true,
+ "rows": [
+  {
+   "team": "ATL",
+   "nfl_record": "3-4-0",
+   "computed_record": "3-4-0",
+   "nfl_pf_pa": "171/173",
+   "computed_pf_pa": "171/173",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "AZ",
+   "nfl_record": "2-5-0",
+   "computed_record": "2-5-0",
+   "nfl_pf_pa": "142/208",
+   "computed_pf_pa": "142/208",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "BAL",
+   "nfl_record": "4-3-0",
+   "computed_record": "4-3-0",
+   "nfl_pf_pa": "169/167",
+   "computed_pf_pa": "169/167",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "BUF",
+   "nfl_record": "5-1-0",
+   "computed_record": "5-1-0",
+   "nfl_pf_pa": "197/171",
+   "computed_pf_pa": "197/171",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "CAR",
+   "nfl_record": "3-4-0",
+   "computed_record": "3-4-0",
+   "nfl_pf_pa": "178/193",
+   "computed_pf_pa": "178/193",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "CHI",
+   "nfl_record": "5-2-0",
+   "computed_record": "5-2-0",
+   "nfl_pf_pa": "180/143",
+   "computed_pf_pa": "180/143",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "CIN",
+   "nfl_record": "4-2-0",
+   "computed_record": "4-2-0",
+   "nfl_pf_pa": "163/122",
+   "computed_pf_pa": "163/122",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "CLE",
+   "nfl_record": "5-2-0",
+   "computed_record": "5-2-0",
+   "nfl_pf_pa": "133/146",
+   "computed_pf_pa": "133/146",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "DAL",
+   "nfl_record": "3-4-0",
+   "computed_record": "3-4-0",
+   "nfl_pf_pa": "189/180",
+   "computed_pf_pa": "189/180",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "DEN",
+   "nfl_record": "5-2-0",
+   "computed_record": "5-2-0",
+   "nfl_pf_pa": "144/141",
+   "computed_pf_pa": "144/141",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "DET",
+   "nfl_record": "4-2-0",
+   "computed_record": "4-2-0",
+   "nfl_pf_pa": "184/165",
+   "computed_pf_pa": "184/165",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "GB",
+   "nfl_record": "5-3-0",
+   "computed_record": "5-3-0",
+   "nfl_pf_pa": "171/164",
+   "computed_pf_pa": "171/164",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "HOU",
+   "nfl_record": "2-5-0",
+   "computed_record": "2-5-0",
+   "nfl_pf_pa": "165/170",
+   "computed_pf_pa": "165/170",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "IND",
+   "nfl_record": "2-5-0",
+   "computed_record": "2-5-0",
+   "nfl_pf_pa": "154/180",
+   "computed_pf_pa": "154/180",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "JAX",
+   "nfl_record": "4-2-0",
+   "computed_record": "4-2-0",
+   "nfl_pf_pa": "154/104",
+   "computed_pf_pa": "154/104",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "KC",
+   "nfl_record": "5-1-0",
+   "computed_record": "5-1-0",
+   "nfl_pf_pa": "143/103",
+   "computed_pf_pa": "143/103",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "LA",
+   "nfl_record": "3-4-0",
+   "computed_record": "3-4-0",
+   "nfl_pf_pa": "170/159",
+   "computed_pf_pa": "170/159",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "LAC",
+   "nfl_record": "0-6-0",
+   "computed_record": "0-6-0",
+   "nfl_pf_pa": "90/151",
+   "computed_pf_pa": "90/151",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "LV",
+   "nfl_record": "3-4-0",
+   "computed_record": "3-4-0",
+   "nfl_pf_pa": "183/197",
+   "computed_pf_pa": "183/197",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "MIA",
+   "nfl_record": "1-5-0",
+   "computed_record": "1-5-0",
+   "nfl_pf_pa": "98/157",
+   "computed_pf_pa": "98/157",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "MIN",
+   "nfl_record": "6-0-0",
+   "computed_record": "6-0-0",
+   "nfl_pf_pa": "125/74",
+   "computed_pf_pa": "125/74",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "NE",
+   "nfl_record": "4-3-0",
+   "computed_record": "4-3-0",
+   "nfl_pf_pa": "160/143",
+   "computed_pf_pa": "160/143",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "NO",
+   "nfl_record": "2-5-0",
+   "computed_record": "2-5-0",
+   "nfl_pf_pa": "162/194",
+   "computed_pf_pa": "162/194",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "NYG",
+   "nfl_record": "4-2-1",
+   "computed_record": "4-2-1",
+   "nfl_pf_pa": "163/161",
+   "computed_pf_pa": "163/161",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "NYJ",
+   "nfl_record": "2-5-0",
+   "computed_record": "2-5-0",
+   "nfl_pf_pa": "137/150",
+   "computed_pf_pa": "137/150",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "PHI",
+   "nfl_record": "2-5-0",
+   "computed_record": "2-5-0",
+   "nfl_pf_pa": "127/175",
+   "computed_pf_pa": "127/175",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "PIT",
+   "nfl_record": "5-2-0",
+   "computed_record": "5-2-0",
+   "nfl_pf_pa": "153/138",
+   "computed_pf_pa": "153/138",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "SEA",
+   "nfl_record": "4-3-0",
+   "computed_record": "4-3-0",
+   "nfl_pf_pa": "168/125",
+   "computed_pf_pa": "168/125",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "SF",
+   "nfl_record": "6-1-0",
+   "computed_record": "6-1-0",
+   "nfl_pf_pa": "197/139",
+   "computed_pf_pa": "197/139",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "TB",
+   "nfl_record": "2-5-0",
+   "computed_record": "2-5-0",
+   "nfl_pf_pa": "162/151",
+   "computed_pf_pa": "162/151",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "TEN",
+   "nfl_record": "1-6-0",
+   "computed_record": "1-6-0",
+   "nfl_pf_pa": "108/156",
+   "computed_pf_pa": "108/156",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  },
+  {
+   "team": "WAS",
+   "nfl_record": "1-4-1",
+   "computed_record": "1-4-1",
+   "nfl_pf_pa": "132/172",
+   "computed_pf_pa": "132/172",
+   "match": true,
+   "mismatched_fields": "",
+   "source": "https://www.nfl.com/standings/division/2026/REG"
+  }
+ ],
+ "player_spot_check": [
+  {
+   "player": "Jordan Love",
+   "nfl_yards_td_int": "2246 / 16 / 6",
+   "rebuilt_yards_td_int": "2246 / 16 / 6",
+   "nfl_comp_att": "192/312",
+   "rebuilt_comp_att": "192/312",
+   "match": true,
+   "source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
+  },
+  {
+   "player": "Matthew Stafford",
+   "nfl_yards_td_int": "1989 / 14 / 7",
+   "rebuilt_yards_td_int": "1989 / 14 / 7",
+   "nfl_comp_att": "187/278",
+   "rebuilt_comp_att": "187/278",
+   "match": true,
+   "source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
+  },
+  {
+   "player": "Bryce Young",
+   "nfl_yards_td_int": "1921 / 13 / 5",
+   "rebuilt_yards_td_int": "1921 / 13 / 5",
+   "nfl_comp_att": "158/269",
+   "rebuilt_comp_att": "158/269",
+   "match": true,
+   "source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
+  }
+ ],
+ "player_spot_check_matched": 3,
+ "player_source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
+ "team_aliases": {
+  "ARI": "AZ"
+ },
+ "method": "Standings are rebuilt from data/derived/games.csv.gz by counting wins, losses, ties and points for/against per team, then compared field by field with the NFL.com division standings."
+}

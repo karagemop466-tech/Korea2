@@ -1,0 +1,562 @@
+{
+ "markets": {
+  "receiving_yards": {
+   "positions": [
+    "WR",
+    "TE"
+   ],
+   "overall": {
+    "n": 27656,
+    "model": {
+     "mae": 20.334894,
+     "rmse": 28.081016,
+     "bias": 0.42621,
+     "corr": 0.582317
+    },
+    "last5": {
+     "mae": 20.74456,
+     "rmse": 28.985487,
+     "bias": 0.333618,
+     "corr": 0.56269
+    },
+    "season_to_date": {
+     "mae": 21.046576,
+     "rmse": 28.773209,
+     "bias": 0.58005,
+     "corr": 0.552449
+    },
+    "skill_vs_last5": 0.019748,
+    "skill_vs_season": 0.033815,
+    "over_rate_vs_mean_projection": 0.39091,
+    "over_rate_vs_calibrated_line": 0.487272,
+    "calibration_multiplier_mean": 0.76768,
+    "skew_of_stat": 1.518094,
+    "residual_sd": 28.078289
+   },
+   "by_season": {
+    "2018": {
+     "n": 3037,
+     "mae_model": 21.039697,
+     "mae_last5": 21.54888
+    },
+    "2019": {
+     "n": 3044,
+     "mae_model": 21.351815,
+     "mae_last5": 21.997553
+    },
+    "2020": {
+     "n": 3178,
+     "mae_model": 20.984107,
+     "mae_last5": 21.633606
+    },
+    "2021": {
+     "n": 3380,
+     "mae_model": 20.466131,
+     "mae_last5": 20.837559
+    },
+    "2022": {
+     "n": 3331,
+     "mae_model": 20.370162,
+     "mae_last5": 20.839448
+    },
+    "2023": {
+     "n": 3392,
+     "mae_model": 20.273853,
+     "mae_last5": 20.447553
+    },
+    "2024": {
+     "n": 3397,
+     "mae_model": 19.834374,
+     "mae_last5": 20.198616
+    },
+    "2025": {
+     "n": 3528,
+     "mae_model": 18.935962,
+     "mae_last5": 19.205159
+    },
+    "2026": {
+     "n": 1369,
+     "mae_model": 19.591649,
+     "mae_last5": 19.707597
+    }
+   }
+  },
+  "rushing_yards": {
+   "positions": [
+    "RB"
+   ],
+   "overall": {
+    "n": 11545,
+    "model": {
+     "mae": 20.653601,
+     "rmse": 29.041775,
+     "bias": 0.705045,
+     "corr": 0.619096
+    },
+    "last5": {
+     "mae": 21.059874,
+     "rmse": 29.929458,
+     "bias": 0.455067,
+     "corr": 0.603997
+    },
+    "season_to_date": {
+     "mae": 22.172625,
+     "rmse": 30.789396,
+     "bias": 1.066973,
+     "corr": 0.554964
+    },
+    "skill_vs_last5": 0.019291,
+    "skill_vs_season": 0.068509,
+    "over_rate_vs_mean_projection": 0.373062,
+    "over_rate_vs_calibrated_line": 0.49398,
+    "calibration_multiplier_mean": 0.734359,
+    "skew_of_stat": 1.408515,
+    "residual_sd": 29.034473
+   },
+   "by_season": {
+    "2018": {
+     "n": 1253,
+     "mae_model": 22.173556,
+     "mae_last5": 22.786233
+    },
+    "2019": {
+     "n": 1320,
+     "mae_model": 20.527347,
+     "mae_last5": 20.751818
+    },
+    "2020": {
+     "n": 1332,
+     "mae_model": 21.076115,
+     "mae_last5": 21.605781
+    },
+    "2021": {
+     "n": 1398,
+     "mae_model": 20.673749,
+     "mae_last5": 21.241166
+    },
+    "2022": {
+     "n": 1456,
+     "mae_model": 20.680173,
+     "mae_last5": 21.397287
+    },
+    "2023": {
+     "n": 1368,
+     "mae_model": 20.137121,
+     "mae_last5": 20.256213
+    },
+    "2024": {
+     "n": 1431,
+     "mae_model": 20.444648,
+     "mae_last5": 20.728022
+    },
+    "2025": {
+     "n": 1445,
+     "mae_model": 19.95698,
+     "mae_last5": 20.117093
+    },
+    "2026": {
+     "n": 542,
+     "mae_model": 19.998033,
+     "mae_last5": 20.521587
+    }
+   }
+  },
+  "passing_yards": {
+   "positions": [
+    "QB"
+   ],
+   "overall": {
+    "n": 4937,
+    "model": {
+     "mae": 69.296964,
+     "rmse": 87.501908,
+     "bias": 4.120352,
+     "corr": 0.545225
+    },
+    "last5": {
+     "mae": 70.744774,
+     "rmse": 89.802626,
+     "bias": 2.788384,
+     "corr": 0.532356
+    },
+    "season_to_date": {
+     "mae": 72.718065,
+     "rmse": 92.177849,
+     "bias": 6.248367,
+     "corr": 0.473553
+    },
+    "skill_vs_last5": 0.020465,
+    "skill_vs_season": 0.047046,
+    "over_rate_vs_mean_projection": 0.478631,
+    "over_rate_vs_calibrated_line": 0.50557,
+    "calibration_multiplier_mean": 0.974541,
+    "skew_of_stat": -0.319755,
+    "residual_sd": 87.413696
+   },
+   "by_season": {
+    "2018": {
+     "n": 550,
+     "mae_model": 70.196054,
+     "mae_last5": 70.723182
+    },
+    "2019": {
+     "n": 530,
+     "mae_model": 69.442284,
+     "mae_last5": 71.593585
+    },
+    "2020": {
+     "n": 576,
+     "mae_model": 70.995386,
+     "mae_last5": 72.571962
+    },
+    "2021": {
+     "n": 603,
+     "mae_model": 70.536761,
+     "mae_last5": 71.655721
+    },
+    "2022": {
+     "n": 595,
+     "mae_model": 64.49865,
+     "mae_last5": 66.930588
+    },
+    "2023": {
+     "n": 610,
+     "mae_model": 70.290516,
+     "mae_last5": 70.601885
+    },
+    "2024": {
+     "n": 628,
+     "mae_model": 69.36567,
+     "mae_last5": 70.835828
+    },
+    "2025": {
+     "n": 609,
+     "mae_model": 69.551774,
+     "mae_last5": 72.168062
+    },
+    "2026": {
+     "n": 236,
+     "mae_model": 68.251172,
+     "mae_last5": 68.172246
+    }
+   }
+  },
+  "receptions": {
+   "positions": [
+    "WR",
+    "TE",
+    "RB"
+   ],
+   "overall": {
+    "n": 39204,
+    "model": {
+     "mae": 1.34946,
+     "rmse": 1.826719,
+     "bias": 0.008083,
+     "corr": 0.634497
+    },
+    "last5": {
+     "mae": 1.373359,
+     "rmse": 1.878811,
+     "bias": 0.016882,
+     "corr": 0.620917
+    },
+    "season_to_date": {
+     "mae": 1.418537,
+     "rmse": 1.907449,
+     "bias": -0.004158,
+     "corr": 0.590465
+    },
+    "skill_vs_last5": 0.017401,
+    "skill_vs_season": 0.048696,
+    "over_rate_vs_mean_projection": 0.417151,
+    "over_rate_vs_calibrated_line": 0.490409,
+    "calibration_multiplier_mean": 0.84481,
+    "skew_of_stat": 1.318179,
+    "residual_sd": 1.826725
+   },
+   "by_season": {
+    "2018": {
+     "n": 4290,
+     "mae_model": 1.415115,
+     "mae_last5": 1.448998
+    },
+    "2019": {
+     "n": 4364,
+     "mae_model": 1.383501,
+     "mae_last5": 1.412523
+    },
+    "2020": {
+     "n": 4510,
+     "mae_model": 1.400322,
+     "mae_last5": 1.427206
+    },
+    "2021": {
+     "n": 4778,
+     "mae_model": 1.378982,
+     "mae_last5": 1.406174
+    },
+    "2022": {
+     "n": 4787,
+     "mae_model": 1.34577,
+     "mae_last5": 1.376781
+    },
+    "2023": {
+     "n": 4760,
+     "mae_model": 1.33452,
+     "mae_last5": 1.344338
+    },
+    "2024": {
+     "n": 4828,
+     "mae_model": 1.322851,
+     "mae_last5": 1.342088
+    },
+    "2025": {
+     "n": 4973,
+     "mae_model": 1.250406,
+     "mae_last5": 1.270491
+    },
+    "2026": {
+     "n": 1914,
+     "mae_model": 1.302016,
+     "mae_last5": 1.315491
+    }
+   }
+  }
+ },
+ "originated": {
+  "receiving_yards": {
+   "target_week": 9,
+   "as_of_week": 8,
+   "rows": [
+    {
+     "market": "receiving_yards",
+     "player": "Tetairoa McMillan",
+     "team": "CAR",
+     "originated_line": 56.883045,
+     "mean_projection": 76.117746,
+     "sd": 41.333934,
+     "recent_form": 87.2,
+     "sample_games": 23
+    },
+    {
+     "market": "receiving_yards",
+     "player": "Christian Watson",
+     "team": "GB",
+     "originated_line": 49.060107,
+     "mean_projection": 65.649523,
+     "sd": 39.914728,
+     "recent_form": 81.4,
+     "sample_games": 54
+    },
+    {
+     "market": "receiving_yards",
+     "player": "Matthew Golden",
+     "team": "GB",
+     "originated_line": 44.564629,
+     "mean_projection": 59.633922,
+     "sd": 39.136817,
+     "recent_form": 77.4,
+     "sample_games": 21
+    },
+    {
+     "market": "receiving_yards",
+     "player": "Jalen Coker",
+     "team": "CAR",
+     "originated_line": 41.223987,
+     "mean_projection": 55.163659,
+     "sd": 34.582491,
+     "recent_form": 65.6,
+     "sample_games": 27
+    },
+    {
+     "market": "receiving_yards",
+     "player": "Tucker Kraft",
+     "team": "GB",
+     "originated_line": 29.505361,
+     "mean_projection": 39.482442,
+     "sd": 30.514335,
+     "recent_form": 43.4,
+     "sample_games": 46
+    },
+    {
+     "market": "receiving_yards",
+     "player": "Darren Waller",
+     "team": "CAR",
+     "originated_line": 28.561744,
+     "mean_projection": 38.219746,
+     "sd": 39.173958,
+     "recent_form": 34.0,
+     "sample_games": 96
+    }
+   ]
+  },
+  "rushing_yards": {
+   "target_week": 9,
+   "as_of_week": 8,
+   "rows": [
+    {
+     "market": "rushing_yards",
+     "player": "Chuba Hubbard",
+     "team": "CAR",
+     "originated_line": 51.245197,
+     "mean_projection": 70.585993,
+     "sd": 36.733499,
+     "recent_form": 82.0,
+     "sample_games": 83
+    },
+    {
+     "market": "rushing_yards",
+     "player": "Josh Jacobs",
+     "team": "GB",
+     "originated_line": 50.668231,
+     "mean_projection": 69.791271,
+     "sd": 36.523021,
+     "recent_form": 46.8,
+     "sample_games": 106
+    },
+    {
+     "market": "rushing_yards",
+     "player": "MarShawn Lloyd",
+     "team": "GB",
+     "originated_line": 15.860971,
+     "mean_projection": 21.847168,
+     "sd": 9.738546,
+     "recent_form": 17.0,
+     "sample_games": 8
+    },
+    {
+     "market": "rushing_yards",
+     "player": "Pierre Strong",
+     "team": "GB",
+     "originated_line": 12.381009,
+     "mean_projection": 17.05381,
+     "sd": 18.794265,
+     "recent_form": 14.8,
+     "sample_games": 41
+    },
+    {
+     "market": "rushing_yards",
+     "player": "Trevor Etienne",
+     "team": "CAR",
+     "originated_line": 2.197433,
+     "mean_projection": 3.026782,
+     "sd": 9.620884,
+     "recent_form": 1.4,
+     "sample_games": 19
+    }
+   ]
+  },
+  "passing_yards": {
+   "target_week": 9,
+   "as_of_week": 8,
+   "rows": [
+    {
+     "market": "passing_yards",
+     "player": "Jordan Love",
+     "team": "GB",
+     "originated_line": 233.64675,
+     "mean_projection": 239.404654,
+     "sd": 93.728171,
+     "recent_form": 285.2,
+     "sample_games": 64
+    },
+    {
+     "market": "passing_yards",
+     "player": "Bryce Young",
+     "team": "CAR",
+     "originated_line": 226.525846,
+     "mean_projection": 232.108265,
+     "sd": 83.348084,
+     "recent_form": 270.2,
+     "sample_games": 52
+    }
+   ]
+  },
+  "receptions": {
+   "target_week": 9,
+   "as_of_week": 8,
+   "rows": [
+    {
+     "market": "receptions",
+     "player": "Tetairoa McMillan",
+     "team": "CAR",
+     "originated_line": 4.782171,
+     "mean_projection": 5.745708,
+     "sd": 2.775528,
+     "recent_form": 6.2,
+     "sample_games": 23
+    },
+    {
+     "market": "receptions",
+     "player": "Jalen Coker",
+     "team": "CAR",
+     "originated_line": 3.724781,
+     "mean_projection": 4.47527,
+     "sd": 2.166174,
+     "recent_form": 5.0,
+     "sample_games": 27
+    },
+    {
+     "market": "receptions",
+     "player": "Matthew Golden",
+     "team": "GB",
+     "originated_line": 3.520861,
+     "mean_projection": 4.230263,
+     "sd": 2.095346,
+     "recent_form": 5.2,
+     "sample_games": 21
+    },
+    {
+     "market": "receptions",
+     "player": "Christian Watson",
+     "team": "GB",
+     "originated_line": 3.326113,
+     "mean_projection": 3.996276,
+     "sd": 1.740402,
+     "recent_form": 4.8,
+     "sample_games": 54
+    },
+    {
+     "market": "receptions",
+     "player": "Tucker Kraft",
+     "team": "GB",
+     "originated_line": 3.324292,
+     "mean_projection": 3.994088,
+     "sd": 1.811397,
+     "recent_form": 4.8,
+     "sample_games": 46
+    },
+    {
+     "market": "receptions",
+     "player": "Darren Waller",
+     "team": "CAR",
+     "originated_line": 2.627403,
+     "mean_projection": 3.156787,
+     "sd": 2.897973,
+     "recent_form": 2.4,
+     "sample_games": 96
+    }
+   ]
+  }
+ },
+ "coverage": {
+  "seasons": [
+   2015,
+   2016,
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "players": 6139,
+  "player_weeks": 198802,
+  "note": "No historical player-prop prices exist in any free source, so no prop ROI is reported. Only projection skill is measured."
+ }
+}
