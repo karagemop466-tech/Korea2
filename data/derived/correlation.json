@@ -1,0 +1,4 @@
+{
+  "status": "failed",
+  "error": "Traceback (most recent call last):\n  File \"/home/runner/work/Korea2/Korea2/scripts/analyze_correlation.py\", line 232, in <module>\n    main()\n  File \"/home/runner/work/Korea2/Korea2/scripts/analyze_correlation.py\", line 226, in main\n    print(f\"{k:34s} r={v['r']:+.3f} n={v['n']:6d} CI[{v['ci_low']:+.3f},{v['ci_high']:+.3f}]\")\n                       ~^^^^^\nKeyError: 'r'\n"
+}
