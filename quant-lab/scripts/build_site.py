@@ -585,7 +585,7 @@ def page_verification():
             off = c.get("official")
             show.append([f'<code>{e(c["check"])}</code>',
                          e(fmtdet(comp)) if comp is not None else e(fmtdet(c.get("detail"))),
-                         e(str(off)) if off is not None else '<span class="chip">internal audit</span>',
+                         e(fmtdet(off)) if off is not None else '<span class="chip">internal audit</span>',
                          badge(c["status"] == "pass"),
                          f'<a href="{e(c["source_url"])}" rel="noopener">source</a>' if c.get("source_url") else "—"])
         sections.append(f"<h3>{e(scope)} — {len(items)} checks</h3>" +
