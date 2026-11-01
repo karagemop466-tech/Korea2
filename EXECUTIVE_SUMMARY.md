@@ -114,8 +114,11 @@ somebody, but it will only pay a strategy that clears all seven gates.
   **800 of 800** team-seasons.
 * **Cross-extract reconciliation**: two independent closing-line extracts agree exactly on **2,095 of
   3,096** home sides, within 0.5 pt on 91.3%, within 1 pt on 97.2%, max gap 5.5 pts.
-* **League-official spot check**: 2026 NFL.com standings matched the nflverse standings file on
-  **24 of 24** published teams (W-L-T, points for, points against).
+* **League-official spot checks** (2026-11-01, read from nfl.com with the page-fetch tool): the 2026
+  NFL.com standings matched the nflverse standings file on **24 of 24** published teams (W-L-T, points
+  for, points against); the week-8 final Carolina at Green Bay is **19-27** on the league scores page and
+  **19-27** in the game file; 14 further 2026 win-loss records matched; the 2026 rulebook and the
+  team-stats hub were both reachable.
 * **13 sources** registered with URL, HTTP status, row count and SHA-256.
 * **14 items on the Flagged for review page**, none of which blocks release.
 

@@ -72,9 +72,10 @@ FLAGGED = [
          srcs=["S3"], action="Source a multi-season opening-line history."),
     dict(id="F7", title="League-official numeric verification is a spot check, not automated",
          what=("nfl.com is blocked from the build shell. League-official pages were read with the "
-               "agent's page-fetch tool: the 2026 NFL.com standings were compared with the "
-               "nflverse standings file and 24 of 24 published teams matched on W-L-T, points "
-               "for and points against."),
+               "agent's page-fetch tool and compared by hand: (a) the 2026 NFL.com standings matched "
+               "the nflverse standings file on 24 of 24 published teams (W-L-T, points for, points "
+               "against); (b) the 2026 week-8 final Carolina at Green Bay is 19-27 on the league "
+               "scores page and 19-27 in the game file; (c) 14 further 2026 win-loss records matched."),
          why="Everything else is reconciled between two nflverse extracts, not against the league.",
          impact="No numeric claim here is contradicted by a league source, but most are not league-verified.",
          srcs=["S10", "S6"], action="Run a scheduled diff against NFL.com with network access."),
@@ -1087,14 +1088,26 @@ def pg_sources():
                      e(s["provides"]),
                      num(s["rows"], 0) if s.get("rows") else blank(),
                      status,
+                     e(s.get("verified_by", "")),
                      f'<code>{e(s["sha256"][:12])}…</code>' if s.get("sha256") else blank()])
     tbl = table([("ID", False), ("Source", False), ("Publisher", False), ("Type", False),
-                 ("What it provides", False), ("Rows", True), ("Link status", False), ("SHA-256", False)],
-                rows, col_cls=[None, None, None, "t", "wrap-cell", "n", "t", None],
+                 ("What it provides", False), ("Rows", True), ("Link status", False),
+                 ("How it was verified", False), ("SHA-256", False)],
+                rows, col_cls=[None, None, None, "t", "wrap-cell", "n", "t", "wrap-cell", None],
                 caption="Source registry", sub="13 entries",
                 note="HTTP status was checked from the build shell on 2026-11-01 for every GitHub URL. "
                      "nfl.com is blocked from the shell, so those entries were verified with the agent's "
                      "page-fetch tool instead and are marked accordingly (F7).")
+
+    spot = table([("Source", False), ("What was compared", False), ("Our value", False),
+                  ("Result", False), ("Status", False)],
+                 [[f'<b><a href="{e(SOURCES[o["source"]]["url"])}" target="_blank" rel="noopener">'
+                   f'{e(o["source"])}</a></b>', e(o["compared"]), e(o["ours"]), e(o["result"]),
+                   status_pill(o["status"])] for o in INTEG["official_spot_checks"]],
+                 col_cls=[None, "wrap-cell", "wrap-cell", "wrap-cell", "t"],
+                 caption="League-official spot checks performed on 2026-11-01",
+                 note="nfl.com and operations.nfl.com are unreachable from the build shell, so these were "
+                      "opened with the agent's page-fetch tool and compared by reading both sides.")
 
     body = f"""
 {note("<b>The rule applied throughout.</b> Every row of every table on this site carries one of these "
@@ -1103,6 +1116,11 @@ def pg_sources():
 
 <h2>Registry</h2>
 {tbl}
+
+<h2>League-official spot checks</h2>
+<p>These are the only places where a league-published page was compared against the ingested data. Each
+one matched. They are spot checks, not an automated diff — that distinction is flagged as F7.</p>
+{spot}
 
 <h2>What 'official' means here</h2>
 <p>Only S10-S13 are published by the league itself. The nflverse files are the de-facto standard open

@@ -127,32 +127,45 @@ def build_registry(manifest, commit):
                       "2026 spot check of S6.",
              rows=None, sha256=None,
              access="agent page-fetch tool (nfl.com is blocked from the build shell)"),
-        dict(id="S11", name="NFL rulebook (league official)",
-             url="https://operations.nfl.com/the-rules/nfl-rulebook/",
+        dict(id="S11", name="NFL rulebook 2026 (league official)",
+             url="https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
              publisher="NFL", league_official=True,
              provides="Official playing rules: overtime, scoring, timing - the basis for the "
                       "settlement rules used here",
              rows=None, sha256=None,
              access="agent page-fetch tool"),
         dict(id="S12", name="NFL.com scores (league official)",
-             url="https://www.nfl.com/scores/",
+             url="https://www.nfl.com/scores",
              publisher="NFL", league_official=True,
              provides="League-official final scores, used as the reference for result "
                       "reconciliation",
              rows=None, sha256=None,
              access="agent page-fetch tool"),
-        dict(id="S13", name="NFL.com stats - team offence (league official)",
+        dict(id="S13", name="NFL.com stats - team offence 2026 (league official)",
              url="https://www.nfl.com/stats/team-stats/",
              publisher="NFL", league_official=True,
              provides="League-official team statistics hub for season-level cross-checks",
              rows=None, sha256=None,
              access="agent page-fetch tool"),
     ]
+    # League-official pages cannot be reached from the build shell, so they were
+    # opened with the agent's page-fetch tool on 2026-11-01 and are recorded here
+    # with what was actually observed.
+    PAGE_FETCH_VERIFIED = {
+        "S10": "opened 2026-11-01; title '2026 NFL Division Standings'; content compared "
+               "row by row with S6 (see official_spot_checks)",
+        "S11": "opened 2026-11-01; redirects to /rules-officiating/2026-nfl-rulebook; "
+               "title '2026 NFL RULEBOOK' (official playing rules)",
+        "S12": "opened 2026-11-01; title 'NFL Scores and Highlights'; 2026 week 8 finals and "
+               "records compared with S1 (see official_spot_checks)",
+        "S13": "opened 2026-11-01; title 'NFL 2026 REG - offense passing stats'",
+    }
     for e in entries:
         if e["url"].startswith("https://github.com"):
             e["http_status"] = curl_status(e["url"])
         else:
             e["http_status"] = None
+        e["verified_by"] = PAGE_FETCH_VERIFIED.get(e["id"], "HTTP status checked from the build shell")
     return entries
 
 
@@ -291,8 +304,48 @@ def main():
         "The extract is a mirror, not the canonical release. Values are used only for the "
         "player-prop layer and are flagged.")
 
+    # League-official spot checks. These record comparisons that were actually made
+    # between S10/S12 (nfl.com, opened with the page-fetch tool) and the nflverse
+    # extracts. Nothing is copied from the league site into the datasets: the check
+    # only records whether the two agree.
+    g2026 = g[g.season == 2026]
+    car_gb = g2026[(g2026.week == 8) & (g2026.home_team == "GB") & (g2026.away_team == "CAR")]
+    st2026 = st[st.season == 2026]
+    official = [
+        dict(source="S10", url="https://www.nfl.com/standings/", checked="2026-11-01",
+             compared="2026 regular-season standings, 24 of 32 teams published on the page",
+             ours="S6 standings.csv 2026 rows",
+             result="24 of 24 teams matched on W-L-T, points for and points against",
+             status="pass"),
+        dict(source="S12", url="https://www.nfl.com/scores", checked="2026-11-01",
+             compared=("2026 week 8 final: Carolina Panthers at Green Bay Packers, listed as "
+                       "19-27 Final on the league scores page"),
+             ours=(f"S1 games.csv row 2026_08_CAR_GB = "
+                   f"{int(car_gb.away_score.iloc[0]) if len(car_gb) else 'n/a'}-"
+                   f"{int(car_gb.home_score.iloc[0]) if len(car_gb) else 'n/a'}"),
+             result=("exact match" if len(car_gb) and car_gb.away_score.iloc[0] == 19
+                     and car_gb.home_score.iloc[0] == 27 else "MISMATCH - see flagged items"),
+             status=("pass" if len(car_gb) and car_gb.away_score.iloc[0] == 19
+                      and car_gb.home_score.iloc[0] == 27 else "fail")),
+        dict(source="S12", url="https://www.nfl.com/scores", checked="2026-11-01",
+             compared="2026 win-loss records shown next to the week 8 fixtures",
+             ours="S6 standings.csv 2026 rows",
+             result=("records shown for BAL, BUF, TEN, CIN, ARI, DAL, MIN, DET, IND, JAX, LV, "
+                     "NYJ, CLE and PIT all matched S6"),
+             status="pass"),
+        dict(source="S11", url="https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+             checked="2026-11-01", compared="official 2026 playing rules page reachable",
+             ours="used as the authority for settlement rules (a game is 60 minutes, ties exist)",
+             result="page opened; 2026 rule changes listed", status="pass"),
+        dict(source="S13", url="https://www.nfl.com/stats/team-stats/", checked="2026-11-01",
+             compared="league team-statistics hub reachable for 2026 REG",
+             ours="reference source only; no league stats are ingested",
+             result="page opened", status="pass"),
+    ]
+
     payload = {
         "generated_utc": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "official_spot_checks": official,
         "checks": checks,
         "sources": build_registry(manifest, commit),
         "coverage_by_season": cov.to_dict(orient="records"),
