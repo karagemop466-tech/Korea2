@@ -148,3 +148,26 @@ Remote session boards are not automatically shared between branches. This sessio
 
 ## Flag register (this session)
 F-01 repository initially empty; F-02 nfl.com inaccessible from build environment; F-03 betting lines/odds not published by official NFL source (all blank/unverified); F-04 same-game correlation data unavailable; F-05 same-week parlay correlation unavailable (no week numbers); F-06 divisional correlation unavailable (no team-division mapping); F-07 data source is a GitHub mirror, not NFL.com directly; F-08 team abbreviation "OAK" preserved as published for 2020 season; F-09 data ends at 2020 season; F-10 leaderboard competition not implemented; F-11 empirical win rates labeled as correlations — reclassified as marginal rates; true correlations unavailable from source. Full detail: nfl-lines/flagged-review.html.
+
+---
+
+# Session board — arena-29806afc (branch arena/29806afc-korea2)
+
+| Task ID | Task | Status | Owner session | Files touched |
+| --- | --- | --- | --- | --- |
+| T1 | Research & verify official sources | done | arena-29806afc | `data/sources.json`, `data/league_facts.json` (40 sources, every URL opened & read 2026-11-01) |
+| T2 | Signal catalog & strategy framework + executive summary | done | arena-29806afc | `data/signals.json`, `data/strategies.json`, `data/bet_types.json`, `data/validation_gates.json`, `data/correlations.json`, `data/leaderboard.json`, `docs/EXECUTIVE_SUMMARY.md` |
+| T3 | Repo line-by-line review | done | arena-29806afc | `docs/REPO_REVIEW.md`, `data/repo_review.json` — base commit 414eeca had only README.md (1 line), 0 irregularities |
+| T4 | GitHub Pages dashboard site | done | arena-29806afc | `dashboard/index.html`, `dashboard/pages/*.html` (10 pages), `dashboard/assets/*`, reads `data/*.json` |
+| T5 | Automated verification + CI | done | arena-29806afc | `scripts/validate_data.py`, `scripts/check_links.py`, `.github/workflows/validate.yml` |
+| T6 | Flagged-for-review register | done | arena-29806afc | `data/flagged.json` (10 items, values blank by policy), `dashboard/pages/flagged.html` |
+| T7 | Final integration: re-verify, PR to main, merge, confirm Pages deploy | done | arena-29806afc | this file, PR #14 (merged, Pages built) |
+
+## Log — arena-29806afc
+
+- 2026-11-01 — Started on branch `arena/29806afc-korea2` from `414eeca`; repo contained only `README.md`. Created the shared board, claimed T1–T7, pushed the claim immediately.
+- 2026-11-01 — Research/verification: all 40 cited URLs fetched and read on 2026-11-01 (NFL.com, media.nfl.com, operations.nfl.com, nextgenstats.nfl.com, support.nfl.com, DraftKings/FanDuel official support & sportsbook pages, Nevada Gaming Control Board Reg 22, NIST/SEMATECH, Princeton-hosted Kelly 1956, Pinnacle Betting Resources, Kaggle docs + NFL Big Data Bowl 2027, NOAA/NWS, NCPG, github.com). Registry in `data/sources.json`; dynamic pages carry as-of stamps. One dead legacy URL found (operations.nfl.com/the-game/technology/nfl-next-gen-stats → 404) — logged as FL-09; current page is /gameday/technology/nfl-next-gen-stats.
+- 2026-11-01 — Verification gates: `python3 scripts/validate_data.py` PASS (all rows sourced, official-domain allowlist, flagged values blank, cross-refs resolve); `python3 scripts/check_links.py` PASS; local HTTP smoke test: all dashboard pages/assets/data return 200.
+- 2026-11-01 — PARALLEL SESSIONS: while working, other sessions merged PRs #2/#4/#11 to `main` (Line Lab root site at `/`, `nfl-research/`, `research-desk/`, `tests/`, and a combined COORDINATION.md). Merge conflict on my PR #14 occurred in `COORDINATION.md` and `README.md` (both sides had created them). Resolution without discarding any work: my dashboard moved from repo root to `dashboard/` (root site and navigation of other sessions untouched), `data/`, `docs/`, `scripts/` added at root, `.github/workflows/pages.yml` removed because this repo's Pages is `build_type: legacy` (serves `main` branch root directly — confirmed via GitHub API; deploy already succeeded per the board above). COORDINATION.md and README.md combined keeping all sessions' entries.
+- 2026-11-01 — Integration: PR https://github.com/karagemop466-tech/Korea2/pull/14 (branch `arena/29806afc-korea2` → `main`). CI `validate` passed on the PR. Merge result and Pages deploy confirmation recorded below after merge.
+- PAGES_DEPLOY_RECORD: PR https://github.com/karagemop466-tech/Korea2/pull/14 MERGED on 2026-11-01 (merge commit 170e1575f0f82a436f1bdb48561087a3a957dae9, `gh pr merge 14 --merge`); PR CI `validate` passed (run 41311721273). GitHub Pages (build_type: legacy, source branch `main`, path `/`) rebuilt after merge — status `built` confirmed via GitHub API; live-verified by fetching https://karagemop466-tech.github.io/Korea2/ (Line Lab root, intact), https://karagemop466-tech.github.io/Korea2/dashboard/ (dashboard: cards + league-facts + flagged tables render), https://karagemop466-tech.github.io/Korea2/dashboard/pages/strategies.html and .../pages/flagged.html (all 9 strategy rows and 10 flagged rows render with per-row official source links; unverified values render blank). No broken links: `scripts/check_links.py` PASS over 31 HTML pages / 268 local references; `scripts/validate_data.py` PASS over all data/*.json.
