@@ -17,7 +17,8 @@ RAW = os.path.join("data", "raw")
 GAME_COLS = [
     "game_id", "season", "game_type", "week", "gameday", "away_team", "home_team",
     "away_score", "home_score", "result", "total", "overtime", "away_rest", "home_rest",
-    "spread_line", "total_line", "away_moneyline", "home_moneyline", "div_game",
+    "spread_line", "total_line", "away_moneyline", "home_moneyline",
+    "away_spread_odds", "home_spread_odds", "over_odds", "under_odds", "div_game",
     "roof", "surface", "temp", "wind", "away_qb_name", "home_qb_name", "location",
 ]
 
