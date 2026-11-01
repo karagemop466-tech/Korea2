@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for Review — Korea2</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Korea2</h1>
+    <span class="tag">Flagged for Review</span>
+  </div>
+</header>
+<nav>
+  <ul>
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a href="data.html">NFL Data</a></li>
+    <li><a href="strategies.html">Strategies</a></li>
+    <li><a href="correlations.html">Correlations</a></li>
+    <li><a href="executive-summary.html">Executive Summary</a></li>
+    <li><a href="flagged-review.html" class="active">Flagged for Review</a></li>
+  </ul>
+</nav>
+<main>
+  <div class="section">
+    <h2>Flagged for Review — Irregularities &amp; Unverified Items</h2>
+    <p class="lead">These items are published here (not blocking the merge) so you can review them after the site is live and request changes. Nothing here is inferred or filled in; blanks are intentional.</p>
+  </div>
+
+  <div class="section">
+    <h3>Flag register</h3>
+    <table>
+      <thead>
+        <tr><th>ID</th><th>Item</th><th>Detail</th><th>Source link(s)</th><th>Impact</th><th>Resolution needed</th></tr>
+      </thead>
+      <tbody>
+        <tr class="flagged">
+          <td class="cen"><strong>F-01</strong></td>
+          <td>Repository initially empty</td>
+          <td>Repo contained only README.md ("# Korea2"); all content created by this session.</td>
+          <td class="source"><a href="https://github.com/karagemop466-tech/Korea2/commit/414eeca" target="_blank" rel="noopener">initial commit</a></td>
+          <td>No prior data to lose; no conflict.</td>
+          <td>None — documented.</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-02</strong></td>
+          <td>nfl.com inaccessible from build environment</td>
+          <td>Direct HTTPS access to www.nfl.com fails (SSL syscall); espn.com and pro-football-reference.com also unreachable. Only github.com / api.github.com / codeload.github.com are reachable.</td>
+          <td class="source">Connection test logs (this session)</td>
+          <td>NFL.com could not be directly verified; data taken from GitHub mirror instead.</td>
+          <td>Manually verify data against nfl.com when possible.</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-03</strong></td>
+          <td>Betting lines / odds not published by an official source</td>
+          <td>The NFL does not publish betting lines, moneylines, or player-prop prices. Every line/odds field is blank and unverified.</td>
+          <td class="source">NFL.com (official league site — unreachable in sandbox; content known from public league practice)</td>
+          <td>All strategies (S-01, S-02, P-01, PR-01, PR-02) unverified pending a lines source.</td>
+          <td>Add sportsbook source with per-row links; re-run gate G-1.</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-04</strong></td>
+          <td>Same-game correlation data unavailable</td>
+          <td>Source CSV has no play-by-play or same-game joint outcomes; same-game prop correlation and same-game parlays cannot be measured.</td>
+          <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td>
+          <td>P-02 rejected; PR-01/PR-02 correlation legs unverified.</td>
+          <td>Add play-by-play source.</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-05</strong></td>
+          <td>Same-week parlay correlation unavailable</td>
+          <td>Source CSV has no week numbers; same-week game-pair correlation cannot be measured.</td>
+          <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td>
+          <td>P-01 correlation adjustment approximate.</td>
+          <td>Add schedule source with week numbers.</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-06</strong></td>
+          <td>Divisional correlation unavailable</td>
+          <td>Source CSV has no team-to-division mapping.</td>
+          <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td>
+          <td>Divisional correlation blank.</td>
+          <td>Add division mapping source.</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-07</strong></td>
+          <td>Data source is a mirror, not NFL.com directly</td>
+          <td>Values taken from fivethirtyeight/nfl-elo-game on GitHub (mirror of NFL game records, 1920–2020), processed by tools/process_nfl_data.py.</td>
+          <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td>
+          <td>Scores/winners reproducible from mirror; original publisher is the NFL.</td>
+          <td>Cross-check against nfl.com when reachable.</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-08</strong></td>
+          <td>Team abbreviation "OAK" in 2020 season</td>
+          <td>Source uses "OAK" for the Raiders in the 2020 season (club played as Las Vegas Raiders in 2020). Abbreviation preserved exactly as published.</td>
+          <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a> (2020-09-13 CAR vs OAK)</td>
+          <td>Cosmetic; no effect on results.</td>
+          <td>Note for readers; normalize mapping if team dimension is added.</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-09</strong></td>
+          <td>Data ends at 2020 season</td>
+          <td>Source covers seasons 1920–2020 only (through Super Bowl LV). No 2021–2026 data in this repo.</td>
+          <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td>
+          <td>No current-season lines or results.</td>
+          <td>Add recent-season data when reachable.</td>
+        </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-10</strong></td>
+          <td>Leaderboard competition not implemented</td>
+          <td>Leaderboard and rewards described in executive summary only; no implementation yet.</td>
+          <td class="source">executive-summary.html (&sect;6)</td>
+          <td>No ranking/reward system today.</td>
+          <td>Implement after lines source added.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>Verification standard applied</h3>
+    <ul>
+      <li>Every table row across the site carries a source link for manual review.</li>
+      <li>Values not confirmable from an official source are left blank and flagged <span class="badge warn">unverified</span> — never inferred or filled in.</li>
+      <li>Computed values (e.g., home win rate 53.82%) are reproduced by tools/empirical_correlations.py from the verified source CSV and flagged <span class="badge ok">computed</span>.</li>
+    </ul>
+  </div>
+</main>
+<footer>
+  Korea2 — NFL Lines Origination. Flagged items do not block the merge; they are published for your review after the site is live.
+</footer>
+</body>
+</html>
