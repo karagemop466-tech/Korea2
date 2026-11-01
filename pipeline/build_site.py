@@ -112,7 +112,7 @@ IRREGULARITIES = [
         "id": "IR-07", "severity": "medium",
         "title": "Official-league verification covers 3 of 7,384 played games",
         "detail": "Three games were checked against NFL.com inside this session (all matched). The remaining "
-                  "7,381 played games are verified only against the pinned open datasets and 14 structural checks.",
+                  "7,381 played games are verified only against the pinned open datasets and the structural checks listed on the verification page.",
         "impact": "The verification page states the coverage explicitly instead of implying full official sign-off.",
         "links": [("https://www.nfl.com/schedules/", "NFL.com schedules")],
         "status": "flagged",
@@ -349,7 +349,7 @@ tickets. <b>None of them cleared every gate.</b> That is the headline finding, a
   <a class="navcard" href="pages/correlation.html"><div class="t">Correlation values</div><div class="d">Market, strategy and player-level correlations with confidence intervals.</div></a>
   <a class="navcard" href="pages/validation.html"><div class="t">Validation gates</div><div class="d">The ten gates, the thresholds, and the pass/fail matrix.</div></a>
   <a class="navcard" href="pages/data.html"><div class="t">Data &amp; sources</div><div class="d">Coverage, checksums, and where every byte came from.</div></a>
-  <a class="navcard" href="pages/verification.html"><div class="t">Verification</div><div class="d">16 structural checks, 3 official NFL.com spot checks, and what is unverified.</div></a>
+  <a class="navcard" href="pages/verification.html"><div class="t">Verification</div><div class="d">{load('verification.json')['summary']['n_checks']} structural checks, {load('verification.json')['summary']['n_spot_checks']} official NFL.com spot checks, and what is unverified.</div></a>
   <a class="navcard" href="pages/flagged.html"><div class="t">Flagged for review</div><div class="d">Everything doubtful, missing or contradictory — with links.</div></a>
   <a class="navcard" href="pages/requirements.html"><div class="t">Requirements</div><div class="d">The full requirement list, each line with its status and evidence.</div></a>
   <a class="navcard" href="pages/methods.html"><div class="t">Methods</div><div class="d">Formulas, gate thresholds, reproducibility.</div></a>
@@ -373,7 +373,7 @@ def board_table(board, limit=None) -> str:
             ("num", h(r["gameday"])),
             ("num", fmt(r["own_spread"], 2)),
             ("num", fmt(r["mkt_spread"], 2)),
-            ("num", f'<span class="{pct_cls(edge)}">{fmt(edge, 2)}</span>'),
+            ("num", fmt(edge, 2)),
             ("num", fmt(r["own_total"], 2)),
             ("num", fmt(r["mkt_total"], 2)),
             ("num", f'<span class="{pct_cls(r["edge_total"])}">{fmt(r["edge_total"], 2)}</span>'),
@@ -938,8 +938,11 @@ def page_verification() -> str:
     checks = [[("name", h(c["name"])), ("", status_badge(c["status"])), ("", h(c["detail"])),
                ("srclink", maybe_link(c["source"], "source"))] for c in v["checks"]]
     spots = [[("name", h(x["matchup"])), ("num", h(x["gameday"])), ("num", h(x["dataset_score"])),
-              ("num", h(x["official_score"])), ("", status_badge("PASS")),
-              ("srclink", link(x["official_url"], "NFL.com game page")),
+              ("num", h(x["official_score"])),
+              ("", status_badge("PASS" if x["verdict"] == "MATCH" else "FAIL")),
+              ("num", "yes" if x.get("quarters_checked") else "score only"),
+              ("srclink", link(x["official_url"], "NFL.com game page")
+                          + (" · " + link(x["game_book"], "game book (PDF)") if x.get("game_book") else "")),
               ("srclink", link(x["line_source"], "lines"))] for x in v["spot_checks"]]
     unp = [[("name", h(u["item"])), ("", h(u["why"])), ("", h(u["consequence"])),
             ("", maybe_link(u["source_that_would_settle_it"], "settling source"))] for u in v["unverified"]]
@@ -958,8 +961,9 @@ register of what could not be confirmed. {s['n_pass']} checks pass, {s['n_flag']
 </div>
 
 {note("<b>What 'verified' means here, precisely.</b> A row is verified when the value can be reproduced from a "
-      "pinned, hashed upstream file <i>and</i> passes the arithmetic and cross-file checks. Only three game rows "
-      "have been checked against the official league site. This page never implies more than that.", "")}
+      "pinned, hashed upstream file <i>and</i> passes the arithmetic and cross-file checks. Only "
+      f"{s['n_spot_checks']} game rows have been checked against the official league site, out of "
+      f"{fmt(s['played_games'])} played games. This page never implies more than that.", "")}
 
 <h2>Structural and cross-source checks</h2>
 {table(["Check", "Status", "Detail", "Source"], checks, "checks")}
@@ -976,7 +980,7 @@ disagreement is half a point, but the tails reach {fmt(cs['SPREAD']['max_abs_dif
        "cstab")}
 
 <h2>Official NFL.com spot checks</h2>
-{table(["Game", "Date", "Our dataset", "NFL.com", "Verdict", "Official link", "Line source"], spots, "spots")}
+{table(["Game", "Date", "Our dataset", "NFL.com", "Verdict", "Quarters", "Official link", "Line source"], spots, "spots")}
 <p class="small">The official line for these games is <b>not</b> published on NFL.com, so the last column links to
 the dataset that supplied the price, and the corresponding cell on the flagged page records that the line itself
 was not officially verified.</p>

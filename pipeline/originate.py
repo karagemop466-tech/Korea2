@@ -257,7 +257,9 @@ def current_board(g: pd.DataFrame, season: int) -> list[dict]:
         out.append({
             "game_id": r.game_id, "gameday": r.gameday, "week": int(week),
             "away": r.away_team, "home": r.home_team,
-            "own_spread": None if pd.isna(r.own_margin) else round(-float(r.own_margin), 2),
+            # Board convention: positive = home team favoured by that many points, which is the
+            # same convention nflverse uses for spread_line, so the two columns are comparable.
+            "own_spread": None if pd.isna(r.own_margin) else round(float(r.own_margin), 2),
             "own_total": None if pd.isna(r.own_total) else round(float(r.own_total), 2),
             "own_home_win_prob": None if pd.isna(r.own_home_wp) else round(float(r.own_home_wp), 4),
             "mkt_spread": None if pd.isna(r.spread_line) else float(r.spread_line),
