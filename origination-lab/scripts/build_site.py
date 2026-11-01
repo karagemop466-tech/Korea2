@@ -1014,7 +1014,7 @@ def pg_data():
 
     crows = []
     for c in INTEG["checks"]:
-        crows.append([f'<b>{e(c["key"])}</b>', e(c["question"]), e(c["method"]), e(c["result"]),
+        crows.append([f'<b>{e(c["key"])}</b>', imd(c["question"]), imd(c["method"]), imd(c["result"]),
                       status_pill(c["status"]), src(SOURCES, c["sources"])])
     ctbl = table([("Check", False), ("Question", False), ("Method", False), ("Result", False),
                   ("Status", False), ("Src", False)], crows,
@@ -1165,6 +1165,11 @@ numeric verification is a spot check rather than an automated diff (F7).</p>
 
 
 # --------------------------------------------------------------------------- #
+def imd(text: str) -> str:
+    """Inline markdown for a single-line field: code spans, bold, links, no block wrapper."""
+    return md_to_html(text).replace("<p>", "").replace("</p>", "")
+
+
 def pg_flagged():
     cards = []
     for f in FLAGGED:
@@ -1172,11 +1177,11 @@ def pg_flagged():
 <div class="card" id="{e(f['id'])}">
   <h3>{e(f['id'])} · {pill("needs review", "warn")}</h3>
   <p style="font-size:15px;font-weight:600;margin:2px 0 8px">{e(f['title'])}</p>
-  <p><b>What.</b> {md_to_html(f['what']).replace('<p>','').replace('</p>','')}</p>
-  <p><b>Why it matters.</b> {e(f['why'])}</p>
-  <p><b>Impact on published results.</b> {e(f['impact'])}</p>
+  <p><b>What.</b> {imd(f['what'])}</p>
+  <p><b>Why it matters.</b> {imd(f['why'])}</p>
+  <p><b>Impact on published results.</b> {imd(f['impact'])}</p>
   <p><b>Sources.</b> {src(SOURCES, f['srcs'])}</p>
-  <p><b>Requested action.</b> {e(f['action'])}</p>
+  <p><b>Requested action.</b> {imd(f['action'])}</p>
 </div>""")
     body = f"""
 {note("<b>Nothing here blocks the release.</b> These are the items a reviewer should look at first: values "
