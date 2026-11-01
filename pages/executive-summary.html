@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive Summary · Korea2</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <div class="page-head">
+    <h1>Executive Summary — NFL Line Origination &amp; Skill-Based Strategy Project</h1>
+    <p>The important details in one page. Full text also in <a href="https://github.com/karagemop466-tech/Korea2/blob/main/docs/EXECUTIVE_SUMMARY.md">docs/EXECUTIVE_SUMMARY.md</a>. Every claim links to an official source, checked 2026-11-01.</p>
+    <div class="meta-line">Date: 2026-11-01 · Repo: karagemop466-tech/Korea2 · Unverifiable values are blank and flagged, never inferred.</div>
+  </div>
+
+  <section class="panel">
+    <h2>1 · Goal</h2>
+    <p>Originate our own NFL betting lines (bottom-up from raw official data) instead of following market lines; develop strategies that generate useful signals; run them as a <strong>leaderboard competition with rewards for top performers</strong>; cover <strong>single bets, parlays, and player-prop combos</strong>; require every strategy to pass <strong>validation gates</strong>; explicitly <strong>determine correlation values</strong>; and <strong>remove luck</strong> by demanding statistical evidence of skill before any strategy is trusted.</p>
+  </section>
+
+  <section class="panel">
+    <h2>2 · What “originating our own line” means (verified definition)</h2>
+    <p>An <em>originator</em> “aims to originate their own lines using raw data and their own models”, comparing their own probability to the sportsbook’s implied probability to find value — <a href="https://www.pinnacle.com/betting-resources/en/educational/bottom-up-betting-explained-what-is-an-originator-and-how-do-you-build-a-basic-model" target="_blank" rel="noopener noreferrer">Pinnacle: Bottom-Up Betting / Originator ↗</a>. For NFL models the same official guide names the inputs: <strong>player stats, team stats, injury reports, weather for outdoor games</strong> — all available officially:</p>
+    <ul class="tight">
+      <li>Player &amp; team stats: <a href="https://www.nfl.com/stats/player-stats/" target="_blank" rel="noopener noreferrer">nfl.com/stats/player-stats ↗</a> · <a href="https://www.nfl.com/stats/team-stats/" target="_blank" rel="noopener noreferrer">nfl.com/stats/team-stats ↗</a></li>
+      <li>Next Gen Stats tracking (speed, separation, CPOE; EPA &amp; success-rate explainers): <a href="https://nextgenstats.nfl.com/" target="_blank" rel="noopener noreferrer">nextgenstats.nfl.com ↗</a> · <a href="https://operations.nfl.com/gameday/technology/nfl-next-gen-stats" target="_blank" rel="noopener noreferrer">operations.nfl.com NGS technology ↗</a> · <a href="https://support.nfl.com/hc/en-us/articles/35869706651156-NFL-Pro-FAQ-s-and-Answers" target="_blank" rel="noopener noreferrer">NFL Pro FAQ — the NFL itself scores matchups with success rate + EPA per play ↗</a></li>
+      <li>Injury report + policy deadlines: <a href="https://www.nfl.com/injuries/" target="_blank" rel="noopener noreferrer">nfl.com/injuries ↗</a> · <a href="https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693" target="_blank" rel="noopener noreferrer">injury report policy ↗</a> · <a href="https://www.nfl.com/news/2026-27-national-football-league-important-dates" target="_blank" rel="noopener noreferrer">important dates ↗</a></li>
+      <li>Schedule / standings / rosters: <a href="https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced" target="_blank" rel="noopener noreferrer">2026 schedule announcement ↗</a> · <a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener noreferrer">Week 9 schedule ↗</a> · <a href="https://www.nfl.com/standings/league/2026/reg" target="_blank" rel="noopener noreferrer">standings ↗</a> · <a href="https://www.nfl.com/teams/" target="_blank" rel="noopener noreferrer">teams ↗</a></li>
+      <li>Weather (NOAA/NWS point forecasts): <a href="https://forecast.weather.gov/MapClick.php?lat=40.7128&lon=-74.006" target="_blank" rel="noopener noreferrer">forecast.weather.gov point forecast ↗</a></li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>3 · Market mechanics (verified against official sportsbook help / regulator)</h2>
+    <ul class="tight">
+      <li>Spread / moneyline / total / prop / parlay / SGP / teaser definitions: <a href="https://support.draftkings.com/dk/en-us/glossary-of-betting-terms?id=kb_article_view&sysparm_article=KB0010398" target="_blank" rel="noopener noreferrer">DraftKings glossary ↗</a> · <a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683" target="_blank" rel="noopener noreferrer">parlay rules (all legs must win; push leg removed; correlated picks restricted) ↗</a> · <a href="https://support.draftkings.com/dk/en-us/what-is-a-prop-bet?id=kb_article_view&sysparm_article=KB0010778" target="_blank" rel="noopener noreferrer">prop definition ↗</a> · <a href="https://support.fanduel.com/s/article/Sports-Betting-Terms" target="_blank" rel="noopener noreferrer">FanDuel terms (spread usually 11-to-10 = −110) ↗</a></li>
+      <li>Parlay card wager = 2+ games/contingencies; grading must be confirmable from official league records: <a href="https://www.gaming.nv.gov/siteassets/content/regs/regulation-22-as-of-1-26.pdf" target="_blank" rel="noopener noreferrer">Nevada Gaming Control Board Regulation 22 (PDF) ↗</a> → NFL official stats are the settlement source of truth.</li>
+      <li>Odds → probability: <a href="https://www.pinnacle.com/en/esports-hub/betting-articles/educational/implied-probability-odds-conversion/72m2z3g3g22m5tps" target="_blank" rel="noopener noreferrer">American-odds conversion formulas ↗</a> and <a href="https://www.pinnacle.com/betting-resources/en/betting-strategy/betting-odds-explained-how-do-odds-work/qen2dcqrvncnv4jf" target="_blank" rel="noopener noreferrer">margin = implied-probability sum − 100% ↗</a>. At standard −110 each side implies 110/210 = <strong>52.38%</strong> — the break-even win rate.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>4 · Removing luck — validation gates G1–G8 (details on <a href="validation.html">Validation Gates</a>)</h2>
+    <ul class="tight">
+      <li><strong>G1</strong> official-data-only; <strong>G2</strong> out-of-sample holdout (Kaggle public/private split + anti-leakage: <a href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer">kaggle.com/docs/competitions ↗</a>); <strong>G3</strong> binomial z-test of win rate vs price-implied break-even, p&lt;0.05, N&gt;30 (<a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" target="_blank" rel="noopener noreferrer">NIST 7.2.4 ↗</a>); <strong>G4</strong> minimum N from NIST sample-size formula (<a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc242.htm" target="_blank" rel="noopener noreferrer">NIST 7.2.4.2 ↗</a>); <strong>G5</strong> positive average CLV on holdout (<a href="https://www.pinnacle.com/betting-resources/en/educational/what-is-closing-line-value-clv-in-sports-betting" target="_blank" rel="noopener noreferrer">Pinnacle CLV ↗</a>); <strong>G6</strong> Bonferroni α/g across candidate signals (<a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm" target="_blank" rel="noopener noreferrer">NIST 7.4.7.3 ↗</a>); <strong>G7</strong> Pearson-r correlation screen on parlay legs + fractional-Kelly staking (<a href="https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm" target="_blank" rel="noopener noreferrer">NIST correlation ↗</a>, <a href="https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf" target="_blank" rel="noopener noreferrer">Kelly 1956 original paper, Princeton-hosted ↗</a>, <a href="https://www.pinnacle.com/betting-resources/en/betting-strategy/the-kelly-criterion-a-stock-trader-and-betting-experts-perspective/h8k2p3f2r8b7rzdp" target="_blank" rel="noopener noreferrer">Pinnacle Kelly ↗</a>); <strong>G8</strong> settlement audited vs official NFL stats (NV Reg 22).</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>5 · Leaderboard competition with rewards</h2>
+    <p>Modeled on official precedents: Kaggle’s public/private leaderboard (<a href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer">docs ↗</a>) and the <strong>NFL Big Data Bowl on Kaggle — $100,000 prize pool, judged by analytics staff of the 32 NFL clubs</strong> (<a href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" target="_blank" rel="noopener noreferrer">Big Data Bowl 2027 ↗</a>; <a href="https://media.nfl.com/news-and-releases/corporate-communications/national-football-league-announces-seventh-annual-big-data-bowl-" target="_blank" rel="noopener noreferrer">NFL announcement ↗</a>). Our design: public in-season scoreboard (mean CLV + ROI) for feedback; <strong>private held-out final ranking decides rewards</strong> (top-3 tiers + most-improved-CLV); entry requires passing G1–G8. See <a href="leaderboard.html">Leaderboard</a>.</p>
+  </section>
+
+  <section class="panel">
+    <h2>6 · Strategy portfolio (designs — performance blank until gates pass)</h2>
+    <div id="table"></div>
+  </section>
+
+  <section class="panel">
+    <h2>7 · Correlation determination</h2>
+    <p>Pearson r via the NIST formula with F(1, N−2) significance testing; parlay legs screened pairwise; high-|r| and book-restricted (“related contingencies”) pairs rejected; SGPs need explicit joint-probability modeling. <strong>No official source publishes numeric r values for bet legs, so those cells are blank and computed from our own logged data</strong> (flagged FL-01). See <a href="correlations.html">Correlations</a>.</p>
+  </section>
+
+  <section class="panel">
+    <h2>8 · Repo review &amp; flagged items</h2>
+    <p>Base commit <code>414eeca</code> contained only <code>README.md</code> (one line). Line-by-line review: <strong>0 irregularities</strong> (<a href="repo-review.html">Repo Review</a>). <strong>10 items flagged</strong> for manual review — e.g., proprietary SGP correlation matrices, HFA constant, all strategy performance numbers until computed, one dead legacy NFL URL (<a href="flagged.html">⚑ Flagged for Review</a>).</p>
+  </section>
+
+  <div class="notice"><strong>Responsible gambling:</strong> this is analytics research, not a promise of profit. Only wager what you can afford to lose, only where legal, and only if 21+. Free confidential help 24/7/365 in all 50 states + territories: National Problem Gambling Helpline operated by the <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling ↗</a>.</div>
+</main>
+<script src="../assets/js/app.js"></script>
+<script>
+(function () {
+  document.body.insertAdjacentHTML("afterbegin", App.navBar());
+  document.body.insertAdjacentHTML("beforeend", App.footer());
+  Promise.all([App.fetchJSON("sources.json"), App.fetchJSON("strategies.json")]).then(function (r) {
+    r[0].sources.forEach(function (s) { App.state.sources[s.id] = s; });
+    App.renderTable(document.getElementById("table"), r[1].rows, [
+      App.idCell,
+      { key: "name", label: "Strategy" },
+      { key: "type", label: "Bet type" },
+      { key: "inputs", label: "Signals", render: function (row) { return '<span class="chips">' + (row.inputs || []).map(function (i) { return '<span class="chip">' + App.esc(i) + "</span>"; }).join("") + "</span>"; } },
+      { key: "performance", label: "Performance", render: function (row) { return App.valCell(row, "performance") + ' <span class="badge warn">BLANK UNTIL GATES PASS</span>'; } },
+      App.srcCol
+    ]);
+  });
+})();
+</script>
+</body>
+</html>

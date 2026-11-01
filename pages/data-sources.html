@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data &amp; Sources — verified league facts + official source registry · Korea2</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <div class="page-head">
+    <h1>Data &amp; Sources — verified league facts + official source registry</h1>
+    <p>2026 season facts with as-of stamps (live pages remain the source of truth), plus the full registry of official sources. Each source URL was opened and its content read on 2026-11-01; nothing is cited that was not checked that day.</p>
+    <div class="meta-line">verified 2026-11-01</div>
+  </div>
+
+  <section class="panel">
+    <h2>Verified league &amp; season facts</h2>
+    <p class="sub">Dynamic values (standings, odds, injuries) are snapshots with an as-of date — re-pull from the linked official page.</p>
+    <div id="table"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Official source registry (all citations used on this site)</h2>
+    <p class="sub">Only official / first-party sources: NFL properties, licensed-sportsbook official help, state gaming regulator, NIST, Princeton (Kelly 1956), Kaggle, NOAA/NWS, NCPG, and this repo on GitHub. Third-party blogs are never used as sources.</p>
+    <div id="table2"></div>
+  </section>
+</main>
+<script src="../assets/js/app.js"></script>
+<script>
+(function () {
+  document.body.insertAdjacentHTML("afterbegin", App.navBar());
+  document.body.insertAdjacentHTML("beforeend", App.footer());
+  Promise.all([App.fetchJSON("sources.json"), App.fetchJSON("league_facts.json")]).then(function (r) {
+    r[0].sources.forEach(function (s) { App.state.sources[s.id] = s; });
+    App.renderTable(document.getElementById("table"), r[1].rows, [
+      App.idCell,
+      { key: "fact", label: "Fact" },
+      { key: "value", label: "Value (as-of stamped where dynamic)" },
+      { key: "verified", label: "Status", render: App.verifiedBadge },
+      App.srcCol
+    ]);
+    App.RENDERERS.sources(document.getElementById("table2"), r[0]);
+  }).catch(function (e) { document.getElementById("table").innerHTML = '<div class="notice">' + App.esc(e.message) + "</div>"; });
+})();
+</script>
+</body>
+</html>
