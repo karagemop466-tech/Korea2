@@ -725,3 +725,19 @@ HTML pages are link-checked; only the 15 published pages are held to the per-row
 - `scripts/check_links.py` (sibling): PASS - 1,295 local references, no broken internal links.
 - `tests/check_data.py` (sibling): PASS - 6 result files consistent, 32/32 teams verified.
 - `scripts/validate_data.py` (sibling): PASS - all rows sourced, all source domains official.
+
+### Release record (this session)
+
+- **Pull request:** [#45 — Integrated NFL line-origination research site](https://github.com/karagemop466-tech/Korea2/pull/45)
+  (`arena/70a33596-korea2` → `main`), opened with all checks green and merged without waiting for review.
+- **Merge commit:** `f8a28cf7cb16a47ce4c8acb6a0dfddd060b7d23c` (2026-11-01T14:08:23Z, merge strategy).
+- **GitHub Pages:** source `main` / `(root)`; build `bad200d` reported **built** at 2026-11-01T14:12:13Z,
+  and that commit's tree carries this site (`index.html` reports `<title>Overview | Line Lab</title>`
+  and the `line-lab/scripts/build_site.py` generator marker).
+- **Post-merge verification on `main`:** `tests/check_site.py` — 85 pages, 221 tables, 3,344 links,
+  0 broken, 14 published pages fully sourced; `scripts/validate_data.py` — all rows sourced, all
+  domains official; `tests/check_data.py` — 6 result files consistent, 32/32 teams verified;
+  `scripts/check_links.py` — no broken internal links. Workflows on `main`: `pages build and deployment`,
+  `validate`, `build-verify` and `checks` all green.
+- **State of the competition:** 0 of 7 strategies cleared the gate set. Nothing was promoted on
+  in-sample performance; the leaderboard ships with that result rather than a tuned winner.
