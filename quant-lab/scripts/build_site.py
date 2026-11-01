@@ -486,8 +486,8 @@ none of these rules beats it with statistical support.</div>
 {''.join(f"<li><code>{e(r['strategy'])}</code> — {r['gates_passed']}/9 gates. {e(r['desc'])} Fails: {', '.join(r['gates_failed'])}.</li>" for r in top[:3])}
 </ul>
 <p class="small">To qualify, the wind-under lead would need a confidence interval clear of zero (it currently
-spans {top[0]['ci95_holdout'][0]} to {top[0]['ci95_holdout'][1]}) and a calibration gap under 5 points. The
-pipeline re-runs and re-ranks automatically as games are added.</p>"""
+spans {100*top[0]['ci95_holdout'][0]:+.2f}% to {100*top[0]['ci95_holdout'][1]:+.2f}%) and a calibration gap
+under 5 points. The pipeline re-runs and re-ranks automatically as games are added.</p>"""
     return shell("Leaderboard", "leaderboard.html", body,
                  "A skill competition that only pays for strategies which survive every gate.")
 
