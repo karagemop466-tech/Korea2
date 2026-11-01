@@ -994,6 +994,7 @@ def archive_dirs() -> list[tuple[str, str]]:
         "origination-lab": "Origination lab draft (parallel session)",
         "quant-lab": "Quant lab draft (parallel session)",
         "research-desk": "Research desk draft (parallel session)",
+        "audit": "Independent audit harness (parallel session)",
         "results": "Results artefacts (parallel session)",
     }
     for d, label in labels.items():

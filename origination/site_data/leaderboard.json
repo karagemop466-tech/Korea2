@@ -1,0 +1,3551 @@
+{
+ "summary": {
+  "generated": "2026-11-01T13:49:10Z",
+  "eval_window": [
+   2015,
+   2026
+  ],
+  "n_strategies": 31,
+  "n_tickets_eval": 38708,
+  "gate_thresholds": {
+   "min_tickets": 300,
+   "min_season_tickets": 20,
+   "min_seasons": 3,
+   "stability_share": 0.6,
+   "alpha_perm": 0.05,
+   "alpha_q": 0.1,
+   "dsr_min": 0.95,
+   "n_boot": 10000,
+   "n_perm": 20000,
+   "n_trials": 31
+  },
+  "power": {
+   "per_ticket_sd_units": 1.1023325312416183,
+   "alpha": 0.05,
+   "power": 0.8,
+   "n_for_2pct_edge": 23844,
+   "n_for_3pct_edge": 10598,
+   "n_for_5pct_edge": 3815,
+   "largest_strategy_tickets": 3107
+  },
+  "tier_counts": {
+   "REJECTED": 23,
+   "NEEDS_REVIEW": 8
+  },
+  "total_reward_points": 0,
+  "best": []
+ },
+ "strategies": [
+  {
+   "strategy": "SIT_WINDY_UNDER",
+   "n_tickets": 228,
+   "n_graded": 225,
+   "pushes": 3,
+   "units": 20.753526821825467,
+   "roi": 0.09223789698589097,
+   "win_rate": 0.5644444444444444,
+   "avg_odds_dec": 1.9437910392275926,
+   "avg_fair_prob": 0.49929245973745207,
+   "mean_price_implied": 0.5144585913912699,
+   "roi_market_baseline": -0.030013138626128276,
+   "roi_ci95": [
+    -0.036293548621417954,
+    0.21700248276731582
+   ],
+   "roi_ci95_season_block": [
+    -0.06637878272300579,
+    0.23582141776176896
+   ],
+   "perm_p": 0.0293,
+   "null_roi_mean": -0.028677497928639616,
+   "null_roi_sd": 0.06510536917730932,
+   "sharpe_per_bet": 0.09585301475182177,
+   "deflated_sharpe": 0.26116612742088985,
+   "seasons_qualified": 7,
+   "seasons_positive": 4,
+   "season_roi": {
+    "2015": 0.1895,
+    "2016": -0.1551,
+    "2017": 0.1734,
+    "2019": 0.0108,
+    "2020": -0.3212,
+    "2021": 0.3541,
+    "2025": -0.0083
+   },
+   "roi_first_half": 0.1206738154307569,
+   "roi_second_half": 0.06690842341315323,
+   "family": "Situational (total)",
+   "rule": "Under when the reported wind is >= 15 mph.",
+   "bh_q": 0.32085,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "FAIL",
+     "detail": "225 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-3.6%, +21.7%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "PASS",
+     "detail": "p = 0.0293"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.3209"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.261"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "4/7 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "PASS",
+     "detail": "first half +12.1%, second half +6.7%"
+    }
+   ],
+   "tier": "NEEDS_REVIEW",
+   "tier_reason": "insufficient sample; published as flagged, not ranked",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "PARLAY2_ATS",
+   "n_tickets": 224,
+   "n_graded": 217,
+   "pushes": 7,
+   "units": 11.20981475383069,
+   "roi": 0.05165813250613222,
+   "win_rate": 0.28110599078341014,
+   "avg_odds_dec": 3.7470256387180805,
+   "avg_fair_prob": 0.25122667621994393,
+   "mean_price_implied": 0.2668783446974536,
+   "roi_market_baseline": -0.060262209894953005,
+   "roi_ci95": [
+    -0.1720197779563596,
+    0.27715408848309386
+   ],
+   "roi_ci95_season_block": [
+    -0.13336636129376253,
+    0.2416704894164107
+   ],
+   "perm_p": 0.15865,
+   "null_roi_mean": -0.0579661248906622,
+   "null_roi_sd": 0.11035336779136601,
+   "sharpe_per_bet": 0.030597700293701905,
+   "deflated_sharpe": 0.04870867992052619,
+   "seasons_qualified": 4,
+   "seasons_positive": 1,
+   "season_roi": {
+    "2019": -0.4242,
+    "2020": -0.4299,
+    "2021": -0.0694,
+    "2025": 0.2109
+   },
+   "roi_first_half": -0.0544967085669279,
+   "roi_second_half": 0.16699945021051482,
+   "family": "Parlay",
+   "rule": "Each week, the two largest model-vs-close ATS disagreements, combined in a 2-leg parlay at closing prices.",
+   "n_legs": 2,
+   "correlation_note": "Cross-game legs; independence is a close approximation (see correlation page).",
+   "bh_q": 0.7337958333333333,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "FAIL",
+     "detail": "217 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-17.2%, +27.7%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.1587"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7338"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.049"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "1/4 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -5.4%, second half +16.7%"
+    }
+   ],
+   "tier": "NEEDS_REVIEW",
+   "tier_reason": "insufficient sample; published as flagged, not ranked",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "SIT_BYE_FAV_FADE",
+   "n_tickets": 239,
+   "n_graded": 230,
+   "pushes": 9,
+   "units": 5.6829961202783,
+   "roi": 0.02470867878381868,
+   "win_rate": 0.5304347826086957,
+   "avg_odds_dec": 1.941422448559183,
+   "avg_fair_prob": 0.5001598106171768,
+   "mean_price_implied": 0.515086245521754,
+   "roi_market_baseline": -0.029839878429220614,
+   "roi_ci95": [
+    -0.10076428851710573,
+    0.15005379153515788
+   ],
+   "roi_ci95_season_block": [
+    -0.09006354677705608,
+    0.1587661953169735
+   ],
+   "perm_p": 0.20225,
+   "null_roi_mean": -0.028604210896323708,
+   "null_roi_sd": 0.06439802917845884,
+   "sharpe_per_bet": 0.025548657149458653,
+   "deflated_sharpe": 0.04521057916473342,
+   "seasons_qualified": 7,
+   "seasons_positive": 3,
+   "season_roi": {
+    "2016": -0.1797,
+    "2017": -0.217,
+    "2020": 0.2612,
+    "2021": 0.3717,
+    "2022": -0.0698,
+    "2024": 0.2828,
+    "2025": -0.0336
+   },
+   "roi_first_half": -0.06383307412530995,
+   "roi_second_half": 0.12828582369638425,
+   "family": "Situational (spread)",
+   "rule": "Fade a team that is favoured in its first game back from a bye.",
+   "bh_q": 0.7337958333333333,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "FAIL",
+     "detail": "230 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-10.1%, +15.0%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.2023"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7338"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.045"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "3/7 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -6.4%, second half +12.8%"
+    }
+   ],
+   "tier": "NEEDS_REVIEW",
+   "tier_reason": "insufficient sample; published as flagged, not ranked",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "SIT_FREEZE_UNDER",
+   "n_tickets": 142,
+   "n_graded": 140,
+   "pushes": 2,
+   "units": 2.9952354168249773,
+   "roi": 0.021394538691606995,
+   "win_rate": 0.5285714285714286,
+   "avg_odds_dec": 1.9305678708067033,
+   "avg_fair_prob": 0.501781222679607,
+   "mean_price_implied": 0.5179823072379952,
+   "roi_market_baseline": -0.03179496779849714,
+   "roi_ci95": [
+    -0.14278468812135167,
+    0.18207226052137657
+   ],
+   "roi_ci95_season_block": [
+    -0.15898832068493884,
+    0.1611274403286994
+   ],
+   "perm_p": 0.25125,
+   "null_roi_mean": -0.030701450396781415,
+   "null_roi_sd": 0.08177473433207307,
+   "sharpe_per_bet": 0.022085561403535868,
+   "deflated_sharpe": 0.034624854279612816,
+   "seasons_qualified": 1,
+   "seasons_positive": 1,
+   "season_roi": {
+    "2022": 0.1596
+   },
+   "roi_first_half": 0.21377790299855032,
+   "roi_second_half": -0.12715464134286822,
+   "family": "Situational (total)",
+   "rule": "Under when the reported temperature is <= 32 F.",
+   "bh_q": 0.7337958333333333,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "FAIL",
+     "detail": "140 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-14.3%, +18.2%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.2512"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7338"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.035"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "1/1 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half +21.4%, second half -12.7%"
+    }
+   ],
+   "tier": "NEEDS_REVIEW",
+   "tier_reason": "insufficient sample; published as flagged, not ranked",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "OPEN_EDGE_2",
+   "n_tickets": 171,
+   "n_graded": 169,
+   "pushes": 2,
+   "units": -1.3616178951155677,
+   "roi": -0.00805691062198561,
+   "win_rate": 0.5088757396449705,
+   "avg_odds_dec": 1.9529019291327185,
+   "avg_fair_prob": 0.49939317314388665,
+   "mean_price_implied": 0.5120584833689518,
+   "roi_market_baseline": -0.025665259887133394,
+   "roi_ci95": [
+    -0.15719387655912206,
+    0.14185471013868234
+   ],
+   "perm_p": 0.41885,
+   "null_roi_mean": -0.02395488328678075,
+   "null_roi_sd": 0.07572181071184922,
+   "sharpe_per_bet": -0.008235338202718327,
+   "deflated_sharpe": 0.014345558342035603,
+   "seasons_qualified": 1,
+   "seasons_positive": 0,
+   "season_roi": {
+    "2021": -0.0081
+   },
+   "family": "Opening-line value (sample limited)",
+   "rule": "Back the side where our own line beats the *opening* line by >= 2 pts (opening lines exist for 2021 only).",
+   "sample_limited": true,
+   "bh_q": 0.7594138888888888,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "FAIL",
+     "detail": "169 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-15.7%, +14.2%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.4189"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7594"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.014"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "0/1 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "not enough seasons"
+    }
+   ],
+   "tier": "NEEDS_REVIEW",
+   "tier_reason": "insufficient sample; published as flagged, not ranked",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "SIT_TNF_UNDER",
+   "n_tickets": 204,
+   "n_graded": 203,
+   "pushes": 1,
+   "units": -4.585165789821526,
+   "roi": -0.02258702359517992,
+   "win_rate": 0.5024630541871922,
+   "avg_odds_dec": 1.9420989729947042,
+   "avg_fair_prob": 0.4986832570330804,
+   "mean_price_implied": 0.514906816750954,
+   "roi_market_baseline": -0.03189716657354769,
+   "roi_ci95": [
+    -0.1564244907186373,
+    0.11191307545656698
+   ],
+   "roi_ci95_season_block": [
+    -0.14253237436787575,
+    0.09531342148235071
+   ],
+   "perm_p": 0.44095,
+   "null_roi_mean": -0.03091793344514551,
+   "null_roi_sd": 0.06883217686013525,
+   "sharpe_per_bet": -0.02315470635887526,
+   "deflated_sharpe": 0.007954023286556589,
+   "seasons_qualified": 1,
+   "seasons_positive": 0,
+   "season_roi": {
+    "2025": -0.0873
+   },
+   "roi_first_half": -0.029830253042413494,
+   "roi_second_half": -0.015692026332909524,
+   "family": "Situational (total)",
+   "rule": "Under in Thursday games.",
+   "bh_q": 0.7594138888888888,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "FAIL",
+     "detail": "203 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-15.6%, +11.2%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.4410"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7594"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.008"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "0/1 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -3.0%, second half -1.6%"
+    }
+   ],
+   "tier": "NEEDS_REVIEW",
+   "tier_reason": "insufficient sample; published as flagged, not ranked",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "PARLAY2_ML_DOG",
+   "n_tickets": 223,
+   "n_graded": 223,
+   "pushes": 0,
+   "units": -21.660890678124407,
+   "roi": -0.09713403891535609,
+   "win_rate": 0.11659192825112108,
+   "avg_odds_dec": 15.006656178565168,
+   "avg_fair_prob": 0.09228034372067323,
+   "mean_price_implied": 0.06663709677232127,
+   "roi_market_baseline": -0.06025893777149187,
+   "roi_ci95": [
+    -0.43779523797686043,
+    0.2731735237082593
+   ],
+   "roi_ci95_season_block": [
+    -0.4787576255952381,
+    0.3163519118200781
+   ],
+   "perm_p": 0.5323,
+   "null_roi_mean": -0.05721046627243465,
+   "null_roi_sd": 0.24406911732988343,
+   "sharpe_per_bet": -0.0349239649154777,
+   "deflated_sharpe": 0.00716052321072308,
+   "seasons_qualified": 7,
+   "seasons_positive": 2,
+   "season_roi": {
+    "2019": 0.5105,
+    "2020": -0.2618,
+    "2021": -0.5664,
+    "2022": -0.6343,
+    "2023": 0.1524,
+    "2024": -0.7475,
+    "2025": -0.458
+   },
+   "roi_first_half": 0.11524490794720338,
+   "roi_second_half": -0.3273766355140187,
+   "family": "Parlay",
+   "rule": "Each week, the two largest model-vs-market underdog moneyline edges, combined in a 2-leg parlay.",
+   "n_legs": 2,
+   "correlation_note": "Cross-game legs.",
+   "bh_q": 0.7724636363636364,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "FAIL",
+     "detail": "223 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-43.8%, +27.3%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.5323"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7725"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.007"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "2/7 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half +11.5%, second half -32.7%"
+    }
+   ],
+   "tier": "NEEDS_REVIEW",
+   "tier_reason": "insufficient sample; published as flagged, not ranked",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "PARLAY3_ATS",
+   "n_tickets": 215,
+   "n_graded": 203,
+   "pushes": 12,
+   "units": -22.694282719644306,
+   "roi": -0.11179449615588326,
+   "win_rate": 0.12315270935960591,
+   "avg_odds_dec": 7.234375430166748,
+   "avg_fair_prob": 0.1262957640995671,
+   "mean_price_implied": 0.1382289334653663,
+   "roi_market_baseline": -0.08889316693130422,
+   "roi_ci95": [
+    -0.42930849112735403,
+    0.2195763168501898
+   ],
+   "roi_ci95_season_block": [
+    -0.33498786274410575,
+    0.11218093021075348
+   ],
+   "perm_p": 0.5482,
+   "null_roi_mean": -0.08644835416946275,
+   "null_roi_sd": 0.1684830310962037,
+   "sharpe_per_bet": -0.04700340325121664,
+   "deflated_sharpe": 0.004559858632553204,
+   "seasons_qualified": 0,
+   "seasons_positive": 0,
+   "season_roi": {},
+   "roi_first_half": -0.0796398962136888,
+   "roi_second_half": -0.14491373409634356,
+   "family": "Parlay",
+   "rule": "Each week, the three largest model-vs-close ATS disagreements, combined in a 3-leg parlay.",
+   "n_legs": 3,
+   "correlation_note": "Cross-game legs; independence is a close approximation.",
+   "bh_q": 0.7724636363636364,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "FAIL",
+     "detail": "203 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-42.9%, +22.0%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.5482"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7725"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.005"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "0/0 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -8.0%, second half -14.5%"
+    }
+   ],
+   "tier": "NEEDS_REVIEW",
+   "tier_reason": "insufficient sample; published as flagged, not ranked",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "CTRL_LEAK",
+   "n_tickets": 3054,
+   "n_graded": 3054,
+   "pushes": 0,
+   "units": 2868.51361022973,
+   "roi": 0.9392644434282024,
+   "win_rate": 1.0,
+   "avg_odds_dec": 1.9392644434282025,
+   "avg_fair_prob": 0.5002841956685661,
+   "mean_price_implied": 0.5156594312801482,
+   "roi_market_baseline": -0.030696891376494933,
+   "roi_ci95": [
+    0.9370598745626626,
+    0.9414732407156993
+   ],
+   "roi_ci95_season_block": [
+    0.9276203293100466,
+    0.9490732599356692
+   ],
+   "perm_p": 0.0,
+   "null_roi_mean": -0.03062024051035705,
+   "null_roi_sd": 0.017494652869496287,
+   "sharpe_per_bet": 15.199533822338065,
+   "deflated_sharpe": 1.0,
+   "seasons_qualified": 12,
+   "seasons_positive": 12,
+   "season_roi": {
+    "2015": 0.9594,
+    "2016": 0.9559,
+    "2017": 0.9519,
+    "2018": 0.9535,
+    "2019": 0.95,
+    "2020": 0.9466,
+    "2021": 0.9498,
+    "2022": 0.9473,
+    "2023": 0.9102,
+    "2024": 0.9138,
+    "2025": 0.9093,
+    "2026": 0.9117
+   },
+   "roi_first_half": 0.9528405801736647,
+   "roi_second_half": 0.9250699695771194,
+   "family": "Control",
+   "rule": "Back the side that covered, chosen after the game (deliberate lookahead; must be rejected).",
+   "bh_q": 0.0,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "FAIL",
+     "detail": "declared inputs include post-game column(s): margin"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "3,054 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "PASS",
+     "detail": "95% CI [+93.7%, +94.1%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "PASS",
+     "detail": "p = 0.0000"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "PASS",
+     "detail": "q = 0.0000"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "PASS",
+     "detail": "DSR = 1.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "PASS",
+     "detail": "12/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "PASS",
+     "detail": "first half +95.3%, second half +92.5%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails the integrity gates",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "SIT_DIV_DOG",
+   "n_tickets": 1106,
+   "n_graded": 1082,
+   "pushes": 24,
+   "units": 26.204861700059922,
+   "roi": 0.024218910998206954,
+   "win_rate": 0.5286506469500925,
+   "avg_odds_dec": 1.9370712087919413,
+   "avg_fair_prob": 0.5008852929393383,
+   "mean_price_implied": 0.516243282880474,
+   "roi_market_baseline": -0.030606731016993658,
+   "roi_ci95": [
+    -0.034156296806284916,
+    0.08104857972666135
+   ],
+   "roi_ci95_season_block": [
+    -0.03373922429101736,
+    0.08487513614129863
+   ],
+   "perm_p": 0.03105,
+   "null_roi_mean": -0.03061710041772222,
+   "null_roi_sd": 0.029394030403339873,
+   "sharpe_per_bet": 0.025005926344511643,
+   "deflated_sharpe": 0.10346835923758829,
+   "seasons_qualified": 12,
+   "seasons_positive": 9,
+   "season_roi": {
+    "2015": 0.1481,
+    "2016": 0.0096,
+    "2017": -0.1936,
+    "2018": -0.0269,
+    "2019": 0.0127,
+    "2020": 0.1346,
+    "2021": 0.0058,
+    "2022": 0.0969,
+    "2023": -0.1156,
+    "2024": 0.0614,
+    "2025": 0.0095,
+    "2026": 0.3436
+   },
+   "roi_first_half": 0.015263401632011404,
+   "roi_second_half": 0.03404220227973154,
+   "family": "Situational (spread)",
+   "rule": "Back the underdog in divisional games against the spread.",
+   "bh_q": 0.32085,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,082 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-3.4%, +8.1%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "PASS",
+     "detail": "p = 0.0311"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.3209"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.103"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "PASS",
+     "detail": "9/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "PASS",
+     "detail": "first half +1.5%, second half +3.4%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G6, G7",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "SIT_REST_EDGE",
+   "n_tickets": 689,
+   "n_graded": 673,
+   "pushes": 16,
+   "units": 7.890806830248077,
+   "roi": 0.011724824413444397,
+   "win_rate": 0.5215453194650818,
+   "avg_odds_dec": 1.9421404471704768,
+   "avg_fair_prob": 0.4996997302983524,
+   "mean_price_implied": 0.5148958209777823,
+   "roi_market_baseline": -0.030358861206522533,
+   "roi_ci95": [
+    -0.05952441948621294,
+    0.0859385415143176
+   ],
+   "roi_ci95_season_block": [
+    -0.048949041586891257,
+    0.07457633856882562
+   ],
+   "perm_p": 0.13,
+   "null_roi_mean": -0.030446551300876534,
+   "null_roi_sd": 0.037361998340066455,
+   "sharpe_per_bet": 0.012078328476589116,
+   "deflated_sharpe": 0.03825043581988308,
+   "seasons_qualified": 11,
+   "seasons_positive": 5,
+   "season_roi": {
+    "2015": 0.1265,
+    "2016": 0.1596,
+    "2017": -0.0339,
+    "2018": -0.0329,
+    "2019": -0.0751,
+    "2020": -0.0564,
+    "2021": 0.0243,
+    "2022": 0.0255,
+    "2023": 0.1318,
+    "2024": -0.174,
+    "2025": -0.0514
+   },
+   "roi_first_half": 0.01623501548654311,
+   "roi_second_half": 0.0065373842015736755,
+   "family": "Situational (spread)",
+   "rule": "Back the team with >= 3 more days of rest against the spread.",
+   "bh_q": 0.7337958333333333,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "673 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-6.0%, +8.6%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.1300"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7338"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.038"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "5/11 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "PASS",
+     "detail": "first half +1.6%, second half +0.7%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G9",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "ATS_ELO_ENGINE_3",
+   "n_tickets": 1180,
+   "n_graded": 1150,
+   "pushes": 30,
+   "units": 9.595379043345332,
+   "roi": 0.008343807863778552,
+   "win_rate": 0.5208695652173913,
+   "avg_odds_dec": 1.9388342048572969,
+   "avg_fair_prob": 0.5005188513475064,
+   "mean_price_implied": 0.5157738591029255,
+   "roi_market_baseline": -0.030461684374697793,
+   "roi_ci95": [
+    -0.04802592978843924,
+    0.06399700764536974
+   ],
+   "roi_ci95_season_block": [
+    -0.029331491142099177,
+    0.03945419460385337
+   ],
+   "perm_p": 0.08675,
+   "null_roi_mean": -0.030483974680924484,
+   "null_roi_sd": 0.028381131485149768,
+   "sharpe_per_bet": 0.00861549896168791,
+   "deflated_sharpe": 0.03646013246147928,
+   "seasons_qualified": 12,
+   "seasons_positive": 7,
+   "season_roi": {
+    "2015": 0.0895,
+    "2016": 0.0388,
+    "2017": 0.0178,
+    "2018": -0.0045,
+    "2019": 0.0336,
+    "2020": 0.0907,
+    "2021": 0.0322,
+    "2022": -0.0146,
+    "2023": -0.0419,
+    "2024": 0.0244,
+    "2025": -0.1297,
+    "2026": -0.1434
+   },
+   "roi_first_half": 0.045141326204596974,
+   "roi_second_half": -0.02832594131613425,
+   "brier_model": 0.26653976237471577,
+   "brier_market": 0.24934442081221633,
+   "model_edge_vs_fair": 0.14253601464474144,
+   "model_implied_roi": 0.2466027626802934,
+   "family": "Model vs market (spread)",
+   "engine": "elo_engine",
+   "threshold_pts": 3.0,
+   "rule": "Back the side the Elo engine likes by >= 3 pts versus the close.",
+   "bh_q": 0.6723125,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,150 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-4.8%, +6.4%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.0867"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.6723"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.036"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2665 vs market 0.2493"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "7/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half +4.5%, second half -2.8%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "SIT_OFF_BYE",
+   "n_tickets": 332,
+   "n_graded": 324,
+   "pushes": 8,
+   "units": -6.117939414011243,
+   "roi": -0.018882529055590257,
+   "win_rate": 0.5061728395061729,
+   "avg_odds_dec": 1.9422087713461806,
+   "avg_fair_prob": 0.5000979333631265,
+   "mean_price_implied": 0.5148777076662472,
+   "roi_market_baseline": -0.029647621752738978,
+   "roi_ci95": [
+    -0.12596390064034585,
+    0.08750738222843757
+   ],
+   "roi_ci95_season_block": [
+    -0.1176735212364891,
+    0.07250650508761551
+   ],
+   "perm_p": 0.4223,
+   "null_roi_mean": -0.02935446446627166,
+   "null_roi_sd": 0.05401507807662684,
+   "sharpe_per_bet": -0.019435397126005914,
+   "deflated_sharpe": 0.007479027853508513,
+   "seasons_qualified": 11,
+   "seasons_positive": 4,
+   "season_roi": {
+    "2015": 0.1333,
+    "2016": 0.2235,
+    "2017": -0.0129,
+    "2018": 0.1113,
+    "2019": -0.152,
+    "2020": -0.0872,
+    "2021": -0.1891,
+    "2022": -0.0276,
+    "2023": -0.0004,
+    "2024": -0.3627,
+    "2025": 0.0803
+   },
+   "roi_first_half": 0.03546070049838287,
+   "roi_second_half": -0.08941310358308732,
+   "family": "Situational (spread)",
+   "rule": "Back a team playing its first game after a bye against the spread.",
+   "bh_q": 0.7594138888888888,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "324 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-12.6%, +8.8%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.4223"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7594"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.007"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "4/11 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half +3.5%, second half -8.9%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "ATS_OWN_3",
+   "n_tickets": 1000,
+   "n_graded": 976,
+   "pushes": 24,
+   "units": -10.692439289068428,
+   "roi": -0.01095536812404551,
+   "win_rate": 0.5122950819672131,
+   "avg_odds_dec": 1.9335763311516503,
+   "avg_fair_prob": 0.5019486183670602,
+   "mean_price_implied": 0.5171763761735714,
+   "roi_market_baseline": -0.030318677976922545,
+   "roi_ci95": [
+    -0.06982357681755418,
+    0.0495466972048303
+   ],
+   "roi_ci95_season_block": [
+    -0.044859334452448926,
+    0.0254709503534783
+   ],
+   "perm_p": 0.26755,
+   "null_roi_mean": -0.030333737704266388,
+   "null_roi_sd": 0.031025075075431674,
+   "sharpe_per_bet": -0.011335829450422486,
+   "deflated_sharpe": 0.007336140735084207,
+   "seasons_qualified": 12,
+   "seasons_positive": 5,
+   "season_roi": {
+    "2015": -0.0118,
+    "2016": -0.0596,
+    "2017": 0.0167,
+    "2018": 0.0271,
+    "2019": 0.1081,
+    "2020": 0.0656,
+    "2021": -0.0382,
+    "2022": 0.0007,
+    "2023": -0.0323,
+    "2024": -0.0596,
+    "2025": -0.1043,
+    "2026": -0.1161
+   },
+   "roi_first_half": 0.02815404340197893,
+   "roi_second_half": -0.04895865487963693,
+   "brier_model": 0.27204572906892155,
+   "brier_market": 0.249327061860971,
+   "model_edge_vs_fair": 0.14970137423421082,
+   "model_implied_roi": 0.25985159144101466,
+   "family": "Model vs market (spread)",
+   "engine": "own",
+   "threshold_pts": 3.0,
+   "rule": "Back the side the Ridge attack/defence engine likes by >= 3 pts versus the close.",
+   "bh_q": 0.7337958333333333,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "976 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-7.0%, +5.0%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.2676"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7338"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.007"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2720 vs market 0.2493"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "5/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half +2.8%, second half -4.9%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "SIT_DIV_UNDER",
+   "n_tickets": 1106,
+   "n_graded": 1096,
+   "pushes": 10,
+   "units": -14.061665961830558,
+   "roi": -0.012829987191451234,
+   "win_rate": 0.5091240875912408,
+   "avg_odds_dec": 1.938113529366365,
+   "avg_fair_prob": 0.49994300063030656,
+   "mean_price_implied": 0.5159656464123307,
+   "roi_market_baseline": -0.03150237904575863,
+   "roi_ci95": [
+    -0.0705699326524855,
+    0.04510940019583942
+   ],
+   "roi_ci95_season_block": [
+    -0.07898248735949046,
+    0.046452851684317016
+   ],
+   "perm_p": 0.26105,
+   "null_roi_mean": -0.031547868633297296,
+   "null_roi_sd": 0.02930023102700561,
+   "sharpe_per_bet": -0.013222476616465613,
+   "deflated_sharpe": 0.005801098667402971,
+   "seasons_qualified": 12,
+   "seasons_positive": 6,
+   "season_roi": {
+    "2015": 0.0908,
+    "2016": -0.1508,
+    "2017": 0.1622,
+    "2018": 0.0691,
+    "2019": 0.0054,
+    "2020": -0.1337,
+    "2021": -0.0199,
+    "2022": 0.1209,
+    "2023": 0.0153,
+    "2024": -0.1992,
+    "2025": -0.0353,
+    "2026": -0.185
+   },
+   "roi_first_half": 0.006661828700100247,
+   "roi_second_half": -0.034263516543463796,
+   "family": "Situational (total)",
+   "rule": "Under in divisional games.",
+   "bh_q": 0.7337958333333333,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,096 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-7.1%, +4.5%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.2611"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7338"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.006"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "6/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half +0.7%, second half -3.4%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "ATS_ELO_ENGINE_2",
+   "n_tickets": 1700,
+   "n_graded": 1648,
+   "pushes": 52,
+   "units": -18.440711513017263,
+   "roi": -0.011189752131685238,
+   "win_rate": 0.5109223300970874,
+   "avg_odds_dec": 1.9383427320167967,
+   "avg_fair_prob": 0.5006761318890133,
+   "mean_price_implied": 0.5159046351722976,
+   "roi_market_baseline": -0.030386810980330855,
+   "roi_ci95": [
+    -0.05846271688656738,
+    0.03525848882112597
+   ],
+   "roi_ci95_season_block": [
+    -0.0498277987824713,
+    0.02283766951573473
+   ],
+   "perm_p": 0.20705,
+   "null_roi_mean": -0.03054195774427277,
+   "null_roi_sd": 0.023813759537788203,
+   "sharpe_per_bet": -0.011552084616441905,
+   "deflated_sharpe": 0.005299844383008234,
+   "seasons_qualified": 12,
+   "seasons_positive": 4,
+   "season_roi": {
+    "2015": 0.1061,
+    "2016": 0.0216,
+    "2017": 0.0243,
+    "2018": 0.0552,
+    "2019": -0.0333,
+    "2020": -0.0007,
+    "2021": -0.0023,
+    "2022": -0.0898,
+    "2023": -0.0122,
+    "2024": -0.0078,
+    "2025": -0.1354,
+    "2026": -0.1222
+   },
+   "roi_first_half": 0.028496061737429836,
+   "roi_second_half": -0.05346160900981534,
+   "brier_model": 0.2636175241070002,
+   "brier_market": 0.24940686677891927,
+   "model_edge_vs_fair": 0.12061350786116834,
+   "model_implied_roi": 0.20416608019713672,
+   "family": "Model vs market (spread)",
+   "engine": "elo_engine",
+   "threshold_pts": 2.0,
+   "rule": "Back the side the Elo engine likes by >= 2 pts versus the close.",
+   "bh_q": 0.7337958333333333,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,648 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-5.8%, +3.5%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.2071"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7338"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.005"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2636 vs market 0.2494"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "4/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half +2.8%, second half -5.3%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "SIT_DOME_OVER",
+   "n_tickets": 888,
+   "n_graded": 882,
+   "pushes": 6,
+   "units": -18.969435078024773,
+   "roi": -0.021507296006830795,
+   "win_rate": 0.5056689342403629,
+   "avg_odds_dec": 1.9349640779384019,
+   "avg_fair_prob": 0.5001879919062849,
+   "mean_price_implied": 0.5168054598023573,
+   "roi_market_baseline": -0.03255075874520086,
+   "roi_ci95": [
+    -0.08473218817692163,
+    0.04271633605796363
+   ],
+   "roi_ci95_season_block": [
+    -0.06497572287655848,
+    0.02336914165457389
+   ],
+   "perm_p": 0.36265,
+   "null_roi_mean": -0.03255384197367683,
+   "null_roi_sd": 0.03241656412436577,
+   "sharpe_per_bet": -0.0222069438602136,
+   "deflated_sharpe": 0.0030215649979034587,
+   "seasons_qualified": 12,
+   "seasons_positive": 3,
+   "season_roi": {
+    "2015": -0.0703,
+    "2016": -0.0345,
+    "2017": -0.0947,
+    "2018": -0.1633,
+    "2019": 0.0778,
+    "2020": 0.0957,
+    "2021": -0.0366,
+    "2022": 0.0813,
+    "2023": -0.0809,
+    "2024": -0.017,
+    "2025": -0.047,
+    "2026": -0.0109
+   },
+   "roi_first_half": -0.023666550587574303,
+   "roi_second_half": -0.019657155766067434,
+   "family": "Situational (total)",
+   "rule": "Over in domes and closed roofs.",
+   "bh_q": 0.7594138888888888,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "882 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-8.5%, +4.3%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.3626"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7594"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.003"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "3/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -2.4%, second half -2.0%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "TOT_ELO_ENGINE_3",
+   "n_tickets": 1228,
+   "n_graded": 1218,
+   "pushes": 10,
+   "units": -26.145279941172184,
+   "roi": -0.02146574707813808,
+   "win_rate": 0.5057471264367817,
+   "avg_odds_dec": 1.9363534043619788,
+   "avg_fair_prob": 0.5002737298978381,
+   "mean_price_implied": 0.51643465379167,
+   "roi_market_baseline": -0.031718487075042254,
+   "roi_ci95": [
+    -0.0761805251285749,
+    0.032904032083398836
+   ],
+   "roi_ci95_season_block": [
+    -0.06802084381968564,
+    0.022190237384466092
+   ],
+   "perm_p": 0.35175,
+   "null_roi_mean": -0.03176883218783369,
+   "null_roi_sd": 0.027826622346623253,
+   "sharpe_per_bet": -0.02216929773392432,
+   "deflated_sharpe": 0.002117976317897341,
+   "seasons_qualified": 12,
+   "seasons_positive": 5,
+   "season_roi": {
+    "2015": 0.1312,
+    "2016": -0.0957,
+    "2017": -0.0089,
+    "2018": 0.0466,
+    "2019": 0.0137,
+    "2020": -0.0919,
+    "2021": -0.0659,
+    "2022": -0.1277,
+    "2023": 0.0833,
+    "2024": -0.0294,
+    "2025": 0.0517,
+    "2026": -0.2351
+   },
+   "roi_first_half": -0.008309338044116637,
+   "roi_second_half": -0.0347961251572375,
+   "brier_model": 0.2718306263073047,
+   "brier_market": 0.24977141230257954,
+   "model_edge_vs_fair": 0.14229145349789443,
+   "model_implied_roi": 0.2442985571834643,
+   "family": "Model vs market (total)",
+   "engine": "elo_engine",
+   "threshold_pts": 3.0,
+   "rule": "Over/under the Elo engine total when it differs from the close by >= 3 pts.",
+   "bh_q": 0.7594138888888888,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,218 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-7.6%, +3.3%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.3518"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7594"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.002"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2718 vs market 0.2498"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "5/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -0.8%, second half -3.5%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "SIT_HOME_DOG",
+   "n_tickets": 1181,
+   "n_graded": 1153,
+   "pushes": 28,
+   "units": -26.24057741957347,
+   "roi": -0.02275852334741844,
+   "win_rate": 0.5056374674761491,
+   "avg_odds_dec": 1.9339084198093242,
+   "avg_fair_prob": 0.501420134877466,
+   "mean_price_implied": 0.5170875672068257,
+   "roi_market_baseline": -0.03116082052751296,
+   "roi_ci95": [
+    -0.07755935034545375,
+    0.033016350343804665
+   ],
+   "roi_ci95_season_block": [
+    -0.06098307740294178,
+    0.01618471935101438
+   ],
+   "perm_p": 0.38405,
+   "null_roi_mean": -0.03117330372052951,
+   "null_roi_sd": 0.028563657034793865,
+   "sharpe_per_bet": -0.02351900103138717,
+   "deflated_sharpe": 0.0019583549573407577,
+   "seasons_qualified": 12,
+   "seasons_positive": 6,
+   "season_roi": {
+    "2015": 0.0055,
+    "2016": -0.1109,
+    "2017": -0.0494,
+    "2018": 0.0142,
+    "2019": -0.1,
+    "2020": 0.0898,
+    "2021": 0.0051,
+    "2022": 0.0756,
+    "2023": -0.0972,
+    "2024": -0.0564,
+    "2025": 0.003,
+    "2026": -0.1545
+   },
+   "roi_first_half": -0.02147867906708719,
+   "roi_second_half": -0.023984044865426633,
+   "family": "Situational (spread)",
+   "rule": "Back every home underdog against the spread.",
+   "bh_q": 0.7594138888888888,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,153 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-7.8%, +3.3%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.3841"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7594"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.002"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "6/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -2.1%, second half -2.4%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "TOT_ELO_ENGINE_2",
+   "n_tickets": 1780,
+   "n_graded": 1765,
+   "pushes": 15,
+   "units": -32.66298312734153,
+   "roi": -0.018505939448918717,
+   "win_rate": 0.5070821529745042,
+   "avg_odds_dec": 1.9376999257953118,
+   "avg_fair_prob": 0.500040945445962,
+   "mean_price_implied": 0.5160757796848028,
+   "roi_market_baseline": -0.03150318121787807,
+   "roi_ci95": [
+    -0.06341067757589319,
+    0.027265961730620993
+   ],
+   "roi_ci95_season_block": [
+    -0.05082211427294479,
+    0.011439180876726286
+   ],
+   "perm_p": 0.28405,
+   "null_roi_mean": -0.03157239410446369,
+   "null_roi_sd": 0.022919431927099308,
+   "sharpe_per_bet": -0.019107863331175423,
+   "deflated_sharpe": 0.0019292416167200899,
+   "seasons_qualified": 12,
+   "seasons_positive": 3,
+   "season_roi": {
+    "2015": 0.0639,
+    "2016": -0.0262,
+    "2017": -0.0134,
+    "2018": -0.0236,
+    "2019": -0.0918,
+    "2020": -0.0623,
+    "2021": -0.018,
+    "2022": -0.022,
+    "2023": 0.0725,
+    "2024": -0.0276,
+    "2025": 0.0402,
+    "2026": -0.2467
+   },
+   "roi_first_half": -0.027126855051837432,
+   "roi_second_half": -0.009371993862629113,
+   "brier_model": 0.2662545908018027,
+   "brier_market": 0.2496173516569796,
+   "model_edge_vs_fair": 0.12036228938962878,
+   "model_implied_roi": 0.20211379854783731,
+   "family": "Model vs market (total)",
+   "engine": "elo_engine",
+   "threshold_pts": 2.0,
+   "rule": "Over/under the Elo engine total when it differs from the close by >= 2 pts.",
+   "bh_q": 0.7337958333333333,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,765 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-6.3%, +2.7%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.2841"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7338"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.002"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2663 vs market 0.2496"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "3/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -2.7%, second half -0.9%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "ATS_OWN_2",
+   "n_tickets": 1560,
+   "n_graded": 1524,
+   "pushes": 36,
+   "units": -43.57533077781856,
+   "roi": -0.02859273673085207,
+   "win_rate": 0.5026246719160105,
+   "avg_odds_dec": 1.9342340161682132,
+   "avg_fair_prob": 0.5016500194400675,
+   "mean_price_implied": 0.5170005240529456,
+   "roi_market_baseline": -0.030555717198098797,
+   "roi_ci95": [
+    -0.07737941814722464,
+    0.02046569144177871
+   ],
+   "roi_ci95_season_block": [
+    -0.061973675842760166,
+    0.0010809222089823648
+   ],
+   "perm_p": 0.46605,
+   "null_roi_mean": -0.030691157902086524,
+   "null_roi_sd": 0.024813966126351,
+   "sharpe_per_bet": -0.029552179734012023,
+   "deflated_sharpe": 0.0005982433717676705,
+   "seasons_qualified": 12,
+   "seasons_positive": 5,
+   "season_roi": {
+    "2015": 0.0015,
+    "2016": -0.0392,
+    "2017": 0.0007,
+    "2018": 0.0546,
+    "2019": 0.0042,
+    "2020": 0.0403,
+    "2021": -0.0117,
+    "2022": -0.0423,
+    "2023": -0.0789,
+    "2024": -0.0408,
+    "2025": -0.1418,
+    "2026": -0.1798
+   },
+   "roi_first_half": 0.011715022318068254,
+   "roi_second_half": -0.06911264188002987,
+   "brier_model": 0.26731740535897597,
+   "brier_market": 0.24965783329494315,
+   "model_edge_vs_fair": 0.12398428019464502,
+   "model_implied_roi": 0.2100198214178961,
+   "family": "Model vs market (spread)",
+   "engine": "own",
+   "threshold_pts": 2.0,
+   "rule": "Back the side the Ridge attack/defence engine likes by >= 2 pts versus the close.",
+   "bh_q": 0.7603973684210527,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,524 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-7.7%, +2.0%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.4661"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7604"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.001"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2673 vs market 0.2497"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "5/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half +1.2%, second half -6.9%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "PARLAY_SGP_ATS_TOT",
+   "n_tickets": 1087,
+   "n_graded": 1050,
+   "pushes": 37,
+   "units": -81.22430422695359,
+   "roi": -0.07735648021614627,
+   "win_rate": 0.24666666666666667,
+   "avg_odds_dec": 3.74957753899982,
+   "avg_fair_prob": 0.2506387929667688,
+   "mean_price_implied": 0.26669671172255444,
+   "roi_market_baseline": -0.06142499108349666,
+   "roi_ci95": [
+    -0.1738394546642727,
+    0.02122490445785869
+   ],
+   "roi_ci95_season_block": [
+    -0.12598302236762773,
+    -0.02654807876499196
+   ],
+   "perm_p": 0.6197,
+   "null_roi_mean": -0.06128392597528007,
+   "null_roi_sd": 0.05038251490823234,
+   "sharpe_per_bet": -0.04790333078625562,
+   "deflated_sharpe": 0.00020231726171004993,
+   "seasons_qualified": 12,
+   "seasons_positive": 3,
+   "season_roi": {
+    "2015": -0.1424,
+    "2016": -0.1217,
+    "2017": -0.1508,
+    "2018": -0.0802,
+    "2019": 0.0843,
+    "2020": 0.0185,
+    "2021": -0.005,
+    "2022": -0.1477,
+    "2023": -0.1202,
+    "2024": -0.1432,
+    "2025": 0.0455,
+    "2026": -0.3138
+   },
+   "roi_first_half": -0.06245279956382562,
+   "roi_second_half": -0.09143217861000466,
+   "family": "Parlay (same game)",
+   "rule": "Same-game parlay: the model's ATS side and the model's total side of the same game.",
+   "n_legs": 2,
+   "correlation_note": "Legs are correlated (see correlation page); priced here at the product of the legs, which is what an independent-pricing book would quote.",
+   "bh_q": 0.8352478260869565,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,050 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-17.4%, +2.1%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.6197"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.8352"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "3/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -6.2%, second half -9.1%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "ATS_OWN_1",
+   "n_tickets": 2269,
+   "n_graded": 2203,
+   "pushes": 66,
+   "units": -71.21647044116075,
+   "roi": -0.03232704059970983,
+   "win_rate": 0.5002269632319565,
+   "avg_odds_dec": 1.9354082904455454,
+   "avg_fair_prob": 0.501250687136012,
+   "mean_price_implied": 0.5166868432550697,
+   "roi_market_baseline": -0.030745668163871642,
+   "roi_ci95": [
+    -0.07254919808593524,
+    0.008744825529081738
+   ],
+   "roi_ci95_season_block": [
+    -0.0668365261863797,
+    0.0014840114417886882
+   ],
+   "perm_p": 0.5361,
+   "null_roi_mean": -0.03075449076623553,
+   "null_roi_sd": 0.020607411202027935,
+   "sharpe_per_bet": -0.033383386521985435,
+   "deflated_sharpe": 0.00012977854964391078,
+   "seasons_qualified": 12,
+   "seasons_positive": 5,
+   "season_roi": {
+    "2015": 0.0227,
+    "2016": -0.0856,
+    "2017": 0.0262,
+    "2018": 0.0379,
+    "2019": -0.0312,
+    "2020": 0.0548,
+    "2021": 0.007,
+    "2022": -0.0552,
+    "2023": -0.1127,
+    "2024": -0.0522,
+    "2025": -0.1215,
+    "2026": -0.1189
+   },
+   "roi_first_half": 0.004866978990857217,
+   "roi_second_half": -0.06962249842552388,
+   "brier_model": 0.2626961680063894,
+   "brier_market": 0.24986031933329914,
+   "model_edge_vs_fair": 0.10043383019072814,
+   "model_implied_roi": 0.16434625955893745,
+   "family": "Model vs market (spread)",
+   "engine": "own",
+   "threshold_pts": 1.0,
+   "rule": "Back the side the Ridge attack/defence engine likes by >= 1 pts versus the close.",
+   "bh_q": 0.7724636363636364,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "2,203 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-7.3%, +0.9%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.5361"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.7725"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2627 vs market 0.2499"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "5/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half +0.5%, second half -7.0%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "ML_OWN_DOG",
+   "n_tickets": 1809,
+   "n_graded": 1804,
+   "pushes": 5,
+   "units": -118.74791846411414,
+   "roi": -0.06582478850560651,
+   "win_rate": 0.31762749445676275,
+   "avg_odds_dec": 3.430806939910634,
+   "avg_fair_prob": 0.3218744811950829,
+   "mean_price_implied": 0.29147661687604265,
+   "roi_market_baseline": -0.030368899134061513,
+   "roi_ci95": [
+    -0.1351221837899856,
+    0.0028794191712983594
+   ],
+   "roi_ci95_season_block": [
+    -0.12380531169365121,
+    -0.006721922015982475
+   ],
+   "perm_p": 0.8336,
+   "null_roi_mean": -0.030376528789280904,
+   "null_roi_sd": 0.03662967519012035,
+   "sharpe_per_bet": -0.04424587458737335,
+   "deflated_sharpe": 6.234386933512415e-05,
+   "seasons_qualified": 12,
+   "seasons_positive": 3,
+   "season_roi": {
+    "2015": 0.0854,
+    "2016": -0.0825,
+    "2017": -0.0314,
+    "2018": 0.1023,
+    "2019": -0.0505,
+    "2020": -0.1276,
+    "2021": -0.0062,
+    "2022": -0.1934,
+    "2023": -0.0776,
+    "2024": -0.24,
+    "2025": -0.1566,
+    "2026": 0.1268
+   },
+   "roi_first_half": -0.019330607495835674,
+   "roi_second_half": -0.11464367856586587,
+   "brier_model": 0.2187667153800684,
+   "brier_market": 0.20343440337684857,
+   "model_edge_vs_fair": 0.10235574947405247,
+   "model_implied_roi": 0.3244884395932598,
+   "family": "Model vs market (moneyline)",
+   "rule": "Underdog moneylines where our probability beats the de-vigged market by >= 3 pts.",
+   "bh_q": 0.95697,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,804 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-13.5%, +0.3%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.8336"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.9570"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2188 vs market 0.2034"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "3/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -1.9%, second half -11.5%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "ML_OWN_3",
+   "n_tickets": 2331,
+   "n_graded": 2324,
+   "pushes": 7,
+   "units": -139.44784933508572,
+   "roi": -0.06000337751079419,
+   "win_rate": 0.3825301204819277,
+   "avg_odds_dec": 3.023283713097765,
+   "avg_fair_prob": 0.38671256674399107,
+   "mean_price_implied": 0.3307661783998975,
+   "roi_market_baseline": -0.03026505158610291,
+   "roi_ci95": [
+    -0.11468974469807774,
+    -0.004999199029855581
+   ],
+   "roi_ci95_season_block": [
+    -0.10950162427326394,
+    -0.010497298055968366
+   ],
+   "perm_p": 0.84875,
+   "null_roi_mean": -0.03027784799989387,
+   "null_roi_sd": 0.029156005251332398,
+   "sharpe_per_bet": -0.044038603065960476,
+   "deflated_sharpe": 2.3153953904286873e-05,
+   "seasons_qualified": 12,
+   "seasons_positive": 3,
+   "season_roi": {
+    "2015": 0.0836,
+    "2016": -0.0441,
+    "2017": -0.0211,
+    "2018": 0.0803,
+    "2019": -0.0525,
+    "2020": -0.1187,
+    "2021": -0.0498,
+    "2022": -0.2043,
+    "2023": -0.066,
+    "2024": -0.176,
+    "2025": -0.1228,
+    "2026": 0.076
+   },
+   "roi_first_half": -0.013843596040888178,
+   "roi_second_half": -0.10903022615274406,
+   "brier_model": 0.22296433639481011,
+   "brier_market": 0.209304201383798,
+   "model_edge_vs_fair": 0.09547425806724699,
+   "model_implied_roi": 0.27130329672621456,
+   "family": "Model vs market (moneyline)",
+   "engine": "own",
+   "threshold_prob": 0.03,
+   "rule": "Moneyline where our win probability exceeds the de-vigged market by >= 3%.",
+   "bh_q": 0.95697,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "2,324 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-11.5%, -0.5%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.8488"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.9570"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2230 vs market 0.2093"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "3/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -1.4%, second half -10.9%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "ATS_ELO_ENGINE_1",
+   "n_tickets": 2376,
+   "n_graded": 2310,
+   "pushes": 66,
+   "units": -109.86167270194653,
+   "roi": -0.04755916567183833,
+   "win_rate": 0.49177489177489175,
+   "avg_odds_dec": 1.938758257506758,
+   "avg_fair_prob": 0.5005215588671688,
+   "mean_price_implied": 0.5157940636116229,
+   "roi_market_baseline": -0.030481296765539376,
+   "roi_ci95": [
+    -0.08664562296563688,
+    -0.008926095474542447
+   ],
+   "roi_ci95_season_block": [
+    -0.07881851318480541,
+    -0.0170598593786098
+   ],
+   "perm_p": 0.80285,
+   "null_roi_mean": -0.03050360184565248,
+   "null_roi_sd": 0.020041797062264177,
+   "sharpe_per_bet": -0.049063784386105584,
+   "deflated_sharpe": 4.5012047777404085e-06,
+   "seasons_qualified": 12,
+   "seasons_positive": 3,
+   "season_roi": {
+    "2015": 0.0357,
+    "2016": -0.0624,
+    "2017": -0.03,
+    "2018": 0.0265,
+    "2019": -0.0622,
+    "2020": -0.0302,
+    "2021": 0.0088,
+    "2022": -0.1055,
+    "2023": -0.0986,
+    "2024": -0.0275,
+    "2025": -0.1224,
+    "2026": -0.213
+   },
+   "roi_first_half": -0.019816761142103328,
+   "roi_second_half": -0.07678116510982586,
+   "brier_model": 0.2616472248351332,
+   "brier_market": 0.24966995646728332,
+   "model_edge_vs_fair": 0.09825478684105053,
+   "model_implied_roi": 0.16079163599889906,
+   "family": "Model vs market (spread)",
+   "engine": "elo_engine",
+   "threshold_pts": 1.0,
+   "rule": "Back the side the Elo engine likes by >= 1 pts versus the close.",
+   "bh_q": 0.95697,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "2,310 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-8.7%, -0.9%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.8028"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.9570"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2616 vs market 0.2497"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "3/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -2.0%, second half -7.7%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "TOT_OWN_3",
+   "n_tickets": 891,
+   "n_graded": 878,
+   "pushes": 13,
+   "units": -69.1680966423641,
+   "roi": -0.07877915335121197,
+   "win_rate": 0.4760820045558087,
+   "avg_odds_dec": 1.9361593306413605,
+   "avg_fair_prob": 0.5001722179009186,
+   "mean_price_implied": 0.5164864193634033,
+   "roi_market_baseline": -0.03205290393174568,
+   "roi_ci95": [
+    -0.14264493743071324,
+    -0.013540951728038661
+   ],
+   "roi_ci95_season_block": [
+    -0.12525287673157015,
+    -0.03401829292368848
+   ],
+   "perm_p": 0.9261,
+   "null_roi_mean": -0.03208352676839054,
+   "null_roi_sd": 0.03268183382444014,
+   "sharpe_per_bet": -0.0814214454141027,
+   "deflated_sharpe": 3.754405567435448e-06,
+   "seasons_qualified": 12,
+   "seasons_positive": 1,
+   "season_roi": {
+    "2015": -0.2763,
+    "2016": -0.0133,
+    "2017": -0.0003,
+    "2018": -0.1054,
+    "2019": -0.0206,
+    "2020": -0.0387,
+    "2021": -0.1462,
+    "2022": -0.1393,
+    "2023": -0.0675,
+    "2024": -0.0813,
+    "2025": 0.061,
+    "2026": -0.2586
+   },
+   "roi_first_half": -0.06451803380238023,
+   "roi_second_half": -0.09162033458998683,
+   "brier_model": 0.2763563002959756,
+   "brier_market": 0.24990204076582492,
+   "model_edge_vs_fair": 0.12858350994346576,
+   "model_implied_roi": 0.21726728520036087,
+   "family": "Model vs market (total)",
+   "engine": "own",
+   "threshold_pts": 3.0,
+   "rule": "Over/under the Ridge attack/defence engine total when it differs from the close by >= 3 pts.",
+   "bh_q": 0.95697,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "878 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-14.3%, -1.4%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.9261"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.9570"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2764 vs market 0.2499"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "1/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -6.5%, second half -9.2%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "ML_OWN_5",
+   "n_tickets": 1777,
+   "n_graded": 1773,
+   "pushes": 4,
+   "units": -162.2774474947834,
+   "roi": -0.09152704314426588,
+   "win_rate": 0.3564579808234631,
+   "avg_odds_dec": 3.1027086566355027,
+   "avg_fair_prob": 0.3722055062413732,
+   "mean_price_implied": 0.3222990330920642,
+   "roi_market_baseline": -0.03039442090873746,
+   "roi_ci95": [
+    -0.15558348662231794,
+    -0.027174272077830613
+   ],
+   "roi_ci95_season_block": [
+    -0.14831664301398076,
+    -0.033900972476246356
+   ],
+   "perm_p": 0.9648,
+   "null_roi_mean": -0.0305821191635836,
+   "null_roi_sd": 0.03412753195154003,
+   "sharpe_per_bet": -0.06697247966363669,
+   "deflated_sharpe": 1.4722913013742733e-06,
+   "seasons_qualified": 12,
+   "seasons_positive": 2,
+   "season_roi": {
+    "2015": -0.0007,
+    "2016": -0.0098,
+    "2017": -0.0482,
+    "2018": 0.0727,
+    "2019": -0.0742,
+    "2020": -0.1826,
+    "2021": -0.0804,
+    "2022": -0.1569,
+    "2023": -0.0829,
+    "2024": -0.2391,
+    "2025": -0.2511,
+    "2026": 0.086
+   },
+   "roi_first_half": -0.041429346744357366,
+   "roi_second_half": -0.14294159327811487,
+   "brier_model": 0.2262582885271493,
+   "brier_market": 0.20804275097957667,
+   "model_edge_vs_fair": 0.11275371604885745,
+   "model_implied_roi": 0.3304404307801838,
+   "family": "Model vs market (moneyline)",
+   "engine": "own",
+   "threshold_prob": 0.05,
+   "rule": "Moneyline where our win probability exceeds the de-vigged market by >= 5%.",
+   "bh_q": 0.9648,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,773 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-15.6%, -2.7%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.9648"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.9648"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2263 vs market 0.2080"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "2/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -4.1%, second half -14.3%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "TOT_OWN_2",
+   "n_tickets": 1448,
+   "n_graded": 1432,
+   "pushes": 16,
+   "units": -95.67965070163447,
+   "roi": -0.06681539853466094,
+   "win_rate": 0.4825418994413408,
+   "avg_odds_dec": 1.935742215056698,
+   "avg_fair_prob": 0.5004281745830205,
+   "mean_price_implied": 0.5165977123512336,
+   "roi_market_baseline": -0.03175990351215487,
+   "roi_ci95": [
+    -0.1167437492506976,
+    -0.016340257697869138
+   ],
+   "roi_ci95_season_block": [
+    -0.1091603203364934,
+    -0.02634040888761871
+   ],
+   "perm_p": 0.9158,
+   "null_roi_mean": -0.03191378891357126,
+   "null_roi_sd": 0.025422678885419995,
+   "sharpe_per_bet": -0.06907656258598435,
+   "deflated_sharpe": 1.3841333406650058e-06,
+   "seasons_qualified": 12,
+   "seasons_positive": 2,
+   "season_roi": {
+    "2015": -0.1595,
+    "2016": -0.0882,
+    "2017": -0.039,
+    "2018": -0.0897,
+    "2019": 0.0694,
+    "2020": -0.0984,
+    "2021": -0.0643,
+    "2022": -0.1842,
+    "2023": -0.0146,
+    "2024": -0.0468,
+    "2025": 0.0335,
+    "2026": -0.1893
+   },
+   "roi_first_half": -0.06639177263630829,
+   "roi_second_half": -0.06723314890044284,
+   "brier_model": 0.2684774992791901,
+   "brier_market": 0.24980201732340485,
+   "model_edge_vs_fair": 0.10591335085535847,
+   "model_implied_roi": 0.17366211132787585,
+   "family": "Model vs market (total)",
+   "engine": "own",
+   "threshold_pts": 2.0,
+   "rule": "Over/under the Ridge attack/defence engine total when it differs from the close by >= 2 pts.",
+   "bh_q": 0.95697,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "1,432 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-11.7%, -1.6%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.9158"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.9570"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "FAIL",
+     "detail": "Brier model 0.2685 vs market 0.2498"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "2/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -6.6%, second half -6.7%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G8, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "CTRL_ALL_OVER",
+   "n_tickets": 3135,
+   "n_graded": 3107,
+   "pushes": 28,
+   "units": -165.2187670237911,
+   "roi": -0.05317630094103349,
+   "win_rate": 0.4892178950756357,
+   "avg_odds_dec": 1.936351965022134,
+   "avg_fair_prob": 0.5003345522765993,
+   "mean_price_implied": 0.5164350376707312,
+   "roi_market_baseline": -0.0316147389300564,
+   "roi_ci95": [
+    -0.08618494146475611,
+    -0.019210004671008477
+   ],
+   "roi_ci95_season_block": [
+    -0.08554021272505738,
+    -0.017739068893332054
+   ],
+   "perm_p": 0.8958,
+   "null_roi_mean": -0.0315757229321567,
+   "null_roi_sd": 0.017364859019389733,
+   "sharpe_per_bet": -0.054926680571010494,
+   "deflated_sharpe": 1.365401869901639e-07,
+   "seasons_qualified": 12,
+   "seasons_positive": 2,
+   "season_roi": {
+    "2015": -0.074,
+    "2016": 0.0455,
+    "2017": -0.0934,
+    "2018": -0.0874,
+    "2019": -0.0373,
+    "2020": -0.0082,
+    "2021": -0.1127,
+    "2022": -0.1342,
+    "2023": -0.118,
+    "2024": 0.0273,
+    "2025": -0.0081,
+    "2026": -0.0064
+   },
+   "roi_first_half": -0.04237231932987503,
+   "roi_second_half": -0.06447104932715571,
+   "family": "Control",
+   "rule": "Bet the over in every game (vig benchmark).",
+   "bh_q": 0.95697,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "3,107 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-8.6%, -1.9%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.8958"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.9570"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "2/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -4.2%, second half -6.4%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  },
+  {
+   "strategy": "CTRL_ALL_HOME",
+   "n_tickets": 3135,
+   "n_graded": 3054,
+   "pushes": 81,
+   "units": -164.94693848584848,
+   "roi": -0.05401013047997658,
+   "win_rate": 0.48788474132285525,
+   "avg_odds_dec": 1.940458779161012,
+   "avg_fair_prob": 0.49998567567000307,
+   "mean_price_implied": 0.5153420473236571,
+   "roi_market_baseline": -0.030693870265423338,
+   "roi_ci95": [
+    -0.08769373619381593,
+    -0.01982185596189252
+   ],
+   "roi_ci95_season_block": [
+    -0.0805341051059747,
+    -0.03362782654827937
+   ],
+   "perm_p": 0.91035,
+   "null_roi_mean": -0.03059987473621808,
+   "null_roi_sd": 0.017496825529538608,
+   "sharpe_per_bet": -0.0556611841735806,
+   "deflated_sharpe": 1.2736864041240636e-07,
+   "seasons_qualified": 12,
+   "seasons_positive": 0,
+   "season_roi": {
+    "2015": -0.0832,
+    "2016": -0.0243,
+    "2017": -0.0009,
+    "2018": -0.0771,
+    "2019": -0.1428,
+    "2020": -0.0361,
+    "2021": -0.0559,
+    "2022": -0.0405,
+    "2023": -0.0482,
+    "2024": -0.0054,
+    "2025": -0.0337,
+    "2026": -0.1931
+   },
+   "roi_first_half": -0.060416940780747996,
+   "roi_second_half": -0.04731151636108564,
+   "family": "Control",
+   "rule": "Back the home team against the spread in every game (vig benchmark).",
+   "bh_q": 0.95697,
+   "gates": [
+    {
+     "gate": "G1",
+     "name": "Lookahead audit",
+     "status": "PASS",
+     "detail": "all inputs are pre-game columns"
+    },
+    {
+     "gate": "G2",
+     "name": "Sample size >= 300",
+     "status": "PASS",
+     "detail": "3,054 graded tickets"
+    },
+    {
+     "gate": "G3",
+     "name": "Out-of-sample",
+     "status": "PASS",
+     "detail": "2015+ only; rules pre-declared"
+    },
+    {
+     "gate": "G4",
+     "name": "ROI 95% CI lower > 0",
+     "status": "FAIL",
+     "detail": "95% CI [-8.8%, -2.0%]"
+    },
+    {
+     "gate": "G5",
+     "name": "Permutation p < 0.05",
+     "status": "FAIL",
+     "detail": "p = 0.9103"
+    },
+    {
+     "gate": "G6",
+     "name": "BH q < 0.10",
+     "status": "FAIL",
+     "detail": "q = 0.9570"
+    },
+    {
+     "gate": "G7",
+     "name": "Deflated Sharpe >= 0.95",
+     "status": "FAIL",
+     "detail": "DSR = 0.000"
+    },
+    {
+     "gate": "G8",
+     "name": "Calibration vs market",
+     "status": "NA",
+     "detail": "strategy carries no model probability"
+    },
+    {
+     "gate": "G9",
+     "name": "Season stability",
+     "status": "FAIL",
+     "detail": "0/12 qualifying seasons positive"
+    },
+    {
+     "gate": "G10",
+     "name": "Split-half consistency",
+     "status": "FAIL",
+     "detail": "first half -6.0%, second half -4.7%"
+    }
+   ],
+   "tier": "REJECTED",
+   "tier_reason": "fails G4, G5, G6, G7, G9, G10",
+   "reward_points": 0,
+   "rank": null
+  }
+ ]
+}

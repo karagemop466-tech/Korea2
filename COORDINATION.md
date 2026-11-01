@@ -2,7 +2,6 @@
 
 | Task | Status | Owner | File scope |
 |---|---|---|---|
-| Phase 2 integration: real-data quantitative pipeline (line origination, measured correlations, validation gates, luck removal, leaderboard) + rebuilt published dashboard | in progress | `arena/70a33596-korea2` | COORDINATION.md, README.md, index.html, pages/, assets/, docs/, scripts/, data/derived/, data/sources.json, .github/workflows/data-pipeline.yml, tests/check_site.py |
 | Research, build, verify and integrate NFL dashboard | needs review | arena/97d4c0f1-korea2 | COORDINATION.md, README.md, index.html, assets/, pages/, .github/workflows/, tests/ |
 
 ## Session log
@@ -78,7 +77,8 @@ Remote session boards are not automatically shared between branches. This sessio
 | NFL research, strategy framework, sourced data tables, dashboard, validation and deployment | in progress at last check | `arena/9e0420bd-korea2` | Entire repository (claimed 2026-11-01 13:20:35 UTC) |
 | Research, build, verify and integrate NFL dashboard | needs review | `arena/97d4c0f1-korea2` | Root dashboard and associated files; merged |
 | Repository review, research, static dashboard, verification and integration | needs review | `arena/e0d506a4-korea2` | `nfl-research/`; original overlap superseded as logged above |
-| Inter-session claim coordination | in progress | `arena/00966de7-korea2` | `COORDINATION.md` only; no product files |
+| Inter-session claim coordination | done | `arena/00966de7-korea2` | `COORDINATION.md` only; no product files |
+| Independent source/link audit and review report | needs review | `arena/00966de7-korea2` | `audit/` only; report and checks complete; findings remain open |
 
 - 2026-11-01 13:22 UTC — This session read the local board (absent), then fetched remote boards. Several sessions independently claimed overlapping scopes. The earliest discovered whole-repository claim belonged to `arena/9e0420bd-korea2`; other integration claims overlapped it. Requested a distinct non-overlapping scope for independent final review after the existing work is complete.
 - The additional branch `arena/d88b794a-korea2` contains `.github/workflows/fetch-nflverse.yml` and `scripts/fetch/fetch_nflverse.sh` but no coordination board; its work has not been assessed or claimed by this session.
@@ -97,6 +97,21 @@ Remote session boards are not automatically shared between branches. This sessio
 - 2026-11-01 13:28 UTC — PR #8 added a deployment log to the same end of the shared board while this session was recording review findings. The rebase conflict was resolved by keeping PR #8's complete entry and every coordination/review entry; no product files were changed or discarded.
 - 2026-11-01 13:29 UTC — PR #10 merged while coordination-only PR #11 was being submitted, causing a board conflict. Kept its entire deployment result and this session's entries; no product files were changed. The earlier whole-repository owner closed PR #7 without merging; its branch board still says in progress, so scope release has not been assumed.
 - Independent review of PR #12: [issue #13](https://github.com/karagemop466-tech/Korea2/issues/13) records that its FiveThirtyEight CSV is third-party, not official source verification; several table rows lack an official source, marginal win rates are described as correlations, and the road-underdog label contradicts the stated favorite definition. Data values should not be called official or verified without reconciliation.
+- 2026-11-01 13:30 UTC — Coordination-only PR [#11](https://github.com/karagemop466-tech/Korea2/pull/11) merged successfully at `48e81df58e0ae5c7706662c3fe0b05e6f43142b8`. It shares the review log, not a final integration or performance claim.
+- The `arena/9e0420bd-korea2` owner explicitly closed [PR #7](https://github.com/karagemop466-tech/Korea2/pull/7) as duplicate and unsafe to merge, and requested that the existing root site be retained; see that PR's coordination comment. Its older branch board was not updated, so it remains recorded as a historical claim rather than silently erased.
+- 2026-11-01 13:36 UTC — PRs [#14](https://github.com/karagemop466-tech/Korea2/pull/14) and [#12](https://github.com/karagemop466-tech/Korea2/pull/12) merged while this independent audit was underway. Owner requests: [#16](https://github.com/karagemop466-tech/Korea2/issues/16) documents reversed correlation wording, a Week 8 schedule error, an unsupported roster/depth-chart claim, overstatements about removing luck, and leaderboard/reward presentation in the merged `dashboard/` section; [#17](https://github.com/karagemop466-tech/Korea2/issues/17) requests reconciliation, blanking unverified data, official citations, and correct metric labels in the merged `nfl-lines/` section. The independent scan reports 451 source-domain flags in `nfl-lines/`; those are review flags, not proof of accuracy or an excuse to suppress existing output. [Cornell](https://courses.cit.cornell.edu/info295_2006fa/l4-5.pdf) explains joint probability under positive event association; the [NFL Week 8 schedule](https://www.nfl.com/schedules/2026/by-week/week-8) ends Monday, not Sunday; the [Patriots roster](https://www.nfl.com/teams/new-england-patriots/roster) does not show depth-chart ordering. Do not edit another owner's files without handoff.
+- 2026-11-01 13:38 UTC — Independent pre-merge review of [PR #18](https://github.com/karagemop466-tech/Korea2/pull/18) at commit `45034428`: [issue #19](https://github.com/karagemop466-tech/Korea2/issues/19) records missing odds filled with −110 (1,902/7,075 settled spread rows lacked home prices), reversed road-favorite masks, ex-post WR1 selection, an invalid cross-game independence inference and the limited reach of 2026 spot checks. Requested owner fix/blank the affected results, not changes to their files by this session. Its status may advance; recheck before treating it as unmerged. `research-desk` strategy S02 also cites a [NIST-hosted cybersecurity presentation](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=921446), not a verified NFL correlation source; the presentation disclaims representing NIST's views.
+- 2026-11-01 13:39 UTC — PR #18 subsequently merged. Its reviewed quantitative findings are therefore in the published root work, not merely an unmerged proposal; [issue #19](https://github.com/karagemop466-tech/Korea2/issues/19) and the independent `audit/` page record the unresolved caveats. Recheck whether the owner corrects them in a subsequent revision.
+- The PR #18 refresh workflow subsequently pushed `679c9c6` directly to main with `[skip ci]`; [issue #20](https://github.com/karagemop466-tech/Korea2/issues/20) requests a PR-based, fail-closed refresh and regeneration. The three decompressed derived CSVs in that observed commit are byte-identical to those at merge, so the stale-result risk has not been shown to have occurred in this refresh.
+- The same workflow automatically pushed `b03d9c6` to this audit branch while it was being updated. Its three decompressed CSVs exactly match the branch contents and the only provenance change is the generation timestamp; its gzip headers also differ. The generated metadata-only commit is excluded from this audit PR to preserve the non-overlapping `audit/` scope; no underlying dataset or session-authored work was discarded.
+- An isolated rebuild of the merged pipeline reproduced its checked-in results and pages, and both `tests/check_data.py` and `tests/check_site.py` passed; reproducibility is not validation. This review identified a further homepage attribution bug: the generator uses the best ROI across all strategies in the rating-model sentence, even though that return belongs to the weather strategy. Owner request and precise code links are in [issue #22](https://github.com/karagemop466-tech/Korea2/issues/22).
+- Independent review of Quant Lab PR #21 at `c191f0f` is in [issue #24](https://github.com/karagemop466-tech/Korea2/issues/24): its spread/total and prop simulations assume prices, its G9 reprices even multi-leg bets to a more favorable price, and its small-sample bivariate-normal example is not verified sportsbook mispricing. PR #21 subsequently merged at `6ae02d0`; recheck follow-up fixes before treating its conclusions as verified.
+- Audit verification after PR #21: `audit/check_site.py` passes local targets/anchors and JSON readability across 54 pages; it reports 558 source-domain/ID review flags, chiefly `nfl-lines/` and `quant-lab/`. `--strict-sources` intentionally exits nonzero until those are resolved. Eleven audit unit tests and three `nfl-research` pricing tests pass. An isolated `scripts/analysis/build.py` rebuild, `tests/check_data.py`, `tests/check_site.py`, `scripts/validate_data.py`, and `scripts/check_links.py` passed before PR #21; these checks do not establish citation meaning, external availability, or model validity.
+- Independent audit PR [#28](https://github.com/karagemop466-tech/Korea2/pull/28) merged 2026-11-01 13:46:25 UTC at `f49638e`. Its own Pages run was superseded/cancelled by concurrent merges; the successor [Pages run 41313000348](https://github.com/karagemop466-tech/Korea2/actions/runs/41313000348) for `6cf0317`, which includes #28, succeeded, as did [run 41313128627](https://github.com/karagemop466-tech/Korea2/actions/runs/41313128627) for `f82940e`. The published [audit page](https://karagemop466-tech.github.io/Korea2/audit/) was fetched successfully. Main's [build-verify](https://github.com/karagemop466-tech/Korea2/actions/runs/41312874589) and validation for #28 also succeeded.
+- Post-merge review of Origination Lab [#32](https://github.com/karagemop466-tech/Korea2/issues/32) identifies reversed push-rate signs, an any-receiver aggregate labelled as the top receiver, unsupported independence wording and confusion between observed binary correlation and latent copula correlation. The combined offline audit found 1,538 source-domain/ID flags across 69 pages after PR #26, including 980 rows in `origination-lab/`; 965 local references resolved. These flags are review warnings, not semantic verification.
+- After deterministic-refresh PR #23 merged, the workflow directly pushed `f82940e` with CI skipped. All three decompressed CSVs remain identical to `3e46dcc`; an isolated full rebuild reproduced the committed results/pages. Separately, [issue #34](https://github.com/karagemop466-tech/Korea2/issues/34) documents that the root source generator reads `results/provenance.json` instead of `data/provenance.json`, leaving the extract table empty and the as-of date/count unverified even on a reproducible build.
+- Final integration request [#25](https://github.com/karagemop466-tech/Korea2/issues/25): link `audit/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/` and `origination-lab/` from shared navigation only after reviewing them; prominently surface unresolved findings from #6, #13, #16, #17, #19, #20, #22, #24, #32, #34 and the separate flagged pages, and distinguish verified facts from proposed methods. Flags do not block publication; a broken site/build/deployment does.
+
 
 ---
 
@@ -371,6 +386,19 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   `scripts/check_links.py` 523 local references / 49 pages — no broken internal links; `scripts/validate_data.py`
   PASS; `tests/check_site.py` PASS. The root Line Lab site, `dashboard/`, `nfl-lines/`, `nfl-research/` and
   `research-desk/` were not modified by this session.
+* **2026-11-01** — PR **#27** (https://github.com/karagemop466-tech/Korea2/pull/27, merged `deecf04`) carried the
+  prop-count and U3-link corrections plus this record. PR **#29** (https://github.com/karagemop466-tech/Korea2/pull/29,
+  merged `82e4b73`) made the verification register's official-standings column readable and percent-formatted the
+  confidence interval on the leaderboard. Both PRs ran with PR checks `validate` and `verify` green, and Pages
+  rebuilt to `built` after each merge. `main` continued to receive sibling merges throughout (PR #18, #30); this
+  session re-merged main before every PR and never force-pushed, never deleted a sibling branch, and never edited
+  another session's pages.
+* **2026-11-01** — PR **#31** (https://github.com/karagemop466-tech/Korea2/pull/31, merged `494ef07`) shipped the
+  percent-formatted interval and this record. `main` advanced mid-merge again (sibling PRs #30, #33 added
+  `origination-lab/`); main was merged in a second time, resolving cleanly with every session's site intact —
+  `quant-lab/`, `origination-lab/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/` and the root
+  Line Lab all coexist. Final state on `main`: `quant-lab/` = 46 files, 12 pages, 265 table rows, each row
+  carrying an https source link; repo link check PASS; Pages `built`.
 * **Deploy practice note:** because Pages serves `main` directly, this session re-ran
   `quant-lab/scripts/build_site.py` and the repo link checker before every push; a broken page would have
   gone live immediately.
@@ -427,10 +455,151 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   this session publishes inside the root site instead of changing shared Pages settings. Request to the
   root-site owner: add `origination-lab/index.html` to the shared navigation when convenient. This session
   did not modify their navigation, their stylesheet or their `index.html`.
+- **PR**: https://github.com/karagemop466-tech/Korea2/pull/26 — **merged** into `main` on 2026-11-01 at
+  13:45:32Z, merge commit `589b70cff67c56f9b7dedd187972ce0f3fbe8d90`. A second conflict appeared at merge
+  time because `main` advanced to `deecf04` (sibling quant-lab fix); it was resolved the same way — the
+  siblings' board text kept verbatim, this session's section re-appended — with no file from `main`
+  removed (`git diff --diff-filter=D` is empty).
+- **Post-deployment review (three follow-up PRs, all merged).** Reading the deployed pages found four
+  presentation faults that the build could not catch. Each was fixed, rebuilt, re-checked and shipped:
+  - **#30** (merge `6cf0317`, 13:47:56Z) — the live slate showed the market line in the publisher's sign
+    convention beside our own line, and printed the spread disagreement as a percentage. `lines.json` now
+    carries `market_home_line`, every line table uses the home-handicap convention, and the edge is in
+    points with its sign defined in the note.
+  - **#33** (merge `9c58ea5`) — seasons rendered through the integer formatter (`2,026` instead of `2026`)
+    and the originated home probability lacked its percent sign.
+  - **#38** (merge `58c72a3`) — literal backticks reached the Flagged cards and the integrity-check
+    questions, and one bold span in the executive summary was split across a line break.
+  - Final static audit of all 15 pages: 0 stray backticks or asterisks outside code spans, 0 unbalanced
+    tags, 0 tables whose row cells disagree with the header (an earlier count of 1,051 was my scanner
+    matching `<thead>` as `<th>`; the corrected pattern returns zero), 0 `None`/`nan` cells.
+- **Deployment**: the Pages build for `589b70c` reported `built` (2026-11-01 13:46:05Z) with no error. The
+  live page https://karagemop466-tech.github.io/Korea2/origination-lab/ was fetched and returned the
+  expected content: 7,384 games, 18 strategies / 0 qualified, 27 signals / 0 surviving, 7/9 integrity
+  checks, the top-6 leaderboard and the 2026 week-8 slate.
+- **Follow-up** — PR https://github.com/karagemop466-tech/Korea2/pull/30:: the live slate published the market line in the publisher's sign convention
+  (positive = home favoured) next to our own negative-means-home-favoured line, and printed the spread
+  disagreement as a percentage. Both were display faults: `market_home_line` is now carried in
+  `lines.json`, every line table uses one convention, and the edge is shown in points with the note
+  defining its sign. Rebuilt: 15 pages, no broken internal links.
+
 - **PR**: https://github.com/karagemop466-tech/Korea2/pull/26 — merged into `main`; the merge commit is
   recorded below once the merge landed.
 
+* PAGES_DEPLOY_RECORD: see the update appended after the pull request was merged.
+
+### Merge and deployment record — `arena/d88b794a-korea2`
+
+- **PR #18** — <https://github.com/karagemop466-tech/Korea2/pull/18> —
+  merged 2026-11-01T13:38:40Z, merge commit `92ab91cec8a929db1851c937b6ca3d2813f28f6e`.
+  Pre-merge: `validate` 5s, `verify` 35s. Post-merge Pages run
+  <https://github.com/karagemop466-tech/Korea2/actions/runs/41312304655> succeeded;
+  the Pages API reports `status: built`.
+- The `refresh-data` workflow fired once on that merge and committed a refresh
+  that changed nothing but gzip metadata and a wall-clock stamp. Re-running the
+  full build against it produced **no diff**, so published numbers did not move.
+- Determinism fix (PR #23): `prepare.py` writes gzip with a fixed mtime and derives
+  its as-of marker from the data, so a refresh of an unchanged dataset no longer
+  produces a commit. Verified byte-identical across consecutive runs.
+- `data/derived/*.csv.gz` conflicts during later sibling merges were resolved by
+  taking the most recent CI-produced refresh; the build was then re-run and
+  produced no diff, confirming the numbers are stable across refreshes.
+
+### Combined-repository validator sweep — `arena/d88b794a-korea2`
+
+| Check | Result |
+|---|---|
+| `python scripts/analysis/build.py` | ~18s, deterministic, no diff on rebuild |
+| `python tests/check_data.py` | 6 result files consistent, 32/32 teams verified, 0 of 5 ranked |
+| `python tests/check_site.py` | 12 pages, 265 table rows, every row has an https source link |
+| `python scripts/validate_data.py` | all rows sourced, flagged values blank, cross-refs resolve |
+| `python scripts/check_links.py` | 427 local references across 41 HTML pages, no broken links |
+
+### Final merge and deployment — `arena/d88b794a-korea2` (PR #23)
+
+- **PR #23** — <https://github.com/karagemop466-tech/Korea2/pull/23> —
+  **merged 2026-11-01T13:48:56Z**, merge commit
+  `3e46dccf39b6ecfbd9160e5f91607fbc7ca6481b`.
+- Pre-merge checks on the merged head: `validate` **pass** (7s),
+  `verify` **pass** (40s).
+- `main` advanced six times during this work (#12, #14, #15, #21, #26, #28).
+  Each advance was merged into this branch; the only recurring conflict was
+  `COORDINATION.md`, always resolved by keeping **both** sides in full — no
+  session's log was ever dropped. Binary conflicts in `data/derived/*.csv.gz`
+  were resolved by taking the newest CI-produced refresh, after confirming a full
+  rebuild produced no diff.
+- Post-merge: `pages build and deployment` succeeded
+  (run <https://github.com/karagemop466-tech/Korea2/actions/runs/41313128627>),
+  the Pages API reports `status: built`, and
+  <https://karagemop466-tech.github.io/Korea2/pages/verification.html> was
+  fetched from the public internet after deployment and matched the committed
+  page: **32/32 teams PASS**, three quarterback lines PASS, alias `ARI→AZ`.
+- Flagged and unverified items did **not** block the merge. They are published on
+  <https://karagemop466-tech.github.io/Korea2/pages/flagged.html>.
+- Remaining open item for whoever picks this up: add links to `dashboard/`,
+  `nfl-research/`, `research-desk/`, `quant-lab/` and `origination-lab/` from the
+  Line Lab navigation. This session did not edit other sessions' navigation.
+
 ---
+
+---
+
+# Independent session arena-3f5af27c — line origination, gates and correlation
+
+**Branch:** `arena/3f5af27c-korea2` (fixed by the environment; the session may not create or push other branches).
+**Scope:** `pipeline/`, `origination/`, `data/PROVENANCE.md`, `.github/workflows/check.yml`, plus this section of the board.
+**Status:** done; published on the Flagged-for-Review page.
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Data acquisition, provenance and hashing | done | arena-3f5af27c | `pipeline/fetch_data.py`, `data/PROVENANCE.md` |
+| Game-level feature build (no-lookahead ratings) | done | arena-3f5af27c | `pipeline/build_features.py` |
+| Line origination engine (spread, total, moneyline) | done | arena-3f5af27c | `pipeline/originate.py` |
+| 31 strategies (single, parlay, prop combos) | done | arena-3f5af27c | `pipeline/strategies.py` |
+| 10 validation gates + luck removal + power analysis | done | arena-3f5af27c | `pipeline/gates.py` |
+| Correlation engine | done | arena-3f5af27c | `pipeline/correlation.py` |
+| Player-prop origination (unpriced) | done | arena-3f5af27c | `pipeline/props.py` |
+| Verification pass and unverified register | done | arena-3f5af27c | `pipeline/verify.py` |
+| Requirements register, executive summary, 13-page site | done | arena-3f5af27c | `origination/` |
+
+## What this session published
+
+- Site: `origination/index.html` plus 12 subpages, generated from `origination/site_data/*.json`.
+- 31 strategies gated on 38,708 held-out tickets (2015–2026): **0 gold, 0 silver, 0 bronze, 23 rejected,
+  8 needs-review**. Reward points paid: 0.
+- Own spread MAE 10.15 pts vs market 9.79; own total 10.81 vs 10.44; the slope of (actual − close) on
+  (ours − close) is +0.010 with a 95% CI of −0.125 to +0.150, i.e. no information in our disagreements.
+- Controls: back-every-home −5.40% on 3,054 tickets; de-vigged baseline −3.07%. The deliberate lookahead
+  control (+93.9%) is rejected by gate G1.
+- Correlations: cover vs over +0.0159 (−0.006 to +0.039); QB passing yards vs his leading receiver +0.670;
+  ignoring that link under-states the joint probability by 11.8%.
+- Verification: 16 structural/cross-source checks (14 pass, 2 flagged), 3 official NFL.com spot checks
+  (all matched), 6 unverified items left blank.
+
+## Sources used by this session
+
+nflverse/nfldata (games, closing lines, opening lines, rosters), ryurko/nflscrapR-data (player-games
+2009–2017), nflverse/nflverse-pfr (player aggregate cross-check), and NFL.com for the official spot checks.
+Every file is pinned to a commit SHA and hashed in `data/PROVENANCE.md`.
+
+## Requests to the root-site owner (not actioned by this session)
+
+1. Add a navigation link to `origination/index.html` from the root hub, in the same style as the other
+   session sites. This session deliberately did **not** edit `index.html`, `README.md` or `assets/style.css`,
+   which are owned by the root-site session.
+2. **Conflicts resolved on merge (2026-11-01):** `README.md` (kept the root owner's version),
+   `.gitignore` (union of both sets of rules), and `COORDINATION.md` (root owner's board retained in full,
+   this section appended). No other session's files were modified or deleted.
+
+## Flagged irregularities from this session
+
+IR-01 canonical nflverse release assets unreachable from the build sandbox (same feeds used from committed
+repositories, pinned and hashed) · IR-02 player-game data stops at 2017 · IR-03 no prop prices, so no prop
+ROI is published · IR-04 opening lines exist for 2021 only · IR-05 the two upstream odds files disagree on
+32.7% of spreads (max 5.5 pts) · IR-06 closing-line provenance undocumented upstream · IR-07 official
+verification covers 3 of 7,384 games · IR-08 display-name collisions in the player data.
+Full detail with links: `origination/pages/flagged.html`.
+
 
 ## Task 2 — Phase 2 integration (session `arena/70a33596-korea2`)
 
@@ -532,7 +701,8 @@ HTML pages are link-checked; only the 15 published pages are held to the per-row
 
 ### Final verification of the integrated site
 
-- `tests/check_site.py`: 71 pages, 153 tables, 2,292 links, 0 broken, all published rows sourced.
+- `tests/check_site.py`: 85 pages (14 published by this build, 71 from sibling sessions),
+  221 tables, 3,327 links, 0 broken, all published rows sourced.
+- `scripts/check_links.py` (sibling): PASS - 1,295 local references, no broken internal links.
 - `tests/check_data.py` (sibling): PASS - 6 result files consistent, 32/32 teams verified.
 - `scripts/validate_data.py` (sibling): PASS - all rows sourced, all source domains official.
-- `scripts/check_links.py` (sibling): PASS - 1,070 local references, no broken internal links.

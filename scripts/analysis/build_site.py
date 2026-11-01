@@ -147,6 +147,7 @@ def page_index() -> str:
                     if c["name"].startswith("QB passing yards")), {})
     best = max((v for v in (strat.get("strategies") or {}).values() if v.get("n")),
                key=lambda v: v["roi"], default={})
+    s5 = (strat.get("strategies") or {}).get("S5_model_edge") or {}
 
     cards = f"""<div class="cards">
 <article><span>01 / SAMPLE</span><strong>{integer(settled)}</strong><p>Settled regular-season games with a closing line, 1999&ndash;2026.</p><a href="pages/market.html">Market baseline &#8594;</a></article>
@@ -178,7 +179,8 @@ def page_index() -> str:
          td("A walk-forward opponent-adjusted rating model scores a Brier skill of "
             f"<strong>{num((strat.get('model') or {}).get('brier_skill_vs_market'), 4)}</strong> "
             "against the closing line. Negative means worse than the market. Betting its "
-            f"disagreements returns {pct(best.get('roi'))}."),
+            f"disagreements returned {pct(s5.get('roi'))} over {integer(s5.get('n'))} bets "
+            f"(p = {num(s5.get('p'), 3)})."),
          td(badge("bad", "Negative skill")),
          td(ext(NFL["team_stats"], "NFL.com team stats"))),
         (th("Same-game legs are not independent"),
@@ -627,7 +629,7 @@ def page_sources() -> str:
 <p class="intro">Two tiers of source are used and they are never blurred: the league itself, and a third-party redistributor of the league's own play-by-play.</p>
 {section("FILES", "Committed extracts")}
 {table(["FILE", "ROWS", "SEASONS", "SHA-256 OF RAW SOURCE", "DOWNLOAD", "OFFICIAL CHECK"], rows)}
-<p class="disclaimer">Generated {esc(prov.get('generated_utc', ''))}. Raw downloads are excluded from the repository and rebuilt by <code>.github/workflows/fetch-nflverse.yml</code>; the SHA-256 above pins exactly what was used.</p>
+<p class="disclaimer">Data as of gameday {esc(prov.get('data_as_of_gameday', 'unknown'))} ({integer(prov.get('games_settled'))} settled games in the source file). Raw downloads are excluded from the repository and rebuilt by <code>.github/workflows/fetch-nflverse.yml</code>; the SHA-256 above pins exactly what was used, and the build is byte-for-byte reproducible.</p>
 {section("SOURCE REGISTER", "Official and third-party, labelled")}
 {table(["SOURCE", "WHAT IT IS USED FOR", "TIER", "LINK"], src_rows)}
 {section("NOT AVAILABLE", "What we could not obtain")}

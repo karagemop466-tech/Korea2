@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import site_common as sc
 from site_common import (DOCS, ROOT, blank, card, e, load, note, num, page, pctp, pill,
-                         roi, src, status_pill, table, units, md_to_html)
+                         roi, season, spts, src, status_pill, table, units, md_to_html)
 
 INTEG = load("integrity.json")
 LINES = load("lines.json")
@@ -155,18 +155,22 @@ def pg_index():
     for r in LINES["slate"]["rows"][:8]:
         slate_rows.append([
             f'{e(r["away"])} @ {e(r["home"])}', e(r["gameday"]), num(r["week"], 0),
-            num(r["our_spread"], 1), num(r["market_spread"], 1),
-            pctp((r["edge_home_pts"] or 0) / 10, 1) if r["edge_home_pts"] is not None else blank(),
+            num(r["our_spread"], 1), num(r.get("market_home_line"), 1),
+            spts(r["edge_home_pts"], 1),
             num(r["our_total"], 1), num(r["market_total"], 1),
             e(f'{r["our_home_ml"]:+d}/{r["our_away_ml"]:+d}'),
         ])
     slate = table(
-        [("Game", False), ("Date", False), ("Wk", True), ("Our line", True), ("Market", True),
-         ("Edge", True), ("Our total", True), ("Mkt total", True), ("Our ML H/A", False)],
+        [("Game", False), ("Date", False), ("Wk", True), ("Our line (home)", True),
+         ("Market (home)", True), ("Edge, pts", True), ("Our total", True), ("Mkt total", True),
+         ("Our ML H/A", False)],
         slate_rows, caption="Live slate: originated lines next to the market",
         sub=f"{len(LINES['slate']['rows'])} unplayed games, {sum(1 for r in LINES['slate']['rows'] if r['verified'])} with a market line",
         col_cls=[None, None, "n", "n", "n", "n", "n", "n", "t"],
-        note=src(SOURCES, ["S1"]) + " edge = our line minus the market's expected home margin")
+        note=src(SOURCES, ["S1"]) + " Lines are the home team's handicap: a negative number means the "
+             "home team gives points. Edge = our home line minus the market's home line, so a positive "
+             "edge means we rate the home side weaker than the market does and the away team is the "
+             "disagreement.")
 
     body = f"""
 <div class="grid g4">
@@ -271,7 +275,7 @@ def pg_lines():
     season_rows = []
     for s in reversed(LINES["by_season"]):
         season_rows.append([
-            num(s["season"], 0), num(s["games"], 0),
+            season(s["season"]), num(s["games"], 0),
             num(s["model_mae_margin"]), num(s["market_mae_margin"]),
             num(s["model_mae_total"]), num(s["market_mae_total"]),
             num(s["corr_model_market_margin"], 3), num(s["corr_model_market_total"], 3),
@@ -291,26 +295,31 @@ def pg_lines():
         slate_rows.append([
             e(r["gameday"]), num(r["week"], 0),
             f'<b>{e(r["away"])} @ {e(r["home"])}</b>',
-            num(r["our_spread"], 1), num(r["market_spread"], 1), num(r["edge_home_pts"], 2),
-            num(r["our_total"], 1), num(r["market_total"], 1), num(r["edge_total_pts"], 2),
+            num(r["our_spread"], 1), num(r.get("market_home_line"), 1),
+            spts(r["edge_home_pts"], 1),
+            num(r["our_total"], 1), num(r["market_total"], 1), spts(r["edge_total_pts"], 1),
             num(r["our_home_ml"], 0), num(r["market_home_ml"], 0),
-            num(r["our_home_win_prob"] * 100, 1),
+            num(r["our_home_win_prob"] * 100, 1, "%"),
         ])
     slate = table(
-        [("Date", False), ("Wk", True), ("Game", False), ("Our line", True), ("Mkt line", True),
-         ("Edge", True), ("Our total", True), ("Mkt total", True), ("Edge", True),
-         ("Our H ML", True), ("Mkt H ML", True), ("Our P(home)", True)],
+        [("Date", False), ("Wk", True), ("Game", False), ("Our line (home)", True),
+         ("Mkt line (home)", True), ("Spread edge, pts", True), ("Our total", True),
+         ("Mkt total", True), ("Total edge, pts", True), ("Our H ML", True), ("Mkt H ML", True),
+         ("Our P(home)", True)],
         slate_rows, caption="Originated lines for the live slate",
         sub=f"as of {LINES['slate']['asof']} · {len(slate_rows)} games with a market line",
-        col_cls=[None, "n", None] + ["n"] * 9, note=src(SOURCES, ["S1", "S3"]))
+        col_cls=[None, "n", None] + ["n"] * 9,
+        note=src(SOURCES, ["S1", "S3"]) + " Home handicap convention: negative means the home team gives "
+             "points. A positive spread edge means we rate the home side weaker than the market does; a "
+             "positive total edge means our total is higher than the market's.")
 
     unplayed = [r for r in LINES["slate"]["rows"] if not r["verified"]]
     un_rows = [[e(r["gameday"]), num(r["week"], 0), f'{e(r["away"])} @ {e(r["home"])}',
                 num(r["our_spread"], 1), blank(), blank(), num(r["our_total"], 1),
                 num(r["our_home_ml"], 0)] for r in unplayed]
     unplayed_tbl = table(
-        [("Date", False), ("Wk", True), ("Game", False), ("Our line", True), ("Mkt line", True),
-         ("Edge", True), ("Our total", True), ("Our H ML", True)],
+        [("Date", False), ("Wk", True), ("Game", False), ("Our line (home)", True),
+         ("Mkt line (home)", True), ("Spread edge", True), ("Our total", True), ("Our H ML", True)],
         un_rows, caption="Unplayed games with no market line yet",
         sub="market cells left blank on purpose — nothing is inferred",
         col_cls=[None, "n", None, "n", "n", "n", "n", "n"],
@@ -734,7 +743,7 @@ def pg_props():
                    sub="share of outcomes that finished over the line at each offset",
                    note=src(SOURCES, ["S9"]))
 
-    ex_rows = [[num(x["season"], 0), num(x["week"], 0), e(x["player"]), e(x["team"]), e(x["opp"]),
+    ex_rows = [[season(x["season"]), num(x["week"], 0), e(x["player"]), e(x["team"]), e(x["opp"]),
                 e(x["market"]), num(x["our_line"], 1), num(x["actual"], 0),
                 pill(x["result"], {"over": "info", "under": "neutral", "push": "warn"}[x["result"]])]
                for x in reversed(PROPS["examples"])]
@@ -1005,7 +1014,7 @@ def pg_data():
 
     crows = []
     for c in INTEG["checks"]:
-        crows.append([f'<b>{e(c["key"])}</b>', e(c["question"]), e(c["method"]), e(c["result"]),
+        crows.append([f'<b>{e(c["key"])}</b>', imd(c["question"]), imd(c["method"]), imd(c["result"]),
                       status_pill(c["status"]), src(SOURCES, c["sources"])])
     ctbl = table([("Check", False), ("Question", False), ("Method", False), ("Result", False),
                   ("Status", False), ("Src", False)], crows,
@@ -1013,7 +1022,7 @@ def pg_data():
                  col_cls=[None, "wrap-cell", "wrap-cell", "wrap-cell", "t", None])
 
     cov = INTEG["coverage_by_season"]
-    covrows = [[num(c["season"], 0), num(c["games"], 0), num(c["with_line"], 0)] for c in cov]
+    covrows = [[season(c["season"]), num(c["games"], 0), num(c["with_line"], 0)] for c in cov]
     covtbl = table([("Season", True), ("Games", True), ("With a line", True)], covrows,
                    col_cls=["n"] * 3, caption="Coverage by season",
                    note=src(SOURCES, ["S1"]))
@@ -1156,6 +1165,11 @@ numeric verification is a spot check rather than an automated diff (F7).</p>
 
 
 # --------------------------------------------------------------------------- #
+def imd(text: str) -> str:
+    """Inline markdown for a single-line field: code spans, bold, links, no block wrapper."""
+    return md_to_html(text).replace("<p>", "").replace("</p>", "")
+
+
 def pg_flagged():
     cards = []
     for f in FLAGGED:
@@ -1163,11 +1177,11 @@ def pg_flagged():
 <div class="card" id="{e(f['id'])}">
   <h3>{e(f['id'])} · {pill("needs review", "warn")}</h3>
   <p style="font-size:15px;font-weight:600;margin:2px 0 8px">{e(f['title'])}</p>
-  <p><b>What.</b> {md_to_html(f['what']).replace('<p>','').replace('</p>','')}</p>
-  <p><b>Why it matters.</b> {e(f['why'])}</p>
-  <p><b>Impact on published results.</b> {e(f['impact'])}</p>
+  <p><b>What.</b> {imd(f['what'])}</p>
+  <p><b>Why it matters.</b> {imd(f['why'])}</p>
+  <p><b>Impact on published results.</b> {imd(f['impact'])}</p>
   <p><b>Sources.</b> {src(SOURCES, f['srcs'])}</p>
-  <p><b>Requested action.</b> {e(f['action'])}</p>
+  <p><b>Requested action.</b> {imd(f['action'])}</p>
 </div>""")
     body = f"""
 {note("<b>Nothing here blocks the release.</b> These are the items a reviewer should look at first: values "

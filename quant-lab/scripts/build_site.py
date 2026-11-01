@@ -486,8 +486,8 @@ none of these rules beats it with statistical support.</div>
 {''.join(f"<li><code>{e(r['strategy'])}</code> — {r['gates_passed']}/9 gates. {e(r['desc'])} Fails: {', '.join(r['gates_failed'])}.</li>" for r in top[:3])}
 </ul>
 <p class="small">To qualify, the wind-under lead would need a confidence interval clear of zero (it currently
-spans {top[0]['ci95_holdout'][0]} to {top[0]['ci95_holdout'][1]}) and a calibration gap under 5 points. The
-pipeline re-runs and re-ranks automatically as games are added.</p>"""
+spans {100*top[0]['ci95_holdout'][0]:+.2f}% to {100*top[0]['ci95_holdout'][1]:+.2f}%) and a calibration gap
+under 5 points. The pipeline re-runs and re-ranks automatically as games are added.</p>"""
     return shell("Leaderboard", "leaderboard.html", body,
                  "A skill competition that only pays for strategies which survive every gate.")
 
@@ -585,7 +585,7 @@ def page_verification():
             off = c.get("official")
             show.append([f'<code>{e(c["check"])}</code>',
                          e(fmtdet(comp)) if comp is not None else e(fmtdet(c.get("detail"))),
-                         e(str(off)) if off is not None else '<span class="chip">internal audit</span>',
+                         e(fmtdet(off)) if off is not None else '<span class="chip">internal audit</span>',
                          badge(c["status"] == "pass"),
                          f'<a href="{e(c["source_url"])}" rel="noopener">source</a>' if c.get("source_url") else "—"])
         sections.append(f"<h3>{e(scope)} — {len(items)} checks</h3>" +
@@ -761,6 +761,16 @@ def md_to_html(md):
         return s
     while i < len(lines):
         ln = lines[i]
+        if ln.strip().startswith("```"):
+            close()
+            i += 1
+            buf = []
+            while i < len(lines) and not lines[i].strip().startswith("```"):
+                buf.append(lines[i])
+                i += 1
+            out.append("<pre>" + e("\n".join(buf)) + "</pre>")
+            i += 1
+            continue
         if ln.startswith("|") and i + 1 < len(lines) and set(lines[i + 1].replace("|", "").strip()) <= set("-: "):
             close()
             hdr = [c.strip() for c in ln.strip().strip("|").split("|")]
