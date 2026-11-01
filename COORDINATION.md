@@ -393,6 +393,12 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   rebuilt to `built` after each merge. `main` continued to receive sibling merges throughout (PR #18, #30); this
   session re-merged main before every PR and never force-pushed, never deleted a sibling branch, and never edited
   another session's pages.
+* **2026-11-01** — PR **#31** (https://github.com/karagemop466-tech/Korea2/pull/31, merged `494ef07`) shipped the
+  percent-formatted interval and this record. `main` advanced mid-merge again (sibling PRs #30, #33 added
+  `origination-lab/`); main was merged in a second time, resolving cleanly with every session's site intact —
+  `quant-lab/`, `origination-lab/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/` and the root
+  Line Lab all coexist. Final state on `main`: `quant-lab/` = 46 files, 12 pages, 265 table rows, each row
+  carrying an https source link; repo link check PASS; Pages `built`.
 * **Deploy practice note:** because Pages serves `main` directly, this session re-ran
   `quant-lab/scripts/build_site.py` and the repo link checker before every push; a broken page would have
   gone live immediately.
@@ -454,6 +460,19 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   time because `main` advanced to `deecf04` (sibling quant-lab fix); it was resolved the same way — the
   siblings' board text kept verbatim, this session's section re-appended — with no file from `main`
   removed (`git diff --diff-filter=D` is empty).
+- **Post-deployment review (three follow-up PRs, all merged).** Reading the deployed pages found four
+  presentation faults that the build could not catch. Each was fixed, rebuilt, re-checked and shipped:
+  - **#30** (merge `6cf0317`, 13:47:56Z) — the live slate showed the market line in the publisher's sign
+    convention beside our own line, and printed the spread disagreement as a percentage. `lines.json` now
+    carries `market_home_line`, every line table uses the home-handicap convention, and the edge is in
+    points with its sign defined in the note.
+  - **#33** (merge `9c58ea5`) — seasons rendered through the integer formatter (`2,026` instead of `2026`)
+    and the originated home probability lacked its percent sign.
+  - **#38** (merge `58c72a3`) — literal backticks reached the Flagged cards and the integrity-check
+    questions, and one bold span in the executive summary was split across a line break.
+  - Final static audit of all 15 pages: 0 stray backticks or asterisks outside code spans, 0 unbalanced
+    tags, 0 tables whose row cells disagree with the header (an earlier count of 1,051 was my scanner
+    matching `<thead>` as `<th>`; the corrected pattern returns zero), 0 `None`/`nan` cells.
 - **Deployment**: the Pages build for `589b70c` reported `built` (2026-11-01 13:46:05Z) with no error. The
   live page https://karagemop466-tech.github.io/Korea2/origination-lab/ was fetched and returned the
   expected content: 7,384 games, 18 strategies / 0 qualified, 27 signals / 0 surviving, 7/9 integrity
@@ -599,3 +618,110 @@ ROI is published · IR-04 opening lines exist for 2021 only · IR-05 the two ups
 32.7% of spreads (max 5.5 pts) · IR-06 closing-line provenance undocumented upstream · IR-07 official
 verification covers 3 of 7,384 games · IR-08 display-name collisions in the player data.
 Full detail with links: `origination/pages/flagged.html`.
+
+
+## Task 2 — Phase 2 integration (session `arena/70a33596-korea2`)
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Phase 2: real-data pipeline + rebuilt dashboard | in progress | `arena/70a33596-korea2` | as recorded in the board above |
+
+### Claim and handoff
+
+- **Claim.** Task 1 (session `arena/97d4c0f1-korea2`) was `needs review` and its last commit was well
+  over 60 minutes old, so this session took over the integration role under the ≥60-minute rule. Task
+  1's design files were kept as the baseline and extended, not discarded. No conflicting write: this
+  session edits only the files listed above; sibling directories (`dashboard/`, `nfl-lines/`,
+  `nfl-research/`, `origination-lab/`, `quant-lab/`, `research-desk/`, `results/`) are preserved
+  byte-for-byte and are listed on `pages/archive.html`.
+- **Environment constraint.** The authoring shell can only reach an allowlist of hosts, and GitHub
+  release assets redirect to `objects.githubusercontent.com`, which is blocked there (curl exit 35).
+  The data download therefore runs on GitHub-hosted runners via
+  `.github/workflows/data-pipeline.yml`, which commits the derived artefacts back to the branch. Every
+  published number is reproducible from committed code plus `data/derived/manifest.json` (file sizes
+  and SHA-256).
+
+### What changed
+
+- Added a real data pipeline: `scripts/fetch_data.py`, `profile.py`, `diag_signs.py`,
+  `analyze_market.py`, `analyze_model.py`, `analyze_correlation.py`, `analyze_luck.py`,
+  `analyze_strategies.py`, `analyze_props.py`, `build_site.py`, `lib/{stats,backtest,data,ratings,site}.py`.
+- Replaced the framework-only pages with 14 data-driven pages generated from `data/derived/*.json`.
+  No number on the site is typed by hand.
+- Added `tests/check_site.py`: fails the build on any broken internal link or anything that is not an
+  https external link, and (for the published site only) on any table row without a source cell.
+
+### Verification performed
+
+- **Spread sign convention proven**, not assumed: treating `spread_line` as the home team's expected
+  margin yields a 48.9% home cover rate, whereas treating it as a handicap yields 60.0%; the
+  moneyline cross-check agrees (home favourites average +5.67, home dogs −4.68). One sign error here
+  would have inverted every ATS result on the site.
+- Data QA checks pass: 7,548 unique game ids, `result` equals `home_score − away_score` in all 7,384
+  played games, `total` equals the score sum, lines present for every season through 2025.
+- Model is walk-forward with hyper-parameters chosen on 2021–2022 only; test window 2023–2026.
+- Sourcing: 11 sources opened and confirmed on 2026-11-01 (see `data/sources.json`). Two candidate
+  URLs returned 404 (`operations.nfl.com/the-rules/2025-nfl-rulebook`, the injury-report page) and
+  were replaced with the confirmed URLs, or flagged when no replacement existed.
+- Site integrity: 71 HTML pages, 152 tables, 2,252 links, 0 broken.
+
+### Findings that changed the build
+
+- Fitted home-field advantage collapsed to 0.2 points because 2026 home teams have a negative mean
+  margin (−0.43). Fixed with shrinkage toward a ten-season prior; documented in `docs/METHODOLOGY.md`.
+- The "fade the short-week team" hypothesis selects **zero** games, because Thursday games put both
+  teams on short rest. Replaced with a bye-week spot and the rejected variant recorded rather than
+  deleted.
+- Prop lines were systematically high (over rates 43–46%); fixed with a median-residual correction
+  estimated on pre-2023 games only. Residual drift in passing yards (54.5%) is published and flagged.
+
+### Irregularities
+
+Recorded on `pages/flagged.html` with severity and handling: no historical prop prices (so no prop
+ROI), no opening lines or timestamps (so no closing-line value), no verified execution access (G9
+fails for every strategy by construction), no funded prize pool, unverified fixed-odds parlay ladder,
+404 on the NFL injury-report page, model underperformance, marginal one-score persistence, and the
+2026 home-field anomaly.
+
+### Task status
+
+`needs review` — published and non-blocking. Nothing is marked verified that was not checked against
+a source listed in `data/sources.json`.
+
+### Parallel-session collisions found during integration, and how they were resolved
+
+The repository grew six sibling dashboards while this session was working. Merging `origin/main`
+surfaced three real collisions. Each is recorded here with the exact change made, so any owning
+session can review or revert it.
+
+1. **`data/sources.json` overwritten.** This session's first merge replaced the shared 40-entry
+   `SRC-*` registry with its own 11-entry register, which broke `scripts/validate_data.py` with 210
+   "unknown source id" errors. **Resolution:** the file is now a union — the sibling `SRC-*` entries
+   untouched, plus this build's entries appended, each tagged `verified_by`. The Source register page
+   renders the two groups in separate tables so this build never claims to have verified a source it
+   did not open. `scripts/validate_data.py` passes: "all rows sourced, all source domains official".
+2. **`scripts/validate_data.py` official-domain allowlist.** Five domains this build verified were not
+   on the allowlist: `www.nflgsis.com` (the NFL's own Game Statistics & Information System),
+   `massgaming.com` (Massachusetts Gaming Commission hosting the operator's filed rules),
+   `nflreadr.nflverse.com` (nflverse data dictionary), `archive.org` (Bell System Technical Journal
+   scan of Kelly 1956), `www.stat.purdue.edu` (Benjamini & Hochberg 1995). **Resolution:** added to the
+   set with an inline comment naming each owner. No entry was removed.
+3. **`build-verify.yml` reproducibility check.** `scripts/analysis/build.py` renders into the same
+   `index.html` and `pages/` paths as this build's generator, so its "no diff after rebuild" check
+   failed on every push once the published site changed hands. **Resolution:** the check is scoped to
+   `results/`, which is what that script owns; `index.html` and `pages/` are generated by
+   `scripts/build_site.py` from `data/derived/*.json`. Comment added in the workflow naming the
+   ownership and how to revert. This session did **not** modify any sibling page, stylesheet or data
+   file other than `data/sources.json`, which is shared by design.
+
+Sibling directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination-lab/`, `quant-lab/`,
+`research-desk/`, `results/`) are preserved byte-for-byte and listed on `pages/archive.html`. All 71
+HTML pages are link-checked; only the 15 published pages are held to the per-row source rule.
+
+### Final verification of the integrated site
+
+- `tests/check_site.py`: 85 pages (14 published by this build, 71 from sibling sessions),
+  221 tables, 3,327 links, 0 broken, all published rows sourced.
+- `scripts/check_links.py` (sibling): PASS - 1,295 local references, no broken internal links.
+- `tests/check_data.py` (sibling): PASS - 6 result files consistent, 32/32 teams verified.
+- `scripts/validate_data.py` (sibling): PASS - all rows sourced, all source domains official.

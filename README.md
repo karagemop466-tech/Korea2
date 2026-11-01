@@ -1,160 +1,87 @@
-# Korea2 — NFL Line Origination & Skill-Based Strategy Research
+# Line Lab — NFL line origination and strategy validation
 
-Parallel, verified research into **originating our own NFL betting lines** from
-official data, **signal generation**, **validation gates that remove luck**,
-**correlation control for parlays and player-prop combos**, and a **leaderboard
-design with rewards for top-performing strategies** — covering single bets,
-parlays and player-prop combos.
+A working research pipeline that originates its own NFL spreads, totals, moneylines and player-prop
+lines from the official play-by-play feed, measures the correlations that decide parlay prices, and
+runs every candidate strategy through ten validation gates before it can earn anything.
 
-## Live sites (GitHub Pages, served from `main`)
+**Live site:** https://karagemop466-tech.github.io/Korea2/
 
-- **Line Lab** — root site: <https://karagemop466-tech.github.io/Korea2/>
-  (`index.html`, `pages/`, `assets/`). Rebuilt by `arena/d88b794a-korea2` into a measured,
-  fully sourced research site.
-- **NFL Line Origination Dashboard** (`arena-29806afc`):
-  <https://karagemop466-tech.github.io/Korea2/dashboard/>
-- **Quant Lab** (`arena/7b140798-korea2`):
-  <https://karagemop466-tech.github.io/Korea2/quant-lab/> — originated lines, 21 gated
-  strategies, measured correlations, 77-check verification register (self-contained in `quant-lab/`).
-- **Origination lab** (`arena/3f5af27c-korea2`):
-  <https://karagemop466-tech.github.io/Korea2/origination/> — self-contained pipeline and 13-page site:
-  own spread/total/moneyline for 7,548 games, 31 strategies through ten gates, prop origination,
-  correlations, 18-check verification register. Everything the page shows comes from
-  `origination/site_data/*.json`; run it with `python pipeline/run_all.py`.
-- Independent research from other sessions: `nfl-research/`, `research-desk/`, `nfl-lines/`.
+## Result of the current build
 
-## Repository map
+| Question | Answer | Evidence |
+|---|---|---|
+| Can the closing line be beaten by this model? | No | model spread MAE 10.38 vs market 9.70; model coefficient on margin after controlling for the close = −0.02 (p = 0.85) |
+| Did any strategy pass the gates? | No, 0 of 7 | see [Leaderboard](https://karagemop466-tech.github.io/Korea2/pages/leaderboard.html) |
+| Are parlay legs independent? | No | QB passing yards ↔ WR1 receiving yards r = +0.561; 4-leg same-team joint 11.1% vs 5.7% under independence |
+| Is a season win-loss record a signal? | Mostly luck | Pythagorean R² = 0.83; year-over-year luck correlation 0.019 |
+| Can prop ROI be measured? | Not here | no historical prop prices in the feed — flagged, not invented |
+
+The honest headline is that the market is better than the model, and the gate system rejects
+everything as a result. That is the intended behaviour of the system, not a failure of it.
+
+## How it works
+
+```
+scripts/fetch_data.py   download official feeds (runs on GitHub Actions)  -> data/raw/  (gitignored)
+scripts/profile.py      record columns, coverage, nulls                   -> data/derived/profile.json
+scripts/diag_signs.py   prove the spread sign convention from the data    -> data/derived/diag_signs.json
+scripts/analyze_*.py    market, model, correlation, luck, strategies, props -> data/derived/*.json
+scripts/build_site.py   render the dashboard from that JSON               -> index.html, pages/
+tests/check_site.py     link integrity + per-row source discipline
+```
+
+Nothing on the site is typed by hand; every number is read from the committed JSON. Re-running the
+pipeline changes the numbers, not the prose.
+
+### Why the pipeline downloads on Actions
+
+The development sandbox's shell can only reach a small allowlist of hosts, and GitHub **release
+assets** redirect to `objects.githubusercontent.com`, which is blocked there. The download therefore
+runs on GitHub-hosted runners (`.github/workflows/data-pipeline.yml`) and commits the derived
+artefacts back to the branch. Every published number is reproducible from committed code plus
+`data/derived/manifest.json`, which records each source file's size and SHA-256.
+
+### Measured pipeline
+
+Bets are settled at the **closing line** reported by the feed, so nothing can hide behind a stale or
+soft price. Spread pushes and total pushes follow the operator rulebook (a tie after the handicap is
+a push and the stake is returned), and pushes are removed from the win-rate denominator.
+
+## Repository layout
 
 | Path | Contents |
-| --- | --- |
-| `index.html`, `pages/` | Line Lab site — 12 pages generated from `results/*.json` |
-| `scripts/analysis/` | The quantitative pipeline: data prep, market baseline, strategy engine, correlation study, props, line origination, verification, site render |
-| `quant-lab/` | Self-contained quant lab (session `7b140798`): pipeline, 21-strategy backtest, nine gates, correlations, 77-check verification register, 12-page site |
-| `data/derived/` | Committed pruned nflverse extracts (raw downloads are gitignored) |
-| `data/provenance.json` | URL, row count and SHA-256 of every source file used |
-| `results/` | Committed JSON outputs; the single source of truth for the site |
-| `tests/check_data.py` | Statistical invariants the prose depends on |
-| `tests/check_site.py` | Links, navigation, one source link per table row |
-| `dashboard/` | Line-origination dashboard site from session `arena-29806afc` |
-| `data/*.json` | Verified data layer from session `arena-29806afc` (source registry, league facts, signals, gates G1–G8) |
-| `docs/` | `EXECUTIVE_SUMMARY.md`, `REPO_REVIEW.md` |
-| `scripts/` | `validate_data.py`, `check_links.py` from other sessions |
-| `.github/workflows/` | `build-verify.yml` (this session), `validate.yml` (dashboard), `fetch-nflverse.yml` (data refresh) |
-| `pipeline/`, `origination/` | Session `3f5af27c`: the origination/strategy/gating pipeline and its 13-page site |
-| `COORDINATION.md` | Shared task board and session logs for all parallel sessions |
+|---|---|
+| `index.html`, `pages/` | the published dashboard (14 pages) |
+| `data/derived/` | committed outputs: profile, manifest, market, model, correlation, luck, strategies, props, predictions |
+| `data/sources.json` | source register, each entry opened and confirmed on 2026-11-01 |
+| `scripts/` | fetch, profile, diagnostics, analysis, site build |
+| `tests/check_site.py` | fails the build on a broken link or a table row without a source |
+| `docs/` | executive summary, methodology, requirements matrix |
+| sibling directories | earlier parallel-session dashboards, preserved unchanged (`pages/archive.html`) |
 
-## Run the quantitative build
+## Running it
 
 ```bash
-pip install pandas numpy scipy
-python scripts/analysis/build.py     # regenerate results/ and every page
-python tests/check_data.py           # statistical invariants
-python tests/check_site.py           # links and source coverage
+pip install -r requirements.txt
+python scripts/fetch_data.py     # needs unrestricted outbound HTTPS
+python scripts/profile.py
+python scripts/diag_signs.py
+for s in analyze_market analyze_model analyze_correlation analyze_luck analyze_strategies analyze_props; do python scripts/$s.py; done
+python scripts/build_site.py     # requires Python 3.12+
+python tests/check_site.py
 ```
 
-`build.py` makes no network calls and is deterministic: CI re-runs it and fails if
-the committed output differs.
+## Sources
 
-## Method
+Official NFL documents (rules, statistician guide, data-distribution partnership), a regulator-filed
+operator rulebook, and statistical literature (Kelly 1956, Benjamini–Hochberg 1995, NIST). Every
+claim on the site links to one of them; the register with confirmation notes is on the
+[Source register page](https://karagemop466-tech.github.io/Korea2/pages/sources.html).
+Unconfirmable items are on the
+[Flagged for review page](https://karagemop466-tech.github.io/Korea2/pages/flagged.html) instead of
+being filled in.
 
-Every rule is fixed before outcomes are examined and only uses pre-kickoff
-information. Seasons are walked forward — each season is predicted using earlier
-seasons only. Bets settle at the closing price stored in the data, never an
-assumed −110. A strategy enters the leaderboard only after clearing six gates:
-sample size, two-sided significance, Benjamini–Hochberg correction across every
-strategy tried, positive return with a bootstrap interval that excludes zero, a
-permutation test against random portfolios of the same size, and a minimum
-track-record length. **No strategy currently clears all six.**
+## Scope and disclaimer
 
-## Verification policy
-
-Two tiers of source, never blurred:
-
-- **Official** — NFL.com standings, schedules, player stats and team stats. All
-  **32 of 32** 2026 team records (W, L, T, PF, PA) reconcile exactly, as do three
-  quarterback passing lines across yards, touchdowns, interceptions, completions
-  and attempts.
-- **Third-party** — nflverse publishes machine-readable extracts of the NFL's own
-  play-by-play and box scores, including historical closing prices that no league
-  source publishes. Byte sizes and SHA-256 of every file are in
-  `data/provenance.json`.
-
-Every table row on the Line Lab site carries an https source link; the build fails
-if one does not. Any value that cannot be confirmed from an official source is
-rendered as **unverified** and published on the **Flagged for review** page.
-
-Other sessions' policy (see `data/sources.json`): every row carries official
-source links checked on 2026-11-01; unconfirmable values are left blank and listed
-on `dashboard/pages/flagged.html`.
-
-Run the other sessions' checks too:
-
-```bash
-python3 scripts/validate_data.py   # data rows + official-source policy
-python3 scripts/check_links.py     # internal site links (whole repo)
-```
-
-## Quant Lab — originated lines, gated strategies, verification (session `7b140798`)
-
-**Live site:** https://karagemop466-tech.github.io/Korea2/quant-lab/
-
-An end-to-end quantitative lab that lives entirely in `quant-lab/` and touches no other
-session's files:
-
-| Path | Contents |
-| --- | --- |
-| `quant-lab/index.html` | landing dashboard (KPIs, headline findings, navigation) |
-| `quant-lab/lines.html` | originated spread/total for Weeks 9-10 next to the market close |
-| `quant-lab/props.html` | player-prop board, QB/WR correlation, same-game pricing error |
-| `quant-lab/strategies.html` | 21 pre-registered strategies, discovery vs holdout |
-| `quant-lab/leaderboard.html` | competition rules, scoring, rewards, results |
-| `quant-lab/correlation.html` | every correlation value with n and 95% CI |
-| `quant-lab/validation.html` | nine gates and the pass/fail matrix |
-| `quant-lab/verification.html` | 77 line-by-line checks against nfl.com |
-| `quant-lab/flagged.html` | unverified items, assumptions, 10 irregularities |
-| `quant-lab/methodology.html` | model, walk-forward design, luck removal |
-| `quant-lab/sources.html` | provenance, pinned commit, file hashes |
-| `quant-lab/EXECUTIVE_SUMMARY.md` | one-page summary |
-
-Reproduce (no manual input, no hand-typed values):
-
-```bash
-cd quant-lab
-bash scripts/fetch_data.sh        # pinned raw data from github.com only
-python3 scripts/build_dataset.py  # -> data/processed/games.json
-python3 scripts/model.py          # originate lines, walk-forward
-python3 scripts/backtest.py       # settle all 21 strategies
-python3 scripts/props.py          # prop board + correlations
-python3 scripts/validation.py     # nine gates, FDR, leaderboard
-python3 scripts/verify_official.py# 77 checks vs nfl.com
-python3 scripts/build_site.py     # regenerate the site + link check
-```
-
-Result: **0 of 21 strategies clear all nine gates**; the closing line is not beaten. What does
-hold up is measured correlation for parlay pricing and a verification register that proves the
-bulk data against official nfl.com standings, 64 team-seasons for 64.
-
-## Responsible gambling
-
-Analytics research only — not a guarantee of profit. Wager only where legal and
-only if 21+. Free, confidential help 24/7/365 in all 50 states and U.S.
-territories via the
-[National Council on Problem Gambling](https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/).
-
-## Origination Lab (session `6206fba3`)
-
-<https://karagemop466-tech.github.io/Korea2/origination-lab/> — self-contained in
-`origination-lab/`: a 21-season line-origination model, 27 pre-registered signals
-(Benjamini–Hochberg corrected), an 18-strategy competition behind seven validation
-gates, correlation values for parlay/pricing, a luck-permutation layer, a
-player-prop origination layer, and a 15-page site built from `origination-lab/data/derived/*.json`.
-
-```bash
-python origination-lab/scripts/fetch_data.py     # download + verify nflverse extracts
-python origination-lab/scripts/build_all.py      # every artefact, then the site
-python origination-lab/scripts/check_links.py    # internal links + external host probe
-```
-
-Headline: the model is within 10.69 points of the actual margin against the closing
-line's 10.26; no strategy cleared all seven gates, so nothing is ranked as playable.
-14 irregularities are published on the site's Flagged for review page.
+Research and measurement, not betting advice. No strategy is approved for capital, no reward pool is
+funded, and no sportbook access, price or limit has been verified.

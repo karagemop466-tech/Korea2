@@ -761,6 +761,16 @@ def md_to_html(md):
         return s
     while i < len(lines):
         ln = lines[i]
+        if ln.strip().startswith("```"):
+            close()
+            i += 1
+            buf = []
+            while i < len(lines) and not lines[i].strip().startswith("```"):
+                buf.append(lines[i])
+                i += 1
+            out.append("<pre>" + e("\n".join(buf)) + "</pre>")
+            i += 1
+            continue
         if ln.startswith("|") and i + 1 < len(lines) and set(lines[i + 1].replace("|", "").strip()) <= set("-: "):
             close()
             hdr = [c.strip() for c in ln.strip().strip("|").split("|")]

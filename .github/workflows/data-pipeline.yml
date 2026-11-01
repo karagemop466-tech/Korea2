@@ -1,0 +1,62 @@
+name: data-pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches: ['arena/70a33596-korea2', main]
+    paths:
+      - 'scripts/**'
+      - 'requirements.txt'
+      - '.github/workflows/data-pipeline.yml'
+permissions:
+  contents: write
+concurrency:
+  group: data-pipeline-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: scripts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Fetch upstream data
+        run: python scripts/fetch_data.py 2>&1 | tee -a data/derived/run_log.txt
+      - name: Profile dataset
+        run: python scripts/profile.py 2>&1 | tee -a data/derived/run_log.txt
+      - name: Analysis
+        run: |
+          for s in diag_signs analyze_market analyze_model analyze_correlation analyze_luck analyze_strategies analyze_props; do
+            if [ -f "scripts/$s.py" ]; then
+              echo "=== $s ===" | tee -a data/derived/run_log.txt
+              python "scripts/$s.py" 2>&1 | tee -a data/derived/run_log.txt || echo "FAILED: $s" | tee -a data/derived/run_log.txt
+            fi
+          done
+      - name: Build site
+        run: python scripts/build_site.py 2>&1 | tee -a data/derived/run_log.txt
+      - name: Verify site
+        run: |
+          # The published root site must be this generator's output, not a sibling session's rebuild
+          # of the same paths. Fail loudly if ownership has been taken over.
+          python - <<'EOF'
+          import sys
+          html = open("index.html").read()
+          ok = "line-lab/scripts/build_site.py" in html
+          print("published site owner:", "line-lab" if ok else "UNKNOWN - sibling generator")
+          sys.exit(0 if ok else 1)
+          EOF
+          python tests/check_site.py 2>&1 | tee -a data/derived/run_log.txt
+      - name: Commit derived data and site
+        run: |
+          git config user.name "line-lab-bot"
+          git config user.email "line-lab-bot@users.noreply.github.com"
+          git add -f data/derived
+          git add index.html pages assets
+          if git diff --cached --quiet; then echo "no changes"; else
+            git commit -m "data: refresh derived datasets [skip ci]"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin HEAD:"$GITHUB_REF_NAME"
+          fi

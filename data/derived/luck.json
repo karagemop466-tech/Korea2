@@ -1,0 +1,901 @@
+{
+  "pythagorean": {
+    "exponent": 2.37,
+    "team_seasons": 862,
+    "seasons": [
+      1999,
+      2026
+    ],
+    "r2_expected_vs_actual_win_pct": 0.8254,
+    "sd_luck_wins": 1.327,
+    "mean_abs_luck_wins": 1.065,
+    "definition": "luck_wins = actual wins - Pythagorean expected wins over the same games",
+    "method_source": "Bill James Pythagorean expectation; exponent 2.37 is the value used for the NFL in the literature"
+  },
+  "luck_persistence": {
+    "n": 827,
+    "r": 0.018865760761162892,
+    "p": 0.5879826391965012,
+    "ci_low": -0.049370410095640964,
+    "ci_high": 0.08692663598525946,
+    "r2": 0.00035591692909743344,
+    "status": "measured",
+    "label": "Year-over-year correlation of Pythagorean luck (wins)",
+    "interpretation": "Near zero means last season's luck did not carry forward: the deviation was noise, not skill."
+  },
+  "one_score_games": {
+    "n_team_seasons": 889,
+    "mean_win_rate": 0.4968,
+    "sd_win_rate": 0.1985,
+    "share_of_games": 0.51,
+    "note": "A team that wins most one-score games is mostly lucky; the rate should regress hard."
+  },
+  "one_score_persistence": {
+    "n": 852,
+    "r": 0.08712403155800667,
+    "p": 0.010953701754249857,
+    "ci_low": 0.020076994087891674,
+    "ci_high": 0.15339096316253367,
+    "r2": 0.007590596874920543,
+    "status": "measured",
+    "label": "Year-over-year correlation of one-score win rate"
+  },
+  "variance_decomposition": {
+    "note": "Share of variance in season win% explained by point differential, and by Pythagorean expectation. The unexplained part is the luck budget.",
+    "r2_point_diff": 0.8292,
+    "r2_pythagorean": 0.8254,
+    "unexplained_share": 0.1746,
+    "sd_actual_win_pct": 0.1921,
+    "sd_expected_win_pct": 0.158
+  },
+  "ats_coin_flip_test": {
+    "n": 13760,
+    "wins": 6880,
+    "rate": 0.5,
+    "ci": [
+      0.4916,
+      0.5084
+    ],
+    "binomial_p_vs_50": 1.0,
+    "note": "Every team-game ATS result pooled. Any 'system' has to move this number."
+  },
+  "sample_size_requirements": {
+    "note": "Bets needed for 80% power at alpha=0.05 to detect a true win rate, two-sided, against a null of 50%. Uses the standard normal approximation.",
+    "rows": [
+      {
+        "true_win_rate": 0.51,
+        "bets_needed": 39240
+      },
+      {
+        "true_win_rate": 0.52,
+        "bets_needed": 9806
+      },
+      {
+        "true_win_rate": 0.524,
+        "bets_needed": 6809
+      },
+      {
+        "true_win_rate": 0.53,
+        "bets_needed": 4356
+      },
+      {
+        "true_win_rate": 0.55,
+        "bets_needed": 1565
+      },
+      {
+        "true_win_rate": 0.57,
+        "bets_needed": 796
+      }
+    ],
+    "breakeven_win_rate_at_minus_110": 0.5238,
+    "breakeven_note": "100/210 = 52.38% is the break-even rate at -110."
+  },
+  "multiple_testing": {
+    "note": "With k candidate strategies tested, the best one will look good by chance. The deflated-Sharpe threshold is the Sharpe a zero-skill strategy would be expected to reach as the maximum of k tries.",
+    "rows": [
+      {
+        "strategies_tested": 1,
+        "expected_max_sharpe_per_bet_under_null": -Infinity
+      },
+      {
+        "strategies_tested": 5,
+        "expected_max_sharpe_per_bet_under_null": 0.0377
+      },
+      {
+        "strategies_tested": 10,
+        "expected_max_sharpe_per_bet_under_null": 0.0498
+      },
+      {
+        "strategies_tested": 25,
+        "expected_max_sharpe_per_bet_under_null": 0.0632
+      },
+      {
+        "strategies_tested": 50,
+        "expected_max_sharpe_per_bet_under_null": 0.072
+      },
+      {
+        "strategies_tested": 100,
+        "expected_max_sharpe_per_bet_under_null": 0.08
+      }
+    ],
+    "assumption": "per-bet Sharpe variance approximated as 1/n with n=1000 bets"
+  },
+  "luck_table_recent": [
+    {
+      "season": 2023,
+      "team": "PHI",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 8.62,
+      "luck_wins": 2.38
+    },
+    {
+      "season": 2023,
+      "team": "PIT",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 7.86,
+      "luck_wins": 2.14
+    },
+    {
+      "season": 2023,
+      "team": "DET",
+      "wins": 12.0,
+      "gp": 17,
+      "exp_wins": 10.04,
+      "luck_wins": 1.96
+    },
+    {
+      "season": 2023,
+      "team": "CLE",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 9.4,
+      "luck_wins": 1.6
+    },
+    {
+      "season": 2023,
+      "team": "SEA",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 7.5,
+      "luck_wins": 1.5
+    },
+    {
+      "season": 2023,
+      "team": "NYG",
+      "wins": 6.0,
+      "gp": 17,
+      "exp_wins": 4.55,
+      "luck_wins": 1.45
+    },
+    {
+      "season": 2023,
+      "team": "NYJ",
+      "wins": 7.0,
+      "gp": 17,
+      "exp_wins": 5.77,
+      "luck_wins": 1.23
+    },
+    {
+      "season": 2023,
+      "team": "CIN",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 8.02,
+      "luck_wins": 0.98
+    },
+    {
+      "season": 2023,
+      "team": "IND",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 8.03,
+      "luck_wins": 0.97
+    },
+    {
+      "season": 2023,
+      "team": "DEN",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 7.05,
+      "luck_wins": 0.95
+    },
+    {
+      "season": 2023,
+      "team": "HOU",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 9.16,
+      "luck_wins": 0.84
+    },
+    {
+      "season": 2023,
+      "team": "LA",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 9.2,
+      "luck_wins": 0.8
+    },
+    {
+      "season": 2023,
+      "team": "JAX",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 8.66,
+      "luck_wins": 0.34
+    },
+    {
+      "season": 2023,
+      "team": "KC",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 10.79,
+      "luck_wins": 0.21
+    },
+    {
+      "season": 2023,
+      "team": "MIA",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 10.83,
+      "luck_wins": 0.17
+    },
+    {
+      "season": 2023,
+      "team": "ATL",
+      "wins": 7.0,
+      "gp": 17,
+      "exp_wins": 7.0,
+      "luck_wins": -0.0
+    },
+    {
+      "season": 2023,
+      "team": "TB",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 9.19,
+      "luck_wins": -0.19
+    },
+    {
+      "season": 2023,
+      "team": "WAS",
+      "wins": 4.0,
+      "gp": 17,
+      "exp_wins": 4.32,
+      "luck_wins": -0.32
+    },
+    {
+      "season": 2023,
+      "team": "BAL",
+      "wins": 13.0,
+      "gp": 17,
+      "exp_wins": 13.34,
+      "luck_wins": -0.34
+    },
+    {
+      "season": 2023,
+      "team": "GB",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 9.4,
+      "luck_wins": -0.4
+    },
+    {
+      "season": 2023,
+      "team": "NE",
+      "wins": 4.0,
+      "gp": 17,
+      "exp_wins": 4.44,
+      "luck_wins": -0.44
+    },
+    {
+      "season": 2023,
+      "team": "LV",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 8.53,
+      "luck_wins": -0.53
+    },
+    {
+      "season": 2023,
+      "team": "TEN",
+      "wins": 6.0,
+      "gp": 17,
+      "exp_wins": 6.67,
+      "luck_wins": -0.67
+    },
+    {
+      "season": 2023,
+      "team": "DAL",
+      "wins": 12.0,
+      "gp": 17,
+      "exp_wins": 12.87,
+      "luck_wins": -0.87
+    },
+    {
+      "season": 2023,
+      "team": "CHI",
+      "wins": 7.0,
+      "gp": 17,
+      "exp_wins": 7.98,
+      "luck_wins": -0.98
+    },
+    {
+      "season": 2023,
+      "team": "MIN",
+      "wins": 7.0,
+      "gp": 17,
+      "exp_wins": 7.99,
+      "luck_wins": -0.99
+    },
+    {
+      "season": 2023,
+      "team": "SF",
+      "wins": 12.0,
+      "gp": 17,
+      "exp_wins": 13.01,
+      "luck_wins": -1.01
+    },
+    {
+      "season": 2023,
+      "team": "BUF",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 12.02,
+      "luck_wins": -1.02
+    },
+    {
+      "season": 2023,
+      "team": "ARI",
+      "wins": 4.0,
+      "gp": 17,
+      "exp_wins": 5.41,
+      "luck_wins": -1.41
+    },
+    {
+      "season": 2023,
+      "team": "CAR",
+      "wins": 2.0,
+      "gp": 17,
+      "exp_wins": 3.52,
+      "luck_wins": -1.52
+    },
+    {
+      "season": 2023,
+      "team": "NO",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 10.54,
+      "luck_wins": -1.54
+    },
+    {
+      "season": 2023,
+      "team": "LAC",
+      "wins": 5.0,
+      "gp": 17,
+      "exp_wins": 7.1,
+      "luck_wins": -2.1
+    },
+    {
+      "season": 2024,
+      "team": "KC",
+      "wins": 15.0,
+      "gp": 17,
+      "exp_wins": 10.15,
+      "luck_wins": 4.85
+    },
+    {
+      "season": 2024,
+      "team": "MIN",
+      "wins": 14.0,
+      "gp": 17,
+      "exp_wins": 11.07,
+      "luck_wins": 2.93
+    },
+    {
+      "season": 2024,
+      "team": "LA",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 7.99,
+      "luck_wins": 2.01
+    },
+    {
+      "season": 2024,
+      "team": "DET",
+      "wins": 15.0,
+      "gp": 17,
+      "exp_wins": 13.02,
+      "luck_wins": 1.98
+    },
+    {
+      "season": 2024,
+      "team": "PHI",
+      "wins": 14.0,
+      "gp": 17,
+      "exp_wins": 12.44,
+      "luck_wins": 1.56
+    },
+    {
+      "season": 2024,
+      "team": "HOU",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 8.5,
+      "luck_wins": 1.5
+    },
+    {
+      "season": 2024,
+      "team": "WAS",
+      "wins": 12.0,
+      "gp": 17,
+      "exp_wins": 10.62,
+      "luck_wins": 1.38
+    },
+    {
+      "season": 2024,
+      "team": "DAL",
+      "wins": 7.0,
+      "gp": 17,
+      "exp_wins": 5.68,
+      "luck_wins": 1.32
+    },
+    {
+      "season": 2024,
+      "team": "SEA",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 8.69,
+      "luck_wins": 1.31
+    },
+    {
+      "season": 2024,
+      "team": "BUF",
+      "wins": 13.0,
+      "gp": 17,
+      "exp_wins": 11.88,
+      "luck_wins": 1.12
+    },
+    {
+      "season": 2024,
+      "team": "IND",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 7.25,
+      "luck_wins": 0.75
+    },
+    {
+      "season": 2024,
+      "team": "CAR",
+      "wins": 5.0,
+      "gp": 17,
+      "exp_wins": 4.36,
+      "luck_wins": 0.64
+    },
+    {
+      "season": 2024,
+      "team": "PIT",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 9.41,
+      "luck_wins": 0.59
+    },
+    {
+      "season": 2024,
+      "team": "ATL",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 7.66,
+      "luck_wins": 0.34
+    },
+    {
+      "season": 2024,
+      "team": "BAL",
+      "wins": 12.0,
+      "gp": 17,
+      "exp_wins": 11.93,
+      "luck_wins": 0.07
+    },
+    {
+      "season": 2024,
+      "team": "MIA",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 7.96,
+      "luck_wins": 0.04
+    },
+    {
+      "season": 2024,
+      "team": "LAC",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 11.31,
+      "luck_wins": -0.31
+    },
+    {
+      "season": 2024,
+      "team": "CIN",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 9.34,
+      "luck_wins": -0.34
+    },
+    {
+      "season": 2024,
+      "team": "GB",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 11.47,
+      "luck_wins": -0.47
+    },
+    {
+      "season": 2024,
+      "team": "CLE",
+      "wins": 3.0,
+      "gp": 17,
+      "exp_wins": 3.82,
+      "luck_wins": -0.82
+    },
+    {
+      "season": 2024,
+      "team": "NE",
+      "wins": 4.0,
+      "gp": 17,
+      "exp_wins": 5.02,
+      "luck_wins": -1.02
+    },
+    {
+      "season": 2024,
+      "team": "ARI",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 9.04,
+      "luck_wins": -1.04
+    },
+    {
+      "season": 2024,
+      "team": "TB",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 11.09,
+      "luck_wins": -1.09
+    },
+    {
+      "season": 2024,
+      "team": "LV",
+      "wins": 4.0,
+      "gp": 17,
+      "exp_wins": 5.25,
+      "luck_wins": -1.25
+    },
+    {
+      "season": 2024,
+      "team": "SF",
+      "wins": 6.0,
+      "gp": 17,
+      "exp_wins": 7.36,
+      "luck_wins": -1.36
+    },
+    {
+      "season": 2024,
+      "team": "DEN",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 11.51,
+      "luck_wins": -1.51
+    },
+    {
+      "season": 2024,
+      "team": "JAX",
+      "wins": 4.0,
+      "gp": 17,
+      "exp_wins": 5.54,
+      "luck_wins": -1.54
+    },
+    {
+      "season": 2024,
+      "team": "NYG",
+      "wins": 3.0,
+      "gp": 17,
+      "exp_wins": 4.6,
+      "luck_wins": -1.6
+    },
+    {
+      "season": 2024,
+      "team": "NYJ",
+      "wins": 5.0,
+      "gp": 17,
+      "exp_wins": 6.73,
+      "luck_wins": -1.73
+    },
+    {
+      "season": 2024,
+      "team": "CHI",
+      "wins": 5.0,
+      "gp": 17,
+      "exp_wins": 6.74,
+      "luck_wins": -1.74
+    },
+    {
+      "season": 2024,
+      "team": "TEN",
+      "wins": 3.0,
+      "gp": 17,
+      "exp_wins": 4.82,
+      "luck_wins": -1.82
+    },
+    {
+      "season": 2024,
+      "team": "NO",
+      "wins": 5.0,
+      "gp": 17,
+      "exp_wins": 6.87,
+      "luck_wins": -1.87
+    },
+    {
+      "season": 2025,
+      "team": "DEN",
+      "wins": 14.0,
+      "gp": 17,
+      "exp_wins": 10.99,
+      "luck_wins": 3.01
+    },
+    {
+      "season": 2025,
+      "team": "CHI",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 9.11,
+      "luck_wins": 1.89
+    },
+    {
+      "season": 2025,
+      "team": "SF",
+      "wins": 12.0,
+      "gp": 17,
+      "exp_wins": 10.13,
+      "luck_wins": 1.87
+    },
+    {
+      "season": 2025,
+      "team": "LAC",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 9.29,
+      "luck_wins": 1.71
+    },
+    {
+      "season": 2025,
+      "team": "NE",
+      "wins": 14.0,
+      "gp": 17,
+      "exp_wins": 12.46,
+      "luck_wins": 1.54
+    },
+    {
+      "season": 2025,
+      "team": "CAR",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 6.52,
+      "luck_wins": 1.48
+    },
+    {
+      "season": 2025,
+      "team": "PIT",
+      "wins": 10.0,
+      "gp": 17,
+      "exp_wins": 8.76,
+      "luck_wins": 1.24
+    },
+    {
+      "season": 2025,
+      "team": "JAX",
+      "wins": 13.0,
+      "gp": 17,
+      "exp_wins": 11.79,
+      "luck_wins": 1.21
+    },
+    {
+      "season": 2025,
+      "team": "PHI",
+      "wins": 11.0,
+      "gp": 17,
+      "exp_wins": 10.03,
+      "luck_wins": 0.97
+    },
+    {
+      "season": 2025,
+      "team": "SEA",
+      "wins": 14.0,
+      "gp": 17,
+      "exp_wins": 13.04,
+      "luck_wins": 0.96
+    },
+    {
+      "season": 2025,
+      "team": "BUF",
+      "wins": 12.0,
+      "gp": 17,
+      "exp_wins": 11.18,
+      "luck_wins": 0.82
+    },
+    {
+      "season": 2025,
+      "team": "ATL",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 7.23,
+      "luck_wins": 0.77
+    },
+    {
+      "season": 2025,
+      "team": "MIA",
+      "wins": 7.0,
+      "gp": 17,
+      "exp_wins": 6.52,
+      "luck_wins": 0.48
+    },
+    {
+      "season": 2025,
+      "team": "HOU",
+      "wins": 12.0,
+      "gp": 17,
+      "exp_wins": 11.53,
+      "luck_wins": 0.47
+    },
+    {
+      "season": 2025,
+      "team": "TB",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 7.71,
+      "luck_wins": 0.29
+    },
+    {
+      "season": 2025,
+      "team": "MIN",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 8.83,
+      "luck_wins": 0.17
+    },
+    {
+      "season": 2025,
+      "team": "LA",
+      "wins": 12.0,
+      "gp": 17,
+      "exp_wins": 12.28,
+      "luck_wins": -0.28
+    },
+    {
+      "season": 2025,
+      "team": "NO",
+      "wins": 6.0,
+      "gp": 17,
+      "exp_wins": 6.29,
+      "luck_wins": -0.29
+    },
+    {
+      "season": 2025,
+      "team": "GB",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 9.33,
+      "luck_wins": -0.33
+    },
+    {
+      "season": 2025,
+      "team": "LV",
+      "wins": 3.0,
+      "gp": 17,
+      "exp_wins": 3.41,
+      "luck_wins": -0.41
+    },
+    {
+      "season": 2025,
+      "team": "CLE",
+      "wins": 5.0,
+      "gp": 17,
+      "exp_wins": 5.54,
+      "luck_wins": -0.54
+    },
+    {
+      "season": 2025,
+      "team": "DAL",
+      "wins": 7.0,
+      "gp": 17,
+      "exp_wins": 7.68,
+      "luck_wins": -0.68
+    },
+    {
+      "season": 2025,
+      "team": "CIN",
+      "wins": 6.0,
+      "gp": 17,
+      "exp_wins": 6.79,
+      "luck_wins": -0.79
+    },
+    {
+      "season": 2025,
+      "team": "TEN",
+      "wins": 3.0,
+      "gp": 17,
+      "exp_wins": 3.83,
+      "luck_wins": -0.83
+    },
+    {
+      "season": 2025,
+      "team": "NYJ",
+      "wins": 3.0,
+      "gp": 17,
+      "exp_wins": 3.86,
+      "luck_wins": -0.86
+    },
+    {
+      "season": 2025,
+      "team": "DET",
+      "wins": 9.0,
+      "gp": 17,
+      "exp_wins": 10.02,
+      "luck_wins": -1.02
+    },
+    {
+      "season": 2025,
+      "team": "BAL",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 9.14,
+      "luck_wins": -1.14
+    },
+    {
+      "season": 2025,
+      "team": "WAS",
+      "wins": 5.0,
+      "gp": 17,
+      "exp_wins": 6.18,
+      "luck_wins": -1.18
+    },
+    {
+      "season": 2025,
+      "team": "IND",
+      "wins": 8.0,
+      "gp": 17,
+      "exp_wins": 9.73,
+      "luck_wins": -1.73
+    },
+    {
+      "season": 2025,
+      "team": "ARI",
+      "wins": 3.0,
+      "gp": 17,
+      "exp_wins": 5.44,
+      "luck_wins": -2.44
+    },
+    {
+      "season": 2025,
+      "team": "NYG",
+      "wins": 4.0,
+      "gp": 17,
+      "exp_wins": 7.09,
+      "luck_wins": -3.09
+    },
+    {
+      "season": 2025,
+      "team": "KC",
+      "wins": 6.0,
+      "gp": 17,
+      "exp_wins": 9.49,
+      "luck_wins": -3.49
+    },
+    {
+      "season": 2026,
+      "team": "GB",
+      "wins": 5.0,
+      "gp": 8,
+      "exp_wins": 4.2,
+      "luck_wins": 0.8
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# Runtime for the pipeline. Versions are the ones this build was executed with.
+# Runtime pins. pyarrow follows the sibling pipeline's verified version.
 pandas==3.1.0
 numpy==2.4.6
 scipy==1.17.1

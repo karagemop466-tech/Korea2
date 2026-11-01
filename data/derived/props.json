@@ -1,0 +1,926 @@
+{
+  "scope": {
+    "seasons": [
+      2012,
+      2026
+    ],
+    "test_seasons": [
+      2023,
+      2026
+    ],
+    "player_games": 248972
+  },
+  "limitation": "No historical player-prop market prices exist in the official feed, so no prop ROI or closing-line comparison is published. Accuracy and calibration are measured; profitability is unverified and flagged.",
+  "evaluations": [
+    {
+      "stat": "receiving_yards",
+      "label": "Receiving yards",
+      "n": 8738,
+      "mae_forecast": 19.948,
+      "mae_baseline_season_mean": 19.883,
+      "mae_baseline_last3": 21.075,
+      "mae_improvement_vs_season_mean_pct": -0.33,
+      "corr_forecast_actual": 0.5809,
+      "resid_sd": 28.196,
+      "median_residual_correction": -3.173,
+      "originated_line_over_rate": 0.5237,
+      "n_decided": 8633,
+      "pushes_at_originated_line": 105,
+      "calibration_note": "The line is placed at the forecast, so an unbiased model should show an over rate of 50%. The published rate is the observed one.",
+      "calibration_by_quartile": [
+        {
+          "threshold": "forecast-20%",
+          "predicted_over_rate": 0.5852,
+          "actual_over_rate": 0.4914,
+          "n": 8738
+        },
+        {
+          "threshold": "forecast+0%",
+          "predicted_over_rate": 0.5,
+          "actual_over_rate": 0.4122,
+          "n": 8738
+        },
+        {
+          "threshold": "forecast+20%",
+          "predicted_over_rate": 0.4148,
+          "actual_over_rate": 0.3476,
+          "n": 8738
+        }
+      ],
+      "test_seasons": [
+        2023,
+        2026
+      ],
+      "status": "measured"
+    },
+    {
+      "stat": "receptions",
+      "label": "Receptions",
+      "n": 8738,
+      "mae_forecast": 1.379,
+      "mae_baseline_season_mean": 1.387,
+      "mae_baseline_last3": 1.435,
+      "mae_improvement_vs_season_mean_pct": 0.55,
+      "corr_forecast_actual": 0.6491,
+      "resid_sd": 1.89,
+      "median_residual_correction": -0.163,
+      "originated_line_over_rate": 0.5103,
+      "n_decided": 7219,
+      "pushes_at_originated_line": 1519,
+      "calibration_note": "The line is placed at the forecast, so an unbiased model should show an over rate of 50%. The published rate is the observed one.",
+      "calibration_by_quartile": [
+        {
+          "threshold": "forecast-20%",
+          "predicted_over_rate": 0.6062,
+          "actual_over_rate": 0.5498,
+          "n": 8738
+        },
+        {
+          "threshold": "forecast+0%",
+          "predicted_over_rate": 0.5,
+          "actual_over_rate": 0.438,
+          "n": 8738
+        },
+        {
+          "threshold": "forecast+20%",
+          "predicted_over_rate": 0.3938,
+          "actual_over_rate": 0.3505,
+          "n": 8738
+        }
+      ],
+      "test_seasons": [
+        2023,
+        2026
+      ],
+      "status": "measured"
+    },
+    {
+      "stat": "rushing_yards",
+      "label": "Rushing yards",
+      "n": 3602,
+      "mae_forecast": 19.942,
+      "mae_baseline_season_mean": 20.049,
+      "mae_baseline_last3": 20.856,
+      "mae_improvement_vs_season_mean_pct": 0.53,
+      "corr_forecast_actual": 0.6425,
+      "resid_sd": 28.72,
+      "median_residual_correction": -1.738,
+      "originated_line_over_rate": 0.4989,
+      "n_decided": 3546,
+      "pushes_at_originated_line": 56,
+      "calibration_note": "The line is placed at the forecast, so an unbiased model should show an over rate of 50%. The published rate is the observed one.",
+      "calibration_by_quartile": [
+        {
+          "threshold": "forecast-20%",
+          "predicted_over_rate": 0.5936,
+          "actual_over_rate": 0.5105,
+          "n": 3602
+        },
+        {
+          "threshold": "forecast+0%",
+          "predicted_over_rate": 0.5,
+          "actual_over_rate": 0.4187,
+          "n": 3602
+        },
+        {
+          "threshold": "forecast+20%",
+          "predicted_over_rate": 0.4064,
+          "actual_over_rate": 0.3395,
+          "n": 3602
+        }
+      ],
+      "test_seasons": [
+        2023,
+        2026
+      ],
+      "status": "measured"
+    },
+    {
+      "stat": "passing_yards",
+      "label": "Passing yards",
+      "n": 1441,
+      "mae_forecast": 66.694,
+      "mae_baseline_season_mean": 67.292,
+      "mae_baseline_last3": 69.666,
+      "mae_improvement_vs_season_mean_pct": 0.89,
+      "corr_forecast_actual": 0.4443,
+      "resid_sd": 85.22,
+      "median_residual_correction": -5.405,
+      "originated_line_over_rate": 0.5453,
+      "n_decided": 1436,
+      "pushes_at_originated_line": 5,
+      "calibration_note": "The line is placed at the forecast, so an unbiased model should show an over rate of 50%. The published rate is the observed one.",
+      "calibration_by_quartile": [
+        {
+          "threshold": "forecast-20%",
+          "predicted_over_rate": 0.6878,
+          "actual_over_rate": 0.7092,
+          "n": 1441
+        },
+        {
+          "threshold": "forecast+0%",
+          "predicted_over_rate": 0.5,
+          "actual_over_rate": 0.5177,
+          "n": 1441
+        },
+        {
+          "threshold": "forecast+20%",
+          "predicted_over_rate": 0.3122,
+          "actual_over_rate": 0.3102,
+          "n": 1441
+        }
+      ],
+      "test_seasons": [
+        2023,
+        2026
+      ],
+      "status": "measured"
+    }
+  ],
+  "originated": {
+    "receiving_yards": {
+      "label": "Receiving yards",
+      "week": 19,
+      "players": [
+        {
+          "player": "Jaxon Smith-Njigba",
+          "team": "SEA",
+          "games_used": 7,
+          "weighted_forecast": 125.1,
+          "originated_line": 122.0,
+          "p_over": 0.537,
+          "resid_sd": 32.62
+        },
+        {
+          "player": "Zay Flowers",
+          "team": "BAL",
+          "games_used": 6,
+          "weighted_forecast": 99.7,
+          "originated_line": 96.5,
+          "p_over": 0.522,
+          "resid_sd": 58.49
+        },
+        {
+          "player": "Malik Nabers",
+          "team": "NYG",
+          "games_used": 7,
+          "weighted_forecast": 99.6,
+          "originated_line": 96.5,
+          "p_over": 0.522,
+          "resid_sd": 54.46
+        },
+        {
+          "player": "Tee Higgins",
+          "team": "CIN",
+          "games_used": 6,
+          "weighted_forecast": 99.3,
+          "originated_line": 96.0,
+          "p_over": 0.514,
+          "resid_sd": 90.28
+        },
+        {
+          "player": "Puka Nacua",
+          "team": "LA",
+          "games_used": 5,
+          "weighted_forecast": 94.5,
+          "originated_line": 91.5,
+          "p_over": 0.529,
+          "resid_sd": 40.74
+        },
+        {
+          "player": "Amon-Ra St. Brown",
+          "team": "DET",
+          "games_used": 6,
+          "weighted_forecast": 92.2,
+          "originated_line": 89.0,
+          "p_over": 0.516,
+          "resid_sd": 78.34
+        },
+        {
+          "player": "CeeDee Lamb",
+          "team": "DAL",
+          "games_used": 7,
+          "weighted_forecast": 87.7,
+          "originated_line": 84.5,
+          "p_over": 0.513,
+          "resid_sd": 98.3
+        },
+        {
+          "player": "Drake London",
+          "team": "ATL",
+          "games_used": 7,
+          "weighted_forecast": 87.7,
+          "originated_line": 84.5,
+          "p_over": 0.516,
+          "resid_sd": 79.15
+        },
+        {
+          "player": "Christian Watson",
+          "team": "GB",
+          "games_used": 8,
+          "weighted_forecast": 87.7,
+          "originated_line": 84.5,
+          "p_over": 0.517,
+          "resid_sd": 74.31
+        },
+        {
+          "player": "Brock Bowers",
+          "team": "LV",
+          "games_used": 5,
+          "weighted_forecast": 87.5,
+          "originated_line": 84.5,
+          "p_over": 0.54,
+          "resid_sd": 30.19
+        },
+        {
+          "player": "Omar Cooper Jr.",
+          "team": "NYJ",
+          "games_used": 3,
+          "weighted_forecast": 87.5,
+          "originated_line": 84.5,
+          "p_over": 0.519,
+          "resid_sd": 62.84
+        },
+        {
+          "player": "Chris Olave",
+          "team": "NO",
+          "games_used": 7,
+          "weighted_forecast": 78.7,
+          "originated_line": 75.5,
+          "p_over": 0.521,
+          "resid_sd": 61.85
+        },
+        {
+          "player": "Luther Burden III",
+          "team": "CHI",
+          "games_used": 7,
+          "weighted_forecast": 78.5,
+          "originated_line": 75.5,
+          "p_over": 0.541,
+          "resid_sd": 29.24
+        },
+        {
+          "player": "Tetairoa McMillan",
+          "team": "CAR",
+          "games_used": 7,
+          "weighted_forecast": 77.9,
+          "originated_line": 74.5,
+          "p_over": 0.515,
+          "resid_sd": 93.09
+        },
+        {
+          "player": "DeVonta Smith",
+          "team": "PHI",
+          "games_used": 4,
+          "weighted_forecast": 77.6,
+          "originated_line": 74.5,
+          "p_over": 0.525,
+          "resid_sd": 50.0
+        },
+        {
+          "player": "Mike Evans",
+          "team": "SF",
+          "games_used": 6,
+          "weighted_forecast": 76.4,
+          "originated_line": 73.5,
+          "p_over": 0.54,
+          "resid_sd": 29.2
+        },
+        {
+          "player": "Matthew Golden",
+          "team": "GB",
+          "games_used": 8,
+          "weighted_forecast": 76.3,
+          "originated_line": 73.0,
+          "p_over": 0.522,
+          "resid_sd": 61.27
+        },
+        {
+          "player": "George Pickens",
+          "team": "DAL",
+          "games_used": 7,
+          "weighted_forecast": 73.0,
+          "originated_line": 70.0,
+          "p_over": 0.53,
+          "resid_sd": 41.17
+        },
+        {
+          "player": "Tre Tucker",
+          "team": "LV",
+          "games_used": 7,
+          "weighted_forecast": 72.6,
+          "originated_line": 69.5,
+          "p_over": 0.522,
+          "resid_sd": 56.13
+        },
+        {
+          "player": "Davante Adams",
+          "team": "LA",
+          "games_used": 6,
+          "weighted_forecast": 72.5,
+          "originated_line": 69.5,
+          "p_over": 0.512,
+          "resid_sd": 96.01
+        }
+      ]
+    },
+    "receptions": {
+      "label": "Receptions",
+      "week": 19,
+      "players": [
+        {
+          "player": "Puka Nacua",
+          "team": "LA",
+          "games_used": 5,
+          "weighted_forecast": 9.0,
+          "originated_line": 9.0,
+          "p_over": 0.502,
+          "resid_sd": 7.43
+        },
+        {
+          "player": "Trey McBride",
+          "team": "ARI",
+          "games_used": 7,
+          "weighted_forecast": 8.5,
+          "originated_line": 8.5,
+          "p_over": 0.496,
+          "resid_sd": 1.96
+        },
+        {
+          "player": "Jaxon Smith-Njigba",
+          "team": "SEA",
+          "games_used": 7,
+          "weighted_forecast": 8.4,
+          "originated_line": 8.5,
+          "p_over": 0.492,
+          "resid_sd": 3.76
+        },
+        {
+          "player": "Amon-Ra St. Brown",
+          "team": "DET",
+          "games_used": 6,
+          "weighted_forecast": 7.6,
+          "originated_line": 7.5,
+          "p_over": 0.509,
+          "resid_sd": 3.47
+        },
+        {
+          "player": "Malik Nabers",
+          "team": "NYG",
+          "games_used": 7,
+          "weighted_forecast": 7.6,
+          "originated_line": 7.5,
+          "p_over": 0.508,
+          "resid_sd": 3.95
+        },
+        {
+          "player": "CeeDee Lamb",
+          "team": "DAL",
+          "games_used": 7,
+          "weighted_forecast": 7.4,
+          "originated_line": 7.0,
+          "p_over": 0.52,
+          "resid_sd": 8.22
+        },
+        {
+          "player": "Zay Flowers",
+          "team": "BAL",
+          "games_used": 6,
+          "weighted_forecast": 6.9,
+          "originated_line": 6.5,
+          "p_over": 0.582,
+          "resid_sd": 1.97
+        },
+        {
+          "player": "DeVonta Smith",
+          "team": "PHI",
+          "games_used": 4,
+          "weighted_forecast": 6.7,
+          "originated_line": 6.5,
+          "p_over": 0.512,
+          "resid_sd": 5.11
+        },
+        {
+          "player": "Brock Bowers",
+          "team": "LV",
+          "games_used": 5,
+          "weighted_forecast": 6.5,
+          "originated_line": 6.5,
+          "p_over": 0.497,
+          "resid_sd": 3.54
+        },
+        {
+          "player": "Chris Olave",
+          "team": "NO",
+          "games_used": 7,
+          "weighted_forecast": 6.4,
+          "originated_line": 6.5,
+          "p_over": 0.487,
+          "resid_sd": 2.41
+        },
+        {
+          "player": "Tyler Warren",
+          "team": "IND",
+          "games_used": 5,
+          "weighted_forecast": 6.2,
+          "originated_line": 6.0,
+          "p_over": 0.525,
+          "resid_sd": 3.42
+        },
+        {
+          "player": "Tetairoa McMillan",
+          "team": "CAR",
+          "games_used": 7,
+          "weighted_forecast": 6.1,
+          "originated_line": 6.0,
+          "p_over": 0.504,
+          "resid_sd": 6.14
+        },
+        {
+          "player": "Drake London",
+          "team": "ATL",
+          "games_used": 7,
+          "weighted_forecast": 5.7,
+          "originated_line": 5.5,
+          "p_over": 0.522,
+          "resid_sd": 3.61
+        },
+        {
+          "player": "Matthew Golden",
+          "team": "GB",
+          "games_used": 8,
+          "weighted_forecast": 5.7,
+          "originated_line": 5.5,
+          "p_over": 0.537,
+          "resid_sd": 1.65
+        },
+        {
+          "player": "Tee Higgins",
+          "team": "CIN",
+          "games_used": 6,
+          "weighted_forecast": 5.6,
+          "originated_line": 5.5,
+          "p_over": 0.508,
+          "resid_sd": 5.16
+        },
+        {
+          "player": "Isaiah Likely",
+          "team": "NYG",
+          "games_used": 7,
+          "weighted_forecast": 5.6,
+          "originated_line": 5.5,
+          "p_over": 0.514,
+          "resid_sd": 4.13
+        },
+        {
+          "player": "Ja'Marr Chase",
+          "team": "CIN",
+          "games_used": 6,
+          "weighted_forecast": 5.4,
+          "originated_line": 5.0,
+          "p_over": 0.536,
+          "resid_sd": 4.15
+        },
+        {
+          "player": "George Pickens",
+          "team": "DAL",
+          "games_used": 7,
+          "weighted_forecast": 5.4,
+          "originated_line": 5.0,
+          "p_over": 0.535,
+          "resid_sd": 4.12
+        },
+        {
+          "player": "Christian Watson",
+          "team": "GB",
+          "games_used": 8,
+          "weighted_forecast": 5.4,
+          "originated_line": 5.5,
+          "p_over": 0.489,
+          "resid_sd": 2.92
+        },
+        {
+          "player": "George Kittle",
+          "team": "SF",
+          "games_used": 7,
+          "weighted_forecast": 5.3,
+          "originated_line": 5.0,
+          "p_over": 0.559,
+          "resid_sd": 2.19
+        }
+      ]
+    },
+    "rushing_yards": {
+      "label": "Rushing yards",
+      "week": 19,
+      "players": [
+        {
+          "player": "Kenneth Walker III",
+          "team": "KC",
+          "games_used": 6,
+          "weighted_forecast": 108.7,
+          "originated_line": 107.0,
+          "p_over": 0.509,
+          "resid_sd": 77.1
+        },
+        {
+          "player": "Jahmyr Gibbs",
+          "team": "DET",
+          "games_used": 6,
+          "weighted_forecast": 104.8,
+          "originated_line": 103.0,
+          "p_over": 0.509,
+          "resid_sd": 78.53
+        },
+        {
+          "player": "James Cook",
+          "team": "BUF",
+          "games_used": 6,
+          "weighted_forecast": 104.5,
+          "originated_line": 102.5,
+          "p_over": 0.514,
+          "resid_sd": 57.41
+        },
+        {
+          "player": "Bijan Robinson",
+          "team": "ATL",
+          "games_used": 7,
+          "weighted_forecast": 94.6,
+          "originated_line": 93.0,
+          "p_over": 0.511,
+          "resid_sd": 60.03
+        },
+        {
+          "player": "Bucky Irving",
+          "team": "TB",
+          "games_used": 7,
+          "weighted_forecast": 84.7,
+          "originated_line": 83.0,
+          "p_over": 0.509,
+          "resid_sd": 74.94
+        },
+        {
+          "player": "Kyle Monangai",
+          "team": "CHI",
+          "games_used": 4,
+          "weighted_forecast": 84.2,
+          "originated_line": 82.5,
+          "p_over": 0.51,
+          "resid_sd": 72.1
+        },
+        {
+          "player": "Jonathan Taylor",
+          "team": "IND",
+          "games_used": 7,
+          "weighted_forecast": 83.7,
+          "originated_line": 82.0,
+          "p_over": 0.521,
+          "resid_sd": 32.72
+        },
+        {
+          "player": "Jaylen Warren",
+          "team": "PIT",
+          "games_used": 7,
+          "weighted_forecast": 83.2,
+          "originated_line": 81.5,
+          "p_over": 0.514,
+          "resid_sd": 49.31
+        },
+        {
+          "player": "Chuba Hubbard",
+          "team": "CAR",
+          "games_used": 7,
+          "weighted_forecast": 78.5,
+          "originated_line": 77.0,
+          "p_over": 0.513,
+          "resid_sd": 46.77
+        },
+        {
+          "player": "Tony Pollard",
+          "team": "TEN",
+          "games_used": 7,
+          "weighted_forecast": 75.7,
+          "originated_line": 74.0,
+          "p_over": 0.523,
+          "resid_sd": 30.55
+        },
+        {
+          "player": "Javonte Williams",
+          "team": "DAL",
+          "games_used": 7,
+          "weighted_forecast": 75.7,
+          "originated_line": 74.0,
+          "p_over": 0.512,
+          "resid_sd": 56.19
+        },
+        {
+          "player": "Ollie Gordon II",
+          "team": "MIA",
+          "games_used": 5,
+          "weighted_forecast": 75.7,
+          "originated_line": 74.0,
+          "p_over": 0.514,
+          "resid_sd": 45.98
+        },
+        {
+          "player": "Derrick Henry",
+          "team": "BAL",
+          "games_used": 7,
+          "weighted_forecast": 75.5,
+          "originated_line": 73.5,
+          "p_over": 0.517,
+          "resid_sd": 46.5
+        },
+        {
+          "player": "Cam Skattebo",
+          "team": "NYG",
+          "games_used": 6,
+          "weighted_forecast": 74.4,
+          "originated_line": 72.5,
+          "p_over": 0.521,
+          "resid_sd": 35.97
+        },
+        {
+          "player": "Kyren Williams",
+          "team": "LA",
+          "games_used": 7,
+          "weighted_forecast": 71.9,
+          "originated_line": 70.0,
+          "p_over": 0.524,
+          "resid_sd": 31.92
+        },
+        {
+          "player": "Aaron Jones",
+          "team": "MIN",
+          "games_used": 6,
+          "weighted_forecast": 71.7,
+          "originated_line": 70.0,
+          "p_over": 0.512,
+          "resid_sd": 57.21
+        },
+        {
+          "player": "Braelon Allen",
+          "team": "NYJ",
+          "games_used": 7,
+          "weighted_forecast": 70.4,
+          "originated_line": 68.5,
+          "p_over": 0.52,
+          "resid_sd": 37.95
+        },
+        {
+          "player": "D'Andre Swift",
+          "team": "CHI",
+          "games_used": 7,
+          "weighted_forecast": 64.5,
+          "originated_line": 62.5,
+          "p_over": 0.517,
+          "resid_sd": 46.44
+        },
+        {
+          "player": "Emanuel Wilson",
+          "team": "SEA",
+          "games_used": 7,
+          "weighted_forecast": 63.8,
+          "originated_line": 62.0,
+          "p_over": 0.511,
+          "resid_sd": 63.25
+        },
+        {
+          "player": "Bhayshul Tuten",
+          "team": "JAX",
+          "games_used": 6,
+          "weighted_forecast": 62.7,
+          "originated_line": 61.0,
+          "p_over": 0.547,
+          "resid_sd": 14.47
+        }
+      ]
+    },
+    "passing_yards": {
+      "label": "Passing yards",
+      "week": 19,
+      "players": [
+        {
+          "player": "Jared Goff",
+          "team": "DET",
+          "games_used": 6,
+          "weighted_forecast": 303.3,
+          "originated_line": 298.0,
+          "p_over": 0.518,
+          "resid_sd": 116.46
+        },
+        {
+          "player": "Jordan Love",
+          "team": "GB",
+          "games_used": 8,
+          "weighted_forecast": 281.7,
+          "originated_line": 276.5,
+          "p_over": 0.514,
+          "resid_sd": 145.57
+        },
+        {
+          "player": "Kirk Cousins",
+          "team": "LV",
+          "games_used": 7,
+          "weighted_forecast": 279.4,
+          "originated_line": 274.0,
+          "p_over": 0.523,
+          "resid_sd": 94.92
+        },
+        {
+          "player": "Joe Burrow",
+          "team": "CIN",
+          "games_used": 6,
+          "weighted_forecast": 278.7,
+          "originated_line": 273.5,
+          "p_over": 0.515,
+          "resid_sd": 139.01
+        },
+        {
+          "player": "Matthew Stafford",
+          "team": "LA",
+          "games_used": 7,
+          "weighted_forecast": 278.1,
+          "originated_line": 272.5,
+          "p_over": 0.519,
+          "resid_sd": 119.32
+        },
+        {
+          "player": "Drake Maye",
+          "team": "NE",
+          "games_used": 7,
+          "weighted_forecast": 270.1,
+          "originated_line": 264.5,
+          "p_over": 0.525,
+          "resid_sd": 90.28
+        },
+        {
+          "player": "Dak Prescott",
+          "team": "DAL",
+          "games_used": 7,
+          "weighted_forecast": 264.6,
+          "originated_line": 259.0,
+          "p_over": 0.533,
+          "resid_sd": 68.01
+        },
+        {
+          "player": "Caleb Williams",
+          "team": "CHI",
+          "games_used": 4,
+          "weighted_forecast": 261.6,
+          "originated_line": 256.0,
+          "p_over": 0.518,
+          "resid_sd": 121.86
+        },
+        {
+          "player": "Trevor Lawrence",
+          "team": "JAX",
+          "games_used": 6,
+          "weighted_forecast": 258.6,
+          "originated_line": 253.0,
+          "p_over": 0.539,
+          "resid_sd": 56.69
+        },
+        {
+          "player": "C.J. Stroud",
+          "team": "HOU",
+          "games_used": 7,
+          "weighted_forecast": 257.0,
+          "originated_line": 251.5,
+          "p_over": 0.516,
+          "resid_sd": 133.37
+        },
+        {
+          "player": "Bryce Young",
+          "team": "CAR",
+          "games_used": 7,
+          "weighted_forecast": 256.8,
+          "originated_line": 251.5,
+          "p_over": 0.529,
+          "resid_sd": 73.22
+        },
+        {
+          "player": "Brock Purdy",
+          "team": "SF",
+          "games_used": 7,
+          "weighted_forecast": 252.4,
+          "originated_line": 247.0,
+          "p_over": 0.536,
+          "resid_sd": 60.41
+        },
+        {
+          "player": "Josh Allen",
+          "team": "BUF",
+          "games_used": 6,
+          "weighted_forecast": 245.2,
+          "originated_line": 240.0,
+          "p_over": 0.531,
+          "resid_sd": 67.15
+        },
+        {
+          "player": "Aaron Rodgers",
+          "team": "PIT",
+          "games_used": 7,
+          "weighted_forecast": 242.6,
+          "originated_line": 237.0,
+          "p_over": 0.54,
+          "resid_sd": 55.78
+        },
+        {
+          "player": "Patrick Mahomes",
+          "team": "KC",
+          "games_used": 6,
+          "weighted_forecast": 238.1,
+          "originated_line": 232.5,
+          "p_over": 0.518,
+          "resid_sd": 122.08
+        },
+        {
+          "player": "Geno Smith",
+          "team": "NYJ",
+          "games_used": 7,
+          "weighted_forecast": 235.2,
+          "originated_line": 230.0,
+          "p_over": 0.521,
+          "resid_sd": 97.68
+        },
+        {
+          "player": "Jacoby Brissett",
+          "team": "ARI",
+          "games_used": 7,
+          "weighted_forecast": 235.1,
+          "originated_line": 229.5,
+          "p_over": 0.517,
+          "resid_sd": 133.35
+        },
+        {
+          "player": "Lamar Jackson",
+          "team": "BAL",
+          "games_used": 4,
+          "weighted_forecast": 234.6,
+          "originated_line": 229.0,
+          "p_over": 0.529,
+          "resid_sd": 78.07
+        },
+        {
+          "player": "Tyler Shough",
+          "team": "NO",
+          "games_used": 7,
+          "weighted_forecast": 229.9,
+          "originated_line": 224.5,
+          "p_over": 0.516,
+          "resid_sd": 134.84
+        },
+        {
+          "player": "Michael Penix Jr.",
+          "team": "ATL",
+          "games_used": 5,
+          "weighted_forecast": 228.5,
+          "originated_line": 223.0,
+          "p_over": 0.592,
+          "resid_sd": 23.9
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,304 @@
+{
+  "generated_utc": "2026-11-01T14:01:10+00:00",
+  "source_repository": "https://github.com/nflverse/nflverse-data",
+  "source_description": "nflverse redistributes the NFL's official play-by-play and box score feeds; game-level market lines in games.parquet are third-party (sportsbook-derived) and are not an official sportsbook archive.",
+  "downloads": [
+    {
+      "name": "games.parquet",
+      "tag": "schedules",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.parquet",
+      "desc": "Game-level results and pregame market lines, 1999-present",
+      "status": 200,
+      "bytes": 523083,
+      "sha256": "63889c8991fff50b8f76fe5b060d65ae1f46827c6c29d1ba5c79a7ff0751a7ef"
+    },
+    {
+      "name": "stats_player_week_2012.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2012.parquet",
+      "desc": "Player box score by week, 2012",
+      "status": 200,
+      "bytes": 799792,
+      "sha256": "b33f939c2ec0659c15dc38a5cbc4de20e330008c8f36576ef398877a4ddcd7c9"
+    },
+    {
+      "name": "stats_team_week_2012.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2012.parquet",
+      "desc": "Team box score by week, 2012",
+      "status": 200,
+      "bytes": 125302,
+      "sha256": "d87d97b20af09e81fabbb6d85d0bd12736ddb9552f436d3a418142887e3720b5"
+    },
+    {
+      "name": "stats_player_week_2013.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2013.parquet",
+      "desc": "Player box score by week, 2013",
+      "status": 200,
+      "bytes": 789175,
+      "sha256": "7d662bc12628085bffdf065e3d6bdb59813f43178c7b543588f336b41b796411"
+    },
+    {
+      "name": "stats_team_week_2013.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2013.parquet",
+      "desc": "Team box score by week, 2013",
+      "status": 200,
+      "bytes": 125316,
+      "sha256": "1e3f0d0d8e45fad68f4db7f099226c773d0301eddf1320425654b94a7f4169a7"
+    },
+    {
+      "name": "stats_player_week_2014.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2014.parquet",
+      "desc": "Player box score by week, 2014",
+      "status": 200,
+      "bytes": 801610,
+      "sha256": "513a48ce4e16937d81d48be54be6821ebb517df541d19d49a29297727e5b0bcd"
+    },
+    {
+      "name": "stats_team_week_2014.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2014.parquet",
+      "desc": "Team box score by week, 2014",
+      "status": 200,
+      "bytes": 124894,
+      "sha256": "25e7b1b2826787a29ca2dd8f09fc7b2a85744d14eb6ae115798969304ff766c9"
+    },
+    {
+      "name": "stats_player_week_2015.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2015.parquet",
+      "desc": "Player box score by week, 2015",
+      "status": 200,
+      "bytes": 802993,
+      "sha256": "c2fffc7cc53e137c1c8bffe896e1c0300ddf2ad4b601ab4985f4bb7aeb8ed59a"
+    },
+    {
+      "name": "stats_team_week_2015.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2015.parquet",
+      "desc": "Team box score by week, 2015",
+      "status": 200,
+      "bytes": 125069,
+      "sha256": "af67736df68a7f3b2f66a55f91ef1fa89bbf9c2859ca164f637f6306bd2e6734"
+    },
+    {
+      "name": "stats_player_week_2016.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2016.parquet",
+      "desc": "Player box score by week, 2016",
+      "status": 200,
+      "bytes": 802210,
+      "sha256": "f9d648fdf1f26d60ac0ac0e02c672840b604c6b8372cbb8a8bf847fdbc047acf"
+    },
+    {
+      "name": "stats_team_week_2016.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2016.parquet",
+      "desc": "Team box score by week, 2016",
+      "status": 200,
+      "bytes": 124412,
+      "sha256": "b28c912a10273b0c601f67e357841fba83d19d7adef5a2381a1b3d6566035bb9"
+    },
+    {
+      "name": "stats_player_week_2017.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2017.parquet",
+      "desc": "Player box score by week, 2017",
+      "status": 200,
+      "bytes": 799029,
+      "sha256": "23398fa5ff45dbf8aeb0986be87eed28dd92213d8f862912f95d522963e0ce8e"
+    },
+    {
+      "name": "stats_team_week_2017.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2017.parquet",
+      "desc": "Team box score by week, 2017",
+      "status": 200,
+      "bytes": 124726,
+      "sha256": "49d4b836d2e256fb7ebac716aa58e4167f5d5d3fff46d31f27648a57ff607f19"
+    },
+    {
+      "name": "stats_player_week_2018.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2018.parquet",
+      "desc": "Player box score by week, 2018",
+      "status": 200,
+      "bytes": 800576,
+      "sha256": "d40914a95fdb97245567d8d816e474547b0d28d5152259813ba1542f13a8f0f4"
+    },
+    {
+      "name": "stats_team_week_2018.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2018.parquet",
+      "desc": "Team box score by week, 2018",
+      "status": 200,
+      "bytes": 124286,
+      "sha256": "e4731ac04a5bd9f5496a333731960bfec97ff5d576f35633fc89ee9583630421"
+    },
+    {
+      "name": "stats_player_week_2019.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2019.parquet",
+      "desc": "Player box score by week, 2019",
+      "status": 200,
+      "bytes": 799261,
+      "sha256": "1a80298e2aca5a830e0dcfeb834c220bc79918211dc42e2f1e46acc39cd437c9"
+    },
+    {
+      "name": "stats_team_week_2019.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2019.parquet",
+      "desc": "Team box score by week, 2019",
+      "status": 200,
+      "bytes": 124185,
+      "sha256": "53a9b49228063528bf64ed31295cca3e487f89ddf716073b7a38cffb8f781e5d"
+    },
+    {
+      "name": "stats_player_week_2020.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2020.parquet",
+      "desc": "Player box score by week, 2020",
+      "status": 200,
+      "bytes": 813828,
+      "sha256": "e788d88318a6e99b8005c1c9814423d05bb91f757d5d977d3280f2eb83927b23"
+    },
+    {
+      "name": "stats_team_week_2020.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2020.parquet",
+      "desc": "Team box score by week, 2020",
+      "status": 200,
+      "bytes": 125026,
+      "sha256": "a310b8ad8c70240152f08cf936210317b90280cb1cc51383735d280c2fb7f4ec"
+    },
+    {
+      "name": "stats_player_week_2021.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2021.parquet",
+      "desc": "Player box score by week, 2021",
+      "status": 200,
+      "bytes": 854980,
+      "sha256": "2c6894499e96dcf20b060969c607a0ff4e2018f369efad6e97d88abbe77b7277"
+    },
+    {
+      "name": "stats_team_week_2021.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2021.parquet",
+      "desc": "Team box score by week, 2021",
+      "status": 200,
+      "bytes": 128123,
+      "sha256": "d7c1bc5f00e5fae933e6ba6716f0687289aea0ae71a6b36ddd3822ca3f3f54aa"
+    },
+    {
+      "name": "stats_player_week_2022.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2022.parquet",
+      "desc": "Player box score by week, 2022",
+      "status": 200,
+      "bytes": 847572,
+      "sha256": "64c1684938b029d68e33d7852cbee918266c8ac7f30b4c097c0a8912b4384e52"
+    },
+    {
+      "name": "stats_team_week_2022.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2022.parquet",
+      "desc": "Team box score by week, 2022",
+      "status": 200,
+      "bytes": 128029,
+      "sha256": "646493a539f2cb3fd2f593902cd733fc168dd6b16ec4be9b77a03bd2720cde3e"
+    },
+    {
+      "name": "stats_player_week_2023.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2023.parquet",
+      "desc": "Player box score by week, 2023",
+      "status": 200,
+      "bytes": 846050,
+      "sha256": "ac776fbd7c9fefdb4069b72304f4c5fa05ae417acd49f6e4e27be14b9d7a4bbc"
+    },
+    {
+      "name": "stats_team_week_2023.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2023.parquet",
+      "desc": "Team box score by week, 2023",
+      "status": 200,
+      "bytes": 128136,
+      "sha256": "a155e2a9cb2a6bff1b254f747a33603c43aa5a1117c26d203b44e5bfb83339b1"
+    },
+    {
+      "name": "stats_player_week_2024.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2024.parquet",
+      "desc": "Player box score by week, 2024",
+      "status": 200,
+      "bytes": 849243,
+      "sha256": "847569d194ca3d96b5efcf91e6eac5e18780fc47568a713fd545a82d29d155c1"
+    },
+    {
+      "name": "stats_team_week_2024.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2024.parquet",
+      "desc": "Team box score by week, 2024",
+      "status": 200,
+      "bytes": 128118,
+      "sha256": "c95aca86417589edb34b5001c11ba4bab869394fd3d51e475ff0958dda1669fc"
+    },
+    {
+      "name": "stats_player_week_2025.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2025.parquet",
+      "desc": "Player box score by week, 2025",
+      "status": 200,
+      "bytes": 855077,
+      "sha256": "2a461becaa9adb3c93a3074a3a31f1e960162a50163371a2d34e28393b5fff10"
+    },
+    {
+      "name": "stats_team_week_2025.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2025.parquet",
+      "desc": "Team box score by week, 2025",
+      "status": 200,
+      "bytes": 128766,
+      "sha256": "ec168d98ebbcb0d14d1049ba690e55a629fe6e4f00aaa8a700c309d9dad6d34d"
+    },
+    {
+      "name": "stats_player_week_2026.parquet",
+      "tag": "stats_player",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.parquet",
+      "desc": "Player box score by week, 2026",
+      "status": 200,
+      "bytes": 424204,
+      "sha256": "3ff4a043be77fcea90ffeb5775e7b8b61a9e61794e5c77271b0e7821eb989a47"
+    },
+    {
+      "name": "stats_team_week_2026.parquet",
+      "tag": "stats_team",
+      "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2026.parquet",
+      "desc": "Team box score by week, 2026",
+      "status": 200,
+      "bytes": 86114,
+      "sha256": "36c1a73253345d29316b9ebe2dccc9ec7b38cc2794635792e72172eadbd5fac0"
+    }
+  ],
+  "releases": {
+    "schedules": {
+      "tag": "schedules",
+      "updated_at": "2026-11-01T13:36:37Z",
+      "html_url": "https://github.com/nflverse/nflverse-data/releases/tag/schedules"
+    },
+    "stats_player": {
+      "tag": "stats_player",
+      "updated_at": "2026-11-01T10:05:34Z",
+      "html_url": "https://github.com/nflverse/nflverse-data/releases/tag/stats_player"
+    },
+    "stats_team": {
+      "tag": "stats_team",
+      "updated_at": "2026-11-01T10:05:48Z",
+      "html_url": "https://github.com/nflverse/nflverse-data/releases/tag/stats_team"
+    }
+  },
+  "failed_downloads": 0
+}

@@ -1,8 +1,10 @@
-# Raw downloads are reproducible from data/provenance.json and quant-lab/data/raw/PROVENANCE.txt.
+# Raw upstream data is downloaded by .github/workflows/data-pipeline.yml and never committed.
 data/raw/
-quant-lab/data/raw/
 __pycache__/
 *.pyc
+.pytest_cache/
+quant-lab/data/raw/
+origination-lab/data/raw/
 .venv/
 .DS_Store
 origination-lab/data/raw/
