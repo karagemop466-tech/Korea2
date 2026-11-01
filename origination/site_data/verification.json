@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-01T13:57:02Z",
+ "generated": "2026-11-01T14:04:37Z",
  "summary": {
   "n_checks": 18,
   "n_pass": 16,
@@ -197,7 +197,7 @@
    "item": "Sportsbook player-prop prices (any season)",
    "why": "No licensed prop feed reachable from the build environment (IR-03).",
    "consequence": "Every prop ROI / profit cell is blank; prop skill is measured only against the pre-declared naive reference line.",
-   "source_that_would_settle_it": "https://www.nfl.com/ or a licensed odds provider"
+   "source_that_would_settle_it": "a licensed odds provider; NFL.com does not publish historical prop prices"
   },
   {
    "item": "Player-game statistics for 2018-2026",
@@ -215,7 +215,7 @@
    "item": "Official-league verification of every historical game",
    "why": "Only three games could be checked against NFL.com inside this session; the rest rely on the pinned open dataset.",
    "consequence": "Rows without an official link carry the dataset link only and are marked unverified on the verification page.",
-   "source_that_would_settle_it": "https://www.nfl.com/schedules/ (per-season pages)"
+   "source_that_would_settle_it": "https://www.nfl.com/schedules/"
   },
   {
    "item": "Closing-line provenance (which book, which snapshot)",

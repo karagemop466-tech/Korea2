@@ -115,14 +115,21 @@ def strategy_correlations(bets: pd.DataFrame, max_strategies: int = 14) -> dict:
             pairs.append({"a": a, "b": b, "corr": float(corr.loc[a, b])})
     pairs.sort(key=lambda x: -abs(x["corr"]))
 
-    # equal-weight portfolio of every strategy in the evaluation window
-    port = d.groupby(["season", "week"])["pnl"].sum()
-    port_roi = float(port.sum() / max(1, d.groupby(["season", "week"])["pnl"].count().sum()))
+    # Equal-weight portfolio of the real strategies only. The controls are excluded on purpose:
+    # CTRL_LEAK is a deliberate lookahead leak (+94% on 3,054 tickets) and including it would make
+    # the portfolio look profitable for a reason that has nothing to do with skill.
+    real = d[~d["strategy"].str.startswith("CTRL_")]
+    port = real.groupby(["season", "week"])["pnl"].sum()
+    n_tickets = int(len(real))
+    port_roi = float(port.sum() / max(1, n_tickets))
+    with_controls = d.groupby(["season", "week"])["pnl"].sum()
     return {"strategies": keep, "matrix": corr.to_dict(),
             "top_pairs": pairs[:15],
             "mean_pairwise_corr": float(np.mean([abs(p["corr"]) for p in pairs])) if pairs else None,
             "portfolio": {"n_weeks": int(len(port)), "units": float(port.sum()),
-                          "roi_per_ticket": port_roi}}
+                          "roi_per_ticket": port_roi, "n_tickets": n_tickets,
+                          "units_including_controls": float(with_controls.sum()),
+                          "n_weeks_including_controls": int(len(with_controls))}}
 
 
 def parlay_leg_correlations(bets: pd.DataFrame) -> dict:

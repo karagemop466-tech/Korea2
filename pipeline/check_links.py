@@ -50,6 +50,9 @@ def check(external: bool = False) -> tuple[list[str], dict]:
             problems.append(f"{rel}: does not end with </html>")
         for url in LINK_RE.findall(text):
             stats["links"] += 1
+            if " " in url or url != url.strip() or "%20" in url:
+                problems.append(f"{rel}: malformed URL (whitespace) -> {url!r}")
+                continue
             if is_external(url):
                 stats["external"] += 1
                 external_seen.add(url)

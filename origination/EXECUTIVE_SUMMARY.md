@@ -25,7 +25,7 @@ says so with the arithmetic attached.**
 4. **A correlation engine.** Market correlations, strategy-return correlations and player-prop correlations,
    each with a bootstrap confidence interval and a sample size.
 5. **A verified, reproducible data layer.** 13 files from four upstream repositories, each pinned to a commit
-   SHA and hashed with SHA-256, plus 16 structural checks and three official NFL.com spot checks.
+   SHA and hashed with SHA-256, plus 18 structural checks and three official NFL.com spot checks.
 
 ## 2. Headline findings
 
@@ -40,7 +40,8 @@ says so with the arithmetic attached.**
 | 7 | Spread and total are effectively independent | cover/over r = +0.0159 (95% CI −0.006 to +0.039), n = 7,080 | Same-game spread+total parlays can be priced as a product; correlation is not the leak there. |
 | 8 | Player props are where correlation bites | QB passing yards vs his leading receiver r = +0.670; ignoring it under-states the joint probability by 11.8% | Two-prop combos on the same passing game need correlation-adjusted pricing. |
 | 9 | Prop models show real but modest skill against a naive line | passing yards Brier skill +8.0% (CI +6.0% to +10.2%); receptions +3.8%; receiving yards +0.5% (CI includes zero) | Forecasting is demonstrable. Beating a book is not, because no prop prices exist here. |
-| 10 | The "independent" strategies are not independent | mean absolute pairwise weekly-P&L correlation 0.237; `ML_OWN_3` vs `ML_OWN_DOG` = 0.963 | The leaderboard is not 31 independent attempts, which is why the deflated Sharpe uses the full trial count. |
+| 10 | The "independent" strategies are not independent | mean absolute pairwise weekly-P&L correlation 0.250 across the 14 most-traded strategies; `ML_OWN_3` vs `ML_OWN_DOG` = 0.963 | The leaderboard is not 31 independent attempts, which is why the deflated Sharpe uses the full trial count. |
+| 11 | The prop probabilities are over-confident | expected calibration error 2.7% to 9.2%; the worst large bin is 11 points off (players rated 65% beat the line about 55% of the time) | Prop skill is therefore quoted with the Brier score only, and no prop probability is used to price anything. Recalibrate before reuse. |
 
 ## 3. The competition and its rewards
 
@@ -57,9 +58,10 @@ tickets that means.
 ## 4. What is verified, and what is not
 
 **Verified.** Every arithmetic identity in the dataset (result = home − away, total = home + away, across 7,384
-games, zero violations). Unique identifiers. Complete spread and total coverage. Eight player-layer checks
-(no duplicate player-games once keyed on the upstream id, counting stats non-negative, receptions never exceed
-targets, completions never exceed attempts). A recomputation of 842 pre-game Elo values from prior games only,
+games, zero violations). Unique identifiers. Complete spread and total coverage. Seven player-layer checks
+(no duplicate player-games once keyed on the upstream id, display-name collisions kept distinct by id,
+counting stats non-negative, negative yardage rare enough to be genuine, receptions never exceed targets,
+completions never exceed attempts, every player row joins to a game). A recomputation of 842 pre-game Elo values from prior games only,
 with zero mismatches. Three games checked by hand against NFL.com, all matching.
 
 **Not verified, and therefore blank.** Every player-prop ROI (no prop price feed exists), every player-prop value
