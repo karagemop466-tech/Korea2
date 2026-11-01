@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL line origination and a gated strategy competition · NFL Line Lab</title>
+<meta name="description" content="We originate our own NFL spread, total and moneyline, test 27 signals and 18 strategy families against 21 seasons of priced games, and refuse to call anything skilful until it surv">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316233c'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='14' font-weight='700' fill='%23c8102e' text-anchor='middle'%3ENFL%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="mark">NFL</span> Line Lab</a>
+  <nav class="main"><a href="index.html" aria-current="page">Dashboard</a><a href="lines.html">Originated lines</a><a href="signals.html">Signals</a><a href="strategies.html">Leaderboard</a><a href="gates.html">Validation gates</a><a href="parlays.html">Parlays</a><a href="props.html">Player props</a><a href="correlation.html">Correlation</a><a href="luck.html">Luck removal</a></nav>
+</div></header>
+<div class="subnav"><div class="wrap"><a href="executive-summary.html">Executive summary</a><a href="requirements.html">Requirements</a><a href="data.html">Data</a><a href="sources.html">Sources</a><a href="methods.html">Methods</a><a href="flagged.html">Flagged for review</a></div></div>
+<main class="wrap">
+<div class="page-head"><h1>NFL line origination and a gated strategy competition</h1><p class="lede">We originate our own NFL spread, total and moneyline, test 27 signals and 18 strategy families against 21 seasons of priced games, and refuse to call anything skilful until it survives seven validation gates.</p></div>
+
+<div class="grid g4">
+  <div class="card"><h3>Games modelled</h3><div class="kpi">7,384</div><p>of 7,548 rows, 1999-2026 · 5,403 with a priced market</p></div>
+  <div class="card"><h3>Strategies tested</h3><div class="kpi">18</div><p>0 cleared all seven validation gates</p></div>
+  <div class="card"><h3>Signals tested</h3><div class="kpi">27</div><p>0 survived false-discovery control</p></div>
+  <div class="card"><h3>Integrity checks</h3><div class="kpi">7/9</div><p>2 returned <i>needs review</i> · <a href='sources.html'>13 sources</a></p></div>
+</div>
+
+<h2>What this project found</h2>
+<div class="grid g2">
+  <div class="card">
+    <h3>1 · The market is very hard to beat, and we can prove it</h3>
+    <p>Our walk-forward rating model lands within <b>10.69</b> points of the
+    actual margin; the closing line lands within <b>10.26</b>.
+    Correlation between the two is <b>0.769</b>.
+    Betting every model disagreement loses about 2.5% per bet — the vig plus model error.</p>
+  </div>
+  <div class="card">
+    <h3>2 · Large disagreements are the only place an edge appears</h3>
+    <p>When the model disagrees with the close by 4+ points, the hit rate rises to
+    <b>53.6%</b> and the return to <b>+3.8%</b> per bet over 1,533 bets — still not significant
+    (p = 0.17). The monotone pattern is informative; the sample is not yet large enough.</p>
+  </div>
+  <div class="card">
+    <h3>3 · Zero of 18 strategies qualify</h3>
+    <p>Nothing passes all seven gates. The closest entry, <b>wind unders</b>, returns +8.1% out
+    of sample over 449 bets but reaches p = 0.12 and fails the multiple-testing and drawdown
+    gates. See <a href="gates.html">Validation gates</a>.</p>
+  </div>
+  <div class="card">
+    <h3>4 · Same-game legs are correlated; cross-game legs are not</h3>
+    <p>Home moneyline × home cover: <b>φ = 0.672</b>.
+    QB passing yards over × team total over: <b>φ = 0.198</b>.
+    Different games in the same week: <b>φ = 0.029</b>, i.e. the
+    standard parlay independence assumption holds only across games.</p>
+  </div>
+  <div class="card">
+    <h3>5 · Team-level ATS "skill" is not detectable</h3>
+    <p>A permutation null that reassigns ATS winners inside each game produces at least as much
+    dispersion as the real data. Split-half reliability of team ATS records is
+    <b>-0.058</b>. See <a href="luck.html">Luck removal</a>.</p>
+  </div>
+  <div class="card">
+    <h3>6 · What it takes to prove an edge</h3>
+    <p>A true 2% return needs roughly <b>6,156</b>
+    settled bets before it is distinguishable from noise at 95% confidence — about
+    41 seasons at 150 bets a year.
+    That is why gate G1 exists.</p>
+  </div>
+</div>
+
+<h2>Leaderboard</h2>
+<div class="tablewrap"><table class=""><caption>Leaderboard top 6 (all 18 entries on the Leaderboard page) <span>settled at the recorded American price</span></caption><thead><tr><th class="">Rank</th><th class="">Strategy</th><th class="">Type</th><th class="n">Bets</th><th class="n">ROI all</th><th class="n">ROI 2016+</th><th class="n">p (2016+)</th><th class="n">Gates</th><th class="n">Score</th><th class="">Qualified</th></tr></thead><tbody><tr><td class="">—</td><td class=""><b>Wind 15+ mph (Under)</b><br><span class="muted">S11_wind_under</span></td><td class="">single</td><td class="n">449</td><td class="n"><span class="pos">+9.29%</span></td><td class="n"><span class="pos">+8.12%</span></td><td class="n">0.117</td><td class="n">3/7</td><td class="n">90.3</td><td class="t"><span class="pill warn">needs review</span></td></tr><tr><td class="">—</td><td class=""><b>Unders when the total moves down 1.5+ from the open (2021 only)</b><br><span class="muted">S13_off_market_total</span></td><td class="">single</td><td class="n">126</td><td class="n"><span class="pos">+2.09%</span></td><td class="n"><span class="pos">+2.09%</span></td><td class="n">0.431</td><td class="n">1/7</td><td class="n">75.8</td><td class="t"><span class="pill warn">needs review</span></td></tr><tr><td class="">—</td><td class=""><b>2-leg parlay: top-2 model spread edges each week</b><br><span class="muted">S14_model_ats_parlay2</span></td><td class="">parlay</td><td class="n">2,225</td><td class="n"><span class="pos">+4.20%</span></td><td class="n"><span class="pos">+1.16%</span></td><td class="n">0.400</td><td class="n">3/7</td><td class="n">75.4</td><td class="t"><span class="pill warn">needs review</span></td></tr><tr><td class="">—</td><td class=""><b>Model spread edge &gt;= 2 pts (ATS)</b><br><span class="muted">S2_model_ats_2</span></td><td class="">single</td><td class="n">3,094</td><td class="n"><span class="neg">-0.18%</span></td><td class="n"><span class="neg">-1.11%</span></td><td class="n">0.681</td><td class="n">2/7</td><td class="n">66.9</td><td class="t"><span class="pill warn">needs review</span></td></tr><tr><td class="">—</td><td class=""><b>Same-game parlay: model spread + model total in one game</b><br><span class="muted">S17_sgp_spread_total</span></td><td class="">sgp</td><td class="n">2,176</td><td class="n"><span class="pos">+2.47%</span></td><td class="n"><span class="neg">-1.76%</span></td><td class="n">0.663</td><td class="n">2/7</td><td class="n">66.6</td><td class="t"><span class="pill warn">needs review</span></td></tr><tr><td class="">—</td><td class=""><b>Divisional home underdogs (ATS)</b><br><span class="muted">S8_div_home_dog</span></td><td class="">single</td><td class="n">703</td><td class="n"><span class="neg">-4.30%</span></td><td class="n"><span class="neg">-2.19%</span></td><td class="n">0.689</td><td class="n">2/7</td><td class="n">65.6</td><td class="t"><span class="pill warn">needs review</span></td></tr></tbody></table><div class="tnote"><div class="note ">No strategy passes all seven gates, so the reward pool is unallocated this cycle. That is a finding, not a gap.</div><span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv" title="nflverse/nfldata - games.csv" target="_blank" rel="noopener">S1</a></span></div></div>
+
+<h2>Live slate</h2>
+<div class="tablewrap"><table class=""><caption>Live slate: originated lines next to the market <span>164 unplayed games, 28 with a market line</span></caption><thead><tr><th class="">Game</th><th class="">Date</th><th class="n">Wk</th><th class="n">Our line</th><th class="n">Market</th><th class="n">Edge</th><th class="n">Our total</th><th class="n">Mkt total</th><th class="">Our ML H/A</th></tr></thead><tbody><tr><td class="">ARI @ DAL</td><td class="">2026-11-01</td><td class="n">8</td><td class="n">-4.5</td><td class="n">7.0</td><td class="n"><span class="pos">+25.0%</span></td><td class="n">53.5</td><td class="n">54.5</td><td class="t">-166/+166</td></tr><tr><td class="">ATL @ TB</td><td class="">2026-11-01</td><td class="n">8</td><td class="n">-4.5</td><td class="n">1.5</td><td class="n"><span class="neg">-30.0%</span></td><td class="n">46.5</td><td class="n">43.5</td><td class="t">-167/+167</td></tr><tr><td class="">BAL @ BUF</td><td class="">2026-11-01</td><td class="n">8</td><td class="n">-8.5</td><td class="n">3.5</td><td class="n"><span class="neg">-50.0%</span></td><td class="n">53.0</td><td class="n">54.5</td><td class="t">-270/+270</td></tr><tr><td class="">CLE @ PIT</td><td class="">2026-11-01</td><td class="n">8</td><td class="n">-5.5</td><td class="n">3.5</td><td class="n"><span class="neg">-20.0%</span></td><td class="n">39.0</td><td class="n">39.5</td><td class="t">-193/+193</td></tr><tr><td class="">IND @ JAX</td><td class="">2026-11-01</td><td class="n">8</td><td class="n">-8.5</td><td class="n">10.0</td><td class="n"><span class="pos">+15.0%</span></td><td class="n">49.0</td><td class="n">46.5</td><td class="t">-273/+273</td></tr><tr><td class="">KC @ DEN</td><td class="">2026-11-01</td><td class="n">8</td><td class="n">-0.5</td><td class="n">-1.5</td><td class="n"><span class="neg">-20.0%</span></td><td class="n">40.0</td><td class="n">40.5</td><td class="t">-103/+103</td></tr><tr><td class="">LAC @ LA</td><td class="">2026-11-01</td><td class="n">8</td><td class="n">-1.5</td><td class="n">6.5</td><td class="n"><span class="pos">+50.0%</span></td><td class="n">44.5</td><td class="n">45.5</td><td class="t">-120/+120</td></tr><tr><td class="">LV @ NYJ</td><td class="">2026-11-01</td><td class="n">8</td><td class="n">-1.0</td><td class="n">1.5</td><td class="n"><span class="pos">+5.0%</span></td><td class="n">44.0</td><td class="n">46.5</td><td class="t">-112/+112</td></tr></tbody></table><div class="tnote"><span class="src"><a href="https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv" title="nflverse/nfldata - games.csv" target="_blank" rel="noopener">S1</a></span> edge = our line minus the market's expected home margin</div></div>
+
+<h2>Where to look next</h2>
+<div class="tiles">
+  <a class="tile" href="lines.html"><b>Originated lines →</b><span>Our spread, total and moneyline for every game, graded against the close</span></a>
+  <a class="tile" href="signals.html"><b>Signal research →</b><span>27 pre-registered signals with FDR control and out-of-sample decay</span></a>
+  <a class="tile" href="strategies.html"><b>Leaderboard →</b><span>18 strategy families, singles, parlays and teasers, scored and tiered</span></a>
+  <a class="tile" href="gates.html"><b>Validation gates →</b><span>The seven tests every strategy must pass, and where each one failed</span></a>
+  <a class="tile" href="correlation.html"><b>Correlation values →</b><span>φ coefficients for same-game legs, props and cross-game independence</span></a>
+  <a class="tile" href="luck.html"><b>Luck removal →</b><span>Permutation nulls, reliability tests and the evidence bar</span></a>
+  <a class="tile" href="props.html"><b>Player props →</b><span>Originated prop lines, calibration, and why they are unpriced</span></a>
+  <a class="tile" href="data.html"><b>Data &amp; verification →</b><span>Nine hashed extracts, eight reconciliation checks</span></a>
+</div>
+
+<h2>How to read this site</h2>
+<p>Every table row carries a source id that links to a registry entry with the URL, HTTP status,
+row count and SHA-256 of the file it came from. Where a value could not be confirmed, the cell is
+blank and the row is published on the <a href="flagged.html">Flagged for review</a> page with an
+impact assessment. Percentages in green are positive, red negative; returns are per 1-unit stake,
+never compounded, always settled at the price recorded in the source.</p>
+
+</main>
+<footer><div class="wrap">
+  <div><b>NFL Line Lab</b> — line origination, signal research and a gated strategy competition.<br>
+  Built from hashed open datasets; every table row carries its source id. Not betting advice.</div>
+  <div><a href="sources.html">Source registry</a> · <a href="flagged.html">Flagged for review</a> ·
+  <a href="methods.html">Methods</a> · <a href="requirements.html">Requirements</a></div>
+</div></footer>
+</body></html>

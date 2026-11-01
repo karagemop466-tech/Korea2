@@ -1,0 +1,165 @@
+{
+  "generated_utc": "2026-11-01T13:24:26Z",
+  "publisher": {
+    "nflverse_nfldata_commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+    "nflverse_nfldata_tarball_sha256": "56203c4561052eede878889002ea93acfaab70fa8fec5d4dceff79ad7ca0a924",
+    "nflverse_nfldata_tarball_url": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master"
+  },
+  "files": [
+    {
+      "file": "data/raw/games.csv",
+      "bytes": 2187803,
+      "rows": 7548,
+      "sha256": "ba34f3619067eb4459eb257f629d7f29adce74cba824e1708e7bbb9ef3246e6a",
+      "retrieved_utc": "2026-11-01T13:24:23Z",
+      "retrieved_from": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv",
+      "transport": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+      "pinned_commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+      "canonical_upstream": "https://github.com/nflverse/nflverse-data/releases/tag/schedules"
+    },
+    {
+      "file": "data/raw/closing_lines.csv",
+      "bytes": 942229,
+      "rows": 20490,
+      "sha256": "3571e1c9fc8d7396f405fb7c17d43c15676d335ffc932fbb03ff18da691d1729",
+      "retrieved_utc": "2026-11-01T13:24:23Z",
+      "retrieved_from": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/closing_lines.csv",
+      "transport": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+      "pinned_commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+      "canonical_upstream": "https://github.com/nflverse/nfldata/blob/master/data/closing_lines.csv"
+    },
+    {
+      "file": "data/raw/initial_lines.csv",
+      "bytes": 45068,
+      "rows": 1088,
+      "sha256": "654770173d11fdb2074537d520f6b1213d663e3bbf47689e5cc9994c1af255e5",
+      "retrieved_utc": "2026-11-01T13:24:23Z",
+      "retrieved_from": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv",
+      "transport": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+      "pinned_commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+      "canonical_upstream": "https://github.com/nflverse/nfldata/blob/master/data/initial_lines.csv"
+    },
+    {
+      "file": "data/raw/sc_lines.csv",
+      "bytes": 140765,
+      "rows": 4092,
+      "sha256": "384039e92630831eaf4d851471ba9e521f4a7b0207d0d7da7d376c4a1cc5004e",
+      "retrieved_utc": "2026-11-01T13:24:23Z",
+      "retrieved_from": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/sc_lines.csv",
+      "transport": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+      "pinned_commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+      "canonical_upstream": "https://github.com/nflverse/nfldata/blob/master/data/sc_lines.csv"
+    },
+    {
+      "file": "data/raw/teams.csv",
+      "bytes": 90927,
+      "rows": 800,
+      "sha256": "b7cfab98e6ac35c684432f6ace65d6065b0b89b90e3a2e91116a69ae38e04d42",
+      "retrieved_utc": "2026-11-01T13:24:23Z",
+      "retrieved_from": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/teams.csv",
+      "transport": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+      "pinned_commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+      "canonical_upstream": "https://github.com/nflverse/nfldata/blob/master/data/teams.csv"
+    },
+    {
+      "file": "data/raw/standings.csv",
+      "bytes": 56900,
+      "rows": 800,
+      "sha256": "0bfcc79cca4c122da01c6efc0843c4a6691bf9447bf32797fa7aaccbfd71a5de",
+      "retrieved_utc": "2026-11-01T13:24:23Z",
+      "retrieved_from": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/standings.csv",
+      "transport": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+      "pinned_commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+      "canonical_upstream": "https://github.com/nflverse/nfldata/blob/master/data/standings.csv"
+    },
+    {
+      "file": "data/raw/win_totals.csv",
+      "bytes": 12811,
+      "rows": 576,
+      "sha256": "6228fe8c2cf41b340a9df27dc862b63f3da765068ee7c09474397279c1b75c20",
+      "retrieved_utc": "2026-11-01T13:24:24Z",
+      "retrieved_from": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/win_totals.csv",
+      "transport": "https://codeload.github.com/nflverse/nfldata/tar.gz/refs/heads/master",
+      "pinned_commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+      "canonical_upstream": "https://github.com/nflverse/nfldata/blob/master/data/win_totals.csv"
+    },
+    {
+      "file": "data/raw/player/weekly_stats_2023.csv",
+      "bytes": 1734372,
+      "rows": 5653,
+      "sha256": "b87b68981e71305f986b8217a273de166358faab87d4dbd6c5bad405e0b83462",
+      "retrieved_utc": "2026-11-01T13:24:24Z",
+      "retrieved_from": "https://github.com/kadetownsend4/ML-Betting/blob/main/NFL/weekly_nfl_stats_season/weekly_stats_2023.csv",
+      "transport": "api.github.com contents (raw media type)",
+      "pinned_commit": "b2c936ce194b086acf1897b8ded0520e5c735b99",
+      "canonical_upstream": "https://github.com/nflverse/nflverse-data/releases/tag/player_stats"
+    },
+    {
+      "file": "data/raw/player/weekly_stats_2024.csv",
+      "bytes": 1712885,
+      "rows": 5597,
+      "sha256": "5fb36e99dbdb9a08ca2d98cbed45ace64b6bf8f716a103bc761f7c494c3f4b7c",
+      "retrieved_utc": "2026-11-01T13:24:25Z",
+      "retrieved_from": "https://github.com/kadetownsend4/ML-Betting/blob/main/NFL/weekly_nfl_stats_season/weekly_stats_2024.csv",
+      "transport": "api.github.com contents (raw media type)",
+      "pinned_commit": "b2c936ce194b086acf1897b8ded0520e5c735b99",
+      "canonical_upstream": "https://github.com/nflverse/nflverse-data/releases/tag/player_stats"
+    }
+  ],
+  "cross_check_spread_vs_closing_lines": {
+    "agree": 2267,
+    "disagree": 1101,
+    "disagree_examples": [
+      {
+        "game_id": "2006091004",
+        "alt_game_id": "2006_01_CIN_KC",
+        "type": "SPREAD",
+        "side": "KC",
+        "line": "-1",
+        "odds": "",
+        "outcome": "0",
+        "games_spread_line": "-1.5"
+      },
+      {
+        "game_id": "2006091005",
+        "alt_game_id": "2006_01_BUF_NE",
+        "type": "SPREAD",
+        "side": "NE",
+        "line": "-9.5",
+        "odds": "",
+        "outcome": "0",
+        "games_spread_line": "10"
+      },
+      {
+        "game_id": "2006091008",
+        "alt_game_id": "2006_01_NYJ_TEN",
+        "type": "SPREAD",
+        "side": "TEN",
+        "line": "-3",
+        "odds": "",
+        "outcome": "0",
+        "games_spread_line": "2.5"
+      },
+      {
+        "game_id": "2006091011",
+        "alt_game_id": "2006_01_DAL_JAX",
+        "type": "SPREAD",
+        "side": "JAX",
+        "line": "2",
+        "odds": "",
+        "outcome": "1",
+        "games_spread_line": "-2.5"
+      },
+      {
+        "game_id": "2006091702",
+        "alt_game_id": "2006_02_DET_CHI",
+        "type": "SPREAD",
+        "side": "CHI",
+        "line": "-7.5",
+        "odds": "",
+        "outcome": "1",
+        "games_spread_line": "7"
+      }
+    ]
+  }
+}

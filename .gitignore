@@ -1,0 +1,20 @@
+# Local tooling / caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.cache/
+node_modules/
+
+# Raw downloaded datasets (large, reproducible via scripts/fetch_data.py)
+# Only the provenance manifest is committed.
+data/raw/**/*.csv
+data/raw/**/*.gz
+data/raw/**/*.parquet
+!data/manifest.json
+
+# Interim build scratch
+data/interim/
+build/
+*.log

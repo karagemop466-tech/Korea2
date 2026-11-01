@@ -1,0 +1,27 @@
+{
+ "pages": 15,
+ "internal_links": 501,
+ "broken": [],
+ "external_hosts": {
+  "https://github.com": {
+   "checked": 18,
+   "codes": [
+    200
+   ],
+   "status": "ok"
+  },
+  "https://operations.nfl.com": {
+   "checked": 1,
+   "status": "unreachable-from-sandbox"
+  },
+  "https://www.nfl.com": {
+   "checked": 3,
+   "status": "unreachable-from-sandbox"
+  }
+ },
+ "unreachable_from_sandbox": [
+  "operations.nfl.com",
+  "www.nfl.com"
+ ],
+ "anchors_checked": 14
+}
