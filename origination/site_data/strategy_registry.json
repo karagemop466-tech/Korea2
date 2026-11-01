@@ -1,0 +1,202 @@
+{
+ "single": [
+  {
+   "strategy": "ATS_OWN_1",
+   "family": "Model vs market (spread)",
+   "engine": "own",
+   "threshold_pts": 1.0,
+   "rule": "Back the side the Ridge attack/defence engine likes by >= 1 pts versus the close."
+  },
+  {
+   "strategy": "ATS_OWN_2",
+   "family": "Model vs market (spread)",
+   "engine": "own",
+   "threshold_pts": 2.0,
+   "rule": "Back the side the Ridge attack/defence engine likes by >= 2 pts versus the close."
+  },
+  {
+   "strategy": "ATS_OWN_3",
+   "family": "Model vs market (spread)",
+   "engine": "own",
+   "threshold_pts": 3.0,
+   "rule": "Back the side the Ridge attack/defence engine likes by >= 3 pts versus the close."
+  },
+  {
+   "strategy": "TOT_OWN_2",
+   "family": "Model vs market (total)",
+   "engine": "own",
+   "threshold_pts": 2.0,
+   "rule": "Over/under the Ridge attack/defence engine total when it differs from the close by >= 2 pts."
+  },
+  {
+   "strategy": "TOT_OWN_3",
+   "family": "Model vs market (total)",
+   "engine": "own",
+   "threshold_pts": 3.0,
+   "rule": "Over/under the Ridge attack/defence engine total when it differs from the close by >= 3 pts."
+  },
+  {
+   "strategy": "ATS_ELO_ENGINE_1",
+   "family": "Model vs market (spread)",
+   "engine": "elo_engine",
+   "threshold_pts": 1.0,
+   "rule": "Back the side the Elo engine likes by >= 1 pts versus the close."
+  },
+  {
+   "strategy": "ATS_ELO_ENGINE_2",
+   "family": "Model vs market (spread)",
+   "engine": "elo_engine",
+   "threshold_pts": 2.0,
+   "rule": "Back the side the Elo engine likes by >= 2 pts versus the close."
+  },
+  {
+   "strategy": "ATS_ELO_ENGINE_3",
+   "family": "Model vs market (spread)",
+   "engine": "elo_engine",
+   "threshold_pts": 3.0,
+   "rule": "Back the side the Elo engine likes by >= 3 pts versus the close."
+  },
+  {
+   "strategy": "TOT_ELO_ENGINE_2",
+   "family": "Model vs market (total)",
+   "engine": "elo_engine",
+   "threshold_pts": 2.0,
+   "rule": "Over/under the Elo engine total when it differs from the close by >= 2 pts."
+  },
+  {
+   "strategy": "TOT_ELO_ENGINE_3",
+   "family": "Model vs market (total)",
+   "engine": "elo_engine",
+   "threshold_pts": 3.0,
+   "rule": "Over/under the Elo engine total when it differs from the close by >= 3 pts."
+  },
+  {
+   "strategy": "ML_OWN_3",
+   "family": "Model vs market (moneyline)",
+   "engine": "own",
+   "threshold_prob": 0.03,
+   "rule": "Moneyline where our win probability exceeds the de-vigged market by >= 3%."
+  },
+  {
+   "strategy": "ML_OWN_5",
+   "family": "Model vs market (moneyline)",
+   "engine": "own",
+   "threshold_prob": 0.05,
+   "rule": "Moneyline where our win probability exceeds the de-vigged market by >= 5%."
+  },
+  {
+   "strategy": "ML_OWN_DOG",
+   "family": "Model vs market (moneyline)",
+   "rule": "Underdog moneylines where our probability beats the de-vigged market by >= 3 pts."
+  },
+  {
+   "strategy": "SIT_HOME_DOG",
+   "family": "Situational (spread)",
+   "rule": "Back every home underdog against the spread."
+  },
+  {
+   "strategy": "SIT_DIV_DOG",
+   "family": "Situational (spread)",
+   "rule": "Back the underdog in divisional games against the spread."
+  },
+  {
+   "strategy": "SIT_REST_EDGE",
+   "family": "Situational (spread)",
+   "rule": "Back the team with >= 3 more days of rest against the spread."
+  },
+  {
+   "strategy": "SIT_BYE_FAV_FADE",
+   "family": "Situational (spread)",
+   "rule": "Fade a team that is favoured in its first game back from a bye."
+  },
+  {
+   "strategy": "SIT_DIV_UNDER",
+   "family": "Situational (total)",
+   "rule": "Under in divisional games."
+  },
+  {
+   "strategy": "SIT_OFF_BYE",
+   "family": "Situational (spread)",
+   "rule": "Back a team playing its first game after a bye against the spread."
+  },
+  {
+   "strategy": "SIT_WINDY_UNDER",
+   "family": "Situational (total)",
+   "rule": "Under when the reported wind is >= 15 mph."
+  },
+  {
+   "strategy": "SIT_FREEZE_UNDER",
+   "family": "Situational (total)",
+   "rule": "Under when the reported temperature is <= 32 F."
+  },
+  {
+   "strategy": "SIT_DOME_OVER",
+   "family": "Situational (total)",
+   "rule": "Over in domes and closed roofs."
+  },
+  {
+   "strategy": "SIT_TNF_UNDER",
+   "family": "Situational (total)",
+   "rule": "Under in Thursday games."
+  },
+  {
+   "strategy": "OPEN_EDGE_2",
+   "family": "Opening-line value (sample limited)",
+   "rule": "Back the side where our own line beats the *opening* line by >= 2 pts (opening lines exist for 2021 only).",
+   "sample_limited": true
+  },
+  {
+   "strategy": "CTRL_ALL_HOME",
+   "family": "Control",
+   "rule": "Back the home team against the spread in every game (vig benchmark)."
+  },
+  {
+   "strategy": "CTRL_ALL_OVER",
+   "family": "Control",
+   "rule": "Bet the over in every game (vig benchmark)."
+  },
+  {
+   "strategy": "CTRL_LEAK",
+   "family": "Control",
+   "rule": "Back the side that covered, chosen after the game (deliberate lookahead; must be rejected)."
+  }
+ ],
+ "parlay": [
+  {
+   "strategy": "PARLAY2_ATS",
+   "family": "Parlay",
+   "rule": "Each week, the two largest model-vs-close ATS disagreements, combined in a 2-leg parlay at closing prices.",
+   "n_legs": 2,
+   "correlation_note": "Cross-game legs; independence is a close approximation (see correlation page)."
+  },
+  {
+   "strategy": "PARLAY3_ATS",
+   "family": "Parlay",
+   "rule": "Each week, the three largest model-vs-close ATS disagreements, combined in a 3-leg parlay.",
+   "n_legs": 3,
+   "correlation_note": "Cross-game legs; independence is a close approximation."
+  },
+  {
+   "strategy": "PARLAY2_ML_DOG",
+   "family": "Parlay",
+   "rule": "Each week, the two largest model-vs-market underdog moneyline edges, combined in a 2-leg parlay.",
+   "n_legs": 2,
+   "correlation_note": "Cross-game legs."
+  },
+  {
+   "strategy": "PARLAY_SGP_ATS_TOT",
+   "family": "Parlay (same game)",
+   "rule": "Same-game parlay: the model's ATS side and the model's total side of the same game.",
+   "n_legs": 2,
+   "correlation_note": "Legs are correlated (see correlation page); priced here at the product of the legs, which is what an independent-pricing book would quote."
+  }
+ ],
+ "dev_window": [
+  2010,
+  2014
+ ],
+ "eval_window": [
+  2015,
+  2026
+ ]
+}

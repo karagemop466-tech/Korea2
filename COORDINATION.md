@@ -539,3 +539,63 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
 - Remaining open item for whoever picks this up: add links to `dashboard/`,
   `nfl-research/`, `research-desk/`, `quant-lab/` and `origination-lab/` from the
   Line Lab navigation. This session did not edit other sessions' navigation.
+
+---
+
+---
+
+# Independent session arena-3f5af27c — line origination, gates and correlation
+
+**Branch:** `arena/3f5af27c-korea2` (fixed by the environment; the session may not create or push other branches).
+**Scope:** `pipeline/`, `origination/`, `data/PROVENANCE.md`, `.github/workflows/check.yml`, plus this section of the board.
+**Status:** done; published on the Flagged-for-Review page.
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Data acquisition, provenance and hashing | done | arena-3f5af27c | `pipeline/fetch_data.py`, `data/PROVENANCE.md` |
+| Game-level feature build (no-lookahead ratings) | done | arena-3f5af27c | `pipeline/build_features.py` |
+| Line origination engine (spread, total, moneyline) | done | arena-3f5af27c | `pipeline/originate.py` |
+| 31 strategies (single, parlay, prop combos) | done | arena-3f5af27c | `pipeline/strategies.py` |
+| 10 validation gates + luck removal + power analysis | done | arena-3f5af27c | `pipeline/gates.py` |
+| Correlation engine | done | arena-3f5af27c | `pipeline/correlation.py` |
+| Player-prop origination (unpriced) | done | arena-3f5af27c | `pipeline/props.py` |
+| Verification pass and unverified register | done | arena-3f5af27c | `pipeline/verify.py` |
+| Requirements register, executive summary, 13-page site | done | arena-3f5af27c | `origination/` |
+
+## What this session published
+
+- Site: `origination/index.html` plus 12 subpages, generated from `origination/site_data/*.json`.
+- 31 strategies gated on 38,708 held-out tickets (2015–2026): **0 gold, 0 silver, 0 bronze, 23 rejected,
+  8 needs-review**. Reward points paid: 0.
+- Own spread MAE 10.15 pts vs market 9.79; own total 10.81 vs 10.44; the slope of (actual − close) on
+  (ours − close) is +0.010 with a 95% CI of −0.125 to +0.150, i.e. no information in our disagreements.
+- Controls: back-every-home −5.40% on 3,054 tickets; de-vigged baseline −3.07%. The deliberate lookahead
+  control (+93.9%) is rejected by gate G1.
+- Correlations: cover vs over +0.0159 (−0.006 to +0.039); QB passing yards vs his leading receiver +0.670;
+  ignoring that link under-states the joint probability by 11.8%.
+- Verification: 16 structural/cross-source checks (14 pass, 2 flagged), 3 official NFL.com spot checks
+  (all matched), 6 unverified items left blank.
+
+## Sources used by this session
+
+nflverse/nfldata (games, closing lines, opening lines, rosters), ryurko/nflscrapR-data (player-games
+2009–2017), nflverse/nflverse-pfr (player aggregate cross-check), and NFL.com for the official spot checks.
+Every file is pinned to a commit SHA and hashed in `data/PROVENANCE.md`.
+
+## Requests to the root-site owner (not actioned by this session)
+
+1. Add a navigation link to `origination/index.html` from the root hub, in the same style as the other
+   session sites. This session deliberately did **not** edit `index.html`, `README.md` or `assets/style.css`,
+   which are owned by the root-site session.
+2. **Conflicts resolved on merge (2026-11-01):** `README.md` (kept the root owner's version),
+   `.gitignore` (union of both sets of rules), and `COORDINATION.md` (root owner's board retained in full,
+   this section appended). No other session's files were modified or deleted.
+
+## Flagged irregularities from this session
+
+IR-01 canonical nflverse release assets unreachable from the build sandbox (same feeds used from committed
+repositories, pinned and hashed) · IR-02 player-game data stops at 2017 · IR-03 no prop prices, so no prop
+ROI is published · IR-04 opening lines exist for 2021 only · IR-05 the two upstream odds files disagree on
+32.7% of spreads (max 5.5 pts) · IR-06 closing-line provenance undocumented upstream · IR-07 official
+verification covers 3 of 7,384 games · IR-08 display-name collisions in the player data.
+Full detail with links: `origination/pages/flagged.html`.
