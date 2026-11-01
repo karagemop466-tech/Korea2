@@ -56,9 +56,9 @@ def src(sid: str, label: str | None = None) -> str:
     s = sources().get(sid)
     if not s:
         return '<span class="flag">source missing</span>'
-    text = label or s["title"]
-    if len(text) > 46:
-        text = text[:43].rstrip() + "..."
+    text = label or s.get("short") or s["title"]
+    if len(text) > 44:
+        text = text[:41].rstrip() + "..."
     return f'<a href="{_html.escape(s["url"])}" rel="noopener">{_html.escape(text)}</a>'
 
 
@@ -129,7 +129,7 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
         nav.append(f'<a href="{href}"{active}>{label[0].upper() + label[1:] if False else label}</a>')
     navhtml = "".join(nav)
     sub = f'<p class="lede">{subtitle}</p>' if subtitle else ""
-    return f"""<!doctype html>
+    doc = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(page_title)} | Line Lab</title>
@@ -159,6 +159,10 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
      <a href="pages/flagged.html">Flagged for review</a></p>
 </footer>
 </main></div></body></html>"""
+    if current.startswith("pages/"):
+        doc = (doc.replace('href="pages/', 'href="../pages/')
+                  .replace('href="index.html"', 'href="../index.html"'))
+    return doc
 
 
 def write(path: str, content: str) -> None:

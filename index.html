@@ -1,1 +1,57 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="NFL forecasting research and validation dashboard"><title>Overview | Line Lab</title><link rel="stylesheet" href="assets/style.css"></head><body><aside><a class="brand" href="index.html"><span class="mark">L</span><span>LINE LAB<small>NFL RESEARCH</small></span></a><div class="nav-label">WORKSPACE</div><nav aria-label="Main navigation"><a href="index.html" class="active" aria-current="page">Overview</a><a href="pages/executive.html">Executive summary</a><a href="pages/sources.html">Data &amp; sources</a><a href="pages/strategies.html">Strategy lab</a><a href="pages/validation.html">Validation gates</a><a href="pages/correlation.html">Correlation &amp; pricing</a><a href="pages/leaderboard.html">Leaderboard</a><a href="pages/flagged.html">Flagged for review</a></nav><div class="sidebar-note">RESEARCH STATUS <strong>Pre-validation</strong><span>No strategies approved</span></div></aside><main><header><span>RESEARCH / OVERVIEW</span><a href="pages/flagged.html" class="review-link">Review flags ↗</a></header><div class="eyebrow">INDEPENDENT NFL RESEARCH</div><h1>Better lines start<br><em>with better questions.</em></h1><p class="intro">A transparent workspace for exploring NFL forecasting, testing signals and separating evidence from noise.</p><div class="notice"><span class="dot"></span><div><strong>Research stage, not a betting system</strong><br>No strategy has passed validation. No odds, correlations or returns have been verified.</div><a href="pages/flagged.html">See open issues →</a></div><div class="section-head"><div><div class="eyebrow">AT A GLANCE</div><h2>The state of play</h2></div><a href="pages/executive.html">Read executive summary →</a></div><div class="cards"><article><span>01 / STRATEGIES</span><strong>4</strong><p>Research candidates, all unvalidated</p><a href="pages/strategies.html">Explore the lab →</a></article><article><span>02 / VALIDATION</span><strong>0</strong><p>Strategies approved for ranking</p><a href="pages/validation.html">View the gates →</a></article><article><span>03 / CORRELATION</span><strong>—</strong><p>No verified coefficient available</p><a href="pages/correlation.html">Review methodology →</a></article></div><div class="section-head"><div><div class="eyebrow">THE APPROACH</div><h2>From hypothesis to evidence</h2></div></div><div class="steps"><div><b>01</b><strong>Source</strong><p>Establish provenance and point-in-time availability.</p></div><div><b>02</b><strong>Model</strong><p>Generate probabilities, not just picks.</p></div><div><b>03</b><strong>Validate</strong><p>Test forward against a market benchmark.</p></div><div><b>04</b><strong>Rank</strong><p>Only eligible strategies enter the leaderboard.</p></div></div><p class="disclaimer">Luck cannot be removed from sports outcomes. A positive backtest alone does not demonstrate skill or guarantee profit.</p><footer>Research, not betting advice. Outcomes are uncertain; never risk money you cannot afford to lose. <a href="pages/sources.html">Source register</a></footer></main></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview | Line Lab</title>
+<meta name="description" content="Independent NFL line origination, correlation measurement and strategy validation research.">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="index.html">
+    <span class="mark">LL</span><span>LINE LAB<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">Workspace</div>
+  <nav aria-label="Main navigation"><a href="index.html" class="active" aria-current="page">Overview</a><a href="pages/executive.html">Executive summary</a><a href="pages/lines.html">Originated lines</a><a href="pages/props.html">Player props</a><a href="pages/correlation.html">Correlation &amp; parlays</a><a href="pages/strategies.html">Strategy lab</a><a href="pages/validation.html">Validation gates</a><a href="pages/leaderboard.html">Leaderboard</a><a href="pages/luck.html">Removing luck</a><a href="pages/market.html">Market benchmark</a><a href="pages/method.html">Method &amp; data</a><a href="pages/sources.html">Source register</a><a href="pages/flagged.html">Flagged for review</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Pipeline live<br><strong>0 of 7 strategies approved</strong><span>Rejections are listed with the exact gate that failed.</span></div>
+</aside>
+<main id="main">
+<header class="topbar">
+  <span class="crumb">OVERVIEW</span>
+  <a class="review-link" href="pages/flagged.html">Flagged for review &nearr;</a>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">INDEPENDENT NFL RESEARCH</div>
+  <h1>Originate the line.<br><em>Then try to prove it wrong.</em></h1>
+  <p class="lede">This workspace builds its own NFL spreads, totals, moneylines and player-prop
+  lines from the official play-by-play feed, measures the correlations that decide parlay prices,
+  and puts every candidate strategy through ten validation gates. The point is not to publish picks
+  &mdash; it is to find out, honestly, which signals survive contact with the closing line.</p>
+</div>
+<div class="notice"><span class="dot"></span><div>
+  <strong>Current verdict: nothing has earned capital.</strong><br>
+  The pipeline runs end to end on live 2026 data, and the answer this week is that the closing
+  market beats our model. That is a result, not a failure.</div>
+  <a href="pages/executive.html">Read the executive summary &rarr;</a></div>
+<div class="kpis"><article class="kpi"><span class="kpi-label">Closing line accuracy</span><strong>10.25 pts</strong><p>Mean absolute error of the closing spread vs the actual margin, n=7075. The benchmark every strategy must beat.</p><a class="card-link" href="pages/market.html">Market benchmark &rarr;</a></article><article class="kpi"><span class="kpi-label">Our model's accuracy</span><strong>10.38 pts</strong><p>Weighted point-ratings model, walk-forward 2023-2026. The market is still better.</p><a class="card-link" href="pages/lines.html">Originated lines &rarr;</a></article><article class="kpi"><span class="kpi-label">Incremental information</span><strong>p = 0.853</strong><p>Test of whether the model adds anything beyond the closing line. It does not.</p><a class="card-link" href="pages/lines.html">See the regression &rarr;</a></article><article class="kpi"><span class="kpi-label">Strategies approved</span><strong>0</strong><p>A strategy needs all ten gates. Every candidate currently fails at least five.</p><a class="card-link" href="pages/leaderboard.html">Leaderboard &rarr;</a></article><article class="kpi"><span class="kpi-label">QB &harr; WR1 correlation</span><strong>0.561</strong><p>Measured on 7537 team-games: same-game parlay legs are not independent.</p><a class="card-link" href="pages/correlation.html">Correlation &rarr;</a></article><article class="kpi"><span class="kpi-label">ATS coin-flip test</span><strong>50.0%</strong><p>13760 settled spread bets; p = 1.0 against 50%. The spread market shows no exploitable tilt.</p><a class="card-link" href="pages/luck.html">Removing luck &rarr;</a></article></div><section class="block"><div class="eyebrow">AT A GLANCE</div><h2>The five findings that matter</h2><div class="table-wrap"><table class=""><caption class="caption">Headline results, all recomputed on every pipeline run.</caption><thead><tr><th>Finding</th><th>Measured value</th><th>What it means</th><th>Source</th></tr></thead><tbody><tr><td>Closing spread is hard to beat</td><td>MAE 10.25 pts, slope 1.05</td><td>A line this accurate leaves no room for a simple ratings model.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse schedules feed</a></td></tr><tr><td>Our model adds nothing</td><td>c = -0.024 (p = 0.853)</td><td>Coefficient on our model margin, controlling for the closing line (HC1 errors).</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">Computed from the same feed</a></td></tr><tr><td>Pythagorean luck does not persist</td><td>r = 0.019 (n = 827)</td><td>Wins above expectation are noise, so records cannot be extrapolated.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">Computed from game results</a></td></tr><tr><td>Same-game legs are correlated</td><td>4-leg joint 11.1% vs product 5.7%</td><td>Pricing the legs independently overstates the parlay's true odds.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">Player box scores</a></td></tr><tr><td>Prop model barely beats the naive baseline</td><td>MAE change -0.33%</td><td>A small accuracy gain that cannot be converted into ROI without a price feed.</td><td class="src"><a href="https://www.nflgsis.com/gsis/documentation/stadiumguides/guide_for_statisticians.pdf" rel="noopener">How stats are credited</a></td></tr></tbody></table></div></section>
+<div class="grid2">
+  <div class="panel"><h3>What is actually verified</h3><ul class="ticks">
+    <li>7,548 NFL games (1999-2026) with closing lines, downloaded and hashed.</li>
+    <li>259,678 player-weeks (2012-2026) for prop and correlation work.</li>
+    <li>Spread sign convention proven from the data, not assumed.</li>
+    <li>Every strategy test run out-of-sample from 2023 onward.</li>
+  </ul><a class="panel-link" href="pages/method.html">Method &amp; data &rarr;</a></div>
+  <div class="panel"><h3>What is deliberately blank</h3><ul class="crosses">
+    <li>No historical player-prop prices exist in the feed, so no prop ROI is published.</li>
+    <li>No verified execution access, limits or jurisdiction.</li>
+    <li>No funded prize pool for the leaderboard rewards.</li>
+    <li>No injury-report source confirmed, so injury signals are blocked.</li>
+  </ul><a class="panel-link" href="pages/flagged.html">Flagged for review &rarr;</a></div>
+</div>
+<footer>
+  <p>Research and measurement, not betting advice. Every figure is computed by the code in this repository from the sources listed on the Source register page; nothing is estimated by hand.</p>
+  <p><a href="pages/sources.html">Source register</a> &middot;
+     <a href="pages/method.html">Method</a> &middot;
+     <a href="pages/flagged.html">Flagged for review</a></p>
+</footer>
+</main></div></body></html>

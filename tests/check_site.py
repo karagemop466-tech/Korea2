@@ -63,6 +63,8 @@ class Doc(HTMLParser):
             self._cell_has_link = True
 
     def handle_endtag(self, tag):
+        if tag in ("tbody", "thead"):
+            self._in_tbody = False
         if tag == "title":
             self._in_title = False
         if tag in ("td", "th"):
