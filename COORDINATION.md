@@ -435,7 +435,7 @@ navigation link to `quant-lab/index.html` when convenient. This session did not 
   live page https://karagemop466-tech.github.io/Korea2/origination-lab/ was fetched and returned the
   expected content: 7,384 games, 18 strategies / 0 qualified, 27 signals / 0 surviving, 7/9 integrity
   checks, the top-6 leaderboard and the 2026 week-8 slate.
-- **Follow-up (PR #28)**: the live slate published the market line in the publisher's sign convention
+- **Follow-up** — PR https://github.com/karagemop466-tech/Korea2/pull/30:: the live slate published the market line in the publisher's sign convention
   (positive = home favoured) next to our own negative-means-home-favoured line, and printed the spread
   disagreement as a percentage. Both were display faults: `market_home_line` is now carried in
   `lines.json`, every line table uses one convention, and the edge is shown in points with the note
