@@ -136,13 +136,13 @@ Remote session boards are not automatically shared between branches. This sessio
 | T-06 | Executive summary | done | arena-dda090fd-korea2 | nfl-lines/executive-summary.md | — | |
 | T-07 | GitHub Pages site: landing page + category subpages, tables, sources | done | arena-dda090fd-korea2 | nfl-lines/*.html, nfl-lines/style.css | Every row carries a source link | HTML validated; internal links OK. Non-overlapping scope: nfl-lines/ coexists with root Line Lab dashboard and dashboard/ scope |
 | T-08 | Flagged-for-review page | done | arena-dda090fd-korea2 | nfl-lines/flagged-review.html | F-01..F-11 logged | |
-| T-09 | Integration: PR to main, merge, Pages deploy | in progress | arena-dda090fd-korea2 | all | — | PR #12 (https://github.com/karagemop466-tech/Korea2/pull/12) open against main; GitHub Pages configured on main at https://karagemop466-tech.github.io/Korea2/ (legacy Pages build from main per merged log) |
+| T-09 | Integration: PR to main, merge, Pages deploy | done | arena-dda090fd-korea2 | all | — | PR #12 (https://github.com/karagemop466-tech/Korea2/pull/12) merged to main via `gh pr merge 12 --merge` at merge commit 6f03db5; `validate` check success; GitHub Pages built/deployed on main at https://karagemop466-tech.github.io/Korea2/ (session pages live under /nfl-lines/) |
 
 ## Session log
 - 2026-11-01: Board created on branch arena/dda090fd-korea2. Repo contained only README.md ("# Korea2"). Single session active (arena-dda090fd-korea2); claiming all tasks T-01..T-09. Direct access to nfl.com and other sports sites is BLOCKED in this sandbox (only github.com/api.github.com/codeload.github.com reachable). NFL data sourced from fivethirtyeight/nfl-elo-game via codeload.github.com; direct nfl.com verification flagged as unreachable.
 - 2026-11-01: Site scope moved to nfl-lines/ to avoid overwriting the root dashboard merged by session arena/97d4c0f1-korea2 (their log: do not overwrite the existing root site).
 - 2026-11-01: T-02..T-08 done: COORDINATION.md, tools/, data/ CSVs, nfl-lines/* (six pages + style.css). HTML validated; internal links OK.
-- 2026-11-01: T-09 in progress — rebased onto current main preserving all boards; PR #12 open; merge and Pages verification pending.
+- 2026-11-01: T-09 done — rebased onto current main preserving all boards; PR #12 (https://github.com/karagemop466-tech/Korea2/pull/12) merged to main via `gh pr merge 12 --merge` at merge commit 6f03db5; `validate` check success; GitHub Pages built/deployed on main at https://karagemop466-tech.github.io/Korea2/; session pages verified live at https://karagemop466-tech.github.io/Korea2/nfl-lines/ (index, data, strategies, correlations, executive-summary, flagged-review).
 - Navigation note: this session did not modify other sessions' navigation; link request to /nfl-lines/ logged here for the root-site owner.
 - Cross-session review noted via issue #13: FiveThirtyEight CSV is third-party (not official NFL verification), empirical win rates are marginal rates not correlation coefficients, and road-team labeling was clarified on the correlations page. Addressed in flag register F-11 and nfl-lines/correlations.html wording.
 
