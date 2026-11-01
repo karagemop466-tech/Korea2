@@ -861,6 +861,10 @@ re-run the pipeline and get the same numbers, including the ones that are unflat
         + section("Downloaded files (first 8 of the manifest)", table(
     ["File", "Status", "Bytes", "SHA-256 (prefix)", "Release", "Source"], dl_rows,
     caption="The full manifest, including every file, is in data/derived/manifest.json."))
+        + section("Parallel-session archive",
+                  '<p>Other agent sessions produced their own dashboards in this repository. They are '
+                  'preserved unchanged and are not part of the published navigation: '
+                  '<a href="pages/archive.html">see the archive &rarr;</a></p>')
         + section("Known method limitations", '''<ul class="crosses">
 <li>Only closing lines are available. No timestamps or opening prices, so closing-line value cannot be
 measured - a limitation that makes every ROI here conservative rather than flattering.</li>
@@ -968,6 +972,43 @@ numbers that cannot be defended.</p></div>
                     subtitle="Known gaps, published instead of hidden.")
 
 
+def archive_dirs() -> list[tuple[str, str]]:
+    """Sibling dashboards built by parallel sessions, kept verbatim for audit."""
+    out = []
+    labels = {
+        "dashboard": "Framework dashboard (session arena/97d4c0f1)",
+        "nfl-lines": "Line origination draft (parallel session)",
+        "nfl-research": "Research brief (session arena/e0d506a4)",
+        "origination-lab": "Origination lab draft (parallel session)",
+        "quant-lab": "Quant lab draft (parallel session)",
+        "research-desk": "Research desk draft (parallel session)",
+        "results": "Results artefacts (parallel session)",
+    }
+    for d, label in labels.items():
+        if os.path.exists(os.path.join(d, "index.html")):
+            out.append((d, label))
+    return out
+
+
+def page_archive() -> str:
+    dirs = archive_dirs()
+    rows = [[esc(label), f'<a href="../{esc(d)}/index.html">{esc(d)}/</a>',
+             "Preserved unchanged; not part of the published navigation", "Sibling session artefact"]
+            for d, label in dirs]
+    body = (
+        '<div class="hero compact"><div class="eyebrow">ARCHIVE</div>'
+        '<h1>Earlier parallel-session work, kept intact.</h1>'
+        '<p class="lede">Several agent sessions worked on this repository at the same time. Their '
+        'dashboards are preserved byte-for-byte for audit; this site is the integrated one. Their '
+        'pages were not edited, so where they disagree with this dashboard, the measured numbers here '
+        'take precedence and the disagreement is recorded on the Flagged for Review page.</p></div>'
+        + section("Preserved artefacts", table(
+            ["Artefact", "Location", "Status", "Provenance"], rows,
+            caption="Nothing here is deleted or rewritten. These directories are outside the published navigation.")))
+    return W.layout("Archive", "pages/archive.html", body,
+                    subtitle="Parallel-session dashboards retained for audit.")
+
+
 def main() -> None:
     pages = {
         "pages/executive.html": page_executive,
@@ -982,6 +1023,7 @@ def main() -> None:
         "pages/method.html": page_method,
         "pages/sources.html": page_sources,
         "pages/flagged.html": page_flagged,
+        "pages/archive.html": page_archive,
     }
     W.write("index.html", page_index())
     for path, fn in pages.items():

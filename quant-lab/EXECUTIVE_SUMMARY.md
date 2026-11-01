@@ -1,0 +1,52 @@
+# Executive summary — NFL line origination & strategy lab
+
+**Bottom line:** the lab builds its own NFL lines end to end, tests 21 pre-registered betting strategies against real closing prices over 25 seasons, and finds that **none of them clears all nine validation gates**. The valuable output is not a hot strategy — it is (1) a working, reproducible line-origination engine, (2) measured correlation values that decide whether a parlay price is fair, and (3) a verification layer that proves the underlying data against nfl.com line by line. Everything unproven is labelled as unproven.
+
+## What was built
+
+| Layer | What it does | Where it lives |
+|---|---|---|
+| Data | 6,607 completed NFL games (6,331 regular season) from 2002 to 2026, with closing spread, total and moneylines | `scripts/fetch_data.sh`, `data/processed/games.json` |
+| Origination | Ridge-regularised offence/defence ratings, exponentially decayed, refit every week with no lookahead; produces spread, total and moneyline | `scripts/model.py`, `lines.html` |
+| Strategy lab | 21 rules: singles, parlays, same-game parlays, player props, plus a vig-floor control | `scripts/backtest.py`, `strategies.html` |
+| Validation | Nine gates including bootstrap confidence intervals and Benjamini-Hochberg FDR | `scripts/validation.py`, `validation.html` |
+| Correlations | Game-leg and player-leg correlations with sample sizes and confidence intervals | `correlation.html`, `props.html` |
+| Verification | 77 checks of the data against official nfl.com pages | `scripts/verify_official.py`, `verification.html` |
+
+## The four findings that matter
+
+1. **The model is good, and not good enough.** Its spread error is 10.65 points against the closing line's 10.24, and its total error is 10.87 against 10.53, over 6,123 games. Every strategy built on "the model disagrees with the market" therefore loses: spread edges −6.0% on the holdout, total edges −12.4%, moneyline value −10.9%. The closing line is the benchmark, and this model does not beat it.
+
+2. **No strategy survives the gates.** Zero of 21 strategies pass all nine. Nineteen formed the tested family for multiple-testing control, and **no raw p-value was small enough to survive Benjamini-Hochberg correction at q = 0.10**. The best lead — betting unders in outdoor games with 15+ mph wind — is positive in both windows (+3.8% holdout, +6.9% discovery on 114 and 253 bets) and clears 6 of 9 gates, but its 95% interval runs from −12.9% to +20.6%, so it is a lead, not a result.
+
+3. **Correlation, not prediction, is where the edge lives.** Home cover and over are effectively independent (phi = 0.010), and so are two legs from different games (phi = −0.019), which validates cross-game parlay pricing. But moneyline and spread legs of the same game are strongly coupled (phi = 0.649), and a quarterback's passing yards move with his No. 1 receiver's receiving yards (pooled r = 0.624 over 14 paired games). Pricing the Green Bay pair independently produces a joint probability of 0.250 against 0.429 with the measured correlation — a **72% relative understatement** of the true joint chance. That is a pricing error a bettor can exploit without predicting anything.
+
+4. **The data is verified, and the gaps are disclosed.** All 64 team-seasons in the mirror (32 teams × 2025 and 2026) reproduce the official nfl.com standings exactly — wins, losses, ties, points for and points against — and every one of the six hand-captured player logs sums exactly to the season total nfl.com prints on the same page. 77 of 77 checks pass. The 10 irregularities found during review (including a sign-convention conflict in the documented spread field) and the 5 assumptions the numbers rest on are published with links on the Flagged page.
+
+## What is explicitly not claimed
+
+- **No prop strategy is ranked.** No player-prop price exists in any source reachable from this environment, so prop ROI uses a −110 assumption and the sample (41 player-games across 6 players) is far below the 60-observation gate. The prop module demonstrates method; it does not claim an edge.
+- **No line beats a sportsbook.** Closing prices come from a single third-party mirror, not from a sportsbook, and the model is deliberately simple. There is no claim of profitability.
+- **No rule text is quoted.** The NFL rulebook URL this project would have used returned a 404 on 2026-11-01, so the analysis is empirical rather than rule-derived.
+- **Nothing here is betting advice.** Leaderboard rewards are virtual points and badges.
+
+## How to reproduce
+
+```bash
+bash scripts/fetch_data.sh
+python3 scripts/build_dataset.py
+python3 scripts/model.py
+python3 scripts/backtest.py
+python3 scripts/props.py
+python3 scripts/validation.py
+python3 scripts/verify_official.py
+python3 scripts/build_site.py
+```
+
+The data is pinned by commit, the hyper-parameters were chosen on 2002–2015 only, the holdout is 2020–2026, and every number on the site is generated by these scripts — no value is typed by hand and no manual input is required.
+
+## Sources
+
+Official: [nfl.com 2025 standings](https://www.nfl.com/standings/league/2025/REG), [nfl.com 2026 standings](https://www.nfl.com/standings/league/2026/REG), the six player pages listed on [Sources](sources.html), and the [2026 Week 9 schedule](https://www.nfl.com/schedules/2026/by-week/week-9).
+
+Bulk data: [nflverse/nfldata](https://github.com/nflverse/nfldata) pinned at commit `a270278f3ac4e937295fe6a27814b3c4a2b62645` — trusted only because it reproduces the official standings exactly.

@@ -1,0 +1,7 @@
+{
+ "n_observations": 23,
+ "n_with_model_prob": 23,
+ "side_hit_rate": 0.4783,
+ "brier": 0.25,
+ "note": "Expanding-window diagnostic only: no player-prop price exists in any reachable source, so no prop strategy can be settled against a real market. Sample n is far below the gate."
+}

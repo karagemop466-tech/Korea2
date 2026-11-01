@@ -1,0 +1,52 @@
+{
+ "generated_utc": "2026-11-01T13:41:21Z",
+ "files": [
+  {
+   "name": "games.csv.gz",
+   "source_url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
+   "rows": 7548,
+   "season_min": 1999,
+   "season_max": 2026,
+   "raw_sha256": "2fc32b121619303c044cfc99f806375e3652ba36894d72ddb6e3554b95676226"
+  },
+  {
+   "name": "team_week.csv.gz",
+   "rows": 6272,
+   "source_url_pattern": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_{year}.csv",
+   "seasons": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ]
+  },
+  {
+   "name": "player_week.csv.gz",
+   "rows": 207389,
+   "source_url_pattern": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{year}.csv",
+   "seasons": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ]
+  }
+ ],
+ "missing_player_seasons": []
+}

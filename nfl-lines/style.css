@@ -1,0 +1,88 @@
+/* Korea2 — NFL Lines Origination dashboard */
+:root {
+  --bg: #f7f8fa;
+  --panel: #ffffff;
+  --line: #dfe3e8;
+  --ink: #1a202c;
+  --muted: #6b7a8c;
+  --brand: #0b3c66;
+  --brand2: #1466b3;
+  --ok: #2e7d32;
+  --warn: #b26a00;
+  --bg-ok: #eef6f0;
+  --bg-warn: #fdf3e3;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink); background: var(--bg); line-height: 1.5;
+}
+a { color: var(--brand2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+header {
+  background: var(--brand); color: #fff; padding: 1rem 1.5rem;
+}
+header .wrap { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+header h1 { margin: 0; font-size: 1.25rem; letter-spacing: 0.4px; }
+header .tag { font-size: 0.85rem; opacity: 0.85; }
+nav { background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
+nav ul {
+  max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 0; list-style: none; padding: 0; margin: 0;
+}
+nav li a {
+  display: block; padding: 0.6rem 1rem; font-size: 0.9rem; color: var(--ink); border-bottom: 2px solid transparent;
+}
+nav li a:hover, nav li a.active { background: #f1f4f8; border-bottom-color: var(--brand2); color: var(--brand2); text-decoration: none; }
+
+main { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+.section { margin-bottom: 2.5rem; }
+h2 { font-size: 1.35rem; margin: 0 0 0.5rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--brand); }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: var(--brand); }
+p { margin: 0 0 1rem; color: #334155; }
+.lead { font-size: 1.05rem; }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.card h3 { margin-top: 0; color: var(--ink); border: none; padding: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.stat { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem; }
+.stat .v { font-size: 1.75rem; font-weight: 700; color: var(--brand); }
+.stat .l { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
+
+table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); margin: 1rem 0; font-size: 0.85rem; }
+th, td { border-bottom: 1px solid var(--line); padding: 0.5rem 0.65rem; text-align: left; vertical-align: top; }
+th { background: #eef2f6; font-weight: 700; color: var(--brand); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.3px; }
+tr:hover { background: #f4f7fa; }
+tr.flagged td { background: var(--bg-warn); }
+tr.verified td { background: var(--bg-ok); }
+td.source, th.source { width: 210px; }
+td.source a { font-size: 0.72rem; color: var(--muted); word-break: break-all; }
+td.source a:hover { color: var(--brand2); text-decoration: underline; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.cen { text-align: center; }
+
+.badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 0.1rem 0.5rem; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.3px; }
+.badge.ok { background: var(--bg-ok); color: var(--ok); border: 1px solid #b9d8c9; }
+.badge.warn { background: var(--bg-warn); color: var(--warn); border: 1px solid #f0c996; }
+.badge.blank { background: #e9eef3; color: var(--muted); }
+
+.empty { text-align: center; color: var(--muted); padding: 2rem; }
+.kicker { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 0.25rem; }
+
+.cta { display: inline-block; background: var(--brand); color: #fff; padding: 0.55rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
+.cta:hover { background: var(--brand2); text-decoration: none; }
+
+footer { margin-top: 3rem; padding: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.8rem; }
+.footnote { font-size: 0.8rem; color: var(--muted); }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85rem; background: #eef2f6; padding: 0.1rem 0.35rem; border-radius: 4px; }
+
+@media (max-width: 700px) {
+  nav ul { flex-direction: column; }
+  nav li a { border-bottom: 1px solid var(--line); }
+  td.source { display: none; }
+  table { font-size: 0.75rem; }
+  th, td { padding: 0.35rem 0.5rem; }
+}

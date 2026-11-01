@@ -1,0 +1,362 @@
+{
+ "null_bettors": {
+  "n_bets_per_bettor": 1000,
+  "n_bettors": 20000,
+  "price": -110,
+  "roi_mean": -0.0455,
+  "roi_sd": 0.03011,
+  "p05": -0.0951,
+  "p50": -0.0455,
+  "p95": 0.0042,
+  "p99": 0.0252,
+  "best_of_100_mean": 0.0312,
+  "p_roi_above_5pct": 0.00095,
+  "p_roi_above_10pct": 0.0,
+  "histogram": [
+   {
+    "bucket": "-14% to -12%",
+    "count": 119
+   },
+   {
+    "bucket": "-12% to -10%",
+    "count": 558
+   },
+   {
+    "bucket": "-10% to -8%",
+    "count": 1714
+   },
+   {
+    "bucket": "-8% to -6%",
+    "count": 3959
+   },
+   {
+    "bucket": "-6% to -4%",
+    "count": 4928
+   },
+   {
+    "bucket": "-4% to -2%",
+    "count": 4737
+   },
+   {
+    "bucket": "-2% to 0%",
+    "count": 2615
+   },
+   {
+    "bucket": "0% to 2%",
+    "count": 1069
+   },
+   {
+    "bucket": "2% to 4%",
+    "count": 240
+   },
+   {
+    "bucket": "4% to 6%",
+    "count": 45
+   },
+   {
+    "bucket": "6% to 8%",
+    "count": 3
+   },
+   {
+    "bucket": "8% to 10%",
+    "count": 1
+   },
+   {
+    "bucket": "10% to 12%",
+    "count": 0
+   },
+   {
+    "bucket": "12% to 14%",
+    "count": 0
+   }
+  ]
+ },
+ "skill_variance": {
+  "team_seasons": 640,
+  "mean_ats_rate": 0.5,
+  "observed_var_of_rates": 0.01301,
+  "permutation_chance_var": 0.015213,
+  "permutation_chance_var_sd": 0.000845,
+  "skill_var": 0.0,
+  "luck_share_of_variance": 1.0,
+  "skill_sd_win_rate": 0.0,
+  "implied_95pct_skill_band": [
+   0.5,
+   0.5
+  ],
+  "games_per_team_season_mean": 16.5,
+  "verdict": "no detectable team-level ATS skill",
+  "note": "The chance benchmark comes from 300 permutations that reassign ATS winners inside each game, so it respects the one-winner-per-game constraint. The observed dispersion of team-season ATS rates is not larger than that benchmark unless skill_var > 0."
+ },
+ "persistence": {
+  "split_half_r": -0.0577,
+  "split_half_n": 640,
+  "spearman_brown_reliability": -0.1224,
+  "year_over_year_r": -0.0352,
+  "year_over_year_n": 640,
+  "interpretation": "Split-half reliability near zero means a team's first-half ATS record carries almost no information about its second half."
+ },
+ "strategy_luck": [
+  {
+   "key": "S15_model_ats_parlay3",
+   "name": "3-leg parlay: top-3 model spread edges each week",
+   "category": "parlay",
+   "validation_roi": -0.151,
+   "validation_bets": 193,
+   "season_roi_sd": 0.5564,
+   "chance_sd": 0.2547,
+   "luck_share_of_variance": 0.2096,
+   "skill_share_of_variance": 0.7904,
+   "validation_p": 0.81769,
+   "reality_check_p": 0.9843
+  },
+  {
+   "key": "S4_model_ml_3",
+   "name": "Model moneyline edge >= 3 pts",
+   "category": "single",
+   "validation_roi": -0.0638,
+   "validation_bets": 2302,
+   "season_roi_sd": 0.1446,
+   "chance_sd": 0.0713,
+   "luck_share_of_variance": 0.243,
+   "skill_share_of_variance": 0.757,
+   "validation_p": 0.93785,
+   "reality_check_p": 1.0
+  },
+  {
+   "key": "S14_model_ats_parlay2",
+   "name": "2-leg parlay: top-2 model spread edges each week",
+   "category": "parlay",
+   "validation_roi": 0.0116,
+   "validation_bets": 1186,
+   "season_roi_sd": 0.1673,
+   "chance_sd": 0.1005,
+   "luck_share_of_variance": 0.3611,
+   "skill_share_of_variance": 0.6389,
+   "validation_p": 0.40011,
+   "reality_check_p": 0.7393
+  },
+  {
+   "key": "S7_fade_home_fav7",
+   "name": "Fade home favourites of 7+ (ATS)",
+   "category": "single",
+   "validation_roi": -0.0434,
+   "validation_bets": 572,
+   "season_roi_sd": 0.1965,
+   "chance_sd": 0.1443,
+   "luck_share_of_variance": 0.5393,
+   "skill_share_of_variance": 0.4607,
+   "validation_p": 0.86707,
+   "reality_check_p": 1.0
+  },
+  {
+   "key": "S11_wind_under",
+   "name": "Wind 15+ mph (Under)",
+   "category": "single",
+   "validation_roi": 0.0812,
+   "validation_bets": 202,
+   "season_roi_sd": 0.2763,
+   "chance_sd": 0.2286,
+   "luck_share_of_variance": 0.6844,
+   "skill_share_of_variance": 0.3156,
+   "validation_p": 0.11689,
+   "reality_check_p": 0.8627
+  },
+  {
+   "key": "S16_ml_fav_parlay2",
+   "name": "2-leg moneyline parlay: two shortest-priced favourites each week",
+   "category": "parlay",
+   "validation_roi": -0.0614,
+   "validation_bets": 211,
+   "season_roi_sd": 0.2759,
+   "chance_sd": 0.2357,
+   "luck_share_of_variance": 0.7299,
+   "skill_share_of_variance": 0.2701,
+   "validation_p": 0.90684,
+   "reality_check_p": 1.0
+  },
+  {
+   "key": "S18_wong_teaser6",
+   "name": "2-team 6-pt teaser on Wong legs (+1.5/+2.5 dogs, -7.5/-8.5 favs)",
+   "category": "teaser",
+   "validation_roi": -0.2045,
+   "validation_bets": 120,
+   "season_roi_sd": 0.3473,
+   "chance_sd": 0.3069,
+   "luck_share_of_variance": 0.7813,
+   "skill_share_of_variance": 0.2187,
+   "validation_p": 0.99271,
+   "reality_check_p": 1.0
+  },
+  {
+   "key": "S17_sgp_spread_total",
+   "name": "Same-game parlay: model spread + model total in one game",
+   "category": "sgp",
+   "validation_roi": -0.0176,
+   "validation_bets": 1225,
+   "season_roi_sd": 0.1023,
+   "chance_sd": 0.0979,
+   "luck_share_of_variance": 0.917,
+   "skill_share_of_variance": 0.083,
+   "validation_p": 0.66266,
+   "reality_check_p": 0.61
+  },
+  {
+   "key": "S2_model_ats_2",
+   "name": "Model spread edge >= 2 pts (ATS)",
+   "category": "single",
+   "validation_roi": -0.0111,
+   "validation_bets": 1687,
+   "season_roi_sd": 0.0644,
+   "chance_sd": 0.0841,
+   "luck_share_of_variance": 1.0,
+   "skill_share_of_variance": 0.0,
+   "validation_p": 0.68139,
+   "reality_check_p": 0.999
+  },
+  {
+   "key": "S8_div_home_dog",
+   "name": "Divisional home underdogs (ATS)",
+   "category": "single",
+   "validation_roi": -0.0219,
+   "validation_bets": 395,
+   "season_roi_sd": 0.1309,
+   "chance_sd": 0.1728,
+   "luck_share_of_variance": 1.0,
+   "skill_share_of_variance": 0.0,
+   "validation_p": 0.68884,
+   "reality_check_p": 1.0
+  },
+  {
+   "key": "S6_home_dog_3",
+   "name": "Home underdogs of 3+ (ATS)",
+   "category": "single",
+   "validation_roi": -0.019,
+   "validation_bets": 749,
+   "season_roi_sd": 0.1205,
+   "chance_sd": 0.1263,
+   "luck_share_of_variance": 1.0,
+   "skill_share_of_variance": 0.0,
+   "validation_p": 0.71991,
+   "reality_check_p": 1.0
+  },
+  {
+   "key": "S5_home_dog",
+   "name": "Home underdogs (ATS)",
+   "category": "single",
+   "validation_roi": -0.0251,
+   "validation_bets": 1065,
+   "season_roi_sd": 0.0789,
+   "chance_sd": 0.1045,
+   "luck_share_of_variance": 1.0,
+   "skill_share_of_variance": 0.0,
+   "validation_p": 0.80727,
+   "reality_check_p": 0.9997
+  },
+  {
+   "key": "S12_dome_over",
+   "name": "Dome games (Over)",
+   "category": "single",
+   "validation_roi": -0.0179,
+   "validation_bets": 821,
+   "season_roi_sd": 0.0802,
+   "chance_sd": 0.1193,
+   "luck_share_of_variance": 1.0,
+   "skill_share_of_variance": 0.0,
+   "validation_p": 0.71952,
+   "reality_check_p": 0.983
+  },
+  {
+   "key": "S3_model_total_2",
+   "name": "Model total edge >= 2 pts",
+   "category": "single",
+   "validation_roi": -0.0247,
+   "validation_bets": 1495,
+   "season_roi_sd": 0.0537,
+   "chance_sd": 0.0879,
+   "luck_share_of_variance": 1.0,
+   "skill_share_of_variance": 0.0,
+   "validation_p": 0.84772,
+   "reality_check_p": 0.9797
+  },
+  {
+   "key": "S9_rest_home",
+   "name": "Home rest advantage 3+ days (ATS)",
+   "category": "single",
+   "validation_roi": -0.0396,
+   "validation_bets": 303,
+   "season_roi_sd": 0.1957,
+   "chance_sd": 0.1981,
+   "luck_share_of_variance": 1.0,
+   "skill_share_of_variance": 0.0,
+   "validation_p": 0.7785,
+   "reality_check_p": 1.0
+  },
+  {
+   "key": "S1_model_ats_1",
+   "name": "Model spread edge >= 1 pt (ATS)",
+   "category": "single",
+   "validation_roi": -0.0453,
+   "validation_bets": 2228,
+   "season_roi_sd": 0.0589,
+   "chance_sd": 0.0725,
+   "luck_share_of_variance": 1.0,
+   "skill_share_of_variance": 0.0,
+   "validation_p": 0.98659,
+   "reality_check_p": 1.0
+  },
+  {
+   "key": "S10_buy_cold",
+   "name": "Buy cold home teams (avg margin <= -7 last 3) (ATS)",
+   "category": "single",
+   "validation_roi": -0.0464,
+   "validation_bets": 656,
+   "season_roi_sd": 0.1055,
+   "chance_sd": 0.1325,
+   "luck_share_of_variance": 1.0,
+   "skill_share_of_variance": 0.0,
+   "validation_p": 0.90097,
+   "reality_check_p": 1.0
+  }
+ ],
+ "evidence_requirement": [
+  {
+   "true_roi": 0.01,
+   "bets_95pct_one_sided": 24623,
+   "bets_80pct_power": 56190,
+   "seasons_at_150_bets": 164.2
+  },
+  {
+   "true_roi": 0.02,
+   "bets_95pct_one_sided": 6156,
+   "bets_80pct_power": 14048,
+   "seasons_at_150_bets": 41.0
+  },
+  {
+   "true_roi": 0.03,
+   "bets_95pct_one_sided": 2736,
+   "bets_80pct_power": 6244,
+   "seasons_at_150_bets": 18.2
+  },
+  {
+   "true_roi": 0.05,
+   "bets_95pct_one_sided": 985,
+   "bets_80pct_power": 2248,
+   "seasons_at_150_bets": 6.6
+  },
+  {
+   "true_roi": 0.1,
+   "bets_95pct_one_sided": 247,
+   "bets_80pct_power": 562,
+   "seasons_at_150_bets": 1.6
+  }
+ ],
+ "multiple_testing": {
+  "signals_tested": 27,
+  "expected_false_positives_at_p05": 1.35,
+  "fdr_threshold": 0.1,
+  "survivors": [],
+  "strategies_tested": 18,
+  "best_strategy_reality_check_p": 0.61
+ }
+}

@@ -26,6 +26,7 @@ NAV = [
     ("pages/method.html", "Method &amp; data"),
     ("pages/sources.html", "Source register"),
     ("pages/flagged.html", "Flagged for review"),
+    ("pages/archive.html", "Archive"),
 ]
 
 DISCLAIMER = (
