@@ -1,0 +1,765 @@
+{
+ "markets": [
+  {
+   "market": "passing_yards",
+   "label": "Passing yards",
+   "position": "QB",
+   "n_player_weeks": 901,
+   "n_train_2023": 337,
+   "n_test_2024": 564,
+   "mae_baseline_test": 68.22,
+   "mae_our_test": 75.0,
+   "bias_our_test": -5.1,
+   "mae_baseline_train": 65.21,
+   "mae_our_train": 73.1,
+   "over_rate_at_line_test": 0.4858,
+   "over_rate_baseline_test": 0.4965,
+   "calibration_error_our": 0.0142,
+   "calibration_error_baseline": 0.0035,
+   "push_rate_test": 0.0,
+   "median_line_test": 229.3,
+   "calibration": [
+    {
+     "offset": -10,
+     "window": "2023 train",
+     "n": 337,
+     "over_rate": 0.531,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -10,
+     "window": "2024 test",
+     "n": 564,
+     "over_rate": 0.523,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -5,
+     "window": "2023 train",
+     "n": 337,
+     "over_rate": 0.499,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -5,
+     "window": "2024 test",
+     "n": 564,
+     "over_rate": 0.511,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -2,
+     "window": "2023 train",
+     "n": 337,
+     "over_rate": 0.484,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -2,
+     "window": "2024 test",
+     "n": 564,
+     "over_rate": 0.493,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -0.5,
+     "window": "2023 train",
+     "n": 337,
+     "over_rate": 0.475,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -0.5,
+     "window": "2024 test",
+     "n": 564,
+     "over_rate": 0.489,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 0.5,
+     "window": "2023 train",
+     "n": 337,
+     "over_rate": 0.472,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 0.5,
+     "window": "2024 test",
+     "n": 564,
+     "over_rate": 0.486,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 2,
+     "window": "2023 train",
+     "n": 337,
+     "over_rate": 0.466,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 2,
+     "window": "2024 test",
+     "n": 564,
+     "over_rate": 0.477,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 5,
+     "window": "2023 train",
+     "n": 337,
+     "over_rate": 0.451,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 5,
+     "window": "2024 test",
+     "n": 564,
+     "over_rate": 0.466,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 10,
+     "window": "2023 train",
+     "n": 337,
+     "over_rate": 0.424,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 10,
+     "window": "2024 test",
+     "n": 564,
+     "over_rate": 0.447,
+     "push_rate": 0.0
+    }
+   ],
+   "players_test": 60
+  },
+  {
+   "market": "rushing_yards",
+   "label": "Rushing yards",
+   "position": "RB",
+   "n_player_weeks": 1889,
+   "n_train_2023": 725,
+   "n_test_2024": 1164,
+   "mae_baseline_test": 23.49,
+   "mae_our_test": 24.58,
+   "bias_our_test": 2.48,
+   "mae_baseline_train": 21.7,
+   "mae_our_train": 24.6,
+   "over_rate_at_line_test": 0.4991,
+   "over_rate_baseline_test": 0.4338,
+   "calibration_error_our": 0.0009,
+   "calibration_error_baseline": 0.0662,
+   "push_rate_test": 0.0,
+   "median_line_test": 34.4,
+   "calibration": [
+    {
+     "offset": -10,
+     "window": "2023 train",
+     "n": 725,
+     "over_rate": 0.665,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -10,
+     "window": "2024 test",
+     "n": 1164,
+     "over_rate": 0.662,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -5,
+     "window": "2023 train",
+     "n": 725,
+     "over_rate": 0.589,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -5,
+     "window": "2024 test",
+     "n": 1164,
+     "over_rate": 0.582,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -2,
+     "window": "2023 train",
+     "n": 725,
+     "over_rate": 0.545,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -2,
+     "window": "2024 test",
+     "n": 1164,
+     "over_rate": 0.538,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -0.5,
+     "window": "2023 train",
+     "n": 725,
+     "over_rate": 0.514,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -0.5,
+     "window": "2024 test",
+     "n": 1164,
+     "over_rate": 0.509,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 0.5,
+     "window": "2023 train",
+     "n": 725,
+     "over_rate": 0.491,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 0.5,
+     "window": "2024 test",
+     "n": 1164,
+     "over_rate": 0.487,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 2,
+     "window": "2023 train",
+     "n": 725,
+     "over_rate": 0.458,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 2,
+     "window": "2024 test",
+     "n": 1164,
+     "over_rate": 0.464,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 5,
+     "window": "2023 train",
+     "n": 725,
+     "over_rate": 0.411,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 5,
+     "window": "2024 test",
+     "n": 1164,
+     "over_rate": 0.416,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 10,
+     "window": "2023 train",
+     "n": 725,
+     "over_rate": 0.353,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 10,
+     "window": "2024 test",
+     "n": 1164,
+     "over_rate": 0.36,
+     "push_rate": 0.0
+    }
+   ],
+   "players_test": 113
+  },
+  {
+   "market": "receiving_yards",
+   "label": "Receiving yards",
+   "position": "WR/TE",
+   "n_player_weeks": 4258,
+   "n_train_2023": 1638,
+   "n_test_2024": 2620,
+   "mae_baseline_test": 22.82,
+   "mae_our_test": 24.29,
+   "bias_our_test": 3.7,
+   "mae_baseline_train": 24.91,
+   "mae_our_train": 27.98,
+   "over_rate_at_line_test": 0.5076,
+   "over_rate_baseline_test": 0.4363,
+   "calibration_error_our": 0.0076,
+   "calibration_error_baseline": 0.0637,
+   "push_rate_test": 0.0,
+   "median_line_test": 32.4,
+   "calibration": [
+    {
+     "offset": -10,
+     "window": "2023 train",
+     "n": 1638,
+     "over_rate": 0.626,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -10,
+     "window": "2024 test",
+     "n": 2620,
+     "over_rate": 0.673,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -5,
+     "window": "2023 train",
+     "n": 1638,
+     "over_rate": 0.557,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -5,
+     "window": "2024 test",
+     "n": 2620,
+     "over_rate": 0.591,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -2,
+     "window": "2023 train",
+     "n": 1638,
+     "over_rate": 0.518,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -2,
+     "window": "2024 test",
+     "n": 2620,
+     "over_rate": 0.544,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -0.5,
+     "window": "2023 train",
+     "n": 1638,
+     "over_rate": 0.498,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -0.5,
+     "window": "2024 test",
+     "n": 2620,
+     "over_rate": 0.517,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 0.5,
+     "window": "2023 train",
+     "n": 1638,
+     "over_rate": 0.482,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 0.5,
+     "window": "2024 test",
+     "n": 2620,
+     "over_rate": 0.5,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 2,
+     "window": "2023 train",
+     "n": 1638,
+     "over_rate": 0.458,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 2,
+     "window": "2024 test",
+     "n": 2620,
+     "over_rate": 0.475,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 5,
+     "window": "2023 train",
+     "n": 1638,
+     "over_rate": 0.41,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 5,
+     "window": "2024 test",
+     "n": 2620,
+     "over_rate": 0.433,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 10,
+     "window": "2023 train",
+     "n": 1638,
+     "over_rate": 0.361,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 10,
+     "window": "2024 test",
+     "n": 2620,
+     "over_rate": 0.358,
+     "push_rate": 0.0
+    }
+   ],
+   "players_test": 261
+  },
+  {
+   "market": "receptions",
+   "label": "Receptions",
+   "position": "WR/TE",
+   "n_player_weeks": 4322,
+   "n_train_2023": 1670,
+   "n_test_2024": 2652,
+   "mae_baseline_test": 1.53,
+   "mae_our_test": 1.62,
+   "bias_our_test": 0.18,
+   "mae_baseline_train": 1.52,
+   "mae_our_train": 1.7,
+   "over_rate_at_line_test": 0.509,
+   "over_rate_baseline_test": 0.4257,
+   "calibration_error_our": 0.009,
+   "calibration_error_baseline": 0.0743,
+   "push_rate_test": 0.0004,
+   "median_line_test": 2.9,
+   "calibration": [
+    {
+     "offset": -10,
+     "window": "2023 train",
+     "n": 1670,
+     "over_rate": 1.0,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -10,
+     "window": "2024 test",
+     "n": 2652,
+     "over_rate": 1.0,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -5,
+     "window": "2023 train",
+     "n": 1670,
+     "over_rate": 0.984,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -5,
+     "window": "2024 test",
+     "n": 2652,
+     "over_rate": 0.99,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -2,
+     "window": "2023 train",
+     "n": 1670,
+     "over_rate": 0.85,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -2,
+     "window": "2024 test",
+     "n": 2652,
+     "over_rate": 0.868,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -0.5,
+     "window": "2023 train",
+     "n": 1670,
+     "over_rate": 0.611,
+     "push_rate": 0.0
+    },
+    {
+     "offset": -0.5,
+     "window": "2024 test",
+     "n": 2652,
+     "over_rate": 0.63,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 0.5,
+     "window": "2023 train",
+     "n": 1670,
+     "over_rate": 0.389,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 0.5,
+     "window": "2024 test",
+     "n": 2652,
+     "over_rate": 0.382,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 2,
+     "window": "2023 train",
+     "n": 1670,
+     "over_rate": 0.178,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 2,
+     "window": "2024 test",
+     "n": 2652,
+     "over_rate": 0.167,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 5,
+     "window": "2023 train",
+     "n": 1670,
+     "over_rate": 0.02,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 5,
+     "window": "2024 test",
+     "n": 2652,
+     "over_rate": 0.027,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 10,
+     "window": "2023 train",
+     "n": 1670,
+     "over_rate": 0.001,
+     "push_rate": 0.0
+    },
+    {
+     "offset": 10,
+     "window": "2024 test",
+     "n": 2652,
+     "over_rate": 0.0,
+     "push_rate": 0.0
+    }
+   ],
+   "players_test": 261
+  }
+ ],
+ "examples": [
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Travis Kelce",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receiving_yards",
+   "our_line": 59.9,
+   "actual": 39.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "DeAndre Hopkins",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receiving_yards",
+   "our_line": 9.3,
+   "actual": 18.0,
+   "result": "over"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "JuJu Smith-Schuster",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receiving_yards",
+   "our_line": 20.8,
+   "actual": 16.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Dallas Goedert",
+   "team": "PHI",
+   "opp": "KC",
+   "market": "receiving_yards",
+   "our_line": 57.9,
+   "actual": 27.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Marquise Brown",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receiving_yards",
+   "our_line": 35.0,
+   "actual": 15.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "A.J. Brown",
+   "team": "PHI",
+   "opp": "KC",
+   "market": "receiving_yards",
+   "our_line": 44.5,
+   "actual": 43.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Noah Gray",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receiving_yards",
+   "our_line": 8.3,
+   "actual": 2.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "DeVonta Smith",
+   "team": "PHI",
+   "opp": "KC",
+   "market": "receiving_yards",
+   "our_line": 42.1,
+   "actual": 69.0,
+   "result": "over"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Jahan Dotson",
+   "team": "PHI",
+   "opp": "KC",
+   "market": "receiving_yards",
+   "our_line": 23.2,
+   "actual": 42.0,
+   "result": "over"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Xavier Worthy",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receiving_yards",
+   "our_line": 78.4,
+   "actual": 157.0,
+   "result": "over"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Travis Kelce",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receptions",
+   "our_line": 4.6,
+   "actual": 4.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "DeAndre Hopkins",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receptions",
+   "our_line": 2.2,
+   "actual": 2.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "JuJu Smith-Schuster",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receptions",
+   "our_line": 1.0,
+   "actual": 2.0,
+   "result": "over"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Dallas Goedert",
+   "team": "PHI",
+   "opp": "KC",
+   "market": "receptions",
+   "our_line": 4.9,
+   "actual": 2.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Marquise Brown",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receptions",
+   "our_line": 3.1,
+   "actual": 2.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "A.J. Brown",
+   "team": "PHI",
+   "opp": "KC",
+   "market": "receptions",
+   "our_line": 3.7,
+   "actual": 3.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Noah Gray",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receptions",
+   "our_line": 1.8,
+   "actual": 1.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "DeVonta Smith",
+   "team": "PHI",
+   "opp": "KC",
+   "market": "receptions",
+   "our_line": 4.1,
+   "actual": 4.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Jahan Dotson",
+   "team": "PHI",
+   "opp": "KC",
+   "market": "receptions",
+   "our_line": 2.3,
+   "actual": 2.0,
+   "result": "under"
+  },
+  {
+   "season": 2024,
+   "week": 22,
+   "player": "Xavier Worthy",
+   "team": "KC",
+   "opp": "PHI",
+   "market": "receptions",
+   "our_line": 7.4,
+   "actual": 8.0,
+   "result": "over"
+  }
+ ],
+ "window_note": "2023 = fit/diagnostic season, 2024 = out-of-sample test season",
+ "pricing_note": "No player-prop prices exist in the verified source extracts. These lines are originated, graded for accuracy and calibration, and NOT settled against a market. They are excluded from the ranked leaderboard.",
+ "position_summary": []
+}

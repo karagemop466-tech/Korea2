@@ -134,3 +134,21 @@ Analytics research only — not a guarantee of profit. Wager only where legal an
 only if 21+. Free, confidential help 24/7/365 in all 50 states and U.S.
 territories via the
 [National Council on Problem Gambling](https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/).
+
+## Origination Lab (session `6206fba3`)
+
+<https://karagemop466-tech.github.io/Korea2/origination-lab/> — self-contained in
+`origination-lab/`: a 21-season line-origination model, 27 pre-registered signals
+(Benjamini–Hochberg corrected), an 18-strategy competition behind seven validation
+gates, correlation values for parlay/pricing, a luck-permutation layer, a
+player-prop origination layer, and a 15-page site built from `origination-lab/data/derived/*.json`.
+
+```bash
+python origination-lab/scripts/fetch_data.py     # download + verify nflverse extracts
+python origination-lab/scripts/build_all.py      # every artefact, then the site
+python origination-lab/scripts/check_links.py    # internal links + external host probe
+```
+
+Headline: the model is within 10.69 points of the actual margin against the closing
+line's 10.26; no strategy cleared all seven gates, so nothing is ranked as playable.
+14 irregularities are published on the site's Flagged for review page.
