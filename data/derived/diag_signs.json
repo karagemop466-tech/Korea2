@@ -1,5 +1,5 @@
 {
-  "n_games_with_line": 7075,
+  "n_games_with_line": 7087,
   "qa_checks": [
     {
       "check": "no duplicate game_id",
@@ -14,7 +14,7 @@
     {
       "check": "played games have both scores",
       "pass": true,
-      "detail": "7384 played games"
+      "detail": "7396 played games"
     },
     {
       "check": "result column equals home_score - away_score",
@@ -29,7 +29,7 @@
     {
       "check": "spread_line sign convention (positive = home favoured)",
       "pass": true,
-      "detail": "corr(spread_line, result) = 0.425 over n=7384"
+      "detail": "corr(spread_line, result) = 0.425 over n=7396"
     },
     {
       "check": "closing lines present before 2026",
@@ -42,22 +42,22 @@
       "detail": "game types: ['CON', 'DIV', 'REG', 'SB', 'WC']"
     }
   ],
-  "corr_spread_line_result": 0.4298,
+  "corr_spread_line_result": 0.43,
   "home_cover_rate_if_line_means_home_favoured": {
-    "cover_rate_excl_push": 0.4887,
-    "n": 6880,
+    "cover_rate_excl_push": 0.4891,
+    "n": 6892,
     "pushes": 195
   },
   "home_cover_rate_if_line_means_home_handicap": {
-    "cover_rate_excl_push": 0.5999,
-    "n": 6934,
+    "cover_rate_excl_push": 0.6003,
+    "n": 6946,
     "pushes": 141
   },
   "moneyline_cross_check": {
-    "mean_spread_line_when_home_is_ml_favourite": 5.674,
-    "n_home_fav": 3365,
-    "mean_spread_line_when_home_is_ml_underdog": -4.658,
-    "n_home_dog": 1808,
+    "mean_spread_line_when_home_is_ml_favourite": 5.673,
+    "n_home_fav": 3376,
+    "mean_spread_line_when_home_is_ml_underdog": -4.659,
+    "n_home_dog": 1809,
     "verdict": "If home ML favourites show a POSITIVE mean spread_line, then positive means the home team is favoured (a predicted home margin), because a home team favoured on the moneyline lays points on the spread."
   },
   "recent_years_same_tests": {
@@ -65,15 +65,15 @@
       2025,
       2026
     ],
-    "corr_spread_line_result": 0.4639,
-    "home_cover_rate_if_home_favoured": 0.4684,
-    "home_cover_rate_if_home_handicap": 0.55
+    "corr_spread_line_result": 0.4676,
+    "home_cover_rate_if_home_favoured": 0.477,
+    "home_cover_rate_if_home_handicap": 0.5587
   },
   "totals_check": {
-    "n": 7384,
-    "mean_total": 44.28,
+    "n": 7396,
+    "mean_total": 44.29,
     "mean_total_line": 43.58,
     "over_rate": 0.4877,
-    "corr": 0.3226
+    "corr": 0.3227
   }
 }

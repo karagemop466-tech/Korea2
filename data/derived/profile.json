@@ -334,14 +334,14 @@
         "home_moneyline": 0.5
       }
     },
-    "nonnull_result": 7384,
-    "nonnull_total": 7384,
-    "nonnull_home_score": 7384,
-    "nonnull_away_score": 7384
+    "nonnull_result": 7396,
+    "nonnull_total": 7396,
+    "nonnull_home_score": 7396,
+    "nonnull_away_score": 7396
   },
   "player_week": {
     "file": "15 season files",
-    "rows": 259678,
+    "rows": 260520,
     "columns": [
       "player_id",
       "player_name",
@@ -678,7 +678,7 @@
       "2023": 18643,
       "2024": 18983,
       "2025": 19422,
-      "2026": 7521
+      "2026": 8363
     },
     "stat_columns_present": [
       "passing_yards",
@@ -696,31 +696,31 @@
       "fantasy_points_ppr"
     ],
     "season_type_counts": {
-      "REG": 248972,
+      "REG": 249814,
       "POST": 10706
     },
     "current_season_max_week": 8,
     "positions": {
-      "WR": 34920,
-      "LB": 23948,
-      "CB": 23283,
-      "DE": 22244,
-      "RB": 22210,
-      "DT": 18722,
-      "TE": 17401,
-      "DB": 12097,
-      "OLB": 10923,
-      "QB": 9276,
-      "K": 7906,
-      "P": 7802,
-      "S": 7165,
-      "SAF": 7160,
-      "FS": 6781
+      "WR": 35024,
+      "LB": 24080,
+      "CB": 23376,
+      "DE": 22303,
+      "RB": 22278,
+      "DT": 18798,
+      "TE": 17463,
+      "DB": 12114,
+      "OLB": 10930,
+      "QB": 9307,
+      "K": 7931,
+      "P": 7826,
+      "SAF": 7233,
+      "S": 7167,
+      "FS": 6786
     }
   },
   "team_week": {
     "file": "15 season files",
-    "rows": 7874,
+    "rows": 7898,
     "columns": [
       "season",
       "week",
@@ -1033,7 +1033,7 @@
       "2023": 570,
       "2024": 570,
       "2025": 570,
-      "2026": 216
+      "2026": 240
     },
     "stat_columns_present": [
       "passing_yards",
