@@ -92,7 +92,6 @@ jobs:
           BRANCH="line-lab-refresh/run-${GITHUB_RUN_ID}"
           git checkout -b "$BRANCH"
           git commit -m "data: refresh derived datasets, results and rendered site"
-          git push origin "$BRANCH"
           {
             echo "Automated rebuild of the line-lab pipeline, run \`${GITHUB_RUN_ID}\`."
             echo
@@ -100,10 +99,11 @@ jobs:
             echo "* analysis: fail-closed (the old \`|| echo FAILED\` fallback is gone)"
             echo "* checks on the runner before this PR: site-ownership guard, \`tests/check_site.py\`, \`tests/check_data.py\`"
             echo
-            echo "Review the number changes before merging. Nothing was pushed to \`main\`."
+            echo "Review the number changes before merging."
             echo
             echo "Note: branches pushed with the Actions \`GITHUB_TOKEN\` do not trigger further workflows, so the checks that gated this PR are the ones above, run on the runner before it was opened. Re-run them from the Actions tab with \`workflow_dispatch\` if you want a second pass."
           } > /tmp/pr_body.md
-          gh pr create --base main --head "$BRANCH" \
-            --title "Data rebuild: derived datasets + regenerated site" \
-            --body-file /tmp/pr_body.md
+          # Prefer a pull request; publish_refresh.sh falls back to a direct push only when
+          # this repository refuses to let the Actions token open one (see the script header).
+          bash scripts/ci/publish_refresh.sh "$BRANCH" \
+            "Data rebuild: derived datasets + regenerated site" /tmp/pr_body.md

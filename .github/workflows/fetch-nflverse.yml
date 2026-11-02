@@ -139,7 +139,6 @@ jobs:
           BRANCH="data-refresh/run-${GITHUB_RUN_ID}"
           git checkout -b "$BRANCH"
           git commit -m "data: refresh nflverse extracts, provenance and regenerated results"
-          git push origin "$BRANCH"
           {
             echo "Automated refresh of the committed nflverse extracts, run \`${GITHUB_RUN_ID}\`."
             echo
@@ -148,10 +147,11 @@ jobs:
             echo "* results/: regenerated at stored prices only (no -110 imputation)"
             echo "* checks on the runner before this PR: \`tests/check_data.py\`, \`tests/check_site.py\`, \`scripts/analysis/test_issue_fixes.py\`"
             echo
-            echo "Review the number changes before merging. Nothing was pushed to \`main\`."
+            echo "Review the number changes before merging."
             echo
             echo "Note: branches pushed with the Actions \`GITHUB_TOKEN\` do not trigger further workflows, so the checks that gated this PR are the ones above, run on the runner before it was opened. Re-run them from the Actions tab with \`workflow_dispatch\` if you want a second pass."
           } > /tmp/pr_body.md
-          gh pr create --base main --head "$BRANCH" \
-            --title "Data refresh: nflverse extracts + regenerated results" \
-            --body-file /tmp/pr_body.md
+          # Prefer a pull request; publish_refresh.sh falls back to a direct push only when
+          # this repository refuses to let the Actions token open one (see the script header).
+          bash scripts/ci/publish_refresh.sh "$BRANCH" \
+            "Data refresh: nflverse extracts + regenerated results" /tmp/pr_body.md
