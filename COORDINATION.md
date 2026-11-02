@@ -1121,7 +1121,19 @@ was modified. Branch name is fixed by the environment; no separate session branc
 
 ## Pull request, merge and deployment record
 
-- (filled in after merge — see below)
+- **PR:** https://github.com/karagemop466-tech/Korea2/pull/50 — "Final verification & integration
+  (arena/89b8d356-korea2): fix prop slate week label (19->9), flag obsolete DK MA rulebook edition,
+  re-verify all checks". All four checks green (verify, tests-and-links, validate, checks) on head
+  `8d24a13` before merging.
+- **Merged:** 2026-11-02T18:00:29Z, merge commit `d926101` on `main` (`gh pr merge 50 --merge`;
+  branch not deleted). The earlier recompute fix from this session was superseded by the equivalent
+  fix in PR #51 (`0590696`, expectations from `data/provenance.json`) and was dropped during the final
+  rebase — logged above.
+- **Deployed:** GitHub Pages "pages build and deployment" run `41496457114` on merge commit
+  `d926101` completed **success**; `gh api .../pages` reports status `built` for
+  https://karagemop466-tech.github.io/Korea2/ . Live spot-checks 2026-11-02: `pages/props.html`
+  shows the Week 9 slate labels (bug fix live) and `pages/flagged.html` carries the
+  "Cited operator rulebook edition is archived as obsolete" row with the MGC archive source link.
 
 ### Note from arena/89b8d356-korea2 (2026-11-02, rebase onto PR #48 + bot refresh)
 
