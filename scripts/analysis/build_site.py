@@ -115,7 +115,7 @@ def render(slug: str, title: str, crumb: str, body: str) -> str:
 <div class="sidebar-note">EVIDENCE STATUS<strong>0 ranked</strong><span>5 strategies gated &middot; 32/32 verified</span></div></aside>
 <main><header><span>RESEARCH / {esc(crumb)}</span><a href="{depth}pages/flagged.html" class="review-link">Review flags &#8599;</a></header>
 {body}
-<footer>Research, not betting advice. Every figure is computed from the files in this repository and reconciled against NFL.com. Wager only where legal and only if of age; free, confidential help is available through the <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling</a>.<a href="{depth}pages/sources.html">Source register</a></footer></main></body></html>"""
+<footer>Research, not betting advice. Every figure is computed from the files in this repository; the 2026 season snapshot and the quoted player lines are reconciled against NFL.com on the Verification page, and historical third-party rows are not individually reconciled. Wager only where legal and only if of age; free, confidential help is available through the <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener noreferrer">National Council on Problem Gambling</a>.<a href="{depth}pages/sources.html">Source register</a></footer></main></body></html>"""
 
 
 def section(eyebrow: str, heading: str, link: str | None = None) -> str:
@@ -246,7 +246,7 @@ def page_executive() -> str:
         (th("Model skill"), td(f"Walk-forward rating model Brier score {num((strat.get('model') or {}).get('brier_model'), 4)} versus market {num((strat.get('model') or {}).get('brier_market'), 4)}. Brier skill against the market: {num((strat.get('model') or {}).get('brier_skill_vs_market'), 4)}. The market wins."), td(badge("bad", "Model loses")), td(ext(NFL["team_stats"], "NFL.com"))),
         (th("Strategy gate result"), td(f"{(strat.get('gates') or {}).get('fdr', {}).get('n_pass')} of {(strat.get('gates') or {}).get('fdr', {}).get('n_tests')} strategies survive FDR correction; {len((strat.get('gates') or {}).get('ranked') or [])} clear all six gates. Best partial result: {esc(best_key or '')}."), td(badge("warn", "0 ranked")), td(ext(NFL["results"], "NFL.com"))),
         (th("Parlays"), td(f"A three-leg model parlay returned {pct(((strat.get('parlays') or {}).get('parlay3_model') or {}).get('roi'))} over {(strat.get('parlays') or {}).get('parlay3_model', {}).get('n_tickets')} tickets, but hit only {pct(((strat.get('parlays') or {}).get('parlay3_model') or {}).get('hit_rate'), 1, False)} against an expected {pct(((strat.get('parlays') or {}).get('parlay3_model') or {}).get('mean_naive_p'), 1, False)}. The model, not the market, was wrong."), td(badge("bad", "Miscalibrated")), td(ext(NFL["results"], "NFL.com"))),
-        (th("Same-game pricing"), td(f"QB passing yards and WR1 receiving yards correlate at r = {num(next((c['r'] for c in corr.get('correlations', []) if c['name'].startswith('QB passing')), None), 3)}. Pricing that pair as independent understates the joint probability by a factor of {num((corr.get('sgp') or {}).get('qb_plus_wr1', {}).get('correlation_multiple'), 2)}."), td(badge("ok", "Measured")), td(ext(NFL["player_stats"], "NFL.com"))),
+        (th("Same-game pricing"), td(f"QB passing yards and his top receiver's yards (ex-post game leader) correlate at r = {num(next((c['r'] for c in corr.get('correlations', []) if c['name'].startswith('QB passing')), None), 3)}. Pricing that pair as independent understates the joint probability by a factor of {num((corr.get('sgp') or {}).get('qb_plus_wr1', {}).get('correlation_multiple'), 2)}."), td(badge("ok", "Measured")), td(ext(NFL["player_stats"], "NFL.com"))),
         (th("Player props"), td(f"Projection skill over a naive last-five baseline is {pct((props.get('markets') or {}).get('receiving_yards', {}).get('overall', {}).get('skill_vs_last5'))} for receiving yards. No historical prop prices exist in any free source, so no prop ROI is claimed."), td(badge("warn", "Skill only, no price")), td(ext(NFL["player_stats"], "NFL.com"))),
         (th("Originated lines"), td(f"{orig.get('summary', {}).get('n_games')} unplayed games carry our spread and total, as of week {orig.get('as_of', {}).get('week')}. Mean absolute gap to the market: {num(orig.get('summary', {}).get('mean_abs_line_gap'))} points. Published as a benchmark, not a bet list."), td(badge("warn", "Reference only")), td(ext(NFL["schedule"].format(week=9), "NFL.com"))),
         (th("Recommendation"), td("Do not stake money on anything on this site. The correct next step is a licensed, timestamped history of prop and alternate prices, which is the one input that would let a prop strategy be priced at all."), td(badge("bad", "Do not bet")), td(ext(NFL["player_stats"], "NFL data partner"))),
@@ -468,16 +468,17 @@ def page_correlation() -> str:
     cg = corr.get("cross_game") or {}
     body = f"""<div class="eyebrow">PRICING</div>
 <h1>Correlation is the whole parlay.</h1>
-<p class="intro">A parlay is only worth the product of its legs if the legs are independent. Across games that holds. Inside a game it emphatically does not.</p>
+<p class="intro">A parlay is only worth the product of its legs if the legs are independent. Inside a game they emphatically are not. Across games the checks below find no week-to-week carry-over, which is consistent with &mdash; but not a proof of &mdash; independence.</p>
 {section("MEASURED PAIRS", "Correlation, sample size, interval")}
 {table(["PAIR", "r", "n", "95% CI", "R&sup2;", "WHAT IT MEANS", "SOURCE"], rows)}
 {section("SAME-GAME PARLAYS", "What independence pricing gets wrong")}
 {table(["PAIR", "GAMES", "LEG 1", "LEG 2", "NAIVE JOINT", "ACTUAL JOINT", "MULTIPLE", "FAIR ODDS NAIVE vs TRUE", "SOURCE"], sgp_rows)}
-{note("Each leg is thresholded at the median of the sample, so both legs start near 50%. The naive joint probability is the product; the actual joint probability is what happened.")}
+{note("Descriptive full-sample example, not a pregame strategy or a priced offer: each leg is thresholded at the whole-sample median and the receiver is the ex-post yards leader of the game (issue #19). The naive joint probability is the product; the actual joint probability is what happened.")}
 {section("CROSS-GAME", "Why normal parlays are priced the way they are")}
 {table(["MEASURE", "VALUE", "INTERPRETATION", "SOURCE"], [
- (th("Week-level autocorrelation of mean margin"), td(num(cg.get("corr_consecutive_week_mean_margin"), 3)), td("Any carry-over between weeks would show here. None does."), td(ext(NFL["results"], "NFL.com"))),
- (th("Games per game-week"), td(integer(cg.get("n_game_weeks"))), td("Each observation is one week of the season."), td(ext(NFL["results"], "NFL.com"))),
+ (th("Week-level autocorrelation of mean margin"), td(num(cg.get("corr_consecutive_week_mean_margin"), 3)), td("Lag-1 carry-over between weekly means. A value near zero is consistent with no carry-over; it does not prove cross-game independence."), td(ext(NFL["results"], "NFL.com"))),
+ (th("Week-level autocorrelation of home cover rate"), td(num(cg.get("corr_consecutive_week_home_cover_rate"), 3)), td("Same check on the weekly home cover rate (pushes excluded)."), td(ext(NFL["results"], "NFL.com"))),
+ (th("Game-weeks observed"), td(integer(cg.get("n_game_weeks"))), td("Each observation is one week of the season."), td(ext(NFL["results"], "NFL.com"))),
  (th("Spread vs total correlation"), td(num(next((c['r'] for c in corr.get('correlations', []) if c['name'].startswith('Closing spread')), None), 3)), td("The two markets are quoted almost independently."), td(ext(NFL["results"], "NFL.com"))),
 ])}"""
     return render("pages/correlation.html", "Correlation &amp; pricing", "CORRELATION", body)
@@ -605,14 +606,37 @@ def page_verification() -> str:
 
 
 def page_sources() -> str:
-    prov = jload("provenance.json") or {}
+    # Issue #34 fix: the manifest lives at data/provenance.json, not in results/.
+    prov_path = ROOT / "data" / "provenance.json"
+    prov = json.loads(prov_path.read_text()) if prov_path.exists() else {}
     rows = []
     for f in prov.get("files") or []:
-        url = f.get("source_url") or (f.get("source_url_pattern") or "")
+        seasons = f.get("seasons")
+        if isinstance(seasons, (list, tuple)):
+            seasons_txt = f"{min(seasons)}&ndash;{max(seasons)}"
+        elif seasons:
+            seasons_txt = esc(seasons)
+        else:
+            seasons_txt = f"{f.get('season_min')}&ndash;{f.get('season_max')}"
+        # Issue #34 fix: expand per-season URL patterns into usable links
+        # instead of printing a literal "{year}" placeholder, and never claim
+        # a raw hash that the manifest does not record.
+        url = f.get("source_url") or ""
+        pattern = f.get("source_url_pattern") or ""
+        if url:
+            links = ext(url, "nflverse")
+        elif pattern and isinstance(f.get("seasons"), (list, tuple)):
+            links = " ".join(ext(pattern.replace("{year}", str(s)), str(s))
+                             for s in f["seasons"])
+        elif pattern:
+            links = ext(pattern, "nflverse")
+        else:
+            links = "&mdash;"
+        sha = f.get("raw_sha256")
+        sha_txt = (f'<code>{esc(sha[:16])}&hellip;</code>' if sha
+                   else "not recorded per-season")
         rows.append((th(esc(f.get("name"))), td(integer(f.get("rows"))),
-                     td(esc(f.get("seasons") or f"{f.get('season_min')}&ndash;{f.get('season_max')}")),
-                     td(esc(f.get("raw_sha256") or "pattern")),
-                     td(ext(url, "nflverse")),
+                     td(seasons_txt), td(sha_txt), td(links),
                      td(ext(NFL["results"], "NFL.com"))))
     src_rows = [
         (th("NFL official results"), td("Final scores, schedule and standings used to reconcile the parsed data."), td(badge("ok", "Official")), td(ext(NFL["results"], "NFL.com"))),
@@ -629,7 +653,7 @@ def page_sources() -> str:
 <p class="intro">Two tiers of source are used and they are never blurred: the league itself, and a third-party redistributor of the league's own play-by-play.</p>
 {section("FILES", "Committed extracts")}
 {table(["FILE", "ROWS", "SEASONS", "SHA-256 OF RAW SOURCE", "DOWNLOAD", "OFFICIAL CHECK"], rows)}
-<p class="disclaimer">Data as of gameday {esc(prov.get('data_as_of_gameday', 'unknown'))} ({integer(prov.get('games_settled'))} settled games in the source file). Raw downloads are excluded from the repository and rebuilt by <code>.github/workflows/fetch-nflverse.yml</code>; the SHA-256 above pins exactly what was used, and the build is byte-for-byte reproducible.</p>
+<p class="disclaimer">Data as of gameday {esc(prov.get('data_as_of_gameday', 'unknown'))} ({integer(prov.get('games_settled'))} settled games in the source file). Raw downloads are excluded from the repository and rebuilt by <code>.github/workflows/fetch-nflverse.yml</code>. The games-file SHA-256 above pins that download exactly; the per-season extracts list their exact seasons and download URLs because no per-file raw hash is recorded for them, and the pruned build is byte-for-byte reproducible.</p>
 {section("SOURCE REGISTER", "Official and third-party, labelled")}
 {table(["SOURCE", "WHAT IT IS USED FOR", "TIER", "LINK"], src_rows)}
 {section("NOT AVAILABLE", "What we could not obtain")}
@@ -685,6 +709,20 @@ def page_flagged() -> str:
     return render("pages/flagged.html", "Flagged for review", "REVIEW", body)
 
 
+def published_owner() -> str | None:
+    """Who currently owns the published root site (issue #34 / clobber guard).
+
+    The integration session's generator stamps every page with
+    ``content="line-lab/scripts/build_site.py"``. When that stamp is present,
+    this retired generator must render (so CI still exercises every page
+    function) but must NOT write over the published site.
+    """
+    idx = ROOT / "index.html"
+    if idx.exists() and 'content="line-lab/scripts/build_site.py"' in idx.read_text(encoding="utf-8"):
+        return "line-lab"
+    return None
+
+
 def main():
     pages = {
         "index.html": page_index(),
@@ -700,6 +738,12 @@ def main():
         "pages/sources.html": page_sources(),
         "pages/flagged.html": page_flagged(),
     }
+    owner = published_owner()
+    if owner == "line-lab":
+        print(f"site write skipped: published root site is owned by {owner} "
+              f"(scripts/build_site.py); this generator rendered {len(pages)} "
+              f"pages in memory without clobbering it")
+        return
     for path, content in pages.items():
         p = ROOT / path
         p.parent.mkdir(parents=True, exist_ok=True)

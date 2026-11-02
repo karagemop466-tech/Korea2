@@ -1,8 +1,9 @@
 """Correlation study.
 
 Why it matters: a parlay is priced by multiplying legs. That is only correct if
-the legs are independent. Cross-game legs are close to independent; same-game
-prop legs are emphatically not. This module measures the real numbers.
+the legs are independent. Same-game prop legs emphatically are not; cross-game
+legs are measured here with a lag-1 autocorrelation check, which is consistent
+with, but does not by itself establish, independence (issue #19).
 """
 from __future__ import annotations
 
@@ -39,7 +40,12 @@ def corr_row(name: str, x, y, note: str, official: str | None = None) -> dict:
 
 
 def team_game_table(pw: pd.DataFrame) -> pd.DataFrame:
-    """One row per (season, week, team): the QB, top two receivers, lead back."""
+    """One row per (season, week, team): the QB, top two receivers, lead back.
+
+    Issue #19 labelling fix: "WR1"/"WR2" here are the receivers with the most
+    REALISED yards in that game — an ex-post game leader, not a player
+    identifiable before kickoff. Every published row name says so.
+    """
     pw = pw[pw.season_type == "REG"].copy()
     for c in ["passing_yards", "attempts", "receiving_yards", "receptions",
               "rushing_yards", "carries", "targets", "passing_tds", "rushing_tds",
@@ -86,15 +92,15 @@ def main() -> dict:
 
     rows = []
     rows.append(corr_row(
-        "QB passing yards vs that team's WR1 receiving yards (same game)",
+        "QB passing yards vs that team's top receiver (same game, ex-post leader)",
         tg.qb_pass_yards, tg.wr1_yards,
-        "Same plays, so the two legs of a same-game parlay are near-duplicates."))
+        "Same plays, so the two legs of a same-game parlay are near-duplicates. The receiver is the ex-post yards leader of that game, not a pregame choice; the QB is the passer with the most attempts in it."))
     rows.append(corr_row(
-        "Team passing yards vs WR1 receiving yards (same game)",
+        "Team passing yards vs top receiver's yards (same game, ex-post leader)",
         tg.team_receiving_yards, tg.wr1_yards,
         "Receiving volume concentrates in the top receiver."))
     rows.append(corr_row(
-        "WR1 receiving yards vs WR2 receiving yards (same team, same game)",
+        "Top-two receivers' yards (same team, same game, ranked ex-post)",
         tg.wr1_yards, tg.wr2_yards,
         "Levels move together because the whole passing game expands; the split of "
         "targets is a different, zero-sum question (next row)."))
@@ -106,7 +112,7 @@ def main() -> dict:
             a = np.polyfit(share.team_receiving_yards, share[col], 1)
             return share[col] - np.polyval(a, share.team_receiving_yards)
         rows.append(corr_row(
-            "WR1 vs WR2 receiving yards, holding team passing volume constant",
+            "Top-two receivers' yards, holding team passing volume constant (ex-post ranks)",
             resid("wr1_yards"), resid("wr2_yards"),
             "Partial correlation. This is the part of a same-game pair the market "
             "calls 'positive correlation' when you pair two receivers."))
@@ -116,7 +122,7 @@ def main() -> dict:
         tg.rb_rush_yards, tg.team_receiving_yards,
         "Game script: trailing teams abandon the run."))
     rows.append(corr_row(
-        "Lead RB rushing yards vs WR1 receiving yards (same team, same game)",
+        "Lead RB rushing yards vs top receiver's yards (same team, same game, ex-post leaders)",
         tg.rb_rush_yards, tg.wr1_yards,
         "The classic 'one man eats' problem inside a same-game parlay."))
 
@@ -185,6 +191,10 @@ def main() -> dict:
             "correlation_multiple": joint / (p1 * p2) if p1 * p2 else None,
             "naive_fair_odds": 1 / (p1 * p2) if p1 * p2 else None,
             "true_fair_odds": 1 / joint if joint else None,
+            "selection": ("Descriptive full-sample example. Thresholds are whole-sample "
+                          "medians and the receiver is the ex-post yards leader, so this "
+                          "is NOT a pregame strategy and NOT a priced sportsbook offer "
+                          "(issue #19). No prop price is attached to it anywhere."),
             "note": ("Legs are close to the same event, so a book that priced them "
                      "independently would lose; real books shorten same-game prices."),
         }
@@ -204,17 +214,28 @@ def main() -> dict:
                 "note": "Two receivers on one team compete for the same targets.",
             }
 
-    # ---- cross-game independence ------------------------------------------
-    wk = g.groupby(["season", "week"]).agg(
-        covers=("result", "size"),
-        home_cover_rate=("result", "mean"),
+    # ---- cross-game autocorrelation check (issue #19: this measures lag-1
+    # autocorrelation of weekly aggregates; it does NOT establish independence
+    # of same-week cross-game outcomes, and the old home_cover_rate was the
+    # mean margin, not a cover rate at all) -----------------------------------
+    gc = g.dropna(subset=["spread_line"]).copy()
+    cover_margin = gc.result - gc.spread_line
+    gc["home_covered"] = np.where(cover_margin == 0, np.nan,
+                                  (cover_margin > 0).astype(float))
+    wk = gc.groupby(["season", "week"]).agg(
+        games=("result", "size"),
+        home_cover_rate=("home_covered", "mean"),
         mean_margin=("result", "mean")).reset_index()
     cross = {
         "n_game_weeks": int(len(wk)),
         "corr_consecutive_week_mean_margin": float(wk.mean_margin.autocorr(1)),
         "corr_consecutive_week_home_cover_rate": float(wk.home_cover_rate.autocorr(1)),
-        "note": ("Cross-game legs stack multiplicatively because weekly outcomes do "
-                 "not carry over. This is the assumption a normal parlay relies on."),
+        "note": ("Lag-1 autocorrelation of the weekly mean margin and of the weekly "
+                 "home cover rate (pushes excluded from the rate). Near-zero values "
+                 "are consistent with week-to-week outcomes not carrying over, but "
+                 "this does not establish contemporaneous cross-game independence: "
+                 "pairwise independence does not imply joint independence of a "
+                 "multi-leg ticket."),
     }
 
     # ---- data coverage ------------------------------------------------------

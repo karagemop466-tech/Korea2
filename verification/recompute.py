@@ -107,11 +107,23 @@ def main() -> int:
     checks.append(check("qa.total", "total == home_score + away_score (max abs diff)",
                         0, float((played["total"] - (played["home_score"] + played["away_score"])).abs().max()), 0,
                         "recomputed from the two score columns"))
-    checks.append(check("qa.played", "played games", 7384, int(len(played)), 0,
-                        "rows with both scores present"))
+    # Data-snapshot expectations are read from the DECLARED manifest instead of
+    # being frozen constants (maintenance session arena/cacf6153-korea2,
+    # 2026-11-02): the automated refresh commit 95bbd78 legitimately moved the
+    # extract from 7,384 to 7,396 played games and its as-of date from
+    # 2026-10-29 to 2026-11-01, which made the old constants fail this check
+    # while nothing was actually wrong. The check is now "the committed data
+    # matches its declared metadata", which cannot go stale on a refresh.
+    prov_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                             "data", "provenance.json")
+    with open(prov_path) as fh:
+        prov = json.load(fh)
+    checks.append(check("qa.played", "played games", int(prov["games_settled"]), int(len(played)), 0,
+                        "declared in data/provenance.json; recomputed as rows with both scores present"))
     as_of = str(pd.to_datetime(played["gameday"]).max().date())
     checks.append(check("qa.as_of", "latest settled gameday in the committed extract",
-                        "2026-10-29", as_of, 0, "max(gameday) over played games"))
+                        str(prov["data_as_of_gameday"]), as_of, 0,
+                        "declared in data/provenance.json; recomputed as max(gameday) over played games"))
 
     # ---------------------------------------------------------------- extract window vs published scope
     preg = player[player["season_type"] == "REG"]

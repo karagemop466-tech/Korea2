@@ -550,7 +550,7 @@ def page_validation():
         ["G6", "Stability", "≥ 60% of holdout seasons profitable (min 3 seasons, ≥ 10 bets each)", "Rejects one-season wonders."],
         ["G7", "Robustness", "worst leave-one-season-out ROI > −5%", "Rejects strategies carried by a single season."],
         ["G8", "Concentration", "top 1% of bets ≤ 60% of profit", "Rejects results produced by one lucky bet."],
-        ["G9", "Price sensitivity", "ROI > 0 repriced at −105", "Rejects edges thinner than the vig."],
+        ["G9", "Price sensitivity", "ROI > 0 after leg-by-leg repricing at BOTH −105 and −115 (from each ticket's own recorded price)", "Rejects edges thinner than the vig, and rejects results that only survive a friendlier price."],
     ]
     rows = [[f'<code>{e(r["strategy"])}</code>'] + [badge(r["gates"].get(g, {}).get("pass", False)) for g in gate_names]
             + [f'{r["gates_passed"]}/9'] for r in lb]

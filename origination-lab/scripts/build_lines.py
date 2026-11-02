@@ -66,6 +66,12 @@ def calibration_by_season(m):
     return rows
 
 
+def implied_prob(american) -> float:
+    """Vig-inclusive implied probability of American odds (positive or negative)."""
+    a = float(american)
+    return (-a) / (-a + 100.0) if a < 0 else 100.0 / (a + 100.0)
+
+
 def edge_curves(m):
     """ATS / totals performance as the required model-vs-market edge grows."""
     out = {"spread": [], "total": []}
@@ -80,6 +86,7 @@ def edge_curves(m):
         won = ((sel.home_margin + sel.home_line) > 0) == side_home
         odds = np.where(side_home, sel.home_spread_odds, sel.away_spread_odds)
         units = np.where(won, [nc.american_to_decimal(o) - 1 for o in odds], -1.0)
+        p_null = float(np.mean([implied_prob(o) for o in odds]))
         out["spread"].append({
             "threshold_pts": thr, "bets": int(len(sel)),
             "hit_rate": md(float(won.mean()), 4),
@@ -87,7 +94,9 @@ def edge_curves(m):
             "avg_odds": md(float(np.mean(odds)), 1),
             "wilson_lo": md(nc.wilson(int(won.sum()), len(sel))[0], 4),
             "wilson_hi": md(nc.wilson(int(won.sum()), len(sel))[1], 4),
-            "p_value": md(nc.binom_p_greater(int(won.sum()), len(sel), 0.5238), 4),
+            "p_null": md(p_null, 4),
+            "p_value": md(nc.binom_p_greater(int(won.sum()), len(sel), p_null), 4),
+            "null_note": "null = mean implied probability of the recorded prices (price-aware)",
         })
 
     t = m.dropna(subset=["total_line", "over_odds", "under_odds"]).copy()
@@ -100,6 +109,7 @@ def edge_curves(m):
         won = ((sel.total - sel.total_line) > 0) == side_over
         odds = np.where(side_over, sel.over_odds, sel.under_odds)
         units = np.where(won, [nc.american_to_decimal(o) - 1 for o in odds], -1.0)
+        p_null = float(np.mean([implied_prob(o) for o in odds]))
         out["total"].append({
             "threshold_pts": thr, "bets": int(len(sel)),
             "hit_rate": md(float(won.mean()), 4),
@@ -107,7 +117,9 @@ def edge_curves(m):
             "avg_odds": md(float(np.mean(odds)), 1),
             "wilson_lo": md(nc.wilson(int(won.sum()), len(sel))[0], 4),
             "wilson_hi": md(nc.wilson(int(won.sum()), len(sel))[1], 4),
-            "p_value": md(nc.binom_p_greater(int(won.sum()), len(sel), 0.5238), 4),
+            "p_null": md(p_null, 4),
+            "p_value": md(nc.binom_p_greater(int(won.sum()), len(sel), p_null), 4),
+            "null_note": "null = mean implied probability of the recorded prices (price-aware)",
         })
     return out
 
