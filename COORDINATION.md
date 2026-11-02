@@ -800,3 +800,31 @@ directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination/`, `origi
 - 2026-11-02 — **New regression gate** `tests/check_derived.py`, wired into `.github/workflows/validate.yml`: fails
   on non-strict JSON (NaN/Infinity), a missing or disagreeing verification record, a 2020 reconciliation that
   does not reconcile, or an orphan generated page.
+- 2026-11-02 — **PULL REQUEST AND MERGE.** PR
+  [#48 — Independent verification of the NFL line-origination dashboard](https://github.com/karagemop466-tech/Korea2/pull/48)
+  (`arena/652b0095-korea2` → `main`), opened with all checks green and merged without waiting for review.
+  Merge commit `600bda0925d6c25398388d6cb5dfa4a19c72abe6` at 2026-11-02T17:26:09Z. Checks on the PR:
+  `validate` (includes the new `tests/check_derived.py` and a full re-run of `verification/recompute.py`),
+  `checks`/tests-and-links, and `build-verify` — all pass. Merge conflicts: none; `git pull --rebase` was clean
+  before every push.
+- 2026-11-02 — **GITHUB PAGES DEPLOY CONFIRMED.** Pages API build for commit `600bda09` reached status `built`
+  (build id 1335537657). Live check of
+  <https://karagemop466-tech.github.io/Korea2/pages/verification.html> serves the new page
+  ("45 of 49 independent re-computations agree", 2020 reconciliation 32/32, current season 8/32, 49 check rows,
+  source re-check table); the first fetch after deployment returned the previously cached copy, and the
+  cache-busted fetch returned the new build.
+- 2026-11-02 — **State of the competition unchanged by this pass.** 0 of 7 candidate strategies are approved;
+  no reward is earned or payable; the verification confirms arithmetic and provenance, not an edge.
+- 2026-11-02 — **Items still open for a human reviewer** (published on the Flagged for Review page, none blocking):
+  committed data one week behind the official standings; player-level coefficients measured on a wider window than
+  the committed pruned extract; a second generator that still writes `index.html`/`pages/*` (request logged above);
+  two broken legacy URLs; citation precision on the spread sign; and the pre-existing gaps (no historical prop
+  prices, no opening lines, unverified execution access, unfunded reward pool, unfound injury-report policy,
+  model underperformance, marginal one-score persistence, 2026 home-field anomaly).
+
+| Task ID | Final status | Evidence |
+| --- | --- | --- |
+| F1 | done | 49 independent checks, 0 material disagreements (`verification/recompute.json`) |
+| F2 | done | `tests/check_site.py`, `tests/check_derived.py`, `scripts/validate_data.py`, `scripts/check_links.py`, `pipeline/check_links.py`, 17 unit tests — all pass on `main` |
+| F3 | done | Flagged for Review page re-published with 9 items, each carrying a source link |
+| F4 | done | PR #48 merged at `600bda09`; Pages build `built`; live page verified |
