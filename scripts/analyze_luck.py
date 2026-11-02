@@ -19,6 +19,21 @@ from lib import stats as S
 
 DERIVED = os.path.join("data", "derived")
 PYTH_EXP = 2.37  # Bill James' Pythagorean exponent as applied to the NFL
+GAMMA = 0.5772156649  # Euler-Mascheroni, in the Bailey & Lopez de Prado expected-maximum formula
+
+
+def expected_max_sharpe(k: int, n: int = 1000) -> float:
+    """Expected maximum per-bet Sharpe of k zero-skill strategies.
+
+    Bailey & Lopez de Prado's extreme-value approximation, scaled by sqrt(1/n) with n bets.
+    For k = 1 the expected maximum is the mean of a single draw, i.e. exactly 0; the approximation
+    is undefined there, and the earlier build wrote -Infinity, which is neither a probability
+    statement nor valid JSON.
+    """
+    if k <= 1:
+        return 0.0
+    return math.sqrt(1.0 / n) * ((1 - GAMMA) * sps.norm.ppf(1 - 1 / k)
+                                 + GAMMA * sps.norm.ppf(1 - 1 / (k * math.e)))
 
 
 def main() -> None:
@@ -118,9 +133,7 @@ def main() -> None:
                  "The deflated-Sharpe threshold is the Sharpe a zero-skill strategy would be "
                  "expected to reach as the maximum of k tries."),
         "rows": [{"strategies_tested": k_,
-                  "expected_max_sharpe_per_bet_under_null":
-                      round(float(math.sqrt(1.0 / 1000) * ((1 - 0.5772156649) * sps.norm.ppf(1 - 1 / k_)
-                                                          + 0.5772156649 * sps.norm.ppf(1 - 1 / (k_ * math.e)))), 4)}
+                  "expected_max_sharpe_per_bet_under_null": round(expected_max_sharpe(k_), 4)}
                  for k_ in (1, 5, 10, 25, 50, 100)],
         "assumption": "per-bet Sharpe variance approximated as 1/n with n=1000 bets",
     }

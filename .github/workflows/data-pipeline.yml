@@ -40,6 +40,13 @@ jobs:
           set -o pipefail
           python scripts/fetch_data.py 2>&1 | tee -a data/derived/run_log.txt
 
+      - name: Export the pruned extracts the analysis reads (fail-closed)
+        # Carried over from the integration session: keeps the committed extracts
+        # in step with the parquet the analysis reads.
+        run: |
+          set -o pipefail
+          python scripts/export_extracts.py 2>&1 | tee -a data/derived/run_log.txt
+
       - name: Analysis (fail-closed)
         run: |
           set -euo pipefail
@@ -76,6 +83,7 @@ jobs:
           git config user.name  "line-lab-bot"
           git config user.email "line-lab-bot@users.noreply.github.com"
           git add -f data/derived
+          git add data/provenance.json
           git add index.html pages assets results
           if git diff --cached --quiet; then
             echo "no changes after rebuild - nothing to propose"

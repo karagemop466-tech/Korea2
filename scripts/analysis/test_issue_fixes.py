@@ -157,6 +157,28 @@ class CorrelationHonestyTests(unittest.TestCase):
         self.assertIn("does not establish", corr["cross_game"]["note"])
 
 
+class OfficialSnapshotTests(unittest.TestCase):
+    """The official transcriptions must reconcile with the committed data.
+
+    check_data.py asserts the team standings; without this guard a stale
+    quarterback transcription (issue #19-era snapshots) could pass silently at
+    2 of 3 while the site still implied a full reconciliation.
+    """
+
+    def test_player_spot_check_fully_reconciles(self):
+        ver = rload("verification.json")
+        self.assertIsNotNone(ver)
+        rows = ver["player_spot_check"]
+        self.assertEqual(ver["player_spot_check_matched"], len(rows),
+                         "a transcribed NFL.com player line no longer matches the data; "
+                         "re-read the official page before publishing")
+        self.assertGreaterEqual(len(rows), 3)
+
+    def test_team_snapshot_is_labelled_with_a_date(self):
+        src = (HERE / "verification.py").read_text()
+        self.assertIn('RETRIEVED = "2026-11-02"', src)
+
+
 class ClobberGuardTests(unittest.TestCase):
     """Issue #34 follow-on: the retired generator must not overwrite the
     published root site while the line-lab generator owns it."""

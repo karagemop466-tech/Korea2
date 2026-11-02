@@ -22,6 +22,7 @@ REQUIRED = [
     "pages/executive.html", "pages/lines.html", "pages/props.html", "pages/correlation.html",
     "pages/strategies.html", "pages/validation.html", "pages/leaderboard.html", "pages/luck.html",
     "pages/market.html", "pages/method.html", "pages/sources.html", "pages/flagged.html",
+    "pages/verification.html",
 ]
 
 

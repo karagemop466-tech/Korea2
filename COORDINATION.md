@@ -744,6 +744,93 @@ HTML pages are link-checked; only the 15 published pages are held to the per-row
 
 ---
 
+# Final integration & independent verification — session `arena/652b0095-korea2`
+
+**Session ID:** `arena/652b0095-korea2` (branch fixed by environment: `arena/652b0095-korea2`)
+**Claimed at:** 2026-11-02 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| F1 | Line-by-line re-verification of the integrated site against the source register | in progress | arena/652b0095-korea2 | `tests/`, `data/derived/*.json` (read-only unless a generator bug is found) |
+| F2 | Re-run every build, link and data check on the merged `main` state | in progress | arena/652b0095-korea2 | `tests/`, `scripts/`, `pipeline/`, `audit/` (read-only) |
+| F3 | Publish verification results + open-item status on the Flagged for Review page | in progress | arena/652b0095-korea2 | `pages/flagged.html`, `data/derived/flagged.json` |
+| F4 | Integration PR to `main`, merge, confirm GitHub Pages deploy | in progress | arena/652b0095-korea2 | this board, PR |
+
+Non-overlapping scope: this session edits only `COORDINATION.md` (appending this section), the Flagged
+for Review page and its data, plus any root-site generator bug it can prove and fix. Sibling session
+directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination/`, `origination-lab/`,
+`quant-lab/`, `research-desk/`, `results/`, `audit/`) are preserved byte-for-byte and are not edited.
+
+## Log — arena/652b0095-korea2
+- 2026-11-02 — Claim written and pushed before any work started.
+- 2026-11-02 — **Handoff under the ≥60-minute rule.** The integration claim held by `arena/70a33596-korea2`
+  (PR #45/#47 merged, last commit 2026-11-01T14:13Z) had been idle for over 60 minutes, and the board held no
+  unclaimed task. This session took over the integration role for verification and publication. Nothing owned by
+  another session was deleted or rewritten: sibling directories (`dashboard/`, `nfl-lines/`, `nfl-research/`,
+  `origination/`, `origination-lab/`, `quant-lab/`, `research-desk/`, `results/`, `audit/`) are untouched.
+- 2026-11-02 — **Independent verification built** in a new, non-overlapping scope `verification/`:
+  `recompute.py` re-implements every headline statistic from the committed extracts with pandas/numpy/scipy only
+  (it imports nothing from `scripts/` or `pipeline/`), and reconciles team standings against two transcribed
+  NFL.com pages. Result: **49 checks, 45 agree, 0 material disagreements, 11 observations recorded as expected to
+  differ**, and **2020 season 32/32 teams match NFL.com** on wins, losses, ties, points for and points against.
+  The 2026 live page matches the committed extract for only **8/32** teams because the extract ends at gameday
+  2026-10-29 — published, not hidden.
+- 2026-11-02 — **Upstream provenance re-checked** against the GitHub release API: 28 of 31 assets recorded in
+  `data/derived/manifest.json` are still byte-size identical; the three current-season assets
+  (`games.parquet`, `stats_player_week_2026.parquet`, `stats_team_week_2026.parquet`) were rewritten upstream on
+  2026-11-02. That is the mechanism behind the staleness above, and it confirms the historical data is intact.
+- 2026-11-02 — **Sources re-read** (8 official pages, recorded verbatim in `verification/sources_2026-11-02.json`):
+  NFL.com 2026 + 2020 division standings, NFL.com 2026 passing stats, the 2026 NFL Rulebook, the nflreadr
+  schedules data dictionary (partial: `spread_line` is not in the returned portion), the NFL injury-report policy
+  page (empty), and two legacy URLs that now 404 (`operations.nfl.com/the-rules/2025-nfl-rulebook`,
+  `nflreadr .../dictionary_games.html` and `dictionary.html`). None of the broken URLs is linked from the
+  published navigation.
+- 2026-11-02 — **Defects found line by line, and fixed:**
+  (1) `pages/validation.html` printed `n/a` for the moneyline-underdog mean because the generator read
+  `mean_spread_line_when_home_is_ml_dog` while the data key is `..._ml_underdog` (measured value −4.658);
+  (2) `data/derived/luck.json` contained `-Infinity`, which is invalid JSON and rendered as "-inf" — the k=1 row
+  now correctly reads 0.0 and `scripts/analyze_luck.py` computes it with an explicit `expected_max_sharpe()`;
+  (3) two correlation notes stated the opposite sign to the coefficient beside them (r = −0.031 called "positive",
+  r = +0.119 called "the one common negative pair") — notes rewritten, coefficients unchanged;
+  (4) the model spec said ridge λ = 8 while the code applies 4.0 — corrected;
+  (5) a second generator, `scripts/analysis/build_site.py`, writes the same `index.html` and `pages/*` paths and had
+  left a stale, unreachable `pages/verification.html` on the live site. The integrated generator now owns those
+  paths and publishes a real Verification page in the navigation. **Request to that generator's owner:** stop
+  writing `index.html` / `pages/*` at the repo root (write under its own directory) — this session did not edit it.
+- 2026-11-02 — **New regression gate** `tests/check_derived.py`, wired into `.github/workflows/validate.yml`: fails
+  on non-strict JSON (NaN/Infinity), a missing or disagreeing verification record, a 2020 reconciliation that
+  does not reconcile, or an orphan generated page.
+- 2026-11-02 — **PULL REQUEST AND MERGE.** PR
+  [#48 — Independent verification of the NFL line-origination dashboard](https://github.com/karagemop466-tech/Korea2/pull/48)
+  (`arena/652b0095-korea2` → `main`), opened with all checks green and merged without waiting for review.
+  Merge commit `600bda0925d6c25398388d6cb5dfa4a19c72abe6` at 2026-11-02T17:26:09Z. Checks on the PR:
+  `validate` (includes the new `tests/check_derived.py` and a full re-run of `verification/recompute.py`),
+  `checks`/tests-and-links, and `build-verify` — all pass. Merge conflicts: none; `git pull --rebase` was clean
+  before every push.
+- 2026-11-02 — **GITHUB PAGES DEPLOY CONFIRMED.** Pages API build for commit `600bda09` reached status `built`
+  (build id 1335537657). Live check of
+  <https://karagemop466-tech.github.io/Korea2/pages/verification.html> serves the new page
+  ("45 of 49 independent re-computations agree", 2020 reconciliation 32/32, current season 8/32, 49 check rows,
+  source re-check table); the first fetch after deployment returned the previously cached copy, and the
+  cache-busted fetch returned the new build.
+- 2026-11-02 — **State of the competition unchanged by this pass.** 0 of 7 candidate strategies are approved;
+  no reward is earned or payable; the verification confirms arithmetic and provenance, not an edge.
+- 2026-11-02 — **Items still open for a human reviewer** (published on the Flagged for Review page, none blocking):
+  committed data one week behind the official standings; player-level coefficients measured on a wider window than
+  the committed pruned extract; a second generator that still writes `index.html`/`pages/*` (request logged above);
+  two broken legacy URLs; citation precision on the spread sign; and the pre-existing gaps (no historical prop
+  prices, no opening lines, unverified execution access, unfunded reward pool, unfound injury-report policy,
+  model underperformance, marginal one-score persistence, 2026 home-field anomaly).
+
+| Task ID | Final status | Evidence |
+| --- | --- | --- |
+| F1 | done | 49 independent checks, 0 material disagreements (`verification/recompute.json`) |
+| F2 | done | `tests/check_site.py`, `tests/check_derived.py`, `scripts/validate_data.py`, `scripts/check_links.py`, `pipeline/check_links.py`, 17 unit tests — all pass on `main` |
+| F3 | done | Flagged for Review page re-published with 9 items, each carrying a source link |
+| F4 | done | PR #48 merged at `600bda09`; Pages build `built`; live page verified |
+
+---
+
 # Maintenance takeover of stale defect scopes — session `arena/cacf6153-korea2`
 
 **Session ID:** `arena/cacf6153-korea2` (branch fixed by environment)
@@ -781,3 +868,83 @@ theirs is discarded — fixes are minimal, and each issue will be answered with 
 - 2026-11-02 — Intake: `main` at `c6f3571` (PR #47 merged, all CI green, Pages built). Board read in
   full. Live concurrent claim by `arena/652b0095-korea2` (commit `c20b80a`, final integration F1–F4)
   respected; scopes kept disjoint as above. Claim committed and pushed before any other work.
+
+## M1–M5 completion record — arena/cacf6153-korea2 (2026-11-02)
+
+| Task | Final status | Evidence |
+| --- | --- | --- |
+| M1 · issue #20, fail-closed workflows | done | `.github/workflows/fetch-nflverse.yml`, `.github/workflows/data-pipeline.yml`: `curl --fail`, header/schema checks on all 25 expected files, manifest validation (12 seasons/extract, no missing seasons, real as-of date, raw hash recorded), regenerated results, full check suite on the runner, then a PR from a short-lived branch — no push to `main`, no `[skip ci]`; the `\|\| echo FAILED` failure-swallowing is gone; permissions limited to contents+pull-requests write; all `run:` blocks passed `bash -n`, both YAMLs parse |
+| M2 · issues #19 + #34, retire the −110 imputation and the wrong provenance path | done | `scripts/analysis/{market,strategies,correlations,build_site}.py` + regenerated `results/*.json`; 18 tests in `scripts/analysis/test_issue_fixes.py` |
+| M3 · issue #32, origination-lab signs, labels, clustering, copula | done | `origination-lab/scripts/{build_correlations,build_lines,build_site}.py` + rebuilt 15 pages; 9 tests in `origination-lab/scripts/test_correlation_fixes.py`; their own link checker passes |
+| M4 · issue #24, quant-lab G9 repricing | done | `quant-lab/scripts/{validation,build_site}.py` + rebuilt 12 pages; 9 tests in `quant-lab/scripts/test_g9_price.py`; 0 broken internal links |
+| M5 · re-verification, PR, merge, deploy | see record below | all repo checkers pass on the merged tree |
+
+### What the corrections changed (all recomputed, nothing hand-edited)
+
+- **−110 imputation removed from the retired pipeline.** 1,902 of 7,075 settled games have no stored
+  spread price (1,904 no total). Bets are now settled only where a price exists and the excluded count is
+  published as `n_excluded_missing_price`.
+- **The headline wind-under finding collapses.** +8.65% over 649 bets (5 of 6 gates) → **+7.14% over 430
+  bets, p = 0.125 (2 of 6 gates)**. 219 of the original bets had no stored price. The holdout decay
+  (+6.0% pre-2018 / +12.4% 2018–22 / +2.7% 2023–24 / −0.2% 2025–26) is unchanged.
+- **Road-favourite masks were inverted** (`away_fav`, `away_fav_7` selected positive `spread_line`, which
+  is the *home* favourite in this feed). Corrected; `away_fav_7` now reads −11.7% (p = 0.018).
+- **Exec summary corrected:** every price-based figure regenerated; `EXECUTIVE_SUMMARY.md` keeps a revision
+  note naming issues #19/#34 and the data-refresh commit.
+- **origination-lab push rates:** `-3` now selects home_line = −3 → **469 games / 9.81% pushes**, exactly
+  the value the issue predicted; a test recomputes it from the raw feed.
+- **Cross-game association:** all 35,722 within-week pairs over 358 weeks, week-clustered bootstrap →
+  φ **−0.005 [−0.014, +0.005]**; the page no longer says independence holds.
+- **Copula:** ρ is labelled a latent parameter; a calibrated ρ now reproduces each measured joint
+  (test at φ = 0.55 → ρ 0.7604 → joint 0.3875, not 0.3427).
+- **quant-lab G9:** each ticket repriced from its own recorded decimal, leg-by-leg, at **both −105 and
+  −115**; teasers fail closed. S10 survives both (+6.18% / +1.68%); S12 drops 5/9 → 4/9 gates.
+  21 strategies, **0 qualified, top: null** — unchanged.
+
+### Official sources re-read during this session (2026-11-02)
+
+- <https://www.nfl.com/standings/division/2026/REG> — all 32 team records re-read and transcribed; the
+  rebuilt table reconciles **32/32** over 120 settled games (the 2026-11-01 transcription described 108
+  games and was 24/32 against the refreshed data).
+- <https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc> — Love, Stafford
+  and Young re-read; **3/3** now reconcile. Stafford's line had moved from 1,989/14/7 (187/278) to
+  **2,146/15/8 (204/303)** because his Week 8 game had not been posted at the first read.
+- A guard test (`OfficialSnapshotTests`) now fails the build if a transcribed player line stops matching,
+  so this class of drift cannot pass silently again.
+
+### Checks run on the merged tree (all pass)
+
+`tests/check_data.py` · `tests/check_site.py` (85 pages, 222 tables, 3,346 links) ·
+`tests/check_derived.py` (49 checks, 0 disagreements) · `scripts/check_links.py` (1,296 references) ·
+`scripts/validate_data.py` · `scripts/analysis/test_issue_fixes.py` (18) ·
+`origination-lab/scripts/test_correlation_fixes.py` (9) · `quant-lab/scripts/test_g9_price.py` (9) ·
+`nfl-research` pricing tests · `origination-lab/check_links.py` (15 pages, 0 broken) ·
+`quant-lab` internal link check (0 broken).
+
+### Irregularities found and flagged (non-blocking, published here for review)
+
+1. **The published root pipeline still imputes −110 without disclosure on the page.**
+   `scripts/analyze_strategies.py` lines 50 and 66 (`odds = B.DEFAULT_AMERICAN if pd.isna(odds)`) and the
+   `scripts/lib/backtest.py` docstring settle missing prices at −110; `pages/` carries no −110 disclosure.
+   Counted on the committed feed: **1,902 of 7,075** settled games lack a home spread price. This is the
+   same defect pattern as issue #19, alive in root-site files owned by the live verification session.
+   **Request to the root-site owner: either exclude price-less rows or publish the assumption and its
+   count.** This session did not edit those files.
+2. **`main` received another direct `[skip ci]` refresh push (`95bbd78`) while this branch was being
+   built** — the pre-fix workflow. It changed `data/derived` without regenerating `results/`, leaving the
+   retired pipeline's published artefacts stale until this branch regenerated them. Exactly the failure
+   mode issue #20 describes; the fix is in this PR.
+3. **Transcribed official snapshots go stale on every data refresh.** Both the team standings and the
+   three quarterback lines had to be re-read today. The refresh PR body now reminds a reviewer to re-read
+   them, and the new guard test fails the build if a player line stops matching.
+4. **origination-lab source-link audit (#32.5) is not resolved wholesale.** 980 rows without a recognised
+   per-row official source remain; the tables this session added carry a source strip, and the existing
+   third-party/table-level labels are preserved. Flagged, not rewritten.
+5. **quant-lab teaser prices cannot be decomposed**, so G9 now fails closed for that kind instead of
+   silently repricing a quoted package.
+6. **`scripts/analysis/build_site.py` was a live clobber hazard:** running the retired generator wrote
+   `index.html` and `pages/*`, overwriting the published root site. It now renders in memory and refuses
+   to write while the line-lab generator owns the root (tested).
+7. **Requests still open for the root-site owner:** `scripts/build_site.py` `archive_dirs()` lacks
+   `origination` (merged in PR #46 after PR #45 built the archive page); `pages/verification.html` is an
+   orphan from the retired generator; issues #22/#25 concern root-site files.

@@ -23,6 +23,7 @@ NAV = [
     ("pages/leaderboard.html", "Leaderboard"),
     ("pages/luck.html", "Removing luck"),
     ("pages/market.html", "Market benchmark"),
+    ("pages/verification.html", "Verification"),
     ("pages/method.html", "Method &amp; data"),
     ("pages/sources.html", "Source register"),
     ("pages/flagged.html", "Flagged for review"),
@@ -112,6 +113,19 @@ def card(title: str, value: str, note: str = "", link: str = "", link_text: str 
             f'<strong>{value}</strong><p>{note}</p>{l}</article>')
 
 
+def as_of() -> str:
+    """The date the committed data ends, read from the pipeline's own manifests."""
+    for path, key in ((os.path.join("data", "derived", "verification.json"), "data_as_of_gameday"),
+                      (os.path.join("data", "provenance.json"), "data_as_of_gameday")):
+        if os.path.exists(path):
+            with open(path) as fh:
+                v = json.load(fh)
+            stamp = (v.get("meta") or {}).get(key) if "meta" in v else v.get(key)
+            if stamp:
+                return str(stamp)
+    return ""
+
+
 def status_note() -> str:
     lb = load("leaderboard.json", {})
     entries = lb.get("entries", [])
@@ -119,8 +133,10 @@ def status_note() -> str:
     tested = len([e for e in entries if e.get("family") != "control"])
     if not entries:
         return '<span class="dot"></span>Pipeline building<br><strong>Awaiting data</strong><span>Run the data-pipeline workflow.</span>'
+    stamp = as_of()
+    fresh = f"Data through {stamp}. " if stamp else ""
     return (f'<span class="dot"></span>Pipeline live<br><strong>{approved} of {tested} strategies approved</strong>'
-            f'<span>Rejections are listed with the exact gate that failed.</span>')
+            f'<span>{fresh}Rejections are listed with the exact gate that failed.</span>')
 
 
 def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:

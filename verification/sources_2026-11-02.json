@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "title": "Official-source re-checks performed on 2026-11-02",
+    "session": "arena/652b0095-korea2",
+    "retrieved_utc": "2026-11-02",
+    "method": "Each URL was opened with a page-retrieval tool on 2026-11-02 and the returned text was read. 'excerpt' quotes what the page actually returned. A page that does not return the value it is cited for is recorded as NOT CONFIRMED, not as confirmed.",
+    "policy": "Nothing here is inferred. Where a page could not be read, the entry says so and the dependent site claim is flagged."
+  },
+  "checks": [
+    {
+      "id": "SRC-CHK-01",
+      "label": "NFL.com official division standings, 2026 regular season",
+      "url": "https://www.nfl.com/standings/division/2026/REG",
+      "supports": "Team records (W-L-T) and points for/against for the current season; used for the live reconciliation table.",
+      "http_state": "200 (page read)",
+      "excerpt": "AFC East: Buffalo Bills 6-1-0, 233 PF / 181 PA. NFC North: Minnesota Vikings 6-1-0, 140 PF / 93 PA (retrieved 2026-11-02).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-02",
+      "label": "NFL.com official division standings, 2020 regular season",
+      "url": "https://www.nfl.com/standings/division/2020/REG",
+      "supports": "Completed-season reconciliation: 32 teams, all fields compared with the extract.",
+      "http_state": "200 (page read)",
+      "excerpt": "NFC North: Green Bay Packers 13-3-0, 509 PF / 369 PA; Detroit Lions 5-11-0, 377 PF / 519 PA (retrieved 2026-11-02).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-03",
+      "label": "NFL.com official passing statistics, 2026 regular season",
+      "url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
+      "supports": "Quarterback stat lines; cross-check of the player feed.",
+      "http_state": "200 (page read)",
+      "excerpt": "Jordan Love: 2246 passing yards, 312 attempts, 192 completions, 16 TD, 6 INT, 92.4 rating (retrieved 2026-11-02).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-04",
+      "label": "NFL Football Operations - 2026 NFL Rulebook",
+      "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "supports": "Rulebook citation used for game-settlement context (final score, overtime).",
+      "http_state": "200 (page read)",
+      "excerpt": "'2026 NFL RULEBOOK - Explore the official 2026 NFL rulebook.' plus the 2026 rule-change table (6-1-3, 6-1-5, 6-1-6, 19-2).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-05",
+      "label": "nflverse data dictionary - Schedules (nflreadr)",
+      "url": "https://nflreadr.nflverse.com/articles/dictionary_schedules.html",
+      "supports": "Field definitions behind the data QA: result, total, rest days, moneylines.",
+      "http_state": "200 (page read, first 25 of 45 entries)",
+      "excerpt": "'result ... The number of points the home team scored minus the number of points the visiting team scored. Equals h_score - v_score.' / 'total ... The sum of each team's score in the game.' / 'away_rest ... Days of rest that the away team is coming off of.'",
+      "verdict": "CONFIRMED (partial)",
+      "note": "The visible portion of the dictionary defines result, total, rest and moneyline fields, but not spread_line (entries 26-45 were not returned). The site's ATS sign convention is therefore proven empirically from the data (see the sign-convention checks), not from this page - the citation is accurate for the field definitions it is attached to on the data-integrity table, and weaker than it looks where it is attached to the sign-convention table."
+    },
+    {
+      "id": "SRC-CHK-06",
+      "label": "NFL Football Operations - injury report policy",
+      "url": "https://operations.nfl.com/football-ops/league-governance/injury-report/",
+      "supports": "Cited on the flagged page as NOT CONFIRMED.",
+      "http_state": "empty response (no article body returned)",
+      "excerpt": "The page returned navigation scaffolding only, with no policy text.",
+      "verdict": "NOT CONFIRMED",
+      "note": "Consistent with what the site already publishes: injury-report policy is unavailable, so no injury-based signal is registered."
+    },
+    {
+      "id": "SRC-CHK-07",
+      "label": "Legacy rulebook URL carried by an earlier site generator",
+      "url": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/",
+      "supports": "Nothing on the published site; it is the rulebook link used by the superseded verification page.",
+      "http_state": "404",
+      "excerpt": "'404 - FLAG ON THE PLAY'",
+      "verdict": "BROKEN",
+      "note": "This URL must not be reintroduced. The current rulebook URL (SRC-CHK-04) is the one on the published source register."
+    },
+    {
+      "id": "SRC-CHK-08",
+      "label": "nflreadr data-dictionary URLs that no longer resolve",
+      "url": "https://nflreadr.nflverse.com/articles/dictionary_games.html",
+      "supports": "Nothing on the published site; checked because a sibling session's page used a games dictionary link.",
+      "http_state": "404",
+      "excerpt": "'Page not found (404) - nflreadr'",
+      "verdict": "BROKEN",
+      "note": "dictionary.html returns 404 as well. The working dictionary URL is SRC-CHK-05."
+    }
+  ],
+  "asset_provenance": {
+    "source": "https://api.github.com/repos/nflverse/nflverse-data/releases/tags/{schedules,stats_player,stats_team}",
+    "method": "Each of the 31 assets recorded in data/derived/manifest.json was looked up by name in the live GitHub release metadata on 2026-11-02 and its current byte size compared with the size recorded at build time.",
+    "assets_checked": 31,
+    "assets_size_identical": 28,
+    "assets_changed_upstream": [
+      {"name": "games.parquet", "manifest_bytes": 523083, "current_bytes": 523149, "updated_utc": "2026-11-02T17:16:33Z"},
+      {"name": "stats_player_week_2026.parquet", "manifest_bytes": 424204, "current_bytes": 455689, "updated_utc": "2026-11-02T13:49:51Z"},
+      {"name": "stats_team_week_2026.parquet", "manifest_bytes": 86114, "current_bytes": 89234, "updated_utc": "2026-11-02T13:49:55Z"}
+    ],
+    "verdict": "The historical seasons are byte-identical to what the build recorded, so the model's training data is intact. The three current-season assets have been updated upstream, which is exactly why a rebuild of the committed extract stops at gameday 2026-10-29 while NFL.com already lists the completed Week 8."
+  }
+}
