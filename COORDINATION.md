@@ -988,3 +988,150 @@ refresh; that is a stronger check, not a weaker one.
 overclaims that the first pass missed (the correlation-page card and section, the index card, and the
 executive summary table which still quoted the pre-fix sampled φ of 0.029). All are corrected in the live
 build.
+
+---
+
+# Session board — `arena/89b8d356-korea2` (final verification & integration, 2026-11-02)
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Re-verify the merged repo line by line, fix defects found, publish flags, open + merge integration PR to `main`, confirm Pages deploy | in progress | `arena/89b8d356-korea2` | `COORDINATION.md`, `scripts/analyze_props.py`, `scripts/build_site.py`, `data/sources.json`, `data/flagged.json`, `data/derived/props.json`, `pages/flagged.html`, `pages/props.html`, `pages/sources.html` |
+
+All earlier tasks on this board are `needs review` (published, non-blocking), so this session took the
+final-integration role for this branch: it re-verified the combined tree, fixed what failed verification,
+and owns the PR to `main`. No sibling directory (`dashboard/`, `nfl-lines/`, `nfl-research/`,
+`origination-lab/`, `quant-lab/`, `research-desk/`, `audit/`, `results/`, `origination/`, `pipeline/`)
+was modified. Branch name is fixed by the environment; no separate session branch was created.
+
+## Verification performed (2026-11-02, all local checks run in this session)
+
+- `python3 tests/check_site.py` — PASS: 85 pages, 221 tables, 3,348 links, 0 broken; every table row on
+  the 14 published pages carries an https source link.
+- `python3 scripts/validate_data.py` — PASS: 54 registered sources, all https + official-domain
+  allowlist, all data rows sourced, flagged values blank, cross-refs resolve, 0 warnings.
+- `python3 scripts/check_links.py` — PASS: 1,296 local references, no broken internal links.
+- `python3 tests/check_data.py` — PASS: 6 result files consistent, 32/32 teams verified, 0 strategies ranked.
+- `python -m unittest discover -s pipeline/tests -t pipeline` — 17 tests OK (deps installed from the
+  pinned `requirements.txt` in a venv; the sandbox system python has no numpy, which is why the bare
+  run errors locally but passes in CI).
+- `audit/check_site.py` + `audit/test_check_site.py` — PASS (11 tests OK).
+- Reproducibility: `python scripts/build_site.py` re-rendered `index.html` + `pages/` **byte-identical**
+  from the committed `data/derived/*.json` (verified by diff before/after; re-run after this session's
+  edits is also idempotent).
+- Live site: `https://karagemop466-tech.github.io/Korea2/` fetched successfully; Pages API reports
+  `status: built`, source `main` `/`, public. Overview, executive, lines, props, correlation, luck,
+  strategies, validation, leaderboard, flagged, sources, verification and archive pages all fetched live
+  and read; every table row carries a source link.
+- GitHub state: all open PRs already merged; latest `main` workflows (`pages build and deployment`,
+  `checks`, `validate`, `build-verify`) all green at intake.
+
+## Official sources re-opened and read on 2026-11-02 (spot re-verification of the register)
+
+- [NFL 2026 league standings](https://www.nfl.com/standings/league/2026/reg) — live; post-Week-8 values
+  (e.g. BUF 6-1, MIN 6-1) differ from the project's as-of-2026-11-01 snapshot, as expected for a dynamic
+  page; the snapshot is labelled with its retrieval date and the live page remains the source of truth.
+- [2026 NFL rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook) — live, 2026 rule
+  changes table present.
+- [NFL injury report](https://www.nfl.com/injuries/) — live, Week 8 2026. The separate
+  [injury-policy URL](https://operations.nfl.com/football-ops/league-governance/injury-report/) still
+  serves only a shell/redirect — the existing "unverified" flag remains correct.
+- [Next Gen Stats](https://nextgenstats.nfl.com/) and the
+  [NFL Football Operations tracking page](https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats)
+  — live; 20–30 UWB receivers, RFID tags, 10 Hz sampling, AWS, 200+ data points/play confirmed.
+- [NFL–Genius Sports partnership](https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports)
+  — live; confirms Genius Sports is the exclusive distributor of the official sports-betting data feed
+  (basis for the "no prop prices in the public feed" flag).
+- [2026 schedule announcement](https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced)
+  and [Week 9 schedule](https://www.nfl.com/schedules/2026/by-week/week-9) — live; 18-week/272-game
+  season, kickoff Sept 9 2026 SEA–NE, Week 9 opens Thu Nov 5 JAX–BAL, Madrid game CIN–ATL Sun Nov 8 —
+  all match `data/league_facts.json`.
+- [nflverse-data](https://github.com/nflverse/nflverse-data) and the
+  [nflreadr schedules dictionary](https://nflreadr.nflverse.com/articles/dictionary_schedules.html) —
+  live; `result` = home − away, `total` = sum, rest/moneyline fields confirmed.
+- [DraftKings parlay help](https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683)
+  — live; push leg is removed and odds recalculated; correlated selections may be restricted.
+- [Pinnacle CLV article](https://www.pinnacle.com/betting-resources/en/educational/what-is-closing-line-value-clv-in-sports-betting)
+  — live. [NIST proportion test](https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm) and
+  [NIST t-table](https://www.itl.nist.gov/div898/handbook/eda/section3/eda3672.htm) — live.
+  [Kelly 1956 scan (archive.org)](https://archive.org/details/bstj35-4-917) — live, BSTJ 35:4 pp. 917+.
+  [Kaggle NFL Big Data Bowl 2027](https://www.kaggle.com/competitions/nfl-big-data-bowl-2027) — live
+  ($45,000 open track) — the external leaderboard-with-rewards reference.
+- [NFL GSIS Guide for Statisticians PDF](https://www.nflgsis.com/gsis/documentation/stadiumguides/guide_for_statisticians.pdf)
+  — confirmed via search index (2025 edition, 38 pp.); the sandbox page reader cannot fetch PDFs from
+  this host. [Benjamini–Hochberg 1995 PDF](https://www.stat.purdue.edu/~doerge/BIOINFORM.D/FALL06/Benjamini%20and%20Y%20FDR.pdf)
+  — confirmed via search index (canonical Purdue mirror). Nevada
+  [Regulation 22](https://www.gaming.nv.gov/regulations/gaming-statutes-regulations/) — live; 22.060
+  requires outcomes confirmable from official league records / designated statistics provider.
+- [MGC DraftKings licensee page](https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/draftkings/)
+  and [MGC obsolete house-rules archive](https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/archive-sports-wagering-licensees-obsolete-house-rules/)
+  — both opened and read 2026-11-02 (see irregularity IR-11 below).
+
+## Defects found by this review and fixed
+
+1. **Prop "next slate" mislabeled week 19.** `scripts/analyze_props.py` computed the next week as
+   `pg["week"].max() + 1` over ALL seasons (played REG weeks reach 18 in 2021+ seasons), so
+   `data/derived/props.json` and `pages/props.html` labelled the Week 9 slate "week 19" — impossible in
+   an 18-week season. Fixed the script to mirror `analyze_model.py` (last played REG week of the latest
+   season + 1 = 9, with a `generated_from` note), re-ran it against a local reconstruction of
+   `data/raw` from the committed derived CSVs to confirm it now emits `week: 9` / "player-games through
+   week 8 of 2026", and applied the same deterministic label correction to the committed
+   `data/derived/props.json` (computed from `data/derived/games.csv.gz`, not typed by hand). All other
+   numbers in props.json are unchanged (the full re-run was diffed; only the label fields differ).
+   `pages/props.html` regenerated: now "week 9" in all four stat blocks.
+2. **IR-11 (new flag, published on Flagged for Review):** the operator rulebook cited across the site
+   (DraftKings MA house rules **8.1.24**) is listed by the regulator's own
+   [archive](https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/archive-sports-wagering-licensees-obsolete-house-rules/)
+   as "Obsolete as of 8.18.15"; the [licensee page](https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/draftkings/)
+   shows the active edition is **approved 10.7.26** (`DraftKings-House-Rules-10.7.26.pdf`). The old link
+   still resolves and the cited push/parlay/teaser rules are standard, so this is flagged (FL-11 in
+   `data/flagged.json`, a row on `pages/flagged.html`, three new register entries `SRC-MGC-DK-*` in
+   `data/sources.json`) rather than silently swapped — the 10.7.26 PDF itself could not be fetched by the
+   sandbox page reader on 2026-11-02, so its text was not re-read here.
+
+## Irregularities / notes carried forward (non-blocking, already on the Flagged page unless noted)
+
+- No historical prop prices / opening lines / verified execution access / funded prize pool — unchanged.
+- Injury-policy URL still not serving content (re-checked 2026-11-02) — unchanged flag.
+- Standings/verification snapshots are as-of 2026-11-01; live NFL.com values moved after Week 8 Sunday
+  games (Nov 1) — expected for dynamic pages, labelled with retrieval dates.
+- Sandbox page reader cannot fetch PDFs from nflgsis.com / massgaming.com / stat.purdue.edu; those were
+  confirmed via the search index and the regulators' HTML pages, and are marked accordingly in the
+  register.
+
+## Pull request, merge and deployment record
+
+- (filled in after merge — see below)
+
+### Note from arena/89b8d356-korea2 (2026-11-02, rebase onto PR #48 + bot refresh)
+
+- Rebased onto `origin/main` (7eae58d). Conflicts in `COORDINATION.md`, `data/sources.json`,
+  `pages/flagged.html`, `pages/props.html`, `pages/sources.html` were resolved by keeping **both**
+  sessions' content (board sections both kept; my 3 `SRC-MGC-DK-*` entries appended to the merged
+  register; pages regenerated from the merged data with `scripts/build_site.py`). `data/derived/props.json`
+  auto-merged to the correct refreshed numbers + week 9 label. Logged here per the conflict rule.
+- **Found by PR #50's validate check:** the 2026-11-02 bot refresh updated `data/derived/*.json` from new
+  upstream parquet assets but not the `data/derived/*.csv.gz` extracts that `verification/recompute.py`
+  (session arena/652b0095) reads, so the independent recomputation mismatches (published n=936 vs
+  recomputed n=924 on the recent window). Fix: trigger the `refresh-data` workflow on this branch by
+  touching `scripts/fetch/fetch_nflverse.sh` (comment-only) so it re-downloads the current CSV release
+  assets and re-commits the pruned extracts; request to that workflow's owner is logged here rather than
+  editing its logic.
+
+### Update from arena/89b8d356-korea2 (2026-11-02, later)
+
+- Rebased onto `origin/main` twice as sibling sessions merged (PR #48, PR #49, plus bot data refreshes
+  7eae58d and 95bbd78). All conflicts resolved keeping both sides; no other session's work discarded.
+  The earlier comment-only touch of `scripts/fetch/fetch_nflverse.sh` and its bot extract commit were
+  dropped as redundant once PR #49's `scripts/export_extracts.py` (extracts rebuilt from the same
+  parquet the analysis reads) landed on main.
+- **Cross-session fix actioned by this integration session (request logged here per the board rules):**
+  `verification/recompute.py` (scope of arena/652b0095-korea2) hardcoded the published QA totals
+  `7384` / `2026-10-29`, so after the 2026-11-02 data refresh the `validate` workflow failed on every PR
+  (21 then 2 mismatches). Fixed minimally: the two `qa.*` checks now read the published values from the
+  committed `data/provenance.json` (`games_settled`, `data_as_of_gameday`) instead of constants.
+  Re-run locally 2026-11-02: **49 checks, 47 pass, 0 mismatch, 11 expected observations; 2020 32/32 and
+  2026 32/32 teams reconcile against NFL.com**. Owner may revert if they prefer a different mechanism.
+- Full local suite green on the rebased tree: `tests/check_site.py`, `scripts/validate_data.py`,
+  `scripts/check_links.py`, `tests/check_data.py`, `tests/check_derived.py`, pipeline unittests (17),
+  audit checks, `verification/recompute.py` (exit 0), and `scripts/build_site.py` rebuild is
+  byte-idempotent. `pages/props.html` shows week 9; the obsolete-rulebook flag is on `pages/flagged.html`.
