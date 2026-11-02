@@ -407,7 +407,7 @@ def page_validation() -> str:
 {table(["GATE", "RULE", "SOURCE"], defs)}
 {section("MATRIX", "Every strategy against every gate")}
 {table(headers, matrix)}
-{note(f"<strong>Multiple-testing correction matters.</strong> {(strat.get('gates') or {}).get('fdr', {}).get('n_pass')} of {(strat.get('gates') or {}).get('fdr', {}).get('n_tests')} strategies survive Benjamini&ndash;Hochberg at q = 0.10. The weather angle missed the threshold by a margin of 0.001 when five strategies are tested, which is exactly the situation the correction exists for.")}"""
+{note(f"<strong>Multiple-testing correction matters.</strong> {(strat.get('gates') or {}).get('fdr', {}).get('n_pass')} of {(strat.get('gates') or {}).get('fdr', {}).get('n_tests')} strategies survive Benjamini&ndash;Hochberg at q = 0.10. Before the stored-price fix (issue #19) the weather angle missed the threshold by 0.001 because 219 of its bets had no recorded price; settled only at stored prices it fails significance outright, which is exactly the situation the correction exists for.")}"""
     return render("pages/validation.html", "Validation gates", "VALIDATION", body)
 
 
@@ -673,7 +673,7 @@ def page_flagged() -> str:
          "Verified in-repo, documentation mismatch open",
          "warn", NFL["results"]),
         ("Wind-under angle fails correction by 0.001",
-         "The weather angle returns +8.65% over 649 bets with p = 0.021, but Benjamini-Hochberg at q = 0.10 requires p &le; 0.020 with five strategies tested. It is also flat in the holdout. Treated as unresolved, not as an edge.",
+         "Settled only at stored prices, the weather angle returns +7.14% over 430 bets with p = 0.125, so it fails the significance gate and Benjamini-Hochberg at q = 0.10 (0 of 12 angles survive). It is also flat in the holdout. The earlier +8.65%/649-bet figure depended on 219 bets with no stored price; both numbers are recorded here so the correction is auditable.",
          "Unresolved", "warn", NFL["schedule"].format(week=1)),
         ("Weather fields are incomplete",
          "Wind and temperature are recorded for roughly 57% of games in 2020-2026 and only for outdoor venues. If missingness correlates with conditions the weather result is biased. Not tested.",
