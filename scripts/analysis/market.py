@@ -1,6 +1,11 @@
 """Market baseline: how efficient is the closing NFL line, and what does a
 random bet earn? Everything here is measured against the closing price that is
-actually stored in the data (not an assumed -110).
+actually stored in the data.
+
+Price policy (issue #19): rows whose price for the bet being measured is
+missing are EXCLUDED from that measurement, never imputed at -110, and the
+number excluded is disclosed next to the result. Point-level statistics that
+need no price (calibration, line bias) keep every settled row.
 """
 from __future__ import annotations
 
@@ -38,10 +43,12 @@ def prep() -> pd.DataFrame:
     g["away_margin_cover"] = -g.result + g.spread_line
     g["over_margin"] = g.total - g.total_line
     g["era"] = g.season.map(era)
-    g["home_odds"] = g.home_spread_odds.fillna(-110.0)
-    g["away_odds"] = g.away_spread_odds.fillna(-110.0)
-    g["over_price"] = g.over_odds.fillna(-110.0)
-    g["under_price"] = g.under_odds.fillna(-110.0)
+    # Issue #19 fix: NO imputation. Prices stay NaN when the feed has none and
+    # every price-based measurement below excludes those rows and says how many.
+    g["home_odds"] = g.home_spread_odds
+    g["away_odds"] = g.away_spread_odds
+    g["over_price"] = g.over_odds
+    g["under_price"] = g.under_odds
     g["home_is_dog"] = g.spread_line < 0
     g["home_is_fav"] = g.spread_line > 0
     g["spread_abs"] = g.spread_line.abs()
@@ -49,12 +56,18 @@ def prep() -> pd.DataFrame:
 
 
 def side_series(df: pd.DataFrame, side: str):
-    """Return (win, push, odds) arrays for a bet on `side`."""
+    """Return (win, push, odds, n_excluded) for a bet on `side`.
+
+    Rows with no stored price for that side, or no decidable margin, are
+    excluded rather than settled at an assumed price.
+    """
     if side == "home":
         m, odds = df.home_margin_cover, df.home_odds
     else:
         m, odds = df.away_margin_cover, df.away_odds
-    return (m > 0).to_numpy(), (m == 0).to_numpy(), odds.to_numpy()
+    ok = m.notna() & odds.notna()
+    m, odds = m[ok], odds[ok]
+    return (m > 0).to_numpy(), (m == 0).to_numpy(), odds.to_numpy(), int((~ok).sum())
 
 
 def total_side(df: pd.DataFrame, side: str):
@@ -62,7 +75,9 @@ def total_side(df: pd.DataFrame, side: str):
         m, odds = df.over_margin, df.over_price
     else:
         m, odds = -df.over_margin, df.under_price
-    return (m > 0).to_numpy(), (m == 0).to_numpy(), odds.to_numpy()
+    ok = m.notna() & odds.notna()
+    m, odds = m[ok], odds[ok]
+    return (m > 0).to_numpy(), (m == 0).to_numpy(), odds.to_numpy(), int((~ok).sum())
 
 
 def ols_slope(x: pd.Series, y: pd.Series) -> dict:
@@ -148,15 +163,17 @@ def main():
     # ---- 3. what a blind bet earns (the vig wall) --------------------------
     blind = {}
     for side in ["home", "away"]:
-        w, p, o = side_series(g, side)
+        w, p, o, nx = side_series(g, side)
         blind[side] = summarise_returns(bet_return(w, p, o), f"blind {side}")
         blind[side]["win_rate"] = float(w.mean())
         blind[side]["push_rate"] = float(p.mean())
+        blind[side]["n_excluded_missing_price"] = nx
     for side in ["over", "under"]:
-        w, p, o = total_side(g, side)
+        w, p, o, nx = total_side(g, side)
         blind[side] = summarise_returns(bet_return(w, p, o), f"blind {side}")
         blind[side]["win_rate"] = float(w.mean())
         blind[side]["push_rate"] = float(p.mean())
+        blind[side]["n_excluded_missing_price"] = nx
     out["blind"] = blind
 
     # ---- 4. implied overround (is the price really -110?) -------------------
@@ -189,21 +206,28 @@ def main():
         if len(sub) < 60:
             return
         if kind == "ats":
-            w, p, o = side_series(sub, side)
+            w, p, o, nx = side_series(sub, side)
         else:
-            w, p, o = total_side(sub, side)
+            w, p, o, nx = total_side(sub, side)
+        if len(w) < 60:
+            return
         ret = bet_return(w, p, o)
         s = summarise_returns(ret, name)
-        s.update({"desc": desc, "market": kind, "side": side, "n": int(len(sub)),
+        s.update({"desc": desc, "market": kind, "side": side, "n": int(len(w)),
+                  "n_selected": int(len(sub)), "n_excluded_missing_price": nx,
                   "hit_rate": float(w.mean()), "push_rate": float(p.mean()),
                   "avg_price": float(np.nanmean(o))})
         tests[name] = s
 
+    # Sign convention (proven in convention_check): spread_line > 0 means the
+    # HOME team is the favourite, so the ROAD favourite is spread_line < 0.
+    # Issue #19 fix: the away_fav masks previously selected positive spreads,
+    # which are road underdogs, not road favourites.
     add("home_dog", "Bet the home team whenever it is an underdog", g.home_is_dog, "home")
     add("home_big_dog", "Bet home underdogs of a touchdown or more", g.spread_line <= -7, "home")
-    add("away_fav", "Bet the road favourite", g.spread_line > 0, "away")
-    add("away_fav_7", "Bet road favourites laying 7+", g.spread_line >= 7, "away")
-    add("div_dog", "Bet the underdog in divisional games", (g.div_game == 1) & g.home_is_dog, "home")
+    add("away_fav", "Bet the road favourite", g.spread_line < 0, "away")
+    add("away_fav_7", "Bet road favourites laying 7+", g.spread_line <= -7, "away")
+    add("div_dog", "Bet the home underdog in divisional games", (g.div_game == 1) & g.home_is_dog, "home")
     add("rest_advantage", "Bet the team with 3+ extra rest days",
         (g.home_rest - g.away_rest) >= 3, "home")
     add("rest_disadvantage", "Bet the team with 3+ fewer rest days",

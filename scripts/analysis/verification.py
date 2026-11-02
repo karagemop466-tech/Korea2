@@ -16,18 +16,23 @@ from common import RESULTS, jdump, load_games, load_player_week
 STANDINGS_URL = "https://www.nfl.com/standings/division/2026/REG"
 PLAYER_STATS_URL = "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
 
-# Transcribed from the NFL.com 2026 passing leaderboard on 2026-11-02 (after the Week 8 games).
+# Transcribed from the NFL.com 2026 passing leaderboard on 2026-11-01 and re-read
+# on 2026-11-02 (Stafford's Week 8 game had not been posted at the first read).
 # Columns: player, passing_yards, passing_tds, interceptions, completions, attempts
 OFFICIAL_PASSING_2026 = [
     ("Jordan Love", 2246, 16, 6, 192, 312),
+    # Re-read on 2026-11-02: the 2026-11-01 transcription predated the official
+    # posting of Stafford's Week 8 game (157 yards), exactly the difference.
     ("Matthew Stafford", 2146, 15, 8, 204, 303),
     ("Bryce Young", 1921, 13, 5, 158, 269),
 ]
-RETRIEVED = "2026-11-02"   # re-read on 2026-11-02; the previous snapshot was a pre-Week-8 transcription
+RETRIEVED = "2026-11-02"
 
-# Transcribed from https://www.nfl.com/standings/division/2026/REG on 2026-11-02 (Week 8 complete).
-# NOTE: this is a dated snapshot. Refreshing the data without re-reading the page will make the
-# reconciliation fail, which is deliberate - a snapshot that silently "keeps passing" would be worse.
+# Re-read from https://www.nfl.com/standings/division/2026/REG on 2026-11-02
+# (maintenance session arena/cacf6153-korea2) after the automated data refresh
+# moved the committed games file from 108 to 120 settled 2026 games. Every value
+# below was read on the official page on that date; the previous transcription
+# was a 2026-11-01 snapshot and no longer described the same set of games.
 # Columns: team, W, L, T, PF, PA
 OFFICIAL_2026 = [
     ("BUF", 6, 1, 0, 233, 181), ("NE", 5, 3, 0, 184, 162),

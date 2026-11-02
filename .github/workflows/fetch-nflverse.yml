@@ -1,14 +1,23 @@
 name: refresh-data
 
+# Issue #20 fix: this workflow no longer pushes to main and no longer skips CI.
+# It downloads and validates every required file (fail-closed), regenerates the
+# pruned extracts, the provenance manifest and results/, runs the data/site
+# invariant checks, and only then opens a pull request from a short-lived
+# refresh branch. A failed download, schema check or check step aborts the job
+# before anything is committed, so a previous dataset can never be replaced by
+# a partial one.
 on:
   workflow_dispatch:
   push:
+    branches: ['main']
     paths:
       - 'scripts/fetch/fetch_nflverse.sh'
       - '.github/workflows/fetch-nflverse.yml'
 
 permissions:
-  contents: write
+  contents: write        # push the short-lived refresh branch
+  pull-requests: write   # open the refresh pull request
 
 jobs:
   fetch:
@@ -26,37 +35,123 @@ jobs:
       - name: Install
         run: pip install --quiet pandas numpy scipy
 
-      - name: Download nflverse release assets
+      - name: Download nflverse release assets (fail-closed)
         run: |
-          set -uo pipefail
+          set -euo pipefail
           mkdir -p data/raw
           BASE="https://github.com/nflverse/nflverse-data/releases/download"
+          SEASONS="2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026"
           get () {
-            if curl -sSL --retry 4 --retry-delay 3 --max-time 180 -o "$2" "$1" && [ -s "$2" ] && [ "$(stat -c%s "$2")" -gt 1000 ]; then
-              echo "OK   $(stat -c%s "$2") bytes  $2"
-            else
-              echo "FAIL $1"; rm -f "$2"
+            local url="$1" dest="$2" need="$3" header col
+            if ! curl -sSL --fail --retry 4 --retry-delay 3 --max-time 180 -o "$dest" "$url"; then
+              echo "::error::download failed (HTTP error or timeout): $url"
+              rm -f "$dest"
+              return 1
             fi
+            if [ ! -s "$dest" ] || [ "$(stat -c%s "$dest")" -lt 1000 ]; then
+              echo "::error::download too small to be a data extract: $url"
+              rm -f "$dest"
+              return 1
+            fi
+            header="$(head -n 1 "$dest")"
+            for col in $need; do
+              case ",$header," in
+                *",$col,"*) ;;
+                *) echo "::error::missing expected column '$col' in $url"; rm -f "$dest"; return 1 ;;
+              esac
+            done
+            echo "OK   $(stat -c%s "$dest") bytes  $dest"
           }
-          get "$BASE/schedules/games.csv" data/raw/games.csv
-          for y in 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026; do
-            get "$BASE/stats_team/stats_team_week_${y}.csv" "data/raw/stats_team_week_${y}.csv"
-            get "$BASE/stats_player/stats_player_week_${y}.csv" "data/raw/stats_player_week_${y}.csv"
+          get "$BASE/schedules/games.csv" data/raw/games.csv \
+            "game_id season home_team away_team"
+          for y in $SEASONS; do
+            get "$BASE/stats_team/stats_team_week_${y}.csv" "data/raw/stats_team_week_${y}.csv" \
+              "season week team"
+            get "$BASE/stats_player/stats_player_week_${y}.csv" "data/raw/stats_player_week_${y}.csv" \
+              "season week"
           done
+          n=$(ls data/raw/games.csv data/raw/stats_*_week_*.csv | wc -l)
+          if [ "$n" -ne 25 ]; then echo "::error::expected 25 source files, found $n"; exit 1; fi
+          echo "all 25 expected source files present and schema-checked"
 
-      - name: Prepare pruned datasets
+      - name: Prepare pruned datasets (fail-closed)
         working-directory: scripts/analysis
         run: PYTHONPATH=. python prepare.py
 
-      - name: Commit
+      - name: Validate the provenance manifest (fail-closed)
+        # Nothing is committed before this passes: expected extracts, all twelve
+        # seasons per extract, no missing player seasons, a real as-of date.
+        run: |
+          python - <<'EOF'
+          import json, sys
+          from pathlib import Path
+          need_seasons = list(range(2015, 2027))
+          p = Path("data/provenance.json")
+          if not p.exists():
+              sys.exit("::error::data/provenance.json missing after prepare")
+          m = json.loads(p.read_text())
+          files = {f["name"]: f for f in m.get("files") or []}
+          errs = []
+          for name in ("games.csv.gz", "team_week.csv.gz", "player_week.csv.gz"):
+              if name not in files:
+                  errs.append(f"manifest lacks {name}")
+          for name in ("team_week.csv.gz", "player_week.csv.gz"):
+              f = files.get(name) or {}
+              if list(f.get("seasons") or []) != need_seasons:
+                  errs.append(f"{name}: seasons {f.get('seasons')} != {need_seasons}")
+          if m.get("missing_player_seasons"):
+              errs.append(f"missing player seasons: {m['missing_player_seasons']}")
+          if not m.get("data_as_of_gameday"):
+              errs.append("manifest has no data_as_of_gameday")
+          if not (files.get("games.csv.gz") or {}).get("raw_sha256"):
+              errs.append("games.csv.gz has no raw_sha256")
+          if errs:
+              print("\n".join(f"::error::{e}" for e in errs))
+              sys.exit(1)
+          print("provenance manifest valid:", sorted(files), m.get("data_as_of_gameday"))
+          EOF
+
+      - name: Regenerate results from the new extracts (fail-closed)
+        # The retired site generator renders in memory only (its ownership guard
+        # skips writing while line-lab owns the published root site), so this
+        # regenerates results/*.json without touching live pages.
+        run: python scripts/analysis/build.py 2>&1 | tee -a data/derived/run_log.txt
+
+      - name: Verify data invariants, site links and regression tests (fail-closed)
+        run: |
+          set -euo pipefail
+          python tests/check_data.py
+          python tests/check_site.py
+          python -m unittest discover -s scripts/analysis -t scripts/analysis
+
+      - name: Open the refresh pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           git config user.name  "nfl-research-bot"
           git config user.email "nfl-research-bot@users.noreply.github.com"
-          git add data/derived data/provenance.json
+          git add data/derived data/provenance.json results
           if git diff --cached --quiet; then
-            echo "no data changes"
-          else
-            git commit -m "data: refresh pruned nflverse extracts [skip ci]"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            echo "no data changes after refresh - nothing to propose"
+            exit 0
           fi
+          BRANCH="data-refresh/run-${GITHUB_RUN_ID}"
+          git checkout -b "$BRANCH"
+          git commit -m "data: refresh nflverse extracts, provenance and regenerated results"
+          git push origin "$BRANCH"
+          {
+            echo "Automated refresh of the committed nflverse extracts, run \`${GITHUB_RUN_ID}\`."
+            echo
+            echo "* downloads: fail-closed, all 25 files schema-checked"
+            echo "* manifest: all 12 seasons per extract, no missing seasons"
+            echo "* results/: regenerated at stored prices only (no -110 imputation)"
+            echo "* checks on the runner before this PR: \`tests/check_data.py\`, \`tests/check_site.py\`, \`scripts/analysis/test_issue_fixes.py\`"
+            echo
+            echo "Review the number changes before merging. Nothing was pushed to \`main\`."
+            echo
+            echo "Note: branches pushed with the Actions \`GITHUB_TOKEN\` do not trigger further workflows, so the checks that gated this PR are the ones above, run on the runner before it was opened. Re-run them from the Actions tab with \`workflow_dispatch\` if you want a second pass."
+          } > /tmp/pr_body.md
+          gh pr create --base main --head "$BRANCH" \
+            --title "Data refresh: nflverse extracts + regenerated results" \
+            --body-file /tmp/pr_body.md

@@ -232,7 +232,7 @@ def pg_index():
 <h2>Where to look next</h2>
 <div class="tiles">
   <a class="tile" href="lines.html"><b>Originated lines →</b><span>Our spread, total and moneyline for every game, graded against the close</span></a>
-  <a class="tile" href="signals.html"><b>Signal research →</b><span>27 pre-registered signals with FDR control and out-of-sample decay</span></a>
+  <a class="tile" href="signals.html"><b>Signal research →</b><span>27 specified signals with FDR control and out-of-sample decay</span></a>
   <a class="tile" href="strategies.html"><b>Leaderboard →</b><span>18 strategy families, singles, parlays and teasers, scored and tiered</span></a>
   <a class="tile" href="gates.html"><b>Validation gates →</b><span>The seven tests every strategy must pass, and where each one failed</span></a>
   <a class="tile" href="correlation.html"><b>Correlation values →</b><span>φ coefficients for same-game legs, props and cross-game independence</span></a>
@@ -427,7 +427,7 @@ def pg_signals():
         [("Signal", False), ("Market", False), ("n", True), ("Hit %", True), ("Break-even %", True),
          ("ROI", True), ("95% CI", True), ("p", True), ("q (FDR)", True), ("ROI 2002-15", True),
          ("ROI 2016+", True), ("Verdict", False), ("Src", False)],
-        rows, caption=f"All {SIG['n_tests']} pre-registered signals",
+        rows, caption=f"All {SIG['n_tests']} specified signals",
         sub=f"discovery {SIG['windows']['discovery']} · validation {SIG['windows']['validation']}",
         col_cls=[None, None] + ["n"] * 9 + [None, None],
         note=("Break-even % is the win rate implied by the prices actually taken. q is the "
@@ -436,7 +436,7 @@ def pg_signals():
 
     body = f"""
 <div class="grid g4">
-  {card("Signals tested", num(SIG['n_tests'],0), "binary bucket rules, pre-registered before scoring")}
+  {card("Signals tested", num(SIG['n_tests'],0), "binary bucket rules, specified before scoring")}
   {card("Expected false positives", num(SIG['expected_false_positives_at_05'],2), "at p < 0.05 with no correction")}
   {card("Survive FDR + OOS", num(len(SIG['survivors']),0), "q < 0.10 and same sign out of sample")}
   {card("Best p-value", num(min(s['full']['p_value'] for s in SIG['signals']),3), "still above the FDR bar")}
@@ -466,7 +466,7 @@ the <a href="strategies.html">leaderboard</a> are the second family, and gate G2
 </ul>
 """
     return page("signals.html", "Signal research",
-                "Twenty-seven pre-registered pregame signals, scored with a false-discovery correction and "
+                "Twenty-seven pregame signals specified in this repository, scored with a false-discovery correction and "
                 "an out-of-sample window that none of them survive.",
                 body, SOURCES)
 
@@ -648,10 +648,14 @@ def pg_parlays():
                       num(x["copula_prob"], 4), pctp(x["prob_error_pct"] / 100, 1),
                       num(x["fair_decimal"], 3), num(x["fair_american"], 0)]
                      for x in CORR["pricing_table"]],
-                    col_cls=["n"] * 7, caption="Correlation-adjusted price of a two-leg same-game parlay",
-                    note="Fair American is the break-even price for the correlated joint probability. "
-                         "Price the legs independently and you will under-charge on positive correlation "
-                         "and over-charge on negative.")
+                    col_cls=["n"] * 7,
+                    caption="Hypothetical latent-ρ scenarios for two equal legs (not measured φ values)",
+                    note="ρ here is a LATENT Gaussian correlation, not the observed binary φ. The two are "
+                         "different quantities: for equal 50% legs φ = 2·asin(ρ)/π, so a measured φ of 0.55 "
+                         "corresponds to latent ρ = 0.7604 and a joint probability of 0.3875, not the 0.3427 "
+                         "that feeding ρ = 0.55 would give. To price a measured pair, use the calibrated ρ in "
+                         "the table below. Fair American is the break-even price for the correlated joint "
+                         "probability.")
 
     corr_rows = []
     for p in CORR["game_pairs"] + CORR["prop_pairs"] + ([CORR["cross_game"]] if CORR["cross_game"] else []):
@@ -666,12 +670,27 @@ def pg_parlays():
                  caption="Correlation values behind the parlay maths",
                  note=src(SOURCES, ["S1", "S9"]))
 
+    calib = table([("Measured pair", False), ("n", True), ("Measured φ", True),
+                   ("P(A)·P(B)", True), ("Measured P(A∧B)", True),
+                   ("Latent ρ that reproduces it", True), ("Copula check", True)],
+                  [[e(c["pair"]), num(c["n"], 0), num(c["phi"], 3),
+                    num(c["p_both_independent"], 4), num(c["p_both_actual"], 4),
+                    num(c["latent_rho_calibrated"], 4),
+                    num(c["copula_joint_at_calibrated_rho"], 4)]
+                   for c in CORR.get("copula_calibration", [])],
+                  col_cls=[None] + ["n"] * 6,
+                  caption="Latent ρ calibrated to each measured joint probability",
+                  note=src(SOURCES, ["S1", "S9"]) + " Bisection on the Gaussian copula solves for the latent "
+                       "ρ whose joint probability equals the measured P(A∧B); the last column re-evaluates "
+                       "the copula there and must match the measured joint. A test at the known φ = 0.55 "
+                       "case is in scripts/test_correlation_fixes.py.")
+
     body = f"""
 <div class="grid g4">
   {card("Parlay families", num(len(par),0), "2-leg, 3-leg, ML, same-game, teaser")}
   {card("Best parlay ROI", num(max(r['full']['roi'] for r in par)*100,2,'%'), "full sample, before gating")}
   {card("Same-game φ", num(CORR['strongest_pair']['phi'],3), "home ML × home cover ATS")}
-  {card("Cross-game φ", num(CORR['cross_game']['phi'],3), "the independence assumption holds across games")}
+  {card("Cross-game φ", num(CORR['cross_game']['phi'],3), "within-week pairwise association, week-clustered interval")}
 </div>
 
 <h2>What the parlay results say</h2>
@@ -684,10 +703,13 @@ actually change the answer.</p>
 
 <h2>Correlation changes the price, not the edge</h2>
 <p>A book that prices same-game legs independently will mis-price them whenever the legs are correlated.
-The table below shows the size of that mis-pricing at the correlations actually measured in this data.
-It is an arithmetic consequence of φ, not a claim about any particular sportsbook's multiplier — those
-multipliers are not in the verified data and are therefore not quoted here.</p>
+The first table below is a set of <em>hypothetical</em> latent-correlation scenarios: its ρ column is a
+latent Gaussian parameter, not the binary φ measured in this data. The second table converts each
+<em>measured</em> joint probability into the latent ρ that reproduces it, so a measured pair can be
+priced instead of guessed. Neither table is a claim about any particular sportsbook's multiplier —
+those multipliers are not in the verified data and are therefore not quoted here.</p>
 {pricing}
+{calib}
 
 <h2>Measured correlations</h2>
 {ctbl}
@@ -695,9 +717,12 @@ multipliers are not in the verified data and are therefore not quoted here.</p>
 <h2>How to build a same-game parlay with this</h2>
 <ol>
 <li>Only combine legs whose measured φ is outside the noise band (|φ| &gt; 0.054 at n = 3,400).</li>
-<li>Price the pair with the copula joint probability, never the product.</li>
-<li>Cross-game combinations can use the product: the measured cross-game φ is
-{num(CORR['cross_game']['phi'],3)} with a confidence interval that contains zero.</li>
+<li>Price the pair with the copula joint probability at the <em>calibrated</em> latent ρ, never the product.</li>
+<li>Cross-game combinations: the measured within-week pairwise φ is
+{num(CORR['cross_game']['phi'],3)} (week-clustered 95% interval {num(CORR['cross_game']['ci_lo'],3)} to
+{num(CORR['cross_game']['ci_hi'],3)}). That is consistent with independence but does not establish joint
+independence of a multi-leg ticket, so treat a cross-game parlay price as an assumption to check, not a
+derivation.</li>
 <li>Re-check the price against the book's own same-game multiplier once one is sourced (F3).</li>
 </ol>
 """
@@ -1218,7 +1243,7 @@ def pg_methods():
 <pre><code>scripts/fetch_data.py     # pull 9 extracts, hash them, write data/manifest.json
 scripts/build_integrity.py # 9 checks: signs, reconciliation, coherence, coverage
 scripts/build_lines.py    # walk-forward rating model -> spread / total / moneyline
-scripts/build_signals.py  # 27 pre-registered signals, FDR + out-of-sample
+scripts/build_signals.py  # 27 specified signals, FDR + out-of-sample
 scripts/build_strategies.py # 18 strategy families, 7 gates, leaderboard
 scripts/build_props.py    # player prop origination + calibration
 scripts/build_correlations.py # phi coefficients, copula pricing, key numbers

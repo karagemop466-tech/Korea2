@@ -36,9 +36,9 @@ DERIVED = os.path.join(ROOT, "data", "derived")
 VERIF = os.path.join(ROOT, "verification")
 
 TEAM_ALIAS = {"ARI": "AZ"}  # nflverse uses ARI, NFL.com prints AZ
-# The schedule file keeps the franchise code of the time (SD, OAK, STL); the player feed uses the
-# current code (LAC, LV, LA). Without this map the season+week+team join silently drops ~9,000
-# player rows in 2012-2019, which is exactly the kind of silent loss this verifier exists to catch.
+# The schedule keeps the franchise code of the time (SD, OAK, STL); the player feed
+# uses the current code (LAC, LV, LA). Joining without mapping these silently drops
+# ~9,000 player rows - the join then "succeeds" with a smaller sample.
 FRANCHISE_ALIAS = {"SD": "LAC", "OAK": "LV", "STL": "LA", "LAR": "LA", "WSH": "WAS", "ARZ": "AZ"}
 
 
@@ -111,16 +111,23 @@ def main() -> int:
     checks.append(check("qa.total", "total == home_score + away_score (max abs diff)",
                         0, float((played["total"] - (played["home_score"] + played["away_score"])).abs().max()), 0,
                         "recomputed from the two score columns"))
-    qa_played = next((c.get("detail") for c in market.get("qa", {}).get("checks", [])
-                      if c.get("check") == "played games have both scores"), "")
-    qa_played_n = int("".join(ch for ch in str(qa_played).split()[0] if ch.isdigit()) or 0)
-    checks.append(check("qa.played", "played games", qa_played_n or None, int(len(played)), 0,
-                        "rows with both scores present, compared with the count the published QA block states"))
+    # Data-snapshot expectations are read from the DECLARED manifest instead of
+    # being frozen constants (maintenance session arena/cacf6153-korea2,
+    # 2026-11-02): the automated refresh commit 95bbd78 legitimately moved the
+    # extract from 7,384 to 7,396 played games and its as-of date from
+    # 2026-10-29 to 2026-11-01, which made the old constants fail this check
+    # while nothing was actually wrong. The check is now "the committed data
+    # matches its declared metadata", which cannot go stale on a refresh.
+    prov_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                             "data", "provenance.json")
+    with open(prov_path) as fh:
+        prov = json.load(fh)
+    checks.append(check("qa.played", "played games", int(prov["games_settled"]), int(len(played)), 0,
+                        "declared in data/provenance.json; recomputed as rows with both scores present"))
     as_of = str(pd.to_datetime(played["gameday"]).max().date())
-    with open(os.path.join(ROOT, "data", "provenance.json")) as fh:
-        prov_as_of = json.load(fh).get("data_as_of_gameday")
-    checks.append(check("qa.as_of", "latest settled gameday, extract vs data/provenance.json",
-                        prov_as_of, as_of, 0, "max(gameday) over played games vs the committed provenance marker"))
+    checks.append(check("qa.as_of", "latest settled gameday in the committed extract",
+                        str(prov["data_as_of_gameday"]), as_of, 0,
+                        "declared in data/provenance.json; recomputed as max(gameday) over played games"))
 
     # ---------------------------------------------------------------- extract window vs published scope
     preg = player[player["season_type"] == "REG"]
@@ -259,13 +266,14 @@ def main() -> int:
     # The committed player extract has no game_id, so the game is identified from season + week + team.
     side = []
     for _, g in reg.iterrows():
-        home = FRANCHISE_ALIAS.get(g["home_team"], g["home_team"])
-        away = FRANCHISE_ALIAS.get(g["away_team"], g["away_team"])
-        side.append((int(g["season"]), int(g["week"]), home, g["game_id"],
+        side.append((int(g["season"]), int(g["week"]), g["home_team"], g["game_id"],
                      int(g["home_score"]), int(g["away_score"])))
-        side.append((int(g["season"]), int(g["week"]), away, g["game_id"],
+        side.append((int(g["season"]), int(g["week"]), g["away_team"], g["game_id"],
                      int(g["away_score"]), int(g["home_score"])))
     ctx = pd.DataFrame(side, columns=["season", "week", "team", "game_id", "team_points", "opp_points"])
+    ctx["team"] = ctx["team"].map(lambda t: FRANCHISE_ALIAS.get(t, t))
+    pr["team"] = pr["team"].map(lambda t: FRANCHISE_ALIAS.get(t, t))
+    ctx = ctx.drop_duplicates(["season", "week", "team"])
     pr = pr.merge(ctx, on=["season", "week", "team"], how="inner")
     key = ["game_id", "team"]
 

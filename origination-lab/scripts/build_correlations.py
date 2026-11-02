@@ -69,13 +69,43 @@ def pair(name, leg_a, leg_b, n_note=""):
 
 
 def copula_joint(p1, p2, rho):
-    """Gaussian copula joint probability with normal marginals."""
+    """Gaussian copula joint probability with normal marginals.
+
+    ``rho`` is the LATENT normal correlation, not the observed binary phi
+    coefficient. For equal 50% legs the two are related by
+    phi = 2*asin(rho)/pi (see rho_from_phi); for unequal marginals the latent
+    value must be calibrated numerically (rho_calibrated).
+    """
     if rho == 0:
         return p1 * p2
     x = norm.ppf(min(max(p1, 1e-9), 1 - 1e-9))
     y = norm.ppf(min(max(p2, 1e-9), 1 - 1e-9))
     from scipy.stats import multivariate_normal
     return float(multivariate_normal(mean=[0, 0], cov=[[1, rho], [rho, 1]]).cdf([x, y]))
+
+
+def rho_from_phi(phi_val: float) -> float:
+    """Exact at equal 50% marginals: phi = 2*asin(rho)/pi  =>  rho = sin(pi*phi/2)."""
+    return float(math.sin(math.pi * float(phi_val) / 2))
+
+
+def rho_for_joint(p1: float, p2: float, joint: float) -> float:
+    """Latent rho that reproduces an OBSERVED joint probability (issue #32.4).
+
+    copula_joint is strictly increasing in rho, so bisection is exact enough to
+    1e-6. Used to translate a measured P(A and B) into the latent parameter the
+    published pricing table consumes.
+    """
+    if not (0 < p1 < 1 and 0 < p2 < 1) or not (0 <= joint <= min(p1, p2)):
+        return float("nan")
+    lo, hi = -0.999, 0.999
+    for _ in range(80):
+        mid = (lo + hi) / 2
+        if copula_joint(p1, p2, mid) < joint:
+            lo = mid
+        else:
+            hi = mid
+    return float((lo + hi) / 2)
 
 
 def build_game_pairs(g):
@@ -98,29 +128,59 @@ def build_game_pairs(g):
     return [x for x in out if x]
 
 
-def cross_game_independence(g, rng_seed=3):
-    """Average pairwise phi between ATS outcomes of DIFFERENT games in the same week."""
+def cross_game_independence(g, n_boot=2000, rng_seed=3):
+    """Within-week pairwise association between ATS outcomes of DIFFERENT games.
+
+    Issue #32.3 fix: every distinct pair inside a week is used (the old version
+    drew 12 random pairs per week, reusing games), and the interval comes from a
+    WEEK-CLUSTERED bootstrap that resamples whole weeks. The old Fisher interval
+    treated all pairs as independent observations, which they are not; a
+    near-zero result is consistent with, but does not establish, joint
+    independence of a multi-leg ticket.
+    """
     rng = np.random.default_rng(rng_seed)
-    vals = []
+    weeks = []
     for (season, week), s in g.groupby(["season", "week"]):
-        if len(s) < 6:
+        margin = s.home_margin.to_numpy() + s.home_line.to_numpy()
+        x = (margin > 0).astype(float)
+        x[margin == 0] = np.nan
+        if int(np.isfinite(x).sum()) < 6:
             continue
-        x = np.array(((s.home_margin + s.home_line) > 0).astype(float))
-        x[s.home_margin.to_numpy() + s.home_line.to_numpy() == 0] = np.nan
-        for _ in range(12):
-            i, j = rng.choice(len(x), 2, replace=False)
-            if np.isfinite(x[i]) and np.isfinite(x[j]):
-                vals.append((x[i], x[j]))
-    if len(vals) < 50:
+        idx = np.where(np.isfinite(x))[0]
+        if len(idx) < 6:
+            continue
+        pa, pb = [], []
+        for ii in range(len(idx)):
+            for jj in range(ii + 1, len(idx)):
+                pa.append(x[idx[ii]])
+                pb.append(x[idx[jj]])
+        if pa:
+            weeks.append((np.array(pa), np.array(pb)))
+    if not weeks:
         return None
-    a = np.array([v[0] for v in vals])
-    b = np.array([v[1] for v in vals])
+    a = np.concatenate([w[0] for w in weeks])
+    b = np.concatenate([w[1] for w in weeks])
     r = phi(a, b)
-    lo, hi = phi_ci(r, len(a))
+    boots = []
+    nw = len(weeks)
+    for _ in range(n_boot):
+        pick = rng.integers(0, nw, nw)
+        aa = np.concatenate([weeks[i][0] for i in pick])
+        bb = np.concatenate([weeks[i][1] for i in pick])
+        boots.append(phi(aa, bb))
+    boots = np.array([v for v in boots if np.isfinite(v)])
+    lo, hi = (float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))) if len(boots) else (float("nan"), float("nan"))
+    boot_p = float(2 * min((boots <= 0).mean(), (boots >= 0).mean())) if len(boots) else float("nan")
     return {"pair": "ATS result of game A x ATS result of game B (same week)",
-            "n": len(a), "phi": MD(r, 3), "ci_lo": MD(lo, 3), "ci_hi": MD(hi, 3),
-            "p_value": MD(chi2_p(r, len(a)), 6),
-            "note": "Cross-game legs are the independence assumption behind standard parlays"}
+            "n": int(len(a)), "n_weeks": int(nw),
+            "phi": MD(r, 3), "ci_lo": MD(lo, 3), "ci_hi": MD(hi, 3),
+            "ci_method": f"week-clustered bootstrap, {n_boot} week resamples",
+            "p_value": MD(min(1.0, boot_p), 4),
+            "note": ("Within-week pairwise association. Near zero is consistent with, but "
+                     "does not establish, joint independence of a multi-leg ticket: pairwise "
+                     "independence does not imply joint independence. The interval resamples "
+                     "whole weeks, so it does not treat pairs from one week as independent.")}
+
 
 
 def build_prop_pairs(g):
@@ -161,14 +221,18 @@ def build_prop_pairs(g):
                  "2023-2024 player-weeks joined to the game's implied team total")
         if r:
             out.append(r)
-    # QB passing yards x his own WR1 receiving yards (same team, same game)
+    # QB passing yards x at least one receiver on the team going over the line.
+    # Issue #32.2 fix: the aggregation is max() over the team's receivers, i.e. an
+    # "at least one receiver went over" event. It is NOT the over of a receiver
+    # identified before kickoff, so the label now says what the calculation is.
     qb = p[(p.market == "passing_yards")][["season", "week", "recent_team", "over"]].copy()
     wr = p[(p.market == "receiving_yards")].groupby(["season", "week", "recent_team"]).agg(
         wr_over=("over", "max"), n_wr=("over", "size")).reset_index()
     j = qb.merge(wr, on=["season", "week", "recent_team"])
-    r = pair("QB passing yards over x top receiver's receiving yards over (same team)",
+    r = pair("QB passing yards over x at least one receiver on the team over (same team-game)",
              j.over.to_numpy(), j.wr_over.to_numpy(),
-             "Same team-game; strong positive correlation expected")
+             "Any-receiver event: max() over the team's receiver legs, NOT a pregame-identified "
+             "top receiver. Label and calculation now agree; no pregame selection is implied.")
     if r:
         out.append(r)
     return out
@@ -182,8 +246,12 @@ def key_numbers(g):
     rows_t = [{"value": int(k), "count": int(v),
                "pct": MD(100 * v / t.sum(), 2)} for k, v in t.items() if 30 <= k <= 60]
     push_spread = {}
+    # Issue #32.1 fix: home_line == line, published under str(line). The key now
+    # carries the same sign as the selection (home_line < 0 = home favourite), so
+    # a favourite line shows favourite-line push rates and an underdog line shows
+    # underdog-line push rates.
     for line in [-14, -10, -7, -6.5, -3, -2.5, 0, 2.5, 3, 6.5, 7, 10, 14]:
-        sel = g[g.home_line == -line]
+        sel = g[g.home_line == line]
         if len(sel) >= 30:
             push_spread[str(line)] = {"n": int(len(sel)),
                                       "push_rate": MD((sel.home_margin + sel.home_line == 0).mean(), 4)}
@@ -200,10 +268,27 @@ def main():
 
     # parlay pricing implications, using the strongest |phi| we measured
     all_pairs = [p for p in (pairs + prop_pairs + ([cross] if cross else [])) if p]
-    strongest = max([p for p in all_pairs if p.get("note", "") != "Cross-game legs"],
+    strongest = max([p for p in all_pairs if p is not cross and "same week" not in p["pair"]],
                     key=lambda p: abs(p["phi"]))
+    # Issue #32.4: translate every measured joint probability into the LATENT
+    # normal correlation the copula pricing table needs, so the table is never
+    # mistaken for an arithmetic consequence of the binary phi.
+    copula_calibration = []
+    for p_ in all_pairs:
+        if p_ is cross or p_.get("phi") is None or not p_.get("p_both_actual"):
+            continue
+        pa, pb = p_["p_a"], p_["p_b"]
+        rho = rho_for_joint(pa, pb, p_["p_both_actual"])
+        copula_calibration.append({
+            "pair": p_["pair"], "n": p_["n"], "phi": p_["phi"],
+            "p_a": MD(pa), "p_b": MD(pb),
+            "p_both_independent": MD(pa * pb), "p_both_actual": p_["p_both_actual"],
+            "latent_rho_calibrated": MD(rho, 4),
+            "copula_joint_at_calibrated_rho": MD(copula_joint(pa, pb, rho), 4) if np.isfinite(rho) else None,
+        })
     pricing = []
     for rho in [-0.30, -0.15, 0.0, 0.15, 0.30, 0.55]:
+        # each row is a hypothetical LATENT-correlation scenario, not a measured phi
         for p1 in [0.5, 0.55]:
             p2 = p1
             joint = copula_joint(p1, p2, rho)
@@ -227,6 +312,14 @@ def main():
         "prop_pairs": prop_pairs,
         "strongest_pair": strongest,
         "pricing_table": pricing,
+        "pricing_table_kind": ("Hypothetical latent-rho scenarios for equal legs. rho is a latent "
+                               "Gaussian correlation, NOT the observed binary phi; use "
+                               "copula_calibration to price a measured pair."),
+        "copula_calibration": copula_calibration,
+        "copula_phi_identity": ("For equal 50% legs the Gaussian copula gives "
+                                "phi = 2*asin(rho)/pi, so a measured phi of 0.55 maps to latent "
+                                "rho = sin(pi*0.55/2) = 0.7604 and a joint probability of 0.3875, "
+                                "not 0.3427 (which is copula_joint(0.5, 0.5, 0.55))."),
         "key_numbers": key_numbers(g),
         "significance_threshold": "|phi| > 0.054 is significant at p<0.05 for n=3400",
     }

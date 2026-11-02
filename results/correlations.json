@@ -1,17 +1,17 @@
 {
  "correlations": [
   {
-   "name": "QB passing yards vs that team's WR1 receiving yards (same game)",
+   "name": "QB passing yards vs that team's top receiver (same game, ex-post leader)",
    "n": 7549,
    "r": 0.630643,
    "ci_lo": 0.61686,
    "ci_hi": 0.644039,
    "p": 0.0,
    "r2": 0.39771,
-   "note": "Same plays, so the two legs of a same-game parlay are near-duplicates."
+   "note": "Same plays, so the two legs of a same-game parlay are near-duplicates. The receiver is the ex-post yards leader of that game, not a pregame choice; the QB is the passer with the most attempts in it."
   },
   {
-   "name": "Team passing yards vs WR1 receiving yards (same game)",
+   "name": "Team passing yards vs top receiver's yards (same game, ex-post leader)",
    "n": 7566,
    "r": 0.649606,
    "ci_lo": 0.636387,
@@ -21,7 +21,7 @@
    "note": "Receiving volume concentrates in the top receiver."
   },
   {
-   "name": "WR1 receiving yards vs WR2 receiving yards (same team, same game)",
+   "name": "Top-two receivers' yards (same team, same game, ranked ex-post)",
    "n": 7563,
    "r": 0.464249,
    "ci_lo": 0.446381,
@@ -31,7 +31,7 @@
    "note": "Levels move together because the whole passing game expands; the split of targets is a different, zero-sum question (next row)."
   },
   {
-   "name": "WR1 vs WR2 receiving yards, holding team passing volume constant",
+   "name": "Top-two receivers' yards, holding team passing volume constant (ex-post ranks)",
    "n": 7562,
    "r": 0.089948,
    "ci_lo": 0.067545,
@@ -51,7 +51,7 @@
    "note": "Game script: trailing teams abandon the run."
   },
   {
-   "name": "Lead RB rushing yards vs WR1 receiving yards (same team, same game)",
+   "name": "Lead RB rushing yards vs top receiver's yards (same team, same game, ex-post leaders)",
    "n": 7566,
    "r": -0.045573,
    "ci_lo": -0.068037,
@@ -133,6 +133,7 @@
    "correlation_multiple": 1.448953,
    "naive_fair_odds": 4.048167,
    "true_fair_odds": 2.793856,
+   "selection": "Descriptive full-sample example. Thresholds are whole-sample medians and the receiver is the ex-post yards leader, so this is NOT a pregame strategy and NOT a priced sportsbook offer (issue #19). No prop price is attached to it anywhere.",
    "note": "Legs are close to the same event, so a book that priced them independently would lose; real books shorten same-game prices."
   },
   "wr1_plus_wr2": {
@@ -150,8 +151,8 @@
  "cross_game": {
   "n_game_weeks": 472,
   "corr_consecutive_week_mean_margin": -0.084673,
-  "corr_consecutive_week_home_cover_rate": -0.084673,
-  "note": "Cross-game legs stack multiplicatively because weekly outcomes do not carry over. This is the assumption a normal parlay relies on."
+  "corr_consecutive_week_home_cover_rate": 0.090214,
+  "note": "Lag-1 autocorrelation of the weekly mean margin and of the weekly home cover rate (pushes excluded from the rate). Near-zero values are consistent with week-to-week outcomes not carrying over, but this does not establish contemporaneous cross-game independence: pairwise independence does not imply joint independence of a multi-leg ticket."
  },
  "coverage": {
   "seasons": [

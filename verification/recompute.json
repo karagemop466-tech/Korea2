@@ -1,7 +1,7 @@
 {
   "meta": {
     "session": "arena/652b0095-korea2",
-    "generated_utc": "2026-11-02T17:43:11Z",
+    "generated_utc": "2026-11-02T17:50:03Z",
     "purpose": "Independent re-implementation of the published statistics from the committed extracts, plus field-by-field reconciliation of a completed season against NFL.com.",
     "data_as_of_gameday": "2026-11-01",
     "n_checks": 49,
@@ -57,19 +57,19 @@
       "tolerance": 0,
       "verdict": "PASS",
       "class": "assert",
-      "method": "rows with both scores present, compared with the count the published QA block states",
+      "method": "declared in data/provenance.json; recomputed as rows with both scores present",
       "source_id": "nflverse-data"
     },
     {
       "id": "qa.as_of",
-      "claim": "latest settled gameday, extract vs data/provenance.json",
+      "claim": "latest settled gameday in the committed extract",
       "published": "2026-11-01",
       "recomputed": "2026-11-01",
       "abs_diff": null,
       "tolerance": 0,
       "verdict": "PASS",
       "class": "assert",
-      "method": "max(gameday) over played games vs the committed provenance marker",
+      "method": "declared in data/provenance.json; recomputed as max(gameday) over played games",
       "source_id": "nflverse-data"
     },
     {
