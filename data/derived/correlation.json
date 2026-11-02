@@ -17,7 +17,7 @@
     "ci_high": -0.008005293816268072,
     "r2": 0.0009797983404234547,
     "status": "measured",
-    "note": "Positive: fast, high-possession games lift both teams' scoring."
+    "note": "Negative and tiny: the two teams' scores move slightly in opposite directions once the shared game environment is netted out. Do not treat this pair as positively coupled."
   },
   "margin_vs_total": {
     "label": "Winning margin vs game total",
@@ -72,7 +72,7 @@
     "ci_high": 0.1407634354041734,
     "r2": 0.014059048590740166,
     "status": "measured",
-    "note": "Team-mates compete for the same targets, so this is the one common negative pair."
+    "note": "Positive, not negative: both receivers benefit from the same passing volume, and the target competition effect is smaller than that shared driver. The one clearly negative team-mate pair is RB1 rushing yards vs QB passing yards (game script)."
   },
   "rb_yards_vs_team_points": {
     "label": "RB1 rushing yards vs own team points",

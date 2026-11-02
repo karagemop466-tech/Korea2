@@ -4,6 +4,13 @@
 **Status:** research complete for this snapshot. **Zero strategies ranked.**
 **Data as of:** gameday 2026-10-29 (108 settled 2026 games; 7,075 settled regular-season games in total, 1999–2026).
 
+> **Which build this file describes.** This summary covers the `pipeline/` + `results/` build of
+> 2026-11-01 (six gates, five strategies). The published dashboard at the link above is the integrated
+> build (ten gates, seven candidate strategies plus two controls); its summary is
+> [`docs/EXECUTIVE_SUMMARY.md`](docs/EXECUTIVE_SUMMARY.md), and the independent re-check of both is on the
+> [Verification page](https://karagemop466-tech.github.io/Korea2/pages/verification.html)
+> (49 checks, 0 material disagreements, 2020 season 32/32 vs NFL.com).
+
 ---
 
 ## 1. Bottom line

@@ -127,3 +127,46 @@ computed ROI would require a price archive that does not exist here.
 * Nine open items published on the Flagged for Review page, including the missing prop prices,
   closing-line value, execution access, prize funding, parlay ladder, injury policy, model
   underperformance and the 2026 home-field anomaly.
+
+## 9. Independent verification, 2026-11-02
+
+Added by the integration/verification session `arena/652b0095-korea2`. The full per-row record is on the
+site's [Verification page](https://karagemop466-tech.github.io/Korea2/pages/verification.html) and in
+`verification/recompute.json`.
+
+**What was done.** Every headline number was recomputed from the committed extracts
+(`data/derived/games.csv.gz`, `player_week.csv.gz`) by `verification/recompute.py`, which imports nothing
+from `scripts/` or `pipeline/`. A completed season was reconciled team by team against NFL.com, and eight
+official pages were re-read on 2026-11-02.
+
+| Result | Value |
+|---|---|
+| Independent checks | 49 |
+| Agree with the published value | 45 |
+| Material disagreements | 0 |
+| Observations expected to differ (windows, live pages) | 11 recorded, 0 hidden |
+| 2020 regular season vs NFL.com | 32/32 teams match on W-L-T, PF and PA |
+| 2026 live standings vs committed extract | 8/32 match — the extract ends 2026-10-29 |
+| Upstream release assets re-checked | 28 of 31 byte-size identical; the three current-season files moved upstream on 2026-11-02 |
+
+**Defects found and fixed in this pass**
+
+1. A validation-page cell rendered `n/a` because the generator read `..._ml_dog` while the data field is
+   `..._ml_underdog`. The measured value (−4.658) now renders.
+2. `data/derived/luck.json` contained `-Infinity` for the k = 1 multiple-testing row — invalid JSON and
+   displayed as "-inf". The expected maximum of one draw is 0; generator and data corrected.
+3. Two correlation notes described the opposite sign to the number they sat next to (r = −0.031 called
+   "positive"; r = +0.119 called "the one common negative pair"). Notes rewritten; coefficients unchanged.
+4. A model-spec string said ridge λ = 8 while the code applies λ = 4.0, the value chosen on validation.
+   Corrected.
+5. A second generator (`scripts/analysis/build_site.py`) writes the same `index.html` / `pages/*` paths,
+   which left a stale, unreachable `pages/verification.html` on the live site. The integrated generator now
+   owns those paths and publishes a real Verification page in the navigation; `tests/check_derived.py`
+   fails the build on an orphan page, on non-strict JSON, or on any verification disagreement.
+
+**What the verification does not establish.** That a strategy is profitable, that a price is obtainable, or
+that the player-level coefficients reproduce exactly from the pruned extract: the published coefficients were
+measured on a 2012–2026 download, the committed pruned extract starts in 2015, and the recomputation
+reproduces every sign and magnitude to within 0.02 with a smaller n. That gap is published rather than
+papered over, and it is the one item that a data refresh (plus committing the pruned extracts from the same
+download) would close.

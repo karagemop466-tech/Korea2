@@ -39,7 +39,7 @@
   },
   "model_spec": {
     "form": "home = mu + off_home - def_away + hfa ; away = mu + off_away - def_home",
-    "estimator": "weighted least squares (ridge lambda=8 on team ratings)",
+    "estimator": "weighted least squares with ridge shrinkage; the penalty actually used is ridge_lambda = 4.0, the value chosen on the 2021-2022 validation window",
     "recency_half_life_days": 180,
     "ridge_lambda": 4.0,
     "home_field_shrinkage": "hfa shrunk toward the 10-season mean with 60 pseudo-observations",
@@ -51,7 +51,8 @@
     "test_seasons": [
       2023,
       2026
-    ]
+    ],
+    "note": "The earlier text said lambda=8; the grid search selected 4.0 and the code applies ridge_lambda below. Corrected on 2026-11-02."
   },
   "blend_selection": {
     "grid": [

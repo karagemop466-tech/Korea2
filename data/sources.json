@@ -579,6 +579,50 @@
         "flagged"
       ],
       "verified_by": "integration session arena/70a33596-korea2 - opened and read on 2026-11-01"
+    },
+    {
+      "id": "nfl-standings-2026",
+      "label": "NFL.com - 2026 NFL Division Standings (regular season, live page)",
+      "title": "NFL.com - 2026 NFL Division Standings",
+      "short": "NFL.com 2026 standings",
+      "url": "https://www.nfl.com/standings/division/2026/REG",
+      "org": "NFL (nfl.com)",
+      "type": "official",
+      "note": "Division standings with W-L-T, PF, PA. Read on 2026-11-02 by the verification session and transcribed into verification/nfl_standings_2026_live.json for the live reconciliation.",
+      "verified_by": "verification session arena/652b0095-korea2 - opened and read 2026-11-02"
+    },
+    {
+      "id": "nfl-standings-2020",
+      "label": "NFL.com - 2020 NFL Division Standings (regular season)",
+      "title": "NFL.com - 2020 NFL Division Standings",
+      "short": "NFL.com 2020 standings",
+      "url": "https://www.nfl.com/standings/division/2020/REG",
+      "org": "NFL (nfl.com)",
+      "type": "official",
+      "note": "Completed-season division standings with W-L-T, PF, PA. Read on 2026-11-02 and transcribed into verification/nfl_standings_2020.json; all 32 teams reconcile with the committed extract.",
+      "verified_by": "verification session arena/652b0095-korea2 - opened and read 2026-11-02"
+    },
+    {
+      "id": "nfl-passing-2026",
+      "label": "NFL.com - 2026 passing statistics (official player stats)",
+      "title": "NFL.com - 2026 passing statistics",
+      "short": "NFL.com 2026 passing stats",
+      "url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
+      "org": "NFL (nfl.com)",
+      "type": "official",
+      "note": "Read on 2026-11-02: Jordan Love 2246 passing yards on 312 attempts / 192 completions, 16 TD, 6 INT.",
+      "verified_by": "verification session arena/652b0095-korea2 - opened and read 2026-11-02"
+    },
+    {
+      "id": "nflverse-api",
+      "label": "nflverse-data release metadata (GitHub API)",
+      "title": "nflverse-data GitHub releases API",
+      "short": "nflverse release metadata",
+      "url": "https://api.github.com/repos/nflverse/nflverse-data/releases",
+      "org": "nflverse project (GitHub)",
+      "type": "community",
+      "note": "Asset names and byte sizes read on 2026-11-02 and compared with data/derived/manifest.json: 28 of 31 assets unchanged, three current-season assets updated upstream.",
+      "verified_by": "verification session arena/652b0095-korea2 - read 2026-11-02"
     }
   ]
 }

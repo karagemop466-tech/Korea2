@@ -118,7 +118,8 @@ def main() -> None:
     g = g[g["game_type"] == "REG"]
     pair(out, "home_points_vs_away_points", "Home points vs away points (pace coupling)",
          g["home_score"].to_numpy(float), g["away_score"].to_numpy(float),
-         "Positive: fast, high-possession games lift both teams' scoring.")
+         "Negative and tiny: once the shared game environment is netted out the two scores move "
+         "slightly in opposite directions. Do not treat this pair as positively coupled.")
     pair(out, "margin_vs_total", "Winning margin vs game total",
          g["result"].to_numpy(float), g["total"].to_numpy(float),
          "Blowouts and high totals are mildly linked; weak but non-zero.")
@@ -133,7 +134,8 @@ def main() -> None:
          tg["qb_pass_yds"].to_numpy(float), tg["wr2_yards"].to_numpy(float))
     pair(out, "wr1_vs_wr2_yards", "WR1 receiving yards vs WR2 receiving yards",
          tg["wr1_yards"].to_numpy(float), tg["wr2_yards"].to_numpy(float),
-         "Team-mates compete for the same targets, so this is the one common negative pair.")
+         "Positive, not negative: both receivers ride the same passing volume, and target competition "
+         "is the smaller effect. The clearly negative team-mate pair is RB1 rushing vs QB passing yards.")
     pair(out, "rb_yards_vs_team_points", "RB1 rushing yards vs own team points",
          tg["rb1_yards"].to_numpy(float), tg["team_points"].to_numpy(float))
     pair(out, "rb_yards_vs_qb_yards", "RB1 rushing yards vs QB passing yards",
