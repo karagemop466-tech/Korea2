@@ -14,7 +14,11 @@ G5 CALIBRATION |observed hit rate - mean model probability| <= 5pp and Brier < 0
 G6 STABILITY   >= 60% of holdout seasons (with >=10 bets) profitable, and >= 3 such seasons
 G7 ROBUSTNESS  worst leave-one-season-out ROI > -5%
 G8 CONCENTRATION top-1% of bets produce <= 60% of total profit
-G9 PRICE       still profitable at -105 instead of -110
+G9 PRICE       leg-by-leg price sensitivity: each ticket is repriced from its OWN recorded
+               decimal, shifting every leg by the -110 -> new-price ratio, and must stay
+               profitable at BOTH a better price (-105) and a worse one (-115). Multi-leg
+               tickets move by the leg ratio raised to the number of legs; quoted-package
+               prices (teasers) cannot be decomposed and fail the gate closed.
 
 Luck removal
   Every bet is settled at the price actually taken. Because a fair market price implies zero
@@ -42,10 +46,33 @@ def norm_sf(z):
     return 0.5 * (1.0 - math.erf(z / math.sqrt(2.0)))
 
 
-def repriced_roi(bets, new_price=-105):
-    """ROI if every -110 leg had been priced at new_price."""
-    d = 1.0 + (new_price / 100.0 if new_price > 0 else 100.0 / -new_price)
-    units = [(d - 1.0) if b["hit"] else -1.0 for b in bets if b.get("hit") is not None and not b.get("void")]
+def decimal_of(american: float) -> float:
+    """Decimal equivalent of American odds."""
+    a = float(american)
+    return 1.0 + (a / 100.0 if a > 0 else 100.0 / -a)
+
+
+# how many legs each strategy kind has; teaser prices are quoted as a package and
+# therefore cannot be repriced leg by leg (gate fails closed for them)
+LEGS_BY_KIND = {"single": 1, "prop": 1, "parlay2": 2, "parlay3": 3, "sgp": 2}
+
+
+def repriced_roi(bets, new_price=-105, legs=1):
+    """ROI if every leg of every ticket had been priced at ``new_price``.
+
+    Issue #24 fix: the old version REPLACED each ticket's decimal with the new
+    single-leg price, which mispriced multi-leg tickets both ways (a 2-leg ticket
+    recorded at 3.6446 became 1.9524). Now each ticket's own recorded decimal is
+    multiplied by (decimal(new_price)/decimal(-110)) ** legs, which is the exact
+    transformation when every leg moves from -110 to the new price.
+    """
+    ratio = decimal_of(new_price) / decimal_of(-110)
+    units = []
+    for b in bets:
+        if b.get("hit") is None or b.get("void"):
+            continue
+        d = float(b["decimal"]) * ratio ** legs
+        units.append((d - 1.0) if b["hit"] else -1.0)
     return sum(units) / len(units) if units else None
 
 
@@ -90,8 +117,27 @@ def gates_for(name, res, bets):
                           "value": round(min(loso), 4) if loso else None}
     conc = hold.get("top1pct_profit_share")
     g["G8_concentration"] = {"pass": conc is not None and conc <= GATES["G8_concentration_max"], "value": conc}
-    r105 = repriced_roi(hb, -105)
-    g["G9_price_sensitivity"] = {"pass": r105 is not None and r105 > 0, "value": None if r105 is None else round(r105, 4)}
+    # G9 (issue #24): a better price alone is not a robustness test. Require the
+    # strategy to survive both a better (-105) and a worse (-115) price, with each
+    # ticket repriced leg by leg from its own recorded decimal.
+    legs = LEGS_BY_KIND.get(kind)
+    if legs is None:
+        g["G9_price_sensitivity"] = {
+            "pass": False, "value": None,
+            "note": ("not evaluated: this kind's price is a quoted package that cannot be "
+                     "decomposed into -110 legs, so the gate fails closed"),
+        }
+    else:
+        r_better = repriced_roi(hb, -105, legs)
+        r_worse = repriced_roi(hb, -115, legs)
+        g["G9_price_sensitivity"] = {
+            "pass": (r_better is not None and r_worse is not None and r_better > 0 and r_worse > 0),
+            "value": {"roi_at_-105": None if r_better is None else round(r_better, 4),
+                      "roi_at_-115": None if r_worse is None else round(r_worse, 4),
+                      "legs": legs},
+            "note": ("each ticket repriced from its own recorded decimal by the leg ratio; "
+                     "must stay profitable at BOTH -105 and -115"),
+        }
     return g, seasons
 
 

@@ -69,7 +69,12 @@
     },
     "G9_price_sensitivity": {
      "pass": true,
-     "value": 0.0618
+     "value": {
+      "roi_at_-105": 0.0618,
+      "roi_at_-115": 0.0168,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -317,8 +322,13 @@
      "value": 10.0
     },
     "G9_price_sensitivity": {
-     "pass": true,
-     "value": 0.0234
+     "pass": false,
+     "value": {
+      "roi_at_-105": 0.0234,
+      "roi_at_-115": -0.02,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -509,11 +519,12 @@
     }
    ],
    "bh_fdr_pass": false,
-   "gates_passed": 5,
+   "gates_passed": 4,
    "gates_failed": [
     "G3_discovery_roi",
     "G5_calibration",
     "G8_concentration",
+    "G9_price_sensitivity",
     "G4_significance"
    ],
    "qualified": false,
@@ -574,8 +585,13 @@
      "value": null
     },
     "G9_price_sensitivity": {
-     "pass": true,
-     "value": 0.0044
+     "pass": false,
+     "value": {
+      "roi_at_-105": 0.0044,
+      "roi_at_-115": -0.0382,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -766,13 +782,14 @@
     }
    ],
    "bh_fdr_pass": false,
-   "gates_passed": 3,
+   "gates_passed": 2,
    "gates_failed": [
     "G2_holdout_roi",
     "G3_discovery_roi",
     "G5_calibration",
     "G6_stability",
     "G8_concentration",
+    "G9_price_sensitivity",
     "G4_significance"
    ],
    "qualified": false,
@@ -834,7 +851,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.4691
+     "value": {
+      "roi_at_-105": 0.0047,
+      "roi_at_-115": -0.0787,
+      "legs": 2
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -1094,7 +1116,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.0898
+     "value": {
+      "roi_at_-105": -0.0898,
+      "roi_at_-115": -0.1284,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -1347,7 +1374,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.0064
+     "value": {
+      "roi_at_-105": -0.0064,
+      "roi_at_-115": -0.0485,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -1601,7 +1633,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.0294
+     "value": {
+      "roi_at_-105": -0.0294,
+      "roi_at_-115": -0.0706,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -1855,7 +1892,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.032
+     "value": {
+      "roi_at_-105": -0.032,
+      "roi_at_-115": -0.0731,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -2116,7 +2158,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.0382
+     "value": {
+      "roi_at_-105": -0.0382,
+      "roi_at_-115": -0.079,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -2377,7 +2424,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.4825
+     "value": {
+      "roi_at_-105": -0.017,
+      "roi_at_-115": -0.0987,
+      "legs": 2
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -2638,7 +2690,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.0389
+     "value": {
+      "roi_at_-105": -0.0389,
+      "roi_at_-115": -0.0797,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -2899,7 +2956,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.044
+     "value": {
+      "roi_at_-105": -0.044,
+      "roi_at_-115": -0.0846,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -3160,7 +3222,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.0618
+     "value": {
+      "roi_at_-105": -0.0618,
+      "roi_at_-115": -0.1016,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -3504,7 +3571,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.4063
+     "value": {
+      "roi_at_-105": -0.0889,
+      "roi_at_-115": -0.1276,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -3737,7 +3809,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.1044
+     "value": {
+      "roi_at_-105": -0.1044,
+      "roi_at_-115": -0.1424,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -3998,7 +4075,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.1126
+     "value": {
+      "roi_at_-105": -0.1125,
+      "roi_at_-115": -0.1502,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -4259,7 +4341,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.8116
+     "value": {
+      "roi_at_-105": -0.2819,
+      "roi_at_-115": -0.3695,
+      "legs": 3
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -4520,7 +4607,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.1727
+     "value": {
+      "roi_at_-105": -0.1727,
+      "roi_at_-115": -0.2078,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
@@ -4775,7 +4867,12 @@
     },
     "G9_price_sensitivity": {
      "pass": false,
-     "value": -0.3492
+     "value": {
+      "roi_at_-105": -0.3492,
+      "roi_at_-115": -0.3768,
+      "legs": 1
+     },
+     "note": "each ticket repriced from its own recorded decimal by the leg ratio; must stay profitable at BOTH -105 and -115"
     },
     "G4_significance": {
      "pass": false,
