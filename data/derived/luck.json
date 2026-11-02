@@ -14,11 +14,11 @@
   },
   "luck_persistence": {
     "n": 842,
-    "r": 0.023894391339590943,
+    "r": 0.023894391339590967,
     "p": 0.4886748431776462,
-    "ci_low": -0.04373860722042898,
-    "ci_high": 0.09130937355058343,
-    "r2": 0.0005709419374895187,
+    "ci_low": -0.04373860722042896,
+    "ci_high": 0.09130937355058347,
+    "r2": 0.0005709419374895199,
     "status": "measured",
     "label": "Year-over-year correlation of Pythagorean luck (wins)",
     "interpretation": "Near zero means last season's luck did not carry forward: the deviation was noise, not skill."
