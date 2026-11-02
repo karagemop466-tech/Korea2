@@ -2,33 +2,33 @@
  "strategies": {
   "S1_away_blanket": {
    "label": "S1 \u00b7 Blanket away",
-   "n": 7075,
-   "roi": -0.008426,
-   "sd": 0.95677,
-   "t": -0.740728,
-   "p": 0.458883,
-   "ci_lo": -0.030307,
-   "ci_hi": 0.014008,
+   "n": 7087,
+   "roi": -0.009278,
+   "sd": 0.956817,
+   "t": -0.816307,
+   "p": 0.414352,
+   "ci_lo": -0.032101,
+   "ci_hi": 0.013214,
    "max_dd": 98.468992,
-   "req_n": 49534.258341,
-   "units": -59.611386,
+   "req_n": 40855.585658,
+   "units": -65.752687,
    "family": "single",
    "thesis": "Fade the home team on the road-team cover rate gap observed in the data.",
-   "hit_rate": 0.497244,
-   "push_rate": 0.027562,
-   "hit_rate_nonpush": 0.511337,
-   "binom_p": 0.061666,
+   "hit_rate": 0.496825,
+   "push_rate": 0.027515,
+   "hit_rate_nonpush": 0.510882,
+   "binom_p": 0.072687,
    "legs": [
     {
      "side": "away",
      "market": "ats",
-     "n": 7075,
-     "hit": 0.497244,
-     "push_rate": 0.027562,
-     "avg_price": -73.11265
+     "n": 7087,
+     "hit": 0.496825,
+     "push_rate": 0.027515,
+     "avg_price": -73.171723
     }
    ],
-   "perm_p": 0.02295,
+   "perm_p": 0.0283,
    "splits": {
     "develop_2018_2022": {
      "n": 1311,
@@ -43,10 +43,10 @@
      "p": 0.218986
     },
     "holdout_2025_2026": {
-     "n": 380,
-     "roi": -0.000298,
-     "t": -0.006135,
-     "p": 0.995109
+     "n": 392,
+     "roi": -0.015956,
+     "t": -0.332751,
+     "p": 0.7395
     },
     "pre_2018": {
      "n": 4840,
@@ -58,41 +58,41 @@
   },
   "S2_rest_spot": {
    "label": "S2 \u00b7 Rest-differential spot",
-   "n": 1340,
-   "roi": -0.00686,
-   "sd": 0.960997,
-   "t": -0.261305,
-   "p": 0.793897,
-   "ci_lo": -0.058327,
-   "ci_hi": 0.04562,
-   "max_dd": 37.098624,
-   "req_n": 75388.509715,
-   "units": -9.19226,
+   "n": 1345,
+   "roi": -0.006347,
+   "sd": 0.960897,
+   "t": -0.242251,
+   "p": 0.808622,
+   "ci_lo": -0.056679,
+   "ci_hi": 0.044574,
+   "max_dd": 34.443345,
+   "req_n": 88041.170812,
+   "units": -8.53698,
    "family": "single",
    "thesis": "Bet the team with at least three extra rest days.",
-   "hit_rate": 0.5,
-   "push_rate": 0.022388,
-   "hit_rate_nonpush": 0.51145,
-   "binom_p": 0.422993,
+   "hit_rate": 0.500372,
+   "push_rate": 0.022305,
+   "hit_rate_nonpush": 0.511787,
+   "binom_p": 0.408072,
    "legs": [
     {
      "side": "home",
      "market": "ats",
-     "n": 632,
-     "hit": 0.481013,
-     "push_rate": 0.023734,
-     "avg_price": -72.193038
+     "n": 635,
+     "hit": 0.483465,
+     "push_rate": 0.023622,
+     "avg_price": -72.385827
     },
     {
      "side": "away",
      "market": "ats",
-     "n": 708,
-     "hit": 0.516949,
-     "push_rate": 0.021186,
-     "avg_price": -69.89548
+     "n": 710,
+     "hit": 0.515493,
+     "push_rate": 0.021127,
+     "avg_price": -70.001408
     }
    ],
-   "perm_p": 0.1796,
+   "perm_p": 0.1731,
    "splits": {
     "develop_2018_2022": {
      "n": 281,
@@ -107,10 +107,10 @@
      "p": 0.831844
     },
     "holdout_2025_2026": {
-     "n": 78,
-     "roi": 0.022603,
-     "t": 0.212384,
-     "p": 0.832368
+     "n": 83,
+     "roi": 0.029136,
+     "t": 0.282603,
+     "p": 0.778194
     },
     "pre_2018": {
      "n": 860,
@@ -148,7 +148,7 @@
      "avg_price": -81.878274
     }
    ],
-   "perm_p": 0.00075,
+   "perm_p": 0.0007,
    "splits": {
     "develop_2018_2022": {
      "n": 107,
@@ -178,33 +178,33 @@
   },
   "S4_div_home_dog": {
    "label": "S4 \u00b7 Divisional home dog",
-   "n": 999,
-   "roi": -0.041465,
-   "sd": 0.954493,
-   "t": -1.373075,
-   "p": 0.170037,
-   "ci_lo": -0.099727,
-   "ci_hi": 0.017643,
+   "n": 1000,
+   "roi": -0.040515,
+   "sd": 0.954489,
+   "t": -1.342276,
+   "p": 0.179812,
+   "ci_lo": -0.098753,
+   "ci_hi": 0.018634,
    "max_dd": 60.960866,
-   "req_n": 2035.509775,
-   "units": -41.42379,
+   "req_n": 2132.124856,
+   "units": -40.514699,
    "family": "single",
    "thesis": "Bet the home underdog inside the division.",
-   "hit_rate": 0.48048,
-   "push_rate": 0.029029,
-   "hit_rate_nonpush": 0.494845,
-   "binom_p": 0.772602,
+   "hit_rate": 0.481,
+   "push_rate": 0.029,
+   "hit_rate_nonpush": 0.495366,
+   "binom_p": 0.797385,
    "legs": [
     {
      "side": "home",
      "market": "ats",
-     "n": 999,
-     "hit": 0.48048,
-     "push_rate": 0.029029,
-     "avg_price": -73.640641
+     "n": 1000,
+     "hit": 0.481,
+     "push_rate": 0.029,
+     "avg_price": -73.677
     }
    ],
-   "perm_p": 0.63415,
+   "perm_p": 0.62095,
    "splits": {
     "develop_2018_2022": {
      "n": 188,
@@ -219,10 +219,10 @@
      "p": 0.61979
     },
     "holdout_2025_2026": {
-     "n": 54,
-     "roi": 0.032124,
-     "t": 0.243806,
-     "p": 0.808323
+     "n": 55,
+     "roi": 0.048069,
+     "t": 0.368847,
+     "p": 0.713684
     },
     "pre_2018": {
      "n": 675,
@@ -234,22 +234,22 @@
   },
   "S5_model_edge": {
    "label": "S5 \u00b7 Model edge vs close",
-   "n": 1649,
-   "roi": -0.046969,
-   "sd": 0.962495,
-   "t": -1.981615,
-   "p": 0.047688,
-   "ci_lo": -0.093626,
-   "ci_hi": -0.000341,
+   "n": 1653,
+   "roi": -0.04811,
+   "sd": 0.962483,
+   "t": -2.032242,
+   "p": 0.042289,
+   "ci_lo": -0.094744,
+   "ci_hi": -0.001965,
    "max_dd": 88.008884,
-   "req_n": 1613.163152,
-   "units": -77.451166,
+   "req_n": 1537.511244,
+   "units": -79.52524,
    "family": "single",
    "thesis": "Bet the side when the walk-forward rating model disagrees with the closing line by at least 2 points and the model probability clears the price by 2 percentage points.",
-   "hit_rate": 0.478472,
-   "push_rate": 0.022438,
-   "hit_rate_nonpush": 0.489454,
-   "binom_p": 0.41112,
+   "hit_rate": 0.477919,
+   "push_rate": 0.022384,
+   "hit_rate_nonpush": 0.488861,
+   "binom_p": 0.383941,
    "legs": [
     {
      "side": "home",
@@ -262,13 +262,13 @@
     {
      "side": "away",
      "market": "ats",
-     "n": 837,
-     "hit": 0.482676,
-     "push_rate": 0.021505,
-     "avg_price": -65.968937
+     "n": 841,
+     "hit": 0.48157,
+     "push_rate": 0.021403,
+     "avg_price": -66.16409
     }
    ],
-   "perm_p": 0.75685,
+   "perm_p": 0.7705,
    "splits": {
     "develop_2018_2022": {
      "n": 782,
@@ -283,10 +283,10 @@
      "p": 0.538815
     },
     "holdout_2025_2026": {
-     "n": 235,
-     "roi": -0.04257,
-     "t": -0.687674,
-     "p": 0.492339
+     "n": 239,
+     "roi": -0.050535,
+     "t": -0.823135,
+     "p": 0.411255
     },
     "pre_2018": {
      "n": 299,
@@ -298,39 +298,39 @@
   }
  },
  "model": {
-  "n": 2676,
-  "logloss_model": 0.715063,
-  "logloss_market": 0.694431,
-  "brier_model": 0.260132,
-  "brier_market": 0.250641,
-  "brier_skill_vs_market": -0.037865,
-  "market_brier_skill_vs_coinflip": -0.002566,
-  "accuracy": 0.487668,
-  "model_vs_market_r2": 0.673374,
+  "n": 2688,
+  "logloss_model": 0.715158,
+  "logloss_market": 0.694325,
+  "brier_model": 0.260179,
+  "brier_market": 0.250588,
+  "brier_skill_vs_market": -0.038273,
+  "market_brier_skill_vs_coinflip": -0.002354,
+  "accuracy": 0.488095,
+  "model_vs_market_r2": 0.673648,
   "sigma": 16.104578,
   "season_r2": {}
  },
  "parlays": {
   "parlay3_model": {
-   "n_tickets": 182,
-   "mean_naive_p": 0.274425,
-   "hit_rate": 0.104396,
-   "roi": -0.309017,
-   "t": -2.014017,
-   "p": 0.045488,
-   "mean_mean_gap": 8.31847,
-   "expected_hits_if_independent": 49.945381,
+   "n_tickets": 183,
+   "mean_naive_p": 0.274258,
+   "hit_rate": 0.103825,
+   "roi": -0.312793,
+   "t": -2.049231,
+   "p": 0.041875,
+   "mean_mean_gap": 8.309177,
+   "expected_hits_if_independent": 50.189189,
    "actual_hits": 19,
    "note": "Naive pricing multiplies the three leg probabilities. The ticket count is the number of weeks where the model had three qualifying legs."
   },
   "parlay_hold": {
-   "mean_leg_implied_sum": 7.362627,
+   "mean_leg_implied_sum": 7.362184,
    "note": "sum of the three decimal prices; >1 is the theoretical margin a book earns"
   },
   "cross_game_independence": {
-   "n": 7075,
-   "autocorr_lag1": -0.007058,
-   "week_mean_autocorr_lag1": 0.051803
+   "n": 7087,
+   "autocorr_lag1": -0.006924,
+   "week_mean_autocorr_lag1": 0.049398
   }
  },
  "gates": {
@@ -341,13 +341,13 @@
      {
       "gate": "G1 Sample size",
       "pass": true,
-      "value": "n = 7075",
+      "value": "n = 7087",
       "rule": "n >= 300 settled bets"
      },
      {
       "gate": "G2 Significance",
       "pass": false,
-      "value": "p = 0.459",
+      "value": "p = 0.414",
       "rule": "two-sided p < 0.05"
      },
      {
@@ -359,19 +359,19 @@
      {
       "gate": "G4 Positive after vig",
       "pass": false,
-      "value": "ROI -0.84%, 95% CI low -3.03%",
+      "value": "ROI -0.93%, 95% CI low -3.21%",
       "rule": "ROI > 0 and bootstrap CI excludes 0"
      },
      {
       "gate": "G5 Luck",
       "pass": true,
-      "value": "permutation p = 0.023",
+      "value": "permutation p = 0.028",
       "rule": "random portfolios of the same size beat it < 5% of the time"
      },
      {
       "gate": "G6 Track-record length",
       "pass": false,
-      "value": "needs n >= 49,535",
+      "value": "needs n >= 40,856",
       "rule": "n at least the sample needed for the observed effect to be significant"
      }
     ],
@@ -385,13 +385,13 @@
      {
       "gate": "G1 Sample size",
       "pass": true,
-      "value": "n = 1340",
+      "value": "n = 1345",
       "rule": "n >= 300 settled bets"
      },
      {
       "gate": "G2 Significance",
       "pass": false,
-      "value": "p = 0.794",
+      "value": "p = 0.809",
       "rule": "two-sided p < 0.05"
      },
      {
@@ -403,19 +403,19 @@
      {
       "gate": "G4 Positive after vig",
       "pass": false,
-      "value": "ROI -0.69%, 95% CI low -5.83%",
+      "value": "ROI -0.63%, 95% CI low -5.67%",
       "rule": "ROI > 0 and bootstrap CI excludes 0"
      },
      {
       "gate": "G5 Luck",
       "pass": false,
-      "value": "permutation p = 0.180",
+      "value": "permutation p = 0.173",
       "rule": "random portfolios of the same size beat it < 5% of the time"
      },
      {
       "gate": "G6 Track-record length",
       "pass": false,
-      "value": "needs n >= 75,389",
+      "value": "needs n >= 88,042",
       "rule": "n at least the sample needed for the observed effect to be significant"
      }
     ],
@@ -473,13 +473,13 @@
      {
       "gate": "G1 Sample size",
       "pass": true,
-      "value": "n = 999",
+      "value": "n = 1000",
       "rule": "n >= 300 settled bets"
      },
      {
       "gate": "G2 Significance",
       "pass": false,
-      "value": "p = 0.170",
+      "value": "p = 0.180",
       "rule": "two-sided p < 0.05"
      },
      {
@@ -491,19 +491,19 @@
      {
       "gate": "G4 Positive after vig",
       "pass": false,
-      "value": "ROI -4.15%, 95% CI low -9.97%",
+      "value": "ROI -4.05%, 95% CI low -9.88%",
       "rule": "ROI > 0 and bootstrap CI excludes 0"
      },
      {
       "gate": "G5 Luck",
       "pass": false,
-      "value": "permutation p = 0.634",
+      "value": "permutation p = 0.621",
       "rule": "random portfolios of the same size beat it < 5% of the time"
      },
      {
       "gate": "G6 Track-record length",
       "pass": false,
-      "value": "needs n >= 2,036",
+      "value": "needs n >= 2,133",
       "rule": "n at least the sample needed for the observed effect to be significant"
      }
     ],
@@ -517,13 +517,13 @@
      {
       "gate": "G1 Sample size",
       "pass": true,
-      "value": "n = 1649",
+      "value": "n = 1653",
       "rule": "n >= 300 settled bets"
      },
      {
       "gate": "G2 Significance",
       "pass": true,
-      "value": "p = 0.048",
+      "value": "p = 0.042",
       "rule": "two-sided p < 0.05"
      },
      {
@@ -535,19 +535,19 @@
      {
       "gate": "G4 Positive after vig",
       "pass": false,
-      "value": "ROI -4.70%, 95% CI low -9.36%",
+      "value": "ROI -4.81%, 95% CI low -9.47%",
       "rule": "ROI > 0 and bootstrap CI excludes 0"
      },
      {
       "gate": "G5 Luck",
       "pass": false,
-      "value": "permutation p = 0.757",
+      "value": "permutation p = 0.770",
       "rule": "random portfolios of the same size beat it < 5% of the time"
      },
      {
       "gate": "G6 Track-record length",
       "pass": true,
-      "value": "needs n >= 1,614",
+      "value": "needs n >= 1,538",
       "rule": "n at least the sample needed for the observed effect to be significant"
      }
     ],

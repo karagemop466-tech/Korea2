@@ -16,34 +16,36 @@ from common import RESULTS, jdump, load_games, load_player_week
 STANDINGS_URL = "https://www.nfl.com/standings/division/2026/REG"
 PLAYER_STATS_URL = "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc"
 
-# Transcribed from the NFL.com 2026 passing leaderboard on 2026-11-01.
+# Transcribed from the NFL.com 2026 passing leaderboard on 2026-11-02 (after the Week 8 games).
 # Columns: player, passing_yards, passing_tds, interceptions, completions, attempts
 OFFICIAL_PASSING_2026 = [
     ("Jordan Love", 2246, 16, 6, 192, 312),
-    ("Matthew Stafford", 1989, 14, 7, 187, 278),
+    ("Matthew Stafford", 2146, 15, 8, 204, 303),
     ("Bryce Young", 1921, 13, 5, 158, 269),
 ]
-RETRIEVED = "2026-11-01"
+RETRIEVED = "2026-11-02"   # re-read on 2026-11-02; the previous snapshot was a pre-Week-8 transcription
 
-# Transcribed from https://www.nfl.com/standings/ on 2026-11-01.
+# Transcribed from https://www.nfl.com/standings/division/2026/REG on 2026-11-02 (Week 8 complete).
+# NOTE: this is a dated snapshot. Refreshing the data without re-reading the page will make the
+# reconciliation fail, which is deliberate - a snapshot that silently "keeps passing" would be worse.
 # Columns: team, W, L, T, PF, PA
 OFFICIAL_2026 = [
-    ("BUF", 5, 1, 0, 197, 171), ("NE", 4, 3, 0, 160, 143),
-    ("NYJ", 2, 5, 0, 137, 150), ("MIA", 1, 5, 0, 98, 157),
-    ("CLE", 5, 2, 0, 133, 146), ("PIT", 5, 2, 0, 153, 138),
-    ("CIN", 4, 2, 0, 163, 122), ("BAL", 4, 3, 0, 169, 167),
-    ("JAX", 4, 2, 0, 154, 104), ("IND", 2, 5, 0, 154, 180),
-    ("HOU", 2, 5, 0, 165, 170), ("TEN", 1, 6, 0, 108, 156),
-    ("KC", 5, 1, 0, 143, 103), ("DEN", 5, 2, 0, 144, 141),
-    ("LV", 3, 4, 0, 183, 197), ("LAC", 0, 6, 0, 90, 151),
-    ("NYG", 4, 2, 1, 163, 161), ("DAL", 3, 4, 0, 189, 180),
-    ("PHI", 2, 5, 0, 127, 175), ("WAS", 1, 4, 1, 132, 172),
-    ("MIN", 6, 0, 0, 125, 74), ("CHI", 5, 2, 0, 180, 143),
-    ("DET", 4, 2, 0, 184, 165), ("GB", 5, 3, 0, 171, 164),
-    ("CAR", 3, 4, 0, 178, 193), ("ATL", 3, 4, 0, 171, 173),
-    ("TB", 2, 5, 0, 162, 151), ("NO", 2, 5, 0, 162, 194),
+    ("BUF", 6, 1, 0, 233, 181), ("NE", 5, 3, 0, 184, 162),
+    ("NYJ", 2, 6, 0, 170, 188), ("MIA", 1, 6, 0, 117, 181),
+    ("CLE", 5, 3, 0, 139, 173), ("PIT", 6, 2, 0, 180, 144),
+    ("CIN", 5, 2, 0, 206, 158), ("BAL", 4, 4, 0, 179, 203),
+    ("JAX", 5, 2, 0, 196, 111), ("IND", 2, 6, 0, 161, 222),
+    ("HOU", 2, 5, 0, 165, 170), ("TEN", 1, 7, 0, 144, 199),
+    ("KC", 5, 2, 0, 167, 131), ("DEN", 6, 2, 0, 172, 165),
+    ("LV", 4, 4, 0, 221, 230), ("LAC", 0, 7, 0, 99, 175),
+    ("NYG", 4, 2, 1, 163, 161), ("DAL", 3, 5, 0, 219, 213),
+    ("PHI", 2, 6, 0, 137, 202), ("WAS", 2, 4, 1, 159, 182),
+    ("MIN", 6, 1, 0, 140, 93), ("CHI", 5, 2, 0, 180, 143),
+    ("DET", 5, 2, 0, 203, 180), ("GB", 5, 3, 0, 171, 164),
+    ("CAR", 3, 4, 0, 178, 193), ("ATL", 3, 5, 0, 171, 189),
+    ("TB", 3, 5, 0, 178, 151), ("NO", 2, 5, 0, 162, 194),
     ("SF", 6, 1, 0, 197, 139), ("SEA", 4, 3, 0, 168, 125),
-    ("LA", 3, 4, 0, 170, 159), ("AZ", 2, 5, 0, 142, 208),
+    ("LA", 4, 4, 0, 194, 168), ("AZ", 3, 5, 0, 175, 238),
 ]
 
 
