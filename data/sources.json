@@ -623,6 +623,62 @@
       "type": "community",
       "note": "Asset names and byte sizes read on 2026-11-02 and compared with data/derived/manifest.json: 28 of 31 assets unchanged, three current-season assets updated upstream.",
       "verified_by": "verification session arena/652b0095-korea2 - read 2026-11-02"
+    },
+    {
+      "id": "SRC-MGC-DK-LICENSEE",
+      "label": "Massachusetts Gaming Commission - DraftKings licensee page",
+      "title": "Massachusetts Gaming Commission - DraftKings licensee page",
+      "url": "https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/draftkings/",
+      "org": "Massachusetts Gaming Commission (state regulator)",
+      "publisher": "Massachusetts Gaming Commission (state regulator)",
+      "type": "regulator",
+      "note": "Opened and read 2026-11-02: Crown MA Gaming LLC d/b/a DraftKings holds a 5-year Category 3 Sports Wagering Operator License (awarded 2025-07-25); MA sportsbook live since 2023-03-10; the ACTIVE house rules are 'DraftKings House Rules - Approved on 10.7.26' (DraftKings-House-Rules-10.7.26.pdf), with an archive of obsolete rules linked.",
+      "confirmed": "Opened and read 2026-11-02: active house-rules edition is the one approved 10.7.26; 8.1.24 is in the obsolete archive.",
+      "supports": "Identifies which operator rulebook edition is currently in force in Massachusetts.",
+      "short": "MGC DraftKings licensee page",
+      "verified_on": "2026-11-02",
+      "used_on": [
+        "sources",
+        "flagged"
+      ],
+      "verified_by": "integration session arena/89b8d356-korea2 - opened and read on 2026-11-02"
+    },
+    {
+      "id": "SRC-MGC-DK-RULES-ARCHIVE",
+      "label": "MGC archive of obsolete sports-wagering licensee house rules",
+      "title": "MGC archive of obsolete sports-wagering licensee house rules",
+      "url": "https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/archive-sports-wagering-licensees-obsolete-house-rules/",
+      "org": "Massachusetts Gaming Commission (state regulator)",
+      "publisher": "Massachusetts Gaming Commission (state regulator)",
+      "type": "regulator",
+      "note": "Opened and read 2026-11-02: lists 'DraftKings House Rules - 8.1.24 - Obsolete as of 8.18.15' and '8.18.25 - Obsolete as of 10.7.26'; page states obsolete rules are kept for reference only.",
+      "confirmed": "Opened and read 2026-11-02: the 8.1.24 edition cited elsewhere in this project is officially archived as obsolete.",
+      "supports": "Provenance check on the cited operator rulebook edition.",
+      "short": "MGC obsolete-rules archive",
+      "verified_on": "2026-11-02",
+      "used_on": [
+        "flagged"
+      ],
+      "verified_by": "integration session arena/89b8d356-korea2 - opened and read on 2026-11-02"
+    },
+    {
+      "id": "SRC-MGC-DK-RULES-CURRENT",
+      "label": "DraftKings Massachusetts Sportsbook House Rules - active edition (approved 10.7.26)",
+      "title": "DraftKings Massachusetts Sportsbook House Rules - active edition (approved 10.7.26)",
+      "url": "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-10.7.26.pdf",
+      "org": "DraftKings / Massachusetts Gaming Commission",
+      "publisher": "DraftKings / Massachusetts Gaming Commission",
+      "type": "regulator",
+      "note": "Linked from the MGC licensee page as the ACTIVE rules on 2026-11-02; PDF indexed with implementation date October 7, 2026. The PDF itself could not be fetched by the review sandbox's page reader on 2026-11-02; the active-edition status is confirmed on the two MGC HTML pages above.",
+      "confirmed": "Active-edition status confirmed via the MGC licensee page on 2026-11-02; PDF content not re-read in this session (fetch limitation) - re-open before quoting new text from it.",
+      "supports": "The current regulator-filed rulebook to cite instead of the obsolete 8.1.24 edition.",
+      "short": "DraftKings MA house rules (active, 10.7.26)",
+      "verified_on": "2026-11-02",
+      "used_on": [
+        "sources",
+        "flagged"
+      ],
+      "verified_by": "integration session arena/89b8d356-korea2 - MGC pages opened and read on 2026-11-02"
     }
   ]
 }
