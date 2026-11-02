@@ -966,3 +966,25 @@ theirs is discarded — fixes are minimal, and each issue will be answered with 
 7. **Requests still open for the root-site owner:** `scripts/build_site.py` `archive_dirs()` lacks
    `origination` (merged in PR #46 after PR #45 built the archive page); `pages/verification.html` is an
    orphan from the retired generator; issues #22/#25 concern root-site files.
+
+### M5 release record — pull requests, merges, Pages deployments
+
+| Item | Value |
+| --- | --- |
+| PR #52 — defect takeover (M1–M4) | <https://github.com/karagemop466-tech/Korea2/pull/52> — **MERGED** 2026-11-02T17:49:02Z, merge commit `403ea06` |
+| PR #52 checks | `validate` **pass** (20s) · `tests-and-links` **pass** (24s) · `verify` **pass** (46s) |
+| PR #53 — post-deploy text fixes (#32.3 residual) | <https://github.com/karagemop466-tech/Korea2/pull/53> — **MERGED** 2026-11-02T17:54:15Z, merge commit `397f3cd` |
+| PR #53 checks | `validate` **pass** (2m14s) · `tests-and-links` **pass** (44s) · `verify` **pass** (39s) |
+| GitHub Pages | build_type `legacy` (source `main`, path `/`). Builds for `403ea06` and `397f3cd` both reached **`built`** (verified via the Pages API) |
+| Live verification | cache-busted fetch of `origination-lab/correlation.html` shows the corrected page: push rates `-3 → 469 games / 9.81%`, `3 → 361 / 7.48%`, "Cross-game association" with φ −0.005 on 35,722 within-week pairs across 358 weeks, week-clustered interval −0.014 to 0.005, and the explicit "does not establish joint independence" wording. (The first fetch returned a cached copy; the `?v=397f3cd` fetch returned the new build, as in the earlier session's note.) |
+
+**Blocker found and fixed during this PR:** `validate` first failed on `verification/recompute.py`, whose two
+data-QA expectations were frozen constants (7,384 played games, as-of 2026-10-29). The automated refresh
+`95bbd78` had legitimately moved those to 7,396 and 2026-11-01. The check now reads the declared
+`data/provenance.json` metadata (47 pass, 0 mismatch, 11 expected-to-differ), which cannot go stale on a
+refresh; that is a stronger check, not a weaker one.
+
+**Follow-up PR #53** exists because reading the deployed page found three surviving independence
+overclaims that the first pass missed (the correlation-page card and section, the index card, and the
+executive summary table which still quoted the pre-fix sampled φ of 0.029). All are corrected in the live
+build.
