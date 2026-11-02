@@ -1,53 +1,64 @@
 {
- "data_as_of_gameday": "2026-11-01",
- "games_settled": 7396,
- "files": [
-  {
-   "name": "games.csv.gz",
-   "source_url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
-   "rows": 7548,
-   "season_min": 1999,
-   "season_max": 2026,
-   "raw_sha256": "7bf3e1d9bcf0805fd0fdd1b95a5f016798a3705beebfea9240689c14a0270f8c"
-  },
-  {
-   "name": "team_week.csv.gz",
-   "rows": 6296,
-   "source_url_pattern": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_{year}.csv",
-   "seasons": [
-    2015,
-    2016,
-    2017,
-    2018,
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
-    2026
-   ]
-  },
-  {
-   "name": "player_week.csv.gz",
-   "rows": 208231,
-   "source_url_pattern": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{year}.csv",
-   "seasons": [
-    2015,
-    2016,
-    2017,
-    2018,
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
-    2026
-   ]
-  }
- ],
- "missing_player_seasons": []
+  "generated_utc": "2026-11-02T18:15:11Z",
+  "source_repository": "https://github.com/nflverse/nflverse-data",
+  "note": "Pruned extracts written by scripts/export_extracts.py from the same parquet files the analysis reads, so the committed data and the published numbers cannot drift apart.",
+  "columns_pinned": true,
+  "files": [
+    {
+      "name": "games.csv.gz",
+      "source_url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.parquet",
+      "rows": 7548,
+      "season_min": 1999,
+      "season_max": 2026,
+      "raw_sha256": "1731d7320c6ad189b5f2c9c48dabbeab91328a3317ee0423b3cead82826daf6d"
+    },
+    {
+      "name": "player_week.csv.gz",
+      "source_url_pattern": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_{year}.parquet",
+      "rows": 260520,
+      "seasons": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "missing_seasons": []
+    },
+    {
+      "name": "team_week.csv.gz",
+      "source_url_pattern": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_{year}.parquet",
+      "rows": 7898,
+      "seasons": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ]
+    }
+  ],
+  "data_as_of_gameday": "2026-11-01",
+  "games_settled": 7396,
+  "missing_player_seasons": []
 }

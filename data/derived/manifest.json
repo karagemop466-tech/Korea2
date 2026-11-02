@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-02T17:38:45+00:00",
+  "generated_utc": "2026-11-02T18:14:58+00:00",
   "source_repository": "https://github.com/nflverse/nflverse-data",
   "source_description": "nflverse redistributes the NFL's official play-by-play and box score feeds; game-level market lines in games.parquet are third-party (sportsbook-derived) and are not an official sportsbook archive.",
   "downloads": [
@@ -9,8 +9,8 @@
       "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.parquet",
       "desc": "Game-level results and pregame market lines, 1999-present",
       "status": 200,
-      "bytes": 523149,
-      "sha256": "a3ee01d2511d3048f52e1ebec5e9aceb59cc0652c6edafeeb2c515a0459d8ebb"
+      "bytes": 523145,
+      "sha256": "1731d7320c6ad189b5f2c9c48dabbeab91328a3317ee0423b3cead82826daf6d"
     },
     {
       "name": "stats_player_week_2012.parquet",
@@ -286,7 +286,7 @@
   "releases": {
     "schedules": {
       "tag": "schedules",
-      "updated_at": "2026-11-02T17:16:34Z",
+      "updated_at": "2026-11-02T17:46:30Z",
       "html_url": "https://github.com/nflverse/nflverse-data/releases/tag/schedules"
     },
     "stats_player": {
