@@ -1,11 +1,11 @@
 {
   "meta": {
     "session": "arena/652b0095-korea2",
-    "generated_utc": "2026-11-02T17:32:07Z",
+    "generated_utc": "2026-11-02T17:43:11Z",
     "purpose": "Independent re-implementation of the published statistics from the committed extracts, plus field-by-field reconciliation of a completed season against NFL.com.",
-    "data_as_of_gameday": "2026-10-29",
+    "data_as_of_gameday": "2026-11-01",
     "n_checks": 49,
-    "n_pass": 45,
+    "n_pass": 48,
     "n_fail": 0,
     "n_observations": 11,
     "independence": "Does not import scripts/ or pipeline/. Uses pandas/numpy/scipy only, so a definition error in the project's own code cannot make this agree with itself.",
@@ -127,14 +127,14 @@
   },
   "summary": {
     "n_checks": 49,
-    "n_pass": 45,
+    "n_pass": 48,
     "n_fail": 0,
     "n_observations": 11,
     "teams_2020_matched": 32,
     "teams_2020_compared": 32,
-    "teams_2026_matched": 8,
+    "teams_2026_matched": 32,
     "teams_2026_compared": 32,
-    "data_as_of_gameday": "2026-10-29",
+    "data_as_of_gameday": "2026-11-01",
     "n_source_checks": 8,
     "n_source_broken": 3
   },
@@ -178,35 +178,35 @@
     {
       "id": "qa.played",
       "claim": "played games",
-      "published": 7384,
-      "recomputed": 7384,
+      "published": 7396,
+      "recomputed": 7396,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
       "class": "assert",
-      "method": "rows with both scores present",
+      "method": "rows with both scores present, compared with the count the published QA block states",
       "source_id": "nflverse-data"
     },
     {
       "id": "qa.as_of",
-      "claim": "latest settled gameday in the committed extract",
-      "published": "2026-10-29",
-      "recomputed": "2026-10-29",
+      "claim": "latest settled gameday, extract vs data/provenance.json",
+      "published": "2026-11-01",
+      "recomputed": "2026-11-01",
       "abs_diff": null,
       "tolerance": 0,
       "verdict": "PASS",
       "class": "assert",
-      "method": "max(gameday) over played games",
+      "method": "max(gameday) over played games vs the committed provenance marker",
       "source_id": "nflverse-data"
     },
     {
       "id": "scope.player_seasons",
       "claim": "first and last season in the committed player extract",
       "published": "[2012, 2026]",
-      "recomputed": "[2015, 2026]",
+      "recomputed": "[2012, 2026]",
       "abs_diff": null,
       "tolerance": 0,
-      "verdict": "DIFFERS (expected)",
+      "verdict": "PASS",
       "class": "observe",
       "method": "the published correlation page states the seasons the coefficients were measured on; the committed extract is a pruned 2015-2026 file",
       "source_id": "nflverse-data"
@@ -214,11 +214,11 @@
     {
       "id": "scope.player_games",
       "claim": "player-games in the committed extract (regular season)",
-      "published": 248972,
-      "recomputed": 198802,
-      "abs_diff": 50170.0,
+      "published": 249814,
+      "recomputed": 249814,
+      "abs_diff": 0.0,
       "tolerance": 0,
-      "verdict": "DIFFERS (expected)",
+      "verdict": "PASS",
       "class": "observe",
       "method": "the published figure was measured on the 2012-2026 download before pruning; the committed extract holds fewer rows, which is why the recomputed correlations carry a smaller n",
       "source_id": "nflverse-data"
@@ -238,8 +238,8 @@
     {
       "id": "market.spread_n",
       "claim": "closing spread sample size",
-      "published": 7075,
-      "recomputed": 7075,
+      "published": 7087,
+      "recomputed": 7087,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -250,8 +250,8 @@
     {
       "id": "market.total_mae",
       "claim": "closing total MAE",
-      "published": 10.613,
-      "recomputed": 10.613,
+      "published": 10.617,
+      "recomputed": 10.617,
       "abs_diff": 0.0,
       "tolerance": 0.005,
       "verdict": "PASS",
@@ -262,8 +262,8 @@
     {
       "id": "market.total_n",
       "claim": "closing total sample size",
-      "published": 7075,
-      "recomputed": 7075,
+      "published": 7087,
+      "recomputed": 7087,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -274,8 +274,8 @@
     {
       "id": "market.recent_mae",
       "claim": "closing spread MAE, 2023-2026",
-      "published": 9.7,
-      "recomputed": 9.7,
+      "published": 9.711,
+      "recomputed": 9.711,
       "abs_diff": 0.0,
       "tolerance": 0.005,
       "verdict": "PASS",
@@ -286,8 +286,8 @@
     {
       "id": "market.recent_n",
       "claim": "closing spread sample, 2023-2026",
-      "published": 924,
-      "recomputed": 924,
+      "published": 936,
+      "recomputed": 936,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -298,8 +298,8 @@
     {
       "id": "sign.home_cover_as_expected_margin",
       "claim": "home cover rate if spread_line is the home team's expected margin",
-      "published": 0.4887,
-      "recomputed": 0.4887,
+      "published": 0.4891,
+      "recomputed": 0.4891,
       "abs_diff": 0.0,
       "tolerance": 0.0006,
       "verdict": "PASS",
@@ -310,8 +310,8 @@
     {
       "id": "sign.home_cover_as_handicap",
       "claim": "home cover rate if spread_line is the home team's handicap",
-      "published": 0.5999,
-      "recomputed": 0.5999,
+      "published": 0.6003,
+      "recomputed": 0.6003,
       "abs_diff": 0.0,
       "tolerance": 0.0006,
       "verdict": "PASS",
@@ -322,8 +322,8 @@
     {
       "id": "sign.ml_fav_mean_line",
       "claim": "mean spread_line when the home team is the moneyline favourite",
-      "published": 5.674,
-      "recomputed": 5.674,
+      "published": 5.673,
+      "recomputed": 5.673,
       "abs_diff": 0.0,
       "tolerance": 0.005,
       "verdict": "PASS",
@@ -334,8 +334,8 @@
     {
       "id": "sign.ml_dog_mean_line",
       "claim": "mean spread_line when the home team is the moneyline underdog",
-      "published": -4.658,
-      "recomputed": -4.658,
+      "published": -4.659,
+      "recomputed": -4.659,
       "abs_diff": 0.0,
       "tolerance": 0.005,
       "verdict": "PASS",
@@ -346,8 +346,8 @@
     {
       "id": "luck.ats_n",
       "claim": "pooled ATS team-games, pushes removed",
-      "published": 13760,
-      "recomputed": 13760,
+      "published": 13784,
+      "recomputed": 13784,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -358,8 +358,8 @@
     {
       "id": "luck.ats_wins",
       "claim": "pooled ATS wins",
-      "published": 6880,
-      "recomputed": 6880,
+      "published": 6892,
+      "recomputed": 6892,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -382,8 +382,8 @@
     {
       "id": "luck.pythag_r2",
       "claim": "Pythagorean expected vs actual win% R^2 (exponent 2.37)",
-      "published": 0.8254,
-      "recomputed": 0.8254,
+      "published": 0.8191,
+      "recomputed": 0.8191,
       "abs_diff": 0.0,
       "tolerance": 0.0006,
       "verdict": "PASS",
@@ -394,8 +394,8 @@
     {
       "id": "luck.pythag_n",
       "claim": "team-seasons in the Pythagorean sample",
-      "published": 862,
-      "recomputed": 862,
+      "published": 877,
+      "recomputed": 877,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -406,8 +406,8 @@
     {
       "id": "luck.pythag_sd",
       "claim": "SD of luck wins",
-      "published": 1.327,
-      "recomputed": 1.327,
+      "published": 1.323,
+      "recomputed": 1.323,
       "abs_diff": 0.0,
       "tolerance": 0.006,
       "verdict": "PASS",
@@ -418,9 +418,9 @@
     {
       "id": "luck.persistence_r",
       "claim": "year-over-year correlation of Pythagorean luck",
-      "published": 0.018865760761162892,
-      "recomputed": 0.0189,
-      "abs_diff": 3.4e-05,
+      "published": 0.023894391339590943,
+      "recomputed": 0.0239,
+      "abs_diff": 6e-06,
       "tolerance": 0.001,
       "verdict": "PASS",
       "class": "assert",
@@ -430,8 +430,8 @@
     {
       "id": "luck.persistence_n",
       "claim": "pairs in the luck-persistence test",
-      "published": 827,
-      "recomputed": 827,
+      "published": 842,
+      "recomputed": 842,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -442,9 +442,9 @@
     {
       "id": "luck.one_score_r",
       "claim": "year-over-year correlation of one-score win rate",
-      "published": 0.08712403155800667,
-      "recomputed": 0.0871,
-      "abs_diff": 2.4e-05,
+      "published": 0.08200523701333384,
+      "recomputed": 0.082,
+      "abs_diff": 5e-06,
       "tolerance": 0.001,
       "verdict": "PASS",
       "class": "assert",
@@ -454,8 +454,8 @@
     {
       "id": "luck.one_score_n",
       "claim": "pairs in the one-score persistence test",
-      "published": 852,
-      "recomputed": 852,
+      "published": 854,
+      "recomputed": 854,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -466,59 +466,59 @@
     {
       "id": "corr.qb_wr1",
       "claim": "QB passing yards vs WR1 receiving yards",
-      "published": 0.5612996145947928,
-      "recomputed": 0.5599,
-      "abs_diff": 0.0014,
+      "published": 0.5616429882050581,
+      "recomputed": 0.5616,
+      "abs_diff": 4.3e-05,
       "tolerance": 0.02,
       "verdict": "PASS",
       "class": "observe",
-      "method": "Pearson r over 5873 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
+      "method": "Pearson r over 7560 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
       "source_id": "nflverse-data"
     },
     {
       "id": "corr.qb_wr2",
       "claim": "QB passing yards vs WR2 receiving yards",
-      "published": 0.5054809840358229,
-      "recomputed": 0.5057,
-      "abs_diff": 0.000219,
+      "published": 0.5055746897259744,
+      "recomputed": 0.5056,
+      "abs_diff": 2.5e-05,
       "tolerance": 0.02,
       "verdict": "PASS",
       "class": "observe",
-      "method": "Pearson r over 5873 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
+      "method": "Pearson r over 7560 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
       "source_id": "nflverse-data"
     },
     {
       "id": "corr.wr1_wr2",
       "claim": "WR1 vs WR2 receiving yards",
-      "published": 0.11857085894409371,
-      "recomputed": 0.1275,
-      "abs_diff": 0.008929,
+      "published": 0.11986967543067413,
+      "recomputed": 0.1199,
+      "abs_diff": 3e-05,
       "tolerance": 0.02,
       "verdict": "PASS",
       "class": "observe",
-      "method": "Pearson r over 5878 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
+      "method": "Pearson r over 7566 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
       "source_id": "nflverse-data"
     },
     {
       "id": "corr.rb_qb",
       "claim": "RB1 rushing yards vs QB passing yards",
-      "published": -0.127025403892477,
-      "recomputed": -0.119,
-      "abs_diff": 0.008025,
+      "published": -0.1270774733524963,
+      "recomputed": -0.1271,
+      "abs_diff": 2.3e-05,
       "tolerance": 0.02,
       "verdict": "PASS",
       "class": "observe",
-      "method": "Pearson r over 5873 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
+      "method": "Pearson r over 7560 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
       "source_id": "nflverse-data"
     },
     {
       "id": "sgp.n",
       "claim": "4-leg same-team parlay sample (team-games)",
-      "published": 7537,
-      "recomputed": 5873,
-      "abs_diff": 1664.0,
+      "published": 7560,
+      "recomputed": 7560,
+      "abs_diff": 0.0,
       "tolerance": 0,
-      "verdict": "DIFFERS (expected)",
+      "verdict": "PASS",
       "class": "observe",
       "method": "team-games with all four legs present. The published sample is larger because it was measured on a 2012-2026 download; the committed extract starts in 2015",
       "source_id": "nflverse-data"
@@ -526,9 +526,9 @@
     {
       "id": "sgp.joint",
       "claim": "empirical joint probability, all four legs above their median",
-      "published": 0.1112,
-      "recomputed": 0.1095,
-      "abs_diff": 0.0017,
+      "published": 0.1114,
+      "recomputed": 0.1116,
+      "abs_diff": 0.0002,
       "tolerance": 0.01,
       "verdict": "PASS",
       "class": "observe",
@@ -539,8 +539,8 @@
       "id": "sgp.product",
       "claim": "independent product of the four marginal rates",
       "published": 0.0569,
-      "recomputed": 0.0556,
-      "abs_diff": 0.0013,
+      "recomputed": 0.0568,
+      "abs_diff": 0.0001,
       "tolerance": 0.01,
       "verdict": "PASS",
       "class": "observe",
@@ -550,9 +550,9 @@
     {
       "id": "sgp.excess",
       "claim": "empirical joint minus independent product",
-      "published": 0.0543,
-      "recomputed": 0.0539,
-      "abs_diff": 0.0004,
+      "published": 0.0545,
+      "recomputed": 0.0548,
+      "abs_diff": 0.0003,
       "tolerance": 0.01,
       "verdict": "PASS",
       "class": "observe",
@@ -562,8 +562,8 @@
     {
       "id": "strategy.S4_rest_advantage.n",
       "claim": "S4_rest_advantage: settled bets in the published window",
-      "published": 199,
-      "recomputed": 199,
+      "published": 204,
+      "recomputed": 204,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -574,8 +574,8 @@
     {
       "id": "strategy.S4_rest_advantage.roi",
       "claim": "S4_rest_advantage: ROI per unit staked",
-      "published": -0.0024,
-      "recomputed": -0.0024,
+      "published": 0.0009,
+      "recomputed": 0.0009,
       "abs_diff": 0.0,
       "tolerance": 0.0015,
       "verdict": "PASS",
@@ -586,8 +586,8 @@
     {
       "id": "strategy.S5_bye_week_team.n",
       "claim": "S5_bye_week_team: settled bets in the published window",
-      "published": 82,
-      "recomputed": 82,
+      "published": 86,
+      "recomputed": 86,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -598,8 +598,8 @@
     {
       "id": "strategy.S5_bye_week_team.roi",
       "claim": "S5_bye_week_team: ROI per unit staked",
-      "published": -0.082,
-      "recomputed": -0.082,
+      "published": -0.0587,
+      "recomputed": -0.0587,
       "abs_diff": 0.0,
       "tolerance": 0.0015,
       "verdict": "PASS",
@@ -610,8 +610,8 @@
     {
       "id": "strategy.S6_divisional_home_dog.n",
       "claim": "S6_divisional_home_dog: settled bets in the published window",
-      "published": 136,
-      "recomputed": 136,
+      "published": 137,
+      "recomputed": 137,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -622,8 +622,8 @@
     {
       "id": "strategy.S6_divisional_home_dog.roi",
       "claim": "S6_divisional_home_dog: ROI per unit staked",
-      "published": -0.0191,
-      "recomputed": -0.0191,
+      "published": -0.0121,
+      "recomputed": -0.0121,
       "abs_diff": 0.0,
       "tolerance": 0.0015,
       "verdict": "PASS",
@@ -634,8 +634,8 @@
     {
       "id": "strategy.C1_all_home_control.n",
       "claim": "C1_all_home_control: settled bets in the published window",
-      "published": 924,
-      "recomputed": 924,
+      "published": 936,
+      "recomputed": 936,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -646,8 +646,8 @@
     {
       "id": "strategy.C1_all_home_control.roi",
       "claim": "C1_all_home_control: ROI per unit staked",
-      "published": -0.0583,
-      "recomputed": -0.0583,
+      "published": -0.0519,
+      "recomputed": -0.0519,
       "abs_diff": 0.0,
       "tolerance": 0.0015,
       "verdict": "PASS",
@@ -682,8 +682,8 @@
     {
       "id": "strategy.C2_all_under_control.n",
       "claim": "C2_all_under_control: settled bets in the published window",
-      "published": 924,
-      "recomputed": 924,
+      "published": 936,
+      "recomputed": 936,
       "abs_diff": 0.0,
       "tolerance": 0,
       "verdict": "PASS",
@@ -694,8 +694,8 @@
     {
       "id": "strategy.C2_all_under_control.roi",
       "claim": "C2_all_under_control: ROI per unit staked",
-      "published": -0.0598,
-      "recomputed": -0.0598,
+      "published": -0.0595,
+      "recomputed": -0.0595,
       "abs_diff": 0.0,
       "tolerance": 0.0015,
       "verdict": "PASS",
@@ -719,7 +719,7 @@
       "id": "recon.2026.teams",
       "claim": "2026: teams whose W-L-T and PF/PA match NFL.com",
       "published": null,
-      "recomputed": 8,
+      "recomputed": 32,
       "abs_diff": null,
       "tolerance": 0,
       "verdict": "INFO",
@@ -743,36 +743,11 @@
       "url": "https://www.nfl.com/standings/division/2026/REG",
       "retrieved_utc": "2026-11-02",
       "teams_compared": 32,
-      "teams_matched": 8,
-      "mismatched_teams": [
-        "ATL",
-        "AZ",
-        "BAL",
-        "BUF",
-        "CIN",
-        "CLE",
-        "DAL",
-        "DEN",
-        "DET",
-        "IND",
-        "JAX",
-        "KC",
-        "LA",
-        "LAC",
-        "LV",
-        "MIA",
-        "MIN",
-        "NE",
-        "NYJ",
-        "PHI",
-        "PIT",
-        "TB",
-        "TEN",
-        "WAS"
-      ],
+      "teams_matched": 32,
+      "mismatched_teams": [],
       "expectation": "lag",
-      "games_in_extract": 108,
-      "latest_gameday_in_extract": "2026-10-29"
+      "games_in_extract": 120,
+      "latest_gameday_in_extract": "2026-11-01"
     }
   },
   "standings_2020": [
@@ -1365,12 +1340,12 @@
       ],
       "rebuilt": [
         3,
-        4,
+        5,
         0,
         171,
-        173
+        189
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "AZ",
@@ -1382,13 +1357,13 @@
         238
       ],
       "rebuilt": [
-        2,
+        3,
         5,
         0,
-        142,
-        208
+        175,
+        238
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "BAL",
@@ -1401,12 +1376,12 @@
       ],
       "rebuilt": [
         4,
-        3,
+        4,
         0,
-        169,
-        167
+        179,
+        203
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "BUF",
@@ -1418,13 +1393,13 @@
         181
       ],
       "rebuilt": [
-        5,
+        6,
         1,
         0,
-        197,
-        171
+        233,
+        181
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "CAR",
@@ -1472,13 +1447,13 @@
         158
       ],
       "rebuilt": [
-        4,
+        5,
         2,
         0,
-        163,
-        122
+        206,
+        158
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "CLE",
@@ -1491,12 +1466,12 @@
       ],
       "rebuilt": [
         5,
-        2,
+        3,
         0,
-        133,
-        146
+        139,
+        173
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "DAL",
@@ -1509,12 +1484,12 @@
       ],
       "rebuilt": [
         3,
-        4,
+        5,
         0,
-        189,
-        180
+        219,
+        213
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "DEN",
@@ -1526,13 +1501,13 @@
         165
       ],
       "rebuilt": [
-        5,
+        6,
         2,
         0,
-        144,
-        141
+        172,
+        165
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "DET",
@@ -1544,13 +1519,13 @@
         180
       ],
       "rebuilt": [
-        4,
+        5,
         2,
         0,
-        184,
-        165
+        203,
+        180
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "GB",
@@ -1599,12 +1574,12 @@
       ],
       "rebuilt": [
         2,
-        5,
+        6,
         0,
-        154,
-        180
+        161,
+        222
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "JAX",
@@ -1616,13 +1591,13 @@
         111
       ],
       "rebuilt": [
-        4,
+        5,
         2,
         0,
-        154,
-        104
+        196,
+        111
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "KC",
@@ -1635,12 +1610,12 @@
       ],
       "rebuilt": [
         5,
-        1,
+        2,
         0,
-        143,
-        103
+        167,
+        131
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "LA",
@@ -1652,13 +1627,13 @@
         168
       ],
       "rebuilt": [
-        3,
+        4,
         4,
         0,
-        170,
-        159
+        194,
+        168
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "LAC",
@@ -1671,12 +1646,12 @@
       ],
       "rebuilt": [
         0,
-        6,
+        7,
         0,
-        90,
-        151
+        99,
+        175
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "LV",
@@ -1688,13 +1663,13 @@
         230
       ],
       "rebuilt": [
-        3,
+        4,
         4,
         0,
-        183,
-        197
+        221,
+        230
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "MIA",
@@ -1707,12 +1682,12 @@
       ],
       "rebuilt": [
         1,
-        5,
+        6,
         0,
-        98,
-        157
+        117,
+        181
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "MIN",
@@ -1725,12 +1700,12 @@
       ],
       "rebuilt": [
         6,
+        1,
         0,
-        0,
-        125,
-        74
+        140,
+        93
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "NE",
@@ -1742,13 +1717,13 @@
         162
       ],
       "rebuilt": [
-        4,
+        5,
         3,
         0,
-        160,
-        143
+        184,
+        162
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "NO",
@@ -1797,12 +1772,12 @@
       ],
       "rebuilt": [
         2,
-        5,
+        6,
         0,
-        137,
-        150
+        170,
+        188
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "PHI",
@@ -1815,12 +1790,12 @@
       ],
       "rebuilt": [
         2,
-        5,
+        6,
         0,
-        127,
-        175
+        137,
+        202
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "PIT",
@@ -1832,13 +1807,13 @@
         144
       ],
       "rebuilt": [
-        5,
+        6,
         2,
         0,
-        153,
-        138
+        180,
+        144
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "SEA",
@@ -1886,13 +1861,13 @@
         151
       ],
       "rebuilt": [
-        2,
+        3,
         5,
         0,
-        162,
+        178,
         151
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "TEN",
@@ -1905,12 +1880,12 @@
       ],
       "rebuilt": [
         1,
-        6,
+        7,
         0,
-        108,
-        156
+        144,
+        199
       ],
-      "match": false
+      "match": true
     },
     {
       "team": "WAS",
@@ -1922,13 +1897,13 @@
         182
       ],
       "rebuilt": [
-        1,
+        2,
         4,
         1,
-        132,
-        172
+        159,
+        182
       ],
-      "match": false
+      "match": true
     }
   ]
 }

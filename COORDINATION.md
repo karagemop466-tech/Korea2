@@ -828,3 +828,21 @@ directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination/`, `origi
 | F2 | done | `tests/check_site.py`, `tests/check_derived.py`, `scripts/validate_data.py`, `scripts/check_links.py`, `pipeline/check_links.py`, 17 unit tests — all pass on `main` |
 | F3 | done | Flagged for Review page re-published with 9 items, each carrying a source link |
 | F4 | done | PR #48 merged at `600bda09`; Pages build `built`; live page verified |
+- 2026-11-02 — **The refresh exposed the reproducibility gap, and it is now closed.** The `data-pipeline`
+  workflow fired on `main` as soon as PR #48 merged (its trigger includes `scripts/**`). It rebuilt every JSON
+  from a fresh download while the committed pruned extracts were still the 2015-2026 files built by another
+  producer, so the new `validate` gate — which re-runs the independent verifier — failed with **21 disagreements
+  on 48 comparable checks**. That failure was the defect, not a flake: the published numbers no longer followed
+  from the committed data.
+- 2026-11-02 — **Fix shipped:** `scripts/export_extracts.py` writes `data/derived/{games,player_week,team_week}.csv.gz`
+  and `data/provenance.json` from exactly the parquet files the analysis reads (pinned column sets, deterministic
+  gzip), and `data-pipeline.yml` runs it immediately after the download and commits the result. A dispatch of the
+  workflow then rebuilt everything from a 2026-11-01 download: `data_as_of_gameday = 2026-11-01`,
+  260,520 player rows over 2012-2026, and the extract now covers every game the official standings list.
+- 2026-11-02 — **Verification after the rebuild:** **48 of 49 checks agree, 0 material disagreements**, every
+  player-level sample size reproduces exactly (7,560 team-games for the four-leg parlay, r = 0.561 for QB vs WR1),
+  and **both** reconciliations are now exact: **2020 32/32** and **2026 live 32/32** on data through 2026-11-01.
+  The verifier itself needed one fix to get there: the schedule file keeps the franchise code of the time
+  (SD, OAK, STL) while the player feed uses the current code (LAC, LV, LA), which silently dropped ~9,000 player
+  rows from an earlier version of the check. That is recorded here because it is the same class of error the
+  verifier is meant to catch.

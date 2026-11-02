@@ -36,6 +36,10 @@ DERIVED = os.path.join(ROOT, "data", "derived")
 VERIF = os.path.join(ROOT, "verification")
 
 TEAM_ALIAS = {"ARI": "AZ"}  # nflverse uses ARI, NFL.com prints AZ
+# The schedule file keeps the franchise code of the time (SD, OAK, STL); the player feed uses the
+# current code (LAC, LV, LA). Without this map the season+week+team join silently drops ~9,000
+# player rows in 2012-2019, which is exactly the kind of silent loss this verifier exists to catch.
+FRANCHISE_ALIAS = {"SD": "LAC", "OAK": "LV", "STL": "LA", "LAR": "LA", "WSH": "WAS", "ARZ": "AZ"}
 
 
 # ----------------------------------------------------------------- small stats helpers
@@ -107,11 +111,16 @@ def main() -> int:
     checks.append(check("qa.total", "total == home_score + away_score (max abs diff)",
                         0, float((played["total"] - (played["home_score"] + played["away_score"])).abs().max()), 0,
                         "recomputed from the two score columns"))
-    checks.append(check("qa.played", "played games", 7384, int(len(played)), 0,
-                        "rows with both scores present"))
+    qa_played = next((c.get("detail") for c in market.get("qa", {}).get("checks", [])
+                      if c.get("check") == "played games have both scores"), "")
+    qa_played_n = int("".join(ch for ch in str(qa_played).split()[0] if ch.isdigit()) or 0)
+    checks.append(check("qa.played", "played games", qa_played_n or None, int(len(played)), 0,
+                        "rows with both scores present, compared with the count the published QA block states"))
     as_of = str(pd.to_datetime(played["gameday"]).max().date())
-    checks.append(check("qa.as_of", "latest settled gameday in the committed extract",
-                        "2026-10-29", as_of, 0, "max(gameday) over played games"))
+    with open(os.path.join(ROOT, "data", "provenance.json")) as fh:
+        prov_as_of = json.load(fh).get("data_as_of_gameday")
+    checks.append(check("qa.as_of", "latest settled gameday, extract vs data/provenance.json",
+                        prov_as_of, as_of, 0, "max(gameday) over played games vs the committed provenance marker"))
 
     # ---------------------------------------------------------------- extract window vs published scope
     preg = player[player["season_type"] == "REG"]
@@ -250,9 +259,11 @@ def main() -> int:
     # The committed player extract has no game_id, so the game is identified from season + week + team.
     side = []
     for _, g in reg.iterrows():
-        side.append((int(g["season"]), int(g["week"]), g["home_team"], g["game_id"],
+        home = FRANCHISE_ALIAS.get(g["home_team"], g["home_team"])
+        away = FRANCHISE_ALIAS.get(g["away_team"], g["away_team"])
+        side.append((int(g["season"]), int(g["week"]), home, g["game_id"],
                      int(g["home_score"]), int(g["away_score"])))
-        side.append((int(g["season"]), int(g["week"]), g["away_team"], g["game_id"],
+        side.append((int(g["season"]), int(g["week"]), away, g["game_id"],
                      int(g["away_score"]), int(g["home_score"])))
     ctx = pd.DataFrame(side, columns=["season", "week", "team", "game_id", "team_points", "opp_points"])
     pr = pr.merge(ctx, on=["season", "week", "team"], how="inner")
