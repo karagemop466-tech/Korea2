@@ -1,0 +1,33 @@
+name: skill-lab
+
+on:
+  push:
+    branches: [main, "arena/**"]
+    paths:
+      - "skill-lab/**"
+      - ".github/workflows/skill-lab.yml"
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-skill-lab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run Skill Lab line-by-line JSON, HTML, blank-cell & source-link verifier
+        run: python3 skill-lab/scripts/verify_all.py
+      - name: Verify deterministic HTML regeneration
+        run: |
+          python3 skill-lab/scripts/build_site.py
+          git diff --exit-code skill-lab/
+      - name: Run repository-wide link & site checks
+        run: |
+          python3 tests/check_site.py
+          python3 scripts/check_links.py
+          python3 pipeline/check_links.py

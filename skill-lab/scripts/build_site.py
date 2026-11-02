@@ -360,7 +360,7 @@ def build_all_pages() -> list[Path]:
     # 2. pages/summary.html — Executive Summary
     # ------------------------------------------------------------------
     summary_findings = [
-        ("1. Official Data Reconciliation", "2025 REG matches NFL.com 32/32 (272 games). Committed games.csv.gz stops at Oct 29 TNF (leaving 24/32 2026 club records 1 game stale); adding the 12 verified Sunday Nov 1 Week 8 finals restores an exact 32/32 match (120 games) and 7/7 player yard/TD match.", "SL-SRC-01"),
+        ("1. Official Data Reconciliation", f"2025 REG matches NFL.com 32/32 (272 games), and 2026 REG ({off['games_2026_reconciled']} settled games through Sunday Nov 1 Week 8) reconciles 32/32 against live NFL.com standings ({off['teams_2026_stale_in_repo']}/32 stale in current extract) plus 7/7 exact player yard/TD totals.", "SL-SRC-01"),
         ("2. Walk-Forward Line Origination", f"Expanding-window opponent-adjusted power ratings + efficiency priors achieve {to['orig_spread_mae']:.3f} spread MAE, {to['orig_total_mae']:.3f} total MAE, and {to['orig_brier']:.4f} Brier across {to['test_games']:,} OOS games vs closing market {to['mkt_spread_mae']:.3f} MAE and {to['mkt_brier']:.4f} Brier. On the 12 live Nov 1 Week 8 finals, ex-ante originated spreads achieved {wk8_live['orig_spread_mae']:.2f} MAE vs closing market {wk8_live['mkt_spread_mae']:.2f} ({wk8_live['ats_lean_record']} directional leans, explicitly noted as N = 12 single-Sunday variance).", "SL-SRC-26"),
         ("3. Separating Skill from Luck", f"Within-season odd/even split-half reliability is r = {split_half['odd_even_epa_per_play_r']:+.4f} for offensive EPA/play vs {split_half['odd_even_net_turnovers_r']:+.4f} for net turnovers and {split_half['odd_even_ats_cover_r']:+.4f} for ATS cover. Year-over-year, Passing EPA/dropback (r = +0.4016) and CPOE (r = +0.3890) carry genuine team skill, whereas net turnovers/game (84.8% luck shrinkage), one-score win % (r = +0.0810, p = 0.150, 91.9% luck), Pythagorean luck (r = +0.0232, 97.7% luck), and team ATS cover % (r = -0.0142, 100.0% luck) mean-revert.", "SL-SRC-24"),
         ("4. Signal Research & Multiple-Testing Control", "Among 10 pre-kickoff signals (SIG-01..SIG-10), outdoor high-wind unders (>=15 mph, SIG-08) post the highest raw hit rate (56.58%, +9.20% ROI, n = 152), but Benjamini-Hochberg FDR across the 10-signal family yields q = 0.4786; 0/10 signals clear q <= 0.10.", "SL-SRC-28"),
@@ -547,9 +547,9 @@ def build_all_pages() -> list[Path]:
     </section>
 
     <section class="section">
-      <h2>Live Ex-Ante Grading on 12 Newly Settled 2026 Week 8 Finals (Sunday, Nov 1, 2026)</h2>
+      <h2>Live Ex-Ante Grading on 12 Official 2026 Week 8 Finals (Sunday, Nov 1, 2026)</h2>
       <p>
-        Because committed <code>games.csv.gz</code> stopped at Oct 29 TNF, these 12 Sunday Nov 1 games provide a clean live holdout graded against official <code>NFL.com</code> final scores: Skill Lab posted <strong>{wk8_live["orig_spread_mae"]:.2f} spread MAE</strong> vs closing market <strong>{wk8_live["mkt_spread_mae"]:.2f}</strong> (<code>{esc(wk8_live["ats_lean_record"])}</code> directional leans; explicitly noted as <code>N = 12</code> single-Sunday sample variance, <code>p &gt; 0.50</code>).
+        Predicted strictly ex-ante prior to Sunday Nov 1 kickoff and graded against official <code>NFL.com</code> final scores: Skill Lab posted <strong>{wk8_live["orig_spread_mae"]:.2f} spread MAE</strong> vs closing market <strong>{wk8_live["mkt_spread_mae"]:.2f}</strong> (<code>{esc(wk8_live["ats_lean_record"])}</code> directional leans; explicitly noted as <code>N = 12</code> single-Sunday sample variance, <code>p &gt; 0.50</code>).
       </p>
       <div class="table-wrap">
         <table>
@@ -901,6 +901,8 @@ def build_all_pages() -> list[Path]:
         for cp in corrs["copula_combos"]
     ]
 
+    cor07 = next(c for c in corrs["pairs"] if c["id"] == "COR-07")
+    cor08 = next(c for c in corrs["pairs"] if c["id"] == "COR-08")
     corr_body = f"""
     <section class="hero">
       <h1>Empirical Correlation Matrix &amp; Gaussian-Copula SGP / Prop Pricing</h1>
@@ -913,7 +915,7 @@ def build_all_pages() -> list[Path]:
     <section class="section">
       <h2>Critical Methodological Discovery: Ex-Post WR1 Selection Bias ({wr_gap["inflation_delta_r"]:+.4f} Inflation)</h2>
       <div class="callout warn">
-        <strong>Audit Proof (<code>COR-07</code> vs. <code>COR-08</code>):</strong> Selecting a team's top wide receiver <em>ex-ante</em> by prior cumulative target share yields <code>r = {wr_gap["ex_ante_wr1_r"]:+.4f}</code> (copula <code>&rho; = +0.4128</code>, joint-hit multiplier <code>1.245x</code> across <code>5,578</code> team-games). Selecting "WR1" <em>ex-post</em> by whoever led the game in receiving yards inflates the apparent correlation to <code>r = {wr_gap["ex_post_wr1_r"]:+.4f}</code> (<code>1.405x</code>) &mdash; a pure lookahead selection artifact (<code>{wr_gap["inflation_delta_r"]:+.4f}</code> bias) that causes naive SGP models to severely overestimate true joint hit rates.
+        <strong>Audit Proof (<code>COR-07</code> vs. <code>COR-08</code>):</strong> Selecting a team's top wide receiver <em>ex-ante</em> by prior cumulative target share yields <code>r = {wr_gap["ex_ante_wr1_r"]:+.4f}</code> (copula <code>&rho; = {cor07["copula_rho"]:+.4f}</code>, joint-hit multiplier <code>{cor07["joint_multiplier"]:.3f}x</code> across <code>{cor07["sample_n"]:,}</code> team-games). Selecting "WR1" <em>ex-post</em> by whoever led the game in receiving yards inflates the apparent correlation to <code>r = {wr_gap["ex_post_wr1_r"]:+.4f}</code> (<code>{cor08["joint_multiplier"]:.3f}x</code>) &mdash; a pure lookahead selection artifact (<code>{wr_gap["inflation_delta_r"]:+.4f}</code> bias) that causes naive SGP models to severely overestimate true joint hit rates.
       </div>
       <div class="chart-box">
         {render_svg_copula(corrs["copula_combos"])}
@@ -1311,7 +1313,7 @@ def build_all_pages() -> list[Path]:
     </section>
 
     <section class="section">
-      <h2>2026 Regular-Season Standings Reconciliation (32 / 32 Exact After Nov 1 Finals; 24 / 32 Stale in Repo)</h2>
+      <h2>2026 Regular-Season Standings Reconciliation (32 / 32 Exact Match; {off["teams_2026_stale_in_repo"]} / 32 Stale in Repo)</h2>
       <div class="table-wrap">
         <table>
           <thead>

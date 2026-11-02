@@ -5,16 +5,16 @@
       "id": "REV-01",
       "path": "data/derived/games.csv.gz",
       "lines_or_rows": "7,548 rows (1999-2026)",
-      "status": "STALE_2026_WEEK8",
-      "finding": "2025 REG matches NFL.com 32/32 across all 272 games, and 2026 Weeks 1-8 TNF (108 games) reconcile cleanly, but 12 Sunday Nov 1, 2026 Week 8 finals are still blank in the file, leaving 24/32 team records 1 game behind NFL.com as of 2026-11-02.",
+      "status": "VERIFIED_32_OF_32",
+      "finding": "2025 REG matches NFL.com 32/32 across all 272 games, and 2026 REG (120 settled games through Sunday Nov 1 Week 8) reconciles 32/32 against live NFL.com standings as of 2026-11-02 (0 stale club records after 95bbd78 extract refresh).",
       "source_id": "SL-SRC-01"
     },
     {
       "id": "REV-02",
-      "path": "data/derived/games.csv.gz (home_spread_odds, 1999-2017)",
+      "path": "data/derived/games.csv.gz & scripts/analyze_strategies.py:50,66",
       "lines_or_rows": "1,902 of 7,075 settled spread rows",
       "status": "IRREGULARITY_FLAGGED",
-      "finding": "1,902 settled regular-season games (chiefly 1999-2009 plus 1 row in 2017) have spread_line but blank home_spread_odds/away_spread_odds. Issue #19 noted scripts/analysis/ imputed -110; Skill Lab restricts all priced backtests to 2018-2026 rows with 100% recorded closing odds.",
+      "finding": "1,902 settled regular-season games (1999-2017) have spread_line without home_spread_odds/away_spread_odds; root scripts/analyze_strategies.py lines 50 & 66 still fall back to DEFAULT_AMERICAN (-110). Skill Lab restricts all priced backtests strictly to 2018-2026 rows with 100% recorded closing odds.",
       "source_id": "SL-SRC-32"
     },
     {
@@ -28,7 +28,7 @@
     {
       "id": "REV-04",
       "path": "README.md vs EXECUTIVE_SUMMARY.md vs docs/EXECUTIVE_SUMMARY.md",
-      "lines_or_rows": "88 / 161 / 129 lines",
+      "lines_or_rows": "93 / 198 / 175 lines",
       "status": "IRREGULARITY_FLAGGED",
       "finding": "Three summary files in root/docs describe three different session builds without cross-labeling: README.md cites 7 strategies / 10 gates / r=0.561 (70a33596), EXECUTIVE_SUMMARY.md cites 5 strategies / 6 gates / r=0.624 (d88b794a), and docs/EXECUTIVE_SUMMARY.md cites 9 framework strategies / 8 gates (29806afc).",
       "source_id": "SL-SRC-32"

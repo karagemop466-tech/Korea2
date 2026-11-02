@@ -105,8 +105,9 @@ def reconcile_official(games: list[dict[str, Any]], player_weeks: list[dict[str,
             repo_tot = int(round(sum(r["rushing_yards"] for r in sub)))
             repo_td = int(round(sum(r["rushing_tds"] for r in sub)))
 
-        reconciled_tot = repo_tot if pl["week8_in_repo_feed"] else (repo_tot + pl["week8_actual"])
-        reconciled_td = repo_td if pl["week8_in_repo_feed"] else (repo_td + pl["week8_td"])
+        has_wk8 = any(r["week"] == 8 for r in sub)
+        reconciled_tot = repo_tot if has_wk8 else (repo_tot + pl["week8_actual"])
+        reconciled_td = repo_td if has_wk8 else (repo_td + pl["week8_td"])
         player_rows.append({
             "player": name,
             "team": pl["team"],
@@ -114,7 +115,7 @@ def reconcile_official(games: list[dict[str, Any]], player_weeks: list[dict[str,
             "stat_label": pl["nfl_stat_label"],
             "repo_weeks_present": len(sub),
             "repo_sum": f"{repo_tot} yds / {repo_td} TD",
-            "week8_nov1_add": "Included in feed (Oct 29)" if pl["week8_in_repo_feed"] else f"+{pl['week8_actual']} yds / +{pl['week8_td']} TD",
+            "week8_nov1_add": "Included in feed (thru Nov 1)" if has_wk8 else f"+{pl['week8_actual']} yds / +{pl['week8_td']} TD",
             "reconciled_sum": f"{reconciled_tot} yds / {reconciled_td} TD",
             "nfl_official_2026": f"{pl['nfl_season_total']} yds / {pl['nfl_season_td']} TD",
             "exact_match": (reconciled_tot == pl["nfl_season_total"] and reconciled_td == pl["nfl_season_td"]),
@@ -172,23 +173,23 @@ def build_repo_review_and_flags(rec: dict[str, Any]) -> tuple[dict[str, Any], di
             "id": "REV-01",
             "path": "data/derived/games.csv.gz",
             "lines_or_rows": "7,548 rows (1999-2026)",
-            "status": "STALE_2026_WEEK8",
+            "status": "STALE_2026_WEEK8" if rec["teams_2026_stale_in_repo"] > 0 else "VERIFIED_32_OF_32",
             "finding": (
-                f"2025 REG matches NFL.com 32/32 across all 272 games, and 2026 Weeks 1-8 TNF (108 games) "
-                f"reconcile cleanly, but 12 Sunday Nov 1, 2026 Week 8 finals are still blank in the file, "
-                f"leaving {rec['teams_2026_stale_in_repo']}/32 team records 1 game behind NFL.com as of 2026-11-02."
+                f"2025 REG matches NFL.com 32/32 across all 272 games, and 2026 REG ({rec['games_2026_reconciled']} settled "
+                f"games through Sunday Nov 1 Week 8) reconciles 32/32 against live NFL.com standings as of 2026-11-02 "
+                f"({'after adding 12 Nov 1 finals' if rec['teams_2026_stale_in_repo'] > 0 else '0 stale club records after 95bbd78 extract refresh'})."
             ),
             "source_id": "SL-SRC-01",
         },
         {
             "id": "REV-02",
-            "path": "data/derived/games.csv.gz (home_spread_odds, 1999-2017)",
+            "path": "data/derived/games.csv.gz & scripts/analyze_strategies.py:50,66",
             "lines_or_rows": "1,902 of 7,075 settled spread rows",
             "status": "IRREGULARITY_FLAGGED",
             "finding": (
-                "1,902 settled regular-season games (chiefly 1999-2009 plus 1 row in 2017) have spread_line "
-                "but blank home_spread_odds/away_spread_odds. Issue #19 noted scripts/analysis/ imputed -110; "
-                "Skill Lab restricts all priced backtests to 2018-2026 rows with 100% recorded closing odds."
+                "1,902 settled regular-season games (1999-2017) have spread_line without home_spread_odds/away_spread_odds; "
+                "root scripts/analyze_strategies.py lines 50 & 66 still fall back to DEFAULT_AMERICAN (-110). "
+                "Skill Lab restricts all priced backtests strictly to 2018-2026 rows with 100% recorded closing odds."
             ),
             "source_id": "SL-SRC-32",
         },

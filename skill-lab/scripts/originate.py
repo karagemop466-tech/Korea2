@@ -279,14 +279,10 @@ def run_team_origination(
         pred = predict_game(g, hfa, base_total, sig_m, sig_t)
         gid = g["game_id"]
 
-        if g["home_score"] is not None and g["away_score"] is not None:
-            predictions.append(pred)
-            update_from_outcome(g, pred, g["home_score"], g["away_score"], base_total)
-        elif gid in OFFICIAL_WEEK8_NOV1_FINALS:
-            # Predict strictly BEFORE updating from Nov 1 outcome, then grade & update for Week 9!
+        if gid in OFFICIAL_WEEK8_NOV1_FINALS:
             fin = OFFICIAL_WEEK8_NOV1_FINALS[gid]
-            as_fin = float(fin["away_score"])
-            hs_fin = float(fin["home_score"])
+            as_fin = float(g["away_score"] if g["away_score"] is not None else fin["away_score"])
+            hs_fin = float(g["home_score"] if g["home_score"] is not None else fin["home_score"])
             act_m = hs_fin - as_fin
             act_t = hs_fin + as_fin
             sp_mkt = g["spread_line"] or 0.0
@@ -316,7 +312,13 @@ def run_team_origination(
                 "source_id": "SL-SRC-06" if gid == "2026_08_BAL_BUF" else "SL-SRC-04",
             })
             live_nov1_eval.append(live_row)
-            update_from_outcome(g, pred, hs_fin, as_fin, base_total)
+
+        if g["home_score"] is not None and g["away_score"] is not None:
+            predictions.append(pred)
+            update_from_outcome(g, pred, g["home_score"], g["away_score"], base_total)
+        elif gid in OFFICIAL_WEEK8_NOV1_FINALS:
+            fin = OFFICIAL_WEEK8_NOV1_FINALS[gid]
+            update_from_outcome(g, pred, float(fin["home_score"]), float(fin["away_score"]), base_total)
         elif s == 2026 and g["week"] in (8, 9):
             # Upcoming MNF Week 8 (CHI@SEA Nov 2) + all 15 Official Week 9 fixtures (Nov 5-9)!
             board_row = dict(pred)
