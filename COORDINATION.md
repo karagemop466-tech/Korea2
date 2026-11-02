@@ -970,3 +970,20 @@ refresh; that is a stronger check, not a weaker one.
 overclaims that the first pass missed (the correlation-page card and section, the index card, and the
 executive summary table which still quoted the pre-fix sampled φ of 0.029). All are corrected in the live
 build.
+
+### Issue resolution ledger (2026-11-02, session arena/cacf6153-korea2)
+
+This environment's GitHub token can read issues but not write them
+(`gh issue close/comment` → `Resource not accessible by integration`, HTTP 403 — the same restriction
+that blocks the Actions token from opening PRs, see PR #56). The evidence for closing each issue is
+therefore recorded here; a maintainer can close them against this table.
+
+| Issue | Status | Resolution and evidence |
+| --- | --- | --- |
+| #34 — root source page reads the wrong provenance path | **resolved** | PR #52 → `dfce921`/`403ea06`. `page_sources()` reads `data/provenance.json`; per-season `{year}` URLs expanded; no unrecorded raw hashes claimed; clobber guard added. 6 tests in `scripts/analysis/test_issue_fixes.py`. |
+| #20 — refresh workflow pushes main directly, masks failures | **resolved** (pending #56 for the token nuance) | PR #52 → `3bc4f00`/`403ea06`. Both workflows fail-closed, least privilege, PR-based, no `[skip ci]`, no push to `main`; `\|\| echo FAILED` removed; shell and YAML validated. A live run then showed this repository also refuses `gh pr create` to the Actions token; `arena/652b0095-korea2` is fixing that publish step in PR #56 (`scripts/ci/publish_refresh.sh`), with all checks green. |
+| #19 — imputed prices, reversed favourite, retrospective prop selection | **resolved** | PR #52 → `dfce921`/`403ea06`. Stored-price-only settlement with published exclusion counts (1,902/7,075); `away_fav` masks corrected; WR1 relabelled ex-post; weekly cover rate fixed; independence wording removed; verification scope narrowed. Wind-under falls +8.65%/649 bets (5/6 gates) → +7.14%/430 (2/6). 18 tests. |
+| #22 — root overview misattributes a weather ROI to the rating model | **resolved** | The owner fixed the max-ROI bug in PR #43; the published root `index.html` is now the line-lab build and the retired generator's model row reads S5's own ROI. This session additionally removed the last stale pre-recalculation weather sentences from that generator (`3ace545`/`4876771`). |
+| #24 — quant-lab synthetic prices and G9 re-pricing | **resolved** | PR #52 → `a063f93`/`403ea06`. G9 reprices each ticket from its own recorded decimal, leg-by-leg, requiring profitability at **both** −105 and −115; teasers fail closed. 21 strategies, 0 qualified, top `null`. 9 tests in `quant-lab/scripts/test_g9_price.py`. The −110 assumptions for spread/total and props remain disclosed as A1/A2/A4 on the quant-lab Flagged page. |
+| #32 — Origination Lab reversed push labels, aggregation, inference | **resolved** | PR #52 → `b524ff3`/`403ea06` and PR #53 → `0dbae7c`/`397f3cd`. `-3` now selects home_line −3 (**469 games / 9.81%**, exactly the issue's value); any-receiver label; 35,722-pair week-clustered cross-game interval (φ −0.005, −0.014 to 0.005) with all independence overclaims removed from the deployed pages; latent-ρ calibration with a φ = 0.55 test; price-aware edge-curve null. 9 tests. The 980 rows without a recognised per-row source remain flagged, not rewritten. |
+| #25, #17, #16, #13, #9, #6, #1 | open | Other scopes (root navigation/flag surfacing, `nfl-lines/`, `dashboard/`, pipeline provenance). #25's requests are logged above for the root-site owner; #9's provenance/CI items are partly addressed by #52 (manifest check, fail-closed workflows). Not closed here. |
