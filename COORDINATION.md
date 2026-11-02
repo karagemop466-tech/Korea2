@@ -1233,3 +1233,20 @@ therefore recorded here; a maintainer can close them against this table.
 | #24 — quant-lab synthetic prices and G9 re-pricing | **resolved** | PR #52 → `a063f93`/`403ea06`. G9 reprices each ticket from its own recorded decimal, leg-by-leg, requiring profitability at **both** −105 and −115; teasers fail closed. 21 strategies, 0 qualified, top `null`. 9 tests in `quant-lab/scripts/test_g9_price.py`. The −110 assumptions for spread/total and props remain disclosed as A1/A2/A4 on the quant-lab Flagged page. |
 | #32 — Origination Lab reversed push labels, aggregation, inference | **resolved** | PR #52 → `b524ff3`/`403ea06` and PR #53 → `0dbae7c`/`397f3cd`. `-3` now selects home_line −3 (**469 games / 9.81%**, exactly the issue's value); any-receiver label; 35,722-pair week-clustered cross-game interval (φ −0.005, −0.014 to 0.005) with all independence overclaims removed from the deployed pages; latent-ρ calibration with a φ = 0.55 test; price-aware edge-curve null. 9 tests. The 980 rows without a recognised per-row source remain flagged, not rewritten. |
 | #25, #17, #16, #13, #9, #6, #1 | open | Other scopes (root navigation/flag surfacing, `nfl-lines/`, `dashboard/`, pipeline provenance). #25's requests are logged above for the root-site owner; #9's provenance/CI items are partly addressed by #52 (manifest check, fail-closed workflows). Not closed here. |
+
+### #20 verification on `main` (live workflow evidence)
+
+* Run [41497914988](https://github.com/karagemop466-tech/Korea2/actions/runs/41497914988) (`data-pipeline`,
+  current `main`) completed **success**, every step green — including *Open the refresh pull request*.
+  It pushed `line-lab-refresh/run-41497914988` and, because the repository refuses PR creation to the
+  Actions token, emitted the warning and summary instead of touching `main`.
+* `validate`, `checks`, `build-verify` and `pages-build-deployment` on the same commit: all **success**.
+* PR [**#59**](https://github.com/karagemop466-tech/Korea2/pull/59) — merged 2026-11-02, merge commit
+  pending in the log below — removed `publish_refresh.sh`'s direct-push fallback (added by PR #56), which
+  would have published a refresh to `main` without review; `main` is protected, so that fallback failed
+  anyway and left the run red. The script now leaves the validated branch, warns, and exits 0.
+* Seven `line-lab-refresh/*` / `data-refresh/*` branches are left from earlier runs (they are validated
+  snapshots, not errors). A maintainer with PR rights can open one; this session deliberately did **not**
+  merge a stale-based refresh onto a green site near the end of the run. To restore fully automatic
+  publishing, enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull
+  requests*.
