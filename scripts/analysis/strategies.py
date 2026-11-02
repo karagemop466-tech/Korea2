@@ -64,10 +64,12 @@ def build_games() -> pd.DataFrame:
     g["home_cover_margin"] = g.result - g.spread_line
     g["away_cover_margin"] = -g.result + g.spread_line
     g["over_margin"] = g.total - g.total_line
-    g["home_odds"] = g.home_spread_odds.fillna(-110.0)
-    g["away_odds"] = g.away_spread_odds.fillna(-110.0)
-    g["over_price"] = g.over_odds.fillna(-110.0)
-    g["under_price"] = g.under_odds.fillna(-110.0)
+    # Issue #19 fix: NO -110 imputation. A bet is only settled at a price the
+    # feed actually stores; rows without that price are excluded and counted.
+    g["home_odds"] = g.home_spread_odds
+    g["away_odds"] = g.away_spread_odds
+    g["over_price"] = g.over_odds
+    g["under_price"] = g.under_odds
     return g.sort_values(["season", "week", "gameday"]).reset_index(drop=True)
 
 
@@ -227,16 +229,25 @@ def walk_forward(g: pd.DataFrame) -> pd.DataFrame:
 # strategy definitions
 # ---------------------------------------------------------------------------
 def settle(df: pd.DataFrame, side: str, market: str = "ats") -> dict:
+    """Settle bets at STORED prices only.
+
+    Rows whose price (or decidable margin) is missing are excluded, never
+    imputed; the count excluded is returned for disclosure (issue #19).
+    """
     if market == "ats":
         margin = df.home_cover_margin if side == "home" else df.away_cover_margin
         odds = df.home_odds if side == "home" else df.away_odds
     else:
         margin = df.over_margin if side == "over" else -df.over_margin
         odds = df.over_price if side == "over" else df.under_price
+    ok = margin.notna() & odds.notna()
+    n_excluded = int((~ok).sum())
+    margin, odds = margin[ok], odds[ok]
     win = (margin > 0).to_numpy()
     push = (margin == 0).to_numpy()
     ret = bet_return(win, push, odds.to_numpy())
-    return {"win": win, "push": push, "ret": ret, "odds": odds.to_numpy()}
+    return {"win": win, "push": push, "ret": ret, "odds": odds.to_numpy(),
+            "n_excluded_missing_price": n_excluded}
 
 
 def strategy_defs(g: pd.DataFrame) -> dict:
@@ -284,12 +295,15 @@ def strategy_defs(g: pd.DataFrame) -> dict:
     }
     if "p_home_cover" in g.columns:
         d = g.dropna(subset=["p_home_cover"]).copy()
-        d["edge_home"] = d.p_home_cover - implied_prob(d.home_odds)
-        d["edge_away"] = (1 - d.p_home_cover) - implied_prob(d.away_odds)
         d["abs_gap"] = (d.model_margin - d.spread_line).abs()
+        # Issue #19 fix: an edge can only be measured against a STORED price.
+        dh = d.dropna(subset=["home_odds"]).copy()
+        da = d.dropna(subset=["away_odds"]).copy()
+        dh["edge_home"] = dh.p_home_cover - implied_prob(dh.home_odds)
+        da["edge_away"] = (1 - da.p_home_cover) - implied_prob(da.away_odds)
         defs["S5_model_edge"]["kinds"] = [
-            ("home", "ats", d[(d.abs_gap >= 2.0) & (d.edge_home >= 0.02)]),
-            ("away", "ats", d[(d.abs_gap >= 2.0) & (d.edge_away >= 0.02)]),
+            ("home", "ats", dh[(dh.abs_gap >= 2.0) & (dh.edge_home >= 0.02)]),
+            ("away", "ats", da[(da.abs_gap >= 2.0) & (da.edge_away >= 0.02)]),
         ]
     return defs
 
@@ -308,11 +322,17 @@ def binom_p(wins: int, losses: int, p0: float = 0.5) -> float:
 
 def evaluate(defn: dict, label_returns: np.ndarray) -> dict:
     parts = []
+    n_excluded = 0
     for side, market, sub in defn["kinds"]:
         if not len(sub):
             continue
         s = settle(sub, side, market)
-        parts.append({"side": side, "market": market, "n": int(len(sub)),
+        n_excluded += s["n_excluded_missing_price"]
+        if not len(s["ret"]):
+            continue
+        parts.append({"side": side, "market": market, "n": int(len(s["ret"])),
+                      "n_selected": int(len(sub)),
+                      "n_excluded_missing_price": s["n_excluded_missing_price"],
                       "win": s["win"], "push": s["push"], "ret": s["ret"],
                       "hit": float(s["win"].mean()),
                       "push_rate": float(s["push"].mean()),
@@ -327,6 +347,9 @@ def evaluate(defn: dict, label_returns: np.ndarray) -> dict:
     nonpush = int(n - pushes)
     summary.update({
         "family": defn["family"], "thesis": defn["thesis"],
+        "n_excluded_missing_price": n_excluded,
+        "price_policy": ("settled only at prices stored in the feed; rows with no "
+                         "stored price are excluded, never imputed (issue #19)"),
         "hit_rate": float(wins / n), "push_rate": float(pushes / n),
         "hit_rate_nonpush": float(wins / max(1, nonpush)),
         "binom_p": binom_p(int(wins), int(nonpush - wins)),
@@ -379,6 +402,13 @@ def main() -> dict:
             y = (d.home_cover_margin > 0).astype(int)
             mask = (d.home_cover_margin != 0).to_numpy()
             d, y = d[mask], y[mask]
+            # Issue #19 fix: the de-vigged market probability needs BOTH stored
+            # spread prices; games without them are excluded and counted, not
+            # imputed at -110.
+            priced = d.home_odds.notna() & d.away_odds.notna()
+            n_price_excluded = int((~priced).sum())
+            d = d[priced]
+            y = y[priced]
             pm = implied_prob(d.home_odds.to_numpy())
             pm = pm / (pm + (1 - implied_prob(d.away_odds.to_numpy())))
             eps = 1e-6
@@ -392,6 +422,9 @@ def main() -> dict:
             hit = float((d.p_home_cover > pm).eq(y.astype(bool)).mean())
             cmp = {
                 "n": int(len(d)),
+                "n_excluded_missing_price": n_price_excluded,
+                "price_policy": ("model-vs-market comparison restricted to games with "
+                                 "both stored spread prices; nothing imputed (issue #19)"),
                 "logloss_model": ll_model, "logloss_market": ll_mkt,
                 "brier_model": bs_model, "brier_market": bs_mkt,
                 "brier_skill_vs_market": 1 - bs_model / bs_mkt,
@@ -428,13 +461,20 @@ def build_parlays(g: pd.DataFrame, results: dict) -> dict:
         return out
     d["gap"] = (d.model_margin - d.spread_line).abs()
     rows = []
+    n_tickets_skipped_unpriced = 0
     for (season, week), grp in d.groupby(["season", "week"]):
         if len(grp) < 3:
             continue
         top = grp.nlargest(3, "gap")
         side_home = (top.model_margin > top.spread_line).to_numpy()
+        # Issue #19 fix: a ticket is only built when all three legs have a
+        # STORED price. Weeks where a leg has no price are skipped and counted.
+        chosen = np.where(side_home, top.home_odds.to_numpy(), top.away_odds.to_numpy())
+        if np.isnan(chosen).any():
+            n_tickets_skipped_unpriced += 1
+            continue
         p_leg = np.where(side_home, top.p_home_cover, 1 - top.p_home_cover)
-        odds = np.where(side_home, top.home_odds, top.away_odds)
+        odds = chosen
         won = np.where(side_home, top.home_cover_margin > 0, top.away_cover_margin > 0)
         push = np.where(side_home, top.home_cover_margin == 0, top.away_cover_margin == 0)
         dec = american_to_decimal(odds)
@@ -462,6 +502,7 @@ def build_parlays(g: pd.DataFrame, results: dict) -> dict:
     ret = np.where(df.won, df.realised_odds - 1.0, -1.0)
     out["parlay3_model"] = {
         "n_tickets": int(len(df)),
+        "n_weeks_skipped_unpriced": n_tickets_skipped_unpriced,
         "mean_naive_p": float(df.naive_p.mean()),
         "hit_rate": float(df.won.mean()),
         "roi": float(ret.mean()),
@@ -478,13 +519,19 @@ def build_parlays(g: pd.DataFrame, results: dict) -> dict:
         "note": "sum of the three decimal prices; >1 is the theoretical margin a book earns",
     }
 
-    # independent-game check: is week-to-week ATS noise really independent?
+    # autocorrelation check (issue #19: this is a suggestive lag-1 autocorrelation
+    # of margins, NOT a proof of contemporaneous cross-game joint independence)
     if len(g) > 200:
         hm = g.home_cover_margin.dropna()
         wk = g.groupby(["season", "week"]).home_cover_margin.mean()
-        out["cross_game_independence"] = {
+        out["cross_game_autocorr_check"] = {
             "n": int(len(hm)), "autocorr_lag1": float(hm.autocorr(1)),
             "week_mean_autocorr_lag1": float(wk.autocorr(1)),
+            "note": ("Lag-1 autocorrelation of cover margins and of weekly means. "
+                     "Near-zero values are consistent with, but do not establish, "
+                     "independence of same-week cross-game outcomes; pairwise "
+                     "independence does not imply joint independence of multi-leg "
+                     "tickets."),
         }
     return out
 
