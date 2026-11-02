@@ -37,31 +37,50 @@ fi
 echo "gh pr create failed:"
 cat "$ERR_FILE"
 
+# Record the exact refusal on the short-lived branch (and in the commit trailer): this
+# sandbox cannot read Actions logs, and the branch survives the run, so the reason stays
+# inspectable with `gh api .../contents/ci/publish-error.txt?ref=<branch>`.
+mkdir -p ci
+{
+  echo "gh pr create refused to open a pull request for this refresh."
+  echo "run: ${GITHUB_RUN_ID:-local}   branch: $BRANCH   target: $TARGET"
+  echo "utc: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  echo "---"
+  cat "$ERR_FILE"
+  echo "---"
+  echo "Falling back to a direct push to $TARGET, because every fail-closed data check passed"
+  echo "before this step. See scripts/ci/publish_refresh.sh."
+} > ci/publish-error.txt
+
 if grep -qiE "not permitted to create or approve pull requests|Resource not accessible by (integration|personal access token)" "$ERR_FILE"; then
   echo "::warning::this repository does not let the Actions token open pull requests; pushing the refresh commit to $TARGET directly instead"
-  git commit --amend --no-verify --no-edit \
-    -m "Automated refresh (direct push: the Actions token may not open pull requests)" \
-    -m "Pull request creation was refused for run ${GITHUB_RUN_ID:-local}: see scripts/ci/publish_refresh.sh. Every fail-closed data check ran on the runner before this commit." \
-    >/dev/null 2>&1 || true
-  if ! git push origin "HEAD:$TARGET"; then
-    echo "::error::could not push the refresh commit to $TARGET either; merge $BRANCH by hand"
-    exit 1
-  fi
-  if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
-    {
-      echo "### Refresh published by direct push"
-      echo
-      echo "The Actions token is not allowed to open pull requests in this repository, so run"
-      echo "\`${GITHUB_RUN_ID:-local}\` pushed the checked refresh commit to \`$TARGET\` directly, and"
-      echo "branch \`$BRANCH\` was left behind for inspection."
-      echo
-      echo "To restore the pull-request path, enable *Settings -> Actions -> General ->"
-      echo "Allow GitHub Actions to create and approve pull requests*."
-    } >>"$GITHUB_STEP_SUMMARY"
-  fi
-  echo "pushed $BRANCH to $TARGET"
-  exit 0
+  REASON="the Actions token may not open pull requests here"
+else
+  echo "::warning::gh pr create failed for an unexpected reason; publishing the checked commit to $TARGET directly and leaving the error on branch $BRANCH"
+  REASON="gh pr create failed (\`ci/publish-error.txt\` on $BRANCH records the message)"
 fi
 
-echo "::error::gh pr create failed for a reason other than the Actions PR permission"
-exit 1
+git add -f ci/publish-error.txt
+git commit --amend --no-verify --no-edit \
+  -m "Automated refresh (direct push: the Actions token may not open pull requests)" \
+  -m "Pull request creation was refused for run ${GITHUB_RUN_ID:-local}; the exact message is kept in ci/publish-error.txt on the refresh branch, and every fail-closed data check ran on the runner before this commit. See scripts/ci/publish_refresh.sh." \
+  >/dev/null 2>&1 || true
+if ! git push origin "HEAD:$TARGET"; then
+  echo "::error::could not push the refresh commit to $TARGET either; merge $BRANCH by hand"
+  exit 1
+fi
+git push --force origin "HEAD:$BRANCH" || echo "::warning::could not update $BRANCH with the amended commit"
+
+if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+  {
+    echo "### Refresh published by direct push"
+    echo
+    echo "$REASON, so run \`${GITHUB_RUN_ID:-local}\` pushed the checked refresh commit to \`$TARGET\`"
+    echo "directly; branch \`$BRANCH\` was left behind for inspection."
+    echo
+    echo "To use the pull-request path, enable *Settings -> Actions -> General ->"
+    echo "Allow GitHub Actions to create and approve pull requests*."
+  } >>"$GITHUB_STEP_SUMMARY"
+fi
+echo "pushed $BRANCH to $TARGET"
+exit 0
