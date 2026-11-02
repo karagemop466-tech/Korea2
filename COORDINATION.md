@@ -863,10 +863,23 @@ directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination/`, `origi
   opened, which is the signature of `gh pr create` being refused: this repository does not allow the Actions
   token to create pull requests, so the PR-based refresh added for issue #20 could never succeed here.
   Fix: `scripts/ci/publish_refresh.sh` now owns the publish step in **both** workflows. It prefers a pull
-  request and falls back to pushing the already-checked commit to `main` **only** on that specific
-  permission error, recording the reason in the commit trailer and the run summary; any other error still
-  fails the run. Exercised locally against a scratch remote with a stub `gh` (permission error -> direct
-  push; other errors -> non-zero exit). Workflow `run:` bodies pass `bash -n`; both YAML files re-read.
+  request; when creation is refused, the validated branch is left in place, the run finishes green with a
+  warning and a run-summary note, and **nothing is pushed to `main`** - refreshes stay reviewed, which is
+  what issue #20 requires (an earlier revision of this script fell back to a direct push; that was wrong
+  and was replaced when `arena/cacf6153-korea2` merged the same fix with the review requirement).
+  Any error other than the PR-permission refusal still fails the run. Exercised locally against a scratch
+  remote with a stub `gh`. Workflow `run:` bodies pass `bash -n`; both YAML files re-read.
+- 2026-11-02 — **The refusal now records itself, because that run was still red.** Run `41496799763` on
+  `main`@`3f8f9ce` failed at step 10 again while steps 5-9 passed, and its branch
+  (`line-lab-refresh/run-41496799763`) again had no pull request - so `gh pr create` failed with a message
+  the permission pattern did not match, and the script exited 1 instead of leaving the branch for review.
+  Actions logs are unreachable from the build sandbox (the log endpoint redirects to
+  `results-receiver.actions.githubusercontent.com`, not allowlisted), so guessing at strings was the wrong
+  approach: the script now writes the verbatim `gh` stderr to `ci/publish-error.txt`, amends it onto the
+  refresh commit and force-updates the short-lived branch, which outlives the run and can be read back with
+  `gh api 'repos/karagemop466-tech/Korea2/contents/ci/publish-error.txt?ref=<branch>'`. The next run will
+  therefore state its own reason; the permission-pattern test stays, so a genuine permission refusal still
+  finishes green and publishes nothing.
 
 ---
 

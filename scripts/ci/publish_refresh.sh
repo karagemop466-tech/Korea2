@@ -40,6 +40,30 @@ fi
 echo "gh pr create failed:"
 cat "$ERR_FILE"
 
+# Actions logs cannot be read from this project's build sandbox (the log endpoint
+# redirects to a host that is not reachable), so the refusal records itself on the
+# branch, which outlives the run and can be read back with the contents API:
+#   gh api 'repos/<owner>/<repo>/contents/ci/publish-error.txt?ref=<branch>'
+record_error() {
+  mkdir -p ci
+  {
+    echo "gh pr create did not open a pull request for this refresh."
+    echo "run: ${GITHUB_RUN_ID:-local}   branch: $BRANCH   target: $TARGET"
+    echo "utc: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    echo "---"
+    cat "$ERR_FILE"
+    echo "---"
+  } > ci/publish-error.txt
+  git add -f ci/publish-error.txt >/dev/null 2>&1 || return 0
+  git commit --amend --no-verify --no-edit \
+    -m "Automated refresh (pull request not opened: see ci/publish-error.txt)" \
+    -m "gh pr create did not open a pull request for run ${GITHUB_RUN_ID:-local}; its exact message is kept in ci/publish-error.txt on this branch. Every fail-closed data check ran on the runner before this commit." \
+    >/dev/null 2>&1 || return 0
+  git push --force origin "HEAD:$BRANCH" >/dev/null 2>&1 \
+    || echo "::warning::could not attach the error to $BRANCH"
+}
+record_error
+
 if grep -qiE "not permitted to create or approve pull requests|Resource not accessible by (integration|personal access token)" "$ERR_FILE"; then
   # Issue #20 correction (session arena/cacf6153-korea2, 2026-11-02): the earlier
   # fallback pushed the refresh commit straight to the target branch. `main` is
@@ -66,5 +90,5 @@ if grep -qiE "not permitted to create or approve pull requests|Resource not acce
   exit 0
 fi
 
-echo "::error::gh pr create failed for a reason other than the Actions PR permission"
+echo "::error::gh pr create failed for a reason other than the Actions PR permission; the message is also on branch $BRANCH in ci/publish-error.txt"
 exit 1
