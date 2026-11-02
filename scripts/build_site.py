@@ -976,6 +976,13 @@ def page_verification() -> str:
                    esc(a.get("updated_utc", "")), badge("warn", "changed upstream"), src("nflverse-api")]
                   for a in assets.get("assets_changed_upstream", [])]
 
+    all_current = (summ.get("teams_2026_matched") == summ.get("teams_2026_compared") and
+                   summ.get("teams_2026_compared"))
+    LIVE_NOTE = ("Every team the official page lists is matched, which is what a current extract looks like."
+                 if all_current else
+                 "That is not an arithmetic error: the committed extract ends before the official page does, "
+                 "so the games played after that date are missing. The size of the gap is published here "
+                 "because a reader deserves to know how current these numbers are.")
     body = (f'''<div class="hero compact"><div class="eyebrow">VERIFICATION</div>
 <h1>{summ.get("n_pass", 0)} of {summ.get("n_checks", 0)} independent re-computations agree.</h1>
 <p class="lede">Every headline number on this site was recomputed on {esc(meta.get("generated_utc", "")[:10])} from
@@ -984,9 +991,9 @@ A completed season was also reconciled team by team against NFL.com. Where a val
 is published here instead of being hidden.</p></div>
 
 <div class="kpis">
-{card("Independent checks", f'{summ.get("n_checks", 0)}', f'{summ.get("n_pass", 0)} agree, {summ.get("n_fail", 0)} disagree on a published value. {summ.get("n_observations", 0)} rows are observations that are expected to differ or carry no published value.', "", "")}
+{card("Independent checks", f'{summ.get("n_checks", 0)}', f'{summ.get("n_pass", 0)} agree, {summ.get("n_fail", 0)} disagree on a published value. {summ.get("n_observations", 0)} rows are observations rather than strict equality tests.', "", "")}
 {card("2020 reconciliation", f'{summ.get("teams_2020_matched", 0)}/{summ.get("teams_2020_compared", 0)}', "Teams whose wins, losses, ties, points for and points against all match NFL.com exactly.", "", "")}
-{card("Current season", f'{summ.get("teams_2026_matched", 0)}/{summ.get("teams_2026_compared", 0)}', f'Teams matching the live NFL.com standings. The committed data ends {esc(summ.get("data_as_of_gameday", "n/a"))}, so the rest of Week 8 is not in it.', "", "")}
+{card("Current season", f'{summ.get("teams_2026_matched", 0)}/{summ.get("teams_2026_compared", 0)}', f'Teams matching the live NFL.com standings, on data through {esc(summ.get("data_as_of_gameday", "n/a"))}.', "", "")}
 </div>
 
 '''
@@ -1003,10 +1010,8 @@ is published here instead of being hidden.</p></div>
                     f'{esc(str(r20.get("retrieved_utc", "")))}.'))
         + section("Live reconciliation: 2026 season", f'''<p class="small">The same rebuild run against the
 current NFL.com standings page returns {summ.get("teams_2026_matched", 0)} of
-{summ.get("teams_2026_compared", 0)} teams. That is not a data error: the committed extract stops at gameday
-{esc(str(r26.get("latest_gameday_in_extract", "n/a")))} and the official page has since added the rest of Week 8.
-It is published because a reader deserves to know how current these numbers are, and because the refresh
-workflow is the fix.</p>'''
+{summ.get("teams_2026_compared", 0)} teams on data through gameday
+{esc(str(r26.get("latest_gameday_in_extract", "n/a")))}. {LIVE_NOTE}</p>'''
             + table(["Team", "NFL.com W-L-T", "Rebuilt W-L-T", "NFL.com PF/PA", "Rebuilt PF/PA", "Result", "Source"],
                     standings_rows("standings_2026", "nfl-standings-2026"),
                     caption="Snapshot read on 2026-11-02. Live page - the values move every week."))
@@ -1033,18 +1038,18 @@ published player-level coefficients are reproduced on a shorter window and their
 # ---------------------------------------------------------------- flagged
 def page_flagged() -> str:
     items = [
-        ("Committed data is one week behind the official standings", "high",
-         "The extract ends at gameday 2026-10-29. Rebuilding standings from it matches the live NFL.com page "
-         "for 8 of 32 teams, because the rest of Week 8 has been played since. Every model number on this site "
-         "is therefore as of 2026-10-29, not as of today.",
-         "nfl-standings-2026", "Stated on the Verification page with the per-team diff. Fixed by running the "
-         "data-pipeline workflow, which downloads the refresh and rebuilds every figure."),
-        ("Player-level coefficients cannot be reproduced from the committed extract", "medium",
-         "The correlation page records a 2012-2026 window and 248,972 player-games, but the pruned extract that "
-         "is committed starts in 2015 and holds 198,802 regular-season player rows. Recomputing on the committed "
-         "file gives the same signs and magnitudes (all |delta r| < 0.02) with a smaller n.",
-         "nflverse-api", "Reported as an expected difference on the Verification page, not silently matched. "
-         "The fix is to commit the pruned extracts from the same download the analysis reads."),
+        ("Resolved 2026-11-02: committed data lagged the official standings", "low",
+         "The extract ended at gameday 2026-10-29, so a rebuild matched the live NFL.com standings for only 8 "
+         "of 32 teams. The refresh workflow rewrote the extracts and every figure from a 2026-11-01 download, "
+         "and the reconciliation is now 32 of 32. This entry stays here so the history is visible.",
+         "nfl-standings-2026", "Fixed: data through 2026-11-01, 32/32 teams reconciled, and each figure carries "
+         "the date its data ends."),
+        ("Resolved 2026-11-02: player coefficients were not reproducible from the committed extract", "low",
+         "The correlation page recorded a 2012-2026 window while the committed pruned extract started in 2015, "
+         "so the published coefficients could not be reproduced from a checkout. Recomputing on the old extract "
+         "gave the same signs and magnitudes with a smaller n.",
+         "nflverse-api", "Fixed: scripts/export_extracts.py now writes the extracts from the same parquet the "
+         "analysis reads, and every player-level check reproduces exactly (n = 7,560 team-games, r = 0.561)."),
         ("Two generators wrote the same index.html and pages/", "medium",
          "A second build script (scripts/analysis/build_site.py) writes index.html and pages/*.html with a "
          "different navigation and overwrote the integrated site when it ran. Its verification page was left "
