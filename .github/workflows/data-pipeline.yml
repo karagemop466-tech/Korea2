@@ -25,6 +25,10 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Fetch upstream data
         run: python scripts/fetch_data.py 2>&1 | tee -a data/derived/run_log.txt
+      - name: Export the pruned extracts the analysis reads (keeps the committed data in step with the numbers)
+        run: |
+          set -o pipefail
+          python scripts/export_extracts.py 2>&1 | tee -a data/derived/run_log.txt
       - name: Profile dataset
         run: python scripts/profile.py 2>&1 | tee -a data/derived/run_log.txt
       - name: Analysis
@@ -54,6 +58,7 @@ jobs:
           git config user.name "line-lab-bot"
           git config user.email "line-lab-bot@users.noreply.github.com"
           git add -f data/derived
+          git add data/provenance.json
           git add index.html pages assets
           if git diff --cached --quiet; then echo "no changes"; else
             git commit -m "data: refresh derived datasets [skip ci]"
