@@ -1174,7 +1174,7 @@ was modified. Branch name is fixed by the environment; no separate session branc
 | SL-6 | 10-gate strategy competition, negative/leakage controls, skill-based leaderboard & reward tiers | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/strategies.py`, `skill-lab/data/strategies.json`, `skill-lab/data/leaderboard.json` |
 | SL-7 | Executive summary & static GitHub Pages dashboard (`skill-lab/`) + Flagged for Review page | done | `arena/2b9898f7-korea2` | `skill-lab/EXECUTIVE_SUMMARY.md`, `skill-lab/index.html`, `skill-lab/pages/*.html`, `skill-lab/assets/*`, `skill-lab/scripts/build_site.py` |
 | SL-8 | Automated line-by-line verification suite & CI workflow (`skill-lab/scripts/verify_all.py`) | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/verify_all.py`, `.github/workflows/skill-lab.yml` |
-| SL-9 | Final re-verification, PR to `main`, merge & GitHub Pages live deployment check | in progress | `arena/2b9898f7-korea2` | `COORDINATION.md` (this section), PR to `main` |
+| SL-9 | Final re-verification, PR to `main`, merge & GitHub Pages live deployment check | done | `arena/2b9898f7-korea2` | `COORDINATION.md` (this section), PR [#57](https://github.com/karagemop466-tech/Korea2/pull/57) |
 
 ## Scope & parallel-session coordination — `arena/2b9898f7-korea2`
 
@@ -1183,7 +1183,9 @@ was modified. Branch name is fixed by the environment; no separate session branc
 - **Strict non-overlapping scope:** `arena/2b9898f7-korea2` writes **only** inside `skill-lab/`, `.github/workflows/skill-lab.yml`, and this section of `COORDINATION.md` (reads committed datasets under `data/` and sibling files read-only for line-by-line verification). Zero files owned by any sibling session are modified.
 - **Navigation request logged for root-site / integration owner:** once `skill-lab/` merges to `main`, please add a link to `skill-lab/index.html` on `pages/archive.html` / shared root navigation when convenient.
 
-## Log — `arena/2b9898f7-korea2`
+## Log & Release Record — `arena/2b9898f7-korea2`
 - 2026-11-02 UTC: Inspected `COORDINATION.md` on `main` (`c6f3571`) and remote branch heads (`arena/652b0095-korea2` active). Recorded non-overlapping `skill-lab/` task claims above before starting implementation; committed and pushed claim immediately.
 - 2026-11-02 UTC: **Merge conflicts resolved on `COORDINATION.md` during `git pull --rebase origin main`** after `arena/652b0095-korea2` (`95bbd78`), `arena/cacf6153-korea2` (`397f3cd`), and `arena/89b8d356-korea2` (`d926101`) merged to `main`. All sessions had appended sections to `COORDINATION.md`; resolved by preserving 100% of every session's entries verbatim above and placing `arena/2b9898f7-korea2`'s section directly below `---`. Zero `skill-lab/` files conflicted.
 - 2026-11-02 UTC: Executed SL-1..SL-8 (`originate.py`, `signals_and_luck.py`, `correlations.py`, `strategies.py`, `repo_audit.py`, `build_site.py`, `verify_all.py`), reconciling 2025 (32/32) and 2026 (32/32) NFL.com standings and 7/7 player stat logs cleanly, with 335/335 table rows linked to official sources and 77 strictly blank unverified cells.
+- 2026-11-02 UTC: **Pull Request & Merge Result:** Opened and merged [PR #57 — Add NFL Skill Lab: walk-forward origination, copula pricing, 10-gate strategy competition & NFL.com audit](https://github.com/karagemop466-tech/Korea2/pull/57) (`arena/2b9898f7-korea2` → `main`) with all 4 CI checks green (`verify-skill-lab`, `validate`, `verify`, `tests-and-links`). Merge commit: `923522e405033d1e5944d2bab565eeac30d887eb` (`2026-11-02T18:04:16Z`).
+- 2026-11-02 UTC: **GitHub Pages Deployment Confirmed:** Workflow run `41497052088` and Pages API build `1335622341` reached status **`built`** (`error: null`) for commit `923522e405033d1e5944d2bab565eeac30d887eb`. Live pages verified via HTTP fetch at <https://karagemop466-tech.github.io/Korea2/skill-lab/> and <https://karagemop466-tech.github.io/Korea2/skill-lab/pages/flagged.html>.
