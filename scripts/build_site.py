@@ -906,8 +906,9 @@ def page_sources() -> str:
         'confirmation notes rather than re-asserted as verified here.</p></div>'
         + section("1. Verified by this build", table(
             ["Source", "Publisher", "Type", "What was confirmed", "Link"], rows_own,
-            caption="Each entry was opened on 2026-11-01 and its content read; sources that could not be "
-                    "confirmed are excluded and appear on the Flagged for review page instead."))
+            caption="Each entry was opened and its content read - on 2026-11-01 for the original build, "
+                    "on 2026-11-02 for the entries added by the follow-up integration session; sources that "
+                    "could not be confirmed are excluded and appear on the Flagged for review page instead."))
         + section("2. Registry entries from sibling sessions", table(
             ["Source", "Publisher", "Type", "Confirmation note as recorded", "Link"], rows_sib,
             caption="Carried over unchanged from the shared registry so the two sessions do not "
@@ -1122,6 +1123,13 @@ def page_flagged() -> str:
          "Home teams have a negative mean margin in 2026 so far. A single partial season is not "
          "enough to re-estimate home advantage, so the model shrinks toward a ten-season prior.",
          "nflverse-data", "Shrinkage is documented in the model spec."),
+        ("Cited operator rulebook edition is archived as obsolete", "low",
+         "The settlement rules quoted from the DraftKings Massachusetts house rules were read from "
+         "the 8.1.24 edition. The regulator's own archive lists that edition as obsolete (since "
+         "8.18.15); the active edition is the one approved 10.7.26. The old link still resolves and "
+         "the cited push/parlay/teaser rules are standard, but the citation is edition-stale.",
+         "SRC-MGC-DK-RULES-ARCHIVE",
+         "Flagged, not silently swapped: re-point the citation at the active 10.7.26 edition at the next pipeline run."),
     ]
     rows = []
     for title, sev, detail, sid, status in items:

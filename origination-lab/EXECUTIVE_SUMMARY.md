@@ -42,7 +42,7 @@ evidence, and a live dashboard instead of a fantasy bankroll.
 | Signals tested | 27 | 0 survived FDR + out-of-sample |
 | Strategies tested | 18 | 0 passed all seven gates |
 | Strongest leg correlation | φ = 0.672 (home ML × home cover) | same-game legs are not independent |
-| Cross-game correlation | φ = 0.029 (CI −0.002 to 0.059) | standard parlays across games are fine |
+| Cross-game association | φ = −0.005 (week-clustered CI −0.014 to 0.005) | consistent with independence across games; not a proof of joint independence |
 | Sigma of a zero-edge bettor | 3.01% over 1,000 bets | luck is wide |
 
 ## 4. Findings that matter
@@ -69,8 +69,10 @@ multiplies independent leg probabilities mis-prices any pair with |φ| meaningfu
 Home moneyline × home cover ATS: **φ = 0.672** (95% CI 0.657–0.686). Spread × total in the same game:
 **φ = 0.025** (CI −0.002 to 0.051) — effectively independent. QB passing yards over our line × team total
 over: **φ = 0.198**. RB rushing × team total: **0.073**. Receiver yards × team total: **0.074**.
-QB passing × his top receiver's yards: **0.157**. Different games, same week: **0.029**, so the classic
-parlay independence assumption is sound across games and only questionable within them.
+QB passing × at least one of his receivers (any-receiver event, not a pregame-chosen player): **0.157**.
+Different games, same week: **−0.005** (week-clustered 95% interval −0.014 to 0.005), so the classic
+parlay independence assumption is consistent with the data across games (a week-clustered
+check, not a proof of joint independence) and clearly violated inside a game.
 
 **4.5 Luck can be measured and mostly explains everything.**
 Twenty thousand simulated zero-edge bettors placing 1,000 bets each at −110 produce a return standard

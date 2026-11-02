@@ -129,6 +129,14 @@ def main() -> None:
     games, _ = D.load_games()
     player, _ = D.load_player_week()
     pg = D.player_games(player, games)
+    # The "next slate" is the first week of the LATEST season that has not been played yet.
+    # pg only contains played games, so pg["week"].max() is the max played week across ALL
+    # seasons (18 in 2021+ seasons) - using it + 1 mislabels the slate (it produced "week 19").
+    # Mirror analyze_model.py: last played regular-season week of the latest season, + 1.
+    latest = int(games["season"].max())
+    reg_played = games[(games["game_type"] == "REG") & (games["home_score"].notna())]
+    last_week = int(reg_played[reg_played["season"] == latest]["week"].max())
+    next_week = last_week + 1
     out: dict = {
         "scope": {"seasons": [int(pg["season"].min()), int(pg["season"].max())],
                   "test_seasons": [TEST_START, int(pg["season"].max())],
@@ -146,7 +154,8 @@ def main() -> None:
         out["evaluations"].append(ev)
         out["originated"][spec["stat"]] = {
             "label": spec["label"],
-            "week": int(pg["week"].max()) + 1,
+            "week": next_week,
+            "generated_from": f"player-games through week {last_week} of {latest}",
             "players": originate(pg, spec, median_resid),
         }
         print(spec["stat"], ev.get("n"), ev.get("mae_forecast"), ev.get("mae_baseline_season_mean"),

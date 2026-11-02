@@ -5570,3 +5570,73 @@ wrote index.html and 14 pages
 checked 85 pages (15 published by this build, 70 other), 223 tables, 3460 links
 note: 28 page(s) outside the published build do not carry per-row source columns and are link-checked only.
 all site checks passed
+
+=== market efficiency
+market.json written
+  spread_all       n= 7087 slope=1.049 r2=0.185 rmse=13.17
+  total_all        n= 7087 slope=0.937 r2=0.104 rmse=13.39
+  spread_1999-2009 n= 2792 slope=1.043 r2=0.180 rmse=13.38
+  total_1999-2009  n= 2792 slope=0.897 r2=0.088 rmse=13.67
+  spread_2010-2019 n= 2560 slope=1.063 r2=0.178 rmse=13.30
+  total_2010-2019  n= 2560 slope=0.968 r2=0.088 rmse=13.30
+  spread_2020-2026 n= 1735 slope=1.042 r2=0.202 rmse=12.61
+  total_2020-2026  n= 1735 slope=1.004 r2=0.107 rmse=13.04
+  blind home ROI -0.0489 n 5185
+  blind over ROI -0.0335
+  overround spread 0.027
+    done in 2.9s
+
+=== strategy walk-forward + gates
+strategies.json written
+  S1_away_blanket      n= 5185 hit= 49.9% roi= -0.06% t=-0.04 p=0.965 perm=0.0284
+  S2_rest_spot         n= 1096 hit= 50.2% roi= +0.24% t=+0.08 p=0.934 perm=0.16445
+  S3_weather_under     n=  430 hit= 54.4% roi= +7.14% t=+1.54 p=0.125 perm=0.0166
+  S4_div_home_dog      n=  721 hit= 48.0% roi= -4.06% t=-1.13 p=0.258 perm=0.6604
+  S5_model_edge        n= 1652 hit= 47.8% roi= -4.87% t=-2.06 p=0.040 perm=0.82895
+  model vs market: {'n': 2687, 'n_excluded_missing_price': 1, 'price_policy': 'model-vs-market comparison restricted to games with both stored spread prices; nothing imputed (issue #19)', 'logloss_model': 0.7152, 'logloss_market': 0.6943, 'brier_model': 0.2602, 'brier_market': 0.2506, 'brier_skill_vs_market': -0.0384, 'market_brier_skill_vs_coinflip': -0.0024, 'accuracy': 0.4879, 'model_vs_market_r2': 0.6735, 'sigma': 16.1046}
+    done in 4.3s
+
+=== correlation study
+correlations.json written
+  +0.630  n=  6021  QB passing yards vs that team's top receiver (same game, ex-post leade
+  +0.645  n=  6030  Team passing yards vs top receiver's yards (same game, ex-post leader)
+  +0.474  n=  6028  Top-two receivers' yards (same team, same game, ranked ex-post)
+  +0.111  n=  6027  Top-two receivers' yards, holding team passing volume constant (ex-pos
+  -0.149  n=  6030  Lead RB rushing yards vs team passing yards (same game)
+  -0.039  n=  6030  Lead RB rushing yards vs top receiver's yards (same team, same game, e
+  +0.860  n= 40439  A player's own receptions vs own receiving yards (same game)
+  +0.172  n=  2883  Home QB passing yards vs away QB passing yards (same game)
+  +0.174  n=  2891  Total receiving yards, home vs away (same game)
+  +0.017  n=  7087  Home margin vs game total (completed games)
+  -0.010  n=  7087  Closing spread vs closing total
+  +0.021  n=  7087  Home ATS result vs game total, same game
+  SGP qb_plus_wr1: naive 0.248 vs actual 0.357 x1.44
+  SGP wr1_plus_wr2: naive 0.244 vs actual 0.324 x1.33
+    done in 0.7s
+
+=== player props
+  receiving_yards  n= 27811 MAE= 20.33 skill_last5= +2.0% over(mean)=0.391 over(cal)=0.487 mult=0.768
+  rushing_yards    n= 11607 MAE= 20.68 skill_last5= +1.9% over(mean)=0.374 over(cal)=0.494 mult=0.734
+  passing_yards    n=  4967 MAE= 69.43 skill_last5= +2.1% over(mean)=0.478 over(cal)=0.505 mult=0.975
+  receptions       n= 39421 MAE=  1.35 skill_last5= +1.7% over(mean)=0.417 over(cal)=0.490 mult=0.845
+props.json written
+    done in 7.2s
+
+=== line origination
+originate.json: {'n_games': 16, 'mean_abs_line_gap': 3.6550365232094495, 'corr_our_line_market_line': 0.8354116192390232}
+   8 CHI @ SEA ours -1.8 mkt 3.0 | tot 45.3 46.5
+   9 JAX @ BAL ours -10.0 mkt -8.5 | tot 45.6 43.5
+   9 CIN @ ATL ours -5.6 mkt -3.0 | tot 46.8 51.5
+   9 DEN @ CAR ours -3.7 mkt -3.0 | tot 46.4 43.5
+   9 DAL @ IND ours -5.4 mkt -6.0 | tot 47.6 51.5
+    done in 0.1s
+
+=== official verification
+verification: 32/32 teams match NFL.com; 120 games settled; player spot check 3/3
+    done in 0.3s
+
+=== render site
+site write skipped: published root site is owned by line-lab (scripts/build_site.py); this generator rendered 12 pages in memory without clobbering it
+    done in 0.0s
+
+build complete in 15.5s

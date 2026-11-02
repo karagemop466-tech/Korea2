@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="skill-lab/scripts/build_site.py">
+  <title>Signals &amp; FDR | NFL Skill Lab</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <div class="brand-title">NFL Skill Lab &mdash; Line Origination, Copula Pricing &amp; Gated Strategy Competition</div>
+        <div class="brand-meta">
+          Verified 2026-11-02 UTC &middot; Branch <code>arena/2b9898f7-korea2</code> &middot;
+          <a href="../../index.html">Repo Root Site</a>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Skill Lab Sections">
+        <a href="../index.html">Overview</a><a href="summary.html">Executive Summary</a><a href="origination.html">Line &amp; Prop Origination</a><a href="signals.html" class="active">Signals &amp; FDR</a><a href="luck-skill.html">Skill vs. Luck</a><a href="correlations.html">Correlations &amp; Copula</a><a href="leaderboard.html">Leaderboard &amp; Rewards</a><a href="strategies.html">Singles, Parlays &amp; Props</a><a href="gates.html">10-Gate Matrix</a><a href="official-audit.html">NFL.com Audit</a><a href="repo-review.html">Repo Review</a><a href="flagged.html">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    
+    <section class="hero">
+      <h1>Pre-Kickoff Signal Research &amp; Benjamini-Hochberg FDR Screening</h1>
+      <p>
+        Every candidate signal is computed strictly from information known prior to kickoff across the verified <strong>2018-2026 regular season (strictly pre-kickoff signals, actual closing prices only)</strong> sample (100% real closing vig, pushes graded <code>0.0u</code>, never imputing <code>-110</code>).
+        Across <code>M = 10</code> tested hypotheses, two-sided p-values are adjusted via Benjamini-Hochberg False Discovery Rate (<code>q &le; 0.10</code>).
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>10-Signal Hypothesis Screening Table (0 / 10 Clear BH-FDR q &le; 0.10)</h2>
+      <div class="callout">
+        <strong>Why Raw Edge != True Skill:</strong> Outdoor Wind &ge; 15 mph Unders (<code>SIG-08</code>) win <code>56.58%</code> (<code>+9.20%</code> raw ROI over <code>152</code> games), and Divisional Home Underdogs (<code>SIG-07</code>) win <code>52.38%</code> (<code>+0.67%</code> ROI over <code>231</code> games). Yet under two-sided testing and 10-hypothesis BH-FDR control, <code>SIG-08</code> reaches only <code>q = 0.4786</code> &mdash; indistinguishable from the top draw among 10 noisy trials against a <code>~4.5%</code> vigorish hurdle.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Signal Hypothesis</th>
+              <th>Market</th>
+              <th class="num">Settled N</th>
+              <th class="num">Win %</th>
+              <th class="num">Full ROI</th>
+              <th class="num">2024-26 ROI</th>
+              <th class="num">t-stat</th>
+              <th class="num">p-value</th>
+              <th class="num">BH-FDR q</th>
+              <th>FDR Verdict</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono"><strong>SIG-01</strong></td><td><strong>EPA Skill vs Scoreboard Luck Divergence (&gt;= 3.5 pts/g)</strong></td><td>Spread</td><td class="num">709</td><td class="num">47.53%</td><td class="num">-7.90%</td><td class="num">-0.58%</td><td class="num">-2.17</td><td class="num">0.0304</td><td class="num">0.3043</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://support.nfl.com/hc/en-us/articles/35869706651156-NFL-Pro-FAQ-s-and-Answers" target="_blank" rel="noopener">SL-SRC-15 (NFL Support)</a></td></tr><tr><td class="mono"><strong>SIG-02</strong></td><td><strong>One-Score Luck Regression Fade (Net Close-Game Diff &gt;= 3)</strong></td><td>Spread</td><td class="num">784</td><td class="num">48.98%</td><td class="num">-5.60%</td><td class="num">-12.19%</td><td class="num">-1.62</td><td class="num">0.1045</td><td class="num">0.4786</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc136.htm" target="_blank" rel="noopener">SL-SRC-24 (NIST (U.S. Dept. of Commerce))</a></td></tr><tr><td class="mono"><strong>SIG-03</strong></td><td><strong>Turnover-Spike Mean Reversion (&gt;= 3 Giveaways, Positive EPA)</strong></td><td>Spread</td><td class="num">191</td><td class="num">50.79%</td><td class="num">-1.99%</td><td class="num">+11.21%</td><td class="num">-0.28</td><td class="num">0.7770</td><td class="num">0.8672</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://support.nfl.com/hc/en-us/articles/35869706651156-NFL-Pro-FAQ-s-and-Answers" target="_blank" rel="noopener">SL-SRC-15 (NFL Support)</a></td></tr><tr><td class="mono"><strong>SIG-04</strong></td><td><strong>Originated Spread Disagreement (&gt;= 2.5 pts vs Closing Line)</strong></td><td>Spread</td><td class="num">998</td><td class="num">50.70%</td><td class="num">-2.59%</td><td class="num">-7.29%</td><td class="num">-0.85</td><td class="num">0.3958</td><td class="num">0.6597</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010595" target="_blank" rel="noopener">SL-SRC-18 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>SIG-05</strong></td><td><strong>Key-Number Crossing Edge (Crosses +/-3 or +/-7 by &gt;= 1.5 pts)</strong></td><td>Spread</td><td class="num">766</td><td class="num">51.83%</td><td class="num">-0.77%</td><td class="num">-9.58%</td><td class="num">-0.22</td><td class="num">0.8239</td><td class="num">0.8672</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010595" target="_blank" rel="noopener">SL-SRC-18 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>SIG-06</strong></td><td><strong>Post-Bye / Long-Rest Advantage (&gt;= +6 Days Rest + Top-Half Defense)</strong></td><td>Spread</td><td class="num">93</td><td class="num">45.16%</td><td class="num">-12.99%</td><td class="num">-13.08%</td><td class="num">-1.30</td><td class="num">0.1976</td><td class="num">0.4786</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html" target="_blank" rel="noopener">SL-SRC-26 (scikit-learn.org)</a></td></tr><tr><td class="mono"><strong>SIG-07</strong></td><td><strong>Divisional Home Underdog Compression (Divisional Dog &gt;= +3.0)</strong></td><td>Spread</td><td class="num">232</td><td class="num">52.59%</td><td class="num">+1.06%</td><td class="num">+17.03%</td><td class="num">+0.17</td><td class="num">0.8672</td><td class="num">0.8672</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010595" target="_blank" rel="noopener">SL-SRC-18 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>SIG-08</strong></td><td><strong>Outdoor High-Wind Total Under (Outdoor Wind &gt;= 15 mph)</strong></td><td>Total</td><td class="num">152</td><td class="num">56.58%</td><td class="num">+9.20%</td><td class="num">-10.83%</td><td class="num">+1.18</td><td class="num">0.2393</td><td class="num">0.4786</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://www.weather.gov/documentation/services-web-api" target="_blank" rel="noopener">SL-SRC-28 (weather.gov (NOAA))</a></td></tr><tr><td class="mono"><strong>SIG-09</strong></td><td><strong>Outdoor Freezing-Weather Total Under (Outdoor Temp &lt;= 32 F)</strong></td><td>Total</td><td class="num">71</td><td class="num">47.89%</td><td class="num">-7.86%</td><td class="num">-30.10%</td><td class="num">-0.68</td><td class="num">0.4960</td><td class="num">0.7086</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://www.weather.gov/documentation/services-web-api" target="_blank" rel="noopener">SL-SRC-28 (weather.gov (NOAA))</a></td></tr><tr><td class="mono"><strong>SIG-10</strong></td><td><strong>Originated Total Disagreement (&gt;= 3.0 pts vs Closing Total)</strong></td><td>Total</td><td class="num">633</td><td class="num">49.29%</td><td class="num">-4.92%</td><td class="num">-3.31%</td><td class="num">-1.28</td><td class="num">0.2006</td><td class="num">0.4786</td><td><span class="badge badge-fail">REJECTED BY FDR</span></td><td><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">SL-SRC-27 (scikit-learn.org)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="site-footer">
+    <strong>Responsible Research Disclosure:</strong> Quantitative sports-market research and paper-competition evaluation only; no real-money wagering advice or funded prize pool exists.
+    Every table row cites a verified official source; unconfirmable figures are left strictly blank and logged on the <a href="flagged.html">Flagged for Review</a> page.
+    Confidential support: <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener">NCPG 1-800-MY-RESET</a>.
+  </footer>
+</body>
+</html>

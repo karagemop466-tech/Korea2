@@ -9,10 +9,13 @@
 # workflows (data-pipeline, fetch-nflverse) hit exactly that on 2026-11-02: the branch was
 # pushed, no pull request existed, and the run went red after every check had passed.
 #
-# This wrapper keeps the fail-closed checks, but when - and only when - PR creation is
-# refused for that specific reason, it pushes the already-prepared commit to `main`
-# directly (the same mechanism the pipeline used before it was made PR-based) and records
-# why in the run summary and the commit trailer. Any other error still fails the run.
+# This wrapper keeps the fail-closed checks. When - and only when - PR creation is
+# refused for that specific reason, it leaves the validated branch in place, records
+# the limitation in the run summary and exits 0: nothing is published to the target
+# branch without a review, and `main` is not red for a permission it cannot change.
+# (An earlier version fell back to a direct push; `main` is protected so that push is
+# refused, and a direct push would bypass the review issue #20 requires.) Any other
+# error still fails the run.
 #
 # Usage: publish_refresh.sh <branch-name> <commit-subject> <pr-body-file>
 set -uo pipefail
@@ -37,50 +40,55 @@ fi
 echo "gh pr create failed:"
 cat "$ERR_FILE"
 
-# Record the exact refusal on the short-lived branch (and in the commit trailer): this
-# sandbox cannot read Actions logs, and the branch survives the run, so the reason stays
-# inspectable with `gh api .../contents/ci/publish-error.txt?ref=<branch>`.
-mkdir -p ci
-{
-  echo "gh pr create refused to open a pull request for this refresh."
-  echo "run: ${GITHUB_RUN_ID:-local}   branch: $BRANCH   target: $TARGET"
-  echo "utc: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-  echo "---"
-  cat "$ERR_FILE"
-  echo "---"
-  echo "Falling back to a direct push to $TARGET, because every fail-closed data check passed"
-  echo "before this step. See scripts/ci/publish_refresh.sh."
-} > ci/publish-error.txt
+# Actions logs cannot be read from this project's build sandbox (the log endpoint
+# redirects to a host that is not reachable), so the refusal records itself on the
+# branch, which outlives the run and can be read back with the contents API:
+#   gh api 'repos/<owner>/<repo>/contents/ci/publish-error.txt?ref=<branch>'
+record_error() {
+  mkdir -p ci
+  {
+    echo "gh pr create did not open a pull request for this refresh."
+    echo "run: ${GITHUB_RUN_ID:-local}   branch: $BRANCH   target: $TARGET"
+    echo "utc: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    echo "---"
+    cat "$ERR_FILE"
+    echo "---"
+  } > ci/publish-error.txt
+  git add -f ci/publish-error.txt >/dev/null 2>&1 || return 0
+  git commit --amend --no-verify --no-edit \
+    -m "Automated refresh (pull request not opened: see ci/publish-error.txt)" \
+    -m "gh pr create did not open a pull request for run ${GITHUB_RUN_ID:-local}; its exact message is kept in ci/publish-error.txt on this branch. Every fail-closed data check ran on the runner before this commit." \
+    >/dev/null 2>&1 || return 0
+  git push --force origin "HEAD:$BRANCH" >/dev/null 2>&1 \
+    || echo "::warning::could not attach the error to $BRANCH"
+}
+record_error
 
 if grep -qiE "not permitted to create or approve pull requests|Resource not accessible by (integration|personal access token)" "$ERR_FILE"; then
-  echo "::warning::this repository does not let the Actions token open pull requests; pushing the refresh commit to $TARGET directly instead"
-  REASON="the Actions token may not open pull requests here"
-else
-  echo "::warning::gh pr create failed for an unexpected reason; publishing the checked commit to $TARGET directly and leaving the error on branch $BRANCH"
-  REASON="gh pr create failed (\`ci/publish-error.txt\` on $BRANCH records the message)"
+  # Issue #20 correction (session arena/cacf6153-korea2, 2026-11-02): the earlier
+  # fallback pushed the refresh commit straight to the target branch. `main` is
+  # protected, so that push is refused anyway, and a direct push is exactly what
+  # issue #20 forbids: a refresh that changes published numbers would bypass
+  # review. The branch IS pushed and fully validated, so this is not a data
+  # failure - it is a publishing-permission limitation. Leave the branch in place,
+  # say so loudly, and finish green so `main` is not red for a permission it
+  # cannot change. Nothing reaches `main` without a pull request.
+  echo "::warning::the Actions token may not open pull requests; branch $BRANCH is pushed and validated but no pull request was opened. Open one from that branch, or enable Settings -> Actions -> General -> Allow GitHub Actions to create and approve pull requests."
+  if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+    {
+      echo "### Refresh branch pushed; pull request not opened"
+      echo
+      echo "Run \`${GITHUB_RUN_ID:-local}\` validated the refresh and pushed branch \`$BRANCH\`."
+      echo "The repository refused pull-request creation to the Actions token, so nothing was"
+      echo "pushed to \`$TARGET\` (and none should be: refreshes are reviewed before they publish)."
+      echo
+      echo "Open the pull request from \`$BRANCH\`, or enable *Settings -> Actions -> General ->"
+      echo "Allow GitHub Actions to create and approve pull requests* to restore the automatic path."
+    } >>"$GITHUB_STEP_SUMMARY"
+  fi
+  echo "pushed $BRANCH; open a pull request from it"
+  exit 0
 fi
 
-git add -f ci/publish-error.txt
-git commit --amend --no-verify --no-edit \
-  -m "Automated refresh (direct push: the Actions token may not open pull requests)" \
-  -m "Pull request creation was refused for run ${GITHUB_RUN_ID:-local}; the exact message is kept in ci/publish-error.txt on the refresh branch, and every fail-closed data check ran on the runner before this commit. See scripts/ci/publish_refresh.sh." \
-  >/dev/null 2>&1 || true
-if ! git push origin "HEAD:$TARGET"; then
-  echo "::error::could not push the refresh commit to $TARGET either; merge $BRANCH by hand"
-  exit 1
-fi
-git push --force origin "HEAD:$BRANCH" || echo "::warning::could not update $BRANCH with the amended commit"
-
-if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
-  {
-    echo "### Refresh published by direct push"
-    echo
-    echo "$REASON, so run \`${GITHUB_RUN_ID:-local}\` pushed the checked refresh commit to \`$TARGET\`"
-    echo "directly; branch \`$BRANCH\` was left behind for inspection."
-    echo
-    echo "To use the pull-request path, enable *Settings -> Actions -> General ->"
-    echo "Allow GitHub Actions to create and approve pull requests*."
-  } >>"$GITHUB_STEP_SUMMARY"
-fi
-echo "pushed $BRANCH to $TARGET"
-exit 0
+echo "::error::gh pr create failed for a reason other than the Actions PR permission; the message is also on branch $BRANCH in ci/publish-error.txt"
+exit 1

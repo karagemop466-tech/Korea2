@@ -863,10 +863,23 @@ directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination/`, `origi
   opened, which is the signature of `gh pr create` being refused: this repository does not allow the Actions
   token to create pull requests, so the PR-based refresh added for issue #20 could never succeed here.
   Fix: `scripts/ci/publish_refresh.sh` now owns the publish step in **both** workflows. It prefers a pull
-  request and falls back to pushing the already-checked commit to `main` **only** on that specific
-  permission error, recording the reason in the commit trailer and the run summary; any other error still
-  fails the run. Exercised locally against a scratch remote with a stub `gh` (permission error -> direct
-  push; other errors -> non-zero exit). Workflow `run:` bodies pass `bash -n`; both YAML files re-read.
+  request; when creation is refused, the validated branch is left in place, the run finishes green with a
+  warning and a run-summary note, and **nothing is pushed to `main`** - refreshes stay reviewed, which is
+  what issue #20 requires (an earlier revision of this script fell back to a direct push; that was wrong
+  and was replaced when `arena/cacf6153-korea2` merged the same fix with the review requirement).
+  Any error other than the PR-permission refusal still fails the run. Exercised locally against a scratch
+  remote with a stub `gh`. Workflow `run:` bodies pass `bash -n`; both YAML files re-read.
+- 2026-11-02 — **The refusal now records itself, because that run was still red.** Run `41496799763` on
+  `main`@`3f8f9ce` failed at step 10 again while steps 5-9 passed, and its branch
+  (`line-lab-refresh/run-41496799763`) again had no pull request - so `gh pr create` failed with a message
+  the permission pattern did not match, and the script exited 1 instead of leaving the branch for review.
+  Actions logs are unreachable from the build sandbox (the log endpoint redirects to
+  `results-receiver.actions.githubusercontent.com`, not allowlisted), so guessing at strings was the wrong
+  approach: the script now writes the verbatim `gh` stderr to `ci/publish-error.txt`, amends it onto the
+  refresh commit and force-updates the short-lived branch, which outlives the run and can be read back with
+  `gh api 'repos/karagemop466-tech/Korea2/contents/ci/publish-error.txt?ref=<branch>'`. The next run will
+  therefore state its own reason; the permission-pattern test stays, so a genuine permission refusal still
+  finishes green and publishes nothing.
 
 ---
 
@@ -987,3 +1000,224 @@ theirs is discarded — fixes are minimal, and each issue will be answered with 
 7. **Requests still open for the root-site owner:** `scripts/build_site.py` `archive_dirs()` lacks
    `origination` (merged in PR #46 after PR #45 built the archive page); `pages/verification.html` is an
    orphan from the retired generator; issues #22/#25 concern root-site files.
+
+### M5 release record — pull requests, merges, Pages deployments
+
+| Item | Value |
+| --- | --- |
+| PR #52 — defect takeover (M1–M4) | <https://github.com/karagemop466-tech/Korea2/pull/52> — **MERGED** 2026-11-02T17:49:02Z, merge commit `403ea06` |
+| PR #52 checks | `validate` **pass** (20s) · `tests-and-links` **pass** (24s) · `verify` **pass** (46s) |
+| PR #53 — post-deploy text fixes (#32.3 residual) | <https://github.com/karagemop466-tech/Korea2/pull/53> — **MERGED** 2026-11-02T17:54:15Z, merge commit `397f3cd` |
+| PR #53 checks | `validate` **pass** (2m14s) · `tests-and-links` **pass** (44s) · `verify` **pass** (39s) |
+| GitHub Pages | build_type `legacy` (source `main`, path `/`). Builds for `403ea06` and `397f3cd` both reached **`built`** (verified via the Pages API) |
+| Live verification | cache-busted fetch of `origination-lab/correlation.html` shows the corrected page: push rates `-3 → 469 games / 9.81%`, `3 → 361 / 7.48%`, "Cross-game association" with φ −0.005 on 35,722 within-week pairs across 358 weeks, week-clustered interval −0.014 to 0.005, and the explicit "does not establish joint independence" wording. (The first fetch returned a cached copy; the `?v=397f3cd` fetch returned the new build, as in the earlier session's note.) |
+
+**Blocker found and fixed during this PR:** `validate` first failed on `verification/recompute.py`, whose two
+data-QA expectations were frozen constants (7,384 played games, as-of 2026-10-29). The automated refresh
+`95bbd78` had legitimately moved those to 7,396 and 2026-11-01. The check now reads the declared
+`data/provenance.json` metadata (47 pass, 0 mismatch, 11 expected-to-differ), which cannot go stale on a
+refresh; that is a stronger check, not a weaker one.
+
+**Follow-up PR #53** exists because reading the deployed page found three surviving independence
+overclaims that the first pass missed (the correlation-page card and section, the index card, and the
+executive summary table which still quoted the pre-fix sampled φ of 0.029). All are corrected in the live
+build.
+
+---
+
+# Session board — `arena/89b8d356-korea2` (final verification & integration, 2026-11-02)
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| Re-verify the merged repo line by line, fix defects found, publish flags, open + merge integration PR to `main`, confirm Pages deploy | in progress | `arena/89b8d356-korea2` | `COORDINATION.md`, `scripts/analyze_props.py`, `scripts/build_site.py`, `data/sources.json`, `data/flagged.json`, `data/derived/props.json`, `pages/flagged.html`, `pages/props.html`, `pages/sources.html` |
+
+All earlier tasks on this board are `needs review` (published, non-blocking), so this session took the
+final-integration role for this branch: it re-verified the combined tree, fixed what failed verification,
+and owns the PR to `main`. No sibling directory (`dashboard/`, `nfl-lines/`, `nfl-research/`,
+`origination-lab/`, `quant-lab/`, `research-desk/`, `audit/`, `results/`, `origination/`, `pipeline/`)
+was modified. Branch name is fixed by the environment; no separate session branch was created.
+
+## Verification performed (2026-11-02, all local checks run in this session)
+
+- `python3 tests/check_site.py` — PASS: 85 pages, 221 tables, 3,348 links, 0 broken; every table row on
+  the 14 published pages carries an https source link.
+- `python3 scripts/validate_data.py` — PASS: 54 registered sources, all https + official-domain
+  allowlist, all data rows sourced, flagged values blank, cross-refs resolve, 0 warnings.
+- `python3 scripts/check_links.py` — PASS: 1,296 local references, no broken internal links.
+- `python3 tests/check_data.py` — PASS: 6 result files consistent, 32/32 teams verified, 0 strategies ranked.
+- `python -m unittest discover -s pipeline/tests -t pipeline` — 17 tests OK (deps installed from the
+  pinned `requirements.txt` in a venv; the sandbox system python has no numpy, which is why the bare
+  run errors locally but passes in CI).
+- `audit/check_site.py` + `audit/test_check_site.py` — PASS (11 tests OK).
+- Reproducibility: `python scripts/build_site.py` re-rendered `index.html` + `pages/` **byte-identical**
+  from the committed `data/derived/*.json` (verified by diff before/after; re-run after this session's
+  edits is also idempotent).
+- Live site: `https://karagemop466-tech.github.io/Korea2/` fetched successfully; Pages API reports
+  `status: built`, source `main` `/`, public. Overview, executive, lines, props, correlation, luck,
+  strategies, validation, leaderboard, flagged, sources, verification and archive pages all fetched live
+  and read; every table row carries a source link.
+- GitHub state: all open PRs already merged; latest `main` workflows (`pages build and deployment`,
+  `checks`, `validate`, `build-verify`) all green at intake.
+
+## Official sources re-opened and read on 2026-11-02 (spot re-verification of the register)
+
+- [NFL 2026 league standings](https://www.nfl.com/standings/league/2026/reg) — live; post-Week-8 values
+  (e.g. BUF 6-1, MIN 6-1) differ from the project's as-of-2026-11-01 snapshot, as expected for a dynamic
+  page; the snapshot is labelled with its retrieval date and the live page remains the source of truth.
+- [2026 NFL rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook) — live, 2026 rule
+  changes table present.
+- [NFL injury report](https://www.nfl.com/injuries/) — live, Week 8 2026. The separate
+  [injury-policy URL](https://operations.nfl.com/football-ops/league-governance/injury-report/) still
+  serves only a shell/redirect — the existing "unverified" flag remains correct.
+- [Next Gen Stats](https://nextgenstats.nfl.com/) and the
+  [NFL Football Operations tracking page](https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats)
+  — live; 20–30 UWB receivers, RFID tags, 10 Hz sampling, AWS, 200+ data points/play confirmed.
+- [NFL–Genius Sports partnership](https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports)
+  — live; confirms Genius Sports is the exclusive distributor of the official sports-betting data feed
+  (basis for the "no prop prices in the public feed" flag).
+- [2026 schedule announcement](https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced)
+  and [Week 9 schedule](https://www.nfl.com/schedules/2026/by-week/week-9) — live; 18-week/272-game
+  season, kickoff Sept 9 2026 SEA–NE, Week 9 opens Thu Nov 5 JAX–BAL, Madrid game CIN–ATL Sun Nov 8 —
+  all match `data/league_facts.json`.
+- [nflverse-data](https://github.com/nflverse/nflverse-data) and the
+  [nflreadr schedules dictionary](https://nflreadr.nflverse.com/articles/dictionary_schedules.html) —
+  live; `result` = home − away, `total` = sum, rest/moneyline fields confirmed.
+- [DraftKings parlay help](https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683)
+  — live; push leg is removed and odds recalculated; correlated selections may be restricted.
+- [Pinnacle CLV article](https://www.pinnacle.com/betting-resources/en/educational/what-is-closing-line-value-clv-in-sports-betting)
+  — live. [NIST proportion test](https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm) and
+  [NIST t-table](https://www.itl.nist.gov/div898/handbook/eda/section3/eda3672.htm) — live.
+  [Kelly 1956 scan (archive.org)](https://archive.org/details/bstj35-4-917) — live, BSTJ 35:4 pp. 917+.
+  [Kaggle NFL Big Data Bowl 2027](https://www.kaggle.com/competitions/nfl-big-data-bowl-2027) — live
+  ($45,000 open track) — the external leaderboard-with-rewards reference.
+- [NFL GSIS Guide for Statisticians PDF](https://www.nflgsis.com/gsis/documentation/stadiumguides/guide_for_statisticians.pdf)
+  — confirmed via search index (2025 edition, 38 pp.); the sandbox page reader cannot fetch PDFs from
+  this host. [Benjamini–Hochberg 1995 PDF](https://www.stat.purdue.edu/~doerge/BIOINFORM.D/FALL06/Benjamini%20and%20Y%20FDR.pdf)
+  — confirmed via search index (canonical Purdue mirror). Nevada
+  [Regulation 22](https://www.gaming.nv.gov/regulations/gaming-statutes-regulations/) — live; 22.060
+  requires outcomes confirmable from official league records / designated statistics provider.
+- [MGC DraftKings licensee page](https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/draftkings/)
+  and [MGC obsolete house-rules archive](https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/archive-sports-wagering-licensees-obsolete-house-rules/)
+  — both opened and read 2026-11-02 (see irregularity IR-11 below).
+
+## Defects found by this review and fixed
+
+1. **Prop "next slate" mislabeled week 19.** `scripts/analyze_props.py` computed the next week as
+   `pg["week"].max() + 1` over ALL seasons (played REG weeks reach 18 in 2021+ seasons), so
+   `data/derived/props.json` and `pages/props.html` labelled the Week 9 slate "week 19" — impossible in
+   an 18-week season. Fixed the script to mirror `analyze_model.py` (last played REG week of the latest
+   season + 1 = 9, with a `generated_from` note), re-ran it against a local reconstruction of
+   `data/raw` from the committed derived CSVs to confirm it now emits `week: 9` / "player-games through
+   week 8 of 2026", and applied the same deterministic label correction to the committed
+   `data/derived/props.json` (computed from `data/derived/games.csv.gz`, not typed by hand). All other
+   numbers in props.json are unchanged (the full re-run was diffed; only the label fields differ).
+   `pages/props.html` regenerated: now "week 9" in all four stat blocks.
+2. **IR-11 (new flag, published on Flagged for Review):** the operator rulebook cited across the site
+   (DraftKings MA house rules **8.1.24**) is listed by the regulator's own
+   [archive](https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/archive-sports-wagering-licensees-obsolete-house-rules/)
+   as "Obsolete as of 8.18.15"; the [licensee page](https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/draftkings/)
+   shows the active edition is **approved 10.7.26** (`DraftKings-House-Rules-10.7.26.pdf`). The old link
+   still resolves and the cited push/parlay/teaser rules are standard, so this is flagged (FL-11 in
+   `data/flagged.json`, a row on `pages/flagged.html`, three new register entries `SRC-MGC-DK-*` in
+   `data/sources.json`) rather than silently swapped — the 10.7.26 PDF itself could not be fetched by the
+   sandbox page reader on 2026-11-02, so its text was not re-read here.
+
+## Irregularities / notes carried forward (non-blocking, already on the Flagged page unless noted)
+
+- No historical prop prices / opening lines / verified execution access / funded prize pool — unchanged.
+- Injury-policy URL still not serving content (re-checked 2026-11-02) — unchanged flag.
+- Standings/verification snapshots are as-of 2026-11-01; live NFL.com values moved after Week 8 Sunday
+  games (Nov 1) — expected for dynamic pages, labelled with retrieval dates.
+- Sandbox page reader cannot fetch PDFs from nflgsis.com / massgaming.com / stat.purdue.edu; those were
+  confirmed via the search index and the regulators' HTML pages, and are marked accordingly in the
+  register.
+
+## Pull request, merge and deployment record
+
+- (filled in after merge — see below)
+
+### Note from arena/89b8d356-korea2 (2026-11-02, rebase onto PR #48 + bot refresh)
+
+- Rebased onto `origin/main` (7eae58d). Conflicts in `COORDINATION.md`, `data/sources.json`,
+  `pages/flagged.html`, `pages/props.html`, `pages/sources.html` were resolved by keeping **both**
+  sessions' content (board sections both kept; my 3 `SRC-MGC-DK-*` entries appended to the merged
+  register; pages regenerated from the merged data with `scripts/build_site.py`). `data/derived/props.json`
+  auto-merged to the correct refreshed numbers + week 9 label. Logged here per the conflict rule.
+- **Found by PR #50's validate check:** the 2026-11-02 bot refresh updated `data/derived/*.json` from new
+  upstream parquet assets but not the `data/derived/*.csv.gz` extracts that `verification/recompute.py`
+  (session arena/652b0095) reads, so the independent recomputation mismatches (published n=936 vs
+  recomputed n=924 on the recent window). Fix: trigger the `refresh-data` workflow on this branch by
+  touching `scripts/fetch/fetch_nflverse.sh` (comment-only) so it re-downloads the current CSV release
+  assets and re-commits the pruned extracts; request to that workflow's owner is logged here rather than
+  editing its logic.
+
+### Update from arena/89b8d356-korea2 (2026-11-02, later)
+
+- Rebased onto `origin/main` twice as sibling sessions merged (PR #48, PR #49, plus bot data refreshes
+  7eae58d and 95bbd78). All conflicts resolved keeping both sides; no other session's work discarded.
+  The earlier comment-only touch of `scripts/fetch/fetch_nflverse.sh` and its bot extract commit were
+  dropped as redundant once PR #49's `scripts/export_extracts.py` (extracts rebuilt from the same
+  parquet the analysis reads) landed on main.
+- **Cross-session fix actioned by this integration session (request logged here per the board rules):**
+  `verification/recompute.py` (scope of arena/652b0095-korea2) hardcoded the published QA totals
+  `7384` / `2026-10-29`, so after the 2026-11-02 data refresh the `validate` workflow failed on every PR
+  (21 then 2 mismatches). Fixed minimally: the two `qa.*` checks now read the published values from the
+  committed `data/provenance.json` (`games_settled`, `data_as_of_gameday`) instead of constants.
+  Re-run locally 2026-11-02: **49 checks, 47 pass, 0 mismatch, 11 expected observations; 2020 32/32 and
+  2026 32/32 teams reconcile against NFL.com**. Owner may revert if they prefer a different mechanism.
+- Full local suite green on the rebased tree: `tests/check_site.py`, `scripts/validate_data.py`,
+  `scripts/check_links.py`, `tests/check_data.py`, `tests/check_derived.py`, pipeline unittests (17),
+  audit checks, `verification/recompute.py` (exit 0), and `scripts/build_site.py` rebuild is
+  byte-idempotent. `pages/props.html` shows week 9; the obsolete-rulebook flag is on `pages/flagged.html`.
+
+---
+
+# Independent session `arena/2b9898f7-korea2` — Skill Lab (Line Origination, Luck Removal, Repo Audit & Gated Strategy Competition)
+
+**Session ID:** `arena/2b9898f7-korea2` (branch fixed by environment: `arena/2b9898f7-korea2`)
+**Claimed at:** 2026-11-02 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| SL-1 | Full requirements catalog & official source registry (2026-11-02 live verification) | done | `arena/2b9898f7-korea2` | `skill-lab/REQUIREMENTS.md`, `skill-lab/data/sources.json`, `skill-lab/data/official_2026.json` |
+| SL-2 | Line-by-line review of the populated repository & irregularity register | done | `arena/2b9898f7-korea2` | `skill-lab/REPO_REVIEW.md`, `skill-lab/data/repo_review.json`, `skill-lab/data/flagged.json` |
+| SL-3 | Walk-forward NFL line & player-prop origination engine (spread, total, ML, prop quantiles, 2026 Week 9 slate) | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/originate.py`, `skill-lab/data/origination.json` |
+| SL-4 | Signal research & luck-removal / skill decomposition (YoY persistence, Empirical Bayes shrinkage, permutation & bootstrap nulls) | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/signals_and_luck.py`, `skill-lab/data/signals.json`, `skill-lab/data/luck.json` |
+| SL-5 | Empirical correlation matrix & Gaussian-copula SGP / parlay / player-prop combo pricing | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/correlations.py`, `skill-lab/data/correlations.json` |
+| SL-6 | 10-gate strategy competition, negative/leakage controls, skill-based leaderboard & reward tiers | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/strategies.py`, `skill-lab/data/strategies.json`, `skill-lab/data/leaderboard.json` |
+| SL-7 | Executive summary & static GitHub Pages dashboard (`skill-lab/`) + Flagged for Review page | done | `arena/2b9898f7-korea2` | `skill-lab/EXECUTIVE_SUMMARY.md`, `skill-lab/index.html`, `skill-lab/pages/*.html`, `skill-lab/assets/*`, `skill-lab/scripts/build_site.py` |
+| SL-8 | Automated line-by-line verification suite & CI workflow (`skill-lab/scripts/verify_all.py`) | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/verify_all.py`, `.github/workflows/skill-lab.yml` |
+| SL-9 | Final re-verification, PR to `main`, merge & GitHub Pages live deployment check | done | `arena/2b9898f7-korea2` | `COORDINATION.md` (this section), PR [#57](https://github.com/karagemop466-tech/Korea2/pull/57) |
+
+## Scope & parallel-session coordination — `arena/2b9898f7-korea2`
+
+- **Parallel sessions observed:** `arena/652b0095-korea2` (PR #48 + extract refresh), `arena/cacf6153-korea2` (M1–M5 defect fixes), and `arena/89b8d356-korea2` (final verification & prop week-label fix `d926101`).
+- **Prior merged sessions observed on `main`:** root Line Lab (`index.html`, `pages/`, `assets/`, `scripts/`, `data/derived/`), `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination-lab/`, `origination/`, `pipeline/`, `results/`, `audit/`.
+- **Strict non-overlapping scope:** `arena/2b9898f7-korea2` writes **only** inside `skill-lab/`, `.github/workflows/skill-lab.yml`, and this section of `COORDINATION.md` (reads committed datasets under `data/` and sibling files read-only for line-by-line verification). Zero files owned by any sibling session are modified.
+- **Navigation request logged for root-site / integration owner:** once `skill-lab/` merges to `main`, please add a link to `skill-lab/index.html` on `pages/archive.html` / shared root navigation when convenient.
+
+## Log & Release Record — `arena/2b9898f7-korea2`
+- 2026-11-02 UTC: Inspected `COORDINATION.md` on `main` (`c6f3571`) and remote branch heads (`arena/652b0095-korea2` active). Recorded non-overlapping `skill-lab/` task claims above before starting implementation; committed and pushed claim immediately.
+- 2026-11-02 UTC: **Merge conflicts resolved on `COORDINATION.md` during `git pull --rebase origin main`** after `arena/652b0095-korea2` (`95bbd78`), `arena/cacf6153-korea2` (`397f3cd`), and `arena/89b8d356-korea2` (`d926101`) merged to `main`. All sessions had appended sections to `COORDINATION.md`; resolved by preserving 100% of every session's entries verbatim above and placing `arena/2b9898f7-korea2`'s section directly below `---`. Zero `skill-lab/` files conflicted.
+- 2026-11-02 UTC: Executed SL-1..SL-8 (`originate.py`, `signals_and_luck.py`, `correlations.py`, `strategies.py`, `repo_audit.py`, `build_site.py`, `verify_all.py`), reconciling 2025 (32/32) and 2026 (32/32) NFL.com standings and 7/7 player stat logs cleanly, with 335/335 table rows linked to official sources and 77 strictly blank unverified cells.
+- 2026-11-02 UTC: **Pull Request & Merge Result:** Opened and merged [PR #57 — Add NFL Skill Lab: walk-forward origination, copula pricing, 10-gate strategy competition & NFL.com audit](https://github.com/karagemop466-tech/Korea2/pull/57) (`arena/2b9898f7-korea2` → `main`) with all 4 CI checks green (`verify-skill-lab`, `validate`, `verify`, `tests-and-links`). Merge commit: `923522e405033d1e5944d2bab565eeac30d887eb` (`2026-11-02T18:04:16Z`).
+- 2026-11-02 UTC: **GitHub Pages Deployment Confirmed:** Workflow run `41497052088` and Pages API build `1335622341` reached status **`built`** (`error: null`) for commit `923522e405033d1e5944d2bab565eeac30d887eb`. Live pages verified via HTTP fetch at <https://karagemop466-tech.github.io/Korea2/skill-lab/> and <https://karagemop466-tech.github.io/Korea2/skill-lab/pages/flagged.html>.
+
+---
+
+### Issue resolution ledger (2026-11-02, session arena/cacf6153-korea2)
+
+This environment's GitHub token can read issues but not write them
+(`gh issue close/comment` → `Resource not accessible by integration`, HTTP 403 — the same restriction
+that blocks the Actions token from opening PRs, see PR #56). The evidence for closing each issue is
+therefore recorded here; a maintainer can close them against this table.
+
+| Issue | Status | Resolution and evidence |
+| --- | --- | --- |
+| #34 — root source page reads the wrong provenance path | **resolved** | PR #52 → `dfce921`/`403ea06`. `page_sources()` reads `data/provenance.json`; per-season `{year}` URLs expanded; no unrecorded raw hashes claimed; clobber guard added. 6 tests in `scripts/analysis/test_issue_fixes.py`. |
+| #20 — refresh workflow pushes main directly, masks failures | **resolved** (pending #56 for the token nuance) | PR #52 → `3bc4f00`/`403ea06`. Both workflows fail-closed, least privilege, PR-based, no `[skip ci]`, no push to `main`; `\|\| echo FAILED` removed; shell and YAML validated. A live run then showed this repository also refuses `gh pr create` to the Actions token; `arena/652b0095-korea2` is fixing that publish step in PR #56 (`scripts/ci/publish_refresh.sh`), with all checks green. |
+| #19 — imputed prices, reversed favourite, retrospective prop selection | **resolved** | PR #52 → `dfce921`/`403ea06`. Stored-price-only settlement with published exclusion counts (1,902/7,075); `away_fav` masks corrected; WR1 relabelled ex-post; weekly cover rate fixed; independence wording removed; verification scope narrowed. Wind-under falls +8.65%/649 bets (5/6 gates) → +7.14%/430 (2/6). 18 tests. |
+| #22 — root overview misattributes a weather ROI to the rating model | **resolved** | The owner fixed the max-ROI bug in PR #43; the published root `index.html` is now the line-lab build and the retired generator's model row reads S5's own ROI. This session additionally removed the last stale pre-recalculation weather sentences from that generator (`3ace545`/`4876771`). |
+| #24 — quant-lab synthetic prices and G9 re-pricing | **resolved** | PR #52 → `a063f93`/`403ea06`. G9 reprices each ticket from its own recorded decimal, leg-by-leg, requiring profitability at **both** −105 and −115; teasers fail closed. 21 strategies, 0 qualified, top `null`. 9 tests in `quant-lab/scripts/test_g9_price.py`. The −110 assumptions for spread/total and props remain disclosed as A1/A2/A4 on the quant-lab Flagged page. |
+| #32 — Origination Lab reversed push labels, aggregation, inference | **resolved** | PR #52 → `b524ff3`/`403ea06` and PR #53 → `0dbae7c`/`397f3cd`. `-3` now selects home_line −3 (**469 games / 9.81%**, exactly the issue's value); any-receiver label; 35,722-pair week-clustered cross-game interval (φ −0.005, −0.014 to 0.005) with all independence overclaims removed from the deployed pages; latent-ρ calibration with a φ = 0.55 test; price-aware edge-curve null. 9 tests. The 980 rows without a recognised per-row source remain flagged, not rewritten. |
+| #25, #17, #16, #13, #9, #6, #1 | open | Other scopes (root navigation/flag surfacing, `nfl-lines/`, `dashboard/`, pipeline provenance). #25's requests are logged above for the root-site owner; #9's provenance/CI items are partly addressed by #52 (manifest check, fail-closed workflows). Not closed here. |
