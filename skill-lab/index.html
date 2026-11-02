@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="skill-lab/scripts/build_site.py">
+  <title>Overview | NFL Skill Lab</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <div class="brand-title">NFL Skill Lab &mdash; Line Origination, Copula Pricing &amp; Gated Strategy Competition</div>
+        <div class="brand-meta">
+          Verified 2026-11-02 UTC &middot; Branch <code>arena/2b9898f7-korea2</code> &middot;
+          <a href="../index.html">Repo Root Site</a>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Skill Lab Sections">
+        <a href="index.html" class="active">Overview</a><a href="pages/summary.html">Executive Summary</a><a href="pages/origination.html">Line &amp; Prop Origination</a><a href="pages/signals.html">Signals &amp; FDR</a><a href="pages/luck-skill.html">Skill vs. Luck</a><a href="pages/correlations.html">Correlations &amp; Copula</a><a href="pages/leaderboard.html">Leaderboard &amp; Rewards</a><a href="pages/strategies.html">Singles, Parlays &amp; Props</a><a href="pages/gates.html">10-Gate Matrix</a><a href="pages/official-audit.html">NFL.com Audit</a><a href="pages/repo-review.html">Repo Review</a><a href="pages/flagged.html">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    
+    <section class="hero">
+      <h1>NFL Skill Lab: Origination, Copula Dependence &amp; Gated Strategy Competition</h1>
+      <p>
+        Built and verified line-by-line on <strong>2026-11-02 UTC</strong> against official <code>NFL.com</code> schedules, standings, and player box logs.
+        Skill Lab originates walk-forward NFL spreads, totals, moneylines, and player-prop quantiles; decomposes team and betting performance into repeatable skill vs. mean-reverting luck; prices correlated parlays and player-prop stacks via Gaussian copulas; and subjects <strong>16 candidate strategies</strong> across Single Bets, Cross-Game Parlays, Same-Game Parlays, and Ex-Ante Prop Combos to a strict <strong>10-gate validation protocol</strong>.
+      </p>
+    </section>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">OOS Test Slate (2018-2026)</div>
+        <div class="kpi-value">2,235</div>
+        <div class="kpi-note">Orig MAE 10.263 vs Close 9.821</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">2026 Wk 8 Live Grading (Nov 1)</div>
+        <div class="kpi-value">10.54</div>
+        <div class="kpi-note">12 official NFL.com finals (Close MAE 10.75)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Official NFL.com Reconciliation</div>
+        <div class="kpi-value">64 / 64</div>
+        <div class="kpi-note">2025 (32/32) &amp; 2026+Nov1 (32/32) + 7/7 players</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Ex-Ante vs Ex-Post QB-WR1 r</div>
+        <div class="kpi-value">+0.378</div>
+        <div class="kpi-note">Ex-post inflates r to +0.617 (+0.239 bias)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Strategies Passing All 10 Gates</div>
+        <div class="kpi-value">0 / 16</div>
+        <div class="kpi-note">0 paper pts awarded; vigorish &amp; FDR hold</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Flagged &amp; Blank-Enforced Items</div>
+        <div class="kpi-value">12</div>
+        <div class="kpi-note">Zero unverified values inferred or filled in</div>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>Competition Verdict Snapshot (Top 10 Ranked Entries; Full 16 on Leaderboard)</h2>
+      <div class="callout">
+        <strong>Headline Scientific Result:</strong> Across verified closing-price games (2018&ndash;2026), <strong>0 of 16 strategies</strong> clear all 10 validation gates.
+        Apparent raw winners like the 2-Leg Outdoor Wind-Under Parlay (<code>STR-08</code>, raw ROI <code>+34.88%</code> on <code>n = 63</code>) fail sample-depth and BH-FDR gates and shrink to <code>-3.93%</code> after Empirical Bayes luck removal, while unpriced SGP and player-prop combos (<code>STR-10..STR-14</code>) leave ROI cells <strong>strictly blank</strong> rather than fabricating historical sportsbook prop vig.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="num">Rank</th>
+              <th>ID</th>
+              <th>Strategy</th>
+              <th>Track</th>
+              <th class="num">N</th>
+              <th class="num">Hit %</th>
+              <th class="num">Verified ROI</th>
+              <th class="num">Luck-Adj ROI</th>
+              <th>Gates</th>
+              <th class="num">Skill Score</th>
+              <th>Verdict</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">1</td><td class="mono">STR-04</td><td><strong>Outdoor High-Wind Total Under (&gt;= 15 mph)</strong></td><td>Single Bet (Total)</td><td class="num">152</td><td class="num">56.58%</td><td class="num">+9.20%</td><td class="num">-3.13%</td><td class="mono">6/10</td><td class="num">42.2</td><td><span class="badge badge-fail">REJECTED BY GATES</span></td><td><a href="https://www.weather.gov/documentation/services-web-api" target="_blank" rel="noopener">SL-SRC-28 (weather.gov (NOAA))</a></td></tr><tr><td class="num">2</td><td class="mono">STR-08</td><td><strong>2-Leg Weekly Outdoor Wind-Under Parlay</strong></td><td>Parlay (2-Leg Cross-Game)</td><td class="num">63</td><td class="num">36.51%</td><td class="num">+34.88%</td><td class="num">-3.93%</td><td class="mono">6/10</td><td class="num">36.9</td><td><span class="badge badge-fail">REJECTED BY GATES</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener">SL-SRC-19 (DraftKings Official Support)</a></td></tr><tr><td class="num">3</td><td class="mono">STR-05</td><td><strong>Turnover-Spike Mean-Reversion ATS</strong></td><td>Single Bet (Spread)</td><td class="num">191</td><td class="num">50.79%</td><td class="num">-1.99%</td><td class="num">-4.13%</td><td class="mono">4/10</td><td class="num">39.7</td><td><span class="badge badge-fail">REJECTED BY GATES</span></td><td><a href="https://support.nfl.com/hc/en-us/articles/35869706651156-NFL-Pro-FAQ-s-and-Answers" target="_blank" rel="noopener">SL-SRC-15 (NFL Support)</a></td></tr><tr><td class="num">4</td><td class="mono">STR-03</td><td><strong>Divisional Home Underdog (+3.0+)</strong></td><td>Single Bet (Spread)</td><td class="num">231</td><td class="num">52.38%</td><td class="num">+0.67%</td><td class="num">-3.72%</td><td class="mono">4/10</td><td class="num">34.4</td><td><span class="badge badge-fail">REJECTED BY GATES</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010595" target="_blank" rel="noopener">SL-SRC-18 (DraftKings Official Support)</a></td></tr><tr><td class="num">5</td><td class="mono">STR-01</td><td><strong>Key-Number Origination Spread Select</strong></td><td>Single Bet (Spread)</td><td class="num">764</td><td class="num">51.96%</td><td class="num">-0.51%</td><td class="num">-3.07%</td><td class="mono">3/10</td><td class="num">32.9</td><td><span class="badge badge-fail">REJECTED BY GATES</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010595" target="_blank" rel="noopener">SL-SRC-18 (DraftKings Official Support)</a></td></tr><tr><td class="num">6</td><td class="mono">STR-02</td><td><strong>Shrunk Skill-Edge Spread (&gt;= 2.5 pts)</strong></td><td>Single Bet (Spread)</td><td class="num">994</td><td class="num">50.70%</td><td class="num">-2.58%</td><td class="num">-3.67%</td><td class="mono">3/10</td><td class="num">28.3</td><td><span class="badge badge-fail">REJECTED BY GATES</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010595" target="_blank" rel="noopener">SL-SRC-18 (DraftKings Official Support)</a></td></tr><tr><td class="num">7</td><td class="mono">STR-06</td><td><strong>De-Vigged Underdog Moneyline Value</strong></td><td>Single Bet (Moneyline)</td><td class="num">854</td><td class="num">34.54%</td><td class="num">-7.28%</td><td class="num">-5.09%</td><td class="mono">3/10</td><td class="num">19.2</td><td><span class="badge badge-fail">REJECTED BY GATES</span></td><td><a href="https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf" target="_blank" rel="noopener">SL-SRC-29 (Princeton University Archive)</a></td></tr><tr><td class="num">8</td><td class="mono">STR-09</td><td><strong>3-Leg Weekly Spread Value Parlay</strong></td><td>Parlay (3-Leg Cross-Game)</td><td class="num">148</td><td class="num">12.16%</td><td class="num">-16.49%</td><td class="num">-4.61%</td><td class="mono">3/10</td><td class="num">13.6</td><td><span class="badge badge-fail">REJECTED BY GATES</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener">SL-SRC-19 (DraftKings Official Support)</a></td></tr><tr><td class="num">9</td><td class="mono">STR-07</td><td><strong>2-Leg Weekly Top Skill-Edge Spread Parlay</strong></td><td>Parlay (2-Leg Cross-Game)</td><td class="num">148</td><td class="num">24.32%</td><td class="num">-14.48%</td><td class="num">-4.78%</td><td class="mono">3/10</td><td class="num">8.4</td><td><span class="badge badge-fail">REJECTED BY GATES</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener">SL-SRC-19 (DraftKings Official Support)</a></td></tr><tr><td class="num">10</td><td class="mono">STR-12</td><td><strong>Ex-Ante QB1 Pass Yds + WR1 Rec Yds Combo</strong></td><td>Player Prop Combo (2-Leg)</td><td class="num">733</td><td class="num">29.88%</td><td class="blank-cell" title="Intentionally left blank — unverified against official primary source"></td><td class="blank-cell" title="Intentionally left blank — unverified against official primary source"></td><td class="mono">3/10</td><td class="num">48.0</td><td><span class="badge badge-warn">HELD AT G10 (ODDS UNVERIFIED)</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010778" target="_blank" rel="noopener">SL-SRC-21 (DraftKings Official Support)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Skill Lab Research Directory (12 Pages &mdash; Every Row Linked to Primary Sources)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>Scope &amp; Key Empirical Result</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="pages/summary.html"><strong>Executive Summary</strong></a></td><td>End-to-end synthesis of walk-forward origination, FDR signal screening, copula dependence, skill-vs-luck shrinkage, and the 0/16 gated competition verdict.</td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td><a href="pages/origination.html"><strong>Line &amp; Prop Origination</strong></a></td><td>Walk-forward opponent-adjusted spread/total/ML &amp; prop quantile engine (2,235 OOS games; 2026 Wk 8 Nov 1 live MAE 10.54 vs market 10.75; 15 originated Week 9 lines).</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td><a href="pages/signals.html"><strong>Signals &amp; FDR</strong></a></td><td>10 pre-kickoff structural, weather, rest, and key-number hypotheses; 0/10 survive Benjamini-Hochberg FDR q &lt;= 0.10 after vig.</td><td><a href="https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc136.htm" target="_blank" rel="noopener">SL-SRC-24 (NIST (U.S. Dept. of Commerce))</a></td></tr><tr><td><a href="pages/luck-skill.html"><strong>Skill vs. Luck</strong></a></td><td>Split-half &amp; YoY persistence across 317 team-season pairs (Pass EPA/db r = +0.402 vs ATS r = -0.014) plus 2025-&gt;2026 Pythagorean rebound proof.</td><td><a href="https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc136.htm" target="_blank" rel="noopener">SL-SRC-24 (NIST (U.S. Dept. of Commerce))</a></td></tr><tr><td><a href="pages/correlations.html"><strong>Correlations &amp; Copula</strong></a></td><td>14 empirical game &amp; player pairs; proves ex-post WR1 selection inflates QB-WR1 r from +0.3779 to +0.6172 (+0.2393 bias).</td><td><a href="https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm" target="_blank" rel="noopener">SL-SRC-23 (NIST (U.S. Dept. of Commerce))</a></td></tr><tr><td><a href="pages/leaderboard.html"><strong>Leaderboard &amp; Rewards</strong></a></td><td>16-strategy skill leaderboard across Singles, Parlays, SGPs, and Prop Combos with 10,000-pt paper reward tiers (0 qualified; 0 pts awarded).</td><td><a href="https://edge-operations.nfl.com/programs-initiatives/innovation/big-data-bowl" target="_blank" rel="noopener">SL-SRC-17 (NFL Football Operations)</a></td></tr><tr><td><a href="pages/strategies.html"><strong>Singles, Parlays &amp; Props</strong></a></td><td>Detailed track-by-track strategy results, including 3-leg bring-back prop stacks (16.71% realized joint hit vs 16.20% copula forecast).</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td><a href="pages/gates.html"><strong>10-Gate Validation Matrix</strong></a></td><td>Full 16 x 10 gate pass/fail/hold matrix showing G1 catching the 85.19% lookahead control and G10 holding unpriced SGP/prop combos.</td><td><a href="https://scikit-learn.org/stable/common_pitfalls.html" target="_blank" rel="noopener">SL-SRC-25 (scikit-learn.org)</a></td></tr><tr><td><a href="pages/official-audit.html"><strong>Official NFL.com Audit</strong></a></td><td>Line-by-line 2026 (32/32 after 12 Nov 1 finals), 2025 (32/32), 2020 REG, and 7-player exact yard/TD reconciliation against NFL.com.</td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td><a href="pages/repo-review.html"><strong>Line-by-Line Repo Review</strong></a></td><td>14 audited repository subsystems/files across Korea2 cross-checked against open issues #1-#34.</td><td><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener">SL-SRC-32 (GitHub (This Repository))</a></td></tr><tr><td><a href="pages/flagged.html"><strong>Flagged for Review</strong></a></td><td>12 unverified data gaps &amp; repo irregularities with strictly blank value cells and official manual-review links.</td><td><a href="https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports" target="_blank" rel="noopener">SL-SRC-16 (NFL.com)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="site-footer">
+    <strong>Responsible Research Disclosure:</strong> Quantitative sports-market research and paper-competition evaluation only; no real-money wagering advice or funded prize pool exists.
+    Every table row cites a verified official source; unconfirmable figures are left strictly blank and logged on the <a href="pages/flagged.html">Flagged for Review</a> page.
+    Confidential support: <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener">NCPG 1-800-MY-RESET</a>.
+  </footer>
+</body>
+</html>

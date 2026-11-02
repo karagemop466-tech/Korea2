@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="skill-lab/scripts/build_site.py">
+  <title>Line &amp; Prop Origination | NFL Skill Lab</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <div class="brand-title">NFL Skill Lab &mdash; Line Origination, Copula Pricing &amp; Gated Strategy Competition</div>
+        <div class="brand-meta">
+          Verified 2026-11-02 UTC &middot; Branch <code>arena/2b9898f7-korea2</code> &middot;
+          <a href="../../index.html">Repo Root Site</a>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Skill Lab Sections">
+        <a href="../index.html">Overview</a><a href="summary.html">Executive Summary</a><a href="origination.html" class="active">Line &amp; Prop Origination</a><a href="signals.html">Signals &amp; FDR</a><a href="luck-skill.html">Skill vs. Luck</a><a href="correlations.html">Correlations &amp; Copula</a><a href="leaderboard.html">Leaderboard &amp; Rewards</a><a href="strategies.html">Singles, Parlays &amp; Props</a><a href="gates.html">10-Gate Matrix</a><a href="official-audit.html">NFL.com Audit</a><a href="repo-review.html">Repo Review</a><a href="flagged.html">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    
+    <section class="hero">
+      <h1>Walk-Forward NFL Line &amp; Player-Prop Origination</h1>
+      <p>
+        Strictly chronological expanding-window origination engine trained exclusively on games strictly prior to each NFL week (<code>TimeSeriesSplit</code> discipline).
+        Blends opponent-adjusted offensive/defensive power ratings, EPA/play &amp; turnover-shrunk efficiency differentials, rolling dynamic HFA (capturing the post-2020 HFA compression to ~1.7&ndash;2.1 pts), rest/indoor adjustments, and calibrated player quantile offsets.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Out-of-Sample Origination Scoreboard (2018-2026 (walk-forward out-of-sample, zero imputed prices), N = 2,235)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Model / Benchmark</th>
+              <th class="num">Spread MAE</th>
+              <th class="num">Spread RMSE</th>
+              <th class="num">Total MAE</th>
+              <th class="num">Win Brier</th>
+              <th class="num">Win Log-Loss</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Closing Consensus Market (Benchmark)</strong></td><td class="num">9.821</td><td class="num">12.735</td><td class="num">10.392</td><td class="num">0.2117</td><td class="num">0.6112</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010595" target="_blank" rel="noopener">SL-SRC-18 (DraftKings Official Support)</a></td></tr><tr><td><strong>Skill Lab Originated Model (Opponent-Adjusted + Efficiency)</strong></td><td class="num">10.263</td><td class="num">13.252</td><td class="num">10.717</td><td class="num">0.2260</td><td class="num">0.6433</td><td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html" target="_blank" rel="noopener">SL-SRC-26 (scikit-learn.org)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Live Ex-Ante Grading on 12 Newly Settled 2026 Week 8 Finals (Sunday, Nov 1, 2026)</h2>
+      <p>
+        Because committed <code>games.csv.gz</code> stopped at Oct 29 TNF, these 12 Sunday Nov 1 games provide a clean live holdout graded against official <code>NFL.com</code> final scores: Skill Lab posted <strong>10.54 spread MAE</strong> vs closing market <strong>10.75</strong> (<code>7-5</code> directional leans; explicitly noted as <code>N = 12</code> single-Sunday sample variance, <code>p &gt; 0.50</code>).
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Matchup</th>
+              <th>Official Final</th>
+              <th class="num">Margin</th>
+              <th class="num">Orig Hcp</th>
+              <th class="num">Close Hcp</th>
+              <th class="num">Orig |Err|</th>
+              <th class="num">Close |Err|</th>
+              <th>Model Lean &amp; Result</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono">ARI @ DAL</td><td class="mono">33-30</td><td class="num">-3</td><td class="num">-4.61</td><td class="num">-7.0</td><td class="num">7.61</td><td class="num">10.00</td><td>ARI (+7.0) <span class="badge badge-pass">WIN</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">ATL @ TB</td><td class="mono">0-16</td><td class="num">+16</td><td class="num">-2.74</td><td class="num">-1.5</td><td class="num">13.26</td><td class="num">14.50</td><td>TB (-1.5) <span class="badge badge-pass">WIN</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">BAL @ BUF</td><td class="mono">10-36</td><td class="num">+26</td><td class="num">-4.90</td><td class="num">-3.5</td><td class="num">21.10</td><td class="num">22.50</td><td>BUF (-3.5) <span class="badge badge-pass">WIN</span></td><td><a href="https://www.nfl.com/games/ravens-at-bills-2026-reg-8" target="_blank" rel="noopener">SL-SRC-06 (NFL.com)</a></td></tr><tr><td class="mono">CLE @ PIT</td><td class="mono">6-27</td><td class="num">+21</td><td class="num">-4.31</td><td class="num">-3.5</td><td class="num">16.69</td><td class="num">17.50</td><td>PIT (-3.5) <span class="badge badge-pass">WIN</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">IND @ JAX</td><td class="mono">7-42</td><td class="num">+35</td><td class="num">-6.91</td><td class="num">-10.0</td><td class="num">28.09</td><td class="num">25.00</td><td>IND (+10.0) <span class="badge badge-fail">LOSS</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">KC @ DEN</td><td class="mono">24-28</td><td class="num">+4</td><td class="num">-2.07</td><td class="num">+1.5</td><td class="num">1.93</td><td class="num">5.50</td><td>DEN (+1.5) <span class="badge badge-pass">WIN</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">LAC @ LA</td><td class="mono">9-24</td><td class="num">+15</td><td class="num">-5.57</td><td class="num">-6.5</td><td class="num">9.43</td><td class="num">8.50</td><td>LAC (+6.5) <span class="badge badge-fail">LOSS</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">LV @ NYJ</td><td class="mono">38-33</td><td class="num">-5</td><td class="num">-1.88</td><td class="num">-1.5</td><td class="num">6.88</td><td class="num">6.50</td><td>NYJ (-1.5) <span class="badge badge-fail">LOSS</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">MIN @ DET</td><td class="mono">15-19</td><td class="num">+4</td><td class="num">-2.49</td><td class="num">-3.0</td><td class="num">1.51</td><td class="num">1.00</td><td>MIN (+3.0) <span class="badge badge-fail">LOSS</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">NE @ MIA</td><td class="mono">24-19</td><td class="num">-5</td><td class="num">+3.48</td><td class="num">+7.0</td><td class="num">1.52</td><td class="num">2.00</td><td>MIA (+7.0) <span class="badge badge-pass">WIN</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">PHI @ WAS</td><td class="mono">10-27</td><td class="num">+17</td><td class="num">-0.92</td><td class="num">-6.5</td><td class="num">16.08</td><td class="num">10.50</td><td>PHI (+6.5) <span class="badge badge-fail">LOSS</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono">TEN @ CIN</td><td class="mono">36-43</td><td class="num">+7</td><td class="num">-9.34</td><td class="num">-12.5</td><td class="num">2.34</td><td class="num">5.50</td><td>TEN (+12.5) <span class="badge badge-pass">WIN</span></td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Originated 2026 Week 8 MNF &amp; Full 15-Game Week 9 Slate (Standard Home Handicap)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="num">Week</th>
+              <th>Date</th>
+              <th>Matchup</th>
+              <th class="num">Orig Hcp</th>
+              <th class="num">Market Hcp</th>
+              <th class="num">Model - Mkt</th>
+              <th class="num">Orig Tot</th>
+              <th class="num">Mkt Tot</th>
+              <th class="num">Home Win %</th>
+              <th>Fair ML (H / A)</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">Wk 8</td><td class="mono">2026-11-02</td><td><strong>CHI @ SEA</strong></td><td class="num">-4.31</td><td class="num">-3.0</td><td class="num">-1.31</td><td class="num">43.6</td><td class="num">46.5</td><td class="num">62.8%</td><td class="mono">-169 / +169</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-05</td><td><strong>JAX @ BAL</strong></td><td class="num">+0.87</td><td class="num">-3.0</td><td class="num">+3.87</td><td class="num">48.5</td><td class="num">48.5</td><td class="num">47.4%</td><td class="mono">+111 / -111</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>ARI @ SEA</strong></td><td class="num">-8.25</td><td class="num">-10.5</td><td class="num">+2.25</td><td class="num">44.9</td><td class="num">44.5</td><td class="num">73.4%</td><td class="mono">-276 / +276</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>CIN @ ATL</strong> (Neutral)</td><td class="num">+2.65</td><td class="num">+3.0</td><td class="num">-0.35</td><td class="num">49.2</td><td class="num">49.5</td><td class="num">42.1%</td><td class="mono">+138 / -138</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>CLE @ NO</strong></td><td class="num">-3.71</td><td class="num">-2.5</td><td class="num">-1.21</td><td class="num">39.2</td><td class="num">43.5</td><td class="num">61.1%</td><td class="mono">-157 / +157</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>DAL @ IND</strong></td><td class="num">-1.48</td><td class="num">+4.5</td><td class="num">-5.98</td><td class="num">53.7</td><td class="num">51.5</td><td class="num">54.5%</td><td class="mono">-120 / +120</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>DEN @ CAR</strong></td><td class="num">+3.11</td><td class="num">+2.5</td><td class="num">+0.61</td><td class="num">44.6</td><td class="num">44.5</td><td class="num">40.7%</td><td class="mono">+146 / -146</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>DET @ MIA</strong></td><td class="num">+3.55</td><td class="num">+7.0</td><td class="num">-3.45</td><td class="num">50.8</td><td class="num">48.5</td><td class="num">39.4%</td><td class="mono">+154 / -154</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>GB @ NE</strong></td><td class="num">-2.07</td><td class="num">-3.0</td><td class="num">+0.93</td><td class="num">46.4</td><td class="num">47.5</td><td class="num">56.2%</td><td class="mono">-128 / +128</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>HOU @ LAC</strong></td><td class="num">+0.94</td><td class="num">+3.5</td><td class="num">-2.56</td><td class="num">39.5</td><td class="num">42.5</td><td class="num">47.1%</td><td class="mono">+112 / -112</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>LA @ WAS</strong></td><td class="num">+3.89</td><td class="num">+5.5</td><td class="num">-1.61</td><td class="num">49.1</td><td class="num">48.5</td><td class="num">38.4%</td><td class="mono">+160 / -160</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>LV @ SF</strong></td><td class="num">-10.01</td><td class="num">-10.0</td><td class="num">-0.01</td><td class="num">48.8</td><td class="num">48.5</td><td class="num">77.6%</td><td class="mono">-346 / +346</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>NYG @ PHI</strong></td><td class="num">-1.45</td><td class="num">+1.5</td><td class="num">-2.95</td><td class="num">43.5</td><td class="num">40.5</td><td class="num">54.4%</td><td class="mono">-119 / +119</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>NYJ @ KC</strong></td><td class="num">-8.88</td><td class="num">-9.5</td><td class="num">+0.62</td><td class="num">45.5</td><td class="num">43.5</td><td class="num">74.9%</td><td class="mono">-299 / +299</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-08</td><td><strong>TB @ CHI</strong></td><td class="num">-2.42</td><td class="num">-6.0</td><td class="num">+3.58</td><td class="num">44.5</td><td class="num">47.5</td><td class="num">57.3%</td><td class="mono">-134 / +134</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr><tr><td class="num">Wk 9</td><td class="mono">2026-11-09</td><td><strong>BUF @ MIN</strong></td><td class="num">+0.76</td><td class="num">+2.5</td><td class="num">-1.74</td><td class="num">44.6</td><td class="num">47.5</td><td class="num">47.7%</td><td class="mono">+110 / -110</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-9" target="_blank" rel="noopener">SL-SRC-05 (NFL.com)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Ex-Ante Player-Prop Quantile Calibration (2023-2026 (strictly ex-ante player role selection, zero imputed prop odds)) &amp; Week 8 NFL.com Spot-Checks</h2>
+      <p>
+        Right-skewed receiving and rushing yardage distributions cause raw conditional means to over-predict median lines (only <code>41.88%</code> and <code>43.94%</code> Over rates); Skill Lab's empirical quantile calibration restores exact <code>~50%</code> median symmetry and <code>~50%</code> interquartile (<code>P25&ndash;P75</code>) coverage out-of-sample. Historical sportsbook prop ROI and closing prop lines are left strictly blank.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Prop Market</th>
+              <th class="num">OOS N</th>
+              <th class="num">Over % @ Mean</th>
+              <th class="num">Over % @ Calib P50</th>
+              <th class="num">P25-P75 Cov %</th>
+              <th class="num">MAE</th>
+              <th class="num">Book ROI</th>
+              <th>Status</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>QB1 Passing Yards (Ex-Ante Starter)</strong></td><td class="num">1,798</td><td class="num">51.78%</td><td class="num"><strong>50.56%</strong></td><td class="num">50.22%</td><td class="num">62.70 yds</td><td class="blank-cell" title="No free official historical sportsbook prop odds archive"></td><td><span class="badge badge-warn">CALIBRATED (ODDS UNVERIFIED)</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010778" target="_blank" rel="noopener">SL-SRC-21 (DraftKings Official Support)</a></td></tr><tr><td><strong>WR1 Receiving Yards (Ex-Ante Target Leader)</strong></td><td class="num">1,848</td><td class="num">41.88%</td><td class="num"><strong>49.13%</strong></td><td class="num">51.57%</td><td class="num">30.20 yds</td><td class="blank-cell" title="No free official historical sportsbook prop odds archive"></td><td><span class="badge badge-warn">CALIBRATED (ODDS UNVERIFIED)</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010778" target="_blank" rel="noopener">SL-SRC-21 (DraftKings Official Support)</a></td></tr><tr><td><strong>RB1 Rushing Yards (Ex-Ante Carry Leader)</strong></td><td class="num">1,848</td><td class="num">43.94%</td><td class="num"><strong>49.51%</strong></td><td class="num">50.70%</td><td class="num">28.01 yds</td><td class="blank-cell" title="No free official historical sportsbook prop odds archive"></td><td><span class="badge badge-warn">CALIBRATED (ODDS UNVERIFIED)</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010778" target="_blank" rel="noopener">SL-SRC-21 (DraftKings Official Support)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Official 2026 Week 8 NFL.com Player Box-Log Verification vs. Ex-Ante Originated Median Lines</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Week 8 Matchup &amp; Market</th>
+              <th class="num">Orig P50 Line</th>
+              <th class="num">Book Prop Line</th>
+              <th class="num">Official Wk 8 Actual</th>
+              <th>Vs Orig P50</th>
+              <th class="num">Official 2026 Total</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Jordan Love</strong> (GB &middot; QB)</td><td class="mono">vs CAR (qb_pass_yds)</td><td class="num">246.5</td><td class="blank-cell" title="Unverified sportsbook closing prop line — left blank"></td><td class="num"><strong>288</strong></td><td><span class="badge badge-pass">OVER</span></td><td class="num">2,246</td><td><a href="https://www.nfl.com/players/jordan-love/stats/" target="_blank" rel="noopener">SL-SRC-07 (NFL.com)</a></td></tr><tr><td><strong>Josh Allen</strong> (BUF &middot; QB)</td><td class="mono">vs BAL (qb_pass_yds)</td><td class="num">236.5</td><td class="blank-cell" title="Unverified sportsbook closing prop line — left blank"></td><td class="num"><strong>289</strong></td><td><span class="badge badge-pass">OVER</span></td><td class="num">1,793</td><td><a href="https://www.nfl.com/players/josh-allen/stats/" target="_blank" rel="noopener">SL-SRC-08 (NFL.com)</a></td></tr><tr><td><strong>Joe Burrow</strong> (CIN &middot; QB)</td><td class="mono">vs TEN (qb_pass_yds)</td><td class="num">259.5</td><td class="blank-cell" title="Unverified sportsbook closing prop line — left blank"></td><td class="num"><strong>462</strong></td><td><span class="badge badge-pass">OVER</span></td><td class="num">2,115</td><td><a href="https://www.nfl.com/players/joe-burrow/stats/" target="_blank" rel="noopener">SL-SRC-09 (NFL.com)</a></td></tr><tr><td><strong>Jared Goff</strong> (DET &middot; QB)</td><td class="mono">vs MIN (qb_pass_yds)</td><td class="num">268.5</td><td class="blank-cell" title="Unverified sportsbook closing prop line — left blank"></td><td class="num"><strong>176</strong></td><td><span class="badge badge-hold">UNDER</span></td><td class="num">1,964</td><td><a href="https://www.nfl.com/players/jared-goff/stats/" target="_blank" rel="noopener">SL-SRC-10 (NFL.com)</a></td></tr><tr><td><strong>Ja&#x27;Marr Chase</strong> (CIN &middot; WR)</td><td class="mono">vs TEN (wr_rec_yds)</td><td class="num">56.5</td><td class="blank-cell" title="Unverified sportsbook closing prop line — left blank"></td><td class="num"><strong>141</strong></td><td><span class="badge badge-pass">OVER</span></td><td class="num">492</td><td><a href="https://www.nfl.com/players/ja-marr-chase/stats/" target="_blank" rel="noopener">SL-SRC-11 (NFL.com)</a></td></tr><tr><td><strong>Amon-Ra St. Brown</strong> (DET &middot; WR)</td><td class="mono">vs MIN (wr_rec_yds)</td><td class="num">73.5</td><td class="blank-cell" title="Unverified sportsbook closing prop line — left blank"></td><td class="num"><strong>46</strong></td><td><span class="badge badge-hold">UNDER</span></td><td class="num">571</td><td><a href="https://www.nfl.com/players/amon-ra-st-brown/stats/" target="_blank" rel="noopener">SL-SRC-12 (NFL.com)</a></td></tr><tr><td><strong>James Cook</strong> (BUF &middot; RB)</td><td class="mono">vs BAL (rb_rush_yds)</td><td class="num">72.5</td><td class="blank-cell" title="Unverified sportsbook closing prop line — left blank"></td><td class="num"><strong>80</strong></td><td><span class="badge badge-pass">OVER</span></td><td class="num">707</td><td><a href="https://www.nfl.com/players/james-cook/stats/" target="_blank" rel="noopener">SL-SRC-13 (NFL.com)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Top 16 2026 NFL Club Power Ratings (Reconciled Through Nov 1 Week 8 Finals)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Club</th>
+              <th>Official 2026 Record</th>
+              <th class="num">PF</th>
+              <th class="num">PA</th>
+              <th class="num">Diff</th>
+              <th class="num">Off Skill</th>
+              <th class="num">Def Skill (Lower=Better)</th>
+              <th class="num">Net Power (Pts vs Avg)</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono"><strong>BUF</strong></td><td class="mono">6-1</td><td class="num">233</td><td class="num">181</td><td class="num">+52</td><td class="num">+10.41</td><td class="num">-1.35</td><td class="num"><strong>+9.06</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>JAX</strong></td><td class="mono">5-2</td><td class="num">196</td><td class="num">111</td><td class="num">+85</td><td class="num">+4.97</td><td class="num">+3.15</td><td class="num"><strong>+8.12</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>LA</strong></td><td class="mono">4-4</td><td class="num">194</td><td class="num">168</td><td class="num">+26</td><td class="num">+5.15</td><td class="num">+2.79</td><td class="num"><strong>+7.94</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>SEA</strong></td><td class="mono">4-3</td><td class="num">168</td><td class="num">125</td><td class="num">+43</td><td class="num">+0.65</td><td class="num">+6.88</td><td class="num"><strong>+7.53</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>SF</strong></td><td class="mono">6-1</td><td class="num">197</td><td class="num">139</td><td class="num">+58</td><td class="num">+6.71</td><td class="num">-0.27</td><td class="num"><strong>+6.44</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>DEN</strong></td><td class="mono">6-2</td><td class="num">172</td><td class="num">165</td><td class="num">+7</td><td class="num">+0.69</td><td class="num">+4.79</td><td class="num"><strong>+5.48</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>DET</strong></td><td class="mono">5-2</td><td class="num">203</td><td class="num">180</td><td class="num">+23</td><td class="num">+7.14</td><td class="num">-2.17</td><td class="num"><strong>+4.97</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>NE</strong></td><td class="mono">5-3</td><td class="num">184</td><td class="num">162</td><td class="num">+22</td><td class="num">+3.58</td><td class="num">+1.26</td><td class="num"><strong>+4.84</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>KC</strong></td><td class="mono">5-2</td><td class="num">167</td><td class="num">131</td><td class="num">+36</td><td class="num">+2.09</td><td class="num">+2.71</td><td class="num"><strong>+4.80</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>GB</strong></td><td class="mono">5-3</td><td class="num">171</td><td class="num">164</td><td class="num">+7</td><td class="num">+1.60</td><td class="num">+2.34</td><td class="num"><strong>+3.94</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>MIN</strong></td><td class="mono">6-1</td><td class="num">140</td><td class="num">93</td><td class="num">+47</td><td class="num">-5.15</td><td class="num">+8.60</td><td class="num"><strong>+3.45</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>CIN</strong></td><td class="mono">5-2</td><td class="num">206</td><td class="num">158</td><td class="num">+48</td><td class="num">+6.12</td><td class="num">-3.53</td><td class="num"><strong>+2.58</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>BAL</strong></td><td class="mono">4-4</td><td class="num">179</td><td class="num">203</td><td class="num">-24</td><td class="num">+3.11</td><td class="num">-0.82</td><td class="num"><strong>+2.29</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>CHI</strong></td><td class="mono">5-2</td><td class="num">180</td><td class="num">143</td><td class="num">+37</td><td class="num">+2.19</td><td class="num">-0.04</td><td class="num"><strong>+2.14</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>PIT</strong></td><td class="mono">6-2</td><td class="num">180</td><td class="num">144</td><td class="num">+36</td><td class="num">-0.65</td><td class="num">+2.44</td><td class="num"><strong>+1.79</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>HOU</strong></td><td class="mono">2-5</td><td class="num">165</td><td class="num">170</td><td class="num">-5</td><td class="num">-0.97</td><td class="num">+2.63</td><td class="num"><strong>+1.66</strong></td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Season-by-Season Walk-Forward Accuracy (2018&ndash;2026)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="num">Season</th>
+              <th class="num">Games</th>
+              <th class="num">Orig Spread MAE</th>
+              <th class="num">Mkt Spread MAE</th>
+              <th class="num">Orig Total MAE</th>
+              <th class="num">Mkt Total MAE</th>
+              <th class="num">Orig Brier</th>
+              <th class="num">Mkt Brier</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">2018</td><td class="num">256</td><td class="num">10.223</td><td class="num">9.979</td><td class="num">10.841</td><td class="num">10.598</td><td class="num">0.2190</td><td class="num">0.2112</td><td><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">SL-SRC-27 (scikit-learn.org)</a></td></tr><tr><td class="num">2019</td><td class="num">256</td><td class="num">10.618</td><td class="num">10.211</td><td class="num">10.906</td><td class="num">10.828</td><td class="num">0.2263</td><td class="num">0.2130</td><td><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">SL-SRC-27 (scikit-learn.org)</a></td></tr><tr><td class="num">2020</td><td class="num">256</td><td class="num">10.279</td><td class="num">9.830</td><td class="num">10.647</td><td class="num">10.146</td><td class="num">0.2243</td><td class="num">0.2018</td><td><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">SL-SRC-27 (scikit-learn.org)</a></td></tr><tr><td class="num">2021</td><td class="num">272</td><td class="num">11.234</td><td class="num">10.781</td><td class="num">11.028</td><td class="num">10.789</td><td class="num">0.2274</td><td class="num">0.2169</td><td><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">SL-SRC-27 (scikit-learn.org)</a></td></tr><tr><td class="num">2022</td><td class="num">271</td><td class="num">9.078</td><td class="num">8.742</td><td class="num">11.102</td><td class="num">10.395</td><td class="num">0.2294</td><td class="num">0.2108</td><td><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">SL-SRC-27 (scikit-learn.org)</a></td></tr><tr><td class="num">2023</td><td class="num">272</td><td class="num">10.439</td><td class="num">9.901</td><td class="num">10.735</td><td class="num">10.239</td><td class="num">0.2301</td><td class="num">0.2187</td><td><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">SL-SRC-27 (scikit-learn.org)</a></td></tr><tr><td class="num">2024</td><td class="num">272</td><td class="num">10.218</td><td class="num">9.610</td><td class="num">9.888</td><td class="num">9.730</td><td class="num">0.2204</td><td class="num">0.2002</td><td><a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">SL-SRC-27 (scikit-learn.org)</a></td></tr><tr><td class="num">2025</td><td class="num">272</td><td class="num">10.364</td><td class="num">9.722</td><td class="num">10.502</td><td class="num">10.393</td><td class="num">0.2281</td><td class="num">0.2121</td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td class="num">2026</td><td class="num">108</td><td class="num">9.434</td><td class="num">9.361</td><td class="num">10.982</td><td class="num">10.491</td><td class="num">0.2323</td><td class="num">0.2322</td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="site-footer">
+    <strong>Responsible Research Disclosure:</strong> Quantitative sports-market research and paper-competition evaluation only; no real-money wagering advice or funded prize pool exists.
+    Every table row cites a verified official source; unconfirmable figures are left strictly blank and logged on the <a href="flagged.html">Flagged for Review</a> page.
+    Confidential support: <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener">NCPG 1-800-MY-RESET</a>.
+  </footer>
+</body>
+</html>

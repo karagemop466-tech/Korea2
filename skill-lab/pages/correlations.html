@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="skill-lab/scripts/build_site.py">
+  <title>Correlations &amp; Copula | NFL Skill Lab</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <div class="brand-title">NFL Skill Lab &mdash; Line Origination, Copula Pricing &amp; Gated Strategy Competition</div>
+        <div class="brand-meta">
+          Verified 2026-11-02 UTC &middot; Branch <code>arena/2b9898f7-korea2</code> &middot;
+          <a href="../../index.html">Repo Root Site</a>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Skill Lab Sections">
+        <a href="../index.html">Overview</a><a href="summary.html">Executive Summary</a><a href="origination.html">Line &amp; Prop Origination</a><a href="signals.html">Signals &amp; FDR</a><a href="luck-skill.html">Skill vs. Luck</a><a href="correlations.html" class="active">Correlations &amp; Copula</a><a href="leaderboard.html">Leaderboard &amp; Rewards</a><a href="strategies.html">Singles, Parlays &amp; Props</a><a href="gates.html">10-Gate Matrix</a><a href="official-audit.html">NFL.com Audit</a><a href="repo-review.html">Repo Review</a><a href="flagged.html">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    
+    <section class="hero">
+      <h1>Empirical Correlation Matrix &amp; Gaussian-Copula SGP / Prop Pricing</h1>
+      <p>
+        Computes exact Pearson <code>r</code> (with NIST Fisher-<code>z</code> 95% confidence intervals), binary indicator <code>&phi;</code>, joint-hit probabilities, and tetrachoric/Gaussian-copula latent <code>&rho;<sub>cop</sub></code> across <strong>14 game and player-prop pairs (2006-2026 game markets; 2015-2026 strictly ex-ante player-prop roles)</strong>.
+        To eliminate cross-team talent confounding, player-prop correlations measure <strong>within-player game shocks</strong> (actual outcome minus each player's strictly prior expanding-window baseline).
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Critical Methodological Discovery: Ex-Post WR1 Selection Bias (+0.2393 Inflation)</h2>
+      <div class="callout warn">
+        <strong>Audit Proof (<code>COR-07</code> vs. <code>COR-08</code>):</strong> Selecting a team's top wide receiver <em>ex-ante</em> by prior cumulative target share yields <code>r = +0.3779</code> (copula <code>&rho; = +0.4128</code>, joint-hit multiplier <code>1.245x</code> across <code>5,578</code> team-games). Selecting "WR1" <em>ex-post</em> by whoever led the game in receiving yards inflates the apparent correlation to <code>r = +0.6172</code> (<code>1.405x</code>) &mdash; a pure lookahead selection artifact (<code>+0.2393</code> bias) that causes naive SGP models to severely overestimate true joint hit rates.
+      </div>
+      <div class="chart-box">
+        <svg viewBox="0 0 800 240" width="100%" role="img" aria-label="Gaussian copula joint-probability multiplier vs independent parlay assumption">
+<text x="12" y="20" font-size="12" font-weight="700" fill="#132030">Copula Joint-Hit Multiplier vs. Naive Independence (1.00x Vertical Reference)</text>
+<line x1="550.0" y1="28" x2="550.0" y2="224" stroke="#8e241b" stroke-dasharray="4,3" stroke-width="1.3"/>
+<text x="12" y="56" font-size="11.5" fill="#132030">2-Leg Cross-Game Independent Spread Parlay (50</text>
+<rect x="345" y="42" width="205.0" height="19" rx="2" fill="#5b6b7a"/>
+<text x="557.0" y="56" font-size="11" font-family="monospace" fill="#132030">1.00x (25.0% vs 25.0%)</text>
+<text x="12" y="92" font-size="11.5" fill="#132030">2-Leg Ex-Ante QB1 Pass Yds Over + WR1 Rec Yds </text>
+<rect x="345" y="78" width="260.6" height="19" rx="2" fill="#145a32"/>
+<text x="612.6" y="92" font-size="11" font-family="monospace" fill="#132030">1.27x (31.8% vs 25.0%)</text>
+<text x="12" y="128" font-size="11.5" fill="#132030">2-Leg Anti-Correlated Trap: RB1 Rush Yds Over </text>
+<rect x="345" y="114" width="181.8" height="19" rx="2" fill="#8e241b"/>
+<text x="533.8" y="128" font-size="11" font-family="monospace" fill="#132030">0.89x (22.2% vs 25.0%)</text>
+<text x="12" y="164" font-size="11.5" fill="#132030">3-Leg Aerial Shootout Stack: QB1 Pass Yds + WR</text>
+<rect x="345" y="150" width="343.8" height="19" rx="2" fill="#145a32"/>
+<text x="695.8" y="164" font-size="11" font-family="monospace" fill="#132030">1.68x (21.0% vs 12.5%)</text>
+<text x="12" y="200" font-size="11.5" fill="#132030">4-Leg Full Bring-Back Stack: Home QB1 + Home W</text>
+<rect x="345" y="186" width="423.5" height="19" rx="2" fill="#145a32"/>
+<text x="775.5" y="200" font-size="11" font-family="monospace" fill="#132030">2.07x (12.9% vs 6.2%)</text>
+</svg>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>14-Pair Empirical Correlation &amp; Joint-Hit Table</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Pair &amp; Conditioning Basis</th>
+              <th class="num">N</th>
+              <th class="num">Pearson r</th>
+              <th class="num">95% Fisher CI</th>
+              <th class="num">Binary &phi;</th>
+              <th class="num">Copula &rho;</th>
+              <th class="num">Joint Hit %</th>
+              <th class="num">Indep %</th>
+              <th class="num">Boost</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono"><strong>COR-01</strong></td><td><strong>Home ATS Cover &lt;-&gt; Game Total Over (All Games)</strong><br><small>Near-zero unconditional link; parlaying spread + over indiscriminately adds double vig with zero correlation edge.</small></td><td class="num">5,098</td><td class="num"><strong>+0.0229</strong></td><td class="num">[-0.005, +0.050]</td><td class="num">+0.0136</td><td class="num">+0.0214</td><td class="num">24.58%</td><td class="num">24.24%</td><td class="num">1.014x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>COR-02</strong></td><td><strong>Home Favorite Cover (-3.5+) &lt;-&gt; Game Total Over</strong><br><small>Modest positive link when heavy home favorites blow out opponents.</small></td><td class="num">2,250</td><td class="num"><strong>+0.0868</strong></td><td class="num">[+0.046, +0.128]</td><td class="num">+0.0208</td><td class="num">+0.0327</td><td class="num">25.07%</td><td class="num">24.55%</td><td class="num">1.021x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>COR-03</strong></td><td><strong>Home Underdog Cover (+3.5+) &lt;-&gt; Game Total Over</strong><br><small>Slight negative link: home underdogs cover more reliably in lower-possession, lower-scoring games.</small></td><td class="num">1,022</td><td class="num"><strong>-0.0703</strong></td><td class="num">[-0.131, -0.009]</td><td class="num">+0.0393</td><td class="num">+0.0617</td><td class="num">26.32%</td><td class="num">25.34%</td><td class="num">1.039x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>COR-04</strong></td><td><strong>Home Outright Win &lt;-&gt; Home ATS Cover</strong><br><small>Strongly redundant contingencies (related contingency rule in DraftKings KB0010683).</small></td><td class="num">5,154</td><td class="num"><strong>+0.9120</strong></td><td class="num">[+0.907, +0.916]</td><td class="num">+0.6726</td><td class="num">+0.8779</td><td class="num">43.60%</td><td class="num">26.88%</td><td class="num">1.622x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener">SL-SRC-19 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>COR-05</strong></td><td><strong>Home Points Scored &lt;-&gt; Away Points Scored</strong><br><small>Slight pace/weather coupling across teams within the same stadium environment.</small></td><td class="num">5,307</td><td class="num"><strong>-0.0480</strong></td><td class="num">[-0.075, -0.021]</td><td class="num">-0.0092</td><td class="num">-0.0144</td><td class="num">23.10%</td><td class="num">23.33%</td><td class="num">0.990x</td><td><a href="https://courses.cit.cornell.edu/info295_2006fa/l4-5.pdf" target="_blank" rel="noopener">SL-SRC-30 (Cornell University)</a></td></tr><tr><td class="mono"><strong>COR-06</strong></td><td><strong>Adjacent Same-Week Game ATS Cover &lt;-&gt; Next Game ATS Cover</strong><br><small>Empirically indistinguishable from zero: cross-game parlays obey independence P(A)*P(B) and compound sportsbook hold.</small></td><td class="num">4,816</td><td class="num"><strong>+0.0093</strong></td><td class="num">[-0.019, +0.038]</td><td class="num">+0.0133</td><td class="num">+0.0210</td><td class="num">23.94%</td><td class="num">23.61%</td><td class="num">1.014x</td><td><a href="https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm" target="_blank" rel="noopener">SL-SRC-23 (NIST (U.S. Dept. of Commerce))</a></td></tr><tr><td class="mono"><strong>COR-07</strong></td><td><strong>QB1 Passing Yards &lt;-&gt; Ex-Ante WR1 Receiving Yards (Same Team)</strong><br><small>Strongest true ex-ante player-prop correlation; books apply heavy SGP correlation tax.</small></td><td class="num">5,578</td><td class="num"><strong>+0.3779</strong></td><td class="num">[+0.355, +0.400]</td><td class="num">+0.2687</td><td class="num">+0.4128</td><td class="num">33.78%</td><td class="num">27.12%</td><td class="num">1.245x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>COR-08</strong></td><td><strong>QB1 Passing Yards &lt;-&gt; EX-POST Game Leading Receiver Yards (Lookahead Bias)</strong><br><small>Demonstrates why Issue #19 flagged ex-post WR1 selection: conditioning on whoever led the game inflates r substantially above true ex-ante COR-07!</small></td><td class="num">5,578</td><td class="num"><strong>+0.6172</strong></td><td class="num">[+0.601, +0.633]</td><td class="num">+0.4799</td><td class="num">+0.6928</td><td class="num">40.96%</td><td class="num">29.15%</td><td class="num">1.405x</td><td><a href="https://scikit-learn.org/stable/common_pitfalls.html" target="_blank" rel="noopener">SL-SRC-25 (scikit-learn.org)</a></td></tr><tr><td class="mono"><strong>COR-09</strong></td><td><strong>QB1 2+ Passing TDs &lt;-&gt; Ex-Ante WR1 Anytime Receiving TD</strong><br><small>High positive touchdown coupling; naive independent multiplication severely understates joint hit rate.</small></td><td class="num">5,578</td><td class="num"><strong>+0.4640</strong></td><td class="num">[+0.443, +0.484]</td><td class="num">+0.3694</td><td class="num">+0.5645</td><td class="num">23.54%</td><td class="num">14.89%</td><td class="num">1.580x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010778" target="_blank" rel="noopener">SL-SRC-21 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>COR-10</strong></td><td><strong>QB1 Passing Yards &lt;-&gt; Same-Game Total Over</strong><br><small>Substantial positive link between quarterback aerial yardage shock and game total.</small></td><td class="num">5,532</td><td class="num"><strong>+0.3008</strong></td><td class="num">[+0.277, +0.325]</td><td class="num">+0.2232</td><td class="num">+0.3454</td><td class="num">33.48%</td><td class="num">27.95%</td><td class="num">1.198x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>COR-11</strong></td><td><strong>RB1 Rushing Yards &lt;-&gt; Same-Team ATS Cover</strong><br><small>Positive game-script correlation: teams covering in the 4th quarter feed RB1 clock-killing carries.</small></td><td class="num">5,627</td><td class="num"><strong>+0.2900</strong></td><td class="num">[+0.266, +0.314]</td><td class="num">+0.1985</td><td class="num">+0.3068</td><td class="num">30.03%</td><td class="num">25.07%</td><td class="num">1.198x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>COR-12</strong></td><td><strong>RB1 Rushing Yards &lt;-&gt; Same-Team QB1 Pass Attempts</strong><br><small>Negative correlation: run-heavy leading scripts suppress quarterback dropback volume (anti-correlated SGP trap).</small></td><td class="num">5,569</td><td class="num"><strong>-0.1624</strong></td><td class="num">[-0.188, -0.137]</td><td class="num">-0.1128</td><td class="num">-0.1763</td><td class="num">23.31%</td><td class="num">26.12%</td><td class="num">0.892x</td><td><a href="https://courses.cit.cornell.edu/info295_2006fa/l4-5.pdf" target="_blank" rel="noopener">SL-SRC-30 (Cornell University)</a></td></tr><tr><td class="mono"><strong>COR-13</strong></td><td><strong>Home QB1 Passing Yards &lt;-&gt; Opposing Away QB1 Passing Yards</strong><br><small>Modest shootout bring-back coupling driven by shared pace and comeback pass scripts.</small></td><td class="num">2,637</td><td class="num"><strong>+0.0934</strong></td><td class="num">[+0.055, +0.131]</td><td class="num">+0.0404</td><td class="num">+0.0641</td><td class="num">33.18%</td><td class="num">32.19%</td><td class="num">1.031x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>COR-14</strong></td><td><strong>Ex-Ante WR1 Receiving Yards &lt;-&gt; Ex-Ante WR2 Receiving Yards</strong><br><small>Near-zero net link: shared QB pass-volume tailwind is offset by target-share cannibalization.</small></td><td class="num">5,790</td><td class="num"><strong>-0.0076</strong></td><td class="num">[-0.033, +0.018]</td><td class="num">-0.0137</td><td class="num">-0.0216</td><td class="num">21.81%</td><td class="num">22.16%</td><td class="num">0.985x</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010778" target="_blank" rel="noopener">SL-SRC-21 (DraftKings Official Support)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Multi-Leg Gaussian-Copula Fair Pricing vs. Unadjusted Independent Parlay Payouts</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Combo Structure &amp; Pricing Takeaway</th>
+              <th class="num">Legs</th>
+              <th class="num">Indep Prob</th>
+              <th class="num">Copula Prob</th>
+              <th class="num">Mult</th>
+              <th class="num">Fair Copula Dec</th>
+              <th class="num">Std -110 Parlay Dec</th>
+              <th class="num">EV @ Unadj -110</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono"><strong>SGP-01</strong></td><td><strong>2-Leg Cross-Game Independent Spread Parlay (50% / 50% legs)</strong><br><small>Zero correlation; standard +264 payout embeds -9.0% vig (-4.55% compounded twice).</small></td><td class="num">2</td><td class="num">25.00%</td><td class="num"><strong>25.00%</strong></td><td class="num">1.000x</td><td class="num">+300</td><td class="num">+264</td><td class="num">-9.00%</td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener">SL-SRC-19 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>SGP-02</strong></td><td><strong>2-Leg Ex-Ante QB1 Pass Yds Over + WR1 Rec Yds Over (50% / 50%)</strong><br><small>True joint hit rate rises sharply via copula rho; sportsbooks haircut SGP payouts (KB0010719).</small></td><td class="num">2</td><td class="num">25.00%</td><td class="num"><strong>31.77%</strong></td><td class="num">1.271x</td><td class="num">+215</td><td class="blank-cell" title="Intentionally left blank — unverified proprietary SGP book price"></td><td class="blank-cell" title="Intentionally left blank — unverified against official primary source"></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>SGP-03</strong></td><td><strong>2-Leg Anti-Correlated Trap: RB1 Rush Yds Over + QB1 Pass Att Over</strong><br><small>Negative script correlation reduces joint hit rate BELOW 25%; recreational SGP bettors routinely overpay.</small></td><td class="num">2</td><td class="num">25.00%</td><td class="num"><strong>22.18%</strong></td><td class="num">0.887x</td><td class="num">+351</td><td class="blank-cell" title="Intentionally left blank — unverified proprietary SGP book price"></td><td class="blank-cell" title="Intentionally left blank — unverified against official primary source"></td><td><a href="https://courses.cit.cornell.edu/info295_2006fa/l4-5.pdf" target="_blank" rel="noopener">SL-SRC-30 (Cornell University)</a></td></tr><tr><td class="mono"><strong>SGP-04</strong></td><td><strong>3-Leg Aerial Shootout Stack: QB1 Pass Yds + WR1 Rec Yds + Game Over</strong><br><small>3-leg positive correlation boosts joint hit probability well above naive 12.5%.</small></td><td class="num">3</td><td class="num">12.50%</td><td class="num"><strong>20.96%</strong></td><td class="num">1.677x</td><td class="num">+377</td><td class="blank-cell" title="Intentionally left blank — unverified proprietary SGP book price"></td><td class="blank-cell" title="Intentionally left blank — unverified against official primary source"></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr><tr><td class="mono"><strong>SGP-05</strong></td><td><strong>4-Leg Full Bring-Back Stack: Home QB1 + Home WR1 + Away QB1 + Game Over</strong><br><small>4-leg shootout stack nearly doubles naive 6.25% hit rate; profitable ONLY if book SGP price exceeds fair copula odds.</small></td><td class="num">4</td><td class="num">6.25%</td><td class="num"><strong>12.91%</strong></td><td class="num">2.066x</td><td class="num">+675</td><td class="blank-cell" title="Intentionally left blank — unverified proprietary SGP book price"></td><td class="blank-cell" title="Intentionally left blank — unverified against official primary source"></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010719" target="_blank" rel="noopener">SL-SRC-20 (DraftKings Official Support)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="site-footer">
+    <strong>Responsible Research Disclosure:</strong> Quantitative sports-market research and paper-competition evaluation only; no real-money wagering advice or funded prize pool exists.
+    Every table row cites a verified official source; unconfirmable figures are left strictly blank and logged on the <a href="flagged.html">Flagged for Review</a> page.
+    Confidential support: <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener">NCPG 1-800-MY-RESET</a>.
+  </footer>
+</body>
+</html>
