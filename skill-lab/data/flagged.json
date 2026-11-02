@@ -1,0 +1,113 @@
+{
+  "verified_date": "2026-11-02",
+  "rows": [
+    {
+      "id": "FLG-01",
+      "category": "Unverified Market Data",
+      "item": "Historical NFL Player Prop Closing Lines & Over/Under Vig",
+      "value": "",
+      "status": "UNVERIFIED (LEFT BLANK)",
+      "reason": "Official NFL.com publishes player box-score statistics, and Genius Sports distributes commercial betting feeds (SL-SRC-16), but no free official archive of historical player-prop closing lines or vig exists. All prop-combo ROI cells (STR-12..STR-14) are left blank and held at Gate G10.",
+      "source_id": "SL-SRC-16"
+    },
+    {
+      "id": "FLG-02",
+      "category": "Unverified Market Data",
+      "item": "Sportsbook Same-Game Parlay (SGP) Proprietary Correlation Haircut Schedule",
+      "value": "",
+      "status": "UNVERIFIED (LEFT BLANK)",
+      "reason": "DraftKings KB0010719 confirms SGP odds are priced differently from independent parlays, but operators do not publish historical SGP pricing matrices. STR-10 and STR-11 leave verified ROI blank and report only box-score joint hit rates and fair Gaussian-copula odds.",
+      "source_id": "SL-SRC-20"
+    },
+    {
+      "id": "FLG-03",
+      "category": "Unverified Market Data",
+      "item": "Point-in-Time Opening Lines & Closing-Line Value (CLV) Timestamp Series",
+      "value": "",
+      "status": "UNVERIFIED (LEFT BLANK)",
+      "reason": "Committed games.csv.gz records a single closing spread/total without opening-line timestamps or multi-book consensus snapshots; CLV edge is therefore left blank rather than simulated.",
+      "source_id": "SL-SRC-18"
+    },
+    {
+      "id": "FLG-04",
+      "category": "Unverified Competition Funding",
+      "item": "Funded Real-Money Leaderboard Prize Pool & Sportsbook Account Limits",
+      "value": "",
+      "status": "UNVERIFIED (LEFT BLANK)",
+      "reason": "While NFL Big Data Bowl awards $100,000 externally (SL-SRC-17), this repository has no funded cash treasury or verified sportsbook execution limits; cash prize cells are blank and competition rewards are tracked strictly in non-monetary paper points (0 awarded because 0 strategies passed all 10 gates).",
+      "source_id": "SL-SRC-17"
+    },
+    {
+      "id": "FLG-05",
+      "category": "Unplayed Live Game",
+      "item": "2026 Week 8 Monday Night Football Final Score (Bears at Seahawks, Nov 2 8:15 PM ET)",
+      "value": "",
+      "status": "UPCOMING / UNPLAYED",
+      "reason": "Verified on NFL.com Week 8 schedule as kicking off Monday, Nov 2, 2026 at 8:15 PM ET; final score does not yet exist at verification time on 2026-11-02 UTC.",
+      "source_id": "SL-SRC-04"
+    },
+    {
+      "id": "FLG-06",
+      "category": "Repository Irregularity",
+      "item": "Committed games.csv.gz Missing 12 Settled Sunday Nov 1, 2026 Week 8 Final Scores",
+      "value": "",
+      "status": "FLAGGED FOR REVIEW",
+      "reason": "Committed data/derived/games.csv.gz ends at Oct 29 TNF (CAR@GB), leaving 24/32 club records stale vs 2026-11-02 NFL.com standings. Skill Lab verified all 12 Nov 1 finals directly from NFL.com and proved 32/32 exact standings reconciliation without overwriting shared data/ files.",
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "id": "FLG-07",
+      "category": "Repository Irregularity",
+      "item": "data/standings_2020.csv Conflates Regular-Season & Playoff Games + Uses 'OAK' for 2020 Raiders",
+      "value": "",
+      "status": "FLAGGED FOR REVIEW",
+      "reason": "Sibling file data/standings_2020.csv reports 19-20 game totals (e.g. KC 16-3, BUF 15-4) as 2020 standings whereas official NFL.com 2020 REG standings are 16 games (KC 14-2, BUF 13-3, LV 8-8).",
+      "source_id": "SL-SRC-03"
+    },
+    {
+      "id": "FLG-08",
+      "category": "Repository Irregularity",
+      "item": "Spread Sign Convention Inversion vs Standard Sportsbook Display",
+      "value": "",
+      "status": "FLAGGED & HANDLED",
+      "reason": "In games.csv.gz, spread_line > 0 denotes a HOME favorite (proved by 100% shorter home moneyline for spread_line >= 3), opposite to standard sportsbook display (-3.5 = favorite, SL-SRC-18). Skill Lab converts every published line to standard Home Handicap (-spread_line).",
+      "source_id": "SL-SRC-18"
+    },
+    {
+      "id": "FLG-09",
+      "category": "Repository Irregularity",
+      "item": "Ex-Post WR1 Selection Bias in Earlier Correlation Tables (r = 0.62 vs Ex-Ante r = 0.38)",
+      "value": "",
+      "status": "FLAGGED & CORRECTED IN SKILL LAB",
+      "reason": "Selecting a team's 'WR1' by who led the game in receiving yards ex-post inflates QB-WR1 correlation from r = +0.3779 (strictly ex-ante target-share leader) to r = +0.6172 (lookahead bias, Issue #19).",
+      "source_id": "SL-SRC-25"
+    },
+    {
+      "id": "FLG-10",
+      "category": "Repository Irregularity",
+      "item": "1,902 Pre-2018 Spread Rows Missing Recorded Odds in games.csv.gz",
+      "value": "",
+      "status": "FLAGGED & EXCLUDED",
+      "reason": "1,902 settled games (1999-2017) have spread_line without home_spread_odds/away_spread_odds. Skill Lab never imputes -110; all priced strategy backtests use 2018-2026 rows with 100% real odds.",
+      "source_id": "SL-SRC-32"
+    },
+    {
+      "id": "FLG-11",
+      "category": "Repository Irregularity",
+      "item": "Root/Docs Triple Executive-Summary Drift & Issue #34 Provenance Path Bug",
+      "value": "",
+      "status": "FLAGGED FOR ROOT OWNER",
+      "reason": "README.md, EXECUTIVE_SUMMARY.md, and docs/EXECUTIVE_SUMMARY.md summarize three distinct builds (7, 5, and 9 strategies), and scripts/analysis/build_site.py:608 reads results/provenance.json instead of data/provenance.json. Logged in COORDINATION.md without editing sibling-owned files.",
+      "source_id": "SL-SRC-32"
+    },
+    {
+      "id": "FLG-12",
+      "category": "Data Provenance Caveat",
+      "item": "Historical Closing Odds Originate from Third-Party Community Feed (nflverse), Not NFL.com",
+      "value": "",
+      "status": "FLAGGED FOR REVIEW",
+      "reason": "NFL.com verifies scores, standings, schedules, and player stats (64/64 team-seasons & 7/7 players matched), but does not publish an archive of historical closing spreads/moneylines (SL-SRC-16).",
+      "source_id": "SL-SRC-16"
+    }
+  ]
+}

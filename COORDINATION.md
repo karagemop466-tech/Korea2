@@ -1156,3 +1156,34 @@ was modified. Branch name is fixed by the environment; no separate session branc
   `scripts/check_links.py`, `tests/check_data.py`, `tests/check_derived.py`, pipeline unittests (17),
   audit checks, `verification/recompute.py` (exit 0), and `scripts/build_site.py` rebuild is
   byte-idempotent. `pages/props.html` shows week 9; the obsolete-rulebook flag is on `pages/flagged.html`.
+
+---
+
+# Independent session `arena/2b9898f7-korea2` — Skill Lab (Line Origination, Luck Removal, Repo Audit & Gated Strategy Competition)
+
+**Session ID:** `arena/2b9898f7-korea2` (branch fixed by environment: `arena/2b9898f7-korea2`)
+**Claimed at:** 2026-11-02 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| SL-1 | Full requirements catalog & official source registry (2026-11-02 live verification) | done | `arena/2b9898f7-korea2` | `skill-lab/REQUIREMENTS.md`, `skill-lab/data/sources.json`, `skill-lab/data/official_2026.json` |
+| SL-2 | Line-by-line review of the populated repository & irregularity register | done | `arena/2b9898f7-korea2` | `skill-lab/REPO_REVIEW.md`, `skill-lab/data/repo_review.json`, `skill-lab/data/flagged.json` |
+| SL-3 | Walk-forward NFL line & player-prop origination engine (spread, total, ML, prop quantiles, 2026 Week 9 slate) | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/originate.py`, `skill-lab/data/origination.json` |
+| SL-4 | Signal research & luck-removal / skill decomposition (YoY persistence, Empirical Bayes shrinkage, permutation & bootstrap nulls) | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/signals_and_luck.py`, `skill-lab/data/signals.json`, `skill-lab/data/luck.json` |
+| SL-5 | Empirical correlation matrix & Gaussian-copula SGP / parlay / player-prop combo pricing | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/correlations.py`, `skill-lab/data/correlations.json` |
+| SL-6 | 10-gate strategy competition, negative/leakage controls, skill-based leaderboard & reward tiers | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/strategies.py`, `skill-lab/data/strategies.json`, `skill-lab/data/leaderboard.json` |
+| SL-7 | Executive summary & static GitHub Pages dashboard (`skill-lab/`) + Flagged for Review page | done | `arena/2b9898f7-korea2` | `skill-lab/EXECUTIVE_SUMMARY.md`, `skill-lab/index.html`, `skill-lab/pages/*.html`, `skill-lab/assets/*`, `skill-lab/scripts/build_site.py` |
+| SL-8 | Automated line-by-line verification suite & CI workflow (`skill-lab/scripts/verify_all.py`) | done | `arena/2b9898f7-korea2` | `skill-lab/scripts/verify_all.py`, `.github/workflows/skill-lab.yml` |
+| SL-9 | Final re-verification, PR to `main`, merge & GitHub Pages live deployment check | in progress | `arena/2b9898f7-korea2` | `COORDINATION.md` (this section), PR to `main` |
+
+## Scope & parallel-session coordination — `arena/2b9898f7-korea2`
+
+- **Parallel sessions observed:** `arena/652b0095-korea2` (PR #48 + extract refresh), `arena/cacf6153-korea2` (M1–M5 defect fixes), and `arena/89b8d356-korea2` (final verification & prop week-label fix `d926101`).
+- **Prior merged sessions observed on `main`:** root Line Lab (`index.html`, `pages/`, `assets/`, `scripts/`, `data/derived/`), `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination-lab/`, `origination/`, `pipeline/`, `results/`, `audit/`.
+- **Strict non-overlapping scope:** `arena/2b9898f7-korea2` writes **only** inside `skill-lab/`, `.github/workflows/skill-lab.yml`, and this section of `COORDINATION.md` (reads committed datasets under `data/` and sibling files read-only for line-by-line verification). Zero files owned by any sibling session are modified.
+- **Navigation request logged for root-site / integration owner:** once `skill-lab/` merges to `main`, please add a link to `skill-lab/index.html` on `pages/archive.html` / shared root navigation when convenient.
+
+## Log — `arena/2b9898f7-korea2`
+- 2026-11-02 UTC: Inspected `COORDINATION.md` on `main` (`c6f3571`) and remote branch heads (`arena/652b0095-korea2` active). Recorded non-overlapping `skill-lab/` task claims above before starting implementation; committed and pushed claim immediately.
+- 2026-11-02 UTC: **Merge conflicts resolved on `COORDINATION.md` during `git pull --rebase origin main`** after `arena/652b0095-korea2` (`95bbd78`), `arena/cacf6153-korea2` (`397f3cd`), and `arena/89b8d356-korea2` (`d926101`) merged to `main`. All sessions had appended sections to `COORDINATION.md`; resolved by preserving 100% of every session's entries verbatim above and placing `arena/2b9898f7-korea2`'s section directly below `---`. Zero `skill-lab/` files conflicted.
+- 2026-11-02 UTC: Executed SL-1..SL-8 (`originate.py`, `signals_and_luck.py`, `correlations.py`, `strategies.py`, `repo_audit.py`, `build_site.py`, `verify_all.py`), reconciling 2025 (32/32) and 2026 (32/32) NFL.com standings and 7/7 player stat logs cleanly, with 335/335 table rows linked to official sources and 77 strictly blank unverified cells.

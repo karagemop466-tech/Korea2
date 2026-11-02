@@ -1,0 +1,186 @@
+{
+  "window": "2015-2025 full NFL regular seasons (320 consecutive team-season transitions)",
+  "metrics": [
+    {
+      "metric_id": "pass_epa_db",
+      "label": "Offensive Passing EPA / Dropback",
+      "team_season_pairs": 317,
+      "yoy_r": 0.4016,
+      "ci_95_low": 0.3049,
+      "ci_95_high": 0.4901,
+      "p_value": 0.0,
+      "eb_skill_weight": 0.402,
+      "luck_shrinkage_pct": 59.8,
+      "classification": "True Offensive Skill",
+      "source_id": "SL-SRC-15"
+    },
+    {
+      "metric_id": "off_epa_play",
+      "label": "Total Offensive EPA / Play (Pass + Rush)",
+      "team_season_pairs": 317,
+      "yoy_r": 0.3774,
+      "ci_95_low": 0.2788,
+      "ci_95_high": 0.4681,
+      "p_value": 0.0,
+      "eb_skill_weight": 0.377,
+      "luck_shrinkage_pct": 62.3,
+      "classification": "True Offensive Skill",
+      "source_id": "SL-SRC-15"
+    },
+    {
+      "metric_id": "cpoe",
+      "label": "Completion % Over Expected (CPOE)",
+      "team_season_pairs": 317,
+      "yoy_r": 0.389,
+      "ci_95_low": 0.2913,
+      "ci_95_high": 0.4787,
+      "p_value": 0.0,
+      "eb_skill_weight": 0.389,
+      "luck_shrinkage_pct": 61.1,
+      "classification": "Quarterback Accuracy Skill",
+      "source_id": "SL-SRC-14"
+    },
+    {
+      "metric_id": "pt_diff_pg",
+      "label": "Net Point Differential / Game",
+      "team_season_pairs": 317,
+      "yoy_r": 0.4097,
+      "ci_95_low": 0.3137,
+      "ci_95_high": 0.4974,
+      "p_value": 0.0,
+      "eb_skill_weight": 0.41,
+      "luck_shrinkage_pct": 59.0,
+      "classification": "Blended Skill + Turnover Noise",
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "metric_id": "win_pct",
+      "label": "Season Win-Loss Percentage",
+      "team_season_pairs": 317,
+      "yoy_r": 0.3604,
+      "ci_95_low": 0.2605,
+      "ci_95_high": 0.4526,
+      "p_value": 0.0,
+      "eb_skill_weight": 0.36,
+      "luck_shrinkage_pct": 64.0,
+      "classification": "Blended Skill + Close-Game Luck",
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "metric_id": "net_to_pg",
+      "label": "Net Turnover Margin / Game",
+      "team_season_pairs": 317,
+      "yoy_r": 0.1524,
+      "ci_95_low": 0.043,
+      "ci_95_high": 0.2582,
+      "p_value": 0.00649,
+      "eb_skill_weight": 0.152,
+      "luck_shrinkage_pct": 84.8,
+      "classification": "Mostly Ephemeral Bounce Luck",
+      "source_id": "SL-SRC-15"
+    },
+    {
+      "metric_id": "pythag_luck",
+      "label": "Pythagorean Wins Residual (Actual - Expected Wins)",
+      "team_season_pairs": 317,
+      "yoy_r": 0.0232,
+      "ci_95_low": -0.0872,
+      "ci_95_high": 0.133,
+      "p_value": 0.68083,
+      "eb_skill_weight": 0.023,
+      "luck_shrinkage_pct": 97.7,
+      "classification": "Pure Mean-Reverting Luck",
+      "source_id": "SL-SRC-24"
+    },
+    {
+      "metric_id": "onescore_win_pct",
+      "label": "One-Score Game Win % (Margin <= 8 pts)",
+      "team_season_pairs": 317,
+      "yoy_r": 0.081,
+      "ci_95_low": -0.0294,
+      "ci_95_high": 0.1895,
+      "p_value": 0.15016,
+      "eb_skill_weight": 0.081,
+      "luck_shrinkage_pct": 91.9,
+      "classification": "Pure Close-Game Coin-Flip Luck",
+      "source_id": "SL-SRC-24"
+    },
+    {
+      "metric_id": "ats_cover_pct",
+      "label": "Team Season ATS Cover Rate vs Closing Spread",
+      "team_season_pairs": 317,
+      "yoy_r": -0.0142,
+      "ci_95_low": -0.1241,
+      "ci_95_high": 0.0961,
+      "p_value": 0.80164,
+      "eb_skill_weight": 0.0,
+      "luck_shrinkage_pct": 100.0,
+      "classification": "Market-Priced Zero-Persistence Residual",
+      "source_id": "SL-SRC-18"
+    }
+  ],
+  "within_season_split_half": {
+    "team_seasons": 344,
+    "odd_even_epa_per_play_r": 0.5837,
+    "odd_even_net_turnovers_r": 0.1523,
+    "odd_even_ats_cover_r": -0.147
+  },
+  "pythagorean_outliers_2025": [
+    {
+      "team": "KC",
+      "record_2025": "6-11",
+      "pythag_luck_2025_wins": -3.49,
+      "direction_predicted_for_2026": "Positive Rebound",
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "NYG",
+      "record_2025": "4-13",
+      "pythag_luck_2025_wins": -3.09,
+      "direction_predicted_for_2026": "Positive Rebound",
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "DEN",
+      "record_2025": "14-3",
+      "pythag_luck_2025_wins": 3.01,
+      "direction_predicted_for_2026": "Negative Regression",
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "ARI",
+      "record_2025": "3-14",
+      "pythag_luck_2025_wins": -2.44,
+      "direction_predicted_for_2026": "Positive Rebound",
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "CHI",
+      "record_2025": "11-6",
+      "pythag_luck_2025_wins": 1.89,
+      "direction_predicted_for_2026": "Negative Regression",
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "SF",
+      "record_2025": "12-5",
+      "pythag_luck_2025_wins": 1.87,
+      "direction_predicted_for_2026": "Negative Regression",
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "IND",
+      "record_2025": "8-9",
+      "pythag_luck_2025_wins": -1.73,
+      "direction_predicted_for_2026": "Positive Rebound",
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "LAC",
+      "record_2025": "11-6",
+      "pythag_luck_2025_wins": 1.71,
+      "direction_predicted_for_2026": "Negative Regression",
+      "source_id": "SL-SRC-02"
+    }
+  ]
+}
