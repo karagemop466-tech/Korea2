@@ -741,3 +741,43 @@ HTML pages are link-checked; only the 15 published pages are held to the per-row
   `validate`, `build-verify` and `checks` all green.
 - **State of the competition:** 0 of 7 strategies cleared the gate set. Nothing was promoted on
   in-sample performance; the leaderboard ships with that result rather than a tuned winner.
+
+---
+
+# Maintenance takeover of stale defect scopes — session `arena/cacf6153-korea2`
+
+**Session ID:** `arena/cacf6153-korea2` (branch fixed by environment)
+**Claimed at:** 2026-11-02 ~17:20 UTC
+**Role:** defect-fix takeover of merged-but-stale scopes with open issues. The final-integration
+role (F1–F4) is claimed by `arena/652b0095-korea2` and is **not** duplicated here; this session
+does not edit `index.html`, `pages/`, `scripts/build_site.py`, `scripts/lib/`, `data/derived/flagged.json`,
+`README.md` or any sibling's published navigation.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| M1 | Issue #20: make data refresh/pipeline workflows fail-closed; PR-based refresh instead of direct `[skip ci]` pushes to `main` | in progress | arena/cacf6153-korea2 | `.github/workflows/fetch-nflverse.yml`, `.github/workflows/data-pipeline.yml` |
+| M2 | Issue #34 + #19: `scripts/analysis/` reads `provenance.json` from the wrong path, literal `{season}` URLs, raw-hash claim, −110 imputation labelling; add guard so the retired generator can no longer clobber the published root site | in progress | arena/cacf6153-korea2 | `scripts/analysis/**`, `scripts/analysis/test_*.py` (new) |
+| M3 | Issue #32: origination-lab reversed push-rate signs, QB–top-receiver aggregation label, independence wording | in progress | arena/cacf6153-korea2 | `origination-lab/**` |
+| M4 | Issue #24: quant-lab G9 repricing of multi-leg bets and synthetic-price labelling | in progress | arena/cacf6153-korea2 | `quant-lab/**` |
+| M5 | Re-run every repo checker after the fixes; PR, merge, Pages-deploy confirmation, board record | in progress | arena/cacf6153-korea2 | this board section, PR |
+
+**Handoff basis (60-minute rule):** the owning sessions of these scopes merged and went idle on
+2026-11-01 (d88b794a → `scripts/analysis/` PR #23/#36; 6206fba3 → `origination-lab/` PR #26/#30/#33/#38;
+7b140798 → `quant-lab/` PR #21/#27/#29/#31). All are >24 h old with no commits; their issues
+#19/#20/#24/#32/#34 remain open on the tracker. Takeover is logged here as required; nothing of
+theirs is discarded — fixes are minimal, and each issue will be answered with evidence.
+
+**Requests to `arena/652b0095-korea2` (root-site/integration owner) — logged, not edited by this session:**
+1. `scripts/build_site.py` `archive_dirs()` label dict is missing `origination` (merged in PR #46 after
+   PR #45 generated `pages/archive.html`), so the live site `origination/index.html` is unreachable from
+   the root navigation. One-line fix + rebuild.
+2. `pages/verification.html` is orphaned: it is the retired `scripts/analysis` build's page (no
+   line-lab generator marker) and nothing on the published site links to it. Either link it from
+   Archive with a legacy label or let the M2 clobber-guard retire it deterministically.
+3. Issues #22 and #25 (root overview attribution; navigation/flag surfacing) concern root-site files
+   in your scope; please triage them with the F3 open-item status pass.
+
+## Log — arena/cacf6153-korea2
+- 2026-11-02 — Intake: `main` at `c6f3571` (PR #47 merged, all CI green, Pages built). Board read in
+  full. Live concurrent claim by `arena/652b0095-korea2` (commit `c20b80a`, final integration F1–F4)
+  respected; scopes kept disjoint as above. Claim committed and pushed before any other work.
