@@ -206,7 +206,7 @@ def pg_index():
     <p>Home moneyline × home cover: <b>φ = {num(CORR['strongest_pair']['phi'],3)}</b>.
     QB passing yards over × team total over: <b>φ = 0.198</b>.
     Different games in the same week: <b>φ = {num(CORR['cross_game']['phi'],3)}</b>, i.e. the
-    standard parlay independence assumption holds only across games.</p>
+    standard parlay independence assumption is <i>consistent with</i> the data across games (week-clustered check) and clearly violated inside a game.</p>
   </div>
   <div class="card">
     <h3>5 · Team-level ATS "skill" is not detectable</h3>
@@ -875,12 +875,14 @@ def pg_correlation():
                     col_cls=["n"] * 6, caption="Pricing a two-leg same-game parlay under correlation")
 
     body = f"""
-{note("<b>Method.</b> " + e(CORR['method']) + " " + e(CORR['significance_threshold']) + ".", "")}
+{note("<b>Method.</b> " + e(CORR['method']) + " " + e(CORR['significance_threshold']) +
+      ". The cross-game row is the exception: its interval comes from a week-clustered bootstrap over " +
+      "distinct within-week pairs, not from the Fisher z transform.", "")}
 
 <div class="grid g4">
   {card("Strongest leg pair", num(CORR['strongest_pair']['phi'],3), "home ML × home cover ATS")}
   {card("Weakest same-game pair", num(min(p['phi'] for p in CORR['game_pairs']),3), "spread × total")}
-  {card("Cross-game", num(CORR['cross_game']['phi'],3), "independence holds")}
+  {card("Cross-game", num(CORR['cross_game']['phi'],3), "within-week association, week-clustered CI")}
   {card("Games in sample", num(CORR['n_games'],0), "2006-2026, priced games")}
 </div>
 
@@ -889,17 +891,22 @@ def pg_correlation():
 for parlay pricing is the pairs that are <i>not</i> mechanically linked: spread × total is essentially
 zero (φ = {num([p for p in CORR['game_pairs'] if 'Over' in p['pair'] and 'Home covers' in p['pair']][0]['phi'],3)}),
 which means a same-game spread+total ticket can be priced with the product without much error — but only
-because those legs happen to be independent, not because same-game legs are independent in general.</p>
+because those two legs happen to be close to independent, not because same-game legs are independent in
+general.</p>
 {gtbl}
 
 <h2>Prop legs</h2>
 {ptbl}
 
-<h2>Cross-game independence</h2>
-<p>Two different games in the same week: φ = {num(CORR['cross_game']['phi'],3)} with a 95% confidence
-interval of {num(CORR['cross_game']['ci_lo'],3)} to {num(CORR['cross_game']['ci_hi'],3)}. The standard
-parlay assumption is fine across games; it is only same-game and same-team combinations that need the
-correction below.</p>
+<h2>Cross-game association</h2>
+<p>Two different games in the same week: φ = {num(CORR['cross_game']['phi'],3)} on
+{num(CORR['cross_game']['n'],0)} distinct within-week pairs across
+{num(CORR['cross_game']['n_weeks'],0)} weeks, with a 95% interval of
+{num(CORR['cross_game']['ci_lo'],3)} to {num(CORR['cross_game']['ci_hi'],3)} from a
+<b>week-clustered bootstrap</b> ({e(CORR['cross_game']['ci_method'])}). That is consistent with
+independence, but it does not establish joint independence of a multi-leg ticket: pairwise
+independence does not imply joint independence, so a cross-game parlay price is an assumption to
+check, not a derivation. Same-game and same-team combinations need the correction below.</p>
 
 <h2>Correlation-adjusted pricing</h2>
 {pricing}
