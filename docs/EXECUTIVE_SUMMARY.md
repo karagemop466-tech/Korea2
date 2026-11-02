@@ -142,11 +142,11 @@ official pages were re-read on 2026-11-02.
 | Result | Value |
 |---|---|
 | Independent checks | 49 |
-| Agree with the published value | 45 |
+| Agree with the published value | 48 |
 | Material disagreements | 0 |
-| Observations expected to differ (windows, live pages) | 11 recorded, 0 hidden |
+| Observations (informational rows, not equality tests) | 11, all consistent |
 | 2020 regular season vs NFL.com | 32/32 teams match on W-L-T, PF and PA |
-| 2026 live standings vs committed extract | 8/32 match — the extract ends 2026-10-29 |
+| 2026 live standings vs committed extract | 32/32 match, on data through 2026-11-01 |
 | Upstream release assets re-checked | 28 of 31 byte-size identical; the three current-season files moved upstream on 2026-11-02 |
 
 **Defects found and fixed in this pass**
@@ -164,9 +164,12 @@ official pages were re-read on 2026-11-02.
    owns those paths and publishes a real Verification page in the navigation; `tests/check_derived.py`
    fails the build on an orphan page, on non-strict JSON, or on any verification disagreement.
 
-**What the verification does not establish.** That a strategy is profitable, that a price is obtainable, or
-that the player-level coefficients reproduce exactly from the pruned extract: the published coefficients were
-measured on a 2012–2026 download, the committed pruned extract starts in 2015, and the recomputation
-reproduces every sign and magnitude to within 0.02 with a smaller n. That gap is published rather than
-papered over, and it is the one item that a data refresh (plus committing the pruned extracts from the same
-download) would close.
+**The reproducibility gap, and its fix.** On the first pass the published player-level coefficients could not be
+reproduced from a checkout: the analysis read a 2012–2026 download while the committed pruned extract started in
+2015 (same signs and magnitudes within 0.02, smaller n). The refresh workflow then rewrote every figure, which
+widened the gap to 21 disagreements on 48 comparable checks. `scripts/export_extracts.py` now rebuilds the
+committed extracts from the same parquet files the analysis reads, the pipeline runs it on every refresh, and
+the verifier is back to 0 disagreements with every player-level sample size matching exactly.
+
+**What the verification does not establish.** That a strategy is profitable, that a price is obtainable at any
+size, or that results will persist. Reproducibility is not validation.

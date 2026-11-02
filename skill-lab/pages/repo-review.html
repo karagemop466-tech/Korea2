@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="skill-lab/scripts/build_site.py">
+  <title>Repo Review | NFL Skill Lab</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <div class="brand-title">NFL Skill Lab &mdash; Line Origination, Copula Pricing &amp; Gated Strategy Competition</div>
+        <div class="brand-meta">
+          Verified 2026-11-02 UTC &middot; Branch <code>arena/2b9898f7-korea2</code> &middot;
+          <a href="../../index.html">Repo Root Site</a>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Skill Lab Sections">
+        <a href="../index.html">Overview</a><a href="summary.html">Executive Summary</a><a href="origination.html">Line &amp; Prop Origination</a><a href="signals.html">Signals &amp; FDR</a><a href="luck-skill.html">Skill vs. Luck</a><a href="correlations.html">Correlations &amp; Copula</a><a href="leaderboard.html">Leaderboard &amp; Rewards</a><a href="strategies.html">Singles, Parlays &amp; Props</a><a href="gates.html">10-Gate Matrix</a><a href="official-audit.html">NFL.com Audit</a><a href="repo-review.html" class="active">Repo Review</a><a href="flagged.html">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    
+    <section class="hero">
+      <h1>Line-by-Line Repository Review (<code>karagemop466-tech/Korea2</code>)</h1>
+      <p>
+        Systematic audit of datasets, scripts, markdown reports, HTML suites, and GitHub Actions workflows across the repository, cross-referenced against open audit issues (<code>#1</code>&ndash;<code>#34</code>) and official primary sources.
+        In strict compliance with multi-session coordination rules, sibling directories were inspected read-only and never overwritten; all defects and drift items are documented here and on the Flagged for Review page.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>14 Audited Repository Subsystems &amp; Verdicts</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Audit ID</th>
+              <th>Repository Path</th>
+              <th>Lines / Scope</th>
+              <th>Verdict</th>
+              <th>Line-by-Line Finding &amp; Resolution</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono"><strong>REV-01</strong></td><td class="mono">data/derived/games.csv.gz</td><td class="mono">7,548 rows (1999-2026)</td><td><span class="badge badge-pass">VERIFIED_32_OF_32</span></td><td>2025 REG matches NFL.com 32/32 across all 272 games, and 2026 REG (120 settled games through Sunday Nov 1 Week 8) reconciles 32/32 against live NFL.com standings as of 2026-11-02 (0 stale club records after 95bbd78 extract refresh).</td><td><a href="https://www.nfl.com/standings/league/2026/REG" target="_blank" rel="noopener">SL-SRC-01 (NFL.com)</a></td></tr><tr><td class="mono"><strong>REV-02</strong></td><td class="mono">data/derived/games.csv.gz &amp; scripts/analyze_strategies.py:50,66</td><td class="mono">1,902 of 7,075 settled spread rows</td><td><span class="badge badge-warn">IRREGULARITY_FLAGGED</span></td><td>1,902 settled regular-season games (1999-2017) have spread_line without home_spread_odds/away_spread_odds; root scripts/analyze_strategies.py lines 50 &amp; 66 still fall back to DEFAULT_AMERICAN (-110). Skill Lab restricts all priced backtests strictly to 2018-2026 rows with 100% recorded closing odds.</td><td><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener">SL-SRC-32 (GitHub (This Repository))</a></td></tr><tr><td class="mono"><strong>REV-03</strong></td><td class="mono">data/standings_2020.csv &amp; nfl-lines/data.html</td><td class="mono">Lines 1-33 (32 team rows)</td><td><span class="badge badge-warn">IRREGULARITY_FLAGGED</span></td><td>Conflates 2020 regular-season and playoff games into &#x27;2020 Standings&#x27;: lists KC at 16-3 (PF 542) and BUF at 15-4 (PF 569) instead of official NFL.com 16-game REG records KC 14-2 (PF 473) and BUF 13-3 (PF 501), and prints OAK instead of LV for the relocated Las Vegas Raiders.</td><td><a href="https://www.nfl.com/standings/league/2020/REG" target="_blank" rel="noopener">SL-SRC-03 (NFL.com)</a></td></tr><tr><td class="mono"><strong>REV-04</strong></td><td class="mono">README.md vs EXECUTIVE_SUMMARY.md vs docs/EXECUTIVE_SUMMARY.md</td><td class="mono">93 / 198 / 175 lines</td><td><span class="badge badge-warn">IRREGULARITY_FLAGGED</span></td><td>Three summary files in root/docs describe three different session builds without cross-labeling: README.md cites 7 strategies / 10 gates / r=0.561 (70a33596), EXECUTIVE_SUMMARY.md cites 5 strategies / 6 gates / r=0.624 (d88b794a), and docs/EXECUTIVE_SUMMARY.md cites 9 framework strategies / 8 gates (29806afc).</td><td><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener">SL-SRC-32 (GitHub (This Repository))</a></td></tr><tr><td class="mono"><strong>REV-05</strong></td><td class="mono">scripts/analysis/build_site.py (line 608)</td><td class="mono">Line 608: jload(&#x27;provenance.json&#x27;)</td><td><span class="badge badge-warn">IRREGULARITY_FLAGGED</span></td><td>Confirmed open Issue #34: jload() resolves against results/provenance.json (absent) rather than data/provenance.json, leaving extract provenance rows empty when that generator runs.</td><td><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener">SL-SRC-32 (GitHub (This Repository))</a></td></tr><tr><td class="mono"><strong>REV-06</strong></td><td class="mono">results/correlations.json &amp; origination/site_data/correlation.json</td><td class="mono">QB-WR1 correlation rows</td><td><span class="badge badge-warn">IRREGULARITY_FLAGGED</span></td><td>Confirmed open Issue #19: selecting &#x27;WR1&#x27; ex-post by in-game receiving yards inflates QB-WR1 correlation to r = +0.62..+0.67. Strictly ex-ante selection by prior target share yields within-player game-shock r = +0.3779 (copula rho = +0.4128) across 5,578 team-games.</td><td><a href="https://scikit-learn.org/stable/common_pitfalls.html" target="_blank" rel="noopener">SL-SRC-25 (scikit-learn.org)</a></td></tr><tr><td class="mono"><strong>REV-07</strong></td><td class="mono">origination-lab/scripts/build_correlations.py</td><td class="mono">Parlay &amp; copula summary tables</td><td><span class="badge badge-warn">IRREGULARITY_FLAGGED</span></td><td>Confirmed open Issue #32: binary indicator correlation phi and latent Gaussian-copula rho were not separated consistently, and any-receiver aggregation was labeled as top receiver.</td><td><a href="https://courses.cit.cornell.edu/info295_2006fa/l4-5.pdf" target="_blank" rel="noopener">SL-SRC-30 (Cornell University)</a></td></tr><tr><td class="mono"><strong>REV-08</strong></td><td class="mono">quant-lab/scripts/backtest.py &amp; validation.py</td><td class="mono">Spread/total &amp; G9 price-stress logic</td><td><span class="badge badge-warn">IRREGULARITY_FLAGGED</span></td><td>Confirmed open Issue #24: synthetic -110 price assumptions on historical rows and multi-leg stress-gate repricing caveats noted in audit issue #24.</td><td><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener">SL-SRC-32 (GitHub (This Repository))</a></td></tr><tr><td class="mono"><strong>REV-09</strong></td><td class="mono">dashboard/ &amp; data/correlations.json</td><td class="mono">10 HTML pages + 10 JSON tables</td><td><span class="badge badge-pass">VERIFIED_WITH_NOTES</span></td><td>scripts/validate_data.py passes (51 registered sources, blank flagged values). Open Issue #16 notes earlier prose/schedule caveats (2026 Week 8 ends Monday Nov 2 CHI@SEA, confirmed on NFL.com).</td><td><a href="https://www.nfl.com/schedules/2026/by-week/week-8" target="_blank" rel="noopener">SL-SRC-04 (NFL.com)</a></td></tr><tr><td class="mono"><strong>REV-10</strong></td><td class="mono">nfl-research/ &amp; research-desk/</td><td class="mono">12 static HTML pages + check_site.py</td><td><span class="badge badge-pass">VERIFIED_FRAMEWORK</span></td><td>Both framework dashboards explicitly label candidate strategies as unvalidated specifications and report NFL.com injury-page title vs heading week-number quirks.</td><td><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener">SL-SRC-32 (GitHub (This Repository))</a></td></tr><tr><td class="mono"><strong>REV-11</strong></td><td class="mono">index.html &amp; pages/*.html (Root Line Lab)</td><td class="mono">14 HTML pages (build_site.py)</td><td><span class="badge badge-pass">VERIFIED_WITH_NOTES</span></td><td>tests/check_site.py passes with 0 broken local links; pages/archive.html links all earlier sibling directories. Five table rows on index.html cite non-primary domains flagged by audit/check_site.py.</td><td><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener">SL-SRC-32 (GitHub (This Repository))</a></td></tr><tr><td class="mono"><strong>REV-12</strong></td><td class="mono">.github/workflows/fetch-nflverse.yml &amp; data-pipeline.yml</td><td class="mono">5 GitHub Actions workflows</td><td><span class="badge badge-warn">IRREGULARITY_FLAGGED</span></td><td>Confirmed open Issue #20: refresh workflows carry contents:write and push [skip ci] commits directly when triggered by path filters. Skill Lab uses a read-only verification workflow.</td><td><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener">SL-SRC-32 (GitHub (This Repository))</a></td></tr><tr><td class="mono"><strong>REV-13</strong></td><td class="mono">data/derived/player_week.csv.gz</td><td class="mono">207,389 player-week rows (2015-2026)</td><td><span class="badge badge-pass">VERIFIED_THROUGH_OCT29</span></td><td>All 7 audited NFL.com 2026 player logs (Love, Allen, Burrow, Goff, Chase, St. Brown, Cook) reconcile 100% to the single yard and touchdown once Sunday Nov 1 Week 8 stats are added.</td><td><a href="https://www.nfl.com/players/josh-allen/stats/" target="_blank" rel="noopener">SL-SRC-08 (NFL.com)</a></td></tr><tr><td class="mono"><strong>REV-14</strong></td><td class="mono">audit/check_site.py</td><td class="mono">85 prior HTML pages scanned</td><td><span class="badge badge-pass">VERIFIED_HARNESS</span></td><td>Offline link/anchor/JSON audit passes across all existing pages while reporting 2,005 third-party domain flags on sibling pages. Skill Lab achieves 0 source-domain flags under this exact scanner.</td><td><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener">SL-SRC-32 (GitHub (This Repository))</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="site-footer">
+    <strong>Responsible Research Disclosure:</strong> Quantitative sports-market research and paper-competition evaluation only; no real-money wagering advice or funded prize pool exists.
+    Every table row cites a verified official source; unconfirmable figures are left strictly blank and logged on the <a href="flagged.html">Flagged for Review</a> page.
+    Confidential support: <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener">NCPG 1-800-MY-RESET</a>.
+  </footer>
+</body>
+</html>

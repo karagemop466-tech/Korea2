@@ -15,7 +15,7 @@ runs every candidate strategy through ten validation gates before it can earn an
 | Are parlay legs independent? | No | QB passing yards ↔ WR1 receiving yards r = +0.561; 4-leg same-team joint 11.1% vs 5.7% under independence |
 | Is a season win-loss record a signal? | Mostly luck | Pythagorean R² = 0.83; year-over-year luck correlation 0.019 |
 | Can prop ROI be measured? | Not here | no historical prop prices in the feed — flagged, not invented |
-| Do the published numbers survive an independent recomputation? | Yes | 45 of 49 checks agree, 0 material disagreements; 2020 season reconciles 32/32 teams with NFL.com — [Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) |
+| Do the published numbers survive an independent recomputation? | Yes | 48 of 49 checks agree, 0 material disagreements; the 2020 and 2026 seasons each reconcile 32/32 teams with NFL.com — [Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) |
 
 The honest headline is that the market is better than the model, and the gate system rejects
 everything as a result. That is the intended behaviour of the system, not a failure of it.

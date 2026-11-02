@@ -1,0 +1,666 @@
+{
+  "verified_date": "2026-11-02",
+  "games_2025_checked": 272,
+  "teams_2025_exact": 32,
+  "games_2026_repo": 120,
+  "games_2026_reconciled": 120,
+  "teams_2026_stale_in_repo": 0,
+  "teams_2026_exact_after_nov1": 32,
+  "players_2026_exact": 7,
+  "standings_2026": [
+    {
+      "team": "ARI",
+      "nfl_official_2026": "3-5-0 (PF 175, PA 238)",
+      "repo_committed_2026": "3-5-0 (PF 175, PA 238)",
+      "reconciled_with_nov1": "3-5-0 (PF 175, PA 238)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "ATL",
+      "nfl_official_2026": "3-5-0 (PF 171, PA 189)",
+      "repo_committed_2026": "3-5-0 (PF 171, PA 189)",
+      "reconciled_with_nov1": "3-5-0 (PF 171, PA 189)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "BAL",
+      "nfl_official_2026": "4-4-0 (PF 179, PA 203)",
+      "repo_committed_2026": "4-4-0 (PF 179, PA 203)",
+      "reconciled_with_nov1": "4-4-0 (PF 179, PA 203)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "BUF",
+      "nfl_official_2026": "6-1-0 (PF 233, PA 181)",
+      "repo_committed_2026": "6-1-0 (PF 233, PA 181)",
+      "reconciled_with_nov1": "6-1-0 (PF 233, PA 181)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "CAR",
+      "nfl_official_2026": "3-4-0 (PF 178, PA 193)",
+      "repo_committed_2026": "3-4-0 (PF 178, PA 193)",
+      "reconciled_with_nov1": "3-4-0 (PF 178, PA 193)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "CHI",
+      "nfl_official_2026": "5-2-0 (PF 180, PA 143)",
+      "repo_committed_2026": "5-2-0 (PF 180, PA 143)",
+      "reconciled_with_nov1": "5-2-0 (PF 180, PA 143)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "CIN",
+      "nfl_official_2026": "5-2-0 (PF 206, PA 158)",
+      "repo_committed_2026": "5-2-0 (PF 206, PA 158)",
+      "reconciled_with_nov1": "5-2-0 (PF 206, PA 158)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "CLE",
+      "nfl_official_2026": "5-3-0 (PF 139, PA 173)",
+      "repo_committed_2026": "5-3-0 (PF 139, PA 173)",
+      "reconciled_with_nov1": "5-3-0 (PF 139, PA 173)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "DAL",
+      "nfl_official_2026": "3-5-0 (PF 219, PA 213)",
+      "repo_committed_2026": "3-5-0 (PF 219, PA 213)",
+      "reconciled_with_nov1": "3-5-0 (PF 219, PA 213)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "DEN",
+      "nfl_official_2026": "6-2-0 (PF 172, PA 165)",
+      "repo_committed_2026": "6-2-0 (PF 172, PA 165)",
+      "reconciled_with_nov1": "6-2-0 (PF 172, PA 165)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "DET",
+      "nfl_official_2026": "5-2-0 (PF 203, PA 180)",
+      "repo_committed_2026": "5-2-0 (PF 203, PA 180)",
+      "reconciled_with_nov1": "5-2-0 (PF 203, PA 180)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "GB",
+      "nfl_official_2026": "5-3-0 (PF 171, PA 164)",
+      "repo_committed_2026": "5-3-0 (PF 171, PA 164)",
+      "reconciled_with_nov1": "5-3-0 (PF 171, PA 164)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "HOU",
+      "nfl_official_2026": "2-5-0 (PF 165, PA 170)",
+      "repo_committed_2026": "2-5-0 (PF 165, PA 170)",
+      "reconciled_with_nov1": "2-5-0 (PF 165, PA 170)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "IND",
+      "nfl_official_2026": "2-6-0 (PF 161, PA 222)",
+      "repo_committed_2026": "2-6-0 (PF 161, PA 222)",
+      "reconciled_with_nov1": "2-6-0 (PF 161, PA 222)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "JAX",
+      "nfl_official_2026": "5-2-0 (PF 196, PA 111)",
+      "repo_committed_2026": "5-2-0 (PF 196, PA 111)",
+      "reconciled_with_nov1": "5-2-0 (PF 196, PA 111)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "KC",
+      "nfl_official_2026": "5-2-0 (PF 167, PA 131)",
+      "repo_committed_2026": "5-2-0 (PF 167, PA 131)",
+      "reconciled_with_nov1": "5-2-0 (PF 167, PA 131)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "LA",
+      "nfl_official_2026": "4-4-0 (PF 194, PA 168)",
+      "repo_committed_2026": "4-4-0 (PF 194, PA 168)",
+      "reconciled_with_nov1": "4-4-0 (PF 194, PA 168)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "LAC",
+      "nfl_official_2026": "0-7-0 (PF 99, PA 175)",
+      "repo_committed_2026": "0-7-0 (PF 99, PA 175)",
+      "reconciled_with_nov1": "0-7-0 (PF 99, PA 175)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "LV",
+      "nfl_official_2026": "4-4-0 (PF 221, PA 230)",
+      "repo_committed_2026": "4-4-0 (PF 221, PA 230)",
+      "reconciled_with_nov1": "4-4-0 (PF 221, PA 230)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "MIA",
+      "nfl_official_2026": "1-6-0 (PF 117, PA 181)",
+      "repo_committed_2026": "1-6-0 (PF 117, PA 181)",
+      "reconciled_with_nov1": "1-6-0 (PF 117, PA 181)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "MIN",
+      "nfl_official_2026": "6-1-0 (PF 140, PA 93)",
+      "repo_committed_2026": "6-1-0 (PF 140, PA 93)",
+      "reconciled_with_nov1": "6-1-0 (PF 140, PA 93)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "NE",
+      "nfl_official_2026": "5-3-0 (PF 184, PA 162)",
+      "repo_committed_2026": "5-3-0 (PF 184, PA 162)",
+      "reconciled_with_nov1": "5-3-0 (PF 184, PA 162)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "NO",
+      "nfl_official_2026": "2-5-0 (PF 162, PA 194)",
+      "repo_committed_2026": "2-5-0 (PF 162, PA 194)",
+      "reconciled_with_nov1": "2-5-0 (PF 162, PA 194)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "NYG",
+      "nfl_official_2026": "4-2-1 (PF 163, PA 161)",
+      "repo_committed_2026": "4-2-1 (PF 163, PA 161)",
+      "reconciled_with_nov1": "4-2-1 (PF 163, PA 161)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "NYJ",
+      "nfl_official_2026": "2-6-0 (PF 170, PA 188)",
+      "repo_committed_2026": "2-6-0 (PF 170, PA 188)",
+      "reconciled_with_nov1": "2-6-0 (PF 170, PA 188)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "PHI",
+      "nfl_official_2026": "2-6-0 (PF 137, PA 202)",
+      "repo_committed_2026": "2-6-0 (PF 137, PA 202)",
+      "reconciled_with_nov1": "2-6-0 (PF 137, PA 202)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "PIT",
+      "nfl_official_2026": "6-2-0 (PF 180, PA 144)",
+      "repo_committed_2026": "6-2-0 (PF 180, PA 144)",
+      "reconciled_with_nov1": "6-2-0 (PF 180, PA 144)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "SEA",
+      "nfl_official_2026": "4-3-0 (PF 168, PA 125)",
+      "repo_committed_2026": "4-3-0 (PF 168, PA 125)",
+      "reconciled_with_nov1": "4-3-0 (PF 168, PA 125)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "SF",
+      "nfl_official_2026": "6-1-0 (PF 197, PA 139)",
+      "repo_committed_2026": "6-1-0 (PF 197, PA 139)",
+      "reconciled_with_nov1": "6-1-0 (PF 197, PA 139)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "TB",
+      "nfl_official_2026": "3-5-0 (PF 178, PA 151)",
+      "repo_committed_2026": "3-5-0 (PF 178, PA 151)",
+      "reconciled_with_nov1": "3-5-0 (PF 178, PA 151)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "TEN",
+      "nfl_official_2026": "1-7-0 (PF 144, PA 199)",
+      "repo_committed_2026": "1-7-0 (PF 144, PA 199)",
+      "reconciled_with_nov1": "1-7-0 (PF 144, PA 199)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "team": "WAS",
+      "nfl_official_2026": "2-4-1 (PF 159, PA 182)",
+      "repo_committed_2026": "2-4-1 (PF 159, PA 182)",
+      "reconciled_with_nov1": "2-4-1 (PF 159, PA 182)",
+      "repo_is_stale": false,
+      "exact_match_after_nov1": true,
+      "source_id": "SL-SRC-01"
+    }
+  ],
+  "standings_2025": [
+    {
+      "team": "ARI",
+      "nfl_official_2025": "3-14-0 (PF 355, PA 488)",
+      "repo_committed_2025": "3-14-0 (PF 355, PA 488)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "ATL",
+      "nfl_official_2025": "8-9-0 (PF 353, PA 401)",
+      "repo_committed_2025": "8-9-0 (PF 353, PA 401)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "BAL",
+      "nfl_official_2025": "8-9-0 (PF 424, PA 398)",
+      "repo_committed_2025": "8-9-0 (PF 424, PA 398)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "BUF",
+      "nfl_official_2025": "12-5-0 (PF 481, PA 365)",
+      "repo_committed_2025": "12-5-0 (PF 481, PA 365)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "CAR",
+      "nfl_official_2025": "8-9-0 (PF 311, PA 380)",
+      "repo_committed_2025": "8-9-0 (PF 311, PA 380)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "CHI",
+      "nfl_official_2025": "11-6-0 (PF 441, PA 415)",
+      "repo_committed_2025": "11-6-0 (PF 441, PA 415)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "CIN",
+      "nfl_official_2025": "6-11-0 (PF 414, PA 492)",
+      "repo_committed_2025": "6-11-0 (PF 414, PA 492)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "CLE",
+      "nfl_official_2025": "5-12-0 (PF 279, PA 379)",
+      "repo_committed_2025": "5-12-0 (PF 279, PA 379)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "DAL",
+      "nfl_official_2025": "7-9-1 (PF 471, PA 511)",
+      "repo_committed_2025": "7-9-1 (PF 471, PA 511)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "DEN",
+      "nfl_official_2025": "14-3-0 (PF 401, PA 311)",
+      "repo_committed_2025": "14-3-0 (PF 401, PA 311)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "DET",
+      "nfl_official_2025": "9-8-0 (PF 481, PA 413)",
+      "repo_committed_2025": "9-8-0 (PF 481, PA 413)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "GB",
+      "nfl_official_2025": "9-7-1 (PF 391, PA 360)",
+      "repo_committed_2025": "9-7-1 (PF 391, PA 360)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "HOU",
+      "nfl_official_2025": "12-5-0 (PF 404, PA 295)",
+      "repo_committed_2025": "12-5-0 (PF 404, PA 295)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "IND",
+      "nfl_official_2025": "8-9-0 (PF 466, PA 412)",
+      "repo_committed_2025": "8-9-0 (PF 466, PA 412)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "JAX",
+      "nfl_official_2025": "13-4-0 (PF 474, PA 336)",
+      "repo_committed_2025": "13-4-0 (PF 474, PA 336)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "KC",
+      "nfl_official_2025": "6-11-0 (PF 362, PA 328)",
+      "repo_committed_2025": "6-11-0 (PF 362, PA 328)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "LA",
+      "nfl_official_2025": "12-5-0 (PF 518, PA 346)",
+      "repo_committed_2025": "12-5-0 (PF 518, PA 346)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "LAC",
+      "nfl_official_2025": "11-6-0 (PF 368, PA 340)",
+      "repo_committed_2025": "11-6-0 (PF 368, PA 340)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "LV",
+      "nfl_official_2025": "3-14-0 (PF 241, PA 432)",
+      "repo_committed_2025": "3-14-0 (PF 241, PA 432)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "MIA",
+      "nfl_official_2025": "7-10-0 (PF 347, PA 424)",
+      "repo_committed_2025": "7-10-0 (PF 347, PA 424)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "MIN",
+      "nfl_official_2025": "9-8-0 (PF 344, PA 333)",
+      "repo_committed_2025": "9-8-0 (PF 344, PA 333)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "NE",
+      "nfl_official_2025": "14-3-0 (PF 490, PA 320)",
+      "repo_committed_2025": "14-3-0 (PF 490, PA 320)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "NO",
+      "nfl_official_2025": "6-11-0 (PF 306, PA 383)",
+      "repo_committed_2025": "6-11-0 (PF 306, PA 383)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "NYG",
+      "nfl_official_2025": "4-13-0 (PF 381, PA 439)",
+      "repo_committed_2025": "4-13-0 (PF 381, PA 439)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "NYJ",
+      "nfl_official_2025": "3-14-0 (PF 300, PA 503)",
+      "repo_committed_2025": "3-14-0 (PF 300, PA 503)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "PHI",
+      "nfl_official_2025": "11-6-0 (PF 379, PA 325)",
+      "repo_committed_2025": "11-6-0 (PF 379, PA 325)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "PIT",
+      "nfl_official_2025": "10-7-0 (PF 397, PA 387)",
+      "repo_committed_2025": "10-7-0 (PF 397, PA 387)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "SEA",
+      "nfl_official_2025": "14-3-0 (PF 483, PA 292)",
+      "repo_committed_2025": "14-3-0 (PF 483, PA 292)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "SF",
+      "nfl_official_2025": "12-5-0 (PF 437, PA 371)",
+      "repo_committed_2025": "12-5-0 (PF 437, PA 371)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "TB",
+      "nfl_official_2025": "8-9-0 (PF 380, PA 411)",
+      "repo_committed_2025": "8-9-0 (PF 380, PA 411)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "TEN",
+      "nfl_official_2025": "3-14-0 (PF 284, PA 478)",
+      "repo_committed_2025": "3-14-0 (PF 284, PA 478)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    },
+    {
+      "team": "WAS",
+      "nfl_official_2025": "5-12-0 (PF 356, PA 451)",
+      "repo_committed_2025": "5-12-0 (PF 356, PA 451)",
+      "exact_match": true,
+      "source_id": "SL-SRC-02"
+    }
+  ],
+  "players_2026": [
+    {
+      "player": "Jordan Love",
+      "team": "GB",
+      "pos": "QB",
+      "stat_label": "Passing Yards / TD",
+      "repo_weeks_present": 8,
+      "repo_sum": "2246 yds / 16 TD",
+      "week8_nov1_add": "Included in feed (thru Nov 1)",
+      "reconciled_sum": "2246 yds / 16 TD",
+      "nfl_official_2026": "2246 yds / 16 TD",
+      "exact_match": true,
+      "source_id": "SL-SRC-07"
+    },
+    {
+      "player": "Josh Allen",
+      "team": "BUF",
+      "pos": "QB",
+      "stat_label": "Passing Yards / TD",
+      "repo_weeks_present": 7,
+      "repo_sum": "1793 yds / 11 TD",
+      "week8_nov1_add": "Included in feed (thru Nov 1)",
+      "reconciled_sum": "1793 yds / 11 TD",
+      "nfl_official_2026": "1793 yds / 11 TD",
+      "exact_match": true,
+      "source_id": "SL-SRC-08"
+    },
+    {
+      "player": "Joe Burrow",
+      "team": "CIN",
+      "pos": "QB",
+      "stat_label": "Passing Yards / TD",
+      "repo_weeks_present": 7,
+      "repo_sum": "2115 yds / 20 TD",
+      "week8_nov1_add": "Included in feed (thru Nov 1)",
+      "reconciled_sum": "2115 yds / 20 TD",
+      "nfl_official_2026": "2115 yds / 20 TD",
+      "exact_match": true,
+      "source_id": "SL-SRC-09"
+    },
+    {
+      "player": "Jared Goff",
+      "team": "DET",
+      "pos": "QB",
+      "stat_label": "Passing Yards / TD",
+      "repo_weeks_present": 7,
+      "repo_sum": "1964 yds / 15 TD",
+      "week8_nov1_add": "Included in feed (thru Nov 1)",
+      "reconciled_sum": "1964 yds / 15 TD",
+      "nfl_official_2026": "1964 yds / 15 TD",
+      "exact_match": true,
+      "source_id": "SL-SRC-10"
+    },
+    {
+      "player": "Ja'Marr Chase",
+      "team": "CIN",
+      "pos": "WR",
+      "stat_label": "Receiving Yards / TD",
+      "repo_weeks_present": 7,
+      "repo_sum": "492 yds / 6 TD",
+      "week8_nov1_add": "Included in feed (thru Nov 1)",
+      "reconciled_sum": "492 yds / 6 TD",
+      "nfl_official_2026": "492 yds / 6 TD",
+      "exact_match": true,
+      "source_id": "SL-SRC-11"
+    },
+    {
+      "player": "Amon-Ra St. Brown",
+      "team": "DET",
+      "pos": "WR",
+      "stat_label": "Receiving Yards / TD",
+      "repo_weeks_present": 7,
+      "repo_sum": "571 yds / 5 TD",
+      "week8_nov1_add": "Included in feed (thru Nov 1)",
+      "reconciled_sum": "571 yds / 5 TD",
+      "nfl_official_2026": "571 yds / 5 TD",
+      "exact_match": true,
+      "source_id": "SL-SRC-12"
+    },
+    {
+      "player": "James Cook",
+      "team": "BUF",
+      "pos": "RB",
+      "stat_label": "Rushing Yards / TD",
+      "repo_weeks_present": 7,
+      "repo_sum": "707 yds / 7 TD",
+      "week8_nov1_add": "Included in feed (thru Nov 1)",
+      "reconciled_sum": "707 yds / 7 TD",
+      "nfl_official_2026": "707 yds / 7 TD",
+      "exact_match": true,
+      "source_id": "SL-SRC-13"
+    }
+  ],
+  "standings_2020_audit": [
+    {
+      "team_official": "KC",
+      "team_in_csv": "KC",
+      "nfl_official_2020_reg": "14-2-0 (PF 473, PA 362)",
+      "repo_standings_2020_csv": "16-3-0 (PF 542, PA 434)",
+      "matches_official_reg": false,
+      "finding": "CSV summed playoff games into regular-season standings (19-20 games vs 16-game REG)",
+      "source_id": "SL-SRC-03"
+    },
+    {
+      "team_official": "BUF",
+      "team_in_csv": "BUF",
+      "nfl_official_2020_reg": "13-3-0 (PF 501, PA 375)",
+      "repo_standings_2020_csv": "15-4-0 (PF 569, PA 440)",
+      "matches_official_reg": false,
+      "finding": "CSV summed playoff games into regular-season standings (19-20 games vs 16-game REG)",
+      "source_id": "SL-SRC-03"
+    },
+    {
+      "team_official": "GB",
+      "team_in_csv": "GB",
+      "nfl_official_2020_reg": "13-3-0 (PF 509, PA 369)",
+      "repo_standings_2020_csv": "14-4-0 (PF 567, PA 418)",
+      "matches_official_reg": false,
+      "finding": "CSV summed playoff games into regular-season standings (19-20 games vs 16-game REG)",
+      "source_id": "SL-SRC-03"
+    },
+    {
+      "team_official": "TB",
+      "team_in_csv": "TB",
+      "nfl_official_2020_reg": "11-5-0 (PF 492, PA 355)",
+      "repo_standings_2020_csv": "15-5-0 (PF 615, PA 433)",
+      "matches_official_reg": false,
+      "finding": "CSV summed playoff games into regular-season standings (19-20 games vs 16-game REG)",
+      "source_id": "SL-SRC-03"
+    },
+    {
+      "team_official": "LV",
+      "team_in_csv": "OAK",
+      "nfl_official_2020_reg": "8-8-0 (PF 434, PA 478)",
+      "repo_standings_2020_csv": "8-8-0 (PF 434, PA 478)",
+      "matches_official_reg": false,
+      "finding": "Relocated Las Vegas Raiders mislabeled as OAK in 2020 CSV",
+      "source_id": "SL-SRC-03"
+    }
+  ]
+}

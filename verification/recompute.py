@@ -36,6 +36,10 @@ DERIVED = os.path.join(ROOT, "data", "derived")
 VERIF = os.path.join(ROOT, "verification")
 
 TEAM_ALIAS = {"ARI": "AZ"}  # nflverse uses ARI, NFL.com prints AZ
+# The schedule keeps the franchise code of the time (SD, OAK, STL); the player feed
+# uses the current code (LAC, LV, LA). Joining without mapping these silently drops
+# ~9,000 player rows - the join then "succeeds" with a smaller sample.
+FRANCHISE_ALIAS = {"SD": "LAC", "OAK": "LV", "STL": "LA", "LAR": "LA", "WSH": "WAS", "ARZ": "AZ"}
 
 
 # ----------------------------------------------------------------- small stats helpers
@@ -267,6 +271,9 @@ def main() -> int:
         side.append((int(g["season"]), int(g["week"]), g["away_team"], g["game_id"],
                      int(g["away_score"]), int(g["home_score"])))
     ctx = pd.DataFrame(side, columns=["season", "week", "team", "game_id", "team_points", "opp_points"])
+    ctx["team"] = ctx["team"].map(lambda t: FRANCHISE_ALIAS.get(t, t))
+    pr["team"] = pr["team"].map(lambda t: FRANCHISE_ALIAS.get(t, t))
+    ctx = ctx.drop_duplicates(["season", "week", "team"])
     pr = pr.merge(ctx, on=["season", "week", "team"], how="inner")
     key = ["game_id", "team"]
 

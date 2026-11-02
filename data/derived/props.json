@@ -180,7 +180,7 @@
   "originated": {
     "receiving_yards": {
       "label": "Receiving yards",
-      "week": 19,
+      "week": 9,
       "players": [
         {
           "player": "Jaxon Smith-Njigba",
@@ -362,11 +362,12 @@
           "p_over": 0.515,
           "resid_sd": 87.08
         }
-      ]
+      ],
+      "generated_from": "player-games through week 8 of 2026"
     },
     "receptions": {
       "label": "Receptions",
-      "week": 19,
+      "week": 9,
       "players": [
         {
           "player": "Puka Nacua",
@@ -548,11 +549,12 @@
           "p_over": 0.559,
           "resid_sd": 2.19
         }
-      ]
+      ],
+      "generated_from": "player-games through week 8 of 2026"
     },
     "rushing_yards": {
       "label": "Rushing yards",
-      "week": 19,
+      "week": 9,
       "players": [
         {
           "player": "Jahmyr Gibbs",
@@ -734,11 +736,12 @@
           "p_over": 0.515,
           "resid_sd": 51.73
         }
-      ]
+      ],
+      "generated_from": "player-games through week 8 of 2026"
     },
     "passing_yards": {
       "label": "Passing yards",
-      "week": 19,
+      "week": 9,
       "players": [
         {
           "player": "Joe Burrow",
@@ -920,7 +923,8 @@
           "p_over": 0.95,
           "resid_sd": 3.34
         }
-      ]
+      ],
+      "generated_from": "player-games through week 8 of 2026"
     }
   }
 }

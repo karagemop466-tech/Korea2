@@ -6,77 +6,77 @@
     "TE"
    ],
    "overall": {
-    "n": 27812,
+    "n": 27811,
     "model": {
-     "mae": 20.340928,
-     "rmse": 28.091322,
-     "bias": 0.382838,
-     "corr": 0.581365
+     "mae": 20.333379,
+     "rmse": 28.085034,
+     "bias": 0.428647,
+     "corr": 0.582044
     },
     "last5": {
-     "mae": 20.737906,
-     "rmse": 28.986768,
-     "bias": 0.329859,
-     "corr": 0.562503
+     "mae": 20.738506,
+     "rmse": 28.987273,
+     "bias": 0.329787,
+     "corr": 0.562487
     },
     "season_to_date": {
-     "mae": 21.101577,
-     "rmse": 28.864137,
-     "bias": 0.471219,
-     "corr": 0.547926
+     "mae": 21.046927,
+     "rmse": 28.776128,
+     "bias": 0.586152,
+     "corr": 0.552201
     },
-    "skill_vs_last5": 0.019143,
-    "skill_vs_season": 0.036047,
-    "over_rate_vs_mean_projection": 0.390982,
-    "over_rate_vs_calibrated_line": 0.490004,
-    "calibration_multiplier_mean": 0.75906,
-    "skew_of_stat": 1.518274,
-    "residual_sd": 28.089218
+    "skill_vs_last5": 0.019535,
+    "skill_vs_season": 0.033903,
+    "over_rate_vs_mean_projection": 0.390637,
+    "over_rate_vs_calibrated_line": 0.486966,
+    "calibration_multiplier_mean": 0.767567,
+    "skew_of_stat": 1.518245,
+    "residual_sd": 28.082268
    },
    "by_season": {
     "2018": {
-     "n": 3038,
-     "mae_model": 21.076569,
-     "mae_last5": 21.54312
+     "n": 3037,
+     "mae_model": 21.039697,
+     "mae_last5": 21.54888
     },
     "2019": {
      "n": 3044,
-     "mae_model": 21.333071,
+     "mae_model": 21.351815,
      "mae_last5": 21.997553
     },
     "2020": {
      "n": 3178,
-     "mae_model": 21.002006,
+     "mae_model": 20.984107,
      "mae_last5": 21.633606
     },
     "2021": {
      "n": 3380,
-     "mae_model": 20.48942,
+     "mae_model": 20.466131,
      "mae_last5": 20.837559
     },
     "2022": {
      "n": 3331,
-     "mae_model": 20.381399,
+     "mae_model": 20.370162,
      "mae_last5": 20.839448
     },
     "2023": {
      "n": 3392,
-     "mae_model": 20.282196,
+     "mae_model": 20.273853,
      "mae_last5": 20.447553
     },
     "2024": {
      "n": 3397,
-     "mae_model": 19.832087,
+     "mae_model": 19.834374,
      "mae_last5": 20.198616
     },
     "2025": {
      "n": 3528,
-     "mae_model": 18.925546,
+     "mae_model": 18.935962,
      "mae_last5": 19.205159
     },
     "2026": {
      "n": 1524,
-     "mae_model": 19.637942,
+     "mae_model": 19.639592,
      "mae_last5": 19.702592
     }
    }
@@ -88,10 +88,10 @@
    "overall": {
     "n": 11607,
     "model": {
-     "mae": 20.694206,
-     "rmse": 29.108078,
-     "bias": 0.693344,
-     "corr": 0.618252
+     "mae": 20.676995,
+     "rmse": 29.087946,
+     "bias": 0.660239,
+     "corr": 0.618828
     },
     "last5": {
      "mae": 21.085349,
@@ -100,53 +100,53 @@
      "corr": 0.603927
     },
     "season_to_date": {
-     "mae": 22.276477,
-     "rmse": 30.964542,
-     "bias": 1.097859,
-     "corr": 0.550593
+     "mae": 22.20526,
+     "rmse": 30.859215,
+     "bias": 1.017066,
+     "corr": 0.553881
     },
-    "skill_vs_last5": 0.01855,
-    "skill_vs_season": 0.071029,
-    "over_rate_vs_mean_projection": 0.372965,
-    "over_rate_vs_calibrated_line": 0.499957,
-    "calibration_multiplier_mean": 0.722234,
+    "skill_vs_last5": 0.019367,
+    "skill_vs_season": 0.068824,
+    "over_rate_vs_mean_projection": 0.373568,
+    "over_rate_vs_calibrated_line": 0.494357,
+    "calibration_multiplier_mean": 0.734314,
     "skew_of_stat": 1.409141,
-    "residual_sd": 29.101072
+    "residual_sd": 29.081705
    },
    "by_season": {
     "2018": {
      "n": 1253,
-     "mae_model": 22.288421,
+     "mae_model": 22.173556,
      "mae_last5": 22.786233
     },
     "2019": {
      "n": 1320,
-     "mae_model": 20.522856,
+     "mae_model": 20.527347,
      "mae_last5": 20.751818
     },
     "2020": {
      "n": 1332,
-     "mae_model": 21.10388,
+     "mae_model": 21.076115,
      "mae_last5": 21.605781
     },
     "2021": {
      "n": 1398,
-     "mae_model": 20.684434,
+     "mae_model": 20.673749,
      "mae_last5": 21.241166
     },
     "2022": {
      "n": 1456,
-     "mae_model": 20.685421,
+     "mae_model": 20.680173,
      "mae_last5": 21.397287
     },
     "2023": {
      "n": 1368,
-     "mae_model": 20.14225,
+     "mae_model": 20.137121,
      "mae_last5": 20.256213
     },
     "2024": {
      "n": 1431,
-     "mae_model": 20.441284,
+     "mae_model": 20.444648,
      "mae_last5": 20.728022
     },
     "2025": {
@@ -166,77 +166,77 @@
     "QB"
    ],
    "overall": {
-    "n": 4973,
+    "n": 4967,
     "model": {
-     "mae": 69.556204,
-     "rmse": 87.644242,
-     "bias": 4.265309,
-     "corr": 0.54363
+     "mae": 69.431679,
+     "rmse": 87.636038,
+     "bias": 4.280032,
+     "corr": 0.544612
     },
     "last5": {
-     "mae": 70.916016,
-     "rmse": 89.950254,
-     "bias": 2.871838,
-     "corr": 0.531898
+     "mae": 70.906312,
+     "rmse": 89.944213,
+     "bias": 2.926867,
+     "corr": 0.531659
     },
     "season_to_date": {
-     "mae": 73.21468,
-     "rmse": 92.78854,
-     "bias": 6.443242,
-     "corr": 0.463693
+     "mae": 72.787203,
+     "rmse": 92.25251,
+     "bias": 6.40519,
+     "corr": 0.473825
     },
-    "skill_vs_last5": 0.019175,
-    "skill_vs_season": 0.049969,
-    "over_rate_vs_mean_projection": 0.480595,
-    "over_rate_vs_calibrated_line": 0.498693,
-    "calibration_multiplier_mean": 0.981936,
-    "skew_of_stat": -0.317067,
-    "residual_sd": 87.549196
+    "skill_vs_last5": 0.020797,
+    "skill_vs_season": 0.0461,
+    "over_rate_vs_mean_projection": 0.478156,
+    "over_rate_vs_calibrated_line": 0.504933,
+    "calibration_multiplier_mean": 0.974549,
+    "skew_of_stat": -0.318497,
+    "residual_sd": 87.540273
    },
    "by_season": {
     "2018": {
-     "n": 556,
-     "mae_model": 70.896725,
-     "mae_last5": 70.874281
+     "n": 550,
+     "mae_model": 70.196054,
+     "mae_last5": 70.723182
     },
     "2019": {
      "n": 530,
-     "mae_model": 69.736444,
+     "mae_model": 69.442284,
      "mae_last5": 71.593585
     },
     "2020": {
      "n": 576,
-     "mae_model": 71.156445,
-     "mae_last5": 72.563021
+     "mae_model": 70.995386,
+     "mae_last5": 72.571962
     },
     "2021": {
      "n": 603,
-     "mae_model": 70.620085,
-     "mae_last5": 71.606799
+     "mae_model": 70.536761,
+     "mae_last5": 71.655721
     },
     "2022": {
      "n": 595,
-     "mae_model": 64.584737,
+     "mae_model": 64.49865,
      "mae_last5": 66.930588
     },
     "2023": {
      "n": 610,
-     "mae_model": 70.204961,
+     "mae_model": 70.290516,
      "mae_last5": 70.601885
     },
     "2024": {
      "n": 628,
-     "mae_model": 69.252542,
+     "mae_model": 69.36567,
      "mae_last5": 70.835828
     },
     "2025": {
      "n": 609,
-     "mae_model": 69.517397,
+     "mae_model": 69.551774,
      "mae_last5": 72.168062
     },
     "2026": {
      "n": 266,
-     "mae_model": 70.956566,
+     "mae_model": 70.884647,
      "mae_last5": 71.478759
     }
    }
@@ -248,77 +248,77 @@
     "RB"
    ],
    "overall": {
-    "n": 39422,
+    "n": 39421,
     "model": {
-     "mae": 1.348991,
-     "rmse": 1.826343,
-     "bias": 0.003993,
-     "corr": 0.634235
+     "mae": 1.34905,
+     "rmse": 1.826224,
+     "bias": 0.008748,
+     "corr": 0.634689
     },
     "last5": {
-     "mae": 1.372735,
-     "rmse": 1.87822,
-     "bias": 0.01741,
-     "corr": 0.621148
+     "mae": 1.372752,
+     "rmse": 1.87824,
+     "bias": 0.017398,
+     "corr": 0.621138
     },
     "season_to_date": {
-     "mae": 1.419646,
-     "rmse": 1.910618,
-     "bias": -0.015152,
-     "corr": 0.587822
+     "mae": 1.418122,
+     "rmse": 1.906888,
+     "bias": -0.003227,
+     "corr": 0.590717
     },
-    "skill_vs_last5": 0.017297,
-    "skill_vs_season": 0.049769,
-    "over_rate_vs_mean_projection": 0.417609,
-    "over_rate_vs_calibrated_line": 0.492796,
-    "calibration_multiplier_mean": 0.840105,
-    "skew_of_stat": 1.318568,
-    "residual_sd": 1.826362
+    "skill_vs_last5": 0.017266,
+    "skill_vs_season": 0.048706,
+    "over_rate_vs_mean_projection": 0.416986,
+    "over_rate_vs_calibrated_line": 0.490145,
+    "calibration_multiplier_mean": 0.844741,
+    "skew_of_stat": 1.31855,
+    "residual_sd": 1.826226
    },
    "by_season": {
     "2018": {
-     "n": 4291,
-     "mae_model": 1.413792,
-     "mae_last5": 1.448823
+     "n": 4290,
+     "mae_model": 1.415115,
+     "mae_last5": 1.448998
     },
     "2019": {
      "n": 4364,
-     "mae_model": 1.38245,
+     "mae_model": 1.383501,
      "mae_last5": 1.412523
     },
     "2020": {
      "n": 4510,
-     "mae_model": 1.400824,
+     "mae_model": 1.400322,
      "mae_last5": 1.427206
     },
     "2021": {
      "n": 4778,
-     "mae_model": 1.380529,
+     "mae_model": 1.378982,
      "mae_last5": 1.406174
     },
     "2022": {
      "n": 4787,
-     "mae_model": 1.346537,
+     "mae_model": 1.34577,
      "mae_last5": 1.376781
     },
     "2023": {
      "n": 4760,
-     "mae_model": 1.335016,
+     "mae_model": 1.33452,
      "mae_last5": 1.344338
     },
     "2024": {
      "n": 4828,
-     "mae_model": 1.322351,
+     "mae_model": 1.322851,
      "mae_last5": 1.342088
     },
     "2025": {
      "n": 4973,
-     "mae_model": 1.249363,
+     "mae_model": 1.250406,
      "mae_last5": 1.270491
     },
     "2026": {
      "n": 2131,
-     "mae_model": 1.299154,
+     "mae_model": 1.299259,
      "mae_last5": 1.31016
     }
    }
@@ -333,7 +333,7 @@
      "market": "receiving_yards",
      "player": "Puka Nacua",
      "team": "LA",
-     "originated_line": 69.734109,
+     "originated_line": 69.679631,
      "mean_projection": 93.241429,
      "sd": 47.933982,
      "recent_form": 97.0,
@@ -343,7 +343,7 @@
      "market": "receiving_yards",
      "player": "Zay Flowers",
      "team": "BAL",
-     "originated_line": 69.206374,
+     "originated_line": 69.152309,
      "mean_projection": 92.535795,
      "sd": 38.569755,
      "recent_form": 91.6,
@@ -353,7 +353,7 @@
      "market": "receiving_yards",
      "player": "Tee Higgins",
      "team": "CIN",
-     "originated_line": 68.426485,
+     "originated_line": 68.373028,
      "mean_projection": 91.493006,
      "sd": 40.694981,
      "recent_form": 102.4,
@@ -363,7 +363,7 @@
      "market": "receiving_yards",
      "player": "Drake London",
      "team": "ATL",
-     "originated_line": 66.920128,
+     "originated_line": 66.867848,
      "mean_projection": 89.478857,
      "sd": 43.563229,
      "recent_form": 107.2,
@@ -373,7 +373,7 @@
      "market": "receiving_yards",
      "player": "CeeDee Lamb",
      "team": "DAL",
-     "originated_line": 66.397677,
+     "originated_line": 66.345805,
      "mean_projection": 88.780288,
      "sd": 42.047274,
      "recent_form": 90.8,
@@ -383,7 +383,7 @@
      "market": "receiving_yards",
      "player": "Justin Jefferson",
      "team": "MIN",
-     "originated_line": 66.021617,
+     "originated_line": 65.970039,
      "mean_projection": 88.277458,
      "sd": 48.575683,
      "recent_form": 60.4,
@@ -399,7 +399,7 @@
      "market": "rushing_yards",
      "player": "Kenneth Walker III",
      "team": "KC",
-     "originated_line": 68.744956,
+     "originated_line": 69.326802,
      "mean_projection": 95.4919,
      "sd": 39.739629,
      "recent_form": 105.6,
@@ -409,7 +409,7 @@
      "market": "rushing_yards",
      "player": "James Cook",
      "team": "BUF",
-     "originated_line": 62.762474,
+     "originated_line": 63.293686,
      "mean_projection": 87.181784,
      "sd": 45.183914,
      "recent_form": 114.0,
@@ -419,7 +419,7 @@
      "market": "rushing_yards",
      "player": "Jahmyr Gibbs",
      "team": "DET",
-     "originated_line": 59.130659,
+     "originated_line": 59.631131,
      "mean_projection": 82.136919,
      "sd": 42.157273,
      "recent_form": 92.8,
@@ -429,7 +429,7 @@
      "market": "rushing_yards",
      "player": "Bijan Robinson",
      "team": "ATL",
-     "originated_line": 58.998493,
+     "originated_line": 59.497847,
      "mean_projection": 81.953332,
      "sd": 43.280469,
      "recent_form": 109.8,
@@ -439,7 +439,7 @@
      "market": "rushing_yards",
      "player": "Jaylen Warren",
      "team": "PIT",
-     "originated_line": 57.673395,
+     "originated_line": 58.161533,
      "mean_projection": 80.112671,
      "sd": 33.017732,
      "recent_form": 94.4,
@@ -449,7 +449,7 @@
      "market": "rushing_yards",
      "player": "Kyren Williams",
      "team": "LA",
-     "originated_line": 56.281568,
+     "originated_line": 56.757926,
      "mean_projection": 78.179318,
      "sd": 34.214032,
      "recent_form": 73.2,
@@ -465,7 +465,7 @@
      "market": "passing_yards",
      "player": "Joe Burrow",
      "team": "CIN",
-     "originated_line": 277.63448,
+     "originated_line": 276.24709,
      "mean_projection": 283.05482,
      "sd": 87.536136,
      "recent_form": 279.8,
@@ -475,7 +475,7 @@
      "market": "passing_yards",
      "player": "Dak Prescott",
      "team": "DAL",
-     "originated_line": 271.538493,
+     "originated_line": 270.181565,
      "mean_projection": 276.839819,
      "sd": 82.295153,
      "recent_form": 279.4,
@@ -485,17 +485,17 @@
      "market": "passing_yards",
      "player": "Matthew Stafford",
      "team": "LA",
-     "originated_line": 270.94632,
-     "mean_projection": 276.236086,
-     "sd": 69.37142,
+     "originated_line": 267.610795,
+     "mean_projection": 274.205695,
+     "sd": 67.968558,
      "recent_form": 301.4,
-     "sample_games": 217
+     "sample_games": 169
     },
     {
      "market": "passing_yards",
      "player": "Patrick Mahomes",
      "team": "KC",
-     "originated_line": 263.648443,
+     "originated_line": 262.330944,
      "mean_projection": 268.79573,
      "sd": 74.536142,
      "recent_form": 258.0,
@@ -505,7 +505,7 @@
      "market": "passing_yards",
      "player": "Drake Maye",
      "team": "NE",
-     "originated_line": 254.881603,
+     "originated_line": 253.607913,
      "mean_projection": 259.857732,
      "sd": 83.187747,
      "recent_form": 279.6,
@@ -513,13 +513,13 @@
     },
     {
      "market": "passing_yards",
-     "player": "Jared Goff",
-     "team": "DET",
-     "originated_line": 252.959121,
-     "mean_projection": 257.897716,
-     "sd": 78.080695,
-     "recent_form": 316.4,
-     "sample_games": 157
+     "player": "Kirk Cousins",
+     "team": "LV",
+     "originated_line": 252.690188,
+     "mean_projection": 258.917391,
+     "sd": 80.647919,
+     "recent_form": 292.8,
+     "sample_games": 167
     }
    ]
   },
@@ -531,7 +531,7 @@
      "market": "receptions",
      "player": "Puka Nacua",
      "team": "LA",
-     "originated_line": 6.483788,
+     "originated_line": 6.485172,
      "mean_projection": 7.79184,
      "sd": 3.260905,
      "recent_form": 9.0,
@@ -541,7 +541,7 @@
      "market": "receptions",
      "player": "Trey McBride",
      "team": "ARI",
-     "originated_line": 6.104329,
+     "originated_line": 6.105633,
      "mean_projection": 7.335829,
      "sd": 3.224612,
      "recent_form": 8.4,
@@ -551,7 +551,7 @@
      "market": "receptions",
      "player": "Zay Flowers",
      "team": "BAL",
-     "originated_line": 5.720613,
+     "originated_line": 5.721835,
      "mean_projection": 6.874701,
      "sd": 2.259683,
      "recent_form": 7.0,
@@ -561,7 +561,7 @@
      "market": "receptions",
      "player": "CeeDee Lamb",
      "team": "DAL",
-     "originated_line": 5.57931,
+     "originated_line": 5.580501,
      "mean_projection": 6.704891,
      "sd": 2.923683,
      "recent_form": 8.0,
@@ -571,7 +571,7 @@
      "market": "receptions",
      "player": "Ja'Marr Chase",
      "team": "CIN",
-     "originated_line": 5.295369,
+     "originated_line": 5.2965,
      "mean_projection": 6.363668,
      "sd": 3.178564,
      "recent_form": 6.0,
@@ -581,7 +581,7 @@
      "market": "receptions",
      "player": "Justin Jefferson",
      "team": "MIN",
-     "originated_line": 5.12353,
+     "originated_line": 5.124624,
      "mean_projection": 6.157161,
      "sd": 2.71307,
      "recent_form": 4.6,
@@ -592,9 +592,6 @@
  },
  "coverage": {
   "seasons": [
-   2012,
-   2013,
-   2014,
    2015,
    2016,
    2017,
@@ -608,8 +605,8 @@
    2025,
    2026
   ],
-  "players": 7271,
-  "player_weeks": 249814,
+  "players": 6149,
+  "player_weeks": 199644,
   "note": "No historical player-prop prices exist in any free source, so no prop ROI is reported. Only projection skill is measured."
  }
 }

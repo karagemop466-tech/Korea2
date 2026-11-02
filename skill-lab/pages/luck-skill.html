@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="skill-lab/scripts/build_site.py">
+  <title>Skill vs. Luck | NFL Skill Lab</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <div class="brand-title">NFL Skill Lab &mdash; Line Origination, Copula Pricing &amp; Gated Strategy Competition</div>
+        <div class="brand-meta">
+          Verified 2026-11-02 UTC &middot; Branch <code>arena/2b9898f7-korea2</code> &middot;
+          <a href="../../index.html">Repo Root Site</a>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Skill Lab Sections">
+        <a href="../index.html">Overview</a><a href="summary.html">Executive Summary</a><a href="origination.html">Line &amp; Prop Origination</a><a href="signals.html">Signals &amp; FDR</a><a href="luck-skill.html" class="active">Skill vs. Luck</a><a href="correlations.html">Correlations &amp; Copula</a><a href="leaderboard.html">Leaderboard &amp; Rewards</a><a href="strategies.html">Singles, Parlays &amp; Props</a><a href="gates.html">10-Gate Matrix</a><a href="official-audit.html">NFL.com Audit</a><a href="repo-review.html">Repo Review</a><a href="flagged.html">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    
+    <section class="hero">
+      <h1>Separating Repeatable Skill from Mean-Reverting Luck</h1>
+      <p>
+        Decomposes NFL team metrics across <strong>344 team-seasons</strong> (odd-week vs. even-week split-half reliability: EPA/play <code>r = +0.5837</code> vs. net turnovers <code>r = +0.1523</code> and ATS cover <code>r = -0.1470</code>) and <strong>317 consecutive year-over-year club pairs (2015-2025 full NFL regular seasons (320 consecutive team-season transitions))</strong>.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Skill-to-Luck Persistence Continuum (Visual Summary)</h2>
+      <div class="chart-box">
+        <svg viewBox="0 0 800 346" width="100%" role="img" aria-label="Year-over-year skill persistence r across NFL metrics">
+<text x="12" y="20" font-size="12" font-weight="700" fill="#132030">Year-over-Year Persistence r (2015-2025, N = 317 Consecutive Team-Season Pairs)</text>
+<line x1="305" y1="28" x2="305" y2="328" stroke="#4e5d6c" stroke-width="1"/>
+<text x="12" y="52" font-size="11.5" fill="#132030">Net Point Differential / Game</text>
+<rect x="305.0" y="39" width="168.0" height="18" rx="2" fill="#0b4f8a"/>
+<text x="479.0" y="52" font-size="11" font-family="monospace" fill="#132030">r=+0.410 (luck 59%)</text>
+<text x="12" y="84" font-size="11.5" fill="#132030">Offensive Passing EPA / Dropback</text>
+<rect x="305.0" y="71" width="164.7" height="18" rx="2" fill="#0b4f8a"/>
+<text x="475.7" y="84" font-size="11" font-family="monospace" fill="#132030">r=+0.402 (luck 60%)</text>
+<text x="12" y="116" font-size="11.5" fill="#132030">Completion % Over Expected (CPOE)</text>
+<rect x="305.0" y="103" width="159.5" height="18" rx="2" fill="#0b4f8a"/>
+<text x="470.5" y="116" font-size="11" font-family="monospace" fill="#132030">r=+0.389 (luck 61%)</text>
+<text x="12" y="148" font-size="11.5" fill="#132030">Total Offensive EPA / Play (Pass + Rush)</text>
+<rect x="305.0" y="135" width="154.7" height="18" rx="2" fill="#0b4f8a"/>
+<text x="465.7" y="148" font-size="11" font-family="monospace" fill="#132030">r=+0.377 (luck 62%)</text>
+<text x="12" y="180" font-size="11.5" fill="#132030">Season Win-Loss Percentage</text>
+<rect x="305.0" y="167" width="147.8" height="18" rx="2" fill="#0b4f8a"/>
+<text x="458.8" y="180" font-size="11" font-family="monospace" fill="#132030">r=+0.360 (luck 64%)</text>
+<text x="12" y="212" font-size="11.5" fill="#132030">Net Turnover Margin / Game</text>
+<rect x="305.0" y="199" width="62.5" height="18" rx="2" fill="#5b84b1"/>
+<text x="373.5" y="212" font-size="11" font-family="monospace" fill="#132030">r=+0.152 (luck 85%)</text>
+<text x="12" y="244" font-size="11.5" fill="#132030">One-Score Game Win % (Margin &lt;= 8 pts)</text>
+<rect x="305.0" y="231" width="33.2" height="18" rx="2" fill="#b84a39"/>
+<text x="344.2" y="244" font-size="11" font-family="monospace" fill="#132030">r=+0.081 (luck 92%)</text>
+<text x="12" y="276" font-size="11.5" fill="#132030">Pythagorean Wins Residual (Actual - Expected Wins)</text>
+<rect x="305.0" y="263" width="9.5" height="18" rx="2" fill="#b84a39"/>
+<text x="320.5" y="276" font-size="11" font-family="monospace" fill="#132030">r=+0.023 (luck 98%)</text>
+<text x="12" y="308" font-size="11.5" fill="#132030">Team Season ATS Cover Rate vs Closing Spread</text>
+<rect x="299.2" y="295" width="5.8" height="18" rx="2" fill="#b84a39"/>
+<text x="311.0" y="308" font-size="11" font-family="monospace" fill="#132030">r=-0.014 (luck 100%)</text>
+</svg>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Team Metric</th>
+              <th class="num">YoY Pairs</th>
+              <th class="num">YoY r</th>
+              <th class="num">95% Fisher CI</th>
+              <th class="num">p-value</th>
+              <th class="num">EB Skill Wt</th>
+              <th class="num">Luck Shrink %</th>
+              <th>Classification</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Offensive Passing EPA / Dropback</strong></td><td class="num">317</td><td class="num"><strong>+0.4016</strong></td><td class="num">[+0.305, +0.490]</td><td class="num">0.0000</td><td class="num">0.402</td><td class="num">59.8%</td><td><span class="badge badge-pass">True Offensive Skill</span></td><td><a href="https://support.nfl.com/hc/en-us/articles/35869706651156-NFL-Pro-FAQ-s-and-Answers" target="_blank" rel="noopener">SL-SRC-15 (NFL Support)</a></td></tr><tr><td><strong>Total Offensive EPA / Play (Pass + Rush)</strong></td><td class="num">317</td><td class="num"><strong>+0.3774</strong></td><td class="num">[+0.279, +0.468]</td><td class="num">0.0000</td><td class="num">0.377</td><td class="num">62.3%</td><td><span class="badge badge-pass">True Offensive Skill</span></td><td><a href="https://support.nfl.com/hc/en-us/articles/35869706651156-NFL-Pro-FAQ-s-and-Answers" target="_blank" rel="noopener">SL-SRC-15 (NFL Support)</a></td></tr><tr><td><strong>Completion % Over Expected (CPOE)</strong></td><td class="num">317</td><td class="num"><strong>+0.3890</strong></td><td class="num">[+0.291, +0.479]</td><td class="num">0.0000</td><td class="num">0.389</td><td class="num">61.1%</td><td><span class="badge badge-pass">Quarterback Accuracy Skill</span></td><td><a href="https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/" target="_blank" rel="noopener">SL-SRC-14 (NFL Football Operations)</a></td></tr><tr><td><strong>Net Point Differential / Game</strong></td><td class="num">317</td><td class="num"><strong>+0.4097</strong></td><td class="num">[+0.314, +0.497]</td><td class="num">0.0000</td><td class="num">0.410</td><td class="num">59.0%</td><td><span class="badge badge-pass">Blended Skill + Turnover Noise</span></td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td><strong>Season Win-Loss Percentage</strong></td><td class="num">317</td><td class="num"><strong>+0.3604</strong></td><td class="num">[+0.261, +0.453]</td><td class="num">0.0000</td><td class="num">0.360</td><td class="num">64.0%</td><td><span class="badge badge-pass">Blended Skill + Close-Game Luck</span></td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td><strong>Net Turnover Margin / Game</strong></td><td class="num">317</td><td class="num"><strong>+0.1524</strong></td><td class="num">[+0.043, +0.258]</td><td class="num">0.0065</td><td class="num">0.152</td><td class="num">84.8%</td><td><span class="badge badge-fail">Mostly Ephemeral Bounce Luck</span></td><td><a href="https://support.nfl.com/hc/en-us/articles/35869706651156-NFL-Pro-FAQ-s-and-Answers" target="_blank" rel="noopener">SL-SRC-15 (NFL Support)</a></td></tr><tr><td><strong>Pythagorean Wins Residual (Actual - Expected Wins)</strong></td><td class="num">317</td><td class="num"><strong>+0.0232</strong></td><td class="num">[-0.087, +0.133]</td><td class="num">0.6808</td><td class="num">0.023</td><td class="num">97.7%</td><td><span class="badge badge-fail">Pure Mean-Reverting Luck</span></td><td><a href="https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc136.htm" target="_blank" rel="noopener">SL-SRC-24 (NIST (U.S. Dept. of Commerce))</a></td></tr><tr><td><strong>One-Score Game Win % (Margin &lt;= 8 pts)</strong></td><td class="num">317</td><td class="num"><strong>+0.0810</strong></td><td class="num">[-0.029, +0.190]</td><td class="num">0.1502</td><td class="num">0.081</td><td class="num">91.9%</td><td><span class="badge badge-fail">Pure Close-Game Coin-Flip Luck</span></td><td><a href="https://www.itl.nist.gov/div898/handbook/ppc/section1/ppc136.htm" target="_blank" rel="noopener">SL-SRC-24 (NIST (U.S. Dept. of Commerce))</a></td></tr><tr><td><strong>Team Season ATS Cover Rate vs Closing Spread</strong></td><td class="num">317</td><td class="num"><strong>-0.0142</strong></td><td class="num">[-0.124, +0.096]</td><td class="num">0.8016</td><td class="num">0.000</td><td class="num">100.0%</td><td><span class="badge badge-fail">Market-Priced Zero-Persistence Residual</span></td><td><a href="https://support.draftkings.com/dk?id=kb_article_view&amp;sysparm_article=KB0010595" target="_blank" rel="noopener">SL-SRC-18 (DraftKings Official Support)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Out-of-Sample Proof: 2025 Pythagorean Luck Outliers vs. Realized 2026 NFL.com Standings</h2>
+      <p>
+        Clubs suffering severe 2025 close-game bad luck &mdash; notably <strong>KC</strong> (<code>6-11</code>, <code>-3.49</code> Pythagorean luck wins) and <strong>NYG</strong> (<code>4-13</code>, <code>-3.09</code> luck wins) &mdash; rebounded sharply in 2026 (<code>5-2</code> and <code>4-2-1</code> on official <code>NFL.com</code> Week 8 standings), whereas 2025 positive-luck outliers regressed toward their underlying efficiency baseline.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>2025 Official Record</th>
+              <th class="num">2025 Pythag Luck</th>
+              <th>Ex-Ante 2026 Shrinkage Prediction</th>
+              <th>2026 Official Wk 8 Record</th>
+              <th>Official Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono"><strong>KC</strong></td><td class="mono">6-11</td><td class="num">-3.49 wins</td><td>Positive Rebound</td><td class="mono">5-2-0 (PF 167, PA 131)</td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td class="mono"><strong>NYG</strong></td><td class="mono">4-13</td><td class="num">-3.09 wins</td><td>Positive Rebound</td><td class="mono">4-2-1 (PF 163, PA 161)</td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td class="mono"><strong>DEN</strong></td><td class="mono">14-3</td><td class="num">+3.01 wins</td><td>Negative Regression</td><td class="mono">6-2-0 (PF 172, PA 165)</td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td class="mono"><strong>ARI</strong></td><td class="mono">3-14</td><td class="num">-2.44 wins</td><td>Positive Rebound</td><td class="mono">3-5-0 (PF 175, PA 238)</td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td class="mono"><strong>CHI</strong></td><td class="mono">11-6</td><td class="num">+1.89 wins</td><td>Negative Regression</td><td class="mono">5-2-0 (PF 180, PA 143)</td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td class="mono"><strong>SF</strong></td><td class="mono">12-5</td><td class="num">+1.87 wins</td><td>Negative Regression</td><td class="mono">6-1-0 (PF 197, PA 139)</td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td class="mono"><strong>IND</strong></td><td class="mono">8-9</td><td class="num">-1.73 wins</td><td>Positive Rebound</td><td class="mono">2-6-0 (PF 161, PA 222)</td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr><tr><td class="mono"><strong>LAC</strong></td><td class="mono">11-6</td><td class="num">+1.71 wins</td><td>Negative Regression</td><td class="mono">0-7-0 (PF 99, PA 175)</td><td><a href="https://www.nfl.com/standings/league/2025/REG" target="_blank" rel="noopener">SL-SRC-02 (NFL.com)</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="site-footer">
+    <strong>Responsible Research Disclosure:</strong> Quantitative sports-market research and paper-competition evaluation only; no real-money wagering advice or funded prize pool exists.
+    Every table row cites a verified official source; unconfirmable figures are left strictly blank and logged on the <a href="flagged.html">Flagged for Review</a> page.
+    Confidential support: <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" target="_blank" rel="noopener">NCPG 1-800-MY-RESET</a>.
+  </footer>
+</body>
+</html>
