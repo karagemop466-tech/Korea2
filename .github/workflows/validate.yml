@@ -22,7 +22,9 @@ jobs:
         run: python3 scripts/check_links.py
       - name: Derived data invariants (strict JSON, verification record, no orphan pages)
         run: python3 tests/check_derived.py
-      - name: Re-run the independent verification (needs pandas/numpy/scipy only)
+      - name: Install the pinned analysis stack
         run: |
-          pip install --quiet pandas numpy scipy
-          python3 verification/recompute.py
+          python3 -m pip install --upgrade pip
+          python3 -m pip install --retries 5 --timeout 60 -r requirements.txt
+      - name: Re-run the independent verification
+        run: python3 verification/recompute.py
