@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Signal research: test a pre-registered list of pregame signals, then control
+"""Signal research: test a list of pregame signals specified in this repository, then control
 for multiple testing and out-of-sample decay.
 
 Discovery window: seasons <= 2015.  Validation window: seasons >= 2016.
