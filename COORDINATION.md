@@ -741,3 +741,25 @@ HTML pages are link-checked; only the 15 published pages are held to the per-row
   `validate`, `build-verify` and `checks` all green.
 - **State of the competition:** 0 of 7 strategies cleared the gate set. Nothing was promoted on
   in-sample performance; the leaderboard ships with that result rather than a tuned winner.
+
+---
+
+# Final integration & independent verification — session `arena/652b0095-korea2`
+
+**Session ID:** `arena/652b0095-korea2` (branch fixed by environment: `arena/652b0095-korea2`)
+**Claimed at:** 2026-11-02 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| F1 | Line-by-line re-verification of the integrated site against the source register | in progress | arena/652b0095-korea2 | `tests/`, `data/derived/*.json` (read-only unless a generator bug is found) |
+| F2 | Re-run every build, link and data check on the merged `main` state | in progress | arena/652b0095-korea2 | `tests/`, `scripts/`, `pipeline/`, `audit/` (read-only) |
+| F3 | Publish verification results + open-item status on the Flagged for Review page | in progress | arena/652b0095-korea2 | `pages/flagged.html`, `data/derived/flagged.json` |
+| F4 | Integration PR to `main`, merge, confirm GitHub Pages deploy | in progress | arena/652b0095-korea2 | this board, PR |
+
+Non-overlapping scope: this session edits only `COORDINATION.md` (appending this section), the Flagged
+for Review page and its data, plus any root-site generator bug it can prove and fix. Sibling session
+directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination/`, `origination-lab/`,
+`quant-lab/`, `research-desk/`, `results/`, `audit/`) are preserved byte-for-byte and are not edited.
+
+## Log — arena/652b0095-korea2
+- 2026-11-02 — Claim written and pushed before any work started.
