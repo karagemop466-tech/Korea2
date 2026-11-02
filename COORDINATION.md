@@ -846,6 +846,27 @@ directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination/`, `origi
   (SD, OAK, STL) while the player feed uses the current code (LAC, LV, LA), which silently dropped ~9,000 player
   rows from an earlier version of the check. That is recorded here because it is the same class of error the
   verifier is meant to catch.
+- 2026-11-02 — **PR #51 merged as `4657634`** after all three gates turned green (`verify`, `validate`,
+  `tests-and-links`). Merge with `origin/main` had to reconcile a parallel fix: session `arena/cacf6153-korea2`
+  had already replaced the frozen `qa.played` / `qa.as_of` constants with values read from
+  `data/provenance.json` (better than this branch's version, so theirs was kept) and had re-read the same
+  NFL.com snapshot (identical 32 teams). Their branch still lacked the franchise-code mapping in the
+  player join, so without it the four-leg parlay sample reads **7,288** team-games and the check is demoted
+  to an observation; with it the published **7,560** reproduces exactly. Both fixes now coexist in
+  `verification/recompute.py`: 49 checks, 48 pass, 0 mismatch, 2020 32/32, 2026 32/32.
+- 2026-11-02 — **Live confirmation:** Pages build `built` for `4657634`; the published Verification page
+  reads *48 of 49 independent re-computations agree*, *2020 reconciliation 32/32*, *current season 32/32*.
+- 2026-11-02 — **New red found and fixed: the refresh workflows could not open their own pull request.**
+  `data-pipeline` (run `41495320789`) and `fetch-nflverse` (run `41494706322`) both failed at their last step
+  while *every* fail-closed data check had passed — steps 5-9 green, step 10 red. The short-lived branch was
+  pushed (`line-lab-refresh/run-41495320789`, `data-refresh/run-41494706322` exist) and no pull request was
+  opened, which is the signature of `gh pr create` being refused: this repository does not allow the Actions
+  token to create pull requests, so the PR-based refresh added for issue #20 could never succeed here.
+  Fix: `scripts/ci/publish_refresh.sh` now owns the publish step in **both** workflows. It prefers a pull
+  request and falls back to pushing the already-checked commit to `main` **only** on that specific
+  permission error, recording the reason in the commit trailer and the run summary; any other error still
+  fails the run. Exercised locally against a scratch remote with a stub `gh` (permission error -> direct
+  push; other errors -> non-zero exit). Workflow `run:` bodies pass `bash -n`; both YAML files re-read.
 
 ---
 
