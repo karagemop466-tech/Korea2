@@ -880,6 +880,20 @@ directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination/`, `origi
   `gh api 'repos/karagemop466-tech/Korea2/contents/ci/publish-error.txt?ref=<branch>'`. The next run will
   therefore state its own reason; the permission-pattern test stays, so a genuine permission refusal still
   finishes green and publishes nothing.
+- 2026-11-02 — **Root cause confirmed from the runner itself, and the workflow is green.** The next run
+  (`41498688148`, on `main`@`42e4430`, every data step green) finished **success**. Its branch carries the
+  verbatim refusal: `pull request create failed: GraphQL: GitHub Actions is not permitted to create or
+  approve pull requests (createPullRequest)`. That also explains the earlier red run `41496799763`: its
+  script matched that same message and then tried the direct push to `main`, which the branch protection
+  refuses - so the run failed on the fallback, not on the data. The merged policy (leave the validated
+  branch, publish nothing, finish green) is therefore the only one that can work here, and the diagnostics
+  file now makes that visible without Actions logs. Branch `line-lab-refresh/run-41498688148` holds a
+  validated 2026-11-02 rebuild (extracts, provenance, results regenerated) for whoever opens the review PR;
+  it is based on `42e4430`, so it needs a rebase first.
+- 2026-11-02 — **Published Pages build had one transient failure.** Build for `42e4430` reports
+  `errored / Page build failed.`; the build for the next commit (`f1da13f`, same tree plus docs) reports
+  `built`, and the live pages serve correctly, so this was infrastructure rather than content. Recorded
+  because a red deployment must never be assumed transient without checking the next build.
 
 ---
 
