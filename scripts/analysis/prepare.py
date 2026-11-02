@@ -1,3 +1,8 @@
+# DEPRECATED 2026-11-02 (session arena/652b0095-korea2): this is a SECOND producer of the
+# three pruned extracts and it prunes to a different window (2015-2026) than
+# scripts/export_extracts.py (2012-2026, the window the analysis reads). Running it replaced
+# a 2012-2026 extract with a 2015-2026 one and broke reproducibility (commit f0d4b26).
+# Both workflows now call scripts/export_extracts.py; do not call this file from CI.
 """Build pruned, analysis-ready datasets and a provenance manifest.
 
 Raw downloads stay out of git (see .gitignore). Only the pruned extracts and
