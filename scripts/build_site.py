@@ -643,7 +643,7 @@ def page_validation() -> str:
          num(conv.get("moneyline_cross_check", {}).get("mean_spread_line_when_home_is_ml_favourite"), 2),
          "positive, so a positive spread means the home team is favoured", src("nflreadr-dictionary")],
         ["Mean spread line when the home team is the moneyline underdog",
-         num(conv.get("moneyline_cross_check", {}).get("mean_spread_line_when_home_is_ml_dog"), 2),
+         num(conv.get("moneyline_cross_check", {}).get("mean_spread_line_when_home_is_ml_underdog"), 2),
          "negative, same conclusion", src("nflreadr-dictionary")],
     ]
 
@@ -922,9 +922,160 @@ def page_sources() -> str:
                     subtitle="Verified sources, grouped by who verified them.")
 
 
+
+# ---------------------------------------------------------------- verification
+def _v(val) -> str:
+    """Render a check value without pretending a missing one is a number."""
+    if val is None:
+        return '<span class="na">n/a</span>'
+    if isinstance(val, float):
+        return f"{val:.4f}".rstrip("0").rstrip(".")
+    if isinstance(val, int):
+        return f"{val:,}"
+    return esc(val)
+
+
+def page_verification() -> str:
+    ver = W.load("verification.json")
+    if not ver:
+        return W.layout("Verification", "pages/verification.html",
+                        build_notice(["verification.json"]))
+    summ = ver.get("summary", {})
+    meta = ver.get("meta", {})
+    checks = ver.get("checks", [])
+    recon = ver.get("reconciliation", {})
+    r20, r26 = recon.get("2020", {}), recon.get("2026", {})
+
+    kind = {"PASS": "ok", "MISMATCH": "bad", "DIFFERS (expected)": "warn", "INFO": "warn"}
+    check_rows = []
+    for c in checks:
+        check_rows.append([
+            esc(c.get("claim", "")), _v(c.get("published")), _v(c.get("recomputed")),
+            badge(kind.get(c.get("verdict"), "warn"), c.get("verdict", "")),
+            esc(c.get("method", "")) + " " + src(c.get("source_id", "nflverse-data"), "Source"),
+        ])
+
+    def standings_rows(key: str, sid: str) -> list[list[str]]:
+        out = []
+        for r in ver.get(key, []):
+            off, reb = r.get("official"), r.get("rebuilt")
+            rec = lambda v: f"{v[0]}-{v[1]}-{v[2]}" if v else '<span class="na">n/a</span>'
+            pfpa = lambda v: f"{v[3]}/{v[4]}" if v else '<span class="na">n/a</span>'
+            out.append([esc(r["team"]), rec(off), rec(reb), pfpa(off), pfpa(reb),
+                        badge("ok", "match") if r.get("match") else badge("warn", "differs"),
+                        src(sid, "Official standings")])
+        return out
+
+    src_checks = ver.get("sources", {}).get("checks", [])
+    src_rows = [[esc(c.get("label", "")), esc(c.get("supports", "")), esc(c.get("http_state", "")),
+                 badge("ok" if c.get("verdict", "").startswith("CONFIRMED") else "bad", c.get("verdict", "")),
+                 esc(c.get("excerpt", "")) + " " + f'<a href="{esc(c.get("url", ""))}" rel="noopener">Open</a>']
+                for c in src_checks]
+    assets = ver.get("sources", {}).get("asset_provenance", {})
+    asset_rows = [[esc(a["name"]), f"{a['manifest_bytes']:,}", f"{a['current_bytes']:,}",
+                   esc(a.get("updated_utc", "")), badge("warn", "changed upstream"), src("nflverse-api")]
+                  for a in assets.get("assets_changed_upstream", [])]
+
+    body = (f'''<div class="hero compact"><div class="eyebrow">VERIFICATION</div>
+<h1>{summ.get("n_pass", 0)} of {summ.get("n_checks", 0)} independent re-computations agree.</h1>
+<p class="lede">Every headline number on this site was recomputed on {esc(meta.get("generated_utc", "")[:10])} from
+the committed extracts by code that imports nothing from the project, then compared with what the site publishes.
+A completed season was also reconciled team by team against NFL.com. Where a value differs, the difference
+is published here instead of being hidden.</p></div>
+
+<div class="kpis">
+{card("Independent checks", f'{summ.get("n_checks", 0)}', f'{summ.get("n_pass", 0)} agree, {summ.get("n_fail", 0)} disagree on a published value. {summ.get("n_observations", 0)} rows are observations that are expected to differ or carry no published value.', "", "")}
+{card("2020 reconciliation", f'{summ.get("teams_2020_matched", 0)}/{summ.get("teams_2020_compared", 0)}', "Teams whose wins, losses, ties, points for and points against all match NFL.com exactly.", "", "")}
+{card("Current season", f'{summ.get("teams_2026_matched", 0)}/{summ.get("teams_2026_compared", 0)}', f'Teams matching the live NFL.com standings. The committed data ends {esc(summ.get("data_as_of_gameday", "n/a"))}, so the rest of Week 8 is not in it.', "", "")}
+</div>
+
+'''
+        + section("What was recomputed, and what happened", table(
+            ["Claim", "Published", "Recomputed", "Verdict", "Method and source"], check_rows,
+            caption="Recomputed with pandas/numpy/scipy only, from data/derived/games.csv.gz and "
+                    "player_week.csv.gz. Tolerances are stated per row; expected differences are labelled, "
+                    "not counted as failures."))
+        + section("Completed-season reconciliation: 2020", table(
+            ["Team", "NFL.com W-L-T", "Rebuilt W-L-T", "NFL.com PF/PA", "Rebuilt PF/PA", "Result", "Source"],
+            standings_rows("standings_2020", "nfl-standings-2020"),
+            caption=f'All 32 teams, every field. Built from {r20.get("games_in_extract", "n/a")} regular-season '
+                    "games in the committed extract, compared with the official standings page read on "
+                    f'{esc(str(r20.get("retrieved_utc", "")))}.'))
+        + section("Live reconciliation: 2026 season", f'''<p class="small">The same rebuild run against the
+current NFL.com standings page returns {summ.get("teams_2026_matched", 0)} of
+{summ.get("teams_2026_compared", 0)} teams. That is not a data error: the committed extract stops at gameday
+{esc(str(r26.get("latest_gameday_in_extract", "n/a")))} and the official page has since added the rest of Week 8.
+It is published because a reader deserves to know how current these numbers are, and because the refresh
+workflow is the fix.</p>'''
+            + table(["Team", "NFL.com W-L-T", "Rebuilt W-L-T", "NFL.com PF/PA", "Rebuilt PF/PA", "Result", "Source"],
+                    standings_rows("standings_2026", "nfl-standings-2026"),
+                    caption="Snapshot read on 2026-11-02. Live page - the values move every week."))
+        + section("Official-source re-checks, 2026-11-02", table(
+            ["Source", "Supports", "Response", "Verdict", "What the page returned, and the link"], src_rows,
+            caption="Pages that do not return the value they are cited for are recorded as not confirmed. "
+                    "Broken URLs found this way are named on the Flagged for review page."))
+        + section("Upstream files: what moved and what did not", table(
+            ["Asset", "Manifest bytes", "Current bytes", "Updated upstream", "Status", "Source"], asset_rows,
+            caption=f'{assets.get("assets_size_identical", 0)} of {assets.get("assets_checked", 0)} assets still '
+                    "match the byte size recorded at build time; the three listed here are the live current-season "
+                    "files that have been rewritten upstream since the build."))
+        + section("What this does not establish", '''<ul class="ticks">
+<li>That any strategy is profitable. The checks confirm the arithmetic, not the edge.</li>
+<li>That a price is obtainable at any size, or that the market can be beaten.</li>
+<li>Anything about the 2012-2014 player seasons: the committed pruned extract starts in 2015, so the
+published player-level coefficients are reproduced on a shorter window and their sample size is smaller here.</li>
+<li>That a page that loaded today will load tomorrow. Source availability is checked as of the date shown.</li>
+</ul>''', "LIMITS"))
+    return W.layout("Verification", "pages/verification.html", body,
+                    subtitle="Independent recomputation, official-source re-checks, and the disagreements.")
+
+
 # ---------------------------------------------------------------- flagged
 def page_flagged() -> str:
     items = [
+        ("Committed data is one week behind the official standings", "high",
+         "The extract ends at gameday 2026-10-29. Rebuilding standings from it matches the live NFL.com page "
+         "for 8 of 32 teams, because the rest of Week 8 has been played since. Every model number on this site "
+         "is therefore as of 2026-10-29, not as of today.",
+         "nfl-standings-2026", "Stated on the Verification page with the per-team diff. Fixed by running the "
+         "data-pipeline workflow, which downloads the refresh and rebuilds every figure."),
+        ("Player-level coefficients cannot be reproduced from the committed extract", "medium",
+         "The correlation page records a 2012-2026 window and 248,972 player-games, but the pruned extract that "
+         "is committed starts in 2015 and holds 198,802 regular-season player rows. Recomputing on the committed "
+         "file gives the same signs and magnitudes (all |delta r| < 0.02) with a smaller n.",
+         "nflverse-api", "Reported as an expected difference on the Verification page, not silently matched. "
+         "The fix is to commit the pruned extracts from the same download the analysis reads."),
+        ("Two generators wrote the same index.html and pages/", "medium",
+         "A second build script (scripts/analysis/build_site.py) writes index.html and pages/*.html with a "
+         "different navigation and overwrote the integrated site when it ran. Its verification page was left "
+         "published but unreachable from the navigation, carrying 2026-11-01 numbers.",
+         "nflverse-data", "Resolved 2026-11-02: the integrated generator owns index.html and pages/, and its "
+         "Verification page replaces the orphan. The other generator is left untouched for its owner."),
+        ("Fixed 2026-11-02: a table cell rendered blank because of a key mismatch", "low",
+         "The validation page read mean_spread_line_when_home_is_ml_dog while the data field is "
+         "mean_spread_line_when_home_is_ml_underdog, so a measured value (-4.658) displayed as n/a.",
+         "nflreadr-dictionary", "Corrected in the generator; the value now renders and is re-checked on the "
+         "Verification page."),
+        ("Fixed 2026-11-02: -Infinity in a derived JSON file", "low",
+         "The multiple-testing table wrote -Infinity for a single strategy tried, which is not valid JSON and "
+         "displayed as '-inf' on the validation page. The expected maximum of one draw is its mean, zero.",
+         "bh-1995", "Generator and data corrected; k=1 now reads 0.0."),
+        ("Fixed 2026-11-02: two correlation notes described the opposite sign", "low",
+         "The home-vs-away scoring note said 'positive' for r = -0.031, and the WR1-vs-WR2 note called a "
+         "+0.119 correlation the 'one common negative pair'. Both are text defects, not arithmetic errors.",
+         "nflverse-data", "Notes rewritten to match the measured signs; the coefficients themselves were unchanged."),
+        ("Citation precision: the data dictionary does not define the spread sign", "low",
+         "operations.nfl.com and nflreadr pages are cited on the validation page for the ATS sign convention. "
+         "The dictionary page read on 2026-11-02 defines result, total, rest and moneyline but not spread_line "
+         "(entries 26-45 were not returned).",
+         "nflreadr-dictionary", "The convention is proven empirically from the data instead (both cover rates "
+         "and the moneyline cross-check); the citation stays for the field definitions it does support."),
+        ("URLs that no longer resolve", "medium",
+         "operations.nfl.com/the-rules/2025-nfl-rulebook returns 404 (superseded by "
+         "/rules-officiating/2026-nfl-rulebook, which does resolve). nflreadr dictionary_games.html and "
+         "dictionary.html also return 404. None of the broken URLs is linked from the published navigation.",
+         "nfl-rulebook-2026", "Current rulebook URL confirmed 2026-11-02 and used; the broken ones are named here "
+         "so they are not reintroduced."),
         ("No historical player-prop prices", "high",
          "Prop ROI cannot be computed. The feed carries game lines only, and the NFL's official data "
          "distributor supplies prop and same-game-parlay pricing to operators, not to this project.",
@@ -944,6 +1095,12 @@ def page_flagged() -> str:
          "The 2-6 leg payout ladder used for the illustrative EV table is a common industry ladder, "
          "but it differs by operator and was not confirmed in the rulebook that was read.",
          "dk-house-rules", "Marked illustrative; the teaser prices in the same table ARE sourced."),
+        ("Only 2020 is reconciled team by team", "medium",
+         "The 2020 regular season was rebuilt from the extract and matches NFL.com on wins, losses, ties, points "
+         "for and points against for all 32 teams. Seasons 1999-2019 and 2021-2025 share the same file and "
+         "pipeline but were not individually reconciled, and 2026 is behind because of the data lag above.",
+         "nfl-standings-2020", "Shown with the per-team table on the Verification page; the unreconciled seasons "
+         "are named rather than implied."),
         ("NFL injury-report policy page not found", "medium",
          "operations.nfl.com/football-ops/league-governance/injury-report/ returns 404. Without an "
          "official policy text, injury-based signals are blocked rather than guessed.",
@@ -1033,6 +1190,7 @@ def main() -> None:
         "pages/leaderboard.html": page_leaderboard,
         "pages/luck.html": page_luck,
         "pages/market.html": page_market,
+        "pages/verification.html": page_verification,
         "pages/method.html": page_method,
         "pages/sources.html": page_sources,
         "pages/flagged.html": page_flagged,

@@ -1,0 +1,1934 @@
+{
+  "meta": {
+    "session": "arena/652b0095-korea2",
+    "generated_utc": "2026-11-02T17:22:14Z",
+    "purpose": "Independent re-implementation of the published statistics from the committed extracts, plus field-by-field reconciliation of a completed season against NFL.com.",
+    "data_as_of_gameday": "2026-10-29",
+    "n_checks": 49,
+    "n_pass": 45,
+    "n_fail": 0,
+    "n_observations": 11,
+    "independence": "Does not import scripts/ or pipeline/. Uses pandas/numpy/scipy only, so a definition error in the project's own code cannot make this agree with itself.",
+    "caveat": "Reproducibility is not validation. These checks show the numbers follow from the committed data; they say nothing about whether a strategy is profitable or a price obtainable."
+  },
+  "sources": {
+    "meta": {
+      "title": "Official-source re-checks performed on 2026-11-02",
+      "session": "arena/652b0095-korea2",
+      "retrieved_utc": "2026-11-02",
+      "method": "Each URL was opened with a page-retrieval tool on 2026-11-02 and the returned text was read. 'excerpt' quotes what the page actually returned. A page that does not return the value it is cited for is recorded as NOT CONFIRMED, not as confirmed.",
+      "policy": "Nothing here is inferred. Where a page could not be read, the entry says so and the dependent site claim is flagged."
+    },
+    "checks": [
+      {
+        "id": "SRC-CHK-01",
+        "label": "NFL.com official division standings, 2026 regular season",
+        "url": "https://www.nfl.com/standings/division/2026/REG",
+        "supports": "Team records (W-L-T) and points for/against for the current season; used for the live reconciliation table.",
+        "http_state": "200 (page read)",
+        "excerpt": "AFC East: Buffalo Bills 6-1-0, 233 PF / 181 PA. NFC North: Minnesota Vikings 6-1-0, 140 PF / 93 PA (retrieved 2026-11-02).",
+        "verdict": "CONFIRMED"
+      },
+      {
+        "id": "SRC-CHK-02",
+        "label": "NFL.com official division standings, 2020 regular season",
+        "url": "https://www.nfl.com/standings/division/2020/REG",
+        "supports": "Completed-season reconciliation: 32 teams, all fields compared with the extract.",
+        "http_state": "200 (page read)",
+        "excerpt": "NFC North: Green Bay Packers 13-3-0, 509 PF / 369 PA; Detroit Lions 5-11-0, 377 PF / 519 PA (retrieved 2026-11-02).",
+        "verdict": "CONFIRMED"
+      },
+      {
+        "id": "SRC-CHK-03",
+        "label": "NFL.com official passing statistics, 2026 regular season",
+        "url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
+        "supports": "Quarterback stat lines; cross-check of the player feed.",
+        "http_state": "200 (page read)",
+        "excerpt": "Jordan Love: 2246 passing yards, 312 attempts, 192 completions, 16 TD, 6 INT, 92.4 rating (retrieved 2026-11-02).",
+        "verdict": "CONFIRMED"
+      },
+      {
+        "id": "SRC-CHK-04",
+        "label": "NFL Football Operations - 2026 NFL Rulebook",
+        "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+        "supports": "Rulebook citation used for game-settlement context (final score, overtime).",
+        "http_state": "200 (page read)",
+        "excerpt": "'2026 NFL RULEBOOK - Explore the official 2026 NFL rulebook.' plus the 2026 rule-change table (6-1-3, 6-1-5, 6-1-6, 19-2).",
+        "verdict": "CONFIRMED"
+      },
+      {
+        "id": "SRC-CHK-05",
+        "label": "nflverse data dictionary - Schedules (nflreadr)",
+        "url": "https://nflreadr.nflverse.com/articles/dictionary_schedules.html",
+        "supports": "Field definitions behind the data QA: result, total, rest days, moneylines.",
+        "http_state": "200 (page read, first 25 of 45 entries)",
+        "excerpt": "'result ... The number of points the home team scored minus the number of points the visiting team scored. Equals h_score - v_score.' / 'total ... The sum of each team's score in the game.' / 'away_rest ... Days of rest that the away team is coming off of.'",
+        "verdict": "CONFIRMED (partial)",
+        "note": "The visible portion of the dictionary defines result, total, rest and moneyline fields, but not spread_line (entries 26-45 were not returned). The site's ATS sign convention is therefore proven empirically from the data (see the sign-convention checks), not from this page - the citation is accurate for the field definitions it is attached to on the data-integrity table, and weaker than it looks where it is attached to the sign-convention table."
+      },
+      {
+        "id": "SRC-CHK-06",
+        "label": "NFL Football Operations - injury report policy",
+        "url": "https://operations.nfl.com/football-ops/league-governance/injury-report/",
+        "supports": "Cited on the flagged page as NOT CONFIRMED.",
+        "http_state": "empty response (no article body returned)",
+        "excerpt": "The page returned navigation scaffolding only, with no policy text.",
+        "verdict": "NOT CONFIRMED",
+        "note": "Consistent with what the site already publishes: injury-report policy is unavailable, so no injury-based signal is registered."
+      },
+      {
+        "id": "SRC-CHK-07",
+        "label": "Legacy rulebook URL carried by an earlier site generator",
+        "url": "https://operations.nfl.com/the-rules/2025-nfl-rulebook/",
+        "supports": "Nothing on the published site; it is the rulebook link used by the superseded verification page.",
+        "http_state": "404",
+        "excerpt": "'404 - FLAG ON THE PLAY'",
+        "verdict": "BROKEN",
+        "note": "This URL must not be reintroduced. The current rulebook URL (SRC-CHK-04) is the one on the published source register."
+      },
+      {
+        "id": "SRC-CHK-08",
+        "label": "nflreadr data-dictionary URLs that no longer resolve",
+        "url": "https://nflreadr.nflverse.com/articles/dictionary_games.html",
+        "supports": "Nothing on the published site; checked because a sibling session's page used a games dictionary link.",
+        "http_state": "404",
+        "excerpt": "'Page not found (404) - nflreadr'",
+        "verdict": "BROKEN",
+        "note": "dictionary.html returns 404 as well. The working dictionary URL is SRC-CHK-05."
+      }
+    ],
+    "asset_provenance": {
+      "source": "https://api.github.com/repos/nflverse/nflverse-data/releases/tags/{schedules,stats_player,stats_team}",
+      "method": "Each of the 31 assets recorded in data/derived/manifest.json was looked up by name in the live GitHub release metadata on 2026-11-02 and its current byte size compared with the size recorded at build time.",
+      "assets_checked": 31,
+      "assets_size_identical": 28,
+      "assets_changed_upstream": [
+        {
+          "name": "games.parquet",
+          "manifest_bytes": 523083,
+          "current_bytes": 523149,
+          "updated_utc": "2026-11-02T17:16:33Z"
+        },
+        {
+          "name": "stats_player_week_2026.parquet",
+          "manifest_bytes": 424204,
+          "current_bytes": 455689,
+          "updated_utc": "2026-11-02T13:49:51Z"
+        },
+        {
+          "name": "stats_team_week_2026.parquet",
+          "manifest_bytes": 86114,
+          "current_bytes": 89234,
+          "updated_utc": "2026-11-02T13:49:55Z"
+        }
+      ],
+      "verdict": "The historical seasons are byte-identical to what the build recorded, so the model's training data is intact. The three current-season assets have been updated upstream, which is exactly why a rebuild of the committed extract stops at gameday 2026-10-29 while NFL.com already lists the completed Week 8."
+    }
+  },
+  "summary": {
+    "n_checks": 49,
+    "n_pass": 45,
+    "n_fail": 0,
+    "n_observations": 11,
+    "teams_2020_matched": 32,
+    "teams_2020_compared": 32,
+    "teams_2026_matched": 8,
+    "teams_2026_compared": 32,
+    "data_as_of_gameday": "2026-10-29",
+    "n_source_checks": 8,
+    "n_source_broken": 3
+  },
+  "checks": [
+    {
+      "id": "qa.unique_ids",
+      "claim": "game_id is unique",
+      "published": 7548,
+      "recomputed": 7548,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "count distinct game_id over the committed extract",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "qa.result",
+      "claim": "result == home_score - away_score (max abs diff)",
+      "published": 0,
+      "recomputed": 0.0,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "recomputed from the two score columns",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "qa.total",
+      "claim": "total == home_score + away_score (max abs diff)",
+      "published": 0,
+      "recomputed": 0.0,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "recomputed from the two score columns",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "qa.played",
+      "claim": "played games",
+      "published": 7384,
+      "recomputed": 7384,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "rows with both scores present",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "qa.as_of",
+      "claim": "latest settled gameday in the committed extract",
+      "published": "2026-10-29",
+      "recomputed": "2026-10-29",
+      "abs_diff": null,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "max(gameday) over played games",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "scope.player_seasons",
+      "claim": "first and last season in the committed player extract",
+      "published": "[2012, 2026]",
+      "recomputed": "[2015, 2026]",
+      "abs_diff": null,
+      "tolerance": 0,
+      "verdict": "DIFFERS (expected)",
+      "class": "observe",
+      "method": "the published correlation page states the seasons the coefficients were measured on; the committed extract is a pruned 2015-2026 file",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "scope.player_games",
+      "claim": "player-games in the committed extract (regular season)",
+      "published": 248972,
+      "recomputed": 198802,
+      "abs_diff": 50170.0,
+      "tolerance": 0,
+      "verdict": "DIFFERS (expected)",
+      "class": "observe",
+      "method": "the published figure was measured on the 2012-2026 download before pruning; the committed extract holds fewer rows, which is why the recomputed correlations carry a smaller n",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.spread_mae",
+      "claim": "closing spread MAE vs actual margin (all seasons)",
+      "published": 10.25,
+      "recomputed": 10.25,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "mean |margin - spread_line| over regular-season games with a closing line",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.spread_n",
+      "claim": "closing spread sample size",
+      "published": 7075,
+      "recomputed": 7075,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "count of regular-season games with a closing line",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.total_mae",
+      "claim": "closing total MAE",
+      "published": 10.613,
+      "recomputed": 10.613,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "mean |game total - total_line| over regular-season games with a closing total",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.total_n",
+      "claim": "closing total sample size",
+      "published": 7075,
+      "recomputed": 7075,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "count of regular-season games with a closing total",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.recent_mae",
+      "claim": "closing spread MAE, 2023-2026",
+      "published": 9.7,
+      "recomputed": 9.7,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "same statistic restricted to seasons >= 2023",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.recent_n",
+      "claim": "closing spread sample, 2023-2026",
+      "published": 924,
+      "recomputed": 924,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "count of regular-season games with a closing line, seasons >= 2023",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "sign.home_cover_as_expected_margin",
+      "claim": "home cover rate if spread_line is the home team's expected margin",
+      "published": 0.4887,
+      "recomputed": 0.4887,
+      "abs_diff": 0.0,
+      "tolerance": 0.0006,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "result - spread_line > 0, pushes excluded",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "sign.home_cover_as_handicap",
+      "claim": "home cover rate if spread_line is the home team's handicap",
+      "published": 0.5999,
+      "recomputed": 0.5999,
+      "abs_diff": 0.0,
+      "tolerance": 0.0006,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "result + spread_line > 0, pushes excluded",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "sign.ml_fav_mean_line",
+      "claim": "mean spread_line when the home team is the moneyline favourite",
+      "published": 5.674,
+      "recomputed": 5.674,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "mean(spread_line | home_moneyline < 0)",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "sign.ml_dog_mean_line",
+      "claim": "mean spread_line when the home team is the moneyline underdog",
+      "published": -4.658,
+      "recomputed": -4.658,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "mean(spread_line | home_moneyline > 0)",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.ats_n",
+      "claim": "pooled ATS team-games, pushes removed",
+      "published": 13760,
+      "recomputed": 13760,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "each settled game contributes a home and an away ATS result",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.ats_wins",
+      "claim": "pooled ATS wins",
+      "published": 6880,
+      "recomputed": 6880,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "count of ATS covers",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.ats_rate",
+      "claim": "pooled ATS cover rate",
+      "published": 0.5,
+      "recomputed": 0.5,
+      "abs_diff": 0.0,
+      "tolerance": 0.0006,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "wins / decided team-games",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.pythag_r2",
+      "claim": "Pythagorean expected vs actual win% R^2 (exponent 2.37)",
+      "published": 0.8254,
+      "recomputed": 0.8254,
+      "abs_diff": 0.0,
+      "tolerance": 0.0006,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "squared Pearson r between expected and actual win% over team-seasons with >= 8 games",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.pythag_n",
+      "claim": "team-seasons in the Pythagorean sample",
+      "published": 862,
+      "recomputed": 862,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "count of team-seasons with >= 8 regular-season games",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.pythag_sd",
+      "claim": "SD of luck wins",
+      "published": 1.327,
+      "recomputed": 1.327,
+      "abs_diff": 0.0,
+      "tolerance": 0.006,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "sample SD of (actual wins - Pythagorean expected wins)",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.persistence_r",
+      "claim": "year-over-year correlation of Pythagorean luck",
+      "published": 0.018865760761162892,
+      "recomputed": 0.0189,
+      "abs_diff": 3.4e-05,
+      "tolerance": 0.001,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "Pearson r between consecutive seasons of the same franchise",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.persistence_n",
+      "claim": "pairs in the luck-persistence test",
+      "published": 827,
+      "recomputed": 827,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "consecutive team-seasons",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.one_score_r",
+      "claim": "year-over-year correlation of one-score win rate",
+      "published": 0.08712403155800667,
+      "recomputed": 0.0871,
+      "abs_diff": 2.4e-05,
+      "tolerance": 0.001,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "Pearson r over team-seasons with >= 3 one-score games (|margin| <= 8)",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "luck.one_score_n",
+      "claim": "pairs in the one-score persistence test",
+      "published": 852,
+      "recomputed": 852,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "consecutive team-seasons",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "corr.qb_wr1",
+      "claim": "QB passing yards vs WR1 receiving yards",
+      "published": 0.5612996145947928,
+      "recomputed": 0.5599,
+      "abs_diff": 0.0014,
+      "tolerance": 0.02,
+      "verdict": "PASS",
+      "class": "observe",
+      "method": "Pearson r over 5873 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "corr.qb_wr2",
+      "claim": "QB passing yards vs WR2 receiving yards",
+      "published": 0.5054809840358229,
+      "recomputed": 0.5057,
+      "abs_diff": 0.000219,
+      "tolerance": 0.02,
+      "verdict": "PASS",
+      "class": "observe",
+      "method": "Pearson r over 5873 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "corr.wr1_wr2",
+      "claim": "WR1 vs WR2 receiving yards",
+      "published": 0.11857085894409371,
+      "recomputed": 0.1275,
+      "abs_diff": 0.008929,
+      "tolerance": 0.02,
+      "verdict": "PASS",
+      "class": "observe",
+      "method": "Pearson r over 5878 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "corr.rb_qb",
+      "claim": "RB1 rushing yards vs QB passing yards",
+      "published": -0.127025403892477,
+      "recomputed": -0.119,
+      "abs_diff": 0.008025,
+      "tolerance": 0.02,
+      "verdict": "PASS",
+      "class": "observe",
+      "method": "Pearson r over 5873 team-games in the committed extract (which starts in 2015; the published coefficient was computed on a 2012-2026 download, so exact equality is not expected). QB = most attempts (>=10), WR1/WR2 = most/second-most targets among WR/TE/RB, RB1 = most carries",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "sgp.n",
+      "claim": "4-leg same-team parlay sample (team-games)",
+      "published": 7537,
+      "recomputed": 5873,
+      "abs_diff": 1664.0,
+      "tolerance": 0,
+      "verdict": "DIFFERS (expected)",
+      "class": "observe",
+      "method": "team-games with all four legs present. The published sample is larger because it was measured on a 2012-2026 download; the committed extract starts in 2015",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "sgp.joint",
+      "claim": "empirical joint probability, all four legs above their median",
+      "published": 0.1112,
+      "recomputed": 0.1095,
+      "abs_diff": 0.0017,
+      "tolerance": 0.01,
+      "verdict": "PASS",
+      "class": "observe",
+      "method": "share of team-games where all four legs clear their own median (window gap as above)",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "sgp.product",
+      "claim": "independent product of the four marginal rates",
+      "published": 0.0569,
+      "recomputed": 0.0556,
+      "abs_diff": 0.0013,
+      "tolerance": 0.01,
+      "verdict": "PASS",
+      "class": "observe",
+      "method": "product of the four per-leg exceedance rates (window gap as above)",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "sgp.excess",
+      "claim": "empirical joint minus independent product",
+      "published": 0.0543,
+      "recomputed": 0.0539,
+      "abs_diff": 0.0004,
+      "tolerance": 0.01,
+      "verdict": "PASS",
+      "class": "observe",
+      "method": "difference of the two quantities above (window gap as above)",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.S4_rest_advantage.n",
+      "claim": "S4_rest_advantage: settled bets in the published window",
+      "published": 199,
+      "recomputed": 199,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "re-settled from the extract with push-aware spread/total rules at the feed's price",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.S4_rest_advantage.roi",
+      "claim": "S4_rest_advantage: ROI per unit staked",
+      "published": -0.0024,
+      "recomputed": -0.0024,
+      "abs_diff": 0.0,
+      "tolerance": 0.0015,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "profit / units staked, pushes refunded and removed",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.S5_bye_week_team.n",
+      "claim": "S5_bye_week_team: settled bets in the published window",
+      "published": 82,
+      "recomputed": 82,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "re-settled from the extract with push-aware spread/total rules at the feed's price",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.S5_bye_week_team.roi",
+      "claim": "S5_bye_week_team: ROI per unit staked",
+      "published": -0.082,
+      "recomputed": -0.082,
+      "abs_diff": 0.0,
+      "tolerance": 0.0015,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "profit / units staked, pushes refunded and removed",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.S6_divisional_home_dog.n",
+      "claim": "S6_divisional_home_dog: settled bets in the published window",
+      "published": 136,
+      "recomputed": 136,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "re-settled from the extract with push-aware spread/total rules at the feed's price",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.S6_divisional_home_dog.roi",
+      "claim": "S6_divisional_home_dog: ROI per unit staked",
+      "published": -0.0191,
+      "recomputed": -0.0191,
+      "abs_diff": 0.0,
+      "tolerance": 0.0015,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "profit / units staked, pushes refunded and removed",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.C1_all_home_control.n",
+      "claim": "C1_all_home_control: settled bets in the published window",
+      "published": 924,
+      "recomputed": 924,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "re-settled from the extract with push-aware spread/total rules at the feed's price",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.C1_all_home_control.roi",
+      "claim": "C1_all_home_control: ROI per unit staked",
+      "published": -0.0583,
+      "recomputed": -0.0583,
+      "abs_diff": 0.0,
+      "tolerance": 0.0015,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "profit / units staked, pushes refunded and removed",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.S7_wind_under.n",
+      "claim": "S7_wind_under: settled bets in the published window",
+      "published": 46,
+      "recomputed": 46,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "re-settled from the extract with push-aware spread/total rules at the feed's price",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.S7_wind_under.roi",
+      "claim": "S7_wind_under: ROI per unit staked",
+      "published": 0.0151,
+      "recomputed": 0.0151,
+      "abs_diff": 0.0,
+      "tolerance": 0.0015,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "profit / units staked, pushes refunded and removed",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.C2_all_under_control.n",
+      "claim": "C2_all_under_control: settled bets in the published window",
+      "published": 924,
+      "recomputed": 924,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "re-settled from the extract with push-aware spread/total rules at the feed's price",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "strategy.C2_all_under_control.roi",
+      "claim": "C2_all_under_control: ROI per unit staked",
+      "published": -0.0598,
+      "recomputed": -0.0598,
+      "abs_diff": 0.0,
+      "tolerance": 0.0015,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "profit / units staked, pushes refunded and removed",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "recon.2020.teams",
+      "claim": "2020: teams whose W-L-T and PF/PA match NFL.com",
+      "published": 32,
+      "recomputed": 32,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "standings rebuilt from the score columns and compared field by field with the official division standings",
+      "source_id": "nfl-standings-2020"
+    },
+    {
+      "id": "recon.2026.teams",
+      "claim": "2026: teams whose W-L-T and PF/PA match NFL.com",
+      "published": null,
+      "recomputed": 8,
+      "abs_diff": null,
+      "tolerance": 0,
+      "verdict": "INFO",
+      "class": "observe",
+      "method": "standings rebuilt from the score columns and compared field by field with the official division standings; the extract ends 2026-10-29 so the current official page must show more games",
+      "source_id": "nfl-standings-2026"
+    }
+  ],
+  "reconciliation": {
+    "2020": {
+      "url": "https://www.nfl.com/standings/division/2020/REG",
+      "retrieved_utc": "2026-11-02",
+      "teams_compared": 32,
+      "teams_matched": 32,
+      "mismatched_teams": [],
+      "expectation": "exact",
+      "games_in_extract": 256,
+      "latest_gameday_in_extract": "2021-01-03"
+    },
+    "2026": {
+      "url": "https://www.nfl.com/standings/division/2026/REG",
+      "retrieved_utc": "2026-11-02",
+      "teams_compared": 32,
+      "teams_matched": 8,
+      "mismatched_teams": [
+        "ATL",
+        "AZ",
+        "BAL",
+        "BUF",
+        "CIN",
+        "CLE",
+        "DAL",
+        "DEN",
+        "DET",
+        "IND",
+        "JAX",
+        "KC",
+        "LA",
+        "LAC",
+        "LV",
+        "MIA",
+        "MIN",
+        "NE",
+        "NYJ",
+        "PHI",
+        "PIT",
+        "TB",
+        "TEN",
+        "WAS"
+      ],
+      "expectation": "lag",
+      "games_in_extract": 108,
+      "latest_gameday_in_extract": "2026-10-29"
+    }
+  },
+  "standings_2020": [
+    {
+      "team": "ATL",
+      "official": [
+        4,
+        12,
+        0,
+        396,
+        414
+      ],
+      "rebuilt": [
+        4,
+        12,
+        0,
+        396,
+        414
+      ],
+      "match": true
+    },
+    {
+      "team": "AZ",
+      "official": [
+        8,
+        8,
+        0,
+        410,
+        367
+      ],
+      "rebuilt": [
+        8,
+        8,
+        0,
+        410,
+        367
+      ],
+      "match": true
+    },
+    {
+      "team": "BAL",
+      "official": [
+        11,
+        5,
+        0,
+        468,
+        303
+      ],
+      "rebuilt": [
+        11,
+        5,
+        0,
+        468,
+        303
+      ],
+      "match": true
+    },
+    {
+      "team": "BUF",
+      "official": [
+        13,
+        3,
+        0,
+        501,
+        375
+      ],
+      "rebuilt": [
+        13,
+        3,
+        0,
+        501,
+        375
+      ],
+      "match": true
+    },
+    {
+      "team": "CAR",
+      "official": [
+        5,
+        11,
+        0,
+        350,
+        402
+      ],
+      "rebuilt": [
+        5,
+        11,
+        0,
+        350,
+        402
+      ],
+      "match": true
+    },
+    {
+      "team": "CHI",
+      "official": [
+        8,
+        8,
+        0,
+        372,
+        370
+      ],
+      "rebuilt": [
+        8,
+        8,
+        0,
+        372,
+        370
+      ],
+      "match": true
+    },
+    {
+      "team": "CIN",
+      "official": [
+        4,
+        11,
+        1,
+        311,
+        424
+      ],
+      "rebuilt": [
+        4,
+        11,
+        1,
+        311,
+        424
+      ],
+      "match": true
+    },
+    {
+      "team": "CLE",
+      "official": [
+        11,
+        5,
+        0,
+        408,
+        419
+      ],
+      "rebuilt": [
+        11,
+        5,
+        0,
+        408,
+        419
+      ],
+      "match": true
+    },
+    {
+      "team": "DAL",
+      "official": [
+        6,
+        10,
+        0,
+        395,
+        473
+      ],
+      "rebuilt": [
+        6,
+        10,
+        0,
+        395,
+        473
+      ],
+      "match": true
+    },
+    {
+      "team": "DEN",
+      "official": [
+        5,
+        11,
+        0,
+        323,
+        446
+      ],
+      "rebuilt": [
+        5,
+        11,
+        0,
+        323,
+        446
+      ],
+      "match": true
+    },
+    {
+      "team": "DET",
+      "official": [
+        5,
+        11,
+        0,
+        377,
+        519
+      ],
+      "rebuilt": [
+        5,
+        11,
+        0,
+        377,
+        519
+      ],
+      "match": true
+    },
+    {
+      "team": "GB",
+      "official": [
+        13,
+        3,
+        0,
+        509,
+        369
+      ],
+      "rebuilt": [
+        13,
+        3,
+        0,
+        509,
+        369
+      ],
+      "match": true
+    },
+    {
+      "team": "HOU",
+      "official": [
+        4,
+        12,
+        0,
+        384,
+        464
+      ],
+      "rebuilt": [
+        4,
+        12,
+        0,
+        384,
+        464
+      ],
+      "match": true
+    },
+    {
+      "team": "IND",
+      "official": [
+        11,
+        5,
+        0,
+        451,
+        362
+      ],
+      "rebuilt": [
+        11,
+        5,
+        0,
+        451,
+        362
+      ],
+      "match": true
+    },
+    {
+      "team": "JAX",
+      "official": [
+        1,
+        15,
+        0,
+        306,
+        492
+      ],
+      "rebuilt": [
+        1,
+        15,
+        0,
+        306,
+        492
+      ],
+      "match": true
+    },
+    {
+      "team": "KC",
+      "official": [
+        14,
+        2,
+        0,
+        473,
+        362
+      ],
+      "rebuilt": [
+        14,
+        2,
+        0,
+        473,
+        362
+      ],
+      "match": true
+    },
+    {
+      "team": "LA",
+      "official": [
+        10,
+        6,
+        0,
+        372,
+        296
+      ],
+      "rebuilt": [
+        10,
+        6,
+        0,
+        372,
+        296
+      ],
+      "match": true
+    },
+    {
+      "team": "LAC",
+      "official": [
+        7,
+        9,
+        0,
+        384,
+        426
+      ],
+      "rebuilt": [
+        7,
+        9,
+        0,
+        384,
+        426
+      ],
+      "match": true
+    },
+    {
+      "team": "LV",
+      "official": [
+        8,
+        8,
+        0,
+        434,
+        478
+      ],
+      "rebuilt": [
+        8,
+        8,
+        0,
+        434,
+        478
+      ],
+      "match": true
+    },
+    {
+      "team": "MIA",
+      "official": [
+        10,
+        6,
+        0,
+        404,
+        338
+      ],
+      "rebuilt": [
+        10,
+        6,
+        0,
+        404,
+        338
+      ],
+      "match": true
+    },
+    {
+      "team": "MIN",
+      "official": [
+        7,
+        9,
+        0,
+        430,
+        475
+      ],
+      "rebuilt": [
+        7,
+        9,
+        0,
+        430,
+        475
+      ],
+      "match": true
+    },
+    {
+      "team": "NE",
+      "official": [
+        7,
+        9,
+        0,
+        326,
+        353
+      ],
+      "rebuilt": [
+        7,
+        9,
+        0,
+        326,
+        353
+      ],
+      "match": true
+    },
+    {
+      "team": "NO",
+      "official": [
+        12,
+        4,
+        0,
+        482,
+        337
+      ],
+      "rebuilt": [
+        12,
+        4,
+        0,
+        482,
+        337
+      ],
+      "match": true
+    },
+    {
+      "team": "NYG",
+      "official": [
+        6,
+        10,
+        0,
+        280,
+        357
+      ],
+      "rebuilt": [
+        6,
+        10,
+        0,
+        280,
+        357
+      ],
+      "match": true
+    },
+    {
+      "team": "NYJ",
+      "official": [
+        2,
+        14,
+        0,
+        243,
+        457
+      ],
+      "rebuilt": [
+        2,
+        14,
+        0,
+        243,
+        457
+      ],
+      "match": true
+    },
+    {
+      "team": "PHI",
+      "official": [
+        4,
+        11,
+        1,
+        334,
+        418
+      ],
+      "rebuilt": [
+        4,
+        11,
+        1,
+        334,
+        418
+      ],
+      "match": true
+    },
+    {
+      "team": "PIT",
+      "official": [
+        12,
+        4,
+        0,
+        416,
+        312
+      ],
+      "rebuilt": [
+        12,
+        4,
+        0,
+        416,
+        312
+      ],
+      "match": true
+    },
+    {
+      "team": "SEA",
+      "official": [
+        12,
+        4,
+        0,
+        459,
+        371
+      ],
+      "rebuilt": [
+        12,
+        4,
+        0,
+        459,
+        371
+      ],
+      "match": true
+    },
+    {
+      "team": "SF",
+      "official": [
+        6,
+        10,
+        0,
+        376,
+        390
+      ],
+      "rebuilt": [
+        6,
+        10,
+        0,
+        376,
+        390
+      ],
+      "match": true
+    },
+    {
+      "team": "TB",
+      "official": [
+        11,
+        5,
+        0,
+        492,
+        355
+      ],
+      "rebuilt": [
+        11,
+        5,
+        0,
+        492,
+        355
+      ],
+      "match": true
+    },
+    {
+      "team": "TEN",
+      "official": [
+        11,
+        5,
+        0,
+        491,
+        439
+      ],
+      "rebuilt": [
+        11,
+        5,
+        0,
+        491,
+        439
+      ],
+      "match": true
+    },
+    {
+      "team": "WAS",
+      "official": [
+        7,
+        9,
+        0,
+        335,
+        329
+      ],
+      "rebuilt": [
+        7,
+        9,
+        0,
+        335,
+        329
+      ],
+      "match": true
+    }
+  ],
+  "standings_2026": [
+    {
+      "team": "ATL",
+      "official": [
+        3,
+        5,
+        0,
+        171,
+        189
+      ],
+      "rebuilt": [
+        3,
+        4,
+        0,
+        171,
+        173
+      ],
+      "match": false
+    },
+    {
+      "team": "AZ",
+      "official": [
+        3,
+        5,
+        0,
+        175,
+        238
+      ],
+      "rebuilt": [
+        2,
+        5,
+        0,
+        142,
+        208
+      ],
+      "match": false
+    },
+    {
+      "team": "BAL",
+      "official": [
+        4,
+        4,
+        0,
+        179,
+        203
+      ],
+      "rebuilt": [
+        4,
+        3,
+        0,
+        169,
+        167
+      ],
+      "match": false
+    },
+    {
+      "team": "BUF",
+      "official": [
+        6,
+        1,
+        0,
+        233,
+        181
+      ],
+      "rebuilt": [
+        5,
+        1,
+        0,
+        197,
+        171
+      ],
+      "match": false
+    },
+    {
+      "team": "CAR",
+      "official": [
+        3,
+        4,
+        0,
+        178,
+        193
+      ],
+      "rebuilt": [
+        3,
+        4,
+        0,
+        178,
+        193
+      ],
+      "match": true
+    },
+    {
+      "team": "CHI",
+      "official": [
+        5,
+        2,
+        0,
+        180,
+        143
+      ],
+      "rebuilt": [
+        5,
+        2,
+        0,
+        180,
+        143
+      ],
+      "match": true
+    },
+    {
+      "team": "CIN",
+      "official": [
+        5,
+        2,
+        0,
+        206,
+        158
+      ],
+      "rebuilt": [
+        4,
+        2,
+        0,
+        163,
+        122
+      ],
+      "match": false
+    },
+    {
+      "team": "CLE",
+      "official": [
+        5,
+        3,
+        0,
+        139,
+        173
+      ],
+      "rebuilt": [
+        5,
+        2,
+        0,
+        133,
+        146
+      ],
+      "match": false
+    },
+    {
+      "team": "DAL",
+      "official": [
+        3,
+        5,
+        0,
+        219,
+        213
+      ],
+      "rebuilt": [
+        3,
+        4,
+        0,
+        189,
+        180
+      ],
+      "match": false
+    },
+    {
+      "team": "DEN",
+      "official": [
+        6,
+        2,
+        0,
+        172,
+        165
+      ],
+      "rebuilt": [
+        5,
+        2,
+        0,
+        144,
+        141
+      ],
+      "match": false
+    },
+    {
+      "team": "DET",
+      "official": [
+        5,
+        2,
+        0,
+        203,
+        180
+      ],
+      "rebuilt": [
+        4,
+        2,
+        0,
+        184,
+        165
+      ],
+      "match": false
+    },
+    {
+      "team": "GB",
+      "official": [
+        5,
+        3,
+        0,
+        171,
+        164
+      ],
+      "rebuilt": [
+        5,
+        3,
+        0,
+        171,
+        164
+      ],
+      "match": true
+    },
+    {
+      "team": "HOU",
+      "official": [
+        2,
+        5,
+        0,
+        165,
+        170
+      ],
+      "rebuilt": [
+        2,
+        5,
+        0,
+        165,
+        170
+      ],
+      "match": true
+    },
+    {
+      "team": "IND",
+      "official": [
+        2,
+        6,
+        0,
+        161,
+        222
+      ],
+      "rebuilt": [
+        2,
+        5,
+        0,
+        154,
+        180
+      ],
+      "match": false
+    },
+    {
+      "team": "JAX",
+      "official": [
+        5,
+        2,
+        0,
+        196,
+        111
+      ],
+      "rebuilt": [
+        4,
+        2,
+        0,
+        154,
+        104
+      ],
+      "match": false
+    },
+    {
+      "team": "KC",
+      "official": [
+        5,
+        2,
+        0,
+        167,
+        131
+      ],
+      "rebuilt": [
+        5,
+        1,
+        0,
+        143,
+        103
+      ],
+      "match": false
+    },
+    {
+      "team": "LA",
+      "official": [
+        4,
+        4,
+        0,
+        194,
+        168
+      ],
+      "rebuilt": [
+        3,
+        4,
+        0,
+        170,
+        159
+      ],
+      "match": false
+    },
+    {
+      "team": "LAC",
+      "official": [
+        0,
+        7,
+        0,
+        99,
+        175
+      ],
+      "rebuilt": [
+        0,
+        6,
+        0,
+        90,
+        151
+      ],
+      "match": false
+    },
+    {
+      "team": "LV",
+      "official": [
+        4,
+        4,
+        0,
+        221,
+        230
+      ],
+      "rebuilt": [
+        3,
+        4,
+        0,
+        183,
+        197
+      ],
+      "match": false
+    },
+    {
+      "team": "MIA",
+      "official": [
+        1,
+        6,
+        0,
+        117,
+        181
+      ],
+      "rebuilt": [
+        1,
+        5,
+        0,
+        98,
+        157
+      ],
+      "match": false
+    },
+    {
+      "team": "MIN",
+      "official": [
+        6,
+        1,
+        0,
+        140,
+        93
+      ],
+      "rebuilt": [
+        6,
+        0,
+        0,
+        125,
+        74
+      ],
+      "match": false
+    },
+    {
+      "team": "NE",
+      "official": [
+        5,
+        3,
+        0,
+        184,
+        162
+      ],
+      "rebuilt": [
+        4,
+        3,
+        0,
+        160,
+        143
+      ],
+      "match": false
+    },
+    {
+      "team": "NO",
+      "official": [
+        2,
+        5,
+        0,
+        162,
+        194
+      ],
+      "rebuilt": [
+        2,
+        5,
+        0,
+        162,
+        194
+      ],
+      "match": true
+    },
+    {
+      "team": "NYG",
+      "official": [
+        4,
+        2,
+        1,
+        163,
+        161
+      ],
+      "rebuilt": [
+        4,
+        2,
+        1,
+        163,
+        161
+      ],
+      "match": true
+    },
+    {
+      "team": "NYJ",
+      "official": [
+        2,
+        6,
+        0,
+        170,
+        188
+      ],
+      "rebuilt": [
+        2,
+        5,
+        0,
+        137,
+        150
+      ],
+      "match": false
+    },
+    {
+      "team": "PHI",
+      "official": [
+        2,
+        6,
+        0,
+        137,
+        202
+      ],
+      "rebuilt": [
+        2,
+        5,
+        0,
+        127,
+        175
+      ],
+      "match": false
+    },
+    {
+      "team": "PIT",
+      "official": [
+        6,
+        2,
+        0,
+        180,
+        144
+      ],
+      "rebuilt": [
+        5,
+        2,
+        0,
+        153,
+        138
+      ],
+      "match": false
+    },
+    {
+      "team": "SEA",
+      "official": [
+        4,
+        3,
+        0,
+        168,
+        125
+      ],
+      "rebuilt": [
+        4,
+        3,
+        0,
+        168,
+        125
+      ],
+      "match": true
+    },
+    {
+      "team": "SF",
+      "official": [
+        6,
+        1,
+        0,
+        197,
+        139
+      ],
+      "rebuilt": [
+        6,
+        1,
+        0,
+        197,
+        139
+      ],
+      "match": true
+    },
+    {
+      "team": "TB",
+      "official": [
+        3,
+        5,
+        0,
+        178,
+        151
+      ],
+      "rebuilt": [
+        2,
+        5,
+        0,
+        162,
+        151
+      ],
+      "match": false
+    },
+    {
+      "team": "TEN",
+      "official": [
+        1,
+        7,
+        0,
+        144,
+        199
+      ],
+      "rebuilt": [
+        1,
+        6,
+        0,
+        108,
+        156
+      ],
+      "match": false
+    },
+    {
+      "team": "WAS",
+      "official": [
+        2,
+        4,
+        1,
+        159,
+        182
+      ],
+      "rebuilt": [
+        1,
+        4,
+        1,
+        132,
+        172
+      ],
+      "match": false
+    }
+  ]
+}

@@ -11,10 +11,11 @@ runs every candidate strategy through ten validation gates before it can earn an
 | Question | Answer | Evidence |
 |---|---|---|
 | Can the closing line be beaten by this model? | No | model spread MAE 10.38 vs market 9.70; model coefficient on margin after controlling for the close = −0.02 (p = 0.85) |
-| Did any strategy pass the gates? | No, 0 of 7 | see [Leaderboard](https://karagemop466-tech.github.io/Korea2/pages/leaderboard.html) |
+| Did any strategy pass the gates? | No, 0 of 7 candidates (2 controls also fail) | see [Leaderboard](https://karagemop466-tech.github.io/Korea2/pages/leaderboard.html) |
 | Are parlay legs independent? | No | QB passing yards ↔ WR1 receiving yards r = +0.561; 4-leg same-team joint 11.1% vs 5.7% under independence |
 | Is a season win-loss record a signal? | Mostly luck | Pythagorean R² = 0.83; year-over-year luck correlation 0.019 |
 | Can prop ROI be measured? | Not here | no historical prop prices in the feed — flagged, not invented |
+| Do the published numbers survive an independent recomputation? | Yes | 45 of 49 checks agree, 0 material disagreements; 2020 season reconciles 32/32 teams with NFL.com — [Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) |
 
 The honest headline is that the market is better than the model, and the gate system rejects
 everything as a result. That is the intended behaviour of the system, not a failure of it.
@@ -28,6 +29,8 @@ scripts/diag_signs.py   prove the spread sign convention from the data    -> dat
 scripts/analyze_*.py    market, model, correlation, luck, strategies, props -> data/derived/*.json
 scripts/build_site.py   render the dashboard from that JSON               -> index.html, pages/
 tests/check_site.py     link integrity + per-row source discipline
+tests/check_derived.py  strict JSON, verification record, no orphan pages
+verification/recompute.py  independent re-implementation of the headline numbers (imports nothing here)
 ```
 
 Nothing on the site is typed by hand; every number is read from the committed JSON. Re-running the
@@ -56,6 +59,8 @@ a push and the stake is returned), and pushes are removed from the win-rate deno
 | `data/sources.json` | source register, each entry opened and confirmed on 2026-11-01 |
 | `scripts/` | fetch, profile, diagnostics, analysis, site build |
 | `tests/check_site.py` | fails the build on a broken link or a table row without a source |
+| `tests/check_derived.py` | fails the build on non-strict JSON, an orphan page, or a verification disagreement |
+| `verification/` | independent recomputation plus the transcribed NFL.com standings used to reconcile them |
 | `docs/` | executive summary, methodology, requirements matrix |
 | `pipeline/`, `origination/` | session `3f5af27c`: the origination/strategy/gating pipeline and its 13-page site (`origination/index.html`) |
 | sibling directories | earlier parallel-session dashboards, preserved unchanged (`pages/archive.html`) |

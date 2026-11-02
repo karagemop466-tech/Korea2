@@ -91,11 +91,11 @@
     "breakeven_note": "100/210 = 52.38% is the break-even rate at -110."
   },
   "multiple_testing": {
-    "note": "With k candidate strategies tested, the best one will look good by chance. The deflated-Sharpe threshold is the Sharpe a zero-skill strategy would be expected to reach as the maximum of k tries.",
+    "note": "With k candidate strategies tested, the best one will look good by chance. The deflated-Sharpe threshold is the Sharpe a zero-skill strategy would be expected to reach as the maximum of k tries (Bailey & Lopez de Prado approximation). For k=1 the expected maximum is the mean, i.e. 0 - the earlier build wrote -Infinity there, which is not a probability statement and is not valid JSON.",
     "rows": [
       {
         "strategies_tested": 1,
-        "expected_max_sharpe_per_bet_under_null": -Infinity
+        "expected_max_sharpe_per_bet_under_null": 0.0
       },
       {
         "strategies_tested": 5,

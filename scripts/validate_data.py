@@ -37,6 +37,8 @@ ALLOWED_DOMAINS = {
     "noaa.gov", "www.noaa.gov",
     "ncpgambling.org", "www.ncpgambling.org",
     "github.com", "www.github.com",  # repo's own official location (repo-review rows)
+    "api.github.com",  # GitHub release metadata API: authoritative byte sizes for the nflverse assets
+                       # recorded in data/derived/manifest.json (verification session arena/652b0095-korea2)
     # --- added by the integration session (arena/70a33596-korea2), each opened and verified 2026-11-01:
     "www.nflgsis.com",          # NFL Game Statistics & Information System - the league's own stat authority
     "massgaming.com",           # Massachusetts Gaming Commission, state regulator hosting operator rule filings

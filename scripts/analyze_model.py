@@ -82,7 +82,8 @@ def main() -> None:
     test = R.fit_history(games, TEST_START, half_life_days=best_hp[0], lam=best_hp[1])
     out["model_spec"] = {
         "form": "home = mu + off_home - def_away + hfa ; away = mu + off_away - def_home",
-        "estimator": "weighted least squares (ridge lambda=8 on team ratings)",
+        "estimator": ("weighted least squares with ridge shrinkage; the penalty applied is the "
+                      "ridge_lambda below, chosen on the 2021-2022 validation window"),
         "recency_half_life_days": best_hp[0],
         "ridge_lambda": best_hp[1],
         "home_field_shrinkage": "hfa shrunk toward the 10-season mean with 60 pseudo-observations",

@@ -20,3 +20,9 @@ jobs:
         run: python3 scripts/validate_data.py
       - name: Check internal site links
         run: python3 scripts/check_links.py
+      - name: Derived data invariants (strict JSON, verification record, no orphan pages)
+        run: python3 tests/check_derived.py
+      - name: Re-run the independent verification (needs pandas/numpy/scipy only)
+        run: |
+          pip install --quiet pandas numpy scipy
+          python3 verification/recompute.py
