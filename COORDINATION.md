@@ -894,6 +894,23 @@ directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination/`, `origi
   `errored / Page build failed.`; the build for the next commit (`f1da13f`, same tree plus docs) reports
   `built`, and the live pages serve correctly, so this was infrastructure rather than content. Recorded
   because a red deployment must never be assumed transient without checking the next build.
+- 2026-11-02 — **Reproducibility regressed again, from a second extract producer.** After the refresh runs
+  the published player-level sample stopped reproducing: `verification/recompute.py` recomputes the four-leg
+  parlay sample as **6,024** team-games against the published **7,560**. Cause: two programs write the same
+  three pruned extracts with different windows - `scripts/export_extracts.py` prunes to **2012-2026** (the
+  window the analysis reads) and `scripts/analysis/prepare.py`, called by `fetch-nflverse.yml`, prunes to
+  **2015-2026**. The `refresh-data` run committed `f0d4b26` ("Automated refresh (direct push...)") on
+  2026-11-02 18:03 UTC, which replaced the extract with the 2015-2026 version and also changed
+  `results/{correlations,props}.json`, i.e. a bot commit reached `main` outside review while the
+  pull-request-only policy was already being fixed. Both are now closed off: `fetch-nflverse.yml` calls
+  `scripts/export_extracts.py` and validates 12 seasons from 2012, and `scripts/analysis/prepare.py` carries
+  a DEPRECATED banner explaining why it must not be called from CI. The next refresh restores the 2012-2026
+  window; until it lands the Verification page reports the smaller sample as an observation, and the
+  Flagged page says so instead of claiming the item is resolved.
+- 2026-11-02 — **Hardcoded counts on the overview page replaced with values read from the manifest.** The
+  overview bullet claimed `259,678 player-weeks (2012-2026)`; the committed extract holds 208,231 rows over
+  2015-2026. It now renders `{rows} player-weeks ({first}-{last})` from `data/provenance.json`, as do the
+  games count and its season span, so a refresh cannot silently leave a stale figure in prose.
 
 ---
 

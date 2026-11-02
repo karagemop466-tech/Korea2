@@ -74,9 +74,14 @@ jobs:
           if [ "$n" -ne 25 ]; then echo "::error::expected 25 source files, found $n"; exit 1; fi
           echo "all 25 expected source files present and schema-checked"
 
-      - name: Prepare pruned datasets (fail-closed)
-        working-directory: scripts/analysis
-        run: PYTHONPATH=. python prepare.py
+      - name: Export the pruned extracts the analysis reads (fail-closed)
+        # One producer only. This step used to run scripts/analysis/prepare.py, which pruned to
+        # 2015-2026, while scripts/export_extracts.py (used by data-pipeline) pruned to 2012-2026 -
+        # the window the analysis actually reads. The two wrote the same three files with different
+        # windows, so a refresh from this workflow replaced a 2012-2026 extract with a 2015-2026 one
+        # and the published player-level sample (7,560 team-games) stopped reproducing from a
+        # checkout (it recomputed to 6,024). Run 2026-11-02 committed exactly that (f0d4b26).
+        run: python scripts/export_extracts.py 2>&1 | tee -a data/derived/run_log.txt
 
       - name: Validate the provenance manifest (fail-closed)
         # Nothing is committed before this passes: expected extracts, all twelve
@@ -85,7 +90,7 @@ jobs:
           python - <<'EOF'
           import json, sys
           from pathlib import Path
-          need_seasons = list(range(2015, 2027))
+          need_seasons = list(range(2012, 2027))
           p = Path("data/provenance.json")
           if not p.exists():
               sys.exit("::error::data/provenance.json missing after prepare")

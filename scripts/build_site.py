@@ -7,6 +7,7 @@ page renders a build notice instead of a guessed value.
 """
 from __future__ import annotations
 
+import json
 import os
 
 from lib import site as W
@@ -18,6 +19,21 @@ OUT_PAGES = os.path.join("pages")
 def need(*names):
     missing = [n for n in names if not os.path.exists(os.path.join("data", "derived", n))]
     return missing
+
+
+def provenance() -> dict:
+    """The committed manifest of the extracts the analysis reads (data/provenance.json).
+
+    Counts printed on the overview are read from here rather than typed, because the manual
+    259,678 player-week figure was already stale against the extract it claimed to describe.
+    """
+    path = os.path.join("data", "provenance.json")
+    try:
+        with open(path) as fh:
+            files = json.load(fh).get("files", [])
+    except (OSError, ValueError):
+        return {}
+    return {f.get("name"): f for f in files if isinstance(f, dict)}
 
 
 def build_notice(missing: list[str]) -> str:
@@ -104,6 +120,17 @@ def page_index() -> str:
         caption="Headline results, all recomputed on every pipeline run.",
     )
 
+    prov = provenance()
+    g = prov.get("games.csv.gz", {})
+    pw = prov.get("player_week.csv.gz", {})
+    games_line = (f"{g['rows']:,} NFL games ({g['season_min']}-{g['season_max']})"
+                  if g.get("rows") else "NFL games, 1999-2026")
+    if pw.get("rows") and pw.get("seasons"):
+        seas = pw["seasons"]
+        player_line = f"{pw['rows']:,} player-weeks ({seas[0]}-{seas[-1]})"
+    else:
+        player_line = "player-weeks for prop and correlation work"
+
     body = (f'''<div class="hero">
   <div class="eyebrow">INDEPENDENT NFL RESEARCH</div>
   <h1>Originate the line.<br><em>Then try to prove it wrong.</em></h1>
@@ -123,8 +150,8 @@ def page_index() -> str:
         + f'''
 <div class="grid2">
   <div class="panel"><h3>What is actually verified</h3><ul class="ticks">
-    <li>7,548 NFL games (1999-2026) with closing lines, downloaded and hashed.</li>
-    <li>259,678 player-weeks (2012-2026) for prop and correlation work.</li>
+    <li>{games_line} with closing lines, downloaded and hashed.</li>
+    <li>{player_line} for prop and correlation work.</li>
     <li>Spread sign convention proven from the data, not assumed.</li>
     <li>Every strategy test run out-of-sample from 2023 onward.</li>
   </ul><a class="panel-link" href="pages/method.html">Method &amp; data &rarr;</a></div>
@@ -1045,12 +1072,18 @@ def page_flagged() -> str:
          "and the reconciliation is now 32 of 32. This entry stays here so the history is visible.",
          "nfl-standings-2026", "Fixed: data through 2026-11-01, 32/32 teams reconciled, and each figure carries "
          "the date its data ends."),
-        ("Resolved 2026-11-02: player coefficients were not reproducible from the committed extract", "low",
-         "The correlation page recorded a 2012-2026 window while the committed pruned extract started in 2015, "
-         "so the published coefficients could not be reproduced from a checkout. Recomputing on the old extract "
-         "gave the same signs and magnitudes with a smaller n.",
-         "nflverse-api", "Fixed: scripts/export_extracts.py now writes the extracts from the same parquet the "
-         "analysis reads, and every player-level check reproduces exactly (n = 7,560 team-games, r = 0.561)."),
+        ("Reopened 2026-11-02: the extract window changed again, so player coefficients still do not reproduce "
+         "from a checkout", "medium",
+         "Two producers wrote the same three pruned extracts with different windows: "
+         "scripts/export_extracts.py prunes to 2012-2026 and scripts/analysis/prepare.py to 2015-2026. The "
+         "refresh runs on 2026-11-02 used both. The latest one (commit f0d4b26) left a 2015-2026 extract in "
+         "place, so the published four-leg parlay sample of 7,560 team-games now recomputes to 6,024 and the "
+         "signs and magnitudes, but not the n, still reproduce. The overview page counts are now read from "
+         "data/provenance.json instead of being typed, which is how the divergence surfaced.",
+         "nflverse-api", "Cause fixed in this repository: both workflows call scripts/export_extracts.py "
+         "(2012-2026) and scripts/analysis/prepare.py is marked deprecated. Until a refresh lands, the "
+         "Verification page lists the recomputed sample as an observation rather than a pass, and states the "
+         "window the committed extract actually covers."),
         ("Two generators wrote the same index.html and pages/", "medium",
          "A second build script (scripts/analysis/build_site.py) writes index.html and pages/*.html with a "
          "different navigation and overwrote the integrated site when it ran. Its verification page was left "
