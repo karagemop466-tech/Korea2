@@ -1,0 +1,117 @@
+{
+  "verified_date": "2026-11-02",
+  "rows": [
+    {
+      "id": "REV-01",
+      "path": "data/derived/games.csv.gz",
+      "lines_or_rows": "7,548 rows (1999-2026)",
+      "status": "STALE_2026_WEEK8",
+      "finding": "2025 REG matches NFL.com 32/32 across all 272 games, and 2026 Weeks 1-8 TNF (108 games) reconcile cleanly, but 12 Sunday Nov 1, 2026 Week 8 finals are still blank in the file, leaving 24/32 team records 1 game behind NFL.com as of 2026-11-02.",
+      "source_id": "SL-SRC-01"
+    },
+    {
+      "id": "REV-02",
+      "path": "data/derived/games.csv.gz (home_spread_odds, 1999-2017)",
+      "lines_or_rows": "1,902 of 7,075 settled spread rows",
+      "status": "IRREGULARITY_FLAGGED",
+      "finding": "1,902 settled regular-season games (chiefly 1999-2009 plus 1 row in 2017) have spread_line but blank home_spread_odds/away_spread_odds. Issue #19 noted scripts/analysis/ imputed -110; Skill Lab restricts all priced backtests to 2018-2026 rows with 100% recorded closing odds.",
+      "source_id": "SL-SRC-32"
+    },
+    {
+      "id": "REV-03",
+      "path": "data/standings_2020.csv & nfl-lines/data.html",
+      "lines_or_rows": "Lines 1-33 (32 team rows)",
+      "status": "IRREGULARITY_FLAGGED",
+      "finding": "Conflates 2020 regular-season and playoff games into '2020 Standings': lists KC at 16-3 (PF 542) and BUF at 15-4 (PF 569) instead of official NFL.com 16-game REG records KC 14-2 (PF 473) and BUF 13-3 (PF 501), and prints OAK instead of LV for the relocated Las Vegas Raiders.",
+      "source_id": "SL-SRC-03"
+    },
+    {
+      "id": "REV-04",
+      "path": "README.md vs EXECUTIVE_SUMMARY.md vs docs/EXECUTIVE_SUMMARY.md",
+      "lines_or_rows": "88 / 161 / 129 lines",
+      "status": "IRREGULARITY_FLAGGED",
+      "finding": "Three summary files in root/docs describe three different session builds without cross-labeling: README.md cites 7 strategies / 10 gates / r=0.561 (70a33596), EXECUTIVE_SUMMARY.md cites 5 strategies / 6 gates / r=0.624 (d88b794a), and docs/EXECUTIVE_SUMMARY.md cites 9 framework strategies / 8 gates (29806afc).",
+      "source_id": "SL-SRC-32"
+    },
+    {
+      "id": "REV-05",
+      "path": "scripts/analysis/build_site.py (line 608)",
+      "lines_or_rows": "Line 608: jload('provenance.json')",
+      "status": "IRREGULARITY_FLAGGED",
+      "finding": "Confirmed open Issue #34: jload() resolves against results/provenance.json (absent) rather than data/provenance.json, leaving extract provenance rows empty when that generator runs.",
+      "source_id": "SL-SRC-32"
+    },
+    {
+      "id": "REV-06",
+      "path": "results/correlations.json & origination/site_data/correlation.json",
+      "lines_or_rows": "QB-WR1 correlation rows",
+      "status": "IRREGULARITY_FLAGGED",
+      "finding": "Confirmed open Issue #19: selecting 'WR1' ex-post by in-game receiving yards inflates QB-WR1 correlation to r = +0.62..+0.67. Strictly ex-ante selection by prior target share yields within-player game-shock r = +0.3779 (copula rho = +0.4128) across 5,578 team-games.",
+      "source_id": "SL-SRC-25"
+    },
+    {
+      "id": "REV-07",
+      "path": "origination-lab/scripts/build_correlations.py",
+      "lines_or_rows": "Parlay & copula summary tables",
+      "status": "IRREGULARITY_FLAGGED",
+      "finding": "Confirmed open Issue #32: binary indicator correlation phi and latent Gaussian-copula rho were not separated consistently, and any-receiver aggregation was labeled as top receiver.",
+      "source_id": "SL-SRC-30"
+    },
+    {
+      "id": "REV-08",
+      "path": "quant-lab/scripts/backtest.py & validation.py",
+      "lines_or_rows": "Spread/total & G9 price-stress logic",
+      "status": "IRREGULARITY_FLAGGED",
+      "finding": "Confirmed open Issue #24: synthetic -110 price assumptions on historical rows and multi-leg stress-gate repricing caveats noted in audit issue #24.",
+      "source_id": "SL-SRC-32"
+    },
+    {
+      "id": "REV-09",
+      "path": "dashboard/ & data/correlations.json",
+      "lines_or_rows": "10 HTML pages + 10 JSON tables",
+      "status": "VERIFIED_WITH_NOTES",
+      "finding": "scripts/validate_data.py passes (51 registered sources, blank flagged values). Open Issue #16 notes earlier prose/schedule caveats (2026 Week 8 ends Monday Nov 2 CHI@SEA, confirmed on NFL.com).",
+      "source_id": "SL-SRC-04"
+    },
+    {
+      "id": "REV-10",
+      "path": "nfl-research/ & research-desk/",
+      "lines_or_rows": "12 static HTML pages + check_site.py",
+      "status": "VERIFIED_FRAMEWORK",
+      "finding": "Both framework dashboards explicitly label candidate strategies as unvalidated specifications and report NFL.com injury-page title vs heading week-number quirks.",
+      "source_id": "SL-SRC-32"
+    },
+    {
+      "id": "REV-11",
+      "path": "index.html & pages/*.html (Root Line Lab)",
+      "lines_or_rows": "14 HTML pages (build_site.py)",
+      "status": "VERIFIED_WITH_NOTES",
+      "finding": "tests/check_site.py passes with 0 broken local links; pages/archive.html links all earlier sibling directories. Five table rows on index.html cite non-primary domains flagged by audit/check_site.py.",
+      "source_id": "SL-SRC-32"
+    },
+    {
+      "id": "REV-12",
+      "path": ".github/workflows/fetch-nflverse.yml & data-pipeline.yml",
+      "lines_or_rows": "5 GitHub Actions workflows",
+      "status": "IRREGULARITY_FLAGGED",
+      "finding": "Confirmed open Issue #20: refresh workflows carry contents:write and push [skip ci] commits directly when triggered by path filters. Skill Lab uses a read-only verification workflow.",
+      "source_id": "SL-SRC-32"
+    },
+    {
+      "id": "REV-13",
+      "path": "data/derived/player_week.csv.gz",
+      "lines_or_rows": "207,389 player-week rows (2015-2026)",
+      "status": "VERIFIED_THROUGH_OCT29",
+      "finding": "All 7 audited NFL.com 2026 player logs (Love, Allen, Burrow, Goff, Chase, St. Brown, Cook) reconcile 100% to the single yard and touchdown once Sunday Nov 1 Week 8 stats are added.",
+      "source_id": "SL-SRC-08"
+    },
+    {
+      "id": "REV-14",
+      "path": "audit/check_site.py",
+      "lines_or_rows": "85 prior HTML pages scanned",
+      "status": "VERIFIED_HARNESS",
+      "finding": "Offline link/anchor/JSON audit passes across all existing pages while reporting 2,005 third-party domain flags on sibling pages. Skill Lab achieves 0 source-domain flags under this exact scanner.",
+      "source_id": "SL-SRC-32"
+    }
+  ]
+}
