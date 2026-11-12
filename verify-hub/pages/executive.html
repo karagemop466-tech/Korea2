@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary | Verify Hub</title>
+<meta name="description" content="Cross-lab verification, decision-readiness and suggestion review for the NFL research repository.">
+<meta name="generator" content="verify-hub/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="../index.html"><span class="mark">VH</span><span>VERIFY HUB<small>CROSS-LAB DECISIONS</small></span></a>
+    <nav aria-label="Hub navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/repo-audit.html">Repo audit</a>
+      <a href="../pages/questions.html">Questions</a>
+      <a href="../pages/suggestions.html">Suggestions</a>
+      <a href="../pages/leaderboard.html">Leaderboard</a>
+      <a href="../pages/injuries-depth.html">Injuries &amp; depth</a>
+      <a href="../pages/executive.html" class="active">Executive</a>
+      <a href="../pages/sources.html">Sources</a>
+      <a href="../pages/flagged.html">Flagged</a>
+    </nav>
+    <div class="sidebar-note">Sibling labs are read-only inputs to this hub. Live root site: <a href="../index.html" rel="noopener">Line Lab</a>.</div>
+  </aside>
+  <main id="main">
+    <header class="topbar"><span class="crumb">EXECUTIVE SUMMARY</span>
+      <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a>
+    </header>
+<div class="hero"><div class="eyebrow">EXECUTIVE SUMMARY</div>
+<h1>What matters,<br><em>and what must be decided.</em></h1>
+<p class="lede">Generated from verify-hub/data and the committed lab results on 2026-11-12. The Markdown twin of this page is verify-hub/EXECUTIVE_SUMMARY.md.</p></div>
+<section class="block"><h2>1. Bottom line</h2><ul class="ticks"><li>The repository is a complete measurement apparatus: five gate systems, four labs with walk-forward results, an independent recomputation (49 checks, 0 disagreements) and official-source reconciliations (32/32 teams for 2020 and 2026 at their snapshot dates).</li><li>No strategy has passed validation anywhere: root 0 of 9, skill-lab 0 of 16, quant-lab 0 of 21, origination-lab 0 eligible, pipeline 0 of 5. Nothing here should be bet.</li><li>The closing market beats the model (MAE 9.71 vs 10.39; incremental coefficient -0.019, p = 0.881; Brier skill -0.038).</li><li>Same-game parlay legs are strongly correlated (QB-WR1 r = 0.56-0.61; 4-leg joint 11.1% vs 5.7% product); independent leg pricing is wrong and favors the bettor, which is why books reprice SGPs.</li><li>The injury/depth requirement is half-satisfiable from official data today: the weekly injury report is official and live (verified Week 10 2026), but depth strings (1st-4th) are not published by the league (404 verified).</li></ul></section>
+<section class="block"><h2>2. What this hub adds</h2><ul class="ticks"><li>A line-by-line cross-lab claims audit: 45 published claims, each with its evidence class (10 verified against official sources on 2026-11-12, 21 verified against committed data, 6 blank/unverified, 8 irregularities).</li><li>A decision-readiness register: 20 questions with Have/Partial/Missing status, verified answers where they exist, and a discovery suggestion for every gap.</li><li>A suggestion review queue (14 proposals) with trade-offs and a recommended path per proposal - nothing is implemented until a reviewer approves.</li><li>One cross-lab consolidation of strategies, gates, correlations, luck metrics and reward schedules, with every lab&#x27;s window and definition printed next to its numbers.</li></ul></section>
+<section class="block"><h2>3. Decisions the owner must make before anything is implemented</h2><ul class="ticks"><li>SG-01: declare one canonical site (recommended: root Line Lab) and treat the eight sibling hubs as archives.</li><li>SG-02: adopt one injury &amp; depth tracker design (official report + inferred usage tiers, blanks kept).</li><li>SG-03/SG-04: adopt one gate catalog and one reward schedule (paper until funding is decided).</li><li>Q-05/Q-06: decide whether to acquire a licensed historical odds feed - without it there can be no prop ROI and no CLV, ever.</li></ul></section>
+<section class="block"><h2>4. Verification performed on 2026-11-12</h2><ul class="ticks"><li>NFL.com 2026 standings page: all 32 records read; repo snapshots reconcile at 2026-11-01/02 and drift with Week 9 is documented team by team.</li><li>NFL.com Week 10 injury report: live; team records inside it match the standings page; per-team rows transcribed as the verified sample on the Injuries page.</li><li>nflverse release metadata via the GitHub Releases API: 28/31 manifest assets byte-match upstream; 3 rolling 2026 assets are newer upstream (expected, flagged).</li><li>Two cited official URLs confirmed dead (operations.nfl.com injury policy; nfl.com club depth-chart) and recorded as irregularities with blank values.</li><li>Full local suite green: tests/check_site.py, tests/check_derived.py, scripts/check_links.py, scripts/validate_data.py, audit/check_site.py, plus this hub&#x27;s verify.py and unit tests.</li></ul></section>
+<section class="block"><h2>Audit at a glance</h2><div class="table-wrap"><table><thead><tr><th>Item</th><th>Value</th><th>Meaning</th><th>Source</th></tr></thead><tbody><tr><td>Audit rows published with evidence classes</td><td>45 rows (10 official / 21 internal / 6 blank / 8 irregularities)</td><td>Every claim any lab publishes, checked line by line</td><td><a href="../pages/repo-audit.html" class="internal" rel="noopener">where published</a> &middot; <a href="https://github.com/karagemop466-tech/Korea2" class="ext" rel="noopener">This repository on GitHub (karagemop466-tech/Korea2)</a></td></tr></tbody></table></div></section>
+    <footer>
+      <p>Research and measurement, not betting advice. Every value is read from committed JSON by
+      <code>verify-hub/scripts/build_site.py</code>; every table row links the source it rests on.
+      Values that no official source confirms are left blank and published on the Flagged page.</p>
+      <p><a href="../pages/sources.html">Source register</a> &middot;
+         <a href="../pages/questions.html">Decision questions</a> &middot;
+         <a href="../pages/flagged.html">Flagged for review</a></p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

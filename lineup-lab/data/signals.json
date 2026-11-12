@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "verified_on": "2026-11-12",
+    "eval_window": "2023-2026 Week 8 OOS (strictly trailing game logs)",
+    "prop_lines_status": "UNVERIFIABLE \u2014 zero prop odds stored in repository (FL-01); ROI columns left blank."
+  },
+  "prop_calibration": [
+    {
+      "market": "Passing yards (QB >=15 att)",
+      "oos_observations": 1743,
+      "ex_ante_mae": 59.4,
+      "ex_ante_rmse": 74.1,
+      "median_abs_error": 51.52,
+      "proj_actual_r": 0.2166,
+      "historical_prop_closing_line": "",
+      "historical_prop_roi": "",
+      "gap_flag": "FL-01: No sportsbook prop closing lines or prop prices exist in repository.",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-PASSING-2026"
+      ]
+    },
+    {
+      "market": "Rushing yards (RB >=8 car)",
+      "oos_observations": 2044,
+      "ex_ante_mae": 26.87,
+      "ex_ante_rmse": 34.45,
+      "median_abs_error": 22.05,
+      "proj_actual_r": 0.2772,
+      "historical_prop_closing_line": "",
+      "historical_prop_roi": "",
+      "gap_flag": "FL-01: No sportsbook prop closing lines or prop prices exist in repository.",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-PASSING-2026"
+      ]
+    },
+    {
+      "market": "Receiving yards (WR >=4 tgt)",
+      "oos_observations": 3622,
+      "ex_ante_mae": 28.43,
+      "ex_ante_rmse": 36.39,
+      "median_abs_error": 23.39,
+      "proj_actual_r": 0.311,
+      "historical_prop_closing_line": "",
+      "historical_prop_roi": "",
+      "gap_flag": "FL-01: No sportsbook prop closing lines or prop prices exist in repository.",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-PASSING-2026"
+      ]
+    },
+    {
+      "market": "Receiving yards (TE >=3 tgt)",
+      "oos_observations": 1791,
+      "ex_ante_mae": 20.27,
+      "ex_ante_rmse": 26.39,
+      "median_abs_error": 16.5,
+      "proj_actual_r": 0.3014,
+      "historical_prop_closing_line": "",
+      "historical_prop_roi": "",
+      "gap_flag": "FL-01: No sportsbook prop closing lines or prop prices exist in repository.",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-PASSING-2026"
+      ]
+    }
+  ],
+  "week8_top_baselines": [
+    {
+      "player": "Jared Goff",
+      "team": "DET",
+      "trailing_4gm_avg": 313.8,
+      "ex_ante_proj": 300.0,
+      "wk8_actual": 176.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "QB",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Joe Burrow",
+      "team": "CIN",
+      "trailing_4gm_avg": 298.0,
+      "ex_ante_proj": 287.1,
+      "wk8_actual": 462.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "QB",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Kirk Cousins",
+      "team": "LV",
+      "trailing_4gm_avg": 304.0,
+      "ex_ante_proj": 283.5,
+      "wk8_actual": 247.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "QB",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "James Cook",
+      "team": "BUF",
+      "trailing_4gm_avg": 108.8,
+      "ex_ante_proj": 102.8,
+      "wk8_actual": 80.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "RB",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Kenneth Walker III",
+      "team": "KC",
+      "trailing_4gm_avg": 102.8,
+      "ex_ante_proj": 98.9,
+      "wk8_actual": 69.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "RB",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Jahmyr Gibbs",
+      "team": "DET",
+      "trailing_4gm_avg": 103.0,
+      "ex_ante_proj": 96.4,
+      "wk8_actual": 153.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "RB",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Puka Nacua",
+      "team": "LA",
+      "trailing_4gm_avg": 102.8,
+      "ex_ante_proj": 102.3,
+      "wk8_actual": 80.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "WR",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Tee Higgins",
+      "team": "CIN",
+      "trailing_4gm_avg": 104.2,
+      "ex_ante_proj": 94.4,
+      "wk8_actual": 155.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "WR",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Zay Flowers",
+      "team": "BAL",
+      "trailing_4gm_avg": 93.5,
+      "ex_ante_proj": 91.4,
+      "wk8_actual": 0.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "WR",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Brock Bowers",
+      "team": "LV",
+      "trailing_4gm_avg": 84.8,
+      "ex_ante_proj": 78.0,
+      "wk8_actual": 92.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "TE",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Dalton Kincaid",
+      "team": "BUF",
+      "trailing_4gm_avg": 75.2,
+      "ex_ante_proj": 66.4,
+      "wk8_actual": 86.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "TE",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    },
+    {
+      "player": "Trey McBride",
+      "team": "ARI",
+      "trailing_4gm_avg": 65.2,
+      "ex_ante_proj": 65.5,
+      "wk8_actual": 72.0,
+      "prop_sportsbook_line": "",
+      "prop_edge_clv": "",
+      "position": "TE",
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-NFL-INJURIES-W10"
+      ]
+    }
+  ]
+}

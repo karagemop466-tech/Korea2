@@ -5,15 +5,16 @@
   "captured": "2026-11-12",
   "rule": "One rule for the whole board: rank by gates passed, then by ROI. Positive ROI alone earns nothing; every lab's qualified count is zero as of this capture.",
   "totals": {
-   "evaluations": 100,
+   "evaluations": 108,
    "qualified": 0,
-   "labs": 6
+   "labs": 7
   },
   "method": "Rows are read from the committed JSON of each lab (paths in source_file); the published leaderboard page for each lab is linked from its source row. Controls (skill-lab STR-16) are excluded from reward consideration.",
   "counts": {
-   "leaderboard_rows": 6,
+   "leaderboard_rows": 7,
    "correlation_rows": 12
-  }
+  },
+  "scope_note": "Six labs were captured at 2026-11-12 before this branch merged origin/main; the lineup-lab board (SRC-DD-50) was added to the aggregation from its committed meta on merge. The verify-hub cross-lab consolidation (11 rows) is a read-only audit of these same boards, not a separate competition, and is not double-counted. Sibling registers merged alongside (decision-hub, nfl-command, decisions, suggestions hubs) publish questions/suggestions/injury registers rather than strategy boards; their pages are linked from the root navigation."
  },
  "leaderboard": [
   {
@@ -87,6 +88,18 @@
    "ranking_rule": "10/10 gates + Skill Score >=75 (Gold) or >=60 (Silver); controls excluded from rewards",
    "sources": [
     "SRC-DD-46"
+   ]
+  },
+  {
+   "id": "LB-07",
+   "lab": "Lineup-lab (merged to main after capture)",
+   "board": "lineup-lab/data/leaderboard.json",
+   "candidates": 8,
+   "qualified": 0,
+   "top_result": "0 of 8 approved at 100% stored closing odds (2018-2026 Wk 8, 2,247 games)",
+   "ranking_rule": "10-gate evaluation incl. point-in-time audit; approval requires every gate",
+   "sources": [
+    "SRC-DD-50"
    ]
   }
  ],

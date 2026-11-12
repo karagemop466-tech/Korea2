@@ -115,8 +115,8 @@
    "id": "S-07",
    "title": "Add a legal/responsible-use disclaimer",
    "category": "Compliance",
-   "description": "Publish a disclaimer page linked from every page: research/entertainment use, no wagering advice, no guaranteed outcomes, jurisdiction note.",
-   "benefit": "Removes a compliance gap that currently exists site-wide.",
+   "description": "The root site already carries a site-wide disclaimer ('Research and measurement, not betting advice...'); extend the same sentence to decision-desk footers (done in this session) and add the missing jurisdiction-specific line for Calgary, AB / Canada across the published pages.",
+   "benefit": "Closes the remaining compliance gap (Q-21 partial -> answered).",
    "effort": "S",
    "priority": "Medium",
    "related_questions": [

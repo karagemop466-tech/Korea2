@@ -192,16 +192,17 @@
    "id": "Q-12",
    "category": "Competition",
    "question": "How many strategies have been evaluated across all labs?",
-   "answer": "100 evaluations, 0 qualified.",
+   "answer": "108 evaluations, 0 qualified.",
    "status": "answered",
-   "evidence": "9 (root leaderboard) + 5 (pipeline/results) + 31 (origination) + 18 (origination-lab) + 21 (quant-lab) + 16 (skill-lab) = 100 strategy evaluations; ideas overlap across labs (e.g. wind-under appears in four), so this counts evaluations, not unique ideas. Qualified in every lab: 0.",
+   "evidence": "9 (root leaderboard) + 5 (pipeline/results) + 31 (origination) + 18 (origination-lab) + 21 (quant-lab) + 16 (skill-lab) = 100, plus lineup-lab's 8 (merged to main after capture, SRC-DD-50) = 108 strategy evaluations; ideas overlap across labs (e.g. wind-under appears in four), so this counts evaluations, not unique ideas. Qualified in every lab: 0. verify-hub's 11-row cross-lab audit reviews these same boards and is not counted again.",
    "sources": [
     "SRC-DD-41",
     "SRC-DD-42",
     "SRC-DD-43",
     "SRC-DD-44",
     "SRC-DD-45",
-    "SRC-DD-46"
+    "SRC-DD-46",
+    "SRC-DD-50"
    ],
    "gap": "",
    "related_suggestions": []
@@ -331,13 +332,13 @@
    "id": "Q-21",
    "category": "Compliance",
    "question": "Does the site carry a legal/responsible-use disclaimer?",
-   "answer": "No.",
-   "status": "unanswered",
-   "evidence": "No disclaimer page or footer statement exists anywhere in the repo's published pages.",
+   "answer": "Partially.",
+   "status": "partial",
+   "evidence": "After merging origin/main (2026-11-12) the root site carries a site-wide disclaimer footer on every published page ('Research and measurement, not betting advice...'), defined in scripts/lib/site.py and rendered by the root builder. The Decision Desk pages now carry the same sentence in their footers. What is still missing everywhere: a jurisdiction-specific sentence (Calgary, AB / Canada).",
    "sources": [
     "SRC-DD-38"
    ],
-   "gap": "A disclaimer covering entertainment/research use, no wagering advice, and jurisdiction.",
+   "gap": "Jurisdiction-specific sentence (residual of S-07).",
    "related_suggestions": [
     "S-07"
    ]

@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "title": "Flagged for review \u2014 items that could NOT be confirmed and are left blank by policy",
+    "verified_on": "2026-11-12",
+    "policy": "Per project rules, any value that cannot be confirmed from an official source is left blank in data tables and listed here with reason. Nothing is inferred. These do not block publication."
+  },
+  "rows": [
+    {
+      "id": "FL-01",
+      "item": "Historical player-prop market prices (opening/closing) with timestamps",
+      "severity": "high",
+      "reason": "No historical player-prop prices exist in nflverse feed; NFL official data partner (Genius) distributes prop and SGP pricing to operators, not to this project. Without timestamped prices, prop ROI cannot be computed.",
+      "action": "Publish calibration and MAE vs naive baseline only; ROI cells blank.",
+      "sources": [
+        "SRC-NFL-GENIUS-EXTENSION",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "FL-02",
+      "item": "Opening lines and bet-timestamp stream for CLV measurement",
+      "severity": "high",
+      "reason": "Only closing lines are stored in the feed; no opening-line history or bet-timestamp stream. Closing-line value \u2014 the standard test of skill \u2014 needs bet price and close price.",
+      "action": "Settle every ROI at closing line (conservative choice); publish n_excluded_missing_price beside every table.",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES",
+        "SRC-PINNACLE-CLV"
+      ]
+    },
+    {
+      "id": "FL-03",
+      "item": "Verified sportsbook execution access (account, limits, jurisdiction, price availability)",
+      "severity": "high",
+      "reason": "No verified account, limits, jurisdiction or price availability. Gate G9 therefore fails for every strategy by construction; nothing is presented as actionable.",
+      "action": "Flagged and documented; leaderboard rewards remain paper schedule.",
+      "sources": [
+        "SRC-NV-REG22",
+        "SRC-DK-HOUSE-RULES-CURRENT"
+      ]
+    },
+    {
+      "id": "FL-04",
+      "item": "Funded leaderboard reward pool",
+      "severity": "medium",
+      "reason": "Reward tiers are design proposal modeled on NFL Big Data Bowl $100k precedent; no prize money has been funded.",
+      "action": "Rewards labelled as schedule not promise; no allocation paid.",
+      "sources": [
+        "SRC-KAGGLE-BDB2027",
+        "SRC-NFL-BDB-ANNOUNCE"
+      ]
+    },
+    {
+      "id": "FL-05",
+      "item": "Injury-report deficiency scores per team/week",
+      "severity": "high",
+      "reason": "Tracker design is published (SUG-03) but not built; no per-team 2nd/3rd/4th string exposure score exists historically.",
+      "action": "Design, ingestion schedule and schema published; all injury-based signal cells blank until built.",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB",
+        "SRC-COLTS-DEPTH-CHART",
+        "SRC-NFL-ROSTER-PATRIOTS"
+      ]
+    },
+    {
+      "id": "FL-06",
+      "item": "Backup vs starter performance delta per position group",
+      "severity": "medium",
+      "reason": "Depends on FL-05 history; cannot be measured until deficiency history exists; FDR gating would then be required.",
+      "action": "Blank; suggestion logged to compute only after tracker history accumulates.",
+      "sources": [
+        "SRC-NFL-GSIS-GUIDE",
+        "SRC-BH-1995"
+      ]
+    },
+    {
+      "id": "FL-07",
+      "item": "Fixed-odds parlay payout ladder (2-6 legs)",
+      "severity": "medium",
+      "reason": "2-6 leg ladder used for illustrative EV table is common industry ladder but differs by operator and was not confirmed in the operator rulebook excerpt read on 2026-11-02. Teaser prices ARE sourced in that document.",
+      "action": "Marked illustrative; correlation work uses correlation-aware pricing not fixed ladder.",
+      "sources": [
+        "SRC-DK-HOUSE-RULES-CURRENT",
+        "SRC-DK-PARLAY-HELP"
+      ]
+    },
+    {
+      "id": "FL-08",
+      "item": "NFL injury-report policy page at operations.nfl.com/football-ops/league-governance/injury-report/",
+      "severity": "medium",
+      "reason": "URL returns no article body (empty scaffolding only, verified 2026-11-02). Status definitions are instead sourced from the Competition Committee article.",
+      "action": "Flagged as NOT CONFIRMED; definitions cited via SRC-NFL-INJURY-POLICY-COMP.",
+      "sources": [
+        "SRC-NFL-INJURY-POLICY-COMP"
+      ]
+    },
+    {
+      "id": "FL-09",
+      "item": "Weather enrichment per game (wind, temp, precip)",
+      "severity": "medium",
+      "reason": "Historical weather covers ~57% of outdoor games 2020-2026; forward enrichment not yet built. SUG-06 proposes live fill via forecast.weather.gov point forecast.",
+      "action": "Add weather_available boolean; only weather_available rows counted for weather signals.",
+      "sources": [
+        "SRC-NOAA-NWS"
+      ]
+    },
+    {
+      "id": "FL-10",
+      "item": "Cited operator rulebook edition 8.1.24 is archived as obsolete",
+      "severity": "medium",
+      "reason": "MGC obsolete-rules archive lists 8.1.24 edition as Obsolete as of 8.18.15; active edition is 10.7.26. The 8.1.24 link still resolves and cited push/parlay rules are standard, but citation is edition-stale.",
+      "action": "Flagged; SUG-12 proposes re-pointing at 10.7.26 and re-reading settlement sentences.",
+      "sources": [
+        "SRC-DK-HOUSE-RULES-OBS-ARCHIVE",
+        "SRC-DK-HOUSE-RULES-CURRENT",
+        "SRC-DK-HOUSE-RULES-824"
+      ]
+    },
+    {
+      "id": "FL-11",
+      "item": "Model underperformance vs market",
+      "severity": "medium",
+      "reason": "Originated lines are worse than closing line out-of-sample (spread MAE 10.39 vs 10.25; total MAE 10.81 vs 10.62; incremental p=0.881). Published for grading, not use.",
+      "action": "Published with loss on record; no strategy approved.",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "FL-12",
+      "item": "One-score persistence is marginal and not used",
+      "severity": "low",
+      "reason": "Year-over-year one-score win-rate r=0.082, small but p just under 0.05; could be real or multiple-testing artefact.",
+      "action": "Reported with p-value; not used in any strategy.",
+      "sources": [
+        "SRC-BH-1995"
+      ]
+    }
+  ]
+}

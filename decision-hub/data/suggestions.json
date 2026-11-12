@@ -1,0 +1,351 @@
+{
+ "meta": {
+  "title": "Suggestion register \u2014 proposals, each with its evidence, cost and the decision it unblocks",
+  "created": "2026-11-12",
+  "author": "arena/7dbbeba6-korea2",
+  "policy": "A suggestion is a PROPOSAL, never a finding. Nothing in this file is verified fact unless the 'evidence' field points at a measured value in data/derived/, data/official.json or decision-hub/data/. Every suggestion carries: what it is, why it helps a decision, what it costs, what it depends on, and the decision question it unblocks. Adoption is decided by the reviewer using the workflow on decision-hub/pages/workflow.html.",
+  "how_to_use": [
+   "Read SUGGESTION rows top-down; the sort is impact (1-5) descending, then cost ascending.",
+   "A suggestion with a blocking dependency is not actionable until the dependency is answered on the questions page.",
+   "Choose at most one option per decision question; the workflow page records what happens next.",
+   "Nothing is implemented by this page. It exists so the path can be chosen before code is written."
+  ],
+  "counts_note": "No counts are stored in this file. Every count shown on the site is computed from the arrays at build time, because hand-written totals drifted once already (a stored '6 high impact' survived a change that made it 7)."
+ },
+ "decisions": [
+  {
+   "id": "D-01",
+   "question": "Should the project publish betting recommendations at all, or remain a measurement system?",
+   "why_it_matters": "Every downstream choice \u2014 reward pool, bankroll, licensing, marketing \u2014 depends on this. The measured evidence says the model does not beat the closing line, so a 'picks' product would currently be selling noise.",
+   "options": [
+    {
+     "id": "opt-1",
+     "label": "Measurement only (recommended by the evidence)",
+     "effect": "Keep the site as a graded research instrument. No picks, no stakes. Lowest legal and reputational risk.",
+     "evidence": "Model coefficient on margin after controlling for the close = -0.019, p = 0.881; model spread MAE 10.39 vs market 10.25."
+    },
+    {
+     "id": "opt-2",
+     "label": "Publish graded, staked paper picks with a public ledger",
+     "effect": "Requires unit staking, a published closing-line value per pick, and a minimum sample before any claim. Adds an execution-integrity burden.",
+     "evidence": "No verified execution access, limits or jurisdiction exists in this repo (flagged)."
+    },
+    {
+     "id": "opt-3",
+     "label": "Commercial product",
+     "effect": "Adds licensing, consumer-protection and responsible-gambling obligations before any strategy has cleared the gates.",
+     "evidence": "0 of 7 candidates passed; no funded reward pool."
+    }
+   ],
+   "blocking_facts": [
+    "No strategy has passed the 10-gate screen",
+    "No verified sportsbook access"
+   ],
+   "owner_hint": "Reviewer"
+  },
+  {
+   "id": "D-02",
+   "question": "Is the reward leaderboard real money, points, or a research ranking?",
+   "why_it_matters": "The site currently shows reward tiers next to strategies that failed. If the reward is money, a funding source, tax treatment and payout rules are needed before any rank is displayed.",
+   "options": [
+    {
+     "id": "opt-1",
+     "label": "Research ranking with no payout (recommended until a gate is cleared)",
+     "effect": "Rename 'reward' to 'rank'; publish the gate that failed instead of a prize tier.",
+     "evidence": "pages/leaderboard.html shows 'reward: none - gate failure' on every row already."
+    },
+    {
+     "id": "opt-2",
+     "label": "Points-only competition with a published scoring rule",
+     "effect": "Requires a written scoring rule (e.g. Brier skill vs closing line) and a fixed evaluation window so entries are comparable.",
+     "evidence": "The site has a Brier/skill framework in data/derived/model.json."
+    },
+    {
+     "id": "opt-3",
+     "label": "Funded cash prize",
+     "effect": "Blocked until a sponsor, the amount, the eligibility rules and the jurisdiction are documented.",
+     "evidence": "No funded pool exists (flagged FL-DH-07)."
+    }
+   ],
+   "blocking_facts": [
+    "No funded pool",
+    "No eligibility rules"
+   ],
+   "owner_hint": "Reviewer"
+  },
+  {
+   "id": "D-03",
+   "question": "Which single weakness should the next build attack?",
+   "why_it_matters": "The measured results say the model loses to the close. Effort spent on price modelling and on injury/depth information has different expected value, and only one can be first.",
+   "options": [
+    {
+     "id": "opt-1",
+     "label": "Price modelling: opening line, timestamped prices, closing-line value",
+     "effect": "Unlocks the only skill metric that needs no result: CLV. Currently impossible because only the close is stored.",
+     "evidence": "FL-DH-08: no opening line and no timestamp in the feed; every ROI is settled at the close."
+    },
+    {
+     "id": "opt-2",
+     "label": "Injury and depth signal (this session's tracker)",
+     "effect": "Gives a measurable feature for the first time: depth lost per team-week. Must be tested against the line, not assumed to matter.",
+     "evidence": "decision-hub/data/injuries.json: 636 reported absences with depth ranks for 2026."
+    },
+    {
+     "id": "opt-3",
+     "label": "Prop pricing and correlation",
+     "effect": "Needs historical prop prices that do not exist here; without them only calibration can be measured, not ROI.",
+     "evidence": "FL-DH-09: no historical prop prices in the feed."
+    }
+   ],
+   "blocking_facts": [
+    "Only one workstream can be first"
+   ],
+   "owner_hint": "Reviewer"
+  }
+ ],
+ "suggestions": [
+  {
+   "id": "S-01",
+   "title": "Publish a one-page 'decision register' above any dashboard number",
+   "category": "Site structure",
+   "impact": 5,
+   "cost": "low",
+   "effort_days": 2,
+   "status": "proposed",
+   "blocked_by": [],
+   "unblocks": [
+    "D-01",
+    "D-02"
+   ],
+   "problem": "The dashboard leads with computed statistics. A reader cannot tell which numbers are verified facts, which are computations, and which are proposals. The verification page exists but is three clicks deep.",
+   "suggestion": "Land the site on a single table: claim / value / class (official fact, computed, proposal) / source / date. Every other page becomes a drill-down. The class column is the point: it stops a proposal from being read as a measurement.",
+   "evidence": "decision-hub/data/root_audit.json rows_totals: 511 table rows across 15 pages, of which 7 have no source link and 0 carry a class column.",
+   "risk": "Adds a page to maintain; the class must be set by the generator, not by hand, or it will drift."
+  },
+  {
+   "id": "S-02",
+   "title": "Replace the pooled ATS 'coin-flip test' with a one-sided test",
+   "category": "Statistical validity",
+   "impact": 5,
+   "cost": "low",
+   "effort_days": 1,
+   "status": "proposed",
+   "blocked_by": [],
+   "unblocks": [
+    "D-01"
+   ],
+   "problem": "The headline '50.0%, p = 1.0' ATS result is an arithmetic identity: the sample contains every game twice, once per side, so exactly half the rows win. It cannot detect a market tilt in either direction, yet it is presented as evidence that the market is efficient.",
+   "suggestion": "Use one observation per game (home cover rate = 48.91%, 95% CI 47.73-50.09%, two-sided p = 0.073 on 6,892 decided games). Report the interval, not just the point. Keep the pooled number only if it is labelled as an identity.",
+   "evidence": "decision-hub/data/root_audit.json flags FL-DH-01 and ats_honest; the arithmetic is reproduced from data/derived/games.csv.gz.",
+   "risk": "The honest test is closer to significance, which invites over-reading. Publish the CI, not just the p-value."
+  },
+  {
+   "id": "S-03",
+   "title": "Add closing-line value as the headline skill metric",
+   "category": "Strategy evaluation",
+   "impact": 5,
+   "cost": "high",
+   "effort_days": 15,
+   "status": "proposed",
+   "blocked_by": [
+    "Q-05"
+   ],
+   "unblocks": [
+    "D-03"
+   ],
+   "problem": "ROI over a season is dominated by variance: with a 300-bet sample the interval on ROI is roughly +/- 12 percentage points, which is wider than any edge being hunted. CLV measures skill against the market's own final opinion and needs far fewer observations.",
+   "suggestion": "Store a timestamped price at decision time, compute (decision price - closing price) per bet, and rank strategies by mean CLV with a bootstrap interval. Treat positive CLV with a losing record as skill, and negative CLV with a winning record as luck.",
+   "evidence": "The repository stores only the closing line (data/derived/games.csv.gz has spread_line, away/home_spread_odds, total_line but no open line and no timestamp); flagged FL-DH-08.",
+   "risk": "Requires a price feed that does not exist yet. Until then, CLV can only be computed for bets logged live going forward."
+  },
+  {
+   "id": "S-04",
+   "title": "Track depth lost per team-week and test it against the line before using it",
+   "category": "Injury and lineup intelligence",
+   "impact": 5,
+   "cost": "medium",
+   "effort_days": 6,
+   "status": "in_progress",
+   "blocked_by": [],
+   "unblocks": [
+    "D-03"
+   ],
+   "problem": "The requirement is to know when a defence or offence is on its 2nd, 3rd or 4th string. Nothing in the repository joined the injury report to a depth chart, so the claim in prose was unsupported.",
+   "suggestion": "Ship the tracker built this session: every reported Out/Doubtful player is placed on the club depth chart as 1st/2nd/3rd string, and each team-week is scored (weighted depth lost = sum of 1/rank). Then test whether depth lost predicts the residual of the actual margin on the closing line, out of sample, before a strategy uses it.",
+   "evidence": "decision-hub/data/injuries.json: 2026 season, 636 absences with a depth rank, 296 team-weeks, 32 teams, snapshot 2026-11-12T07:01:31Z.",
+   "risk": "Depth charts are club-supplied and can lag a transaction. The tracker reports an absence, not a performance drop; the effect size is still unmeasured."
+  },
+  {
+   "id": "S-05",
+   "title": "Publish an explicit 'answers we do not have' section with the decision each one blocks",
+   "category": "Decision quality",
+   "impact": 4,
+   "cost": "low",
+   "effort_days": 1,
+   "status": "in_progress",
+   "blocked_by": [],
+   "unblocks": [
+    "D-01",
+    "D-02",
+    "D-03"
+   ],
+   "problem": "Missing information is scattered across flagged pages. A reviewer cannot see which unknown is load-bearing for which decision.",
+   "suggestion": "A questions register where each row has: question, what we know, what we do not know, how to find out, cost, and the decision it blocks. Sort by the number of decisions blocked.",
+   "evidence": "decision-hub/data/questions.json (16 questions, each mapped to a decision and an evidence path).",
+   "risk": "None material; keep it short or it becomes noise."
+  },
+  {
+   "id": "S-06",
+   "title": "Add negative controls to every strategy batch and publish them next to the candidates",
+   "category": "Statistical validity",
+   "impact": 4,
+   "cost": "medium",
+   "effort_days": 4,
+   "status": "proposed",
+   "blocked_by": [],
+   "unblocks": [
+    "D-01"
+   ],
+   "problem": "A screen that rejects everything looks rigorous, but it looks identical to a screen that is simply broken. Two controls already exist in the leaderboard; they are not shown as a diagnostic.",
+   "suggestion": "Run a known-losing control (random side) and a known-winning control (a deliberately clairvoyant bettor using the actual result) through the same ten gates. The random control must fail and the clairvoyant control must pass; if either does not, the gate screen is mis-wired and no verdict on a real candidate is meaningful.",
+   "evidence": "data/derived/leaderboard.json has 9 entries; two are family 'control'. The clairvoyant positive control is not present.",
+   "risk": "A clairvoyant control validates the plumbing only; it says nothing about whether a real edge exists."
+  },
+  {
+   "id": "S-07",
+   "title": "Make every published number reproducible from a clean checkout in CI",
+   "category": "Reproducibility",
+   "impact": 4,
+   "cost": "medium",
+   "effort_days": 3,
+   "status": "proposed",
+   "blocked_by": [],
+   "unblocks": [
+    "D-01"
+   ],
+   "problem": "The project's own verification record marks 5 values 'DIFFERS (expected)' because the committed extract covers 2015-2026 while the published coefficients were measured on 2012-2026. A reader cannot reproduce the published n.",
+   "suggestion": "Have CI rebuild every derived JSON from the committed extract and fail when a published value does not reproduce. Treat 'expected to differ' as a failure, not an observation.",
+   "evidence": "data/derived/verification.json: scope.player_seasons, scope.player_games, sgp.n differ; flagged FL-DH-04.",
+   "risk": "Will turn several currently-green checks red on day one. That is the point, but it must be a deliberate decision."
+  },
+  {
+   "id": "S-08",
+   "title": "Separate 'model beats market' from 'model is useful' in the scorecard",
+   "category": "Strategy evaluation",
+   "impact": 3,
+   "cost": "low",
+   "effort_days": 1,
+   "status": "proposed",
+   "blocked_by": [],
+   "unblocks": [
+    "D-01"
+   ],
+   "problem": "The site's single verdict, that the market beats the model, is correct but hides a second question: does the model add information anywhere, even if it does not beat the line overall? A model can be worse on average and still sharpen a specific subset.",
+   "suggestion": "Publish the calibration curve and Brier skill by bucket (favourite size, rest, roof, division) instead of one pooled number, with a multiple-testing correction across buckets.",
+   "evidence": "data/derived/model.json publishes pooled accuracy and one incremental-information regression.",
+   "risk": "Bucketing invites post-hoc cherry-picking; the correction across buckets is what keeps it honest."
+  },
+  {
+   "id": "S-09",
+   "title": "Give the correlation page an uncertainty interval, not just a coefficient",
+   "category": "Correlation / parlays",
+   "impact": 3,
+   "cost": "low",
+   "effort_days": 2,
+   "status": "proposed",
+   "blocked_by": [],
+   "unblocks": [
+    "D-03"
+   ],
+   "problem": "QB-to-WR1 is published as a single number (0.562). Parlay pricing under a Gaussian copula is extremely sensitive to the copula parameter, so a point estimate understates the uncertainty in the joint probability.",
+   "suggestion": "Add a bootstrap interval for every pairwise correlation and propagate it into the SGP joint probability, so the parlay price carries an interval too.",
+   "evidence": "data/derived/correlation.json publishes point coefficients; the recomputation shows the joint 11.1% vs 5.7% independent product.",
+   "risk": "None material; the interval is strictly more information."
+  },
+  {
+   "id": "S-10",
+   "title": "Stop calling the injury feed 'unavailable' and cite what it is",
+   "category": "Injury and lineup intelligence",
+   "impact": 3,
+   "cost": "low",
+   "effort_days": 0.5,
+   "status": "in_progress",
+   "blocked_by": [],
+   "unblocks": [
+    "D-03"
+   ],
+   "problem": "The root site says 'no injury-report source confirmed, so injury signals are blocked'. The league's live injury report page serves Week 10 of 2026 and the nflverse mirror carries 2009-2026 in a stable schema. The policy PDF is what is missing, not the data.",
+   "suggestion": "Cite the live report as the data source and keep the missing policy text as the open item. Distinguish 'we cannot get the data' from 'we cannot verify the rule text'.",
+   "evidence": "https://www.nfl.com/injuries/ rendered Week 10 of the 2026 season on 2026-11-12; nflverse injuries_2026.csv is 349,835 bytes with 3,075 rows. The policy URL returns 404 (FL-DH-05).",
+   "risk": "The live page is dynamic and will be stale quickly; the derived JSON records the retrieval timestamp."
+  },
+  {
+   "id": "S-11",
+   "title": "Write the settlement and void rules down before pricing anything",
+   "category": "Bet definitions",
+   "impact": 3,
+   "cost": "low",
+   "effort_days": 2,
+   "status": "proposed",
+   "blocked_by": [
+    "Q-07"
+   ],
+   "unblocks": [
+    "D-01"
+   ],
+   "problem": "Parlay and prop settlement differ by operator (push handling, void legs, minimum leg count, same-game restrictions). A strategy that looks profitable under one rulebook can be unprofitable under another.",
+   "suggestion": "Adopt one regulator-filed rulebook as the settlement standard for every backtest, cite the edition, and re-price the whole backtest if the edition changes. The repository already cites a DraftKings Massachusetts filing that the regulator lists as obsolete; pin the active edition.",
+   "evidence": "FL-11 on the root flagged page: the cited 8.1.24 edition is archived as obsolete; the active edition is the one approved 10.7.26.",
+   "risk": "A single operator's rules will not generalise; the choice must be stated as a limitation."
+  },
+  {
+   "id": "S-12",
+   "title": "Put the price-sensitivity gate (G9) in front of every other gate",
+   "category": "Validation gates",
+   "impact": 3,
+   "cost": "low",
+   "effort_days": 1,
+   "status": "proposed",
+   "blocked_by": [],
+   "unblocks": [
+    "D-01"
+   ],
+   "problem": "Every strategy currently fails G9 by construction because no executable price exists. The screen therefore rejects everything for one reason and the other nine gates do relatively little work.",
+   "suggestion": "Order the gate screen so the cheapest structural check that can fail runs first, and report a strategy's best achievable outcome without a price. This makes the leaderboard informative even while G9 is blocked.",
+   "evidence": "data/derived/leaderboard.json: every one of 9 entries lists G9 among its failed gates.",
+   "risk": "Reordering the gates changes the published '5/10' style counts; those must be recomputed, not relabelled."
+  },
+  {
+   "id": "S-13",
+   "title": "Publish an archive index instead of keeping nine sibling dashboards live",
+   "category": "Site structure",
+   "impact": 2,
+   "cost": "low",
+   "effort_days": 1,
+   "status": "proposed",
+   "blocked_by": [],
+   "unblocks": [],
+   "problem": "Nine parallel-session dashboards are published at once (dashboard, nfl-lines, nfl-research, research-desk, quant-lab, origination, origination-lab, skill-lab, audit). They contradict each other on the same statistics, and the root navigation says so.",
+   "suggestion": "Keep one canonical dashboard and reduce the rest to a dated archive index with a one-line description and a link. Contradictions then read as history instead of a dispute.",
+   "evidence": "pages/archive.html lists 8 preserved directories; the audit flags 451 source-domain warnings in nfl-lines alone.",
+   "risk": "Deleting nothing; the pages stay reachable, only the navigation changes."
+  },
+  {
+   "id": "S-14",
+   "title": "State the sample-size floor for a 'signal' before testing, and publish it",
+   "category": "Statistical validity",
+   "impact": 2,
+   "cost": "low",
+   "effort_days": 1,
+   "status": "proposed",
+   "blocked_by": [],
+   "unblocks": [
+    "D-01"
+   ],
+   "problem": "The luck page computes 39,240 bets needed to detect a 51% win rate at 80% power, yet candidate strategies are presented with 137 to 649 bets. A reader has to do the arithmetic to see the screen cannot possibly distinguish skill.",
+   "suggestion": "Print the required sample next to each candidate's actual sample, and label every underpowered result 'not testable at this n' rather than 'rejected'.",
+   "evidence": "data/derived/luck.json sample_size_requirements: 39,240 bets for 51%, 9,806 for 52%; leaderboard n_bets range 137-649.",
+   "risk": "Almost every candidate becomes 'not testable', which is the honest label but a less satisfying dashboard."
+  }
+ ]
+}

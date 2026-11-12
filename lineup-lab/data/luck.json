@@ -1,0 +1,598 @@
+{
+  "meta": {
+    "verified_on": "2026-11-12",
+    "split_half_seasons": "2015-2025 (H1 Wk 1-8 vs H2 Wk 9-18)"
+  },
+  "persistence_table": [
+    {
+      "metric": "Net EPA per game (off - def)",
+      "team_seasons": 352,
+      "split_half_r": 0.4908,
+      "ci_95_low": 0.4071,
+      "ci_95_high": 0.5663,
+      "r_squared": 0.2409,
+      "interpretation": "High-persistence underlying team quality",
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "metric": "Offensive Passing EPA per game",
+      "team_seasons": 352,
+      "split_half_r": 0.4797,
+      "ci_95_low": 0.395,
+      "ci_95_high": 0.5564,
+      "r_squared": 0.2302,
+      "interpretation": "Core repeatable QB/scheme skill metric",
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "metric": "Offensive Yards per Play",
+      "team_seasons": 352,
+      "split_half_r": 0.46,
+      "ci_95_low": 0.3735,
+      "ci_95_high": 0.5387,
+      "r_squared": 0.2116,
+      "interpretation": "Stable efficiency signal",
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "metric": "Point differential per game",
+      "team_seasons": 352,
+      "split_half_r": 0.479,
+      "ci_95_low": 0.3942,
+      "ci_95_high": 0.5557,
+      "r_squared": 0.2294,
+      "interpretation": "Headline team strength (skill + turnover variance)",
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "metric": "Actual win percentage",
+      "team_seasons": 352,
+      "split_half_r": 0.3959,
+      "ci_95_low": 0.3039,
+      "ci_95_high": 0.4805,
+      "r_squared": 0.1567,
+      "interpretation": "Moderately stable; distorted by 1-score luck",
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "metric": "Defensive interceptions per game",
+      "team_seasons": 352,
+      "split_half_r": 0.0819,
+      "ci_95_low": -0.0228,
+      "ci_95_high": 0.1849,
+      "r_squared": 0.0067,
+      "interpretation": "Noisy \u2014 strongly regresses midseason",
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "metric": "Fumbles lost per game",
+      "team_seasons": 352,
+      "split_half_r": 0.0079,
+      "ci_95_low": -0.0967,
+      "ci_95_high": 0.1124,
+      "r_squared": 0.0001,
+      "interpretation": "Nearly pure ball-bounce luck",
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "metric": "One-score game win pct (|margin|<=7)",
+      "team_seasons": 352,
+      "split_half_r": 0.0497,
+      "ci_95_low": -0.0551,
+      "ci_95_high": 0.1535,
+      "r_squared": 0.0025,
+      "interpretation": "Classic close-game luck; regresses toward 50%",
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "metric": "Win% minus Pythagorean Win% (exp 2.37)",
+      "team_seasons": 352,
+      "split_half_r": 0.0593,
+      "ci_95_low": -0.0456,
+      "ci_95_high": 0.1628,
+      "r_squared": 0.0035,
+      "interpretation": "Pure luck residual \u2014 mean-reverts sharply",
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    }
+  ],
+  "team_2026_luck": [
+    {
+      "team": "DEN",
+      "w9_record": "7-2-0",
+      "pf": 198,
+      "pa": 186,
+      "actual_win_pct": 0.778,
+      "pyth_win_pct": 0.537,
+      "luck_wins_above_pyth": 2.17,
+      "one_score_record": "6-0",
+      "net_epa_pg_wk1_8": -0.32,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "BUF",
+      "w9_record": "7-1-0",
+      "pf": 256,
+      "pa": 187,
+      "actual_win_pct": 0.875,
+      "pyth_win_pct": 0.678,
+      "luck_wins_above_pyth": 1.58,
+      "one_score_record": "3-1",
+      "net_epa_pg_wk1_8": 6.93,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "CLE",
+      "w9_record": "5-4-0",
+      "pf": 161,
+      "pa": 196,
+      "actual_win_pct": 0.556,
+      "pyth_win_pct": 0.386,
+      "luck_wins_above_pyth": 1.53,
+      "one_score_record": "5-2",
+      "net_epa_pg_wk1_8": -3.07,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "DET",
+      "w9_record": "6-2-0",
+      "pf": 222,
+      "pa": 189,
+      "actual_win_pct": 0.75,
+      "pyth_win_pct": 0.594,
+      "luck_wins_above_pyth": 1.25,
+      "one_score_record": "4-1",
+      "net_epa_pg_wk1_8": 1.08,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "NYG",
+      "w9_record": "5-2-1",
+      "pf": 182,
+      "pa": 172,
+      "actual_win_pct": 0.688,
+      "pyth_win_pct": 0.533,
+      "luck_wins_above_pyth": 1.23,
+      "one_score_record": "2-2",
+      "net_epa_pg_wk1_8": 0.18,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "SF",
+      "w9_record": "7-1-0",
+      "pf": 235,
+      "pa": 156,
+      "actual_win_pct": 0.875,
+      "pyth_win_pct": 0.725,
+      "luck_wins_above_pyth": 1.2,
+      "one_score_record": "3-0",
+      "net_epa_pg_wk1_8": 13.37,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "CHI",
+      "w9_record": "7-2-0",
+      "pf": 241,
+      "pa": 184,
+      "actual_win_pct": 0.778,
+      "pyth_win_pct": 0.655,
+      "luck_wins_above_pyth": 1.11,
+      "one_score_record": "2-1",
+      "net_epa_pg_wk1_8": 2.15,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "PIT",
+      "w9_record": "6-2-0",
+      "pf": 180,
+      "pa": 144,
+      "actual_win_pct": 0.75,
+      "pyth_win_pct": 0.629,
+      "luck_wins_above_pyth": 0.97,
+      "one_score_record": "4-1",
+      "net_epa_pg_wk1_8": 1.45,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "MIN",
+      "w9_record": "6-2-0",
+      "pf": 146,
+      "pa": 116,
+      "actual_win_pct": 0.75,
+      "pyth_win_pct": 0.633,
+      "luck_wins_above_pyth": 0.94,
+      "one_score_record": "4-1",
+      "net_epa_pg_wk1_8": 4.49,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "GB",
+      "w9_record": "6-3-0",
+      "pf": 216,
+      "pa": 191,
+      "actual_win_pct": 0.667,
+      "pyth_win_pct": 0.572,
+      "luck_wins_above_pyth": 0.85,
+      "one_score_record": "2-1",
+      "net_epa_pg_wk1_8": 4.69,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "BAL",
+      "w9_record": "4-5-0",
+      "pf": 189,
+      "pa": 236,
+      "actual_win_pct": 0.444,
+      "pyth_win_pct": 0.371,
+      "luck_wins_above_pyth": 0.66,
+      "one_score_record": "3-2",
+      "net_epa_pg_wk1_8": -1.03,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "CIN",
+      "w9_record": "6-2-0",
+      "pf": 240,
+      "pa": 175,
+      "actual_win_pct": 0.75,
+      "pyth_win_pct": 0.679,
+      "luck_wins_above_pyth": 0.57,
+      "one_score_record": "3-2",
+      "net_epa_pg_wk1_8": 7.21,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "KC",
+      "w9_record": "6-2-0",
+      "pf": 202,
+      "pa": 143,
+      "actual_win_pct": 0.75,
+      "pyth_win_pct": 0.694,
+      "luck_wins_above_pyth": 0.45,
+      "one_score_record": "2-1",
+      "net_epa_pg_wk1_8": 8.7,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "NE",
+      "w9_record": "5-4-0",
+      "pf": 211,
+      "pa": 207,
+      "actual_win_pct": 0.556,
+      "pyth_win_pct": 0.511,
+      "luck_wins_above_pyth": 0.4,
+      "one_score_record": "3-2",
+      "net_epa_pg_wk1_8": 3.8,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "ARI",
+      "w9_record": "3-6-0",
+      "pf": 178,
+      "pa": 255,
+      "actual_win_pct": 0.333,
+      "pyth_win_pct": 0.299,
+      "luck_wins_above_pyth": 0.31,
+      "one_score_record": "2-1",
+      "net_epa_pg_wk1_8": -6.33,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "LV",
+      "w9_record": "4-5-0",
+      "pf": 238,
+      "pa": 268,
+      "actual_win_pct": 0.444,
+      "pyth_win_pct": 0.43,
+      "luck_wins_above_pyth": 0.13,
+      "one_score_record": "1-2",
+      "net_epa_pg_wk1_8": -4.34,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "NO",
+      "w9_record": "3-5-0",
+      "pf": 185,
+      "pa": 216,
+      "actual_win_pct": 0.375,
+      "pyth_win_pct": 0.409,
+      "luck_wins_above_pyth": -0.27,
+      "one_score_record": "3-2",
+      "net_epa_pg_wk1_8": -7.31,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "LA",
+      "w9_record": "5-4-0",
+      "pf": 214,
+      "pa": 181,
+      "actual_win_pct": 0.556,
+      "pyth_win_pct": 0.598,
+      "luck_wins_above_pyth": -0.38,
+      "one_score_record": "2-3",
+      "net_epa_pg_wk1_8": 9.35,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "PHI",
+      "w9_record": "2-7-0",
+      "pf": 148,
+      "pa": 221,
+      "actual_win_pct": 0.222,
+      "pyth_win_pct": 0.279,
+      "luck_wins_above_pyth": -0.51,
+      "one_score_record": "2-2",
+      "net_epa_pg_wk1_8": -12.91,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "CAR",
+      "w9_record": "3-5-0",
+      "pf": 199,
+      "pa": 219,
+      "actual_win_pct": 0.375,
+      "pyth_win_pct": 0.444,
+      "luck_wins_above_pyth": -0.55,
+      "one_score_record": "1-2",
+      "net_epa_pg_wk1_8": -1.99,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "JAX",
+      "w9_record": "6-2-0",
+      "pf": 229,
+      "pa": 121,
+      "actual_win_pct": 0.75,
+      "pyth_win_pct": 0.819,
+      "luck_wins_above_pyth": -0.55,
+      "one_score_record": "2-2",
+      "net_epa_pg_wk1_8": 15.07,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "ATL",
+      "w9_record": "3-6-0",
+      "pf": 188,
+      "pa": 223,
+      "actual_win_pct": 0.333,
+      "pyth_win_pct": 0.4,
+      "luck_wins_above_pyth": -0.6,
+      "one_score_record": "0-2",
+      "net_epa_pg_wk1_8": -3.88,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "SEA",
+      "w9_record": "5-4-0",
+      "pf": 202,
+      "pa": 162,
+      "actual_win_pct": 0.556,
+      "pyth_win_pct": 0.628,
+      "luck_wins_above_pyth": -0.65,
+      "one_score_record": "2-3",
+      "net_epa_pg_wk1_8": 4.76,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "DAL",
+      "w9_record": "4-5-0",
+      "pf": 246,
+      "pa": 236,
+      "actual_win_pct": 0.444,
+      "pyth_win_pct": 0.525,
+      "luck_wins_above_pyth": -0.72,
+      "one_score_record": "2-2",
+      "net_epa_pg_wk1_8": -1.98,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "WAS",
+      "w9_record": "2-5-1",
+      "pf": 172,
+      "pa": 202,
+      "actual_win_pct": 0.312,
+      "pyth_win_pct": 0.406,
+      "luck_wins_above_pyth": -0.75,
+      "one_score_record": "1-4",
+      "net_epa_pg_wk1_8": -2.02,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "IND",
+      "w9_record": "2-7-0",
+      "pf": 184,
+      "pa": 249,
+      "actual_win_pct": 0.222,
+      "pyth_win_pct": 0.328,
+      "luck_wins_above_pyth": -0.95,
+      "one_score_record": "1-4",
+      "net_epa_pg_wk1_8": -9.64,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "MIA",
+      "w9_record": "1-7-0",
+      "pf": 126,
+      "pa": 200,
+      "actual_win_pct": 0.125,
+      "pyth_win_pct": 0.251,
+      "luck_wins_above_pyth": -1.01,
+      "one_score_record": "1-3",
+      "net_epa_pg_wk1_8": -9.51,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "HOU",
+      "w9_record": "3-5-0",
+      "pf": 209,
+      "pa": 192,
+      "actual_win_pct": 0.375,
+      "pyth_win_pct": 0.55,
+      "luck_wins_above_pyth": -1.4,
+      "one_score_record": "1-4",
+      "net_epa_pg_wk1_8": -0.74,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "NYJ",
+      "w9_record": "2-7-0",
+      "pf": 182,
+      "pa": 223,
+      "actual_win_pct": 0.222,
+      "pyth_win_pct": 0.382,
+      "luck_wins_above_pyth": -1.44,
+      "one_score_record": "1-5",
+      "net_epa_pg_wk1_8": 0.95,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "TEN",
+      "w9_record": "1-7-0",
+      "pf": 144,
+      "pa": 199,
+      "actual_win_pct": 0.125,
+      "pyth_win_pct": 0.317,
+      "luck_wins_above_pyth": -1.54,
+      "one_score_record": "1-5",
+      "net_epa_pg_wk1_8": -7.45,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "LAC",
+      "w9_record": "0-8-0",
+      "pf": 121,
+      "pa": 219,
+      "actual_win_pct": 0.0,
+      "pyth_win_pct": 0.197,
+      "luck_wins_above_pyth": -1.57,
+      "one_score_record": "0-2",
+      "net_epa_pg_wk1_8": -11.46,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "team": "TB",
+      "w9_record": "3-6-0",
+      "pf": 202,
+      "pa": 178,
+      "actual_win_pct": 0.333,
+      "pyth_win_pct": 0.574,
+      "luck_wins_above_pyth": -2.17,
+      "one_score_record": "0-6",
+      "net_epa_pg_wk1_8": 3.66,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,653 @@
+{
+  "meta": {
+    "verified_on": "2026-11-12",
+    "walk_forward_seasons": [
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "total_oos_games": 872,
+    "ridge_alpha": 25.0
+  },
+  "overall_oos": {
+    "model_spread_mae": 10.284,
+    "market_spread_mae": 9.737,
+    "blend_50_50_mae": 9.897,
+    "model_total_mae": 10.473,
+    "market_total_mae": 10.161,
+    "residual_regression": {
+      "slope": -0.1453,
+      "intercept": 0.5703,
+      "se": 0.1205,
+      "t": -1.2056,
+      "p_value": 0.22799,
+      "r2": 0.0017
+    },
+    "verdict": "Market beats pure statistical Ridge model (higher MAE, slope beta on residual not reliably profitable).",
+    "sources": [
+      "SRC-GITHUB-REPO",
+      "SRC-SKLEARN-LINEAR",
+      "SRC-NWS-WIND"
+    ]
+  },
+  "season_summary": [
+    {
+      "season": 2023,
+      "games": 256,
+      "model_spread_mae": 10.656,
+      "market_spread_mae": 9.818,
+      "blend_50_50_mae": 10.125,
+      "model_total_mae": 10.709,
+      "market_total_mae": 10.338,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-SKLEARN-LINEAR"
+      ]
+    },
+    {
+      "season": 2024,
+      "games": 256,
+      "model_spread_mae": 10.312,
+      "market_spread_mae": 9.648,
+      "blend_50_50_mae": 9.81,
+      "model_total_mae": 9.844,
+      "market_total_mae": 9.723,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-SKLEARN-LINEAR"
+      ]
+    },
+    {
+      "season": 2025,
+      "games": 256,
+      "model_spread_mae": 10.239,
+      "market_spread_mae": 9.959,
+      "blend_50_50_mae": 10.009,
+      "model_total_mae": 10.514,
+      "market_total_mae": 10.262,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-SKLEARN-LINEAR"
+      ]
+    },
+    {
+      "season": 2026,
+      "games": 104,
+      "model_spread_mae": 9.413,
+      "market_spread_mae": 9.207,
+      "blend_50_50_mae": 9.273,
+      "model_total_mae": 11.336,
+      "market_total_mae": 10.558,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-SKLEARN-LINEAR"
+      ]
+    }
+  ],
+  "ridge_margin_weights": [
+    {
+      "feature": "intercept",
+      "weight": -0.3483,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "feature": "is_home",
+      "weight": 2.4324,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "feature": "off_epa_diff_div10",
+      "weight": 1.7577,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "feature": "def_epa_allowed_diff_div10",
+      "weight": 0.2829,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "feature": "pt_diff_div10",
+      "weight": 4.164,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "feature": "to_margin_diff",
+      "weight": -0.5021,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "feature": "sacks_suffered_diff",
+      "weight": 0.9129,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "feature": "rest_diff_wk",
+      "weight": 1.3362,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "feature": "div_game",
+      "weight": -0.615,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "feature": "high_wind_15mph",
+      "weight": 0.5728,
+      "sources": [
+        "SRC-SKLEARN-LINEAR",
+        "SRC-GITHUB-REPO"
+      ]
+    }
+  ],
+  "week9_replay": [
+    {
+      "game_id": "2026_09_JAX_BAL",
+      "matchup": "JAX @ BAL",
+      "official_final": "JAX 33 @ BAL 10",
+      "model_margin_home": -7.93,
+      "market_spread_home": -8.5,
+      "actual_margin_home": -23,
+      "model_total": 46.37,
+      "market_total": 43.5,
+      "actual_total": 43,
+      "away_spread_odds": -105.0,
+      "home_spread_odds": -115.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_CIN_ATL",
+      "matchup": "CIN @ ATL",
+      "official_final": "CIN 34 @ ATL 17",
+      "model_margin_home": -7.73,
+      "market_spread_home": -3.0,
+      "actual_margin_home": -17,
+      "model_total": 46.59,
+      "market_total": 51.5,
+      "actual_total": 51,
+      "away_spread_odds": -118.0,
+      "home_spread_odds": -102.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_DEN_CAR",
+      "matchup": "DEN @ CAR",
+      "official_final": "DEN 26 @ CAR 21",
+      "model_margin_home": -1.75,
+      "market_spread_home": -3.0,
+      "actual_margin_home": -5,
+      "model_total": 45.23,
+      "market_total": 43.5,
+      "actual_total": 47,
+      "away_spread_odds": -102.0,
+      "home_spread_odds": -118.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_DAL_IND",
+      "matchup": "DAL @ IND",
+      "official_final": "DAL 27 @ IND 23",
+      "model_margin_home": -5.73,
+      "market_spread_home": -6.0,
+      "actual_margin_home": -4,
+      "model_total": 45.3,
+      "market_total": 51.5,
+      "actual_total": 50,
+      "away_spread_odds": -108.0,
+      "home_spread_odds": -112.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_NYJ_KC",
+      "matchup": "NYJ @ KC",
+      "official_final": "NYJ 12 @ KC 35",
+      "model_margin_home": 5.86,
+      "market_spread_home": 10.0,
+      "actual_margin_home": 23,
+      "model_total": 46.33,
+      "market_total": 46.5,
+      "actual_total": 47,
+      "away_spread_odds": -112.0,
+      "home_spread_odds": -108.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_DET_MIA",
+      "matchup": "DET @ MIA",
+      "official_final": "DET 19 @ MIA 9",
+      "model_margin_home": -4.29,
+      "market_spread_home": -7.0,
+      "actual_margin_home": -10,
+      "model_total": 47.59,
+      "market_total": 49.5,
+      "actual_total": 28,
+      "away_spread_odds": -110.0,
+      "home_spread_odds": -110.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_CLE_NO",
+      "matchup": "CLE @ NO",
+      "official_final": "CLE 22 @ NO 23",
+      "model_margin_home": 5.92,
+      "market_spread_home": 2.5,
+      "actual_margin_home": 1,
+      "model_total": 44.75,
+      "market_total": 43.5,
+      "actual_total": 45,
+      "away_spread_odds": -105.0,
+      "home_spread_odds": -115.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_NYG_PHI",
+      "matchup": "NYG @ PHI",
+      "official_final": "NYG 19 @ PHI 11",
+      "model_margin_home": -6.18,
+      "market_spread_home": -3.5,
+      "actual_margin_home": -8,
+      "model_total": 43.97,
+      "market_total": 40.5,
+      "actual_total": 30,
+      "away_spread_odds": -102.0,
+      "home_spread_odds": -118.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_LA_WAS",
+      "matchup": "LA @ WAS",
+      "official_final": "LA 20 @ WAS 13",
+      "model_margin_home": -3.45,
+      "market_spread_home": -5.5,
+      "actual_margin_home": -7,
+      "model_total": 45.74,
+      "market_total": 47.5,
+      "actual_total": 33,
+      "away_spread_odds": -110.0,
+      "home_spread_odds": -110.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_HOU_LAC",
+      "matchup": "HOU @ LAC",
+      "official_final": "HOU 44 @ LAC 22",
+      "model_margin_home": -8.39,
+      "market_spread_home": -4.5,
+      "actual_margin_home": -22,
+      "model_total": 44.04,
+      "market_total": 40.5,
+      "actual_total": 66,
+      "away_spread_odds": -115.0,
+      "home_spread_odds": -105.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_LV_SF",
+      "matchup": "LV @ SF",
+      "official_final": "LV 17 @ SF 38",
+      "model_margin_home": 10.18,
+      "market_spread_home": 9.5,
+      "actual_margin_home": 21,
+      "model_total": 49.91,
+      "market_total": 51.5,
+      "actual_total": 55,
+      "away_spread_odds": -110.0,
+      "home_spread_odds": -110.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_GB_NE",
+      "matchup": "GB @ NE",
+      "official_final": "GB 45 @ NE 27",
+      "model_margin_home": 3.06,
+      "market_spread_home": 3.0,
+      "actual_margin_home": -18,
+      "model_total": 46.78,
+      "market_total": 47.5,
+      "actual_total": 72,
+      "away_spread_odds": -115.0,
+      "home_spread_odds": -105.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_ARI_SEA",
+      "matchup": "ARI @ SEA",
+      "official_final": "ARI 3 @ SEA 17",
+      "model_margin_home": 6.58,
+      "market_spread_home": 11.5,
+      "actual_margin_home": 14,
+      "model_total": 43.93,
+      "market_total": 44.5,
+      "actual_total": 20,
+      "away_spread_odds": -110.0,
+      "home_spread_odds": -110.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_TB_CHI",
+      "matchup": "TB @ CHI",
+      "official_final": "TB 24 @ CHI 27",
+      "model_margin_home": 1.27,
+      "market_spread_home": 5.5,
+      "actual_margin_home": 3,
+      "model_total": 43.37,
+      "market_total": 47.5,
+      "actual_total": 51,
+      "away_spread_odds": -108.0,
+      "home_spread_odds": -112.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "game_id": "2026_09_BUF_MIN",
+      "matchup": "BUF @ MIN",
+      "official_final": "BUF 23 @ MIN 6",
+      "model_margin_home": -2.83,
+      "market_spread_home": -2.5,
+      "actual_margin_home": -17,
+      "model_total": 48.78,
+      "market_total": 46.5,
+      "actual_total": 29,
+      "away_spread_odds": -118.0,
+      "home_spread_odds": -102.0,
+      "sources": [
+        "SRC-NFL-SCHED-W9",
+        "SRC-GITHUB-REPO"
+      ]
+    }
+  ],
+  "week10_slate": [
+    {
+      "game_id": "2026_10_WAS_NYG",
+      "gameday": "2026-11-12",
+      "matchup": "WAS @ NYG",
+      "model_margin_home": 3.89,
+      "model_total": 46.04,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "WAS Yankoff/Lucas Patrick Out (Thu); NYG M. Harrison Q",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_NE_DET",
+      "gameday": "2026-11-15",
+      "matchup": "NE @ DET",
+      "model_margin_home": -1.96,
+      "model_total": 52.55,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "Munich neutral; NE Ben Brown/Davis/Henderson Out; DET Reed/Mays DNP",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_KC_ATL",
+      "gameday": "2026-11-15",
+      "matchup": "KC @ ATL",
+      "model_margin_home": -2.96,
+      "model_total": 43.68,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "Standard weekly practice cadence; recheck 90-min inactive list.",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_HOU_CLE",
+      "gameday": "2026-11-15",
+      "matchup": "HOU @ CLE",
+      "model_margin_home": -4.37,
+      "model_total": 43.94,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "Standard weekly practice cadence; recheck 90-min inactive list.",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_MIN_GB",
+      "gameday": "2026-11-15",
+      "matchup": "MIN @ GB",
+      "model_margin_home": 3.96,
+      "model_total": 41.22,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "MIN acquired Cousins Nov 10; GB Jacobs Out + Parsons LP",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_MIA_IND",
+      "gameday": "2026-11-15",
+      "matchup": "MIA @ IND",
+      "model_margin_home": -0.69,
+      "model_total": 42.62,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "MIA QB1 Willis IR -> McCord 1st start; IND 4 DB/LB DNP",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_CAR_NO",
+      "gameday": "2026-11-15",
+      "matchup": "CAR @ NO",
+      "model_margin_home": 1.56,
+      "model_total": 48.49,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "Standard weekly practice cadence; recheck 90-min inactive list.",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_BUF_NYJ",
+      "gameday": "2026-11-15",
+      "matchup": "BUF @ NYJ",
+      "model_margin_home": -4.88,
+      "model_total": 50.52,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "Standard weekly practice cadence; recheck 90-min inactive list.",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_JAX_TEN",
+      "gameday": "2026-11-15",
+      "matchup": "JAX @ TEN",
+      "model_margin_home": -7.02,
+      "model_total": 46.43,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "Standard weekly practice cadence; recheck 90-min inactive list.",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_LA_ARI",
+      "gameday": "2026-11-15",
+      "matchup": "LA @ ARI",
+      "model_margin_home": -6.05,
+      "model_total": 46.24,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "LA Nacua DNP/IR risk + 3 starters DNP; AZ rookie QB Carson Beck",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_SEA_LV",
+      "gameday": "2026-11-15",
+      "matchup": "SEA @ LV",
+      "model_margin_home": -0.75,
+      "model_total": 48.56,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "SEA QB1 Darnold Out -> Lock (LP); LV traded Cousins",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_SF_DAL",
+      "gameday": "2026-11-15",
+      "matchup": "SF @ DAL",
+      "model_margin_home": -1.58,
+      "model_total": 49.33,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "SF T. Williams/Lenoir DNP; DAL Ferguson/Hooker/V. Miller DNP",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_PIT_CIN",
+      "gameday": "2026-11-15",
+      "matchup": "PIT @ CIN",
+      "model_margin_home": 2.66,
+      "model_total": 47.69,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "PIT Watt/Heyward DNP; CIN REG10 report incomplete",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    },
+    {
+      "game_id": "2026_10_LAC_BAL",
+      "gameday": "2026-11-16",
+      "matchup": "LAC @ BAL",
+      "model_margin_home": 6.53,
+      "model_total": 39.46,
+      "market_spread_home": "",
+      "market_total": "",
+      "market_odds": "",
+      "lineup_alert": "MNF; BAL Jackson/Huntley IR -> Brissett/Fagnano",
+      "sources": [
+        "SRC-NFL-SCHED-W10",
+        "SRC-NFL-INJURIES-W10",
+        "SRC-OPS-RULEBOOK"
+      ]
+    }
+  ]
+}

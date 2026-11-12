@@ -1,0 +1,150 @@
+{
+  "meta": {
+    "title": "Verify Hub source register",
+    "policy": "Every entry is an official or authoritative publisher. Entries with opened_utc 2026-11-12 were opened and read by this session (arena/f1123a1a-korea2). Entries marked role=context were verified by a prior session and recorded in the root register (data/sources.json); this session did not re-open them and does not re-claim their verification.",
+    "session": "arena/f1123a1a-korea2",
+    "generated_utc": "2026-11-12"
+  },
+  "sources": [
+    {
+      "id": "VH-SRC-01",
+      "label": "NFL.com 2026 regular-season division standings (live page)",
+      "publisher": "NFL (National Football League)",
+      "url": "https://www.nfl.com/standings/division/2026/REG",
+      "type": "official league page",
+      "opened_utc": "2026-11-12",
+      "how_verified": "Page reader, both chunks read. All 32 club records (W-L-T, PF, PA) transcribed: BUF 7-1, NE 5-4, NYJ 2-7, MIA 1-7, PIT 6-2, CIN 6-2, CLE 5-4, BAL 4-5, JAX 6-2, HOU 3-5, IND 2-7, TEN 1-7, DEN 7-2, KC 6-2, LV 4-5, LAC 0-8, NYG 5-2-1, DAL 4-5, WAS 2-5-1, PHI 2-7, CHI 7-2, DET 6-2, MIN 6-2, GB 6-3, CAR 3-5, NO 3-5, TB 3-6, ATL 3-6, SF 7-1, SEA 5-4, LA 5-4, AZ 3-6.",
+      "note": "Live page; values move as games are played. Used to verify the repo's 2026 standings reconciliations and the Week 10 report team records."
+    },
+    {
+      "id": "VH-SRC-02",
+      "label": "Official NFL injury report, Week 10 of the 2026 season",
+      "publisher": "NFL (National Football League)",
+      "url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "type": "official league page",
+      "opened_utc": "2026-11-12",
+      "how_verified": "Page reader, chunk 0 read (7 chunks total). Per-team tables carry Player, Position, Injuries, Practice Status and Game Status columns. Week 10 slate opens with TNF WAS (2-5-1) at NYG (5-2-1) on Thursday November 12th.",
+      "note": "The report gives player-level injury, practice and game status. It does not publish depth-chart string (1st/2nd/3rd/4th) for any player."
+    },
+    {
+      "id": "VH-SRC-03",
+      "label": "NFL.com club depth-chart path (tried for depth strings)",
+      "publisher": "NFL (National Football League)",
+      "url": "https://www.nfl.com/teams/new-england-patriots/depth-chart",
+      "type": "official league page (endpoint check)",
+      "opened_utc": "2026-11-12",
+      "how_verified": "Page reader; response is the NFL.com 404 page ('Flag on the Play').",
+      "note": "IRREGULARITY ANCHOR: the league's site does not serve a depth chart at this path, so no league-published 1st/2nd/3rd/4th string ordering exists here. Depth-string values stay blank and flagged."
+    },
+    {
+      "id": "VH-SRC-04",
+      "label": "nflverse-data release metadata (GitHub Releases API)",
+      "publisher": "GitHub (authoritative for release asset metadata of nflverse/nflverse-data)",
+      "url": "https://api.github.com/repos/nflverse/nflverse-data/releases",
+      "type": "official platform API (third-party redistribution of NFL feeds)",
+      "opened_utc": "2026-11-12",
+      "how_verified": "HTTPS GET from the sandbox (github.com family is reachable); 25 releases fetched. The three tags recorded in data/derived/manifest.json (schedules, stats_player, stats_team) all exist. Of 31 recorded assets, 28 match the manifest byte-for-byte; the 3 rolling 2026 assets (games.parquet, stats_player_week_2026.parquet, stats_team_week_2026.parquet) are larger upstream now than at the 2026-11-02 snapshot, i.e. upstream re-published them after the snapshot.",
+      "note": "nflverse is a community redistribution of the NFL's own play-by-play/stat feeds; it is the project's price/history source of record and is labelled third-party everywhere."
+    },
+    {
+      "id": "VH-SRC-05",
+      "label": "NFL Operations league-governance injury-report policy path",
+      "publisher": "NFL Football Operations",
+      "url": "https://operations.nfl.com/football-ops/league-governance/injury-report/",
+      "type": "official league page (endpoint check)",
+      "opened_utc": "2026-11-12",
+      "how_verified": "Page reader; response is the operations.nfl.com 404 page ('FLAG ON THE PLAY').",
+      "note": "IRREGULARITY ANCHOR: the policy page cited in the root register does not serve content on 2026-11-12 (carried flag; first recorded 2026-11-01 by the root session)."
+    },
+    {
+      "id": "VH-SRC-06",
+      "label": "NIST Dataplot reference manual — CORRELATION",
+      "publisher": "NIST (U.S. Department of Commerce)",
+      "url": "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm",
+      "type": "government statistics reference",
+      "opened_utc": "2026-11-12",
+      "how_verified": "Page reader; full entry read. Pearson coefficient r = Sxy/sqrt(Sxx*Syy) with the F(1, N-2) significance test.",
+      "note": "Method anchor for every correlation value in this repository."
+    },
+    {
+      "id": "VH-SRC-07",
+      "label": "2026 NFL Rulebook",
+      "publisher": "NFL Football Operations",
+      "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "type": "official league rulebook",
+      "opened_utc": "2026-11-12",
+      "how_verified": "Page reader; landing read including the 2026 rule-changes table (6-1-3, 6-1-5, 6-1-6, 19-2) and the rule-section index; the full rulebook PDF is linked from the page.",
+      "note": "Settlement-relevant context (scoring, timing, possession). Operator house rules govern wager settlement and are cited separately."
+    },
+    {
+      "id": "VH-SRC-08",
+      "label": "NFL Big Data Bowl 2027 (Kaggle) — competition and awards",
+      "publisher": "NFL / Kaggle",
+      "url": "https://www.kaggle.com/competitions/nfl-big-data-bowl-2027",
+      "type": "official competition page",
+      "opened_utc": "2026-11-12",
+      "how_verified": "Page reader; overview read. Published awards: Open Track $45,000 (three $10,000 finalists, three $5,000 runners-up), University Track $45,000 (same split), Grand Prize $10,000 for one invited finalist presenting at the 2027 Scouting Combine. Timeline: start 2026-10-06, submissions close 2027-01-06.",
+      "note": "The only official, funded, league-linked analytics-competition reward precedent found; used as the structural model for the paper reward schedule. It is NOT funding for this project."
+    },
+    {
+      "id": "VH-SRC-09",
+      "label": "This repository on GitHub (karagemop466-tech/Korea2)",
+      "publisher": "GitHub",
+      "url": "https://github.com/karagemop466-tech/Korea2",
+      "type": "repository of record",
+      "opened_utc": "2026-11-12",
+      "how_verified": "git and gh API reads: branch heads, PR #65 merged 2026-11-12T13:03:56Z (merge 7445da6), PR #66/#67 merged 2026-11-12, GitHub Pages configuration (legacy root, status built).",
+      "note": "Source for repo-state claims (page counts, PR/merge/deploy state, committed file contents)."
+    },
+    {
+      "id": "VH-SRC-10",
+      "label": "NFL–Genius Sports strategic partnership announcement (data distribution)",
+      "publisher": "NFL (National Football League)",
+      "url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "type": "official league announcement",
+      "opened_utc": "",
+      "how_verified": "CONTEXT — opened and recorded 2026-11-01 by the root session in data/sources.json; not re-opened by this session.",
+      "note": "Context for why no league-published historical odds feed exists for the public."
+    },
+    {
+      "id": "VH-SRC-11",
+      "label": "nflverse-data repository (feed extracts used by the pipeline)",
+      "publisher": "GitHub (nflverse project — third-party redistribution of NFL feeds)",
+      "url": "https://github.com/nflverse/nflverse-data",
+      "type": "third-party data redistribution",
+      "opened_utc": "",
+      "how_verified": "CONTEXT — recorded in the root register; release metadata re-verified by this session through VH-SRC-04.",
+      "note": "Every computed value in the sibling labs derives from extracts of this feed; no league source publishes closing-line accuracy, correlations or backtest returns."
+    },
+    {
+      "id": "VH-SRC-12",
+      "label": "Kelly (1956), A New Interpretation of Information Rate",
+      "publisher": "Bell System Technical Journal (scan hosted by Princeton University)",
+      "url": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+      "type": "academic reference",
+      "opened_utc": "",
+      "how_verified": "CONTEXT — recorded in the root register (opened 2026-11-01); not re-opened by this session.",
+      "note": "Staking/growth-criterion reference for the drawdown-and-growth gate (G9)."
+    },
+    {
+      "id": "VH-SRC-13",
+      "label": "DraftKings help — what is a parlay bet",
+      "publisher": "DraftKings (licensed operator help centre)",
+      "url": "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
+      "type": "operator help article",
+      "opened_utc": "",
+      "how_verified": "CONTEXT — recorded in the root register (opened 2026-11-01); not re-opened by this session.",
+      "note": "Operator definition of parlay settlement; same-game parlay pricing behaviour is the subject of the correlation findings."
+    },
+    {
+      "id": "VH-SRC-14",
+      "label": "NIST handbook — one-sample and two-sample proportion tests",
+      "publisher": "NIST (U.S. Department of Commerce)",
+      "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm",
+      "type": "government statistics reference",
+      "opened_utc": "",
+      "how_verified": "CONTEXT — recorded in the root register (opened 2026-11-01); not re-opened by this session.",
+      "note": "Method anchor for cover-rate / over-rate binomial tests."
+    }
+  ]
+}

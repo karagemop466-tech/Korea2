@@ -1,0 +1,487 @@
+{
+  "meta": {
+    "title": "Cross-lab strategy, gate, correlation and luck consolidation",
+    "session": "arena/f1123a1a-korea2",
+    "generated_utc": "2026-11-12",
+    "rule": "Read-only aggregation of the committed results of every lab. Windows and definitions differ per lab and are printed with every row. No value is re-computed here; each row links the lab it came from and the evidence class (internal = computed from feed extracts, no official publisher).",
+    "competition_rule": "A strategy earns a place on the leaderboard only by passing every gate of the adopted catalog on recorded prices over the untouched holdout. Positive ROI alone earns nothing. No strategy in this repository has done so (verified across five gate systems, 2026-11-12)."
+  },
+  "cross_lab_rows": [
+    {
+      "id": "X-01",
+      "lab": "root Line Lab",
+      "strategy": "S6 Divisional home underdog",
+      "family": "single bet (situational)",
+      "window": "2023-2026",
+      "n": 137,
+      "roi_pct": -1.21,
+      "gates": "5/10",
+      "verdict": "REJECTED",
+      "luck_note": "BH-adjusted p 0.985; deflated-Sharpe p 0.937",
+      "where": "../pages/leaderboard.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-02",
+      "lab": "root Line Lab",
+      "strategy": "C1/C2 controls (all home / all under)",
+      "family": "control",
+      "window": "2023-2026",
+      "n": 936,
+      "roi_pct": -5.19,
+      "gates": "4/10",
+      "verdict": "REJECTED",
+      "luck_note": "Controls must fail; they did",
+      "where": "../pages/leaderboard.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-03",
+      "lab": "skill-lab",
+      "strategy": "STR-04 Outdoor high-wind total under (>= 15 mph)",
+      "family": "single bet (total)",
+      "window": "2018-2026",
+      "n": 152,
+      "roi_pct": 9.2,
+      "gates": "6/10",
+      "verdict": "not qualified",
+      "luck_note": "Luck-adjusted ROI -3.13%; fails BH-FDR and permutation nulls",
+      "where": "../skill-lab/pages/strategies.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-04",
+      "lab": "skill-lab",
+      "strategy": "STR-08 2-leg weekly wind-under parlay",
+      "family": "parlay (2-leg cross-game)",
+      "window": "2018-2026",
+      "n": 63,
+      "roi_pct": 34.88,
+      "gates": "6/10",
+      "verdict": "not qualified",
+      "luck_note": "Luck-adjusted ROI -3.93% on 63 tickets; variance dominates",
+      "where": "../skill-lab/pages/strategies.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-05",
+      "lab": "skill-lab",
+      "strategy": "STR-12/13/14 player-prop combos (ex-ante QB1/WR1/RB1)",
+      "family": "player prop combo",
+      "window": "2023-2026",
+      "n": 745,
+      "roi_pct": "",
+      "gates": "2-3/10",
+      "verdict": "not qualified (ROI blank - no historical prop prices exist)",
+      "luck_note": "ROI cells are blank in the source lab by policy (C-01): no price, no ROI. Luck adjustment cannot be computed either.",
+      "where": "../skill-lab/pages/strategies.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-06",
+      "lab": "skill-lab",
+      "strategy": "STR-16 Integrity control (deliberate in-game leak)",
+      "family": "negative control (leaky)",
+      "window": "2018-2026",
+      "n": 814,
+      "roi_pct": 64.81,
+      "gates": "8/10",
+      "verdict": "DISQUALIFIED (by design - leakage detector)",
+      "luck_note": "Passes 8 gates yet is disqualified: G1 zero-lookahead fails and 10/10 is required. Never quote as performance.",
+      "where": "../skill-lab/pages/strategies.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-07",
+      "lab": "quant-lab",
+      "strategy": "S10 Wind 15+ under",
+      "family": "single bet",
+      "window": "holdout 2020-2026",
+      "n": 532,
+      "roi_pct": 3.83,
+      "gates": "0 qualified of 21 tested",
+      "verdict": "not qualified",
+      "luck_note": "luck_z 0.94 (well inside the null)",
+      "where": "../quant-lab/leaderboard.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-08",
+      "lab": "origination-lab",
+      "strategy": "S11 Wind 15+ mph (Under)",
+      "family": "single bet (total)",
+      "window": "2006-2025 full / 2016-2025 validation",
+      "n": 449,
+      "roi_pct": 9.29,
+      "gates": "3/7",
+      "verdict": "not eligible",
+      "luck_note": "Window decay: +6.0% pre-2018, +12.4% 2018-22, +2.7% 2023-24, -0.2% 2025-26; luck share of variance 68%",
+      "where": "../origination-lab/strategies.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-09",
+      "lab": "origination-lab",
+      "strategy": "S14 2-leg parlay (top-2 model spread edges weekly)",
+      "family": "parlay (2-leg)",
+      "window": "2006-2026",
+      "n": 2225,
+      "roi_pct": 4.2,
+      "gates": "3/7",
+      "verdict": "not eligible",
+      "luck_note": "Validation ROI +1.16% on 1,186 tickets (p 0.40); q-value 0.9997",
+      "where": "../origination-lab/parlays.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-10",
+      "lab": "pipeline (results/)",
+      "strategy": "S3 Weather under (wind), stored prices only",
+      "family": "single bet (total)",
+      "window": "2018-2026",
+      "n": 430,
+      "roi_pct": 7.14,
+      "gates": "2/6",
+      "verdict": "rejected",
+      "luck_note": "Decay to -0.2% in 2025-26 (19 bets); imputed-price era figure (+8.65%/649) was an artefact",
+      "where": "../pages/executive.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "X-11",
+      "lab": "pipeline (results/)",
+      "strategy": "Parlay-3: model's three largest disagreements, weekly",
+      "family": "parlay (3-leg)",
+      "window": "2018-2026",
+      "n": 183,
+      "roi_pct": -31.28,
+      "gates": "fails",
+      "verdict": "rejected",
+      "luck_note": "Hit 10.4% vs 27.4% naive expectation (p 0.042): model confidence was anti-skill",
+      "where": "../pages/strategies.html",
+      "sources": [
+        "VH-SRC-13",
+        "VH-SRC-04"
+      ]
+    }
+  ],
+  "correlation_rows": [
+    {
+      "id": "CR-01",
+      "pair": "QB passing yards vs WR1 receiving yards (WR1 designation)",
+      "value": "r = 0.562",
+      "n": "7,560",
+      "window": "2012-2026",
+      "lab": "root Line Lab",
+      "where": "../pages/correlation.html",
+      "sources": [
+        "VH-SRC-06"
+      ]
+    },
+    {
+      "id": "CR-02",
+      "pair": "QB passing yards vs ex-post game-leader receiving yards",
+      "value": "r = 0.614",
+      "n": "6,984",
+      "window": "2018-2026",
+      "lab": "skill-lab",
+      "where": "../skill-lab/pages/correlations.html",
+      "sources": [
+        "VH-SRC-06"
+      ]
+    },
+    {
+      "id": "CR-03",
+      "pair": "QB passing yards vs ex-ante WR1 receiving yards",
+      "value": "r = 0.372",
+      "n": "6,984",
+      "window": "2018-2026",
+      "lab": "skill-lab (usable pre-kickoff)",
+      "where": "../skill-lab/pages/correlations.html",
+      "sources": [
+        "VH-SRC-06"
+      ]
+    },
+    {
+      "id": "CR-04",
+      "pair": "4-leg same-team stack: joint vs product",
+      "value": "11.14% vs 5.69% (x1.96)",
+      "n": "7,560",
+      "window": "2012-2026",
+      "lab": "root Line Lab",
+      "where": "../pages/correlation.html",
+      "sources": [
+        "VH-SRC-06"
+      ]
+    },
+    {
+      "id": "CR-05",
+      "pair": "Home outright win vs home ATS cover (binary)",
+      "value": "r = 0.912",
+      "n": "5,166",
+      "window": "2018-2026",
+      "lab": "skill-lab",
+      "where": "../skill-lab/pages/correlations.html",
+      "sources": [
+        "VH-SRC-06"
+      ]
+    },
+    {
+      "id": "CR-06",
+      "pair": "Home cover vs game over (phi)",
+      "value": "phi = 0.010",
+      "n": "6,123",
+      "window": "quant-lab window",
+      "lab": "quant-lab",
+      "where": "../quant-lab/index.html",
+      "sources": [
+        "VH-SRC-06"
+      ]
+    },
+    {
+      "id": "CR-07",
+      "pair": "Cross-game leg independence (adjacent games, ATS home)",
+      "value": "phi = -0.019 / lag-1 -0.007 / week-clustered -0.005",
+      "n": "3,061 pairs / 7,087 / 35,722",
+      "window": "three labs",
+      "lab": "quant-lab + pipeline + origination-lab",
+      "where": "../pages/correlation.html",
+      "sources": [
+        "VH-SRC-06"
+      ]
+    },
+    {
+      "id": "CR-08",
+      "pair": "Copula pricing multipliers (correlated stacks)",
+      "value": "2-leg 1.262x / 3-leg 1.664x / 4-leg 2.053x",
+      "n": "6,984 base",
+      "window": "2018-2026",
+      "lab": "skill-lab",
+      "where": "../skill-lab/pages/correlations.html",
+      "sources": [
+        "VH-SRC-06",
+        "VH-SRC-13"
+      ]
+    }
+  ],
+  "gate_catalog_rows": [
+    {
+      "id": "G1",
+      "name": "Point-in-time / zero-lookahead",
+      "rule": "100% of features and role labels fixed before kickoff",
+      "adopted_from": "skill-lab G1",
+      "where": "../skill-lab/pages/gates.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "Minimum out-of-sample tickets",
+      "rule": "N >= 150 singles; N >= 75 weekly parlays/combos",
+      "adopted_from": "skill-lab G2 + root G2",
+      "where": "../pages/validation.html",
+      "sources": [
+        "VH-SRC-14"
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "Positive net return after vig",
+      "rule": "Out-of-sample ROI > 0 at recorded odds, bootstrap CI excludes 0",
+      "adopted_from": "root G4 + skill-lab G3",
+      "where": "../pages/validation.html",
+      "sources": [
+        "VH-SRC-13"
+      ]
+    },
+    {
+      "id": "G4",
+      "name": "Calibration accuracy",
+      "rule": "|realized hit rate - implied hit rate| <= 4%",
+      "adopted_from": "skill-lab G4",
+      "where": "../skill-lab/pages/gates.html",
+      "sources": [
+        "VH-SRC-14"
+      ]
+    },
+    {
+      "id": "G5",
+      "name": "Multiple-testing control",
+      "rule": "Benjamini-Hochberg q <= 0.10 across the pre-registered family",
+      "adopted_from": "root G5 + skill-lab G5",
+      "where": "../pages/validation.html",
+      "sources": [
+        "VH-SRC-14"
+      ]
+    },
+    {
+      "id": "G6",
+      "name": "Luck-removal permutation null",
+      "rule": "Beats >= 95% of 2,000 matched random portfolios",
+      "adopted_from": "root G6 + skill-lab G6",
+      "where": "../pages/luck.html",
+      "sources": [
+        "VH-SRC-14"
+      ]
+    },
+    {
+      "id": "G7",
+      "name": "Multi-season / holdout stability",
+      "rule": ">= 60% profitable seasons and holdout ROI > 0",
+      "adopted_from": "skill-lab G7 + origination-lab G3",
+      "where": "../skill-lab/pages/gates.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "G8",
+      "name": "Execution slippage stress",
+      "rule": "ROI > 0 after a -5c haircut on every price",
+      "adopted_from": "root G8 + skill-lab G8",
+      "where": "../pages/validation.html",
+      "sources": [
+        "VH-SRC-13"
+      ]
+    },
+    {
+      "id": "G9",
+      "name": "Drawdown & growth governance (repriced tickets)",
+      "rule": "Max drawdown <= 25%, Kelly log-growth > 0, multi-leg tickets repriced leg-by-leg at recorded decimals",
+      "adopted_from": "root G9 + quant-lab G9 re-pricing",
+      "where": "../quant-lab/validation.html",
+      "sources": [
+        "VH-SRC-12"
+      ]
+    },
+    {
+      "id": "G10",
+      "name": "Official price provenance",
+      "rule": "100% of settled legs carry recorded prices; nothing imputed; exclusion counts published",
+      "adopted_from": "skill-lab G10 + issue-#19 policy",
+      "where": "../pages/method.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    }
+  ],
+  "reward_rows": [
+    {
+      "id": "RW-01",
+      "scheme": "Gold 10/10 + skill >= 75 / Silver 10/10 + skill >= 60 / Bronze 9/10 incl. G1,G3,G5,G6,G10",
+      "unit": "paper pool points (10,000)",
+      "funded": "",
+      "lab": "skill-lab (recommended base for SG-04)",
+      "where": "../skill-lab/pages/leaderboard.html",
+      "sources": [
+        "VH-SRC-08"
+      ]
+    },
+    {
+      "id": "RW-02",
+      "scheme": "Tier 1 validated 10/10 / Tier 2 provisional 8-9/10 with G9 / Tier 3 rejected",
+      "unit": "allocation rights (paper)",
+      "funded": "",
+      "lab": "root Line Lab",
+      "where": "../pages/leaderboard.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "RW-03",
+      "scheme": "4-tier pool-share schedule",
+      "unit": "pool share %",
+      "funded": "",
+      "lab": "origination-lab",
+      "where": "../origination-lab/strategies.html",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "RW-04",
+      "scheme": "BDB 2027 published precedent: $45k Open + $45k University + $10k Grand Prize",
+      "unit": "USD (official competition, external)",
+      "funded": "funded by the league/Kaggle for BDB only",
+      "lab": "official precedent",
+      "where": "pages/leaderboard.html",
+      "sources": [
+        "VH-SRC-08"
+      ]
+    }
+  ],
+  "luck_rows": [
+    {
+      "id": "LK-01",
+      "metric": "Pythagorean luck, year-over-year persistence",
+      "value": "r = 0.024 (n = 842) / skill-lab 0.023",
+      "reading": "pure mean-reverting luck",
+      "where": "../pages/luck.html",
+      "sources": [
+        "VH-SRC-04"
+      ]
+    },
+    {
+      "id": "LK-02",
+      "metric": "ATS cover rate persistence",
+      "value": "r = -0.014",
+      "reading": "market-priced zero-persistence residual",
+      "where": "../skill-lab/pages/luck-skill.html",
+      "sources": [
+        "VH-SRC-04"
+      ]
+    },
+    {
+      "id": "LK-03",
+      "metric": "Pooled ATS team-game rate",
+      "value": "50.0% (n = 13,784, p = 1.0)",
+      "reading": "coin flip; any system must move it",
+      "where": "../pages/luck.html",
+      "sources": [
+        "VH-SRC-14"
+      ]
+    },
+    {
+      "id": "LK-04",
+      "metric": "Defensive pass EPA persistence",
+      "value": "r = 0.402",
+      "reading": "real skill - but not yet converted into a priced edge",
+      "where": "../skill-lab/pages/luck-skill.html",
+      "sources": [
+        "VH-SRC-04"
+      ]
+    },
+    {
+      "id": "LK-05",
+      "metric": "Deflated-Sharpe max-of-k (5 strategies)",
+      "value": "expected max per-bet Sharpe 0.038 under the null",
+      "reading": "the best of five zero-skill strategies looks like this",
+      "where": "../pages/luck.html",
+      "sources": [
+        "VH-SRC-12"
+      ]
+    }
+  ]
+}

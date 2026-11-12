@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Injuries & depth | Verify Hub</title>
+<meta name="description" content="Cross-lab verification, decision-readiness and suggestion review for the NFL research repository.">
+<meta name="generator" content="verify-hub/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="../index.html"><span class="mark">VH</span><span>VERIFY HUB<small>CROSS-LAB DECISIONS</small></span></a>
+    <nav aria-label="Hub navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/repo-audit.html">Repo audit</a>
+      <a href="../pages/questions.html">Questions</a>
+      <a href="../pages/suggestions.html">Suggestions</a>
+      <a href="../pages/leaderboard.html">Leaderboard</a>
+      <a href="../pages/injuries-depth.html" class="active">Injuries &amp; depth</a>
+      <a href="../pages/executive.html">Executive</a>
+      <a href="../pages/sources.html">Sources</a>
+      <a href="../pages/flagged.html">Flagged</a>
+    </nav>
+    <div class="sidebar-note">Sibling labs are read-only inputs to this hub. Live root site: <a href="../index.html" rel="noopener">Line Lab</a>.</div>
+  </aside>
+  <main id="main">
+    <header class="topbar"><span class="crumb">INJURIES & DEPTH</span>
+      <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a>
+    </header>
+
+    <div class="hero"><div class="eyebrow">VH-5 &middot; INJURY &amp; DEPTH-DEFICIENCY TRACKING</div>
+      <h1>What the league publishes.<br><em>And what it does not.</em></h1>
+      <p class="lede">The requirement: track injuries and know any deficiencies in defenses (2nd/3rd/4th-string
+      backups replacing starters) and the same on offense. This register separates what verified official data
+      can satisfy today from what must be inferred - and keeps every unverifiable cell blank.</p></div>
+    <div class="notice"><span class="dot"></span><div><strong>Key gap, verified 2026-11-12:</strong>
+      the official weekly injury report is live and complete on status, but the league publishes
+      <em>no depth strings</em> - the official depth-chart path returns 404. Every 'string' cell below is blank
+      by policy.</div><a href="../pages/questions.html">Discovery route Q-08 &rarr;</a></div>
+    <section class="block"><h2>Requirement / gap register</h2>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Requirement item</th><th>Official status</th><th>Verified evidence</th><th>Gap</th><th>Discovery suggestion</th><th>Source</th></tr></thead><tbody><tr><td>IG-01</td><td>Weekly player injury status per club (injury, practice status, game status)</td><td>Available</td><td>Official Week 10 2026 report publishes Player / Position / Injuries / Practice Status / Game Status for all 32 clubs; verified live 2026-11-12.</td><td>No gap for status itself; the report is point-in-time and must be stored at publication time</td><td>Ingest weekly before kickoff into an append-only store keyed by (week, team, published_at) - SG-13</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>IG-02</td><td>Depth string (1st/2nd/3rd/4th) for every player, offense and defense</td><td>Not published</td><td>NFL.com club depth-chart path returns 404 (checked 2026-11-12, VH-SRC-03); the injury report carries no depth column.</td><td>No league-published depth ordering exists at any official source tried</td><td>Infer role tiers from prior-week usage (snap-share ranks within position group, from official-play-by-play-derived feeds) and cross-check club-published depth charts where clubs publish them (e.g. colts.com, verified by a sibling session). Label every tier &#x27;inferred&#x27;; keep official depth cells blank - Q-08, SG-02</td><td><a href="https://www.nfl.com/teams/new-england-patriots/depth-chart" class="ext" rel="noopener">NFL.com club depth-chart path (tried for depth strings)</a> &middot; <a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>IG-03</td><td>Detect when a 2nd/3rd/4th-string player must replace a starter on defense</td><td>Partial</td><td>Game-status &#x27;Out&#x27;/&#x27;Doubtful&#x27; identifies unavailable players officially; whether the replacement is a backup string is not official.</td><td>Replacement identity and string are not published pre-kickoff by the league</td><td>Combine (a) official Out/DNP rows with (b) inferred usage tiers and (c) the next player on the club&#x27;s own depth page where it exists; publish the evidence sentence and the inference label together</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a> &middot; <a href="https://www.nfl.com/teams/new-england-patriots/depth-chart" class="ext" rel="noopener">NFL.com club depth-chart path (tried for depth strings)</a></td></tr>
+<tr><td>IG-04</td><td>Same deficiency detection on offense (starters vs backups)</td><td>Partial</td><td>Same as IG-03; verified example rows below (NE RB room, WAS interior line) show the official half of the signal.</td><td>Same as IG-03</td><td>Same as IG-03; unit (offense/defense) can be assigned from the official Position column, which is published</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>IG-05</td><td>Point-in-time discipline (report as published before kickoff, never retroactively updated)</td><td>Available (design)</td><td>The official report is re-published daily (Wed/Thu/Fri + game day); each version is a legitimate snapshot.</td><td>No store exists yet that keeps superseded versions</td><td>Append-only store per SG-13; features join on the latest version strictly before kickoff</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>IG-06</td><td>League injury-report policy text (filing deadlines, definitions)</td><td>Unavailable (dead link)</td><td>operations.nfl.com policy path returns 404 on 2026-11-12 (VH-SRC-05).</td><td>Policy text cannot be quoted from the cited URL</td><td>Locate a serving official copy (news article variant is in the root register) or mark the register entry dead with retrieval dates - SG-07</td><td><a href="https://operations.nfl.com/football-ops/league-governance/injury-report/" class="ext" rel="noopener">NFL Operations league-governance injury-report policy path</a></td></tr></tbody></table></div></section>
+    <section class="block"><h2>Verified sample &mdash; official Week 10 2026 injury report (read 2026-11-12)</h2>
+      <div class="table-wrap"><table><thead><tr><th>Team</th><th>Unit</th><th>Player</th><th>Pos</th><th>Injury</th><th>Practice</th><th>Game status</th><th>String</th><th>Deficiency note</th><th>Source</th></tr></thead><tbody><tr><td>WAS</td><td>defense</td><td>Lucas Patrick</td><td>C</td><td>Concussion</td><td>DNP</td><td>Out</td><td>&mdash;</td><td>Starter-level center ruled out; replacement string not officially published</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>WAS</td><td>offense</td><td>Colson Yankoff</td><td>TE</td><td>Knee</td><td>DNP</td><td>Out</td><td>&mdash;</td><td>Tight end room reduced for TNF vs NYG</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>WAS</td><td>offense</td><td>Treylon Burks</td><td>WR</td><td>&mdash;</td><td>DNP</td><td>&mdash;</td><td>&mdash;</td><td>DNP with no injury column value and no game status; blank, not inferred</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>WAS</td><td>offense</td><td>Jayden Daniels</td><td>QB</td><td>&mdash;</td><td>FULL</td><td>&mdash;</td><td>&mdash;</td><td>Starting QB practicing fully</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>NYG</td><td>defense</td><td>Malik Harrison</td><td>LB</td><td>Groin</td><td>LIM</td><td>Questionable</td><td>&mdash;</td><td>Linebacker availability uncertain for TNF</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>NYG</td><td>offense</td><td>Malik Nabers</td><td>WR</td><td>&mdash;</td><td>FULL</td><td>&mdash;</td><td>&mdash;</td><td>Top receiver practicing fully</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>NE</td><td>offense</td><td>TreVeyon Henderson</td><td>RB</td><td>Illness</td><td>DNP</td><td>Out</td><td>&mdash;</td><td>RB room vs DET: one back out</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>NE</td><td>offense</td><td>Rhamondre Stevenson</td><td>RB</td><td>&mdash;</td><td>DNP</td><td>&mdash;</td><td>&mdash;</td><td>Second RB also DNP (no injury listed, no status yet) - potential RB deficiency, string blank</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>NE</td><td>defense</td><td>Carlton Davis III</td><td>CB</td><td>Knee</td><td>DNP</td><td>Out</td><td>&mdash;</td><td>Secondary missing a cornerback vs DET passing game</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>NE</td><td>offense</td><td>Ben Brown</td><td>C</td><td>Knee</td><td>DNP</td><td>Out</td><td>&mdash;</td><td>Interior line: center ruled out</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>NE</td><td>offense</td><td>Drake Maye</td><td>QB</td><td>&mdash;</td><td>FULL</td><td>&mdash;</td><td>&mdash;</td><td>Starting QB practicing fully</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>DET</td><td>defense</td><td>D.J. Reed</td><td>CB</td><td>&mdash;</td><td>DNP</td><td>&mdash;</td><td>&mdash;</td><td>Cornerback DNP; no injury column value; blank</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>DET</td><td>offense</td><td>Jared Goff</td><td>QB</td><td>&mdash;</td><td>LIM</td><td>&mdash;</td><td>&mdash;</td><td>Starting QB limited</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>DET</td><td>offense</td><td>Amon-Ra St. Brown</td><td>WR</td><td>&mdash;</td><td>LIM</td><td>&mdash;</td><td>&mdash;</td><td>Top receiver limited</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>KC</td><td>offense</td><td>Patrick Mahomes</td><td>QB</td><td>&mdash;</td><td>FULL</td><td>&mdash;</td><td>&mdash;</td><td>Starting QB practicing fully vs ATL</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>KC</td><td>offense</td><td>Travis Kelce</td><td>TE</td><td>&mdash;</td><td>FULL</td><td>&mdash;</td><td>&mdash;</td><td>Practicing fully</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>KC</td><td>offense</td><td>Jaylon Moore</td><td>T</td><td>&mdash;</td><td>DNP</td><td>&mdash;</td><td>&mdash;</td><td>Tackle DNP; no injury column value; blank</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr></tbody></table></div></section>
+    
+    <footer>
+      <p>Research and measurement, not betting advice. Every value is read from committed JSON by
+      <code>verify-hub/scripts/build_site.py</code>; every table row links the source it rests on.
+      Values that no official source confirms are left blank and published on the Flagged page.</p>
+      <p><a href="../pages/sources.html">Source register</a> &middot;
+         <a href="../pages/questions.html">Decision questions</a> &middot;
+         <a href="../pages/flagged.html">Flagged for review</a></p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

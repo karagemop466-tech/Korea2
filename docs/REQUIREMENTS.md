@@ -24,10 +24,11 @@ it could not be established and is published on the Flagged for Review page inst
 | 16 | GitHub Pages live site | root `index.html`, `pages/` | Done | published from `main`; deploy run recorded in `COORDINATION.md` |
 | 17 | Clean landing page and category subpages | `index.html` + 13 subpages | Done | sidebar navigation, dashboard layout, no JS required |
 | 18 | Every table row links to an official source | all published pages | Enforced | `tests/check_site.py` fails the build if a row lacks a source cell |
-| 19 | Unconfirmable values left blank and flagged | `pages/flagged.html` | Done | prop ROI, CLV, execution access, prize pool, parlay ladder, injury policy |
+| 19 | Unconfirmable values left blank and flagged | `pages/flagged.html` | Done | prop ROI, CLV, execution access, prize pool, parlay ladder, point-in-time injury/depth snapshots |
 | 20 | No manual input from the user | `.github/workflows/data-pipeline.yml` | Done | fetch → analyse → build → verify → commit, runs unattended |
 | 21 | Parallel-session coordination | `COORDINATION.md`, `pages/archive.html` | Done | claim, handoff under the 60-minute rule, sibling artefacts preserved |
 | 22 | Pull request and merge without waiting for approval | PR linked in `COORDINATION.md` | Done | summary, sources and irregularities in the PR body |
+| 23 | Dedicated, source-linked suggestions queue and decision questions, separating known facts from missing evidence | `pages/suggestions.html`; `scripts/build_site.py` | Done as a review proposal | Six prioritized proposals, seven decision questions, explicit current answers, blockers and acceptance conditions; no unverified estimates |
 
 ## Values deliberately left blank
 
@@ -35,9 +36,9 @@ These are the places a less careful build would have produced a number:
 
 | Value | Why it is blank | Where the gap is recorded |
 |---|---|---|
-| Player-prop ROI | no historical prop prices exist in the official feed | `pages/flagged.html` |
+| Player-prop ROI | no historical prop prices exist in the committed nflverse community extracts | `pages/flagged.html` |
 | Closing-line value | only closing prices are available, no timestamps or opens | `pages/flagged.html` |
 | Fixed-odds parlay payout ladder | operator-specific; not confirmed in the rulebook that was read | `pages/strategies.html`, `pages/flagged.html` |
-| Injury-based signals | the official injury-policy URL returned 404 | `pages/flagged.html` |
+| Injury-based signals | NFL.com has a live report; historical injury snapshots and all-team depth history are absent. A single Colts team-published chart is labeled unofficial | `pages/flagged.html`; `data/flagged.json` FL-12 |
 | Prize money | no funded pool exists | `pages/leaderboard.html` |
 | Executable access, limits, jurisdiction | nothing verified | Gate G9 fails by design |

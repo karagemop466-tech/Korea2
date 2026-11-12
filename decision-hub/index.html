@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview | Decision Hub</title>
+<meta name="description" content="Decision support for the NFL line-origination project: suggestions, open questions, strategy framework, injury and depth tracking, and an independent audit.">
+<meta name="generator" content="decision-hub/scripts/build_site.py">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="index.html"><span class="mark">DH</span>
+    <span>DECISION HUB<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">Review</div>
+  <nav aria-label="Main navigation"><a href="index.html" class="active" aria-current="page">Overview</a><a href="pages/executive-summary.html">Executive summary</a><a href="pages/suggestions.html">Suggestions</a><a href="pages/questions.html">Questions &amp; unknowns</a><a href="pages/decisions.html">Decisions</a><a href="pages/strategies.html">Strategy framework</a><a href="pages/injuries.html">Injuries &amp; depth</a><a href="pages/audit.html">Line-by-line audit</a><a href="pages/evidence.html">Evidence tables</a><a href="pages/sources.html">Sources</a><a href="pages/flagged.html">Flagged for review</a><a href="pages/workflow.html">Review workflow</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Decision support<br>
+    <strong>0 of 7 strategies approved</strong>
+    <span>Every suggestion is a proposal. Choose before implementing.</span></div>
+</aside>
+<main id="main">
+<header class="topbar"><span class="crumb">OVERVIEW</span>
+  <span><a class="review-link" href="../index.html">&larr; Line Lab</a>
+  &nbsp; <a class="review-link" href="pages/flagged.html">Flagged for review &nearr;</a></span></header>
+
+
+<div class="hero">
+  <div class="eyebrow">DECISION SUPPORT</div>
+  <h1>Decide first.<br><em>Then build.</em></h1>
+  <p class="lede">A place to review what the NFL research project actually knows, what it does
+  not, and which path to take — before any code is written. Every suggestion names the decision
+  it unblocks and the evidence behind it. Nothing on this site is a pick.</p>
+</div>
+<div class="notice"><span class="dot"></span><div>
+  <strong>Start with the questions, not the numbers.</strong><br>
+  16 questions separate what is known from what is assumed;
+  5 of them cannot be answered with the data this repository holds.</div>
+  <a href="pages/questions.html">Open the questions register &rarr;</a></div>
+<div class="kpis">
+<article class="kpi"><span class="kpi-label">Suggestions</span><strong>14</strong><p>7 rated impact 4 or 5. Each one names its cost, its risk and the decision it unblocks.</p><a class="card-link" href="pages/suggestions.html">Review suggestions &rarr;</a></article>
+<article class="kpi"><span class="kpi-label">Open questions</span><strong>16</strong><p>5 blocked on data we do not have. The register states what would answer each one.</p><a class="card-link" href="pages/questions.html">Open questions &rarr;</a></article>
+<article class="kpi"><span class="kpi-label">Audit checks</span><strong>25</strong><p>23 reproduced, 0 failed, 2 unverifiable. Recomputed independently from committed data.</p><a class="card-link" href="pages/audit.html">Line-by-line audit &rarr;</a></article>
+<article class="kpi"><span class="kpi-label">Audit flags</span><strong>7</strong><p>1 high severity. Includes one published statistic that cannot fail.</p><a class="card-link" href="pages/flagged.html">Flagged items &rarr;</a></article>
+<article class="kpi"><span class="kpi-label">Injury absences tracked</span><strong>636</strong><p>2026 season, 10 weeks, every Out/Doubtful player with a depth-chart rank where one exists.</p><a class="card-link" href="pages/injuries.html">Injuries &amp; depth &rarr;</a></article>
+<article class="kpi"><span class="kpi-label">Strategies approved</span><strong>0</strong><p>Zero of seven candidates has passed all ten gates. That is a measured result, not a placeholder.</p><a class="card-link" href="pages/strategies.html">Strategy framework &rarr;</a></article>
+</div>
+<section class="block"><div class="eyebrow">AT A GLANCE</div>
+<h2>The 14 suggestions, ranked by impact</h2>
+<p class="muted">Sorted by impact then cost. Click through for the evidence, the risk, and the
+decision each one unblocks. Adoption is your call; the workflow page records the choices.</p>
+<div class="table-wrap"><table class=""><caption class="caption">Every suggestion is a proposal, not a finding.</caption><thead><tr><th>Suggestion</th><th>Category</th><th>Impact</th><th>Cost</th><th>Status</th><th>Detail</th></tr></thead><tbody><tr><td><strong>S-01</strong> Publish a one-page &#x27;decision register&#x27; above any dashboard number</td><td>Site structure</td><td><span class="badge ok">impact 5</span></td><td>low</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-01">detail</a></td></tr><tr><td><strong>S-02</strong> Replace the pooled ATS &#x27;coin-flip test&#x27; with a one-sided test</td><td>Statistical validity</td><td><span class="badge ok">impact 5</span></td><td>low</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-02">detail</a></td></tr><tr><td><strong>S-04</strong> Track depth lost per team-week and test it against the line before using it</td><td>Injury and lineup intelligence</td><td><span class="badge ok">impact 5</span></td><td>medium</td><td>in_progress</td><td class="src"><a href="pages/suggestions.html#S-04">detail</a></td></tr><tr><td><strong>S-03</strong> Add closing-line value as the headline skill metric</td><td>Strategy evaluation</td><td><span class="badge ok">impact 5</span></td><td>high</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-03">detail</a></td></tr><tr><td><strong>S-05</strong> Publish an explicit &#x27;answers we do not have&#x27; section with the decision each one blocks</td><td>Decision quality</td><td><span class="badge ok">impact 4</span></td><td>low</td><td>in_progress</td><td class="src"><a href="pages/suggestions.html#S-05">detail</a></td></tr><tr><td><strong>S-06</strong> Add negative controls to every strategy batch and publish them next to the candidates</td><td>Statistical validity</td><td><span class="badge ok">impact 4</span></td><td>medium</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-06">detail</a></td></tr><tr><td><strong>S-07</strong> Make every published number reproducible from a clean checkout in CI</td><td>Reproducibility</td><td><span class="badge ok">impact 4</span></td><td>medium</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-07">detail</a></td></tr><tr><td><strong>S-08</strong> Separate &#x27;model beats market&#x27; from &#x27;model is useful&#x27; in the scorecard</td><td>Strategy evaluation</td><td><span class="badge warn">impact 3</span></td><td>low</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-08">detail</a></td></tr><tr><td><strong>S-09</strong> Give the correlation page an uncertainty interval, not just a coefficient</td><td>Correlation / parlays</td><td><span class="badge warn">impact 3</span></td><td>low</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-09">detail</a></td></tr><tr><td><strong>S-10</strong> Stop calling the injury feed &#x27;unavailable&#x27; and cite what it is</td><td>Injury and lineup intelligence</td><td><span class="badge warn">impact 3</span></td><td>low</td><td>in_progress</td><td class="src"><a href="pages/suggestions.html#S-10">detail</a></td></tr><tr><td><strong>S-11</strong> Write the settlement and void rules down before pricing anything</td><td>Bet definitions</td><td><span class="badge warn">impact 3</span></td><td>low</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-11">detail</a></td></tr><tr><td><strong>S-12</strong> Put the price-sensitivity gate (G9) in front of every other gate</td><td>Validation gates</td><td><span class="badge warn">impact 3</span></td><td>low</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-12">detail</a></td></tr><tr><td><strong>S-13</strong> Publish an archive index instead of keeping nine sibling dashboards live</td><td>Site structure</td><td><span class="badge warn">impact 2</span></td><td>low</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-13">detail</a></td></tr><tr><td><strong>S-14</strong> State the sample-size floor for a &#x27;signal&#x27; before testing, and publish it</td><td>Statistical validity</td><td><span class="badge warn">impact 2</span></td><td>low</td><td>proposed</td><td class="src"><a href="pages/suggestions.html#S-14">detail</a></td></tr></tbody></table></div></section><div class="grid2">
+  <div class="panel"><h3>What the audit found</h3><ul class="ticks">
+    <li>25 published numbers recomputed independently: 23 reproduce exactly.</li>
+    <li>One headline statistic is an arithmetic identity that cannot detect a tilt (FL-DH-01).</li>
+    <li>862 table rows across the published site, 7 without a source link.</li>
+  </ul><a class="panel-link" href="pages/audit.html">Read the audit &rarr;</a></div>
+  <div class="panel"><h3>What is still unknown</h3><ul class="crosses">
+    <li>No timestamped price exists, so closing-line value cannot be measured on history.</li>
+    <li>No historical prop prices exist, so prop ROI is blank rather than estimated.</li>
+    <li>No funded reward pool, and no verified sportsbook access.</li>
+    <li>The effect of a missing starter on the line has never been measured here.</li>
+  </ul><a class="panel-link" href="pages/questions.html">See the questions &rarr;</a></div>
+</div>
+<footer>
+  <p>Research and decision support only — not betting advice. Nothing here has passed a validation gate. Values that could not be confirmed from an official source are blank and listed on Flagged for review.</p>
+  <p><a href="pages/sources.html">Sources</a> &middot;
+     <a href="pages/flagged.html">Flagged for review</a> &middot;
+     <a href="pages/workflow.html">Review workflow</a></p>
+</footer>
+</main></div></body></html>

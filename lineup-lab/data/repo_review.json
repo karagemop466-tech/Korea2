@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Line-by-Line Repository & Official Source Review (karagemop466-tech/Korea2)",
+    "reviewed_on": "2026-11-12",
+    "reviewer_session": "arena/bea6e3be-korea2",
+    "counts": {
+      "total_checks": 16,
+      "verified": 6,
+      "flagged_irregularity": 10
+    }
+  },
+  "rows": [
+    {
+      "id": "REV-01",
+      "target": "data/derived/games.csv.gz (2020 REG)",
+      "line_ref": "rows 2020 REG (256 games)",
+      "verdict": "VERIFIED",
+      "finding": "All 32 clubs' 2020 regular-season W-L-T, PF, and PA match live NFL.com 2020 standings 32/32 exactly.",
+      "sources": ["SRC-NFL-STANDINGS-2020", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REV-02",
+      "target": "data/derived/games.csv.gz (2025 REG)",
+      "line_ref": "rows 2025 REG (272 games)",
+      "verdict": "VERIFIED",
+      "finding": "All 32 clubs' 2025 regular-season W-L-T, PF, and PA match live NFL.com 2025 standings 32/32 exactly.",
+      "sources": ["SRC-NFL-STANDINGS-2025", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REV-03",
+      "target": "data/derived/games.csv.gz + Week 8 MNF + Week 9 (2026 REG)",
+      "line_ref": "2026 REG (120 committed + 16 live finals = 136 games)",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "Committed extract stops at 2026-11-01 (missing Week 8 MNF CHI 34 @ SEA 17 and all 15 Week 9 finals). Combining the 120 committed finals with the 16 official NFL.com finals reconciles all 32/32 teams' W-L-T, PF, and PA on 2026-11-12.",
+      "sources": ["SRC-NFL-STANDINGS-2026", "SRC-NFL-SCHED-W8", "SRC-NFL-SCHED-W9"]
+    },
+    {
+      "id": "REV-04",
+      "target": "data/derived/games.csv.gz (Week 9-10 QBs & Week 10 lines)",
+      "line_ref": "2026 Weeks 9-10 rows",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "games.csv.gz projects Tyler Huntley for BAL Week 9 (actually 3rd-string Joe Fagnano started after Huntley's season-ending turf toe IR), Deshaun Watson for CLE Week 9 (Shedeur Sanders started), Kirk Cousins on LV (traded Nov 10 to MIN), and leaves all 14 Week 10 lines/QBs blank.",
+      "sources": ["SRC-NFL-BAL-JACKSON", "SRC-NFL-ROUNDUP-NOV11", "SRC-NFL-SCHED-W10"]
+    },
+    {
+      "id": "REV-05",
+      "target": "data/derived/player_week.csv.gz & scripts/export_extracts.py",
+      "line_ref": "export_extracts.py:46-53; 208,231 rows",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "Contains 115,078 DB/DL/LB rows and 10,601 OL rows (58.4% of rows) with zero populated numeric stats because defensive stats and snap counts were pruned from COLUMNS['player_week.csv.gz']. Cumulative passing yards stop at Week 8 (e.g. Jordan Love 2,246 vs live Week 9 NFL.com 2,618).",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-PASSING-2026"]
+    },
+    {
+      "id": "REV-06",
+      "target": ".github/workflows/fetch-nflverse.yml",
+      "line_ref": "lines 43, 65-72, 84, 87, 93",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "Active workflow bug: downloads .csv files for 12 seasons (2015-2026) at lines 43 & 65-72, runs export_extracts.py (line 84) which tries to read .parquet files (line 88), and asserts need_seasons = list(range(2012, 2027)) (15 seasons) at line 93 while comment line 87 says 'twelve'.",
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REV-07",
+      "target": "scripts/analyze_strategies.py",
+      "line_ref": "lines 50, 66 (DEFAULT_AMERICAN)",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "Root script silently substitutes DEFAULT_AMERICAN (-110) whenever spread/total odds are NaN (affecting 1,902 pre-2018 spread rows and 1,904 total rows). Lineup Lab uses exact stored odds only and excludes unpriced rows.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-MGC-SPORTS"]
+    },
+    {
+      "id": "REV-08",
+      "target": "data/standings_2020.csv",
+      "line_ref": "lines 1-33",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "Sibling CSV mixes postseason games into 2020 regular season (KC 16-3 vs 14-2; BUF 15-4 vs 13-3) and uses outdated OAK code instead of LV.",
+      "sources": ["SRC-NFL-STANDINGS-2020", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REV-09",
+      "target": "scripts/build_site.py vs root pages/",
+      "line_ref": "pages/suggestions.html, decision-questions.html, injuries-depth.html",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "PR #66 manually added three root pages with <meta name='generator' content='line-lab/scripts/build_site.py'>, but scripts/build_site.py contains 0 references to those filenames; running scripts/build_site.py orphans them from navigation.",
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REV-10",
+      "target": "audit/check_site.py repository scan",
+      "line_ref": "113 HTML pages; 3,482 rows",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "Repository audit prints 2,142 source-domain/ID flags across sibling folders (nfl-lines, origination-lab, origination, quant-lab, suggestions, root pages); skill-lab/ and lineup-lab/ maintain 0 flags by placing primary-publisher https:// links on every <tbody><tr>.",
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REV-11",
+      "target": "data/derived/strategies.json & verification.json",
+      "line_ref": "strategies.json meta; verification.json summary",
+      "verdict": "VERIFIED_WITH_NOTE",
+      "finding": "Strict JSON parsing passes across all data/derived/*.json; however strategies.json meta.n_strategies_tested reports 7 while strategies array holds 9 entries (n_tests=9), and verification.json logs 3 broken/stale legacy URLs.",
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REV-12",
+      "target": "NFL.com REG10 Injury Hub vs Nov 11 League Roundup",
+      "line_ref": "SEA, CIN, LAC, BAL sections on 2026-11-12",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "Official REG10 injury table displays 'No Injuries Reported' for SEA and CIN on 2026-11-12, contradicting NFL.com's own official Nov 11 roundup detailing 12 SEA injuries (incl. QB1 Darnold Out) and 3 CIN injuries.",
+      "sources": ["SRC-NFL-INJURIES-W10", "SRC-NFL-ROUNDUP-NOV11"]
+    },
+    {
+      "id": "REV-13",
+      "target": "9 Official Club Depth Charts vs Official League Injury Lists",
+      "line_ref": "patriots.com, colts.com, commanders.com, miamidolphins.com, seahawks.com, baltimoreravens.com, therams.com, detroitlions.com, packers.com",
+      "verdict": "IRREGULARITY_FLAGGED",
+      "finding": "Club depth charts omit injured 53-man roster players (WAS Lucas Patrick, NE Greg Van Roten, DET Kerby Joseph, GB Micah Parsons), leave 2nd-4th string slots blank (MIA QB2-4 & K, IND LS2-4), and carry explicit 'unofficial' disclaimers.",
+      "sources": ["SRC-CLUB-NE-DC", "SRC-CLUB-MIA-DC", "SRC-CLUB-WAS-DC", "SRC-CLUB-DET-DC", "SRC-CLUB-GB-DC", "SRC-NFL-INJURIES-W10", "SRC-NFL-TEAMS"]
+    },
+    {
+      "id": "REV-14",
+      "target": "data/derived/diag_signs.json & spread_line convention",
+      "line_ref": "7,087 regular-season games with lines",
+      "verdict": "VERIFIED",
+      "finding": "Empirical sign-convention check verified: positive spread_line indicates home team favored (corr(spread_line, result)=+0.425; home ML favorites average +5.673 spread_line vs -4.659 for home dogs).",
+      "sources": ["SRC-GITHUB-REPO", "SRC-OPS-RULEBOOK"]
+    },
+    {
+      "id": "REV-15",
+      "target": "tests/check_site.py, tests/check_derived.py, scripts/validate_data.py, pipeline/check_links.py",
+      "line_ref": "CI checks",
+      "verdict": "VERIFIED",
+      "finding": "All existing repository link, strict JSON, and source-allowlist CI checks pass on checkout; Lineup Lab adds verify_lineup_lab.py + .github/workflows/lineup-lab.yml in non-overlapping scope.",
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REV-16",
+      "target": "skill-lab/** and suggestions/** sibling directories",
+      "line_ref": "Read-only scope boundary",
+      "verdict": "VERIFIED",
+      "finding": "Inspected read-only without modification. skill-lab verifies cleanly (0 audit flags) as of 2026-11-02; suggestions adds 2026-11-12 schema/design templates but contains no empirical 2015-2026 backup-dropoff model or live 32-team Week 9-10 reconciliation.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-STANDINGS-2026"]
+    }
+  ]
+}

@@ -108,6 +108,8 @@ def page(title: str, body: str, depth: int) -> str:
 <footer>
 <p>Decision Desk · session <code>arena/aa66ed82-korea2</code> · every row is source-linked ·
 unverified values are blank and flagged, never inferred · captured 2026-11-12.</p>
+<p>Research and measurement, not betting advice. Every figure is computed from the sources
+listed on the Sources page; nothing is estimated by hand.</p>
 </footer>
 </body>
 </html>
@@ -401,6 +403,7 @@ Nothing in this register has been implemented. To act on one: set its decision t
 <li>Luck is priced (Pythagorean R² = 0.819, year-over-year luck r = 0.024, p = 0.49) but a skill-based ranking
 of qualified strategies has never run because nothing qualified — see Q-14.</li>
 <li>Controls (e.g. skill-lab STR-16, a deliberately leaky strategy) are excluded from reward consideration.</li>
+<li>Scope: {esc(lbmeta.get("scope_note", ""))}</li>
 </ul>
 </section>
 """
@@ -551,7 +554,7 @@ plus {icount_correlations(leaderboard)} measured correlation rows.</li>
 <section>
 <h2>Trust statement</h2>
 <p>No number on this site was estimated. If an official source did not state it, the cell is blank and the
-irregularity is on the <a href="flagged.html">Flagged</a> page. Sources: <a href="sources.html">49 registered, all fetched 2026-11-12</a>.</p>
+irregularity is on the <a href="flagged.html">Flagged</a> page. Sources: <a href="sources.html">{len(sources)} registered, all fetched 2026-11-12</a>.</p>
 </section>
 """
     write("pages/executive.html", page("Executive summary", body, 1))

@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "title": "Flagged for review — Verify Hub (cross-lab)",
+    "session": "arena/f1123a1a-korea2",
+    "generated_utc": "2026-11-12",
+    "policy": "Every value cell is blank. Nothing flagged here blocks publication; each row is published so a reviewer can decide. Rows marked 'carried' were first flagged by a prior session and remain open."
+  },
+  "rows": [
+    {
+      "id": "VH-FL-01",
+      "item": "Historical player-prop closing prices (any market, any season)",
+      "value": "",
+      "severity": "high",
+      "reason": "No official or feed source publishes historical prop prices; every prop ROI in the repository is therefore blank by policy (C-01).",
+      "action": "Acquire a licensed historical odds feed (Q-05) or run a forward-only price log; until then prop strategies stay paper.",
+      "sources": ["VH-SRC-10"]
+    },
+    {
+      "id": "VH-FL-02",
+      "item": "Opening lines / closing-line-value measurement",
+      "value": "",
+      "severity": "high",
+      "reason": "No opening-line archive exists in the committed data or any official source (C-02).",
+      "action": "Same acquisition route as VH-FL-01 (Q-06).",
+      "sources": ["VH-SRC-10"]
+    },
+    {
+      "id": "VH-FL-03",
+      "item": "Verified execution access, limits, jurisdiction",
+      "value": "",
+      "severity": "high",
+      "reason": "Nothing in the repository verifies an account, an executable price, a limit or a licence (C-03).",
+      "action": "Verify jurisdiction and operator before any capital decision (Q-09); gates G8/G9 stay open until then.",
+      "sources": ["VH-SRC-09"]
+    },
+    {
+      "id": "VH-FL-04",
+      "item": "Leaderboard reward funding",
+      "value": "",
+      "severity": "medium",
+      "reason": "All four published reward schedules are unfunded paper (C-04). The NFL Big Data Bowl 2027 prize structure is a precedent, not funding for this project.",
+      "action": "Owner decision on funding (Q-10); until then label every schedule 'paper points' (SG-04).",
+      "sources": ["VH-SRC-08"]
+    },
+    {
+      "id": "VH-FL-05",
+      "item": "League-published depth strings (1st-4th) for offense and defense",
+      "value": "",
+      "severity": "high",
+      "reason": "NFL.com club depth-chart path returns 404 (VH-SRC-03, checked 2026-11-12); the official injury report has no depth column (C-05).",
+      "action": "Adopt the inferred usage-tier design with explicit labels and keep official cells blank (Q-08, SG-02).",
+      "sources": ["VH-SRC-03", "VH-SRC-02"]
+    },
+    {
+      "id": "VH-FL-06",
+      "item": "NFL Operations injury-report policy page (cited as a register source)",
+      "value": "",
+      "severity": "medium",
+      "reason": "The URL returns 404 on 2026-11-12 (VH-SRC-05); first flagged 2026-11-01 by the root session and still dead (C-06, I-01).",
+      "action": "Mark the register entry dead with retrieval dates, or replace with a serving official copy (SG-07).",
+      "sources": ["VH-SRC-05"]
+    },
+    {
+      "id": "VH-FL-07",
+      "item": "QB-WR1 correlation coefficient quoted without a definition label",
+      "value": "",
+      "severity": "medium",
+      "reason": "Four different coefficients (0.562 / 0.631 / 0.614 / 0.372) are published across labs for differently defined series; bare quotes create false contradictions (I-02).",
+      "action": "Every quote carries definition + window + n + as-of date (SG-06, SG-08).",
+      "sources": ["VH-SRC-06"]
+    },
+    {
+      "id": "VH-FL-08",
+      "item": "STR-16 integrity control (+64.81% ROI, 8/10 gates) is a leakage detector, not a strategy",
+      "value": "",
+      "severity": "medium",
+      "reason": "A reader could mistake the deliberate-leak control for performance (I-03).",
+      "action": "Keep the DISQUALIFIED label adjacent to every STR-16 number; never sort it into a performance table.",
+      "sources": ["VH-SRC-09"]
+    },
+    {
+      "id": "VH-FL-09",
+      "item": "Eight parallel hubs implement overlapping requirements",
+      "value": "",
+      "severity": "medium",
+      "reason": "suggestions/, decision-desk/, decision-hub/, nfl-command/, nfl-insights/, site/, root pages/ and skill-lab/ all publish suggestions/questions/injuries/leaderboards (I-04).",
+      "action": "Owner decision SG-01/SG-11: one canonical site + this hub as the triage layer; sibling labs become archives.",
+      "sources": ["VH-SRC-09"]
+    },
+    {
+      "id": "VH-FL-10",
+      "item": "Four different reward schedules for one competition",
+      "value": "",
+      "severity": "low",
+      "reason": "Root 3-tier, skill-lab 4-tier points, origination-lab pool-share, suggestions 3-tier - all unfunded (I-06).",
+      "action": "Adopt one (SG-04) and archive the rest.",
+      "sources": ["VH-SRC-08"]
+    },
+    {
+      "id": "VH-FL-11",
+      "item": "Mixed as-of dates across published numbers (2026-10-29 / 11-01 / 11-02 / 11-12)",
+      "value": "",
+      "severity": "low",
+      "reason": "Numbers computed on different data cuts appear side by side (I-07); live standings have moved since every snapshot.",
+      "action": "Stamp as-of on every value (SG-06) and align refresh cadence (SG-10).",
+      "sources": ["VH-SRC-01"]
+    },
+    {
+      "id": "VH-FL-12",
+      "item": "Carried flags from sibling registers still open (11 root + 12 skill-lab + 12 suggestions + 9 verification items)",
+      "value": "",
+      "severity": "low",
+      "reason": "Examples: injury page week-title mismatch (REG7), archived DraftKings rules edition 8.1.24 vs active 10.7.26, NOWData preliminary values, weather coverage ~57% (I-08).",
+      "action": "Triage in one pass using this hub's registers (SG-11); none block publication.",
+      "sources": ["VH-SRC-09"]
+    }
+  ]
+}

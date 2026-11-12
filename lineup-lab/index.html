@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Overview | Lineup Lab</title>
+  <meta name="description" content="Lineup Lab command center summarizing 2026 NFL reconciliation, lineup cascades, and 10-gate strategy validation.">
+  <meta name="generator" content="lineup-lab/scripts/build_site.py">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <span class="mark">LL</span>
+      <span class="brand-text">
+        <strong>LINEUP LAB</strong>
+        <small>NFL RESEARCH &amp; AUDIT</small>
+      </span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="index.html" class="active" aria-current="page">Overview</a><div class="nav-group-label">Core Analytics</div><a href="pages/executive.html">Executive summary</a><a href="pages/lines.html">Originated lines</a><a href="pages/props.html">Player props</a><a href="pages/correlation.html">Correlation &amp; parlays</a><div class="nav-group-label">Competition &amp; Luck</div><a href="pages/strategies.html">Strategy lab</a><a href="pages/leaderboard.html">Leaderboard</a><a href="pages/luck.html">Removing luck</a><div class="nav-group-label">Lineup Intelligence</div><a href="pages/injuries-depth.html">Injury &amp; depth</a><a href="pages/suggestions.html">Suggestions</a><a href="pages/decision-questions.html">Decision questions</a><div class="nav-group-label">Governance &amp; Audit</div><a href="pages/verification.html">Verification &amp; review</a>
+    </nav>
+    <div class="sidebar-card">
+      <div><span class="status-dot"></span>Posture: Research Only</div>
+      <strong>0 of 8 strategies approved</strong>
+      <span>Verified 2026-11-12 &middot; 32/32 NFL.com Week 9 reconciliation &middot; 0% live capital.</span>
+    </div>
+  </aside>
+  <main id="main">
+    <header class="topbar">
+      <span class="crumb">LINEUP LAB / OVERVIEW</span>
+      <div class="top-actions">
+        <a class="pill-link" href="pages/suggestions.html">Suggestions board</a>
+        <a class="pill-link" href="pages/verification.html">Audit &amp; verification &nearr;</a>
+      </div>
+    </header>
+    
+<div class="hero">
+  <div class="eyebrow">COMMAND CENTER &middot; 2026-11-12 VERIFIED</div>
+  <h1>Independent NFL Lineup, Market Origination &amp; Risk Lab</h1>
+  <p class="lede">Strict zero-leakage, zero-imputation audit across 2015&ndash;2026 NFL data, official <code>NFL.com</code> Week 9 standings (32/32 reconciled), Week 10 injury/depth-chart cascades across 9 clubs, and a 10-gate strategy competition. <strong>Capital posture: 0% live deployment (0 of 8 approved).</strong></p>
+</div>
+
+<div class="banner bad">
+  <div>
+    <strong>Live Capital Allocation Hold: 0 of 8 Candidates Approved</strong>
+    <p>Closing spreads beat our out-of-sample Ridge model (<strong>9.737</strong> vs <strong>10.284</strong> MAE; residual &beta; = -0.1453, p = 0.2280), and top raw spread/total ideas (S1 +5.36%, S3 +9.20%) fail NIST z-test, BH FDR (q = 0.437), and Empirical Bayes shrinkage.</p>
+  </div>
+  <a class="pill-link" href="pages/leaderboard.html">Inspect 10-gate leaderboard &rarr;</a>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi"><div class="kpi-label">Official Reconciliation</div><div class="kpi-val">32/32</div><div class="kpi-sub">2026 Wk 9, 2025 &amp; 2020 exact W-L-T / PF-PA</div></div>
+  <div class="kpi"><div class="kpi-label">OOS Origination MAE</div><div class="kpi-val">10.28 vs 9.74</div><div class="kpi-sub">2023&ndash;2026 Ridge vs Closing Spread</div></div>
+  <div class="kpi"><div class="kpi-label">Raw Backup QB Drop</div><div class="kpi-val">&minus;5.47 PPG</div><div class="kpi-sub">&lt;5 career starts (18.13 vs 23.60 PPG); 48.5% ATS</div></div>
+  <div class="kpi"><div class="kpi-label">QB &harr; WR1 Correlation</div><div class="kpi-val">r = 0.564</div><div class="kpi-sub">Copula 2-leg: 34.5% (+190 fair vs +300 naive)</div></div>
+  <div class="kpi"><div class="kpi-label">Skill vs Luck Split-Half</div><div class="kpi-val">0.49 vs 0.05</div><div class="kpi-sub">Net EPA/gm persistence vs 1-score win%</div></div>
+  <div class="kpi"><div class="kpi-label">Live Wk 10 Feed Audits</div><div class="kpi-val">4 + 9</div><div class="kpi-sub">4 REG10 omissions + 9 club depth-chart audits</div></div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h3>Week 10 Live Lineup &amp; Feed Alerts (2026-11-12)</h3>
+    <ul>
+      <li><strong>REG10 Feed Omissions:</strong> Official league page prints &ldquo;No Injuries Reported&rdquo; for SEA, CIN, BAL &amp; LAC despite Nov 11 roundup reporting 12 SEA injuries (Sam Darnold Out, Cross/Nelson/Williams/Reed DNP) &amp; BAL QBs Jackson/Huntley on IR.</li>
+      <li><strong>9-Club Stale Depth Charts:</strong> LA still prints retired Aaron Donald at DE1; GB omits Micah Parsons; DET omits Kerby Joseph; MIA leaves QB2&ndash;4 &amp; K blank ahead of Kyle McCord&rsquo;s 1st start; BAL omits Brissett &amp; Fagnano.</li>
+      <li><strong>Defensive Extract Emptiness (FL-04):</strong> 125,679 DB/DL/LB/OL rows in <code>player_week.csv.gz</code> are 99.75% zero with 0 snap counts; individual defender historical dropoffs remain explicitly blank.</li>
+    </ul>
+    <a class="card-link" href="pages/injuries-depth.html">Open Injury &amp; Depth-Chart Cascade Lab &rarr;</a>
+  </div>
+  <div class="card">
+    <h3>Forward Decision &amp; Verification Highlights</h3>
+    <ul>
+      <li><strong>Zero -110 Imputation:</strong> Backtests evaluate strictly 2018&ndash;2026 Wk 8 games (2,247 games, 100% stored closing odds; median &minus;108/&minus;108, true ~3.4% vig).</li>
+      <li><strong>Repo Review (REV-01..REV-16):</strong> Isolated sibling bugs in <code>scripts/analyze_strategies.py</code> (-110 fallback), <code>data/standings_2020.csv</code>, and <code>fetch-nflverse.yml</code> without touching sibling files.</li>
+      <li><strong>Actionable Review Board:</strong> 12 proposed suggestions (SUG-01..12) and 14 structured decision questions (Q-01..14) before changing code or staking capital.</li>
+    </ul>
+    <a class="card-link" href="pages/decision-questions.html">Review Must-Answer Questions &rarr;</a>
+  </div>
+</div>
+
+<h2>Top 5 Strategy Competition Snapshot (2018&ndash;2026 Wk 8)</h2>
+<div class="table-wrap"><table><caption>Strictly stored closing odds only; sorted by Empirical Bayes shrunk ROI (zero -110 imputation).</caption><thead><tr><th>Strategy</th><th>Bets</th><th>Win%</th><th>Raw ROI</th><th>EB ROI</th><th>BH q</th><th>Status</th><th>Sources</th></tr></thead><tbody><tr><td><strong>Divisional underdog (+4.5 to +10.5)</strong><br><span class="muted mono">S1_DIV_DOG</span></td><td class="num">335</td><td class="num">54.93%</td><td class="num">+5.36%</td><td class="num">-2.14%</td><td class="num">0.4370</td><td><span class="badge bad">REJECTED</span> <span class="muted">(6/10)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" target="_blank" rel="noopener" title="NIST/SEMATECH e-Handbook — Binomial Proportion Test (Section 7.2.4)">NIST (itl.nist.gov)</a></td></tr><tr><td><strong>Outdoor high-wind Under (wind &gt;= 15 mph)</strong><br><span class="muted mono">S3_HIGH_WIND_UNDER</span></td><td class="num">152</td><td class="num">56.58%</td><td class="num">+9.20%</td><td class="num">-2.79%</td><td class="num">0.4370</td><td><span class="badge bad">REJECTED</span> <span class="muted">(6/10)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.weather.gov/safety/wind" target="_blank" rel="noopener" title="NOAA / National Weather Service — High Wind Thresholds">National Weather Ser…</a></td></tr><tr><td><strong>Walk-forward Ridge spread edge &gt;= 3.0 pts</strong><br><span class="muted mono">S5_RIDGE_EDGE_3PT</span></td><td class="num">807</td><td class="num">51.18%</td><td class="num">-1.59%</td><td class="num">-3.25%</td><td class="num">0.6726</td><td><span class="badge bad">REJECTED</span> <span class="muted">(4/10)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://scikit-learn.org/stable/modules/linear_model.html" target="_blank" rel="noopener" title="scikit-learn Official Documentation — Linear &amp; Ridge Regression (1.9.1)">scikit-learn (scikit…</a></td></tr><tr><td><strong>Negative Control: Deterministic SHA-256 Coin Flip</strong><br><span class="muted mono">C2_CTRL_COIN_FLIP</span></td><td class="num">2189</td><td class="num">49.75%</td><td class="num">-3.81%</td><td class="num">-4.04%</td><td class="num">0.2723</td><td><span class="badge bad">REJECTED</span> <span class="muted">(2/10)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" target="_blank" rel="noopener" title="NIST/SEMATECH e-Handbook — Binomial Proportion Test (Section 7.2.4)">NIST (itl.nist.gov)</a></td></tr><tr><td><strong>Fade rookie/raw backup QB (&lt; 5 career starts)</strong><br><span class="muted mono">S6_FADE_RAW_BACKUP_QB</span></td><td class="num">266</td><td class="num">48.87%</td><td class="num">-5.23%</td><td class="num">-4.65%</td><td class="num">0.4544</td><td><span class="badge bad">REJECTED</span> <span class="muted">(4/10)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener" title="NFL.com Official Week 10 Injury Report Hub (REG10)">NFL (nfl.com)</a></td></tr></tbody></table></div>
+
+    <footer class="footer">
+      <div>Lineup Lab &middot; Branch <code>arena/bea6e3be-korea2</code> &middot; Verified 2026-11-12 &middot; Pure-Python 3.11 stdlib pipeline &middot; No <code>-110</code> or unverified data imputation.</div>
+      <div>
+        <a href="https://www.ncpgambling.org/help-treatment/faqs-what-is-problem-gambling/" target="_blank" rel="noopener">Responsible Gaming (NCPG)</a> &middot;
+        <a href="https://massgaming.com/about/sports-wagering-in-massachusetts/" target="_blank" rel="noopener">MGC</a> &middot;
+        <a href="https://www.gaming.nv.gov/" target="_blank" rel="noopener">NV GCB</a>
+      </div>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

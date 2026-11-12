@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "verified_on": "2026-11-12",
+    "posture": "PROPOSED review board — zero code or capital changes executed until decision-maker approves chosen path.",
+    "total_suggestions": 12
+  },
+  "rows": [
+    {
+      "id": "SUG-01",
+      "area": "Injury Feed Engineering",
+      "idea": "Cross-check weekly league table (REG10) against official NFL.com practice roundups, IR wire, and 90-minute inactives",
+      "evidence": "REG10 prints 'No Injuries Reported' for SEA, CIN, BAL, and LAC on 2026-11-12 despite Nov 11 official roundup detailing 12 SEA injuries (Darnold Out, Cross/Nelson/Williams/Reed DNP), 3 CIN injuries, and BAL IR QBs Jackson/Huntley.",
+      "expected_impact": "Eliminates blind spots when scraping league summary pages before kickoff.",
+      "effort": "Low (1 script)",
+      "recommended_path": "BUILD — Dual-feed parser flagging any team with empty REG table vs roundup/IR mentions.",
+      "status": "PROPOSED",
+      "sources": ["SRC-NFL-INJURIES-W10", "SRC-NFL-ROUNDUP-NOV11", "SRC-NFL-SEA-DARNOLD", "SRC-NFL-BAL-JACKSON"]
+    },
+    {
+      "id": "SUG-02",
+      "area": "Club Depth Charts",
+      "idea": "Validate 'unofficial' club depth charts against active roster & game-status reports before projecting next-man-up cascades",
+      "evidence": "9 audited club depth charts show Aaron Donald still at LA DE1, GB omitting Micah Parsons (LP), DET omitting Kerby Joseph (LP), NE omitting Greg Van Roten (LP), WAS omitting Lucas Patrick (Out), BAL omitting Brissett/Patterson, and MIA leaving QB2-QB4 & K blank.",
+      "expected_impact": "Prevents catastrophic starter misidentification in automated lineup cascades.",
+      "effort": "Medium (2 scripts + manual check)",
+      "recommended_path": "BUILD — Cross-check club DC strings against official NFL.com team rosters & active gamebooks; never auto-trust stale club HTML.",
+      "status": "PROPOSED",
+      "sources": ["SRC-CLUB-LAR-DC", "SRC-CLUB-GB-DC", "SRC-CLUB-DET-DC", "SRC-CLUB-MIA-DC", "SRC-CLUB-BAL-DC", "SRC-NFL-TEAMS"]
+    },
+    {
+      "id": "SUG-03",
+      "area": "Defense & OL Snap Data",
+      "idea": "Ingest weekly defensive/OL snap percentages and Genius Sports/NGS charting data",
+      "evidence": "125,679 of 208,231 rows (60.4%) in player_week.csv.gz belong to DB/DL/LB/OL yet 99.75% carry zero stats and zero snap counts; historical individual CB/EDGE/LT dropoffs are unverifiable.",
+      "expected_impact": "Unlocks direct causal valuation of Week 10 clusters like SF Trent Williams, PIT Watt/Heyward, LA McDuffie/Curl, and IND's 4 DNP defenders.",
+      "effort": "Medium-High (new ingestion)",
+      "recommended_path": "BUY/INGEST — Add verified weekly snap-count & participation feed; keep historical defensive dropoff blank until loaded.",
+      "status": "PROPOSED",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-GENIUS", "SRC-OPS-NGS"]
+    },
+    {
+      "id": "SUG-04",
+      "area": "Market Odds Timestamps",
+      "idea": "Store timestamped opening, mid-week practice, T-90m, and closing odds snapshots",
+      "evidence": "games.csv.gz lacks pre-2018 odds (1,904 missing totals), lacks opening lines/timestamps, and leaves all 14 Week 10 lines blank as of 2026-11-12.",
+      "expected_impact": "Enables real Closing Line Value (CLV) attribution instead of static close-only backtests.",
+      "effort": "Medium (licensed feed)",
+      "recommended_path": "DEFER LIVE / SOURCE FEED — Do not impute -110 or backfill missing prices; integrate licensed odds feed before testing timing edges.",
+      "status": "PROPOSED",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-SCHED-W10"]
+    },
+    {
+      "id": "SUG-05",
+      "area": "Player Prop Odds History",
+      "idea": "Build a verified multi-season database of player-prop opening and closing lines & vig",
+      "evidence": "Ex-ante trailing prop calibration achieves MAE 59.4 pass yds / 26.9 rush yds / 28.4 rec yds (r=0.22..0.31), yet 0 historical prop sportsbook prices exist anywhere in the repo (FL-01).",
+      "expected_impact": "Makes player-prop strategy backtesting mathematically possible for the first time.",
+      "effort": "High (licensed historical data)",
+      "recommended_path": "DEFER STAKING — Publish stat forecast accuracy only; withhold all prop ROI/edge claims until >= 2 seasons of real prop odds are archived.",
+      "status": "PROPOSED",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-PASSING-2026", "SRC-DK-PARLAY"]
+    },
+    {
+      "id": "SUG-06",
+      "area": "Lineup-Conditioned Origination",
+      "idea": "Condition team-margin Ridge origination on confirmed QB tenure & WR1/RB1 availability",
+      "evidence": "Team-stat-only Ridge has 10.284 MAE vs market 9.737 MAE (residual slope = -0.1453, p = 0.228); meanwhile within-season backup QBs (<5 starts, n=438) score 18.13 PPG (-5.47 PPG vs incumbent QB1).",
+      "expected_impact": "Prevents stale team ratings from misquoting backup-QB games like MIA@IND (McCord), LA@ARI (Beck), and SEA@LV (Lock).",
+      "effort": "Low-Medium",
+      "recommended_path": "BUILD — Add explicit ex-ante starter/backup adjustment term in benchmark origination.",
+      "status": "PROPOSED",
+      "sources": ["SRC-SKLEARN-LINEAR", "SRC-GITHUB-REPO", "SRC-NFL-MIA-WILLIS", "SRC-NFL-SEA-DARNOLD"]
+    },
+    {
+      "id": "SUG-07",
+      "area": "Luck-Adjusted Ratings",
+      "idea": "Weight Net EPA/gm (r=0.491) heavily over Win%-Pyth% residuals (r=0.059) and 1-score record (r=0.050)",
+      "evidence": "Through 2026 Week 9, DEN is 7-2 with 6-0 in 1-score games (+2.17 luck wins, -0.32 Net EPA/gm) while TB is 3-6 with 0-6 in 1-score games (-2.17 luck wins, +3.66 Net EPA/gm); yet blind luck-fade S4 returned -6.45% ROI because markets already discount standings.",
+      "expected_impact": "Improves power-rating stability without falling into naive 'fade lucky team blindly' trap.",
+      "effort": "Low",
+      "recommended_path": "BUILD — Incorporate EPA-weighted strength in power ratings; reject naive standalone luck-fade bets.",
+      "status": "PROPOSED",
+      "sources": ["SRC-NFL-STANDINGS-2026", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "SUG-08",
+      "area": "Same-Game Parlay Pricing",
+      "idea": "Benchmark quoted SGP payouts against bivariate Gaussian copula probabilities",
+      "evidence": "Empirical 2018-2026 correlations reach r=0.5640 (QB pass yds <-> WR1 rec yds -> 34.54% copula joint probability = +190 fair vs +300 naive) and r=0.3372 (RB1 rush yds <-> margin); DraftKings SGPs price correlation internally.",
+      "expected_impact": "Identifies toxic anti-correlated SGP legs and measures exact parlay vig haircut.",
+      "effort": "Low",
+      "recommended_path": "BUILD — Keep copula pricer as diagnostic calculator; never bet SGPs blindly assuming +300 independence.",
+      "status": "PROPOSED",
+      "sources": ["SRC-DK-PARLAY", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "SUG-09",
+      "area": "Validation & Risk Posture",
+      "idea": "Maintain 10-gate hard filter (NIST z-test, BH FDR q<0.10, Empirical Bayes > 0%) before capital allocation",
+      "evidence": "0 of 8 tested strategies pass all 10 gates: even S1_DIV_DOG (+5.36% ROI) and S3_HIGH_WIND_UNDER (+9.20% ROI) fail NIST z (p=0.295 / 0.221), BH FDR (q=0.437), and EB shrinkage (-2.14% / -2.79%).",
+      "expected_impact": "Protects bankroll from overfitting finite-sample noise and market vig.",
+      "effort": "Zero (already live in Lineup Lab)",
+      "recommended_path": "KEEP — Maintain strict 0% live bankroll deployment posture.",
+      "status": "PROPOSED",
+      "sources": ["SRC-NIST-PROP-TEST", "SRC-NWS-WIND", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "SUG-10",
+      "area": "Repo Integrity & Bug Fixes",
+      "idea": "Remediate 5 confirmed repo/pipeline bugs found in Lineup Lab's Repo Review (REV-01..REV-16)",
+      "evidence": "scripts/analyze_strategies.py:50,66 silently imputes -110 odds; data/standings_2020.csv has contaminated playoff wins & obsolete codes; fetch-nflverse.yml references missing CSVs and wrong season count; root pages/suggestions.html is orphaned.",
+      "expected_impact": "Eliminates misleading metrics and broken CI workflows across root repository.",
+      "effort": "Medium (separate PR on main)",
+      "recommended_path": "SCHEDULE CLEANUP PR — Document cleanly in Lineup Lab now without modifying sibling directories; patch root separately after coordination.",
+      "status": "PROPOSED",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-STANDINGS-2020"]
+    },
+    {
+      "id": "SUG-11",
+      "area": "Game-Day Execution Window",
+      "idea": "Enforce T-85 minute Sunday pre-kickoff verification against mandatory NFL Rule 19-2 inactive list",
+      "evidence": "Rule 19-2 requires final 48-man game-day roster / inactive filings exactly 90 minutes before kickoff; Week 9 saw late inactive switches (Watson -> Sanders, Huntley -> Fagnano).",
+      "expected_impact": "Eliminates stale-starter assumption errors on late scratch slates.",
+      "effort": "Low",
+      "recommended_path": "BUILD — Add Sunday T-85m checklist gate before releasing final Week 10 matchup briefs.",
+      "status": "PROPOSED",
+      "sources": ["SRC-OPS-RULEBOOK", "SRC-NFL-ROUNDUP-NOV11"]
+    },
+    {
+      "id": "SUG-12",
+      "area": "Regulatory & Research Governance",
+      "idea": "Embed state wagering disclosures, no-imputation badges, and responsible-gaming links across deliverables",
+      "evidence": "Massachusetts Gaming Commission, Nevada Gaming Control Board, and NCPG require transparent odds disclosures and prohibit misleading guaranteed-profit claims.",
+      "expected_impact": "Maintains audit-grade research compliance and avoids prohibited advisory posture.",
+      "effort": "Low (embedded)",
+      "recommended_path": "KEEP — Research & benchmark publication only; zero automated execution.",
+      "status": "PROPOSED",
+      "sources": ["SRC-MGC-SPORTS", "SRC-NV-GCB", "SRC-NCPG-FAQ"]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 """Generate the static dashboard from the computed JSON.
 
 No number on the site is typed by hand: every value is read from data/derived/*.json, which is
-produced by the analysis scripts from the downloaded official feeds. If a JSON file is missing the
+produced by the analysis scripts from downloaded nflverse community extracts (not an NFL-published feed). If a JSON file is missing the
 page renders a build notice instead of a guessed value.
 """
 from __future__ import annotations
@@ -135,15 +135,16 @@ def page_index() -> str:
   <div class="eyebrow">INDEPENDENT NFL RESEARCH</div>
   <h1>Originate the line.<br><em>Then try to prove it wrong.</em></h1>
   <p class="lede">This workspace builds its own NFL spreads, totals, moneylines and player-prop
-  lines from the official play-by-play feed, measures the correlations that decide parlay prices,
+  lines from community-maintained nflverse game and weekly-stat extracts (not directly published by the NFL), measures the correlations that decide parlay prices,
   and puts every candidate strategy through ten validation gates. The point is not to publish picks
   &mdash; it is to find out, honestly, which signals survive contact with the closing line.</p>
 </div>
-<div class="notice"><span class="dot"></span><div>
-  <strong>Current verdict: nothing has earned capital.</strong><br>
-  The pipeline runs end to end on live 2026 data, and the answer this week is that the closing
-  market beats our model. That is a result, not a failure.</div>
-  <a href="pages/executive.html">Read the executive summary &rarr;</a></div>
+<div class="notice warn"><span class="dot"></span><div>
+  <strong>Research snapshot through {esc(W.as_of())} — not current to the live slate.</strong><br>
+  Inputs are community-maintained nflverse extracts, not an NFL-published feed. The official NFL
+  Week 10 schedule is newer than this snapshot; Week 9 / next-slate projections are stale. In this
+  snapshot the closing market beats the model and no strategy is approved.</div>
+  <a href="pages/flagged.html">Review data limits &rarr;</a></div>
 '''
         + kpi_row(cards)
         + section("The five findings that matter", findings, "AT A GLANCE")
@@ -159,7 +160,7 @@ def page_index() -> str:
     <li>No historical player-prop prices exist in the feed, so no prop ROI is published.</li>
     <li>No verified execution access, limits or jurisdiction.</li>
     <li>No funded prize pool for the leaderboard rewards.</li>
-    <li>No injury-report source confirmed, so injury signals are blocked.</li>
+    <li>NFL.com publishes a live injury report; historical point-in-time snapshots and verified depth order are not ingested, so injury/depth adjustments remain blocked.</li>
   </ul><a class="panel-link" href="pages/flagged.html">Flagged for review &rarr;</a></div>
 </div>''')
     return W.layout("Overview", "index.html", body)
@@ -267,7 +268,7 @@ def page_executive() -> str:
         f'{sum(e.get("n", 0) for e in evals):,} player-games from 2023 onward. The model beats a '
         f'season-to-date mean by between {num(min(improvements), 2)}% and {num(max(improvements), 2)}% '
         f'depending on the stat, and the originated lines are calibrated: the over rate at the line is '
-        f'close to 50%.</p><p><strong>No ROI is published.</strong> The official feed contains no '
+        f'close to 50%.</p><p><strong>No ROI is published.</strong> The committed nflverse game/player-stat extracts contain no '
         f'historical player-prop prices, so there is no honest way to compute one. Inventing a price '
         f'would be the easiest way to manufacture a fake edge, so this is flagged rather than filled '
         f'in.</p>')
@@ -279,8 +280,8 @@ def page_executive() -> str:
                   'instead of assumed.</li>'
                   '<li>A historical player-prop price archive, which would turn the prop model from a '
                   'measurement into a testable strategy.</li>'
-                  '<li>Confirmation of the NFL injury-report policy text from an official source, which '
-                  'would unblock injury-based signals.</li></ul>')
+                  '<li>A historical, timestamped injury/active-inactive feed and dated team-published depth charts across teams; '
+                  'the one Colts chart reviewed is explicitly unofficial and no 32-team history is ingested.</li></ul>')
 
     body = (
         '<div class="hero compact"><div class="eyebrow">EXECUTIVE SUMMARY</div>'
@@ -1126,7 +1127,7 @@ def page_flagged() -> str:
         ("Executable access unverified", "high",
          "No verified sportsbook account, limits, jurisdiction or price availability. Gate G9 "
          "therefore fails for every strategy by construction.",
-         "dk-house-rules", "Nothing is presented as actionable."),
+         ["SRC-AGLC-INTERNET-STANDARDS-2026", "dk-house-rules"], "Nothing is presented as actionable."),
         ("Reward pool not funded", "medium",
          "The leaderboard reward tiers are a design proposal. No prize money exists.",
          "kelly-1956", "Rewards are labelled as a schedule, not a promise."),
@@ -1140,10 +1141,9 @@ def page_flagged() -> str:
          "pipeline but were not individually reconciled, and 2026 is behind because of the data lag above.",
          "nfl-standings-2020", "Shown with the per-team table on the Verification page; the unreconciled seasons "
          "are named rather than implied."),
-        ("NFL injury-report policy page not found", "medium",
-         "operations.nfl.com/football-ops/league-governance/injury-report/ returns 404. Without an "
-         "official policy text, injury-based signals are blocked rather than guessed.",
-         "nfl-injury-policy", "No injury strategy is registered."),
+        ("Historical injury/depth snapshots not ingested; legacy policy URL unavailable", "medium",
+         "NFL.com/injuries publishes a live weekly report and a separate NFL.com policy explainer is available. The older operations.nfl.com/football-ops/league-governance/injury-report/ URL returned 404. This project has no historical point-in-time injury/active-inactive snapshot series or all-team depth archive. The inspected NFL.com roster page has no depth order; a Colts team-published chart exists but calls its weekly chart unofficial and covers one team only.",
+         ["SRC-NFL-INJURIES", "SRC-COLTS-DEPTH-CHART", "nfl-injury-policy"], "No injury/depth adjustment is used; timestamped history and per-team chart sources are required first."),
         ("Model underperforms the market", "medium",
          "The originated lines are worse than the closing line out of sample, and add no incremental "
          "information. They are published for grading, not use.",
@@ -1167,7 +1167,8 @@ def page_flagged() -> str:
     rows = []
     for title, sev, detail, sid, status in items:
         kind = {"high": "bad", "medium": "warn", "low": "ok"}[sev]
-        rows.append([esc(title), badge(kind, sev), esc(detail), esc(status), src(sid)])
+        source_html = " · ".join(src(source_id) for source_id in sid) if isinstance(sid, (list, tuple)) else src(sid)
+        rows.append([esc(title), badge(kind, sev), esc(detail), esc(status), source_html])
 
     body = (f'''<div class="hero compact"><div class="eyebrow">FLAGGED FOR REVIEW</div>
 <h1>What is missing, and why it is blank.</h1>
@@ -1185,6 +1186,7 @@ numbers that cannot be defended.</p></div>
 </ul>'''))
     return W.layout("Flagged for review", "pages/flagged.html", body,
                     subtitle="Known gaps, published instead of hidden.")
+
 
 
 def archive_dirs() -> list[tuple[str, str]]:

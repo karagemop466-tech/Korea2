@@ -3,7 +3,8 @@
   "title": "Decision Desk source register — every source fetched and read in this session",
   "session": "arena/aa66ed82-korea2",
   "captured": "2026-11-12",
-  "policy": "Sources marked fetched were opened and read in full this session. Team depth charts are labelled 'Unofficial' by the teams themselves (except the Arizona Cardinals page, titled 'Official Depth Chart') — see flagged.json FL-DD-02."
+  "policy": "Sources marked fetched were opened and read in full this session. Team depth charts are labelled 'Unofficial' by the teams themselves (except the Arizona Cardinals page, titled 'Official Depth Chart') — see flagged.json FL-DD-02.",
+  "note": " SRC-DD-50 added after merging origin/main (lineup-lab board)."
  },
  "sources": [
   {
@@ -446,6 +447,15 @@
    "fetched": "2026-11-12",
    "use": "Skill-lab correlation values quoted on the leaderboard page (COR-DD-11, COR-DD-12).",
    "note": "Read locally from skill-lab/data/correlations.json."
+  },
+  {
+   "id": "SRC-DD-50",
+   "title": "Lineup-lab strategy board (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/lineup-lab/data/leaderboard.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Aggregated leaderboard row: lineup-lab/ (8 evaluated, 0 approved) — merged to main after this session's initial capture.",
+   "note": "Read locally from lineup-lab/data/leaderboard.json; meta confirms total_evaluated 8, approved_count 0."
   }
  ]
 }

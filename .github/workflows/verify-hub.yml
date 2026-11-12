@@ -1,0 +1,30 @@
+name: verify-hub
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-hub:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild the hub (deterministic)
+        run: python verify-hub/scripts/build_site.py
+      - name: Verify hub data and generated pages
+        run: python verify-hub/scripts/verify.py
+      - name: Hub unit tests
+        run: python -m unittest discover -s verify-hub/tests -t verify-hub -v
+      - name: Repository-wide link and source checks
+        run: |
+          python tests/check_site.py
+          python scripts/check_links.py

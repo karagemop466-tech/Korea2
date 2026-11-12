@@ -27,7 +27,19 @@ NAV = [
     ("pages/method.html", "Method &amp; data"),
     ("pages/sources.html", "Source register"),
     ("pages/flagged.html", "Flagged for review"),
-    ("pages/archive.html", "Archive"),
+    ("decision-desk/index.html", "Decision Desk"),
+    ("suggestions/index.html", "Suggestions hub"),
+    ("decision-hub/index.html", "Decision hub &nearr;"),
+    ("nfl-command/index.html", "NFL Command Center"),
+    ("pages/suggestions.html", "Suggestions hub"),
+    ("pages/decision-hub.html", "Decision desk"),
+    ("pages/decision-suggestions.html", "Suggestion register"),
+    ("pages/decision-questions.html", "Open questions"),
+    ("pages/decision-injury-depth.html", "Injury &amp; depth"),
+    ("pages/decision-signals.html", "Signal lab"),
+    ("pages/decision-parlay.html", "Parlay pricing"),
+    ("pages/decision-verify.html", "Re-verify the numbers"),
+    ("pages/decision-summary.html", "Decision summary"),
 ]
 
 DISCLAIMER = (
@@ -179,6 +191,10 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
 </main></div></body></html>"""
     if current.startswith("pages/"):
         doc = (doc.replace('href="pages/', 'href="../pages/')
+                  .replace('href="decision-hub/', 'href="../decision-hub/')
+                  .replace('href="suggestions/', 'href="../suggestions/')
+                  .replace('href="nfl-command/', 'href="../nfl-command/')
+              .replace('href="decision-desk/', 'href="../decision-desk/')
                   .replace('href="index.html"', 'href="../index.html"'))
     return doc
 

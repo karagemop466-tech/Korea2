@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions | Decision Hub</title>
+<meta name="description" content="Decision support for the NFL line-origination project: suggestions, open questions, strategy framework, injury and depth tracking, and an independent audit.">
+<meta name="generator" content="decision-hub/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html"><span class="mark">DH</span>
+    <span>DECISION HUB<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">Review</div>
+  <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/executive-summary.html">Executive summary</a><a href="../pages/suggestions.html" class="active" aria-current="page">Suggestions</a><a href="../pages/questions.html">Questions &amp; unknowns</a><a href="../pages/decisions.html">Decisions</a><a href="../pages/strategies.html">Strategy framework</a><a href="../pages/injuries.html">Injuries &amp; depth</a><a href="../pages/audit.html">Line-by-line audit</a><a href="../pages/evidence.html">Evidence tables</a><a href="../pages/sources.html">Sources</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/workflow.html">Review workflow</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Decision support<br>
+    <strong>0 of 7 strategies approved</strong>
+    <span>Every suggestion is a proposal. Choose before implementing.</span></div>
+</aside>
+<main id="main">
+<header class="topbar"><span class="crumb">SUGGESTIONS</span>
+  <span><a class="review-link" href="../../index.html">&larr; Line Lab</a>
+  &nbsp; <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a></span></header>
+
+
+<div class="hero compact"><div class="eyebrow">SUGGESTIONS</div>
+<h1>Every proposal, and the decision it unblocks.</h1>
+<p class="lede">None of this is implemented by browsing it. Each card states the problem in the
+current site, the proposal, the measured evidence behind it, the risk, and which decision it
+moves. Choose what to adopt on the review workflow page.</p></div>
+<div class="notice"><span class="dot"></span><div><strong>14 suggestions in 9 categories.</strong><br>
+A suggestion is a PROPOSAL, never a finding. Nothing in this file is verified fact unless the 'evidence' field points at a measured value in data/derived/, data/official.json or decision-hub/data/. Every suggestion carries: what it is, why it helps a decision, what it costs, what it depends on, and the decision question it unblocks. Adoption is decided by the reviewer using the workflow on decision-hub/pages/workflow.html.</div><a href="../pages/workflow.html">Choose a path &rarr;</a></div>
+<section class="block"><h2>By category</h2>
+<div class="table-wrap"><table class=""><caption class="caption">Grouped from the suggestion register.</caption><thead><tr><th>Category</th><th>Count</th><th>Impact 4+</th><th>Open</th><th>Source</th></tr></thead><tbody><tr><td>Bet definitions</td><td>1</td><td>0</td><td><a href="../pages/suggestions.html#S-11">first</a></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td>Correlation / parlays</td><td>1</td><td>0</td><td><a href="../pages/suggestions.html#S-09">first</a></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td>Decision quality</td><td>1</td><td>1</td><td><a href="../pages/suggestions.html#S-05">first</a></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td>Injury and lineup intelligence</td><td>2</td><td>1</td><td><a href="../pages/suggestions.html#S-04">first</a></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td>Reproducibility</td><td>1</td><td>1</td><td><a href="../pages/suggestions.html#S-07">first</a></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td>Site structure</td><td>2</td><td>1</td><td><a href="../pages/suggestions.html#S-01">first</a></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td>Statistical validity</td><td>3</td><td>2</td><td><a href="../pages/suggestions.html#S-02">first</a></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td>Strategy evaluation</td><td>2</td><td>1</td><td><a href="../pages/suggestions.html#S-03">first</a></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td>Validation gates</td><td>1</td><td>0</td><td><a href="../pages/suggestions.html#S-12">first</a></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr></tbody></table></div></section>
+<section class="block"><div class="eyebrow">CATEGORY</div><h2>Bet definitions</h2><article class="suggestion" id="S-11">
+  <header><span class="sid">S-11</span><h3>Write the settlement and void rules down before pricing anything</h3>
+    <span class="badge warn">impact 3</span>
+    <span class="badge">low cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>Parlay and prop settlement differ by operator (push handling, void legs, minimum leg count, same-game restrictions). A strategy that looks profitable under one rulebook can be unprofitable under another.</dd>
+    <dt>Suggestion</dt><dd>Adopt one regulator-filed rulebook as the settlement standard for every backtest, cite the edition, and re-price the whole backtest if the edition changes. The repository already cites a DraftKings Massachusetts filing that the regulator lists as obsolete; pin the active edition.</dd>
+    <dt>Evidence</dt><dd>FL-11 on the root flagged page: the cited 8.1.24 edition is archived as obsolete; the active edition is the one approved 10.7.26.</dd>
+    <dt>Risk</dt><dd>A single operator&#x27;s rules will not generalise; the choice must be stated as a limitation.</dd>
+    <dt>Effort</dt><dd>2 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-01">D-01</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li><strong>Q-07</strong> must be answered first — <a href="../pages/questions.html#Q-07">Q-07</a></li></ul></dd>
+  </dl></article></section><section class="block"><div class="eyebrow">CATEGORY</div><h2>Correlation / parlays</h2><article class="suggestion" id="S-09">
+  <header><span class="sid">S-09</span><h3>Give the correlation page an uncertainty interval, not just a coefficient</h3>
+    <span class="badge warn">impact 3</span>
+    <span class="badge">low cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>QB-to-WR1 is published as a single number (0.562). Parlay pricing under a Gaussian copula is extremely sensitive to the copula parameter, so a point estimate understates the uncertainty in the joint probability.</dd>
+    <dt>Suggestion</dt><dd>Add a bootstrap interval for every pairwise correlation and propagate it into the SGP joint probability, so the parlay price carries an interval too.</dd>
+    <dt>Evidence</dt><dd>data/derived/correlation.json publishes point coefficients; the recomputation shows the joint 11.1% vs 5.7% independent product.</dd>
+    <dt>Risk</dt><dd>None material; the interval is strictly more information.</dd>
+    <dt>Effort</dt><dd>2 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-03">D-03</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article></section><section class="block"><div class="eyebrow">CATEGORY</div><h2>Decision quality</h2><article class="suggestion" id="S-05">
+  <header><span class="sid">S-05</span><h3>Publish an explicit &#x27;answers we do not have&#x27; section with the decision each one blocks</h3>
+    <span class="badge ok">impact 4</span>
+    <span class="badge">low cost</span>
+    <span class="badge">in_progress</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>Missing information is scattered across flagged pages. A reviewer cannot see which unknown is load-bearing for which decision.</dd>
+    <dt>Suggestion</dt><dd>A questions register where each row has: question, what we know, what we do not know, how to find out, cost, and the decision it blocks. Sort by the number of decisions blocked.</dd>
+    <dt>Evidence</dt><dd>decision-hub/data/questions.json (16 questions, each mapped to a decision and an evidence path).</dd>
+    <dt>Risk</dt><dd>None material; keep it short or it becomes noise.</dd>
+    <dt>Effort</dt><dd>1 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-01">D-01</a> <a class="chip" href="../pages/decisions.html#D-02">D-02</a> <a class="chip" href="../pages/decisions.html#D-03">D-03</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article></section><section class="block"><div class="eyebrow">CATEGORY</div><h2>Injury and lineup intelligence</h2><article class="suggestion" id="S-04">
+  <header><span class="sid">S-04</span><h3>Track depth lost per team-week and test it against the line before using it</h3>
+    <span class="badge ok">impact 5</span>
+    <span class="badge">medium cost</span>
+    <span class="badge">in_progress</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>The requirement is to know when a defence or offence is on its 2nd, 3rd or 4th string. Nothing in the repository joined the injury report to a depth chart, so the claim in prose was unsupported.</dd>
+    <dt>Suggestion</dt><dd>Ship the tracker built this session: every reported Out/Doubtful player is placed on the club depth chart as 1st/2nd/3rd string, and each team-week is scored (weighted depth lost = sum of 1/rank). Then test whether depth lost predicts the residual of the actual margin on the closing line, out of sample, before a strategy uses it.</dd>
+    <dt>Evidence</dt><dd>decision-hub/data/injuries.json: 2026 season, 636 absences with a depth rank, 296 team-weeks, 32 teams, snapshot 2026-11-12T07:01:31Z.</dd>
+    <dt>Risk</dt><dd>Depth charts are club-supplied and can lag a transaction. The tracker reports an absence, not a performance drop; the effect size is still unmeasured.</dd>
+    <dt>Effort</dt><dd>6 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-03">D-03</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article><article class="suggestion" id="S-10">
+  <header><span class="sid">S-10</span><h3>Stop calling the injury feed &#x27;unavailable&#x27; and cite what it is</h3>
+    <span class="badge warn">impact 3</span>
+    <span class="badge">low cost</span>
+    <span class="badge">in_progress</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>The root site says &#x27;no injury-report source confirmed, so injury signals are blocked&#x27;. The league&#x27;s live injury report page serves Week 10 of 2026 and the nflverse mirror carries 2009-2026 in a stable schema. The policy PDF is what is missing, not the data.</dd>
+    <dt>Suggestion</dt><dd>Cite the live report as the data source and keep the missing policy text as the open item. Distinguish &#x27;we cannot get the data&#x27; from &#x27;we cannot verify the rule text&#x27;.</dd>
+    <dt>Evidence</dt><dd>https://www.nfl.com/injuries/ rendered Week 10 of the 2026 season on 2026-11-12; nflverse injuries_2026.csv is 349,835 bytes with 3,075 rows. The policy URL returns 404 (FL-DH-05).</dd>
+    <dt>Risk</dt><dd>The live page is dynamic and will be stale quickly; the derived JSON records the retrieval timestamp.</dd>
+    <dt>Effort</dt><dd>0.5 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-03">D-03</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article></section><section class="block"><div class="eyebrow">CATEGORY</div><h2>Reproducibility</h2><article class="suggestion" id="S-07">
+  <header><span class="sid">S-07</span><h3>Make every published number reproducible from a clean checkout in CI</h3>
+    <span class="badge ok">impact 4</span>
+    <span class="badge">medium cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>The project&#x27;s own verification record marks 5 values &#x27;DIFFERS (expected)&#x27; because the committed extract covers 2015-2026 while the published coefficients were measured on 2012-2026. A reader cannot reproduce the published n.</dd>
+    <dt>Suggestion</dt><dd>Have CI rebuild every derived JSON from the committed extract and fail when a published value does not reproduce. Treat &#x27;expected to differ&#x27; as a failure, not an observation.</dd>
+    <dt>Evidence</dt><dd>data/derived/verification.json: scope.player_seasons, scope.player_games, sgp.n differ; flagged FL-DH-04.</dd>
+    <dt>Risk</dt><dd>Will turn several currently-green checks red on day one. That is the point, but it must be a deliberate decision.</dd>
+    <dt>Effort</dt><dd>3 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-01">D-01</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article></section><section class="block"><div class="eyebrow">CATEGORY</div><h2>Site structure</h2><article class="suggestion" id="S-01">
+  <header><span class="sid">S-01</span><h3>Publish a one-page &#x27;decision register&#x27; above any dashboard number</h3>
+    <span class="badge ok">impact 5</span>
+    <span class="badge">low cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>The dashboard leads with computed statistics. A reader cannot tell which numbers are verified facts, which are computations, and which are proposals. The verification page exists but is three clicks deep.</dd>
+    <dt>Suggestion</dt><dd>Land the site on a single table: claim / value / class (official fact, computed, proposal) / source / date. Every other page becomes a drill-down. The class column is the point: it stops a proposal from being read as a measurement.</dd>
+    <dt>Evidence</dt><dd>decision-hub/data/root_audit.json rows_totals: 511 table rows across 15 pages, of which 7 have no source link and 0 carry a class column.</dd>
+    <dt>Risk</dt><dd>Adds a page to maintain; the class must be set by the generator, not by hand, or it will drift.</dd>
+    <dt>Effort</dt><dd>2 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-01">D-01</a> <a class="chip" href="../pages/decisions.html#D-02">D-02</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article><article class="suggestion" id="S-13">
+  <header><span class="sid">S-13</span><h3>Publish an archive index instead of keeping nine sibling dashboards live</h3>
+    <span class="badge warn">impact 2</span>
+    <span class="badge">low cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>Nine parallel-session dashboards are published at once (dashboard, nfl-lines, nfl-research, research-desk, quant-lab, origination, origination-lab, skill-lab, audit). They contradict each other on the same statistics, and the root navigation says so.</dd>
+    <dt>Suggestion</dt><dd>Keep one canonical dashboard and reduce the rest to a dated archive index with a one-line description and a link. Contradictions then read as history instead of a dispute.</dd>
+    <dt>Evidence</dt><dd>pages/archive.html lists 8 preserved directories; the audit flags 451 source-domain warnings in nfl-lines alone.</dd>
+    <dt>Risk</dt><dd>Deleting nothing; the pages stay reachable, only the navigation changes.</dd>
+    <dt>Effort</dt><dd>1 days</dd>
+    <dt>Unblocks</dt><dd>&mdash;</dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article></section><section class="block"><div class="eyebrow">CATEGORY</div><h2>Statistical validity</h2><article class="suggestion" id="S-02">
+  <header><span class="sid">S-02</span><h3>Replace the pooled ATS &#x27;coin-flip test&#x27; with a one-sided test</h3>
+    <span class="badge ok">impact 5</span>
+    <span class="badge">low cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>The headline &#x27;50.0%, p = 1.0&#x27; ATS result is an arithmetic identity: the sample contains every game twice, once per side, so exactly half the rows win. It cannot detect a market tilt in either direction, yet it is presented as evidence that the market is efficient.</dd>
+    <dt>Suggestion</dt><dd>Use one observation per game (home cover rate = 48.91%, 95% CI 47.73-50.09%, two-sided p = 0.073 on 6,892 decided games). Report the interval, not just the point. Keep the pooled number only if it is labelled as an identity.</dd>
+    <dt>Evidence</dt><dd>decision-hub/data/root_audit.json flags FL-DH-01 and ats_honest; the arithmetic is reproduced from data/derived/games.csv.gz.</dd>
+    <dt>Risk</dt><dd>The honest test is closer to significance, which invites over-reading. Publish the CI, not just the p-value.</dd>
+    <dt>Effort</dt><dd>1 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-01">D-01</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article><article class="suggestion" id="S-06">
+  <header><span class="sid">S-06</span><h3>Add negative controls to every strategy batch and publish them next to the candidates</h3>
+    <span class="badge ok">impact 4</span>
+    <span class="badge">medium cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>A screen that rejects everything looks rigorous, but it looks identical to a screen that is simply broken. Two controls already exist in the leaderboard; they are not shown as a diagnostic.</dd>
+    <dt>Suggestion</dt><dd>Run a known-losing control (random side) and a known-winning control (a deliberately clairvoyant bettor using the actual result) through the same ten gates. The random control must fail and the clairvoyant control must pass; if either does not, the gate screen is mis-wired and no verdict on a real candidate is meaningful.</dd>
+    <dt>Evidence</dt><dd>data/derived/leaderboard.json has 9 entries; two are family &#x27;control&#x27;. The clairvoyant positive control is not present.</dd>
+    <dt>Risk</dt><dd>A clairvoyant control validates the plumbing only; it says nothing about whether a real edge exists.</dd>
+    <dt>Effort</dt><dd>4 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-01">D-01</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article><article class="suggestion" id="S-14">
+  <header><span class="sid">S-14</span><h3>State the sample-size floor for a &#x27;signal&#x27; before testing, and publish it</h3>
+    <span class="badge warn">impact 2</span>
+    <span class="badge">low cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>The luck page computes 39,240 bets needed to detect a 51% win rate at 80% power, yet candidate strategies are presented with 137 to 649 bets. A reader has to do the arithmetic to see the screen cannot possibly distinguish skill.</dd>
+    <dt>Suggestion</dt><dd>Print the required sample next to each candidate&#x27;s actual sample, and label every underpowered result &#x27;not testable at this n&#x27; rather than &#x27;rejected&#x27;.</dd>
+    <dt>Evidence</dt><dd>data/derived/luck.json sample_size_requirements: 39,240 bets for 51%, 9,806 for 52%; leaderboard n_bets range 137-649.</dd>
+    <dt>Risk</dt><dd>Almost every candidate becomes &#x27;not testable&#x27;, which is the honest label but a less satisfying dashboard.</dd>
+    <dt>Effort</dt><dd>1 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-01">D-01</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article></section><section class="block"><div class="eyebrow">CATEGORY</div><h2>Strategy evaluation</h2><article class="suggestion" id="S-03">
+  <header><span class="sid">S-03</span><h3>Add closing-line value as the headline skill metric</h3>
+    <span class="badge ok">impact 5</span>
+    <span class="badge">high cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>ROI over a season is dominated by variance: with a 300-bet sample the interval on ROI is roughly +/- 12 percentage points, which is wider than any edge being hunted. CLV measures skill against the market&#x27;s own final opinion and needs far fewer observations.</dd>
+    <dt>Suggestion</dt><dd>Store a timestamped price at decision time, compute (decision price - closing price) per bet, and rank strategies by mean CLV with a bootstrap interval. Treat positive CLV with a losing record as skill, and negative CLV with a winning record as luck.</dd>
+    <dt>Evidence</dt><dd>The repository stores only the closing line (data/derived/games.csv.gz has spread_line, away/home_spread_odds, total_line but no open line and no timestamp); flagged FL-DH-08.</dd>
+    <dt>Risk</dt><dd>Requires a price feed that does not exist yet. Until then, CLV can only be computed for bets logged live going forward.</dd>
+    <dt>Effort</dt><dd>15 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-03">D-03</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li><strong>Q-05</strong> must be answered first — <a href="../pages/questions.html#Q-05">Q-05</a></li></ul></dd>
+  </dl></article><article class="suggestion" id="S-08">
+  <header><span class="sid">S-08</span><h3>Separate &#x27;model beats market&#x27; from &#x27;model is useful&#x27; in the scorecard</h3>
+    <span class="badge warn">impact 3</span>
+    <span class="badge">low cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>The site&#x27;s single verdict, that the market beats the model, is correct but hides a second question: does the model add information anywhere, even if it does not beat the line overall? A model can be worse on average and still sharpen a specific subset.</dd>
+    <dt>Suggestion</dt><dd>Publish the calibration curve and Brier skill by bucket (favourite size, rest, roof, division) instead of one pooled number, with a multiple-testing correction across buckets.</dd>
+    <dt>Evidence</dt><dd>data/derived/model.json publishes pooled accuracy and one incremental-information regression.</dd>
+    <dt>Risk</dt><dd>Bucketing invites post-hoc cherry-picking; the correction across buckets is what keeps it honest.</dd>
+    <dt>Effort</dt><dd>1 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-01">D-01</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article></section><section class="block"><div class="eyebrow">CATEGORY</div><h2>Validation gates</h2><article class="suggestion" id="S-12">
+  <header><span class="sid">S-12</span><h3>Put the price-sensitivity gate (G9) in front of every other gate</h3>
+    <span class="badge warn">impact 3</span>
+    <span class="badge">low cost</span>
+    <span class="badge">proposed</span></header>
+  <dl>
+    <dt>Problem in the current site</dt><dd>Every strategy currently fails G9 by construction because no executable price exists. The screen therefore rejects everything for one reason and the other nine gates do relatively little work.</dd>
+    <dt>Suggestion</dt><dd>Order the gate screen so the cheapest structural check that can fail runs first, and report a strategy&#x27;s best achievable outcome without a price. This makes the leaderboard informative even while G9 is blocked.</dd>
+    <dt>Evidence</dt><dd>data/derived/leaderboard.json: every one of 9 entries lists G9 among its failed gates.</dd>
+    <dt>Risk</dt><dd>Reordering the gates changes the published &#x27;5/10&#x27; style counts; those must be recomputed, not relabelled.</dd>
+    <dt>Effort</dt><dd>1 days</dd>
+    <dt>Unblocks</dt><dd><a class="chip" href="../pages/decisions.html#D-01">D-01</a></dd>
+    <dt>Blocked by</dt><dd><ul class="tight"><li>nothing</li></ul></dd>
+  </dl></article></section>
+<footer>
+  <p>Research and decision support only — not betting advice. Nothing here has passed a validation gate. Values that could not be confirmed from an official source are blank and listed on Flagged for review.</p>
+  <p><a href="../pages/sources.html">Sources</a> &middot;
+     <a href="../pages/flagged.html">Flagged for review</a> &middot;
+     <a href="../pages/workflow.html">Review workflow</a></p>
+</footer>
+</main></div></body></html>

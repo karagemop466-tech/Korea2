@@ -194,5 +194,23 @@ Every table row on the published site carries an https source link, and
 
 ---
 
+## 7. Additions in this session (arena/cb5b61a7-korea2, 2026-11-12)
+
+Three reviewable pages were added to keep decisions honest and reversible, without altering the
+underlying pipeline or any previously published number:
+
+- **Suggestions** (`pages/suggestions.html`) — a review board of improvement ideas (depth-chart
+  source, CLV tracker, licensed prop prices, injury adjustments, correlation-aware parlays,
+  holdout-only leaderboard, jurisdiction gating, source monitoring, fractional-Kelly staking).
+  Each row has a recommended path and a status the reviewer sets before anything is built.
+- **Decision questions** (`pages/decision-questions.html`) — what we know (verified against
+  official sources), what we don't (left blank by policy), the questions that must be answered
+  before any capital decision, and a concrete discovery suggestion for each gap.
+- **Injury & depth** (`pages/injuries-depth.html`) — an official NFL injury-report view and a documented depth-data gap. A subsequent source review confirmed that one Colts team-published chart lists ordered players but labels its weekly chart unofficial. It is not an NFL-wide historical source; no complete dated chart archive or replacement-value model is ingested, so depth adjustments remain blocked and values blank. The earlier broad statement that the chart source was absent because of a 404 is superseded.
+
+**Verification performed in this session (live retrieval 2026-11-12):** NFL.com 2026 standings, Week 10 injury report and schedule, and the Colts team-published depth chart were reviewed. The Colts page is explicitly unofficial and team-specific. The DraftKings parlay rules and nflverse feed repo were also reviewed; nflverse is community-maintained, not official NFL. `tests/check_site.py` passes on the full site; subsequent rebase integration checks cover 113 linked pages, 276 tables and 4,838 links. Statistical pipeline values were not recomputed from a fresh upstream feed; `pages/verification.html` describes the committed calculation and its reconciliation scope. Full findings are in `docs/REPO_REVIEW.md` and the site's Flagged for Review page.
+
+---
+
 *Research, not betting advice. Wager only where legal and only if of age. Free,
 confidential help: [National Council on Problem Gambling](https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/).*

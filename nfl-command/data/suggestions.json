@@ -1,0 +1,142 @@
+{
+  "status_note": "PROPOSALS ONLY. Nothing on this list has been implemented. Each item needs a decision (approve, reject, or modify) before any change is made. Decisions are recorded on the page in your browser and can be copied into COORDINATION.md.",
+  "rows": [
+    {
+      "id": "SUG-01",
+      "title": "Get an official, per-club depth-chart source (blocks the starter-vs-backup analysis)",
+      "problem": "No official depth chart was reachable for any club checked. NFL.com and the Commanders club page both returned 404. Third-party depth charts are not official, so no starter or backup value can be verified.",
+      "options": [
+        {"id": "A", "label": "Capture each club's official depth chart weekly by hand from the club site or NFL.com, with a timestamp", "pro": "Official and auditable", "con": "32 clubs x weekly labour; the paths were not found in this session"},
+        {"id": "B", "label": "Scrape club-site depth-chart pages on a schedule", "pro": "Automated", "con": "32 different sites, fragile markup, terms of use not checked"},
+        {"id": "C", "label": "Use third-party depth charts, labelled 'non-official'", "pro": "Fastest, full coverage", "con": "Breaks the official-source rule; not verifiable"}
+      ],
+      "recommendation": "Option A now to prove the method on 4 clubs, then decide on B. Do not use C in verified tables.",
+      "decision_needed": "Which option, and which clubs first?",
+      "sources": ["NFL-DEPTH-WAS", "CLUB-DEPTH-WAS", "NONOFF-DEPTH-1", "NONOFF-DEPTH-2"],
+      "blocks": ["Depth & starters page", "Defensive and offensive deficiency analysis"]
+    },
+    {
+      "id": "SUG-02",
+      "title": "Keep a timestamped weekly archive of the NFL.com injury report",
+      "problem": "The page text has no as-of time, and only one week is stored. Deficiency trends cannot be measured without history.",
+      "options": [
+        {"id": "A", "label": "Manual weekly capture into nfl-command/data/raw/ with a fetch timestamp", "pro": "Works now", "con": "Relies on someone doing it each week"},
+        {"id": "B", "label": "Scheduled GitHub Action that fetches the report and commits a snapshot", "pro": "Automatic, reproducible", "con": "Reachability of nfl.com from GitHub runners is not verified; the sandbox shell cannot reach it"},
+        {"id": "C", "label": "A then B, once B's reachability is confirmed", "pro": "Safe path", "con": "Two steps"}
+      ],
+      "recommendation": "Option C.",
+      "decision_needed": "Approve the weekly capture schedule and whether to test a runner fetch.",
+      "sources": ["NFL-INJ"],
+      "blocks": ["Injury trend analysis"]
+    },
+    {
+      "id": "SUG-03",
+      "title": "Reconcile injured-reserve and ruled-out players against the report",
+      "problem": "Three NFL.com news conflicts are unresolved: Jackson and Huntley (BAL) and Darnold (SEA).",
+      "options": [
+        {"id": "A", "label": "Add an 'NFL.com news' column with a conflict flag, reviewed each week", "pro": "Transparent, no new source", "con": "Manual review"},
+        {"id": "B", "label": "Add an official IR or transactions feed to join against the report", "pro": "Systematic", "con": "Official feed not yet located"},
+        {"id": "C", "label": "Ask NFL.com or the NFL how the report treats IR and ruled-out players", "pro": "Resolves the rule", "con": "Outcome not guaranteed"}
+      ],
+      "recommendation": "Option A now, and C as a question (Q02).",
+      "decision_needed": "Approve the conflict column.",
+      "sources": ["NFL-NEWS-JACKSON", "NFL-NEWS-DARNOLD", "NFL-INJ"],
+      "blocks": ["Injury reconciliation table"]
+    },
+    {
+      "id": "SUG-04",
+      "title": "Define 'starter' and 'backup' using a source that is actually official",
+      "problem": "Without a definition, no starter-vs-backup claim can be checked. Snap counts and depth order come from different places, and only depth order is what the user asked for.",
+      "options": [
+        {"id": "A", "label": "Starter = first on the official depth chart for the position (needs SUG-01)", "pro": "Matches the request", "con": "Blocked until SUG-01"},
+        {"id": "B", "label": "Starter = most snaps in the official game book or NFL.com game stats", "pro": "Based on play, not labels", "con": "Snap source not yet checked"},
+        {"id": "C", "label": "Starter = in the game-day lineup (NFL.com game-day inactives)", "pro": "Per game and official", "con": "Only available on game day; the publication timing was not verified from an official page"}
+      ],
+      "recommendation": "Option A once SUG-01 is answered, with B as a cross-check.",
+      "decision_needed": "Choose the definition.",
+      "sources": ["NFL-DEPTH-WAS", "NFL-SCHED"],
+      "blocks": ["Depth & starters page"]
+    },
+    {
+      "id": "SUG-05",
+      "title": "Make the Skill Lab reproducible",
+      "problem": "Re-running the Skill Lab on this branch changed 12 committed files. The two hash seeds tested give identical output, so the cause is the committed snapshot, not randomness. Counts moved by one (e.g. tickets 857 to 856).",
+      "options": [
+        {"id": "A", "label": "Re-run under the CI Python version (3.12) and compare before any change", "pro": "Cheap, diagnostic", "con": "The sandbox has Python 3.11 only"},
+        {"id": "B", "label": "Regenerate and commit the outputs from CI, with a reproduce check", "pro": "Single source of truth", "con": "Changes published numbers; needs a review"},
+        {"id": "C", "label": "Freeze the current committed numbers and state the snapshot date", "pro": "No churn", "con": "Stays non-reproducible"}
+      ],
+      "recommendation": "Option A first, then B if the diff persists.",
+      "decision_needed": "Approve running the CI-version comparison.",
+      "sources": ["REPO-SKILL-JSON"],
+      "blocks": ["Strategy and correlation numbers"]
+    },
+    {
+      "id": "SUG-06",
+      "title": "Consolidate the nine other parallel site folders into one canonical site",
+      "problem": "The repo publishes nine other site folders besides the root Line Lab, each with its own numbers. The root Line Lab reports 0 of 7 candidates, and Skill Lab reports 0 of 16.",
+      "options": [
+        {"id": "A", "label": "Make nfl-command the canonical site and link the others from its Repo review page", "pro": "One entry point", "con": "Other pages stay live"},
+        {"id": "B", "label": "Archive the others with a notice, without deleting", "pro": "Cleaner", "con": "Breaks any links people already have"},
+        {"id": "C", "label": "Do nothing", "pro": "No churn", "con": "Confusing for reviewers"}
+      ],
+      "recommendation": "Option A now, B later.",
+      "decision_needed": "Approve A.",
+      "sources": ["REPO-PROV"],
+      "blocks": ["Site navigation"]
+    },
+    {
+      "id": "SUG-07",
+      "title": "Keep leaderboard rewards at zero points until gates and legal review are both done",
+      "problem": "No strategy passes the gates, so nothing qualifies for a reward. Whether a prize leaderboard is allowed in Alberta has not been checked.",
+      "options": [
+        {"id": "A", "label": "Zero-value points only; no cash until legal review", "pro": "Safe", "con": "Less incentive"},
+        {"id": "B", "label": "Prize pool, after review by AGLC or counsel", "pro": "Real incentive", "con": "Regulatory risk until answered"},
+        {"id": "C", "label": "No rewards at all", "pro": "Simplest", "con": "Drops the stated goal"}
+      ],
+      "recommendation": "Option A.",
+      "decision_needed": "Approve A.",
+      "sources": ["AGLC"],
+      "blocks": ["Leaderboard rewards"]
+    },
+    {
+      "id": "SUG-08",
+      "title": "Source closing-line prices from an identified archive",
+      "problem": "Gate G10 needs recorded historical prices. The repo uses nflverse-derived prices, which are third-party. No official archive was identified.",
+      "options": [
+        {"id": "A", "label": "Keep nflverse prices, labelled third-party, and show G10 as 'unverified'", "pro": "No cost", "con": "G10 cannot pass with official evidence"},
+        {"id": "B", "label": "License a closing-line archive and re-run the gates", "pro": "Verifiable", "con": "Cost and licence terms unknown"}
+      ],
+      "recommendation": "Option A now. Revisit B when budget and terms are known.",
+      "decision_needed": "Approve A.",
+      "sources": ["REPO-PROV"],
+      "blocks": ["Gate G10"]
+    },
+    {
+      "id": "SUG-09",
+      "title": "Add an injury feature to the origination model only after SUG-01 and SUG-02",
+      "problem": "The injury layer is not yet in the origination model. Adding it now would be untestable against history.",
+      "options": [
+        {"id": "A", "label": "Report-only injury layer on the site for now", "pro": "No model change", "con": "No predictive use"},
+        {"id": "B", "label": "Pre-register an injury feature, then test it walk-forward", "pro": "Rigorous", "con": "Needs SUG-01 and SUG-02 first"}
+      ],
+      "recommendation": "Option A now, B after both data sources exist.",
+      "decision_needed": "Approve A.",
+      "sources": ["NFL-INJ"],
+      "blocks": ["Model changes"]
+    },
+    {
+      "id": "SUG-10",
+      "title": "Decide how computed rows are labelled",
+      "problem": "Model and strategy rows are computed from third-party inputs, so they cannot have an official value source. They are shown with an 'UNVERIFIED-INPUT' flag and a method link.",
+      "options": [
+        {"id": "A", "label": "Keep the numbers, flagged (current)", "pro": "The analysis stays visible", "con": "Flagged, not verified"},
+        {"id": "B", "label": "Blank the computed numbers until official inputs exist", "pro": "Strict policy", "con": "Hides the analysis the request asked for"}
+      ],
+      "recommendation": "Option A, with the flag visible.",
+      "decision_needed": "Choose A or B.",
+      "sources": ["REPO-PROV", "REPO-SKILL-JSON"],
+      "blocks": ["Table policy"]
+    }
+  ]
+}

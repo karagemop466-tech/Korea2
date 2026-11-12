@@ -1,0 +1,61 @@
+{
+  "description": "Official NFL.com news items compared with the official Week 10 injury report (NFL-INJ). A 'conflict' is an NFL.com news statement that the same week's report does not reflect. Nothing here is a roster-status claim beyond what the cited NFL.com page says.",
+  "rows": [
+    {
+      "player": "Lamar Jackson",
+      "team": "BAL",
+      "news_says": "Fractured and dislocated right thumb (Nov 1), surgery, out at least six weeks; article states he was placed on injured reserve.",
+      "report_says": "BAL: 'No Injuries Reported'",
+      "result": "CONFLICT (unresolved). Report scope may exclude IR players; not confirmed.",
+      "sources": ["NFL-NEWS-JACKSON", "NFL-INJ"]
+    },
+    {
+      "player": "Tyler Huntley",
+      "team": "BAL",
+      "news_says": "Out for the season with turf toe; placed on injured reserve (article body).",
+      "report_says": "BAL: 'No Injuries Reported'",
+      "result": "CONFLICT (unresolved), same cause as Jackson.",
+      "sources": ["NFL-NEWS-JACKSON", "NFL-INJ"]
+    },
+    {
+      "player": "Sam Darnold",
+      "team": "SEA",
+      "news_says": "Head coach said Darnold will not play Week 10 vs Raiders (quad and rib injuries).",
+      "report_says": "SEA: 'No Injuries Reported'",
+      "result": "CONFLICT (unresolved). A player the coach has ruled out is not on the official report.",
+      "sources": ["NFL-NEWS-DARNOLD", "NFL-INJ"]
+    },
+    {
+      "player": "Malik Willis",
+      "team": "MIA",
+      "news_says": "Headline: placed on injured reserve (groin).",
+      "report_says": "Not listed on the MIA Week 10 report.",
+      "result": "Consistent with IR exclusion. Body not read.",
+      "sources": ["NFL-NEWS-WILLIS", "NFL-INJ"]
+    },
+    {
+      "player": "Puka Nacua",
+      "team": "LAR",
+      "news_says": "Headline: likely to be placed on injured reserve (turf toe, sprained MCL and PCL).",
+      "report_says": "LAR: 'Did Not Participate In Practice'; injury and game status blank.",
+      "result": "Partly consistent. Report injury descriptor and game status are blank on the source. Not inferred.",
+      "sources": ["NFL-NEWS-NACUA", "NFL-INJ"]
+    },
+    {
+      "player": "Josh Jacobs",
+      "team": "GB",
+      "news_says": "Headline: to undergo surgery on finger this week; return timeline TBD.",
+      "report_says": "GB: 'Did Not Participate In Practice'; injury and game status blank.",
+      "result": "Partly consistent. Injury descriptor blank on the report. Not inferred.",
+      "sources": ["NFL-NEWS-JACOBS", "NFL-INJ"]
+    },
+    {
+      "player": "Deshaun Watson",
+      "team": "CLE",
+      "news_says": "Headline (Nov 11 roundup): Browns to start QB Deshaun Watson vs Texans.",
+      "report_says": "Not listed on the CLE Week 10 report.",
+      "result": "Consistent with not being on the report. Body not read.",
+      "sources": ["NFL-NEWS-WATSON", "NFL-INJ"]
+    }
+  ]
+}

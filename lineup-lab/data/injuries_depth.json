@@ -1,0 +1,456 @@
+{
+  "meta": {
+    "verified_on": "2026-11-12",
+    "scope": "2015-2026 Wk 8 ex-ante historical cascades + 2026 Wk 10 live injury/depth audit",
+    "no_imputation": "Defensive/OL individual snap-share dropoffs left blank ('') where extracts have 0/empty values."
+  },
+  "qb_backups": {
+    "cohorts": [
+      {
+        "cohort": "Ex-ante incumbent QB1",
+        "team_starts": 4263,
+        "avg_points": 23.6,
+        "avg_passing_epa": 2.27,
+        "avg_margin_vs_spread": 0.16,
+        "avg_total_vs_line": 0.51,
+        "ats_decided": 4146,
+        "ats_win_pct": 0.501,
+        "ats_roi_stored_odds": -0.0283,
+        "over_win_pct": 0.4918,
+        "sources": [
+          "SRC-GITHUB-REPO"
+        ]
+      },
+      {
+        "cohort": "Backup QB starting (all)",
+        "team_starts": 976,
+        "avg_points": 19.49,
+        "avg_passing_epa": -3.03,
+        "avg_margin_vs_spread": -0.81,
+        "avg_total_vs_line": 0.48,
+        "ats_decided": 949,
+        "ats_win_pct": 0.4932,
+        "ats_roi_stored_odds": -0.0456,
+        "over_win_pct": 0.4907,
+        "sources": [
+          "SRC-GITHUB-REPO"
+        ]
+      },
+      {
+        "cohort": "Backup QB starting (>= 5 career starts)",
+        "team_starts": 538,
+        "avg_points": 20.59,
+        "avg_passing_epa": -1.98,
+        "avg_margin_vs_spread": -0.51,
+        "avg_total_vs_line": 1.55,
+        "ats_decided": 524,
+        "ats_win_pct": 0.5,
+        "ats_roi_stored_odds": -0.0345,
+        "over_win_pct": 0.5385,
+        "sources": [
+          "SRC-GITHUB-REPO"
+        ]
+      },
+      {
+        "cohort": "Backup/rookie QB (< 5 career starts)",
+        "team_starts": 438,
+        "avg_points": 18.13,
+        "avg_passing_epa": -4.32,
+        "avg_margin_vs_spread": -1.17,
+        "avg_total_vs_line": -0.83,
+        "ats_decided": 425,
+        "ats_win_pct": 0.4847,
+        "ats_roi_stored_odds": -0.0591,
+        "over_win_pct": 0.4322,
+        "sources": [
+          "SRC-GITHUB-REPO"
+        ]
+      }
+    ],
+    "recent_examples": [
+      {
+        "game_id": "2025_18_NYJ_BUF",
+        "team": "NYJ",
+        "qb": "Brady Cook",
+        "prior_starts": 1,
+        "pts": 8.0,
+        "margin_vs_spread": -14.5
+      },
+      {
+        "game_id": "2025_18_WAS_PHI",
+        "team": "PHI",
+        "qb": "Tanner McKee",
+        "prior_starts": 1,
+        "pts": 17.0,
+        "margin_vs_spread": -10.0
+      },
+      {
+        "game_id": "2026_04_GB_TB",
+        "team": "TB",
+        "qb": "Jalon Daniels",
+        "prior_starts": 0,
+        "pts": 14.0,
+        "margin_vs_spread": 0.0
+      },
+      {
+        "game_id": "2026_05_TB_DAL",
+        "team": "TB",
+        "qb": "Jalon Daniels",
+        "prior_starts": 1,
+        "pts": 24.0,
+        "margin_vs_spread": 17.5
+      },
+      {
+        "game_id": "2026_05_CHI_GB",
+        "team": "CHI",
+        "qb": "Tyson Bagent",
+        "prior_starts": 4,
+        "pts": 7.0,
+        "margin_vs_spread": -25.5
+      },
+      {
+        "game_id": "2026_06_CAR_PHI",
+        "team": "PHI",
+        "qb": "Tanner McKee",
+        "prior_starts": 2,
+        "pts": 14.0,
+        "margin_vs_spread": -8.0
+      },
+      {
+        "game_id": "2026_06_PIT_TB",
+        "team": "TB",
+        "qb": "Jalon Daniels",
+        "prior_starts": 2,
+        "pts": 19.0,
+        "margin_vs_spread": -4.5
+      },
+      {
+        "game_id": "2026_08_PHI_WAS",
+        "team": "PHI",
+        "qb": "Tanner McKee",
+        "prior_starts": 3,
+        "pts": 10.0,
+        "margin_vs_spread": -11.0
+      }
+    ]
+  },
+  "skill_absences": [
+    {
+      "role": "Ex-ante WR1",
+      "threshold": ">= 6.0 trailing targets/gm",
+      "absent_games": 292,
+      "present_games": 3939,
+      "pts_when_absent": 20.84,
+      "pts_when_present": 23.1,
+      "pts_delta": -2.26,
+      "epa_delta": -2.02,
+      "avg_margin_vs_spread_when_absent": -0.2,
+      "ats_win_pct_when_absent": 0.4966,
+      "ats_roi_stored_odds": -0.0411,
+      "backup_avg_volume_gain": 0.78,
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "role": "Ex-ante RB1",
+      "threshold": ">= 10.0 trailing carries/gm",
+      "absent_games": 401,
+      "present_games": 3753,
+      "pts_when_absent": 21.97,
+      "pts_when_present": 23.05,
+      "pts_delta": -1.08,
+      "epa_delta": -1.19,
+      "avg_margin_vs_spread_when_absent": -0.22,
+      "ats_win_pct_when_absent": 0.4975,
+      "ats_roi_stored_odds": -0.0314,
+      "backup_avg_volume_gain": 5.85,
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "role": "Ex-ante TE1",
+      "threshold": ">= 4.5 trailing targets/gm",
+      "absent_games": 229,
+      "present_games": 1975,
+      "pts_when_absent": 22.53,
+      "pts_when_present": 23.08,
+      "pts_delta": -0.55,
+      "epa_delta": -1.1,
+      "avg_margin_vs_spread_when_absent": 0.96,
+      "ats_win_pct_when_absent": 0.5134,
+      "ats_roi_stored_odds": -0.0006,
+      "backup_avg_volume_gain": 1.27,
+      "sources": [
+        "SRC-GITHUB-REPO"
+      ]
+    }
+  ],
+  "def_ol_extract_audit": {
+    "player_week_def_ol_rows": {
+      "DB": 45379,
+      "DL": 35371,
+      "LB": 34328,
+      "OL": 10601
+    },
+    "player_week_def_ol_nonzero_stat_rows": {
+      "DB": 124,
+      "DL": 29,
+      "LB": 48,
+      "OL": 107
+    },
+    "historical_def_snap_dropoff": "",
+    "historical_ol_snap_dropoff": "",
+    "team_level_pass_protection_collapse": {
+      "definition": "sacks_suffered >= trailing 4-gm mean + 2.5 (proxy for OT/OL breakdown)",
+      "shock_games": 461,
+      "avg_pts_scored_shock": 17.69,
+      "avg_pts_scored_normal": 23.33
+    },
+    "team_level_pass_rush_collapse": {
+      "definition": "def_sacks <= trailing 4-gm mean - 2.0 (proxy for EDGE/DT absence)",
+      "shock_games": 704,
+      "avg_pts_allowed_shock": 26.12,
+      "avg_pts_allowed_normal": 22.14
+    },
+    "sources": [
+      "SRC-GITHUB-REPO",
+      "SRC-NFL-GENIUS"
+    ]
+  },
+  "live_week10": {
+    "reg10_discrepancies": [
+      {
+        "team": "SEA",
+        "reg10_page_status": "Says 'No Injuries Reported'",
+        "official_nov11_roundup_fact": "12 players listed on official Nov 11 practice report: QB1 Sam Darnold (Out), QB2 Drew Lock (LP), LT Charles Cross (DNP), G Quenton Nelson (DNP), DT Leonard Williams (DNP), DT Jarran Reed (DNP), WR Cooper Kupp (DNP), RB Kenneth Walker III (LP) + 4 more.",
+        "action_impact": "CRITICAL feed discrepancy: an automated scraper reading only /injuries/league/2026/REG10 misses QB1 Out and 4 trench starters DNP.",
+        "sources": [
+          "SRC-NFL-INJURIES-W10",
+          "SRC-NFL-ROUNDUP-NOV11",
+          "SRC-NFL-SEA-DARNOLD"
+        ]
+      },
+      {
+        "team": "CIN",
+        "reg10_page_status": "Says 'No Injuries Reported'",
+        "official_nov11_roundup_fact": "3 injured players reported in Nov 11 roundup ahead of PIT @ CIN.",
+        "action_impact": "Feed lag/omission between team Wed report and REG10 league table.",
+        "sources": [
+          "SRC-NFL-INJURIES-W10",
+          "SRC-NFL-ROUNDUP-NOV11"
+        ]
+      },
+      {
+        "team": "BAL",
+        "reg10_page_status": "Says 'No Injuries Reported' (IR omitted)",
+        "official_nov11_roundup_fact": "QB1 Lamar Jackson (elbow, IR 6-9 wks) and QB2 Tyler Huntley (turf toe, IR) omitted from active game status table; 3rd-string QB Joe Fagnano started Wk 9 TNF; BAL acquired QB Jacoby Brissett from AZ.",
+        "action_impact": "Severe starter downgrade invisible if scraping only weekly REG10 active injury status without IR/transactions.",
+        "sources": [
+          "SRC-NFL-INJURIES-W10",
+          "SRC-NFL-BAL-JACKSON",
+          "SRC-CLUB-BAL-DC"
+        ]
+      },
+      {
+        "team": "LAC",
+        "reg10_page_status": "Says 'No Injuries Reported'",
+        "official_nov11_roundup_fact": "0-8 LAC enters Week 10 MNF at BAL with blank REG10 table while Thursday injury practice begins Nov 12.",
+        "action_impact": "MNF teams release first official report Thursday \u2014 Wednesday blank is normal schedule cadence, unlike Sun/TNF games.",
+        "sources": [
+          "SRC-NFL-INJURIES-W10",
+          "SRC-NFL-SCHED-W10"
+        ]
+      }
+    ],
+    "week10_matchup_impacts": [
+      {
+        "matchup": "WAS @ NYG (Thu)",
+        "key_injuries": "WAS: Colson Yankoff (Out), C Lucas Patrick (Out); NYG: Marcus Harrison (Q).",
+        "cascade_cluster": "WAS interior OL/TE depth tested without C Lucas Patrick (omitted on club DC) and TE Colson Yankoff.",
+        "snap_share_verified": "",
+        "sources": [
+          "SRC-NFL-INJURIES-W10",
+          "SRC-NFL-INJURY-ARTICLE-W10",
+          "SRC-CLUB-WAS-DC"
+        ]
+      },
+      {
+        "matchup": "NE @ DET (Munich)",
+        "key_injuries": "NE: C Ben Brown (Out), CB Carlton Davis (Out), RB TreVeyon Henderson (Out), G Greg Van Roten (LP, omitted on club DC); DET: CB D.J. Reed (DNP), C/G Cade Mays (DNP), QB Jared Goff (LP), WR Amon-Ra St. Brown (LP), S Brian Branch (LP), S Kerby Joseph (LP).",
+        "cascade_cluster": "NE loses starting C + CB1 + RB depth while G Van Roten is LP; DET secondary cluster (Reed DNP + Branch LP + Joseph LP) + interior OL Mays DNP.",
+        "snap_share_verified": "",
+        "sources": [
+          "SRC-NFL-INJURY-ARTICLE-W10",
+          "SRC-NFL-INJURIES-W10",
+          "SRC-CLUB-NE-DC",
+          "SRC-CLUB-DET-DC"
+        ]
+      },
+      {
+        "matchup": "MIA @ IND",
+        "key_injuries": "MIA: QB1 Malik Willis (groin, IR Wks 10-13) -> rookie/backup Kyle McCord 1st NFL start; MIA club DC leaves QB2-QB4 & K blank; IND: LB Jaylon Carlies (DNP), LB Germaine Pratt/Akeem Davis-Gaither (DNP), S Genesis Haulcy (DNP), CB Xavier Rhodes (DNP).",
+        "cascade_cluster": "Dual-side vulnerability: MIA raw backup QB McCord vs IND depleted CB/LB second level (4 defensive starters DNP).",
+        "snap_share_verified": "",
+        "sources": [
+          "SRC-NFL-MIA-WILLIS",
+          "SRC-CLUB-MIA-DC",
+          "SRC-NFL-INJURIES-W10",
+          "SRC-CLUB-IND-DC"
+        ]
+      },
+      {
+        "matchup": "SEA @ LV",
+        "key_injuries": "SEA: QB1 Sam Darnold (Out) -> QB2 Drew Lock (LP) -> QB3 Jalen Milroe; LT Charles Cross (DNP), G Quenton Nelson (DNP), DT Leonard Williams (DNP), DT Jarran Reed (DNP), WR Cooper Kupp (DNP); LV: traded QB1 Kirk Cousins to MIN Nov 10.",
+        "cascade_cluster": "Major two-way QB & trench shock: Darnold Out + left-side OL Cross/Nelson DNP + DL Williams/Reed DNP vs LV post-Cousins QB uncertainty.",
+        "snap_share_verified": "",
+        "sources": [
+          "SRC-NFL-SEA-DARNOLD",
+          "SRC-NFL-ROUNDUP-NOV11",
+          "SRC-CLUB-SEA-DC"
+        ]
+      },
+      {
+        "matchup": "LA @ ARI",
+        "key_injuries": "LA: WR1 Puka Nacua (DNP, likely IR), CB Trent McDuffie (DNP), S Kamren Curl (DNP), LG Steve Avila (DNP), DE Myles Garrett (LP); ARI: rookie 3rd-rounder Carson Beck starts after Jacoby Brissett traded to BAL; S Budda Baker (DNP), C Hjalte Froholdt (DNP), EDGE Josh Sweat (DNP).",
+        "cascade_cluster": "WR1 + secondary shock on LA (Davante Adams/Tutu Atwell absorb targets) vs rookie QB3 Carson Beck behind C1 Froholdt DNP + defensive anchors Baker/Sweat DNP.",
+        "snap_share_verified": "",
+        "sources": [
+          "SRC-NFL-LAR-NACUA",
+          "SRC-NFL-ROUNDUP-NOV11",
+          "SRC-NFL-INJURIES-W10",
+          "SRC-CLUB-LAR-DC"
+        ]
+      },
+      {
+        "matchup": "MIN @ GB",
+        "key_injuries": "MIN: newly acquired Kirk Cousins (Nov 10 trade), QB Carson Wentz (LP), RB Kenneth Murray/TE T.J. Hockenson (DNP); GB: RB1 Josh Jacobs (Out -> Emanuel Wilson/Chris Brooks), EDGE Micah Parsons (LP, omitted on club DC), EDGE Lukas Van Ness (DNP), LB Zaire Franklin (DNP), S Javon Bullard (DNP).",
+        "cascade_cluster": "MIN short-week playbook integration for Cousins vs GB missing RB1 Jacobs Out and pass-rush/LB rotation thin.",
+        "snap_share_verified": "",
+        "sources": [
+          "SRC-NFL-ROUNDUP-NOV11",
+          "SRC-NFL-INJURIES-W10",
+          "SRC-CLUB-GB-DC"
+        ]
+      },
+      {
+        "matchup": "SF @ DAL & PIT @ CIN & LAC @ BAL",
+        "key_injuries": "SF: LT Trent Williams (DNP), CB Deommodore Lenoir (DNP), WR Deebo Samuel (LP); DAL: TE Jake Ferguson (DNP), S Malik Hooker (DNP), EDGE Von Miller (DNP); PIT: EDGE T.J. Watt (DNP), DT Cam Heyward (DNP); BAL: Jackson/Huntley IR -> Brissett/Fagnano.",
+        "cascade_cluster": "Elite pass-rusher/LT cluster status: Trent Williams, T.J. Watt, Cam Heyward, and Von Miller all DNP Wednesday ahead of pivotal Sunday/Monday matchups.",
+        "snap_share_verified": "",
+        "sources": [
+          "SRC-NFL-INJURIES-W10",
+          "SRC-NFL-BAL-JACKSON",
+          "SRC-CLUB-BAL-DC"
+        ]
+      }
+    ],
+    "club_depth_audit": [
+      {
+        "team": "NE",
+        "unofficial_banner": true,
+        "offense_cascade": "QB1 Drake Maye -> QB2 Joshua Dobbs -> QB3 Tommy DeVito; RB1 Rhamondre Stevenson -> RB2 TreVeyon Henderson (OUT Wk 10).",
+        "defense_ol_cascade": "LT1 Will Campbell -> LT2 Marcus Bryant; C1 Ben Brown (OUT Wk 10) -> Jared Wilson; G Greg Van Roten (LP); CB1 Christian Gonzalez -> CB2 Carlton Davis (OUT Wk 10).",
+        "audit_gap": "Several 3rd/4th-string OL/DB slots left blank; active G Greg Van Roten omitted from depth table while LP on REG10.",
+        "sources": [
+          "SRC-CLUB-NE-DC",
+          "SRC-NFL-INJURY-ARTICLE-W10",
+          "SRC-NFL-INJURIES-W10"
+        ]
+      },
+      {
+        "team": "IND",
+        "unofficial_banner": true,
+        "offense_cascade": "QB1 Daniel Jones -> QB2 Riley Leonard; RB1 Jonathan Taylor -> RB2 DJ Giddens; WR1 Michael Pittman Jr. / Josh Downs.",
+        "defense_ol_cascade": "CB/LB starter tiers (Carlies, Davis-Gaither, Haulcy, Rhodes all DNP Wed).",
+        "audit_gap": "LS2-LS4 and CB3-4 empty; backup LB/CB snap distribution unverifiable in extracts.",
+        "sources": [
+          "SRC-CLUB-IND-DC",
+          "SRC-NFL-INJURIES-W10"
+        ]
+      },
+      {
+        "team": "WAS",
+        "unofficial_banner": true,
+        "offense_cascade": "QB1 Jayden Daniels -> QB2 Marcus Mariota -> QB3 Sam Hartman; WR1 Terry McLaurin / Deebo Samuel.",
+        "defense_ol_cascade": "LT1 Laremy Tunsil; RT1 Josh Conerly Jr.; C/G Lucas Patrick (OUT Wk 10, concussion).",
+        "audit_gap": "Active C/G Lucas Patrick omitted from club depth table while ruled Out on official TNF injury report.",
+        "sources": [
+          "SRC-CLUB-WAS-DC",
+          "SRC-NFL-INJURY-ARTICLE-W10",
+          "SRC-NFL-INJURIES-W10"
+        ]
+      },
+      {
+        "team": "MIA",
+        "unofficial_banner": true,
+        "offense_cascade": "QB1 Malik Willis (IR Wks 10-13) -> rookie/backup Kyle McCord (1st NFL start); RB1 De'Von Achane.",
+        "defense_ol_cascade": "OL/DB depth cascades thinned by blank secondary slots.",
+        "audit_gap": "QB2, QB3, QB4, and K slots completely blank on live club depth chart during QB1 IR transition.",
+        "sources": [
+          "SRC-CLUB-MIA-DC",
+          "SRC-NFL-MIA-WILLIS"
+        ]
+      },
+      {
+        "team": "SEA",
+        "unofficial_banner": true,
+        "offense_cascade": "QB1 Sam Darnold (OUT Wk 10) -> QB2 Drew Lock (LP) -> QB3 Jalen Milroe; WR1 Jaxon Smith-Njigba / Cooper Kupp (DNP).",
+        "defense_ol_cascade": "LT1 Charles Cross (DNP), LG Quenton Nelson (DNP, omitted on club DC), DT1 Leonard Williams (DNP), DT2 Jarran Reed (DNP).",
+        "audit_gap": "Club DC omits Quenton Nelson despite Wed DNP; official REG10 league table falsely prints 'No Injuries Reported'.",
+        "sources": [
+          "SRC-CLUB-SEA-DC",
+          "SRC-NFL-ROUNDUP-NOV11",
+          "SRC-NFL-SEA-DARNOLD"
+        ]
+      },
+      {
+        "team": "BAL",
+        "unofficial_banner": true,
+        "offense_cascade": "QB1 Lamar Jackson (IR) -> QB2 Tyler Huntley (IR) -> QB3 Joe Fagnano (Wk 9 TNF starter) / newly traded Jacoby Brissett.",
+        "defense_ol_cascade": "Tyler Linderbaum C1; Kyle Hamilton S1 / Roquan Smith LB1.",
+        "audit_gap": "Stale depth chart still lists injured Huntley & retired/former K Tyler Loop while omitting Fagnano and Brissett.",
+        "sources": [
+          "SRC-CLUB-BAL-DC",
+          "SRC-NFL-BAL-JACKSON",
+          "SRC-NFL-ROUNDUP-NOV11"
+        ]
+      },
+      {
+        "team": "LA",
+        "unofficial_banner": true,
+        "offense_cascade": "QB1 Matthew Stafford; WR1 Puka Nacua (DNP, likely IR) -> Davante Adams / Jordan Whittington / Tutu Atwell; LG1 Steve Avila (DNP).",
+        "defense_ol_cascade": "EDGE Myles Garrett (LP); CB Trent McDuffie (DNP); S Kamren Curl (DNP).",
+        "audit_gap": "CRITICAL STALE ROSTER ARTIFACT: club depth chart still prints Aaron Donald at DE1 despite retirement/Myles Garrett era.",
+        "sources": [
+          "SRC-CLUB-LAR-DC",
+          "SRC-NFL-LAR-NACUA",
+          "SRC-NFL-INJURIES-W10"
+        ]
+      },
+      {
+        "team": "DET",
+        "unofficial_banner": true,
+        "offense_cascade": "QB1 Jared Goff (LP); WR1 Amon-Ra St. Brown (LP) -> Jameson Williams -> Kalif Raymond; C/G Cade Mays (DNP).",
+        "defense_ol_cascade": "CB1 D.J. Reed (DNP) -> Terrion Arnold / Amik Robertson; S1 Brian Branch (LP); S Kerby Joseph (LP, omitted on club DC).",
+        "audit_gap": "Omits S Kerby Joseph while listing him LP on Wed injury report; secondary depth heavily stressed before Munich kickoff.",
+        "sources": [
+          "SRC-CLUB-DET-DC",
+          "SRC-NFL-INJURIES-W10"
+        ]
+      },
+      {
+        "team": "GB",
+        "unofficial_banner": true,
+        "offense_cascade": "QB1 Jordan Love; RB1 Josh Jacobs (OUT Wk 10) -> RB2 Emanuel Wilson -> RB3 Chris Brooks; WR Romeo Doubs / Jayden Reed / Matthew Golden.",
+        "defense_ol_cascade": "EDGE Lukas Van Ness (DNP), LB Zaire Franklin (DNP), S Javon Bullard (DNP), EDGE Micah Parsons (LP).",
+        "audit_gap": "Club depth chart omits superstar EDGE Micah Parsons despite LP listing on official NFL.com REG10 injury report.",
+        "sources": [
+          "SRC-CLUB-GB-DC",
+          "SRC-NFL-INJURIES-W10"
+        ]
+      }
+    ]
+  }
+}

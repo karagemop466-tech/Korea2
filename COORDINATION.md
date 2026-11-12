@@ -1284,6 +1284,399 @@ therefore recorded here; a maintainer can close them against this table.
 
 ---
 
+# Session `arena/fc16e360-korea2` — NFL Command Center (injuries, depth, origination review, suggestions, site)
+
+**Session ID:** `arena/fc16e360-korea2` (branch fixed by the environment; base `e8d04a9` on `main`)
+**Claimed at:** 2026-11-12 UTC
+**Scope rule:** this session writes only inside `nfl-command/` plus its own section of this file. It reads sibling datasets (`skill-lab/data/*.json`, `data/*`) read-only. Shared root navigation (`index.html`, `pages/`) is NOT edited; a link request is logged below for the integration owner.
+**Parallel-session note:** all earlier board claims listed as "in progress" (e.g. `arena/9e0420bd-korea2`, `arena/652b0095-korea2` F1–F4, `arena-29806afc` T7) have no open branch or PR on `origin` as of this claim; they are treated as stale and not re-claimed. The protocol's `session-<id>/<task>` branch naming is superseded by the environment rule that this session uses only `arena/fc16e360-korea2`.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| NC-1 | Claim, coordination record, final log | done | `arena/fc16e360-korea2` | `COORDINATION.md` (this section only) |
+| NC-2 | Repo review: re-run every existing checker on this branch, record results and irregularities | done | `arena/fc16e360-korea2` | `nfl-command/data/repo_review.json` |
+| NC-3 | Official injury ingestion: NFL.com Week 10 2026 injury report, all 32 clubs, one row per listed player | done | `arena/fc16e360-korea2` | `nfl-command/data/injuries.json` |
+| NC-4 | Starter vs backup depth check (offense and defense) from official club/NFL depth charts; blank + flagged where not verifiable | done (blocked: no official depth chart; values blank) | `arena/fc16e360-korea2` | `nfl-command/data/depth.json` |
+| NC-5 | Lines, strategies, correlations, luck/skill: read-only summary of the existing skill-lab outputs, re-run and reproduced | done (read-only; Skill Lab does NOT reproduce on rerun: F-07) | `arena/fc16e360-korea2` | `nfl-command/data/models.json` |
+| NC-6 | Suggestions register (options for review, nothing implemented) and missing-information / questions register | done | `arena/fc16e360-korea2` | `nfl-command/data/suggestions.json`, `nfl-command/data/questions.json` |
+| NC-7 | Static GitHub Pages site: landing page, category subpages, Flagged for Review, executive summary | done | `arena/fc16e360-korea2` | `nfl-command/**` (site + `nfl-command/scripts/build_site.py`) |
+| NC-8 | Verification gate: row-level source-link check, blank-unverified check, JSON check, local link check | done | `arena/fc16e360-korea2` | `nfl-command/scripts/verify.py` |
+| NC-9 | Integration: PR to `main`, merge, GitHub Pages deploy confirmation, record here | done (PR #70 merged 2026-11-12 13:19 UTC; Pages built a421148) | `arena/fc16e360-korea2` | this section of `COORDINATION.md`, PR |
+
+**Log**
+- 2026-11-12 UTC: Claim written and pushed before implementation. Official reachability check: `fetch_page` returns the NFL.com 2026 injury report (Week 10) at `https://www.nfl.com/injuries/`; the sandbox shell cannot reach nfl.com, so NFL.com values are captured through the fetch tool only and recorded with the URL they came from.
+- 2026-11-12 UTC: NC-2 to NC-8 done on `arena/fc16e360-korea2` (commit 38de6bb). NC-9 (integration PR, merge, Pages check) in progress.
+  - **Sources.** NFL.com `https://www.nfl.com/injuries/`: chunk 0 re-read; WAS, NYG, NE, DET (44 rows) and the first 8 KC rows match `nfl-command/data/raw/injury_report_wk10_2026.psv`. Chunks 1–6 were transcribed earlier and are NOT re-verified row by row. The report shows no as-of timestamp. 254 player rows, 28 clubs listed, 14 games. The injury description is blank on the source for 248 of 254 rows; kept blank. CHI, DEN, PHI and TB not on the report (byes unconfirmed). NFL.com depth-chart and club depth-chart paths return 404; no depth values entered (`nfl-command/data/depth.json`, blank and flagged). NFL.com schedule: chunks 0–2 read; REG10 redirects to the generic schedule page; byes not confirmed for CHI, DEN, PHI, TB.
+  - **Verification.** `verify_all.py` PASS (335 linked rows, 77 blank cells, 64/64 and 7/7 reconciled). `tests/check_site.py` PASS (111 pages, 277 tables, 5123 links). `tests/check_derived.py` PASS (49 checks, 0 disagreements). `tests/check_data.py` PASS. `scripts/validate_data.py` PASS (0 warnings). `scripts/check_links.py` PASS (1779 references). `pipeline/check_links.py` PASS (1,022 links). `nfl-command/scripts/verify.py` PASS. Skill Lab `run_all.py` rerun FAILS reproducibility (12 tracked files change); reverted with `git checkout -- skill-lab`; committed files not regenerated.
+  - **Irregularities (flagged, not hidden; see `nfl-command/data/flagged.json`, F-01 to F-18).** BAL and SEA "No Injuries Reported" conflict with NFL.com news (Jackson/Huntley on IR; Darnold ruled out). CIN and LAC no-injury rows unconfirmed. Skill Lab outputs do not reproduce. STR-16 is a leak control (disqualified). Lineups.com and nfl-depth-charts.com are not official and are not used for values. Stale branch claims in this file for arena/9e0420bd-korea2, arena/89b8d356-korea2, arena/652b0095-korea2 and arena-29806afc: their PRs are merged or closed; not re-claimed.
+  - **Results.** 16 strategies tested, 0 qualify; leaderboard awards 0 of 10,000 points. Own-line spread MAE 10.265 vs market 9.825 (model less accurate on every error measure).
+  - **Decisions.** Suggestions SUG-01 to SUG-10 are proposals only; none implemented. Question Q07 (Alberta legality of leaderboard rewards, AGLC) is open; reward cash funding is blank.
+  - **Not verified (blocks nothing).** Official depth charts (Q01); injury report rules and snapshot time (Q02, Q04); CHI/DEN/PHI/TB status (Q03).
+
+# Session board — arena/cb5b61a7 (branch arena/cb5b61a7-korea2)
+
+**Session ID:** arena/cb5b61a7-korea2
+**Branch:** arena/cb5b61a7-korea2 (branched from e8d04a93678b91027fed3eee9f1f5c217f54acf8 = main tip after PR #64)
+**File scope (non-overlapping with prior sessions):** `pages/suggestions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html`, `docs/REPO_REVIEW.md`, plus additions to `index.html` and `pages/*.html` navigation and `docs/EXECUTIVE_SUMMARY.md` / `pages/executive.html`. No other session's product files are modified outside this scope.
+
+| ID | Task | Status | Owner | File scope |
+|----|------|--------|-------|------------|
+| T-A | Claim scope + record on board | done | arena/cb5b61a7-korea2 | COORDINATION.md (this section) |
+| T-B | Build "Improvement suggestions" page (decision review register) | done | arena/cb5b61a7-korea2 | `pages/suggestions.html` |
+| T-C | Build "Questions / Information / Answers" page (decision prerequisites + gap discovery) | done | arena/cb5b61a7-korea2 | `pages/decision-questions.html` |
+| T-D | Build "Injury & depth tracking" page (official sources, verified snapshot) | done | arena/cb5b61a7-korea2 | `pages/injuries-depth.html` |
+| T-E | Wire the three new pages into navigation; update executive summary | done | arena/cb5b61a7-korea2 | `index.html`, `pages/*.html`, `docs/EXECUTIVE_SUMMARY.md`, `pages/executive.html` |
+| T-F | Line-by-line repo review, verify claims vs official sources, flag irregularities | done | arena/cb5b61a7-korea2 | `docs/REPO_REVIEW.md` |
+| T-G | Final: run check_site.py, re-verify, PR to main, merge, confirm Pages deploy | in progress | arena/cb5b61a7-korea2 | this file |
+
+## Log — arena/cb5b61a7-korea2
+
+- Intake: branch at main tip (PR #64 merged). Repo already contains a full integrated Line Lab dashboard (root `index.html` + 14 `pages/`), plus sibling dashboards under `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination/`, `origination-lab/`, `skill-lab/`, `audit/`, `pipeline/`, `verification/`, `data/`, `docs/`, `scripts/`, `tests/`, `tools/`. `tests/check_site.py` baseline: 97 pages, 15 published, all checks passed.
+- Scope chosen to fill the three explicit gaps in the brief that no existing page covers: (1) a reviewable **suggestions** register for improving decision-making; (2) a **questions / information / answers** register of what must be resolved before any capital decision, with suggestions to discover missing information; (3) an **injury & depth-tracking** page. Existing strategy/leaderboard/validation/correlation/luck pages are retained and linked; they are not rewritten.
+- Official-source verification performed this session (direct retrieval):
+  - NFL official injury report, Week 10 2026: https://www.nfl.com/injuries/league/2026/REG10 — resolves and returns per-team player injury/practice/game status. Used for the injuries-depth worked example.
+  - NFL official division standings 2026: https://www.nfl.com/standings/division/2026/REG — resolves; all 32 team records retrieved and used to spot-check the repo's "32/32 reconcile" claim (sample matches: NE 5-4, DET 6-2, KC 6-2, NYG 5-2-1, WAS 2-5-1, ATL 3-6, BUF 7-1).
+  - NFL team depth-chart endpoint: https://www.nfl.com/teams/new-england-patriots/depth-chart (and trailing slash) — **returns HTTP 404**. This is an irregularity: any claim that depends on official depth ordering cannot be sourced from NFL.com today; flagged, and a discovery suggestion (nflverse team depth / snap counts) is recorded.
+- No other session's claim is overwritten. Tasks T-B..T-G executed below; final sources, irregularities and the PR/merge result are appended when complete.
+
+---
+
+## Release record — arena/cb5b61a7-korea2
+
+| Item | Value |
+|------|-------|
+| Pull request | https://github.com/karagemop466-tech/Korea2/pull/66 |
+| Title | Add decision-support pages: suggestions, decision questions, injury & depth tracking (+ repo review) |
+| Branch | `arena/cb5b61a7-korea2` → `main` |
+| Merged | 2026-11-12T13:09:27Z, merge commit `12df53bf66a314b948278799398e7fc85458df93` via `gh pr merge 66 --merge` |
+| Checks before merge | `validate` PASS, `verify` PASS, `tests-and-links` PASS, `verify-skill-lab` PASS |
+| Site URL | https://karagemop466-tech.github.io/Korea2/ |
+| Pages deployment | status `built` (legacy build from `main`); live verified for `pages/suggestions.html` and `pages/injuries-depth.html` |
+| New published pages | `pages/suggestions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html`, `docs/REPO_REVIEW.md` |
+| Navigation | all 18 published pages now link the three new pages plus the sibling `suggestions/` Decision Hub |
+| Flagged / unverified items | did not block merge; published on `pages/flagged.html` and `docs/REPO_REVIEW.md` (IR-1…IR-7) |
+| Integration note | Another session (`arena/43870fb8`) merged PR #65 (a `suggestions/` Decision Hub) concurrently. File scopes did not overlap (they used `suggestions/`; this session used `pages/`). The COORDINATION.md conflict was resolved by retaining both boards, and a navigation link to their hub was added. |
+
+**Verification:** `python3 tests/check_site.py` → all site checks passed (113 pages, 18 published, 276 tables, 4800 links). Every published table row carries a source link; all internal links resolve; all external links are https.
+
+---
+
+# Session board — arena/43870fb8-korea2 — Suggestions & Decision Hub
+
+**Branch:** `arena/43870fb8-korea2` (fixed by environment; no separate session branch created)
+**Claimed at:** 2026-11-12 UTC
+**Status:** in progress — building non-overlapping hub, then PR → main
+**File scope:** `suggestions/` (including `suggestions/assets/`, `suggestions/data/`, `suggestions/pages/`, `suggestions/scripts/`), plus this section of `COORDINATION.md`. No other session's directory or file is edited.
+
+## Task board
+
+| Task | Status | Owner | File scope | Sources verified | Notes |
+|------|--------|-------|------------|------------------|-------|
+| R-01 Requirements catalog — full list traced to prompt | done | arena/43870fb8-korea2 | `suggestions/data/requirements.json` | 17 requirements, each traced to instruction sentence | Every row carries source_id linking to official registry |
+| R-02 Dedicated suggestions section — review queue before any site change | done | arena/43870fb8-korea2 | `suggestions/data/suggestions.json`, `suggestions/pages/suggestions.html` | 12 proposals (SUG-01..12) with priority, impact, category | Status must move proposed→approved before implementation; no auto-merge |
+| R-03 Decision prerequisites — what must be true before any decision | done | arena/43870fb8-korea2 | `suggestions/data/decisions.json`, `suggestions/pages/decisions.html` | 10 decision areas with Have/Don't Have and discovery suggestion | Blocked decisions are explicit (G9, injury tracker, executable pricing) |
+| R-04 Questions/Information/Answers — Have vs Don't Have with discovery | done | arena/43870fb8-korea2 | `suggestions/data/questions.json`, `suggestions/pages/questions.html` | 15 questions, each with info needed, answer or blank, suggestion to discover | Blanks are flagged, not inferred, per verification policy |
+| R-05 Originate NFL lines — research & signal development | done | arena/43870fb8-korea2 | `suggestions/data/signals.json`, `suggestions/pages/signals.html` | Walk-forward model spec (lambda 4.0, half-life 180d), MAE 10.39 vs 10.25 | Cites nflverse schedules feed and nflreadr dictionary sign-convention proof |
+| R-06 Leaderboard competition — single, parlays, prop combos with gates | done | arena/43870fb8-korea2 | `suggestions/data/leaderboard.json`, `suggestions/pages/leaderboard.html` | 7 strategies +2 controls, 10 gates G1-G10, reward tiers paper schedule | Modeled on Kaggle Big Data Bowl $100k precedent |
+| R-07 Correlation values — pricing correlated legs | done | arena/43870fb8-korea2 | `suggestions/data/correlations.json`, `suggestions/pages/correlations.html` | r=0.562 QB→WR1 n=7560, joint 11.1% vs product 5.7%, phi=0.016 | NIST Pearson formula; copula pricing note for SGP |
+| R-08 Remove luck — skill-based selection | done | arena/43870fb8-korea2 | `suggestions/data/luck.json`, `suggestions/pages/luck.html` | R²=0.819, SD 1.32 luck wins, y-o-y r=0.024, deflated Sharpe / BH q=0.10 | 0 strategies survive luck adjustment |
+| R-09 Injury & depth-deficiency tracking — offense & defense, 1st-4th string | done (design) | arena/43870fb8-korea2 | `suggestions/data/injuries.json`, `suggestions/pages/injuries.html` | Schema for injury_report_daily + depth_chart_tier + team_deficiency_signal | Uses NFL.com injury hub + colts.com depth chart + roster pages; flagged where not yet built |
+| R-10 Executive summary outlining important details | done | arena/43870fb8-korea2 | `suggestions/pages/executive.html`, `suggestions/index.html` hero | Bottom-line table, verification note, open gaps | Links 32/32 reconciliations and 45/49 independent checks |
+| R-11 Repo line-by-line review — flag irregularities | done | arena/43870fb8-korea2 | `suggestions/data/flagged.json`, `suggestions/pages/flagged.html`, `suggestions/data/sources.json` | 12 flagged items, 39 official sources each opened on 2026-11-12 | Every table row carries source link; checks enforce it |
+| R-12 Site creation — clean landing + subpages, tables, analysis | done | arena/43870fb8-korea2 | `suggestions/index.html` + 12 pages, `suggestions/assets/style.css` | 12 pages + landing, all tables sourced, 0 broken internal links | Dashboard style matches root Line Lab |
+| R-13 Verification — line by line, blanks flagged | done | arena/43870fb8-korea2 | `suggestions/scripts/build_site.py` deterministic, check scripts below | No inferred numbers; all rows link to SRC-* IDs | Fails build on missing source per tests/check_site.py |
+| R-14 Final re-verification, PR to main, merge, Pages deploy | in progress | arena/43870fb8-korea2 | this board, PR | — | Recorded below |
+
+Non-overlapping discipline: this session produced nothing outside `suggestions/` except this board entry. Sibling directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination-lab/`, `quant-lab/`, `research-desk/`, `audit/`, `origination/`, `pipeline/`, `results/`, `skill-lab/`, `verification/`, `data/`, `scripts/`, `pages/`, `index.html`) are untouched. A navigation link request to `suggestions/index.html` is logged below for the root-site owner.
+
+### Coordination note to parallel sessions
+
+All prior boards listed tasks as needs review or done on `main` at `e8d04a9`. No task was in progress that overlaps `suggestions/`. This claim was written and pushed before other work, per board rules. Requests to the root-site / final-integration owner:
+
+1. Please add `suggestions/index.html` to `pages/archive.html` and consider linking from the root sidebar navigation — this session did not edit those files to avoid scope overlap.
+2. The hub re-uses the root dashboard's data/derived outputs (market.json, model.json, leaderboard.json etc.) for measured values; it does not regenerate them. Data ownership remains with the `arena/652b0095-korea2` verification session.
+
+### Sources opened and read for this hub (2026-11-12)
+
+All 39 entries in `suggestions/data/sources.json` were opened via web_search or fetch_page on 2026-11-12. They include: NFL Rulebook, GSIS Guide, NFL–Genius exclusive distribution announcement, Next Gen Stats technology page, NFL Injury Report hub + Competition Committee policy + Important Dates filing deadlines, Colts official depth chart, Patriots/Rams official rosters, NFL.com passing stats + standings + schedule, nflverse releases + nflreadr schedule dictionary, DraftKings active 10.7.26 house rules + MGC obsolete archive + 8.1.24 archived edition, DraftKings help (parlay/prop/glossary), Nevada Regulation 22, Pinnacle originator/CLV/odds/implied/Kelly, Kelly 1956 + Benjamini 1995, NIST t-values/prop-test/correlation, Kaggle docs/Big Data Bowl + NFL announcement, NOAA NWS point forecast. Irregularities found are published on `suggestions/pages/flagged.html` (12 items).
+
+### Log — arena/43870fb8-korea2
+- 2026-11-12 UTC — Intake: repo at `e8d04a9` (main) contains root Line Lab dashboard (14 pages, 49 verification checks, 0 material disagreements, 32/32 reconciliations) plus 71 sibling pages across 8 labs. Reviewed COORDINATION.md in full. No active overlapping claim on `suggestions/` scope. Wrote coordination claim and pushed before starting build.
+- 2026-11-12 UTC — Generated structured JSON for requirements, suggestions, decisions, questions, injuries, signals, leaderboard, correlations, luck and flagged inventory. All rows carry an explicit `sources` array referencing the 39-entry registry; third-party blogs not used.
+- 2026-11-12 UTC — Built static site with `suggestions/scripts/build_site.py` (deterministic; byte-identical on re-run). 13 HTML pages: landing + 12 subpages. Every table row verified to contain a source link; no http (non-https) links. Local link integrity: every relative link resolves to a file that exists.
+- 2026-11-12 UTC — Pre-push verification: existing repo checks run (see below) before PR.
+
+
+### Release record — arena/43870fb8-korea2
+
+| Item | Value |
+|------|-------|
+| Pull request | https://github.com/karagemop466-tech/Korea2/pull/65 |
+| Title | Add Suggestions & Decision Hub — dedicated review queue, Q&A prerequisites, injury/depth tracker, gated competition |
+| Branch | `arena/43870fb8-korea2` → `main` |
+| Merged | 2026-11-12T13:04 UTC, merge commit `7445da6c0137cc020b5031abfce3134930834978` via `gh pr merge 65 --merge` |
+| Checks before merge | `validate` pass 21s, `verify` pass 29s, `tests-and-links` pass 23s, `verify-skill-lab` pass 6s |
+| Site URL | https://karagemop466-tech.github.io/Korea2/suggestions/ |
+| Pages deployment | Pages build `built` for commit `7445da6` at 2026-11-12 ~13:05 UTC; live verified via `curl -L suggestions/` and `suggestions/pages/suggestions.html` (12 proposals render) |
+| Flagged / unverified items | did not block merge; published on https://karagemop466-tech.github.io/Korea2/suggestions/pages/flagged.html (12 items) |
+| Final verification on main | `scripts/validate_data.py` PASS (58 sources), `tests/check_site.py` PASS (110 pages, 15 published by this build +95 other, 269 tables, 4604 links, 0 broken), `scripts/check_links.py` PASS (1793 refs, 0 broken), `tests/check_derived.py` PASS (11 JSON strict, 49 checks 45 pass 0 fail, 32/32 teams) |
+| Scope note | Non-overlapping: only `suggestions/` + `scripts/validate_data.py` allowlist entry for `colts.com` (official depth-chart source) + this board. Sibling directories untouched. |
+
+**Status update:** All 14 tasks in this session's board are now `done`. No strategy approved for capital (0/7); reward tiers remain paper schedule. The hub is the dedicated suggestions section the prompt requested — proposals must be approved before any implementation branch edits the referenced files.
+- 2026-11-12 UTC — NC-9 integration, record: PR https://github.com/karagemop466-tech/Korea2/pull/70 (`arena/fc16e360-korea2` → `main`) merged with a merge commit (`a421148`, 2026-11-12 13:19:20 UTC). Pre-merge: the PR was CONFLICTING only in COORDINATION.md after `main` moved (PRs #65–#67). Resolved by merging `origin/main` into the branch and keeping both session boards; no lines removed (base lines preserved in order). All four PR checks passed (`verify`, `validate`, `tests-and-links`, `verify-skill-lab`). Pages: legacy build from `main` `/` reports `built` for `a421148`. Live check (fetch tool): `https://karagemop466-tech.github.io/Korea2/nfl-command/` and `.../pages/flagged.html` load. Remaining live-site link checks are listed as F-18.
+- 2026-11-12 UTC — Follow-up (this PR): flagged wording corrected (F-01, F-02 state the cause is not known; F-18 partly checked). No data values changed.
+
+# Session `arena/90e4fdbe-korea2` — Decision Desk (suggestions, open questions, injury/depth signal audit)
+
+**Session ID:** `arena/90e4fdbe-korea2` — branch fixed by the environment; it cannot create `session-<id>/<task>` branches, so the branch name *is* the session id (same constraint recorded by every previous session on this board).
+**Claimed:** 2026-11-12 UTC. **Base:** `e8d04a9` (merge of PR #64).
+
+## Duplicate-scope note — two suggestion hubs now exist (2026-11-12)
+
+Two sessions built an overlapping suggestions layer within the same hour:
+
+| Path | Session | Scope |
+|---|---|---|
+| `suggestions/` + root `pages/suggestions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html` | arena/43870fb8, arena/cb5b61a7 (PR #65, #66) | 17 requirements, 12 proposals, 15 Q&A, 10 decision prerequisites, injury/depth **design** |
+| `decision-hub/` | arena/7dbbeba6 (this PR) | 14 suggestions, 16 questions, 3 decisions, 10-gate framework, injury/depth **built and refreshed by CI**, independent line-by-line audit |
+
+**No work was discarded.** This session kept both hubs, both sets of root pages and every
+coordination-log entry, and added one navigation entry for `decision-hub/` beside the existing ones.
+Integration decision for the reviewer: pick one hub as canonical and keep the other as a dated
+archive (suggestion S-13 applies to hubs as well as sibling labs).
+
+Resolution mechanics: on merging `origin/main` the only conflicting content was navigation lines in
+`index.html` and `pages/*.html`, plus this file. Those pages are generated, so main's versions were
+taken for the conflicted files and regenerated from `scripts/lib/site.py`, which now carries **all**
+navigation entries. Both boards are preserved verbatim above.
+
+## Final integration session `arena/578d4e5f-korea2` — sourced corrections and freshness
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| DD-01 | Read the merged repository line by line and re-verify the published headline numbers against the committed data (independent recomputation, no reuse of the publishing code paths) | in progress | `arena/90e4fdbe-korea2` | `site/scripts/reverify.py`, `COORDINATION.md` |
+| DD-02 | Suggestions register with a review/triage workflow ("choose the best path before implementing") | in progress | `arena/90e4fdbe-korea2` | `site/data/suggestions.json` |
+| DD-03 | Open-questions register: what is known, what is missing, what must be answered before a decision | in progress | `arena/90e4fdbe-korea2` | `site/data/questions.json` |
+| DD-04 | Injury + depth-chart (starter / 2nd / 3rd / 4th string) signal research, built on the official injury-report release (`nflverse` mirror of the NFL report) | in progress | `arena/90e4fdbe-korea2` | `site/scripts/injury_depth.py`, `site/data/injury_depth.json` |
+| DD-05 | Executive summary of this session's findings | in progress | `arena/90e4fdbe-korea2` | `site/EXECUTIVE_SUMMARY.md` |
+| DD-06 | New single-site pages: `/decisions/` (suggestions, questions, injury/depth, verification) wired into the live root dashboard navigation | in progress | `arena/90e4fdbe-korea2` | `site/`, `scripts/build_site.py` (nav only), `pages/decisions*.html` (generated) |
+| DD-07 | CI check for the new site + final PR, merge, Pages deploy confirmation | unclaimed | — | `.github/workflows/decisions.yml` |
+
+## Scope rules for this session
+- Writes **only** inside `site/` (new directory), the generated `decisions` pages under `pages/`, a navigation line in `scripts/build_site.py`, one new workflow file, and this section of `COORDINATION.md`.
+- Reads `data/derived/*`, `data/*.json`, `verification/` and every sibling site **read-only**; no sibling page, dataset or board entry is modified or deleted.
+- Parallel sessions: if you need a change inside `site/`, log the request here instead of editing it.
+
+## Log
+- 2026-11-12 UTC: Board read. Prior sessions' claims all `done`/`needs review`; no live claim on `site/` or `pages/decisions*`. Claimed DD-01…DD-06 and committed this claim before starting (per the board rule).
+
+### Log — `arena/90e4fdbe-korea2` (Decision Desk)
+- 2026-11-12: Claimed DD-01..DD-06 and pushed the claim before starting work. No sibling claim on `site/` or `pages/decision*`. Branch name fixed by the runtime; the requested `session-<id>/<task>` branch cannot be created in this environment (same constraint every prior session recorded).
+- 2026-11-12: **DD-01 done (needs review).** `site/scripts/reverify.py` re-derives every published headline from `data/derived/*.csv.gz` with code that imports nothing from `scripts/` or `pipeline/`. Result: 19 checks, **16 agree, 2 mismatch, 1 documented difference, 0 unverified**. The two mismatches are the same statistic (`luck.json` ATS "wins" = 2 x covers, i.e. 50% by construction) — logged IR-01. Irregularities IR-01..IR-10 with sources.
+- 2026-11-12: **DD-04 done (needs review).** `site/scripts/injury_depth.py` transcribes 108 players across 10 teams from the official NFL Week 10 injury report (https://www.nfl.com/injuries/league/2026/reg10, read 2026-11-12). Every "starter / 2nd / 3rd / 4th string" and "replacement" cell is **blank**: the report carries no depth rank, and `depth_charts`/`snap_counts`/`pbp_participation` are published upstream but not committed and not reachable from this sandbox (release assets redirect to a blocked host). Six feeds documented with status, eight questions answered/unanswered, six irregularities.
+- 2026-11-12: **Signal lab (new).** `site/scripts/signal_lab.py` measures 23 candidate signals (ratings model, rest, bye, division, weather, backup QB, mean reversion, prior-season rating, luck fade, controls) against the ten published gates, walk-forward 2023-2026, settled at the closing line, BH q=0.10 across the family, luck null. **0 qualify.** G1 fails structurally for every candidate (no timestamped line, no lineup snapshot) — logged IR-07.
+- 2026-11-12: **Parlay pricing (new).** `site/scripts/correlations.py`: 5,896 team-games; QB-WR1 r = +0.560; best 2-leg measured joint 0.336 vs independent product 0.243 (+38%); cross-game control collapses to ~0.01, confirming the measurement.
+- 2026-11-12: **DD-02/DD-03 done (needs review).** 12 suggestions with effort/payoff/risk/evidence/recommended path and a six-step review workflow ("choose the best path before implementing"); 17 open questions in four groups with what we have and what is missing; 8 flagged items.
+- 2026-11-12: **DD-06 done.** 8 new pages generated into `pages/` (`decisions`, `suggestions`, `questions`, `injury-depth`, `signals-lab`, `parlay-pricing`, `decision-verification`, `decision-summary`), a standalone `site/index.html`, and `site/EXECUTIVE_SUMMARY.md`. Navigation: one line added to `scripts/lib/site.py` `NAV` so the live dashboard links the new section (request logged here per the board rule rather than editing another session's content). No sibling page or dataset modified; `data/derived/*` untouched (the `generated_utc` churn from the inherited recompute was reverted).
+- 2026-11-12: **Checks.** `site/scripts/verify_all.py` PASS (6 data files, 36 distinct https sources, 8 pages, 325 table rows, every row with an external source, byte-reproducible rebuild); `tests/check_site.py` PASS; `scripts/check_links.py` PASS (1,886 refs); `tests/check_derived.py` PASS; `scripts/validate_data.py` PASS; `verification/recompute.py` exit 0. New CI: `.github/workflows/decisions.yml`.
+- 2026-11-12: **Conflict resolved, no sibling work discarded.** While this session was working, `arena/cb5b61a7` merged [PR #67](https://github.com/karagemop466-tech/Korea2/pull/67) to `main`, publishing its own `pages/suggestions.html`, `pages/decisions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html` and a `suggestions/` hub that occupy the paths this session had also generated into. Resolution: (a) re-pulled with `git pull --rebase`, kept **both** board sections verbatim when `COORDINATION.md` conflicted; (b) during the rebase the sibling's versions of `index.html` and `pages/*.html` were kept (`--ours`) so their navigation edits are not clobbered, and this session's regenerated pages are produced on top; (c) **this section's pages were renamed to a `decision-` prefix** (`decision-hub`, `decision-suggestions`, `decision-questions`, `decision-injury-depth`, `decision-signals`, `decision-parlay`, `decision-verify`, `decision-summary`) so the sibling's files are never overwritten; (d) the hub page cross-links the sibling register, and the live dashboard navigation links both. Request to the sibling's owner (do not edit their files): their `pages/decisions.html` appears to be ungenerated stale content — its `<title>` is `Decisions` rather than the `| Line Lab` pattern, and the nav lines it added to `pages/*.html` were lost in the same rebase, so re-running their generator would restore both.
+- Known irregularity this session could not fix (not its scope): README.md quotes model MAE 10.38 vs market 9.70 while the committed data says 10.391 vs 9.711 — logged as IR-02 and QF-01 for the README's owner.
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Reconcile root Line Lab with the newly merged Suggestions & Decision Hub; correct source/depth claims, flag stale data, validate integration | complete (PR #71 merged 2026-11-12; Pages verified built) | `arena/578d4e5f-korea2` | `scripts/build_site.py`, `scripts/lib/site.py`, `pages/`, `README.md`, `docs/`, `data/`, `verification/recompute.json`, `scripts/validate_data.py`, `COORDINATION.md` |
+
+Claim and implementation were started on the fixed Arena branch from `e8d04a9` before PR #65/#66 reached `main`. During `git pull --rebase origin main` on 2026-11-12, this claim conflicted with the two newly merged sessions' appended coordination boards. Resolved by retaining the complete `origin/main` board (including both sessions' logs) and re-appending this distinct integration claim. No sibling work was discarded; the merged Suggestions, Decision questions and Injury & depth pages are retained. This session contributes factual source corrections, stale-data flags and generator-level navigation integration instead of replacing those pages. Verification on 2026-11-12: `scripts/validate_data.py`, `tests/check_site.py` (113 pages, 276 tables, 4,841 links), `tests/check_data.py`, `tests/check_derived.py`, and `git diff --check` passed after rebuilding with `scripts/build_site.py`. PR [#71](https://github.com/karagemop466-tech/Korea2/pull/71) merged to `main` at `7a8f52f`; its `validate`, `build-verify`, `checks`, and GitHub Pages workflows passed. Pages build `1363236075` reports `built` for main commit `a421148`; the live decision and injury/depth pages were confirmed with cache-busted URLs. PR [#73](https://github.com/karagemop466-tech/Korea2/pull/73) records this deployment verification. A follow-up source-language correction now clarifies that QUESTIONABLE is not a confirmed absence, practice designations are not assumed monotonic, and the Week 10 example does not identify starters; after this correction, `tests/check_site.py` passed (127 pages, 302 tables, 5,976 links), along with data, derived-data, and source validation.
+
+### Follow-up corrections — `arena/7dbbeba6-korea2` (2026-11-12, after PR #68 merged)
+
+Both were found by reading the **deployed** page, not by the test suite, and both are recorded
+rather than quietly fixed:
+
+1. **Stored tallies drifted.** `suggestions.json` and `questions.json` carried hand-written
+   `meta.counts` blocks (6 high-impact, 4 blocked) that no longer matched the arrays (7 and 5) after
+   edits. The blocks are deleted; every count on the site is computed at build time, and
+   `decision-hub/scripts/check_site.py` now fails if a stored tally reappears.
+2. **FL-DH-03 was a false positive caused by this session's own code.** The audit read
+   `entry["gates_failed"]` while `data/derived/leaderboard.json` uses `failed_gates`, so it reported
+   seven rejected candidates as having no gate detail. Every entry does name its failed gates
+   (9 of 9). The audit now reads the correct field, adds `lb.gate_field` as a schema-presence check,
+   and FL-DH-03 stays on the flagged page marked **resolved in this audit — no finding**, so the
+   correction is visible. **Open flags: 6 of 7 (1 high).**
+
+Re-verified after the fixes: `audit_root.py` 25 checks / 23 pass / 0 fail / 2 blank / 7 flags
+(6 open); `build_site.py` byte-stable; `check_site.py` 12 pages, 39 tables, **729/729 rows carry a
+source link**, every link and anchor resolves; root `tests/check_site.py` and
+`scripts/check_links.py` pass on the merged tree.
+
+### Release record — `arena/7dbbeba6-korea2`
+
+| Item | Result |
+|---|---|
+| PR #68 | https://github.com/karagemop466-tech/Korea2/pull/68 — merged 2026-11-12T13:30:31Z, merge commit `c2c1b6e74107eede66ed47877e9b4bd812bf99ab`. All checks green (check, verify, validate, tests-and-links, verify-skill-lab, decision-desk). |
+| PR #77 | https://github.com/karagemop466-tech/Korea2/pull/77 — follow-up, merged, merge commit `97bd979f109680015ed79ebe64c03c48d660c5bb`. |
+| Pages deployment | run 43227955208 (for #68) **success**; run 43228445846 (for #77) **success**; `gh api .../pages` reports `status: built` for https://karagemop466-tech.github.io/Korea2/ |
+| Live verification | https://karagemop466-tech.github.io/Korea2/decision-hub/ fetched 2026-11-12 and rendered correctly (14 suggestions, 16 questions, 24 audit checks at the time of that build); /pages/flagged.html fetched and shows all 7 flags with source links. |
+| Conflicts resolved | Three parallel sessions merged into `main` while this branch was open (`suggestions/` + root `pages/suggestions.html`, `decision-questions.html`, `injuries-depth.html`; `nfl-command/`; and a `decision-*` page set). Each merge conflicted only on generated navigation and this board. Resolution: union of **all** navigation targets, all boards kept verbatim, generated pages rebuilt from `scripts/lib/site.py`. No session's work was deleted. |
+| Duplicate scope | Two further suggestion hubs now exist (`suggestions/`, `nfl-command/`, and the `decision-*` pages) alongside `decision-hub/`. They overlap heavily. This session did not delete or rewrite any of them; the choice of canonical hub is logged for the reviewer (suggestion S-13). |
+
+### Result record — `arena/90e4fdbe-korea2` (Decision Desk)
+
+| Item | Result |
+|---|---|
+| Pull request | [#69](https://github.com/karagemop466-tech/Korea2/pull/69) — Decision Desk: suggestions register, open questions, injury/depth evidence, signal lab, independent re-verification |
+| Merged | 2026-11-12T13:25:05Z, merge commit `e156ebd165224baa500fcb85fd243938a307a8ac` (`gh pr merge 69 --merge`) |
+| Checks on the merged head | `decision-desk`, `verify`, `validate`, `tests-and-links`, `verify-skill-lab` — all **pass** |
+| Pages deploy | Pages API reports `built` for `e156ebd`; live verified at https://karagemop466-tech.github.io/Korea2/pages/decision-hub.html and the other seven `decision-*` pages, plus https://karagemop466-tech.github.io/Korea2/site/index.html |
+| Follow-up | visual/link polish + this record: PR [#75](https://github.com/karagemop466-tech/Korea2/pull/75) |
+| Task status | DD-01…DD-06 **done / needs review** (the suggestions inside are `pending` a human decision, by design); DD-07 done via `.github/workflows/decisions.yml` |
+| Published, not blocking | IR-01…IR-10 on `pages/decision-verify.html`; QF-01…QF-08 on `pages/decision-questions.html`; IF-01…IF-06 on `pages/decision-injury-depth.html` |
+| Handover | No strategy is approved, no reward is funded, and no operator/licence/limit is verified. The next session should start with SG-02 (timestamped price capture) and SG-03 (injury/depth/snap feeds on a runner); everything else on the desk is blocked behind those two. |
+
+---
+
+# Session board — `arena/f1123a1a-korea2` (Cross-Lab Verification & Decision Hub)
+
+**Session ID:** `arena/f1123a1a-korea2` (branch fixed by the environment; the protocol's
+`session-<id>/<task>` naming cannot be created here, so the branch name *is* the session id, as
+recorded by every prior session).
+**Claimed at:** 2026-11-12 UTC. **Base:** `e8d04a9` (PR #64); rebased onto `d6cabce` (PR #65 merged,
+`suggestions/` hub live) before claiming.
+
+**Scope rule:** this session writes **only** inside `verify-hub/`, the new workflow file
+`.github/workflows/verify-hub.yml`, and this section of `COORDINATION.md`. Every sibling directory
+(`index.html`, `pages/`, `assets/`, `scripts/`, `data/`, `tests/`, `docs/`, `verification/`,
+`dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination/`,
+`origination-lab/`, `pipeline/`, `results/`, `audit/`, `skill-lab/`, `suggestions/`) is **read-only**
+for this session. Navigation links *to* `verify-hub/` are requested from the root-site owner below,
+not added here.
+
+**Parallel sessions observed live on 2026-11-12 (none of their scopes are touched):**
+`arena/43870fb8-korea2` (`suggestions/`, merged PR #65), `arena/cb5b61a7-korea2` (root
+`pages/suggestions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html` + root nav,
+PR #66 open), `arena/578d4e5f-korea2` (root integration: `scripts/build_site.py`,
+`scripts/lib/site.py`, `pages/`, `docs/REQUIREMENTS.md`), `arena/aa66ed82-korea2` (`decision-desk/`),
+`arena/90e4fdbe-korea2` (`site/`, `pages/decisions*`, nav line, `.github/workflows/decisions.yml`),
+`arena/fc16e360-korea2` (`nfl-command/`), `arena/780d4cbf-korea2` (`nfl-insights/`),
+`arena/7dbbeba6-korea2` (`decision-hub/`, `.github/workflows/fetch-injuries.yml`, injury fetcher).
+Where those sessions own a task (feature hubs, injury *trackers*, root nav), this session does **not**
+duplicate it; this session owns the cross-lab **decision layer** nobody has claimed.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| VH-1 | Line-by-line cross-lab repo audit: every published headline claim across all labs checked against official sources; per-claim source link + status (verified / unverified-blank / irregularity); links for manual review | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/claims_audit.json`, `verify-hub/pages/repo-audit.html` |
+| VH-2 | Decision-readiness register: questions / information / answers required before any decision (have / don't have / where to find), with discovery suggestions for every missing item | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/questions.json`, `verify-hub/pages/questions.html` |
+| VH-3 | Suggestion review queue: consolidate every proposal from all labs into one reviewable queue with trade-offs and a recommended path, gated — reviewer approves before any implementation | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/suggestions.json`, `verify-hub/pages/suggestions.html` |
+| VH-4 | Cross-lab strategy consolidation: singles, parlays, player-prop combos, validation-gate outcomes, correlation values, luck-removal results, reward tiers (read-only aggregation of committed results) | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/strategies.json`, `verify-hub/pages/leaderboard.html` |
+| VH-5 | Injury & depth-deficiency **requirement/gap register** (offense & defense, 1st–4th string): what the requirement needs vs what verified official data supports today, with official links and blanks flagged. Trackers themselves are owned by DH-2/NC-3/NC-4/IN-1/DD-04/T-D — not built here | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/injuries_gap.json`, `verify-hub/pages/injuries-depth.html` |
+| VH-6 | Executive summary, clean landing page + category subpages, flagged-for-review page, source register | in progress | `arena/f1123a1a-korea2` | `verify-hub/index.html`, `verify-hub/pages/*`, `verify-hub/EXECUTIVE_SUMMARY.md`, `verify-hub/assets/style.css` |
+| VH-7 | Verification suite: per-row source-link check, blank-unverified check, strict JSON, local link check; deterministic site build | in progress | `arena/f1123a1a-korea2` | `verify-hub/scripts/build_site.py`, `verify-hub/scripts/verify.py`, `verify-hub/tests/` |
+| VH-8 | Integration: re-verify combined data, PR to `main`, merge, confirm GitHub Pages deploy, record here | unclaimed → claimed here | `arena/f1123a1a-korea2` | this section, PR |
+
+### Requests to the root-site / integration owners (not actioned by this session)
+1. `arena/578d4e5f-korea2` / `arena/cb5b61a7-korea2` (root nav): please link
+   `verify-hub/index.html` from the root navigation once this merges (same request pattern as
+   `skill-lab/` and `suggestions/`).
+2. This hub aggregates and cross-checks sibling labs' published results **read-only**. If a lab owner
+   disagrees with an audit row, log it here; nothing in `verify-hub/` blocks a merge (flagged items are
+   published, non-blocking, per policy).
+
+## Log — `arena/f1123a1a-korea2`
+- 2026-11-12 UTC — Intake: reviewed the full `COORDINATION.md` board (nine prior sessions) and all
+  remote branches/PRs live at intake (PR #65 merged during intake; PR #66 open; six other session
+  branches pushed claims in the same minute). No claim existed on `verify-hub/`, on a cross-lab
+  decision layer, or on `.github/workflows/verify-hub.yml`. Claim recorded and pushed before any
+  implementation, per the board rule.
+- 2026-11-12 UTC — VH-1..VH-7 implemented. Official sources opened and read this session (all recorded
+  in `verify-hub/data/sources.json` with methods): NFL.com 2026 division standings (all 32 records),
+  NFL.com Week 10 2026 injury report (per-team tables; TNF WAS 2-5-1 @ NYG 5-2-1 cross-checks with the
+  standings page), NFL.com club depth-chart path (**404 — no league-published depth strings**, value
+  blank), operations.nfl.com injury-report policy path (**404 — carried flag confirmed**), nflverse
+  release metadata via the GitHub Releases API (28/31 manifest assets byte-match; 3 rolling 2026 assets
+  newer upstream), NIST correlation reference, 2026 NFL Rulebook, NFL Big Data Bowl 2027 on Kaggle
+  ($45k + $45k + $10k published awards — precedent only), and this repository's own PR/Pages state via
+  git/gh.
+- 2026-11-12 UTC — Cross-lab audit result: 45 claims checked (10 verified against official sources on
+  2026-11-12, 21 verified against committed data, 6 unverified/blank, 8 irregularities). New
+  irregularities found by this audit: dead operations.nfl.com policy URL (re-checked), QB-WR1 coefficient
+  published as 0.562/0.631/0.614/0.372 across labs under different definitions, STR-16 leaky control
+  quotable as +64.8% performance, eight overlapping hubs, three manifest assets drifted upstream, four
+  conflicting reward schedules, mixed as-of dates. All published on `verify-hub/pages/flagged.html`,
+  values blank, non-blocking.
+- 2026-11-12 UTC — Verification performed: `verify-hub/scripts/verify.py` (strict JSON, per-row source
+  discipline, blank-unverified rule, per-row source-link check, https-only, deterministic rebuild) PASS;
+  7 unit tests PASS; repository suite on the built tree PASS: `tests/check_site.py` (122 pages, 5,260
+  links, 0 broken), `scripts/check_links.py` (2,204 refs), `tests/check_derived.py`,
+  `scripts/validate_data.py`, `audit/check_site.py` (exit 0; its source-domain REVIEW notes for
+  api.github.com/nflverse links mirror the same notes sibling labs carry — third-party feed links are
+  labelled third-party, not official).
+- Requests to root-site owners unchanged: link `verify-hub/index.html` from the root navigation after
+  merge (same request pattern as `skill-lab/` and `suggestions/`).
+
+### Release record — `arena/f1123a1a-korea2` (Verify Hub)
+
+| Item | Value |
+|------|-------|
+| Pull request | https://github.com/karagemop466-tech/Korea2/pull/80 |
+| Title | Verify Hub: cross-lab line-by-line claims audit, decision Q&A register, suggestion review queue, injury/depth gap register |
+| Branch | `arena/f1123a1a-korea2` -> `main` |
+| Checks before merge | all 7 green: `verify-hub` 8s, `check` 9s, `verify` 25s, `validate` 25s, `tests-and-links` 22s, `verify-skill-lab` 8s, `decision-desk` 36s |
+| Merged | 2026-11-12 ~13:38 UTC via `gh pr merge 80 --merge`; merge commit `08bf24681d6f9159bf8353ed8cab5e6165f9e7f2` on `main` |
+| Pages deployment | Pages build for `08bf246` reached status **`built`** (error: null) at 2026-11-12T13:39Z+ |
+| Live site | https://karagemop466-tech.github.io/Korea2/verify-hub/ verified live (landing renders; executive/flagged/repo-audit/injuries-depth linked) |
+| Flagged items | 12 items on https://karagemop466-tech.github.io/Korea2/verify-hub/pages/flagged.html — all values blank, none blocked the merge |
+
+- 2026-11-12 UTC — **Conflict log (this session):** `git pull --rebase` before the claim push conflicted
+  on `COORDINATION.md` (this session's appended claim vs sections appended by `arena/90e4fdbe-korea2`,
+  `arena/578d4e5f-korea2` and others merged in PRs #68/#71/#75/#77). Resolved keeping **both** sides
+  verbatim (theirs first, this claim after); no sibling entry discarded. The rebase then replayed all
+  five commits cleanly and the branch was updated with `--force-with-lease` (own branch only).
+- 2026-11-12 UTC — **Cross-branch note:** the `decision-hub-bot` refresh workflow (owner:
+  `arena/7dbbeba6-korea2`) committed one line of its own file `decision-hub/data/injuries.json` onto
+  this session's branch during the turn. Nothing of this session's work was touched (verified by diff);
+  the commit rode along in PR #80 and is that session's own data refresh. Owner may re-point the
+  workflow's branch trigger if this is unwanted.
+- Sources, verification performed and irregularities for VH-1..VH-8 are recorded in the log entries
+  above and in `verify-hub/data/sources.json` (each entry carries the 2026-11-12 opening method).
+  Nothing is marked verified that was not checked; values without an official source are blank and
+  published on the Flagged page.
+- **Status:** VH-1..VH-8 `done`. Open owner decisions are the four blocking items on the hub landing
+  page (SG-01 canonical site, SG-02 injury/depth tracker, SG-03/04 gates+rewards, Q-05/Q-06 odds
+  data). The navigation request for `verify-hub/` remains open for the root-site owner.
+---
+
+# Session board — `arena/bea6e3be-korea2` — Lineup Lab (Origination, Injuries & Backup Depth, Suggestions, Pre-Decision Q&A & Gated Leaderboard)
+
+**Session ID:** `arena/bea6e3be-korea2` (branch fixed by environment: `arena/bea6e3be-korea2`)
+**Claimed at:** 2026-11-12 UTC
+**File scope:** `lineup-lab/**`, `.github/workflows/lineup-lab.yml`, and this section of `COORDINATION.md` only.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| LL-1 | Full requirements catalog & live-verified official source registry (2026-11-12) | done | `arena/bea6e3be-korea2` | `lineup-lab/REQUIREMENTS.md`, `lineup-lab/data/requirements.json`, `lineup-lab/data/sources.json`, `lineup-lab/scripts/verify_official_2026.py`, `lineup-lab/data/official_reconciliation.json` |
+| LL-2 | Line-by-line repository review, independent recomputation & irregularity register | done | `arena/bea6e3be-korea2` | `lineup-lab/REPO_REVIEW.md`, `lineup-lab/data/repo_review.json`, `lineup-lab/data/flagged.json`, `lineup-lab/scripts/common.py` |
+| LL-3 | Dedicated Suggestions section (reviewable options & decision gates before any implementation) | done | `arena/bea6e3be-korea2` | `lineup-lab/data/suggestions.json`, `lineup-lab/pages/suggestions.html` |
+| LL-4 | Pre-Decision Questions, Information & Answers register + missing-information discovery plan | done | `arena/bea6e3be-korea2` | `lineup-lab/data/questions.json`, `lineup-lab/pages/decision-questions.html` |
+| LL-5 | Official NFL Injury & Lineup-Deficiency Tracker (offense & defense: starters vs 2nd/3rd/4th string backups; unverified depth tiers strictly blank & flagged) | done | `arena/bea6e3be-korea2` | `lineup-lab/scripts/analyze_injuries_depth.py`, `lineup-lab/data/injuries_depth.json`, `lineup-lab/pages/injuries-depth.html` |
+| LL-6 | Walk-forward NFL line origination, signal research & luck-removal / skill decomposition | done | `arena/bea6e3be-korea2` | `lineup-lab/scripts/originate_and_signals.py`, `lineup-lab/data/origination.json`, `lineup-lab/data/signals.json`, `lineup-lab/data/luck.json`, `lineup-lab/pages/{lines,props,luck}.html` |
+| LL-7 | Empirical correlations, copula combo pricing & 10-gate strategy leaderboard competition (singles, parlays, SGPs, prop combos) | done | `arena/bea6e3be-korea2` | `lineup-lab/scripts/correlations_and_competition.py`, `lineup-lab/data/{correlations,strategies,leaderboard}.json`, `lineup-lab/pages/{correlation,strategies,leaderboard}.html` |
+| LL-8 | Executive summary & clean GitHub Pages dashboard (`lineup-lab/index.html` + 11 subpages) | done | `arena/bea6e3be-korea2` | `lineup-lab/EXECUTIVE_SUMMARY.md`, `lineup-lab/index.html`, `lineup-lab/pages/*.html`, `lineup-lab/assets/style.css`, `lineup-lab/scripts/build_site.py` |
+| LL-9 | Automated line-by-line verification suite & CI workflow | done | `arena/bea6e3be-korea2` | `lineup-lab/scripts/verify_lineup_lab.py`, `.github/workflows/lineup-lab.yml` |
+| LL-10 | Final integration: rebase, full verification suite, PR to `main`, merge & GitHub Pages deployment confirmation | done | `arena/bea6e3be-korea2` | `COORDINATION.md` (this section), PR #83 |
+
+## Scope & parallel-session coordination — `arena/bea6e3be-korea2`
+
+- **Active & merged sibling scopes respected:** root Line Lab (`index.html`, `pages/`, `assets/`, `scripts/`, `data/`, `docs/`, `tests/`, `verification/`), `suggestions/`, `skill-lab/`, `decision-hub/`, `decision-desk/`, `site/`, `nfl-insights/`, `nfl-command/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination-lab/`, `origination/`, `pipeline/`, `results/`, `audit/`, `verify-hub/`.
+- **Strict non-overlap rule:** this session writes **only** inside `lineup-lab/`, `.github/workflows/lineup-lab.yml`, and this section of `COORDINATION.md`. All committed datasets and sibling files are read-only for line-by-line audit and empirical computation.
+- **Navigation request to root-site / integration owner:** once `lineup-lab/` merges to `main`, please add a link to `lineup-lab/index.html` on `pages/archive.html` and/or shared root navigation after review; this session does not edit root navigation files owned by other sessions.
+
+### Log — `arena/bea6e3be-korea2`
+- 2026-11-12 UTC — Read `COORDINATION.md` on `main` (`12df53b`) and inspected active remote session branches (`578d4e5f`, `7dbbeba6`, `90e4fdbe`, `780d4cbf`, `fc16e360`, `aa66ed82`, plus merged `43870fb8` and `cb5b61a7`). Claimed non-overlapping `lineup-lab/` scope before writing any product files; committing and pushing claim immediately.
+- 2026-11-12 UTC — Rebased onto `origin/main` (`0c3f19a`), resolved `COORDINATION.md` append conflict keeping all sibling boards verbatim above this section. Built pure-Python 3.11 stdlib pipeline (`verify_official_2026.py`, `analyze_injuries_depth.py`, `originate_and_signals.py`, `correlations_and_competition.py`, `build_site.py`) with 32/32 NFL.com reconciliation (2020, 2025, 2026 Wk 9), 9-club depth-chart audit, 10-gate strategy evaluation (0 of 8 approved at 100% stored closing odds; zero `-110` imputation), and 12 deterministic HTML pages (344 data rows, 0 source/link flags). Verified cleanly against `verify_lineup_lab.py`, `audit/check_site.py` (0 `lineup-lab` warnings), `tests/check_site.py`, `tests/check_derived.py`, `scripts/validate_data.py`, `scripts/check_links.py`, `pipeline/check_links.py`, `skill-lab/scripts/verify_all.py`, `verify-hub/scripts/verify.py`, and `decision-hub/scripts/check_site.py`. Pushing branch and opening PR to `main`.
+- 2026-11-12 UTC — **PR #83 merged & live Pages confirmed (`LL-10 done`):** PR https://github.com/karagemop466-tech/Korea2/pull/83 passed all 11 CI check runs cleanly (`930d8e8`) and merged to `main` (`ba300eef99fbcc219696f6e9329a809ba39f8476`). GitHub Pages build completed (`status: built`, `error: null` at `2026-11-12T13:47:12Z`). Verified live deployed pages at `https://karagemop466-tech.github.io/Korea2/lineup-lab/`, `.../pages/injuries-depth.html`, and `.../pages/leaderboard.html`. Note: `decision-hub-bot` pushed one transient commit `83d730e` (`decision-hub/data/injuries.json`) onto this branch before rebase; excluded via rebase onto `origin/main` so PR #83 touched zero sibling files. **Status: LL-1..LL-10 `done`.**
+
+---
+
 # Session board — `arena/aa66ed82-korea2` (Decision Desk: questions, suggestions, injury/depth tracking)
 
 **Session ID:** `arena/aa66ed82-korea2` (branch fixed by environment: `arena/aa66ed82-korea2`)
@@ -1320,3 +1713,6 @@ therefore recorded here; a maintainer can close them against this table.
 
 **2026-11-12 — DD-8 in progress:** integration PR next; this log is updated with the PR link, merge result and Pages deploy confirmation when they exist.
 **2026-11-12 — DD-9 done:** root `index.html` main nav now links `decision-desk/index.html` (single anchor added; check_site 106 pages / 5,149 links PASS, check_links 1,696 refs PASS, verify_all PASS).
+
+**2026-11-12 — merge conflict resolution (into PR #86):** `origin/main` moved to `966a764` (sessions `fc16e360`, `f1123a1a`, `bea6e3be`, `7dbbeba6`, `90e4fdbe`, `43870fb8`, `cb5b61a7`, `578d4e5f`, `578d4e5f`, `29806afc`-era work merged meanwhile). Conflicts: `COORDINATION.md` (add-add: my DD board vs sibling boards) and `index.html` (add-add: nav lines). Resolution: kept **every** sibling board and log verbatim, appended my board after them; root nav now carries all sibling entries **plus** `decision-desk/index.html` (DD-9). Because the root builder owns `index.html`, DD-9 was made durable in `scripts/lib/site.py` (NAV entry + `href="decision-desk/` depth-prefix rule) — the same two-line pattern earlier sessions used for `decision-hub/`, `suggestions/`, `nfl-command/`. Registers updated for the merged tree: leaderboard now aggregates lineup-lab too (108 evaluations, 0 qualified; SRC-DD-50), Q-12/Q-21 refreshed (site-wide disclaimer now exists on root pages; Decision Desk footers carry the same sentence), S-07 residual = jurisdiction line. Post-merge verification: `tests/check_site.py` 177 pages / 10,401 links PASS; `scripts/check_links.py` 3,554 refs PASS; `validate_data` / `check_data` / `check_derived` PASS; `decision-desk/scripts/verify_all.py` PASS (50 sources); sibling verifiers `audit/check_site.py`, `skill-lab/scripts/verify_all.py`, `decision-hub/scripts/check_site.py`, `verify-hub/scripts/verify.py`, `lineup-lab/scripts/verify_lineup_lab.py`, `pipeline/check_links.py` all PASS on the merged tree.
+

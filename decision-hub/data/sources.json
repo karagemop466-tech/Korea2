@@ -1,0 +1,144 @@
+{
+ "meta": {
+  "title": "Sources added by decision-hub",
+  "verified_on": "2026-11-12",
+  "method": "Each URL below was opened and its content read on 2026-11-12 from this session. Where a page could not be fetched by the sandbox, the row says so and the page is not relied upon for a value."
+ },
+ "sources": [
+  {
+   "id": "SRC-NFL-INJURIES",
+   "label": "NFL.com — official injury report (Week 10 of the 2026 season at the time of reading)",
+   "url": "https://www.nfl.com/injuries/",
+   "org": "NFL (nfl.com)",
+   "type": "league official injury data",
+   "note": "Page title read on 2026-11-12: 'Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season'. Renders game-day grouping, player, position, injury, practice status and game status. Dynamic page; values change during the week.",
+   "verified_by": "read 2026-11-12 in this session"
+  },
+  {
+   "id": "SRC-NFL-INJURIES-2026-W10",
+   "label": "NFL.com — 2026 Week 10 injury report (dated URL)",
+   "url": "https://www.nfl.com/injuries/league/2026/reg10",
+   "org": "NFL (nfl.com)",
+   "type": "league official injury data",
+   "note": "Same content as the live page for that week; the dated URL is cited so the snapshot can be found again. Read 2026-11-12; the in-page heading said 'WEEK 10', matching both the title and the URL (earlier sessions recorded a title/body disagreement in week 7/8 that does not reproduce here).",
+   "verified_by": "read 2026-11-12 in this session"
+  },
+  {
+   "id": "SRC-NFLVERSE-INJURIES-DICT",
+   "label": "nflreadr — load_injuries() reference and column list",
+   "url": "https://nflreadr.nflverse.com/reference/load_injuries.html",
+   "org": "nflverse (community mirror of league data)",
+   "type": "community",
+   "note": "Documents the injury feed: season, game_type, team, week, gsis_id, position, full_name, report_primary_injury, report_secondary_injury, report_status, practice_primary_injury, practice_secondary_injury, practice_status. States data available since 2009 and that the feed is collected from the league's injury-report API. Used to confirm the column names this project parses.",
+   "verified_by": "read 2026-11-12 in this session"
+  },
+  {
+   "id": "SRC-NFLVERSE-DEPTH-DICT",
+   "label": "nflreadr — data dictionary, depth charts (2025+ schema)",
+   "url": "https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html",
+   "org": "nflverse (community mirror of league data)",
+   "type": "community",
+   "note": "Documents dt (ISO-8601 load timestamp), team, player_name, gsis_id, pos_grp, pos_name, pos_abb, pos_slot, pos_rank. States the source changed after the 2024 season, so the 2026 schema is the one described. Confirms pos_rank is rank grouped by pos_slot, which is why this project computes its own ordinal within (team, position).",
+   "verified_by": "read 2026-11-12 in this session"
+  },
+  {
+   "id": "SRC-NFLVERSE-ROSTER-DICT",
+   "label": "nflreadr — data dictionary, rosters",
+   "url": "https://nflreadr.nflverse.com/articles/dictionary_rosters.html",
+   "org": "nflverse (community mirror of league data)",
+   "type": "community",
+   "note": "Documents status (Active, Inactive, Injured Reserve, Practice Squad), depth_chart_position, gsis_id and pfr_id. The pfr_id is what lets the snap-count feed (which has no GSIS id) be joined to players.",
+   "verified_by": "read 2026-11-12 in this session"
+  },
+  {
+   "id": "SRC-NFLVERSE-SNAPS-DICT",
+   "label": "nflreadr — data dictionary, snap counts",
+   "url": "https://nflreadr.nflverse.com/articles/dictionary_snap_counts.html",
+   "org": "nflverse (community mirror of league data)",
+   "type": "community",
+   "note": "Documents offense_pct and defense_pct and confirms the file has pfr_player_id but no gsis_id. This is why the tracker joins through the roster's pfr_id and reports how many snap rows had no crosswalk.",
+   "verified_by": "read 2026-11-12 in this session"
+  },
+  {
+   "id": "SRC-NFLVERSE-RELEASES",
+   "label": "nflverse-data — release index (injuries, depth_charts, weekly_rosters, snap_counts)",
+   "url": "https://github.com/nflverse/nflverse-data/releases",
+   "org": "nflverse (community mirror of league data)",
+   "type": "community",
+   "note": "Consulted through the GitHub API on 2026-11-12: depth_charts_2026.csv is 74,128,321 bytes updated 2026-11-12T07:01:41Z; injuries_2026.csv is 349,835 bytes; roster_weekly_2026.csv is 8,022,368 bytes; snap_counts_2026.csv is 1,139,048 bytes. The derived build records the SHA-256 of each file it consumed.",
+   "verified_by": "GitHub API queried 2026-11-12 in this session"
+  },
+  {
+   "id": "SRC-NFL-INJURY-POLICY-404",
+   "label": "operations.nfl.com — injury-report policy page (returns 404)",
+   "url": "https://operations.nfl.com/football-ops/league-governance/injury-report/",
+   "org": "NFL (operations.nfl.com)",
+   "type": "unverified",
+   "note": "Re-checked 2026-11-12: HTTP 404 with the body '404 - FLAG ON THE PLAY'. The root project cites this URL as its injury-policy source. The page's absence is recorded as a flag (FL-DH-05) rather than worked around; no secondary summary of the policy is relied upon for a rule.",
+   "verified_by": "404 confirmed 2026-11-12 in this session"
+  },
+  {
+   "id": "SRC-DH-NFLVERSE-CSV-INJURIES",
+   "label": "Official injury report feed used by the tracker (2026 CSV release asset)",
+   "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv",
+   "org": "nflverse (community mirror of the league's injury-report API)",
+   "type": "community",
+   "note": "The exact asset the fetch workflow downloads. 3,075 rows for 2026 at the 2026-11-12 snapshot. Because it is a mirror, the tracker also cites the league's own page for the same week, and the two are compared on the injuries page.",
+   "verified_by": "downloaded by the fetch-injuries workflow run 43223996079 on 2026-11-12"
+  },
+  {
+   "id": "SRC-DH-NFLVERSE-CSV-DEPTH",
+   "label": "Club depth charts feed used by the tracker (2026 CSV release asset)",
+   "url": "https://github.com/nflverse/nflverse-data/releases/download/depth_charts/depth_charts_2026.csv",
+   "org": "nflverse (community mirror of club-supplied depth charts)",
+   "type": "community",
+   "note": "777,815 rows for 2026, 291 distinct snapshots; the newest snapshot at build time was 2026-11-12T07:01:31Z. Depth charts are club-supplied and are not an official NFL publication — the site says so wherever a rank is displayed.",
+   "verified_by": "downloaded by the fetch-injuries workflow on 2026-11-12"
+  },
+  {
+   "id": "SRC-DH-NFLVERSE-CSV-ROSTER",
+   "label": "Weekly rosters feed (status and PFR crosswalk)",
+   "url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2026.csv",
+   "org": "nflverse (community mirror)",
+   "type": "community",
+   "note": "Used for roster status (ACT/INA/RES...) and for the pfr_id to gsis_id crosswalk. 24,549 rows for 2026.",
+   "verified_by": "downloaded by the fetch-injuries workflow on 2026-11-12"
+  },
+  {
+   "id": "SRC-DH-NFLVERSE-CSV-SNAPS",
+   "label": "Snap counts feed (playing time by player-week)",
+   "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv",
+   "org": "nflverse (community mirror)",
+   "type": "community",
+   "note": "12,693 rows for 2026; 2,372 had no PFR crosswalk to a GSIS id and are excluded from the snap-share field, which is reported in the dataset's own metadata rather than hidden.",
+   "verified_by": "downloaded by the fetch-injuries workflow on 2026-11-12"
+  },
+  {
+   "id": "SRC-DH-AUDIT-SCRIPT",
+   "label": "This repository — the independent audit implementation",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/decision-hub/scripts/audit_root.py",
+   "org": "karagemop466-tech/Korea2",
+   "type": "repository",
+   "note": "The code that produces every check and flag on the audit page. It imports nothing from the root pipeline, so agreement is evidence and disagreement is a finding.",
+   "verified_by": "run in this session; output committed as decision-hub/data/root_audit.json"
+  },
+  {
+   "id": "SRC-DH-FETCH-SCRIPT",
+   "label": "This repository — the injury/depth fetch and rank builder",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/decision-hub/scripts/fetch_injuries.py",
+   "org": "karagemop466-tech/Korea2",
+   "type": "repository",
+   "note": "The code that produces decision-hub/data/injuries.json, including the within-position ordinal that replaces the feed's per-slot pos_rank.",
+   "verified_by": "executed by the fetch-injuries GitHub workflow on 2026-11-12"
+  },
+  {
+   "id": "SRC-NFL-GENIUS",
+   "label": "NFL.com — NFL extends strategic partnership with Genius Sports (official data distribution)",
+   "url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+   "org": "NFL (nfl.com)",
+   "type": "league official",
+   "note": "Establishes that official NFL data is distributed to sportsbooks through a commercial partner, which is why no official public feed of historical betting prices exists for a project like this one.",
+   "verified_by": "carried over from the root source register, which records reading it on 2026-11-01"
+  }
+ ]
+}
