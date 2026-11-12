@@ -189,7 +189,9 @@ def build(season: int, raw: str) -> dict:
     meta["depth_snapshots_available"] = len(dts)
 
     snap = [r for r in depth_rows if not latest or (r.get("dt") or "").strip() == latest]
-    # ordinal within (team, position): sort by slot then slot-rank, then number them
+    # Ordinal within (team, position), keyed on the feed's own (pos_slot, pos_rank) pair. Sorting
+    # by slot then rank and taking the row number would call the 8th receiver "8th string" when he
+    # is one of eight players the club lists at the same slot and rank.
     by_team_pos: dict[tuple[str, str], list[dict]] = defaultdict(list)
     for r in snap:
         pos = (r.get("pos_abb") or "").strip().upper()
@@ -200,7 +202,13 @@ def build(season: int, raw: str) -> dict:
     for (team, pos), lst in by_team_pos.items():
         lst.sort(key=lambda r: (to_int(r.get("pos_slot")) or 99, to_int(r.get("pos_rank")) or 99,
                                 (r.get("player_name") or "")))
-        for i, r in enumerate(lst, start=1):
+        # ordinal WITHIN the feed's own slot, because pos_rank is documented as "rank grouped by
+        # pos_slot": rank 4 in slot 9 means the 4th QB, not the 4th player at that slot.
+        slot_seen: dict[tuple, int] = defaultdict(int)
+        for r in lst:
+            slot_key = (to_int(r.get("pos_slot")), to_int(r.get("pos_rank")))
+            slot_seen[slot_key] += 1
+            i = slot_seen[slot_key]
             gid = (r.get("gsis_id") or "").strip()
             if not gid:
                 continue
@@ -211,7 +219,7 @@ def build(season: int, raw: str) -> dict:
                 "pos_slot": to_int(r.get("pos_slot")),
                 "pos_rank_in_slot": to_int(r.get("pos_rank")),
                 "depth_rank": i,
-                "position_depth": len(lst),
+                "position_depth": sum(v for k, v in slot_seen.items() if k <= slot_key),
             }
     # how many players share the same (team, position, pos_slot, pos_rank) tuple: a tie group is
     # not a depth ordering, and the page must not present it as one
