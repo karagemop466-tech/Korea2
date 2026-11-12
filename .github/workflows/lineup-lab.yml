@@ -2,7 +2,7 @@ name: Verify Lineup Lab
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'arena/**']
     paths:
       - 'lineup-lab/**'
       - '.github/workflows/lineup-lab.yml'
@@ -10,6 +10,9 @@ on:
     paths:
       - 'lineup-lab/**'
       - '.github/workflows/lineup-lab.yml'
+
+permissions:
+  contents: read
 
 jobs:
   verify:
