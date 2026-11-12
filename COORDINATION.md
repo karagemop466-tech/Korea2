@@ -1284,6 +1284,35 @@ therefore recorded here; a maintainer can close them against this table.
 
 ---
 
+# Session `arena/fc16e360-korea2` — NFL Command Center (injuries, depth, origination review, suggestions, site)
+
+**Session ID:** `arena/fc16e360-korea2` (branch fixed by the environment; base `e8d04a9` on `main`)
+**Claimed at:** 2026-11-12 UTC
+**Scope rule:** this session writes only inside `nfl-command/` plus its own section of this file. It reads sibling datasets (`skill-lab/data/*.json`, `data/*`) read-only. Shared root navigation (`index.html`, `pages/`) is NOT edited; a link request is logged below for the integration owner.
+**Parallel-session note:** all earlier board claims listed as "in progress" (e.g. `arena/9e0420bd-korea2`, `arena/652b0095-korea2` F1–F4, `arena-29806afc` T7) have no open branch or PR on `origin` as of this claim; they are treated as stale and not re-claimed. The protocol's `session-<id>/<task>` branch naming is superseded by the environment rule that this session uses only `arena/fc16e360-korea2`.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| NC-1 | Claim, coordination record, final log | done | `arena/fc16e360-korea2` | `COORDINATION.md` (this section only) |
+| NC-2 | Repo review: re-run every existing checker on this branch, record results and irregularities | done | `arena/fc16e360-korea2` | `nfl-command/data/repo_review.json` |
+| NC-3 | Official injury ingestion: NFL.com Week 10 2026 injury report, all 32 clubs, one row per listed player | done | `arena/fc16e360-korea2` | `nfl-command/data/injuries.json` |
+| NC-4 | Starter vs backup depth check (offense and defense) from official club/NFL depth charts; blank + flagged where not verifiable | done (blocked: no official depth chart; values blank) | `arena/fc16e360-korea2` | `nfl-command/data/depth.json` |
+| NC-5 | Lines, strategies, correlations, luck/skill: read-only summary of the existing skill-lab outputs, re-run and reproduced | done (read-only; Skill Lab does NOT reproduce on rerun: F-07) | `arena/fc16e360-korea2` | `nfl-command/data/models.json` |
+| NC-6 | Suggestions register (options for review, nothing implemented) and missing-information / questions register | done | `arena/fc16e360-korea2` | `nfl-command/data/suggestions.json`, `nfl-command/data/questions.json` |
+| NC-7 | Static GitHub Pages site: landing page, category subpages, Flagged for Review, executive summary | done | `arena/fc16e360-korea2` | `nfl-command/**` (site + `nfl-command/scripts/build_site.py`) |
+| NC-8 | Verification gate: row-level source-link check, blank-unverified check, JSON check, local link check | done | `arena/fc16e360-korea2` | `nfl-command/scripts/verify.py` |
+| NC-9 | Integration: PR to `main`, merge, GitHub Pages deploy confirmation, record here | claimed | `arena/fc16e360-korea2` | this section of `COORDINATION.md`, PR |
+
+**Log**
+- 2026-11-12 UTC: Claim written and pushed before implementation. Official reachability check: `fetch_page` returns the NFL.com 2026 injury report (Week 10) at `https://www.nfl.com/injuries/`; the sandbox shell cannot reach nfl.com, so NFL.com values are captured through the fetch tool only and recorded with the URL they came from.
+- 2026-11-12 UTC: NC-2 to NC-8 done on `arena/fc16e360-korea2` (commit 38de6bb). NC-9 (integration PR, merge, Pages check) in progress.
+  - **Sources.** NFL.com `https://www.nfl.com/injuries/`: chunk 0 re-read; WAS, NYG, NE, DET (44 rows) and the first 8 KC rows match `nfl-command/data/raw/injury_report_wk10_2026.psv`. Chunks 1–6 were transcribed earlier and are NOT re-verified row by row. The report shows no as-of timestamp. 254 player rows, 28 clubs listed, 14 games. The injury description is blank on the source for 248 of 254 rows; kept blank. CHI, DEN, PHI and TB not on the report (byes unconfirmed). NFL.com depth-chart and club depth-chart paths return 404; no depth values entered (`nfl-command/data/depth.json`, blank and flagged). NFL.com schedule: chunks 0–2 read; REG10 redirects to the generic schedule page; byes not confirmed for CHI, DEN, PHI, TB.
+  - **Verification.** `verify_all.py` PASS (335 linked rows, 77 blank cells, 64/64 and 7/7 reconciled). `tests/check_site.py` PASS (111 pages, 277 tables, 5123 links). `tests/check_derived.py` PASS (49 checks, 0 disagreements). `tests/check_data.py` PASS. `scripts/validate_data.py` PASS (0 warnings). `scripts/check_links.py` PASS (1779 references). `pipeline/check_links.py` PASS (1,022 links). `nfl-command/scripts/verify.py` PASS. Skill Lab `run_all.py` rerun FAILS reproducibility (12 tracked files change); reverted with `git checkout -- skill-lab`; committed files not regenerated.
+  - **Irregularities (flagged, not hidden; see `nfl-command/data/flagged.json`, F-01 to F-18).** BAL and SEA "No Injuries Reported" conflict with NFL.com news (Jackson/Huntley on IR; Darnold ruled out). CIN and LAC no-injury rows unconfirmed. Skill Lab outputs do not reproduce. STR-16 is a leak control (disqualified). Lineups.com and nfl-depth-charts.com are not official and are not used for values. Stale branch claims in this file for arena/9e0420bd-korea2, arena/89b8d356-korea2, arena/652b0095-korea2 and arena-29806afc: their PRs are merged or closed; not re-claimed.
+  - **Results.** 16 strategies tested, 0 qualify; leaderboard awards 0 of 10,000 points. Own-line spread MAE 10.265 vs market 9.825 (model less accurate on every error measure).
+  - **Decisions.** Suggestions SUG-01 to SUG-10 are proposals only; none implemented. Question Q07 (Alberta legality of leaderboard rewards, AGLC) is open; reward cash funding is blank.
+  - **Not verified (blocks nothing).** Official depth charts (Q01); injury report rules and snapshot time (Q02, Q04); CHI/DEN/PHI/TB status (Q03).
+
 # Session board — arena/cb5b61a7 (branch arena/cb5b61a7-korea2)
 
 **Session ID:** arena/cb5b61a7-korea2

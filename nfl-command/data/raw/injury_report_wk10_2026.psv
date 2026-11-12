@@ -1,0 +1,265 @@
+# Transcription of the official NFL.com 2026 Injury Report, Week 10 (https://www.nfl.com/injuries/)
+# Fetched through the fetch tool on 2026-11-12 (UTC). Chunk 0 re-read 2026-11-12: WAS, NYG, NE, DET (44 rows) and the first 8 KC rows match this file exactly. Chunks 1-6 were transcribed earlier the same day and are NOT re-verified row by row. The page shows no as-of timestamp.
+# Format: matchup|kickoff (ET, as printed by NFL.com)|team|player (as printed)|nfl.com player slug|position (as printed)|injury (as printed; blank = blank on source)|practice status|game status
+# practice codes: F = "Full Participation in Practice", L = "Limited Participation in Practice", D = "Did Not Participate In Practice"
+# game status as printed: Out / Questionable / Doubtful / blank
+# Team order inside each matchup is the NFL.com listing order (away-first for games whose "X at Y" form is confirmed on nfl.com/schedules/2026/REG10).
+# "NO INJURIES REPORTED" rows are the literal NFL.com text for that club.
+WAS-NYG|Thu Nov 12 8:15 PM|WAS|John Bates|john-bates|TE||F|
+WAS-NYG|Thu Nov 12 8:15 PM|WAS|Treylon Burks|treylon-burks|WR||D|
+WAS-NYG|Thu Nov 12 8:15 PM|WAS|Jayden Daniels|jayden-daniels|QB||F|
+WAS-NYG|Thu Nov 12 8:15 PM|WAS|Matt Gulbin|matt-gulbin|C||F|
+WAS-NYG|Thu Nov 12 8:15 PM|WAS|Chig Okonkwo|chigoziem-okonkwo|TE||F|
+WAS-NYG|Thu Nov 12 8:15 PM|WAS|Lucas Patrick|lucas-patrick|C|Concussion|D|Out
+WAS-NYG|Thu Nov 12 8:15 PM|WAS|Amik Robertson|amik-robertson|CB||L|
+WAS-NYG|Thu Nov 12 8:15 PM|WAS|Shy Tuttle|shy-tuttle|DT||F|
+WAS-NYG|Thu Nov 12 8:15 PM|WAS|Colson Yankoff|colson-yankoff|TE|Knee|D|Out
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Abdul Carter|abdul-carter|LB||F|
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Jermaine Eluemunor|jermaine-eluemunor|T||F|
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Malik Harrison|malik-harrison|LB|Groin|L|Questionable
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Colton Hood|colton-hood|CB||F|
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Theo Johnson|theo-johnson|TE||F|
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Charlie Jones|charlie-jones-3|WR||F|
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|J.J. McCarthy|j-j-mccarthy|QB||F|
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Darnell Mooney|darnell-mooney|WR||F|
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Malik Nabers|malik-nabers|WR||F|
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Cam Skattebo|cam-skattebo|RB||F|
+WAS-NYG|Thu Nov 12 8:15 PM|NYG|Andrew Thomas|andrew-thomas|T||F|
+NE-DET|Sun Nov 15 9:30 AM|NE|Ben Brown|ben-brown-2|C|Knee|D|Out
+NE-DET|Sun Nov 15 9:30 AM|NE|A.J. Brown|a-j-brown|WR||L|
+NE-DET|Sun Nov 15 9:30 AM|NE|Kevin Byard|kevin-byard|S||L|
+NE-DET|Sun Nov 15 9:30 AM|NE|Carlton Davis III|carlton-davis|CB|Knee|D|Out
+NE-DET|Sun Nov 15 9:30 AM|NE|Reggie Gilliam|reggie-gilliam|FB||L|
+NE-DET|Sun Nov 15 9:30 AM|NE|TreVeyon Henderson|treveyon-henderson|RB|Illness|D|Out
+NE-DET|Sun Nov 15 9:30 AM|NE|Hunter Henry|hunter-henry|TE||L|
+NE-DET|Sun Nov 15 9:30 AM|NE|Cameron Latu|cameron-latu|TE||D|
+NE-DET|Sun Nov 15 9:30 AM|NE|Drake Maye|drake-maye|QB||F|
+NE-DET|Sun Nov 15 9:30 AM|NE|Morgan Moses|morgan-moses|T||L|
+NE-DET|Sun Nov 15 9:30 AM|NE|Walter Rouse|walter-rouse|T||D|
+NE-DET|Sun Nov 15 9:30 AM|NE|Brenden Schooler|brenden-schooler|S||D|
+NE-DET|Sun Nov 15 9:30 AM|NE|Rhamondre Stevenson|rhamondre-stevenson|RB||D|
+NE-DET|Sun Nov 15 9:30 AM|NE|Greg Van Roten|greg-van-roten|G||L|
+NE-DET|Sun Nov 15 9:30 AM|NE|Charles Woods|charles-woods|CB||L|
+NE-DET|Sun Nov 15 9:30 AM|DET|Brian Branch|brian-branch|S||L|
+NE-DET|Sun Nov 15 9:30 AM|DET|Jared Goff|jared-goff|QB||L|
+NE-DET|Sun Nov 15 9:30 AM|DET|Kerby Joseph|kerby-joseph|S||L|
+NE-DET|Sun Nov 15 9:30 AM|DET|Cade Mays|cade-mays|C||D|
+NE-DET|Sun Nov 15 9:30 AM|DET|D.J. Reed|d-j-reed|CB||D|
+NE-DET|Sun Nov 15 9:30 AM|DET|Jacob Saylors|jacob-saylors|RB||F|
+NE-DET|Sun Nov 15 9:30 AM|DET|Amon-Ra St. Brown|amon-ra-st-brown|WR||L|
+NE-DET|Sun Nov 15 9:30 AM|DET|Sione Vaki|sione-vaki|RB||D|
+NE-DET|Sun Nov 15 9:30 AM|DET|DJ Wonnum|d-j-wonnum|DE||F|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Jeffrey Bassa|jeffrey-bassa|LB||F|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Mansoor Delane|mansoor-delane|CB||F|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Justin Fields|justin-fields|QB||F|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Jaden Hicks|jaden-hicks|S||F|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Travis Kelce|travis-kelce|TE||F|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Patrick Mahomes|patrick-mahomes|QB||F|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Jaylon Moore|jaylon-moore-2|T||D|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Omarr Norman-Lott|omarr-norman-lott|DT||L|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Rashee Rice|rashee-rice|WR||F|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Peter Woods|peter-woods|DT||D|
+KC-ATL|Sun Nov 15 1:00 PM|KC|Xavier Worthy|xavier-worthy|WR||F|
+KC-ATL|Sun Nov 15 1:00 PM|ATL|Zachariah Branch|zachariah-branch|WR||D|
+KC-ATL|Sun Nov 15 1:00 PM|ATL|Divine Deablo|divine-deablo|LB||L|
+KC-ATL|Sun Nov 15 1:00 PM|ATL|Gervon Dexter Sr.|gervon-dexter|DT||D|
+KC-ATL|Sun Nov 15 1:00 PM|ATL|James Pearce Jr.|james-pearce-jr|DE||D|
+KC-ATL|Sun Nov 15 1:00 PM|ATL|Za'Darius Smith|za-darius-smith|DE||D|
+KC-ATL|Sun Nov 15 1:00 PM|ATL|Josh Woods|josh-woods|LB||D|
+MIN-GB|Sun Nov 15 1:00 PM|MIN|Blake Cashman|blake-cashman|LB||D|
+MIN-GB|Sun Nov 15 1:00 PM|MIN|T.J. Hockenson|t-j-hockenson|TE||D|
+MIN-GB|Sun Nov 15 1:00 PM|MIN|Tyrion Ingram-Dawkins|tyrion-ingram-dawkins|DT||D|
+MIN-GB|Sun Nov 15 1:00 PM|MIN|Theo Jackson|theo-jackson|S||F|
+MIN-GB|Sun Nov 15 1:00 PM|MIN|Jauan Jennings|jauan-jennings|WR||D|
+MIN-GB|Sun Nov 15 1:00 PM|MIN|Kyler Murray|kyler-murray|QB||D|
+MIN-GB|Sun Nov 15 1:00 PM|MIN|Kyle Van Noy|kyle-van-noy|LB||D|
+MIN-GB|Sun Nov 15 1:00 PM|MIN|Jay Ward|jay-ward|S||L|
+MIN-GB|Sun Nov 15 1:00 PM|MIN|Carson Wentz|carson-wentz|QB||L|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Aaron Banks|aaron-banks|G||L|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Chris Brooks|christopher-brooks|RB||L|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Javon Bullard|javon-bullard|S||D|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Zaire Franklin|zaire-franklin|LB||D|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Travis Glover|travis-glover|G||L|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Ty'Ron Hopper|ty-ron-hopper|LB||L|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Josh Jacobs|josh-jacobs-x3315|RB||D|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Bo Melton|bo-melton|WR||F|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Skyy Moore|skyy-moore|WR||L|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Micah Parsons|micah-parsons|LB||L|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Sean Rhyan|sean-rhyan|C||D|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Trey Smack|trey-smack|K||L|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Lukas Van Ness|lukas-van-ness|LB||D|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Josh Whyle|josh-whyle|TE||D|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Savion Williams|savion-williams|WR||L|
+MIN-GB|Sun Nov 15 1:00 PM|GB|Kevin Zeitler|kevin-zeitler|G||L|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Jessie Bates|jessie-bates|S||D|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Ezra Cleveland|ezra-cleveland|G||L|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Branson Combs|branson-combs|LB||L|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Jordan Davis|jordan-davis|DT||D|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Robert Hainsey|robert-hainsey|C||L|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Antonio Johnson|antonio-johnson-3|S||L|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Jakobi Meyers|jakobi-meyers|WR||D|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Chris Rodriguez Jr.|chris-rodriguez-jr|RB||L|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Bhayshul Tuten|bhayshul-tuten|RB||D|
+JAX-TEN|Sun Nov 15 1:00 PM|JAX|Travon Walker|travon-walker|DE||D|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Cody Barton|cody-barton|LB||D|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|John Franklin-Myers|john-franklin-myers|DE||F|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Marcus Harris|marcus-harris-4|CB||F|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Anthony Hill Jr.|anthony-hill-jr|LB||D|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Jaylon Jones|jaylon-jones-2|CB||F|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|JC Latham|jc-latham|T||F|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Tony Pollard|tony-pollard|RB||F|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Peter Skoronski|peter-skoronski|G||D|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Tyjae Spears|tyjae-spears|RB||D|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Carnell Tate|carnell-tate|WR||D|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Tommy Townsend|tommy-townsend|P||F|
+JAX-TEN|Sun Nov 15 1:00 PM|TEN|Kevin Winston Jr.|kevin-winston-jr|S||F|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Alec Anderson|alec-anderson-2|G||L|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Christian Benford|christian-benford|CB||L|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Spencer Brown|spencer-brown|T||L|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Dion Dawkins|dion-dawkins|T||L|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Greg Gaines|greg-gaines|DT||F|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Jordan Hancock|jordan-hancock|CB||F|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Dalton Kincaid|dalton-kincaid|TE||L|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Connor McGovern|connor-mcgovern-2|C||L|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Ar'maj Reed-Adams|ar-maj-reed-adams|G||F|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|T.J. Sanders|t-j-sanders|DE||F|
+BUF-NYJ|Sun Nov 15 1:00 PM|BUF|Tyrell Shavers|tyrell-shavers|WR||F|
+BUF-NYJ|Sun Nov 15 1:00 PM|NYJ|Omar Cooper Jr.|omar-cooper-jr|WR||L|
+BUF-NYJ|Sun Nov 15 1:00 PM|NYJ|Joseph Ossai|joseph-ossai|DE||L|
+BUF-NYJ|Sun Nov 15 1:00 PM|NYJ|VJ Payne|vj-payne|S||F|
+BUF-NYJ|Sun Nov 15 1:00 PM|NYJ|Harrison Phillips|harrison-phillips|DT||D|
+BUF-NYJ|Sun Nov 15 1:00 PM|NYJ|Trevin Wallace|trevin-wallace|LB||D|
+BUF-NYJ|Sun Nov 15 1:00 PM|NYJ|Garrett Wilson|garrett-wilson|WR||L|
+BUF-NYJ|Sun Nov 15 1:00 PM|NYJ|Nahshon Wright|nahshon-wright|CB||L|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Tucker Addington|tucker-addington|LS||L|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Kaytron Allen|kaytron-allen|RB||F|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Darrell Baker Jr.|darrell-baker-jr|CB||L|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Chris Bell|chris-bell-2|WR||L|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Aaron Brewer|aaron-brewer-2|C||D|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Malik Herring|malik-herring|DE||L|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Will Kacmarek|will-kacmarek|TE||D|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Michael Taaffe|michael-taaffe|S||F|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Dante Trader Jr.|dante-trader-jr|S||F|
+MIA-IND|Sun Nov 15 1:00 PM|MIA|Jaylen Wright|jaylen-wright|RB||F|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Mo Alie-Cox|mo-alie-cox|TE||D|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Jaylon Carlies|jaylon-carlies|LB||D|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Akeem Davis-Gaither|akeem-davis-gaither|LB||D|
+MIA-IND|Sun Nov 15 1:00 PM|IND|A.J. Haulcy|a-j-haulcy|S||D|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Arden Key|arden-key|DE||F|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Luke Rhodes|luke-rhodes|LS||D|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Jonathan Taylor|jonathan-taylor|RB||L|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Jerry Tillery|jerry-tillery|DT||L|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Jalen Travis|jalen-travis|T||D|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Justin Walley|justin-walley|CB||F|
+MIA-IND|Sun Nov 15 1:00 PM|IND|Charvarius Ward|charvarius-ward|CB||D|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Jonathon Brooks|jonathon-brooks|RB||F|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Brady Christensen|brady-christensen|G||F|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Trevor Etienne|trevor-etienne|RB||F|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Chuba Hubbard|chuba-hubbard|RB||D|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Lee Hunter|lee-hunter|DT||F|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Mike Jackson|mike-jackson|CB||F|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Will Lee III|will-lee-iii|CB||F|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Xavier Legette|xavier-legette|WR||F|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Damien Lewis|damien-lewis|G||F|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Bobby Okereke|bobby-okereke|LB||D|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Jaelan Phillips|jaelan-phillips|LB||F|
+CAR-NO|Sun Nov 15 1:00 PM|CAR|Torricelli Simpkins III|torricelli-simpkins-iii|G||F|
+CAR-NO|Sun Nov 15 1:00 PM|NO|Kelvin Banks Jr.|kelvin-banks-jr|T||L|
+CAR-NO|Sun Nov 15 1:00 PM|NO|CJ Donaldson|cj-donaldson|RB||D|
+CAR-NO|Sun Nov 15 1:00 PM|NO|David Edwards|david-edwards-x1290|G||L|
+CAR-NO|Sun Nov 15 1:00 PM|NO|Martin Emerson|martin-emerson|CB||L|
+CAR-NO|Sun Nov 15 1:00 PM|NO|Travis Etienne|travis-etienne|RB||L|
+CAR-NO|Sun Nov 15 1:00 PM|NO|Noah Fant|noah-fant-x4946|TE||L|
+CAR-NO|Sun Nov 15 1:00 PM|NO|Alvin Kamara|alvin-kamara|RB||D|
+CAR-NO|Sun Nov 15 1:00 PM|NO|Erik McCoy|erik-mccoy|C||D|
+CAR-NO|Sun Nov 15 1:00 PM|NO|Christen Miller|christen-miller|DT||L|
+CAR-NO|Sun Nov 15 1:00 PM|NO|Asim Richards|asim-richards|T||F|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Azeez Al-Shaair|azeez-al-shaair|LB||D|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Reed Blankenship|reed-blankenship|S||L|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Tank Dell|tank-dell|WR||L|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Blake Fisher|blake-fisher|T||F|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Marvin Harrison Jr.|marvin-harrison-jr|WR||L|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Jacob Hummel|jake-hummel|LB||L|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Brevin Jordan|brevin-jordan|TE||D|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Woody Marks|woody-marks|RB||L|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|David Montgomery|david-montgomery|RB||D|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Keylan Rutledge|keylan-rutledge|G||D|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Jaylin Smith|jaylin-smith|CB||L|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Wyatt Teller|wyatt-teller|G||L|
+HOU-CLE|Sun Nov 15 1:00 PM|HOU|Tommy Togiai|tommy-togiai|DT||F|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Austin Barber|austin-barber|T||L|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Denzel Boston|denzel-boston|WR||D|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Michael Burton|michael-burton|FB||D|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Maliek Collins|maliek-collins|DT||L|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Harold Fannin Jr.|harold-fannin-jr|TE||L|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Ronnie Hickman Jr.|ronnie-hickman-jr|S||D|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Tytus Howard|tytus-howard-x1979|T||L|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Elgton Jenkins|elgton-jenkins|C||D|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Carson Schwesinger|carson-schwesinger|LB||L|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Denzel Ward|denzel-ward|CB||L|
+HOU-CLE|Sun Nov 15 1:00 PM|CLE|Quincy Williams|quincy-williams|LB||L|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Davis Allen|davis-allen|TE||L|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Steve Avila|steve-avila|G||D|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Joe Cardona|joe-cardona|LS||L|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Kam Curl|kamren-curl|S||D|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Terrance Ferguson|terrance-ferguson-2|TE||D|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Myles Garrett|myles-garrett|LB||L|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Trent McDuffie|trent-mcduffie|CB||D|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Puka Nacua|puka-nacua|WR||D|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Colby Parkinson|colby-parkinson|TE||L|
+LAR-AZ|Sun Nov 15 4:05 PM|LAR|Matthew Stafford|matthew-stafford|QB||F|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Budda Baker|budda-baker|S||D|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Zachary Carter|zachary-carter-x9168|DT||L|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Hjalte Froholdt|hjalte-froholdt|C||D|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Jon Gaines II|jon-gaines-ii|G||D|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Bam Knight|bam-knight|RB||L|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Hunter Long|hunter-long|TE||L|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Roy Lopez|roy-lopez|DT||D|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Max Melton|max-melton|CB||L|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Isaac Seumalo|isaac-seumalo|G||D|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Dante Stills|dante-stills|DT||L|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Josh Sweat|josh-sweat|LB||D|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Jayden Williams|jayden-williams|T||L|
+LAR-AZ|Sun Nov 15 4:05 PM|AZ|Mack Wilson|mack-wilson|LB||D|
+SEA-LV|Sun Nov 15 4:05 PM|SEA|NO INJURIES REPORTED|||||
+SEA-LV|Sun Nov 15 4:05 PM|LV|Thomas Booker|thomas-booker|DT||L|
+SEA-LV|Sun Nov 15 4:05 PM|LV|Foley Fatukasi|foley-fatukasi|DT||L|
+SEA-LV|Sun Nov 15 4:05 PM|LV|Ian Thomas|ian-thomas|TE||F|
+SEA-LV|Sun Nov 15 4:05 PM|LV|Trey Zuhn III|trey-zuhn-iii|C||L|
+SF-DAL|Sun Nov 15 4:25 PM|SF|Mike Evans|mike-evans|WR||D|
+SF-DAL|Sun Nov 15 4:25 PM|SF|Renardo Green|renardo-green|CB||D|
+SF-DAL|Sun Nov 15 4:25 PM|SF|Nate Hobbs|nate-hobbs|CB||F|
+SF-DAL|Sun Nov 15 4:25 PM|SF|Deommodore Lenoir|deommodore-lenoir|CB||D|
+SF-DAL|Sun Nov 15 4:25 PM|SF|Siran Neal|siran-neal|S||L|
+SF-DAL|Sun Nov 15 4:25 PM|SF|Demarcus Robinson|demarcus-robinson|WR||F|
+SF-DAL|Sun Nov 15 4:25 PM|SF|Deebo Samuel Sr.|deebo-samuel|WR||L|
+SF-DAL|Sun Nov 15 4:25 PM|SF|Upton Stout|upton-stout|CB||L|
+SF-DAL|Sun Nov 15 4:25 PM|SF|C.J. West|cj-west|DT||L|
+SF-DAL|Sun Nov 15 4:25 PM|SF|Trent Williams|trent-williams|T||D|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Jonathan Bullard|jonathan-bullard|DT||F|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Donovan Ezeiruaku|donovan-ezeiruaku|LB||D|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Jake Ferguson|jake-ferguson|TE||D|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Tyler Goodson|tyler-goodson|RB||D|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Malik Hooker|malik-hooker|S||D|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Marist Liufau|marist-liufau|LB||F|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|P.J. Locke|p-j-locke|S||D|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Von Miller|von-miller|LB||D|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Jonathan Mingo|jonathan-mingo|WR||D|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Devin Moore|devin-moore-2|CB||F|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|DeMarvion Overshown|demarvion-overshown|LB||L|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|George Pickens|george-pickens|WR||L|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Joey Porter Jr.|joey-porter-jr|CB||D|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Luke Schoonmaker|luke-schoonmaker|TE||F|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|Brevyn Spann-Ford|brevyn-spann-ford|TE||F|
+SF-DAL|Sun Nov 15 4:25 PM|DAL|KaVontae Turpin|kavontae-turpin|WR||L|
+PIT-CIN|Sun Nov 15 8:20 PM|PIT|Brandin Echols|brandin-echols|CB||F|
+PIT-CIN|Sun Nov 15 8:20 PM|PIT|DeShon Elliott|deshon-elliott|S||L|
+PIT-CIN|Sun Nov 15 8:20 PM|PIT|Derrick Harmon|derrick-harmon-2|DT||L|
+PIT-CIN|Sun Nov 15 8:20 PM|PIT|Cameron Heyward|cameron-heyward|DT||D|
+PIT-CIN|Sun Nov 15 8:20 PM|PIT|Ben Skowronek|ben-skowronek|WR||F|
+PIT-CIN|Sun Nov 15 8:20 PM|PIT|Doneiko Slaughter|doneiko-slaughter|CB||F|
+PIT-CIN|Sun Nov 15 8:20 PM|PIT|Darnell Washington|darnell-washington|TE||D|
+PIT-CIN|Sun Nov 15 8:20 PM|PIT|T.J. Watt|t-j-watt|LB||D|
+PIT-CIN|Sun Nov 15 8:20 PM|CIN|NO INJURIES REPORTED|||||
+LAC-BAL|Mon Nov 16 8:15 PM|LAC|NO INJURIES REPORTED|||||
+LAC-BAL|Mon Nov 16 8:15 PM|BAL|NO INJURIES REPORTED|||||
