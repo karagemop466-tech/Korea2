@@ -141,7 +141,8 @@ def main() -> None:
 
     # ---------------- index.html ----------------
     kpis = [
-        ("Strategies qualified", f'0 / {lbmeta["totals"]["evaluations"]}', "across 6 lab boards"),
+        ("Strategies qualified", f'0 / {lbmeta["totals"]["evaluations"]}',
+         f'across {lbmeta["totals"]["labs"]} lab boards'),
         ("Injury rows tracked", str(icount["report_rows"] + icount["supplemental_rows"]),
          f'{icount["report_rows"]} official + {icount["supplemental_rows"]} supplemental'),
         ("Deficiency chains", str(icount["deficiencies"]),
@@ -536,7 +537,7 @@ reviewed {esc(review["meta"]["reviewed_on"])}. {esc(review["meta"]["method"])}</
 <li><strong>Questions:</strong> {qcount["total"]} decision-readiness rows — {qcount["answered"]} answered, {qcount["partial"]} partial,
 {qcount["unanswered"]} unanswered with named gaps.</li>
 <li><strong>Suggestions:</strong> {suggestions["meta"]["counts"]["total"]} proposals, all awaiting a reviewer's decision (0 implemented).</li>
-<li><strong>Leaderboard:</strong> {lbmeta["totals"]["evaluations"]} evaluations aggregated from 6 labs with one ranking rule,
+<li><strong>Leaderboard:</strong> {lbmeta["totals"]["evaluations"]} evaluations aggregated from {lbmeta["totals"]["labs"]} labs with one ranking rule,
 plus {icount_correlations(leaderboard)} measured correlation rows.</li>
 <li><strong>Flags:</strong> {fcount["total"]} published, none blocking; <strong>repo review:</strong> all runnable gates green.</li>
 </ul>
