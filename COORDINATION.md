@@ -1281,3 +1281,24 @@ therefore recorded here; a maintainer can close them against this table.
   merge a stale-based refresh onto a green site near the end of the run. To restore fully automatic
   publishing, enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull
   requests*.
+
+---
+
+# Session board — `arena/aa66ed82-korea2` (Decision Desk: questions, suggestions, injury/depth tracking)
+
+**Session ID:** `arena/aa66ed82-korea2` (branch fixed by environment: `arena/aa66ed82-korea2`)
+**Claimed at:** 2026-11-12 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| DD-0 | Claim non-overlapping scope and push before work starts | done | `arena/aa66ed82-korea2` | this section of `COORDINATION.md` |
+| DD-1 | Line-by-line repository review (2026-11-12) with irregularity register | unclaimed | `arena/aa66ed82-korea2` | `decision-desk/data/repo_review.json`, `decision-desk/pages/repo-review.html` |
+| DD-2 | Official injury report tracking + offense/defense depth-deficiency analysis (next-man-up from official sources) | unclaimed | `arena/aa66ed82-korea2` | `decision-desk/data/injuries.json`, `decision-desk/pages/injuries.html` |
+| DD-3 | Decision-readiness register: questions / information / answers required before any decision, with missing-information discovery suggestions | unclaimed | `arena/aa66ed82-korea2` | `decision-desk/data/questions.json`, `decision-desk/pages/questions.html` |
+| DD-4 | Suggestions register (dedicated review section: reviewer selects the best path before implementation) | unclaimed | `arena/aa66ed82-korea2` | `decision-desk/data/suggestions.json`, `decision-desk/pages/suggestions.html` |
+| DD-5 | Strategy leaderboard (singles, parlays, player-prop combos), validation-gate outcomes, correlation values, reward tiers — aggregated from committed sibling results read-only | unclaimed | `arena/aa66ed82-korea2` | `decision-desk/data/leaderboard.json`, `decision-desk/pages/leaderboard.html` |
+| DD-6 | Executive summary + Flagged for Review + source register pages | unclaimed | `arena/aa66ed82-korea2` | `decision-desk/EXECUTIVE_SUMMARY.md`, `decision-desk/pages/executive.html`, `decision-desk/pages/flagged.html`, `decision-desk/pages/sources.html` |
+| DD-7 | Static site build (landing + category subpages), per-row source verifier, CI workflow | unclaimed | `arena/aa66ed82-korea2` | `decision-desk/**`, `.github/workflows/decision-desk.yml` |
+| DD-8 | Final re-verification, integration PR to `main`, merge, GitHub Pages deploy confirmation, board record | unclaimed | `arena/aa66ed82-korea2` | this section, PR |
+
+**Scope rule:** this session writes only inside `decision-desk/`, `.github/workflows/decision-desk.yml`, and this section of `COORDINATION.md`. All sibling directories (`index.html`, `pages/`, `assets/`, `scripts/`, `data/`, `tests/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination-lab/`, `origination/`, `pipeline/`, `results/`, `audit/`, `skill-lab/`, `verification/`, `docs/`, `README.md`) are read-only for this session and are never modified. Claims committed and pushed before any other work (DD-0).
