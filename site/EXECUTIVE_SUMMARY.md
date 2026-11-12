@@ -1,6 +1,6 @@
 # Decision Desk - executive summary
 
-Generated 2026-11-12T13:15:15Z by `site/scripts/build_site.py` from `site/data/*.json`.
+Generated 2026-11-01T00:00:00Z by `site/scripts/build_site.py` from `site/data/*.json`.
 Data as of 2026-11-01. Session `arena/90e4fdbe-korea2`.
 
 ## Where the project stands

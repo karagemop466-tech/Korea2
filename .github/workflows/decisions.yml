@@ -52,9 +52,15 @@ jobs:
           python scripts/check_links.py
           python tests/check_derived.py
       - name: Fail if the rebuild changed any committed artefact
+        # Scoped: the root site's own generator owns index.html/pages/*, and sibling sessions' pages
+        # also live there, so this guard covers only the files this workflow rebuilds on purpose.
         run: |
-          if ! git diff --quiet; then
-            git --no-pager diff --stat
+          set -euo pipefail
+          paths="site pages/decision-hub.html pages/decision-suggestions.html pages/decision-questions.html \
+                 pages/decision-injury-depth.html pages/decision-signals.html pages/decision-parlay.html \
+                 pages/decision-verify.html pages/decision-summary.html"
+          if ! git diff --quiet -- $paths; then
+            git --no-pager diff --stat -- $paths
             echo "::error::the decision desk rebuild is not reproducible - commit the regenerated files"
             exit 1
           fi

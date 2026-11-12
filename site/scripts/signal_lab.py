@@ -420,6 +420,22 @@ def evaluate(name: str, bets: pd.DataFrame, n_variants: int) -> dict:
     }
 
 
+def stamp() -> str:
+    """Deterministic build stamp.
+
+    Wall-clock generation times made every CI rebuild differ from the committed file, which broke the
+    reproducibility check for a reason that had nothing to do with the numbers. The stamp is therefore
+    the date the committed data ends, read from data/provenance.json.
+    """
+    p = ROOT / "data" / "provenance.json"
+    try:
+        with open(p) as fh:
+            day = json.load(fh).get("data_as_of_gameday")
+    except (OSError, ValueError):
+        day = None
+    return f"{day}T00:00:00Z" if day else "unknown"
+
+
 def main() -> int:
     g = load()
     t = team_panel(g)
@@ -460,8 +476,11 @@ def main() -> int:
     payload = {
         "meta": {
             "session": "arena/90e4fdbe-korea2",
-            "generated_utc": pd.Timestamp.now(tz="UTC").strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "data_as_of_gameday": str(pd.to_datetime(g["gameday"]).max())[:10],
+            "generated_utc": stamp(),
+            # the last game actually played, not the last game scheduled: the extract carries the
+            # remainder of the 2026 schedule with null scores, and that is not "data as of"
+            "data_as_of_gameday": str(pd.to_datetime(
+                g.loc[g["home_score"].notna(), "gameday"]).max())[:10],
             "test_window": f"{TEST_START}-2026 regular season",
             "n_variants_measured": len(rows),
             "n_qualified": sum(1 for r in rows if r["qualified"]),

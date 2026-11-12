@@ -137,6 +137,22 @@ def joint_table(df: pd.DataFrame, cols: list[str]) -> dict:
     }
 
 
+def stamp() -> str:
+    """Deterministic build stamp.
+
+    Wall-clock generation times made every CI rebuild differ from the committed file, which broke the
+    reproducibility check for a reason that had nothing to do with the numbers. The stamp is therefore
+    the date the committed data ends, read from data/provenance.json.
+    """
+    p = ROOT / "data" / "provenance.json"
+    try:
+        with open(p) as fh:
+            day = json.load(fh).get("data_as_of_gameday")
+    except (OSError, ValueError):
+        day = None
+    return f"{day}T00:00:00Z" if day else "unknown"
+
+
 def main() -> int:
     legs = build_legs()
     cols = ["qb_pass_yds", "wr1_rec_yds", "rb1_rush_yds", "team_points"]
@@ -200,7 +216,7 @@ def main() -> int:
     payload = {
         "meta": {
             "session": "arena/90e4fdbe-korea2",
-            "generated_utc": pd.Timestamp.now(tz="UTC").strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "generated_utc": stamp(),
             "team_games": int(len(legs)),
             "seasons": [int(legs["season"].min()), int(legs["season"].max())],
             "legs": {

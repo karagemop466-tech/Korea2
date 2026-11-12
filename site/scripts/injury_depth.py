@@ -210,6 +210,22 @@ def clean(x):
     return x
 
 
+def stamp() -> str:
+    """Deterministic build stamp.
+
+    Wall-clock generation times made every CI rebuild differ from the committed file, which broke the
+    reproducibility check for a reason that had nothing to do with the numbers. The stamp is therefore
+    the date the committed data ends, read from data/provenance.json.
+    """
+    p = ROOT / "data" / "provenance.json"
+    try:
+        with open(p) as fh:
+            day = json.load(fh).get("data_as_of_gameday")
+    except (OSError, ValueError):
+        day = None
+    return f"{day}T00:00:00Z" if day else "unknown"
+
+
 def main() -> int:
     rows = []
     for team, players in REPORT.items():
@@ -377,7 +393,7 @@ def main() -> int:
     payload = {
         "meta": {
             "session": "arena/90e4fdbe-korea2",
-            "generated_utc": pd.Timestamp.now(tz="UTC").strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "generated_utc": stamp(),
             "retrieved": RETRIEVED,
             "source": INJURY_URL,
             "source_title": "Official NFL Injury Report for Players - Week 10 of the 2026 Season",
