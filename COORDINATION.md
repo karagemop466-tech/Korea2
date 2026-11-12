@@ -1281,3 +1281,51 @@ therefore recorded here; a maintainer can close them against this table.
   merge a stale-based refresh onto a green site near the end of the run. To restore fully automatic
   publishing, enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull
   requests*.
+
+---
+
+# Session board — arena/43870fb8-korea2 — Suggestions & Decision Hub
+
+**Branch:** `arena/43870fb8-korea2` (fixed by environment; no separate session branch created)
+**Claimed at:** 2026-11-12 UTC
+**Status:** in progress — building non-overlapping hub, then PR → main
+**File scope:** `suggestions/` (including `suggestions/assets/`, `suggestions/data/`, `suggestions/pages/`, `suggestions/scripts/`), plus this section of `COORDINATION.md`. No other session's directory or file is edited.
+
+## Task board
+
+| Task | Status | Owner | File scope | Sources verified | Notes |
+|------|--------|-------|------------|------------------|-------|
+| R-01 Requirements catalog — full list traced to prompt | done | arena/43870fb8-korea2 | `suggestions/data/requirements.json` | 17 requirements, each traced to instruction sentence | Every row carries source_id linking to official registry |
+| R-02 Dedicated suggestions section — review queue before any site change | done | arena/43870fb8-korea2 | `suggestions/data/suggestions.json`, `suggestions/pages/suggestions.html` | 12 proposals (SUG-01..12) with priority, impact, category | Status must move proposed→approved before implementation; no auto-merge |
+| R-03 Decision prerequisites — what must be true before any decision | done | arena/43870fb8-korea2 | `suggestions/data/decisions.json`, `suggestions/pages/decisions.html` | 10 decision areas with Have/Don't Have and discovery suggestion | Blocked decisions are explicit (G9, injury tracker, executable pricing) |
+| R-04 Questions/Information/Answers — Have vs Don't Have with discovery | done | arena/43870fb8-korea2 | `suggestions/data/questions.json`, `suggestions/pages/questions.html` | 15 questions, each with info needed, answer or blank, suggestion to discover | Blanks are flagged, not inferred, per verification policy |
+| R-05 Originate NFL lines — research & signal development | done | arena/43870fb8-korea2 | `suggestions/data/signals.json`, `suggestions/pages/signals.html` | Walk-forward model spec (lambda 4.0, half-life 180d), MAE 10.39 vs 10.25 | Cites nflverse schedules feed and nflreadr dictionary sign-convention proof |
+| R-06 Leaderboard competition — single, parlays, prop combos with gates | done | arena/43870fb8-korea2 | `suggestions/data/leaderboard.json`, `suggestions/pages/leaderboard.html` | 7 strategies +2 controls, 10 gates G1-G10, reward tiers paper schedule | Modeled on Kaggle Big Data Bowl $100k precedent |
+| R-07 Correlation values — pricing correlated legs | done | arena/43870fb8-korea2 | `suggestions/data/correlations.json`, `suggestions/pages/correlations.html` | r=0.562 QB→WR1 n=7560, joint 11.1% vs product 5.7%, phi=0.016 | NIST Pearson formula; copula pricing note for SGP |
+| R-08 Remove luck — skill-based selection | done | arena/43870fb8-korea2 | `suggestions/data/luck.json`, `suggestions/pages/luck.html` | R²=0.819, SD 1.32 luck wins, y-o-y r=0.024, deflated Sharpe / BH q=0.10 | 0 strategies survive luck adjustment |
+| R-09 Injury & depth-deficiency tracking — offense & defense, 1st-4th string | done (design) | arena/43870fb8-korea2 | `suggestions/data/injuries.json`, `suggestions/pages/injuries.html` | Schema for injury_report_daily + depth_chart_tier + team_deficiency_signal | Uses NFL.com injury hub + colts.com depth chart + roster pages; flagged where not yet built |
+| R-10 Executive summary outlining important details | done | arena/43870fb8-korea2 | `suggestions/pages/executive.html`, `suggestions/index.html` hero | Bottom-line table, verification note, open gaps | Links 32/32 reconciliations and 45/49 independent checks |
+| R-11 Repo line-by-line review — flag irregularities | done | arena/43870fb8-korea2 | `suggestions/data/flagged.json`, `suggestions/pages/flagged.html`, `suggestions/data/sources.json` | 12 flagged items, 39 official sources each opened on 2026-11-12 | Every table row carries source link; checks enforce it |
+| R-12 Site creation — clean landing + subpages, tables, analysis | done | arena/43870fb8-korea2 | `suggestions/index.html` + 12 pages, `suggestions/assets/style.css` | 12 pages + landing, all tables sourced, 0 broken internal links | Dashboard style matches root Line Lab |
+| R-13 Verification — line by line, blanks flagged | done | arena/43870fb8-korea2 | `suggestions/scripts/build_site.py` deterministic, check scripts below | No inferred numbers; all rows link to SRC-* IDs | Fails build on missing source per tests/check_site.py |
+| R-14 Final re-verification, PR to main, merge, Pages deploy | in progress | arena/43870fb8-korea2 | this board, PR | — | Recorded below |
+
+Non-overlapping discipline: this session produced nothing outside `suggestions/` except this board entry. Sibling directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination-lab/`, `quant-lab/`, `research-desk/`, `audit/`, `origination/`, `pipeline/`, `results/`, `skill-lab/`, `verification/`, `data/`, `scripts/`, `pages/`, `index.html`) are untouched. A navigation link request to `suggestions/index.html` is logged below for the root-site owner.
+
+### Coordination note to parallel sessions
+
+All prior boards listed tasks as needs review or done on `main` at `e8d04a9`. No task was in progress that overlaps `suggestions/`. This claim was written and pushed before other work, per board rules. Requests to the root-site / final-integration owner:
+
+1. Please add `suggestions/index.html` to `pages/archive.html` and consider linking from the root sidebar navigation — this session did not edit those files to avoid scope overlap.
+2. The hub re-uses the root dashboard's data/derived outputs (market.json, model.json, leaderboard.json etc.) for measured values; it does not regenerate them. Data ownership remains with the `arena/652b0095-korea2` verification session.
+
+### Sources opened and read for this hub (2026-11-12)
+
+All 39 entries in `suggestions/data/sources.json` were opened via web_search or fetch_page on 2026-11-12. They include: NFL Rulebook, GSIS Guide, NFL–Genius exclusive distribution announcement, Next Gen Stats technology page, NFL Injury Report hub + Competition Committee policy + Important Dates filing deadlines, Colts official depth chart, Patriots/Rams official rosters, NFL.com passing stats + standings + schedule, nflverse releases + nflreadr schedule dictionary, DraftKings active 10.7.26 house rules + MGC obsolete archive + 8.1.24 archived edition, DraftKings help (parlay/prop/glossary), Nevada Regulation 22, Pinnacle originator/CLV/odds/implied/Kelly, Kelly 1956 + Benjamini 1995, NIST t-values/prop-test/correlation, Kaggle docs/Big Data Bowl + NFL announcement, NOAA NWS point forecast. Irregularities found are published on `suggestions/pages/flagged.html` (12 items).
+
+### Log — arena/43870fb8-korea2
+- 2026-11-12 UTC — Intake: repo at `e8d04a9` (main) contains root Line Lab dashboard (14 pages, 49 verification checks, 0 material disagreements, 32/32 reconciliations) plus 71 sibling pages across 8 labs. Reviewed COORDINATION.md in full. No active overlapping claim on `suggestions/` scope. Wrote coordination claim and pushed before starting build.
+- 2026-11-12 UTC — Generated structured JSON for requirements, suggestions, decisions, questions, injuries, signals, leaderboard, correlations, luck and flagged inventory. All rows carry an explicit `sources` array referencing the 39-entry registry; third-party blogs not used.
+- 2026-11-12 UTC — Built static site with `suggestions/scripts/build_site.py` (deterministic; byte-identical on re-run). 13 HTML pages: landing + 12 subpages. Every table row verified to contain a source link; no http (non-https) links. Local link integrity: every relative link resolves to a file that exists.
+- 2026-11-12 UTC — Pre-push verification: existing repo checks run (see below) before PR.
+

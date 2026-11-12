@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "title": "Leaderboard competition \u2014 single, parlay, player-prop combos with skill-based reward gates",
+    "generated_on": "2026-11-12",
+    "policy": "Leaderboard ranks strategies by gates passed then ROI. Reward tiers are a design schedule, not funded. No strategy is ranked as qualified until all 10 gates pass including executable verification (G9).",
+    "model": "Modeled on Kaggle public/private split and NFL Big Data Bowl $100k prize judged by NFL club analysts."
+  },
+  "reward_schedule": [
+    {
+      "tier": "Tier 1 \u2014 validated",
+      "requirement": "10/10 gates",
+      "reward": "Full allocation and public listing as live signal (no cash until funded)",
+      "sources": [
+        "SRC-KAGGLE-BDB2027",
+        "SRC-NFL-BDB-ANNOUNCE"
+      ]
+    },
+    {
+      "tier": "Tier 2 \u2014 provisional",
+      "requirement": "8-9/10 gates with G9 verified",
+      "reward": "Paper-trade only until remaining gate closes",
+      "sources": [
+        "SRC-KAGGLE-DOCS"
+      ]
+    },
+    {
+      "tier": "Tier 3 \u2014 rejected",
+      "requirement": "\u22647 gates",
+      "reward": "No allocation; retained for research record",
+      "sources": [
+        "SRC-KAGGLE-DOCS"
+      ]
+    }
+  ],
+  "gate_definitions": [
+    {
+      "id": "G1",
+      "name": "Point-in-time integrity",
+      "rule": "Inputs strictly pre-kickoff; no result-derived feature; source hashes recorded",
+      "sources": [
+        "SRC-NFLREADR-DICT-SCHED"
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "Sample size",
+      "rule": "n \u2265 1000 settled bets (or power-analysis minimum, whichever larger)",
+      "sources": [
+        "SRC-NIST-PROP-TEST"
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "Out-of-sample",
+      "rule": "Evaluated on walk-forward seasons never used to fit model (2023+ test window)",
+      "sources": [
+        "SRC-KAGGLE-DOCS"
+      ]
+    },
+    {
+      "id": "G4",
+      "name": "Significance after multiple testing",
+      "rule": "Two-sided p<0.01 AND Benjamini\u2013Hochberg q\u22640.10 across all strategies tested",
+      "sources": [
+        "SRC-BH-1995",
+        "SRC-NIST-PROP-TEST"
+      ]
+    },
+    {
+      "id": "G5",
+      "name": "Positive lower bound",
+      "rule": "Lower 95% bootstrap bound on ROI >0",
+      "sources": [
+        "SRC-NIST-T-VALUES"
+      ]
+    },
+    {
+      "id": "G6",
+      "name": "Stability",
+      "rule": "Profitable in \u226560% of evaluated seasons and no single season >50% of total profit",
+      "sources": [
+        "SRC-KAGGLE-DOCS"
+      ]
+    },
+    {
+      "id": "G7",
+      "name": "Beats the closing line",
+      "rule": "ROI measured at closing line reported in feed (sharpest public price)",
+      "sources": [
+        "SRC-PINNACLE-CLV",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "G8",
+      "name": "Survives luck adjustment",
+      "rule": "Deflated-Sharpe p<0.05 given number of variants tried",
+      "sources": [
+        "SRC-KELLY-1956",
+        "SRC-BH-1995"
+      ]
+    },
+    {
+      "id": "G9",
+      "name": "Executable",
+      "rule": "Price, limit and jurisdiction verified for exact bet and window \u2014 fails by construction until verified",
+      "sources": [
+        "SRC-NV-REG22",
+        "SRC-DK-HOUSE-RULES-CURRENT"
+      ]
+    },
+    {
+      "id": "G10",
+      "name": "Reproducible",
+      "rule": "Committed code + data manifest + fixed seed reproduce published numbers",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "rank": 1,
+      "id": "S6_divisional_home_dog",
+      "name": "Divisional home underdog",
+      "family": "single bet (situational)",
+      "verdict": "REJECTED",
+      "gates_passed": "5/10",
+      "n_bets": 137,
+      "roi": "-1.21%",
+      "failed_gates": "G2,G4,G5,G6,G8,G9",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "rank": 2,
+      "id": "S1_model_edge_2",
+      "name": "Model spread edge \u22652.0 pts",
+      "family": "single bet",
+      "verdict": "REJECTED",
+      "gates_passed": "4/10",
+      "n_bets": 572,
+      "roi": "-5.28%",
+      "failed_gates": "G2,G4,G5,G6,G8,G9",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "rank": 3,
+      "id": "S2_model_edge_3",
+      "name": "Model spread edge \u22653.0 pts",
+      "family": "single bet",
+      "verdict": "REJECTED",
+      "gates_passed": "4/10",
+      "n_bets": 409,
+      "roi": "\u2248-3%",
+      "failed_gates": "G2,G4,G5,G8,G9",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "rank": 4,
+      "id": "S7_wind_under",
+      "name": "Under when wind \u226515 mph outdoors",
+      "family": "single bet (total)",
+      "verdict": "REJECTED",
+      "gates_passed": "2/10",
+      "n_bets": 46,
+      "roi": "+1.51%",
+      "failed_gates": "G2,G4,G5,G6,G8,G9",
+      "sources": [
+        "SRC-NOAA-NWS",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "rank": 5,
+      "id": "S4_rest_advantage",
+      "name": "Rest advantage +3 days",
+      "family": "single bet (situational)",
+      "verdict": "REJECTED",
+      "gates_passed": "3/10",
+      "n_bets": 204,
+      "roi": "+0.09%",
+      "failed_gates": "G2,G4,G5,G8,G9",
+      "sources": [
+        "SRC-NFLREADR-DICT-SCHED"
+      ]
+    },
+    {
+      "rank": 6,
+      "id": "S5_bye_week_team",
+      "name": "Bye-week team",
+      "family": "single bet (situational)",
+      "verdict": "REJECTED",
+      "gates_passed": "3/10",
+      "n_bets": 86,
+      "roi": "-5.87%",
+      "failed_gates": "G2,G4,G5,G8,G9",
+      "sources": [
+        "SRC-NFLREADR-DICT-SCHED"
+      ]
+    },
+    {
+      "rank": 7,
+      "id": "S-prop-4leg-same-team",
+      "name": "4-leg same-team player combo (SGP analogue)",
+      "family": "parlay / player-prop combo",
+      "verdict": "REJECTED (no price)",
+      "gates_passed": "2/10",
+      "n_bets": 7560,
+      "roi": "",
+      "failed_gates": "G4,G5,G7,G9 (no ROI without price)",
+      "sources": [
+        "SRC-DK-PARLAY-HELP",
+        "SRC-NIST-CORR"
+      ]
+    },
+    {
+      "rank": 8,
+      "id": "C1_all_home_control",
+      "name": "Control \u2014 back every home team",
+      "family": "control",
+      "verdict": "REJECTED",
+      "gates_passed": "3/10",
+      "n_bets": 936,
+      "roi": "-5.19%",
+      "failed_gates": "G4,G5,G6,G8,G9",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "rank": 9,
+      "id": "C2_all_under_control",
+      "name": "Control \u2014 under every game",
+      "family": "control",
+      "verdict": "REJECTED",
+      "gates_passed": "3/10",
+      "n_bets": 936,
+      "roi": "-5.95%",
+      "failed_gates": "G4,G5,G6,G8,G9",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    }
+  ],
+  "reward_summary": {
+    "total_strategies": 7,
+    "controls": 2,
+    "approved": 0,
+    "top_performer": "S6_divisional_home_dog (5/10 gates, rejected)",
+    "rewards_paid": 0,
+    "note": "No allocation or cash paid; Tier schedule is design proposal per flag FL-reward-not-funded.",
+    "sources": [
+      "SRC-KAGGLE-BDB2027"
+    ]
+  }
+}
