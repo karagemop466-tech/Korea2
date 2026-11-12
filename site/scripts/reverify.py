@@ -378,7 +378,10 @@ def main() -> int:
         "tolerance": None,
         "status": "agree" if summary.get("n_fail") == 0 else "mismatch",
         "source": f"https://github.com/karagemop466-tech/Korea2/blob/main/verification/recompute.py",
-        "source_text": "verification/recompute.py", "published_on": f"generated {meta.get('generated_utc', '')}",
+        "source_text": "verification/recompute.py",
+        # NOT the file's generated_utc: that changes whenever anyone re-runs the recomputation, which
+        # made this page differ on every rebuild. The data cut-off is the stable fact.
+        "published_on": f"data as of {summary.get('data_as_of_gameday', 'unknown')}",
         "note": "This session re-ran it: exit 0, 0 material disagreements, 32/32 teams reconciled for "
                 "2020 and 2026. Reproducibility is not profitability.",
     })
