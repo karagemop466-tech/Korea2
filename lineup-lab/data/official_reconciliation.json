@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "verified_on": "2026-11-12",
+    "summary": {
+      "teams_2020_matched": 32,
+      "teams_2020_total": 32,
+      "teams_2025_matched": 32,
+      "teams_2025_total": 32,
+      "teams_2026_w9_matched": 32,
+      "teams_2026_w9_total": 32,
+      "committed_2026_played": 120,
+      "official_post_nov1_added": 16,
+      "total_2026_played_through_w9": 136
+    }
+  },
+  "team_2026_rows": [
+    {
+      "team": "ARI",
+      "extract_nov1_record": "3-5-0",
+      "rebuilt_w9_record": "3-6-0",
+      "official_w9_record": "3-6-0",
+      "rebuilt_w9_pf_pa": "178/255",
+      "official_w9_pf_pa": "178/255",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "ATL",
+      "extract_nov1_record": "3-5-0",
+      "rebuilt_w9_record": "3-6-0",
+      "official_w9_record": "3-6-0",
+      "rebuilt_w9_pf_pa": "188/223",
+      "official_w9_pf_pa": "188/223",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "BAL",
+      "extract_nov1_record": "4-4-0",
+      "rebuilt_w9_record": "4-5-0",
+      "official_w9_record": "4-5-0",
+      "rebuilt_w9_pf_pa": "189/236",
+      "official_w9_pf_pa": "189/236",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "BUF",
+      "extract_nov1_record": "6-1-0",
+      "rebuilt_w9_record": "7-1-0",
+      "official_w9_record": "7-1-0",
+      "rebuilt_w9_pf_pa": "256/187",
+      "official_w9_pf_pa": "256/187",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "CAR",
+      "extract_nov1_record": "3-4-0",
+      "rebuilt_w9_record": "3-5-0",
+      "official_w9_record": "3-5-0",
+      "rebuilt_w9_pf_pa": "199/219",
+      "official_w9_pf_pa": "199/219",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "CHI",
+      "extract_nov1_record": "5-2-0",
+      "rebuilt_w9_record": "7-2-0",
+      "official_w9_record": "7-2-0",
+      "rebuilt_w9_pf_pa": "241/184",
+      "official_w9_pf_pa": "241/184",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "CIN",
+      "extract_nov1_record": "5-2-0",
+      "rebuilt_w9_record": "6-2-0",
+      "official_w9_record": "6-2-0",
+      "rebuilt_w9_pf_pa": "240/175",
+      "official_w9_pf_pa": "240/175",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "CLE",
+      "extract_nov1_record": "5-3-0",
+      "rebuilt_w9_record": "5-4-0",
+      "official_w9_record": "5-4-0",
+      "rebuilt_w9_pf_pa": "161/196",
+      "official_w9_pf_pa": "161/196",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "DAL",
+      "extract_nov1_record": "3-5-0",
+      "rebuilt_w9_record": "4-5-0",
+      "official_w9_record": "4-5-0",
+      "rebuilt_w9_pf_pa": "246/236",
+      "official_w9_pf_pa": "246/236",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "DEN",
+      "extract_nov1_record": "6-2-0",
+      "rebuilt_w9_record": "7-2-0",
+      "official_w9_record": "7-2-0",
+      "rebuilt_w9_pf_pa": "198/186",
+      "official_w9_pf_pa": "198/186",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "DET",
+      "extract_nov1_record": "5-2-0",
+      "rebuilt_w9_record": "6-2-0",
+      "official_w9_record": "6-2-0",
+      "rebuilt_w9_pf_pa": "222/189",
+      "official_w9_pf_pa": "222/189",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "GB",
+      "extract_nov1_record": "5-3-0",
+      "rebuilt_w9_record": "6-3-0",
+      "official_w9_record": "6-3-0",
+      "rebuilt_w9_pf_pa": "216/191",
+      "official_w9_pf_pa": "216/191",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "HOU",
+      "extract_nov1_record": "2-5-0",
+      "rebuilt_w9_record": "3-5-0",
+      "official_w9_record": "3-5-0",
+      "rebuilt_w9_pf_pa": "209/192",
+      "official_w9_pf_pa": "209/192",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "IND",
+      "extract_nov1_record": "2-6-0",
+      "rebuilt_w9_record": "2-7-0",
+      "official_w9_record": "2-7-0",
+      "rebuilt_w9_pf_pa": "184/249",
+      "official_w9_pf_pa": "184/249",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "JAX",
+      "extract_nov1_record": "5-2-0",
+      "rebuilt_w9_record": "6-2-0",
+      "official_w9_record": "6-2-0",
+      "rebuilt_w9_pf_pa": "229/121",
+      "official_w9_pf_pa": "229/121",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "KC",
+      "extract_nov1_record": "5-2-0",
+      "rebuilt_w9_record": "6-2-0",
+      "official_w9_record": "6-2-0",
+      "rebuilt_w9_pf_pa": "202/143",
+      "official_w9_pf_pa": "202/143",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "LA",
+      "extract_nov1_record": "4-4-0",
+      "rebuilt_w9_record": "5-4-0",
+      "official_w9_record": "5-4-0",
+      "rebuilt_w9_pf_pa": "214/181",
+      "official_w9_pf_pa": "214/181",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "LAC",
+      "extract_nov1_record": "0-7-0",
+      "rebuilt_w9_record": "0-8-0",
+      "official_w9_record": "0-8-0",
+      "rebuilt_w9_pf_pa": "121/219",
+      "official_w9_pf_pa": "121/219",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "LV",
+      "extract_nov1_record": "4-4-0",
+      "rebuilt_w9_record": "4-5-0",
+      "official_w9_record": "4-5-0",
+      "rebuilt_w9_pf_pa": "238/268",
+      "official_w9_pf_pa": "238/268",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "MIA",
+      "extract_nov1_record": "1-6-0",
+      "rebuilt_w9_record": "1-7-0",
+      "official_w9_record": "1-7-0",
+      "rebuilt_w9_pf_pa": "126/200",
+      "official_w9_pf_pa": "126/200",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "MIN",
+      "extract_nov1_record": "6-1-0",
+      "rebuilt_w9_record": "6-2-0",
+      "official_w9_record": "6-2-0",
+      "rebuilt_w9_pf_pa": "146/116",
+      "official_w9_pf_pa": "146/116",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "NE",
+      "extract_nov1_record": "5-3-0",
+      "rebuilt_w9_record": "5-4-0",
+      "official_w9_record": "5-4-0",
+      "rebuilt_w9_pf_pa": "211/207",
+      "official_w9_pf_pa": "211/207",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "NO",
+      "extract_nov1_record": "2-5-0",
+      "rebuilt_w9_record": "3-5-0",
+      "official_w9_record": "3-5-0",
+      "rebuilt_w9_pf_pa": "185/216",
+      "official_w9_pf_pa": "185/216",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "NYG",
+      "extract_nov1_record": "4-2-1",
+      "rebuilt_w9_record": "5-2-1",
+      "official_w9_record": "5-2-1",
+      "rebuilt_w9_pf_pa": "182/172",
+      "official_w9_pf_pa": "182/172",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "NYJ",
+      "extract_nov1_record": "2-6-0",
+      "rebuilt_w9_record": "2-7-0",
+      "official_w9_record": "2-7-0",
+      "rebuilt_w9_pf_pa": "182/223",
+      "official_w9_pf_pa": "182/223",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "PHI",
+      "extract_nov1_record": "2-6-0",
+      "rebuilt_w9_record": "2-7-0",
+      "official_w9_record": "2-7-0",
+      "rebuilt_w9_pf_pa": "148/221",
+      "official_w9_pf_pa": "148/221",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "PIT",
+      "extract_nov1_record": "6-2-0",
+      "rebuilt_w9_record": "6-2-0",
+      "official_w9_record": "6-2-0",
+      "rebuilt_w9_pf_pa": "180/144",
+      "official_w9_pf_pa": "180/144",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "SEA",
+      "extract_nov1_record": "4-3-0",
+      "rebuilt_w9_record": "5-4-0",
+      "official_w9_record": "5-4-0",
+      "rebuilt_w9_pf_pa": "202/162",
+      "official_w9_pf_pa": "202/162",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "SF",
+      "extract_nov1_record": "6-1-0",
+      "rebuilt_w9_record": "7-1-0",
+      "official_w9_record": "7-1-0",
+      "rebuilt_w9_pf_pa": "235/156",
+      "official_w9_pf_pa": "235/156",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "TB",
+      "extract_nov1_record": "3-5-0",
+      "rebuilt_w9_record": "3-6-0",
+      "official_w9_record": "3-6-0",
+      "rebuilt_w9_pf_pa": "202/178",
+      "official_w9_pf_pa": "202/178",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "TEN",
+      "extract_nov1_record": "1-7-0",
+      "rebuilt_w9_record": "1-7-0",
+      "official_w9_record": "1-7-0",
+      "rebuilt_w9_pf_pa": "144/199",
+      "official_w9_pf_pa": "144/199",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "team": "WAS",
+      "extract_nov1_record": "2-4-1",
+      "rebuilt_w9_record": "2-5-1",
+      "official_w9_record": "2-5-1",
+      "rebuilt_w9_pf_pa": "172/202",
+      "official_w9_pf_pa": "172/202",
+      "exact_match": true,
+      "sources": [
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-SCHED-W8",
+        "SRC-NFL-SCHED-W9"
+      ]
+    }
+  ],
+  "qb_comparison": [
+    {
+      "player": "Jordan Love",
+      "team_wk8": "GB",
+      "extract_wk8_yds": 2246,
+      "extract_wk8_td": 16,
+      "live_w9_yds": 2618,
+      "live_w9_td": 19,
+      "week9_delta_yds": 372,
+      "week9_delta_td": 3,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Joe Burrow",
+      "team_wk8": "CIN",
+      "extract_wk8_yds": 2115,
+      "extract_wk8_td": 20,
+      "live_w9_yds": 2386,
+      "live_w9_td": 23,
+      "week9_delta_yds": 271,
+      "week9_delta_td": 3,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Dak Prescott",
+      "team_wk8": "DAL",
+      "extract_wk8_yds": 2046,
+      "extract_wk8_td": 14,
+      "live_w9_yds": 2381,
+      "live_w9_td": 16,
+      "week9_delta_yds": 335,
+      "week9_delta_td": 2,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Matthew Stafford",
+      "team_wk8": "LA",
+      "extract_wk8_yds": 2146,
+      "extract_wk8_td": 15,
+      "live_w9_yds": 2374,
+      "live_w9_td": 16,
+      "week9_delta_yds": 228,
+      "week9_delta_td": 1,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Kirk Cousins",
+      "team_wk8": "LV",
+      "extract_wk8_yds": 2124,
+      "extract_wk8_td": 19,
+      "live_w9_yds": 2340,
+      "live_w9_td": 20,
+      "week9_delta_yds": 216,
+      "week9_delta_td": 1,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Drake Maye",
+      "team_wk8": "NE",
+      "extract_wk8_yds": 1983,
+      "extract_wk8_td": 15,
+      "live_w9_yds": 2282,
+      "live_w9_td": 18,
+      "week9_delta_yds": 299,
+      "week9_delta_td": 3,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "C.J. Stroud",
+      "team_wk8": "HOU",
+      "extract_wk8_yds": 1867,
+      "extract_wk8_td": 11,
+      "live_w9_yds": 2251,
+      "live_w9_td": 16,
+      "week9_delta_yds": 384,
+      "week9_delta_td": 5,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Bryce Young",
+      "team_wk8": "CAR",
+      "extract_wk8_yds": 1921,
+      "extract_wk8_td": 13,
+      "live_w9_yds": 2197,
+      "live_w9_td": 16,
+      "week9_delta_yds": 276,
+      "week9_delta_td": 3,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Jared Goff",
+      "team_wk8": "DET",
+      "extract_wk8_yds": 1964,
+      "extract_wk8_td": 15,
+      "live_w9_yds": 2134,
+      "live_w9_td": 15,
+      "week9_delta_yds": 170,
+      "week9_delta_td": 0,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Patrick Mahomes",
+      "team_wk8": "KC",
+      "extract_wk8_yds": 1795,
+      "extract_wk8_td": 12,
+      "live_w9_yds": 2037,
+      "live_w9_td": 14,
+      "week9_delta_yds": 242,
+      "week9_delta_td": 2,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Josh Allen",
+      "team_wk8": "BUF",
+      "extract_wk8_yds": 1793,
+      "extract_wk8_td": 11,
+      "live_w9_yds": 2027,
+      "live_w9_td": 12,
+      "week9_delta_yds": 234,
+      "week9_delta_td": 1,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    },
+    {
+      "player": "Sam Darnold",
+      "team_wk8": "SEA",
+      "extract_wk8_yds": 1290,
+      "extract_wk8_td": 8,
+      "live_w9_yds": 1478,
+      "live_w9_td": 10,
+      "week9_delta_yds": 188,
+      "week9_delta_td": 2,
+      "sources": [
+        "SRC-NFL-PASSING-2026",
+        "SRC-GITHUB-REPO"
+      ]
+    }
+  ],
+  "wk9_qb_discrepancies": [
+    {
+      "game_id": "2026_09_JAX_BAL",
+      "committed_away_qb": "Trevor Lawrence",
+      "committed_home_qb": "Tyler Huntley",
+      "official_fact": "Tyler Huntley suffered season-ending turf toe IR; 3rd-string QB Joe Fagnano started Week 9 TNF (JAX 33, BAL 10); BAL traded for Jacoby Brissett.",
+      "sources": [
+        "SRC-NFL-BAL-JACKSON",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "game_id": "2026_09_CLE_NO",
+      "committed_away_qb": "Deshaun Watson",
+      "committed_home_qb": "Tyler Shough",
+      "official_fact": "Deshaun Watson was inactive in concussion protocol for Week 9; Shedeur Sanders started Week 9 (CLE 22, NO 23); Watson cleared to start Week 10 vs HOU.",
+      "sources": [
+        "SRC-NFL-ROUNDUP-NOV11",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "game_id": "2026_09_LV_SF",
+      "committed_away_qb": "Kirk Cousins",
+      "committed_home_qb": "Brock Purdy",
+      "official_fact": "Kirk Cousins played Week 9 for LV (LV 17, SF 38) and was traded Nov 10 to MIN for a 2027 3rd-round pick; MIN Week 10 starter unconfirmed.",
+      "sources": [
+        "SRC-NFL-ROUNDUP-NOV11",
+        "SRC-NFL-SCHED-W9"
+      ]
+    },
+    {
+      "game_id": "2026_09_DET_MIA",
+      "committed_away_qb": "Jared Goff",
+      "committed_home_qb": "Malik Willis",
+      "official_fact": "Malik Willis (groin) placed on IR for Weeks 10-13; backup Kyle McCord in line for first NFL start in Week 10 at IND.",
+      "sources": [
+        "SRC-NFL-MIA-WILLIS",
+        "SRC-CLUB-MIA-DC"
+      ]
+    },
+    {
+      "game_id": "2026_09_ARI_SEA",
+      "committed_away_qb": "Jacoby Brissett",
+      "committed_home_qb": "Sam Darnold",
+      "official_fact": "Brissett traded to BAL (rookie 3rd-rounder Carson Beck starts Week 10 for AZ); SEA QB1 Sam Darnold ruled OUT Week 10 (QB2 Drew Lock starts).",
+      "sources": [
+        "SRC-NFL-ROUNDUP-NOV11",
+        "SRC-NFL-SEA-DARNOLD"
+      ]
+    }
+  ]
+}

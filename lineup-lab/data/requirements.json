@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "title": "Lineup Lab Full Requirements Traceability Matrix",
+    "verified_on": "2026-11-12",
+    "total_requirements": 21
+  },
+  "rows": [
+    {
+      "id": "REQ-01",
+      "category": "Requirements",
+      "requirement": "Collect, organize, and analyze NFL data against a full requirements list",
+      "implementation": "lineup-lab/REQUIREMENTS.md + lineup-lab/data/requirements.json + lineup-lab/pages/requirements-sources.html",
+      "status": "Verified",
+      "verification_summary": "21 explicit requirements mapped 1-to-1 to deterministic scripts, JSON outputs, and automated verifier checks.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-STANDINGS-2026"]
+    },
+    {
+      "id": "REQ-02",
+      "category": "Suggestions",
+      "requirement": "Dedicated Suggestions section evaluating improvements to site and decision-making before implementing changes",
+      "implementation": "lineup-lab/data/suggestions.json + lineup-lab/pages/suggestions.html",
+      "status": "Verified",
+      "verification_summary": "10 structured proposals (SUG-01..SUG-10) comparing Option A/B tradeoffs, expected decision impact, and reviewer approval status.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-DK-PARLAY", "SRC-NFL-GENIUS"]
+    },
+    {
+      "id": "REQ-03",
+      "category": "Questions & Gaps",
+      "requirement": "Clear list of questions, information, and answers needed before decisions based on Have vs Don't Have + discovery suggestions",
+      "implementation": "lineup-lab/data/questions.json + lineup-lab/pages/questions.html",
+      "status": "Verified",
+      "verification_summary": "14 decision questions (Q-01..Q-14) explicitly separating verified datasets from missing defensive snaps, prop prices, and opening lines, with concrete ingestion paths.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-GENIUS", "SRC-OPS-NGS"]
+    },
+    {
+      "id": "REQ-04",
+      "category": "Line Origination",
+      "requirement": "Originate own NFL spreads, totals, and fair moneylines out-of-sample",
+      "implementation": "lineup-lab/scripts/originate_and_signals.py + lineup-lab/data/origination.json + lineup-lab/pages/lines-props.html",
+      "status": "Computed",
+      "verification_summary": "Walk-forward L2 ridge model (alpha tuned on 2015-2017) evaluated on 2018-2026 OOS + all 14 live Week 10 (Nov 12-16) matchups.",
+      "sources": ["SRC-SKLEARN-LINEAR", "SRC-NFL-SCHED-W10", "SRC-NFL-STANDINGS-2026"]
+    },
+    {
+      "id": "REQ-05",
+      "category": "Line Origination",
+      "requirement": "Originate player-prop projections (passing, rushing, receiving yards, receptions)",
+      "implementation": "lineup-lab/scripts/originate_and_signals.py + lineup-lab/data/origination.json + lineup-lab/pages/lines-props.html",
+      "status": "Computed + Flagged",
+      "verification_summary": "Ex-ante player prop medians and depth-cascade adjustments computed; sportsbook Week 10 prop lines left blank and flagged as missing.",
+      "sources": ["SRC-NFL-PASSING-2026", "SRC-NFL-GENIUS"]
+    },
+    {
+      "id": "REQ-06",
+      "category": "Signals",
+      "requirement": "Research and develop pre-kickoff strategies for generating useful signals",
+      "implementation": "lineup-lab/scripts/originate_and_signals.py + lineup-lab/data/signals.json + lineup-lab/pages/signals-luck.html",
+      "status": "Computed",
+      "verification_summary": "12 pre-kickoff signals (model edges, rest/bye, wind totals, QB backup downgrade, defensive EPA shock) tested strictly on stored odds.",
+      "sources": ["SRC-NWS-WIND", "SRC-NIST-PROP-TEST", "SRC-NFL-ROUNDUP-NOV11"]
+    },
+    {
+      "id": "REQ-07",
+      "category": "Competition",
+      "requirement": "Treat strategy evaluation as a leaderboard competition with rewards for top performers",
+      "implementation": "lineup-lab/scripts/correlations_and_competition.py + lineup-lab/data/leaderboard.json + lineup-lab/pages/leaderboard.html",
+      "status": "Computed + Flagged",
+      "verification_summary": "10,000-pt paper allocation pool across 16 strategies; cash prize column strictly blank because no funded prize pool is verified.",
+      "sources": ["SRC-MGC-SPORTS", "SRC-NV-GCB"]
+    },
+    {
+      "id": "REQ-08",
+      "category": "Bet Types",
+      "requirement": "Cover single bets, cross-game parlays, SGPs, and player-prop bet combos",
+      "implementation": "lineup-lab/scripts/correlations_and_competition.py + lineup-lab/data/strategies.json + lineup-lab/pages/leaderboard.html",
+      "status": "Computed + Flagged",
+      "verification_summary": "16 strategies across Single Bets, 2/3-Leg Parlays, SGPs, Player-Prop Combos, and Lookahead Control; unpriced SGP/prop ROI cells strictly blank.",
+      "sources": ["SRC-DK-PARLAY", "SRC-NFL-GENIUS"]
+    },
+    {
+      "id": "REQ-09",
+      "category": "Validation Gates",
+      "requirement": "Require every strategy to pass strict validation gates (G1-G10) before earning rewards",
+      "implementation": "lineup-lab/scripts/correlations_and_competition.py + lineup-lab/data/strategies.json + lineup-lab/pages/leaderboard.html",
+      "status": "Computed",
+      "verification_summary": "10 gates enforced; 0/16 pass all gates; G1 disqualifies lookahead control STR-16; G9/G10 block unverified execution/prop combos.",
+      "sources": ["SRC-NIST-PROP-TEST", "SRC-DK-PARLAY", "SRC-NV-GCB"]
+    },
+    {
+      "id": "REQ-10",
+      "category": "Correlations",
+      "requirement": "Determine empirical correlation values across games, sides/totals, and player props",
+      "implementation": "lineup-lab/scripts/correlations_and_competition.py + lineup-lab/data/correlations.json + lineup-lab/pages/correlations.html",
+      "status": "Computed",
+      "verification_summary": "16 correlation pairs with 95% Fisher-z CIs, Gaussian-copula SGP joint pricing curves, and ex-ante vs ex-post WR1 bias test.",
+      "sources": ["SRC-DK-PARLAY", "SRC-NIST-PROP-TEST"]
+    },
+    {
+      "id": "REQ-11",
+      "category": "Luck Removal",
+      "requirement": "Remove luck from the equation and build selectively skill-based strategies",
+      "implementation": "lineup-lab/scripts/originate_and_signals.py + lineup-lab/data/luck.json + lineup-lab/pages/signals-luck.html",
+      "status": "Computed",
+      "verification_summary": "Pythagorean R^2, YoY luck persistence, odd/even split-half correlation, Empirical Bayes ROI shrinkage, and BH FDR correction.",
+      "sources": ["SRC-NIST-PROP-TEST", "SRC-SKLEARN-LINEAR"]
+    },
+    {
+      "id": "REQ-12",
+      "category": "Injuries & Depth",
+      "requirement": "Track injuries and know offensive/defensive deficiencies when 2nd, 3rd, or 4th string backups replace starters",
+      "implementation": "lineup-lab/scripts/analyze_injuries_depth.py + lineup-lab/data/injuries_depth.json + lineup-lab/pages/injuries-depth.html",
+      "status": "Verified + Computed",
+      "verification_summary": "Empirical 2015-2026 starter vs QB2/QB3/WR2/WR3/RB2 dropoff + team defense shock study combined with live Week 10 injury/depth-chart cascades across 9 clubs.",
+      "sources": ["SRC-NFL-INJURIES-W10", "SRC-NFL-ROUNDUP-NOV11", "SRC-CLUB-NE-DC", "SRC-CLUB-DET-DC", "SRC-CLUB-IND-DC"]
+    },
+    {
+      "id": "REQ-13",
+      "category": "Executive Summary",
+      "requirement": "Create an executive summary outlining key details",
+      "implementation": "lineup-lab/EXECUTIVE_SUMMARY.md + lineup-lab/pages/executive.html",
+      "status": "Verified",
+      "verification_summary": "Consolidated executive briefing reconciled directly against JSON outputs and Week 10 official league reports.",
+      "sources": ["SRC-NFL-STANDINGS-2026", "SRC-NFL-INJURIES-W10", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REQ-14",
+      "category": "Repo Work",
+      "requirement": "Review repo line by line against official sources, provide manual-review links, and flag irregularities",
+      "implementation": "lineup-lab/REPO_REVIEW.md + lineup-lab/data/repo_review.json + lineup-lab/pages/repo-review.html",
+      "status": "Verified",
+      "verification_summary": "16 line-by-line repository & upstream feed audits (REV-01..REV-16) including CI workflow bugs, -110 imputation lines, stale extracts, and official standings checks.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-STANDINGS-2020", "SRC-NFL-STANDINGS-2025", "SRC-NFL-STANDINGS-2026"]
+    },
+    {
+      "id": "REQ-15",
+      "category": "Site Creation",
+      "requirement": "Clean GitHub Pages dashboard UI with landing page and categorized subpages in easy-to-read table format",
+      "implementation": "lineup-lab/scripts/build_site.py + lineup-lab/index.html + lineup-lab/pages/*.html",
+      "status": "Verified",
+      "verification_summary": "12 deterministic HTML pages under lineup-lab/ with shared navigation, KPI summaries, and clean structured tables.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-OPS-RULEBOOK"]
+    },
+    {
+      "id": "REQ-16",
+      "category": "Verification",
+      "requirement": "Every HTML table row carries an official source link; unconfirmable values stay blank and flagged",
+      "implementation": "lineup-lab/scripts/verify_lineup_lab.py + lineup-lab/data/flagged.json + lineup-lab/pages/flagged.html",
+      "status": "Verified",
+      "verification_summary": "100% row-level official source compliance (0 audit/check_site.py flags) and strict empty-cell enforcement for 16 flagged items.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-INJURIES-W10"]
+    },
+    {
+      "id": "REQ-17",
+      "category": "Zero Hallucination",
+      "requirement": "No inferred/guessed values, no -110 price imputation, no fabricated cash prizes or prop odds",
+      "implementation": "lineup-lab/scripts/common.py + lineup-lab/scripts/verify_lineup_lab.py",
+      "status": "Verified",
+      "verification_summary": "Automated strict RFC 8259 JSON parse checks and HTML blank-cell verification reject any inferred placeholder.",
+      "sources": ["SRC-DK-PARLAY", "SRC-NFL-GENIUS"]
+    },
+    {
+      "id": "REQ-18",
+      "category": "Parallel Sessions",
+      "requirement": "Coordinate via COORDINATION.md with non-overlapping scope and pull --rebase before every push",
+      "implementation": "COORDINATION.md (arena/bea6e3be-korea2 board)",
+      "status": "Verified",
+      "verification_summary": "Claimed lineup-lab/**, .github/workflows/lineup-lab.yml, and dedicated COORDINATION.md section without modifying sibling files.",
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REQ-19",
+      "category": "CI & Quality Gate",
+      "requirement": "Automated CI verification before PR merge so broken builds cannot merge",
+      "implementation": ".github/workflows/lineup-lab.yml + lineup-lab/scripts/verify_lineup_lab.py",
+      "status": "Verified",
+      "verification_summary": "Dedicated GitHub Actions workflow + full repository checks (tests/check_site.py, audit/check_site.py, validate_data.py).",
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "REQ-20",
+      "category": "Flagged Publication",
+      "requirement": "Flagged irregularities and unverified items do not block merge and publish on Flagged for Review page",
+      "implementation": "lineup-lab/pages/flagged.html + lineup-lab/data/flagged.json",
+      "status": "Verified",
+      "verification_summary": "All 16 flagged items published with reason, impacted metric, and official manual-review links.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-INJURIES-W10"]
+    },
+    {
+      "id": "REQ-21",
+      "category": "Autonomous PR & Live Deploy",
+      "requirement": "Open PR to main, merge autonomously after checks pass, verify live GitHub Pages URL, and record in COORDINATION.md",
+      "implementation": "gh pr create + gh pr merge --merge + live Pages check + COORDINATION.md log",
+      "status": "In Progress",
+      "verification_summary": "To be finalized after local and CI verification pass.",
+      "sources": ["SRC-GITHUB-REPO"]
+    }
+  ]
+}

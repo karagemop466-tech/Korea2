@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Leaderboard | Lineup Lab</title>
+  <meta name="description" content="Empirical Bayes shrunk ROI leaderboard, Wilson CIs, NIST z-tests, and BH FDR adjustment.">
+  <meta name="generator" content="lineup-lab/scripts/build_site.py">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="../index.html">
+      <span class="mark">LL</span>
+      <span class="brand-text">
+        <strong>LINEUP LAB</strong>
+        <small>NFL RESEARCH &amp; AUDIT</small>
+      </span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Overview</a><div class="nav-group-label">Core Analytics</div><a href="../pages/executive.html">Executive summary</a><a href="../pages/lines.html">Originated lines</a><a href="../pages/props.html">Player props</a><a href="../pages/correlation.html">Correlation &amp; parlays</a><div class="nav-group-label">Competition &amp; Luck</div><a href="../pages/strategies.html">Strategy lab</a><a href="../pages/leaderboard.html" class="active" aria-current="page">Leaderboard</a><a href="../pages/luck.html">Removing luck</a><div class="nav-group-label">Lineup Intelligence</div><a href="../pages/injuries-depth.html">Injury &amp; depth</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/decision-questions.html">Decision questions</a><div class="nav-group-label">Governance &amp; Audit</div><a href="../pages/verification.html">Verification &amp; review</a>
+    </nav>
+    <div class="sidebar-card">
+      <div><span class="status-dot"></span>Posture: Research Only</div>
+      <strong>0 of 8 strategies approved</strong>
+      <span>Verified 2026-11-12 &middot; 32/32 NFL.com Week 9 reconciliation &middot; 0% live capital.</span>
+    </div>
+  </aside>
+  <main id="main">
+    <header class="topbar">
+      <span class="crumb">LINEUP LAB / LEADERBOARD</span>
+      <div class="top-actions">
+        <a class="pill-link" href="../pages/suggestions.html">Suggestions board</a>
+        <a class="pill-link" href="../pages/verification.html">Audit &amp; verification &nearr;</a>
+      </div>
+    </header>
+    
+<div class="hero">
+  <div class="eyebrow">COMPETITION LEADERBOARD &amp; SHRINKAGE</div>
+  <h1>Empirical Bayes Shrinkage &amp; Benjamini-Hochberg FDR Kill False Positives.</h1>
+  <p class="lede">Ranked by Empirical Bayes posterior ROI (shrinking noisy sample ROI toward the &minus;4.5% market vig prior with &tau;=3%). Notice how S3_HIGH_WIND_UNDER (+9.20% raw on n=152) and S1_DIV_DOG (+5.36% raw on n=335) shrink below zero and sit at BH q = 0.4370.</p>
+</div>
+<div class="table-wrap"><table><caption>Strategy competition leaderboard ranked by Empirical Bayes shrunk ROI.</caption><thead><tr><th>Rank</th><th>Strategy</th><th>Bets</th><th>Win% (95% Wilson)</th><th>Break-Even p0</th><th>Raw ROI</th><th>EB ROI</th><th>NIST z (p)</th><th>BH q</th><th>Pos Seasons</th><th>Verdict</th><th>Sources</th></tr></thead><tbody><tr><td class="num">#1</td><td><strong>Divisional underdog (+4.5 to +10.5)</strong><br><span class="muted mono">S1_DIV_DOG &middot; Spread</span></td><td class="num">335</td><td class="num">54.93%<br><span class="muted mono">[49.6%, 60.2%]</span></td><td class="num">52.07%</td><td class="num">+5.36%</td><td class="num"><strong>-2.14%</strong></td><td class="num">+1.05 (p=0.2954)</td><td class="num">0.4370</td><td class="num">5/9</td><td><span class="badge bad">REJECTED (4 gate fail)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" target="_blank" rel="noopener" title="NIST/SEMATECH e-Handbook — Binomial Proportion Test (Section 7.2.4)">NIST (itl.nist.gov)</a></td></tr><tr><td class="num">#2</td><td><strong>Outdoor high-wind Under (wind &gt;= 15 mph)</strong><br><span class="muted mono">S3_HIGH_WIND_UNDER &middot; Total</span></td><td class="num">152</td><td class="num">56.58%<br><span class="muted mono">[48.6%, 64.2%]</span></td><td class="num">51.61%</td><td class="num">+9.20%</td><td class="num"><strong>-2.79%</strong></td><td class="num">+1.23 (p=0.2205)</td><td class="num">0.4370</td><td class="num">4/8</td><td><span class="badge bad">REJECTED (4 gate fail)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.weather.gov/safety/wind" target="_blank" rel="noopener" title="NOAA / National Weather Service — High Wind Thresholds">National Weather Ser…</a></td></tr><tr><td class="num">#3</td><td><strong>Walk-forward Ridge spread edge &gt;= 3.0 pts</strong><br><span class="muted mono">S5_RIDGE_EDGE_3PT &middot; Spread</span></td><td class="num">807</td><td class="num">51.18%<br><span class="muted mono">[47.7%, 54.6%]</span></td><td class="num">51.92%</td><td class="num">-1.59%</td><td class="num"><strong>-3.25%</strong></td><td class="num">-0.42 (p=0.6726)</td><td class="num">0.6726</td><td class="num">6/9</td><td><span class="badge bad">REJECTED (6 gate fail)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://scikit-learn.org/stable/modules/linear_model.html" target="_blank" rel="noopener" title="scikit-learn Official Documentation — Linear &amp; Ridge Regression (1.9.1)">scikit-learn (scikit…</a></td></tr><tr><td class="num">#4</td><td><strong>Negative Control: Deterministic SHA-256 Coin Flip</strong><br><span class="muted mono">C2_CTRL_COIN_FLIP &middot; Spread</span></td><td class="num">2189</td><td class="num">49.75%<br><span class="muted mono">[47.7%, 51.8%]</span></td><td class="num">51.70%</td><td class="num">-3.81%</td><td class="num"><strong>-4.04%</strong></td><td class="num">-1.82 (p=0.0681)</td><td class="num">0.2723</td><td class="num">1/9</td><td><span class="badge bad">REJECTED (8 gate fail)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" target="_blank" rel="noopener" title="NIST/SEMATECH e-Handbook — Binomial Proportion Test (Section 7.2.4)">NIST (itl.nist.gov)</a></td></tr><tr><td class="num">#5</td><td><strong>Fade rookie/raw backup QB (&lt; 5 career starts)</strong><br><span class="muted mono">S6_FADE_RAW_BACKUP_QB &middot; Spread</span></td><td class="num">266</td><td class="num">48.87%<br><span class="muted mono">[42.9%, 54.9%]</span></td><td class="num">51.46%</td><td class="num">-5.23%</td><td class="num"><strong>-4.65%</strong></td><td class="num">-0.85 (p=0.3976)</td><td class="num">0.4544</td><td class="num">5/9</td><td><span class="badge bad">REJECTED (6 gate fail)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.nfl.com/injuries/league/2026/REG10" target="_blank" rel="noopener" title="NFL.com Official Week 10 Injury Report Hub (REG10)">NFL (nfl.com)</a></td></tr><tr><td class="num">#6</td><td><strong>Pythagorean luck fade (Wk 5+, gap &gt;= 0.25)</strong><br><span class="muted mono">S4_LUCK_FADE &middot; Spread</span></td><td class="num">230</td><td class="num">48.70%<br><span class="muted mono">[42.3%, 55.1%]</span></td><td class="num">51.92%</td><td class="num">-6.45%</td><td class="num"><strong>-4.85%</strong></td><td class="num">-0.98 (p=0.3277)</td><td class="num">0.4370</td><td class="num">2/9</td><td><span class="badge bad">REJECTED (6 gate fail)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" target="_blank" rel="noopener" title="NIST/SEMATECH e-Handbook — Binomial Proportion Test (Section 7.2.4)">NIST (itl.nist.gov)</a></td></tr><tr><td class="num">#7</td><td><strong>Post-bye team spread (rest &gt;= 13 vs &lt;= 8)</strong><br><span class="muted mono">S2_BYE_ADV &middot; Spread</span></td><td class="num">197</td><td class="num">47.21%<br><span class="muted mono">[40.4%, 54.2%]</span></td><td class="num">51.75%</td><td class="num">-9.16%</td><td class="num"><strong>-5.23%</strong></td><td class="num">-1.28 (p=0.2018)</td><td class="num">0.4370</td><td class="num">3/9</td><td><span class="badge bad">REJECTED (7 gate fail)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" target="_blank" rel="noopener" title="NIST/SEMATECH e-Handbook — Binomial Proportion Test (Section 7.2.4)">NIST (itl.nist.gov)</a></td></tr><tr><td class="num">#8</td><td><strong>Negative Control: Blind Home Favorite (spread &gt;= 3)</strong><br><span class="muted mono">C1_CTRL_HOME_FAV &middot; Spread</span></td><td class="num">1059</td><td class="num">47.12%<br><span class="muted mono">[44.1%, 50.1%]</span></td><td class="num">51.42%</td><td class="num">-8.42%</td><td class="num"><strong>-6.45%</strong></td><td class="num">-2.80 (p=0.0051)</td><td class="num">0.0407</td><td class="num">2/9</td><td><span class="badge bad">REJECTED (8 gate fail)</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" target="_blank" rel="noopener" title="NIST/SEMATECH e-Handbook — Binomial Proportion Test (Section 7.2.4)">NIST (itl.nist.gov)</a></td></tr></tbody></table></div>
+
+    <footer class="footer">
+      <div>Lineup Lab &middot; Branch <code>arena/bea6e3be-korea2</code> &middot; Verified 2026-11-12 &middot; Pure-Python 3.11 stdlib pipeline &middot; No <code>-110</code> or unverified data imputation.</div>
+      <div>
+        <a href="https://www.ncpgambling.org/help-treatment/faqs-what-is-problem-gambling/" target="_blank" rel="noopener">Responsible Gaming (NCPG)</a> &middot;
+        <a href="https://massgaming.com/about/sports-wagering-in-massachusetts/" target="_blank" rel="noopener">MGC</a> &middot;
+        <a href="https://www.gaming.nv.gov/" target="_blank" rel="noopener">NV GCB</a>
+      </div>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

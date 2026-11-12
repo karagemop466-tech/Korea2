@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "verified_on": "2026-11-12",
+    "window": "2018-2026 Wk 8 REG",
+    "note": "Gaussian copula fair parlay odds illustrate correlation discount vs naive +300 (25%) pricing; books embed correlation factors in SGP quotes (DraftKings KB0010683)."
+  },
+  "pairs": [
+    {
+      "pair_id": "qb_pass_wr1_rec",
+      "pair_label": "QB passing yards <-> WR1 receiving yards (same team)",
+      "n_observations": 4482,
+      "pearson_r": 0.564,
+      "ci_95_low": 0.5437,
+      "ci_95_high": 0.5837,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.3454,
+      "empirical_above_median_prob": 0.3405,
+      "indep_fair_american": 300,
+      "copula_fair_american": 190,
+      "implied_parlay_edge_delta_pp": 9.54,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    },
+    {
+      "pair_id": "qb_td_wr1_td",
+      "pair_label": "QB passing TDs <-> WR1 receiving TDs (same team)",
+      "n_observations": 4482,
+      "pearson_r": 0.5048,
+      "ci_95_low": 0.4826,
+      "ci_95_high": 0.5263,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.3342,
+      "empirical_above_median_prob": 0.2653,
+      "indep_fair_american": 300,
+      "copula_fair_american": 199,
+      "implied_parlay_edge_delta_pp": 8.42,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    },
+    {
+      "pair_id": "qb_pass_te1_rec",
+      "pair_label": "QB passing yards <-> TE1 receiving yards (same team)",
+      "n_observations": 4456,
+      "pearson_r": 0.369,
+      "ci_95_low": 0.3434,
+      "ci_95_high": 0.3941,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.3102,
+      "empirical_above_median_prob": 0.3131,
+      "indep_fair_american": 300,
+      "copula_fair_american": 222,
+      "implied_parlay_edge_delta_pp": 6.02,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    },
+    {
+      "pair_id": "rb1_rush_team_margin",
+      "pair_label": "RB1 rushing yards <-> Team score margin",
+      "n_observations": 4494,
+      "pearson_r": 0.3372,
+      "ci_95_low": 0.311,
+      "ci_95_high": 0.3629,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.3047,
+      "empirical_above_median_prob": 0.312,
+      "indep_fair_american": 300,
+      "copula_fair_american": 228,
+      "implied_parlay_edge_delta_pp": 5.47,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    },
+    {
+      "pair_id": "qb_pass_team_margin",
+      "pair_label": "QB passing yards <-> Team score margin",
+      "n_observations": 4482,
+      "pearson_r": 0.1631,
+      "ci_95_low": 0.1345,
+      "ci_95_high": 0.1915,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.2761,
+      "empirical_above_median_prob": 0.2657,
+      "indep_fair_american": 300,
+      "copula_fair_american": 262,
+      "implied_parlay_edge_delta_pp": 2.61,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    },
+    {
+      "pair_id": "home_qb_away_qb_pass",
+      "pair_label": "Home QB passing yards <-> Away QB passing yards (shootout)",
+      "n_observations": 2236,
+      "pearson_r": 0.162,
+      "ci_95_low": 0.1214,
+      "ci_95_high": 0.2021,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.2759,
+      "empirical_above_median_prob": 0.2715,
+      "indep_fair_american": 300,
+      "copula_fair_american": 262,
+      "implied_parlay_edge_delta_pp": 2.59,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    },
+    {
+      "pair_id": "rb1_rush_game_total",
+      "pair_label": "RB1 rushing yards <-> Game total points",
+      "n_observations": 4494,
+      "pearson_r": 0.1153,
+      "ci_95_low": 0.0864,
+      "ci_95_high": 0.1441,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.2684,
+      "empirical_above_median_prob": 0.2572,
+      "indep_fair_american": 300,
+      "copula_fair_american": 273,
+      "implied_parlay_edge_delta_pp": 1.84,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    },
+    {
+      "pair_id": "qb_pass_rb1_rush",
+      "pair_label": "QB passing yards <-> RB1 rushing yards (same team)",
+      "n_observations": 4482,
+      "pearson_r": -0.1147,
+      "ci_95_low": -0.1435,
+      "ci_95_high": -0.0857,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.2317,
+      "empirical_above_median_prob": 0.2332,
+      "indep_fair_american": 300,
+      "copula_fair_american": 332,
+      "implied_parlay_edge_delta_pp": -1.83,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    },
+    {
+      "pair_id": "team_pts_opp_pts",
+      "pair_label": "Team points <-> Opponent points (game pace)",
+      "n_observations": 2247,
+      "pearson_r": -0.0236,
+      "ci_95_low": -0.0648,
+      "ci_95_high": 0.0178,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.2462,
+      "empirical_above_median_prob": 0.2172,
+      "indep_fair_american": 300,
+      "copula_fair_american": 306,
+      "implied_parlay_edge_delta_pp": -0.38,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    },
+    {
+      "pair_id": "home_margin_total",
+      "pair_label": "Home margin <-> Game total points",
+      "n_observations": 2247,
+      "pearson_r": 0.0066,
+      "ci_95_low": -0.0347,
+      "ci_95_high": 0.048,
+      "indep_2leg_prob": 0.25,
+      "copula_2leg_prob": 0.2511,
+      "empirical_above_median_prob": 0.2274,
+      "indep_fair_american": 300,
+      "copula_fair_american": 298,
+      "implied_parlay_edge_delta_pp": 0.11,
+      "sources": [
+        "SRC-GITHUB-REPO",
+        "SRC-DK-PARLAY"
+      ]
+    }
+  ]
+}
