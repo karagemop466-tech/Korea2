@@ -69,10 +69,7 @@ irregularities that need a human decision. No value is inferred where a source i
 ### 3.4 Injury & depth handling (new this session)
 - Verified the official injury report resolves per week; built a worked example from Week 10
   2026 (Patriots @ Lions) using only confirmed `OUT` statuses.
-- **The official team depth-chart endpoint returns HTTP 404** (verified twice, with and
-  without trailing slash). Therefore "starter vs 2nd/3rd/4th string" cannot be sourced from
-  NFL.com. The page flags this and proposes a discovery path (nflverse depth + Next Gen snap
-  counts). This is irregularity IR-1.
+- **Depth evidence is partial, not absent.** The inspected NFL.com team roster page does not show depth ordering; one Colts team-published chart lists ordered players and labels its weekly chart unofficial. This is not NFL-wide coverage and no historical point-in-time archive is ingested. Starter/backup adjustments remain blocked. Snap counts are participation data, not literal depth rank. The earlier broad claim that the only depth-chart endpoint returned 404 is superseded by this source review.
 
 ### 3.5 Strategies, leaderboard, validation, correlation, luck (existing)
 - Design is sound and matches the brief: single bets, parlays, player-prop combos; a
@@ -87,7 +84,7 @@ irregularities that need a human decision. No value is inferred where a source i
 
 | ID | Severity | Finding | Recommended action | Link |
 |---|---|---|---|---|
-| IR-1 | Medium | Official NFL team depth-chart endpoint (`/teams/<team>/depth-chart`) returns 404; starter-vs-backup deficiency cannot be officially sourced | Use nflverse team depth + Next Gen snap counts; reconcile before trusting; keep deficiency severity blank until sourced | <https://www.nfl.com/teams/new-england-patriots/depth-chart> |
+| IR-1 | Medium | No NFL-wide historical depth archive is captured. NFL.com roster pages inspected do not provide ordering; one Colts team-published chart is explicitly labeled unofficial and is not a league-wide source | Inventory dated team-published charts, record each scope/timestamp, and keep injury/depth severity blank until full coverage and replacement-value data pass validation. Never substitute snap-count rank for a depth label. | <https://www.colts.com/team/depth-chart> · <https://www.nfl.com/teams/new-england-patriots/roster> |
 | IR-2 | Medium | The data feed (nflverse) is third-party, not an official NFL source | Document provenance/licensing; do not present its values as "official NFL" | <https://github.com/nflverse/nflverse-data> |
 | IR-3 | Medium | Prior-session open caveats documented on `pages/flagged.html` (reversed correlation wording, ex-post WR1 selection, imputed −110 prices, week/schedule errors, holdout leakage) remain unresolved | Reviewer should read `pages/flagged.html` and request corrections per the linked issues | <https://karagemop466-tech.github.io/Korea2/pages/flagged.html> |
 | IR-4 | High (for capital) | No opening lines / CLV in the feed → skill-vs-luck CLV is unmeasurable | Acquire timestamped opening+closing price history | `pages/flagged.html` |

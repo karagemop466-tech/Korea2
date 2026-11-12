@@ -26,7 +26,11 @@ NAV = [
     ("pages/verification.html", "Verification"),
     ("pages/method.html", "Method &amp; data"),
     ("pages/sources.html", "Source register"),
+    ("pages/suggestions.html", "Suggestions"),
+    ("pages/decision-questions.html", "Decision questions"),
+    ("pages/injuries-depth.html", "Injury &amp; depth"),
     ("pages/flagged.html", "Flagged for review"),
+    ("suggestions/index.html", "Decision Hub"),
     ("pages/archive.html", "Archive"),
 ]
 
@@ -179,7 +183,8 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
 </main></div></body></html>"""
     if current.startswith("pages/"):
         doc = (doc.replace('href="pages/', 'href="../pages/')
-                  .replace('href="index.html"', 'href="../index.html"'))
+                  .replace('href="index.html"', 'href="../index.html"')
+                  .replace('href="suggestions/', 'href="../suggestions/'))
     return doc
 
 

@@ -1395,3 +1395,13 @@ All 39 entries in `suggestions/data/sources.json` were opened via web_search or 
 
 **Status update:** All 14 tasks in this session's board are now `done`. No strategy approved for capital (0/7); reward tiers remain paper schedule. The hub is the dedicated suggestions section the prompt requested — proposals must be approved before any implementation branch edits the referenced files.
 
+
+---
+
+## Final integration session `arena/578d4e5f-korea2` — sourced corrections and freshness
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Reconcile root Line Lab with the newly merged Suggestions & Decision Hub; correct source/depth claims, flag stale data, validate integration | complete (2026-11-12; pending upstream PR/deploy) | `arena/578d4e5f-korea2` | `scripts/build_site.py`, `scripts/lib/site.py`, `pages/`, `README.md`, `docs/`, `data/`, `verification/recompute.json`, `scripts/validate_data.py`, `COORDINATION.md` |
+
+Claim and implementation were started on the fixed Arena branch from `e8d04a9` before PR #65/#66 reached `main`. During `git pull --rebase origin main` on 2026-11-12, this claim conflicted with the two newly merged sessions' appended coordination boards. Resolved by retaining the complete `origin/main` board (including both sessions' logs) and re-appending this distinct integration claim. No sibling work was discarded; the merged Suggestions, Decision questions and Injury & depth pages are retained. This session contributes factual source corrections, stale-data flags and generator-level navigation integration instead of replacing those pages. Verification on 2026-11-12: `scripts/validate_data.py`, `tests/check_site.py` (113 pages, 276 tables, 4,841 links), `tests/check_data.py`, `tests/check_derived.py`, and `git diff --check` passed after rebuilding with `scripts/build_site.py`.

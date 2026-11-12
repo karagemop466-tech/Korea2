@@ -1,15 +1,15 @@
 {
   "meta": {
-    "title": "Master source registry \u2014 all citations used across this project",
+    "title": "Master source registry — all citations used across this project",
     "verified_on": "2026-11-01",
-    "verification_method": "Every URL below was opened and its content read on 2026-11-01 (UTC) via direct page fetch or full-content search result. No URL is included that was not checked on that date. Dynamic pages (odds boards, standings, injury reports) are cited as live official sources; snapshot values are recorded in league_facts.json with an as-of date.",
-    "policy": "Only official / first-party sources are used: the NFL and its official properties, licensed-sportsbook official help pages, state gaming regulators, NIST (US government statistics), Princeton University (hosting the original Kelly paper), Kaggle (official competition platform), NOAA/NWS, and the National Council on Problem Gambling. Third-party blogs are NOT used as sources; anything that could only be found there is left blank and listed in data/flagged.json.",
-    "integration_note": "Two independent registries were merged by the integration session (arena/70a33596-korea2): the SRC-* entries below were built by the sibling data/quant sessions, and the entries appended after them were opened and confirmed by the integration session for the published dashboard. Both sets were verified on 2026-11-01."
+    "verification_method": "Most inherited registry entries were checked by the sessions and dates recorded in each entry. This integration session opened AGLC, the NFL weekly injury page, the NFL roster page, the NFL injury-policy explainer, and cited NIST/Kaggle/NFL distribution references on 2026-11-12. Dynamic pages are cited with retrieval dates; the source type and verification scope are stated per entry.",
+    "policy": "Primary references are the NFL and its official properties, regulators, government/academic statistical sources, platform and operator documentation. Historical game/stat inputs are downloaded from the community-maintained nflverse repository, not directly published by the NFL; the source and verification limits are explicitly flagged. Third-party blogs are not used as primary sources; unconfirmed values are left blank and listed in data/flagged.json.",
+    "integration_note": "This registry combines multiple sessions. Per-source verified_by fields identify the session/date; the source list is not a claim that every historical data value was independently checked against an official NFL record."
   },
   "sources": [
     {
       "id": "SRC-NFL-SCHED-2026",
-      "label": "NFL Media \u2014 \u201c2026 NFL Schedule Announced\u201d (May 14, 2026)",
+      "label": "NFL Media — “2026 NFL Schedule Announced” (May 14, 2026)",
       "url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced",
       "org": "NFL (media.nfl.com)",
       "type": "league official",
@@ -18,7 +18,7 @@
     },
     {
       "id": "SRC-NFL-TEAMS",
-      "label": "NFL.com \u2014 official directory of all 32 NFL teams and their official sites",
+      "label": "NFL.com — official directory of all 32 NFL teams and their official sites",
       "url": "https://www.nfl.com/teams/",
       "org": "NFL (nfl.com)",
       "type": "league official",
@@ -27,7 +27,7 @@
     },
     {
       "id": "SRC-NFL-PLAYER-STATS",
-      "label": "NFL.com \u2014 official player statistics (passing, rushing, receiving, etc., seasons back to 1920)",
+      "label": "NFL.com — official player statistics (passing, rushing, receiving, etc., seasons back to 1920)",
       "url": "https://www.nfl.com/stats/player-stats/",
       "org": "NFL (nfl.com)",
       "type": "league official stats",
@@ -36,7 +36,7 @@
     },
     {
       "id": "SRC-NFL-TEAM-STATS",
-      "label": "NFL.com \u2014 official team statistics (offense / defense / special teams)",
+      "label": "NFL.com — official team statistics (offense / defense / special teams)",
       "url": "https://www.nfl.com/stats/team-stats/",
       "org": "NFL (nfl.com)",
       "type": "league official stats",
@@ -45,7 +45,7 @@
     },
     {
       "id": "SRC-NFL-NGS",
-      "label": "NFL Next Gen Stats \u2014 official player-tracking platform (charts, stats, highlights)",
+      "label": "NFL Next Gen Stats — official player-tracking platform (charts, stats, highlights)",
       "url": "https://nextgenstats.nfl.com/",
       "org": "NFL (nextgenstats.nfl.com)",
       "type": "league official tracking data",
@@ -54,7 +54,7 @@
     },
     {
       "id": "SRC-NFL-NGS-TECH",
-      "label": "NFL Football Operations \u2014 Next Gen Stats technology page (RFID tags, 10 Hz tracking, AWS, 200+ data points/play)",
+      "label": "NFL Football Operations — Next Gen Stats technology page (RFID tags, 10 Hz tracking, AWS, 200+ data points/play)",
       "url": "https://operations.nfl.com/gameday/technology/nfl-next-gen-stats",
       "org": "NFL Football Operations (operations.nfl.com)",
       "type": "league official",
@@ -63,7 +63,7 @@
     },
     {
       "id": "SRC-NFL-PRO-FAQ",
-      "label": "NFL Support \u2014 NFL Pro FAQ (Next Gen Stats data collection; matchup advantage built from success rate and EPA per play)",
+      "label": "NFL Support — NFL Pro FAQ (Next Gen Stats data collection; matchup advantage built from success rate and EPA per play)",
       "url": "https://support.nfl.com/hc/en-us/articles/35869706651156-NFL-Pro-FAQ-s-and-Answers",
       "org": "NFL (support.nfl.com)",
       "type": "league official",
@@ -76,12 +76,12 @@
       "url": "https://www.nfl.com/next-gen-stats/",
       "org": "NFL (nfl.com)",
       "type": "league official",
-      "note": "Hub page lists official NGS stat explainers, including \u201cExpected Points Added & Success Rate\u201d.",
+      "note": "Hub page lists official NGS stat explainers, including “Expected Points Added & Success Rate”.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-NFL-INJURIES",
-      "label": "NFL.com \u2014 official weekly NFL Injury Report",
+      "label": "NFL.com — official weekly NFL Injury Report",
       "url": "https://www.nfl.com/injuries/",
       "org": "NFL (nfl.com)",
       "type": "league official injury data",
@@ -90,16 +90,16 @@
     },
     {
       "id": "SRC-NFL-INJURY-POLICY",
-      "label": "NFL.com \u2014 Competition Committee revisions to the Injury Report Policy (status definitions)",
+      "label": "NFL.com — Competition Committee revisions to the Injury Report Policy (status definitions)",
       "url": "https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693",
       "org": "NFL (nfl.com)",
       "type": "league official policy",
-      "note": "Practice Report: Did Not Participate / Limited / Full. Game Status Report: Questionable = uncertain; Doubtful = unlikely to play; Out = will not play; \u201cProbable\u201d eliminated.",
+      "note": "Practice Report: Did Not Participate / Limited / Full. Game Status Report: Questionable = uncertain; Doubtful = unlikely to play; Out = will not play; “Probable” eliminated.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-NFL-IMPORTANT-DATES",
-      "label": "NFL.com \u2014 2026-27 NFL important dates (Personnel (Injury) Report Policy filing deadlines)",
+      "label": "NFL.com — 2026-27 NFL important dates (Personnel (Injury) Report Policy filing deadlines)",
       "url": "https://www.nfl.com/news/2026-27-national-football-league-important-dates",
       "org": "NFL (nfl.com)",
       "type": "league official policy",
@@ -108,7 +108,7 @@
     },
     {
       "id": "SRC-NFL-SCHED-W9",
-      "label": "NFL.com \u2014 2026 regular-season schedule, Week 9",
+      "label": "NFL.com — 2026 regular-season schedule, Week 9",
       "url": "https://www.nfl.com/schedules/2026/by-week/week-9",
       "org": "NFL (nfl.com)",
       "type": "league official schedule",
@@ -117,25 +117,25 @@
     },
     {
       "id": "SRC-NFL-STANDINGS",
-      "label": "NFL.com \u2014 official 2026 regular-season standings (league view)",
+      "label": "NFL.com — official 2026 regular-season standings (league view)",
       "url": "https://www.nfl.com/standings/league/2026/reg",
       "org": "NFL (nfl.com)",
       "type": "league official standings",
-      "note": "Snapshot 2026-11-01 (through Week 8): MIN 6-0-0, SF 6-1-0, BUF 5-1-0, KC 5-1-0 lead the league; dynamic page \u2014 values change weekly.",
+      "note": "Snapshot 2026-11-01 (through Week 8): MIN 6-0-0, SF 6-1-0, BUF 5-1-0, KC 5-1-0 lead the league; dynamic page — values change weekly.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-NFL-ROSTER",
-      "label": "NFL.com \u2014 team roster pages incl. depth-chart order (e.g., Patriots 2026 roster)",
+      "label": "NFL.com — team roster listing (e.g., Patriots 2026 roster)",
       "url": "https://www.nfl.com/teams/new-england-patriots/roster",
       "org": "NFL (nfl.com)",
-      "type": "league official roster/depth chart",
-      "note": "Team pages under /teams/<team>/roster show the official roster with depth chart order (pattern confirmed for NE, DET, NYJ, BUF, AZ).",
-      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+      "type": "league official roster listing",
+      "note": "Re-opened 2026-11-12. NFL.com page returns a roster table with player, jersey number, position, roster status, measurements, experience and college. It does NOT show a depth-chart ordering in the returned page text. Do not cite this page for first-/second-/third-/fourth-string labels; exact depth values remain unverified.",
+      "verified_by": "arena/578d4e5f-korea2 - page opened and read 2026-11-12"
     },
     {
       "id": "SRC-NFL-RULEBOOK",
-      "label": "NFL Football Operations \u2014 official 2026 NFL Rulebook",
+      "label": "NFL Football Operations — official 2026 NFL Rulebook",
       "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
       "org": "NFL Football Operations (operations.nfl.com)",
       "type": "league official rules",
@@ -144,115 +144,115 @@
     },
     {
       "id": "SRC-DK-GLOSSARY",
-      "label": "DraftKings Support \u2014 Glossary of Betting Terms (ATS, point spread, moneyline, over/under, teaser, push, related contingencies, settlement)",
+      "label": "DraftKings Support — Glossary of Betting Terms (ATS, point spread, moneyline, over/under, teaser, push, related contingencies, settlement)",
       "url": "https://support.draftkings.com/dk/en-us/glossary-of-betting-terms?id=kb_article_view&sysparm_article=KB0010398",
-      "org": "DraftKings (licensed sportsbook) \u2014 official help",
+      "org": "DraftKings (licensed sportsbook) — official help",
       "type": "sportsbook official rules/help",
-      "note": "Defines point spread (+/- handicap, \u201ccovers\u201d), against the spread, over/unders, teaser (adjusted spreads/totals at lower payout), push handling in parlays, \u201crelated contingencies\u201d (correlated picks restricted), settlement based on official results.",
+      "note": "Defines point spread (+/- handicap, “covers”), against the spread, over/unders, teaser (adjusted spreads/totals at lower payout), push handling in parlays, “related contingencies” (correlated picks restricted), settlement based on official results.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-DK-PARLAY",
-      "label": "DraftKings Support \u2014 \u201cWhat is a parlay bet?\u201d (all legs must win; push leg removed and odds recalculated; correlated selections restricted; SGP / Player Prop Parlay types)",
+      "label": "DraftKings Support — “What is a parlay bet?” (all legs must win; push leg removed and odds recalculated; correlated selections restricted; SGP / Player Prop Parlay types)",
       "url": "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
-      "org": "DraftKings \u2014 official help",
+      "org": "DraftKings — official help",
       "type": "sportsbook official rules/help",
-      "note": "\u201cA parlay is a bet that combines two or more single wagers into one bet\u2026 All added bets must win\u2026 If one selection loses, the whole parlay loses. If a selection results in a push, it is removed from the parlay and the odds are recalculated.\u201d Correlated outcomes may be restricted.",
+      "note": "“A parlay is a bet that combines two or more single wagers into one bet… All added bets must win… If one selection loses, the whole parlay loses. If a selection results in a push, it is removed from the parlay and the odds are recalculated.” Correlated outcomes may be restricted.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-DK-PROP",
-      "label": "DraftKings Support \u2014 \u201cWhat is a prop bet?\u201d (wager on individual player or specific in-game event, not the game outcome; examples)",
+      "label": "DraftKings Support — “What is a prop bet?” (wager on individual player or specific in-game event, not the game outcome; examples)",
       "url": "https://support.draftkings.com/dk/en-us/what-is-a-prop-bet?id=kb_article_view&sysparm_article=KB0010778",
-      "org": "DraftKings \u2014 official help",
+      "org": "DraftKings — official help",
       "type": "sportsbook official rules/help",
-      "note": "\u201cA prop bet or proposition bet is a wager on an individual player or specific event in a game/match that is not directly connected to the outcome of a game.\u201d",
+      "note": "“A prop bet or proposition bet is a wager on an individual player or specific event in a game/match that is not directly connected to the outcome of a game.”",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-DK-NFL-BOARD",
-      "label": "DraftKings Sportsbook \u2014 NFL odds board (live spread / total / moneyline, game lines, alternate lines, player props, halves, specials)",
+      "label": "DraftKings Sportsbook — NFL odds board (live spread / total / moneyline, game lines, alternate lines, player props, halves, specials)",
       "url": "https://sportsbook.draftkings.com/leagues/football/nfl",
-      "org": "DraftKings \u2014 official sportsbook",
+      "org": "DraftKings — official sportsbook",
       "type": "sportsbook official odds",
-      "note": "Snapshot 2026-11-01 (Week 8 Sunday): e.g., BAL at BUF +3.5 -120 / O54.5 -110 / +142; CLE at PIT +3.5 -110 / O39.5 -102 / +160. Dynamic \u2014 always re-check at the book.",
+      "note": "Snapshot 2026-11-01 (Week 8 Sunday): e.g., BAL at BUF +3.5 -120 / O54.5 -110 / +142; CLE at PIT +3.5 -110 / O39.5 -102 / +160. Dynamic — always re-check at the book.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-DK-FB-FAQ",
-      "label": "DraftKings Sportsbook \u2014 Football betting FAQ (moneyline, point spread, over/under definitions)",
+      "label": "DraftKings Sportsbook — Football betting FAQ (moneyline, point spread, over/under definitions)",
       "url": "https://sportsbook.draftkings.com/sports/football",
-      "org": "DraftKings \u2014 official sportsbook",
+      "org": "DraftKings — official sportsbook",
       "type": "sportsbook official rules/help",
       "note": "Moneyline = odds to win outright; point spread = handicap factored into final score (favorite must win by more than the line to cover); over/under = wager on combined final score vs posted total.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-FD-TERMS",
-      "label": "FanDuel Support \u2014 Sports Betting Terms and How to Bet (spread at standard 11-to-10 / -110, moneyline, over/under, SGP, round robin, teaser, prop glossary)",
+      "label": "FanDuel Support — Sports Betting Terms and How to Bet (spread at standard 11-to-10 / -110, moneyline, over/under, SGP, round robin, teaser, prop glossary)",
       "url": "https://support.fanduel.com/s/article/Sports-Betting-Terms",
-      "org": "FanDuel (licensed sportsbook) \u2014 official help",
+      "org": "FanDuel (licensed sportsbook) — official help",
       "type": "sportsbook official rules/help",
-      "note": "\u201cBets on the point spread are usually offered at 11-to-10 odds\u2026 With odds at -110, you would bet $11 to win $10.\u201d Glossary: money line expressed as 3-digit number (-150 = bet $150 to win $100); propositions/props = outcomes within an event; teaser = parlay with adjusted spread/total at lower payoff.",
+      "note": "“Bets on the point spread are usually offered at 11-to-10 odds… With odds at -110, you would bet $11 to win $10.” Glossary: money line expressed as 3-digit number (-150 = bet $150 to win $100); propositions/props = outcomes within an event; teaser = parlay with adjusted spread/total at lower payoff.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-NV-REG22",
-      "label": "Nevada Gaming Control Board \u2014 Regulation 22, Race Books and Sports Pools (Rev. 1/26)",
+      "label": "Nevada Gaming Control Board — Regulation 22, Race Books and Sports Pools (Rev. 1/26)",
       "url": "https://www.gaming.nv.gov/siteassets/content/regs/regulation-22-as-of-1-26.pdf",
-      "org": "State of Nevada \u2014 gaming regulator (gaming.nv.gov)",
+      "org": "State of Nevada — gaming regulator (gaming.nv.gov)",
       "type": "government regulator",
-      "note": "Official definitions: \u201csports pool\u201d accepts wagers on sporting events incl. parlay card wagers; \u201cparlay card wager\u201d = wager on outcomes of 2+ games or 2+ contingencies within games; permitted wagers include professional sport sanctioned by a governing body; outcomes must be confirmable from official public records of the league/governing body or its designated statistics provider; house rules must be posted.",
+      "note": "Official definitions: “sports pool” accepts wagers on sporting events incl. parlay card wagers; “parlay card wager” = wager on outcomes of 2+ games or 2+ contingencies within games; permitted wagers include professional sport sanctioned by a governing body; outcomes must be confirmable from official public records of the league/governing body or its designated statistics provider; house rules must be posted.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-PIN-ORIGINATOR",
-      "label": "Pinnacle Betting Resources \u2014 \u201cBottom-Up Betting Explained: What is an Originator and How Do You Build a Basic Model?\u201d",
+      "label": "Pinnacle Betting Resources — “Bottom-Up Betting Explained: What is an Originator and How Do You Build a Basic Model?”",
       "url": "https://www.pinnacle.com/betting-resources/en/educational/bottom-up-betting-explained-what-is-an-originator-and-how-do-you-build-a-basic-model",
-      "org": "Pinnacle (licensed sportsbook) \u2014 official educational content",
+      "org": "Pinnacle (licensed sportsbook) — official educational content",
       "type": "sportsbook official education",
-      "note": "Defines an originator as someone who \u201caim[s] to originate their own lines using raw data and their own models\u201d; for NFL models the article names the input data: player stats, team stats, injury reports, and weather data for outdoor games; compare own probability vs the sportsbook's implied probability to find value.",
+      "note": "Defines an originator as someone who “aim[s] to originate their own lines using raw data and their own models”; for NFL models the article names the input data: player stats, team stats, injury reports, and weather data for outdoor games; compare own probability vs the sportsbook's implied probability to find value.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-PIN-CLV",
-      "label": "Pinnacle Betting Resources \u2014 \u201cWhat Is Closing Line Value (CLV) in Sports Betting?\u201d",
+      "label": "Pinnacle Betting Resources — “What Is Closing Line Value (CLV) in Sports Betting?”",
       "url": "https://www.pinnacle.com/betting-resources/en/educational/what-is-closing-line-value-clv-in-sports-betting",
-      "org": "Pinnacle \u2014 official educational content",
+      "org": "Pinnacle — official educational content",
       "type": "sportsbook official education",
       "note": "CLV = how the odds you bet compare to the final (closing) odds just before the event; positive CLV = better line than the close and one of the strongest indicators of skill/long-term profitability; tips: bet early, track injuries/weather/market sentiment, use multiple sportsbooks for best price.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-PIN-ODDS",
-      "label": "Pinnacle Betting Resources \u2014 \u201cBetting odds explained: How do odds work?\u201d (probability \u2194 odds; bookmaker margin = implied probability sum minus 100%)",
+      "label": "Pinnacle Betting Resources — “Betting odds explained: How do odds work?” (probability ↔ odds; bookmaker margin = implied probability sum minus 100%)",
       "url": "https://www.pinnacle.com/betting-resources/en/betting-strategy/betting-odds-explained-how-do-odds-work/qen2dcqrvncnv4jf",
-      "org": "Pinnacle \u2014 official educational content",
+      "org": "Pinnacle — official educational content",
       "type": "sportsbook official education",
-      "note": "1/decimal odds = implied probability; \u201cthe amount by which the implied probability diverges from 100% is the margin the bookmaker has added to that particular market.\u201d",
+      "note": "1/decimal odds = implied probability; “the amount by which the implied probability diverges from 100% is the margin the bookmaker has added to that particular market.”",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-PIN-AMER-IP",
-      "label": "Pinnacle \u2014 \u201cImplied probability\u201d odds-conversion guide (American odds formulas: negative |odds|/(|odds|+100); positive 100/(odds+100))",
+      "label": "Pinnacle — “Implied probability” odds-conversion guide (American odds formulas: negative |odds|/(|odds|+100); positive 100/(odds+100))",
       "url": "https://www.pinnacle.com/en/esports-hub/betting-articles/educational/implied-probability-odds-conversion/72m2z3g3g22m5tps",
-      "org": "Pinnacle \u2014 official educational content",
+      "org": "Pinnacle — official educational content",
       "type": "sportsbook official education",
-      "note": "Worked American-odds conversion examples (e.g., -520 \u2192 520/620 = 83.89%; +381 \u2192 100/481 = 20.79%). Applying to -110: 110/210 = 52.38% implied per side (arithmetic from these official formulas).",
+      "note": "Worked American-odds conversion examples (e.g., -520 → 520/620 = 83.89%; +381 → 100/481 = 20.79%). Applying to -110: 110/210 = 52.38% implied per side (arithmetic from these official formulas).",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-PIN-KELLY",
-      "label": "Pinnacle Betting Resources \u2014 \u201cThe Kelly Criterion: A stock trader and betting expert's perspective\u201d (stake proportional to perceived edge; variance argument for fractional Kelly)",
+      "label": "Pinnacle Betting Resources — “The Kelly Criterion: A stock trader and betting expert's perspective” (stake proportional to perceived edge; variance argument for fractional Kelly)",
       "url": "https://www.pinnacle.com/betting-resources/en/betting-strategy/the-kelly-criterion-a-stock-trader-and-betting-experts-perspective/h8k2p3f2r8b7rzdp",
-      "org": "Pinnacle \u2014 official educational content",
+      "org": "Pinnacle — official educational content",
       "type": "sportsbook official education",
-      "note": "Kelly = staking method where stake is proportional to perceived edge; full Kelly variance can be \u201cuninvestably\u201d high for sports models, motivating fractional (e.g., half) Kelly.",
+      "note": "Kelly = staking method where stake is proportional to perceived edge; full Kelly variance can be “uninvestably” high for sports models, motivating fractional (e.g., half) Kelly.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-KELLY-1956",
-      "label": "Kelly, J.L. Jr. (1956), \u201cA New Interpretation of Information Rate\u201d, Bell System Technical Journal 35, pp. 917-926 \u2014 original paper, hosted by Princeton University",
+      "label": "Kelly, J.L. Jr. (1956), “A New Interpretation of Information Rate”, Bell System Technical Journal 35, pp. 917-926 — original paper, hosted by Princeton University",
       "url": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
       "org": "Princeton University (princeton.edu) hosting the original Bell Labs paper",
       "type": "primary academic source",
@@ -261,61 +261,61 @@
     },
     {
       "id": "SRC-NIST-CORR",
-      "label": "NIST/SEMATECH e-Handbook (Dataplot reference) \u2014 CORRELATION: Pearson r formula r = Sxy / sqrt(Sxx\u00b7Syy), range -1..+1, and significance test via F(1, N-2)",
+      "label": "NIST/SEMATECH e-Handbook (Dataplot reference) — CORRELATION: Pearson r formula r = Sxy / sqrt(Sxx·Syy), range -1..+1, and significance test via F(1, N-2)",
       "url": "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm",
-      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "org": "NIST — U.S. government (itl.nist.gov)",
       "type": "government statistics reference",
       "note": "Formula and p-value test for correlation verified 2026-11-01.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-NIST-GLOSSARY",
-      "label": "NIST/SEMATECH e-Handbook glossary \u2014 \u201ccorrelation\u201d: Pearson correlation coefficient ranges from -1 to +1",
+      "label": "NIST/SEMATECH e-Handbook glossary — “correlation”: Pearson correlation coefficient ranges from -1 to +1",
       "url": "https://www.itl.nist.gov/div898/handbook/glossary.htm",
-      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "org": "NIST — U.S. government (itl.nist.gov)",
       "type": "government statistics reference",
       "note": "Definition of correlation and Pearson coefficient range.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-NIST-PROP-TEST",
-      "label": "NIST/SEMATECH e-Handbook 7.2.4 \u2014 one-proportion test (binomial; z = (p\u0302 \u2212 p0)/sqrt(p0(1\u2212p0)/N), valid N>30, min{Np0, N(1\u2212p0)} \u2265 5)",
+      "label": "NIST/SEMATECH e-Handbook 7.2.4 — one-proportion test (binomial; z = (p̂ − p0)/sqrt(p0(1−p0)/N), valid N>30, min{Np0, N(1−p0)} ≥ 5)",
       "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm",
-      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "org": "NIST — U.S. government (itl.nist.gov)",
       "type": "government statistics reference",
-      "note": "Used for the \u201cskill vs luck\u201d gate: test whether a strategy's win rate exceeds the break-even rate implied by the price. Verified 2026-11-01.",
+      "note": "Used for the “skill vs luck” gate: test whether a strategy's win rate exceeds the break-even rate implied by the price. Verified 2026-11-01.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-NIST-SAMPLESIZE",
-      "label": "NIST/SEMATECH e-Handbook 7.2.4.2 \u2014 sample sizes required to detect a change in a proportion (\u03b4)",
+      "label": "NIST/SEMATECH e-Handbook 7.2.4.2 — sample sizes required to detect a change in a proportion (δ)",
       "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc242.htm",
-      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "org": "NIST — U.S. government (itl.nist.gov)",
       "type": "government statistics reference",
       "note": "Formula for required N when testing proportions; used to set minimum bet-count gates.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-NIST-BONFERRONI",
-      "label": "NIST/SEMATECH e-Handbook 7.4.7.3 \u2014 Bonferroni's method for multiple comparisons (overall confidence 1\u2212\u03b1 with per-comparison \u03b1/g)",
+      "label": "NIST/SEMATECH e-Handbook 7.4.7.3 — Bonferroni's method for multiple comparisons (overall confidence 1−α with per-comparison α/g)",
       "url": "https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm",
-      "org": "NIST \u2014 U.S. government (itl.nist.gov)",
+      "org": "NIST — U.S. government (itl.nist.gov)",
       "type": "government statistics reference",
       "note": "Used to correct for data-mining bias when many candidate signals are tested. Verified 2026-11-01.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-KAGGLE-DOCS",
-      "label": "Kaggle official docs \u2014 Competitions: public vs private leaderboard, overfitting warning, data leakage definition",
+      "label": "Kaggle official docs — Competitions: public vs private leaderboard, overfitting warning, data leakage definition",
       "url": "https://www.kaggle.com/docs/competitions",
-      "org": "Kaggle (kaggle.com) \u2014 official platform documentation",
+      "org": "Kaggle (kaggle.com) — official platform documentation",
       "type": "platform official docs",
-      "note": "\u201cPublic Leaderboard: visible during the competition; based on a sample of test data. Private Leaderboard: the final ranking based on the remainder of the test data. Overfitting: a high public score doesn't guarantee a high private score.\u201d Also defines leakage. Verified 2026-11-01.",
+      "note": "“Public Leaderboard: visible during the competition; based on a sample of test data. Private Leaderboard: the final ranking based on the remainder of the test data. Overfitting: a high public score doesn't guarantee a high private score.” Also defines leakage. Verified 2026-11-01.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-KAGGLE-BDB2027",
-      "label": "Kaggle \u2014 NFL Big Data Bowl 2027 (hosted by the National Football League; $100,000 prize pool; judges are analytics staff of the 32 NFL clubs; Open + University tracks; deadline Jan 6, 2027)",
+      "label": "Kaggle — NFL Big Data Bowl 2027 (hosted by the National Football League; $100,000 prize pool; judges are analytics staff of the 32 NFL clubs; Open + University tracks; deadline Jan 6, 2027)",
       "url": "https://www.kaggle.com/competitions/nfl-big-data-bowl-2027",
       "org": "Kaggle + NFL",
       "type": "official competition",
@@ -324,7 +324,7 @@
     },
     {
       "id": "SRC-NFL-BDB-ANNOUNCE",
-      "label": "NFL Media \u2014 \u201cNational Football League Announces Seventh Annual Big Data Bowl Powered by AWS\u201d ($100,000 in prizes on Kaggle, judged by NFL team data analysts)",
+      "label": "NFL Media — “National Football League Announces Seventh Annual Big Data Bowl Powered by AWS” ($100,000 in prizes on Kaggle, judged by NFL team data analysts)",
       "url": "https://media.nfl.com/news-and-releases/corporate-communications/national-football-league-announces-seventh-annual-big-data-bowl-",
       "org": "NFL (media.nfl.com)",
       "type": "league official",
@@ -333,7 +333,7 @@
     },
     {
       "id": "SRC-NWS",
-      "label": "NOAA National Weather Service \u2014 official point forecasts (forecast.weather.gov MapClick point forecast; weather.gov)",
+      "label": "NOAA National Weather Service — official point forecasts (forecast.weather.gov MapClick point forecast; weather.gov)",
       "url": "https://forecast.weather.gov/MapClick.php?lat=40.7128&lon=-74.006",
       "org": "NOAA / National Weather Service (weather.gov)",
       "type": "government official data",
@@ -342,9 +342,9 @@
     },
     {
       "id": "SRC-GH-REPO",
-      "label": "This repository on GitHub (official location for repo review) \u2014 karagemop466-tech/Korea2",
+      "label": "This repository on GitHub (official location for repo review) — karagemop466-tech/Korea2",
       "url": "https://github.com/karagemop466-tech/Korea2",
-      "org": "GitHub \u2014 repo host",
+      "org": "GitHub — repo host",
       "type": "repository official",
       "note": "Repo verified public via GitHub API on 2026-11-01; default branch main; base commit 414eecadb2cb82d482c6bd5e2550d087b63f7e49.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
@@ -353,14 +353,14 @@
       "id": "SRC-GH-README-BASE",
       "label": "README.md at base commit 414eeca (manual review link)",
       "url": "https://github.com/karagemop466-tech/Korea2/blob/414eecadb2cb82d482c6bd5e2550d087b63f7e49/README.md",
-      "org": "GitHub \u2014 repo host",
+      "org": "GitHub — repo host",
       "type": "repository official",
-      "note": "Single line '# Korea2' at base commit \u2014 the entire repo content reviewed line-by-line.",
+      "note": "Single line '# Korea2' at base commit — the entire repo content reviewed line-by-line.",
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
       "id": "SRC-NCPG",
-      "label": "National Council on Problem Gambling \u2014 About the National Problem Gambling Helpline (24/7/365 call, text, chat; all 50 states + U.S. territories)",
+      "label": "National Council on Problem Gambling — About the National Problem Gambling Helpline (24/7/365 call, text, chat; all 50 states + U.S. territories)",
       "url": "https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/",
       "org": "National Council on Problem Gambling (ncpgambling.org)",
       "type": "official responsible-gambling resource",
@@ -475,7 +475,7 @@
       "note": "Release assets downloaded by the repository's own CI run; per-file size and SHA-256 recorded in data/derived/manifest.json.",
       "confirmed": "Release assets downloaded by the repository's own CI run; per-file size and SHA-256 recorded in data/derived/manifest.json.",
       "supports": "The play-by-play-derived box scores and game lines behind every number on this site.",
-      "short": "nflverse feed (official NFL data)",
+      "short": "nflverse community data (not NFL-published)",
       "verified_on": "2026-11-01",
       "used_on": [
         "lines",
@@ -572,8 +572,8 @@
       "type": "unverified",
       "note": "NOT CONFIRMED - this URL returned HTTP 404 when fetched on 2026-11-01. A 2017 policy PDF at operations.nfl.com/media/2683/2017-nfl-injury-report-policy.pdf was referenced by third parties but was not fetched or confirmed by this session.",
       "confirmed": "NOT CONFIRMED - this URL returned HTTP 404 when fetched on 2026-11-01. A 2017 policy PDF at operations.nfl.com/media/2683/2017-nfl-injury-report-policy.pdf was referenced by third parties but was not fetched or confirmed by this session.",
-      "supports": "Nothing is published on this site that depends on it. Injury-report timing would be a required input for any injury-based strategy, so those strategies are marked blocked.",
-      "short": "NFL injury policy (404 - unverified)",
+      "supports": "This exact legacy operations.nfl.com URL was not available when checked. Do not confuse it with the working NFL.com weekly injury report (SRC-NFL-INJURIES) or the NFL.com policy explainer (SRC-NFL-INJURY-POLICY). Historical point-in-time snapshots and depth-order data are not ingested by this project.",
+      "short": "Legacy injury-policy URL (unavailable)",
       "verified_on": "2026-11-01",
       "used_on": [
         "flagged"
@@ -679,6 +679,52 @@
         "flagged"
       ],
       "verified_by": "integration session arena/89b8d356-korea2 - MGC pages opened and read on 2026-11-02"
+    },
+    {
+      "id": "SRC-AGLC-SPORTS",
+      "label": "AGLC — Play Alberta adds sports betting to roster (historical announcement)",
+      "title": "Play Alberta adds sports betting to roster",
+      "short": "AGLC historical announcement",
+      "url": "https://aglc.ca/news/play-alberta-adds-sports-betting-roster",
+      "org": "Alberta Gaming, Liquor and Cannabis (AGLC)",
+      "type": "provincial regulator — historical announcement",
+      "note": "Read on 2026-11-12. AGLC news release dated 2021-09-01 says Play Alberta sports betting was launched and listed single-/multi-event and NFL markets then.",
+      "verified_by": "arena/578d4e5f-korea2 — page opened and read on 2026-11-12",
+      "limitation": "Historical announcement only; does not establish current eligibility, market availability, operator terms, project access or legal advice. Re-check current primary rules before deployment."
+    },
+    {
+      "id": "SRC-NFL-SCHED-W10",
+      "label": "NFL.com — 2026 regular-season schedule, Week 10",
+      "title": "NFL Week 10 Schedule 2026",
+      "short": "NFL official Week 10 schedule",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "org": "NFL (nfl.com)",
+      "type": "league official schedule",
+      "note": "Opened and read 2026-11-12. Page identifies Thursday Nov 12 Commanders at Giants and the Nov 15 Week 10 slate. This dynamic schedule page does not refresh the committed model dataset.",
+      "verified_by": "arena/578d4e5f-korea2 — page opened and read 2026-11-12"
+    },
+    {
+      "id": "SRC-COLTS-DEPTH-CHART",
+      "label": "Indianapolis Colts — team-published depth chart (unofficial) ",
+      "title": "Indianapolis Colts Depth Chart",
+      "short": "Colts team depth chart (unofficial)",
+      "url": "https://www.colts.com/team/depth-chart",
+      "org": "Indianapolis Colts (official team website)",
+      "type": "team-published unofficial depth chart",
+      "note": "Opened and read 2026-11-12. The team page presents offense, defense and special-teams position tables with ordered player listings. Its linked Week 10 news item explicitly calls the chart unofficial. This is one team's current chart, not an NFL-wide source or a historical archive.",
+      "verified_by": "arena/578d4e5f-korea2 — page opened and read 2026-11-12"
+    },
+    {
+      "id": "SRC-AGLC-INTERNET-STANDARDS-2026",
+      "label": "AGLC — Standards and Requirements for Internet Gaming (issued 2026-01-14)",
+      "title": "Casino Terms & Conditions and Operating Guidelines / Standards and Requirements for Internet Gaming",
+      "short": "AGLC Internet Gaming Standards (2026)",
+      "url": "https://aglc.ca/sites/aglc.ca/files/2026-01/26-01-14%20-%20SRIG.pdf",
+      "org": "Alberta Gaming, Liquor and Cannabis (AGLC)",
+      "type": "provincial regulator — current internet gaming standards",
+      "note": "Official AGLC standards document issued 2026-01-14. The indexed location requirements state registered operators must ensure play is provided within Alberta and describe controls for location verification. This is a regulatory source for review, not a complete legal opinion or verification of this project’s user/operator access.",
+      "verified_by": "Arena web search result 1, fetched 2026-11-12; relevant extract covers location and operator requirements",
+      "limitation": "Does not itself confirm user eligibility, a current operator account, specific NFL market availability, or legal treatment of a particular product; obtain current regulator/operator review before any deployment."
     }
   ]
 }
