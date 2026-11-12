@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "title": "Injury & depth-deficiency tracking \u2014 what we have, what we lack, and how to build the tracker without guessing",
+    "generated_on": "2026-11-12",
+    "policy": "No injury-based signal is published until its inputs are official, point-in-time, and tied to a depth-chart tier. Until then the design is published; results cells stay blank."
+  },
+  "current_capability": {
+    "what_exists": "Official weekly injury hub at nfl.com/injuries/ with per-player practice participation and game-status designations; official team roster pages at nfl.com/teams/<team>/roster; official team depth charts such as colts.com/team/depth-chart listing First/Second/Third/Fourth per position.",
+    "what_is_missing": "No automated daily ingestion; injury-policy content URL returns empty body (404-like); roster depth-chart order was previously described as unverified; no mapping from Player\u2192Position\u2192DepthRank exists in the repo.",
+    "why_it_matters": "A WR1 playing through a Questionable tag is not the same as a WR1 Out with a 4th-string replacement; without tracking deficiency tier, an offense/defense strength signal conflates starter vs backup output."
+  },
+  "official_sources": [
+    {
+      "source_id": "SRC-NFL-INJURIES-HUB",
+      "role": "Daily practice participation + game-status per player",
+      "update_cadence": "Wed/Thu/Fri by 4pm ET before Sunday game (or Mon/Tue/Wed before Thursday game); Game Status report at Friday 4pm ET deadline",
+      "example_row": "A.J. Haulcy S Questionable Ankle Limited Participation; Zonovan Knight RB Out Concussion Did Not Participate",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB"
+      ]
+    },
+    {
+      "source_id": "SRC-NFL-INJURY-POLICY-COMP",
+      "role": "Definitions that determine how to categorize each report line",
+      "update_cadence": "Policy article (stable)",
+      "example_row": "Did Not Participate / Limited Participation / Full Participation; Questionable / Doubtful / Out (Probable retired 2016)",
+      "sources": [
+        "SRC-NFL-INJURY-POLICY-COMP"
+      ]
+    },
+    {
+      "source_id": "SRC-NFL-IMPORTANT-DATES-2026",
+      "role": "Filing deadlines that set the ingestion schedule",
+      "update_cadence": "Seasonal publication",
+      "example_row": "Clubs must file Practice Reports by 4:00 p.m. ET on practice days and Game Status Report by 4:00 p.m. ET the day before each game",
+      "sources": [
+        "SRC-NFL-IMPORTANT-DATES-2026"
+      ]
+    },
+    {
+      "source_id": "SRC-COLTS-DEPTH-CHART",
+      "role": "Official per-team depth-chart tiers for deficiency calculation",
+      "update_cadence": "Team site, updated as roster moves",
+      "example_row": "QB First Daniel Jones Second Anthony Richardson Sr. Third Riley Leonard; WR Treadwell / WR Gould / WR Dulin tiers",
+      "sources": [
+        "SRC-COLTS-DEPTH-CHART"
+      ]
+    },
+    {
+      "source_id": "SRC-NFL-ROSTER-PATRIOTS",
+      "role": "Official roster listing that confirms player membership, status (ACT/RES/DEV), position",
+      "update_cadence": "Team site, rolling",
+      "example_row": "nfl.com/teams/new-england-patriots/roster table with Player, No, Pos, Status, Height, Weight, Experience, College; LA Rams roster verified similarly",
+      "sources": [
+        "SRC-NFL-ROSTER-PATRIOTS",
+        "SRC-NFL-ROSTER-RAMS"
+      ]
+    }
+  ],
+  "proposed_schema": [
+    {
+      "table": "injury_report_daily",
+      "columns": [
+        "season",
+        "week",
+        "team",
+        "player",
+        "position",
+        "practice_status (Did Not Participate | Limited | Full)",
+        "game_status (Questionable | Doubtful | Out | null)",
+        "injury_body_part",
+        "report_date",
+        "source_url",
+        "fetched_utc"
+      ],
+      "notes": "One row per player per report day; source_url is the specific /injuries/league/<season>/regN page that was opened; injuries with Out on Saturday/Sunday override Friday file.",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB",
+        "SRC-NFL-IMPORTANT-DATES-2026"
+      ]
+    },
+    {
+      "table": "depth_chart_tier",
+      "columns": [
+        "season",
+        "week",
+        "team",
+        "position (as listed by team)",
+        "depth_rank (1=First, 2=Second, 3=Third, 4=Fourth)",
+        "player",
+        "roster_status (ACT/RES/DEV)",
+        "source_url",
+        "fetched_utc"
+      ],
+      "notes": "Depth rank is the ordinal the official depth chart lists; if a team site uses WR/W R-2/W R-3 rather than generic WR, preserve that grouping. No invented tier beyond what the page printed.",
+      "sources": [
+        "SRC-COLTS-DEPTH-CHART",
+        "SRC-NFL-ROSTER-PATRIOTS"
+      ]
+    },
+    {
+      "table": "team_deficiency_signal",
+      "columns": [
+        "season",
+        "week",
+        "team",
+        "unit (offense | defense | special)",
+        "position_group",
+        "starter_status (starter Out/Doubtful/Questionable vs backup tier)",
+        "deficiency_score",
+        "evidence_sentence"
+      ],
+      "notes": "deficiency_score: start 0=all starters ACT+Full; +1 per starter Out replaced by 2nd string, +2 by 3rd, +3 by 4th/third inactive, etc. evidence_sentence quotes the roster/depth sentence that was read (e.g., 'WR DeVonta Smith Out \u2014 1st WR, replaced by Darius Cooper per Eagles depth chart'). No team-strength conclusion is emitted beyond that sentence.",
+      "sources": [
+        "SRC-NFL-GSIS-GUIDE",
+        "SRC-NFL-INJURY-POLICY-COMP",
+        "SRC-COLTS-DEPTH-CHART"
+      ]
+    }
+  ],
+  "example_deficiency_rows": [
+    {
+      "team": "DAL",
+      "week": "2026 Wk9",
+      "unit": "offense",
+      "position": "WR",
+      "scenario": "KaVontae Turpin WR Out Ribs Did Not Participate \u2014 listed behind George Pickens (Questionable Hamstring Limited) on depth chart; deficiency = starter Out \u2192 3rd string exposure",
+      "evidence": "Injury Report at nfl.com/injuries/ + DAL depth chart; status Out prevents starter availability for lineup.",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB",
+        "SRC-NFL-INJURY-POLICY-COMP"
+      ]
+    },
+    {
+      "team": "DAL",
+      "week": "2026 Wk9",
+      "unit": "defense",
+      "position": "S",
+      "scenario": "(Illustrative) If starting S P.J. Locke were Out Concussion, backup tier per depth chart would determine defense deficiency; without live depth rank the cell is published as unknown, not as a guessed starter.",
+      "evidence": "Depth rank taken from official colts-style table at team site; no unofficial fan-site chart is used.",
+      "sources": [
+        "SRC-COLTS-DEPTH-CHART",
+        "SRC-NFL-ROSTER-PATRIOTS"
+      ]
+    },
+    {
+      "team": "ARI",
+      "week": "2026 Wk9",
+      "unit": "offense",
+      "position": "OL",
+      "scenario": "ARI OL Jayden Williams Out Knee Did Not Participate; Zonovan Knight RB Out Concussion Did Not Participate \u2014 both from hub example rows",
+      "evidence": "ARI rows shown in example injury hub extract (WR/RB/OL examples).",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB"
+      ]
+    }
+  ],
+  "what_stays_blank_until_built": [
+    {
+      "item": "Per-team per-week offense/defense deficiency score",
+      "reason": "Tracker not yet automated; publishing a number now would be a hallucination. Design and ingestion schedule are published here so reviewers can assess the plan before implementation.",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB",
+        "SRC-COLTS-DEPTH-CHART"
+      ]
+    },
+    {
+      "item": "Starter vs backup performance delta (point margin impact)",
+      "reason": "Requires historical join of injury_report_daily + depth_chart_tier onto games.csv.gz with point-in-time guarantee; not yet validated through FDR gate. No number filled.",
+      "sources": [
+        "SRC-BH-1995",
+        "SRC-NFL-GSIS-GUIDE"
+      ]
+    },
+    {
+      "item": "Injury-policy citation from operations.nfl.com/football-ops/league-governance/injury-report/",
+      "reason": "URL returns no article body (empty response); cited as NOT CONFIRMED and flagged rather than quoted.",
+      "sources": [
+        "SRC-NFL-INJURY-POLICY-COMP"
+      ]
+    }
+  ],
+  "schedule": "Suggested cron: every Wed/Thu/Fri 16:05 ET and Saturday/Sunday 23:00 ET fetch /injuries/league/<season>/regN and each team's depth chart + roster; commit JSON with fetched_utc and source_url; block any model that reads deficiency before these files are updated."
+}

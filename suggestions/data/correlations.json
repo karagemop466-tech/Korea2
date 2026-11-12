@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "title": "Correlation matrix and parlay/player-prop combo pricing",
+    "generated_on": "2026-11-12",
+    "method": "Pearson r via NIST formula; p-values via F(1,N-2); 95% CI via Fisher z; phi coefficient for binary cover-vs-over. Same-game legs measured per team-game so both sides included."
+  },
+  "rows": [
+    {
+      "pair": "QB passing yards vs WR1 receiving yards (same team)",
+      "n": 7560,
+      "r": 0.562,
+      "p": "<0.001",
+      "ci_low": 0.545,
+      "ci_high": 0.578,
+      "r2": 0.316,
+      "interpretation": "Strong positive coupling \u2014 same-team pass game drives both legs; independent pricing overstates SGP value by ~95%.",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "pair": "QB passing yards vs WR2 receiving yards",
+      "n": 6024,
+      "r": 0.506,
+      "p": "<0.001",
+      "ci_low": 0.485,
+      "ci_high": 0.526,
+      "r2": 0.256,
+      "interpretation": "Moderate positive; both receivers share QB volume.",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "pair": "WR1 receiving yards vs WR2 receiving yards (same team)",
+      "n": 6030,
+      "r": 0.12,
+      "p": "<0.001",
+      "ci_low": 0.095,
+      "ci_high": 0.145,
+      "r2": 0.014,
+      "interpretation": "Weak positive \u2014 shared QB but competing targets; not independent.",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "pair": "RB1 rushing yards vs QB passing yards (same team)",
+      "n": 6024,
+      "r": -0.127,
+      "p": "<0.001",
+      "ci_low": -0.152,
+      "ci_high": -0.102,
+      "r2": 0.016,
+      "interpretation": "Weak negative \u2014 run-heavy scripts suppress pass volume (complementarity).",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "pair": "Home points vs away points (pace coupling)",
+      "n": 7087,
+      "r": -0.031,
+      "p": 0.009,
+      "ci_low": -0.054,
+      "ci_high": -0.008,
+      "r2": 0.001,
+      "interpretation": "Tiny negative \u2014 netting out venue, scores move slightly opposite; do not treat as positively coupled.",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "pair": "Winning margin vs game total (score correlation)",
+      "n": 7087,
+      "r": 0.017,
+      "p": 0.15,
+      "ci_low": -0.006,
+      "ci_high": 0.04,
+      "r2": 0.0,
+      "interpretation": "Essentially independent \u2014 margin and total carry different information.",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "pair": "Home cover vs over (binary association, phi)",
+      "n": 7087,
+      "r": 0.016,
+      "p": 0.18,
+      "ci_low": -0.007,
+      "ci_high": 0.039,
+      "r2": 0.0,
+      "interpretation": "Essentially independent \u2014 covering does not meaningfully predict going over.",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-DK-PARLAY-HELP"
+      ]
+    },
+    {
+      "pair": "4-leg same-team parlay: joint exceedance vs product",
+      "n": 7560,
+      "joint": 0.111,
+      "product": 0.057,
+      "diff": 0.054,
+      "factor": 1.95,
+      "interpretation": "Empirical joint 11.1% vs independent product 5.7% \u2014 pricing legs independently would quote ~16-to-1 against true ~8-to-1.",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-DK-PARLAY-HELP"
+      ]
+    }
+  ],
+  "pricing_note": "Same-team legs must be priced with measured correlation (e.g., Gaussian copula calibrated to r=0.562, implied \u03c1\u22480.60). Cross-game legs (different games) are approximately independent (r\u22480). Player-prop combos need ex-ante WR assignments (depth-ranked), not ex-post game leaders (which inflate r by +0.24).",
+  "sources_for_note": [
+    "SRC-NIST-CORR",
+    "SRC-COLTS-DEPTH-CHART",
+    "SRC-DK-PARLAY-HELP"
+  ]
+}

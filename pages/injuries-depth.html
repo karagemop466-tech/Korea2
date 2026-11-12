@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Injury &amp; depth tracking | Line Lab</title>
+<meta name="description" content="Official-source NFL injury and depth-chart tracking: who is missing and how deep the drop to the next man up is.">
+<meta name="generator" content="line-lab/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="mark">LL</span><span>LINE LAB<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">Workspace</div>
+  <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/executive.html">Executive summary</a><a href="../pages/lines.html">Originated lines</a><a href="../pages/props.html">Player props</a><a href="../pages/correlation.html">Correlation &amp; parlays</a><a href="../pages/strategies.html">Strategy lab</a><a href="../pages/validation.html">Validation gates</a><a href="../pages/leaderboard.html">Leaderboard</a><a href="../pages/luck.html">Removing luck</a><a href="../pages/market.html">Market benchmark</a><a href="../pages/verification.html">Verification</a><a href="../pages/method.html">Method &amp; data</a><a href="../pages/sources.html">Source register</a><a href="../suggestions/index.html">Decision Hub</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/decision-questions.html">Decision questions</a><a href="../pages/injuries-depth.html" class="active" aria-current="page">Injury &amp; depth</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/archive.html">Archive</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Pipeline live<br><strong>0 of 7 strategies approved</strong><span>Data through 2026-11-01. Rejections are listed with the exact gate that failed.</span></div>
+</aside>
+<main id="main">
+<header class="topbar">
+  <span class="crumb">INJURY &amp; DEPTH</span>
+  <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a>
+</header>
+
+<div class="hero compact"><div class="eyebrow">INJURY &amp; DEPTH TRACKING</div>
+<h1>Who is missing, and how deep the drop is.</h1>
+<p class="lede">The brief asks the system to "track injuries and know any deficiencies in defenses such as 2nd, 3rd or 4th string backups having to replace starters." This page defines that detector, grounds it in official sources, and shows a verified Week&nbsp;10 (2026) snapshot. Replacement-string depth is flagged where the official source is unavailable.</p></div>
+
+<div class="notice warn"><span class="dot"></span><div>
+<strong>Official depth charts are not currently available from NFL.com.</strong><br>
+The team <code>/teams/&lt;team&gt;/depth-chart</code> endpoint returns HTTP&nbsp;404 (verified 2026-11-12), and the roster page does not expose depth ordering. So &ldquo;starter vs 2nd/3rd/4th string&rdquo; cannot be sourced officially yet. The injury report <em>is</em> available and is used as the verified layer; depth severity is flagged and a discovery path is given below.</div>
+<a href="#discovery">Discovery &rarr;</a></div>
+
+<section class="block"><h2>How the deficiency detector works</h2>
+<ol class="steps">
+<li><strong>Pull the official injury report</strong> for the target week (league or team view) from NFL.com. This is the only injury layer verified to resolve today.</li>
+<li><strong>Flag absences.</strong> Every player with Game Status <span class="badge bad">OUT</span> or <span class="badge warn">QUESTIONABLE</span> is a confirmed personnel loss; &ldquo;Did Not Participate&rdquo; with no game status is a watch item.</li>
+<li><strong>Resolve the replacement&rsquo;s string depth.</strong> Cross-reference the team&rsquo;s verified depth chart to find whether the next man up is the 1st, 2nd, 3rd or 4th option. <span class="flag">Flagged &mdash; official source unavailable (see above).</span></li>
+<li><strong>Score the deficiency.</strong> Subtract replacement value from starter value to get a per-position drop. <span class="flag">Flagged &mdash; requires a sourced player-value model, not yet present.</span></li>
+<li><strong>Feed it to the model.</strong> Apply the deficiency as an adjustment to the originating ratings before lines are published.</li>
+</ol></section>
+
+<section class="block"><h2>Official sources used</h2>
+<div class="table-wrap"><table class=""><caption class="caption">Each source was retrieved and confirmed to resolve on 2026-11-12. Depth-chart rows are flagged because they do not resolve.</caption>
+<thead><tr><th>Source</th><th>Purpose</th><th>Status</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>NFL official injury report (league, by week)</td><td>Confirmed player absences (Out / Questionable / practice status)</td><td><span class="badge ok">VERIFIED</span></td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">nfl.com/injuries</a></td></tr>
+<tr><td>NFL official standings</td><td>Team record context for the worked example</td><td><span class="badge ok">VERIFIED</span></td><td class="src"><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener">nfl.com/standings</a></td></tr>
+<tr><td>NFL player pages</td><td>Per-player identity and position confirmation</td><td><span class="badge ok">VERIFIED</span></td><td class="src"><a href="https://www.nfl.com/players/treveyon-henderson/" rel="noopener">nfl.com/players</a></td></tr>
+<tr><td>NFL team depth-chart endpoint</td><td>Starter vs 2nd/3rd/4th-string ordering</td><td><span class="badge bad">404 &mdash; UNAVAILABLE</span></td><td class="src"><a href="https://www.nfl.com/teams/new-england-patriots/depth-chart" rel="noopener">nfl.com (404)</a></td></tr>
+</tbody></table></div></section>
+
+<section class="block"><h2>Worked example &mdash; Patriots @ Lions, Week 10 (2026-11-15)</h2>
+<p class="lede">Pulled from the official Week&nbsp;10 injury report. <strong>New England shows three players with Game Status = Out; Detroit shows none.</strong> Position is taken from the report; starter-string depth is left blank and flagged because the depth-chart source does not resolve.</p>
+<div class="table-wrap"><table class=""><caption class="caption">Confirmed absences only. Every row links to the official injury report that lists it. Starter-string is intentionally blank where it cannot be sourced.</caption>
+<thead><tr><th>Team</th><th>Player</th><th>Pos</th><th>Injury</th><th>Game status</th><th>Starter string</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>NE</td><td><a href="https://www.nfl.com/players/ben-brown-2/" rel="noopener">Ben Brown</a></td><td>C</td><td>Knee</td><td><span class="badge bad">OUT</span></td><td class="na">unverified</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Injury report Wk10</a></td></tr>
+<tr><td>NE</td><td><a href="https://www.nfl.com/players/carlton-davis/" rel="noopener">Carlton Davis III</a></td><td>CB</td><td>Knee</td><td><span class="badge bad">OUT</span></td><td class="na">unverified</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Injury report Wk10</a></td></tr>
+<tr><td>NE</td><td><a href="https://www.nfl.com/players/treveyon-henderson/" rel="noopener">TreVeyon Henderson</a></td><td>RB</td><td>Illness</td><td><span class="badge bad">OUT</span></td><td class="na">unverified</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Injury report Wk10</a></td></tr>
+<tr><td>DET</td><td colspan="4">No player with Out or Questionable status listed for this game in the Week&nbsp;10 report</td><td class="na">n/a</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Injury report Wk10</a></td></tr>
+</tbody></table></div>
+<p class="small">Interpretation: the verified signal is &ldquo;New England is missing at least its centre, a cornerback and a running back; Detroit is not missing any confirmed starter-level piece per the report.&rdquo; The <em>severity</em> of each loss (1st vs 4th string replacement) cannot be stated from an official source today &mdash; see Discovery.</p></section>
+
+<section class="block"><h2 id="discovery">Discovery suggestions (how to fill the gaps)</h2>
+<div class="grid2">
+  <div class="panel"><h3>Depth / next-man-up</h3><ul class="ticks">
+    <li>Use the <a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse</a> team-depth extracts (third-party, not official &mdash; reconcile before use).</li>
+    <li>Use official <a href="https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/" rel="noopener">Next Gen Stats</a> snap counts as a proxy for who actually plays each position.</li>
+    <li>Track the weekly official injury report&rsquo;s practice-status progression (Full &rarr; Limited &rarr; DNP &rarr; Out) as a leading indicator.</li>
+  </ul><a class="panel-link" href="../pages/flagged.html">See flagged item &rarr;</a></div>
+  <div class="panel"><h3>Replacement value</h3><ul class="ticks">
+    <li>Build a player-value model from verified box scores (source: official gamebooks / nflverse).</li>
+    <li>Express deficiency as starter value &minus; replacement value, then as a points adjustment to the originating spread.</li>
+    <li>Validate the adjustment out-of-sample through the existing <a href="../pages/validation.html">ten validation gates</a> before any capital use.</li>
+  </ul><a class="panel-link" href="../pages/validation.html">Validation gates &rarr;</a></div>
+</div></section>
+
+<section class="block"><h2>Offense vs defense deficiencies</h2>
+<div class="table-wrap"><table class=""><caption class="caption">Both sides are tracked identically; the detector does not assume one side is more injury-prone. Source column links the official injury report.</caption>
+<thead><tr><th>Unit</th><th>What a deficiency looks like</th><th>Signal source</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>Offense</td><td>QB / RB / OL / WR missing &rarr; lower projected points and pace</td><td>Official injury report + snap counts</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Injury report</a></td></tr>
+<tr><td>Defense</td><td>Edge / CB / LB / safety missing &rarr; lower projected stops, higher opponent points</td><td>Official injury report + snap counts</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Injury report</a></td></tr>
+<tr><td>Special teams</td><td>Kicker / punter / returner missing &rarr; hidden points swing</td><td>Official injury report</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Injury report</a></td></tr>
+</tbody></table></div></section>
+
+<footer>
+  <p>Research and measurement, not betting advice. Injury and standings figures are read directly from the official NFL.com pages linked in each row; nothing is estimated by hand. Starter-string depth is intentionally blank where no official source resolves.</p>
+  <p><a href="../pages/sources.html">Source register</a> &middot;
+     <a href="../pages/method.html">Method</a> &middot;
+     <a href="../pages/flagged.html">Flagged for review</a></p>
+</footer>
+</main></div></body></html>

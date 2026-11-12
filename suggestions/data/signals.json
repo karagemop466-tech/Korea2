@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Signal catalog \u2014 what we originate, how we test, and what the data says",
+    "generated_on": "2026-11-12",
+    "policy": "Every signal row states its inputs (pre-kickoff only), its hypothesis, its measured result on the committed extract, and the gate outcome. Signals with unverified inputs or prices are described; their profit cells stay blank."
+  },
+  "origination_summary": {
+    "model": "home=mu+off_home-def_away+hfa; away=mu+off_away-def_home; weighted least squares with ridge lambda 4.0 half-life 180 days; HFA shrunk toward 10-season mean with 60 pseudo-obs; hyperparameters chosen on 2021-2022 (validation MAE 10.354), frozen for 2023+ test.",
+    "accuracy": "spread MAE 10.39 pts (model) vs 10.25 pts (closing) walk-forward 2023-2026; incremental regression c=-0.019 (p=0.881) \u2014 no incremental information.",
+    "source_notes": "Model spec from data/derived/model.json; market accuracy from data/derived/market.json; sign convention proven via diag_signs.json (corr 0.425, moneyline cross-check means +5.67 home fav vs -4.66 dog).",
+    "sources": [
+      "SRC-NFLVERSE-RELEASES",
+      "SRC-NFLREADR-DICT-SCHED"
+    ]
+  },
+  "rows": [
+    {
+      "id": "SIG-01",
+      "signal": "Rest advantage (extra rest days vs opponent)",
+      "inputs": "away_rest, home_rest from schedules feed (days of rest, confirmed in nflreadr dictionary)",
+      "hypothesis": "Team with +3 or more days rest has a margin edge beyond the line",
+      "measured": "n=204 settled bets in published window; ROI +0.09% (p large). Underpowered vs required n\u22486809.",
+      "status": "measured \u2014 no edge",
+      "sources": [
+        "SRC-NFLREADR-DICT-SCHED",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "SIG-02",
+      "signal": "Bye-week team",
+      "inputs": "rest flag derived from away_rest/home_rest \u226514-day gap",
+      "hypothesis": "Bye-week team benefits from rest and preparation",
+      "measured": "n=86; ROI -5.87%. Underpowered; fails G2/G4.",
+      "status": "measured \u2014 no edge",
+      "sources": [
+        "SRC-NFLREADR-DICT-SCHED",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "SIG-03",
+      "signal": "Divisional home underdog (single)",
+      "inputs": "spread_line sign + division grouping (inferred from standings, not hard-coded)",
+      "hypothesis": "Division familiarity narrows spread for home dogs",
+      "measured": "n=137 decided (of 204 total); ROI -1.21%; best gated count 5/10 \u2014 still rejected.",
+      "status": "measured \u2014 no edge",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "SIG-04",
+      "signal": "Model spread edge \u22652 pts vs closing",
+      "inputs": "Walk-forward model spread vs spread_line",
+      "hypothesis": "When model disagrees with close by 2+ pts, fading close has value",
+      "measured": "n=572 bets; decided 557; ROI -5.28%; p=0.87; fails G2,G4,G5,G6,G8,G9.",
+      "status": "measured \u2014 no edge",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES",
+        "SRC-PINNACLE-CLV"
+      ]
+    },
+    {
+      "id": "SIG-05",
+      "signal": "Model spread edge \u22653 pts vs closing",
+      "inputs": "Walk-forward model spread vs spread_line",
+      "hypothesis": "Larger disagreement more likely to survive market info",
+      "measured": "n=409; decided 396; ROI around -3% (varies by build). Fails multiple gates.",
+      "status": "measured \u2014 no edge",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "SIG-06",
+      "signal": "Wind under (\u226515 mph outdoors)",
+      "inputs": "Weather wind_gust with weather_available boolean (planned SUG-06); historically ~57% outdoor coverage",
+      "hypothesis": "Wind suppresses scoring more than closing total implies",
+      "measured": "46 bets in 2023+ window; ROI +1.51% (not significant). Earlier 649-bet figure included 219 no-price rows at assumed -110; corrected to 430 bets ROI +7.14% p=0.125, 2/6 gates, decays in holdout.",
+      "status": "measured \u2014 inconclusive",
+      "sources": [
+        "SRC-NOAA-NWS",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "SIG-07",
+      "signal": "QB passing yards \u2192 WR1 receiving yards (same-team prop combo)",
+      "inputs": "Per-team-game QB attempts\u226510 \u2192 most-targeted WR/TE/RB as WR1",
+      "hypothesis": "Strong positive coupling means independent leg pricing understates joint probability",
+      "measured": "r=0.562 (n=7560, 95% CI via Fisher z). Joint exceedance 11.1% vs product 5.7% \u2014 independence error factor 1.95.",
+      "status": "measured \u2014 dependence proven",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "SIG-08",
+      "signal": "Pythagorean excess wins (luck signal)",
+      "inputs": "Points for/against per team-season \u2192 expected wins exponent 2.37",
+      "hypothesis": "Luck wins mean-revert; fading teams with high luck improves forward prediction",
+      "measured": "R\u00b2=0.819 expected vs actual win% over 877 team-seasons; SD luck=1.32 wins; y-o-y luck r=0.024 p=0.49 (842 pairs) \u2014 luck is transient.",
+      "status": "measured \u2014 luck is noise",
+      "sources": [
+        "SRC-NFL-STANDINGS-2020",
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NIST-CORR"
+      ]
+    },
+    {
+      "id": "SIG-09",
+      "signal": "Home-field advantage shrinkage",
+      "inputs": "Ten-season prior mean + current season margin signal",
+      "hypothesis": "Home edge stable around ~2 pts; short-sample shrinkage avoids overfitting a 2026 anomaly",
+      "measured": "Model HFA shrunk toward 10-season mean with 60 pseudo-observations; 2026 home teams have negative mean margin (-0.43) so unshrunk HFA collapsed to 0.2 pts.",
+      "status": "model feature \u2014 not a bet",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "SIG-10",
+      "signal": "One-score win-rate persistence",
+      "inputs": "Win% in games with |margin|\u22648",
+      "hypothesis": "Clutch record persists",
+      "measured": "Year-over-year r=0.082 (p small but BH-flagged marginal) \u2014 not used in any strategy.",
+      "status": "measured \u2014 marginal",
+      "sources": [
+        "SRC-NIST-CORR"
+      ]
+    },
+    {
+      "id": "SIG-11",
+      "signal": "Injury-deficiency signal (planned)",
+      "inputs": "injury_report_daily + depth_chart_tier \u2192 per-team per-week deficiency score (proposed schema above)",
+      "hypothesis": "Teams fielding 2nd/3rd/4th string starters lose more margin than line implies",
+      "measured": "",
+      "status": "unmeasured \u2014 design only; blank per verification policy",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB",
+        "SRC-COLTS-DEPTH-CHART",
+        "SRC-NFL-ROSTER-PATRIOTS"
+      ]
+    },
+    {
+      "id": "SIG-12",
+      "signal": "Prop calibration (receiving yards)",
+      "inputs": "Player-week stats with rolling season-mean and last-3 baselines",
+      "hypothesis": "Forecast at season-mean has predictive correlation beyond baseline",
+      "measured": "n=8884; MAE forecast 19.96 vs baseline 19.89 (improvement -0.35%); corr 0.580; originated line over rate 52.35% \u2014 essentially unbiased but not profitable without prices.",
+      "status": "measured \u2014 calibration only; ROI blank",
+      "sources": [
+        "SRC-NFL-GSIS-GUIDE",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    }
+  ]
+}
