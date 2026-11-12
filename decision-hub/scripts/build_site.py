@@ -10,6 +10,7 @@ from __future__ import annotations
 import html as _html
 import json
 import os
+import re
 import sys
 from datetime import datetime
 
@@ -47,6 +48,19 @@ def load(name):
 
 def esc(v):
     return _html.escape(str(v))
+
+
+def cell(v, digits=4):
+    """A published/recomputed value for a table cell. None prints as a visible dash, not 'None'."""
+    if v is None or v == "":
+        return '<span class="blank" title="not published">&mdash;</span>'
+    if isinstance(v, bool):
+        return esc(str(v))
+    if isinstance(v, (int, float)):
+        if isinstance(v, float) and not v.is_integer():
+            return f"{v:.{digits}f}"
+        return str(int(v)) if isinstance(v, float) else str(v)
+    return esc(v)
 
 
 def num(v, digits=2, sign=False):
@@ -142,7 +156,8 @@ def layout(title, current, body, subtitle=""):
 </aside>
 <main id="main">
 <header class="topbar"><span class="crumb">{esc(title).upper()}</span>
-  <a class="review-link" href="{depth}pages/flagged.html">Flagged for review &nearr;</a></header>
+  <span><a class="review-link" href="{depth}../index.html">&larr; Line Lab</a>
+  &nbsp; <a class="review-link" href="{depth}pages/flagged.html">Flagged for review &nearr;</a></span></header>
 {sub}
 {body}
 <footer>
@@ -549,8 +564,7 @@ def page_audit():
     for c in aud.get("checks", []):
         kind = {"PASS": "ok", "FAIL": "bad", "BLANK": "warn"}.get(c["verdict"], "warn")
         rows.append([f'<code>{esc(c["id"])}</code>', esc(c["claim"]),
-                     num(c.get("published"), 6) if isinstance(c.get("published"), (int, float)) else esc(c.get("published")),
-                     num(c.get("recomputed"), 6) if isinstance(c.get("recomputed"), (int, float)) else esc(c.get("recomputed")),
+                     cell(c.get("published")), cell(c.get("recomputed")),
                      badges([c["verdict"]], kind), esc(c["method"]), src(c["source_id"])])
     body = f"""
 <div class="hero compact"><div class="eyebrow">LINE-BY-LINE AUDIT</div>
@@ -601,10 +615,8 @@ def page_evidence():
     ]
     for c in aud.get("checks", []):
         if c["id"].startswith(("market.", "data.")):
-            stat_rows.append([esc(c["id"]), esc(c["claim"]),
-                              num(c.get("published"), 4) if isinstance(c.get("published"), (int, float)) else esc(c.get("published")),
-                              num(c.get("recomputed"), 4) if isinstance(c.get("recomputed"), (int, float)) else esc(c.get("recomputed")),
-                              src(c["source_id"])])
+            stat_rows.append([esc(c["id"]), esc(c["claim"]), cell(c.get("published")),
+                              cell(c.get("recomputed")), src(c["source_id"])])
     body = f"""
 <div class="hero compact"><div class="eyebrow">EVIDENCE</div>
 <h1>The rows behind the summary.</h1>
@@ -847,7 +859,12 @@ def main() -> int:
     }
     for path, doc in pages.items():
         full = os.path.join(HUB, path)
-        os.makedirs(os.path.dirname(full), exist_ok=True)
+        os.makedirs(os.path.dirname(full) or HUB, exist_ok=True)
+        if path.startswith("pages/"):
+            # page bodies are written with hub-root-relative links; make them relative to pages/
+            doc = re.sub(r'href="(?!https?:|#|mailto:|\.\./)([^"]+)"',
+                         lambda m: f'href="../{m.group(1)}"', doc)
+            doc = doc.replace('href="../assets/', 'href="../assets/')
         with open(full, "w") as fh:
             fh.write(doc)
     with open(os.path.join(HUB, "assets", "style.css"), "w") as fh:

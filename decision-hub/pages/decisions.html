@@ -19,7 +19,8 @@
 </aside>
 <main id="main">
 <header class="topbar"><span class="crumb">DECISIONS</span>
-  <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a></header>
+  <span><a class="review-link" href="../../index.html">&larr; Line Lab</a>
+  &nbsp; <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a></span></header>
 
 
 <div class="hero compact"><div class="eyebrow">DECISIONS</div>
@@ -39,7 +40,7 @@ The recommendation column is where the measured evidence points — it is advice
 <p class="muted">The measured results say the model loses to the close. Effort spent on price modelling and on injury/depth information has different expected value, and only one can be first.</p>
 <div class="table-wrap"><table class=""><caption class="caption">Options are mutually exclusive for the next build.</caption><thead><tr><th>Option</th><th>What happens if chosen</th><th>Supporting evidence</th><th>Notes</th><th>Source</th></tr></thead><tbody><tr><td><strong>Price modelling: opening line, timestamped prices, closing-line value</strong></td><td>Unlocks the only skill metric that needs no result: CLV. Currently impossible because only the close is stored.</td><td>FL-DH-08: no opening line and no timestamp in the feed; every ROI is settled at the close.</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td><strong>Injury and depth signal (this session&#x27;s tracker)</strong></td><td>Gives a measurable feature for the first time: depth lost per team-week. Must be tested against the line, not assumed to matter.</td><td>decision-hub/data/injuries.json: 636 reported absences with depth ranks for 2026.</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td><strong>Prop pricing and correlation</strong></td><td>Needs historical prop prices that do not exist here; without them only calibration can be measured, not ROI.</td><td>FL-DH-09: no historical prop prices in the feed.</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr></tbody></table></div>
 <h3>Facts that block this decision</h3><ul class="crosses"><li>Only one workstream can be first</li></ul></section><section class="block"><h2>Choosing</h2>
-<p>Open the <a href="pages/workflow.html">review workflow</a>: it lists each decision with a
+<p>Open the <a href="../pages/workflow.html">review workflow</a>: it lists each decision with a
 place to record the choice and what follows. Nothing changes on the site until a choice is
 recorded there.</p></section>
 <footer>

@@ -1317,3 +1317,61 @@ hand-edited HTML — and (b) this section of `COORDINATION.md`. Sibling dashboar
   anything: `scripts/build_site.py` is idempotent, `tests/check_site.py` passes (97 pages, 251 tables,
   3,992 links), `tests/check_derived.py` passes (11 strict-JSON files, 49 verification checks,
   0 disagreements, 32/32 teams for 2020).
+
+### Log — `arena/7dbbeba6-korea2` (2026-11-12, continued)
+
+**Delivered (all under `decision-hub/`, plus one nav line):**
+
+| Task | Status | Evidence |
+|---|---|---|
+| DH-1 Decision hub: 14 suggestions, 16 questions, 3 decisions, 10-gate framework, 12 pages | **done** | `decision-hub/scripts/build_site.py`; 12 pages, 39 tables, 714/714 rows sourced |
+| DH-2 Injury & depth tracker from official reports + club depth charts | **done** | `decision-hub/data/injuries.json` (636 absences, 296 team-weeks, 32 teams, depth snapshot 2026-11-12T07:01:31Z); refreshed by `.github/workflows/fetch-injuries.yml`, runs `43223996079` … `43225084442` all green |
+| DH-3 Independent line-by-line audit of the root build | **done** | `decision-hub/scripts/audit_root.py` → 24 checks, 22 pass, 0 fail, 2 blank, 7 flags |
+| DH-4 Executive summary + site integration | **done** | `decision-hub/EXECUTIVE_SUMMARY.md`; one nav entry added by the root generator `scripts/lib/site.py` (`NAV`) and regenerated with `scripts/build_site.py` |
+| DH-5 PR, merge, deploy verification | in progress | see the release record appended below when complete |
+
+**Verification run on the merged working tree (2026-11-12):** `scripts/build_site.py` (idempotent),
+`tests/check_site.py` (109 pages, 290 tables, 5,124 links, pass), `tests/check_derived.py` (11 strict
+JSON, 49 checks, 0 disagreements), `decision-hub/scripts/check_site.py` (12 pages, 714/714 rows
+sourced, no broken link or anchor), `verification/recompute.py` (49 checks, 45 pass, 0 mismatch,
+11 expected observations; 2020 32/32 and 2026 32/32 teams).
+
+**Findings that changed a published conclusion (published on `decision-hub/pages/flagged.html`):**
+
+1. **FL-DH-01 (high) — the ATS "coin-flip test" is an arithmetic identity.** `scripts/analyze_luck.py`
+   pools `ats_margin` with its negation, so exactly one row of each pair is positive and the published
+   rate (0.5) and p-value (1.0) are the same for any dataset. The root site presents it on the
+   overview, the luck page and the executive summary as evidence that the spread market shows no
+   tilt. Corrected one-observation-per-game statistic, recomputed independently:
+   **n = 6,892, home covers 3,371, rate 0.4891, 95% Wilson CI 0.4773–0.5009, two-sided p = 0.0727.**
+   Nothing in the repository was changed to hide this; the flag names the code and the lines.
+2. **FL-DH-02 (medium) — the sign diagnostic compares two formulae.** `result + spread_line > 0`
+   (0.6003) is not the alternative sign convention; under the file's own stated convention it is the
+   complement of `result - spread_line`. The convention is established by the moneyline cross-check,
+   not by this ratio.
+3. **FL-DH-05 (medium) — the cited injury-policy URL is still 404** on 2026-11-12, but the *data*
+   claim on the root site ("no injury-report source confirmed") is now out of date: the league's live
+   report serves Week 10 of 2026 and the tracker consumes it. The policy text is the open item, not
+   the data.
+4. **FL-DH-06 (medium) — the 2nd/3rd/4th-string requirement had no implementation.** No code in the
+   repository joined injuries to a depth chart; the phrase appeared only in prose. The tracker is the
+   first implementation, and the feed's `pos_rank` is used directly because the published dictionary
+   defines it as rank grouped by `pos_slot`.
+
+**Corrections made to my own first attempt (recorded so the history is honest):** the first tracker
+build mis-classified `CB`/`S`/`LB` as special teams because it matched only exact abbreviations while
+the feed writes `RILB`/`LCB`; it then read `pos_rank` as a rank within (team, position) and reported a
+WR as "8th string". Both were caught by inspecting the generated rows, fixed, and the data rebuilt
+(workflow runs 43224293805, 43224834671, 43224949479, 43225084442). The published rows now carry the
+raw `pos_slot`, `pos_rank_in_slot` and the tie count so the ordering can be audited.
+
+**Requests to other scopes (not actioned by this session):**
+- Root-site owner: consider adopting S-02 (one-sided ATS test), S-01 (per-row class column) and S-13
+  (archive index) from `decision-hub/pages/suggestions.html`. This session did not edit any root
+  analysis script.
+- `scripts/analyze_luck.py` and `verification/recompute.py` were left untouched; the flag names the
+  exact lines so the owner can decide.
+
+**No conflicts:** the only concurrent writer on this branch was the `fetch-injuries` workflow
+committing `decision-hub/data/injuries.json`; each push was rebased (`git pull --rebase`) before
+pushing and no work was discarded.
