@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions | Line Lab</title>
+<meta name="description" content="Reviewable register of suggestions to improve decision-making before any change is implemented.">
+<meta name="generator" content="line-lab/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="mark">LL</span><span>LINE LAB<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">Workspace</div>
+  <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/executive.html">Executive summary</a><a href="../pages/lines.html">Originated lines</a><a href="../pages/props.html">Player props</a><a href="../pages/correlation.html">Correlation &amp; parlays</a><a href="../pages/strategies.html">Strategy lab</a><a href="../pages/validation.html">Validation gates</a><a href="../pages/leaderboard.html">Leaderboard</a><a href="../pages/luck.html">Removing luck</a><a href="../pages/market.html">Market benchmark</a><a href="../pages/verification.html">Verification</a><a href="../pages/method.html">Method &amp; data</a><a href="../pages/sources.html">Source register</a><a href="../pages/suggestions.html" class="active" aria-current="page">Suggestions</a><a href="../pages/decision-questions.html">Decision questions</a><a href="../pages/injuries-depth.html">Injury &amp; depth</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/archive.html">Archive</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Pipeline live<br><strong>0 of 7 strategies approved</strong><span>Data through 2026-11-01. Rejections are listed with the exact gate that failed.</span></div>
+</aside>
+<main id="main">
+<header class="topbar">
+  <span class="crumb">SUGGESTIONS</span>
+  <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a>
+</header>
+
+<div class="hero compact"><div class="eyebrow">DECISION IMPROVEMENT</div>
+<h1>Suggestions before we change anything.</h1>
+<p class="lede">This page is a review board. Each suggestion lists the area, the idea, why it improves the decision, the effort, and a recommended path. <strong>Nothing here is implemented until a reviewer chooses the best path.</strong> Status starts at <span class="badge warn">PROPOSED</span>; set it to <span class="badge ok">CHOSEN</span> or <span class="badge bad">REJECTED</span> after review.</p></div>
+
+<div class="notice"><span class="dot"></span><div>
+<strong>How to use this page.</strong><br>
+Read the register, pick the highest-value suggestion per area, then decide the path (build / buy / defer). The &ldquo;Recommended&rdquo; column is the analyst&rsquo;s default; the reviewer overrides it. Linked rows carry an official or in-repo source for manual checks.</div>
+<a href="#register">Jump to register &rarr;</a></div>
+
+<section class="block"><h2>Why these suggestions matter</h2>
+<div class="grid2">
+  <div class="panel"><h3>Decision quality</h3><ul class="ticks">
+    <li>Separates &ldquo;we should build it&rdquo; from &ldquo;we can source it&rdquo; &mdash; most failures here are data gaps, not ideas.</li>
+    <li>Forces a chosen path <em>before</em> code changes, so work is reviewable and reversible.</li>
+    <li>Mirrors the validation gates: a suggestion must clear a source-availability check before it is funded.</li>
+  </ul><a class="panel-link" href="../pages/validation.html">Validation gates &rarr;</a></div>
+  <div class="panel"><h3>What is already strong</h3><ul class="crosses">
+    <li>The ten-gate filter already refuses noise &mdash; keep it.</li>
+    <li>Correlations are measured, not assumed &mdash; use them in parlays.</li>
+    <li>Originated lines are published as a benchmark, not a bet list &mdash; correct posture.</li>
+  </ul><a class="panel-link" href="../pages/executive.html">Executive summary &rarr;</a></div>
+</div></section>
+
+<section class="block" id="register"><h2>Suggestion register</h2>
+<div class="table-wrap"><table class=""><caption class="caption">Each row links to an official source or an in-repo page for manual review. The Source column is the evidence behind the suggestion.</caption>
+<thead><tr><th>ID</th><th>Area</th><th>Suggestion</th><th>Why it improves the decision</th><th>Effort</th><th>Recommended path</th><th>Status</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>S1</td><td>Data</td><td>Establish a single, verified source of depth charts (resolve the current 404).</td><td>Unlocks starter-vs-backup deficiency scoring; today &ldquo;2nd/3rd/4th string&rdquo; cannot be sourced.</td><td>Medium</td><td>Build (nflverse + snap-count proxy)</td><td><span class="badge warn">PROPOSED</span></td><td class="src"><a href="../pages/injuries-depth.html">Injury &amp; depth</a></td></tr>
+<tr><td>S2</td><td>Validation</td><td>Add a closing-line-value (CLV) tracker using opening vs closing prices.</td><td>CLV is the cleanest skill-vs-luck separator; opening lines are not captured today.</td><td>Medium</td><td>Build (needs opening-line feed)</td><td><span class="badge warn">PROPOSED</span></td><td class="src"><a href="https://help.draftkings.com/hc/en-us/articles/4405235694739-What-is-a-parlay-bet-US" rel="noopener">Operator rules</a></td></tr>
+<tr><td>S3</td><td>Props</td><td>Acquire a licensed, timestamped history of player-prop and alternate prices.</td><td>The only missing input that would let any prop strategy be priced at all.</td><td>High (external)</td><td>Buy / partner</td><td><span class="badge warn">PROPOSED</span></td><td class="src"><a href="../pages/props.html">Player props</a></td></tr>
+<tr><td>S4</td><td>Model</td><td>Feed verified injuries into the ratings as per-position adjustments.</td><td>Captures starter losses the current model ignores; see the injuries page.</td><td>Medium</td><td>Build</td><td><span class="badge warn">PROPOSED</span></td><td class="src"><a href="../pages/injuries-depth.html">Injury &amp; depth</a></td></tr>
+<tr><td>S5</td><td>Parlays</td><td>Ship a correlation-aware same-game parlay pricer (dependencies measured, not independence assumed).</td><td>Independence pricing understates joint odds by ~1.45x; this corrects it.</td><td>Low</td><td>Build (measurements exist)</td><td><span class="badge warn">PROPOSED</span></td><td class="src"><a href="../pages/correlation.html">Correlation</a></td></tr>
+<tr><td>S6</td><td>Governance</td><td>Run a holdout-only leaderboard with no parameter peeking.</td><td>Prevents overfitting; a rejected strategy&rsquo;s rank still shows the least-wrong hypothesis.</td><td>Low</td><td>Build (process)</td><td><span class="badge warn">PROPOSED</span></td><td class="src"><a href="../pages/leaderboard.html">Leaderboard</a></td></tr>
+<tr><td>S7</td><td>Compliance</td><td>Add a per-user jurisdiction / legal check before any staking.</td><td>Wagering legality varies by state; prevents unlawful use.</td><td>Low</td><td>Build (gating)</td><td><span class="badge warn">PROPOSED</span></td><td class="src"><a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" rel="noopener">NCPG</a></td></tr>
+<tr><td>S8</td><td>Ops</td><td>Automate source-freshness and link-dead monitoring in CI.</td><td>Catches dead official links (e.g., the depth-chart 404) before they silently break analysis.</td><td>Low</td><td>Build (CI)</td><td><span class="badge warn">PROPOSED</span></td><td class="src"><a href="../pages/sources.html">Source register</a></td></tr>
+<tr><td>S9</td><td>Product</td><td>Keep originated lines published as a benchmark, never as a bet list.</td><td>Honest about model-vs-market; the market still beats the model.</td><td>Done</td><td>Keep</td><td><span class="badge ok">CHOSEN</span></td><td class="src"><a href="../pages/executive.html">Executive summary</a></td></tr>
+<tr><td>S10</td><td>Staking</td><td>Apply fractional-Kelly staking only to approved (10/10 gate) strategies.</td><td>Limits ruin even when a strategy is skillful; sizes bets to edge and variance.</td><td>Medium</td><td>Build (post-approval)</td><td><span class="badge warn">PROPOSED</span></td><td class="src"><a href="https://archive.org/details/bstj35-4-917" rel="noopener">Kelly 1956</a></td></tr>
+</tbody></table></div></section>
+
+<section class="block"><h2>Review workflow</h2>
+<ol class="steps">
+<li>Reviewer reads the register and the linked evidence for each row.</li>
+<li>For each suggestion, choose a path: <strong>Build</strong>, <strong>Buy/Partner</strong>, <strong>Defer</strong>, or <strong>Reject</strong>.</li>
+<li>Update the Status cell to <span class="badge ok">CHOSEN</span> or <span class="badge bad">REJECTED</span>.</li>
+<li>Only <span class="badge ok">CHOSEN</span> items move to the build backlog; everything else stays as a research record.</li>
+<li>Re-run <code>tests/check_site.py</code> after edits to confirm no link or source-row breaks.</li>
+</ol></section>
+
+<footer>
+  <p>Research and measurement, not betting advice. Suggestions are proposals, explicitly not source-verified results; each links to the evidence a reviewer should check. No strategy is approved for capital.</p>
+  <p><a href="../pages/sources.html">Source register</a> &middot;
+     <a href="../pages/method.html">Method</a> &middot;
+     <a href="../pages/flagged.html">Flagged for review</a></p>
+</footer>
+</main></div></body></html>

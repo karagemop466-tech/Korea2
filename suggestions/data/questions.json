@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "title": "Questions, information and answers that must be addressed before any reasonable decision \u2014 organized by what we have and do not have",
+    "generated_on": "2026-11-12",
+    "policy": "Every row states a question, the information needed to answer it, the best answer from the current data (or blank if unverified), and a suggestion for discovering the missing piece. No row invents a number."
+  },
+  "rows": [
+    {
+      "id": "Q-01",
+      "question": "Can the closing line be beaten by our model?",
+      "information_needed": "Model spread MAE vs market MAE on same walk-forward window, plus incremental regression of (actual\u2212close) on (ours\u2212close)",
+      "have_or_missing": "have",
+      "answer": "No. Market MAE 10.25 pts (n=7087); model MAE 10.39 pts walk-forward 2023-2026; incremental coefficient c=-0.019 (p=0.881). The model adds nothing beyond the close.",
+      "suggestion_if_missing": "Re-run scripts/analyze_model.py with frozen 2021-2022 hyperparameters and check data/derived/model.json accuracy_spread and incremental_information.",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES",
+        "SRC-NFLREADR-DICT-SCHED"
+      ]
+    },
+    {
+      "id": "Q-02",
+      "question": "Is the spread market exploitable on average?",
+      "information_needed": "Pooled ATS coin-flip test over all settled spread bets with push-aware settlement at closing prices",
+      "have_or_missing": "have",
+      "answer": "No. 13,784 settled spread team-games; pooled cover rate 50.0%; binomial p vs 50% = 1.0. Blind backing of any side loses to vig (home -4.89% at stored prices).",
+      "suggestion_if_missing": "Re-settle from games.csv.gz with spread_line sign convention proved (positive = home favoured, corr 0.425) and moneyline cross-check.",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES",
+        "SRC-NFLREADR-DICT-SCHED"
+      ]
+    },
+    {
+      "id": "Q-03",
+      "question": "Did any candidate strategy pass the validation gates?",
+      "information_needed": "Gate matrix G1-G10 per strategy, with n, ROI, p-value, sample-size gate, FDR, stability, executable check",
+      "have_or_missing": "have",
+      "answer": "No. 0 of 7 candidates (plus 2 controls) approved; every candidate fails at least 5 gates. Best gated count 5/10 (divisional home underdog, ROI -1.21%).",
+      "suggestion_if_missing": "Read data/derived/strategies.json and data/derived/leaderboard.json; each failed gate is listed in failed array.",
+      "sources": [
+        "SRC-NIST-PROP-TEST",
+        "SRC-BH-1995",
+        "SRC-PINNACLE-CLV"
+      ]
+    },
+    {
+      "id": "Q-04",
+      "question": "Are same-game parlay legs independent?",
+      "information_needed": "Pearson r between per-team-game quantities (QB passing yards, WR1/WR2 receiving yards, RB rushing yards, home cover vs over)",
+      "have_or_missing": "have",
+      "answer": "No. QB\u2192WR1 r=0.562 (n=7560); WR1\u2194WR2 r=0.120; home-cover vs over \u03c6=0.016. 4-leg same-team joint 11.1% vs product 5.7% \u2014 independence understates joint rate by factor ~1.95.",
+      "suggestion_if_missing": "Compute via NIST Pearson formula over games.csv.gz + player_week.csv.gz per-team-game legs; verify with verification/recompute.py (49 checks, 45 pass).",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-NFLVERSE-RELEASES",
+        "SRC-DK-PARLAY-HELP"
+      ]
+    },
+    {
+      "id": "Q-05",
+      "question": "Is a season win-loss record a reusable signal?",
+      "information_needed": "Pythagorean expectation vs actual win%, SD of luck wins, year-over-year luck correlation",
+      "have_or_missing": "have",
+      "answer": "Mostly no. Pythagorean R\u00b2=0.819 over 877 team-seasons (exponent 2.37); luck SD=1.32 wins; y-o-y luck r=0.024 (p=0.49, n=842). Records are mostly noise beyond points scoring.",
+      "suggestion_if_missing": "Extend analysis to larger sample (877 seasons) to confirm R\u00b2 and sd_luck_wins in data/derived/luck.json.",
+      "sources": [
+        "SRC-NFL-STANDINGS-2020",
+        "SRC-NIST-CORR"
+      ]
+    },
+    {
+      "id": "Q-06",
+      "question": "Can prop ROI be measured from the current feed?",
+      "information_needed": "Historical player-prop market prices (opening and closing) with timestamps aligned to player-game outcomes",
+      "have_or_missing": "do_not_have",
+      "answer": "",
+      "suggestion_if_missing": "Leave cells blank per verification policy. Discovery path: confirm via NFL official data partner announcement that prop and SGP pricing is distributed to operators via Genius, not to this project (flagged high severity). Do not fabricate -110 assumptions; only calibration and MAE vs naive baseline are publishable.",
+      "sources": [
+        "SRC-NFL-GENIUS-EXTENSION"
+      ]
+    },
+    {
+      "id": "Q-07",
+      "question": "Do the published numbers survive an independent recomputation?",
+      "information_needed": "Independent re-implementation that imports nothing from scripts/ or pipeline/ and reconciles standings vs NFL.com",
+      "have_or_missing": "have",
+      "answer": "Yes, arithmetically: 45 of 49 checks agree, 0 material disagreements (11 observations expected to differ due to window pruning). 2020 32/32 teams match NFL.com; 2026 32/32 match through 2026-11-01.",
+      "suggestion_if_missing": "Run verification/recompute.py (scipy/pandas/numpy only) and compare committed JSON vs recomputed; see data/derived/verification.json.",
+      "sources": [
+        "SRC-NFL-STANDINGS-2020",
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "Q-08",
+      "question": "Which defenses or offenses are currently deficient because starters are out?",
+      "information_needed": "Live weekly injury reports (practice participation + game status) joined to official depth charts with First/Second/Third/Fourth columns, yielding per-team deficiency tier",
+      "have_or_missing": "do_not_have (tracker not built)",
+      "answer": "",
+      "suggestion_if_missing": "SUG-03: build pipeline that ingests nfl.com/injuries/league/<season>/regN at 4pm ET filing deadline (required by Important Dates), and depth charts from colts.com/team/depth-chart and nfl.com/teams/<team>/roster; publish per-team deficiency: e.g., PIT OT starter questionable \u2192 backup LT Fred Johnson. Do not infer tiers beyond roster sentence.",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB",
+        "SRC-NFL-INJURY-POLICY-COMP",
+        "SRC-COLTS-DEPTH-CHART",
+        "SRC-NFL-ROSTER-PATRIOTS",
+        "SRC-NFL-IMPORTANT-DATES-2026"
+      ]
+    },
+    {
+      "id": "Q-09",
+      "question": "Are backups on specific position groups materially worse than starters?",
+      "information_needed": "Starter vs backup performance deltas measured on team-seasons where depth-deficiency changed, using point-in-time roster data",
+      "have_or_missing": "do_not_have",
+      "answer": "",
+      "suggestion_if_missing": "Once tracker (Q-08) exists, compute for each team\u00d7week\u00d7position whether Out/Doubtful starter was replaced by 2nd/3rd/4th string backup (depth rank from depth chart), then measure margin and EPA deltas vs market expectation; gate through FDR control before publication.",
+      "sources": [
+        "SRC-NFL-GSIS-GUIDE",
+        "SRC-NFL-NGS-TECH",
+        "SRC-BH-1995"
+      ]
+    },
+    {
+      "id": "Q-10",
+      "question": "What price and size is actually obtainable for a given bet at a given time?",
+      "information_needed": "Verified sportsbook account, limit and jurisdiction for the exact market and timestamp (G9 executable gate)",
+      "have_or_missing": "do_not_have",
+      "answer": "",
+      "suggestion_if_missing": "Flagged high severity: no verified execution access, limits, jurisdiction or price availability. To discover, open account with licensed operator filed under MGC/Nevada Regulation 22, record offer timestamp vs close, and publish eligibility per jurisdiction. Until then every strategy fails G9 by construction.",
+      "sources": [
+        "SRC-NV-REG22",
+        "SRC-DK-HOUSE-RULES-CURRENT",
+        "SRC-DK-HOUSE-RULES-OBS-ARCHIVE"
+      ]
+    },
+    {
+      "id": "Q-11",
+      "question": "Is the weather signal real or an artifact of missing coverage and price assumptions?",
+      "information_needed": "Outdoor stadiums matched to NWS point forecasts with wind_gust/temp/precip and weather_available boolean; ROI settled only at stored prices with exclusion counts",
+      "have_or_missing": "partial",
+      "answer": "Marginal on stored prices: wind-under 46 bets, ROI +1.51% (not significant); earlier +8.65% over 649 included 219 no-price rows. Historical weather coverage ~57% outdoor 2020-2026. No current live fill.",
+      "suggestion_if_missing": "SUG-06: add per-game weather_available flag and enforce stored-price-only settlement (n_excluded_missing_price=1902). Re-measure only on weather_available games; gate through FDR.",
+      "sources": [
+        "SRC-NOAA-NWS"
+      ]
+    },
+    {
+      "id": "Q-12",
+      "question": "Has luck been removed from the leaderboard ranking?",
+      "information_needed": "Deflated Sharpe / permutation null distribution calibrated to number of variants tried, plus public/private split to block overfitting",
+      "have_or_missing": "have (as design, not as funded prize)",
+      "answer": "Design is published: deflated Sharpe p-value per strategy, BH q=0.10 across 9 tests, and Kaggle-style public/private split. On the data tried, no strategy passes after luck adjustment. Reward pool not funded \u2014 paper schedule only.",
+      "suggestion_if_missing": "Extend luck.json with permutation null per strategy and document private leaderboard holdout window (e.g., last 4 weeks never used for tuning).",
+      "sources": [
+        "SRC-KELLY-1956",
+        "SRC-BH-1995",
+        "SRC-KAGGLE-DOCS",
+        "SRC-NIST-PROP-TEST"
+      ]
+    },
+    {
+      "id": "Q-13",
+      "question": "Can we be sure we did not hallucinate or mistype a number?",
+      "information_needed": "Deterministic build from committed JSON plus strict-JSON and per-row source checks with recomputed verification",
+      "have_or_missing": "have",
+      "answer": "Build is deterministic: scripts/build_site.py writes byte-identical output on re-run; tests/check_site.py fails on any table row without source link (85 pages, 221 tables, 3348 links, 0 broken on last main); tests/check_derived.py fails on non-strict JSON and on verification disagreement.",
+      "suggestion_if_missing": "Run python scripts/build_site.py twice and diff; run verification/recompute.py standalone; confirm 0 material disagreements.",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES",
+        "SRC-NFLREADR-DICT-SCHED",
+        "SRC-NIST-CORR"
+      ]
+    },
+    {
+      "id": "Q-14",
+      "question": "Where does the reward money come from and who judges the competition?",
+      "information_needed": "Funded prize pool, judging criteria, and anti-cheat rules for the leaderboard",
+      "have_or_missing": "do_not_have",
+      "answer": "",
+      "suggestion_if_missing": "Leave reward column labelled as schedule not promise; mode is on NFL Big Data Bowl precedent ($100,000 pool judged by 32 NFL club analytics staff on Kaggle). To make funded, would need sponsor, published rules, and independent audit per Kaggle docs anti-cheat (no private-window tuning, bet logs auditable vs official stats).",
+      "sources": [
+        "SRC-KAGGLE-BDB2027",
+        "SRC-NFL-BDB-ANNOUNCE",
+        "SRC-KAGGLE-DOCS"
+      ]
+    },
+    {
+      "id": "Q-15",
+      "question": "Are any of the official source URLs no longer serving content?",
+      "information_needed": "HTTP status and excerpt re-checked on 2026-11-12 for legacy URLs",
+      "have_or_missing": "have",
+      "answer": "Several legacy links now 404 or empty: operations.nfl.com/the-rules/2025-nfl-rulebook (404), operations.nfl.com/football-ops/league-governance/injury-report/ (no article body), nflreadr dictionary_games.html (404). All are flagged low severity and none is linked from published navigation (current rulebook URL verified).",
+      "suggestion_if_missing": "SUG-04 and SUG-12: replace with verified current URLs (2026 rulebook, active 10.7.26 house rules) and publish 404 list on Flagged page.",
+      "sources": [
+        "SRC-NFL-RULEBOOK-2026",
+        "SRC-DK-HOUSE-RULES-OBS-ARCHIVE"
+      ]
+    }
+  ]
+}
