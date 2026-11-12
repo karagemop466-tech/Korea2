@@ -27,6 +27,15 @@ NAV = [
     ("pages/method.html", "Method &amp; data"),
     ("pages/sources.html", "Source register"),
     ("pages/flagged.html", "Flagged for review"),
+    ("pages/suggestions.html", "Suggestions hub"),
+    ("pages/decision-hub.html", "Decision desk"),
+    ("pages/decision-suggestions.html", "Suggestion register"),
+    ("pages/decision-questions.html", "Open questions"),
+    ("pages/decision-injury-depth.html", "Injury &amp; depth"),
+    ("pages/decision-signals.html", "Signal lab"),
+    ("pages/decision-parlay.html", "Parlay pricing"),
+    ("pages/decision-verify.html", "Re-verify the numbers"),
+    ("pages/decision-summary.html", "Decision summary"),
     ("pages/archive.html", "Archive"),
 ]
 

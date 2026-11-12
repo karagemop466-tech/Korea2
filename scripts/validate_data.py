@@ -45,6 +45,7 @@ ALLOWED_DOMAINS = {
     "nflreadr.nflverse.com",    # nflverse data dictionary (community redistribution of official NFL feeds)
     "archive.org",              # Internet Archive scan of the Bell System Technical Journal (Kelly 1956)
     "www.stat.purdue.edu",      # Purdue University hosting Benjamini & Hochberg (1995)
+    "aglc.ca", "www.aglc.ca",  # Alberta Gaming, Liquor and Cannabis; official provincial regulator
     "colts.com", "www.colts.com",  # Colts official team site — depth chart (verified 2026-11-12, arena/43870fb8-korea2)
 }
 

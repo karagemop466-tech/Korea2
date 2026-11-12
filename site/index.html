@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decision Desk | Decision Desk</title>
+<meta name="generator" content="line-lab/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Decision Desk additions - scoped, inherits the Line Lab palette from assets/style.css */
+.dd-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin:22px 0 8px; }
+.dd-kpi { border:1px solid var(--line); background:var(--panel); border-radius:var(--radius); padding:14px 16px; }
+.dd-kpi span { display:block; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.dd-kpi strong { display:block; font-size:26px; line-height:1.15; margin:6px 0 2px; font-variant-numeric:tabular-nums; }
+.dd-kpi p { margin:0; font-size:12px; color:var(--muted); line-height:1.45; }
+.dd-kpi.good strong { color:var(--accent); } .dd-kpi.bad strong { color:var(--bad); }
+.dd-kpi.warn strong { color:var(--warn); } .dd-kpi.info strong { color:var(--accent-2); }
+.dd-steps { counter-reset:s; list-style:none; padding:0; margin:14px 0 0; display:grid; gap:10px; }
+.dd-steps li { counter-increment:s; border:1px solid var(--line); background:var(--panel); border-radius:var(--radius); padding:12px 14px 12px 46px; position:relative; }
+.dd-steps li:before { content:counter(s); position:absolute; left:12px; top:11px; width:22px; height:22px; border-radius:50%;
+  display:grid; place-items:center; background:var(--panel-2); border:1px solid var(--line); font-size:11px; color:var(--accent); }
+.dd-steps strong { display:block; font-size:13px; }
+.dd-steps p { margin:2px 0 0; font-size:12px; color:var(--muted); }
+.tag { display:inline-block; font-size:10px; letter-spacing:.08em; text-transform:uppercase; padding:2px 7px; border-radius:20px;
+  border:1px solid var(--line); background:var(--panel-2); color:var(--muted); white-space:nowrap; }
+.tag.ok { color:var(--accent); border-color:#1f4d3d; } .tag.bad { color:var(--bad); border-color:#5a2a2a; }
+.tag.warn { color:var(--warn); border-color:#5a4a1a; } .tag.info { color:var(--accent-2); border-color:#1e3f52; }
+.tag.na { color:var(--muted); }
+.blank { color:#5b6b7a; font-style:italic; }
+.dd-card { border:1px solid var(--line); background:var(--panel); border-radius:var(--radius); padding:16px 18px; margin:0 0 14px; }
+.dd-card h3 { margin:0 0 6px; font-size:15px; }
+.dd-card p { margin:0 0 8px; font-size:13px; color:var(--muted); }
+.dd-card .dd-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.dd-sub { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:18px 0 6px; }
+.dd-two { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:900px){ .dd-two { grid-template-columns:1fr; } }
+table.compact td, table.compact th { font-size:12.5px; }
+td.num { text-align:right; font-variant-numeric:tabular-nums; font-family:var(--mono); }
+.dd-note { border-left:3px solid var(--warn); background:rgba(251,191,36,.06); padding:10px 14px; border-radius:0 var(--radius) var(--radius) 0; font-size:13px; margin:14px 0; }
+.dd-note.bad { border-left-color:var(--bad); background:rgba(248,113,113,.06); }
+.dd-note.ok { border-left-color:var(--accent); background:rgba(110,231,183,.06); }
+</style>
+</head><body>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html"><span class="mark">DD</span><span>DECISION DESK<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">This section</div>
+  <nav aria-label="Section navigation">
+    <a href="../pages/decision-hub.html">Decisions</a><a href="../pages/decision-suggestions.html">Suggestions</a><a href="../pages/decision-questions.html">Open questions</a><a href="../pages/decision-injury-depth.html">Injury &amp; depth</a><a href="../pages/decision-signals.html">Signal lab</a><a href="../pages/decision-parlay.html">Parlay pricing</a><a href="../pages/decision-verify.html">Re-verification</a><a href="../pages/decision-summary.html">Executive summary</a>
+  </nav>
+  <div class="sidebar-note"><span class="dot"></span>Published<br><strong>Session arena/90e4fdbe</strong><span>Every page links back to the live dashboard.</span></div>
+</aside>
+<main id="main">
+<header class="topbar"><span class="crumb">DECISION DESK</span>
+<a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a></header>
+<div class="hero"><div class="eyebrow">DECISION DESK &middot; SESSION ARENA/90E4FDBE</div><h1>Everything you need<br><em>to choose a path.</em></h1><p class="lede">A decision layer for the NFL line-origination research in this repository: twelve suggestions with evidence and a review workflow, seventeen open questions with what is missing, the official injury report transcribed and the depth question left honestly blank, a 23-variant signal lab with every rejection explained, the measured parlay-pricing gap, and nineteen independent checks of the numbers the live dashboard publishes.</p><p><a href="../index.html" class="review-link">Go to the live dashboard &nearr;</a></p></div><div class="dd-kpis"><article class="dd-kpi good"><span>Checks reproduced</span><strong>16/19</strong><p>Sixteen agree, two disagree, one documented difference.</p></article><article class="dd-kpi bad"><span>Strategies qualified</span><strong>0</strong><p>Of 23 variants across ten gates.</p></article><article class="dd-kpi info"><span>Suggestions</span><strong>12</strong><p>All pending a reviewer's decision.</p></article><article class="dd-kpi info"><span>Open questions</span><strong>17</strong><p>Four groups, from answerable now to not answerable yet.</p></article></div><section class="block"><div class="eyebrow">CONTENTS</div><h2>Pages in this section</h2><div class="dd-two"><div class="dd-card"><h3>Decisions hub</h3><p>The overview: what is on the desk and the four findings that change a decision.</p><a href="../pages/decision-hub.html">Open &rarr;</a></div><div class="dd-card"><h3>Suggestions</h3><p>Twelve proposals with cost, payoff, risk, evidence and a recommended path.</p><a href="../pages/decision-suggestions.html">Open &rarr;</a></div><div class="dd-card"><h3>Open questions</h3><p>What must be answered before a decision is reasonable, and what is missing.</p><a href="../pages/decision-questions.html">Open &rarr;</a></div><div class="dd-card"><h3>Injury &amp; depth</h3><p>The official Week 10 report transcribed, plus why depth rank is blank.</p><a href="../pages/decision-injury-depth.html">Open &rarr;</a></div><div class="dd-card"><h3>Signal lab</h3><p>23 candidate signals, ten gates each, and the exact gate that failed.</p><a href="../pages/decision-signals.html">Open &rarr;</a></div><div class="dd-card"><h3>Parlay pricing</h3><p>Measured correlation and the measured-vs-multiplied pricing gap.</p><a href="../pages/decision-parlay.html">Open &rarr;</a></div><div class="dd-card"><h3>Re-verification</h3><p>19 independent checks and 10 irregularities with sources.</p><a href="../pages/decision-verify.html">Open &rarr;</a></div><div class="dd-card"><h3>Executive summary</h3><p>The one-page version: state, findings, sequence.</p><a href="../pages/decision-summary.html">Open &rarr;</a></div></div></section>
+<footer><p>Research and measurement, not betting advice.</p>
+<p><a href="../index.html">Live dashboard</a> &middot; <a href="../pages/sources.html">Source register</a></p></footer>
+</main></div></body></html>

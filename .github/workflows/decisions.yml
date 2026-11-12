@@ -1,0 +1,66 @@
+name: decisions
+
+# Verifies the Decision Desk section: strict JSON, per-row source links, a byte-reproducible rebuild
+# from the committed data, register rules, and no leftover placeholders. Fails closed.
+on:
+  push:
+    branches: [main, "arena/**"]
+    paths:
+      - "site/**"
+      - "pages/decision*.html"
+      - "pages/decisions.html"
+      - "pages/suggestions.html"
+      - "pages/questions.html"
+      - "pages/injury-depth.html"
+      - "pages/signals-lab.html"
+      - "pages/parlay-pricing.html"
+      - "scripts/lib/site.py"
+      - ".github/workflows/decisions.yml"
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  decision-desk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the pinned analysis stack
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --retries 5 --timeout 60 -r requirements.txt
+      - name: Rebuild the section from the committed data
+        run: |
+          python site/scripts/reverify.py
+          python site/scripts/registers.py
+          python site/scripts/signal_lab.py
+          python site/scripts/correlations.py
+          python site/scripts/injury_depth.py
+          python site/scripts/build_site.py
+      - name: Verify the section (data, sources, rows, reproducibility, registers)
+        run: python site/scripts/verify_all.py
+      - name: Rebuild the live dashboard so navigation stays in step
+        run: python scripts/build_site.py
+      - name: Repository checks still pass
+        run: |
+          python tests/check_site.py
+          python scripts/check_links.py
+          python tests/check_derived.py
+      - name: Fail if the rebuild changed any committed artefact
+        # Scoped: the root site's own generator owns index.html/pages/*, and sibling sessions' pages
+        # also live there, so this guard covers only the files this workflow rebuilds on purpose.
+        run: |
+          set -euo pipefail
+          paths="site pages/decision-hub.html pages/decision-suggestions.html pages/decision-questions.html \
+                 pages/decision-injury-depth.html pages/decision-signals.html pages/decision-parlay.html \
+                 pages/decision-verify.html pages/decision-summary.html"
+          if ! git diff --quiet -- $paths; then
+            git --no-pager diff --stat -- $paths
+            echo "::error::the decision desk rebuild is not reproducible - commit the regenerated files"
+            exit 1
+          fi

@@ -1,0 +1,2554 @@
+{
+ "meta": {
+  "session": "arena/90e4fdbe-korea2",
+  "generated_utc": "2026-11-01T00:00:00Z",
+  "data_as_of_gameday": "2026-11-01",
+  "test_window": "2023-2026 regular season",
+  "n_variants_measured": 23,
+  "n_qualified": 0,
+  "settlement": "Closing line and closing price in the nflverse schedules extract; pushes are returned at zero stake and excluded from the win-rate denominator.",
+  "multiplicity": "Benjamini-Hochberg q=0.10 across every measured variant in this file.",
+  "breakeven_note": "At -110 a bettor needs 52.381% of decided bets just to break even.",
+  "headline": "No candidate passes all ten gates. The blocker for every one of them is structural, not statistical: G1 cannot be evidenced from this extract (no timestamped line, no committed lineup snapshot). That is the finding that should drive the next decision.",
+  "caveat": "Measured on the committed extract only. Not betting advice, and no reward is funded by anything on this site."
+ },
+ "leaderboard": [
+  {
+   "name": "S11_home_short_rest",
+   "n": 66,
+   "roi": 0.019649,
+   "roi_flat_110": 0.013774,
+   "win_rate": 0.53125,
+   "p": 0.867379,
+   "luck_p": 0.51,
+   "ci": [
+    -0.206331,
+    0.246241
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 18,
+     "roi": -0.043921
+    },
+    {
+     "season": 2024,
+     "n": 20,
+     "roi": 0.055758
+    },
+    {
+     "season": 2025,
+     "n": 20,
+     "roi": -0.040758
+    },
+    {
+     "season": 2026,
+     "n": 8,
+     "roi": 0.223425
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "66 settled bets; power-analysis minimum for this effect is 9,014 at 80% power"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.8674; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.2063, 0.2462]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 2/4 seasons; largest season share of positive profit 0.62"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.510; deflated per-bet Sharpe threshold for 23 variants: 0.2414"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": true,
+     "detail": "ROI 0.0196 at the extract's own price, 0.0138 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S06_wind_15_under",
+   "n": 46,
+   "roi": 0.014793,
+   "roi_flat_110": 0.017787,
+   "win_rate": 0.533333,
+   "p": 0.916378,
+   "luck_p": 0.51875,
+   "ci": [
+    -0.257289,
+    0.283332
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 12,
+     "roi": 0.363686
+    },
+    {
+     "season": 2024,
+     "n": 15,
+     "roi": -0.242597
+    },
+    {
+     "season": 2025,
+     "n": 19,
+     "roi": -0.002358
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "46 settled bets; power-analysis minimum for this effect is 15,838 at 80% power"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.9164; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.2573, 0.2833]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/3 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.519; deflated per-bet Sharpe threshold for 23 variants: 0.2892"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": true,
+     "detail": "ROI 0.0148 at the extract's own price, 0.0178 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S01_ratings_home_edge_1.5",
+   "n": 341,
+   "roi": -0.00092,
+   "roi_flat_110": -0.002399,
+   "win_rate": 0.522523,
+   "p": 0.985681,
+   "luck_p": 0.51825,
+   "ci": [
+    -0.100561,
+    0.098823
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 102,
+     "roi": -0.050705
+    },
+    {
+     "season": 2024,
+     "n": 108,
+     "roi": 0.12632
+    },
+    {
+     "season": 2025,
+     "n": 89,
+     "roi": 0.072217
+    },
+    {
+     "season": 2026,
+     "n": 42,
+     "roi": -0.362183
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": true,
+     "detail": "341 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.9857; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.1006, 0.0988]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 2/4 seasons; largest season share of positive profit 0.68"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.518; deflated per-bet Sharpe threshold for 23 variants: 0.1062"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0009 at the extract's own price, -0.0024 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S01_ratings_home_edge_2.0",
+   "n": 310,
+   "roi": -0.006263,
+   "roi_flat_110": -0.007331,
+   "win_rate": 0.519868,
+   "p": 0.907129,
+   "luck_p": 0.493,
+   "ci": [
+    -0.116311,
+    0.094852
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 90,
+     "roi": -0.029681
+    },
+    {
+     "season": 2024,
+     "n": 102,
+     "roi": 0.116118
+    },
+    {
+     "season": 2025,
+     "n": 81,
+     "roi": 0.036113
+    },
+    {
+     "season": 2026,
+     "n": 37,
+     "roi": -0.379447
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": true,
+     "detail": "310 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.9071; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.1163, 0.0949]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 2/4 seasons; largest season share of positive profit 0.80"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.493; deflated per-bet Sharpe threshold for 23 variants: 0.1114"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0063 at the extract's own price, -0.0073 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S15_back_unlucky_teams_home",
+   "n": 714,
+   "roi": -0.061612,
+   "roi_flat_110": -0.062898,
+   "win_rate": 0.489914,
+   "p": 0.081401,
+   "luck_p": 0.491,
+   "ci": [
+    -0.129292,
+    0.006748
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 203,
+     "roi": -0.009033
+    },
+    {
+     "season": 2024,
+     "n": 204,
+     "roi": 0.028344
+    },
+    {
+     "season": 2025,
+     "n": 206,
+     "roi": -0.077655
+    },
+    {
+     "season": 2026,
+     "n": 101,
+     "roi": -0.316265
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": true,
+     "detail": "714 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.0814; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.1293, 0.0067]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/4 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.491; deflated per-bet Sharpe threshold for 23 variants: 0.0734"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0616 at the extract's own price, -0.0629 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "C1_every_home",
+   "n": 952,
+   "roi": -0.066502,
+   "roi_flat_110": -0.067322,
+   "win_rate": 0.487594,
+   "p": 0.029897,
+   "luck_p": 0.47575,
+   "ci": [
+    -0.124972,
+    -0.007483
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 272,
+     "roi": -0.049477
+    },
+    {
+     "season": 2024,
+     "n": 272,
+     "roi": -0.020533
+    },
+    {
+     "season": 2025,
+     "n": 272,
+     "roi": -0.050368
+    },
+    {
+     "season": 2026,
+     "n": 136,
+     "roi": -0.224758
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": true,
+     "detail": "952 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.0299; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.1250, -0.0075]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 0/4 seasons; largest season share of positive profit nan"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.476; deflated per-bet Sharpe threshold for 23 variants: 0.0636"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0665 at the extract's own price, -0.0673 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S16_indoor_over",
+   "n": 306,
+   "roi": -0.0673,
+   "roi_flat_110": -0.067142,
+   "win_rate": 0.488525,
+   "p": 0.218305,
+   "luck_p": 0.48725,
+   "ci": [
+    -0.173929,
+    0.042673
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 81,
+     "roi": -0.104713
+    },
+    {
+     "season": 2024,
+     "n": 94,
+     "roi": -0.035526
+    },
+    {
+     "season": 2025,
+     "n": 92,
+     "roi": -0.046986
+    },
+    {
+     "season": 2026,
+     "n": 39,
+     "roi": -0.114099
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": true,
+     "detail": "306 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.2183; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.1739, 0.0427]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 0/4 seasons; largest season share of positive profit nan"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.487; deflated per-bet Sharpe threshold for 23 variants: 0.1121"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0673 at the extract's own price, -0.0671 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "C2_every_under",
+   "n": 952,
+   "roi": -0.075019,
+   "roi_flat_110": -0.076299,
+   "win_rate": 0.483633,
+   "p": 0.015395,
+   "luck_p": 0.49925,
+   "ci": [
+    -0.136628,
+    -0.015609
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 272,
+     "roi": 0.033387
+    },
+    {
+     "season": 2024,
+     "n": 272,
+     "roi": -0.117636
+    },
+    {
+     "season": 2025,
+     "n": 272,
+     "roi": -0.085225
+    },
+    {
+     "season": 2026,
+     "n": 136,
+     "roi": -0.186186
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": true,
+     "detail": "952 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.0154; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.1366, -0.0156]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/4 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.499; deflated per-bet Sharpe threshold for 23 variants: 0.0636"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0750 at the extract's own price, -0.0763 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S13_prevseason_rating_away_3",
+   "n": 329,
+   "roi": -0.118222,
+   "roi_flat_110": -0.116883,
+   "win_rate": 0.461059,
+   "p": 0.023264,
+   "luck_p": 0.49075,
+   "ci": [
+    -0.222673,
+    -0.014204
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 89,
+     "roi": -0.108717
+    },
+    {
+     "season": 2024,
+     "n": 95,
+     "roi": -0.096006
+    },
+    {
+     "season": 2025,
+     "n": 101,
+     "roi": -0.122105
+    },
+    {
+     "season": 2026,
+     "n": 44,
+     "roi": -0.176498
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": true,
+     "detail": "329 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.0233; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.2227, -0.0142]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 0/4 seasons; largest season share of positive profit nan"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.491; deflated per-bet Sharpe threshold for 23 variants: 0.1081"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.1182 at the extract's own price, -0.1169 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S12_prevseason_rating_home_3",
+   "n": 333,
+   "roi": -0.161379,
+   "roi_flat_110": -0.159159,
+   "win_rate": 0.43865,
+   "p": 0.001818,
+   "luck_p": 0.4735,
+   "ci": [
+    -0.25933,
+    -0.057866
+   ],
+   "gates_passed": 4,
+   "gates_failed": [
+    "G1",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 80,
+     "roi": -0.068641
+    },
+    {
+     "season": 2024,
+     "n": 95,
+     "roi": -0.127427
+    },
+    {
+     "season": 2025,
+     "n": 100,
+     "roi": -0.198025
+    },
+    {
+     "season": 2026,
+     "n": 58,
+     "roi": -0.28172
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": true,
+     "detail": "333 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.0018; Benjamini-Hochberg q=0.10 across 23 variants -> kept"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.2593, -0.0579]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 0/4 seasons; largest season share of positive profit nan"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.473; deflated per-bet Sharpe threshold for 23 variants: 0.1075"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.1614 at the extract's own price, -0.1592 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S01_ratings_home_edge_3.0",
+   "n": 260,
+   "roi": -0.013926,
+   "roi_flat_110": -0.014685,
+   "win_rate": 0.515873,
+   "p": 0.811857,
+   "luck_p": 0.494,
+   "ci": [
+    -0.132905,
+    0.104344
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 78,
+     "roi": -0.077287
+    },
+    {
+     "season": 2024,
+     "n": 86,
+     "roi": 0.079713
+    },
+    {
+     "season": 2025,
+     "n": 66,
+     "roi": 0.067599
+    },
+    {
+     "season": 2026,
+     "n": 30,
+     "roi": -0.29697
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "260 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.8119; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.1329, 0.1043]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 2/4 seasons; largest season share of positive profit 0.61"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.494; deflated per-bet Sharpe threshold for 23 variants: 0.1216"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0139 at the extract's own price, -0.0147 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S05_div_home_dog",
+   "n": 120,
+   "roi": -0.046325,
+   "roi_flat_110": -0.052273,
+   "win_rate": 0.495726,
+   "p": 0.595526,
+   "luck_p": 0.4805,
+   "ci": [
+    -0.21193,
+    0.121548
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 35,
+     "roi": -0.179261
+    },
+    {
+     "season": 2024,
+     "n": 36,
+     "roi": 0.044141
+    },
+    {
+     "season": 2025,
+     "n": 34,
+     "roi": -0.041623
+    },
+    {
+     "season": 2026,
+     "n": 15,
+     "roi": 0.036078
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "120 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.5955; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.2119, 0.1215]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 2/4 seasons; largest season share of positive profit 0.75"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.480; deflated per-bet Sharpe threshold for 23 variants: 0.1791"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0463 at the extract's own price, -0.0523 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S14_fade_lucky_teams_home",
+   "n": 238,
+   "roi": -0.04698,
+   "roi_flat_110": -0.04851,
+   "win_rate": 0.497854,
+   "p": 0.445599,
+   "luck_p": 0.48375,
+   "ci": [
+    -0.168413,
+    0.073558
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 69,
+     "roi": 0.08023
+    },
+    {
+     "season": 2024,
+     "n": 68,
+     "roi": 0.079646
+    },
+    {
+     "season": 2025,
+     "n": 66,
+     "roi": -0.126629
+    },
+    {
+     "season": 2026,
+     "n": 35,
+     "roi": -0.393587
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "238 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.4456; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.1684, 0.0736]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 2/4 seasons; largest season share of positive profit 0.51"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.484; deflated per-bet Sharpe threshold for 23 variants: 0.1271"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0470 at the extract's own price, -0.0485 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S09_fade_home_after_cover_14",
+   "n": 119,
+   "roi": -0.064655,
+   "roi_flat_110": -0.061115,
+   "win_rate": 0.491525,
+   "p": 0.459887,
+   "luck_p": 0.49,
+   "ci": [
+    -0.233213,
+    0.105899
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 30,
+     "roi": -0.016635
+    },
+    {
+     "season": 2024,
+     "n": 39,
+     "roi": -0.074146
+    },
+    {
+     "season": 2025,
+     "n": 33,
+     "roi": 0.096893
+    },
+    {
+     "season": 2026,
+     "n": 17,
+     "roi": -0.441214
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "119 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.4599; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.2332, 0.1059]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/4 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.490; deflated per-bet Sharpe threshold for 23 variants: 0.1798"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0647 at the extract's own price, -0.0611 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S03_rest_home_7",
+   "n": 39,
+   "roi": -0.074906,
+   "roi_flat_110": -0.06993,
+   "win_rate": 0.487179,
+   "p": 0.629558,
+   "luck_p": 0.50375,
+   "ci": [
+    -0.367357,
+    0.218447
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 10,
+     "roi": -0.234304
+    },
+    {
+     "season": 2024,
+     "n": 10,
+     "roi": -0.244796
+    },
+    {
+     "season": 2025,
+     "n": 11,
+     "roi": 0.208041
+    },
+    {
+     "season": 2026,
+     "n": 8,
+     "roi": -0.052349
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "39 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.6296; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.3674, 0.2184]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/4 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.504; deflated per-bet Sharpe threshold for 23 variants: 0.3141"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0749 at the extract's own price, -0.0699 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S02_ratings_away_edge_1.5",
+   "n": 275,
+   "roi": -0.075628,
+   "roi_flat_110": -0.075702,
+   "win_rate": 0.483271,
+   "p": 0.186012,
+   "luck_p": 0.487,
+   "ci": [
+    -0.188386,
+    0.035812
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 80,
+     "roi": -0.122629
+    },
+    {
+     "season": 2024,
+     "n": 86,
+     "roi": -0.010449
+    },
+    {
+     "season": 2025,
+     "n": 83,
+     "roi": -0.025004
+    },
+    {
+     "season": 2026,
+     "n": 26,
+     "roi": -0.30821
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "275 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.1860; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.1884, 0.0358]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 0/4 seasons; largest season share of positive profit nan"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.487; deflated per-bet Sharpe threshold for 23 variants: 0.1183"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0756 at the extract's own price, -0.0757 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S10_home_off_bye",
+   "n": 57,
+   "roi": -0.080723,
+   "roi_flat_110": -0.07815,
+   "win_rate": 0.482143,
+   "p": 0.524666,
+   "luck_p": 0.49475,
+   "ci": [
+    -0.329981,
+    0.158528
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 17,
+     "roi": -0.034352
+    },
+    {
+     "season": 2024,
+     "n": 14,
+     "roi": -0.327028
+    },
+    {
+     "season": 2025,
+     "n": 18,
+     "roi": 0.054442
+    },
+    {
+     "season": 2026,
+     "n": 8,
+     "roi": -0.052349
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "57 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.5247; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.3300, 0.1585]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/4 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.495; deflated per-bet Sharpe threshold for 23 variants: 0.2598"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.0807 at the extract's own price, -0.0781 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S03_rest_home_3",
+   "n": 96,
+   "roi": -0.108133,
+   "roi_flat_110": -0.104167,
+   "win_rate": 0.468085,
+   "p": 0.264543,
+   "luck_p": 0.47525,
+   "ci": [
+    -0.302118,
+    0.072848
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 26,
+     "roi": -0.005318
+    },
+    {
+     "season": 2024,
+     "n": 26,
+     "roi": -0.193288
+    },
+    {
+     "season": 2025,
+     "n": 27,
+     "roi": -0.301448
+    },
+    {
+     "season": 2026,
+     "n": 17,
+     "roi": 0.17189
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "96 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.2645; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.3021, 0.0728]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/4 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.475; deflated per-bet Sharpe threshold for 23 variants: 0.2002"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.1081 at the extract's own price, -0.1042 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S02_ratings_away_edge_2.0",
+   "n": 252,
+   "roi": -0.120355,
+   "roi_flat_110": -0.12013,
+   "win_rate": 0.45935,
+   "p": 0.043657,
+   "luck_p": 0.47975,
+   "ci": [
+    -0.242353,
+    -0.00483
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 74,
+     "roi": -0.182238
+    },
+    {
+     "season": 2024,
+     "n": 83,
+     "roi": -0.022302
+    },
+    {
+     "season": 2025,
+     "n": 70,
+     "roi": -0.087284
+    },
+    {
+     "season": 2026,
+     "n": 25,
+     "roi": -0.355322
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "252 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.0437; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.2424, -0.0048]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 0/4 seasons; largest season share of positive profit nan"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.480; deflated per-bet Sharpe threshold for 23 variants: 0.1236"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.1204 at the extract's own price, -0.1201 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S08_backup_qb_away",
+   "n": 208,
+   "roi": -0.138897,
+   "roi_flat_110": -0.140297,
+   "win_rate": 0.447761,
+   "p": 0.033819,
+   "luck_p": 0.47325,
+   "ci": [
+    -0.263129,
+    -0.0124
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 67,
+     "roi": -0.065871
+    },
+    {
+     "season": 2024,
+     "n": 62,
+     "roi": -0.273313
+    },
+    {
+     "season": 2025,
+     "n": 64,
+     "roi": -0.117792
+    },
+    {
+     "season": 2026,
+     "n": 15,
+     "roi": 0.000458
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "208 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.0338; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.2631, -0.0124]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/4 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.473; deflated per-bet Sharpe threshold for 23 variants: 0.1360"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.1389 at the extract's own price, -0.1403 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S02_ratings_away_edge_3.0",
+   "n": 212,
+   "roi": -0.170083,
+   "roi_flat_110": -0.170669,
+   "win_rate": 0.432692,
+   "p": 0.009084,
+   "luck_p": 0.47225,
+   "ci": [
+    -0.296655,
+    -0.045652
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 63,
+     "roi": -0.162486
+    },
+    {
+     "season": 2024,
+     "n": 69,
+     "roi": -0.114685
+    },
+    {
+     "season": 2025,
+     "n": 57,
+     "roi": -0.193414
+    },
+    {
+     "season": 2026,
+     "n": 23,
+     "roi": -0.299263
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "212 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.0091; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.2967, -0.0457]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 0/4 seasons; largest season share of positive profit nan"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.472; deflated per-bet Sharpe threshold for 23 variants: 0.1347"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.1701 at the extract's own price, -0.1707 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S04_rest_home_deficit_3",
+   "n": 115,
+   "roi": -0.184434,
+   "roi_flat_110": -0.185771,
+   "win_rate": 0.424779,
+   "p": 0.037921,
+   "luck_p": 0.4705,
+   "ci": [
+    -0.351834,
+    -0.015954
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 30,
+     "roi": -0.330117
+    },
+    {
+     "season": 2024,
+     "n": 39,
+     "roi": 0.037208
+    },
+    {
+     "season": 2025,
+     "n": 31,
+     "roi": -0.201716
+    },
+    {
+     "season": 2026,
+     "n": 15,
+     "roi": -0.433621
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "115 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.0379; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [-0.3518, -0.0160]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/4 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.470; deflated per-bet Sharpe threshold for 23 variants: 0.1829"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.1844 at the extract's own price, -0.1858 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  },
+  {
+   "name": "S06_wind_20_under",
+   "n": 7,
+   "roi": -0.198589,
+   "roi_flat_110": -0.181818,
+   "win_rate": 0.428571,
+   "p": 0.618006,
+   "luck_p": null,
+   "ci": [
+    null,
+    null
+   ],
+   "gates_passed": 3,
+   "gates_failed": [
+    "G1",
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "qualified": false,
+   "per_season": [
+    {
+     "season": 2023,
+     "n": 1,
+     "roi": -1.0
+    },
+    {
+     "season": 2024,
+     "n": 1,
+     "roi": -1.0
+    },
+    {
+     "season": 2025,
+     "n": 5,
+     "roi": 0.121976
+    }
+   ],
+   "gates": [
+    {
+     "id": "G1",
+     "name": "Point-in-time integrity",
+     "pass": false,
+     "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+    },
+    {
+     "id": "G2",
+     "name": "Sample size",
+     "pass": false,
+     "detail": "7 settled bets, ROI is not positive so no power target is defined"
+    },
+    {
+     "id": "G3",
+     "name": "Out-of-sample",
+     "pass": true,
+     "detail": "all bets are from 2023 onward, after every fitted input"
+    },
+    {
+     "id": "G4",
+     "name": "Significance after multiple testing",
+     "pass": false,
+     "detail": "two-sided p=0.6180; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+    },
+    {
+     "id": "G5",
+     "name": "Positive lower bound",
+     "pass": false,
+     "detail": "95% bootstrap ROI interval [nan, nan]"
+    },
+    {
+     "id": "G6",
+     "name": "Stability",
+     "pass": false,
+     "detail": "positive in 1/3 seasons; largest season share of positive profit 1.00"
+    },
+    {
+     "id": "G7",
+     "name": "Beats the closing line",
+     "pass": true,
+     "detail": "settled at the closing line in the extract, not at an assumed price"
+    },
+    {
+     "id": "G8",
+     "name": "Survives luck adjustment",
+     "pass": false,
+     "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: nan; deflated per-bet Sharpe threshold for 23 variants: 0.7414"
+    },
+    {
+     "id": "G9",
+     "name": "Price robustness",
+     "pass": false,
+     "detail": "ROI -0.1986 at the extract's own price, -0.1818 if every leg were priced -110"
+    },
+    {
+     "id": "G10",
+     "name": "No hindsight selection",
+     "pass": true,
+     "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+    }
+   ]
+  }
+ ],
+ "top": {
+  "name": "S11_home_short_rest",
+  "gates_passed": 4,
+  "roi": 0.019649,
+  "n": 66
+ },
+ "gates_definition": [
+  {
+   "id": "G1",
+   "name": "Point-in-time integrity",
+   "pass": false,
+   "detail": "FAIL (structural): the extract carries one un-timestamped closing line per game, so 'the line as it stood when the bet was made' cannot be evidenced. No lineup or injury snapshot is committed either. See flagged page IR-06/IR-07."
+  },
+  {
+   "id": "G2",
+   "name": "Sample size",
+   "pass": true,
+   "detail": "952 settled bets, ROI is not positive so no power target is defined"
+  },
+  {
+   "id": "G3",
+   "name": "Out-of-sample",
+   "pass": true,
+   "detail": "all bets are from 2023 onward, after every fitted input"
+  },
+  {
+   "id": "G4",
+   "name": "Significance after multiple testing",
+   "pass": false,
+   "detail": "two-sided p=0.0299; Benjamini-Hochberg q=0.10 across 23 variants -> rejected"
+  },
+  {
+   "id": "G5",
+   "name": "Positive lower bound",
+   "pass": false,
+   "detail": "95% bootstrap ROI interval [-0.1250, -0.0075]"
+  },
+  {
+   "id": "G6",
+   "name": "Stability",
+   "pass": false,
+   "detail": "positive in 0/4 seasons; largest season share of positive profit nan"
+  },
+  {
+   "id": "G7",
+   "name": "Beats the closing line",
+   "pass": true,
+   "detail": "settled at the closing line in the extract, not at an assumed price"
+  },
+  {
+   "id": "G8",
+   "name": "Survives luck adjustment",
+   "pass": false,
+   "detail": "share of random same-size portfolios at the same prices that matched or beat this ROI: 0.476; deflated per-bet Sharpe threshold for 23 variants: 0.0636"
+  },
+  {
+   "id": "G9",
+   "name": "Price robustness",
+   "pass": false,
+   "detail": "ROI -0.0665 at the extract's own price, -0.0673 if every leg were priced -110"
+  },
+  {
+   "id": "G10",
+   "name": "No hindsight selection",
+   "pass": true,
+   "detail": "candidate rules are fixed in code before evaluation; no threshold was tuned on test data"
+  }
+ ],
+ "sources": {
+  "schedules": "https://github.com/nflverse/nflverse-data/releases/tag/schedules",
+  "player_week": "https://github.com/nflverse/nflverse-data/releases/tag/stats_player",
+  "team_week": "https://github.com/nflverse/nflverse-data/releases/tag/stats_team"
+ }
+}
