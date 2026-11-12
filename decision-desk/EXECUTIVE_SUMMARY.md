@@ -7,7 +7,7 @@
 
 | Question | Answer | Evidence |
 |---|---|---|
-| Should any strategy receive allocation today? | **No** — 0 of 100 evaluations across 6 labs qualified | [Leaderboard](pages/leaderboard.html) |
+| Should any strategy receive allocation today? | **No** — 0 of 108 evaluations across 7 labs qualified | [Leaderboard](pages/leaderboard.html) |
 | Does the model beat the market? | **No** — Brier skill −0.038 on 2,687 priced games | [Q-02](pages/questions.html#Q-02) |
 | Are parlay legs independent? | **No** — QB–WR1 r = 0.5616 (n = 7,560) | [Q-03](pages/questions.html#Q-03) |
 | Is the upstream injury data trustworthy? | **Partially** — the official page's “No Injuries Reported” is contradicted by NFL.com's own news for SEA/CIN (FL-DD-01) | [Flagged](pages/flagged.html) |
@@ -23,7 +23,7 @@
   the suggestion that would close it.
 - **Suggestions** — 15 proposals, all `proposed` / `(awaiting reviewer)`. Nothing implemented;
   the reviewer sets the decision first.
-- **Leaderboard** — 100 evaluations aggregated from the six lab boards under one rule
+- **Leaderboard** — 108 evaluations aggregated from the seven lab boards under one rule
   (gates passed, then ROI), plus 12 measured correlation rows quoted from committed JSON.
 - **Flags** — 19 published (8 high severity), none blocking, each with handling + suggested fix.
 - **Repo review** — all runnable gates green locally (check_site 106 pages/5,148 links,
