@@ -27,8 +27,12 @@ NAV = [
     ("pages/method.html", "Method &amp; data"),
     ("pages/sources.html", "Source register"),
     ("pages/flagged.html", "Flagged for review"),
-    ("pages/archive.html", "Archive"),
+    ("pages/suggestions.html", "Suggestions"),
+    ("pages/decision-questions.html", "Decision questions"),
+    ("pages/injuries-depth.html", "Injury &amp; depth"),
+    ("suggestions/index.html", "Suggestions hub"),
     ("decision-hub/index.html", "Decision hub &nearr;"),
+    ("pages/archive.html", "Archive"),
 ]
 
 DISCLAIMER = (
@@ -181,6 +185,7 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
     if current.startswith("pages/"):
         doc = (doc.replace('href="pages/', 'href="../pages/')
                   .replace('href="decision-hub/', 'href="../decision-hub/')
+                  .replace('href="suggestions/', 'href="../suggestions/')
                   .replace('href="index.html"', 'href="../index.html"'))
     return doc
 
