@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decision questions | Line Lab</title>
+<meta name="description" content="Questions, information and answers needed before any decision: what is verified, what is missing, and how to discover it.">
+<meta name="generator" content="line-lab/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="mark">LL</span><span>LINE LAB<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">Workspace</div>
+  <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/executive.html">Executive summary</a><a href="../pages/lines.html">Originated lines</a><a href="../pages/props.html">Player props</a><a href="../pages/correlation.html">Correlation &amp; parlays</a><a href="../pages/strategies.html">Strategy lab</a><a href="../pages/validation.html">Validation gates</a><a href="../pages/leaderboard.html">Leaderboard</a><a href="../pages/luck.html">Removing luck</a><a href="../pages/market.html">Market benchmark</a><a href="../pages/verification.html">Verification</a><a href="../pages/method.html">Method &amp; data</a><a href="../pages/sources.html">Source register</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/decision-questions.html" class="active" aria-current="page">Decision questions</a><a href="../pages/injuries-depth.html">Injury &amp; depth</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/archive.html">Archive</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Pipeline live<br><strong>0 of 7 strategies approved</strong><span>Data through 2026-11-01. Rejections are listed with the exact gate that failed.</span></div>
+</aside>
+<main id="main">
+<header class="topbar">
+  <span class="crumb">DECISION QUESTIONS</span>
+  <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a>
+</header>
+
+<div class="hero compact"><div class="eyebrow">BEFORE ANY DECISION</div>
+<h1>What we know, what we don&rsquo;t, and what to ask.</h1>
+<p class="lede">A decision can only be made on verified information. This page separates the answers we have from the gaps we don&rsquo;t, lists the questions that must be resolved before any capital is committed, and gives a concrete way to discover each missing piece. Unverifiable values are left blank and flagged &mdash; never inferred.</p></div>
+
+<div class="notice warn"><span class="dot"></span><div>
+<strong>No capital decision should be made until the &ldquo;must-answer&rdquo; list below is resolved.</strong><br>
+Every blank cell is a known gap. Each gap has a discovery suggestion and a source to chase. Suggested answers are proposals, not verified facts.</div>
+<a href="#must">Must-answer list &rarr;</a></div>
+
+<section class="block"><h2>What we know (verified)</h2>
+<div class="table-wrap"><table class=""><caption class="caption">Verified facts with their official or in-repo source. Each row links to the evidence.</caption>
+<thead><tr><th>Statement</th><th>Verified value</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>The closing spread is hard to beat</td><td>Model MAE 10.39 pts vs market 10.25 pts (2023&ndash;2026 walk-forward)</td><td class="src"><a href="../pages/market.html">Market benchmark</a></td></tr>
+<tr><td>Our model adds nothing beyond the close</td><td>Coefficient on model margin = &minus;0.019 (p = 0.881)</td><td class="src"><a href="../pages/lines.html">Originated lines</a></td></tr>
+<tr><td>2026 team records reconcile with NFL.com</td><td>Sample-checked 32/32 (e.g. NE 5&ndash;4, DET 6&ndash;2, KC 6&ndash;2, NYG 5&ndash;2&ndash;1, BUF 7&ndash;1)</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener">NFL standings</a></td></tr>
+<tr><td>Same-game QB &harr; WR1 legs are correlated</td><td>r = 0.562 on 7,560 team-games</td><td class="src"><a href="../pages/correlation.html">Correlation</a></td></tr>
+<tr><td>No strategy has cleared the validation gates</td><td>0 of 7 candidates (2 controls also fail)</td><td class="src"><a href="../pages/leaderboard.html">Leaderboard</a></td></tr>
+<tr><td>Official injury report resolves per week</td><td>Week 10 2026 returns player/practice/game status</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">NFL injury report</a></td></tr>
+<tr><td>Official standings resolve</td><td>All 32 team records retrievable for 2026</td><td class="src"><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener">NFL standings</a></td></tr>
+</tbody></table></div></section>
+
+<section class="block"><h2>What we don&rsquo;t know (gaps &mdash; blank by policy)</h2>
+<div class="table-wrap"><table class=""><caption class="caption">These values are intentionally blank where no official source confirms them. Each row points to where the discovery should start.</caption>
+<thead><tr><th>Missing information</th><th>Value</th><th>Why it blocks a decision</th><th>Discovery start</th></tr></thead>
+<tbody>
+<tr><td>Historical opening lines / CLV</td><td class="na">unverified</td><td>Without opening prices, skill vs luck (CLV) is unmeasurable</td><td class="src"><a href="../pages/flagged.html">Flagged</a></td></tr>
+<tr><td>Licensed historical player-prop prices</td><td class="na">unverified</td><td>Prop ROI cannot be computed at all</td><td class="src"><a href="../pages/props.html">Player props</a></td></tr>
+<tr><td>Official depth-chart ordering</td><td class="na">unverified (404)</td><td>Starter-vs-backup deficiency cannot be sourced</td><td class="src"><a href="../pages/injuries-depth.html">Injury &amp; depth</a></td></tr>
+<tr><td>Replacement player values</td><td class="na">unverified</td><td>Injury adjustment has no magnitude</td><td class="src"><a href="../pages/injuries-depth.html">Injury &amp; depth</a></td></tr>
+<tr><td>Verified sportsbook access / limits / license</td><td class="na">unverified</td><td>No legal, executable channel confirmed</td><td class="src"><a href="../pages/flagged.html">Flagged</a></td></tr>
+<tr><td>Funded reward pool for the leaderboard</td><td class="na">unverified</td><td>Rewards are a design, not funded</td><td class="src"><a href="../pages/leaderboard.html">Leaderboard</a></td></tr>
+<tr><td>Legal status by jurisdiction</td><td class="na">unverified</td><td>Wagering legality varies by state</td><td class="src"><a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" rel="noopener">NCPG</a></td></tr>
+</tbody></table></div></section>
+
+<section class="block" id="must"><h2>Questions that must be answered before any decision</h2>
+<div class="table-wrap"><table class=""><caption class="caption">Each question carries the information needed, current status, how to discover it, and a source to chase. The last column links evidence.</caption>
+<thead><tr><th>#</th><th>Question</th><th>Why it matters</th><th>Information needed</th><th>Current status</th><th>How to discover</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Is there a verified, timestamped price history (opening + closing) for the markets we quote?</td><td>CLV and true ROI are unmeasurable without it</td><td>Opening &amp; closing spreads/totals/moneylines per game</td><td><span class="badge bad">MISSING</span></td><td>Licensed market-data provider or operator API</td><td class="src"><a href="../pages/flagged.html">Flagged</a></td></tr>
+<tr><td>2</td><td>Do we have a licensed, legal channel to place and settle bets in the user&rsquo;s jurisdiction?</td><td>Legality differs by state; unlawful use is a hard stop</td><td>Jurisdiction, license, operator access</td><td><span class="badge bad">NOT ASSESSED</span></td><td>State regulator + legal review</td><td class="src"><a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/" rel="noopener">NCPG</a></td></tr>
+<tr><td>3</td><td>Can we source official depth charts (starter vs 2nd/3rd/4th string)?</td><td>Deficiency scoring needs replacement string depth</td><td>Per-position depth ordering</td><td><span class="badge bad">404</span></td><td>nflverse team depth + Next Gen snap counts</td><td class="src"><a href="../pages/injuries-depth.html">Injury &amp; depth</a></td></tr>
+<tr><td>4</td><td>Is there a funded reward pool for the leaderboard?</td><td>Rewards are currently a design, not funded</td><td>Budget / prize authorization</td><td><span class="badge bad">NOT FUNDED</span></td><td>Budget decision by owner</td><td class="src"><a href="../pages/leaderboard.html">Leaderboard</a></td></tr>
+<tr><td>5</td><td>Have all candidate strategies passed the 10 gates on an untouched holdout?</td><td>Gates define skill vs luck</td><td>Gate results per strategy</td><td><span class="badge bad">0 PASSED</span></td><td>Run validation pipeline</td><td class="src"><a href="../pages/validation.html">Validation gates</a></td></tr>
+<tr><td>6</td><td>Do we have historical player-prop prices?</td><td>Prop ROI is unmeasurable without them</td><td>Prop &amp; alternate price history</td><td><span class="badge bad">MISSING</span></td><td>Licensed prop-data feed</td><td class="src"><a href="../pages/props.html">Player props</a></td></tr>
+<tr><td>7</td><td>What is the replacement value of an injured starter?</td><td>Injury adjustment needs a magnitude</td><td>Player-value model</td><td><span class="badge bad">NOT BUILT</span></td><td>Box-score value model, validated by gates</td><td class="src"><a href="../pages/injuries-depth.html">Injury &amp; depth</a></td></tr>
+<tr><td>8</td><td>Are same-game parlay legs priced with their measured dependence?</td><td>Independence pricing understates joint odds ~1.45x</td><td>Correlation-aware pricer</td><td><span class="badge warn">MEASURED, NOT SHIPPED</span></td><td>Build pricer from measured correlations</td><td class="src"><a href="../pages/correlation.html">Correlation</a></td></tr>
+</tbody></table></div></section>
+
+<section class="block"><h2>Discovery suggestions (how to close the gaps)</h2>
+<div class="grid2">
+  <div class="panel"><h3>Prices &amp; limits</h3><ul class="ticks">
+    <li>Obtain a licensed closing- and opening-line history (operator or data vendor).</li>
+    <li>Record every quote with a timestamp so CLV is computable.</li>
+    <li>Confirm sportsbook access, limits and license before any stake.</li>
+  </ul><a class="panel-link" href="../pages/flagged.html">Flagged items &rarr;</a></div>
+  <div class="panel"><h3>Players &amp; injuries</h3><ul class="ticks">
+    <li>Use the official injury report (verified) as the absence layer.</li>
+    <li>Reconstruct depth from nflverse + Next Gen snap counts (reconcile before trust).</li>
+    <li>Build a replacement-value model and validate it through the gates.</li>
+  </ul><a class="panel-link" href="../pages/injuries-depth.html">Injury &amp; depth &rarr;</a></div>
+</div></section>
+
+<footer>
+  <p>Research and measurement, not betting advice. Blank cells are deliberate: a value that cannot be confirmed from an official source is left empty and flagged, never filled by inference. Each row links to the evidence a reviewer should check.</p>
+  <p><a href="../pages/sources.html">Source register</a> &middot;
+     <a href="../pages/method.html">Method</a> &middot;
+     <a href="../pages/flagged.html">Flagged for review</a></p>
+</footer>
+</main></div></body></html>
