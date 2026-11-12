@@ -1500,3 +1500,58 @@ Claim and implementation were started on the fixed Arena branch from `e8d04a9` b
 | Task status | DD-01…DD-06 **done / needs review** (the suggestions inside are `pending` a human decision, by design); DD-07 done via `.github/workflows/decisions.yml` |
 | Published, not blocking | IR-01…IR-10 on `pages/decision-verify.html`; QF-01…QF-08 on `pages/decision-questions.html`; IF-01…IF-06 on `pages/decision-injury-depth.html` |
 | Handover | No strategy is approved, no reward is funded, and no operator/licence/limit is verified. The next session should start with SG-02 (timestamped price capture) and SG-03 (injury/depth/snap feeds on a runner); everything else on the desk is blocked behind those two. |
+
+---
+
+# Session board — `arena/f1123a1a-korea2` (Cross-Lab Verification & Decision Hub)
+
+**Session ID:** `arena/f1123a1a-korea2` (branch fixed by the environment; the protocol's
+`session-<id>/<task>` naming cannot be created here, so the branch name *is* the session id, as
+recorded by every prior session).
+**Claimed at:** 2026-11-12 UTC. **Base:** `e8d04a9` (PR #64); rebased onto `d6cabce` (PR #65 merged,
+`suggestions/` hub live) before claiming.
+
+**Scope rule:** this session writes **only** inside `verify-hub/`, the new workflow file
+`.github/workflows/verify-hub.yml`, and this section of `COORDINATION.md`. Every sibling directory
+(`index.html`, `pages/`, `assets/`, `scripts/`, `data/`, `tests/`, `docs/`, `verification/`,
+`dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination/`,
+`origination-lab/`, `pipeline/`, `results/`, `audit/`, `skill-lab/`, `suggestions/`) is **read-only**
+for this session. Navigation links *to* `verify-hub/` are requested from the root-site owner below,
+not added here.
+
+**Parallel sessions observed live on 2026-11-12 (none of their scopes are touched):**
+`arena/43870fb8-korea2` (`suggestions/`, merged PR #65), `arena/cb5b61a7-korea2` (root
+`pages/suggestions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html` + root nav,
+PR #66 open), `arena/578d4e5f-korea2` (root integration: `scripts/build_site.py`,
+`scripts/lib/site.py`, `pages/`, `docs/REQUIREMENTS.md`), `arena/aa66ed82-korea2` (`decision-desk/`),
+`arena/90e4fdbe-korea2` (`site/`, `pages/decisions*`, nav line, `.github/workflows/decisions.yml`),
+`arena/fc16e360-korea2` (`nfl-command/`), `arena/780d4cbf-korea2` (`nfl-insights/`),
+`arena/7dbbeba6-korea2` (`decision-hub/`, `.github/workflows/fetch-injuries.yml`, injury fetcher).
+Where those sessions own a task (feature hubs, injury *trackers*, root nav), this session does **not**
+duplicate it; this session owns the cross-lab **decision layer** nobody has claimed.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| VH-1 | Line-by-line cross-lab repo audit: every published headline claim across all labs checked against official sources; per-claim source link + status (verified / unverified-blank / irregularity); links for manual review | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/claims_audit.json`, `verify-hub/pages/repo-audit.html` |
+| VH-2 | Decision-readiness register: questions / information / answers required before any decision (have / don't have / where to find), with discovery suggestions for every missing item | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/questions.json`, `verify-hub/pages/questions.html` |
+| VH-3 | Suggestion review queue: consolidate every proposal from all labs into one reviewable queue with trade-offs and a recommended path, gated — reviewer approves before any implementation | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/suggestions.json`, `verify-hub/pages/suggestions.html` |
+| VH-4 | Cross-lab strategy consolidation: singles, parlays, player-prop combos, validation-gate outcomes, correlation values, luck-removal results, reward tiers (read-only aggregation of committed results) | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/strategies.json`, `verify-hub/pages/leaderboard.html` |
+| VH-5 | Injury & depth-deficiency **requirement/gap register** (offense & defense, 1st–4th string): what the requirement needs vs what verified official data supports today, with official links and blanks flagged. Trackers themselves are owned by DH-2/NC-3/NC-4/IN-1/DD-04/T-D — not built here | in progress | `arena/f1123a1a-korea2` | `verify-hub/data/injuries_gap.json`, `verify-hub/pages/injuries-depth.html` |
+| VH-6 | Executive summary, clean landing page + category subpages, flagged-for-review page, source register | in progress | `arena/f1123a1a-korea2` | `verify-hub/index.html`, `verify-hub/pages/*`, `verify-hub/EXECUTIVE_SUMMARY.md`, `verify-hub/assets/style.css` |
+| VH-7 | Verification suite: per-row source-link check, blank-unverified check, strict JSON, local link check; deterministic site build | in progress | `arena/f1123a1a-korea2` | `verify-hub/scripts/build_site.py`, `verify-hub/scripts/verify.py`, `verify-hub/tests/` |
+| VH-8 | Integration: re-verify combined data, PR to `main`, merge, confirm GitHub Pages deploy, record here | unclaimed → claimed here | `arena/f1123a1a-korea2` | this section, PR |
+
+### Requests to the root-site / integration owners (not actioned by this session)
+1. `arena/578d4e5f-korea2` / `arena/cb5b61a7-korea2` (root nav): please link
+   `verify-hub/index.html` from the root navigation once this merges (same request pattern as
+   `skill-lab/` and `suggestions/`).
+2. This hub aggregates and cross-checks sibling labs' published results **read-only**. If a lab owner
+   disagrees with an audit row, log it here; nothing in `verify-hub/` blocks a merge (flagged items are
+   published, non-blocking, per policy).
+
+## Log — `arena/f1123a1a-korea2`
+- 2026-11-12 UTC — Intake: reviewed the full `COORDINATION.md` board (nine prior sessions) and all
+  remote branches/PRs live at intake (PR #65 merged during intake; PR #66 open; six other session
+  branches pushed claims in the same minute). No claim existed on `verify-hub/`, on a cross-lab
+  decision layer, or on `.github/workflows/verify-hub.yml`. Claim recorded and pushed before any
+  implementation, per the board rule.
