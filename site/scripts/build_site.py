@@ -286,8 +286,10 @@ def page_decisions(v, q, s, sig, par, inj):
 </div>
 <div class="dd-note"><strong>The short version.</strong> The market beats the model, no candidate passes
 the validation gates, and the reason is structural rather than statistical: there is no timestamped
-price and no committed lineup feed, so the gate that would license a strategy cannot pass. Four
-suggestions fix that. Three more are fixes to numbers this review found to be wrong.</div>
+price and no committed lineup feed, so the gate that would license a strategy cannot pass. Two
+suggestions supply those missing inputs (SG-02, SG-03), one turns the gate into a check that cannot
+regress silently (SG-10), and three repair numbers this review found to be wrong (SG-04, SG-07,
+SG-09).</div>
 <div class="dd-kpis">{cards}</div>
 {section("What is on this desk", '''<div class="dd-two">
   <div class="dd-card"><h3>Suggestions</h3><p>Twelve proposals. Each has a problem statement, an effort
