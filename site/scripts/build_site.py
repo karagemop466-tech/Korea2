@@ -505,13 +505,14 @@ compared against random portfolios of the same size at the same prices.</p></div
 <div class="dd-kpis">
 {kpi("Variants measured", str(meta.get("n_variants_measured", 0)), "All settled on 2023-2026 regular-season games.", "info")}
 {kpi("Qualified", str(meta.get("n_qualified", 0)), "A strategy needs all ten gates. None got past seven.", "bad")}
-{kpi("Best ROI", num(sig.get("leaderboard", [{}])[0].get("roi") if sig.get("leaderboard") else None, 2, pct=True, sign=True), "On " + str(sig.get("leaderboard", [{}])[0].get("n", 0)) + " bets - far too few to distinguish from climate noise.", "warn")}
+{kpi("Best ROI", num(sig.get("leaderboard", [{}])[0].get("roi") if sig.get("leaderboard") else None, 2, pct=True, sign=True), "On " + str(sig.get("leaderboard", [{}])[0].get("n", 0)) + " bets - far too few to distinguish skill from noise.", "warn")}
 {kpi("Break-even at -110", "52.38%", "The rate needed before any edge exists at all.", "info")}
 </div>
 <div class="dd-note"><strong>Why every strategy fails G1.</strong> Gate G1 requires strictly pre-kickoff
 inputs with a recorded capture. The committed feed holds one closing line per game with no capture time,
 and no lineup snapshot is committed either, so G1 cannot be evidenced for <em>any</em> candidate. That is
-a data-pipeline problem, and it is the first thing the Suggestions page recommends fixing.</div>
+a data-pipeline problem, and it is the first thing the Suggestions register (SG-02, SG-10) recommends
+fixing.</div>
 {section("Leaderboard", table(
     ["Variant", "Bets", "ROI", "ROI at flat -110", "Win rate", "p", "Gates", "Failed gates", "Verdict", "Source"],
     rows, caption=meta.get("settlement", "")), "RESULTS")}
