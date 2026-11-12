@@ -1,0 +1,266 @@
+{
+  "meta": {
+    "title": "Decision-readiness register — questions, information, answers",
+    "session": "arena/f1123a1a-korea2",
+    "generated_utc": "2026-11-12",
+    "rule": "Every question that must be answered before any decision (capital, implementation or reward) can be reasonably made. Have = answered from verified data; Partial = partly answered with a named gap; Missing = no verified answer exists, the answer cell stays blank and a discovery suggestion is recorded. No answer is ever inferred.",
+    "counts": {
+      "rows": 20,
+      "have": 9,
+      "partial": 7,
+      "missing": 4
+    }
+  },
+  "rows": [
+    {
+      "id": "Q-01",
+      "question": "Can the current model beat the closing line?",
+      "information_needed": "Out-of-sample accuracy of our spread vs the closing spread; incremental information test",
+      "status": "Have",
+      "answer": "No. Model MAE 10.39 vs market 9.71 (n=936, 2023-2026); incremental coefficient -0.019, p=0.881; Brier skill vs market -0.038 (n=2,687).",
+      "where": "../pages/lines.html",
+      "discovery_suggestion": "Keep the walk-forward log running each week; re-test after any feature that carries genuinely new information (e.g. verified injury/depth signals once built).",
+      "sources": [
+        "VH-SRC-04",
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "Q-02",
+      "question": "Has any strategy passed validation gates anywhere in the repository?",
+      "information_needed": "Gate outcomes for every strategy family across all labs",
+      "status": "Have",
+      "answer": "No. Root: 0 of 9 (7 strategies + 2 controls, best 5/10). Skill-lab: 0 of 16 (best 6/10). Quant-lab: 0 of 21. Origination-lab: 0 eligible (best 3 of 7). Pipeline: 0 of 5 (six gates).",
+      "where": "pages/leaderboard.html",
+      "discovery_suggestion": "Continue gated paper tracking; do not relax gates to manufacture a pass (SG-12).",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "Q-03",
+      "question": "Are same-game parlay legs independent?",
+      "information_needed": "Empirical joint vs product probabilities for shared-driver legs",
+      "status": "Have",
+      "answer": "No. QB-WR1 r=0.56-0.61; 4-leg same-team joint 11.1% vs 5.7% product; copula multipliers 1.26x-2.05x on correlated stacks.",
+      "where": "../pages/correlation.html",
+      "discovery_suggestion": "Price same-game tickets with the correlation-aware table, never with multiplied legs (SG-14).",
+      "sources": [
+        "VH-SRC-06",
+        "VH-SRC-04"
+      ]
+    },
+    {
+      "id": "Q-04",
+      "question": "Which correlation matrix is canonical for pricing?",
+      "information_needed": "One pre-registered matrix with fixed window, definitions and role labels",
+      "status": "Partial",
+      "answer": "Three measured matrices exist (root 2012-2026 designation series; skill-lab 2018-2026 ex-ante and ex-post; quant-lab game-level phi). No single one has been declared canonical.",
+      "where": "pages/leaderboard.html",
+      "discovery_suggestion": "Pre-register one matrix per pricing use-case (game markets vs player props), publish the definition with every coefficient (SG-08).",
+      "sources": [
+        "VH-SRC-06"
+      ]
+    },
+    {
+      "id": "Q-05",
+      "question": "Is there a verified historical player-prop price feed?",
+      "information_needed": "Closing (and ideally opening) prop prices with settlement timestamps",
+      "status": "Missing",
+      "answer": "",
+      "where": "../pages/flagged.html",
+      "discovery_suggestion": "Ask the league's data-distribution partner / licensed data vendors for a licensed historical odds feed; until then every prop ROI stays blank and prop strategies stay paper (no price, no ROI).",
+      "sources": [
+        "VH-SRC-10",
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "Q-06",
+      "question": "Are opening lines available for CLV measurement?",
+      "information_needed": "Opening prices at a known timestamp for each market",
+      "status": "Missing",
+      "answer": "",
+      "where": "../pages/flagged.html",
+      "discovery_suggestion": "Same acquisition route as Q-05; alternatively record our own odds snapshots prospectively from a licensed board and wait for settlement (a forward-only CLV log).",
+      "sources": [
+        "VH-SRC-10"
+      ]
+    },
+    {
+      "id": "Q-07",
+      "question": "Which injury/availability data is officially published?",
+      "information_needed": "League-official player status per week, per club",
+      "status": "Have",
+      "answer": "The official weekly injury report (nfl.com/injuries/league/<year>/REGn) publishes Player, Position, Injuries, Practice Status and Game Status for all 32 clubs. Verified live for Week 10 2026.",
+      "where": "pages/injuries-depth.html",
+      "discovery_suggestion": "Ingest this report weekly at a fixed timestamp (before kickoff) and store it point-in-time (SG-13).",
+      "sources": [
+        "VH-SRC-02"
+      ]
+    },
+    {
+      "id": "Q-08",
+      "question": "How can 2nd/3rd/4th-string deficiencies be determined without official depth charts?",
+      "information_needed": "A defensible, pre-registered definition of starter vs backup per unit (offense/defense)",
+      "status": "Missing",
+      "answer": "",
+      "where": "pages/injuries-depth.html",
+      "discovery_suggestion": "Define role tiers by usage: e.g. season snap-share rank within position-group from the official play-by-play-derived snap feeds (third-party redistribution), cross-checked against club-published depth charts where clubs publish them (verified example: colts.com). Label every tier as inferred; keep the official depth-string cell blank.",
+      "sources": [
+        "VH-SRC-03",
+        "VH-SRC-02"
+      ]
+    },
+    {
+      "id": "Q-09",
+      "question": "Is there verified execution access, with limits and jurisdiction?",
+      "information_needed": "A licensed operator account, jurisdiction, market access, limits and fill policy",
+      "status": "Missing",
+      "answer": "",
+      "where": "../pages/flagged.html",
+      "discovery_suggestion": "Verify jurisdiction and account before any capital decision; record the operator rulebook edition actually in force (see the archived-edition flag); treat gates G8/G9 as unclosable until then.",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "Q-10",
+      "question": "Is the leaderboard reward pool funded?",
+      "information_needed": "A funding source and accounting for any prize",
+      "status": "Have",
+      "answer": "No. All published schedules are paper (skill-lab cash_funding cells are empty). The only official precedent found is the NFL Big Data Bowl 2027 ($45k Open + $45k University + $10k Grand Prize).",
+      "where": "pages/leaderboard.html",
+      "discovery_suggestion": "Decide funding explicitly before advertising rewards; if unfunded, label every schedule 'paper' in the same typeface as the numbers (SG-04).",
+      "sources": [
+        "VH-SRC-08",
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "Q-11",
+      "question": "Which of the four published reward schedules is canonical?",
+      "information_needed": "One tier structure, one unit, one gate requirement per tier",
+      "status": "Partial",
+      "answer": "Four schemes exist (root 3-tier; skill-lab 4-tier points; origination-lab pool-share; suggestions 3-tier). None chosen.",
+      "where": "pages/leaderboard.html",
+      "discovery_suggestion": "Adopt the BDB-style structure adapted to gates (Gold = 10/10 + skill score, Silver = 10/10, Bronze = 9/10 incl. mandatory G1/G3/G5/G6/G10) as proposed in SG-04, and retire the others to the archive.",
+      "sources": [
+        "VH-SRC-08"
+      ]
+    },
+    {
+      "id": "Q-12",
+      "question": "Which settlement rules apply to pushes, ties and voids?",
+      "information_needed": "The operator rulebook edition in force for each market",
+      "status": "Partial",
+      "answer": "Push handling (stake returned, removed from denominators) is implemented per the cited operator rulebook, but the cited edition (8.1.24) is archived; the active edition (10.7.26) could not be text-verified in the sandbox.",
+      "where": "../pages/flagged.html",
+      "discovery_suggestion": "Fetch and re-read the active rulebook PDF text from a machine that can; pin the edition hash in the register (SG-07).",
+      "sources": [
+        "VH-SRC-07",
+        "VH-SRC-13"
+      ]
+    },
+    {
+      "id": "Q-13",
+      "question": "Is the data provenance reproducible end to end?",
+      "information_needed": "Hashed raw inputs, deterministic builds, independent recomputation",
+      "status": "Have",
+      "answer": "Yes. Manifest records sizes and SHA-256 per extract (28/31 byte-match upstream on 2026-11-12); builds are deterministic; the independent recomputation reports 49 checks with 0 disagreements.",
+      "where": "../pages/method.html",
+      "discovery_suggestion": "Keep the PR-based refresh (post issue-#20) and re-run the byte-compare each refresh cycle (SG-10).",
+      "sources": [
+        "VH-SRC-04",
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "Q-14",
+      "question": "What edge ceiling does public data support for player props?",
+      "information_needed": "Forecast skill vs naive baselines at the median line",
+      "status": "Partial",
+      "answer": "Projection skill is about +2% MAE vs a season-mean baseline (root props.json: 0.5-0.8% improvement fields on the calibrated medians; the published summary states ~+2% vs last-5). No prop ROI can be computed without prices (Q-05).",
+      "where": "../pages/props.html",
+      "discovery_suggestion": "Treat +2% as the ceiling until better inputs (route-level tracking, official depth) exist; never translate it into expected ROI without a price feed.",
+      "sources": [
+        "VH-SRC-04"
+      ]
+    },
+    {
+      "id": "Q-15",
+      "question": "Is there an untouched holdout anywhere?",
+      "information_needed": "One declared holdout period, touched once, per lab",
+      "status": "Have",
+      "answer": "Yes per lab: root holdout 2025-2026; quant-lab discovery 2002-2019 / holdout 2020-2026; skill-lab holdout 2024-2026. The split definitions differ across labs.",
+      "where": "../pages/validation.html",
+      "discovery_suggestion": "Declare one canonical split repo-wide before the next strategy wave (SG-03) so leaderboard rows are comparable.",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "Q-16",
+      "question": "Are weather inputs complete enough for the weather signals?",
+      "information_needed": "Stadium-level game-time wind and temperature coverage",
+      "status": "Partial",
+      "answer": "Coverage is about 57% of games (suggestions hub flag FL-09); NWS values can be preliminary (NOWData note). The wind-under signal is the most-tested weather angle in four labs.",
+      "where": "../pages/flagged.html",
+      "discovery_suggestion": "Backfill stadium coordinates + archived game-time observations (NWS API), stamp each observation with its retrieval time, and re-run the wind-under decay curve before any decision.",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    },
+    {
+      "id": "Q-17",
+      "question": "Are player role labels (WR1 etc.) point-in-time?",
+      "information_needed": "Role designation as known before kickoff, not ex-post game leaders",
+      "status": "Partial",
+      "answer": "Partly. Skill-lab enforces a zero-lookahead gate (G1) and labels ex-ante vs ex-post series (r 0.372 vs 0.614); the root KPI series uses the WR1 designation. No official pre-kickoff depth source exists (Q-08).",
+      "where": "../skill-lab/pages/correlations.html",
+      "discovery_suggestion": "Build the role tier from prior-week usage + roster data, freeze it at kickoff, and publish both series with explicit labels (SG-08).",
+      "sources": [
+        "VH-SRC-03",
+        "VH-SRC-06"
+      ]
+    },
+    {
+      "id": "Q-18",
+      "question": "What vig does each market charge?",
+      "information_needed": "Per-market overround at the recorded prices",
+      "status": "Partial",
+      "answer": "Mean spread overround 2.7% is measured on priced games (root market.json); per-book margins are not published by operators and stay blank (root FL-04).",
+      "where": "../pages/market.html",
+      "discovery_suggestion": "Compute the overround directly from each stored price pair going forward and record it per game; leave per-operator margins blank unless the operator publishes them.",
+      "sources": [
+        "VH-SRC-13",
+        "VH-SRC-04"
+      ]
+    },
+    {
+      "id": "Q-19",
+      "question": "What is the multiple-testing policy for the strategy family?",
+      "information_needed": "One correction method, one q, applied to the whole family",
+      "status": "Have",
+      "answer": "Benjamini-Hochberg at q = 0.10 across the tested family (root n_tests 9; skill-lab q 0.10; origination-lab 27 tests), plus a deflated-Sharpe max-of-k check.",
+      "where": "../pages/validation.html",
+      "discovery_suggestion": "Keep the family definition in one file so new strategies extend the family before testing (SG-09).",
+      "sources": [
+        "VH-SRC-14",
+        "VH-SRC-12"
+      ]
+    },
+    {
+      "id": "Q-20",
+      "question": "Which site should a reader treat as canonical?",
+      "information_needed": "One landing place for decisions, with sibling labs as archives",
+      "status": "Partial",
+      "answer": "Not yet decided. The root Line Lab is the most complete integrated dashboard; eight sibling hubs publish overlapping sections (I-04).",
+      "where": "pages/suggestions.html",
+      "discovery_suggestion": "Adopt the root Line Lab as canonical and link this hub (decisions) plus the sibling labs from the archive page — proposed as SG-01 for the owner to approve.",
+      "sources": [
+        "VH-SRC-09"
+      ]
+    }
+  ]
+}

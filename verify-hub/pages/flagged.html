@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for review | Verify Hub</title>
+<meta name="description" content="Cross-lab verification, decision-readiness and suggestion review for the NFL research repository.">
+<meta name="generator" content="verify-hub/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="../index.html"><span class="mark">VH</span><span>VERIFY HUB<small>CROSS-LAB DECISIONS</small></span></a>
+    <nav aria-label="Hub navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/repo-audit.html">Repo audit</a>
+      <a href="../pages/questions.html">Questions</a>
+      <a href="../pages/suggestions.html">Suggestions</a>
+      <a href="../pages/leaderboard.html">Leaderboard</a>
+      <a href="../pages/injuries-depth.html">Injuries &amp; depth</a>
+      <a href="../pages/executive.html">Executive</a>
+      <a href="../pages/sources.html">Sources</a>
+      <a href="../pages/flagged.html" class="active">Flagged</a>
+    </nav>
+    <div class="sidebar-note">Sibling labs are read-only inputs to this hub. Live root site: <a href="../index.html" rel="noopener">Line Lab</a>.</div>
+  </aside>
+  <main id="main">
+    <header class="topbar"><span class="crumb">FLAGGED FOR REVIEW</span>
+      <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a>
+    </header>
+
+    <div class="hero"><div class="eyebrow">FLAGGED FOR REVIEW</div>
+      <h1>Blank on purpose.<br><em>Published for your review.</em></h1>
+      <p class="lede">Every row is something this repository cannot confirm from an official source, or an
+      irregularity found during the line-by-line audit. Values are blank by policy - never inferred. None of
+      these items blocks publication; they are the open questions behind the decisions.</p></div>
+    <section class="block"><h2>Register</h2>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Item</th><th>Value</th><th>Severity</th><th>Reason</th><th>Suggested action</th><th>Source</th></tr></thead><tbody><tr><td>VH-FL-01</td><td>Historical player-prop closing prices (any market, any season)</td><td>&mdash;</td><td>high</td><td>No official or feed source publishes historical prop prices; every prop ROI in the repository is therefore blank by policy (C-01).</td><td>Acquire a licensed historical odds feed (Q-05) or run a forward-only price log; until then prop strategies stay paper.</td><td><a href="https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports" class="ext" rel="noopener">NFL–Genius Sports strategic partnership announcement (data distribution)</a></td></tr>
+<tr><td>VH-FL-02</td><td>Opening lines / closing-line-value measurement</td><td>&mdash;</td><td>high</td><td>No opening-line archive exists in the committed data or any official source (C-02).</td><td>Same acquisition route as VH-FL-01 (Q-06).</td><td><a href="https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports" class="ext" rel="noopener">NFL–Genius Sports strategic partnership announcement (data distribution)</a></td></tr>
+<tr><td>VH-FL-03</td><td>Verified execution access, limits, jurisdiction</td><td>&mdash;</td><td>high</td><td>Nothing in the repository verifies an account, an executable price, a limit or a licence (C-03).</td><td>Verify jurisdiction and operator before any capital decision (Q-09); gates G8/G9 stay open until then.</td><td><a href="https://github.com/karagemop466-tech/Korea2" class="ext" rel="noopener">This repository on GitHub (karagemop466-tech/Korea2)</a></td></tr>
+<tr><td>VH-FL-04</td><td>Leaderboard reward funding</td><td>&mdash;</td><td>medium</td><td>All four published reward schedules are unfunded paper (C-04). The NFL Big Data Bowl 2027 prize structure is a precedent, not funding for this project.</td><td>Owner decision on funding (Q-10); until then label every schedule &#x27;paper points&#x27; (SG-04).</td><td><a href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" class="ext" rel="noopener">NFL Big Data Bowl 2027 (Kaggle) — competition and awards</a></td></tr>
+<tr><td>VH-FL-05</td><td>League-published depth strings (1st-4th) for offense and defense</td><td>&mdash;</td><td>high</td><td>NFL.com club depth-chart path returns 404 (VH-SRC-03, checked 2026-11-12); the official injury report has no depth column (C-05).</td><td>Adopt the inferred usage-tier design with explicit labels and keep official cells blank (Q-08, SG-02).</td><td><a href="https://www.nfl.com/teams/new-england-patriots/depth-chart" class="ext" rel="noopener">NFL.com club depth-chart path (tried for depth strings)</a> &middot; <a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>VH-FL-06</td><td>NFL Operations injury-report policy page (cited as a register source)</td><td>&mdash;</td><td>medium</td><td>The URL returns 404 on 2026-11-12 (VH-SRC-05); first flagged 2026-11-01 by the root session and still dead (C-06, I-01).</td><td>Mark the register entry dead with retrieval dates, or replace with a serving official copy (SG-07).</td><td><a href="https://operations.nfl.com/football-ops/league-governance/injury-report/" class="ext" rel="noopener">NFL Operations league-governance injury-report policy path</a></td></tr>
+<tr><td>VH-FL-07</td><td>QB-WR1 correlation coefficient quoted without a definition label</td><td>&mdash;</td><td>medium</td><td>Four different coefficients (0.562 / 0.631 / 0.614 / 0.372) are published across labs for differently defined series; bare quotes create false contradictions (I-02).</td><td>Every quote carries definition + window + n + as-of date (SG-06, SG-08).</td><td><a href="https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm" class="ext" rel="noopener">NIST Dataplot reference manual — CORRELATION</a></td></tr>
+<tr><td>VH-FL-08</td><td>STR-16 integrity control (+64.81% ROI, 8/10 gates) is a leakage detector, not a strategy</td><td>&mdash;</td><td>medium</td><td>A reader could mistake the deliberate-leak control for performance (I-03).</td><td>Keep the DISQUALIFIED label adjacent to every STR-16 number; never sort it into a performance table.</td><td><a href="https://github.com/karagemop466-tech/Korea2" class="ext" rel="noopener">This repository on GitHub (karagemop466-tech/Korea2)</a></td></tr>
+<tr><td>VH-FL-09</td><td>Eight parallel hubs implement overlapping requirements</td><td>&mdash;</td><td>medium</td><td>suggestions/, decision-desk/, decision-hub/, nfl-command/, nfl-insights/, site/, root pages/ and skill-lab/ all publish suggestions/questions/injuries/leaderboards (I-04).</td><td>Owner decision SG-01/SG-11: one canonical site + this hub as the triage layer; sibling labs become archives.</td><td><a href="https://github.com/karagemop466-tech/Korea2" class="ext" rel="noopener">This repository on GitHub (karagemop466-tech/Korea2)</a></td></tr>
+<tr><td>VH-FL-10</td><td>Four different reward schedules for one competition</td><td>&mdash;</td><td>low</td><td>Root 3-tier, skill-lab 4-tier points, origination-lab pool-share, suggestions 3-tier - all unfunded (I-06).</td><td>Adopt one (SG-04) and archive the rest.</td><td><a href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" class="ext" rel="noopener">NFL Big Data Bowl 2027 (Kaggle) — competition and awards</a></td></tr>
+<tr><td>VH-FL-11</td><td>Mixed as-of dates across published numbers (2026-10-29 / 11-01 / 11-02 / 11-12)</td><td>&mdash;</td><td>low</td><td>Numbers computed on different data cuts appear side by side (I-07); live standings have moved since every snapshot.</td><td>Stamp as-of on every value (SG-06) and align refresh cadence (SG-10).</td><td><a href="https://www.nfl.com/standings/division/2026/REG" class="ext" rel="noopener">NFL.com 2026 regular-season division standings (live page)</a></td></tr>
+<tr><td>VH-FL-12</td><td>Carried flags from sibling registers still open (11 root + 12 skill-lab + 12 suggestions + 9 verification items)</td><td>&mdash;</td><td>low</td><td>Examples: injury page week-title mismatch (REG7), archived DraftKings rules edition 8.1.24 vs active 10.7.26, NOWData preliminary values, weather coverage ~57% (I-08).</td><td>Triage in one pass using this hub&#x27;s registers (SG-11); none block publication.</td><td><a href="https://github.com/karagemop466-tech/Korea2" class="ext" rel="noopener">This repository on GitHub (karagemop466-tech/Korea2)</a></td></tr></tbody></table></div></section>
+    
+    <footer>
+      <p>Research and measurement, not betting advice. Every value is read from committed JSON by
+      <code>verify-hub/scripts/build_site.py</code>; every table row links the source it rests on.
+      Values that no official source confirms are left blank and published on the Flagged page.</p>
+      <p><a href="../pages/sources.html">Source register</a> &middot;
+         <a href="../pages/questions.html">Decision questions</a> &middot;
+         <a href="../pages/flagged.html">Flagged for review</a></p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
