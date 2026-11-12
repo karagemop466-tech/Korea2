@@ -194,5 +194,33 @@ Every table row on the published site carries an https source link, and
 
 ---
 
+## 7. Additions in this session (arena/cb5b61a7-korea2, 2026-11-12)
+
+Three reviewable pages were added to keep decisions honest and reversible, without altering the
+underlying pipeline or any previously published number:
+
+- **Suggestions** (`pages/suggestions.html`) — a review board of improvement ideas (depth-chart
+  source, CLV tracker, licensed prop prices, injury adjustments, correlation-aware parlays,
+  holdout-only leaderboard, jurisdiction gating, source monitoring, fractional-Kelly staking).
+  Each row has a recommended path and a status the reviewer sets before anything is built.
+- **Decision questions** (`pages/decision-questions.html`) — what we know (verified against
+  official sources), what we don't (left blank by policy), the questions that must be answered
+  before any capital decision, and a concrete discovery suggestion for each gap.
+- **Injury & depth** (`pages/injuries-depth.html`) — an official-source deficiency detector with a
+  verified Week 10 (2026) worked example (Patriots @ Lions). **Irregularity found and flagged:**
+  the official `/teams/<team>/depth-chart` endpoint returns HTTP 404, so starter-vs-backup string
+  depth cannot be officially sourced; deficiency severity is flagged, not invented.
+
+**Verification performed this session (live retrieval 2026-11-12):** NFL.com division standings
+for 2026 (all 32 team records; sample reconciles with the repo's stated figures) and the official
+NFL injury report (Week 10, 2026) both resolve. The DraftKings parlay rules and the nflverse feed
+repo were confirmed; nflverse is third-party, not official NFL, and is treated as such.
+`tests/check_site.py` passes on the full site (100 pages). The statistical pipeline numbers were
+not recomputed here (the feed is unreachable from the sandbox and runs on GitHub Actions); the
+repo's own `pages/verification.html` remains the reconciliation authority. Full findings, including
+the irregularity register, are in `docs/REPO_REVIEW.md`.
+
+---
+
 *Research, not betting advice. Wager only where legal and only if of age. Free,
 confidential help: [National Council on Problem Gambling](https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/).*
