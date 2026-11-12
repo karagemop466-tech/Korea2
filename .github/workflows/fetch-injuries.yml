@@ -21,7 +21,9 @@ on:
     - cron: '30 21 * * 3'
     - cron: '30 21 * * 6'
   push:
-    branches: ['main']
+    # `main` keeps the committed snapshot fresh; `arena/**` lets a working branch build its own
+    # snapshot while the change is still under review (same pattern as validate.yml).
+    branches: ['main', 'arena/**']
     paths:
       - 'decision-hub/scripts/fetch_injuries.py'
       - '.github/workflows/fetch-injuries.yml'
