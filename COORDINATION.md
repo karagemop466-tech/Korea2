@@ -1555,3 +1555,28 @@ duplicate it; this session owns the cross-lab **decision layer** nobody has clai
   branches pushed claims in the same minute). No claim existed on `verify-hub/`, on a cross-lab
   decision layer, or on `.github/workflows/verify-hub.yml`. Claim recorded and pushed before any
   implementation, per the board rule.
+- 2026-11-12 UTC — VH-1..VH-7 implemented. Official sources opened and read this session (all recorded
+  in `verify-hub/data/sources.json` with methods): NFL.com 2026 division standings (all 32 records),
+  NFL.com Week 10 2026 injury report (per-team tables; TNF WAS 2-5-1 @ NYG 5-2-1 cross-checks with the
+  standings page), NFL.com club depth-chart path (**404 — no league-published depth strings**, value
+  blank), operations.nfl.com injury-report policy path (**404 — carried flag confirmed**), nflverse
+  release metadata via the GitHub Releases API (28/31 manifest assets byte-match; 3 rolling 2026 assets
+  newer upstream), NIST correlation reference, 2026 NFL Rulebook, NFL Big Data Bowl 2027 on Kaggle
+  ($45k + $45k + $10k published awards — precedent only), and this repository's own PR/Pages state via
+  git/gh.
+- 2026-11-12 UTC — Cross-lab audit result: 45 claims checked (10 verified against official sources on
+  2026-11-12, 21 verified against committed data, 6 unverified/blank, 8 irregularities). New
+  irregularities found by this audit: dead operations.nfl.com policy URL (re-checked), QB-WR1 coefficient
+  published as 0.562/0.631/0.614/0.372 across labs under different definitions, STR-16 leaky control
+  quotable as +64.8% performance, eight overlapping hubs, three manifest assets drifted upstream, four
+  conflicting reward schedules, mixed as-of dates. All published on `verify-hub/pages/flagged.html`,
+  values blank, non-blocking.
+- 2026-11-12 UTC — Verification performed: `verify-hub/scripts/verify.py` (strict JSON, per-row source
+  discipline, blank-unverified rule, per-row source-link check, https-only, deterministic rebuild) PASS;
+  7 unit tests PASS; repository suite on the built tree PASS: `tests/check_site.py` (122 pages, 5,260
+  links, 0 broken), `scripts/check_links.py` (2,204 refs), `tests/check_derived.py`,
+  `scripts/validate_data.py`, `audit/check_site.py` (exit 0; its source-domain REVIEW notes for
+  api.github.com/nflverse links mirror the same notes sibling labs carry — third-party feed links are
+  labelled third-party, not official).
+- Requests to root-site owners unchanged: link `verify-hub/index.html` from the root navigation after
+  merge (same request pattern as `skill-lab/` and `suggestions/`).
