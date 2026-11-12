@@ -14,7 +14,7 @@
       {
         "check": "played games have both scores",
         "pass": true,
-        "detail": "7396 played games"
+        "detail": "7412 played games"
       },
       {
         "check": "result column equals home_score - away_score",
@@ -29,7 +29,7 @@
       {
         "check": "spread_line sign convention (positive = home favoured)",
         "pass": true,
-        "detail": "corr(spread_line, result) = 0.425 over n=7396"
+        "detail": "corr(spread_line, result) = 0.426 over n=7412"
       },
       {
         "check": "closing lines present before 2026",
@@ -44,28 +44,28 @@
     ]
   },
   "closing_spread_accuracy": {
-    "n": 7087,
-    "mae": 10.25,
-    "rmse": 13.171,
-    "bias": 0.048,
-    "sd_resid": 13.171,
-    "corr": 0.43
+    "n": 7103,
+    "mae": 10.249,
+    "rmse": 13.167,
+    "bias": 0.036,
+    "sd_resid": 13.168,
+    "corr": 0.4309
   },
   "closing_total_accuracy": {
-    "n": 7087,
-    "mae": 10.617,
+    "n": 7103,
+    "mae": 10.615,
     "rmse": 13.409,
-    "bias": 0.692,
-    "sd_resid": 13.392,
-    "corr": 0.3218
+    "bias": 0.689,
+    "sd_resid": 13.393,
+    "corr": 0.3215
   },
   "closing_spread_accuracy_recent": {
-    "n": 936,
-    "mae": 9.711,
-    "rmse": 12.583,
-    "bias": 0.423,
-    "sd_resid": 12.582,
-    "corr": 0.4643
+    "n": 952,
+    "mae": 9.707,
+    "rmse": 12.567,
+    "bias": 0.323,
+    "sd_resid": 12.569,
+    "corr": 0.4705
   },
   "home_field_by_season": [
     {
@@ -232,33 +232,33 @@
     },
     {
       "season": 2026,
-      "games": 120,
-      "mean_home_margin": 0.72,
-      "home_win_rate": 0.5167
+      "games": 136,
+      "mean_home_margin": 0.0,
+      "home_win_rate": 0.4926
     }
   ],
   "ats_home_cover": {
-    "n": 6892,
-    "home_covers": 3371,
-    "home_cover_rate": 0.4891,
+    "n": 6908,
+    "home_covers": 3375,
+    "home_cover_rate": 0.4886,
     "ci": [
-      0.4773,
-      0.5009
+      0.4768,
+      0.5004
     ],
-    "binomial_p": 0.0727,
+    "binomial_p": 0.0589,
     "pushes": 195,
     "note": "Home-team covers across all regular-season games with a closing spread."
   },
   "totals_over_rate": {
-    "n": 6988,
-    "overs": 3461,
+    "n": 7004,
+    "overs": 3469,
     "pushes": 99,
     "over_rate": 0.4953,
     "ci": [
       0.4836,
       0.507
     ],
-    "binomial_p": 0.4368
+    "binomial_p": 0.4374
   },
   "ats_by_season": [
     {
@@ -398,23 +398,23 @@
     },
     {
       "season": 2026,
-      "n": 114,
-      "home_cover_rate": 0.4561
+      "n": 130,
+      "home_cover_rate": 0.4308
     }
   ],
   "key_numbers": {
     "top_absolute_margins": [
       {
         "margin": 3,
-        "share": 0.1504
+        "share": 0.1502
       },
       {
         "margin": 7,
-        "share": 0.0912
+        "share": 0.0911
       },
       {
         "margin": 6,
-        "share": 0.0603
+        "share": 0.0601
       },
       {
         "margin": 10,
@@ -426,7 +426,7 @@
       },
       {
         "margin": 14,
-        "share": 0.0478
+        "share": 0.0479
       },
       {
         "margin": 1,
@@ -434,14 +434,14 @@
       },
       {
         "margin": 2,
-        "share": 0.0412
+        "share": 0.0411
       }
     ],
-    "share_exactly_3": 0.1504,
-    "share_exactly_7": 0.0912,
-    "push_rate_on_3": 0.1504,
-    "push_rate_on_7": 0.0912,
-    "n_games": 7087,
+    "share_exactly_3": 0.1502,
+    "share_exactly_7": 0.0911,
+    "push_rate_on_3": 0.1502,
+    "push_rate_on_7": 0.0911,
+    "n_games": 7103,
     "note": "Share of games with that absolute margin. A spread sitting on 3 or 7 pushes at roughly these rates, which is why those numbers are priced differently."
   },
   "total_landing_spots": [
@@ -495,38 +495,38 @@
     }
   ],
   "moneyline_calibration": {
-    "n": 5170,
+    "n": 5186,
     "devig_method": "Shin (1993) two-way",
-    "brier_score": 0.2111,
+    "brier_score": 0.21086,
     "brier_random_50": 0.25,
     "buckets": [
       {
         "bucket": 0,
-        "n": 520,
+        "n": 522,
         "mean_market_prob": 0.2298,
-        "actual_win_rate": 0.2346,
-        "diff": 0.0048
+        "actual_win_rate": 0.2337,
+        "diff": 0.0039
       },
       {
         "bucket": 1,
-        "n": 516,
-        "mean_market_prob": 0.3418,
-        "actual_win_rate": 0.3411,
-        "diff": -0.0007
+        "n": 517,
+        "mean_market_prob": 0.3416,
+        "actual_win_rate": 0.3366,
+        "diff": -0.005
       },
       {
         "bucket": 2,
-        "n": 519,
-        "mean_market_prob": 0.4147,
-        "actual_win_rate": 0.3988,
-        "diff": -0.0158
+        "n": 520,
+        "mean_market_prob": 0.4141,
+        "actual_win_rate": 0.4019,
+        "diff": -0.0121
       },
       {
         "bucket": 3,
-        "n": 521,
-        "mean_market_prob": 0.4898,
-        "actual_win_rate": 0.4779,
-        "diff": -0.0119
+        "n": 526,
+        "mean_market_prob": 0.4894,
+        "actual_win_rate": 0.4734,
+        "diff": -0.016
       },
       {
         "bucket": 4,
@@ -537,38 +537,38 @@
       },
       {
         "bucket": 5,
-        "n": 529,
+        "n": 531,
         "mean_market_prob": 0.6155,
-        "actual_win_rate": 0.569,
-        "diff": -0.0465
+        "actual_win_rate": 0.5669,
+        "diff": -0.0487
       },
       {
         "bucket": 6,
-        "n": 502,
+        "n": 503,
         "mean_market_prob": 0.6631,
-        "actual_win_rate": 0.6454,
-        "diff": -0.0177
+        "actual_win_rate": 0.6461,
+        "diff": -0.017
       },
       {
         "bucket": 7,
-        "n": 525,
+        "n": 526,
         "mean_market_prob": 0.7171,
-        "actual_win_rate": 0.6895,
-        "diff": -0.0276
+        "actual_win_rate": 0.6901,
+        "diff": -0.027
       },
       {
         "bucket": 8,
-        "n": 503,
-        "mean_market_prob": 0.7732,
-        "actual_win_rate": 0.7853,
-        "diff": 0.012
+        "n": 504,
+        "mean_market_prob": 0.7733,
+        "actual_win_rate": 0.7857,
+        "diff": 0.0125
       },
       {
         "bucket": 9,
-        "n": 517,
-        "mean_market_prob": 0.8549,
-        "actual_win_rate": 0.8607,
-        "diff": 0.0058
+        "n": 519,
+        "mean_market_prob": 0.8547,
+        "actual_win_rate": 0.8613,
+        "diff": 0.0065
       }
     ],
     "seasons": [
@@ -577,14 +577,14 @@
     ]
   },
   "spread_result_regression": {
-    "n": 7087,
-    "slope": 1.049,
-    "intercept": -0.0581,
+    "n": 7103,
+    "slope": 1.0515,
+    "intercept": -0.0757,
     "note": "A perfectly efficient, unbiased closing line implies slope 1.0 and intercept ~ home field advantage / 2."
   },
   "spread_hold": {
-    "n": 5185,
-    "mean_hold": 0.027,
+    "n": 5201,
+    "mean_hold": 0.0271,
     "median_hold": 0.0243,
     "note": "Sum of implied probabilities minus 1 at the quoted two-way spread price."
   }
