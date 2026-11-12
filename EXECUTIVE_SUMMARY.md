@@ -206,19 +206,9 @@ underlying pipeline or any previously published number:
 - **Decision questions** (`pages/decision-questions.html`) — what we know (verified against
   official sources), what we don't (left blank by policy), the questions that must be answered
   before any capital decision, and a concrete discovery suggestion for each gap.
-- **Injury & depth** (`pages/injuries-depth.html`) — an official-source deficiency detector with a
-  verified Week 10 (2026) worked example (Patriots @ Lions). **Irregularity found and flagged:**
-  the official `/teams/<team>/depth-chart` endpoint returns HTTP 404, so starter-vs-backup string
-  depth cannot be officially sourced; deficiency severity is flagged, not invented.
+- **Injury & depth** (`pages/injuries-depth.html`) — an official NFL injury-report view and a documented depth-data gap. A subsequent source review confirmed that one Colts team-published chart lists ordered players but labels its weekly chart unofficial. It is not an NFL-wide historical source; no complete dated chart archive or replacement-value model is ingested, so depth adjustments remain blocked and values blank. The earlier broad statement that the chart source was absent because of a 404 is superseded.
 
-**Verification performed this session (live retrieval 2026-11-12):** NFL.com division standings
-for 2026 (all 32 team records; sample reconciles with the repo's stated figures) and the official
-NFL injury report (Week 10, 2026) both resolve. The DraftKings parlay rules and the nflverse feed
-repo were confirmed; nflverse is third-party, not official NFL, and is treated as such.
-`tests/check_site.py` passes on the full site (100 pages). The statistical pipeline numbers were
-not recomputed here (the feed is unreachable from the sandbox and runs on GitHub Actions); the
-repo's own `pages/verification.html` remains the reconciliation authority. Full findings, including
-the irregularity register, are in `docs/REPO_REVIEW.md`.
+**Verification performed in this session (live retrieval 2026-11-12):** NFL.com 2026 standings, Week 10 injury report and schedule, and the Colts team-published depth chart were reviewed. The Colts page is explicitly unofficial and team-specific. The DraftKings parlay rules and nflverse feed repo were also reviewed; nflverse is community-maintained, not official NFL. `tests/check_site.py` passes on the full site; subsequent rebase integration checks cover 113 linked pages, 276 tables and 4,838 links. Statistical pipeline values were not recomputed from a fresh upstream feed; `pages/verification.html` describes the committed calculation and its reconciliation scope. Full findings are in `docs/REPO_REVIEW.md` and the site's Flagged for Review page.
 
 ---
 

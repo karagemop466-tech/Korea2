@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home · NFL Command Center</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+  <a class="brand" href="index.html">NFL Command Center</a>
+  <div class="asof">Data as of 2026-11-12</div>
+  <nav><div class="navcat">Overview</div><a class="active" href="index.html">Home</a><a href="pages/executive-summary.html">Executive summary</a><a href="pages/requirements.html">Requirements</a><div class="navcat">Injuries &amp; depth</div><a href="pages/injuries.html">Injuries</a><a href="pages/depth-starters.html">Depth &amp; starters</a><div class="navcat">Lines &amp; strategies</div><a href="pages/lines-model.html">Lines &amp; model</a><a href="pages/strategies.html">Strategies &amp; leaderboard</a><a href="pages/correlations-luck.html">Correlations &amp; luck</a><a href="pages/validation-gates.html">Validation gates</a><div class="navcat">Decide</div><a href="pages/suggestions.html">Suggestions</a><a href="pages/questions.html">Questions &amp; gaps</a><div class="navcat">Audit</div><a href="pages/repo-review.html">Repo review</a><a href="pages/sources.html">Sources</a><a href="pages/flagged.html">Flagged for review</a></nav>
+</aside>
+<main class="main">
+<h1>Home</h1>
+
+<p class="lead">A single place to see the NFL data this repository uses, what the models and strategies found,
+and what still needs a decision. Current snapshot: NFL.com injury report, Week 10 of the 2026 season.</p>
+<div class="legend"><span class="badge badge-ok">OFFICIAL</span> value shown with an official link. <span class="badge badge-warn">UNVERIFIED-INPUT</span> computed from third-party inputs; method link shown. <span class="badge badge-bad">BLANK</span> not verifiable from an official source; left empty on purpose.</div>
+<div class="cards"><a class="card" href="pages/injuries.html"><div class="kpi">254</div><div class="kl">Official injury rows</div><div class="kn">28 clubs in the Week 10 report</div></a><a class="card" href="pages/injuries.html"><div class="kpi">5 / 1</div><div class="kl">Out / Questionable</div><div class="kn">game status as printed by NFL.com</div></a><a class="card" href="pages/depth-starters.html"><div class="kpi">0 of 32</div><div class="kl">Starter vs backup verified</div><div class="kn">no official depth chart reachable</div></a><a class="card" href="pages/strategies.html"><div class="kpi">0 of 16</div><div class="kl">Strategies that pass all gates</div><div class="kn">validation gates G1–G10</div></a><a class="card" href="pages/validation-gates.html"><div class="kpi">0 of 10</div><div class="kl">Signals surviving FDR</div><div class="kn">Benjamini–Hochberg q ≤ 0.10</div></a><a class="card" href="pages/suggestions.html"><div class="kpi">10</div><div class="kl">Open decisions</div><div class="kn">suggestions waiting for a choice</div></a></div>
+<h2>Pages</h2>
+<div class="cards"><a class="card wide" href="pages/executive-summary.html"><div class="kc">Overview</div><div class="kl">Executive summary</div><div class="kn">What is true today, what is not, and what is blocked.</div></a><a class="card wide" href="pages/injuries.html"><div class="kc">Injuries &amp; depth</div><div class="kl">Injury tracker</div><div class="kn">All 254 official rows for Week 10, plus team exposure and news conflicts.</div></a><a class="card wide" href="pages/strategies.html"><div class="kc">Lines &amp; strategies</div><div class="kl">Strategy leaderboard</div><div class="kn">16 strategies, gates, reward tiers, and why none qualify.</div></a><a class="card wide" href="pages/lines-model.html"><div class="kc">Lines &amp; strategies</div><div class="kl">Lines &amp; model</div><div class="kn">Own-line origination compared with the closing market.</div></a><a class="card wide" href="pages/correlations-luck.html"><div class="kc">Lines &amp; strategies</div><div class="kl">Correlations &amp; luck</div><div class="kn">Correlation values, copula parlay pricing, luck removal.</div></a><a class="card wide" href="pages/suggestions.html"><div class="kc">Decide</div><div class="kl">Suggestions</div><div class="kn">Options to review before anything changes. Nothing is implemented.</div></a><a class="card wide" href="pages/questions.html"><div class="kc">Decide</div><div class="kl">Questions &amp; gaps</div><div class="kn">What is known, unknown, and how to find out.</div></a><a class="card wide" href="pages/repo-review.html"><div class="kc">Audit</div><div class="kl">Repo review</div><div class="kn">Checks rerun on this branch and the irregularities found.</div></a><a class="card wide" href="pages/flagged.html"><div class="kc">Audit</div><div class="kl">Flagged for review</div><div class="kn">Every irregularity and unverified item, with its links.</div></a></div>
+<p class="note">Nothing here is betting advice. The strategy results are negative: the market is the better
+predictor on this data, and no strategy passes the gates.</p>
+
+<footer>Every table row links to its source. Values that could not be confirmed are left blank and flagged on the
+<a href="pages/flagged.html">Flagged for review</a> page. Generated by nfl-command/scripts/build_site.py.</footer>
+</main>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>
