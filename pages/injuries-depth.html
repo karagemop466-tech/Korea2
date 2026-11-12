@@ -33,7 +33,7 @@ The Indianapolis Colts team site publishes a current depth chart, but its own We
 <section class="block"><h2>How the deficiency detector works</h2>
 <ol class="steps">
 <li><strong>Pull the official injury report</strong> for the target week (league or team view) from NFL.com. This is the only injury layer verified to resolve today.</li>
-<li><strong>Flag absences.</strong> Every player with Game Status <span class="badge bad">OUT</span> or <span class="badge warn">QUESTIONABLE</span> is a confirmed personnel loss; &ldquo;Did Not Participate&rdquo; with no game status is a watch item.</li>
+<li><strong>Read the status literally.</strong> <span class="badge bad">OUT</span> is a listed game-status absence; <span class="badge warn">QUESTIONABLE</span> is uncertain, not a confirmed absence. A practice status such as &ldquo;Did Not Participate&rdquo; without a game designation is not itself a game absence. Re-check the final report/inactive list before any availability decision.</li>
 <li><strong>Resolve the replacement&rsquo;s string depth.</strong> Cross-reference the team&rsquo;s verified depth chart to find whether the next man up is the 1st, 2nd, 3rd or 4th option. <span class="flag">Flagged &mdash; 32-team historical coverage unverified (see above).</span></li>
 <li><strong>Score the deficiency.</strong> Subtract replacement value from starter value to get a per-position drop. <span class="flag">Flagged &mdash; requires a sourced player-value model, not yet present.</span></li>
 <li><strong>Feed it to the model.</strong> Apply the deficiency as an adjustment to the originating ratings before lines are published.</li>
@@ -51,7 +51,7 @@ The Indianapolis Colts team site publishes a current depth chart, but its own We
 </tbody></table></div></section>
 
 <section class="block"><h2>Worked example &mdash; Patriots @ Lions, Week 10 (2026-11-15)</h2>
-<p class="lede">Pulled from the official Week&nbsp;10 injury report. <strong>New England shows three players with Game Status = Out; Detroit shows none.</strong> Position is taken from the report; starter-string depth is left blank and flagged because the depth-chart source does not resolve.</p>
+<p class="lede">Pulled from the official Week&nbsp;10 injury report. <strong>New England shows three players with Game Status = Out; the report lists no Detroit player as Out or Questionable for this game.</strong> Position is taken from the report; starter status and replacement depth are unknown and remain blank.</p>
 <div class="table-wrap"><table class=""><caption class="caption">Confirmed absences only. Every row links to the official injury report that lists it. Starter-string is intentionally blank where it cannot be sourced.</caption>
 <thead><tr><th>Team</th><th>Player</th><th>Pos</th><th>Injury</th><th>Game status</th><th>Starter string</th><th>Source</th></tr></thead>
 <tbody>
@@ -60,14 +60,14 @@ The Indianapolis Colts team site publishes a current depth chart, but its own We
 <tr><td>NE</td><td><a href="https://www.nfl.com/players/treveyon-henderson/" rel="noopener">TreVeyon Henderson</a></td><td>RB</td><td>Illness</td><td><span class="badge bad">OUT</span></td><td class="na">unverified</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Injury report Wk10</a></td></tr>
 <tr><td>DET</td><td colspan="4">No player with Out or Questionable status listed for this game in the Week&nbsp;10 report</td><td class="na">n/a</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Injury report Wk10</a></td></tr>
 </tbody></table></div>
-<p class="small">Interpretation: the verified signal is &ldquo;New England is missing at least its centre, a cornerback and a running back; Detroit is not missing any confirmed starter-level piece per the report.&rdquo; The <em>severity</em> of each loss (1st vs 4th string replacement) cannot be stated from an official source today &mdash; see Discovery.</p></section>
+<p class="small">Interpretation: the report lists three New England players as Out (at C, CB and RB); it lists no Detroit player as Out or Questionable for this game. The report does not establish whether any listed player is a starter, and a Questionable designation would not establish an absence. Replacement depth and impact remain unverified &mdash; see Discovery.</p></section>
 
 <section class="block"><h2 id="discovery">Discovery suggestions (how to fill the gaps)</h2>
 <div class="grid2">
   <div class="panel"><h3>Depth / next-man-up</h3><ul class="ticks">
     <li>Inventory candidate community datasets such as <a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse</a> only as a discovery lead; verify provenance, coverage and whether any field is a true depth-chart record before use. Never treat snap-count or usage proxies as depth rank.</li>
     <li>Use official <a href="https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/" rel="noopener">Next Gen Stats</a> snap counts as a proxy for who actually plays each position.</li>
-    <li>Track the weekly official injury report&rsquo;s practice-status progression (Full &rarr; Limited &rarr; DNP &rarr; Out) as a leading indicator.</li>
+    <li>Capture each dated practice and game designation as reported; statuses can change, so do not assume a monotone progression from Full to Out.</li>
   </ul><a class="panel-link" href="../pages/flagged.html">See flagged item &rarr;</a></div>
   <div class="panel"><h3>Replacement value</h3><ul class="ticks">
     <li>Build a player-value model from verified box scores (source: official gamebooks / nflverse).</li>
