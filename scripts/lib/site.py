@@ -32,6 +32,7 @@ NAV = [
     ("pages/injuries-depth.html", "Injury &amp; depth"),
     ("suggestions/index.html", "Suggestions hub"),
     ("decision-hub/index.html", "Decision hub &nearr;"),
+    ("nfl-command/index.html", "NFL Command Center"),
     ("pages/archive.html", "Archive"),
 ]
 
@@ -186,6 +187,7 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
         doc = (doc.replace('href="pages/', 'href="../pages/')
                   .replace('href="decision-hub/', 'href="../decision-hub/')
                   .replace('href="suggestions/', 'href="../suggestions/')
+                  .replace('href="nfl-command/', 'href="../nfl-command/')
                   .replace('href="index.html"', 'href="../index.html"'))
     return doc
 
