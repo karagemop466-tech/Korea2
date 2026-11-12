@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_utc": "2026-11-12T13:24:09+00:00",
+  "generated_utc": "2026-11-12T13:28:19+00:00",
   "auditor": "decision-hub/scripts/audit_root.py",
   "rule": "A published number is PASS only if this independent implementation reproduces it from committed inputs within tolerance. Anything else is FAIL, BLANK or OBSERVATION."
  },
@@ -284,12 +284,12 @@
   {
    "id": "rows.source_coverage",
    "claim": "table rows carrying a source link",
-   "published": 552,
-   "recomputed": 552,
+   "published": 855,
+   "recomputed": 855,
    "tolerance": 0,
    "abs_diff": 0,
    "verdict": "PASS",
-   "method": "7 of 559 rows have no link in the final cell",
+   "method": "7 of 862 rows have no link in the final cell",
    "source_id": "nflverse-data",
    "class": "count"
   }
@@ -426,8 +426,43 @@
    "rows_without_source_cell": 0,
    "tables": 3
   },
+  "pages/decision-hub.html": {
+   "table_rows": 4,
+   "rows_without_source_cell": 0,
+   "tables": 1
+  },
+  "pages/decision-injury-depth.html": {
+   "table_rows": 143,
+   "rows_without_source_cell": 0,
+   "tables": 6
+  },
+  "pages/decision-parlay.html": {
+   "table_rows": 35,
+   "rows_without_source_cell": 0,
+   "tables": 4
+  },
   "pages/decision-questions.html": {
-   "table_rows": 22,
+   "table_rows": 25,
+   "rows_without_source_cell": 0,
+   "tables": 5
+  },
+  "pages/decision-signals.html": {
+   "table_rows": 33,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
+  "pages/decision-suggestions.html": {
+   "table_rows": 19,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
+  "pages/decision-summary.html": {
+   "table_rows": 29,
+   "rows_without_source_cell": 0,
+   "tables": 3
+  },
+  "pages/decision-verify.html": {
+   "table_rows": 37,
    "rows_without_source_cell": 0,
    "tables": 3
   },
@@ -810,8 +845,8 @@
   }
  },
  "rows_totals": {
-  "pages": 18,
-  "table_rows": 559,
+  "pages": 25,
+  "table_rows": 862,
   "rows_without_source_cell": 7
  },
  "summary": {
