@@ -96,6 +96,16 @@ def main() -> int:
                 if re.search(r"\bNone\b|>nan<|>None<", last) or last.strip() in ("None", "nan"):
                     problems.append(f"{rel}: table {t_i} row {r_i} renders None/nan")
 
+    # A hand-written count in a data file is a defect waiting to happen: every figure shown on
+    # the site must be derived from an array at build time.
+    for name in ("suggestions.json", "questions.json"):
+        path = os.path.join(HUB, "data", name)
+        if os.path.exists(path):
+            import json as _json
+            meta = _json.load(open(path)).get("meta", {})
+            if isinstance(meta.get("counts"), dict):
+                problems.append(f"{name}: meta.counts is a stored tally; compute it at build time instead")
+
     print(f"checked {len(files)} pages, {tables_total} tables, {rows_total} table rows")
     if rows_total:
         print(f"rows with a source link: {rows_total - rows_missing_src}/{rows_total}")

@@ -45,8 +45,8 @@ the tolerance, and a verdict.
 | Failed | 0 |
 | Unverifiable with committed data | 2 |
 | Flags raised | 7 (1 high, 4 medium, 2 low) |
-| Table rows on the published site | 511 across 15 pages |
-| Rows without a source link | 7 |
+| Table rows on the published site | 862 across 25 pages |
+| Rows without a source link | 7 (all on the archive index) |
 
 Reproduced: game counts (7,548 / 7,396 / 7,087), as-of date, closing spread MAE (10.25), total MAE
 (10.62), 2023+ MAE (9.71), regression slope (1.049 vs a published 1.05), the sign-convention cover

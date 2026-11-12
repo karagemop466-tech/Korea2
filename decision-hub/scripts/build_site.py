@@ -193,7 +193,7 @@ def page_index():
   {len(blockers)} of them cannot be answered with the data this repository holds.</div>
   <a href="pages/questions.html">Open the questions register &rarr;</a></div>
 <div class="kpis">
-{kpi("Suggestions", len(sug.get('suggestions', [])), f"{len(hi)} rated impact 5. Each one names its cost, its risk and the decision it unblocks.", "pages/suggestions.html", "Review suggestions")}
+{kpi("Suggestions", len(sug.get('suggestions', [])), f"{len([x for x in sug.get('suggestions', []) if x.get('impact',0)>=4])} rated impact 4 or 5. Each one names its cost, its risk and the decision it unblocks.", "pages/suggestions.html", "Review suggestions")}
 {kpi("Open questions", len(qs.get('questions', [])), f"{len(blockers)} blocked on data we do not have. The register states what would answer each one.", "pages/questions.html", "Open questions")}
 {kpi("Audit checks", st.get("checks", 0), f"{st.get('pass', 0)} reproduced, {st.get('fail', 0)} failed, {st.get('blank', 0)} unverifiable. Recomputed independently from committed data.", "pages/audit.html", "Line-by-line audit")}
 {kpi("Audit flags", st.get("flags", 0), f"{st.get('high_flags', 0)} high severity. Includes one published statistic that cannot fail.", "pages/flagged.html", "Flagged items")}
