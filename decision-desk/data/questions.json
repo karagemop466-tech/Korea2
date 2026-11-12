@@ -1,0 +1,364 @@
+{
+ "meta": {
+  "title": "Decision-readiness register — what must be answered before any decision",
+  "session": "arena/aa66ed82-korea2",
+  "captured": "2026-11-12",
+  "policy": "Answered = an official source in this repo settles it. Partial = some evidence, a named gap remains. Unanswered = no official evidence exists; the gap and the suggestion that would close it are named. Nothing is inferred.",
+  "counts": {
+   "total": 22,
+   "answered": 16,
+   "partial": 4,
+   "unanswered": 2
+  }
+ },
+ "questions": [
+  {
+   "id": "Q-01",
+   "category": "Allocation",
+   "question": "Can any strategy be approved for capital allocation today?",
+   "answer": "No.",
+   "status": "answered",
+   "evidence": "0 of 9 root Line Lab entries pass 10/10 gates (best 5/10); pipeline build 0/5 pass all six gates (best 3/6); origination 0/31 qualified (23 REJECTED, 8 NEEDS_REVIEW); origination-lab 0/18 eligible; quant-lab 0/21 qualified (top 6/9); skill-lab 0/16 qualified.",
+   "sources": [
+    "SRC-DD-41",
+    "SRC-DD-42",
+    "SRC-DD-43",
+    "SRC-DD-44",
+    "SRC-DD-45",
+    "SRC-DD-46"
+   ],
+   "gap": "",
+   "related_suggestions": [
+    "S-01"
+   ]
+  },
+  {
+   "id": "Q-02",
+   "category": "Model quality",
+   "question": "Does the transparent ratings model beat the betting market?",
+   "answer": "No.",
+   "status": "answered",
+   "evidence": "Brier skill vs market is -0.038 (negative = worse than market) on the 2,687 games with both stored spread prices; log-loss model 0.7152 vs market 0.6943.",
+   "sources": [
+    "SRC-DD-42"
+   ],
+   "gap": "",
+   "related_suggestions": []
+  },
+  {
+   "id": "Q-03",
+   "category": "Correlation",
+   "question": "Are parlay legs independent?",
+   "answer": "No.",
+   "status": "answered",
+   "evidence": "QB passing yards vs WR1 receiving yards r = 0.5616 (n = 7,560, CI [0.5460, 0.5769]); same-game top-receiver pairs r = 0.6296; the 4-leg joint hit rate measured at 11.1% vs 5.7% if independent.",
+   "sources": [
+    "SRC-DD-42",
+    "SRC-DD-47"
+   ],
+   "gap": "",
+   "related_suggestions": []
+  },
+  {
+   "id": "Q-04",
+   "category": "Data gap",
+   "question": "Do we have historical player-prop prices to score prop strategies?",
+   "answer": "No.",
+   "status": "answered",
+   "evidence": "No historical prop price feed exists in the repo; prop ROI cannot be computed at recorded prices (flagged carry-forward FL-DD-13).",
+   "sources": [
+    "SRC-DD-41"
+   ],
+   "gap": "A licensed historical props feed (or an explicitly paper-only props track).",
+   "related_suggestions": [
+    "S-02"
+   ]
+  },
+  {
+   "id": "Q-05",
+   "category": "Funding",
+   "question": "Is the strategy-reward pool funded?",
+   "answer": "No.",
+   "status": "answered",
+   "evidence": "skill-lab competition_pool_points = 10,000 but cash_funding is empty (unfunded); root reward schedule tiers exist on paper only.",
+   "sources": [
+    "SRC-DD-46"
+   ],
+   "gap": "Reviewer decision: fund the pool, keep points-only, or defer.",
+   "related_suggestions": [
+    "S-03"
+   ]
+  },
+  {
+   "id": "Q-06",
+   "category": "Legal",
+   "question": "Do we have verified, legal betting access for our jurisdiction (Calgary, AB, Canada)?",
+   "answer": "Unverified.",
+   "status": "unanswered",
+   "evidence": "No licensed sportsbook is verified anywhere in the repo and no jurisdictional/legal review has been performed.",
+   "sources": [
+    "SRC-DD-38"
+   ],
+   "gap": "A jurisdiction-specific legal review; no such review exists.",
+   "related_suggestions": [
+    "S-04"
+   ]
+  },
+  {
+   "id": "Q-07",
+   "category": "Measurement",
+   "question": "Can we measure closing-line value (CLV) for our originated lines?",
+   "answer": "Partially.",
+   "status": "partial",
+   "evidence": "Closing lines exist for 2002-2026 (nflverse) but opening lines exist only for 2021, and our own lines are not timestamped into a market, so CLV cannot be computed for originated numbers.",
+   "sources": [
+    "SRC-DD-41"
+   ],
+   "gap": "A line-logging protocol with timestamps plus a price reference source.",
+   "related_suggestions": [
+    "S-05"
+   ]
+  },
+  {
+   "id": "Q-08",
+   "category": "Injuries",
+   "question": "Which Week 10 starting QBs are confirmed, and which are unverified?",
+   "answer": "4 confirmed, 2 unverified.",
+   "status": "partial",
+   "evidence": "Confirmed: Carson Beck (ARI, first career start), Deshaun Watson (CLE), Drew Lock (SEA, Darnold out), Kyle McCord (MIA, first start). Unverified: Minnesota (Murray DNP, Wentz limited, Cousins non-committal) and Baltimore (Jackson and Huntley on IR; chart does not list acquired QB Brissett) — both left blank on the injuries page.",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-04",
+    "SRC-DD-05",
+    "SRC-DD-06",
+    "SRC-DD-08"
+   ],
+   "gap": "Official starter announcements for MIN and BAL (expected Friday with inactives).",
+   "related_suggestions": [
+    "S-06"
+   ]
+  },
+  {
+   "id": "Q-09",
+   "category": "Data trust",
+   "question": "Is the official injury-report page's 'No Injuries Reported' trustworthy as a healthy-team signal?",
+   "answer": "No.",
+   "status": "answered",
+   "evidence": "The page showed 'No Injuries Reported' for Seattle and Cincinnati on 2026-11-12 while the official Wednesday roundup listed 12 Seahawks and 3 Bengals injury rows (Darnold ruled out among them). See FL-DD-01.",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ],
+   "gap": "",
+   "related_suggestions": [
+    "S-08"
+   ]
+  },
+  {
+   "id": "Q-10",
+   "category": "Data trust",
+   "question": "Are the team depth charts official?",
+   "answer": "No — they are team-published but labelled unofficial.",
+   "status": "answered",
+   "evidence": "Cowboys, Packers ('Unofficial, Nov. 10, 2026'), Rams, Patriots (explicit disclaimer), Jets, Titans ('as of 11/10/26'), Colts, Lions, Chiefs, Saints, Vikings ('2026 Unofficial') pages all say unofficial; only Arizona's page is titled 'Official Depth Chart'. See FL-DD-02.",
+   "sources": [
+    "SRC-DD-14",
+    "SRC-DD-16",
+    "SRC-DD-18",
+    "SRC-DD-27"
+   ],
+   "gap": "",
+   "related_suggestions": [
+    "S-09"
+   ]
+  },
+  {
+   "id": "Q-11",
+   "category": "Freshness",
+   "question": "How fresh is each dataset on this site?",
+   "answer": "Two snapshots.",
+   "status": "answered",
+   "evidence": "Root results/derived data: as-of gameday 2026-11-01 (Week 9, per verification.json). Injury/depth snapshot: fetched 2026-11-12 (Wednesday of Week 10). Both dates are printed on the pages that use them.",
+   "sources": [
+    "SRC-DD-48",
+    "SRC-DD-01"
+   ],
+   "gap": "",
+   "related_suggestions": [
+    "S-08"
+   ]
+  },
+  {
+   "id": "Q-12",
+   "category": "Competition",
+   "question": "How many strategies have been evaluated across all labs?",
+   "answer": "100 evaluations, 0 qualified.",
+   "status": "answered",
+   "evidence": "9 (root leaderboard) + 5 (pipeline/results) + 31 (origination) + 18 (origination-lab) + 21 (quant-lab) + 16 (skill-lab) = 100 strategy evaluations; ideas overlap across labs (e.g. wind-under appears in four), so this counts evaluations, not unique ideas. Qualified in every lab: 0.",
+   "sources": [
+    "SRC-DD-41",
+    "SRC-DD-42",
+    "SRC-DD-43",
+    "SRC-DD-44",
+    "SRC-DD-45",
+    "SRC-DD-46"
+   ],
+   "gap": "",
+   "related_suggestions": []
+  },
+  {
+   "id": "Q-13",
+   "category": "Power",
+   "question": "What sample would a genuine 2% edge require?",
+   "answer": "23,844 settled tickets.",
+   "status": "answered",
+   "evidence": "Origination power analysis: per-ticket sd 1.10 units, alpha 0.05, power 0.80 => n = 23,844 for a 2% edge (10,598 for 3%, 3,815 for 5%).",
+   "sources": [
+    "SRC-DD-43"
+   ],
+   "gap": "",
+   "related_suggestions": []
+  },
+  {
+   "id": "Q-14",
+   "category": "Luck",
+   "question": "Is luck removed from the ranking?",
+   "answer": "Priced, not deleted — and untested in production.",
+   "status": "partial",
+   "evidence": "Luck measurement exists (Pythagorean R^2 = 0.819; year-over-year luck r = 0.024, p = 0.49; ATS coin-flip test) and every lab gates on significance/stability, but no strategy has survived a full gate battery, so a skill-based ranking of qualified strategies has never run.",
+   "sources": [
+    "SRC-DD-41",
+    "SRC-DD-42"
+   ],
+   "gap": "A first strategy that clears all gates (or an explicit decision that none will).",
+   "related_suggestions": [
+    "S-01"
+   ]
+  },
+  {
+   "id": "Q-15",
+   "category": "Correlation",
+   "question": "Which correlation values must origination respect?",
+   "answer": "See the leaderboard page correlation table.",
+   "status": "answered",
+   "evidence": "Verified this session: QB-WR1 r = 0.5616; QB vs game top receiver r = 0.6296; top-two receivers partial r = 0.1114; home vs away QB pass yards r = 0.1716; ATS cover vs total r = 0.0209 (p = 0.078); closing spread vs closing total r = -0.0101 (p = 0.397); receptions vs own receiving yards r = 0.8597; skill-lab Home ATS cover vs Over phi = 0.0124.",
+   "sources": [
+    "SRC-DD-42",
+    "SRC-DD-47",
+    "SRC-DD-49"
+   ],
+   "gap": "",
+   "related_suggestions": []
+  },
+  {
+   "id": "Q-16",
+   "category": "Injuries in models",
+   "question": "Do any committed backtests ingest injury/depth data?",
+   "answer": "No.",
+   "status": "answered",
+   "evidence": "The signals register defines SIG-05 'Official injury report (practice + game status)' as an availability input, and design ST-01 mentions adjusting for injuries, but no committed results/derived strategy file uses an injury input — all backtests are price/standings/weather based.",
+   "sources": [
+    "SRC-DD-41"
+   ],
+   "gap": "If injury alpha is to be claimed, a backtest that ingests SIG-05 point-in-time must be built and gated.",
+   "related_suggestions": [
+    "S-10",
+    "S-14"
+   ]
+  },
+  {
+   "id": "Q-17",
+   "category": "Process",
+   "question": "What must the reviewer decide before any decision is made?",
+   "answer": "Four decisions.",
+   "status": "answered",
+   "evidence": "(1) Accept the no-bet status quo or set a new bar; (2) fund or defer the reward pool; (3) commission or skip the legal review; (4) pick which Suggestions to implement first. Each maps to a row in the Suggestions register.",
+   "sources": [
+    "SRC-DD-41",
+    "SRC-DD-46"
+   ],
+   "gap": "",
+   "related_suggestions": [
+    "S-15"
+   ]
+  },
+  {
+   "id": "Q-18",
+   "category": "Site",
+   "question": "Is the published site build verified end-to-end?",
+   "answer": "Pending this session's merge.",
+   "status": "partial",
+   "evidence": "Root site checks pass locally (97 pages, 251 tables, 3,992 links, 0 broken; validate_data/check_links/check_data/check_derived all PASS on 2026-11-12). Decision Desk pages deploy with this PR; deploy confirmation is recorded in COORDINATION.md after merge.",
+   "sources": [
+    "SRC-DD-38",
+    "SRC-DD-39"
+   ],
+   "gap": "GitHub Pages deploy confirmation for the Decision Desk pages.",
+   "related_suggestions": [
+    "S-13"
+   ]
+  },
+  {
+   "id": "Q-19",
+   "category": "Policy",
+   "question": "Do flagged items block the merge?",
+   "answer": "No.",
+   "status": "answered",
+   "evidence": "Project policy (COORDINATION.md): flagged/unverified items do not block the merge; they are published on the Flagged for Review page instead.",
+   "sources": [
+    "SRC-DD-38"
+   ],
+   "gap": "",
+   "related_suggestions": []
+  },
+  {
+   "id": "Q-20",
+   "category": "Injuries",
+   "question": "Which Week 10 lineups are most deficient right now?",
+   "answer": "See the deficiency table.",
+   "status": "answered",
+   "evidence": "Starters out with no verified replacement: NE left guard (Brown out, backup Rouse also DNP), Pittsburgh LOLB and DT (Watt and Heyward DNP, chart lists no backups), Tennessee LG and LB (Skoronski and Barton DNP, chart lists no backups), San Francisco LCB (Green DNP, no backup), both Dallas safeties DNP, plus unverified QB situations in Minnesota and Baltimore.",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ],
+   "gap": "Friday inactives to convert DNP/limited into final designations.",
+   "related_suggestions": [
+    "S-06"
+   ]
+  },
+  {
+   "id": "Q-21",
+   "category": "Compliance",
+   "question": "Does the site carry a legal/responsible-use disclaimer?",
+   "answer": "No.",
+   "status": "unanswered",
+   "evidence": "No disclaimer page or footer statement exists anywhere in the repo's published pages.",
+   "sources": [
+    "SRC-DD-38"
+   ],
+   "gap": "A disclaimer covering entertainment/research use, no wagering advice, and jurisdiction.",
+   "related_suggestions": [
+    "S-07"
+   ]
+  },
+  {
+   "id": "Q-22",
+   "category": "Decision safety",
+   "question": "Can these pages be used for real-money betting decisions today?",
+   "answer": "No.",
+   "status": "answered",
+   "evidence": "Composite of Q-01 (0 qualified strategies), Q-05 (unfunded pool), Q-06 (no verified legal access), Q-04 (no prop prices) and Q-21 (no disclaimer).",
+   "sources": [
+    "SRC-DD-41",
+    "SRC-DD-46"
+   ],
+   "gap": "",
+   "related_suggestions": [
+    "S-01",
+    "S-04",
+    "S-07"
+   ]
+  }
+ ]
+}
