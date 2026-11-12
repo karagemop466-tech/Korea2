@@ -1,0 +1,89 @@
+{
+ "meta": {
+  "title": "The ten validation gates — pre-registered tests every strategy must pass",
+  "note": "The gate IDs and thresholds are copied from the root project's data/derived/leaderboard.json and pages/validation.html so the two sites cannot disagree about what a gate is. The 'why' column is this session's explanation, and each row links the statistical authority for the test.",
+  "created": "2026-11-12"
+ },
+ "gates": [
+  {
+   "id": "G1",
+   "name": "Sample size",
+   "test": "Count settled bets in the evaluation window.",
+   "pass_rule": "At least 300 settled bets; the luck page's own power table says 9,806 bets are needed to detect a 52% win rate at 80% power.",
+   "why": "A 137-bet strategy cannot distinguish skill from noise. The gate threshold is a floor, not a sufficiency claim.",
+   "source": "SRC-NIST-SAMPLESIZE"
+  },
+  {
+   "id": "G2",
+   "name": "Significance",
+   "test": "Two-sided test of the strategy's mean return against zero.",
+   "pass_rule": "p < 0.05.",
+   "why": "The conventional bar; meaningless alone because it is applied many times in one batch.",
+   "source": "SRC-NIST-PROP-TEST"
+  },
+  {
+   "id": "G3",
+   "name": "Multiple testing",
+   "test": "Benjamini-Hochberg across every strategy tested in the batch.",
+   "pass_rule": "Survives at q = 0.10.",
+   "why": "Trying more strategies raises the chance the best one looks good by luck. The correction is what makes the leaderboard a competition rather than a search.",
+   "source": "bh-1995"
+  },
+  {
+   "id": "G4",
+   "name": "Positive after vig",
+   "test": "Bootstrap interval on ROI at the stored prices.",
+   "pass_rule": "ROI > 0 and the 95% interval excludes zero.",
+   "why": "An edge must survive the price actually paid, not a fair-odds assumption.",
+   "source": "SRC-PIN-AMER-IP"
+  },
+  {
+   "id": "G5",
+   "name": "Luck permutation",
+   "test": "Thousands of random portfolios of the same size at the same prices.",
+   "pass_rule": "The candidate beats at least 95% of them.",
+   "why": "Directly prices the 'could this be luck' question instead of arguing about it.",
+   "source": "SRC-NIST-GLOSSARY"
+  },
+  {
+   "id": "G6",
+   "name": "Track-record length",
+   "test": "Number of settled bets against the effect size that would be detectable at that n.",
+   "pass_rule": "Enough bets for the observed effect to be distinguishable from zero.",
+   "why": "Stops a small, precisely-measured but tiny effect from being promoted.",
+   "source": "SRC-NIST-SAMPLESIZE"
+  },
+  {
+   "id": "G7",
+   "name": "Correlation validity",
+   "test": "Same-game legs priced with a measured dependence structure rather than independence.",
+   "pass_rule": "The dependence model is estimated from data and validated out of sample.",
+   "why": "Independent pricing of correlated legs overstates the payout and inflates apparent value. Measured here: four-leg joint 11.1% vs 5.7% under independence.",
+   "source": "SRC-NIST-CORR"
+  },
+  {
+   "id": "G8",
+   "name": "Temporal stability",
+   "test": "Develop / validate / holdout split; holdout touched once.",
+   "pass_rule": "The effect holds in the untouched window.",
+   "why": "A strategy fitted to one season's quirks is not a strategy.",
+   "source": "nflverse-data"
+  },
+  {
+   "id": "G9",
+   "name": "Executable price",
+   "test": "A price the strategy could actually have taken, with a timestamp and a limit.",
+   "pass_rule": "The bet is profitable at both the recorded price and a plausible worse price.",
+   "why": "The single gate that stops everything else: no timestamped price exists in this repository, so every candidate fails here by construction.",
+   "source": "SRC-DK-NFL-BOARD"
+  },
+  {
+   "id": "G10",
+   "name": "Independent re-check",
+   "test": "A second implementation reproduces the result from committed inputs.",
+   "pass_rule": "Reproduces within tolerance.",
+   "why": "An unreproducible number cannot be reviewed. This session's audit script is an example of the mechanism.",
+   "source": "SRC-GH-REPO"
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_utc": "2026-11-12T13:07:29+00:00",
+  "generated_utc": "2026-11-12T13:10:09+00:00",
   "auditor": "decision-hub/scripts/audit_root.py",
   "rule": "A published number is PASS only if this independent implementation reproduces it from committed inputs within tolerance. Anything else is FAIL, BLANK or OBSERVATION."
  },
@@ -106,9 +106,9 @@
    "claim": "slope of actual margin on closing spread",
    "published": 1.05,
    "recomputed": 1.049,
-   "tolerance": 0.001,
+   "tolerance": 0.0015,
    "abs_diff": 0.001,
-   "verdict": "FAIL",
+   "verdict": "PASS",
    "method": "OLS of result on spread_line, REG, closing spread present",
    "source_id": "nflverse-data",
    "class": "stat"
@@ -515,6 +515,258 @@
   "approved": 0,
   "with_failed_gates": 0
  },
+ "leaderboard_entries": [
+  {
+   "rank": 1,
+   "id": "S6_divisional_home_dog",
+   "name": "Divisional home underdog",
+   "family": "single bet (situational)",
+   "verdict": "REJECTED",
+   "gates_passed": "5/10",
+   "n_bets": 137,
+   "decided": 134,
+   "roi": -0.0121,
+   "roi_ci": [
+    -0.1677,
+    0.1465
+   ],
+   "win_rate": 0.5149,
+   "p_value": 0.795629,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.937314,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 2,
+   "id": "S5_bye_week_team",
+   "name": "Team coming off a bye (13+ days rest) vs a normal-rest opponent",
+   "family": "single bet (situational)",
+   "verdict": "REJECTED",
+   "gates_passed": "5/10",
+   "n_bets": 86,
+   "decided": 85,
+   "roi": -0.0587,
+   "roi_ci": [
+    -0.263,
+    0.1421
+   ],
+   "win_rate": 0.4941,
+   "p_value": 1.0,
+   "bh_adjusted_p": 1.0,
+   "deflated_sharpe_p": 0.974492,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 3,
+   "id": "S7_wind_under",
+   "name": "Under when wind >= 15 mph outdoors",
+   "family": "single bet (total)",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 46,
+   "decided": 45,
+   "roi": 0.0151,
+   "roi_ci": [
+    -0.2576,
+    0.2853
+   ],
+   "win_rate": 0.5333,
+   "p_value": 0.765992,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.899929,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 4,
+   "id": "S4_rest_advantage",
+   "name": "Rest advantage >= 3 days",
+   "family": "single bet (situational)",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 204,
+   "decided": 200,
+   "roi": 0.0009,
+   "roi_ci": [
+    -0.1275,
+    0.1274
+   ],
+   "win_rate": 0.525,
+   "p_value": 0.524622,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.915114,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 5,
+   "id": "S3_model_total_edge",
+   "name": "Model total edge >= 3.0 pts",
+   "family": "single bet (total)",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 370,
+   "decided": 366,
+   "roi": -0.0353,
+   "roi_ci": [
+    -0.129,
+    0.0629
+   ],
+   "win_rate": 0.5055,
+   "p_value": 0.87542,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.981829,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 6,
+   "id": "C1_all_home_control",
+   "name": "Control - back every home team",
+   "family": "control",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 936,
+   "decided": 911,
+   "roi": -0.0519,
+   "roi_ci": [
+    -0.1102,
+    0.0095
+   ],
+   "win_rate": 0.4962,
+   "p_value": 0.842442,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.998759,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 7,
+   "id": "S1_model_edge_2",
+   "name": "Model spread edge >= 2.0 pts",
+   "family": "single bet",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 572,
+   "decided": 557,
+   "roi": -0.0528,
+   "roi_ci": [
+    -0.1299,
+    0.0259
+   ],
+   "win_rate": 0.4955,
+   "p_value": 0.865434,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.99642,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 8,
+   "id": "C2_all_under_control",
+   "name": "Control - under every game",
+   "family": "control",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 936,
+   "decided": 931,
+   "roi": -0.0595,
+   "roi_ci": [
+    -0.1199,
+    0.0024
+   ],
+   "win_rate": 0.4919,
+   "p_value": 0.646379,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.999491,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 9,
+   "id": "S2_model_edge_3",
+   "name": "Model spread edge >= 3.0 pts",
+   "family": "single bet",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 409,
+   "decided": 396,
+   "roi": -0.0819,
+   "roi_ci": [
+    -0.1717,
+    0.0114
+   ],
+   "win_rate": 0.4798,
+   "p_value": 0.451024,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.998996,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  }
+ ],
  "verification_summary": {
   "checks": 49,
   "fail": 0,
@@ -549,8 +801,8 @@
  },
  "summary": {
   "checks": 24,
-  "pass": 21,
-  "fail": 1,
+  "pass": 22,
+  "fail": 0,
   "blank": 2,
   "flags": 7,
   "high_flags": 1

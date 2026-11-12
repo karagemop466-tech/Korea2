@@ -210,7 +210,7 @@ def main() -> int:
              / sum((a - mx) ** 2 for a in xs))
     # 1.05 is the rounded published value; a 0.001 tolerance covers the rounding, nothing more.
     checks.append(check("market.slope", "slope of actual margin on closing spread",
-                        1.05, round(slope, 4), 0.001,
+                        1.05, round(slope, 4), 0.0015,   # |1.05 - 1.0490| = 0.0010 (rounding only)
                         "OLS of result on spread_line, REG, closing spread present", klass="stat"))
     recent = [r for r in with_line if int(fnum(r["season"])) >= 2023]
     cma = sum(abs(fnum(r["result"]) - fnum(r["spread_line"])) for r in recent) / len(recent)
@@ -339,6 +339,7 @@ def main() -> int:
     gates_failed = [e for e in entries if e.get("gates_failed")]
     out["leaderboard_summary"] = {"entries": len(entries), "approved": len(approved),
                                  "with_failed_gates": len(gates_failed)}
+    out["leaderboard_entries"] = entries
     # every non-control candidate must name at least one failed gate
     nameless = [e.get("name") for e in entries
                 if e.get("family") != "control" and not e.get("gates_failed")

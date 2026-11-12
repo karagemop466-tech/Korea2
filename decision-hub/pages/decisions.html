@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decisions | Decision Hub</title>
+<meta name="description" content="Decision support for the NFL line-origination project: suggestions, open questions, strategy framework, injury and depth tracking, and an independent audit.">
+<meta name="generator" content="decision-hub/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html"><span class="mark">DH</span>
+    <span>DECISION HUB<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">Review</div>
+  <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/executive-summary.html">Executive summary</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Questions &amp; unknowns</a><a href="../pages/decisions.html" class="active" aria-current="page">Decisions</a><a href="../pages/strategies.html">Strategy framework</a><a href="../pages/injuries.html">Injuries &amp; depth</a><a href="../pages/audit.html">Line-by-line audit</a><a href="../pages/evidence.html">Evidence tables</a><a href="../pages/sources.html">Sources</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/workflow.html">Review workflow</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Decision support<br>
+    <strong>0 of 7 strategies approved</strong>
+    <span>Every suggestion is a proposal. Choose before implementing.</span></div>
+</aside>
+<main id="main">
+<header class="topbar"><span class="crumb">DECISIONS</span>
+  <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a></header>
+
+
+<div class="hero compact"><div class="eyebrow">DECISIONS</div>
+<h1>Three choices gate everything else.</h1>
+<p class="lede">Each decision lists the options, what happens if you pick it, and the evidence.
+The recommendation column is where the measured evidence points — it is advice, not a finding.</p></div>
+<section class="block decision" id="D-01">
+<div class="eyebrow">D-01</div><h2>Should the project publish betting recommendations at all, or remain a measurement system?</h2>
+<p class="muted">Every downstream choice — reward pool, bankroll, licensing, marketing — depends on this. The measured evidence says the model does not beat the closing line, so a &#x27;picks&#x27; product would currently be selling noise.</p>
+<div class="table-wrap"><table class=""><caption class="caption">Options are mutually exclusive for the next build.</caption><thead><tr><th>Option</th><th>What happens if chosen</th><th>Supporting evidence</th><th>Notes</th><th>Source</th></tr></thead><tbody><tr><td><strong>Measurement only (recommended by the evidence)</strong></td><td>Keep the site as a graded research instrument. No picks, no stakes. Lowest legal and reputational risk.</td><td>Model coefficient on margin after controlling for the close = -0.019, p = 0.881; model spread MAE 10.39 vs market 10.25.</td><td><span class="badge ok">recommended by evidence</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td><strong>Publish graded, staked paper picks with a public ledger</strong></td><td>Requires unit staking, a published closing-line value per pick, and a minimum sample before any claim. Adds an execution-integrity burden.</td><td>No verified execution access, limits or jurisdiction exists in this repo (flagged).</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td><strong>Commercial product</strong></td><td>Adds licensing, consumer-protection and responsible-gambling obligations before any strategy has cleared the gates.</td><td>0 of 7 candidates passed; no funded reward pool.</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr></tbody></table></div>
+<h3>Facts that block this decision</h3><ul class="crosses"><li>No strategy has passed the 10-gate screen</li><li>No verified sportsbook access</li></ul></section><section class="block decision" id="D-02">
+<div class="eyebrow">D-02</div><h2>Is the reward leaderboard real money, points, or a research ranking?</h2>
+<p class="muted">The site currently shows reward tiers next to strategies that failed. If the reward is money, a funding source, tax treatment and payout rules are needed before any rank is displayed.</p>
+<div class="table-wrap"><table class=""><caption class="caption">Options are mutually exclusive for the next build.</caption><thead><tr><th>Option</th><th>What happens if chosen</th><th>Supporting evidence</th><th>Notes</th><th>Source</th></tr></thead><tbody><tr><td><strong>Research ranking with no payout (recommended until a gate is cleared)</strong></td><td>Rename &#x27;reward&#x27; to &#x27;rank&#x27;; publish the gate that failed instead of a prize tier.</td><td>pages/leaderboard.html shows &#x27;reward: none - gate failure&#x27; on every row already.</td><td><span class="badge ok">recommended by evidence</span></td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td><strong>Points-only competition with a published scoring rule</strong></td><td>Requires a written scoring rule (e.g. Brier skill vs closing line) and a fixed evaluation window so entries are comparable.</td><td>The site has a Brier/skill framework in data/derived/model.json.</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td><strong>Funded cash prize</strong></td><td>Blocked until a sponsor, the amount, the eligibility rules and the jurisdiction are documented.</td><td>No funded pool exists (flagged FL-DH-07).</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr></tbody></table></div>
+<h3>Facts that block this decision</h3><ul class="crosses"><li>No funded pool</li><li>No eligibility rules</li></ul></section><section class="block decision" id="D-03">
+<div class="eyebrow">D-03</div><h2>Which single weakness should the next build attack?</h2>
+<p class="muted">The measured results say the model loses to the close. Effort spent on price modelling and on injury/depth information has different expected value, and only one can be first.</p>
+<div class="table-wrap"><table class=""><caption class="caption">Options are mutually exclusive for the next build.</caption><thead><tr><th>Option</th><th>What happens if chosen</th><th>Supporting evidence</th><th>Notes</th><th>Source</th></tr></thead><tbody><tr><td><strong>Price modelling: opening line, timestamped prices, closing-line value</strong></td><td>Unlocks the only skill metric that needs no result: CLV. Currently impossible because only the close is stored.</td><td>FL-DH-08: no opening line and no timestamp in the feed; every ROI is settled at the close.</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td><strong>Injury and depth signal (this session&#x27;s tracker)</strong></td><td>Gives a measurable feature for the first time: depth lost per team-week. Must be tested against the line, not assumed to matter.</td><td>decision-hub/data/injuries.json: 636 reported absences with depth ranks for 2026.</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr><tr><td><strong>Prop pricing and correlation</strong></td><td>Needs historical prop prices that do not exist here; without them only calibration can be measured, not ROI.</td><td>FL-DH-09: no historical prop prices in the feed.</td><td>&mdash;</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr></tbody></table></div>
+<h3>Facts that block this decision</h3><ul class="crosses"><li>Only one workstream can be first</li></ul></section><section class="block"><h2>Choosing</h2>
+<p>Open the <a href="pages/workflow.html">review workflow</a>: it lists each decision with a
+place to record the choice and what follows. Nothing changes on the site until a choice is
+recorded there.</p></section>
+<footer>
+  <p>Research and decision support only — not betting advice. Nothing here has passed a validation gate. Values that could not be confirmed from an official source are blank and listed on Flagged for review.</p>
+  <p><a href="../pages/sources.html">Sources</a> &middot;
+     <a href="../pages/flagged.html">Flagged for review</a> &middot;
+     <a href="../pages/workflow.html">Review workflow</a></p>
+</footer>
+</main></div></body></html>
