@@ -2,13 +2,13 @@
 """Render the Decision Desk pages into the live dashboard.
 
 Writes:
-  pages/decisions.html              hub: what this section is, the four findings, the review workflow
-  pages/suggestions.html            the suggestion register, with a review workflow and statuses
-  pages/questions.html              open questions, split by whether we can answer them now
-  pages/injury-depth.html           injury report transcription + why depth rank is blank
-  pages/signals-lab.html            the 23-variant signal lab and its gate-by-gate rejections
-  pages/parlay-pricing.html         measured correlation and the joint-vs-product pricing gap
-  pages/decision-verification.html  the 19 line-by-line checks and the 10 irregularities
+  pages/decision-hub.html            hub: what this section is, the four findings, the review workflow
+  pages/decision-suggestions.html    the suggestion register, with a review workflow and statuses
+  pages/decision-questions.html      open questions, split by whether we can answer them now
+  pages/decision-injury-depth.html   injury report transcription + why depth rank is blank
+  pages/decision-signals.html        the 23-variant signal lab and its gate-by-gate rejections
+  pages/decision-parlay.html         measured correlation and the joint-vs-product pricing gap
+  pages/decision-verify.html         the 19 line-by-line checks and the 10 irregularities
   pages/decision-summary.html       executive summary of this section
   site/index.html                   a standalone landing page for the section
 
@@ -30,14 +30,18 @@ GENERATOR = "line-lab/scripts/build_site.py"
 NAV_GROUP = "Decisions"
 
 # these pages live under pages/ and therefore use ../assets/style.css plus ../-prefixed links
+# NOTE (2026-11-12): a sibling session (arena/cb5b61a7) published pages/decisions.html,
+# pages/suggestions.html, pages/decision-questions.html and pages/injuries-depth.html while this
+# section was being built. Its files are on main and own their paths, so this section publishes under
+# its own "decision-" prefix instead of overwriting them. Its hub is cross-linked on the hub page.
 PAGES = [
-    ("decisions.html", "Decisions"),
-    ("suggestions.html", "Suggestions"),
-    ("questions.html", "Open questions"),
-    ("injury-depth.html", "Injury &amp; depth"),
-    ("signals-lab.html", "Signal lab"),
-    ("parlay-pricing.html", "Parlay pricing"),
-    ("decision-verification.html", "Re-verification"),
+    ("decision-hub.html", "Decisions"),
+    ("decision-suggestions.html", "Suggestions"),
+    ("decision-questions.html", "Open questions"),
+    ("decision-injury-depth.html", "Injury &amp; depth"),
+    ("decision-signals.html", "Signal lab"),
+    ("decision-parlay.html", "Parlay pricing"),
+    ("decision-verify.html", "Re-verification"),
     ("decision-summary.html", "Executive summary"),
 ]
 
@@ -218,7 +222,7 @@ def layout(title: str, current: str, body: str, subtitle: str = "") -> str:
 <footer>
   <p>Research and measurement, not betting advice. Every figure is computed by the code in this repository from the sources listed on each row; nothing is estimated by hand.</p>
   <p><a href="../pages/sources.html">Source register</a> &middot; <a href="../pages/method.html">Method</a> &middot;
-     <a href="../pages/decision-verification.html">This section&rsquo;s checks</a> &middot;
+     <a href="../pages/decision-verify.html">This section&rsquo;s checks</a> &middot;
      <a href="../pages/flagged.html">Flagged for review</a></p>
 </footer>
 </main></div></body></html>"""
@@ -288,22 +292,22 @@ suggestions fix that. Three more are fixes to numbers this review found to be wr
 {section("What is on this desk", '''<div class="dd-two">
   <div class="dd-card"><h3>Suggestions</h3><p>Twelve proposals. Each has a problem statement, an effort
   and payoff estimate, the evidence behind it, and a recommended path. Status is <em>pending</em> until a
-  reviewer picks one.</p><a href="suggestions.html">Open the register &rarr;</a></div>
+  reviewer picks one.</p><a href="decision-suggestions.html">Open the register &rarr;</a></div>
   <div class="dd-card"><h3>Open questions</h3><p>Seventeen questions a reasonable decision needs answered,
   split four ways: answerable now, one feed away, blocked on a decision, and not answerable yet.</p>
-  <a href="questions.html">See the questions &rarr;</a></div>
+  <a href="decision-questions.html">See the questions &rarr;</a></div>
   <div class="dd-card"><h3>Injury &amp; depth</h3><p>The official Week 10 report transcribed in full for
   five games, plus the exact reason no starter/backup claim can be made yet and what would unlock it.</p>
-  <a href="injury-depth.html">Read the evidence &rarr;</a></div>
+  <a href="decision-injury-depth.html">Read the evidence &rarr;</a></div>
   <div class="dd-card"><h3>Signal lab</h3><p>Twenty-three candidate signals, ten gates each, a
   Benjamini-Hochberg correction across the whole family and a luck null. Zero qualify.</p>
-  <a href="signals-lab.html">See the rejections &rarr;</a></div>
+  <a href="decision-signals.html">See the rejections &rarr;</a></div>
   <div class="dd-card"><h3>Parlay pricing</h3><p>Measured correlations between same-team legs, and the gap
   between the empirical joint probability and the independent-legs product.</p>
-  <a href="parlay-pricing.html">See the numbers &rarr;</a></div>
+  <a href="decision-parlay.html">See the numbers &rarr;</a></div>
   <div class="dd-card"><h3>Re-verification</h3><p>Nineteen checks re-derived from the committed extract by
   code that imports nothing from the pipeline, and the ten irregularities found doing it.</p>
-  <a href="decision-verification.html">Check the checks &rarr;</a></div>
+  <a href="decision-verify.html">Check the checks &rarr;</a></div>
 </div>''', "OVERVIEW")}
 {section("The four findings that change a decision", table(
     ["Finding", "Evidence", "What it means for the decision", "Source"],
@@ -311,12 +315,14 @@ suggestions fix that. Three more are fixes to numbers this review found to be wr
       esc(f["impact"]), a(f["source"], f.get("source_text", "source"))]
      for f in [x for x in v.get("irregularities", []) if x["id"] in ("IR-01", "IR-06", "IR-07", "IR-03")]],
     caption="The four irregularities that most constrain what can be decided today. The full register is on the Re-verification page."), "FINDINGS")}
-<p class="lede"><a href="../site/index.html">Open the standalone section index &rarr;</a></p>
+<p class="lede"><a href="../site/index.html">Open the standalone section index &rarr;</a>
+&nbsp;&middot;&nbsp; <a href="suggestions.html">Read the sibling Suggestions Hub &rarr;</a>
+<span class="blank">(a parallel session publishes a complementary register at pages/suggestions.html; both are kept)</span></p>
 {section("How a suggestion becomes a change", '<ol class="dd-steps">' + "".join(
     f'<li><strong>{esc(w["label"])}</strong><p>{esc(w["detail"])}</p></li>'
     for w in s.get("review_workflow", [])) + "</ol>", "REVIEW WORKFLOW")}
 """
-    return layout("Decisions", "decisions.html", body)
+    return layout("Decisions", "decision-hub.html", body)
 
 
 def page_suggestions(s):
@@ -359,7 +365,7 @@ path. A suggestion whose evidence you cannot open should be sent back, not appro
     ],
     caption="A dependency-aware order. Doing 5 before 2 does not make the results better, it only makes them look better."), "SEQUENCE")}
 """
-    return layout("Suggestions", "suggestions.html", body)
+    return layout("Suggestions", "decision-suggestions.html", body)
 
 
 def page_questions(q):
@@ -393,7 +399,7 @@ lawfully obtain today.</div>
     [[esc(f["id"]), esc(f["item"]), esc(f["detail"]), a(f["source"], "open")] for f in q.get("flagged", [])]),
     "FLAGGED")}
 """
-    return layout("Open questions", "questions.html", body)
+    return layout("Open questions", "decision-questions.html", body)
 
 
 def page_injury(inj):
@@ -456,7 +462,7 @@ of {meta.get('starter_claims_total', 0)}. The block is a missing feed, not a mis
     player_rows, caption="The last three columns are deliberately blank. Filling them from a name, a roster order, or a highlight reel would be inference, and inference is what this page exists to avoid."), "PLAYERS")}
 {section("Irregularities", table(["ID", "Issue", "Detail", "What it needs", "Source"], irr_rows), "FLAGGED")}
 """
-    return layout("Injury &amp; depth", "injury-depth.html", body)
+    return layout("Injury &amp; depth", "decision-injury-depth.html", body)
 
 
 def page_signals(sig):
@@ -485,7 +491,7 @@ def page_signals(sig):
 <p>{r['n']} settled bets in 2023-2026. Gates passed {r['gates_passed']}/10. Per season:
 {esc(", ".join(f"{s['season']}: {s['roi']*100:+.1f}% on {s['n']}" for s in r.get('per_season', [])))}.</p>
 <p>{esc("; ".join(f"{g['id']}: {g['detail']}" for g in r['gates'] if not g['pass']))}</p>
-<a href="signals-lab.html">Gate detail &rarr;</a></div>''')
+<a href="decision-signals.html">Gate detail &rarr;</a></div>''')
     body = f"""
 <div class="hero"><div class="eyebrow">SIGNAL LAB</div>
 <h1>Twenty-three ideas.<br><em>Zero survive ten gates.</em></h1>
@@ -519,7 +525,7 @@ a data-pipeline problem, and it is the first thing the Suggestions page recommen
 <li><strong>Controls included.</strong> Betting every home side and betting every under are measured on the same footing, so a &ldquo;signal&rdquo; that is just the base rate is visible immediately.</li>
 </ul>''', "METHOD")}
 """
-    return layout("Signal lab", "signals-lab.html", body)
+    return layout("Signal lab", "decision-signals.html", body)
 
 
 def page_parlay(par):
@@ -582,7 +588,7 @@ correlation is doing the work.</p>''' + table(
       num(p["theoretical_hold_pct_if_priced_independently"], 1), a(par["sources"]["player_week"], "measured")]
      for p in prem], caption=meta.get("method", "")), "PREMIUM")}
 """
-    return layout("Parlay pricing", "parlay-pricing.html", body)
+    return layout("Parlay pricing", "decision-parlay.html", body)
 
 
 def page_verification(v):
@@ -625,7 +631,7 @@ process, each with the source it was found in.</p></div>
     ["ID", "Issue", "Detail", "Impact on a decision", "Source"], irr,
     caption="These are published, not hidden, and they do not block publication. They do block treating the affected number as settled."), "IRREGULARITIES")}
 """
-    return layout("Re-verification", "decision-verification.html", body)
+    return layout("Re-verification", "decision-verify.html", body)
 
 
 def page_summary(v, q, s, sig, par, inj):
@@ -705,13 +711,13 @@ def page_summary(v, q, s, sig, par, inj):
 
 def page_site_index(v, q, s, sig, par, inj):
     contents = [
-        ("decisions.html", "Decisions hub", "The overview: what is on the desk and the four findings that change a decision."),
-        ("suggestions.html", "Suggestions", "Twelve proposals with cost, payoff, risk, evidence and a recommended path."),
-        ("questions.html", "Open questions", "What must be answered before a decision is reasonable, and what is missing."),
-        ("injury-depth.html", "Injury &amp; depth", "The official Week 10 report transcribed, plus why depth rank is blank."),
-        ("signals-lab.html", "Signal lab", "23 candidate signals, ten gates each, and the exact gate that failed."),
-        ("parlay-pricing.html", "Parlay pricing", "Measured correlation and the measured-vs-multiplied pricing gap."),
-        ("decision-verification.html", "Re-verification", "19 independent checks and 10 irregularities with sources."),
+        ("decision-hub.html", "Decisions hub", "The overview: what is on the desk and the four findings that change a decision."),
+        ("decision-suggestions.html", "Suggestions", "Twelve proposals with cost, payoff, risk, evidence and a recommended path."),
+        ("decision-questions.html", "Open questions", "What must be answered before a decision is reasonable, and what is missing."),
+        ("decision-injury-depth.html", "Injury &amp; depth", "The official Week 10 report transcribed, plus why depth rank is blank."),
+        ("decision-signals.html", "Signal lab", "23 candidate signals, ten gates each, and the exact gate that failed."),
+        ("decision-parlay.html", "Parlay pricing", "Measured correlation and the measured-vs-multiplied pricing gap."),
+        ("decision-verify.html", "Re-verification", "19 independent checks and 10 irregularities with sources."),
         ("decision-summary.html", "Executive summary", "The one-page version: state, findings, sequence."),
     ]
     cards = "".join(
@@ -818,13 +824,13 @@ def main() -> int:
         raise SystemExit(f"missing site/data inputs: {missing}")
 
     pages = {
-        "decisions.html": page_decisions(v, q, s, sig, par, inj),
-        "suggestions.html": page_suggestions(s),
-        "questions.html": page_questions(q),
-        "injury-depth.html": page_injury(inj),
-        "signals-lab.html": page_signals(sig),
-        "parlay-pricing.html": page_parlay(par),
-        "decision-verification.html": page_verification(v),
+        "decision-hub.html": page_decisions(v, q, s, sig, par, inj),
+        "decision-suggestions.html": page_suggestions(s),
+        "decision-questions.html": page_questions(q),
+        "decision-injury-depth.html": page_injury(inj),
+        "decision-signals.html": page_signals(sig),
+        "decision-parlay.html": page_parlay(par),
+        "decision-verify.html": page_verification(v),
         "decision-summary.html": page_summary(v, q, s, sig, par, inj),
     }
     outdir = ROOT / "pages"

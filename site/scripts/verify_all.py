@@ -9,7 +9,7 @@ Checks
   5. the registers obey their own rules (allowed statuses, allowed question groups, ids unique,
      every suggestion has evidence and a recommended path);
   6. no page contains a placeholder that pretends to be data ("TBD", "TODO", "lorem");
-  7. every page is reachable from the live dashboard navigation entry (pages/decisions.html).
+  7. every page is reachable from the section hub (pages/decision-hub.html).
 
 Exit code is non-zero if any check fails, so CI fails closed.
 """
@@ -28,8 +28,9 @@ DATA = SITE / "data"
 SCRIPTS = SITE / "scripts"
 
 PAGES = [
-    "decisions.html", "suggestions.html", "questions.html", "injury-depth.html",
-    "signals-lab.html", "parlay-pricing.html", "decision-verification.html", "decision-summary.html",
+    "decision-hub.html", "decision-suggestions.html", "decision-questions.html",
+    "decision-injury-depth.html", "decision-signals.html", "decision-parlay.html",
+    "decision-verify.html", "decision-summary.html",
 ]
 TS = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 PLACEHOLDERS = ("TBD", "TODO", "lorem ipsum", "FIXME", "XXX")
@@ -177,12 +178,12 @@ def main() -> int:
             errors.append(f"{n}: rebuild is not reproducible from site/data")
 
     # 7 - reachable from the dashboard navigation
-    hub = ROOT / "pages" / "decisions.html"
+    hub = ROOT / "pages" / "decision-hub.html"
     if hub.exists():
         hub_html = hub.read_text()
         for n in PAGES:
-            if n != "decisions.html" and f"pages/{n}" not in hub_html:
-                errors.append(f"pages/decisions.html: navigation does not link {n}")
+            if n != "decision-hub.html" and f"pages/{n}" not in hub_html:
+                errors.append(f"pages/decision-hub.html: navigation does not link {n}")
 
     print(f"decision desk: {len(docs)} data files, {len(set(urls))} distinct source URLs, "
           f"{len(PAGES)} pages, {total_rows} table rows")
