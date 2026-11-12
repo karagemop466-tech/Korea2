@@ -1395,3 +1395,25 @@ All 39 entries in `suggestions/data/sources.json` were opened via web_search or 
 
 **Status update:** All 14 tasks in this session's board are now `done`. No strategy approved for capital (0/7); reward tiers remain paper schedule. The hub is the dedicated suggestions section the prompt requested — proposals must be approved before any implementation branch edits the referenced files.
 
+# Session `arena/90e4fdbe-korea2` — Decision Desk (suggestions, open questions, injury/depth signal audit)
+
+**Session ID:** `arena/90e4fdbe-korea2` — branch fixed by the environment; it cannot create `session-<id>/<task>` branches, so the branch name *is* the session id (same constraint recorded by every previous session on this board).
+**Claimed:** 2026-11-12 UTC. **Base:** `e8d04a9` (merge of PR #64).
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| DD-01 | Read the merged repository line by line and re-verify the published headline numbers against the committed data (independent recomputation, no reuse of the publishing code paths) | in progress | `arena/90e4fdbe-korea2` | `site/scripts/reverify.py`, `COORDINATION.md` |
+| DD-02 | Suggestions register with a review/triage workflow ("choose the best path before implementing") | in progress | `arena/90e4fdbe-korea2` | `site/data/suggestions.json` |
+| DD-03 | Open-questions register: what is known, what is missing, what must be answered before a decision | in progress | `arena/90e4fdbe-korea2` | `site/data/questions.json` |
+| DD-04 | Injury + depth-chart (starter / 2nd / 3rd / 4th string) signal research, built on the official injury-report release (`nflverse` mirror of the NFL report) | in progress | `arena/90e4fdbe-korea2` | `site/scripts/injury_depth.py`, `site/data/injury_depth.json` |
+| DD-05 | Executive summary of this session's findings | in progress | `arena/90e4fdbe-korea2` | `site/EXECUTIVE_SUMMARY.md` |
+| DD-06 | New single-site pages: `/decisions/` (suggestions, questions, injury/depth, verification) wired into the live root dashboard navigation | in progress | `arena/90e4fdbe-korea2` | `site/`, `scripts/build_site.py` (nav only), `pages/decisions*.html` (generated) |
+| DD-07 | CI check for the new site + final PR, merge, Pages deploy confirmation | unclaimed | — | `.github/workflows/decisions.yml` |
+
+## Scope rules for this session
+- Writes **only** inside `site/` (new directory), the generated `decisions` pages under `pages/`, a navigation line in `scripts/build_site.py`, one new workflow file, and this section of `COORDINATION.md`.
+- Reads `data/derived/*`, `data/*.json`, `verification/` and every sibling site **read-only**; no sibling page, dataset or board entry is modified or deleted.
+- Parallel sessions: if you need a change inside `site/`, log the request here instead of editing it.
+
+## Log
+- 2026-11-12 UTC: Board read. Prior sessions' claims all `done`/`needs review`; no live claim on `site/` or `pages/decisions*`. Claimed DD-01…DD-06 and committed this claim before starting (per the board rule).
