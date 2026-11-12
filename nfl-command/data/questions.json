@@ -1,0 +1,95 @@
+{
+  "description": "Questions that must be answered before a decision can responsibly be made. For each: what is known (with source), what is not known, and how to find out. Nothing in 'known' goes beyond the cited source.",
+  "rows": [
+    {
+      "id": "Q01",
+      "question": "Is there an official, per-club depth chart that can be read for all 32 clubs?",
+      "known": "NFL.com and the Commanders club site returned 404 for depth-chart paths in this session. Third-party sites publish depth charts but are not official.",
+      "unknown": "Whether any official depth chart exists for the other 31 clubs, and at what path.",
+      "how_to_find_out": "Check each club's official site and NFL.com for a depth-chart page, one club at a time, recording URL and date. Start with the four clubs this week's report covers most fully.",
+      "blocks": ["SUG-01", "SUG-04"],
+      "sources": ["NFL-DEPTH-WAS", "CLUB-DEPTH-WAS", "NONOFF-DEPTH-1"]
+    },
+    {
+      "id": "Q02",
+      "question": "Does the NFL.com injury report include players on injured reserve or players a coach has ruled out?",
+      "known": "Jackson and Huntley (BAL) are described as placed on IR, and BAL shows 'No Injuries Reported'. Darnold is ruled out by the SEA head coach, and SEA shows 'No Injuries Reported'.",
+      "unknown": "The report's inclusion rules. The page text does not state them.",
+      "how_to_find_out": "Read NFL.com's injury-report explanation if one exists, and compare several weeks' reports with the same players' news.",
+      "blocks": ["SUG-03"],
+      "sources": ["NFL-NEWS-JACKSON", "NFL-NEWS-DARNOLD", "NFL-INJ"]
+    },
+    {
+      "id": "Q03",
+      "question": "Why are CHI, DEN, PHI and TB absent from the Week 10 report?",
+      "known": "The report lists 28 clubs in 14 games, and these four clubs are not among them.",
+      "unknown": "Whether they have a bye. The rest of the Week 10 schedule was not read.",
+      "how_to_find_out": "Read chunks 2 and 3 of the NFL.com 2026 Week 10 schedule, or the by-week page.",
+      "blocks": ["Injury coverage"],
+      "sources": ["NFL-SCHED", "NFL-INJ"]
+    },
+    {
+      "id": "Q04",
+      "question": "When was each injury snapshot taken?",
+      "known": "The page text shows 'Week 10 of the 2026 Season' and the fetch date (2026-11-12). It shows no as-of time.",
+      "unknown": "The publication time of the report.",
+      "how_to_find_out": "Record the fetch time with each snapshot. Ask for a publication time if NFL.com shows one in the page source.",
+      "blocks": ["SUG-02"],
+      "sources": ["NFL-INJ"]
+    },
+    {
+      "id": "Q05",
+      "question": "Is there an official or licensed closing-line archive?",
+      "known": "The repo uses nflverse closing prices (third-party). The provenance file says NFL.com is the only official source used.",
+      "unknown": "Any licensed or official price archive, its licence and cost.",
+      "how_to_find_out": "Identify archive vendors and their licence terms; this needs a decision, not only research.",
+      "blocks": ["SUG-08", "Gate G10"],
+      "sources": ["REPO-PROV"]
+    },
+    {
+      "id": "Q06",
+      "question": "Do the committed Skill Lab numbers reproduce under the CI Python version (3.12)?",
+      "known": "On Python 3.11.2 in the sandbox, a re-run changed 12 files. Two hash seeds gave identical output to each other.",
+      "unknown": "Whether Python 3.12 reproduces the committed numbers.",
+      "how_to_find_out": "Run the Skill Lab pipeline under 3.12 and diff the outputs.",
+      "blocks": ["SUG-05"],
+      "sources": ["REPO-SKILL-JSON"]
+    },
+    {
+      "id": "Q07",
+      "question": "Do cash or prize rewards for a strategy leaderboard need an Alberta gaming licence or registration?",
+      "known": "AGLC regulates gaming in Alberta, and Play Alberta is described as the only regulated online gambling site in Alberta.",
+      "unknown": "Whether a points-only or prize leaderboard tied to betting strategies is in scope of AGLC rules.",
+      "how_to_find_out": "Ask AGLC or obtain legal advice before any cash reward. Until then, points only.",
+      "blocks": ["SUG-07", "Leaderboard rewards"],
+      "sources": ["AGLC"]
+    },
+    {
+      "id": "Q08",
+      "question": "How should 'starter' be defined for this project?",
+      "known": "The request asks about 2nd, 3rd and 4th string backups replacing starters. No official definition is in the repo.",
+      "unknown": "Whether depth order, snap share or game-day lineup should be used.",
+      "how_to_find_out": "Decision (see SUG-04).",
+      "blocks": ["Depth & starters page"],
+      "sources": ["NFL-DEPTH-WAS"]
+    },
+    {
+      "id": "Q09",
+      "question": "Is there a historical prop-price archive so player-prop ROI can be measured?",
+      "known": "The repo's README states that no historical prop prices are in the feed. Prop ROI cells are blank in the Skill Lab.",
+      "unknown": "Whether any archive exists and at what licence.",
+      "how_to_find_out": "Vendor search and licence review.",
+      "blocks": ["Player-prop strategies STR-10 to STR-14"],
+      "sources": ["REPO-SKILL-JSON"]
+    },
+    {
+      "id": "Q10",
+      "question": "Which site should be the canonical live site?",
+      "known": "Ten HTML site roots exist, including the root Line Lab and nine other folders.",
+      "unknown": "The owner's preference.",
+      "how_to_find_out": "Decision (see SUG-06).",
+      "blocks": ["SUG-06"],
+      "sources": ["REPO-PROV"]
+    }
+  ]
+}

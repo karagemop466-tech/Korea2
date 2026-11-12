@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary · NFL Command Center</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+  <a class="brand" href="../index.html">NFL Command Center</a>
+  <div class="asof">Data as of 2026-11-12</div>
+  <nav><div class="navcat">Overview</div><a href="../index.html">Home</a><a class="active" href="../pages/executive-summary.html">Executive summary</a><a href="../pages/requirements.html">Requirements</a><div class="navcat">Injuries &amp; depth</div><a href="../pages/injuries.html">Injuries</a><a href="../pages/depth-starters.html">Depth &amp; starters</a><div class="navcat">Lines &amp; strategies</div><a href="../pages/lines-model.html">Lines &amp; model</a><a href="../pages/strategies.html">Strategies &amp; leaderboard</a><a href="../pages/correlations-luck.html">Correlations &amp; luck</a><a href="../pages/validation-gates.html">Validation gates</a><div class="navcat">Decide</div><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Questions &amp; gaps</a><div class="navcat">Audit</div><a href="../pages/repo-review.html">Repo review</a><a href="../pages/sources.html">Sources</a><a href="../pages/flagged.html">Flagged for review</a></nav>
+</aside>
+<main class="main">
+<h1>Executive summary</h1>
+
+<p class="lead">Snapshot as of 2026-11-12. Read this first. Every number below is read from a file in this repo, and each
+links to its evidence.</p>
+<h2>Key facts</h2>
+<div class="cards">
+ <div class="card"><div class="kpi">254</div><div class="kl">official injury-report rows</div>
+   <div class="kn">28 clubs listed, 14 games, 4 clubs not on the report</div></div>
+ <div class="card"><div class="kpi">5</div><div class="kl">players marked Out</div>
+   <div class="kn">+ 1 Questionable, 0 Doubtful</div></div>
+ <div class="card"><div class="kpi">0 of 32</div><div class="kl">clubs with a verified depth chart</div>
+   <div class="kn">starter-vs-backup analysis is blocked</div></div>
+ <div class="card"><div class="kpi">0 of 16</div><div class="kl">strategies passing all gates</div>
+   <div class="kn">leaderboard pays 0 points</div></div>
+ <div class="card"><div class="kpi">10.265 vs 9.825</div><div class="kl">spread MAE: own model vs market close</div>
+   <div class="kn">2,247 games, 2018-2026 (walk-forward out-of-sample, zero imputed prices); model is worse</div></div>
+ <div class="card"><div class="kpi">8 of 11</div><div class="kl">repo checks PASS on this branch</div>
+   <div class="kn">1 FAIL (Skill Lab does not reproduce), 1 NOTE</div></div>
+</div>
+
+<h2>What the data says</h2>
+<ol class="findings">
+ <li><b>Injuries are now tracked from the official source.</b> 254 player rows from the NFL.com Week 10
+  report: 5 Out, 1 Questionable, 93 did not practise, and 248 rows with a blank injury
+  description. 4 clubs (CHI, DEN, PHI, TB) are not on the report; byes are not yet confirmed.
+  See <a href="injuries.html">Injuries</a>.</li>
+ <li><b>Starter-vs-backup is blocked.</b> No official depth chart could be reached (NFL.com and the Commanders club
+  page return 404). Third-party depth charts are not official, so no starter or backup value is shown.
+  See <a href="depth-starters.html">Depth &amp; starters</a> and decision SUG-01.</li>
+ <li><b>The official report and NFL.com news disagree in three places.</b> The Ravens show no injuries while Lamar Jackson
+  is on IR; the Seahawks show no injuries while Sam Darnold is ruled out. The report's inclusion rules are unknown (Q02).</li>
+ <li><b>The own-line model does not beat the market.</b> Spread MAE 10.265 vs 9.825;
+  total MAE 10.729 vs 10.404. These are computed from third-party inputs (flagged).</li>
+ <li><b>No strategy passes the gates.</b> 0 of 16 qualify,
+  0 of 10 signals survive FDR, and the leaderboard awards
+  0 points. Correlations are real in places (QB yards with WR1 yards, r = 0.3723),
+  . Parlay pricing is on <a href="correlations-luck.html">Correlations &amp; luck</a>.</li>
+ <li><b>The repo does not fully reproduce.</b> Re-running the Skill Lab changed 12 committed files. The committed numbers
+  are therefore a snapshot, not a reproducible result (Flagged F-07).</li>
+ <li><b>Legal question open.</b> AGLC regulates gaming in Alberta. Whether a prize leaderboard needs a licence is
+  unanswered, so rewards stay at zero points (SUG-07, Q07).</li>
+</ol>
+
+<h2>What is blocked</h2>
+<ul>
+ <li>Starter-vs-backup deficiency analysis (needs an official depth chart: Q01, SUG-01).</li>
+ <li>Injury history and trends (one snapshot only: SUG-02).</li>
+ <li>Prop-market ROI (no historical prop prices: Q09).</li>
+ <li>Official closing-line validation of gate G10 (SUG-08).</li>
+</ul>
+
+<h2>Decisions needed</h2>
+<p>10 suggestions are waiting. Nothing has been implemented.
+See <a href="suggestions.html">Suggestions</a>. The highest-value choices are SUG-01 (depth-chart source),
+SUG-02 (weekly archive), and SUG-07 (reward policy).</p>
+
+<h2>Source trail</h2>
+<p>Official pages read this session are listed on <a href="sources.html">Sources</a>. Irregularities and unverified
+items are listed on <a href="flagged.html">Flagged for review</a>. The repo checks run this session are on
+<a href="repo-review.html">Repo review</a>.</p>
+
+<footer>Every table row links to its source. Values that could not be confirmed are left blank and flagged on the
+<a href="../pages/flagged.html">Flagged for review</a> page. Generated by nfl-command/scripts/build_site.py.</footer>
+</main>
+</div>
+<script src="../assets/site.js"></script>
+</body>
+</html>

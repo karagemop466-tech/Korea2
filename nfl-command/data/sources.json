@@ -1,0 +1,168 @@
+{
+  "checked_on": "2026-11-12",
+  "method": "Read through the fetch tool (the sandbox shell cannot reach nfl.com or alberta sites). 'Read' means the page text was returned and the cited value was seen in it. Nothing was typed from memory.",
+  "sources": [
+    {
+      "id": "NFL-INJ",
+      "title": "2026 NFL Injury Report: Week 10",
+      "publisher": "NFL.com (league-operated)",
+      "url": "https://www.nfl.com/injuries/",
+      "official": true,
+      "checked": "2026-11-12: chunk 0 re-read and compared; chunks 1-6 read earlier the same day (not re-read)",
+      "result": "Chunk 0 re-read: WAS, NYG, NE, DET (44 rows) and the first 8 KC rows match raw/injury_report_wk10_2026.psv exactly. Chunks 1-6 were transcribed earlier and are NOT re-verified row by row. 28 clubs listed (AZ, not ARI, is the printed code); 254 player rows; 'No Injuries Reported' for SEA, CIN, LAC and BAL; CHI, DEN, PHI and TB not on the report. The page shows no as-of timestamp. Most injury-description cells are blank on the source itself (248 of 254), copied as blank."
+    },
+    {
+      "id": "NFL-SCHED",
+      "title": "NFL Schedules: Games, Times, Matchups & Tickets (2026, Week 10 view)",
+      "publisher": "NFL.com (league-operated)",
+      "url": "https://www.nfl.com/schedules/2026/REG10",
+      "official": true,
+      "checked": "2026-11-12: chunks 0-2 of 3 read; REG10 URL redirects to the generic schedule page",
+      "result": "Confirmed Commanders at Giants (Thu Nov 12, 8:15 PM ET), Patriots at Lions (Sun Nov 15, 9:30 AM ET, Munich), Chiefs at Falcons, Texans at Browns, Vikings at Packers, Dolphins at Colts (all Sun Nov 15, 1:00 PM ET). Chunk 2 not fully covered. Byes for CHI, DEN, PHI and TB are NOT confirmed; absence from the injury report does not prove a bye."
+    },
+    {
+      "id": "NFL-NEWS-JACKSON",
+      "title": "NFL Network: Ravens' Lamar Jackson (right thumb) out 6-9 weeks, expects to return this season",
+      "publisher": "NFL.com news",
+      "url": "https://www.nfl.com/news/ravens-lamar-jackson-right-thumb-out-6-9-weeks-expects-to-return-this-season",
+      "official": true,
+      "checked": "2026-11-12, body read",
+      "result": "Jackson fractured and dislocated right thumb Nov 1, surgery, expected to miss at least six weeks. Article states Jackson and Tyler Huntley were 'placed on injured reserve'. Ravens show 'No Injuries Reported' on the Week 10 report."
+    },
+    {
+      "id": "NFL-NEWS-DARNOLD",
+      "title": "Sam Darnold ruled out for Seahawks' Week 10 game vs. Raiders; Drew Lock expected to start again",
+      "publisher": "NFL.com news",
+      "url": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again",
+      "official": true,
+      "checked": "2026-11-12, body read",
+      "result": "Seattle coach Mike Macdonald said Darnold will not play Week 10 (quad and rib injuries). Seattle shows 'No Injuries Reported' on the Week 10 report."
+    },
+    {
+      "id": "NFL-ROSTER-SF",
+      "title": "San Francisco 49ers 2026 Player Roster",
+      "publisher": "NFL.com (league-operated)",
+      "url": "https://www.nfl.com/teams/san-francisco-49ers/roster",
+      "official": true,
+      "checked": "2026-11-12, chunk 1 of 3 read",
+      "result": "Mike Evans listed (#5, WR, ACT). Consistent with his appearance on the SF Week 10 report."
+    },
+    {
+      "id": "NFL-ROSTER-WAS",
+      "title": "Washington Commanders 2026 Player Roster",
+      "publisher": "NFL.com (league-operated)",
+      "url": "https://www.nfl.com/teams/washington-commanders/roster",
+      "official": true,
+      "checked": "2026-11-12, chunk 1 of 3 read",
+      "result": "Roster columns are number, position, status (ACT), height, weight, experience, college. No depth-order or starter field is shown."
+    },
+    {
+      "id": "NFL-DEPTH-WAS",
+      "title": "Washington Commanders depth chart (NFL.com path)",
+      "publisher": "NFL.com (league-operated)",
+      "url": "https://www.nfl.com/teams/washington-commanders/depth-chart",
+      "official": true,
+      "checked": "2026-11-12",
+      "result": "404 'Flag on the Play'. No official depth chart found at this path."
+    },
+    {
+      "id": "CLUB-DEPTH-WAS",
+      "title": "Washington Commanders club site depth chart path",
+      "publisher": "Washington Commanders (club site)",
+      "url": "https://www.commanders.com/depth-chart/",
+      "official": true,
+      "checked": "2026-11-12",
+      "result": "'Oops! We couldn't find that page.' No official depth chart found at this path. Other clubs were not checked (see Questions Q01)."
+    },
+    {
+      "id": "NFL-NEWS-WILLIS",
+      "title": "Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start",
+      "publisher": "NFL.com news",
+      "url": "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+      "official": true,
+      "checked": "2026-11-12, headline seen on the NFL.com injury page; body not opened",
+      "result": "Headline only. Willis is not on the MIA Week 10 listing."
+    },
+    {
+      "id": "NFL-NEWS-NACUA",
+      "title": "Rams WR Puka Nacua likely to be placed on injured reserve with turf toe, sprained MCL and PCL",
+      "publisher": "NFL.com news",
+      "url": "https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl",
+      "official": true,
+      "checked": "2026-11-12, headline seen on the NFL.com injury page; body not opened",
+      "result": "Headline only. Nacua is listed 'Did Not Participate In Practice' with a blank injury cell on the LAR listing."
+    },
+    {
+      "id": "NFL-NEWS-JACOBS",
+      "title": "Packers RB Josh Jacobs to undergo surgery on finger this week; timeline to return TBD",
+      "publisher": "NFL.com news",
+      "url": "https://www.nfl.com/news/packers-rb-josh-jacobs-to-undergo-surgery-on-finger-this-week",
+      "official": true,
+      "checked": "2026-11-12, headline seen on the NFL.com injury page; body not opened",
+      "result": "Headline only. The GB listing shows Jacobs 'Did Not Participate In Practice' with a blank injury cell."
+    },
+    {
+      "id": "NFL-NEWS-WATSON",
+      "title": "NFL news roundup (Wed Nov 11): Browns to start QB Deshaun Watson vs. Texans",
+      "publisher": "NFL.com news",
+      "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11",
+      "official": true,
+      "checked": "2026-11-12, headline seen on the NFL.com injury page; body not opened",
+      "result": "Headline only. Watson is not on the CLE Week 10 listing."
+    },
+    {
+      "id": "AGLC",
+      "title": "Alberta Gaming, Liquor & Cannabis (AGLC): home page",
+      "publisher": "Government of Alberta regulator (AGLC)",
+      "url": "https://aglc.ca/",
+      "official": true,
+      "checked": "2026-11-12",
+      "result": "AGLC regulates gaming in Alberta. Play Alberta is described as 'the only regulated online gambling site in Alberta'. No page on prize-only or points-only leaderboards was found in this session."
+    },
+    {
+      "id": "NONOFF-DEPTH-1",
+      "title": "NFL Depth Charts 2026 (lineups.com)",
+      "publisher": "Lineups.com (third party, not official)",
+      "url": "https://www.lineups.com/nfl/depth-charts/",
+      "official": false,
+      "checked": "2026-11-12, search snippet only",
+      "result": "Not used as a value. Third-party. Describes its data as 'official team depth charts' without naming an official source."
+    },
+    {
+      "id": "NONOFF-DEPTH-2",
+      "title": "NFL Depth Charts (nfl-depth-charts.com)",
+      "publisher": "Third party, not official",
+      "url": "https://nfl-depth-charts.com/",
+      "official": false,
+      "checked": "2026-11-12, search snippet only",
+      "result": "Not used as a value. Third-party. The search snippet's page age is Oct 13, 2026 and it shows a Philadelphia Eagles depth chart. That date is the page age, not a verified chart date."
+    },
+    {
+      "id": "REPO-PROV",
+      "title": "Repository data provenance (data/PROVENANCE.md)",
+      "publisher": "This repository",
+      "url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md",
+      "official": false,
+      "checked": "2026-11-12, read in the sandbox",
+      "result": "States that NFL.com is the only official source used. Model inputs come from nflverse and legacy nflscrapR data (third-party)."
+    },
+    {
+      "id": "REPO-SKILL-JSON",
+      "title": "Skill Lab committed outputs (skill-lab/data/*.json)",
+      "publisher": "This repository (Skill Lab, prior session)",
+      "url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data",
+      "official": false,
+      "checked": "2026-11-12, read in the sandbox; rerun compared",
+      "result": "Read-only inputs. The rerun does not reproduce the committed files exactly (see Flagged F-07)."
+    },
+    {
+      "id": "SL-SRC-METHODS",
+      "title": "Skill Lab method and gate sources (skill-lab/data/sources.json)",
+      "publisher": "NFL.com, DraftKings Support, NIST, scikit-learn, NCPG (inherited register)",
+      "url": "https://github.com/karagemop466-tech/Korea2/blob/main/skill-lab/data/sources.json",
+      "official": false,
+      "checked": "2026-11-12, inherited; the individual URLs were not re-opened this session",
+      "result": "Register of method sources. Gate links on the strategy pages point to individual entries."
+    }
+  ]
+}

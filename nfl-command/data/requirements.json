@@ -1,0 +1,174 @@
+{
+  "description": "Every requirement from the request, mapped to where it is addressed. Status: Done = delivered and checked; Partial = delivered with a stated gap; Blocked = cannot proceed until a named item is resolved; Pending = not yet done.",
+  "rows": [
+    {
+      "id": "R01",
+      "requirement": "Collect, organise and analyse a full list of requirements",
+      "where": "This site: Requirements page; Skill Lab REQUIREMENTS.md (prior session)",
+      "status": "Partial",
+      "evidence": "This table. Not a full re-audit of every prior requirements file.",
+      "sources": [
+        "NFL-INJ"
+      ]
+    },
+    {
+      "id": "R02",
+      "requirement": "Suggestions for improving the site, in a section where someone can review and choose before any change",
+      "where": "Suggestions page (decision recorder in the browser)",
+      "status": "Done",
+      "evidence": "10 suggestions, each with options, recommendation and decision field. None implemented.",
+      "sources": []
+    },
+    {
+      "id": "R03",
+      "requirement": "Clear list of questions, information and answers needed before decisions",
+      "where": "Questions & gaps page",
+      "status": "Done",
+      "evidence": "10 questions, each with known, unknown and how-to-resolve.",
+      "sources": []
+    },
+    {
+      "id": "R04",
+      "requirement": "Originate own NFL lines (spreads, totals, moneylines, props)",
+      "where": "Lines & model page (reads Skill Lab outputs)",
+      "status": "Partial",
+      "evidence": "Model code is in skill-lab/scripts/originate.py (its docstring describes it as walk-forward, zero-lookahead; not independently tested here). Committed outputs do not reproduce on a fresh run (F-07). Against the closing market, the model is less accurate on every error measure (spread MAE 10.265 vs 9.825). Computed values are UNVERIFIED-INPUT.",
+      "sources": [
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "R05",
+      "requirement": "Strategies run as a leaderboard competition with rewards for top performers",
+      "where": "Strategies page (leaderboard and reward tiers)",
+      "status": "Partial",
+      "evidence": "16 strategies ranked. 0 qualify, so 0 points are awarded. Reward cash funding is blank because legal review is open (Q07).",
+      "sources": [
+        "AGLC",
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "R06",
+      "requirement": "Single bets, parlays and player-prop combinations",
+      "where": "Strategies page (categories)",
+      "status": "Partial",
+      "evidence": "Single bets, parlays, SGP and prop combos are included. Prop ROI cells are blank because there are no historical prop prices (Q09).",
+      "sources": [
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "R07",
+      "requirement": "Each strategy must pass validation gates",
+      "where": "Validation gates page",
+      "status": "Done",
+      "evidence": "10 gates. Verdicts: 5 held at G10 (odds unverified), 9 rejected by gates, 1 negative control, 1 disqualified (look-ahead leak). 0 pass.",
+      "sources": [
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "R08",
+      "requirement": "Determine correlation values",
+      "where": "Correlations & luck page",
+      "status": "Done",
+      "evidence": "14 pairs with r, CI, p-value, and 5 copula combo prices. Inputs third-party (F-08).",
+      "sources": [
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "R09",
+      "requirement": "Remove luck and build selectively skill-based strategies",
+      "where": "Correlations & luck page; Validation gates (G5, G6)",
+      "status": "Partial",
+      "evidence": "Permutation null, shrinkage and FDR are applied. 0 of 10 signals survive FDR at q 0.10. No strategy is selected as skill-based.",
+      "sources": [
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "R10",
+      "requirement": "Track injuries (official source)",
+      "where": "Injuries page",
+      "status": "Done",
+      "evidence": "Week 10 official report transcribed: 254 player rows, 28 clubs. Each row links to the NFL.com report and the player's page. Single snapshot only (SUG-02).",
+      "sources": [
+        "NFL-INJ"
+      ]
+    },
+    {
+      "id": "R11",
+      "requirement": "Know defensive and offensive deficiencies when 2nd, 3rd or 4th string backups replace starters",
+      "where": "Depth & starters page",
+      "status": "Blocked",
+      "evidence": "No official depth chart reachable (Q01). Starter cells are blank and flagged. Injury counts by position group are shown from the official report only.",
+      "sources": [
+        "NFL-DEPTH-WAS",
+        "CLUB-DEPTH-WAS"
+      ]
+    },
+    {
+      "id": "R12",
+      "requirement": "Executive summary with important details",
+      "where": "Executive summary page",
+      "status": "Done",
+      "evidence": "Summarises findings, blocks and next steps.",
+      "sources": []
+    },
+    {
+      "id": "R13",
+      "requirement": "Repo review line by line, official sources, links, irregularities flagged",
+      "where": "Repo review page; Flagged for review page",
+      "status": "Partial",
+      "evidence": "Checkers C01–C07 and C10–C11 rerun this session (see repo_review.json). Link and sourcing checks cover all HTML pages. A line-by-line content re-read of each of the 97 existing pages was not done, and this gap is stated.",
+      "sources": [
+        "REPO-PROV"
+      ]
+    },
+    {
+      "id": "R14",
+      "requirement": "GitHub Pages live site with a clean landing page and category subpages",
+      "where": "Landing page and 12 subpages in nfl-command/",
+      "status": "Pending",
+      "evidence": "Built and checked locally. Live status is confirmed only after the PR merges and Pages deploys (NC-9).",
+      "sources": []
+    },
+    {
+      "id": "R15",
+      "requirement": "Every table row has an official source link; unverified values left blank and flagged",
+      "where": "All table pages; verify.py",
+      "status": "Partial",
+      "evidence": "Injury rows link to official NFL.com pages. Computed model rows link to the method source and carry an UNVERIFIED-INPUT flag (SUG-10).",
+      "sources": [
+        "NFL-INJ",
+        "REPO-PROV"
+      ]
+    },
+    {
+      "id": "R16",
+      "requirement": "Coordinate with parallel sessions via COORDINATION.md",
+      "where": "COORDINATION.md (NC-1 to NC-9)",
+      "status": "Done",
+      "evidence": "Claim pushed before implementation. Stale claims from earlier sessions logged, not re-claimed.",
+      "sources": []
+    },
+    {
+      "id": "R17",
+      "requirement": "Flagged for Review page with source links",
+      "where": "Flagged for review page",
+      "status": "Done",
+      "evidence": "Irregularities and unverified items, each with links.",
+      "sources": []
+    },
+    {
+      "id": "R18",
+      "requirement": "PR to main, merge without waiting, confirm Pages deploy, record in COORDINATION.md",
+      "where": "COORDINATION.md (NC-9)",
+      "status": "Pending",
+      "evidence": "Recorded when complete.",
+      "sources": []
+    }
+  ]
+}
