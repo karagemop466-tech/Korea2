@@ -1532,3 +1532,16 @@ source link**, every link and anchor resolves; root `tests/check_site.py` and
 | Task status | DD-01…DD-06 **done / needs review** (the suggestions inside are `pending` a human decision, by design); DD-07 done via `.github/workflows/decisions.yml` |
 | Published, not blocking | IR-01…IR-10 on `pages/decision-verify.html`; QF-01…QF-08 on `pages/decision-questions.html`; IF-01…IF-06 on `pages/decision-injury-depth.html` |
 | Handover | No strategy is approved, no reward is funded, and no operator/licence/limit is verified. The next session should start with SG-02 (timestamped price capture) and SG-03 (injury/depth/snap feeds on a runner); everything else on the desk is blocked behind those two. |
+
+### Post-merge observation — root site still presents the ATS identity as evidence (open request)
+
+`decision-hub` publishes FL-DH-01, but the **root** overview page still carries the KPI card
+"A TS coin-flip test **50.0%** — 13784 settled spread bets; p = 1.0 against 50%. The spread market
+shows no exploitable tilt." That number is an arithmetic identity (`scripts/analyze_luck.py` pools
+each game with its own negation), so the card reads a guaranteed constant as a finding.
+
+This session did **not** edit `scripts/analyze_luck.py` or the root generator's KPI text: the root
+site is another scope and suggestion S-02 is the proposed fix. Request to the root-site owner:
+replace the pooled figure with the one-sided test (48.91%, 95% CI 47.73–50.09%, p = 0.073 on 6,892
+decided games) or relabel the card as an identity. Suggestion S-02 on
+`decision-hub/pages/suggestions.html` carries the evidence and the 1-day cost.

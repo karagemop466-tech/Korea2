@@ -262,7 +262,7 @@ def page_executive():
         ["Does depth loss affect the line?", "Unmeasured. The tracker creates the feature; nobody has estimated the effect.",
          "Q-04 is blocked on a timestamped price", src("nflverse-data")],
         ["What is the biggest risk?", "Reading a guaranteed statistic as evidence, and treating a proposal as a result.",
-         f"{st.get('flags', 0)} audit flags; {len([q for q in qs.get('questions', []) if q.get('status') == 'blocked'])} blocked questions", src("SRC-GH-REPO")],
+         f"{st.get('flags', 0)} audit flags; {len([q for q in qs.get('questions', []) if q.get('status') == 'blocked'])} blocked questions of {len(qs.get('questions', []))}", src("SRC-GH-REPO")],
     ]
     worst_rows = []
     for s in worst:
