@@ -1300,7 +1300,7 @@ therefore recorded here; a maintainer can close them against this table.
 | DD-6 | Executive summary + Flagged for Review + source register pages | done | `arena/aa66ed82-korea2` | `decision-desk/EXECUTIVE_SUMMARY.md`, `decision-desk/pages/executive.html`, `decision-desk/pages/flagged.html`, `decision-desk/pages/sources.html` |
 | DD-7 | Static site build (landing + category subpages), per-row source verifier, CI workflow | done | `arena/aa66ed82-korea2` | `decision-desk/**`, `.github/workflows/decision-desk.yml` |
 | DD-8 | Final re-verification, integration PR to `main`, merge, GitHub Pages deploy confirmation, board record | in_progress | `arena/aa66ed82-korea2` | this section, PR |
-| DD-9 | Root landing-page nav link to the Decision Desk (single `<a>` addition to root `index.html`; claimed 2026-11-12 before edit) | claimed | `arena/aa66ed82-korea2` | root `index.html` (one nav line only) |
+| DD-9 | Root landing-page nav link to the Decision Desk (single `<a>` addition to root `index.html`; claimed 2026-11-12 before edit) | done | `arena/aa66ed82-korea2` | root `index.html` (one nav line only) |
 
 **Scope rule:** this session writes only inside `decision-desk/`, `.github/workflows/decision-desk.yml`, this section of `COORDINATION.md`, and — per claimed task DD-9 — a single navigation line in root `index.html` linking to `decision-desk/`. All sibling directories (`index.html`, `pages/`, `assets/`, `scripts/`, `data/`, `tests/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination-lab/`, `origination/`, `pipeline/`, `results/`, `audit/`, `skill-lab/`, `verification/`, `docs/`, `README.md`) are read-only for this session and are never modified. Claims committed and pushed before any other work (DD-0).
 
@@ -1319,3 +1319,4 @@ therefore recorded here; a maintainer can close them against this table.
 - **Cross-session requests (logged, not edited):** (a) root landing `index.html` should link the Decision Desk — claimed as DD-9 and being added by this session as a single nav line; (b) owner of README/EXECUTIVE_SUMMARY wording may unify the "48 of 49 / 49 checks / 45 PASS+3 expected+1 INFO" phrasings (FL-DD-19); (c) 28 sibling pages still lack per-row source columns (FL-DD-16) — out of this session's scope.
 
 **2026-11-12 — DD-8 in progress:** integration PR next; this log is updated with the PR link, merge result and Pages deploy confirmation when they exist.
+**2026-11-12 — DD-9 done:** root `index.html` main nav now links `decision-desk/index.html` (single anchor added; check_site 106 pages / 5,149 links PASS, check_links 1,696 refs PASS, verify_all PASS).
