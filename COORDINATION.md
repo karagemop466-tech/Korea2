@@ -1293,12 +1293,12 @@ therefore recorded here; a maintainer can close them against this table.
 | ID | Task | Status | Owner | File scope |
 |----|------|--------|-------|------------|
 | T-A | Claim scope + record on board | done | arena/cb5b61a7-korea2 | COORDINATION.md (this section) |
-| T-B | Build "Improvement suggestions" page (decision review register) | in progress | arena/cb5b61a7-korea2 | `pages/suggestions.html` |
-| T-C | Build "Questions / Information / Answers" page (decision prerequisites + gap discovery) | pending | arena/cb5b61a7-korea2 | `pages/decision-questions.html` |
-| T-D | Build "Injury & depth tracking" page (official sources, verified snapshot) | pending | arena/cb5b61a7-korea2 | `pages/injuries-depth.html` |
-| T-E | Wire the three new pages into navigation; update executive summary | pending | arena/cb5b61a7-korea2 | `index.html`, `pages/*.html`, `docs/EXECUTIVE_SUMMARY.md`, `pages/executive.html` |
-| T-F | Line-by-line repo review, verify claims vs official sources, flag irregularities | pending | arena/cb5b61a7-korea2 | `docs/REPO_REVIEW.md` |
-| T-G | Final: run check_site.py, re-verify, PR to main, merge, confirm Pages deploy | pending | arena/cb5b61a7-korea2 | this file |
+| T-B | Build "Improvement suggestions" page (decision review register) | done | arena/cb5b61a7-korea2 | `pages/suggestions.html` |
+| T-C | Build "Questions / Information / Answers" page (decision prerequisites + gap discovery) | done | arena/cb5b61a7-korea2 | `pages/decision-questions.html` |
+| T-D | Build "Injury & depth tracking" page (official sources, verified snapshot) | done | arena/cb5b61a7-korea2 | `pages/injuries-depth.html` |
+| T-E | Wire the three new pages into navigation; update executive summary | done | arena/cb5b61a7-korea2 | `index.html`, `pages/*.html`, `docs/EXECUTIVE_SUMMARY.md`, `pages/executive.html` |
+| T-F | Line-by-line repo review, verify claims vs official sources, flag irregularities | done | arena/cb5b61a7-korea2 | `docs/REPO_REVIEW.md` |
+| T-G | Final: run check_site.py, re-verify, PR to main, merge, confirm Pages deploy | in progress | arena/cb5b61a7-korea2 | this file |
 
 ## Log — arena/cb5b61a7-korea2
 
