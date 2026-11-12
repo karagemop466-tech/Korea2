@@ -6,7 +6,7 @@
       "category": "Injuries",
       "item": "BAL 'No Injuries Reported' vs NFL.com news on Lamar Jackson and Tyler Huntley (IR)",
       "value": "Unresolved",
-      "reason": "The report and the news disagree. Probably an IR-scope issue; not confirmed.",
+      "reason": "The report and the news disagree. The cause is not known and is not confirmed here.",
       "sources": [
         "NFL-INJ",
         "NFL-NEWS-JACKSON"
@@ -17,7 +17,7 @@
       "category": "Injuries",
       "item": "SEA 'No Injuries Reported' vs NFL.com news that Sam Darnold is ruled out for Week 10",
       "value": "Unresolved",
-      "reason": "A player a coach has ruled out is not on the official report.",
+      "reason": "The report and the news disagree. The cause is not known. Report inclusion rules are open (Q02).",
       "sources": [
         "NFL-INJ",
         "NFL-NEWS-DARNOLD"
@@ -174,9 +174,9 @@
     {
       "id": "F-18",
       "category": "Sources",
-      "item": "Model-page and cross-site links on Repo review are not yet opened on the live site",
-      "value": "Pending check",
-      "reason": "The sandbox cannot reach github.io, so live links are checked after deployment.",
+      "item": "Live links on Repo review: nfl-command pages load on the live site (checked 2026-11-12 with the fetch tool). Other repo-blob and cross-site links not yet opened on the live site.",
+      "value": "Partly checked",
+      "reason": "The sandbox shell cannot reach github.io. Remaining links are checked on the live site in a later session.",
       "sources": []
     }
   ]
