@@ -1,0 +1,670 @@
+{
+  "meta": {
+    "title": "Cross-lab line-by-line claims audit",
+    "session": "arena/f1123a1a-korea2",
+    "audited_utc": "2026-11-12",
+    "method": "Every headline claim published by any lab in this repository was read from the committed data files that generate it, compared against the published page, and where an official publisher exists, checked against that publisher on 2026-11-12. Values are copied exactly from the committed data; nothing is inferred or rounded by hand.",
+    "status_definitions": {
+      "verified-official": "Checked against an official publisher on 2026-11-12 (link in the row).",
+      "verified-official-snapshot": "Checked against an official publisher at a recorded snapshot date; the live page has since moved (movement documented, not smoothed).",
+      "verified-internal": "Value recomputed/read from committed repo data and matched to the published page. No official publisher of this statistic exists; evidence class is third-party feed extracts (nflverse).",
+      "unverified-blank": "Cannot be confirmed from any official source; the value cell is left blank and the item is on the Flagged page.",
+      "irregularity": "Inconsistency, dead source or quotation hazard found during the audit; published for review, non-blocking."
+    },
+    "counts": {
+      "rows": 45,
+      "verified_official": 10,
+      "verified_internal": 21,
+      "unverified_blank": 6,
+      "irregularity": 8
+    }
+  },
+  "rows": [
+    {
+      "id": "A-01",
+      "lab": "root Line Lab + skill-lab",
+      "claim": "2020 and 2026 team records reconcile 32/32 against NFL.com standings",
+      "published_value": "32/32 (2020), 32/32 (2026 after 2026-11-01 games)",
+      "where": "../pages/verification.html",
+      "status": "verified-official-snapshot",
+      "verification": "Read data/derived/verification.json (49 checks) and skill-lab/data/official_2026.json (32/32 rows). Opened the official standings page on 2026-11-12 and read all 32 records; the repo snapshots are labelled 2026-11-01/02 and reconcile at that date.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-01",
+        "VH-SRC-09"
+      ],
+      "note": "Snapshot discipline is correct on the pages; see I-07 for as-of labelling."
+    },
+    {
+      "id": "A-02",
+      "lab": "root Line Lab + skill-lab",
+      "claim": "Live standings moved after the Week 9 games while repo snapshots stayed fixed (documented drift)",
+      "published_value": "BUF 6-1 (233-181) -> 7-1 (256-187); NE 5-3 -> 5-4; KC 5-2 -> 6-2",
+      "where": "../skill-lab/pages/official-audit.html",
+      "status": "verified-official",
+      "verification": "Compared the 2026-11-02 snapshot rows (skill-lab/data/official_2026.json) with the live page read on 2026-11-12 (VH-SRC-01). Every changed record corresponds to a Week 9 result; no snapshot row was found wrong for its own date.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-01"
+      ],
+      "note": "Quoting any standings value requires its as-of date."
+    },
+    {
+      "id": "A-03",
+      "lab": "cross-lab (injury requirement)",
+      "claim": "The official weekly NFL injury report exists and publishes player, position, injury, practice status and game status",
+      "published_value": "Week 10 2026 report live (7 chunks of per-team tables)",
+      "where": "pages/injuries-depth.html",
+      "status": "verified-official",
+      "verification": "Opened https://www.nfl.com/injuries/league/2026/REG10 on 2026-11-12 and read the per-team tables (e.g. WAS Lucas Patrick, C, Concussion, Did Not Participate, Out).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-02"
+      ],
+      "note": "This is the only league-published injury data feed needed for status tracking; it carries no depth-string column."
+    },
+    {
+      "id": "A-04",
+      "lab": "cross-lab (injury requirement)",
+      "claim": "Team records quoted inside the Week 10 injury report match the official standings page",
+      "published_value": "WAS 2-5-1 and NYG 5-2-1 in both pages",
+      "where": "pages/injuries-depth.html",
+      "status": "verified-official",
+      "verification": "The TNF header on the injury report shows WAS (2-5-1) at NYG (5-2-1); the standings page read the same day shows WAS 2-5-1 and NYG 5-2-1.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-01",
+        "VH-SRC-02"
+      ],
+      "note": "Cross-check passed; both official pages agree on the day."
+    },
+    {
+      "id": "A-05",
+      "lab": "root Line Lab (data provenance)",
+      "claim": "Committed feed extracts are reproducible from recorded release metadata (manifest hashes and sizes)",
+      "published_value": "28/31 assets byte-identical; 3 rolling 2026 assets newer upstream",
+      "where": "../pages/method.html",
+      "status": "verified-official",
+      "verification": "Fetched the GitHub Releases API on 2026-11-12 (VH-SRC-04) and compared every recorded asset in data/derived/manifest.json: 28 of 31 sizes match exactly; games.parquet (523,149 -> 523,765 bytes), stats_player_week_2026 (455,689 -> 497,664) and stats_team_week_2026 (89,234 -> 93,389) grew upstream after the 2026-11-02 snapshot.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-04"
+      ],
+      "note": "Expected behaviour for rolling current-season assets; the manifest is a point-in-time snapshot and is labelled as one."
+    },
+    {
+      "id": "A-06",
+      "lab": "root source register",
+      "claim": "The cited NFL Operations injury-report policy page serves its content",
+      "published_value": "",
+      "where": "../pages/flagged.html",
+      "status": "irregularity",
+      "verification": "Opened https://operations.nfl.com/football-ops/league-governance/injury-report/ on 2026-11-12: the response is the operations.nfl.com 404 page. The flag first recorded 2026-11-01 still stands.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-05"
+      ],
+      "note": "Value left blank per policy; the row is an irregularity record, not a claim."
+    },
+    {
+      "id": "A-07",
+      "lab": "cross-lab (injury requirement)",
+      "claim": "An official league depth chart (1st/2nd/3rd/4th string) can be sourced from nfl.com club pages",
+      "published_value": "",
+      "where": "pages/injuries-depth.html",
+      "status": "unverified-blank",
+      "verification": "Opened https://www.nfl.com/teams/new-england-patriots/depth-chart on 2026-11-12: NFL.com 404 page. No league-published depth strings found at any official path tried.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-03"
+      ],
+      "note": "Depth-string cells stay blank repo-wide; see Q-08 for the discovery route (usage-based role tiers)."
+    },
+    {
+      "id": "A-08",
+      "lab": "methodology (settlement context)",
+      "claim": "The 2026 NFL Rulebook is live and lists its 2026 rule changes",
+      "published_value": "4 rule changes listed (6-1-3, 6-1-5, 6-1-6, 19-2)",
+      "where": "../pages/method.html",
+      "status": "verified-official",
+      "verification": "Opened the 2026 rulebook landing page on 2026-11-12 (VH-SRC-07); the rule-changes table and section index were read.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-07"
+      ],
+      "note": "Wager settlement is governed by operator house rules, cited separately."
+    },
+    {
+      "id": "A-09",
+      "lab": "leaderboard (reward design)",
+      "claim": "An official league-linked analytics competition publishes a funded reward schedule (structural precedent)",
+      "published_value": "BDB 2027: $45,000 Open + $45,000 University + $10,000 Grand Prize",
+      "where": "pages/leaderboard.html",
+      "status": "verified-official",
+      "verification": "Opened the competition page on 2026-11-12 (VH-SRC-08); awards and timeline read directly (start 2026-10-06, close 2027-01-06).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-08"
+      ],
+      "note": "Precedent only. It is NOT funding for this project's reward tiers (see C-04)."
+    },
+    {
+      "id": "A-10",
+      "lab": "repo state",
+      "claim": "The suggestions hub and root decision pages are merged to main and GitHub Pages is built",
+      "published_value": "PR #65 merged 2026-11-12T13:03:56Z; PR #66/#67 merged; Pages status built",
+      "where": "../suggestions/index.html",
+      "status": "verified-official",
+      "verification": "gh/git reads on 2026-11-12 (VH-SRC-09): merge commits 7445da6 (PR #65), 12df53b/#67 (PR #66), pages API reports build_type legacy, status built for main.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "State at audit time; parallel sessions were still merging during the audit (see I-04)."
+    },
+    {
+      "id": "B-01",
+      "lab": "root Line Lab",
+      "claim": "Closing spread accuracy: MAE 10.25 pts vs actual margin (n = 7,087)",
+      "published_value": "10.25",
+      "where": "../pages/market.html",
+      "status": "verified-internal",
+      "verification": "Read data/derived/market.json closing_spread_accuracy = {n 7087, mae 10.25}; matches the published KPI and market page exactly.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-04",
+        "VH-SRC-09"
+      ],
+      "note": "Computed from feed extracts; no league source publishes closing-line accuracy."
+    },
+    {
+      "id": "B-02",
+      "lab": "root Line Lab",
+      "claim": "Model spread MAE 10.39 vs market 9.71 (n = 936, walk-forward 2023-2026), incremental coefficient c = -0.019 (p = 0.881)",
+      "published_value": "10.39 / 9.71; c = -0.019, p = 0.881",
+      "where": "../pages/lines.html",
+      "status": "verified-internal",
+      "verification": "Read data/derived/model.json accuracy_spread (model mae 10.391, market 9.711) and incremental_information (c_model -0.0193, p 0.8807); matches the published pages.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-04",
+        "VH-SRC-09"
+      ],
+      "note": "The model does not beat the closing line; that is the published verdict and the data supports it."
+    },
+    {
+      "id": "B-03",
+      "lab": "root Line Lab",
+      "claim": "QB passing yards vs WR1 receiving yards correlation r = 0.562 (n = 7,560 team-games)",
+      "published_value": "0.562",
+      "where": "../pages/correlation.html",
+      "status": "verified-internal",
+      "verification": "Read data/derived/correlation.json qb_yards_vs_wr1_yards (r 0.56164, n 7560); matches the KPI. Definition is the WR1 designation series; see I-02 for the four different published coefficients.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-06",
+        "VH-SRC-04"
+      ],
+      "note": "Never quote without the definition label."
+    },
+    {
+      "id": "B-04",
+      "lab": "root Line Lab",
+      "claim": "Four-leg same-team parlay joint probability 11.1% vs 5.7% under independence",
+      "published_value": "11.14% vs 5.69%",
+      "where": "../pages/correlation.html",
+      "status": "verified-internal",
+      "verification": "Read data/derived/correlation.json sgp_4leg_same_team (empirical_joint 0.1114, independent_product 0.0569); matches the page.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-06",
+        "VH-SRC-04"
+      ],
+      "note": "Legs: QB pass yds, WR1 yds, RB1 yds, team points (marginal rates ~0.47-0.50 each)."
+    },
+    {
+      "id": "B-05",
+      "lab": "root Line Lab",
+      "claim": "Pooled ATS team-game results are a coin flip: 50.0% (n = 13,784, p = 1.0 vs 50%)",
+      "published_value": "50.0% (n = 13,784)",
+      "where": "../pages/luck.html",
+      "status": "verified-internal",
+      "verification": "Read data/derived/luck.json ats_coin_flip_test (wins 6892, n 13784, rate 0.5, p 1.0); matches the KPI.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-14",
+        "VH-SRC-04"
+      ],
+      "note": "Any signal must move this number; none has."
+    },
+    {
+      "id": "B-06",
+      "lab": "root Line Lab + skill-lab",
+      "claim": "Pythagorean luck does not persist: y-o-y r = 0.024 (n = 842); R^2 = 0.819 for expected vs actual win%",
+      "published_value": "r = 0.024; R^2 = 0.819",
+      "where": "../pages/luck.html",
+      "status": "verified-internal",
+      "verification": "Read data/derived/luck.json pythagorean (r2 0.8191, sd_luck_wins 1.323) and luck_persistence (r 0.02389, n 842); skill-lab/data/luck.json classifies pythag_luck yoy r = 0.0232 as pure mean-reverting luck.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-04",
+        "VH-SRC-09"
+      ],
+      "note": "Two labs, same conclusion, windows differ (1999-2026 vs skill-lab window)."
+    },
+    {
+      "id": "B-07",
+      "lab": "root Line Lab",
+      "claim": "Zero strategies approved: 7 candidates + 2 controls, all REJECTED (best 5/10 gates)",
+      "published_value": "0 approved; best 5/10 (S6 divisional home dog)",
+      "where": "../pages/leaderboard.html",
+      "status": "verified-internal",
+      "verification": "Read data/derived/leaderboard.json (approved_count 0; nine entries, all verdict REJECTED; S6 gates_passed 5/10).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "Gates G2, G4, G5, G8, G9 fail for the leader."
+    },
+    {
+      "id": "B-08",
+      "lab": "root Line Lab (verification record)",
+      "claim": "Independent recomputation: 49 checks, 45 pass, 0 fail, 11 observations; 32/32 team reconciliations",
+      "published_value": "49 checks / 0 disagreements",
+      "where": "../pages/verification.html",
+      "status": "verified-internal",
+      "verification": "Read data/derived/verification.json summary (n_checks 49, n_pass 45, n_fail 0, teams 32/32 for 2020 and 2026).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09",
+        "VH-SRC-01"
+      ],
+      "note": "Recompute is independent code (verification/recompute.py) reading the committed extracts."
+    },
+    {
+      "id": "B-09",
+      "lab": "skill-lab",
+      "claim": "16-strategy gated competition: 0 qualified; best single STR-04 wind-under +9.2% ROI (6/10 gates, luck-adjusted -3.1%)",
+      "published_value": "0/16 qualified; STR-04 +9.2%",
+      "where": "../skill-lab/pages/strategies.html",
+      "status": "verified-internal",
+      "verification": "Read skill-lab/data/strategies.json (strategies_tested 16, qualified_strategies 0; STR-04 roi 9.2, gates 6/10, luck-adjusted -3.13).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "Luck-adjusted ROI is negative for every row; the raw ROI is window-sensitive (see B-16, B-19)."
+    },
+    {
+      "id": "B-10",
+      "lab": "skill-lab",
+      "claim": "10 pre-registered signals tested; 0 survive Benjamini-Hochberg FDR at q = 0.10",
+      "published_value": "0/10",
+      "where": "../skill-lab/pages/signals.html",
+      "status": "verified-internal",
+      "verification": "Read skill-lab/data/signals.json (signals_tested 10, signals_surviving_fdr 0; every row survives_fdr_q10 = false).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "Consistent with root's BH q = 0.10 policy."
+    },
+    {
+      "id": "B-11",
+      "lab": "skill-lab",
+      "claim": "Luck/skill decomposition: Pythagorean luck y-o-y r = 0.023 (pure luck) vs defensive pass EPA r = 0.402 (skill)",
+      "published_value": "0.023 vs 0.402",
+      "where": "../skill-lab/pages/luck-skill.html",
+      "status": "verified-internal",
+      "verification": "Read skill-lab/data/luck.json metrics (pythag_luck 0.0232 classified Pure Mean-Reverting Luck; pass_epa_db 0.4016 classified Offensive Skill; ats_cover_pct -0.0142).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-04",
+        "VH-SRC-09"
+      ],
+      "note": "Skill exists in team efficiency metrics; it has not been converted into a priced edge (B-02)."
+    },
+    {
+      "id": "B-12",
+      "lab": "skill-lab",
+      "claim": "Ex-ante WR1 correlation r = 0.372 vs ex-post game-leader correlation r = 0.614 (inflation delta +0.241)",
+      "published_value": "0.372 vs 0.614",
+      "where": "../skill-lab/pages/correlations.html",
+      "status": "verified-internal",
+      "verification": "Read skill-lab/data/correlations.json ex_ante_vs_ex_post_wr1_gap (0.3723 / 0.6135 / delta 0.2412) and pairs COR-07/COR-08 (n 6,984).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-06"
+      ],
+      "note": "Selecting the receiver ex-post (after the game) inflates the measured correlation; only the ex-ante value is usable pre-kickoff."
+    },
+    {
+      "id": "B-13",
+      "lab": "skill-lab",
+      "claim": "Copula SGP pricing multipliers: 2-leg QB+WR1 1.262x, 3-leg aerial stack 1.664x, 4-leg bring-back 2.053x",
+      "published_value": "1.262 / 1.664 / 2.053",
+      "where": "../skill-lab/pages/correlations.html",
+      "status": "verified-internal",
+      "verification": "Read skill-lab/data/correlations.json copula_combos (SGP-02 1.262, SGP-04 1.664, SGP-05 2.053).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-06",
+        "VH-SRC-13"
+      ],
+      "note": "Multiplier = true joint probability / independent product; > 1 means independent pricing overstates the parlay price in the bettor's favour."
+    },
+    {
+      "id": "B-14",
+      "lab": "quant-lab",
+      "claim": "21-strategy run with 9-gate validation: 0 qualified; best holdout ROI +3.83% (wind-under) with luck z = 0.94",
+      "published_value": "0/21; S10 +3.83% holdout",
+      "where": "../quant-lab/leaderboard.html",
+      "status": "verified-internal",
+      "verification": "Read quant-lab/data/processed/leaderboard.json (summary: strategies_tested 21, qualified 0, top null; S10_wind15_under roi_holdout 0.0383, luck_z 0.937).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "Holdout 2020-2026, discovery 2002-2019; G9 reprices multi-leg tickets at recorded decimals."
+    },
+    {
+      "id": "B-15",
+      "lab": "origination-lab",
+      "claim": "27 pre-registered signals; 0 survive FDR at q = 0.10",
+      "published_value": "0/27",
+      "where": "../origination-lab/signals.html",
+      "status": "verified-internal",
+      "verification": "Read origination-lab/data/derived/signals.json (n_tests 27, survivors [], fdr_threshold 0.1).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "Cross-game independence check in the same lab: phi -0.005 (week-clustered, CI -0.014 to 0.005)."
+    },
+    {
+      "id": "B-16",
+      "lab": "origination-lab",
+      "claim": "Wind-under full window 2006-2025: +9.29% ROI over 449 bets, but fails 4 of 7 gates (unqualified)",
+      "published_value": "+9.29% / 449 bets / 3 of 7 gates",
+      "where": "../origination-lab/strategies.html",
+      "status": "verified-internal",
+      "verification": "Read origination-lab/data/derived/strategies.json S11_wind_under (full: bets 449, roi 0.0929, gates_passed 3, failed G2/G5/G6/G7).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "Per-window decay in the same dataset shows the edge dying: pre-2018 +6.0%, 2018-22 +12.4%, 2023-24 +2.7%, 2025-26 -0.2% (published in the lab's luck layer)."
+    },
+    {
+      "id": "B-17",
+      "lab": "pipeline (results/)",
+      "claim": "Rating model Brier skill vs market = -0.038 on 2,687 stored-price games (worse than the market)",
+      "published_value": "-0.038",
+      "where": "../pages/market.html",
+      "status": "verified-internal",
+      "verification": "Read results/strategies.json model (n 2687, brier_skill_vs_market -0.038385, price_policy stored-price-only).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-04"
+      ],
+      "note": "Consistent with B-02: the market beats the model on every accuracy measure published."
+    },
+    {
+      "id": "B-18",
+      "lab": "pipeline (results/)",
+      "claim": "Three-leg weekly parlay built from model disagreements: hit 10.4% vs 27.4% expected under naive pricing; ROI -31.3% (p = 0.042)",
+      "published_value": "19/183 tickets; -31.3%",
+      "where": "../pages/strategies.html",
+      "status": "verified-internal",
+      "verification": "Read results/strategies.json parlays.parlay3_model (n_tickets 183, hit_rate 0.1038, mean_naive_p 0.2743, roi -0.3128, p 0.0419).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-13",
+        "VH-SRC-04"
+      ],
+      "note": "The model's largest disagreements were its worst bets; naive independent leg pricing is wrong twice (legs correlated AND selection unskilled)."
+    },
+    {
+      "id": "B-19",
+      "lab": "pipeline (results/)",
+      "claim": "Wind-under at stored prices only: +7.14% over 430 bets (2 of 6 gates), down from +8.65%/649 when prices were imputed",
+      "published_value": "+7.14% / 430 bets",
+      "where": "../pages/executive.html",
+      "status": "verified-internal",
+      "verification": "Cross-checked the issue-#19 restatement published in docs/EXECUTIVE_SUMMARY.md and results/strategies.json S3_weather_under stored-price figures.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "The imputed-price era settled 219 bets at an assumed -110; the policy change (PR #52) removed them and the edge dropped. Settlement at recorded prices only is the repo-wide rule (SG-05)."
+    },
+    {
+      "id": "B-20",
+      "lab": "suggestions hub",
+      "claim": "The merged suggestions hub ships 12 proposals, 15 Q&A rows, 10 decision prerequisites and 17 requirements, all source-linked",
+      "published_value": "12 / 15 / 10 / 17",
+      "where": "../suggestions/index.html",
+      "status": "verified-internal",
+      "verification": "Counted rows in suggestions/data/{suggestions,questions,decisions,requirements}.json (12/15/10/17) and matched the rendered pages.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "This hub's VH-2/VH-3 layers extend those registers cross-lab; see SG-11 for the consolidation proposal."
+    },
+    {
+      "id": "B-21",
+      "lab": "cross-lab (parlay independence)",
+      "claim": "Cross-game legs are approximately independent in every lab that tested it",
+      "published_value": "phi -0.019 (quant-lab); lag-1 -0.007 (pipeline); phi -0.005 (origination-lab, week-clustered)",
+      "where": "../pages/correlation.html",
+      "status": "verified-internal",
+      "verification": "Read quant-lab/data/processed/correlations.json cross_game_leg_independence (phi -0.0192, n 3061 pairs), results/strategies.json cross_game_autocorr_check (-0.0069), origination-lab week-clustered interval (-0.014 to 0.005).",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-06",
+        "VH-SRC-04"
+      ],
+      "note": "Approximate pairwise independence does not imply joint independence for multi-leg tickets; the pipeline lab states this caveat explicitly."
+    },
+    {
+      "id": "C-01",
+      "lab": "all labs (prop pricing)",
+      "claim": "Historical player-prop closing prices exist for backtesting",
+      "published_value": "",
+      "where": "../pages/flagged.html",
+      "status": "unverified-blank",
+      "verification": "No official or feed source found in any register; root FL-01/quant-lab A1/A2/origination-lab flags agree. Value stays blank.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-10"
+      ],
+      "note": "Every prop ROI in the repo is therefore blank or paper-only; discovery route is Q-05."
+    },
+    {
+      "id": "C-02",
+      "lab": "all labs (CLV)",
+      "claim": "Opening lines are available to measure closing-line value",
+      "published_value": "",
+      "where": "../pages/flagged.html",
+      "status": "unverified-blank",
+      "verification": "No opening-line archive in any feed or official source; sibling flags (FL-02 etc.) agree. Blank.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-10"
+      ],
+      "note": "CLV cannot be computed from the committed data; see Q-06."
+    },
+    {
+      "id": "C-03",
+      "lab": "all labs (execution)",
+      "claim": "Verified execution access, limits and jurisdiction exist for any strategy",
+      "published_value": "",
+      "where": "../pages/flagged.html",
+      "status": "unverified-blank",
+      "verification": "Nothing in the repo verifies an account, a price at execution, a limit or a licence. Blank by policy.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "Gate G8/G9 assume execution exists; they cannot be closed without it (Q-09)."
+    },
+    {
+      "id": "C-04",
+      "lab": "leaderboards (all labs)",
+      "claim": "The leaderboard reward pool is funded",
+      "published_value": "",
+      "where": "pages/leaderboard.html",
+      "status": "unverified-blank",
+      "verification": "skill-lab reward_tiers cash_funding cells are empty; root and origination-lab schedules are labelled paper. No funding source exists in any register. Blank.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-08"
+      ],
+      "note": "The BDB 2027 prize structure is a precedent, not funding (Q-10)."
+    },
+    {
+      "id": "C-05",
+      "lab": "injury/depth tracking (all labs)",
+      "claim": "Player depth strings (1st-4th) can be filled from an official league source",
+      "published_value": "",
+      "where": "pages/injuries-depth.html",
+      "status": "unverified-blank",
+      "verification": "NFL.com depth-chart path returns 404 (VH-SRC-03, checked 2026-11-12). No league-published depth ordering located. Cells stay blank.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-03",
+        "VH-SRC-02"
+      ],
+      "note": "The requirement (offense/defense 1st-4th string deficiencies) is therefore only partially satisfiable from official data today; see the gap register."
+    },
+    {
+      "id": "C-06",
+      "lab": "root source register",
+      "claim": "The league's injury-report policy text can be quoted from operations.nfl.com",
+      "published_value": "",
+      "where": "../pages/flagged.html",
+      "status": "unverified-blank",
+      "verification": "The policy URL is a 404 on 2026-11-12 (VH-SRC-05). Any policy quotation must come from a serving official page or stay blank.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-05"
+      ],
+      "note": "Carried flag; value blank."
+    },
+    {
+      "id": "I-01",
+      "lab": "root source register",
+      "claim": "IRREGULARITY: cited operations.nfl.com injury-policy URL is dead (404) on 2026-11-12",
+      "published_value": "404",
+      "where": "pages/flagged.html",
+      "status": "irregularity",
+      "verification": "Opened the URL on 2026-11-12 (VH-SRC-05); NFL.com 404 page returned. The root register still lists it as a policy source with a 2026-11-01 verification note.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-05"
+      ],
+      "note": "Fix: mark the register entry as dead-link with retrieval dates (SG-07)."
+    },
+    {
+      "id": "I-02",
+      "lab": "cross-lab",
+      "claim": "IRREGULARITY: the QB-WR1 correlation is published as four different coefficients without a shared definition label",
+      "published_value": "0.562 / 0.631 / 0.614 / 0.372",
+      "where": "pages/flagged.html",
+      "status": "irregularity",
+      "verification": "Root KPI 0.562 (designation series, n 7,560); root EXECUTIVE_SUMMARY 0.631 (ex-post leader, n 7,549); skill-lab COR-08 0.614 (ex-post, n 6,984); skill-lab COR-07 0.372 (ex-ante, n 6,984). All four exist in committed data with different definitions/windows; several pages quote them bare.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-06"
+      ],
+      "note": "Not numerical errors, but quotation hazards. Fix: definition labels on every quote (SG-06, SG-08)."
+    },
+    {
+      "id": "I-03",
+      "lab": "skill-lab",
+      "claim": "IRREGULARITY: the deliberate leakage control posts +64.81% ROI and passes 8 of 10 gates",
+      "published_value": "STR-16 +64.81% (8/10 gates)",
+      "where": "../skill-lab/pages/strategies.html",
+      "status": "irregularity",
+      "verification": "Read skill-lab/data/strategies.json STR-16 (Integrity Control, roi 64.81, gates_passed 8/10). It is a negative control that uses in-game information on purpose; qualification still requires 10/10 and G1 (zero-lookahead) is one of the two failures.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "Never quote STR-16 as performance. If a reader sees 8/10 and +64.8% they may mistake a leakage detector for a strategy."
+    },
+    {
+      "id": "I-04",
+      "lab": "repository",
+      "claim": "IRREGULARITY: eight parallel hubs implement overlapping requirements (suggestions, decision-desk, decision-hub, nfl-command, nfl-insights, site/, root pages, skill-lab)",
+      "published_value": "8 overlapping implementations",
+      "where": "pages/suggestions.html",
+      "status": "irregularity",
+      "verification": "Read every claim block in COORDINATION.md and the remote branch heads on 2026-11-12; eight live scopes cover suggestions/questions/injuries/leaderboards with different file trees.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09"
+      ],
+      "note": "The board protocol worked (scopes do not collide) but the reader-facing result is duplicated. This hub is the cross-lab decision layer; SG-01/SG-11 propose the consolidation path."
+    },
+    {
+      "id": "I-05",
+      "lab": "root Line Lab (data)",
+      "claim": "IRREGULARITY: three rolling 2026 feed assets in the manifest no longer match upstream byte sizes",
+      "published_value": "3 of 31 assets drifted",
+      "where": "pages/flagged.html",
+      "status": "irregularity",
+      "verification": "GitHub Releases API comparison on 2026-11-12 (A-05): schedules games.parquet and both 2026 weekly stat files are larger upstream than the 2026-11-02 snapshot records.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-04"
+      ],
+      "note": "Expected for rolling assets; the refresh path is the PR-based workflow (post issue-#20). Keep snapshot dates visible."
+    },
+    {
+      "id": "I-06",
+      "lab": "leaderboards (all labs)",
+      "claim": "IRREGULARITY: four different reward schedules are published for the same competition idea",
+      "published_value": "root 3-tier; skill-lab 4-tier (10,000 points); origination-lab 4-tier (pool share); suggestions 3-tier",
+      "where": "pages/leaderboard.html",
+      "status": "irregularity",
+      "verification": "Read data/derived/leaderboard.json reward_schedule, skill-lab/data/leaderboard.json reward_tiers, origination-lab/data/derived/strategies.json reward_schedule and suggestions/data/leaderboard.json reward_schedule. All differ in tiers and units; none is funded.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-08"
+      ],
+      "note": "Fix: choose one scheme before publishing rewards (SG-04); until then all are labelled paper."
+    },
+    {
+      "id": "I-07",
+      "lab": "all labs",
+      "claim": "IRREGULARITY: as-of dates differ across published numbers (2026-10-29 data cut, 2026-11-01 verification, 2026-11-02 snapshots, 2026-11-12 live)",
+      "published_value": "four different as-of dates in one repository",
+      "where": "pages/flagged.html",
+      "status": "irregularity",
+      "verification": "data/provenance.json (data_as_of_gameday 2026-11-01), skill-lab verified_date 2026-11-02, quant-lab meta, this audit 2026-11-12. Mixing them on one page invites false contradictions.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-01",
+        "VH-SRC-09"
+      ],
+      "note": "Fix: stamp every number with its as-of date (SG-06, SG-10)."
+    },
+    {
+      "id": "I-08",
+      "lab": "root + sibling flagged registers",
+      "claim": "IRREGULARITY (carried): prior session flags remain open and untriaged across labs",
+      "published_value": "11 root flags + 12 skill-lab + 12 suggestions + 9 verification-page items",
+      "where": "pages/flagged.html",
+      "status": "irregularity",
+      "verification": "Counted data/flagged.json (11 rows), skill-lab/data/flagged.json (12), suggestions/data/flagged.json (12) and the root verification page's 9 open items on 2026-11-12. Examples: injury page week-title mismatch (REG7), DraftKings rules edition 8.1.24 archived while 10.7.26 is active, NOWData preliminary values.",
+      "checked_utc": "2026-11-12",
+      "sources": [
+        "VH-SRC-09",
+        "VH-SRC-05"
+      ],
+      "note": "None block publication; this hub aggregates them so one reviewer can triage them in one place (SG-11)."
+    }
+  ]
+}

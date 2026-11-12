@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "title": "Injury & depth-deficiency requirement/gap register",
+    "session": "arena/f1123a1a-korea2",
+    "generated_utc": "2026-11-12",
+    "requirement": "The system must track injuries and know any deficiencies in defenses (e.g. 2nd/3rd/4th-string backups replacing starters) and the same for offenses (starters vs backups).",
+    "rule": "This register answers what verified official data can and cannot satisfy today. Depth-string cells are blank wherever no official league source publishes them - never inferred. The verified sample below is transcribed from the official Week 10 2026 injury report read on 2026-11-12.",
+    "verified_from": "https://www.nfl.com/injuries/league/2026/REG10 (chunk 0, read 2026-11-12)"
+  },
+  "gap_rows": [
+    {
+      "id": "IG-01",
+      "requirement_item": "Weekly player injury status per club (injury, practice status, game status)",
+      "official_status": "Available",
+      "evidence": "Official Week 10 2026 report publishes Player / Position / Injuries / Practice Status / Game Status for all 32 clubs; verified live 2026-11-12.",
+      "gap": "No gap for status itself; the report is point-in-time and must be stored at publication time",
+      "discovery_suggestion": "Ingest weekly before kickoff into an append-only store keyed by (week, team, published_at) - SG-13",
+      "sources": ["VH-SRC-02"]
+    },
+    {
+      "id": "IG-02",
+      "requirement_item": "Depth string (1st/2nd/3rd/4th) for every player, offense and defense",
+      "official_status": "Not published",
+      "evidence": "NFL.com club depth-chart path returns 404 (checked 2026-11-12, VH-SRC-03); the injury report carries no depth column.",
+      "gap": "No league-published depth ordering exists at any official source tried",
+      "discovery_suggestion": "Infer role tiers from prior-week usage (snap-share ranks within position group, from official-play-by-play-derived feeds) and cross-check club-published depth charts where clubs publish them (e.g. colts.com, verified by a sibling session). Label every tier 'inferred'; keep official depth cells blank - Q-08, SG-02",
+      "sources": ["VH-SRC-03", "VH-SRC-02"]
+    },
+    {
+      "id": "IG-03",
+      "requirement_item": "Detect when a 2nd/3rd/4th-string player must replace a starter on defense",
+      "official_status": "Partial",
+      "evidence": "Game-status 'Out'/'Doubtful' identifies unavailable players officially; whether the replacement is a backup string is not official.",
+      "gap": "Replacement identity and string are not published pre-kickoff by the league",
+      "discovery_suggestion": "Combine (a) official Out/DNP rows with (b) inferred usage tiers and (c) the next player on the club's own depth page where it exists; publish the evidence sentence and the inference label together",
+      "sources": ["VH-SRC-02", "VH-SRC-03"]
+    },
+    {
+      "id": "IG-04",
+      "requirement_item": "Same deficiency detection on offense (starters vs backups)",
+      "official_status": "Partial",
+      "evidence": "Same as IG-03; verified example rows below (NE RB room, WAS interior line) show the official half of the signal.",
+      "gap": "Same as IG-03",
+      "discovery_suggestion": "Same as IG-03; unit (offense/defense) can be assigned from the official Position column, which is published",
+      "sources": ["VH-SRC-02"]
+    },
+    {
+      "id": "IG-05",
+      "requirement_item": "Point-in-time discipline (report as published before kickoff, never retroactively updated)",
+      "official_status": "Available (design)",
+      "evidence": "The official report is re-published daily (Wed/Thu/Fri + game day); each version is a legitimate snapshot.",
+      "gap": "No store exists yet that keeps superseded versions",
+      "discovery_suggestion": "Append-only store per SG-13; features join on the latest version strictly before kickoff",
+      "sources": ["VH-SRC-02"]
+    },
+    {
+      "id": "IG-06",
+      "requirement_item": "League injury-report policy text (filing deadlines, definitions)",
+      "official_status": "Unavailable (dead link)",
+      "evidence": "operations.nfl.com policy path returns 404 on 2026-11-12 (VH-SRC-05).",
+      "gap": "Policy text cannot be quoted from the cited URL",
+      "discovery_suggestion": "Locate a serving official copy (news article variant is in the root register) or mark the register entry dead with retrieval dates - SG-07",
+      "sources": ["VH-SRC-05"]
+    }
+  ],
+  "verified_week10_sample": {
+    "note": "Transcribed exactly from the official Week 10 2026 report (VH-SRC-02, chunk 0, read 2026-11-12). 'String' is blank in every row: the official report does not publish depth ordering. Practice abbreviations: DNP = Did Not Participate, LIM = Limited, FULL = Full Participation.",
+    "rows": [
+      { "team": "WAS", "unit": "defense", "player": "Lucas Patrick", "position": "C", "injury": "Concussion", "practice": "DNP", "game_status": "Out", "string": "", "deficiency_note": "Starter-level center ruled out; replacement string not officially published", "sources": ["VH-SRC-02"] },
+      { "team": "WAS", "unit": "offense", "player": "Colson Yankoff", "position": "TE", "injury": "Knee", "practice": "DNP", "game_status": "Out", "string": "", "deficiency_note": "Tight end room reduced for TNF vs NYG", "sources": ["VH-SRC-02"] },
+      { "team": "WAS", "unit": "offense", "player": "Treylon Burks", "position": "WR", "injury": "", "practice": "DNP", "game_status": "", "string": "", "deficiency_note": "DNP with no injury column value and no game status; blank, not inferred", "sources": ["VH-SRC-02"] },
+      { "team": "WAS", "unit": "offense", "player": "Jayden Daniels", "position": "QB", "injury": "", "practice": "FULL", "game_status": "", "string": "", "deficiency_note": "Starting QB practicing fully", "sources": ["VH-SRC-02"] },
+      { "team": "NYG", "unit": "defense", "player": "Malik Harrison", "position": "LB", "injury": "Groin", "practice": "LIM", "game_status": "Questionable", "string": "", "deficiency_note": "Linebacker availability uncertain for TNF", "sources": ["VH-SRC-02"] },
+      { "team": "NYG", "unit": "offense", "player": "Malik Nabers", "position": "WR", "injury": "", "practice": "FULL", "game_status": "", "string": "", "deficiency_note": "Top receiver practicing fully", "sources": ["VH-SRC-02"] },
+      { "team": "NE", "unit": "offense", "player": "TreVeyon Henderson", "position": "RB", "injury": "Illness", "practice": "DNP", "game_status": "Out", "string": "", "deficiency_note": "RB room vs DET: one back out", "sources": ["VH-SRC-02"] },
+      { "team": "NE", "unit": "offense", "player": "Rhamondre Stevenson", "position": "RB", "injury": "", "practice": "DNP", "game_status": "", "string": "", "deficiency_note": "Second RB also DNP (no injury listed, no status yet) - potential RB deficiency, string blank", "sources": ["VH-SRC-02"] },
+      { "team": "NE", "unit": "defense", "player": "Carlton Davis III", "position": "CB", "injury": "Knee", "practice": "DNP", "game_status": "Out", "string": "", "deficiency_note": "Secondary missing a cornerback vs DET passing game", "sources": ["VH-SRC-02"] },
+      { "team": "NE", "unit": "offense", "player": "Ben Brown", "position": "C", "injury": "Knee", "practice": "DNP", "game_status": "Out", "string": "", "deficiency_note": "Interior line: center ruled out", "sources": ["VH-SRC-02"] },
+      { "team": "NE", "unit": "offense", "player": "Drake Maye", "position": "QB", "injury": "", "practice": "FULL", "game_status": "", "string": "", "deficiency_note": "Starting QB practicing fully", "sources": ["VH-SRC-02"] },
+      { "team": "DET", "unit": "defense", "player": "D.J. Reed", "position": "CB", "injury": "", "practice": "DNP", "game_status": "", "string": "", "deficiency_note": "Cornerback DNP; no injury column value; blank", "sources": ["VH-SRC-02"] },
+      { "team": "DET", "unit": "offense", "player": "Jared Goff", "position": "QB", "injury": "", "practice": "LIM", "game_status": "", "string": "", "deficiency_note": "Starting QB limited", "sources": ["VH-SRC-02"] },
+      { "team": "DET", "unit": "offense", "player": "Amon-Ra St. Brown", "position": "WR", "injury": "", "practice": "LIM", "game_status": "", "string": "", "deficiency_note": "Top receiver limited", "sources": ["VH-SRC-02"] },
+      { "team": "KC", "unit": "offense", "player": "Patrick Mahomes", "position": "QB", "injury": "", "practice": "FULL", "game_status": "", "string": "", "deficiency_note": "Starting QB practicing fully vs ATL", "sources": ["VH-SRC-02"] },
+      { "team": "KC", "unit": "offense", "player": "Travis Kelce", "position": "TE", "injury": "", "practice": "FULL", "game_status": "", "string": "", "deficiency_note": "Practicing fully", "sources": ["VH-SRC-02"] },
+      { "team": "KC", "unit": "offense", "player": "Jaylon Moore", "position": "T", "injury": "", "practice": "DNP", "game_status": "", "string": "", "deficiency_note": "Tackle DNP; no injury column value; blank", "sources": ["VH-SRC-02"] }
+    ]
+  }
+}
