@@ -1296,8 +1296,8 @@ therefore recorded here; a maintainer can close them against this table.
 | NC-1 | Claim, coordination record, final log | done | `arena/fc16e360-korea2` | `COORDINATION.md` (this section only) |
 | NC-2 | Repo review: re-run every existing checker on this branch, record results and irregularities | done | `arena/fc16e360-korea2` | `nfl-command/data/repo_review.json` |
 | NC-3 | Official injury ingestion: NFL.com Week 10 2026 injury report, all 32 clubs, one row per listed player | done | `arena/fc16e360-korea2` | `nfl-command/data/injuries.json` |
-| NC-4 | Starter vs backup depth check (offense and defense) from official club/NFL depth charts; blank + flagged where not verifiable | done | `arena/fc16e360-korea2` | `nfl-command/data/depth.json` |
-| NC-5 | Lines, strategies, correlations, luck/skill: read-only summary of the existing skill-lab outputs, re-run and reproduced | done | `arena/fc16e360-korea2` | `nfl-command/data/models.json` |
+| NC-4 | Starter vs backup depth check (offense and defense) from official club/NFL depth charts; blank + flagged where not verifiable | done (blocked: no official depth chart; values blank) | `arena/fc16e360-korea2` | `nfl-command/data/depth.json` |
+| NC-5 | Lines, strategies, correlations, luck/skill: read-only summary of the existing skill-lab outputs, re-run and reproduced | done (read-only; Skill Lab does NOT reproduce on rerun: F-07) | `arena/fc16e360-korea2` | `nfl-command/data/models.json` |
 | NC-6 | Suggestions register (options for review, nothing implemented) and missing-information / questions register | done | `arena/fc16e360-korea2` | `nfl-command/data/suggestions.json`, `nfl-command/data/questions.json` |
 | NC-7 | Static GitHub Pages site: landing page, category subpages, Flagged for Review, executive summary | done | `arena/fc16e360-korea2` | `nfl-command/**` (site + `nfl-command/scripts/build_site.py`) |
 | NC-8 | Verification gate: row-level source-link check, blank-unverified check, JSON check, local link check | done | `arena/fc16e360-korea2` | `nfl-command/scripts/verify.py` |
