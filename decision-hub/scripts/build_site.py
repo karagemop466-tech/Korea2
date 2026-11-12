@@ -239,7 +239,8 @@ def page_executive():
     ats = aud.get("ats_honest", {})
     meta = inj.get("meta", {})
     cur = inj.get("current", [])
-    worst = sorted(cur, key=lambda s: -s.get("weighted_depth_lost", 0))[:5]
+    worst = sorted([x for x in cur if x.get("out_or_doubtful")],
+                   key=lambda s: -s.get("weighted_depth_lost", 0))[:5]
     rows = [
         ["What the model is for", "Measure whether an independent NFL line beats the closing line. Not to sell picks.",
          f"Model coefficient -0.019 (p = 0.881); MAE 10.39 vs 10.25", src("nflverse-data")],
@@ -498,7 +499,9 @@ def page_injuries():
     meta = inj.get("meta", {})
     cur = inj.get("current", [])
     rows = []
-    for s in cur:
+    filed = [s for s in cur if s.get("out_or_doubtful") or s.get("questionable")]
+    no_report = [s for s in cur if not (s.get("out_or_doubtful") or s.get("questionable"))]
+    for s in filed:
         nm = "; ".join(f'{x.get("player","")} ({x.get("pos","")}, {x.get("string","")})'
                        for x in s.get("out_names", [])[:4])
         nxt = "; ".join(f'{p["position"]}&rarr;{p["replacement"]} ({p["replacement_string"]})'
@@ -506,6 +509,8 @@ def page_injuries():
         rows.append([esc(s["team"]), str(s["week"]), str(s["out_or_doubtful"]), str(s["questionable"]),
                      str(s["starters_out"]), str(s["two_deep_out"]), str(s["three_deep_out"]),
                      num(s["weighted_depth_lost"], 2), esc(nxt), esc(nm), src("SRC-NFL-INJURIES")])
+    no_report_rows = [[esc(s["team"]), str(s["week"]), str(s.get("questionable", 0)),
+                       src("SRC-NFL-INJURIES")] for s in no_report]
     weeks = meta.get("weeks", [])
     body = f"""
 <div class="hero compact"><div class="eyebrow">INJURIES &amp; DEPTH</div>
@@ -520,18 +525,28 @@ is scored by how much known depth it has lost. This is an absence record, not a 
 the rest are on week 9 or have not filed.</div>
 <a href="pages/evidence.html#absences">Every absence row &rarr;</a></div>
 
-<section class="block"><h2>Current report, every team</h2>
+<section class="block"><h2>Teams with a reported absence</h2>
+<p class="muted">These {len(filed)} teams have at least one Out, Doubtful or Questionable player in
+their latest filed report. Depth lost = sum of 1/rank over absences with a known rank.
+'Positions on a backup' means the best available player at that position is 2nd string or deeper.</p>
 {table(["Team", "Week", "Out/Doubtful", "Questionable", "1st string out", "2-deep out", "3-deep out",
         "Depth lost", "Positions on a backup", "Players out (pos, string)", "Source"], rows,
-       "Depth lost = sum of 1/rank over absences with a known rank. 'Positions on a backup' means the best available player at that position is 2nd string or deeper.")}
+       "Absence counts, not injury severity. Nothing here predicts who plays.")}
+</section>
+<section class="block"><h2>Teams with no reported Out/Doubtful player</h2>
+<p class="muted">A zero here means <strong>no absence was reported in the latest filed week</strong>,
+not that the team is healthy. {len(no_report)} teams are in this state; a team that has not yet filed
+a report for the current week appears at its last filed week, which is shown in the Week column.</p>
+{table(["Team", "Latest filed week", "Questionable", "Source"], no_report_rows,
+       "Zeros are an absence of reporting, not an absence of injuries.")}
 </section>
 
 <section class="block"><h2>Method — and what it does not claim</h2>
 <div class="grid2">
 <div class="panel"><h3>How a rank is assigned</h3><ul class="ticks">
-<li>The depth-chart feed's <code>pos_rank</code> is rank <em>within a slot</em>, and a team can list the same position in several slots (the 2026 Ravens list two QBs in separate slots).</li>
-<li>So the rank used here is the ordinal within (team, position), ordered by slot then slot-rank: QB1 is the first quarterback listed, QB4 the fourth.</li>
-<li>The raw slot and slot-rank stay on every published row so the ordering can be audited.</li>
+<li>The depth-chart feed's <code>pos_rank</code> is its own rank <em>grouped by <code>pos_slot</code></em> — the published dictionary says so, so it is used directly: rank 2 means the second man at that position.</li>
+<li>Two players who share the same slot and rank are a tie group, and are labelled "1 of N tied at this slot" rather than being given an invented order. For 2026 no absence fell into a tie group.</li>
+<li>The raw <code>pos_slot</code> and <code>pos_rank_in_slot</code> stay on every published row so the ordering can be audited against the source.</li>
 <li>Snap share is the mean of the previous four games, joined through the roster's PFR id because the snap-count feed has no GSIS id.</li>
 </ul></div>
 <div class="panel"><h3>Limits</h3><ul class="crosses">
