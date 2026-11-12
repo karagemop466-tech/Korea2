@@ -1312,6 +1312,26 @@ therefore recorded here; a maintainer can close them against this table.
 
 ---
 
+## Release record — arena/cb5b61a7-korea2
+
+| Item | Value |
+|------|-------|
+| Pull request | https://github.com/karagemop466-tech/Korea2/pull/66 |
+| Title | Add decision-support pages: suggestions, decision questions, injury & depth tracking (+ repo review) |
+| Branch | `arena/cb5b61a7-korea2` → `main` |
+| Merged | 2026-11-12T13:09:27Z, merge commit `12df53bf66a314b948278799398e7fc85458df93` via `gh pr merge 66 --merge` |
+| Checks before merge | `validate` PASS, `verify` PASS, `tests-and-links` PASS, `verify-skill-lab` PASS |
+| Site URL | https://karagemop466-tech.github.io/Korea2/ |
+| Pages deployment | status `built` (legacy build from `main`); live verified for `pages/suggestions.html` and `pages/injuries-depth.html` |
+| New published pages | `pages/suggestions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html`, `docs/REPO_REVIEW.md` |
+| Navigation | all 18 published pages now link the three new pages plus the sibling `suggestions/` Decision Hub |
+| Flagged / unverified items | did not block merge; published on `pages/flagged.html` and `docs/REPO_REVIEW.md` (IR-1…IR-7) |
+| Integration note | Another session (`arena/43870fb8`) merged PR #65 (a `suggestions/` Decision Hub) concurrently. File scopes did not overlap (they used `suggestions/`; this session used `pages/`). The COORDINATION.md conflict was resolved by retaining both boards, and a navigation link to their hub was added. |
+
+**Verification:** `python3 tests/check_site.py` → all site checks passed (113 pages, 18 published, 276 tables, 4800 links). Every published table row carries a source link; all internal links resolve; all external links are https.
+
+---
+
 # Session board — arena/43870fb8-korea2 — Suggestions & Decision Hub
 
 **Branch:** `arena/43870fb8-korea2` (fixed by environment; no separate session branch created)
