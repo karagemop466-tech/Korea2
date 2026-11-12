@@ -1,0 +1,201 @@
+{
+  "meta": {
+    "verified_on": "2026-11-12",
+    "purpose": "Separates verified facts from unverifiable gaps and lists must-answer questions before capital deployment."
+  },
+  "verified_facts": [
+    {
+      "statement": "2020, 2025, and 2026 Week 9 NFL standings reconcile 100% (32/32 clubs)",
+      "verified_value": "32/32 exact W-L-T & PF/PA match vs live NFL.com after adding 16 post-Nov-1 finals (136 played games thru Wk 9)",
+      "sources": ["SRC-NFL-STANDINGS-2026", "SRC-NFL-STANDINGS-2025", "SRC-NFL-STANDINGS-2020", "SRC-NFL-SCHED-W8", "SRC-NFL-SCHED-W9"]
+    },
+    {
+      "statement": "Closing market spread beats pure statistical Ridge origination out-of-sample",
+      "verified_value": "2023-2026 Wk 8 OOS: Ridge MAE 10.284 vs Market MAE 9.737; residual slope = -0.1453 (p = 0.2280, R^2 = 0.0017)",
+      "sources": ["SRC-GITHUB-REPO", "SRC-SKLEARN-LINEAR"]
+    },
+    {
+      "statement": "Zero candidate strategies clear all 10 validation gates",
+      "verified_value": "0 of 8 (6 signals + 2 controls) pass; top raw ROIs (S3 +9.20%, S1 +5.36%) fail NIST z (p=0.221/0.295), BH FDR (q=0.437), and EB shrinkage (-2.79% / -2.14%)",
+      "sources": ["SRC-NIST-PROP-TEST", "SRC-NWS-WIND", "SRC-GITHUB-REPO"]
+    },
+    {
+      "statement": "Inexperienced backup QBs (<5 career starts) cause steep scoring dropoff, yet market prices most of it",
+      "verified_value": "Within-season backups (<5 starts, n=438) average 18.13 PPG vs 23.60 PPG incumbent QB1 (-5.47 PPG), yet ATS is 48.47% (-1.17 margin vs spread)",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-MIA-WILLIS", "SRC-NFL-SEA-DARNOLD"]
+    },
+    {
+      "statement": "Underlying EPA persists midseason while 1-score wins and fumbles are nearly pure noise",
+      "verified_value": "2015-2025 split-half r: Net EPA/gm = 0.4908 vs 1-score win% = 0.0497, Win%-Pyth% = 0.0593, Fumbles lost = 0.0079",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-STANDINGS-2026"]
+    },
+    {
+      "statement": "Same-game QB & WR1 passing/receiving legs exhibit strong structural correlation",
+      "verified_value": "QB pass yds <-> WR1 rec yds r = 0.5640 (n=4,482), Copula 2-leg prob 34.54% (+190 fair vs +300 naive)",
+      "sources": ["SRC-GITHUB-REPO", "SRC-DK-PARLAY"]
+    },
+    {
+      "statement": "Live Week 10 REG10 injury table and 9 club depth charts contain documented omissions & stale entries",
+      "verified_value": "REG10 omits SEA (12 inj), CIN (3 inj), BAL (2 IR QBs), LAC; club DCs include Aaron Donald (LA), omit Parsons (GB), Joseph (DET), Brissett (BAL)",
+      "sources": ["SRC-NFL-INJURIES-W10", "SRC-NFL-ROUNDUP-NOV11", "SRC-CLUB-LAR-DC", "SRC-CLUB-GB-DC", "SRC-CLUB-BAL-DC"]
+    }
+  ],
+  "missing_unverifiable": [
+    {
+      "gap_id": "GAP-01",
+      "missing_item": "Historical player-prop sportsbook closing lines & odds",
+      "why_unverifiable": "games.csv.gz holds game spreads, totals, and moneylines only; zero prop lines exist anywhere in the repo (FL-01).",
+      "discovery_plan": "License or record timestamped prop lines for >= 2 NFL seasons before testing prop ROI.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-DK-PARLAY"]
+    },
+    {
+      "gap_id": "GAP-02",
+      "missing_item": "Historical individual defensive (DB/DL/LB) & offensive line (OL) snap counts and box stats",
+      "why_unverifiable": "125,679 DB/DL/LB/OL rows in player_week.csv.gz have 99.75% zero stats and zero snap percentages (FL-04).",
+      "discovery_plan": "Ingest weekly snap-count & participation logs (NFL/Genius NGS) and merge to player_week.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-GENIUS", "SRC-OPS-NGS"]
+    },
+    {
+      "gap_id": "GAP-03",
+      "missing_item": "Live Week 10 sportsbook spreads, totals, and moneylines (plus opening/closing timestamps)",
+      "why_unverifiable": "games.csv.gz stops at 2026-11-01 Week 8 for scores and leaves all 14 Week 10 odds cells blank (FL-02, FL-07).",
+      "discovery_plan": "Connect timestamped multi-book odds feed logging Wed open, Fri injury move, and Sun -90m close.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-SCHED-W10"]
+    },
+    {
+      "gap_id": "GAP-04",
+      "missing_item": "Confirmed Week 10 starting QB & injury actives (Cousins/MIN, Lock/SEA, Nacua/LA, Watt/PIT, Williams/SF)",
+      "why_unverifiable": "Wednesday Nov 11 reports list multiple key starters DNP/LP ahead of Sunday/Monday T-90m Rule 19-2 active filings.",
+      "discovery_plan": "Poll Thursday/Friday practice reports and mandatory 90-minute pre-kickoff inactive lists.",
+      "sources": ["SRC-OPS-RULEBOOK", "SRC-NFL-ROUNDUP-NOV11", "SRC-NFL-INJURIES-W10"]
+    }
+  ],
+  "rows": [
+    {
+      "id": "Q-01",
+      "priority": "MUST-ANSWER",
+      "question": "Should any live capital be deployed on the 6 tested game/line strategies right now?",
+      "current_verified_answer": "NO — 0 of 8 strategies pass the 10-gate validator (best EB-shrunk ROI is -2.14% on S1_DIV_DOG).",
+      "missing_to_resolve": "Needs either lineup-conditioned pre-close opening line edge OR verified >2% CLV over >= 400 bets.",
+      "decision_options": ["Keep 0% capital (recommended)", "Fund opening-line timestamping pilot first", "Retire static close-only tests"],
+      "sources": ["SRC-NIST-PROP-TEST", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "Q-02",
+      "priority": "MUST-ANSWER",
+      "question": "Can we profitably fade Week 10 backup QBs (Kyle McCord/MIA, Carson Beck/ARI, Drew Lock/SEA, Joe Fagnano/BAL)?",
+      "current_verified_answer": "Scoring drops -5.47 PPG for <5-start backups (18.13 vs 23.60 PPG), yet full-sample fade strategy S6 loses -5.23% ROI (n=266) at closing prices.",
+      "missing_to_resolve": "Requires pre-injury opening lines vs post-announcement lines to know whether Week 10 books already moved 4-6 points.",
+      "decision_options": ["Only test pre-move speed edges with timestamped books", "Reject blind closing-line backup fades", "Restrict to derivative under/prop modeling"],
+      "sources": ["SRC-NFL-MIA-WILLIS", "SRC-NFL-SEA-DARNOLD", "SRC-NFL-BAL-JACKSON"]
+    },
+    {
+      "id": "Q-03",
+      "priority": "MUST-ANSWER",
+      "question": "Why does REG10 say 'No Injuries Reported' for SEA, CIN, BAL, and LAC on Nov 12?",
+      "current_verified_answer": "Verified feed/cadence discrepancy: SEA has 12 active Wed injuries in Nov 11 roundup, CIN has 3, BAL QBs Jackson & Huntley are on IR (omitted from REG10), and LAC is on MNF schedule cadence.",
+      "missing_to_resolve": "Need automated cross-check uniting REG10 + daily roundup + IR/transaction wire + Thursday MNF update.",
+      "decision_options": ["Build dual-feed parser immediately", "Require human verification for blank REG teams", "Never auto-mark blank teams healthy"],
+      "sources": ["SRC-NFL-INJURIES-W10", "SRC-NFL-ROUNDUP-NOV11", "SRC-NFL-SCHED-W10"]
+    },
+    {
+      "id": "Q-04",
+      "priority": "MUST-ANSWER",
+      "question": "Are club official depth charts safe as a primary source for backup cascades?",
+      "current_verified_answer": "NO — 9 audited club DCs carry 'unofficial' disclaimers plus stale Aaron Donald (LA), missing Parsons (GB)/Joseph (DET)/Van Roten (NE)/Lucas Patrick (WAS)/Brissett (BAL), and blank MIA QB2-QB4 slots.",
+      "missing_to_resolve": "Official weekly gamebook participation & 53-man active roster transactions.",
+      "decision_options": ["Cross-validate against NFL.com rosters & injury reports", "Drop club DC HTML scraping", "Flag stale entries automatically"],
+      "sources": ["SRC-CLUB-LAR-DC", "SRC-CLUB-GB-DC", "SRC-CLUB-MIA-DC", "SRC-NFL-TEAMS"]
+    },
+    {
+      "id": "Q-05",
+      "priority": "HIGH",
+      "question": "Should we deploy player-prop projection edges given MAE 20.3-59.4 yards?",
+      "current_verified_answer": "Cannot verify profitability: zero historical sportsbook prop lines exist in the repo (FL-01).",
+      "missing_to_resolve": "Multi-season archived sportsbook prop lines + actual over/under vig.",
+      "decision_options": ["Defer prop execution until odds archived", "Use stat forecasts only for SGP correlation & fantasy", "Run 1-season paper-tracking log of quoted DK/FD props"],
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-PASSING-2026"]
+    },
+    {
+      "id": "Q-06",
+      "priority": "HIGH",
+      "question": "How should we price defensive cluster injuries (IND 4 DB/LB DNP, LA McDuffie/Curl DNP, SF Williams/Lenoir DNP, PIT Watt/Heyward DNP)?",
+      "current_verified_answer": "Historical player-level DB/DL/LB/OL snap dropoff is unverifiable ('', FL-04); team-level pass-rush collapse (+3.98 PPG allowed) and OL sack collapse (-5.64 PPG scored) exist in team_week.",
+      "missing_to_resolve": "Individual snap-percentage history & PFF/NGS matchup grades.",
+      "decision_options": ["Ingest weekly defensive snap participation CSV", "Apply conservative team-level variance haircut only", "Leave individual trench dropoffs blank until sourced"],
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-GENIUS", "SRC-NFL-INJURIES-W10"]
+    },
+    {
+      "id": "Q-07",
+      "priority": "HIGH",
+      "question": "Do S1 (Divisional Dog +5.36% ROI) or S3 (High-Wind Under +9.20% ROI) merit live small-stakes testing?",
+      "current_verified_answer": "NO — both fail NIST z-test (p=0.295 / 0.221), BH FDR (q=0.437), and Empirical Bayes shrinkage (-2.14% / -2.79%) because n=335 / n=152 cannot defeat vig uncertainty.",
+      "missing_to_resolve": "Need n >= 500+ out-of-sample bets or positive timestamped CLV + stadium wind speed verification at kickoff.",
+      "decision_options": ["Keep both in WATCHLIST / REJECTED status", "Test stadium-specific wind thresholds (NWS hourly)", "Require BH q < 0.05 before promotion"],
+      "sources": ["SRC-NIST-PROP-TEST", "SRC-NWS-WIND", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "Q-08",
+      "priority": "MEDIUM",
+      "question": "Which 2026 teams are strongest regression candidates entering Week 10?",
+      "current_verified_answer": "DEN (7-2 actual vs 53.7% Pyth, 6-0 in 1-score games, -0.32 Net EPA/gm) & CLE (5-4 actual, -3.07 Net EPA/gm) ran hottest; TB (3-6, 0-6 in 1-score games, +3.66 Net EPA/gm) ran coldest.",
+      "missing_to_resolve": "Whether live sportsbook futures/spreads already price DEN's negative EPA & TB's positive EPA.",
+      "decision_options": ["Update team power ratings with EPA over W-L", "Do not blindly fade lucky records (S4 lost -6.45%)", "Track closing spreads on DEN & TB Week 11+"],
+      "sources": ["SRC-NFL-STANDINGS-2026", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "Q-09",
+      "priority": "MEDIUM",
+      "question": "Can Gaussian copula correlation edge beat sportsbook Same-Game Parlay pricing?",
+      "current_verified_answer": "QB pass yds <-> WR1 rec yds r=0.564 gives 34.54% true joint probability (+190 fair) vs naive +300 (25%), but DraftKings KB0010683 confirms books already embed correlation haircuts.",
+      "missing_to_resolve": "Live quoted SGP payouts vs copula fair value across multiple books.",
+      "decision_options": ["Log quoted vs copula fair prices on Week 10 stacks (e.g. Stafford-Adams if Nacua IR)", "Avoid blind SGP recreation", "Compare multi-book correlation pricing"],
+      "sources": ["SRC-DK-PARLAY", "SRC-NFL-LAR-NACUA", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "Q-10",
+      "priority": "MEDIUM",
+      "question": "When Week 9 games.csv.gz QBs didn't match actual starters (Huntley vs Fagnano, Watson vs Sanders), how big was the surprise?",
+      "current_verified_answer": "BAL started 3rd-stringer Joe Fagnano & lost 33-10 to JAX (-23 vs -8.5 spread); CLE started Shedeur Sanders & covered +2.5 in a 23-22 loss at NO.",
+      "missing_to_resolve": "Exact timestamp of when BAL/CLE inactive moves hit odds screens.",
+      "decision_options": ["Patch stale Week 9 QB snapshot metadata", "Require gamebook post-match starter audit", "Track pre-kickoff vs actual QB deltas"],
+      "sources": ["SRC-NFL-SCHED-W9", "SRC-NFL-BAL-JACKSON", "SRC-NFL-ROUNDUP-NOV11"]
+    },
+    {
+      "id": "Q-11",
+      "priority": "MEDIUM",
+      "question": "Should Lineup Lab replace or patch root pages/scripts right now?",
+      "current_verified_answer": "Coordination rules on branch arena/bea6e3be-korea2 restrict edits to lineup-lab/** and .github/workflows/lineup-lab.yml; root repo defects are logged in REPO_REVIEW.md.",
+      "missing_to_resolve": "Maintainer/reviewer signoff across active branches before modifying shared root scripts.",
+      "decision_options": ["Publish isolated lineup-lab/ deliverable cleanly", "Submit separate cleanup PR for root bugs (REV-01..REV-05)", "Preserve read-only sibling boundaries"],
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "Q-12",
+      "priority": "MEDIUM",
+      "question": "How should we handle unconfirmed Week 10 starter transitions like MIN (Cousins trade Nov 10)?",
+      "current_verified_answer": "Cousins traded from LV to MIN Nov 10 after throwing 2,340 yds / 20 TDs through Wk 9; MIN also lists Carson Wentz (LP) & Hockenson/Murray (DNP).",
+      "missing_to_resolve": "Official MIN coaching decision & Friday status for Week 10 @ GB.",
+      "decision_options": ["Freeze MIN origination confidence until Friday status", "Publish dual scenario (Cousins vs Wentz)", "Avoid directional stance on short-week QB install"],
+      "sources": ["SRC-NFL-ROUNDUP-NOV11", "SRC-NFL-PASSING-2026", "SRC-NFL-INJURIES-W10"]
+    },
+    {
+      "id": "Q-13",
+      "priority": "LOW",
+      "question": "Do pre-2018 missing odds (1,902 missing spread/ML, 1,904 missing total) bias long-horizon backtests?",
+      "current_verified_answer": "Only if scripts silently impute -110 like scripts/analyze_strategies.py:50,66; restricting stored-odds ROI tests to 2018-2026 (0 missing prices) eliminates all bias.",
+      "missing_to_resolve": "Nothing — already solved cleanly in Lineup Lab by enforcing 2018-2026 exact stored odds.",
+      "decision_options": ["Enforce 2018-2026 zero-imputation window", "Keep pre-2018 strictly for structural volume/correlation", "Ban all -110 fallback defaults in CI"],
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "Q-14",
+      "priority": "LOW",
+      "question": "Does the existing root CI workflow validate Lineup Lab pages & strict source domain discipline?",
+      "current_verified_answer": "Existing fetch-nflverse.yml checks stale paths; audit/check_site.py reports 2,142 domain flags on older directories while Lineup Lab targets 0 flags.",
+      "missing_to_resolve": "Dedicated CI workflow verifying Lineup Lab JSON/HTML/source integrity on PRs.",
+      "decision_options": ["Add .github/workflows/lineup-lab.yml", "Gate PR merge on verify_lineup_lab.py + audit/check_site.py", "Keep existing tests passing"],
+      "sources": ["SRC-GITHUB-REPO", "SRC-MGC-SPORTS"]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Correlation &amp; parlays | Lineup Lab</title>
+  <meta name="description" content="Empirical NFL same-game correlations and Gaussian copula SGP pricing matrix.">
+  <meta name="generator" content="lineup-lab/scripts/build_site.py">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="../index.html">
+      <span class="mark">LL</span>
+      <span class="brand-text">
+        <strong>LINEUP LAB</strong>
+        <small>NFL RESEARCH &amp; AUDIT</small>
+      </span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Overview</a><div class="nav-group-label">Core Analytics</div><a href="../pages/executive.html">Executive summary</a><a href="../pages/lines.html">Originated lines</a><a href="../pages/props.html">Player props</a><a href="../pages/correlation.html" class="active" aria-current="page">Correlation &amp; parlays</a><div class="nav-group-label">Competition &amp; Luck</div><a href="../pages/strategies.html">Strategy lab</a><a href="../pages/leaderboard.html">Leaderboard</a><a href="../pages/luck.html">Removing luck</a><div class="nav-group-label">Lineup Intelligence</div><a href="../pages/injuries-depth.html">Injury &amp; depth</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/decision-questions.html">Decision questions</a><div class="nav-group-label">Governance &amp; Audit</div><a href="../pages/verification.html">Verification &amp; review</a>
+    </nav>
+    <div class="sidebar-card">
+      <div><span class="status-dot"></span>Posture: Research Only</div>
+      <strong>0 of 8 strategies approved</strong>
+      <span>Verified 2026-11-12 &middot; 32/32 NFL.com Week 9 reconciliation &middot; 0% live capital.</span>
+    </div>
+  </aside>
+  <main id="main">
+    <header class="topbar">
+      <span class="crumb">LINEUP LAB / CORRELATION</span>
+      <div class="top-actions">
+        <a class="pill-link" href="../pages/suggestions.html">Suggestions board</a>
+        <a class="pill-link" href="../pages/verification.html">Audit &amp; verification &nearr;</a>
+      </div>
+    </header>
+    
+<div class="hero">
+  <div class="eyebrow">CORRELATIONS &amp; GAUSSIAN COPULA SGP PRICING</div>
+  <h1>Same-Game Leg Correlations Are Large&mdash;and Priced by Books.</h1>
+  <p class="lede">Measured over 2018&ndash;2026 Week 8 regular-season team-games. Bivariate Gaussian copula integration computes fair joint probability of both legs exceeding median, compared directly against naive independent +300 (25.0%) parlay math.</p>
+</div>
+<div class="banner warn">
+  <div>
+    <strong>DraftKings SGP Correlation Adjustments Apply (KB0010683)</strong>
+    <p>Sportsbooks dynamically adjust Same-Game Parlay payouts for correlated legs. Use Gaussian copula fair odds (+190 for QB pass &harr; WR1 rec) strictly as a price-audit ceiling, never assuming naive +300 quotes exist.</p>
+  </div>
+  <a class="pill-link" href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener">DraftKings SGP Policy &nearr;</a>
+</div>
+<div class="table-wrap"><table><caption>Empirical same-game correlations (2018-2026 Wk 8) and Gaussian copula fair 2-leg parlay odds.</caption><thead><tr><th>Leg Pair</th><th>N</th><th>Pearson r</th><th>95% Fisher CI</th><th>Copula 2-Leg P</th><th>Empirical &gt;Med P</th><th>Naive Fair</th><th>Copula Fair</th><th>Delta vs Naive</th><th>Sources</th></tr></thead><tbody><tr><td><strong>QB passing yards &lt;-&gt; WR1 receiving yards (same team)</strong></td><td class="num">4,482</td><td class="num"><strong>+0.5640</strong></td><td class="num">[+0.5437, +0.5837]</td><td class="num">34.54%</td><td class="num">34.05%</td><td class="num">+300</td><td class="num"><strong>+190</strong></td><td class="num">+9.54 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr><tr><td><strong>QB passing TDs &lt;-&gt; WR1 receiving TDs (same team)</strong></td><td class="num">4,482</td><td class="num"><strong>+0.5048</strong></td><td class="num">[+0.4826, +0.5263]</td><td class="num">33.42%</td><td class="num">26.53%</td><td class="num">+300</td><td class="num"><strong>+199</strong></td><td class="num">+8.42 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr><tr><td><strong>QB passing yards &lt;-&gt; TE1 receiving yards (same team)</strong></td><td class="num">4,456</td><td class="num"><strong>+0.3690</strong></td><td class="num">[+0.3434, +0.3941]</td><td class="num">31.02%</td><td class="num">31.31%</td><td class="num">+300</td><td class="num"><strong>+222</strong></td><td class="num">+6.02 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr><tr><td><strong>RB1 rushing yards &lt;-&gt; Team score margin</strong></td><td class="num">4,494</td><td class="num"><strong>+0.3372</strong></td><td class="num">[+0.3110, +0.3629]</td><td class="num">30.47%</td><td class="num">31.20%</td><td class="num">+300</td><td class="num"><strong>+228</strong></td><td class="num">+5.47 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr><tr><td><strong>QB passing yards &lt;-&gt; Team score margin</strong></td><td class="num">4,482</td><td class="num"><strong>+0.1631</strong></td><td class="num">[+0.1345, +0.1915]</td><td class="num">27.61%</td><td class="num">26.57%</td><td class="num">+300</td><td class="num"><strong>+262</strong></td><td class="num">+2.61 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr><tr><td><strong>Home QB passing yards &lt;-&gt; Away QB passing yards (shootout)</strong></td><td class="num">2,236</td><td class="num"><strong>+0.1620</strong></td><td class="num">[+0.1214, +0.2021]</td><td class="num">27.59%</td><td class="num">27.15%</td><td class="num">+300</td><td class="num"><strong>+262</strong></td><td class="num">+2.59 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr><tr><td><strong>RB1 rushing yards &lt;-&gt; Game total points</strong></td><td class="num">4,494</td><td class="num"><strong>+0.1153</strong></td><td class="num">[+0.0864, +0.1441]</td><td class="num">26.84%</td><td class="num">25.72%</td><td class="num">+300</td><td class="num"><strong>+273</strong></td><td class="num">+1.84 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr><tr><td><strong>QB passing yards &lt;-&gt; RB1 rushing yards (same team)</strong></td><td class="num">4,482</td><td class="num"><strong>-0.1147</strong></td><td class="num">[-0.1435, -0.0857]</td><td class="num">23.17%</td><td class="num">23.32%</td><td class="num">+300</td><td class="num"><strong>+332</strong></td><td class="num">-1.83 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr><tr><td><strong>Team points &lt;-&gt; Opponent points (game pace)</strong></td><td class="num">2,247</td><td class="num"><strong>-0.0236</strong></td><td class="num">[-0.0648, +0.0178]</td><td class="num">24.62%</td><td class="num">21.72%</td><td class="num">+300</td><td class="num"><strong>+306</strong></td><td class="num">-0.38 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr><tr><td><strong>Home margin &lt;-&gt; Game total points</strong></td><td class="num">2,247</td><td class="num"><strong>+0.0066</strong></td><td class="num">[-0.0347, +0.0480]</td><td class="num">25.11%</td><td class="num">22.74%</td><td class="num">+300</td><td class="num"><strong>+298</strong></td><td class="num">+0.11 pp</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" target="_blank" rel="noopener" title="GitHub — karagemop466-tech/Korea2 Repository Source">GitHub (karagemop466…</a><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" target="_blank" rel="noopener" title="DraftKings Support — Parlay Rules &amp; Correlated Outcomes (KB0010683)">DraftKings (support.…</a></td></tr></tbody></table></div>
+
+    <footer class="footer">
+      <div>Lineup Lab &middot; Branch <code>arena/bea6e3be-korea2</code> &middot; Verified 2026-11-12 &middot; Pure-Python 3.11 stdlib pipeline &middot; No <code>-110</code> or unverified data imputation.</div>
+      <div>
+        <a href="https://www.ncpgambling.org/help-treatment/faqs-what-is-problem-gambling/" target="_blank" rel="noopener">Responsible Gaming (NCPG)</a> &middot;
+        <a href="https://massgaming.com/about/sports-wagering-in-massachusetts/" target="_blank" rel="noopener">MGC</a> &middot;
+        <a href="https://www.gaming.nv.gov/" target="_blank" rel="noopener">NV GCB</a>
+      </div>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

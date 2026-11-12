@@ -1,0 +1,43 @@
+name: Verify Lineup Lab
+
+on:
+  push:
+    branches: [main, 'arena/**']
+    paths:
+      - 'lineup-lab/**'
+      - '.github/workflows/lineup-lab.yml'
+  pull_request:
+    paths:
+      - 'lineup-lab/**'
+      - '.github/workflows/lineup-lab.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Recompute Lineup Lab analytical engines and static site
+        run: |
+          python3 lineup-lab/scripts/verify_official_2026.py
+          python3 lineup-lab/scripts/analyze_injuries_depth.py
+          python3 lineup-lab/scripts/originate_and_signals.py
+          python3 lineup-lab/scripts/correlations_and_competition.py
+          python3 lineup-lab/scripts/build_site.py
+      - name: Run Lineup Lab strict verifier and repo validators
+        run: |
+          python3 lineup-lab/scripts/verify_lineup_lab.py
+          python3 tests/check_site.py
+          python3 scripts/check_links.py
+          python3 scripts/validate_data.py
+          python3 pipeline/check_links.py
+      - name: Assert reproducible working tree (no dirty diffs after rebuild)
+        run: |
+          git diff --exit-code -- lineup-lab/

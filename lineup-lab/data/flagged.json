@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "title": "Flagged for Review — Unverified Values & Repository/Official-Feed Irregularities",
+    "verified_on": "2026-11-12",
+    "policy": "Any field that cannot be confirmed from a verified official source or computed without imputation from committed data is strictly left blank ('') in all data tables and documented here for manual human review."
+  },
+  "rows": [
+    {
+      "id": "FL-01",
+      "category": "Official Feed Discrepancy",
+      "item": "NFL.com Week 10 Injury Hub omits 12 SEA and 3 CIN injuries published in NFL.com's own Nov 11 Roundup",
+      "value": "",
+      "severity": "High",
+      "reason": "https://www.nfl.com/injuries/league/2026/REG10 displays 'No Injuries Reported' for SEA, CIN, LAC, and BAL on 2026-11-12, while NFL.com's Nov 11 roundup documents 12 SEA injuries (incl. QB1 Sam Darnold OUT, QB2 Drew Lock LP, LT Charles Cross DNP, G Quenton Nelson DNP, DT Leonard Williams DNP) and 3 CIN injuries (G Dylan Fairchild LP, CB DJ Turner II LP, S Kyle Dugger DNP). Automated scrapers trusting only the REG10 hub miss severe Seahawks/Bengals deficiencies.",
+      "sources": ["SRC-NFL-INJURIES-W10", "SRC-NFL-ROUNDUP-NOV11", "SRC-NFL-SEA-DARNOLD"]
+    },
+    {
+      "id": "FL-02",
+      "category": "Club Depth Chart Disclaimer & Staleness",
+      "item": "Official club depth charts are self-labeled 'unofficial', omit active 53-man injured players, and lag midweek trades/signings",
+      "value": "",
+      "severity": "High",
+      "reason": "patriots.com, therams.com, detroitlions.com, and packers.com explicitly disclaim depth charts as 'unofficial'. commanders.com omits injured C Lucas Patrick (Out, concussion); patriots.com omits G Greg Van Roten (LP); detroitlions.com omits S Kerby Joseph (LP); packers.com (Nov 10) omits Edge Micah Parsons (LP); baltimoreravens.com has not yet integrated newly acquired QB Jacoby Brissett or K Riley Patterson. Depth rankings carry structural lag risk.",
+      "sources": ["SRC-CLUB-NE-DC", "SRC-CLUB-WAS-DC", "SRC-CLUB-DET-DC", "SRC-CLUB-GB-DC", "SRC-CLUB-BAL-DC", "SRC-NFL-INJURIES-W10", "SRC-NFL-TEAMS"]
+    },
+    {
+      "id": "FL-03",
+      "category": "Unlisted 3rd/4th-String Slots",
+      "item": "Empty 2nd/3rd/4th-string depth chart slots across official club websites (e.g., MIA QB2-4 & K, IND LS2-4 & CB3-4, NE LG3-4 & CB3-4)",
+      "value": "",
+      "severity": "Medium",
+      "reason": "Official club depth charts leave numerous 2nd, 3rd, and 4th-string positions blank (e.g., miamidolphins.com lists Kyle McCord as sole QB with QB2-4 and K blank; colts.com lists LS Luke Rhodes with 2nd-4th blank and CB3-4 blank). Unlisted backup slots are strictly left blank and never guessed.",
+      "sources": ["SRC-CLUB-MIA-DC", "SRC-CLUB-IND-DC", "SRC-CLUB-NE-DC", "SRC-CLUB-SEA-DC", "SRC-NFL-TEAMS"]
+    },
+    {
+      "id": "FL-04",
+      "category": "Missing Defensive Snap Counts & Tackles",
+      "item": "Historical 2015-2026 individual defensive player snap shares and defensive box stats in data/derived/player_week.csv.gz",
+      "value": "",
+      "severity": "High",
+      "reason": "Although player_week.csv.gz contains 115,078 defensive rows (DB/DL/LB) and 10,601 OL rows, scripts/export_extracts.py (lines 46-53) pruned out all defensive stat columns and snap counts, leaving 0/blank values across all numeric stats. Historical individual defender absences cannot be distinguished from 0-tackle games without adding nflverse snap_counts and defensive box columns.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-OPS-NGS"]
+    },
+    {
+      "id": "FL-05",
+      "category": "Missing Historical Injury Archive",
+      "item": "Point-in-time historical NFL injury report status & Friday 4pm ET Game Status archive (2015-2026)",
+      "value": "",
+      "severity": "High",
+      "reason": "No weekly injury report archive exists in data/derived/. Live Week 10 injury designations are verified from NFL.com for 2026-11-12, while Sunday Week 10 Game Status designations (Out/Doubtful/Questionable) are not published until Friday Nov 13 at 4:00 PM ET (Monday game Saturday).",
+      "sources": ["SRC-NFL-INJURIES-W10", "SRC-NFL-INJURY-ARTICLE-W10", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "FL-06",
+      "category": "Week 10 Market Lines & Props",
+      "item": "Sportsbook opening/live spreads, totals, moneylines, and player-prop lines for the 14 Week 10 2026 games",
+      "value": "",
+      "severity": "High",
+      "reason": "data/derived/games.csv.gz leaves spread_line, total_line, away_moneyline, and home_moneyline blank for all 14 Week 10 games (2026-11-12 to 2026-11-16), and no historical or live player-prop odds exist in the repo. All Week 10 market-price and prop-ROI cells are left strictly blank.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-SCHED-W10", "SRC-NFL-GENIUS"]
+    },
+    {
+      "id": "FL-07",
+      "category": "Opening Lines & CLV Timestamps",
+      "item": "Historical opening lines and bet-timestamp stream required for Closing Line Value (CLV)",
+      "value": "",
+      "severity": "High",
+      "reason": "games.csv.gz stores a single snapshot closing spread/total/moneyline without opening prices or market timestamps. Without bet-time quotes, true CLV cannot be measured.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-NFL-GENIUS"]
+    },
+    {
+      "id": "FL-08",
+      "category": "Unpriced Pre-2018 Spread Rows",
+      "item": "Exact vig/odds for 1,902 pre-2018 regular-season spread games (and 1,904 total games) missing stored odds",
+      "value": "",
+      "severity": "High",
+      "reason": "data/derived/games.csv.gz lacks home_spread_odds/away_spread_odds on 1,902 pre-2018 rows; root scripts/analyze_strategies.py lines 50 & 66 silently impute DEFAULT_AMERICAN (-110). Lineup Lab leaves missing odds blank and excludes unpriced rows from ROI settlement.",
+      "sources": ["SRC-GITHUB-REPO", "SRC-MGC-SPORTS"]
+    },
+    {
+      "id": "FL-09",
+      "category": "CI Workflow Defect (fetch-nflverse.yml)",
+      "item": "Broken CSV vs Parquet extension & 12 vs 15 season range mismatch in .github/workflows/fetch-nflverse.yml",
+      "value": "",
+      "severity": "High",
+      "reason": ".github/workflows/fetch-nflverse.yml downloads CSV files (lines 65-72) for 12 seasons 2015-2026 (line 43), then invokes scripts/export_extracts.py (line 84) which calls pd.read_parquet() on .parquet filenames (line 88) and checks need_seasons = list(range(2012, 2027)) (line 93, 15 seasons while comment line 87 says 'twelve'). Workflow fails if triggered.",
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "FL-10",
+      "category": "Committed 2026 Extract Lag & Week 9 QB Mismatches",
+      "item": "Stale 2026-11-01 games.csv.gz snapshot missing 16 completed games and listing wrong Week 9 projected QBs",
+      "value": "",
+      "severity": "High",
+      "reason": "games.csv.gz ends mid-Week 8 (120 played; Week 8 MNF CHI@SEA and all 15 Week 9 games unplayed). Moreover, games.csv.gz projected Tyler Huntley for BAL Week 9 (actually 3rd-string Joe Fagnano started after Huntley's season-ending IR) and Deshaun Watson for CLE Week 9 (actually Shedeur Sanders started), and listed Kirk Cousins on LV prior to his Nov 10 trade to MIN.",
+      "sources": ["SRC-NFL-SCHED-W8", "SRC-NFL-SCHED-W9", "SRC-NFL-STANDINGS-2026", "SRC-NFL-BAL-JACKSON", "SRC-NFL-ROUNDUP-NOV11"]
+    },
+    {
+      "id": "FL-11",
+      "category": "Root Generator & Audit Drift",
+      "item": "Root pages/suggestions.html, decision-questions.html, injuries-depth.html orphaned from scripts/build_site.py & 2,142 repo audit flags",
+      "value": "",
+      "severity": "Medium",
+      "reason": "Three root pages added in PR #66 declare <meta name='generator' content='line-lab/scripts/build_site.py'>, but scripts/build_site.py has 0 references to them and audit/check_site.py reports 2,142 source-domain/ID flags across older sibling directories (whereas lineup-lab/ achieves 0 flags).",
+      "sources": ["SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "FL-12",
+      "category": "2020 Standings CSV Contamination",
+      "item": "Sibling file data/standings_2020.csv mixes postseason games into 2020 regular season and retains OAK label",
+      "value": "",
+      "severity": "Medium",
+      "reason": "data/standings_2020.csv lists KC 16-3 and BUF 15-4 (including 2020 postseason games) and prints OAK instead of LV, contradicting NFL.com's official 16-game 2020 REG standings (KC 14-2, BUF 13-3, LV 8-8).",
+      "sources": ["SRC-NFL-STANDINGS-2020", "SRC-GITHUB-REPO"]
+    },
+    {
+      "id": "FL-13",
+      "category": "Funded Leaderboard Cash Prize Pool",
+      "item": "Real-money dollar reward amounts for competition leaderboard tiers",
+      "value": "",
+      "severity": "Medium",
+      "reason": "No sponsor or funded prize budget exists in this repository. Competition rewards are strictly restricted to paper allocation points (10,000-pt budget); real cash payout cells remain blank.",
+      "sources": ["SRC-NV-GCB", "SRC-MGC-SPORTS", "SRC-NCPG-FAQ"]
+    },
+    {
+      "id": "FL-14",
+      "category": "Unconfirmed Week 10 Starting QBs (MIN, IND, BAL)",
+      "item": "Final Week 10 QB starter confirmation for MIN (Cousins vs Murray/Wentz), BAL (Joe Fagnano vs Jacoby Brissett), and MIA QB2 (Brady Cook elevation)",
+      "value": "",
+      "severity": "Medium",
+      "reason": "On 2026-11-12, MIN coach Kevin O'Connell stated it is 'too early' to commit to newly acquired Kirk Cousins (Kyler Murray DNP, Carson Wentz LP); BAL depth chart still lists Lamar Jackson/Tyler Huntley above Joe Fagnano without Jacoby Brissett; MIA expects PS elevation of Brady Cook behind Kyle McCord. Unconfirmed Week 10 starters remain flagged pending Friday/gameday official announcements.",
+      "sources": ["SRC-NFL-ROUNDUP-NOV11", "SRC-NFL-BAL-JACKSON", "SRC-NFL-MIA-WILLIS", "SRC-CLUB-BAL-DC", "SRC-CLUB-MIA-DC"]
+    },
+    {
+      "id": "FL-15",
+      "category": "Sportsbook Execution & SGP Pricing Access",
+      "item": "Verified licensed sportsbook account, stake limits, state jurisdiction, and SGP/prop execution pricing",
+      "value": "",
+      "severity": "High",
+      "reason": "No licensed sportsbook execution feed or SGP pricing engine is connected. Under DraftKings KB0010683, correlated SGP legs are repriced/restricted using proprietary book correlation matrices; Gate G9 (executable access) and Gate G10 (prop/SGP pricing) fail by rule.",
+      "sources": ["SRC-DK-PARLAY", "SRC-MGC-SPORTS", "SRC-NV-GCB"]
+    },
+    {
+      "id": "FL-16",
+      "category": "Raw Next Gen Stats Tracking Feed Access",
+      "item": "Public raw 10 Hz RFID tracking coordinate feed for offensive/defensive coverage & pass-rush attribution",
+      "value": "",
+      "severity": "Medium",
+      "reason": "Per NFL Football Operations, 10 Hz RFID UWB tracking data (>200 points/play) is restricted to clubs, AWS Next Gen Stats, and official Kaggle Big Data Bowl releases; no public real-time API exists.",
+      "sources": ["SRC-OPS-NGS", "SRC-NFL-GENIUS"]
+    }
+  ]
+}
