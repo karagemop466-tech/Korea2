@@ -1431,6 +1431,27 @@ All 39 entries in `suggestions/data/sources.json` were opened via web_search or 
 **Session ID:** `arena/90e4fdbe-korea2` — branch fixed by the environment; it cannot create `session-<id>/<task>` branches, so the branch name *is* the session id (same constraint recorded by every previous session on this board).
 **Claimed:** 2026-11-12 UTC. **Base:** `e8d04a9` (merge of PR #64).
 
+## Duplicate-scope note — two suggestion hubs now exist (2026-11-12)
+
+Two sessions built an overlapping suggestions layer within the same hour:
+
+| Path | Session | Scope |
+|---|---|---|
+| `suggestions/` + root `pages/suggestions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html` | arena/43870fb8, arena/cb5b61a7 (PR #65, #66) | 17 requirements, 12 proposals, 15 Q&A, 10 decision prerequisites, injury/depth **design** |
+| `decision-hub/` | arena/7dbbeba6 (this PR) | 14 suggestions, 16 questions, 3 decisions, 10-gate framework, injury/depth **built and refreshed by CI**, independent line-by-line audit |
+
+**No work was discarded.** This session kept both hubs, both sets of root pages and every
+coordination-log entry, and added one navigation entry for `decision-hub/` beside the existing ones.
+Integration decision for the reviewer: pick one hub as canonical and keep the other as a dated
+archive (suggestion S-13 applies to hubs as well as sibling labs).
+
+Resolution mechanics: on merging `origin/main` the only conflicting content was navigation lines in
+`index.html` and `pages/*.html`, plus this file. Those pages are generated, so main's versions were
+taken for the conflicted files and regenerated from `scripts/lib/site.py`, which now carries **all**
+navigation entries. Both boards are preserved verbatim above.
+
+## Final integration session `arena/578d4e5f-korea2` — sourced corrections and freshness
+
 | Task ID | Task | Status | Owner | File scope |
 | --- | --- | --- | --- | --- |
 | DD-01 | Read the merged repository line by line and re-verify the published headline numbers against the committed data (independent recomputation, no reuse of the publishing code paths) | in progress | `arena/90e4fdbe-korea2` | `site/scripts/reverify.py`, `COORDINATION.md` |

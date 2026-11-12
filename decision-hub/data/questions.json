@@ -1,0 +1,209 @@
+{
+ "meta": {
+  "title": "Questions, knowns and unknowns — what must be answered before a decision is reasonable",
+  "created": "2026-11-12",
+  "rule": "Every row separates what we KNOW (with its source) from what we DO NOT KNOW. A question is only 'answerable now' if a named process can produce the answer from a source we can reach. Questions whose answer needs data that does not exist in this repository are marked blocked and given the acquisition step and its cost.",
+  "sort": "blocking_decisions desc, then status order: open-blocking, open, answerable",
+  "counts": {"total": 16, "blocking": 3, "open": 4, "answerable": 3, "blocked": 6},
+  "legend": {
+   "answerable": "can be answered from committed data or a reachable official source, without new data acquisition",
+   "open": "answer requires a decision or external input that is not data (a rule, a policy, a licence)",
+   "blocked": "answer requires data or access we do not have; the acquisition step and cost are stated",
+   "answered": "answered; the answer and where it is recorded"
+  }
+ },
+ "questions": [
+  {
+   "id": "Q-01",
+   "question": "Does anything in this model beat the closing line?",
+   "status": "answerable",
+   "known": "No. The incremental-information coefficient is -0.019 (p = 0.881) after controlling for the close; the model's spread MAE is 10.39 against the market's 10.25 on the same games.",
+   "unknown": "Whether the model adds information in any subset (bucket) even if it loses pooled. Not yet tested by bucket.",
+   "how_to_answer": "Bucket the residual analysis by favourite size, rest, roof and division, with a Benjamini-Hochberg correction across buckets. Committed predictions.csv already carries model_margin, market_margin and result.",
+   "cost": "2 days",
+   "blocks": ["D-01", "D-03"],
+   "source": ["nflverse-data"],
+   "verified_by": "decision-hub/scripts/audit_root.py re-derives the pooled numbers from data/derived/games.csv.gz"
+  },
+  {
+   "id": "Q-02",
+   "question": "Is the ATS market exploitable by simple public angles?",
+   "status": "answerable",
+   "known": "Under the published pooled test, 'no', but that test is an arithmetic identity (FL-DH-01). Under the one-sided test, the home cover rate is 48.91% with a 95% CI of 47.73-50.09% on 6,892 games, two-sided p = 0.073. That is inconclusive, not zero.",
+   "unknown": "Whether a specific angle is exploitable. 12 classic angles were screened and none survived Benjamini-Hochberg at q = 0.10.",
+   "how_to_answer": "Keep the one-sided test; add a per-angle table with the one-sided CI and the corrected p, and publish the intervals next to the point estimates.",
+   "cost": "1 day",
+   "blocks": ["D-01"],
+   "source": ["nflverse-data"],
+   "verified_by": "recomputed from committed data in decision-hub/data/root_audit.json"
+  },
+  {
+   "id": "Q-03",
+   "question": "Are same-game parlay legs correlated enough to change the price?",
+   "status": "answerable",
+   "known": "Yes. QB passing yards vs WR1 receiving yards r = +0.562; the four-leg same-team joint probability is 11.1% against 5.7% under independence, so pricing the legs independently understates the joint by a factor of about two.",
+   "unknown": "The correlation's uncertainty, and whether the Gaussian copula parameter is stable across seasons. No interval is published.",
+   "how_to_answer": "Bootstrap the pairwise coefficients by season and by team, then propagate the interval into the SGP price.",
+   "cost": "2 days",
+   "blocks": ["D-03"],
+   "source": ["nflverse-data"],
+   "verified_by": "the joint-vs-product figures are independently reproduced in the project's own verification record (sgp.* checks)"
+  },
+  {
+   "id": "Q-04",
+   "question": "What does a missing starter actually do to the line?",
+   "status": "blocked",
+   "known": "Which players are reported Out/Doubtful each week and where they sit on their club's depth chart (this session's tracker: 636 absences with a rank in 2026).",
+   "unknown": "The effect size. Nothing in the repository measures how many points the market moves when a 1st-string player is ruled out, so no strategy can be sized from it.",
+   "how_to_answer": "Compare the closing line with the previous week's closing line for the same team, holding opponent strength roughly constant, and regress the move on the depth-weighted absence count. Needs a line that is timestamped (Q-05).",
+   "cost": "5 days after Q-05",
+   "blocks": ["D-03"],
+   "source": ["nflverse-data", "SRC-NFL-INJURIES"],
+   "verified_by": "the depth ranks themselves are computed from the 2026 depth-chart snapshot; the effect is unmeasured"
+  },
+  {
+   "id": "Q-05",
+   "question": "Can a timestamped price be obtained, legally and reproducibly?",
+   "status": "blocked",
+   "known": "No. The feed stores only the closing line and its odds. No opening line, no timestamp, no prop price. No sportsbook account, limit or jurisdiction is verified.",
+   "unknown": "Whether a licensed feed or an operator API is available to this project, at what cost, and under what terms of use. Scraping a sportsbook board would need a licence review before it could be relied on.",
+   "how_to_answer": "Two options: (a) log prices live, going forward, from a licensed source with written permission; (b) buy a historical odds vendor (not an official league source, so it would be a class-2 source on the sources page).",
+   "cost": "unknown vendor cost; (a) costs 0 but starts the clock at zero observations",
+   "blocks": ["D-03"],
+   "source": ["nflverse-data", "SRC-DK-NFL-BOARD"],
+   "verified_by": "absence is verifiable: the committed extract has no open-line or timestamp column, checked in audit_root.py"
+  },
+  {
+   "id": "Q-06",
+   "question": "Is the league's injury policy text obtainable?",
+   "status": "blocked",
+   "known": "The URL the root site cites (operations.nfl.com/football-ops/league-governance/injury-report/) returns 404 on 2026-11-12. The live injury report page itself works and is the data source this project uses.",
+   "unknown": "The current edition of the policy. Secondary reporting describes a three-part report (practice, game status, in-game) with Wednesday-Thursday-Friday filings and a 90-minute inactive list, but that is not an official text and is not relied on.",
+   "how_to_answer": "Ask the league for the current Personnel (Injury) Report Policy, or find it on an NFL-operated domain. Until then, treat the reporting rules as described-but-unverified and do not build a rule on them.",
+   "cost": "1 hour to check, unbounded to obtain",
+   "blocks": ["D-03"],
+   "source": ["nfl-injury-policy", "SRC-NFL-INJURIES"],
+   "verified_by": "404 confirmed on 2026-11-12; the live report page confirmed in the same session"
+  },
+  {
+   "id": "Q-07",
+   "question": "Which settlement rulebook governs every backtest?",
+   "status": "open",
+   "known": "The repository cites a DraftKings Massachusetts filing (8.1.24) that the regulator lists as obsolete; the active edition is the one approved 10.7.26. Push handling, void legs and minimum leg counts differ by operator.",
+   "unknown": "Which operator, and therefore which rulebook, is the standard. Also unknown: whether the 10.7.26 PDF text matches the old edition on the rules that matter (it could not be fetched in the sandbox).",
+   "how_to_answer": "A reviewer decision: pick one operator's filed rules as the standard, record the edition, and re-price the backtest if it changes.",
+   "cost": "1 hour to decide, 2 days to re-price",
+   "blocks": ["D-01"],
+   "source": ["SRC-MGC-DK-RULES-CURRENT", "SRC-MGC-DK-RULES-ARCHIVE"],
+   "verified_by": "the regulator's own archive and licensee pages were read; the edition change is documented"
+  },
+  {
+   "id": "Q-08",
+   "question": "Is the reward pool real?",
+   "status": "open",
+   "known": "No. The reward tiers are a design proposal. No money, sponsor, eligibility rules or payout mechanism exists.",
+   "unknown": "Whether there will be money, and if so its source, tax treatment and eligibility.",
+   "how_to_answer": "A reviewer decision (D-02).",
+   "cost": "decision only",
+   "blocks": ["D-02"],
+   "source": ["kelly-1956"],
+   "verified_by": "the absence is stated on the root flagged page and in the leaderboard data"
+  },
+  {
+   "id": "Q-09",
+   "question": "Which of the nine sibling dashboards is canonical?",
+   "status": "open",
+   "known": "The root site is canonical and generated by scripts/build_site.py; eight sibling directories are preserved but outside the navigation. Several of them contradict the root's numbers because they were built from different data windows.",
+   "unknown": "Whether the reviewer wants them archived (S-13), kept reachable, or deleted.",
+   "how_to_answer": "A reviewer decision; nothing is deleted either way.",
+   "cost": "decision only, 1 day to implement",
+   "blocks": [],
+   "source": ["SRC-GH-REPO"],
+   "verified_by": "pages/archive.html enumerates them"
+  },
+  {
+   "id": "Q-10",
+   "question": "Is the '2026 Week 10' injury report the same week the model thinks it is?",
+   "status": "answerable",
+   "known": "Yes for this snapshot: nfl.com/injuries/ renders 'WEEK 10', and the tracker's league_week is 10 with 24 of 32 teams on week 10 and 8 teams on week 9 (they have not filed a week-10 report or are on bye).",
+   "unknown": "Nothing material. The earlier sessions hit a page whose title said week 8 while the body said week 7; that discrepancy does not reproduce on 2026-11-12.",
+   "how_to_answer": "Already answered; the tracker publishes latest_week_by_team so the mismatch is visible per team rather than pooled.",
+   "cost": "0",
+   "blocks": [],
+   "source": ["SRC-NFL-INJURIES"],
+   "verified_by": "rendered page read 2026-11-12 and compared with the derived JSON"
+  },
+  {
+   "id": "Q-11",
+   "question": "Do the published correlations reproduce from a clean checkout?",
+   "status": "answerable",
+   "known": "Partly. The signs and magnitudes reproduce; the sample size does not (7,560 published vs 6,024 recomputed) because the committed extract covers 2015-2026 while the published coefficients used 2012-2026. The project records this as 'DIFFERS (expected)'.",
+   "unknown": "Whether any conclusion changes at the smaller n. The joint-vs-product gap holds within tolerance (11.14% vs 10.94%, 5.69% vs 5.55%).",
+   "how_to_answer": "Re-run the analysis on the committed extract and republish the n, or commit the extract the coefficients were measured on.",
+   "cost": "1 day",
+   "blocks": ["D-01"],
+   "source": ["nflverse-data"],
+   "verified_by": "data/derived/verification.json scope.* and sgp.* checks"
+  },
+  {
+   "id": "Q-12",
+   "question": "Can a prop ROI ever be measured with the data here?",
+   "status": "blocked",
+   "known": "No. The feed has player box scores but no historical prop prices. Prop accuracy and calibration can be measured; ROI cannot.",
+   "unknown": "Whether a historical prop-price source exists that this project can license.",
+   "how_to_answer": "Same acquisition problem as Q-05. Until then, publish calibration and Brier skill only, and leave ROI blank.",
+   "cost": "vendor cost, unknown",
+   "blocks": ["D-03"],
+   "source": ["nflverse-data"],
+   "verified_by": "absence is verifiable in the committed extract columns"
+  },
+  {
+   "id": "Q-13",
+   "question": "Is the gate screen itself working?",
+   "status": "answerable",
+   "known": "Untested. Two controls exist and both fail, so the screen has never been shown to pass anything. A screen that cannot pass a bettor who knows the result is not evidence about real candidates.",
+   "unknown": "Whether the gates are mis-wired. The clairvoyant positive control has not been run.",
+   "how_to_answer": "Add a clairvoyant control (bet the actual winner at the stored price) and require it to pass. If it fails, fix the gates before reading any verdict.",
+   "cost": "2 days",
+   "blocks": ["D-01"],
+   "source": ["nflverse-data"],
+   "verified_by": "data/derived/leaderboard.json: both control entries are REJECTED"
+  },
+  {
+   "id": "Q-14",
+   "question": "Does the depth-chart rank agree with who actually played?",
+   "status": "blocked",
+   "known": "Not yet tested. The tracker assigns a rank from the depth chart and a snap share from the snap counts, but the two have not been compared.",
+   "unknown": "How often the '2nd string' player on the chart is the one who takes the snaps. If it is often wrong, the whole deficiency measure is noise.",
+   "how_to_answer": "For each position, correlate chart rank with snap share the following week. Publish the agreement rate per position. Only then is a rank-based feature defensible.",
+   "cost": "3 days",
+   "blocks": ["D-03"],
+   "source": ["nflverse-data"],
+   "verified_by": "the data to answer it is now committed (ranks and snap shares are on every absence row)"
+  },
+  {
+   "id": "Q-15",
+   "question": "What is the actual cost of the acquisition steps?",
+   "status": "open",
+   "known": "Nothing. No vendor quotes, no licence terms, no API tiers were obtained.",
+   "unknown": "Whether the project can afford the data it needs to answer Q-05, Q-06 and Q-12.",
+   "how_to_answer": "Get written quotes from at least two licensed odds vendors and one official data distributor; record the terms of use. A reviewer decision on budget.",
+   "cost": "3 hours to request, unknown to buy",
+   "blocks": ["D-03"],
+   "source": ["nfl-genius"],
+   "verified_by": "the NFL's official data distributor arrangement is documented; pricing is not public"
+  },
+  {
+   "id": "Q-16",
+   "question": "Which numbers on the site are official facts rather than our computations?",
+   "status": "answerable",
+   "known": "The site already classifies sources into 'league official', 'regulator', 'sportsbook official', 'academic' and 'community', but the numbers themselves are not labelled by class on the page.",
+   "unknown": "Nothing structural. The classification exists; only the per-row label is missing.",
+   "how_to_answer": "Add a 'class' column to every table row, generated from the source register rather than typed. This is suggestion S-01.",
+   "cost": "2 days",
+   "blocks": ["D-01"],
+   "source": ["SRC-GH-REPO"],
+   "verified_by": "data/sources.json carries a 'type' on all 58 entries"
+  }
+ ]
+}

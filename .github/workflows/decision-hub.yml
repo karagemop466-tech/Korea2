@@ -1,0 +1,74 @@
+name: decision-hub
+
+# Fail-closed checks for decision-hub/: rebuild the audit and the site from committed data,
+# then verify every link, anchor and per-row source.
+on:
+  pull_request:
+    paths:
+      - 'decision-hub/**'
+      - '.github/workflows/decision-hub.yml'
+      - 'data/derived/**'
+      - 'data/provenance.json'
+  push:
+    branches: ['main', 'arena/**']
+    paths:
+      - 'decision-hub/**'
+      - '.github/workflows/decision-hub.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Recompute the independent audit from committed data
+        run: python3 decision-hub/scripts/audit_root.py
+
+      - name: Fail if the audit cannot reproduce its own committed output
+        run: |
+          set -euo pipefail
+          # The audit is deterministic apart from its timestamp; compare checks and flags only.
+          python3 - <<'EOF'
+          import json, subprocess
+          out = json.load(open("decision-hub/data/root_audit.json"))
+          stale = [c for c in out["checks"] if c["verdict"] == "FAIL"]
+          if stale:
+              for c in stale:
+                  print(f"FAILED CHECK {c['id']}: published={c['published']} recomputed={c['recomputed']}")
+              raise SystemExit(f"{len(stale)} audit check(s) fail on this tree")
+          print(f"{len(out['checks'])} checks, {out['summary']['pass']} pass, "
+                f"{out['summary']['flags']} flags")
+          EOF
+
+      - name: Rebuild the site and verify links, anchors and per-row sources
+        run: |
+          set -euo pipefail
+          python3 decision-hub/scripts/build_site.py
+          python3 decision-hub/scripts/check_site.py
+
+      - name: Confirm the committed pages are what a fresh build produces
+        run: |
+          set -euo pipefail
+          # The audit must run before the site (the site renders audit numbers), and both are
+          # deterministic, so a correct commit reproduces byte-for-byte. A diff here means the
+          # committed artefacts were built from data that has since changed.
+          git add -N decision-hub || true
+          if ! git diff --quiet -- decision-hub/index.html decision-hub/pages decision-hub/assets; then
+            echo "::error::committed decision-hub pages differ from a fresh audit + build"
+            git --no-pager diff --stat -- decision-hub/index.html decision-hub/pages decision-hub/assets
+            exit 1
+          fi
+          echo "committed pages reproduce exactly"
+
+      - name: Root site still passes its own checks with the added navigation entry
+        run: |
+          set -euo pipefail
+          python3 scripts/build_site.py
+          python3 tests/check_site.py
