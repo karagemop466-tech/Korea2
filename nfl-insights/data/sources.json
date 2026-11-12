@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "title": "NFL Insights source register",
+    "verified_on": "2026-11-12",
+    "scope": "nfl-insights/ only; every URL below was opened and read via the page-fetch tool on 2026-11-12 unless noted.",
+    "policy": "Only official / first-party sources are used: the NFL and its official properties, licensed-sportsbook official help pages, state gaming regulators, NIST (US government statistics), Princeton University (hosting the original Kelly paper), Kaggle (official competition platform), NOAA/NWS. Third-party blogs are NOT used as sources; anything that could only be found there is left blank and listed in flagged.json."
+  },
+  "sources": [
+    {
+      "id": "NI-INJURIES",
+      "label": "NFL.com — Official NFL Injury Report (Week 10, 2026 snapshot)",
+      "url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "org": "NFL (nfl.com)",
+      "type": "league official — injury report",
+      "note": "Week 10 official injury report read on 2026-11-12. Shows player, position, injury, practice status (DNP/Limited/Full) and game status (Questionable/Doubtful/Out). Dynamic page — values change weekly; snapshot is as-of stamped and never treated as permanent truth.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-INJURY-POLICY",
+      "label": "NFL.com — Injury report policy (practice / game status definitions)",
+      "url": "https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693",
+      "org": "NFL (nfl.com)",
+      "type": "league official — policy",
+      "note": "Defines practice report (Did Not Participate / Limited / Full) and game status report (Questionable = uncertain; Doubtful = unlikely to play; Out = will not play).",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-ROSTER",
+      "label": "NFL.com — Official team roster (Green Bay Packers example)",
+      "url": "https://www.nfl.com/teams/green-bay-packers/roster",
+      "org": "NFL (nfl.com)",
+      "type": "league official — roster",
+      "note": "Official roster page. The NFL does NOT publish depth-chart ordering (1st/2nd/3rd/4th string) on this page; the roster is alphabetical by last name. Backup-depth claims are therefore left blank and flagged, never inferred.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-TEAMS",
+      "label": "NFL.com — Official directory of all 32 teams",
+      "url": "https://www.nfl.com/teams/",
+      "org": "NFL (nfl.com)",
+      "type": "league official — teams",
+      "note": "Lists all 32 clubs across NFC/AFC with links to each team's official website.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-STANDINGS",
+      "label": "NFL.com — Official 2026 regular-season standings",
+      "url": "https://www.nfl.com/standings/league/2026/reg",
+      "org": "NFL (nfl.com)",
+      "type": "league official — standings",
+      "note": "Dynamic page; snapshot as of 2026-11-12 (through Week 10). Re-pull for current values.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-SCHED-2026",
+      "label": "NFL Media — 2026 NFL Schedule Announced (May 14, 2026)",
+      "url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced",
+      "org": "NFL (media.nfl.com)",
+      "type": "league official — schedule",
+      "note": "18-week, 272-game 2026 regular season; each team plays 17 regular-season + 3 preseason games; kickoff Wed Sept 9, 2026; Week 18 Jan 9-10, 2027; 14-team playoff (7 per conference).",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-DK-PARLAY",
+      "label": "DraftKings — official help: what is a parlay bet",
+      "url": "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
+      "org": "DraftKings (licensed sportsbook)",
+      "type": "sportsbook official — rules/help",
+      "note": "Defines a parlay as combining two or more single wagers into one bet; all selections must win; push leg handling and correlated-selection restrictions noted.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-DK-PROP",
+      "label": "DraftKings — official help: what is a prop bet",
+      "url": "https://support.draftkings.com/dk/en-us/what-is-a-prop-bet?id=kb_article_view&sysparm_article=KB0010778",
+      "org": "DraftKings (licensed sportsbook)",
+      "type": "sportsbook official — rules/help",
+      "note": "Defines a prop bet as a wager on an individual player or specific event not directly connected to the game outcome.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-DK-GLOSSARY",
+      "label": "DraftKings — official glossary of betting terms",
+      "url": "https://support.draftkings.com/dk/en-us/glossary-of-betting-terms?id=kb_article_view&sysparm_article=KB0010398",
+      "org": "DraftKings (licensed sportsbook)",
+      "type": "sportsbook official — rules/help",
+      "note": "Defines point spread, moneyline, over/under, teaser, push handling.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-NV-REG22",
+      "label": "State of Nevada — Gaming Control Board Regulation 22",
+      "url": "https://www.gaming.nv.gov/siteassets/content/regs/regulation-22-as-of-1-26.pdf",
+      "org": "Nevada Gaming Control Board",
+      "type": "government regulator",
+      "note": "Requires sports-pool wager outcomes to be confirmable from official public records of the league/governing body or its designated statistics provider.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-NWS",
+      "label": "NOAA National Weather Service — point forecast",
+      "url": "https://forecast.weather.gov/MapClick.php?lat=40.7128&lon=-74.006",
+      "org": "NOAA / NWS (weather.gov)",
+      "type": "government official — weather",
+      "note": "Point forecast (7-day + hourly). Use stadium lat/lon for outdoor-game weather inputs.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-KELLY-1956",
+      "label": "Kelly (1956) — A New Interpretation of Information Rate",
+      "url": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+      "org": "Princeton University (hosting original Bell Labs paper)",
+      "type": "statistical literature",
+      "note": "Original staking/growth paper; cited for context only, not as an NFL strategy endorsement.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-NIST-CORR",
+      "label": "NIST — Correlation coefficient (Pearson r) reference",
+      "url": "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm",
+      "org": "NIST — U.S. government (itl.nist.gov)",
+      "type": "statistical literature",
+      "note": "Defines how correlation values are determined; cited for method context only.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-NIST-BONFERRONI",
+      "label": "NIST/SEMATECH e-Handbook — Bonferroni multiple-comparisons adjustment",
+      "url": "https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm",
+      "org": "NIST — U.S. government (itl.nist.gov)",
+      "type": "statistical literature",
+      "note": "Multiple-comparisons control method; cited for validation-gate method context only.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-KAGGLE-BDB2027",
+      "label": "Kaggle — NFL Big Data Bowl 2027",
+      "url": "https://www.kaggle.com/competitions/nfl-big-data-bowl-2027",
+      "org": "Kaggle + NFL",
+      "type": "official competition platform",
+      "note": "Leaderboard competition model referenced for reward-tier design; no prize pool is funded in this project.",
+      "verified_on": "2026-11-12"
+    },
+    {
+      "id": "NI-NFL-BDB-ANNOUNCE",
+      "label": "NFL — Big Data Bowl announcement",
+      "url": "https://media.nfl.com/news-and-releases/corporate-communications/national-football-league-announces-seventh-annual-big-data-bowl-",
+      "org": "NFL (media.nfl.com)",
+      "type": "league official — competition",
+      "note": "NFL Big Data Bowl program overview; cited as the competition model reference.",
+      "verified_on": "2026-11-12"
+    }
+  ]
+}

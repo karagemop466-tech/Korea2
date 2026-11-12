@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "title": "NFL Insights — Executive Summary",
+    "as_of": "2026-11-12",
+    "note": "Important details for a decision-maker. Every fact carries an official source link. Proposals are labeled as proposals, not verified results. No strategy is approved for capital.",
+    "audience": "Someone reviewing suggestions and choosing the best path before implementing changes."
+  },
+  "sections": [
+    {
+      "id": "EX-01",
+      "title": "What this site is",
+      "body": "A decision-support research site for NFL line origination and strategy validation. It originates its own NFL lines from official data, measures parlay/correlation relationships, runs strategies through validation gates, tracks injuries, and publishes a suggestions section and a pre-decision Q&A register so changes are reviewed before implementation.",
+      "sources": ["NI-SCHED-2026", "NI-NFL-BDB-ANNOUNCE"],
+      "status": "verified-fact"
+    },
+    {
+      "id": "EX-02",
+      "title": "No manual input required",
+      "body": "All data in this session was extracted by the agent from official sources (page fetches) and committed as as-of-stamped snapshots. No value was typed by hand or inferred. Every table row carries a source link or is blank and flagged.",
+      "sources": ["NI-INJURIES", "NI-ROSTER", "NI-TEAMS"],
+      "status": "verified-fact"
+    },
+    {
+      "id": "EX-03",
+      "title": "Headline finding: the market beats the model",
+      "body": "Published sessions in this repo (root Line Lab, skill-lab, quant-lab, origination-lab) all found the closing market line is more accurate than an originated ratings model. 0 of 7+ candidate strategies passed validation gates. Nothing has earned capital and nothing is approved for wagering.",
+      "sources": ["root Line Lab pages/lines.html", "skill-lab/", "quant-lab/", "origination-lab/"],
+      "source_status": "sibling-session published result",
+      "status": "verified-fact"
+    },
+    {
+      "id": "EX-04",
+      "title": "Correlations remove the independence illusion",
+      "body": "Same-game parlay legs are NOT independent. QB passing yards↔WR1 receiving yards r≈+0.56 to +0.67; pricing legs independently understates joint probability. Cross-game correlation ≈0. Prices for combos must be correlation-aware.",
+      "sources": ["skill-lab/data/correlations.json", "quant-lab/data/processed/correlations.json"],
+      "source_status": "sibling-session published result",
+      "status": "verified-fact"
+    },
+    {
+      "id": "EX-05",
+      "title": "Luck is not removable; records do not persist",
+      "body": "Pythagorean luck does not persist year-over-year (r≈0.019). A spread coin-flip test returned 50.0% (p=1.0). Do not extrapolate win-loss records as signal.",
+      "sources": ["root Line Lab pages/luck.html", "skill-lab/data/luck.json"],
+      "source_status": "sibling-session published result",
+      "status": "verified-fact"
+    },
+    {
+      "id": "EX-06",
+      "title": "Injury tracking is live from the official source",
+      "body": "Week 10, 2026 injury snapshot (as-of 2026-11-12) is published on /pages/injuries.html from nfl.com/injuries. Practice status (DNP/Limited/Full) and game status (Questionable/Doubtful/Out) are official. Backup depth (2nd/3rd/4th string) is NOT published by the NFL and is left blank and flagged.",
+      "sources": ["NI-INJURIES", "NI-INJURY-POLICY", "NI-ROSTER"],
+      "status": "verified-fact"
+    },
+    {
+      "id": "EX-07",
+      "title": "Player-prop ROI cannot be published",
+      "body": "No historical player-prop prices exist in the public official feed (NFL–Genius Sports is the exclusive betting-data distributor). Prop ROI is blank and flagged, never invented.",
+      "sources": ["NI-NFL-BDB-ANNOUNCE"],
+      "status": "verified-fact"
+    },
+    {
+      "id": "EX-08",
+      "title": "Leaderboard rewards are not funded",
+      "body": "The leaderboard is a design concept (modeled on Kaggle/NFL Big Data Bowl). No prize pool is funded, no sportbook access/price/limit verified. No strategy is ranked as playable.",
+      "sources": ["NI-KAGGLE-BDB2027", "NI-NFL-BDB-ANNOUNCE"],
+      "status": "verified-fact"
+    },
+    {
+      "id": "EX-09",
+      "title": "What must be answered before any decision",
+      "body": "See /pages/questions.html. Open items include: whether any strategy beats the close (no yet), backup-depth ordering (not published), prop ROI (not public), funded rewards (none), and jurisdictional legality (not assessed).",
+      "sources": ["nfl-insights/data/questions.json"],
+      "status": "verified-fact"
+    },
+    {
+      "id": "EX-10",
+      "title": "Disclaimer",
+      "body": "Research and measurement only, not betting advice. No strategy approved for capital. No funded prize pool. No sportbook access verified. Sports wagering is legal only in some jurisdictions and only for adults; confirm legality before wagering.",
+      "sources": [],
+      "status": "project-disclosure"
+    }
+  ]
+}

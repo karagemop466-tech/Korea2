@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "Flagged for review — unverified or not-publicly-available items",
+    "as_of": "2026-11-12",
+    "note": "Values we could not confirm from an official source are deliberately left blank and listed here. Nothing is inferred. These do not block publication; they are published so a reviewer can resolve them.",
+    "policy": "Blank = not confirmed from an official source. Never fill in."
+  },
+  "items": [
+    {
+      "id": "FL-01",
+      "item": "Backup depth ordering (2nd/3rd/4th string) replacing injured starters, defense and offense",
+      "value": "",
+      "value_status": "blank — unverified",
+      "reason": "The official NFL roster page does not publish depth-chart ordering (roster is alphabetical). No official source confirms which backup replaces a starter.",
+      "sources": ["NI-ROSTER"],
+      "resolution_needed": "NFL must publish depth charts, or a verifiable depth source must be found."
+    },
+    {
+      "id": "FL-02",
+      "item": "Player-prop prices and prop ROI",
+      "value": "",
+      "value_status": "blank — unverified",
+      "reason": "No historical player-prop prices exist in the public official feed; NFL–Genius Sports is the exclusive betting-data distributor.",
+      "sources": ["NI-NFL-BDB-ANNOUNCE"],
+      "resolution_needed": "Obtain verified prop prices (not public)."
+    },
+    {
+      "id": "FL-03",
+      "item": "Strategy that beats the closing line",
+      "value": "",
+      "value_status": "blank — unverified",
+      "reason": "Published sessions found the closing market line beats the originated model; 0 strategies passed validation gates.",
+      "sources": ["root Line Lab pages/lines.html", "skill-lab/", "quant-lab/", "origination-lab/"],
+      "resolution_needed": "A strategy must pass all gates; none has."
+    },
+    {
+      "id": "FL-04",
+      "item": "Funded leaderboard prize pool",
+      "value": "",
+      "value_status": "blank — unverified",
+      "reason": "No prize pool is funded; no sportbook access, price, or limit verified.",
+      "sources": ["NI-KAGGLE-BDB2027"],
+      "resolution_needed": "Fund and verify a prize pool before advertising rewards."
+    },
+    {
+      "id": "FL-05",
+      "item": "Injury snapshot staleness",
+      "value": "",
+      "value_status": "blank — unverified (dynamic)",
+      "reason": "Injury data is a Week 10, 2026 snapshot (as-of 2026-11-12); values change weekly and must be re-pulled.",
+      "sources": ["NI-INJURIES"],
+      "resolution_needed": "Implement weekly refresh from nfl.com/injuries (see SUG-01)."
+    },
+    {
+      "id": "FL-06",
+      "item": "Teams not itemized in this injury snapshot",
+      "value": "",
+      "value_status": "blank — unverified",
+      "reason": "DEN, PHI, CHI, TB were not itemized in the reviewed portion of the official Week 10 injury report.",
+      "sources": ["NI-INJURIES"],
+      "resolution_needed": "Re-pull full report; itemize all 32 teams."
+    },
+    {
+      "id": "FL-07",
+      "item": "Jurisdictional legality of sports wagering",
+      "value": "",
+      "value_status": "blank — unverified",
+      "reason": "Legal/jurisdictional status of wagering was not assessed.",
+      "sources": [],
+      "resolution_needed": "User confirms local legality before wagering."
+    },
+    {
+      "id": "FL-08",
+      "item": "Historical odds / outcomes archive",
+      "value": "",
+      "value_status": "blank — unverified",
+      "reason": "No official historical odds/outcome archive is publicly available.",
+      "sources": [],
+      "resolution_needed": "Not available from official source."
+    }
+  ]
+}
