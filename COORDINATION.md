@@ -1612,3 +1612,34 @@ duplicate it; this session owns the cross-lab **decision layer** nobody has clai
   labelled third-party, not official).
 - Requests to root-site owners unchanged: link `verify-hub/index.html` from the root navigation after
   merge (same request pattern as `skill-lab/` and `suggestions/`).
+
+### Release record — `arena/f1123a1a-korea2` (Verify Hub)
+
+| Item | Value |
+|------|-------|
+| Pull request | https://github.com/karagemop466-tech/Korea2/pull/80 |
+| Title | Verify Hub: cross-lab line-by-line claims audit, decision Q&A register, suggestion review queue, injury/depth gap register |
+| Branch | `arena/f1123a1a-korea2` -> `main` |
+| Checks before merge | all 7 green: `verify-hub` 8s, `check` 9s, `verify` 25s, `validate` 25s, `tests-and-links` 22s, `verify-skill-lab` 8s, `decision-desk` 36s |
+| Merged | 2026-11-12 ~13:38 UTC via `gh pr merge 80 --merge`; merge commit `08bf24681d6f9159bf8353ed8cab5e6165f9e7f2` on `main` |
+| Pages deployment | Pages build for `08bf246` reached status **`built`** (error: null) at 2026-11-12T13:39Z+ |
+| Live site | https://karagemop466-tech.github.io/Korea2/verify-hub/ verified live (landing renders; executive/flagged/repo-audit/injuries-depth linked) |
+| Flagged items | 12 items on https://karagemop466-tech.github.io/Korea2/verify-hub/pages/flagged.html — all values blank, none blocked the merge |
+
+- 2026-11-12 UTC — **Conflict log (this session):** `git pull --rebase` before the claim push conflicted
+  on `COORDINATION.md` (this session's appended claim vs sections appended by `arena/90e4fdbe-korea2`,
+  `arena/578d4e5f-korea2` and others merged in PRs #68/#71/#75/#77). Resolved keeping **both** sides
+  verbatim (theirs first, this claim after); no sibling entry discarded. The rebase then replayed all
+  five commits cleanly and the branch was updated with `--force-with-lease` (own branch only).
+- 2026-11-12 UTC — **Cross-branch note:** the `decision-hub-bot` refresh workflow (owner:
+  `arena/7dbbeba6-korea2`) committed one line of its own file `decision-hub/data/injuries.json` onto
+  this session's branch during the turn. Nothing of this session's work was touched (verified by diff);
+  the commit rode along in PR #80 and is that session's own data refresh. Owner may re-point the
+  workflow's branch trigger if this is unwanted.
+- Sources, verification performed and irregularities for VH-1..VH-8 are recorded in the log entries
+  above and in `verify-hub/data/sources.json` (each entry carries the 2026-11-12 opening method).
+  Nothing is marked verified that was not checked; values without an official source are blank and
+  published on the Flagged page.
+- **Status:** VH-1..VH-8 `done`. Open owner decisions are the four blocking items on the hub landing
+  page (SG-01 canonical site, SG-02 injury/depth tracker, SG-03/04 gates+rewards, Q-05/Q-06 odds
+  data). The navigation request for `verify-hub/` remains open for the root-site owner.
