@@ -26,14 +26,19 @@ NAV = [
     ("pages/verification.html", "Verification"),
     ("pages/method.html", "Method &amp; data"),
     ("pages/sources.html", "Source register"),
-    ("pages/suggestions.html", "Suggestions"),
-    ("pages/decision-questions.html", "Decision questions"),
-    ("pages/injuries-depth.html", "Injury &amp; depth"),
     ("pages/flagged.html", "Flagged for review"),
     ("suggestions/index.html", "Suggestions hub"),
     ("decision-hub/index.html", "Decision hub &nearr;"),
     ("nfl-command/index.html", "NFL Command Center"),
-    ("pages/archive.html", "Archive"),
+    ("pages/suggestions.html", "Suggestions hub"),
+    ("pages/decision-hub.html", "Decision desk"),
+    ("pages/decision-suggestions.html", "Suggestion register"),
+    ("pages/decision-questions.html", "Open questions"),
+    ("pages/decision-injury-depth.html", "Injury &amp; depth"),
+    ("pages/decision-signals.html", "Signal lab"),
+    ("pages/decision-parlay.html", "Parlay pricing"),
+    ("pages/decision-verify.html", "Re-verify the numbers"),
+    ("pages/decision-summary.html", "Decision summary"),
 ]
 
 DISCLAIMER = (
