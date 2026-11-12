@@ -1281,3 +1281,27 @@ therefore recorded here; a maintainer can close them against this table.
   merge a stale-based refresh onto a green site near the end of the run. To restore fully automatic
   publishing, enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull
   requests*.
+
+---
+
+# Session `arena/fc16e360-korea2` — NFL Command Center (injuries, depth, origination review, suggestions, site)
+
+**Session ID:** `arena/fc16e360-korea2` (branch fixed by the environment; base `e8d04a9` on `main`)
+**Claimed at:** 2026-11-12 UTC
+**Scope rule:** this session writes only inside `nfl-command/` plus its own section of this file. It reads sibling datasets (`skill-lab/data/*.json`, `data/*`) read-only. Shared root navigation (`index.html`, `pages/`) is NOT edited; a link request is logged below for the integration owner.
+**Parallel-session note:** all earlier board claims listed as "in progress" (e.g. `arena/9e0420bd-korea2`, `arena/652b0095-korea2` F1–F4, `arena-29806afc` T7) have no open branch or PR on `origin` as of this claim; they are treated as stale and not re-claimed. The protocol's `session-<id>/<task>` branch naming is superseded by the environment rule that this session uses only `arena/fc16e360-korea2`.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| NC-1 | Claim, coordination record, final log | in progress | `arena/fc16e360-korea2` | `COORDINATION.md` (this section only) |
+| NC-2 | Repo review: re-run every existing checker on this branch, record results and irregularities | unclaimed → claimed here | `arena/fc16e360-korea2` | `nfl-command/data/repo_review.json` |
+| NC-3 | Official injury ingestion: NFL.com Week 10 2026 injury report, all 32 clubs, one row per listed player | claimed | `arena/fc16e360-korea2` | `nfl-command/data/injuries.json` |
+| NC-4 | Starter vs backup depth check (offense and defense) from official club/NFL depth charts; blank + flagged where not verifiable | claimed | `arena/fc16e360-korea2` | `nfl-command/data/depth.json` |
+| NC-5 | Lines, strategies, correlations, luck/skill: read-only summary of the existing skill-lab outputs, re-run and reproduced | claimed | `arena/fc16e360-korea2` | `nfl-command/data/models.json` |
+| NC-6 | Suggestions register (options for review, nothing implemented) and missing-information / questions register | claimed | `arena/fc16e360-korea2` | `nfl-command/data/suggestions.json`, `nfl-command/data/questions.json` |
+| NC-7 | Static GitHub Pages site: landing page, category subpages, Flagged for Review, executive summary | claimed | `arena/fc16e360-korea2` | `nfl-command/**` (site + `nfl-command/scripts/build_site.py`) |
+| NC-8 | Verification gate: row-level source-link check, blank-unverified check, JSON check, local link check | claimed | `arena/fc16e360-korea2` | `nfl-command/scripts/verify.py` |
+| NC-9 | Integration: PR to `main`, merge, GitHub Pages deploy confirmation, record here | claimed | `arena/fc16e360-korea2` | this section of `COORDINATION.md`, PR |
+
+**Log**
+- 2026-11-12 UTC: Claim written and pushed before implementation. Official reachability check: `fetch_page` returns the NFL.com 2026 injury report (Week 10) at `https://www.nfl.com/injuries/`; the sandbox shell cannot reach nfl.com, so NFL.com values are captured through the fetch tool only and recorded with the URL they came from.
