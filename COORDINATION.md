@@ -1643,3 +1643,34 @@ duplicate it; this session owns the cross-lab **decision layer** nobody has clai
 - **Status:** VH-1..VH-8 `done`. Open owner decisions are the four blocking items on the hub landing
   page (SG-01 canonical site, SG-02 injury/depth tracker, SG-03/04 gates+rewards, Q-05/Q-06 odds
   data). The navigation request for `verify-hub/` remains open for the root-site owner.
+---
+
+# Session board — `arena/bea6e3be-korea2` — Lineup Lab (Origination, Injuries & Backup Depth, Suggestions, Pre-Decision Q&A & Gated Leaderboard)
+
+**Session ID:** `arena/bea6e3be-korea2` (branch fixed by environment: `arena/bea6e3be-korea2`)
+**Claimed at:** 2026-11-12 UTC
+**File scope:** `lineup-lab/**`, `.github/workflows/lineup-lab.yml`, and this section of `COORDINATION.md` only.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| LL-1 | Full requirements catalog & live-verified official source registry (2026-11-12) | in progress | `arena/bea6e3be-korea2` | `lineup-lab/REQUIREMENTS.md`, `lineup-lab/data/requirements.json`, `lineup-lab/data/sources.json` |
+| LL-2 | Line-by-line repository review, independent recomputation & irregularity register | unclaimed | `arena/bea6e3be-korea2` | `lineup-lab/REPO_REVIEW.md`, `lineup-lab/data/repo_review.json`, `lineup-lab/data/flagged.json` |
+| LL-3 | Dedicated Suggestions section (reviewable options & decision gates before any implementation) | unclaimed | `arena/bea6e3be-korea2` | `lineup-lab/data/suggestions.json`, `lineup-lab/pages/suggestions.html` |
+| LL-4 | Pre-Decision Questions, Information & Answers register + missing-information discovery plan | unclaimed | `arena/bea6e3be-korea2` | `lineup-lab/data/questions.json`, `lineup-lab/pages/questions.html` |
+| LL-5 | Official NFL Injury & Lineup-Deficiency Tracker (offense & defense: starters vs 2nd/3rd/4th string backups; unverified depth tiers strictly blank & flagged) | unclaimed | `arena/bea6e3be-korea2` | `lineup-lab/scripts/analyze_injuries_depth.py`, `lineup-lab/data/injuries_depth.json`, `lineup-lab/pages/injuries-depth.html` |
+| LL-6 | Walk-forward NFL line origination, signal research & luck-removal / skill decomposition | unclaimed | `arena/bea6e3be-korea2` | `lineup-lab/scripts/originate_and_signals.py`, `lineup-lab/data/origination.json`, `lineup-lab/data/signals_luck.json`, `lineup-lab/pages/origination.html`, `lineup-lab/pages/signals-luck.html` |
+| LL-7 | Empirical correlations, copula combo pricing & 10-gate strategy leaderboard competition (singles, parlays, SGPs, prop combos) | unclaimed | `arena/bea6e3be-korea2` | `lineup-lab/scripts/correlations_and_competition.py`, `lineup-lab/data/correlations.json`, `lineup-lab/data/leaderboard.json`, `lineup-lab/pages/correlations.html`, `lineup-lab/pages/leaderboard.html`, `lineup-lab/pages/validation-gates.html` |
+| LL-8 | Executive summary & clean GitHub Pages dashboard (`lineup-lab/index.html` + 12 category subpages + Flagged for Review) | unclaimed | `arena/bea6e3be-korea2` | `lineup-lab/EXECUTIVE_SUMMARY.md`, `lineup-lab/index.html`, `lineup-lab/pages/*.html`, `lineup-lab/assets/style.css`, `lineup-lab/scripts/build_site.py` |
+| LL-9 | Automated line-by-line verification suite & CI workflow | unclaimed | `arena/bea6e3be-korea2` | `lineup-lab/scripts/verify_lineup_lab.py`, `.github/workflows/lineup-lab.yml` |
+| LL-10 | Final integration: rebase, full verification suite, PR to `main`, merge & GitHub Pages deployment confirmation | unclaimed | `arena/bea6e3be-korea2` | `COORDINATION.md` (this section), PR |
+
+## Scope & parallel-session coordination — `arena/bea6e3be-korea2`
+
+- **Active & merged sibling scopes respected:** root Line Lab (`index.html`, `pages/`, `assets/`, `scripts/`, `data/`, `docs/`, `tests/`, `verification/`), `suggestions/`, `skill-lab/`, `decision-hub/`, `decision-desk/`, `site/`, `nfl-insights/`, `nfl-command/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination-lab/`, `origination/`, `pipeline/`, `results/`, `audit/`.
+- **Strict non-overlap rule:** this session writes **only** inside `lineup-lab/`, `.github/workflows/lineup-lab.yml`, and this section of `COORDINATION.md`. All committed datasets and sibling files are read-only for line-by-line audit and empirical computation.
+- **Navigation request to root-site / integration owner:** once `lineup-lab/` merges to `main`, please add a link to `lineup-lab/index.html` on `pages/archive.html` and/or shared root navigation after review; this session does not edit root navigation files owned by other sessions.
+
+### Log — `arena/bea6e3be-korea2`
+- 2026-11-12 UTC — Read `COORDINATION.md` on `main` (`12df53b`) and inspected active remote session branches (`578d4e5f`, `7dbbeba6`, `90e4fdbe`, `780d4cbf`, `fc16e360`, `aa66ed82`, plus merged `43870fb8` and `cb5b61a7`). Claimed non-overlapping `lineup-lab/` scope before writing any product files; committing and pushing claim immediately.
+
+
