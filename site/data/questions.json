@@ -1,0 +1,253 @@
+{
+ "meta": {
+  "session": "arena/90e4fdbe-korea2",
+  "generated_utc": "2026-11-12T13:13:54Z",
+  "count": 17,
+  "groups": [
+   "Answerable now",
+   "One feed away",
+   "Blocked on a decision",
+   "Cannot be answered yet"
+  ],
+  "rule": "A question is only marked answered when the answer is computed from a committed file and that file is linked. Anything else says what is missing."
+ },
+ "questions": [
+  {
+   "id": "Q-01",
+   "group": "Answerable now",
+   "question": "Do the headline numbers on the live site reproduce from the committed data?",
+   "answer": "Yes, with two exceptions that are themselves findings.",
+   "have": "19 independent checks: 16 agree, 0 unverified, 2 mismatch, 1 documented difference. The two mismatches are the ATS coin-flip statistic (IR-01), not the model numbers.",
+   "missing": "Nothing for these numbers. A price feed is still missing for any ROI claim.",
+   "decision_needed": "Accept the numbers as reproducible and fix the ATS statistic.",
+   "owner": "data",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/site/data/verification.json"
+  },
+  {
+   "id": "Q-02",
+   "group": "Answerable now",
+   "question": "Does the current model beat the closing line?",
+   "answer": "No. Walk-forward spread MAE is 10.391 against the market's 9.711 on the same 936 games, and the coefficient on the model after controlling for the close is -0.019 (p = 0.881).",
+   "have": "data/derived/predictions.csv, 2023-2026, 936 games.",
+   "missing": "Nothing for this question; a different model is a different question.",
+   "decision_needed": "Stop tuning this family of ratings models and spend the effort on timing data.",
+   "owner": "modelling",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "id": "Q-03",
+   "group": "Answerable now",
+   "question": "Are same-game parlay legs independent?",
+   "answer": "No. QB passing yards and WR1 receiving yards correlate at +0.560 over 5,896 team-games, and the 2-leg joint is 0.336 against a product of 0.243 - 38% higher.",
+   "have": "data/derived/player_week.csv.gz (208,231 rows).",
+   "missing": "Historical prop prices, so the gap is a pricing fact, not yet a profit.",
+   "decision_needed": "Publish the pricing gap, and do not quote an independent-leg parlay ROI.",
+   "owner": "pricing",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/site/data/parlay.json"
+  },
+  {
+   "id": "Q-04",
+   "group": "Answerable now",
+   "question": "Is a season win-loss record a repeatable skill?",
+   "answer": "No. Pythagorean luck does not carry to the next season (r = 0.024 over 842 team-seasons).",
+   "have": "1999-2026 schedules extract.",
+   "missing": "Nothing for the conclusion. Roster turnover would explain it but is not committed.",
+   "decision_needed": "Do not build a strategy on last season's record; if anything, fade it.",
+   "owner": "modelling",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/luck.json"
+  },
+  {
+   "id": "Q-05",
+   "group": "Answerable now",
+   "question": "Does any candidate strategy pass the ten gates?",
+   "answer": "No. 0 of 23 variants tested in this session and 0 of 9 published candidates.",
+   "have": "site/data/signals.json with a per-gate pass/fail and the exact failure reason.",
+   "missing": "A candidate that survives G1 (see Q-11).",
+   "decision_needed": "Do not fund, publish a pick, or build a ledger on top of these candidates.",
+   "owner": "research",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/site/data/signals.json"
+  },
+  {
+   "id": "Q-06",
+   "group": "Answerable now",
+   "question": "Is the repository internally consistent about its own provenance?",
+   "answer": "Mostly. Heavily documented, with a working independent recomputation, but the README quotes a model MAE of 10.38/9.70 while the site and the data show 10.391/9.711, and the ATS statistic is wrong in the way described in Q-01.",
+   "have": "This session's line-by-line review, 10 irregularities with sources.",
+   "missing": "An owner for README prose; the data pipeline regenerates the site, not the README.",
+   "decision_needed": "Assign the README fix and the ATS fix to one owner.",
+   "owner": "docs",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/site/data/verification.json"
+  },
+  {
+   "id": "Q-07",
+   "group": "One feed away",
+   "question": "Which starters are out, and who is the 2nd/3rd/4th-string replacement?",
+   "answer": "Not yet. The official injury report gives Out/Doubtful/Questionable but no depth rank.",
+   "have": "108 players transcribed from the official Week 10 report, five games in full.",
+   "missing": "depth_charts_{season} (pos_rank) and snap_counts_{season} - both published upstream, neither committed, both unreachable from this sandbox.",
+   "decision_needed": "Run the download on a runner (SG-03) or accept that this question stays open.",
+   "owner": "data",
+   "source": "https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html"
+  },
+  {
+   "id": "Q-08",
+   "group": "One feed away",
+   "question": "Did the backup actually play, and how much?",
+   "answer": "Not yet. Box scores show what a player did, not how many snaps he was on the field for.",
+   "have": "season snap totals in the upstream release, game-level snap counts in snap_counts.",
+   "missing": "snap_counts_{season} (third-party: Pro Football Reference) or pbp_participation.",
+   "decision_needed": "Pick one: snap counts for breadth, participation for precision. Do not use both as if independent.",
+   "owner": "data",
+   "source": "https://nflreadr.nflverse.com/articles/dictionary_participation.html"
+  },
+  {
+   "id": "Q-09",
+   "group": "One feed away",
+   "question": "How much does the market move when a starter is ruled out?",
+   "answer": "Unknown and unmeasurable until prices are captured over time.",
+   "have": "One closing line per game.",
+   "missing": "SG-02's timestamped capture; the injury feed dates the news.",
+   "decision_needed": "Fund the capture first; it is the only way this question ever gets an answer.",
+   "owner": "data",
+   "source": "https://nflreadr.nflverse.com/articles/dictionary_injuries.html"
+  },
+  {
+   "id": "Q-10",
+   "group": "One feed away",
+   "question": "What is a player prop actually priced at, historically?",
+   "answer": "Not in this repository. Accuracy is measured; price is not.",
+   "have": "Prop forecasts and MAE against realised box scores (data/derived/props.json).",
+   "missing": "Any licensed historical prop price. None is committed, and none is implied.",
+   "decision_needed": "Either license a price history or stop listing prop combos as a tested family.",
+   "owner": "pricing",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/props.json"
+  },
+  {
+   "id": "Q-11",
+   "group": "Blocked on a decision",
+   "question": "Can Gate G1 (point-in-time integrity) ever pass in the current design?",
+   "answer": "No. One un-timestamped closing line per game cannot evidence 'the price at bet time'.",
+   "have": "The gate text itself, and the data that fails it.",
+   "missing": "A timestamped capture (SG-02).",
+   "decision_needed": "Either fund the capture or restate G1 as 'closing-line settlement only'.",
+   "owner": "governance",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/strategies.json"
+  },
+  {
+   "id": "Q-12",
+   "group": "Blocked on a decision",
+   "question": "What does 'top performing' mean for the rewards?",
+   "answer": "Undefined today. Highest ROI rewards luck; gates-passed-first rewards process.",
+   "have": "Ten published gates and a deflated-Sharpe threshold.",
+   "missing": "A written reward rule, a variant cap, and a statement that no pool is funded.",
+   "decision_needed": "Adopt SG-06.",
+   "owner": "governance",
+   "source": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551"
+  },
+  {
+   "id": "Q-13",
+   "group": "Blocked on a decision",
+   "question": "Which sibling build is the product?",
+   "answer": "Seven static sites exist from parallel sessions (root, dashboard, nfl-lines, nfl-research, research-desk, quant-lab, origination-lab, skill-lab, origination). They disagree in places and none is marked canonical.",
+   "have": "COORDINATION.md records every session's claim and result.",
+   "missing": "A single canonical site and an archive rule for the rest.",
+   "decision_needed": "Adopt SG-01 and SG-07: one canonical site, the rest moved under /archive/.",
+   "owner": "product",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/COORDINATION.md"
+  },
+  {
+   "id": "Q-14",
+   "group": "Blocked on a decision",
+   "question": "Is there a lawful, verified way to place a bet for this project?",
+   "answer": "Not verified. No operator account, jurisdiction, licence or limit has been checked.",
+   "have": "A statement on every page that this is research, not betting advice.",
+   "missing": "A jurisdiction decision and an operator's published terms, read by a human.",
+   "decision_needed": "Complete the execution checklist before any capital is discussed.",
+   "owner": "governance",
+   "source": "https://www.nfl.com/news"
+  },
+  {
+   "id": "Q-15",
+   "group": "Cannot be answered yet",
+   "question": "Does any strategy make money after the hold?",
+   "answer": "Unknown. Every measured candidate loses, which is evidence but not proof of impossibility.",
+   "have": "23 variants settled at the closing line, all negative or insignificant.",
+   "missing": "A timestamped price series, a licensed prop price, and a candidate that clears G1.",
+   "decision_needed": "None yet - this is the question the whole project exists to answer.",
+   "owner": "research",
+   "source": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda357.htm"
+  },
+  {
+   "id": "Q-16",
+   "group": "Cannot be answered yet",
+   "question": "How much of a team's week-to-week variance is injury-driven rather than noise?",
+   "answer": "Unknown. It needs the three missing feeds plus a variance decomposition.",
+   "have": "A variance decomposition for season records (luck.json).",
+   "missing": "Lineup continuity data at the player level.",
+   "decision_needed": "Park until SG-03.",
+   "owner": "research",
+   "source": "https://www.itl.nist.gov/div898/handbook/pmc/section5/pmc542.htm"
+  },
+  {
+   "id": "Q-17",
+   "group": "Cannot be answered yet",
+   "question": "Would a correlated-parlay strategy be profitable at real, available prices?",
+   "answer": "Unknown. The pricing gap is measured; the available price is not.",
+   "have": "Measured joint vs independent pricing on 5,896 team-games.",
+   "missing": "Available same-game-parlay prices and the operator's correlation policy (terms change).",
+   "decision_needed": "Read the operator's current same-game-parlay terms; do not assume they ignore correlation.",
+   "owner": "pricing",
+   "source": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook"
+  }
+ ],
+ "flagged": [
+  {
+   "id": "QF-01",
+   "item": "README model MAE is stale",
+   "detail": "README says 10.38 vs 9.70; the data says 10.391 vs 9.711.",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/README.md"
+  },
+  {
+   "id": "QF-02",
+   "item": "Canonical site undecided",
+   "detail": "Nine static builds exist from parallel sessions; none is marked canonical.",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/COORDINATION.md"
+  },
+  {
+   "id": "QF-03",
+   "item": "Reward pool not funded",
+   "detail": "No prize, pool or payout exists or is promised anywhere in the repository.",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/pages/flagged.html"
+  },
+  {
+   "id": "QF-04",
+   "item": "No licensed price or execution path verified",
+   "detail": "No operator terms, jurisdiction or limit has been checked by this session.",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/pages/sources.html"
+  },
+  {
+   "id": "QF-05",
+   "item": "Snapshot, not live data",
+   "detail": "Committed results end 2026-11-01; the official injury report is already at Week 10 (12-15 Nov).",
+   "source": "https://www.nfl.com/injuries/league/2026/reg10"
+  },
+  {
+   "id": "QF-06",
+   "item": "Third-party and mirror feeds presented as authoritative",
+   "detail": "Snap counts are Pro Football Reference; the schedules/player feeds are the nflverse mirror of the NFL feed.",
+   "source": "https://nflreadr.nflverse.com/articles/dictionary_snap_counts.html"
+  },
+  {
+   "id": "QF-07",
+   "item": "Depth rank for every injured player is blank",
+   "detail": "108 transcribed players, 0 verified starter/backup claims, because no depth-chart feed is committed.",
+   "source": "https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html"
+  },
+  {
+   "id": "QF-08",
+   "item": "Injury report is mid-week",
+   "detail": "Most game-status cells were blank at retrieval; a mid-week snapshot is not final availability.",
+   "source": "https://www.nfl.com/injuries/league/2026/reg10"
+  }
+ ]
+}

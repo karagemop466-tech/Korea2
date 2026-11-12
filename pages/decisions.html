@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decisions | Line Lab</title>
+<meta name="description" content="Decision support for the NFL line-origination research: suggestions, open questions, injury and depth evidence, and independent re-verification.">
+<meta name="generator" content="line-lab/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Decision Desk additions - scoped, inherits the Line Lab palette from assets/style.css */
+.dd-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin:22px 0 8px; }
+.dd-kpi { border:1px solid var(--line); background:var(--panel); border-radius:var(--radius); padding:14px 16px; }
+.dd-kpi span { display:block; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.dd-kpi strong { display:block; font-size:26px; line-height:1.15; margin:6px 0 2px; font-variant-numeric:tabular-nums; }
+.dd-kpi p { margin:0; font-size:12px; color:var(--muted); line-height:1.45; }
+.dd-kpi.good strong { color:var(--accent); } .dd-kpi.bad strong { color:var(--bad); }
+.dd-kpi.warn strong { color:var(--warn); } .dd-kpi.info strong { color:var(--accent-2); }
+.dd-steps { counter-reset:s; list-style:none; padding:0; margin:14px 0 0; display:grid; gap:10px; }
+.dd-steps li { counter-increment:s; border:1px solid var(--line); background:var(--panel); border-radius:var(--radius); padding:12px 14px 12px 46px; position:relative; }
+.dd-steps li:before { content:counter(s); position:absolute; left:12px; top:11px; width:22px; height:22px; border-radius:50%;
+  display:grid; place-items:center; background:var(--panel-2); border:1px solid var(--line); font-size:11px; color:var(--accent); }
+.dd-steps strong { display:block; font-size:13px; }
+.dd-steps p { margin:2px 0 0; font-size:12px; color:var(--muted); }
+.tag { display:inline-block; font-size:10px; letter-spacing:.08em; text-transform:uppercase; padding:2px 7px; border-radius:20px;
+  border:1px solid var(--line); background:var(--panel-2); color:var(--muted); white-space:nowrap; }
+.tag.ok { color:var(--accent); border-color:#1f4d3d; } .tag.bad { color:var(--bad); border-color:#5a2a2a; }
+.tag.warn { color:var(--warn); border-color:#5a4a1a; } .tag.info { color:var(--accent-2); border-color:#1e3f52; }
+.tag.na { color:var(--muted); }
+.blank { color:#5b6b7a; font-style:italic; }
+.dd-card { border:1px solid var(--line); background:var(--panel); border-radius:var(--radius); padding:16px 18px; margin:0 0 14px; }
+.dd-card h3 { margin:0 0 6px; font-size:15px; }
+.dd-card p { margin:0 0 8px; font-size:13px; color:var(--muted); }
+.dd-card .dd-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.dd-sub { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:18px 0 6px; }
+.dd-two { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:900px){ .dd-two { grid-template-columns:1fr; } }
+table.compact td, table.compact th { font-size:12.5px; }
+td.num { text-align:right; font-variant-numeric:tabular-nums; font-family:var(--mono); }
+.dd-note { border-left:3px solid var(--warn); background:rgba(251,191,36,.06); padding:10px 14px; border-radius:0 var(--radius) var(--radius) 0; font-size:13px; margin:14px 0; }
+.dd-note.bad { border-left-color:var(--bad); background:rgba(248,113,113,.06); }
+.dd-note.ok { border-left-color:var(--accent); background:rgba(110,231,183,.06); }
+</style>
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html"><span class="mark">LL</span><span>LINE LAB<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">Workspace</div>
+  <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/executive.html">Executive summary</a><a href="../pages/lines.html">Originated lines</a><a href="../pages/props.html">Player props</a><a href="../pages/correlation.html">Correlation &amp; parlays</a><a href="../pages/strategies.html">Strategy lab</a><a href="../pages/validation.html">Validation gates</a><a href="../pages/leaderboard.html">Leaderboard</a><a href="../pages/luck.html">Removing luck</a><a href="../pages/market.html">Market benchmark</a><a href="../pages/verification.html">Verification</a><a href="../pages/method.html">Method &amp; data</a><a href="../pages/sources.html">Source register</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/archive.html">Archive</a><div class="nav-label" style="margin:14px 0 6px">Decisions</div><a href="../pages/decisions.html" class="active" aria-current="page">Decisions</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Open questions</a><a href="../pages/injury-depth.html">Injury &amp; depth</a><a href="../pages/signals-lab.html">Signal lab</a><a href="../pages/parlay-pricing.html">Parlay pricing</a><a href="../pages/decision-verification.html">Re-verification</a><a href="../pages/decision-summary.html">Executive summary</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Decision Desk<br><strong>0 of 12 suggestions approved</strong><span>Nothing is implemented while a suggestion is pending.</span></div>
+</aside>
+<main id="main">
+<header class="topbar"><span class="crumb">DECISIONS / DECISIONS</span>
+<a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a></header>
+
+
+<div class="hero">
+  <div class="eyebrow">DECISION SUPPORT</div>
+  <h1>Decide before you build.<br><em>Then build only what survives.</em></h1>
+  <p class="lede">This section exists so a person can choose a path with the evidence in front of them.
+  It holds the suggestions register, the questions that block a decision, the injury and depth evidence
+  that can and cannot be verified, the signal lab with every rejection spelled out, and an independent
+  re-computation of every headline the dashboard publishes.</p>
+</div>
+<div class="dd-note"><strong>The short version.</strong> The market beats the model, no candidate passes
+the validation gates, and the reason is structural rather than statistical: there is no timestamped
+price and no committed lineup feed, so the gate that would license a strategy cannot pass. Four
+suggestions fix that. Three more are fixes to numbers this review found to be wrong.</div>
+<div class="dd-kpis"><article class="dd-kpi good"><span>Independent checks</span><strong>16/19</strong><p>Headline numbers that reproduce from the committed data. Two do not: see Re-verification.</p></article><article class="dd-kpi warn"><span>Irregularities found</span><strong>10</strong><p>Each one carries the source it was found in and what it means for a decision.</p></article><article class="dd-kpi bad"><span>Signal variants tested</span><strong>23</strong><p>Settled at the closing line across 2023-2026. Qualifying strategies: 0.</p></article><article class="dd-kpi info"><span>Suggestions awaiting review</span><strong>12</strong><p>Nothing is implemented while a suggestion is pending. Pick a path first.</p></article><article class="dd-kpi info"><span>Open questions</span><strong>17</strong><p>Grouped by whether we can answer them now, with one more feed, or not at all.</p></article><article class="dd-kpi warn"><span>Players on the official report</span><strong>108</strong><p>Transcribed from NFL.com for five Week 10 games. Verified starter/backup claims: 0.</p></article></div>
+<section class="block"><div class="eyebrow">OVERVIEW</div><h2>What is on this desk</h2><div class="dd-two">
+  <div class="dd-card"><h3>Suggestions</h3><p>Twelve proposals. Each has a problem statement, an effort
+  and payoff estimate, the evidence behind it, and a recommended path. Status is <em>pending</em> until a
+  reviewer picks one.</p><a href="suggestions.html">Open the register &rarr;</a></div>
+  <div class="dd-card"><h3>Open questions</h3><p>Seventeen questions a reasonable decision needs answered,
+  split four ways: answerable now, one feed away, blocked on a decision, and not answerable yet.</p>
+  <a href="questions.html">See the questions &rarr;</a></div>
+  <div class="dd-card"><h3>Injury &amp; depth</h3><p>The official Week 10 report transcribed in full for
+  five games, plus the exact reason no starter/backup claim can be made yet and what would unlock it.</p>
+  <a href="injury-depth.html">Read the evidence &rarr;</a></div>
+  <div class="dd-card"><h3>Signal lab</h3><p>Twenty-three candidate signals, ten gates each, a
+  Benjamini-Hochberg correction across the whole family and a luck null. Zero qualify.</p>
+  <a href="signals-lab.html">See the rejections &rarr;</a></div>
+  <div class="dd-card"><h3>Parlay pricing</h3><p>Measured correlations between same-team legs, and the gap
+  between the empirical joint probability and the independent-legs product.</p>
+  <a href="parlay-pricing.html">See the numbers &rarr;</a></div>
+  <div class="dd-card"><h3>Re-verification</h3><p>Nineteen checks re-derived from the committed extract by
+  code that imports nothing from the pipeline, and the ten irregularities found doing it.</p>
+  <a href="decision-verification.html">Check the checks &rarr;</a></div>
+</div></section>
+<section class="block"><div class="eyebrow">FINDINGS</div><h2>The four findings that change a decision</h2><div class="table-wrap"><table class="compact"><caption class="caption">The four irregularities that most constrain what can be decided today. The full register is on the Re-verification page.</caption><thead><tr><th>Finding</th><th>Evidence</th><th>What it means for the decision</th><th>Source</th></tr></thead><tbody><tr><td>The 50.0% ATS coin-flip test is a tautology, not evidence</td><td>data/derived/luck.json reports n=13,784 and wins=6,892. 13,784 = 2 x 6,892: every game contributes one cover by the home side and one by the away side, so a pooled per-team-game cover rate is 50% by construction and the reported binomial p of 1.0 carries no information. The real, testable rate is th...</td><td>The site&#x27;s &#x27;the spread market shows no exploitable tilt&#x27; conclusion survives, but the quoted statistic behind it does not measure what it claims. Treat the p=1.0 as unverified.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/schedules" rel="noopener">nflverse schedules (games.csv.gz) - spread_line, home_score, away_score</a></td></tr><tr><td>Committed data ends before the week the site is being read in</td><td>The schedules extract&#x27;s latest gameday is 2026-11-01. The official NFL injury report for 2026 Week 10 (games of 12-15 November 2026) is already published, and its team records differ from the extract (e.g. the report shows NYG 5-2-1 and WAS 2-5-1; the extract, through 2026-11-01, resolves to NYG 4-2...</td><td>Line origination for an unplayed week cannot be scored or compared to market using this extract. The pipeline must refresh before any decision that depends on this week.</td><td class="src"><a href="https://www.nfl.com/injuries/league/2026/reg10" rel="noopener">NFL.com official injury report, 2026 Week 10 - records printed on the page</a></td></tr><tr><td>Injury, depth-chart and snap-count feeds are published upstream but not committed here</td><td>nflverse publishes `injuries_{season}`, `depth_charts_{season}` and `snap_counts_{season}` release assets for every season from 2015 to 2026. None of them is in this repository, and the sandbox this session runs in can reach only github.com/api.github.com, and the release assets themselves redirect ...</td><td>The injury and backup-depth requirement cannot be met from inside this environment. It needs a workflow run on GitHub-hosted runners that downloads those assets and commits the derived summaries, exactly as the existing data-pipeline does for schedules.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/injuries" rel="noopener">nflverse-data releases: injuries, depth_charts, snap_counts (2015-2026)</a></td></tr><tr><td>Gate G1 (point-in-time integrity) cannot be satisfied by the current feeds</td><td>G1 reads: &#x27;Inputs are strictly pre-kickoff; no result-derived feature; source hashes recorded.&#x27;. The schedules extract carries a single `spread_line` per game with no timestamp saying when it was captured, and the injury/depth feeds that would date a lineup are not committed (IR-06). So the only poi...</td><td>Before any strategy is funded, the project needs a timestamped line capture and a timestamped lineup snapshot. No amount of modelling substitutes for that.</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/strategies.json" rel="noopener">gates_definition[G1] in strategies.json</a></td></tr></tbody></table></div></section>
+<p class="lede"><a href="../site/index.html">Open the standalone section index &rarr;</a></p>
+<section class="block"><div class="eyebrow">REVIEW WORKFLOW</div><h2>How a suggestion becomes a change</h2><ol class="dd-steps"><li><strong>Triage</strong><p>Read the suggestion, its evidence and its cost. Nothing is implemented at this step.</p></li><li><strong>Check the evidence</strong><p>Open the linked source and the referenced data file. A suggestion with an unverifiable claim is sent back, not approved.</p></li><li><strong>Choose a path</strong><p>Accept, park, or reject. Exactly one path per suggestion, recorded in the register so the next session cannot silently reopen it.</p></li><li><strong>Assign a gate</strong><p>Say which of the ten gates the change is meant to move. A change that moves no gate is parked.</p></li><li><strong>Implement behind the gate</strong><p>Ship it with a check that fails if the gate regresses. No strategy page updates on an unapproved change.</p></li><li><strong>Re-measure</strong><p>Re-run the pipeline and publish the new numbers, including the ones that got worse.</p></li></ol></section>
+
+<footer>
+  <p>Research and measurement, not betting advice. Every figure is computed by the code in this repository from the sources listed on each row; nothing is estimated by hand.</p>
+  <p><a href="../pages/sources.html">Source register</a> &middot; <a href="../pages/method.html">Method</a> &middot;
+     <a href="../pages/decision-verification.html">This section&rsquo;s checks</a> &middot;
+     <a href="../pages/flagged.html">Flagged for review</a></p>
+</footer>
+</main></div></body></html>
