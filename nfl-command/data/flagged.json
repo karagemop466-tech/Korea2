@@ -1,0 +1,183 @@
+{
+  "description": "Irregularities and unverified items for review. Flagged items do not block the merge. Each links its evidence. Change requests can be made against any ID.",
+  "rows": [
+    {
+      "id": "F-01",
+      "category": "Injuries",
+      "item": "BAL 'No Injuries Reported' vs NFL.com news on Lamar Jackson and Tyler Huntley (IR)",
+      "value": "Unresolved",
+      "reason": "The report and the news disagree. Probably an IR-scope issue; not confirmed.",
+      "sources": [
+        "NFL-INJ",
+        "NFL-NEWS-JACKSON"
+      ]
+    },
+    {
+      "id": "F-02",
+      "category": "Injuries",
+      "item": "SEA 'No Injuries Reported' vs NFL.com news that Sam Darnold is ruled out for Week 10",
+      "value": "Unresolved",
+      "reason": "A player a coach has ruled out is not on the official report.",
+      "sources": [
+        "NFL-INJ",
+        "NFL-NEWS-DARNOLD"
+      ]
+    },
+    {
+      "id": "F-03",
+      "category": "Depth",
+      "item": "No official depth chart reachable: starter and backup cells left blank",
+      "value": "BLANK (unverified)",
+      "reason": "NFL.com and the Commanders club page both return 404. Third-party depth charts are not official.",
+      "sources": [
+        "NFL-DEPTH-WAS",
+        "CLUB-DEPTH-WAS",
+        "NONOFF-DEPTH-1"
+      ]
+    },
+    {
+      "id": "F-04",
+      "category": "Injuries",
+      "item": "CHI, DEN, PHI and TB not on the Week 10 report",
+      "value": "Bye status unverified",
+      "reason": "The rest of the schedule was not read.",
+      "sources": [
+        "NFL-SCHED",
+        "NFL-INJ"
+      ]
+    },
+    {
+      "id": "F-05",
+      "category": "Injuries",
+      "item": "No as-of timestamp on the injury report page",
+      "value": "Snapshot time unknown",
+      "reason": "The page text shows no as-of timestamp. Only the fetch date (2026-11-12) is known.",
+      "sources": [
+        "NFL-INJ"
+      ]
+    },
+    {
+      "id": "F-06",
+      "category": "Injuries",
+      "item": "Injury descriptor blank for players with news reports of surgery or injury (Puka Nacua, Josh Jacobs)",
+      "value": "BLANK on source",
+      "reason": "The cell is blank on the NFL.com listing. Not filled in.",
+      "sources": [
+        "NFL-NEWS-NACUA",
+        "NFL-NEWS-JACOBS",
+        "NFL-INJ"
+      ]
+    },
+    {
+      "id": "F-07",
+      "category": "Repo",
+      "item": "Skill Lab committed numbers do not reproduce on a fresh run in this branch (12 files)",
+      "value": "Non-reproducible",
+      "reason": "Examples: STR-06 tickets 857 committed vs 856 on rerun. Two hash seeds give identical output to each other, so hash randomness is not the cause; cause unknown.",
+      "sources": [
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "F-08",
+      "category": "Model inputs",
+      "item": "Every model and strategy number is computed from third-party inputs (nflverse)",
+      "value": "UNVERIFIED-INPUT",
+      "reason": "The provenance file says NFL.com is the only official source, and it is used only for spot checks. Values shown with a method link; not official-source values.",
+      "sources": [
+        "REPO-PROV"
+      ]
+    },
+    {
+      "id": "F-09",
+      "category": "Repo",
+      "item": "Skill Lab official-host allowlist includes github.com and weather.gov",
+      "value": "Policy gap",
+      "reason": "verify_all.py allowlist includes www.weather.gov and github.com. github.com is not an official NFL source.",
+      "sources": [
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "F-10",
+      "category": "Repo",
+      "item": "validate.yml push trigger names session branch arena/29806afc-korea2 (its PRs #14 and #15 are merged)",
+      "value": "Stale trigger",
+      "reason": "Stale trigger; not changed here (shared workflow).",
+      "sources": []
+    },
+    {
+      "id": "F-11",
+      "category": "Repo",
+      "item": "COORDINATION.md still lists claims for four earlier session branches (arena/9e0420bd-korea2, arena/89b8d356-korea2, arena/652b0095-korea2, arena-29806afc) as active",
+      "value": "Stale claims",
+      "reason": "Each branch's PR is merged or closed (#7 closed unmerged). Not re-claimed; logged for the integration owner.",
+      "sources": []
+    },
+    {
+      "id": "F-12",
+      "category": "Repo",
+      "item": "Root README (0 of 7 candidates) and Skill Lab (0 of 16 tested) report different counts",
+      "value": "Inconsistent counts",
+      "reason": "README (0 of 7 candidates), skill-lab (16 tested, 0 qualified) and tests/check_data.py (0 of 5 ranked) use different universes. Not reconciled.",
+      "sources": []
+    },
+    {
+      "id": "F-13",
+      "category": "Props",
+      "item": "No historical prop prices, so prop ROI is blank for STR-10 to STR-14",
+      "value": "BLANK (unverified)",
+      "reason": "The README says prop ROI cannot be measured here.",
+      "sources": [
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "F-14",
+      "category": "Legal",
+      "item": "Whether prize or points rewards for a strategy leaderboard need an Alberta licence or registration",
+      "value": "Unverified",
+      "reason": "AGLC regulates gaming in Alberta. The specific rule was not found.",
+      "sources": [
+        "AGLC"
+      ]
+    },
+    {
+      "id": "F-15",
+      "category": "Repo",
+      "item": "28 HTML pages outside the published build do not carry per-row source columns",
+      "value": "Link-checked only",
+      "reason": "Reported by tests/check_site.py: link-checked only.",
+      "sources": []
+    },
+    {
+      "id": "F-16",
+      "category": "Strategies",
+      "item": "STR-16 (integrity control) shows 85% hit and +64.8% ROI",
+      "value": "Disqualified (leak)",
+      "reason": "Shown only as a control. It is not a strategy result.",
+      "sources": [
+        "REPO-SKILL-JSON"
+      ]
+    },
+    {
+      "id": "F-17",
+      "category": "Sources",
+      "item": "Third-party depth-chart sites describe their data as 'official team depth charts' without naming an official source",
+      "value": "Rejected",
+      "reason": "No official source named. Not used.",
+      "sources": [
+        "NONOFF-DEPTH-1",
+        "NONOFF-DEPTH-2"
+      ]
+    },
+    {
+      "id": "F-18",
+      "category": "Sources",
+      "item": "Model-page and cross-site links on Repo review are not yet opened on the live site",
+      "value": "Pending check",
+      "reason": "The sandbox cannot reach github.io, so live links are checked after deployment.",
+      "sources": []
+    }
+  ]
+}

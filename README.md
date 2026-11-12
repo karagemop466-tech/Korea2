@@ -1,12 +1,15 @@
 # Line Lab — NFL line origination and strategy validation
 
-A working research pipeline that originates its own NFL spreads, totals, moneylines and player-prop
-lines from the official play-by-play feed, measures the correlations that decide parlay prices, and
-runs every candidate strategy through ten validation gates before it can earn anything.
+A reproducible research pipeline that originates NFL spreads, totals, moneylines and player-prop
+lines from community-maintained nflverse game and weekly-stat extracts, measures correlations, and
+runs candidate strategies through ten validation gates. nflverse is not the NFL; selected seasons are
+reconciled against NFL.com, and the precise verification limits are flagged.
 
 **Live site:** https://karagemop466-tech.github.io/Korea2/
 
-## Result of the current build
+## Result of the committed data snapshot
+
+The dataset is through **2026-11-01**; this repository snapshot is not current to the live Week 10 slate checked on 2026-11-12. Do not use its Week 9/next-slate projections as current lines. See [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html).
 
 | Question | Answer | Evidence |
 |---|---|---|
@@ -58,7 +61,7 @@ python decision-hub/scripts/check_site.py
 ## How it works
 
 ```
-scripts/fetch_data.py   download official feeds (runs on GitHub Actions)  -> data/raw/  (gitignored)
+scripts/fetch_data.py   download nflverse community extracts (GitHub Actions) -> data/raw/ (gitignored)
 scripts/profile.py      record columns, coverage, nulls                   -> data/derived/profile.json
 scripts/diag_signs.py   prove the spread sign convention from the data    -> data/derived/diag_signs.json
 scripts/analyze_*.py    market, model, correlation, luck, strategies, props -> data/derived/*.json
@@ -114,9 +117,9 @@ python tests/check_site.py
 
 ## Sources
 
-Official NFL documents (rules, statistician guide, data-distribution partnership), a regulator-filed
-operator rulebook, and statistical literature (Kelly 1956, Benjamini–Hochberg 1995, NIST). Every
-claim on the site links to one of them; the register with confirmation notes is on the
+NFL primary sources and regulator/statistical references support rules, definitions and documented cross-checks.
+Historical game/stat inputs come from nflverse community-maintained extracts, not an NFL-published feed;
+selected seasons are reconciled against NFL.com and the limited scope is flagged. The source register is on the
 [Source register page](https://karagemop466-tech.github.io/Korea2/pages/sources.html).
 Unconfirmable items are on the
 [Flagged for review page](https://karagemop466-tech.github.io/Korea2/pages/flagged.html) instead of
