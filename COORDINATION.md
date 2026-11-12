@@ -1284,6 +1284,34 @@ therefore recorded here; a maintainer can close them against this table.
 
 ---
 
+# Session board — arena/cb5b61a7 (branch arena/cb5b61a7-korea2)
+
+**Session ID:** arena/cb5b61a7-korea2
+**Branch:** arena/cb5b61a7-korea2 (branched from e8d04a93678b91027fed3eee9f1f5c217f54acf8 = main tip after PR #64)
+**File scope (non-overlapping with prior sessions):** `pages/suggestions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html`, `docs/REPO_REVIEW.md`, plus additions to `index.html` and `pages/*.html` navigation and `docs/EXECUTIVE_SUMMARY.md` / `pages/executive.html`. No other session's product files are modified outside this scope.
+
+| ID | Task | Status | Owner | File scope |
+|----|------|--------|-------|------------|
+| T-A | Claim scope + record on board | done | arena/cb5b61a7-korea2 | COORDINATION.md (this section) |
+| T-B | Build "Improvement suggestions" page (decision review register) | done | arena/cb5b61a7-korea2 | `pages/suggestions.html` |
+| T-C | Build "Questions / Information / Answers" page (decision prerequisites + gap discovery) | done | arena/cb5b61a7-korea2 | `pages/decision-questions.html` |
+| T-D | Build "Injury & depth tracking" page (official sources, verified snapshot) | done | arena/cb5b61a7-korea2 | `pages/injuries-depth.html` |
+| T-E | Wire the three new pages into navigation; update executive summary | done | arena/cb5b61a7-korea2 | `index.html`, `pages/*.html`, `docs/EXECUTIVE_SUMMARY.md`, `pages/executive.html` |
+| T-F | Line-by-line repo review, verify claims vs official sources, flag irregularities | done | arena/cb5b61a7-korea2 | `docs/REPO_REVIEW.md` |
+| T-G | Final: run check_site.py, re-verify, PR to main, merge, confirm Pages deploy | in progress | arena/cb5b61a7-korea2 | this file |
+
+## Log — arena/cb5b61a7-korea2
+
+- Intake: branch at main tip (PR #64 merged). Repo already contains a full integrated Line Lab dashboard (root `index.html` + 14 `pages/`), plus sibling dashboards under `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination/`, `origination-lab/`, `skill-lab/`, `audit/`, `pipeline/`, `verification/`, `data/`, `docs/`, `scripts/`, `tests/`, `tools/`. `tests/check_site.py` baseline: 97 pages, 15 published, all checks passed.
+- Scope chosen to fill the three explicit gaps in the brief that no existing page covers: (1) a reviewable **suggestions** register for improving decision-making; (2) a **questions / information / answers** register of what must be resolved before any capital decision, with suggestions to discover missing information; (3) an **injury & depth-tracking** page. Existing strategy/leaderboard/validation/correlation/luck pages are retained and linked; they are not rewritten.
+- Official-source verification performed this session (direct retrieval):
+  - NFL official injury report, Week 10 2026: https://www.nfl.com/injuries/league/2026/REG10 — resolves and returns per-team player injury/practice/game status. Used for the injuries-depth worked example.
+  - NFL official division standings 2026: https://www.nfl.com/standings/division/2026/REG — resolves; all 32 team records retrieved and used to spot-check the repo's "32/32 reconcile" claim (sample matches: NE 5-4, DET 6-2, KC 6-2, NYG 5-2-1, WAS 2-5-1, ATL 3-6, BUF 7-1).
+  - NFL team depth-chart endpoint: https://www.nfl.com/teams/new-england-patriots/depth-chart (and trailing slash) — **returns HTTP 404**. This is an irregularity: any claim that depends on official depth ordering cannot be sourced from NFL.com today; flagged, and a discovery suggestion (nflverse team depth / snap counts) is recorded.
+- No other session's claim is overwritten. Tasks T-B..T-G executed below; final sources, irregularities and the PR/merge result are appended when complete.
+
+---
+
 # Session board — arena/43870fb8-korea2 — Suggestions & Decision Hub
 
 **Branch:** `arena/43870fb8-korea2` (fixed by environment; no separate session branch created)
