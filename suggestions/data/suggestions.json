@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "title": "Suggestions to improve decision-making \u2014 review queue",
+    "policy": "Proposals are listed for review; status must be set to approved before any implementation branch may edit the referenced files. Proposing a change does not imply it is correct.",
+    "generated_on": "2026-11-12"
+  },
+  "proposal_review_rule": "Reviewer changes status from proposed to approved / rejected / in_progress. Approved proposals may be implemented on a named branch with a linked PR; rejected ones stay as record. No direct-to-main edits for approved items \u2014 all pass CI.",
+  "rows": [
+    {
+      "id": "SUG-01",
+      "proposal": "Add a decision-gate page that must be completed before any wager or allocation",
+      "detail": "A short checklist (model vs close? closing-price cost? injury deltas? execution verified?) that blocks the decision if a required field is blank. Keeps the dashboard from being used as a tip sheet.",
+      "priority": "high",
+      "expected_impact": "Prevents premature risk-taking; aligns with G9 executable gate that currently fails for every strategy.",
+      "category": "decision workflow",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-DK-HOUSE-RULES-CURRENT",
+        "SRC-PINNACLE-CLV",
+        "SRC-NV-REG22"
+      ]
+    },
+    {
+      "id": "SUG-02",
+      "proposal": "Publish a Have / Don't Have inventory for every signal feature",
+      "detail": "For each candidate input (rest days, wind, past margin, injury tags, depth-chart tier, Next Gen tracking aggregates) list source feed, timestamp rule, missingness per season, and whether it is point-in-time. Turns the vague 'missing information' note into a field-by-field spec.",
+      "priority": "high",
+      "expected_impact": "Makes REQ-03 answerable: reviewers can see exactly which inputs are hypothetical vs measured.",
+      "category": "data transparency",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES",
+        "SRC-NFLREADR-DICT-SCHED",
+        "SRC-NFL-NGS-TECH",
+        "SRC-NOAA-NWS"
+      ]
+    },
+    {
+      "id": "SUG-03",
+      "proposal": "Build a live injury & depth-chart tracker from official NFL feeds",
+      "detail": "Daily scrape pattern: at 4pm ET practice-report deadline, ingest /injuries/league/<season>/regN; map Player\u2192Team\u2192Position\u2192DepthRank from official depth charts (e.g., colts.com/team/depth-chart and nfl.com/teams/<team>/roster). Emit per-team depth-deficiency signal: starter out + backup tier, with explicit unknown when depth missing. Do not invent tiers; publish the roster sentence that was read.",
+      "priority": "high",
+      "expected_impact": "Closes REQ-10 gap. Gives offense/defense deficiency scores that can be gated rather than guessed.",
+      "category": "injury & roster",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB",
+        "SRC-NFL-INJURY-POLICY-COMP",
+        "SRC-NFL-IMPORTANT-DATES-2026",
+        "SRC-COLTS-DEPTH-CHART",
+        "SRC-NFL-ROSTER-PATRIOTS"
+      ]
+    },
+    {
+      "id": "SUG-04",
+      "proposal": "Separate the injury-report policy citation into confirmed vs 404 components",
+      "detail": "The Competition Committee status-definition article is confirmed; the operations.nfl.com/football-ops/league-governance/injury-report/ page returns no article body and is 404. Split the citation so the confirmed definitions still support the tracker, while the 404 is retained as a flagged item rather than a silent source.",
+      "priority": "medium",
+      "expected_impact": "Improves citation precision without dropping a useful page.",
+      "category": "source hygiene",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-NFL-INJURY-POLICY-COMP",
+        "SRC-NFL-INJURIES-HUB"
+      ]
+    },
+    {
+      "id": "SUG-05",
+      "proposal": "Upgrade the source register to record HTTP status and excerpt per source on the day it was read",
+      "detail": "Add two columns already used by verification: http_state and excerpt. The Source register page would then show what the reader actually saw, not just that a URL exists.",
+      "priority": "medium",
+      "expected_impact": "Moves from link collection to verifiable reading record; directly supports manual review.",
+      "category": "source hygiene",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-NFL-STANDINGS-2020",
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFL-GSIS-GUIDE"
+      ]
+    },
+    {
+      "id": "SUG-06",
+      "proposal": "Add weather enrichment as a first-class field in games.csv.gz with explicit coverage flag",
+      "detail": "Match each outdoor game to forecast.weather.gov point forecast by stadium lat/lon at the day-of-game 12Z issuance; store wind_gust, temp, precip and a weather_available boolean. Historical coverage will stay ~57% for 2020-2026 outdoors (verified in prior flagged entry); the boolean stops silent fallbacks to domestic means.",
+      "priority": "medium",
+      "expected_impact": "Makes S7 wind-under testable on new seasons without re-introducing the 219-row no-price bias that collapsed it from +8.65% to +7.14%.",
+      "category": "data enrichment",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-NOAA-NWS",
+        "SRC-NFL-NGS-TECH"
+      ]
+    },
+    {
+      "id": "SUG-07",
+      "proposal": "Record closing-price exclusion counts as first-class metrics beside every ROI table",
+      "detail": "Every backtest row currently publishes n, decided, pushes via lib/backtest. Extend to n_excluded_missing_price per side (already in results/*.json after PR #52) and show it in the UI. Prevents silent -110 imputation from reappearing.",
+      "priority": "high",
+      "expected_impact": "Makes the price-integrity fix durable across future generators.",
+      "category": "backtest integrity",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES",
+        "SRC-DK-HOUSE-RULES-824",
+        "SRC-DK-HOUSE-RULES-CURRENT"
+      ]
+    },
+    {
+      "id": "SUG-08",
+      "proposal": "Introduce a controlled parlay pricing mode that uses measured correlations instead of naive multiplication",
+      "detail": "For correlated same-team legs (QB\u2192WR1 r=0.562), price with a bivariate-normal copula calibrated to the measured r (\u03c1\u22480.60) rather than p1\u00d7p2. Show both naive and correlation-aware break-even prices; only the latter counts for gate G4.",
+      "priority": "high",
+      "expected_impact": "Prevents overstating parlay value; aligns with the flagged push-handling and parlay-ladder notes.",
+      "category": "pricing",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-DK-PARLAY-HELP",
+        "SRC-DK-GLOSSARY"
+      ]
+    },
+    {
+      "id": "SUG-09",
+      "proposal": "Keep the leaderboard reward schedule as a paper schedule until G9 can be verified",
+      "detail": "Tier badges and reward descriptions stay labelled as design proposal; no cash or allocation is implied. Add a one-line ledger on the leaderboard page that records the date each tier was last considered for funding and the outcome.",
+      "priority": "medium",
+      "expected_impact": "Prevents REQ-05 presentation from implying funded prizes; keeps competition incentive without misrepresentation.",
+      "category": "competition",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-KAGGLE-BDB2027",
+        "SRC-NFL-BDB-ANNOUNCE",
+        "SRC-KAGGLE-DOCS"
+      ]
+    },
+    {
+      "id": "SUG-10",
+      "proposal": "Add a weekly reconciliation job that compares rebuilt standings against NFL.com before any new model is published",
+      "detail": "Extend the existing 2020/2026 recomputation to run weekly in CI: download NFL.com division standings, rebuild from committed games.csv.gz, fail the workflow if >0 teams mismatch. The verification page already does this spot check; automation would make staleness immediately visible.",
+      "priority": "medium",
+      "expected_impact": "Closes the 2026 staleness risk that previously left the site a week behind the official table.",
+      "category": "verification",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-NFL-STANDINGS-2020",
+        "SRC-NFL-STANDINGS-2026",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "SUG-11",
+      "proposal": "Expose the archive navigation from the root dashboard so sibling labs are discoverable",
+      "detail": "The root pages/archive.html already lists dashboard/, nfl-lines/, nfl-research/, research-desk/, origination-lab/, quant-lab/, skill-lab/ etc. Add a first-class nav link from the sidebar to Archive so a reviewer does not need to guess that sibling work exists.",
+      "priority": "low",
+      "expected_impact": "Improves discoverability of work that is already published but unlinked from the main nav.",
+      "category": "navigation",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "SUG-12",
+      "proposal": "Replace edition-stale operator citations with the active 10.7.26 house-rules PDF and re-read the cited settlement sentences",
+      "detail": "The flagged FL-11 notes the 8.1.24 edition is archived as obsolete since 8.18.15. Point citations at DraftKings-House-Rules-10.7.26.pdf and re-fetch the exact push/parlay/teaser sentences that the site quotes; keep the old edition as a historical note rather than a live source.",
+      "priority": "high",
+      "expected_impact": "Removes a known medium-flagged irregularity from the live site.",
+      "category": "source hygiene",
+      "owner": "suggestions hub",
+      "status": "proposed",
+      "sources": [
+        "SRC-DK-HOUSE-RULES-OBS-ARCHIVE",
+        "SRC-DK-HOUSE-RULES-CURRENT",
+        "SRC-DK-HOUSE-RULES-824"
+      ]
+    }
+  ]
+}
