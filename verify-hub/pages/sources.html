@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources | Verify Hub</title>
+<meta name="description" content="Cross-lab verification, decision-readiness and suggestion review for the NFL research repository.">
+<meta name="generator" content="verify-hub/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="../index.html"><span class="mark">VH</span><span>VERIFY HUB<small>CROSS-LAB DECISIONS</small></span></a>
+    <nav aria-label="Hub navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/repo-audit.html">Repo audit</a>
+      <a href="../pages/questions.html">Questions</a>
+      <a href="../pages/suggestions.html">Suggestions</a>
+      <a href="../pages/leaderboard.html">Leaderboard</a>
+      <a href="../pages/injuries-depth.html">Injuries &amp; depth</a>
+      <a href="../pages/executive.html">Executive</a>
+      <a href="../pages/sources.html" class="active">Sources</a>
+      <a href="../pages/flagged.html">Flagged</a>
+    </nav>
+    <div class="sidebar-note">Sibling labs are read-only inputs to this hub. Live root site: <a href="../index.html" rel="noopener">Line Lab</a>.</div>
+  </aside>
+  <main id="main">
+    <header class="topbar"><span class="crumb">SOURCES</span>
+      <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a>
+    </header>
+
+    <div class="hero"><div class="eyebrow">SOURCE REGISTER</div>
+      <h1>Every link,<br><em>and when it was checked.</em></h1>
+      <p class="lede">Sources opened and read by this session on 2026-11-12 carry that date and the exact
+      verification method. Context sources verified by earlier sessions say so and are not re-claimed here.</p></div>
+    <section class="block"><h2>Register</h2>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Label</th><th>Publisher</th><th>Type</th><th>Opened</th><th>How verified</th><th>Note</th><th>URL</th></tr></thead><tbody><tr><td>VH-SRC-01</td><td>NFL.com 2026 regular-season division standings (live page)</td><td>NFL (National Football League)</td><td>official league page</td><td>2026-11-12</td><td>Page reader, both chunks read. All 32 club records (W-L-T, PF, PA) transcribed: BUF 7-1, NE 5-4, NYJ 2-7, MIA 1-7, PIT 6-2, CIN 6-2, CLE 5-4, BAL 4-5, JAX 6-2, HOU 3-5, IND 2-7, TEN 1-7, DEN 7-2, KC 6-2, LV 4-5, LAC 0-8, NYG 5-2-1, DAL 4-5, WAS 2-5-1, PHI 2-7, CHI 7-2, DET 6-2, MIN 6-2, GB 6-3, CAR 3-5, NO 3-5, TB 3-6, ATL 3-6, SF 7-1, SEA 5-4, LA 5-4, AZ 3-6.</td><td>Live page; values move as games are played. Used to verify the repo&#x27;s 2026 standings reconciliations and the Week 10 report team records.</td><td><a href="https://www.nfl.com/standings/division/2026/REG" class="ext" rel="noopener">https://www.nfl.com/standings/division/2026/REG</a></td></tr>
+<tr><td>VH-SRC-02</td><td>Official NFL injury report, Week 10 of the 2026 season</td><td>NFL (National Football League)</td><td>official league page</td><td>2026-11-12</td><td>Page reader, chunk 0 read (7 chunks total). Per-team tables carry Player, Position, Injuries, Practice Status and Game Status columns. Week 10 slate opens with TNF WAS (2-5-1) at NYG (5-2-1) on Thursday November 12th.</td><td>The report gives player-level injury, practice and game status. It does not publish depth-chart string (1st/2nd/3rd/4th) for any player.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">https://www.nfl.com/injuries/league/2026/REG10</a></td></tr>
+<tr><td>VH-SRC-03</td><td>NFL.com club depth-chart path (tried for depth strings)</td><td>NFL (National Football League)</td><td>official league page (endpoint check)</td><td>2026-11-12</td><td>Page reader; response is the NFL.com 404 page (&#x27;Flag on the Play&#x27;).</td><td>IRREGULARITY ANCHOR: the league&#x27;s site does not serve a depth chart at this path, so no league-published 1st/2nd/3rd/4th string ordering exists here. Depth-string values stay blank and flagged.</td><td><a href="https://www.nfl.com/teams/new-england-patriots/depth-chart" class="ext" rel="noopener">https://www.nfl.com/teams/new-england-patriots/depth-chart</a></td></tr>
+<tr><td>VH-SRC-04</td><td>nflverse-data release metadata (GitHub Releases API)</td><td>GitHub (authoritative for release asset metadata of nflverse/nflverse-data)</td><td>official platform API (third-party redistribution of NFL feeds)</td><td>2026-11-12</td><td>HTTPS GET from the sandbox (github.com family is reachable); 25 releases fetched. The three tags recorded in data/derived/manifest.json (schedules, stats_player, stats_team) all exist. Of 31 recorded assets, 28 match the manifest byte-for-byte; the 3 rolling 2026 assets (games.parquet, stats_player_week_2026.parquet, stats_team_week_2026.parquet) are larger upstream now than at the 2026-11-02 snapshot, i.e. upstream re-published them after the snapshot.</td><td>nflverse is a community redistribution of the NFL&#x27;s own play-by-play/stat feeds; it is the project&#x27;s price/history source of record and is labelled third-party everywhere.</td><td><a href="https://api.github.com/repos/nflverse/nflverse-data/releases" class="ext" rel="noopener">https://api.github.com/repos/nflverse/nflverse-data/releases</a></td></tr>
+<tr><td>VH-SRC-05</td><td>NFL Operations league-governance injury-report policy path</td><td>NFL Football Operations</td><td>official league page (endpoint check)</td><td>2026-11-12</td><td>Page reader; response is the operations.nfl.com 404 page (&#x27;FLAG ON THE PLAY&#x27;).</td><td>IRREGULARITY ANCHOR: the policy page cited in the root register does not serve content on 2026-11-12 (carried flag; first recorded 2026-11-01 by the root session).</td><td><a href="https://operations.nfl.com/football-ops/league-governance/injury-report/" class="ext" rel="noopener">https://operations.nfl.com/football-ops/league-governance/injury-report/</a></td></tr>
+<tr><td>VH-SRC-06</td><td>NIST Dataplot reference manual — CORRELATION</td><td>NIST (U.S. Department of Commerce)</td><td>government statistics reference</td><td>2026-11-12</td><td>Page reader; full entry read. Pearson coefficient r = Sxy/sqrt(Sxx*Syy) with the F(1, N-2) significance test.</td><td>Method anchor for every correlation value in this repository.</td><td><a href="https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm" class="ext" rel="noopener">https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm</a></td></tr>
+<tr><td>VH-SRC-07</td><td>2026 NFL Rulebook</td><td>NFL Football Operations</td><td>official league rulebook</td><td>2026-11-12</td><td>Page reader; landing read including the 2026 rule-changes table (6-1-3, 6-1-5, 6-1-6, 19-2) and the rule-section index; the full rulebook PDF is linked from the page.</td><td>Settlement-relevant context (scoring, timing, possession). Operator house rules govern wager settlement and are cited separately.</td><td><a href="https://operations.nfl.com/rules-officiating/2026-nfl-rulebook" class="ext" rel="noopener">https://operations.nfl.com/rules-officiating/2026-nfl-rulebook</a></td></tr>
+<tr><td>VH-SRC-08</td><td>NFL Big Data Bowl 2027 (Kaggle) — competition and awards</td><td>NFL / Kaggle</td><td>official competition page</td><td>2026-11-12</td><td>Page reader; overview read. Published awards: Open Track $45,000 (three $10,000 finalists, three $5,000 runners-up), University Track $45,000 (same split), Grand Prize $10,000 for one invited finalist presenting at the 2027 Scouting Combine. Timeline: start 2026-10-06, submissions close 2027-01-06.</td><td>The only official, funded, league-linked analytics-competition reward precedent found; used as the structural model for the paper reward schedule. It is NOT funding for this project.</td><td><a href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" class="ext" rel="noopener">https://www.kaggle.com/competitions/nfl-big-data-bowl-2027</a></td></tr>
+<tr><td>VH-SRC-09</td><td>This repository on GitHub (karagemop466-tech/Korea2)</td><td>GitHub</td><td>repository of record</td><td>2026-11-12</td><td>git and gh API reads: branch heads, PR #65 merged 2026-11-12T13:03:56Z (merge 7445da6), PR #66/#67 merged 2026-11-12, GitHub Pages configuration (legacy root, status built).</td><td>Source for repo-state claims (page counts, PR/merge/deploy state, committed file contents).</td><td><a href="https://github.com/karagemop466-tech/Korea2" class="ext" rel="noopener">https://github.com/karagemop466-tech/Korea2</a></td></tr>
+<tr><td>VH-SRC-10</td><td>NFL–Genius Sports strategic partnership announcement (data distribution)</td><td>NFL (National Football League)</td><td>official league announcement</td><td>&mdash;</td><td>CONTEXT — opened and recorded 2026-11-01 by the root session in data/sources.json; not re-opened by this session.</td><td>Context for why no league-published historical odds feed exists for the public.</td><td><a href="https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports" class="ext" rel="noopener">https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports</a></td></tr>
+<tr><td>VH-SRC-11</td><td>nflverse-data repository (feed extracts used by the pipeline)</td><td>GitHub (nflverse project — third-party redistribution of NFL feeds)</td><td>third-party data redistribution</td><td>&mdash;</td><td>CONTEXT — recorded in the root register; release metadata re-verified by this session through VH-SRC-04.</td><td>Every computed value in the sibling labs derives from extracts of this feed; no league source publishes closing-line accuracy, correlations or backtest returns.</td><td><a href="https://github.com/nflverse/nflverse-data" class="ext" rel="noopener">https://github.com/nflverse/nflverse-data</a></td></tr>
+<tr><td>VH-SRC-12</td><td>Kelly (1956), A New Interpretation of Information Rate</td><td>Bell System Technical Journal (scan hosted by Princeton University)</td><td>academic reference</td><td>&mdash;</td><td>CONTEXT — recorded in the root register (opened 2026-11-01); not re-opened by this session.</td><td>Staking/growth-criterion reference for the drawdown-and-growth gate (G9).</td><td><a href="https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf" class="ext" rel="noopener">https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf</a></td></tr>
+<tr><td>VH-SRC-13</td><td>DraftKings help — what is a parlay bet</td><td>DraftKings (licensed operator help centre)</td><td>operator help article</td><td>&mdash;</td><td>CONTEXT — recorded in the root register (opened 2026-11-01); not re-opened by this session.</td><td>Operator definition of parlay settlement; same-game parlay pricing behaviour is the subject of the correlation findings.</td><td><a href="https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683" class="ext" rel="noopener">https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&amp;sysparm_article=KB0010683</a></td></tr>
+<tr><td>VH-SRC-14</td><td>NIST handbook — one-sample and two-sample proportion tests</td><td>NIST (U.S. Department of Commerce)</td><td>government statistics reference</td><td>&mdash;</td><td>CONTEXT — recorded in the root register (opened 2026-11-01); not re-opened by this session.</td><td>Method anchor for cover-rate / over-rate binomial tests.</td><td><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" class="ext" rel="noopener">https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm</a></td></tr></tbody></table></div></section>
+    
+    <footer>
+      <p>Research and measurement, not betting advice. Every value is read from committed JSON by
+      <code>verify-hub/scripts/build_site.py</code>; every table row links the source it rests on.
+      Values that no official source confirms are left blank and published on the Flagged page.</p>
+      <p><a href="../pages/sources.html">Source register</a> &middot;
+         <a href="../pages/questions.html">Decision questions</a> &middot;
+         <a href="../pages/flagged.html">Flagged for review</a></p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview | Verify Hub</title>
+<meta name="description" content="Cross-lab verification, decision-readiness and suggestion review for the NFL research repository.">
+<meta name="generator" content="verify-hub/scripts/build_site.py">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="index.html"><span class="mark">VH</span><span>VERIFY HUB<small>CROSS-LAB DECISIONS</small></span></a>
+    <nav aria-label="Hub navigation">
+      <a href="index.html" class="active">Home</a>
+      <a href="pages/repo-audit.html">Repo audit</a>
+      <a href="pages/questions.html">Questions</a>
+      <a href="pages/suggestions.html">Suggestions</a>
+      <a href="pages/leaderboard.html">Leaderboard</a>
+      <a href="pages/injuries-depth.html">Injuries &amp; depth</a>
+      <a href="pages/executive.html">Executive</a>
+      <a href="pages/sources.html">Sources</a>
+      <a href="pages/flagged.html">Flagged</a>
+    </nav>
+    <div class="sidebar-note">Sibling labs are read-only inputs to this hub. Live root site: <a href="index.html" rel="noopener">Line Lab</a>.</div>
+  </aside>
+  <main id="main">
+    <header class="topbar"><span class="crumb">OVERVIEW</span>
+      <a class="review-link" href="pages/flagged.html">Flagged for review &nearr;</a>
+    </header>
+
+    <div class="hero">
+      <div class="eyebrow">CROSS-LAB VERIFICATION &amp; DECISION HUB</div>
+      <h1>Review everything.<br><em>Decide once.</em></h1>
+      <p class="lede">This hub audits every published claim across the repository's research labs line by line,
+      consolidates the strategy, gate, correlation and luck findings, and holds the two registers a reviewer
+      needs before anything changes: the questions that must be answered first, and the suggestions with a
+      recommended path. Nothing here is implemented until a reviewer approves it.</p>
+    </div>
+    <div class="notice"><span class="dot"></span><div>
+      <strong>Current verdict: zero strategies approved; four decisions block implementation.</strong><br>
+      The measurement apparatus is complete and verified; the market beats every model in the repo;
+      the injury/depth requirement is only partially satisfiable from official data today.</div>
+      <a href="pages/executive.html">Read the executive summary &rarr;</a></div>
+    <div class="kpis"><article class="kpi"><span class="kpi-label">Strategies approved (all labs)</span><strong>0</strong><p>Five gate systems, 68 strategy rows tested, zero passes.</p><a class="card-link" href="pages/leaderboard.html">Open &rarr;</a></article><article class="kpi"><span class="kpi-label">Audit rows checked</span><strong>45</strong><p>10 verified against official sources, 21 against committed data, 8 irregularities.</p><a class="card-link" href="pages/repo-audit.html">Open &rarr;</a></article><article class="kpi"><span class="kpi-label">Decision questions open</span><strong>20</strong><p>9 answered, 7 partial, 4 missing - each missing item has a discovery suggestion.</p><a class="card-link" href="pages/questions.html">Open &rarr;</a></article><article class="kpi"><span class="kpi-label">Suggestions awaiting review</span><strong>14</strong><p>Nothing is implemented until a reviewer picks a path.</p><a class="card-link" href="pages/suggestions.html">Open &rarr;</a></article><article class="kpi"><span class="kpi-label">Injury/depth official coverage</span><strong>partial</strong><p>Weekly report is official and live; depth strings are not published by the league.</p><a class="card-link" href="pages/injuries-depth.html">Open &rarr;</a></article><article class="kpi"><span class="kpi-label">Flags for owner review</span><strong>12</strong><p>All values blank by policy; none blocks publication.</p><a class="card-link" href="pages/flagged.html">Open &rarr;</a></article></div>
+    <section class="block">
+      <div class="eyebrow">DECISION QUEUE</div>
+      <h2>What a reviewer decides first</h2>
+      <div class="table-wrap"><table><thead><tr><th>Decision</th><th>Recommended path</th><th>Why it blocks</th><th>Source</th></tr></thead><tbody><tr><td>Canonical site (SG-01)</td><td>Root Line Lab as canonical; sibling hubs become archives</td><td>Eight overlapping hubs confuse every reader-facing claim</td><td><a href="pages/suggestions.html" class="internal" rel="noopener">where published</a> &middot; <a href="https://github.com/karagemop466-tech/Korea2" class="ext" rel="noopener">This repository on GitHub (karagemop466-tech/Korea2)</a></td></tr>
+<tr><td>Injury &amp; depth tracker (SG-02)</td><td>One tracker: official weekly report + inferred usage tiers, blanks kept</td><td>The only major requirement with no working implementation</td><td><a href="pages/injuries-depth.html" class="internal" rel="noopener">where published</a> &middot; <a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a> &middot; <a href="https://www.nfl.com/teams/new-england-patriots/depth-chart" class="ext" rel="noopener">NFL.com club depth-chart path (tried for depth strings)</a></td></tr>
+<tr><td>Gate catalog &amp; rewards (SG-03/04)</td><td>One 10-gate catalog, one paper reward schedule</td><td>Four gate systems and four reward schemes are published today</td><td><a href="pages/leaderboard.html" class="internal" rel="noopener">where published</a> &middot; <a href="https://www.kaggle.com/competitions/nfl-big-data-bowl-2027" class="ext" rel="noopener">NFL Big Data Bowl 2027 (Kaggle) — competition and awards</a></td></tr>
+<tr><td>Odds data acquisition (Q-05/Q-06)</td><td>Acquire a licensed historical odds feed or start a forward-only log</td><td>Without prices there can be no prop ROI and no CLV, ever</td><td><a href="pages/questions.html" class="internal" rel="noopener">where published</a> &middot; <a href="https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports" class="ext" rel="noopener">NFL–Genius Sports strategic partnership announcement (data distribution)</a></td></tr></tbody></table></div>
+    </section>
+    <section class="block">
+      <div class="eyebrow">VERIFIED THIS SESSION</div>
+      <h2>Official checks performed on 2026-11-12</h2>
+      <div class="table-wrap"><table><thead><tr><th>Check</th><th>Result</th><th>Detail</th><th>Source</th></tr></thead><tbody><tr><td>NFL.com 2026 standings</td><td>pass</td><td>All 32 records read; repo snapshots reconcile at their as-of dates; Week 9 drift documented</td><td><a href="https://www.nfl.com/standings/division/2026/REG" class="ext" rel="noopener">NFL.com 2026 regular-season division standings (live page)</a></td></tr>
+<tr><td>NFL.com Week 10 injury report</td><td>pass</td><td>Live; player/position/injury/practice/game status per club; cross-checks with standings</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" class="ext" rel="noopener">Official NFL injury report, Week 10 of the 2026 season</a></td></tr>
+<tr><td>nflverse release metadata</td><td>pass with drift</td><td>28/31 manifest assets byte-match; 3 rolling 2026 assets newer upstream (flagged)</td><td><a href="https://api.github.com/repos/nflverse/nflverse-data/releases" class="ext" rel="noopener">nflverse-data release metadata (GitHub Releases API)</a></td></tr>
+<tr><td>Cited official URLs</td><td>2 dead found</td><td>operations.nfl.com injury policy and nfl.com depth-chart both 404 (flagged, blanks kept)</td><td><a href="https://operations.nfl.com/football-ops/league-governance/injury-report/" class="ext" rel="noopener">NFL Operations league-governance injury-report policy path</a> &middot; <a href="https://www.nfl.com/teams/new-england-patriots/depth-chart" class="ext" rel="noopener">NFL.com club depth-chart path (tried for depth strings)</a></td></tr>
+<tr><td>Local build &amp; link suite</td><td>pass</td><td>verify.py + tests/check_site.py + check_links + validate_data + audit/check_site</td><td><a href="https://github.com/karagemop466-tech/Korea2" class="ext" rel="noopener">This repository on GitHub (karagemop466-tech/Korea2)</a></td></tr></tbody></table></div>
+    </section>
+    
+    <footer>
+      <p>Research and measurement, not betting advice. Every value is read from committed JSON by
+      <code>verify-hub/scripts/build_site.py</code>; every table row links the source it rests on.
+      Values that no official source confirms are left blank and published on the Flagged page.</p>
+      <p><a href="pages/sources.html">Source register</a> &middot;
+         <a href="pages/questions.html">Decision questions</a> &middot;
+         <a href="pages/flagged.html">Flagged for review</a></p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
