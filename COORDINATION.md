@@ -1329,3 +1329,21 @@ All 39 entries in `suggestions/data/sources.json` were opened via web_search or 
 - 2026-11-12 UTC — Built static site with `suggestions/scripts/build_site.py` (deterministic; byte-identical on re-run). 13 HTML pages: landing + 12 subpages. Every table row verified to contain a source link; no http (non-https) links. Local link integrity: every relative link resolves to a file that exists.
 - 2026-11-12 UTC — Pre-push verification: existing repo checks run (see below) before PR.
 
+
+### Release record — arena/43870fb8-korea2
+
+| Item | Value |
+|------|-------|
+| Pull request | https://github.com/karagemop466-tech/Korea2/pull/65 |
+| Title | Add Suggestions & Decision Hub — dedicated review queue, Q&A prerequisites, injury/depth tracker, gated competition |
+| Branch | `arena/43870fb8-korea2` → `main` |
+| Merged | 2026-11-12T13:04 UTC, merge commit `7445da6c0137cc020b5031abfce3134930834978` via `gh pr merge 65 --merge` |
+| Checks before merge | `validate` pass 21s, `verify` pass 29s, `tests-and-links` pass 23s, `verify-skill-lab` pass 6s |
+| Site URL | https://karagemop466-tech.github.io/Korea2/suggestions/ |
+| Pages deployment | Pages build `built` for commit `7445da6` at 2026-11-12 ~13:05 UTC; live verified via `curl -L suggestions/` and `suggestions/pages/suggestions.html` (12 proposals render) |
+| Flagged / unverified items | did not block merge; published on https://karagemop466-tech.github.io/Korea2/suggestions/pages/flagged.html (12 items) |
+| Final verification on main | `scripts/validate_data.py` PASS (58 sources), `tests/check_site.py` PASS (110 pages, 15 published by this build +95 other, 269 tables, 4604 links, 0 broken), `scripts/check_links.py` PASS (1793 refs, 0 broken), `tests/check_derived.py` PASS (11 JSON strict, 49 checks 45 pass 0 fail, 32/32 teams) |
+| Scope note | Non-overlapping: only `suggestions/` + `scripts/validate_data.py` allowlist entry for `colts.com` (official depth-chart source) + this board. Sibling directories untouched. |
+
+**Status update:** All 14 tasks in this session's board are now `done`. No strategy approved for capital (0/7); reward tiers remain paper schedule. The hub is the dedicated suggestions section the prompt requested — proposals must be approved before any implementation branch edits the referenced files.
+
