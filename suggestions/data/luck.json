@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Removing luck \u2014 what persists and what reverts",
+    "generated_on": "2026-11-12",
+    "policy": "Luck cannot be deleted; it can be priced via explicit gates."
+  },
+  "rows": [
+    {
+      "metric": "Pythagorean expectation vs actual win% (exponent 2.37, 877 team-seasons)",
+      "value": "R\u00b2=0.819",
+      "interpretation": "Points for/against explain most of win% \u2014 records are largely score-driven, not independent skill signal.",
+      "sources": [
+        "SRC-NFL-STANDINGS-2020",
+        "SRC-NFL-STANDINGS-2026"
+      ]
+    },
+    {
+      "metric": "SD of Pythagorean luck wins",
+      "value": "1.32 wins",
+      "interpretation": "Typical team over-/under-performs its points-based expectation by ~1 win; large deviations are common.",
+      "sources": [
+        "SRC-NFL-STANDINGS-2020"
+      ]
+    },
+    {
+      "metric": "Year-over-year correlation of Pythagorean luck",
+      "value": "r=0.024 (p=0.49, n=842)",
+      "interpretation": "Last season's luck does not carry forward \u2014 deviation was noise, not skill.",
+      "sources": [
+        "SRC-NIST-CORR"
+      ]
+    },
+    {
+      "metric": "Year-over-year correlation of one-score win rate",
+      "value": "r=0.082 (n=854, p\u22480.017, BH-marginal)",
+      "interpretation": "Weak persistence; not used in any strategy given multiple-testing concerns.",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-BH-1995"
+      ]
+    },
+    {
+      "metric": "Luck adjustment mechanism (gates)",
+      "value": "Deflated Sharpe p<0.05 + BH q\u22640.10 + bootstrap lower bound >0",
+      "interpretation": "Every strategy must survive permutation null calibrated to variants tried; 0 of 7 do.",
+      "sources": [
+        "SRC-KELLY-1956",
+        "SRC-BH-1995",
+        "SRC-NIST-PROP-TEST"
+      ]
+    }
+  ]
+}

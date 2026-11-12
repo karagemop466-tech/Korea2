@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "title": "Decision prerequisites \u2014 what must be true before any allocation decision is taken",
+    "generated_on": "2026-11-12",
+    "policy": "A decision is any commitment of attention, capital, model choice, or site change. Each row states the required information, whether it exists, where to find it, and what suggestion discovers it if missing."
+  },
+  "rule": "If a required information cell reads missing or unverified, the decision is blocked. This is the operational meaning of the Flagged for Review page.",
+  "rows": [
+    {
+      "id": "DEC-01",
+      "decision_area": "Publishing a new originated line",
+      "required_information": "The model line was computed walk-forward from pre-kickoff inputs only, with hyperparameters frozen on 2021-2022",
+      "availability": "have",
+      "where_to_find": "data/derived/model.json (hyperparameter_selection, model_spec, blend_selection) \u2014 hyperparameters chosen on 2021-2022 validation MAE 10.354",
+      "suggestion_to_discover": "If missing: re-run scripts/analyze_model.py with fixed validation window and re-check verification recompute (45/49 pass).",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES",
+        "SRC-NFLREADR-DICT-SCHED"
+      ]
+    },
+    {
+      "id": "DEC-02",
+      "decision_area": "Publishing a new originated line",
+      "required_information": "The closing line used as benchmark is the market line in the feed and its data dictionary field definition is confirmed",
+      "availability": "have (benchmark)",
+      "where_to_find": "data/derived/market.json (closing_spread_accuracy MAE 10.25, n=7087) and nflreadr dictionary (result, total, moneyline). Spread sign proven empirically (diag_signs.json corr 0.425).",
+      "suggestion_to_discover": "If missing: re-read nflreadr dictionary and cross-check spread_line vs moneyline means (+5.67 home fav vs -4.66 home dog).",
+      "sources": [
+        "SRC-NFLREADR-DICT-SCHED",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "DEC-03",
+      "decision_area": "Approving any strategy for a leaderboard reward",
+      "required_information": "All 10 gates passed, including G9 executable (price, limit, jurisdiction verified) and G10 reproducible",
+      "availability": "do_not_have",
+      "where_to_find": "data/derived/leaderboard.json and data/derived/strategies.json \u2014 every strategy currently REJECTED; G9 fails for all by construction (no verified execution).",
+      "suggestion_to_discover": "SUG-09: keep rewards as paper schedule; to make G9 pass, obtain verified sportsbook account, price feed with timestamps, and legal jurisdiction review \u2014 none verified today.",
+      "sources": [
+        "SRC-KAGGLE-BDB2027",
+        "SRC-NV-REG22",
+        "SRC-DK-HOUSE-RULES-CURRENT"
+      ]
+    },
+    {
+      "id": "DEC-04",
+      "decision_area": "Approving any parlay or player-prop combo for the leaderboard",
+      "required_information": "Correlation between the legs measured on point-in-time-eligible player assignments, not ex-post game leaders",
+      "availability": "have (with caveat)",
+      "where_to_find": "data/derived/correlation.json: QB\u2192WR1 r=0.562 (n=7560), WR1\u2194WR2 r=0.12, home-cover vs over \u03c6=0.016. WR rows labelled ex-post game leader (not pre-kickoff WR1) \u2014 flagged in SUG-08.",
+      "suggestion_to_discover": "SUG-08: introduce copula pricing using pre-kickoff depth-ranked WR1/WR2/TE assignments; measure ex-ante vs ex-post bias (e.g., +0.614 vs +0.372 gap noted in skill-lab).",
+      "sources": [
+        "SRC-NIST-CORR",
+        "SRC-DK-PARLAY-HELP",
+        "SRC-COLTS-DEPTH-CHART"
+      ]
+    },
+    {
+      "id": "DEC-05",
+      "decision_area": "Using injury or depth-chart information as a signal",
+      "required_information": "Daily official injury reports ingested on time (4pm ET filing deadline) and per-team depth-deficiency tier from official depth charts/rosters",
+      "availability": "do_not_have (tracking not built)",
+      "where_to_find": "Official feeds exist: nfl.com/injuries/ hub and weekly regN pages; colts.com/team/depth-chart and nfl.com/teams/<team>/roster. No automated tracker exists in this repo; flagged as missing in data/flagged.json.",
+      "suggestion_to_discover": "SUG-03: implement daily ingestion job at filing deadline; map Player\u2192Team\u2192Pos\u2192DepthRank; emit offense/defense deficiency per team; publish roster sentence that was read for each designation.",
+      "sources": [
+        "SRC-NFL-INJURIES-HUB",
+        "SRC-NFL-INJURY-POLICY-COMP",
+        "SRC-NFL-IMPORTANT-DATES-2026",
+        "SRC-COLTS-DEPTH-CHART",
+        "SRC-NFL-ROSTER-PATRIOTS"
+      ]
+    },
+    {
+      "id": "DEC-06",
+      "decision_area": "Using weather as a signal",
+      "required_information": "Point-forecast wind/temperature/precip for the stadium at issuance, with explicit coverage flag per game",
+      "availability": "partial",
+      "where_to_find": "Current dataset: historical wind covers ~57% of outdoor games 2020-2026 (flagged). Forward: NOAA NWS point forecast (forecast.weather.gov/MapClick?lat=&lon=) per stadium lat/lon at 12Z issuance. No automatic enrichment exists yet.",
+      "suggestion_to_discover": "SUG-06: add weather_available boolean per game; match outdoor games to forecast.weather.gov by stadium lat/lon; record issuance timestamp and store per-game wind_gust, temp, precip; show missing flag.",
+      "sources": [
+        "SRC-NOAA-NWS"
+      ]
+    },
+    {
+      "id": "DEC-07",
+      "decision_area": "Making a single-bet decision (ATS or total) on a specific game",
+      "required_information": "Model edge beyond closing line after controlling for close; incremental-slope test c and p-value, plus sample size and FDR-adjusted significance, closing-price exclusion counts",
+      "availability": "have (negative)",
+      "where_to_find": "data/derived/model.json incremental_information: c=-0.019 (p=0.881) \u2014 model adds nothing beyond close. Strategies S1-S2 ROI -5.28% and failing G4/G5. Price exclusions: 1902 of 7075 spreads lack home price.",
+      "suggestion_to_discover": "No additional missing data needed \u2014 published regression suffices to block the decision. To re-enable, would need new inputs (injury deltas, tracking aggregates) that do survive the incremental test.",
+      "sources": [
+        "SRC-PINNACLE-CLV",
+        "SRC-NIST-PROP-TEST",
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "DEC-08",
+      "decision_area": "Changing the site navigation or publishing a new section",
+      "required_information": "Proposal reviewed and set to approved; sibling lab scopes identified so no file is overwritten",
+      "availability": "have (this hub is isolated)",
+      "where_to_find": "COORDINATION.md claims table; suggestions/pages/suggestions.html review status; this hub lives only in suggestions/ (non-overlapping). Root archive request (SUG-11) logged, not applied here.",
+      "suggestion_to_discover": "Follow coordination rule: claim non-overlapping scope in COORDINATION.md, push claim before work, log request for root navigation link instead of editing it.",
+      "sources": [
+        "SRC-NFLVERSE-RELEASES"
+      ]
+    },
+    {
+      "id": "DEC-09",
+      "decision_area": "Claiming any flagged value as now verified",
+      "required_information": "A newly opened official source with URL, excerpt and HTTP status that supports the specific claim",
+      "availability": "conditional",
+      "where_to_find": "suggestions/data/sources.json and data/sources.json carry URL + excerpt + what_confirmed per source. Any value whose row cites one of these is considered verified; otherwise its cell stays blank and flagged.",
+      "suggestion_to_discover": "Open the candidate page via fetch_page or web_search result with full excerpt; record it as a new SRC-* entry; re-run tests/check_site.py which fails build on any table row lacking a source link.",
+      "sources": [
+        "SRC-NFL-GSIS-GUIDE",
+        "SRC-NFL-GENIUS-EXTENSION",
+        "SRC-NFL-STANDINGS-2020"
+      ]
+    },
+    {
+      "id": "DEC-10",
+      "decision_area": "Citing settlement rules (push, parlay reduction, teaser payout)",
+      "required_information": "Active operator house rules filed with regulator, with settlement sentences re-read",
+      "availability": "partial (edition stale)",
+      "where_to_find": "Citations currently read from DraftKings-House-Rules-8.1.24.pdf (now archived obsolete per MGC archive). Active edition approved 10.7.26 exists but its text not re-read due to sandbox fetch limitation.",
+      "suggestion_to_discover": "SUG-12: re-point at DraftKings-House-Rules-10.7.26.pdf, re-read the exact push/parlay/teaser sentences, and record excerpt + http_state; until then treat citation as edition-stale and flagged.",
+      "sources": [
+        "SRC-DK-HOUSE-RULES-OBS-ARCHIVE",
+        "SRC-DK-HOUSE-RULES-CURRENT",
+        "SRC-DK-HOUSE-RULES-824"
+      ]
+    }
+  ]
+}
