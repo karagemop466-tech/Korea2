@@ -1,0 +1,6 @@
+gh pr create did not open a pull request for this refresh.
+run: 43226067881   branch: line-lab-refresh/run-43226067881   target: main
+utc: 2026-11-12T13:22:05Z
+---
+pull request create failed: GraphQL: GitHub Actions is not permitted to create or approve pull requests (createPullRequest)
+---
