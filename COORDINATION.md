@@ -1281,3 +1281,28 @@ therefore recorded here; a maintainer can close them against this table.
   merge a stale-based refresh onto a green site near the end of the run. To restore fully automatic
   publishing, enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull
   requests*.
+
+---
+
+# Session board — `arena/780d4cbf-korea2` (NFL Insights: injury tracking, suggestions, decision Q&A, executive summary)
+
+**Session ID:** `arena/780d4cbf-korea2` (branch fixed by environment: `arena/780d4cbf-korea2`)
+**Claimed at:** 2026-11-12 UTC
+
+| Task | Status | Owner | File scope |
+| --- | --- | --- | --- |
+| IN-1 | Injury tracking & backup-depth deficiencies (official NFL injury report + roster) | in progress | `arena/780d4cbf-korea2` | `nfl-insights/` |
+| IN-2 | Suggestions section — reviewable change proposals before implementation | unclaimed | `arena/780d4cbf-korea2` | `nfl-insights/` |
+| IN-3 | Pre-decision questions / information / answers register | unclaimed | `arena/780d4cbf-korea2` | `nfl-insights/` |
+| IN-4 | Executive summary of important details | unclaimed | `arena/780d4cbf-korea2` | `nfl-insights/` |
+| IN-5 | Line-origination strategy summary (singles, parlays, prop combos, gates, correlations) | unclaimed | `arena/780d4cbf-korea2` | `nfl-insights/` |
+| IN-6 | GitHub Pages sub-site: clean landing page + category subpages, all rows sourced | unclaimed | `arena/780d4cbf-korea2` | `nfl-insights/` |
+| IN-7 | Line-by-line verification, flagged register, no inferred values | unclaimed | `arena/780d4cbf-korea2` | `nfl-insights/` |
+| IN-8 | PR to `main`, merge, confirm GitHub Pages deploy, record in COORDINATION.md | unclaimed | `arena/780d4cbf-korea2` | `nfl-insights/`, this board |
+
+Non-overlapping scope: this session writes only inside `nfl-insights/` and appends this section of `COORDINATION.md`. All sibling session directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination-lab/`, `origination/`, `pipeline/`, `skill-lab/`, `audit/`, `verification/`, root `index.html`, `pages/`, `assets/`, `scripts/`, `tests/`, `data/`) are read-only and are not edited. Navigation cross-links to sibling sites are requested here, not added, by this session.
+
+## Log — `arena/780d4cbf-korea2`
+
+- 2026-11-12 UTC — Claim written. Root site already states "No injury-report source confirmed, so injury signals are blocked" (root `index.html`, "What is deliberately blank"); this session fills that gap with official NFL injury-report data and flags backup depth ordering (2nd/3rd/4th string) as not officially published by the NFL, never inferred.
+- Claim push: committed and pushed immediately per the coordination protocol, before any other work.
