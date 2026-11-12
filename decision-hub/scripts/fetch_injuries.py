@@ -84,7 +84,7 @@ OFFENSE_POS = {"QB", "RB", "FB", "WR", "TE", "T", "G", "C", "OT", "OG", "OL", "L
                "RG", "LWR", "RWR", "SWR", "LTE", "RTE", "UTE", "HB", "TB", "KR", "PR"}
 DEFENSE_POS = {"DE", "DT", "NT", "EDGE", "LB", "ILB", "OLB", "MLB", "LILB", "RILB", "WLB", "SLB",
                "CB", "LCB", "RCB", "NCB", "S", "SS", "FS", "DB", "SAF", "LDE", "RDE", "LDT", "RDT",
-               "LOLB", "ROLB"}
+               "LOLB", "ROLB", "NB", "SCB", "NICKEL"}
 SPECIAL_POS = {"K", "P", "LS", "H", "PK"}
 
 
@@ -213,7 +213,18 @@ def build(season: int, raw: str) -> dict:
                 "depth_rank": i,
                 "position_depth": len(lst),
             }
+    # how many players share the same (team, position, pos_slot, pos_rank) tuple: a tie group is
+    # not a depth ordering, and the page must not present it as one
+    tie_count: dict[tuple, int] = defaultdict(int)
+    for r in snap:
+        key = (norm_team(r.get("team", "")), (r.get("pos_abb") or "").strip().upper(),
+               to_int(r.get("pos_slot")), to_int(r.get("pos_rank")))
+        tie_count[key] += 1
+    for gid, rec in depth_by_id.items():
+        rec["tied_at_slot"] = tie_count[(rec["team"], rec["pos"], rec["pos_slot"],
+                                        rec["pos_rank_in_slot"])]
     meta["depth_players_in_snapshot"] = len(depth_by_id)
+    meta["players_in_slot_tie_groups"] = sum(1 for r in depth_by_id.values() if r["tied_at_slot"] > 1)
     meta["positions_with_depth"] = len(by_team_pos)
 
     # ---------------------------------------------------------------- roster: status + pfr crosswalk
@@ -286,6 +297,7 @@ def build(season: int, raw: str) -> dict:
             "pos_rank_in_slot": d.get("pos_rank_in_slot"),
             "depth_rank": d.get("depth_rank"),
             "position_depth": d.get("position_depth"),
+            "tied_at_slot": d.get("tied_at_slot"),
             "on_depth_chart": gid in depth_by_id,
             "report_status": (r.get("report_status") or "").strip(),
             "report_injury": (r.get("report_primary_injury") or "").strip(),
@@ -300,9 +312,20 @@ def build(season: int, raw: str) -> dict:
 
     summary, rows = [], []
 
-    def string_label(rank):
+    def string_label(rank, n_at_rank: int | None = None):
+        """Label a depth ordinal, but do not pretend to distinguish a crowd.
+
+        At WR a club lists six to nine players in the same slot with the same pos_rank, so they
+        all share rank 1 in the feed and the ordinal then reads 8th for a player who is really
+        "one of eight receivers, all nominally first string". When several players share the
+        feed's own (pos_slot, pos_rank) pair, the label says so instead of inventing an order.
+        """
+        if not rank:
+            return "unknown"
+        if n_at_rank and n_at_rank > 1:
+            return f"1 of {n_at_rank} tied at this slot"
         return {1: "1st string", 2: "2nd string", 3: "3rd string", 4: "4th string",
-                5: "5th string"}.get(rank, f"{rank}th string" if rank else "unknown")
+                5: "5th string"}.get(rank, f"{rank}th string")
 
     for (team, wk), recs in sorted(by_team_week.items()):
         lost = [x for x in recs if x["report_status"] in OUT_STATUSES]
@@ -328,14 +351,16 @@ def build(season: int, raw: str) -> dict:
             nxt = avail[0]
             next_up[pos] = {
                 "player": nxt["player"], "rank": nxt["depth_rank"],
-                "string": string_label(nxt["depth_rank"]),
+                "string": string_label(nxt["depth_rank"], nxt.get("tied_at_slot")),
+                "tied_at_slot": nxt.get("tied_at_slot"),
                 "snap_share_4wk": nxt["snap_share_4wk"],
                 "report_status": nxt["report_status"],
                 "practice_status": nxt["practice_status"],
                 "covering_for": [{"player": o["player"], "rank": o["depth_rank"],
                                   "injury": o["report_injury"]} for o in out_here],
             }
-            if best_out and nxt["depth_rank"] >= 2:
+            distinguishable = (nxt.get("tied_at_slot") or 1) == 1
+            if best_out and nxt["depth_rank"] >= 2 and distinguishable:
                 positions_down.append({
                     "position": pos,
                     "position_name": out_here[0]["position_name"],
@@ -343,7 +368,8 @@ def build(season: int, raw: str) -> dict:
                     "starter_injury": best_out["report_injury"],
                     "replacement": nxt["player"],
                     "replacement_rank": nxt["depth_rank"],
-                    "replacement_string": string_label(nxt["depth_rank"]),
+                    "replacement_string": string_label(nxt["depth_rank"], nxt.get("tied_at_slot")),
+                    "replacement_tied_at_slot": nxt.get("tied_at_slot"),
                     "replacement_snap_share_4wk": nxt["snap_share_4wk"],
                     "out_count_at_position": len(out_here),
                 })
@@ -369,7 +395,8 @@ def build(season: int, raw: str) -> dict:
             "next_up": next_up,
             "positions_down": positions_down,
             "out_names": [{"player": x["player"], "pos": x["position"], "rank": x["depth_rank"],
-                           "string": string_label(x["depth_rank"]), "injury": x["report_injury"],
+                           "string": string_label(x["depth_rank"], x.get("tied_at_slot")),
+                           "injury": x["report_injury"],
                            "status": x["report_status"], "snap_share_4wk": x["snap_share_4wk"],
                            "pos_grp": x["pos_grp"], "pos_slot": x["pos_slot"],
                            "pos_rank_in_slot": x["pos_rank_in_slot"]}
@@ -380,8 +407,9 @@ def build(season: int, raw: str) -> dict:
                         ("player", "position", "position_name", "pos_grp", "pos_slot",
                          "pos_rank_in_slot", "depth_rank", "position_depth", "side",
                          "report_status", "report_injury", "practice_status", "practice_injury",
-                         "roster_status", "snap_share_4wk", "on_depth_chart", "gsis_id")},
-                         "string": string_label(x["depth_rank"])})
+                         "roster_status", "snap_share_4wk", "on_depth_chart", "gsis_id",
+                         "tied_at_slot")},
+                         "string": string_label(x["depth_rank"], x.get("tied_at_slot"))})
 
     teams = sorted({s["team"] for s in summary})
     final_week = {t: max(weeks_by_team[t]) for t in weeks_by_team}
