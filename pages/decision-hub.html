@@ -63,8 +63,10 @@ td.num { text-align:right; font-variant-numeric:tabular-nums; font-family:var(--
 </div>
 <div class="dd-note"><strong>The short version.</strong> The market beats the model, no candidate passes
 the validation gates, and the reason is structural rather than statistical: there is no timestamped
-price and no committed lineup feed, so the gate that would license a strategy cannot pass. Four
-suggestions fix that. Three more are fixes to numbers this review found to be wrong.</div>
+price and no committed lineup feed, so the gate that would license a strategy cannot pass. Two
+suggestions supply those missing inputs (SG-02, SG-03), one turns the gate into a check that cannot
+regress silently (SG-10), and three repair numbers this review found to be wrong (SG-04, SG-07,
+SG-09).</div>
 <div class="dd-kpis"><article class="dd-kpi good"><span>Independent checks</span><strong>16/19</strong><p>Headline numbers that reproduce from the committed data. Two do not: see Re-verification.</p></article><article class="dd-kpi warn"><span>Irregularities found</span><strong>10</strong><p>Each one carries the source it was found in and what it means for a decision.</p></article><article class="dd-kpi bad"><span>Signal variants tested</span><strong>23</strong><p>Settled at the closing line across 2023-2026. Qualifying strategies: 0.</p></article><article class="dd-kpi info"><span>Suggestions awaiting review</span><strong>12</strong><p>Nothing is implemented while a suggestion is pending. Pick a path first.</p></article><article class="dd-kpi info"><span>Open questions</span><strong>17</strong><p>Grouped by whether we can answer them now, with one more feed, or not at all.</p></article><article class="dd-kpi warn"><span>Players on the official report</span><strong>108</strong><p>Transcribed from NFL.com for five Week 10 games. Verified starter/backup claims: 0.</p></article></div>
 <section class="block"><div class="eyebrow">OVERVIEW</div><h2>What is on this desk</h2><div class="dd-two">
   <div class="dd-card"><h3>Suggestions</h3><p>Twelve proposals. Each has a problem statement, an effort

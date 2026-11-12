@@ -136,6 +136,10 @@ SOURCE_LABELS = {
     NFL_RULEBOOK: "NFL 2026 rulebook",
     "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/predictions.csv":
         "committed predictions.csv",
+    "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json":
+        "committed leaderboard.json",
+    "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/strategies.json":
+        "committed strategies.json",
 }
 
 
@@ -349,13 +353,13 @@ def main() -> int:
     approved = lb.get("approved_count")
     check(checks, "V-16", "Strategies passing all ten gates",
           approved, int(sum(1 for e in entries if e.get("approved") is True)), 0,
-          f"{ROOT}/pages/leaderboard.html".replace(str(ROOT), "https://github.com/karagemop466-tech/Korea2/blob/main"),
+          f"https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json",
           note="Read from data/derived/leaderboard.json; the gate code is in scripts/analyze_strategies.py. "
                "Re-running the gate logic itself is out of scope for this check; only the published "
                "summary is cross-checked against its own entry list.")
     gates = strategies.get("gates_definition", [])
     check(checks, "V-17", "Number of validation gates defined", len(gates), 10, 0,
-          f"{ROOT}/pages/validation.html".replace(str(ROOT), "https://github.com/karagemop466-tech/Korea2/blob/main"),
+          "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/strategies.json",
           published_where="pages/validation.html")
 
     # ---- 8. player-prop honesty ------------------------------------------------------
