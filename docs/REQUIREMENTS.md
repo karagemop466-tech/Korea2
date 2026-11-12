@@ -39,6 +39,6 @@ These are the places a less careful build would have produced a number:
 | Player-prop ROI | no historical prop prices exist in the committed nflverse community extracts | `pages/flagged.html` |
 | Closing-line value | only closing prices are available, no timestamps or opens | `pages/flagged.html` |
 | Fixed-odds parlay payout ladder | operator-specific; not confirmed in the rulebook that was read | `pages/strategies.html`, `pages/flagged.html` |
-| Injury-based signals | NFL.com has a live official report; historical point-in-time snapshots and verified exact depth order are not in this repository | `pages/flagged.html`; `data/flagged.json` FL-12 |
+| Injury-based signals | NFL.com has a live report; historical injury snapshots and all-team depth history are absent. A single Colts team-published chart is labeled unofficial | `pages/flagged.html`; `data/flagged.json` FL-12 |
 | Prize money | no funded pool exists | `pages/leaderboard.html` |
 | Executable access, limits, jurisdiction | nothing verified | Gate G9 fails by design |

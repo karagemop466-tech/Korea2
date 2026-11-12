@@ -280,8 +280,8 @@ def page_executive() -> str:
                   'instead of assumed.</li>'
                   '<li>A historical player-prop price archive, which would turn the prop model from a '
                   'measurement into a testable strategy.</li>'
-                  '<li>Confirmation of the NFL injury-report policy text from an official source, which '
-                  'would unblock injury-based signals.</li></ul>')
+                  '<li>A historical, timestamped injury/active-inactive feed and dated team-published depth charts across teams; '
+                  'the one Colts chart reviewed is explicitly unofficial and no 32-team history is ingested.</li></ul>')
 
     body = (
         '<div class="hero compact"><div class="eyebrow">EXECUTIVE SUMMARY</div>'
@@ -1127,7 +1127,7 @@ def page_flagged() -> str:
         ("Executable access unverified", "high",
          "No verified sportsbook account, limits, jurisdiction or price availability. Gate G9 "
          "therefore fails for every strategy by construction.",
-         "dk-house-rules", "Nothing is presented as actionable."),
+         ["SRC-AGLC-INTERNET-STANDARDS-2026", "dk-house-rules"], "Nothing is presented as actionable."),
         ("Reward pool not funded", "medium",
          "The leaderboard reward tiers are a design proposal. No prize money exists.",
          "kelly-1956", "Rewards are labelled as a schedule, not a promise."),
@@ -1142,8 +1142,8 @@ def page_flagged() -> str:
          "nfl-standings-2020", "Shown with the per-team table on the Verification page; the unreconciled seasons "
          "are named rather than implied."),
         ("Historical injury/depth snapshots not ingested; legacy policy URL unavailable", "medium",
-         "NFL.com/injuries publishes a live weekly report and a separate NFL.com policy explainer is available. The older operations.nfl.com/football-ops/league-governance/injury-report/ URL returned 404. This project has no historical point-in-time injury/active-inactive snapshot series, and the inspected NFL.com roster page does not provide depth-chart order.",
-         "SRC-NFL-INJURIES", "No injury/depth adjustment is used; timestamped historical data and exact sourced depth labels are required first."),
+         "NFL.com/injuries publishes a live weekly report and a separate NFL.com policy explainer is available. The older operations.nfl.com/football-ops/league-governance/injury-report/ URL returned 404. This project has no historical point-in-time injury/active-inactive snapshot series or all-team depth archive. The inspected NFL.com roster page has no depth order; a Colts team-published chart exists but calls its weekly chart unofficial and covers one team only.",
+         ["SRC-NFL-INJURIES", "SRC-COLTS-DEPTH-CHART", "nfl-injury-policy"], "No injury/depth adjustment is used; timestamped history and per-team chart sources are required first."),
         ("Model underperforms the market", "medium",
          "The originated lines are worse than the closing line out of sample, and add no incremental "
          "information. They are published for grading, not use.",
@@ -1167,7 +1167,8 @@ def page_flagged() -> str:
     rows = []
     for title, sev, detail, sid, status in items:
         kind = {"high": "bad", "medium": "warn", "low": "ok"}[sev]
-        rows.append([esc(title), badge(kind, sev), esc(detail), esc(status), src(sid)])
+        source_html = " · ".join(src(source_id) for source_id in sid) if isinstance(sid, (list, tuple)) else src(sid)
+        rows.append([esc(title), badge(kind, sev), esc(detail), esc(status), source_html])
 
     body = (f'''<div class="hero compact"><div class="eyebrow">FLAGGED FOR REVIEW</div>
 <h1>What is missing, and why it is blank.</h1>
