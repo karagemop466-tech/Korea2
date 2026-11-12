@@ -1,0 +1,461 @@
+{
+ "meta": {
+  "title": "Decision Desk source register — every source fetched and read in this session",
+  "session": "arena/aa66ed82-korea2",
+  "captured": "2026-11-12",
+  "policy": "Sources marked fetched were opened and read in full this session. Team depth charts are labelled 'Unofficial' by the teams themselves (except the Arizona Cardinals page, titled 'Official Depth Chart') — see flagged.json FL-DD-02.",
+  "note": " SRC-DD-50 added after merging origin/main (lineup-lab board)."
+ },
+ "sources": [
+  {
+   "id": "SRC-DD-01",
+   "title": "NFL.com official injury report — Week 10 of the 2026 season",
+   "url": "https://www.nfl.com/injuries/",
+   "publisher": "NFL",
+   "fetched": "2026-11-12",
+   "use": "Primary practice/game-status source for all 14 Week 10 games (28 teams).",
+   "note": "Page title on capture: 'Injuries - Week 10 of the 2026 season'. Four teams (CHI, DEN, PHI, TB) appear in no Week 10 game on this report."
+  },
+  {
+   "id": "SRC-DD-02",
+   "title": "NFL Week 10 injury report (2026 season) — OUT/QUESTIONABLE designations",
+   "url": "https://www.nfl.com/news/nfl-week-10-injury-report-2026-season",
+   "publisher": "NFL",
+   "fetched": "2026-11-12",
+   "use": "Cross-check of OUT/QUESTIONABLE designations as of Thu Nov 12; confirms WAS and NE outs and NYG Malik Harrison questionable.",
+   "note": "Sunday statuses pending until inactives."
+  },
+  {
+   "id": "SRC-DD-03",
+   "title": "NFL news roundup: latest league updates from Wednesday, Nov. 11, 2026",
+   "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11",
+   "publisher": "NFL",
+   "fetched": "2026-11-12",
+   "use": "Injury names, depth-chart news (Beck start, Watson start, Cousins non-commitment, Jacobs surgery, Nacua timeline, kicker transactions) and the SEA/CIN rows missing from the report page.",
+   "note": "Read in full (4/4 chunks)."
+  },
+  {
+   "id": "SRC-DD-04",
+   "title": "Sam Darnold ruled out for Seahawks Week 10 game vs. Raiders; Drew Lock expected to start again",
+   "url": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again",
+   "publisher": "NFL",
+   "fetched": "2026-11-12",
+   "use": "SEA QB1 ruling and Lock/Milroe backup chain.",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-05",
+   "title": "Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start",
+   "url": "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+   "publisher": "NFL",
+   "fetched": "2026-11-12",
+   "use": "MIA QB transition Willis (IR) to McCord (first start); Brady Cook likely elevated as backup.",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-06",
+   "title": "Ravens' Lamar Jackson (right thumb) out 6-9 weeks, expects to return this season",
+   "url": "https://www.nfl.com/news/ravens-lamar-jackson-right-thumb-out-6-9-weeks-expects-to-return-this-season",
+   "publisher": "NFL",
+   "fetched": "2026-11-12",
+   "use": "BAL QB1 timeline (IR, 6-9 weeks), Tyler Huntley IR for the season, Jacoby Brissett acquired to lead.",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-07",
+   "title": "Saints: right guard Cesar Ruiz moving to center to replace injured Erik McCoy; rookie Jeremiah Wright will start at right guard",
+   "url": "https://www.neworleanssaints.com/news/new-orleans-saints-right-guard-cesar-ruiz-moving-to-center-to-replace-injured-erik-mccoy",
+   "publisher": "New Orleans Saints",
+   "fetched": "2026-11-12",
+   "use": "Official team-announcement of the NO interior OL replacement chain (McCoy → Ruiz at C; Wright starts at RG).",
+   "note": "Headline and summary captured on the Saints depth-chart page (SRC-DD-29)."
+  },
+  {
+   "id": "SRC-DD-08",
+   "title": "Deshaun Watson set to start Week 10 against the Texans",
+   "url": "https://www.clevelandbrowns.com/news/deshaun-watson-set-to-start-week-10-against-the-texans",
+   "publisher": "Cleveland Browns",
+   "fetched": "2026-11-12",
+   "use": "CLE QB1 designation (team announcement Wednesday).",
+   "note": "Linked from SRC-DD-03."
+  },
+  {
+   "id": "SRC-DD-09",
+   "title": "Chargers place Derwin James Jr. on injured reserve",
+   "url": "https://www.chargers.com/news/place-derwin-james-jr-injured-reserve-2026",
+   "publisher": "Los Angeles Chargers",
+   "fetched": "2026-11-12",
+   "use": "Evidence for apparent staleness of the LAC depth chart (Derwin James still listed as starting S).",
+   "note": "Headline captured on the Chargers depth-chart page (SRC-DD-37); transaction date not stated on the captured page — see FL-DD-06."
+  },
+  {
+   "id": "SRC-DD-10",
+   "title": "Dallas Cowboys unofficial 2026 depth chart",
+   "url": "https://www.dallascowboys.com/team/depth-chart/",
+   "publisher": "Dallas Cowboys",
+   "fetched": "2026-11-12",
+   "use": "DAL replacement order.",
+   "note": "Page labelled 'Unofficial 2026 Dallas Cowboys Depth Chart'."
+  },
+  {
+   "id": "SRC-DD-11",
+   "title": "Seattle Seahawks depth chart",
+   "url": "https://www.seahawks.com/team/depth-chart/",
+   "publisher": "Seattle Seahawks",
+   "fetched": "2026-11-12",
+   "use": "SEA replacement order (QB Darnold/Lock/Milroe, OL, DL).",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-12",
+   "title": "Miami Dolphins depth chart",
+   "url": "https://www.miamidolphins.com/team/depth-chart/",
+   "publisher": "Miami Dolphins",
+   "fetched": "2026-11-12",
+   "use": "MIA replacement order (QB row lists Kyle McCord only; K row empty).",
+   "note": "See FL-DD-03/FL-DD-07 for missing QB2 and empty K row."
+  },
+  {
+   "id": "SRC-DD-13",
+   "title": "Baltimore Ravens depth chart",
+   "url": "https://www.baltimoreravens.com/team/depth-chart/",
+   "publisher": "Baltimore Ravens",
+   "fetched": "2026-11-12",
+   "use": "BAL replacement order.",
+   "note": "Stale relative to transactions: lists Jackson/Huntley/Fagnano at QB with Brissett absent — see FL-DD-03."
+  },
+  {
+   "id": "SRC-DD-14",
+   "title": "Arizona Cardinals official depth chart",
+   "url": "https://www.azcardinals.com/team/depth-chart/",
+   "publisher": "Arizona Cardinals",
+   "fetched": "2026-11-12",
+   "use": "ARI replacement order (QB Beck/Johnson/Aguilar).",
+   "note": "Only team page found titled 'Official Depth Chart'."
+  },
+  {
+   "id": "SRC-DD-15",
+   "title": "Cleveland Browns depth chart",
+   "url": "https://www.clevelandbrowns.com/team/depth-chart/",
+   "publisher": "Cleveland Browns",
+   "fetched": "2026-11-12",
+   "use": "CLE replacement order (QB Watson/Sanders/Gabriel/Green).",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-16",
+   "title": "Green Bay Packers unofficial depth chart (Nov. 10, 2026)",
+   "url": "https://www.packers.com/team/depth-chart/",
+   "publisher": "Green Bay Packers",
+   "fetched": "2026-11-12",
+   "use": "GB replacement order (RB Jacobs/Lloyd/Strong/K. Johnson, OL, defense).",
+   "note": "Header: 'Unofficial, Nov. 10, 2026' — predates Wednesday's news; see FL-DD-14."
+  },
+  {
+   "id": "SRC-DD-17",
+   "title": "Los Angeles Rams unofficial depth chart",
+   "url": "https://www.therams.com/team/depth-chart/",
+   "publisher": "Los Angeles Rams",
+   "fetched": "2026-11-12",
+   "use": "LAR replacement order (WR Nacua/Whittington/Atwell, CB Lampkin, S McCollough).",
+   "note": "Header: 'Rams Unofficial Depth Chart'. Does not list Davante Adams — see FL-DD-05."
+  },
+  {
+   "id": "SRC-DD-18",
+   "title": "New England Patriots unofficial depth chart",
+   "url": "https://www.patriots.com/team/depth-chart/",
+   "publisher": "New England Patriots",
+   "fetched": "2026-11-12",
+   "use": "NE replacement order (RB, OL, CB Carlton Davis → Channing Canada).",
+   "note": "Page disclaimer: unofficial, reflects opinions of Patriots.com writers and does not necessarily reflect those of the organization — see FL-DD-02."
+  },
+  {
+   "id": "SRC-DD-19",
+   "title": "Pittsburgh Steelers depth chart",
+   "url": "https://www.steelers.com/team/depth-chart/",
+   "publisher": "Pittsburgh Steelers",
+   "fetched": "2026-11-12",
+   "use": "PIT replacement order.",
+   "note": "Lists no backup at LOLB (T.J. Watt) or DT (Cameron Heyward) — see FL-DD-07."
+  },
+  {
+   "id": "SRC-DD-20",
+   "title": "Washington Commanders depth chart",
+   "url": "https://www.commanders.com/team/depth-chart/",
+   "publisher": "Washington Commanders",
+   "fetched": "2026-11-12",
+   "use": "WAS replacement order (C Allegretti/Gulbin).",
+   "note": "Ruled-out C Lucas Patrick absent from the chart — see FL-DD-08."
+  },
+  {
+   "id": "SRC-DD-21",
+   "title": "Minnesota Vikings 2026 unofficial depth chart",
+   "url": "https://www.vikings.com/team/depth-chart/",
+   "publisher": "Minnesota Vikings",
+   "fetched": "2026-11-12",
+   "use": "MIN replacement order (QB Murray/Wentz/Brosmer).",
+   "note": "Does not list newly traded Kirk Cousins — see FL-DD-04."
+  },
+  {
+   "id": "SRC-DD-22",
+   "title": "Detroit Lions 2026 unofficial depth chart",
+   "url": "https://www.detroitlions.com/team/depth-chart/",
+   "publisher": "Detroit Lions",
+   "fetched": "2026-11-12",
+   "use": "DET replacement order (C Mays/Scruggs, CB Reed/Ya-Sin).",
+   "note": "Header: 'Compiled by Lions Football Communications'."
+  },
+  {
+   "id": "SRC-DD-23",
+   "title": "Jacksonville Jaguars depth chart",
+   "url": "https://www.jaguars.com/team/depth-chart/",
+   "publisher": "Jacksonville Jaguars",
+   "fetched": "2026-11-12",
+   "use": "JAX replacement order (DE Walker/Striggow, WR Meyers/C. Williams, RB Tuten/Allen).",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-24",
+   "title": "Kansas City Chiefs unofficial depth chart",
+   "url": "https://www.kcchiefs.com/team/depth-chart/",
+   "publisher": "Kansas City Chiefs",
+   "fetched": "2026-11-12",
+   "use": "KC replacement order (RT Moore/Ezeudu, DT Woods/Eason).",
+   "note": "Header: 'Kansas City Chiefs Unofficial Depth Chart'."
+  },
+  {
+   "id": "SRC-DD-25",
+   "title": "New Orleans Saints unofficial depth chart",
+   "url": "https://www.neworleanssaints.com/team/depth-chart/",
+   "publisher": "New Orleans Saints",
+   "fetched": "2026-11-12",
+   "use": "NO replacement order (C McCoy/Sherman, RG Ruiz/Wright, RB Kamara/Estimé).",
+   "note": "Header: 'New Orleans Saints Unofficial Depth Chart'; page also carries SRC-DD-07 headline."
+  },
+  {
+   "id": "SRC-DD-26",
+   "title": "Carolina Panthers depth chart",
+   "url": "https://www.panthers.com/team/depth-chart/",
+   "publisher": "Carolina Panthers",
+   "fetched": "2026-11-12",
+   "use": "CAR replacement order (RB Hubbard/Etienne, LB Okereke/Dodson).",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-27",
+   "title": "Tennessee Titans unofficial depth chart (as of 11/10/26)",
+   "url": "https://www.tennesseetitans.com/team/depth-chart/",
+   "publisher": "Tennessee Titans",
+   "fetched": "2026-11-12",
+   "use": "TEN replacement order (LB Barton/Hill, LG Skoronski, WR Tate/Ayomanor).",
+   "note": "Header: 'UNOFFICIAL DEPTH CHART (as of 11/10/26)'; no backup listed at LG or LB — see FL-DD-07; predates Wednesday news — see FL-DD-14."
+  },
+  {
+   "id": "SRC-DD-28",
+   "title": "Indianapolis Colts unofficial depth chart (Week 10)",
+   "url": "https://www.colts.com/team/depth-chart/",
+   "publisher": "Indianapolis Colts",
+   "fetched": "2026-11-12",
+   "use": "IND replacement order (RT Travis/Tenuta, WLB Carlies/Boettcher, MLB Davis-Gaither/Allen).",
+   "note": "Page's own news list confirms the Week 10 chart release vs the Dolphins."
+  },
+  {
+   "id": "SRC-DD-29",
+   "title": "New York Jets unofficial depth chart",
+   "url": "https://www.newyorkjets.com/team/depth-chart/",
+   "publisher": "New York Jets",
+   "fetched": "2026-11-12",
+   "use": "NYJ replacement order (DL Phillips/Heflin, QB Smith/Klubnik).",
+   "note": "Header: 'Unofficial Depth Chart … compiled by the New York Jets Communications Department'; DL1 starter cell empty — see FL-DD-07."
+  },
+  {
+   "id": "SRC-DD-30",
+   "title": "Atlanta Falcons depth chart",
+   "url": "https://www.atlantafalcons.com/team/depth-chart/",
+   "publisher": "Atlanta Falcons",
+   "fetched": "2026-11-12",
+   "use": "ATL replacement order (QB Penix/Tagovailoa/Dalton, DE/ILB depth, K Moody).",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-31",
+   "title": "New York Giants depth chart",
+   "url": "https://www.giants.com/team/depth-chart/",
+   "publisher": "New York Giants",
+   "fetched": "2026-11-12",
+   "use": "NYG replacement order (LB depth behind questionable Malik Harrison).",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-32",
+   "title": "Buffalo Bills depth chart",
+   "url": "https://www.buffalobills.com/team/depth-chart/",
+   "publisher": "Buffalo Bills",
+   "fetched": "2026-11-12",
+   "use": "BUF replacement order (OL depth behind four limited starters).",
+   "note": ""
+  },
+  {
+   "id": "SRC-DD-33",
+   "title": "Las Vegas Raiders depth chart as of November 10, 2026 (Week 10 vs Seattle)",
+   "url": "https://www.raiders.com/team/depth-chart/",
+   "publisher": "Las Vegas Raiders",
+   "fetched": "2026-11-12",
+   "use": "LV replacement order.",
+   "note": "Explicitly dated 'as of November 10, 2026 | Week 10 vs. Seattle Seahawks'."
+  },
+  {
+   "id": "SRC-DD-34",
+   "title": "Cincinnati Bengals 2026 depth chart",
+   "url": "https://www.bengals.com/team/depth-chart/",
+   "publisher": "Cincinnati Bengals",
+   "fetched": "2026-11-12",
+   "use": "CIN replacement order (LG Fairchild/Rivers, CB Turner/Davis, S Dugger).",
+   "note": "First fetch attempt returned HTTP 500; succeeded on retry via bengals.com path — see FL-DD-10."
+  },
+  {
+   "id": "SRC-DD-35",
+   "title": "San Francisco 49ers depth chart (updated 11/10/26)",
+   "url": "https://www.49ers.com/team/depth-chart/",
+   "publisher": "San Francisco 49ers",
+   "fetched": "2026-11-12",
+   "use": "SF replacement order (WR Evans/Watkins/Cooks, LT Williams/Lowe, CB depth).",
+   "note": "Header: 'Updated as of 11/10/26'. First attempt on sf49ers.com returned HTTP 500; succeeded on 49ers.com — see FL-DD-10."
+  },
+  {
+   "id": "SRC-DD-36",
+   "title": "Houston Texans depth chart (page renders no table)",
+   "url": "https://www.houstontexans.com/team/depth-chart/",
+   "publisher": "Houston Texans",
+   "fetched": "2026-11-12",
+   "use": "Attempted source for HOU replacement order.",
+   "note": "Page returned successfully but contains only an image and headlines — no depth-chart table. HOU replacement rows left blank and flagged (FL-DD-09)."
+  },
+  {
+   "id": "SRC-DD-37",
+   "title": "Los Angeles Chargers depth chart",
+   "url": "https://www.chargers.com/team/depth-chart/",
+   "publisher": "Los Angeles Chargers",
+   "fetched": "2026-11-12",
+   "use": "LAC replacement order (QB Herbert/Uiagalelei, S row still lists Derwin James).",
+   "note": "Page's own transaction list includes SRC-DD-09 — see FL-DD-06."
+  },
+  {
+   "id": "SRC-DD-38",
+   "title": "Repository under review: karagemop466-tech/Korea2",
+   "url": "https://github.com/karagemop466-tech/Korea2",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Repo identity, branch, workflows and prior-session history.",
+   "note": "Local checkout branch arena/aa66ed82-korea2, base e8d04a9."
+  },
+  {
+   "id": "SRC-DD-39",
+   "title": "Published GitHub Pages site (root build)",
+   "url": "https://karagemop466-tech.github.io/Korea2/",
+   "publisher": "GitHub Pages",
+   "fetched": "2026-11-12",
+   "use": "Published dashboard identity for leaderboard row links.",
+   "note": "Per-row source cells on the published leaderboard page cite this site's own pages."
+  },
+  {
+   "id": "SRC-DD-40",
+   "title": "NIST/SEMATECH e-Handbook of Statistical Methods",
+   "url": "https://www.itl.nist.gov/div898/handbook/",
+   "publisher": "NIST",
+   "fetched": "2026-11-12",
+   "use": "Method reference for correlation and significance reporting.",
+   "note": "Referenced by root methodology pages."
+  },
+  {
+   "id": "SRC-DD-41",
+   "title": "Root strategy leaderboard (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Aggregated leaderboard row: root Line Lab (9 entries, 0 approved).",
+   "note": "Read locally from data/derived/leaderboard.json."
+  },
+  {
+   "id": "SRC-DD-42",
+   "title": "Retired pipeline results (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/results/strategies.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Aggregated leaderboard row: pipeline/results build (5 strategies, 0 all-gate pass).",
+   "note": "Read locally from results/strategies.json."
+  },
+  {
+   "id": "SRC-DD-43",
+   "title": "Origination pipeline leaderboard (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination/site_data/leaderboard.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Aggregated leaderboard row: origination/ (31 strategies, 38,708 tickets).",
+   "note": "Read locally."
+  },
+  {
+   "id": "SRC-DD-44",
+   "title": "Origination-lab strategy leaderboard (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/data/derived/strategies.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Aggregated leaderboard row: origination-lab/ (18 strategies, 0 eligible).",
+   "note": "Read locally."
+  },
+  {
+   "id": "SRC-DD-45",
+   "title": "Quant-lab strategy leaderboard (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/data/processed/leaderboard.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Aggregated leaderboard row: quant-lab/ (21 tested, 0 qualified).",
+   "note": "Read locally."
+  },
+  {
+   "id": "SRC-DD-46",
+   "title": "Skill-lab strategy leaderboard (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/skill-lab/data/leaderboard.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Aggregated leaderboard row: skill-lab/ (16 tested, 0 qualified, unfunded pool).",
+   "note": "Read locally."
+  },
+  {
+   "id": "SRC-DD-47",
+   "title": "Root correlation measurements (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/correlation.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Correlation values quoted on the leaderboard page.",
+   "note": "Read locally."
+  },
+  {
+   "id": "SRC-DD-48",
+   "title": "Verification record (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/verification.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "49-check verification summary used in the repo review.",
+   "note": "Read locally."
+  },
+  {
+   "id": "SRC-DD-49",
+   "title": "Skill-lab correlation measurements (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/skill-lab/data/correlations.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Skill-lab correlation values quoted on the leaderboard page (COR-DD-11, COR-DD-12).",
+   "note": "Read locally from skill-lab/data/correlations.json."
+  },
+  {
+   "id": "SRC-DD-50",
+   "title": "Lineup-lab strategy board (committed JSON)",
+   "url": "https://github.com/karagemop466-tech/Korea2/blob/main/lineup-lab/data/leaderboard.json",
+   "publisher": "GitHub",
+   "fetched": "2026-11-12",
+   "use": "Aggregated leaderboard row: lineup-lab/ (8 evaluated, 0 approved) — merged to main after this session's initial capture.",
+   "note": "Read locally from lineup-lab/data/leaderboard.json; meta confirms total_evaluated 8, approved_count 0."
+  }
+ ]
+}

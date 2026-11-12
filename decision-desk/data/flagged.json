@@ -1,0 +1,186 @@
+{
+ "meta": {
+  "title": "Flagged for review — irregularities found this session (none block the merge)",
+  "session": "arena/aa66ed82-korea2",
+  "captured": "2026-11-12",
+  "policy": "Per project policy these items are published rather than hidden; they do not block the PR. Each row says what was observed, what the site does about it, and which suggestion would fix it.",
+  "counts": {
+   "total": 19,
+   "high": 7,
+   "carry_forward": 6
+  }
+ },
+ "flagged": [
+  {
+   "id": "FL-DD-01",
+   "title": "Injury report page says 'No Injuries Reported' while official news lists injuries",
+   "detail": "On 2026-11-12 the official Week 10 report page (SRC-DD-01) showed 'No Injuries Reported' for SEA, CIN, LAC and BAL. The official Wednesday roundup (SRC-DD-03) lists 12 Seahawks (incl. Sam Darnold ruled out) and 3 Bengals rows; LAC's own site says Derwin James was placed on IR (SRC-DD-09); Baltimore's QB1 and QB2 are on IR (SRC-DD-06).",
+   "severity": "High",
+   "status": "Open",
+   "sources": "SRC-DD-01, SRC-DD-03, SRC-DD-06, SRC-DD-09",
+   "handling": "Injuries page: SEA/CIN rows sourced from the roundup instead; 'No Injuries Reported' recorded as untrusted, never as healthy. Suggested fix: S-08."
+  },
+  {
+   "id": "FL-DD-02",
+   "title": "Every team depth chart except Arizona's is labelled 'Unofficial'",
+   "detail": "Packers ('Unofficial, Nov. 10, 2026'), Rams, Cowboys ('Unofficial 2026'), Patriots (explicit disclaimer that views 'don't necessarily reflect those of the organization'), Jets, Titans ('as of 11/10/26'), Chiefs, Saints, Vikings, Lions, Colts, Texans ('Unofficial Depth Chart') and others self-label as unofficial. Only azcardinals.com is titled 'Official Depth Chart'.",
+   "severity": "Medium",
+   "status": "Open",
+   "sources": "SRC-DD-14, SRC-DD-16, SRC-DD-18, SRC-DD-25, SRC-DD-27",
+   "handling": "All replacement rows cite the chart URL and carry its label; the methodology block states charts are team-published, not league-official. Suggested fix: S-09."
+  },
+  {
+   "id": "FL-DD-03",
+   "title": "Ravens depth chart is stale relative to transactions",
+   "detail": "The chart lists QBs Lamar Jackson and Tyler Huntley — both on IR per SRC-DD-06 — plus Joe Fagnano, and does not list Jacoby Brissett (acquired Nov. 6 to lead). The chart's K row is also behind: the roundup says Riley Patterson will kick Monday.",
+   "severity": "High",
+   "status": "Open",
+   "sources": "SRC-DD-06, SRC-DD-13, SRC-DD-03",
+   "handling": "BAL QB1/QB2 replacement rows left blank and flagged; kicker row records Patterson with the prior kicker left blank. Suggested fix: S-06, S-11."
+  },
+  {
+   "id": "FL-DD-04",
+   "title": "Vikings depth chart omits newly traded Kirk Cousins; Week 10 starter uncommitted",
+   "detail": "Cousins was acquired Tuesday (2027 3rd-round pick) but the chart still lists Kyler Murray / Carson Wentz / Max Brosmer. Coach O'Connell said it is 'too early' to commit to a starter; Murray DNP (hamstring) and Wentz limited (ankle).",
+   "severity": "High",
+   "status": "Open",
+   "sources": "SRC-DD-03, SRC-DD-21",
+   "handling": "MIN QB rows left blank and flagged until an official announcement. Suggested fix: S-06."
+  },
+  {
+   "id": "FL-DD-05",
+   "title": "Rams depth chart does not list Davante Adams",
+   "detail": "Official team news says Adams (hamstring) could return after the Nov. 25 game (Week 12), but he does not appear on the chart's WR rows (Nacua / Whittington / Atwell).",
+   "severity": "Medium",
+   "status": "Open",
+   "sources": "SRC-DD-03, SRC-DD-17",
+   "handling": "Noted in the Nacua deficiency row; no Adams row is published because his chart position cannot be verified. Suggested fix: S-09."
+  },
+  {
+   "id": "FL-DD-06",
+   "title": "Chargers chart lists Derwin James as starting S while the team's own news says he was placed on IR",
+   "detail": "chargers.com's transaction list on the depth-chart page includes 'Place Derwin James Jr. on Injured Reserve' (SRC-DD-09), yet the chart's first S row is Derwin James. The transaction date is not stated on the captured page, so the direction of the staleness cannot be confirmed.",
+   "severity": "Medium",
+   "status": "Open",
+   "sources": "SRC-DD-09, SRC-DD-37",
+   "handling": "Flag only; no LAC deficiency row is published from this. Suggested fix: S-11."
+  },
+  {
+   "id": "FL-DD-07",
+   "title": "Depth charts publish no backup at positions whose starter is out/DNP",
+   "detail": "Confirmed empty second-string cells: Pittsburgh LOLB (T.J. Watt) and DT (Cameron Heyward); San Francisco LCB (Renardo Green); Tennessee LG (Peter Skoronski) and LB (Cody Barton); Atlanta DL row 2 and one WR row; NY Jets DL1 starter cell empty; Miami QB2 and entire K row; Las Vegas C; New England LG third string. Several other rows (KC WR2, DET WR2, IND CB2, CAR CB2, ATL C/S) also stop after two or one names.",
+   "severity": "High",
+   "status": "Open",
+   "sources": "SRC-DD-12, SRC-DD-18, SRC-DD-19, SRC-DD-27, SRC-DD-29, SRC-DD-30, SRC-DD-33, SRC-DD-35",
+   "handling": "Affected replacement cells are blank with a 'no listed backup' note — never filled by inference. Suggested fix: S-09, S-11."
+  },
+  {
+   "id": "FL-DD-08",
+   "title": "Chart-vs-report roster mismatches",
+   "detail": "WAS: report rules out C Lucas Patrick but the chart does not list him (Allegretti/Gulbin are the chart's C row). NE: report lists Ben Brown as C while the chart starts him at LG. GB: report lists edge Micah Parsons but the chart's EDGE rows omit him. NYG: report lists LB Malik Harrison as questionable but the chart has no Harrison. LV: roundup lists C Trey Zuhn III but the chart's C row is Linderbaum only.",
+   "severity": "Medium",
+   "status": "Open",
+   "sources": "SRC-DD-01, SRC-DD-03, SRC-DD-16, SRC-DD-18, SRC-DD-20, SRC-DD-31, SRC-DD-33",
+   "handling": "Each affected row is flagged with the mismatch described; replacement cells for unchartable players are blank. Suggested fix: S-11."
+  },
+  {
+   "id": "FL-DD-09",
+   "title": "Texans depth-chart page renders no depth chart",
+   "detail": "https://www.houstontexans.com/team/depth-chart/ returns HTTP 200 but contains only an image and headlines — no table. Houston's Week 10 DNP/Limited players (Montgomery, Jordan, Al-Shaair and eight more) therefore have no verifiable replacement order.",
+   "severity": "High",
+   "status": "Open",
+   "sources": "SRC-DD-36",
+   "handling": "HOU deficiency rows published with blank starter/replacement and a flagged note. Suggested fix: S-09."
+  },
+  {
+   "id": "FL-DD-10",
+   "title": "Team depth-chart endpoints intermittently fail",
+   "detail": "sf49ers.com/team/depth-chart/ and cincinnatibengals.com/team/depth-chart/ each returned HTTP 500 on the first attempt; both succeeded on retry via 49ers.com and bengals.com paths. Site availability cannot be assumed for automation.",
+   "severity": "Low",
+   "status": "Open",
+   "sources": "SRC-DD-34, SRC-DD-35",
+   "handling": "Successful fetches recorded with final URLs; automation (S-08/S-09) must retry and log failures."
+  },
+  {
+   "id": "FL-DD-11",
+   "title": "Archived NFL injury pages carry week title/body mismatches (carry-forward)",
+   "detail": "Previously verified: /injuries/league/2025/reg1 titled Week 8 but body Week 1; /injuries/league/2026/reg7 titled Week 8 but body Week 7. Archived-week citations must be checked against the body, not the title.",
+   "severity": "Medium",
+   "status": "Open (carry-forward)",
+   "sources": "SRC-DD-01",
+   "handling": "No archived-week rows are published in this snapshot; only the live Week 10 page is used. Suggested fix: S-08."
+  },
+  {
+   "id": "FL-DD-12",
+   "title": "NFL.com roster pages lack depth-chart ordering (carry-forward, issue #16)",
+   "detail": "The league's roster pages list players without a published depth-chart order, which is why every replacement on this site cites a team chart instead.",
+   "severity": "Low",
+   "status": "Open (carry-forward)",
+   "sources": "SRC-DD-38",
+   "handling": "Mitigated by using team charts for all ordering; the underlying issue remains open in the repo ledger."
+  },
+  {
+   "id": "FL-DD-13",
+   "title": "No historical player-prop prices (carry-forward)",
+   "detail": "Without a historical props price feed, prop strategies cannot be scored at recorded prices; any prop ROI would rest on unstated price assumptions.",
+   "severity": "High",
+   "status": "Open (carry-forward)",
+   "sources": "SRC-DD-41",
+   "handling": "Questions register Q-04 records the gap; suggestion S-02 proposes the acquisition."
+  },
+  {
+   "id": "FL-DD-14",
+   "title": "Several charts are stamped before the Wednesday injury news",
+   "detail": "Packers 'Nov. 10, 2026', Titans 'as of 11/10/26', Raiders 'as of November 10, 2026', 49ers 'Updated as of 11/10/26' — all predate the Nov. 11 practice reports, so chart order may not reflect Wednesday decisions.",
+   "severity": "Medium",
+   "status": "Open",
+   "sources": "SRC-DD-16, SRC-DD-27, SRC-DD-33, SRC-DD-35",
+   "handling": "Every deficiency row pairs chart order with a same-week official report row; the chart date is shown on the page. Suggested fix: S-06."
+  },
+  {
+   "id": "FL-DD-15",
+   "title": "Reward pool is unfunded (carry-forward)",
+   "detail": "skill-lab competition_pool_points = 10,000 with cash_funding empty; root reward tiers are defined but carry no funding either.",
+   "severity": "High",
+   "status": "Open (carry-forward)",
+   "sources": "SRC-DD-46",
+   "handling": "Leaderboard page prints 'unfunded' on the pool row; decision assigned to S-03/Q-05."
+  },
+  {
+   "id": "FL-DD-16",
+   "title": "28 published pages outside the root build have no per-row source columns",
+   "detail": "tests/check_site.py reports: 97 pages checked, 15 with published per-row source cells, 28 outside the build link-checked only. Those pages were written by sibling sessions and are outside this session's file scope.",
+   "severity": "Low",
+   "status": "Open (out of scope)",
+   "sources": "SRC-DD-38",
+   "handling": "Logged as a request in COORDINATION.md rather than edited here; decision-desk pages in this PR do carry per-row sources."
+  },
+  {
+   "id": "FL-DD-17",
+   "title": "Root results snapshot is one week behind live play (carry-forward)",
+   "detail": "verification.json data_as_of_gameday = 2026-11-01 (Week 9; 108 settled 2026 games). Week 10 games are not yet in the results snapshot; the injury page, by contrast, is a Week 10 Wednesday snapshot.",
+   "severity": "Medium",
+   "status": "Open (carry-forward)",
+   "sources": "SRC-DD-48",
+   "handling": "Both as-of dates are printed on every page that uses them."
+  },
+  {
+   "id": "FL-DD-18",
+   "title": "The report page and the Wednesday roundup list different player sets for the same teams",
+   "detail": "Examples: Indianapolis CB Charvarius Ward appears as DNP on the report but not in the roundup; Arizona S Andrew Wingard appears in the roundup but not on the report; Dallas DL rows differ across the two. Neither source alone is complete.",
+   "severity": "Medium",
+   "status": "Open",
+   "sources": "SRC-DD-01, SRC-DD-03",
+   "handling": "Rows carry a sources array showing which document each came from; the Wingard case is published as a supplemental row with a note."
+  },
+  {
+   "id": "FL-DD-19",
+   "title": "Three different phrasings of the same 49-check verification record",
+   "detail": "README.md line 18 says '48 of 49 checks agree'; docs/EXECUTIVE_SUMMARY.md and EXECUTIVE_SUMMARY.md say '49 checks, 0 material disagreements'; verification.json records 45 PASS + 3 DIFFERS (expected) + 1 INFO = 49 with n_fail = 0. All three are reconcilable (45+3 = 48 'agree', INFO excluded) but a reader comparing them cannot tell without opening the JSON.",
+   "severity": "Low",
+   "status": "Open (carry-forward)",
+   "sources": "SRC-DD-48, SRC-DD-38",
+   "handling": "Recorded in the repo review; wording is owned by root pages outside this session's file scope — logged as a request in COORDINATION.md rather than edited. Suggested fix: S-13-style doc pass by the owner."
+  }
+ ]
+}

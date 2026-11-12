@@ -1,0 +1,261 @@
+{
+ "meta": {
+  "title": "Suggestions register — reviewer chooses the path before anything is implemented",
+  "session": "arena/aa66ed82-korea2",
+  "captured": "2026-11-12",
+  "how_to_use": "Every row starts with status 'proposed' and decision '(awaiting reviewer)'. A reviewer sets decision to accepted/deferred/rejected, fills decided_by and decided_on, and only then is the suggestion implemented. No suggestion in this register has been implemented by the session.",
+  "counts": {
+   "total": 15,
+   "high_priority": 7,
+   "accepted": 0
+  }
+ },
+ "suggestions": [
+  {
+   "id": "S-01",
+   "title": "Hold a no-bet status quo until a strategy clears 10/10 gates",
+   "category": "Policy",
+   "description": "Formally keep allocation at zero and publish that decision on the landing page; re-open only when a strategy passes every gate in any lab.",
+   "benefit": "Prevents capital from chasing noise; matches every lab's current 0-qualified result.",
+   "effort": "S",
+   "priority": "High",
+   "related_questions": [
+    "Q-01",
+    "Q-14",
+    "Q-22"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-02",
+   "title": "Acquire a licensed historical player-prop price feed",
+   "category": "Data",
+   "description": "Source a historical props price archive (or start a forward-only paper props book with logged prices) so prop strategies can be scored at recorded prices.",
+   "benefit": "Unblocks prop ROI measurement (currently impossible); closes the longest-standing data gap.",
+   "effort": "L",
+   "priority": "High",
+   "related_questions": [
+    "Q-04"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-03",
+   "title": "Decide the reward-pool funding question",
+   "category": "Governance",
+   "description": "Reviewer chooses: fund a cash pool, keep a points-only competition, or defer. Record the choice in the pool JSON and on the leaderboard page.",
+   "benefit": "The competition cannot pay rewards until this is decided; points-only is viable but should be explicit.",
+   "effort": "S",
+   "priority": "High",
+   "related_questions": [
+    "Q-05"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-04",
+   "title": "Commission a jurisdiction-specific legal review",
+   "category": "Governance",
+   "description": "Obtain a written review for Calgary, AB covering sportsbook access, advertising rules and personal use before any real-money step.",
+   "benefit": "Only way to answer the legal question with an official source instead of an assumption.",
+   "effort": "M",
+   "priority": "High",
+   "related_questions": [
+    "Q-06",
+    "Q-22"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-05",
+   "title": "Build a line-timestamping and CLV logger",
+   "category": "Measurement",
+   "description": "Every originated line gets an ISO timestamp and price; log the eventual closing line to compute CLV per line.",
+   "benefit": "CLV is the fastest honest measure of origination skill; currently uncomputable.",
+   "effort": "M",
+   "priority": "Medium",
+   "related_questions": [
+    "Q-07"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-06",
+   "title": "Add a Friday starter-confirmation sweep",
+   "category": "Injuries",
+   "description": "Each Friday (after inactives), update the injuries page: convert DNP/limited into final Out/active designations and fill the blank QB rows for MIN and BAL once announced.",
+   "benefit": "Turns Wednesday snapshots into decision-grade Friday lineups.",
+   "effort": "S",
+   "priority": "High",
+   "related_questions": [
+    "Q-08",
+    "Q-20"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-07",
+   "title": "Add a legal/responsible-use disclaimer",
+   "category": "Compliance",
+   "description": "The root site already carries a site-wide disclaimer ('Research and measurement, not betting advice...'); extend the same sentence to decision-desk footers (done in this session) and add the missing jurisdiction-specific line for Calgary, AB / Canada across the published pages.",
+   "benefit": "Closes the remaining compliance gap (Q-21 partial -> answered).",
+   "effort": "S",
+   "priority": "Medium",
+   "related_questions": [
+    "Q-21",
+    "Q-22"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-08",
+   "title": "Automate the official injury-report fetch",
+   "category": "Data",
+   "description": "Script the weekly fetch of nfl.com/injuries plus the Wednesday roundup, diff against last week, and write the snapshot JSON automatically (with source URLs and fetch timestamps).",
+   "benefit": "Replaces hand transcription; catches 'No Injuries Reported' contradictions automatically (FL-DD-01).",
+   "effort": "M",
+   "priority": "High",
+   "related_questions": [
+    "Q-09",
+    "Q-11"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-09",
+   "title": "Publish machine-readable depth-chart strings per team",
+   "category": "Data",
+   "description": "Extract each team's chart into a small JSON (team, position, string1..4) with fetch date and the chart's own 'official/unofficial' label.",
+   "benefit": "Removes the main manual step in the deficiency table; makes replacements queryable.",
+   "effort": "M",
+   "priority": "Medium",
+   "related_questions": [
+    "Q-10"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-10",
+   "title": "Add an availability gate for injury-alpha strategies",
+   "category": "Gates",
+   "description": "Any strategy that claims injury/depth alpha must pass a pre-registered gate: point-in-time injury inputs (SIG-05), no post-kickoff data, and a stability test across weeks.",
+   "benefit": "Prevents untestable injury claims from entering the competition.",
+   "effort": "M",
+   "priority": "Medium",
+   "related_questions": [
+    "Q-16"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-11",
+   "title": "Run a weekly chart-vs-report consistency check",
+   "category": "Quality",
+   "description": "Automated diff: players OUT/DNP on the report but absent from the team chart, and chart starters contradicted by transactions (the FL-DD-08 family).",
+   "benefit": "Would have caught WAS/NE/GB/NYG/LV mismatches without manual review.",
+   "effort": "S",
+   "priority": "Medium",
+   "related_questions": [
+    "Q-10"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-12",
+   "title": "Merge the six separate leaderboards into one cross-lab board",
+   "category": "Site",
+   "description": "One page ranking all 100 evaluations under a single, documented rule (gates passed, then ROI, with lab provenance on every row).",
+   "benefit": "Today the same idea (e.g. wind-under) appears in four labs with four different gate sets; a reviewer cannot compare them.",
+   "effort": "M",
+   "priority": "Medium",
+   "related_questions": [
+    "Q-12"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-13",
+   "title": "Extend CI to the Decision Desk verifier on every PR",
+   "category": "CI",
+   "description": "decision-desk.yml already runs verify_all; add it to the required PR checks alongside validate/checks/build-verify.",
+   "benefit": "Keeps per-row source links and blank-unverified policy enforced after this session.",
+   "effort": "S",
+   "priority": "Medium",
+   "related_questions": [
+    "Q-18"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-14",
+   "title": "Request an official stats/injury API for programmatic access",
+   "category": "Data",
+   "description": "Evaluate NFL's official developer/stats endpoints (and nflverse updates) for a licensed feed of injuries and box scores.",
+   "benefit": "Reduces reliance on page scraping; complements S-08.",
+   "effort": "L",
+   "priority": "Low",
+   "related_questions": [
+    "Q-16"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  },
+  {
+   "id": "S-15",
+   "title": "Hold a reviewer decision session on the four blocking questions",
+   "category": "Governance",
+   "description": "Reviewer answers S-01..S-04 (status quo, pool funding, legal review, prop feed) in one pass; results are recorded in this register.",
+   "benefit": "The only path from research to an actual decision.",
+   "effort": "S",
+   "priority": "High",
+   "related_questions": [
+    "Q-17"
+   ],
+   "status": "proposed",
+   "decision": "(awaiting reviewer)",
+   "decided_by": "",
+   "decided_on": ""
+  }
+ ]
+}

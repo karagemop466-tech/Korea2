@@ -1,0 +1,5549 @@
+{
+ "meta": {
+  "title": "Week 10 2026 NFL injury tracking and lineup-deficiency analysis",
+  "week": 10,
+  "season": 2026,
+  "captured": "2026-11-12",
+  "primary_source": "SRC-DD-01 (https://www.nfl.com/injuries/)",
+  "secondary_sources": [
+   "SRC-DD-02",
+   "SRC-DD-03",
+   "SRC-DD-04",
+   "SRC-DD-05",
+   "SRC-DD-06"
+  ],
+  "method": "Every row is transcribed from the official NFL Week 10 injury report page (fetched 2026-11-12). Injury names are added only where an official NFL.com source states them (SRC-DD-03). Deficiency chains pair a starter status (official report/news) with the replacement order published on the team's own depth chart (SRC-DD-10..SRC-DD-37). Blank cells with a flagged note mean no official source confirmed the value — nothing is inferred.",
+  "practice_vocabulary": {
+   "Full": "Full Participation in Practice",
+   "Limited": "Limited Participation in Practice",
+   "DNP": "Did Not Participate In Practice"
+  },
+  "counts": {
+   "report_rows": 254,
+   "supplemental_rows": 16,
+   "games": 14,
+   "deficiencies": 92,
+   "flagged_deficiencies": 24
+  }
+ },
+ "games": [
+  {
+   "id": "G1",
+   "kickoff": "THU Nov 12, 8:15 PM EST",
+   "network": "Prime Video",
+   "away": "WAS",
+   "home": "NYG",
+   "away_record": "2-5-1",
+   "home_record": "5-2-1",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G2",
+   "kickoff": "SUN Nov 15, 9:30 AM EST",
+   "network": "FOX, FOX DEPORTES",
+   "away": "NE",
+   "home": "DET",
+   "away_record": "5-4",
+   "home_record": "6-2",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G3",
+   "kickoff": "SUN Nov 15, 1:00 PM EST",
+   "network": "CBS",
+   "away": "KC",
+   "home": "ATL",
+   "away_record": "6-2",
+   "home_record": "3-6",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G4",
+   "kickoff": "SUN Nov 15, 1:00 PM EST",
+   "network": "FOX",
+   "away": "MIN",
+   "home": "GB",
+   "away_record": "6-2",
+   "home_record": "6-3",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G5",
+   "kickoff": "SUN Nov 15, 1:00 PM EST",
+   "network": "FOX",
+   "away": "JAX",
+   "home": "TEN",
+   "away_record": "6-2",
+   "home_record": "1-7",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G6",
+   "kickoff": "SUN Nov 15, 1:00 PM EST",
+   "network": "CBS",
+   "away": "BUF",
+   "home": "NYJ",
+   "away_record": "7-1",
+   "home_record": "2-7",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G7",
+   "kickoff": "SUN Nov 15, 1:00 PM EST",
+   "network": "CBS",
+   "away": "MIA",
+   "home": "IND",
+   "away_record": "1-7",
+   "home_record": "2-7",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G8",
+   "kickoff": "SUN Nov 15, 1:00 PM EST",
+   "network": "FOX",
+   "away": "CAR",
+   "home": "NO",
+   "away_record": "3-5",
+   "home_record": "3-5",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G9",
+   "kickoff": "SUN Nov 15, 4:05 PM EST",
+   "network": "CBS",
+   "away": "HOU",
+   "home": "CLE",
+   "away_record": "3-5",
+   "home_record": "5-4",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G10",
+   "kickoff": "SUN Nov 15, 4:05 PM EST",
+   "network": "CBS",
+   "away": "LAR",
+   "home": "ARI",
+   "away_record": "5-4",
+   "home_record": "3-6",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G11",
+   "kickoff": "SUN Nov 15, 4:05 PM EST",
+   "network": "CBS",
+   "away": "SEA",
+   "home": "LV",
+   "away_record": "5-4",
+   "home_record": "4-5",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G12",
+   "kickoff": "SUN Nov 15, 4:25 PM EST",
+   "network": "FOX",
+   "away": "SF",
+   "home": "DAL",
+   "away_record": "7-1",
+   "home_record": "4-5",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G13",
+   "kickoff": "SUN Nov 15, 8:20 PM EST",
+   "network": "NBC, UNIVERSO",
+   "away": "PIT",
+   "home": "CIN",
+   "away_record": "6-2",
+   "home_record": "6-2",
+   "source": "SRC-DD-01"
+  },
+  {
+   "id": "G14",
+   "kickoff": "MON Nov 16, 8:15 PM EST",
+   "network": "ESPN, ABC, ESPN2, ESPN DEPORTES",
+   "away": "LAC",
+   "home": "BAL",
+   "away_record": "0-8",
+   "home_record": "4-5",
+   "source": "SRC-DD-01"
+  }
+ ],
+ "no_report": [
+  {
+   "team": "SEA",
+   "page_says": "No Injuries Reported",
+   "contradicted_by": "SRC-DD-03 (Darnold ruled out; 11 more rows)",
+   "flagged": "FL-DD-01",
+   "source": "SRC-DD-01"
+  },
+  {
+   "team": "CIN",
+   "page_says": "No Injuries Reported",
+   "contradicted_by": "SRC-DD-03 (Fairchild, Turner, Dugger)",
+   "flagged": "FL-DD-01",
+   "source": "SRC-DD-01"
+  },
+  {
+   "team": "LAC",
+   "page_says": "No Injuries Reported",
+   "contradicted_by": "SRC-DD-09 (Derwin James on IR; IR players do not appear on the weekly report)",
+   "flagged": "FL-DD-01",
+   "source": "SRC-DD-01"
+  },
+  {
+   "team": "BAL",
+   "page_says": "No Injuries Reported",
+   "contradicted_by": "SRC-DD-06 (Lamar Jackson IR 6-9 weeks; Tyler Huntley IR for the season)",
+   "flagged": "FL-DD-01",
+   "source": "SRC-DD-01"
+  }
+ ],
+ "report_rows": [
+  {
+   "id": "IR-001",
+   "team": "WAS",
+   "player": "John Bates",
+   "position": "TE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-002",
+   "team": "WAS",
+   "player": "Treylon Burks",
+   "position": "WR",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-003",
+   "team": "WAS",
+   "player": "Jayden Daniels",
+   "position": "QB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-004",
+   "team": "WAS",
+   "player": "Matt Gulbin",
+   "position": "C",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-005",
+   "team": "WAS",
+   "player": "Chig Okonkwo",
+   "position": "TE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-006",
+   "team": "WAS",
+   "player": "Lucas Patrick",
+   "position": "C",
+   "injury": "Concussion",
+   "practice": "DNP",
+   "game_status": "Out",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-007",
+   "team": "WAS",
+   "player": "Amik Robertson",
+   "position": "CB",
+   "injury": "",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-008",
+   "team": "WAS",
+   "player": "Shy Tuttle",
+   "position": "DT",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-009",
+   "team": "WAS",
+   "player": "Colson Yankoff",
+   "position": "TE",
+   "injury": "Knee",
+   "practice": "DNP",
+   "game_status": "Out",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-010",
+   "team": "NYG",
+   "player": "Abdul Carter",
+   "position": "LB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-011",
+   "team": "NYG",
+   "player": "Jermaine Eluemunor",
+   "position": "T",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-012",
+   "team": "NYG",
+   "player": "Malik Harrison",
+   "position": "LB",
+   "injury": "Groin",
+   "practice": "Limited",
+   "game_status": "Questionable",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-02",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-013",
+   "team": "NYG",
+   "player": "Colton Hood",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-014",
+   "team": "NYG",
+   "player": "Theo Johnson",
+   "position": "TE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-015",
+   "team": "NYG",
+   "player": "Charlie Jones",
+   "position": "WR",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-016",
+   "team": "NYG",
+   "player": "J.J. McCarthy",
+   "position": "QB",
+   "injury": "Hip",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-017",
+   "team": "NYG",
+   "player": "Darnell Mooney",
+   "position": "WR",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-018",
+   "team": "NYG",
+   "player": "Malik Nabers",
+   "position": "WR",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-019",
+   "team": "NYG",
+   "player": "Cam Skattebo",
+   "position": "RB",
+   "injury": "Hamstring",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-020",
+   "team": "NYG",
+   "player": "Andrew Thomas",
+   "position": "T",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-021",
+   "team": "NE",
+   "player": "Ben Brown",
+   "position": "C",
+   "injury": "Knee",
+   "practice": "DNP",
+   "game_status": "Out",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-022",
+   "team": "NE",
+   "player": "A.J. Brown",
+   "position": "WR",
+   "injury": "Ankle/knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-023",
+   "team": "NE",
+   "player": "Kevin Byard",
+   "position": "S",
+   "injury": "Chest",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-024",
+   "team": "NE",
+   "player": "Carlton Davis III",
+   "position": "CB",
+   "injury": "Knee",
+   "practice": "DNP",
+   "game_status": "Out",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-025",
+   "team": "NE",
+   "player": "Reggie Gilliam",
+   "position": "FB",
+   "injury": "Designated to return from IR",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-026",
+   "team": "NE",
+   "player": "TreVeyon Henderson",
+   "position": "RB",
+   "injury": "Illness",
+   "practice": "DNP",
+   "game_status": "Out",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-027",
+   "team": "NE",
+   "player": "Hunter Henry",
+   "position": "TE",
+   "injury": "Foot",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-028",
+   "team": "NE",
+   "player": "Cameron Latu",
+   "position": "TE",
+   "injury": "Back",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-029",
+   "team": "NE",
+   "player": "Drake Maye",
+   "position": "QB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-030",
+   "team": "NE",
+   "player": "Morgan Moses",
+   "position": "T",
+   "injury": "Foot",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-031",
+   "team": "NE",
+   "player": "Walter Rouse",
+   "position": "T",
+   "injury": "Concussion protocol",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-032",
+   "team": "NE",
+   "player": "Brenden Schooler",
+   "position": "S",
+   "injury": "Hamstring",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-033",
+   "team": "NE",
+   "player": "Rhamondre Stevenson",
+   "position": "RB",
+   "injury": "Knee",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-034",
+   "team": "NE",
+   "player": "Greg Van Roten",
+   "position": "G",
+   "injury": "Hamstring",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-035",
+   "team": "NE",
+   "player": "Charles Woods",
+   "position": "CB",
+   "injury": "Hamstring",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-036",
+   "team": "DET",
+   "player": "Brian Branch",
+   "position": "S",
+   "injury": "Hip",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-037",
+   "team": "DET",
+   "player": "Jared Goff",
+   "position": "QB",
+   "injury": "Chest",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-038",
+   "team": "DET",
+   "player": "Kerby Joseph",
+   "position": "S",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-039",
+   "team": "DET",
+   "player": "Cade Mays",
+   "position": "C",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-040",
+   "team": "DET",
+   "player": "D.J. Reed",
+   "position": "CB",
+   "injury": "Hip",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-041",
+   "team": "DET",
+   "player": "Jacob Saylors",
+   "position": "RB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-042",
+   "team": "DET",
+   "player": "Amon-Ra St. Brown",
+   "position": "WR",
+   "injury": "Rib",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-043",
+   "team": "DET",
+   "player": "Sione Vaki",
+   "position": "RB",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-044",
+   "team": "DET",
+   "player": "DJ Wonnum",
+   "position": "DE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-045",
+   "team": "KC",
+   "player": "Jeffrey Bassa",
+   "position": "LB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-046",
+   "team": "KC",
+   "player": "Mansoor Delane",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-047",
+   "team": "KC",
+   "player": "Justin Fields",
+   "position": "QB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-048",
+   "team": "KC",
+   "player": "Jaden Hicks",
+   "position": "S",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-049",
+   "team": "KC",
+   "player": "Travis Kelce",
+   "position": "TE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-050",
+   "team": "KC",
+   "player": "Patrick Mahomes",
+   "position": "QB",
+   "injury": "Knee/right elbow",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-051",
+   "team": "KC",
+   "player": "Jaylon Moore",
+   "position": "T",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-052",
+   "team": "KC",
+   "player": "Omarr Norman-Lott",
+   "position": "DT",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-053",
+   "team": "KC",
+   "player": "Rashee Rice",
+   "position": "WR",
+   "injury": "Knee",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-054",
+   "team": "KC",
+   "player": "Peter Woods",
+   "position": "DT",
+   "injury": "Neck",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-055",
+   "team": "KC",
+   "player": "Xavier Worthy",
+   "position": "WR",
+   "injury": "Hamstring",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-056",
+   "team": "ATL",
+   "player": "Zachariah Branch",
+   "position": "WR",
+   "injury": "Hamstring",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-057",
+   "team": "ATL",
+   "player": "Divine Deablo",
+   "position": "LB",
+   "injury": "Forearm",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-058",
+   "team": "ATL",
+   "player": "Gervon Dexter Sr.",
+   "position": "DT",
+   "injury": "Illness",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-059",
+   "team": "ATL",
+   "player": "James Pearce Jr.",
+   "position": "DE",
+   "injury": "Back",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-060",
+   "team": "ATL",
+   "player": "Za'Darius Smith",
+   "position": "DE",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-061",
+   "team": "ATL",
+   "player": "Josh Woods",
+   "position": "LB",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-062",
+   "team": "MIN",
+   "player": "Blake Cashman",
+   "position": "LB",
+   "injury": "Concussion",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-063",
+   "team": "MIN",
+   "player": "T.J. Hockenson",
+   "position": "TE",
+   "injury": "Wrist/chest",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-064",
+   "team": "MIN",
+   "player": "Tyrion Ingram-Dawkins",
+   "position": "DT",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-065",
+   "team": "MIN",
+   "player": "Theo Jackson",
+   "position": "S",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-066",
+   "team": "MIN",
+   "player": "Jauan Jennings",
+   "position": "WR",
+   "injury": "Calf",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-067",
+   "team": "MIN",
+   "player": "Kyler Murray",
+   "position": "QB",
+   "injury": "Hamstring",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-068",
+   "team": "MIN",
+   "player": "Kyle Van Noy",
+   "position": "LB",
+   "injury": "Calf",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-069",
+   "team": "MIN",
+   "player": "Jay Ward",
+   "position": "S",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-070",
+   "team": "MIN",
+   "player": "Carson Wentz",
+   "position": "QB",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-071",
+   "team": "GB",
+   "player": "Aaron Banks",
+   "position": "G",
+   "injury": "Knee/hip",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-072",
+   "team": "GB",
+   "player": "Chris Brooks",
+   "position": "RB",
+   "injury": "Ankle; injured reserve",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-073",
+   "team": "GB",
+   "player": "Javon Bullard",
+   "position": "S",
+   "injury": "Ankle/knee",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-074",
+   "team": "GB",
+   "player": "Zaire Franklin",
+   "position": "LB",
+   "injury": "Shin",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-075",
+   "team": "GB",
+   "player": "Travis Glover",
+   "position": "G",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-076",
+   "team": "GB",
+   "player": "Ty'Ron Hopper",
+   "position": "LB",
+   "injury": "",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-077",
+   "team": "GB",
+   "player": "Josh Jacobs",
+   "position": "RB",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-078",
+   "team": "GB",
+   "player": "Bo Melton",
+   "position": "WR",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-079",
+   "team": "GB",
+   "player": "Skyy Moore",
+   "position": "WR",
+   "injury": "Ankle; IR",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-080",
+   "team": "GB",
+   "player": "Micah Parsons",
+   "position": "LB",
+   "injury": "Illness",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-081",
+   "team": "GB",
+   "player": "Sean Rhyan",
+   "position": "C",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-082",
+   "team": "GB",
+   "player": "Trey Smack",
+   "position": "K",
+   "injury": "Right calf",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-083",
+   "team": "GB",
+   "player": "Lukas Van Ness",
+   "position": "LB",
+   "injury": "Back",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-084",
+   "team": "GB",
+   "player": "Josh Whyle",
+   "position": "TE",
+   "injury": "Concussion",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-085",
+   "team": "GB",
+   "player": "Savion Williams",
+   "position": "WR",
+   "injury": "Groin",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-086",
+   "team": "GB",
+   "player": "Kevin Zeitler",
+   "position": "G",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-087",
+   "team": "JAX",
+   "player": "Jessie Bates",
+   "position": "S",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-088",
+   "team": "JAX",
+   "player": "Ezra Cleveland",
+   "position": "G",
+   "injury": "Knee/ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-089",
+   "team": "JAX",
+   "player": "Branson Combs",
+   "position": "LB",
+   "injury": "Shoulder",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-090",
+   "team": "JAX",
+   "player": "Jordan Davis",
+   "position": "DT",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-091",
+   "team": "JAX",
+   "player": "Robert Hainsey",
+   "position": "C",
+   "injury": "Concussion",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-092",
+   "team": "JAX",
+   "player": "Antonio Johnson",
+   "position": "S",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-093",
+   "team": "JAX",
+   "player": "Jakobi Meyers",
+   "position": "WR",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-094",
+   "team": "JAX",
+   "player": "Chris Rodriguez Jr.",
+   "position": "RB",
+   "injury": "Hand",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-095",
+   "team": "JAX",
+   "player": "Bhayshul Tuten",
+   "position": "RB",
+   "injury": "Ankle/foot",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-096",
+   "team": "JAX",
+   "player": "Travon Walker",
+   "position": "DE",
+   "injury": "Rib",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-097",
+   "team": "TEN",
+   "player": "Cody Barton",
+   "position": "LB",
+   "injury": "Concussion",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-098",
+   "team": "TEN",
+   "player": "John Franklin-Myers",
+   "position": "DE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-099",
+   "team": "TEN",
+   "player": "Marcus Harris",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-100",
+   "team": "TEN",
+   "player": "Anthony Hill Jr.",
+   "position": "LB",
+   "injury": "Neck",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-101",
+   "team": "TEN",
+   "player": "Jaylon Jones",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-102",
+   "team": "TEN",
+   "player": "JC Latham",
+   "position": "T",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-103",
+   "team": "TEN",
+   "player": "Tony Pollard",
+   "position": "RB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-104",
+   "team": "TEN",
+   "player": "Peter Skoronski",
+   "position": "G",
+   "injury": "Hamstring",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-105",
+   "team": "TEN",
+   "player": "Tyjae Spears",
+   "position": "RB",
+   "injury": "Knee",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-106",
+   "team": "TEN",
+   "player": "Carnell Tate",
+   "position": "WR",
+   "injury": "Shoulder",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-107",
+   "team": "TEN",
+   "player": "Tommy Townsend",
+   "position": "P",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-108",
+   "team": "TEN",
+   "player": "Kevin Winston Jr.",
+   "position": "S",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-109",
+   "team": "BUF",
+   "player": "Alec Anderson",
+   "position": "G",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-110",
+   "team": "BUF",
+   "player": "Christian Benford",
+   "position": "CB",
+   "injury": "Wrist",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-111",
+   "team": "BUF",
+   "player": "Spencer Brown",
+   "position": "T",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-112",
+   "team": "BUF",
+   "player": "Dion Dawkins",
+   "position": "T",
+   "injury": "Rib",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-113",
+   "team": "BUF",
+   "player": "Greg Gaines",
+   "position": "DT",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-114",
+   "team": "BUF",
+   "player": "Jordan Hancock",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-115",
+   "team": "BUF",
+   "player": "Dalton Kincaid",
+   "position": "TE",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-116",
+   "team": "BUF",
+   "player": "Connor McGovern",
+   "position": "C",
+   "injury": "Neck",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-117",
+   "team": "BUF",
+   "player": "Ar'maj Reed-Adams",
+   "position": "G",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-118",
+   "team": "BUF",
+   "player": "T.J. Sanders",
+   "position": "DE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-119",
+   "team": "BUF",
+   "player": "Tyrell Shavers",
+   "position": "WR",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-120",
+   "team": "NYJ",
+   "player": "Omar Cooper Jr.",
+   "position": "WR",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-121",
+   "team": "NYJ",
+   "player": "Joseph Ossai",
+   "position": "DE",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-122",
+   "team": "NYJ",
+   "player": "VJ Payne",
+   "position": "S",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-123",
+   "team": "NYJ",
+   "player": "Harrison Phillips",
+   "position": "DT",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-124",
+   "team": "NYJ",
+   "player": "Trevin Wallace",
+   "position": "LB",
+   "injury": "Groin",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-125",
+   "team": "NYJ",
+   "player": "Garrett Wilson",
+   "position": "WR",
+   "injury": "Concussion",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-126",
+   "team": "NYJ",
+   "player": "Nahshon Wright",
+   "position": "CB",
+   "injury": "Back",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-127",
+   "team": "MIA",
+   "player": "Tucker Addington",
+   "position": "LS",
+   "injury": "Shoulder",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-128",
+   "team": "MIA",
+   "player": "Kaytron Allen",
+   "position": "RB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-129",
+   "team": "MIA",
+   "player": "Darrell Baker Jr.",
+   "position": "CB",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-130",
+   "team": "MIA",
+   "player": "Chris Bell",
+   "position": "WR",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-131",
+   "team": "MIA",
+   "player": "Aaron Brewer",
+   "position": "C",
+   "injury": "Concussion",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-132",
+   "team": "MIA",
+   "player": "Malik Herring",
+   "position": "DE",
+   "injury": "Neck",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-133",
+   "team": "MIA",
+   "player": "Will Kacmarek",
+   "position": "TE",
+   "injury": "Quad/knee",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-134",
+   "team": "MIA",
+   "player": "Michael Taaffe",
+   "position": "S",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-135",
+   "team": "MIA",
+   "player": "Dante Trader Jr.",
+   "position": "S",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-136",
+   "team": "MIA",
+   "player": "Jaylen Wright",
+   "position": "RB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-137",
+   "team": "IND",
+   "player": "Mo Alie-Cox",
+   "position": "TE",
+   "injury": "Groin",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-138",
+   "team": "IND",
+   "player": "Jaylon Carlies",
+   "position": "LB",
+   "injury": "Neck",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-139",
+   "team": "IND",
+   "player": "Akeem Davis-Gaither",
+   "position": "LB",
+   "injury": "Knee",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-140",
+   "team": "IND",
+   "player": "A.J. Haulcy",
+   "position": "S",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-141",
+   "team": "IND",
+   "player": "Arden Key",
+   "position": "DE",
+   "injury": "Designated to return from IR",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-142",
+   "team": "IND",
+   "player": "Luke Rhodes",
+   "position": "LS",
+   "injury": "Hamstring",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-143",
+   "team": "IND",
+   "player": "Jonathan Taylor",
+   "position": "RB",
+   "injury": "",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-144",
+   "team": "IND",
+   "player": "Jerry Tillery",
+   "position": "DT",
+   "injury": "Calf",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-145",
+   "team": "IND",
+   "player": "Jalen Travis",
+   "position": "T",
+   "injury": "Knee",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-146",
+   "team": "IND",
+   "player": "Justin Walley",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-147",
+   "team": "IND",
+   "player": "Charvarius Ward",
+   "position": "CB",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-148",
+   "team": "CAR",
+   "player": "Jonathon Brooks",
+   "position": "RB",
+   "injury": "Groin; designated to return from IR",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-149",
+   "team": "CAR",
+   "player": "Brady Christensen",
+   "position": "G",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-150",
+   "team": "CAR",
+   "player": "Trevor Etienne",
+   "position": "RB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-151",
+   "team": "CAR",
+   "player": "Chuba Hubbard",
+   "position": "RB",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-152",
+   "team": "CAR",
+   "player": "Lee Hunter",
+   "position": "DT",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-153",
+   "team": "CAR",
+   "player": "Mike Jackson",
+   "position": "CB",
+   "injury": "Groin; designated to return from IR",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-154",
+   "team": "CAR",
+   "player": "Will Lee III",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-155",
+   "team": "CAR",
+   "player": "Xavier Legette",
+   "position": "WR",
+   "injury": "Knee; designated to return from IR",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-156",
+   "team": "CAR",
+   "player": "Damien Lewis",
+   "position": "G",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-157",
+   "team": "CAR",
+   "player": "Bobby Okereke",
+   "position": "LB",
+   "injury": "Foot",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-158",
+   "team": "CAR",
+   "player": "Jaelan Phillips",
+   "position": "LB",
+   "injury": "Hamstring",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-159",
+   "team": "CAR",
+   "player": "Torricelli Simpkins III",
+   "position": "G",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-160",
+   "team": "NO",
+   "player": "Kelvin Banks Jr.",
+   "position": "T",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-161",
+   "team": "NO",
+   "player": "CJ Donaldson",
+   "position": "RB",
+   "injury": "Shoulder",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-162",
+   "team": "NO",
+   "player": "David Edwards",
+   "position": "G",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-163",
+   "team": "NO",
+   "player": "Martin Emerson",
+   "position": "CB",
+   "injury": "Shin",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-164",
+   "team": "NO",
+   "player": "Travis Etienne",
+   "position": "RB",
+   "injury": "Hamstring; designated to return from IR",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-165",
+   "team": "NO",
+   "player": "Noah Fant",
+   "position": "TE",
+   "injury": "Back",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-166",
+   "team": "NO",
+   "player": "Alvin Kamara",
+   "position": "RB",
+   "injury": "NIR-rest/back",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-167",
+   "team": "NO",
+   "player": "Erik McCoy",
+   "position": "C",
+   "injury": "Biceps",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-168",
+   "team": "NO",
+   "player": "Christen Miller",
+   "position": "DT",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-169",
+   "team": "NO",
+   "player": "Asim Richards",
+   "position": "T",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-170",
+   "team": "HOU",
+   "player": "Azeez Al-Shaair",
+   "position": "LB",
+   "injury": "Groin/NIR-personal",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-171",
+   "team": "HOU",
+   "player": "Reed Blankenship",
+   "position": "S",
+   "injury": "Concussion/hand",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-172",
+   "team": "HOU",
+   "player": "Tank Dell",
+   "position": "WR",
+   "injury": "Hand/shoulder",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-173",
+   "team": "HOU",
+   "player": "Blake Fisher",
+   "position": "T",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-174",
+   "team": "HOU",
+   "player": "Marvin Harrison Jr.",
+   "position": "WR",
+   "injury": "Hamstring",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-175",
+   "team": "HOU",
+   "player": "Jacob Hummel",
+   "position": "LB",
+   "injury": "Designated to return from IR",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-176",
+   "team": "HOU",
+   "player": "Brevin Jordan",
+   "position": "TE",
+   "injury": "Finger/foot",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-177",
+   "team": "HOU",
+   "player": "Woody Marks",
+   "position": "RB",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-178",
+   "team": "HOU",
+   "player": "David Montgomery",
+   "position": "RB",
+   "injury": "Groin",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-179",
+   "team": "HOU",
+   "player": "Keylan Rutledge",
+   "position": "G",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-180",
+   "team": "HOU",
+   "player": "Jaylin Smith",
+   "position": "CB",
+   "injury": "Designated to return from IR",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-181",
+   "team": "HOU",
+   "player": "Wyatt Teller",
+   "position": "G",
+   "injury": "Illness",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-182",
+   "team": "HOU",
+   "player": "Tommy Togiai",
+   "position": "DT",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-183",
+   "team": "CLE",
+   "player": "Austin Barber",
+   "position": "T",
+   "injury": "Calf",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-184",
+   "team": "CLE",
+   "player": "Denzel Boston",
+   "position": "WR",
+   "injury": "Toe",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-185",
+   "team": "CLE",
+   "player": "Michael Burton",
+   "position": "FB",
+   "injury": "Calf",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-186",
+   "team": "CLE",
+   "player": "Maliek Collins",
+   "position": "DT",
+   "injury": "Elbow",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-187",
+   "team": "CLE",
+   "player": "Harold Fannin Jr.",
+   "position": "TE",
+   "injury": "Groin",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-188",
+   "team": "CLE",
+   "player": "Ronnie Hickman Jr.",
+   "position": "S",
+   "injury": "Concussion",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-189",
+   "team": "CLE",
+   "player": "Tytus Howard",
+   "position": "T",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-190",
+   "team": "CLE",
+   "player": "Elgton Jenkins",
+   "position": "C",
+   "injury": "Knee",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-191",
+   "team": "CLE",
+   "player": "Carson Schwesinger",
+   "position": "LB",
+   "injury": "Wrist/ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-192",
+   "team": "CLE",
+   "player": "Denzel Ward",
+   "position": "CB",
+   "injury": "Quadricep",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-193",
+   "team": "CLE",
+   "player": "Quincy Williams",
+   "position": "LB",
+   "injury": "Hamstring",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-194",
+   "team": "LAR",
+   "player": "Davis Allen",
+   "position": "TE",
+   "injury": "Oblique",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-195",
+   "team": "LAR",
+   "player": "Steve Avila",
+   "position": "G",
+   "injury": "Hamstring",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-196",
+   "team": "LAR",
+   "player": "Joe Cardona",
+   "position": "LS",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-197",
+   "team": "LAR",
+   "player": "Kam Curl",
+   "position": "S",
+   "injury": "Toe",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-198",
+   "team": "LAR",
+   "player": "Terrance Ferguson",
+   "position": "TE",
+   "injury": "Hamstring",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-199",
+   "team": "LAR",
+   "player": "Myles Garrett",
+   "position": "LB",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-200",
+   "team": "LAR",
+   "player": "Trent McDuffie",
+   "position": "CB",
+   "injury": "Back",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-201",
+   "team": "LAR",
+   "player": "Puka Nacua",
+   "position": "WR",
+   "injury": "Knee/toe",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-202",
+   "team": "LAR",
+   "player": "Colby Parkinson",
+   "position": "TE",
+   "injury": "Ribs",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-203",
+   "team": "LAR",
+   "player": "Matthew Stafford",
+   "position": "QB",
+   "injury": "Right elbow",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-204",
+   "team": "ARI",
+   "player": "Budda Baker",
+   "position": "S",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-205",
+   "team": "ARI",
+   "player": "Zachary Carter",
+   "position": "DT",
+   "injury": "Designated to return from IR",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-206",
+   "team": "ARI",
+   "player": "Hjalte Froholdt",
+   "position": "C",
+   "injury": "Concussion",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-207",
+   "team": "ARI",
+   "player": "Jon Gaines II",
+   "position": "G",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-208",
+   "team": "ARI",
+   "player": "Bam Knight",
+   "position": "RB",
+   "injury": "Concussion",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-209",
+   "team": "ARI",
+   "player": "Hunter Long",
+   "position": "TE",
+   "injury": "Designated to return from IR",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-210",
+   "team": "ARI",
+   "player": "Roy Lopez",
+   "position": "DT",
+   "injury": "Toe/ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-211",
+   "team": "ARI",
+   "player": "Max Melton",
+   "position": "CB",
+   "injury": "Knee/hand",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-212",
+   "team": "ARI",
+   "player": "Isaac Seumalo",
+   "position": "G",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-213",
+   "team": "ARI",
+   "player": "Dante Stills",
+   "position": "DT",
+   "injury": "Shoulder",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-214",
+   "team": "ARI",
+   "player": "Josh Sweat",
+   "position": "LB",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-215",
+   "team": "ARI",
+   "player": "Jayden Williams",
+   "position": "T",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-216",
+   "team": "ARI",
+   "player": "Mack Wilson",
+   "position": "LB",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-217",
+   "team": "LV",
+   "player": "Thomas Booker",
+   "position": "DT",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-218",
+   "team": "LV",
+   "player": "Foley Fatukasi",
+   "position": "DT",
+   "injury": "Shoulder/back",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-219",
+   "team": "LV",
+   "player": "Ian Thomas",
+   "position": "TE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-220",
+   "team": "LV",
+   "player": "Trey Zuhn III",
+   "position": "C",
+   "injury": "Concussion",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-221",
+   "team": "SF",
+   "player": "Mike Evans",
+   "position": "WR",
+   "injury": "Achilles",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-222",
+   "team": "SF",
+   "player": "Renardo Green",
+   "position": "CB",
+   "injury": "Back",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-223",
+   "team": "SF",
+   "player": "Nate Hobbs",
+   "position": "CB",
+   "injury": "Adductor",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-224",
+   "team": "SF",
+   "player": "Deommodore Lenoir",
+   "position": "CB",
+   "injury": "Foot",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-225",
+   "team": "SF",
+   "player": "Siran Neal",
+   "position": "S",
+   "injury": "",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-226",
+   "team": "SF",
+   "player": "Demarcus Robinson",
+   "position": "WR",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-227",
+   "team": "SF",
+   "player": "Deebo Samuel Sr.",
+   "position": "WR",
+   "injury": "Hamstring",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-228",
+   "team": "SF",
+   "player": "Upton Stout",
+   "position": "CB",
+   "injury": "",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-229",
+   "team": "SF",
+   "player": "C.J. West",
+   "position": "DT",
+   "injury": "Designated to return from IR",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-230",
+   "team": "SF",
+   "player": "Trent Williams",
+   "position": "T",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-231",
+   "team": "DAL",
+   "player": "Jonathan Bullard",
+   "position": "DT",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-232",
+   "team": "DAL",
+   "player": "Donovan Ezeiruaku",
+   "position": "LB",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-233",
+   "team": "DAL",
+   "player": "Jake Ferguson",
+   "position": "TE",
+   "injury": "Knee/ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-234",
+   "team": "DAL",
+   "player": "Tyler Goodson",
+   "position": "RB",
+   "injury": "Ankle/knee",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-235",
+   "team": "DAL",
+   "player": "Malik Hooker",
+   "position": "S",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-236",
+   "team": "DAL",
+   "player": "Marist Liufau",
+   "position": "LB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-237",
+   "team": "DAL",
+   "player": "P.J. Locke",
+   "position": "S",
+   "injury": "Concussion",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-238",
+   "team": "DAL",
+   "player": "Von Miller",
+   "position": "LB",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-239",
+   "team": "DAL",
+   "player": "Jonathan Mingo",
+   "position": "WR",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-240",
+   "team": "DAL",
+   "player": "Devin Moore",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-241",
+   "team": "DAL",
+   "player": "DeMarvion Overshown",
+   "position": "LB",
+   "injury": "Hamstring/back",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-242",
+   "team": "DAL",
+   "player": "George Pickens",
+   "position": "WR",
+   "injury": "Hamstring",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-243",
+   "team": "DAL",
+   "player": "Joey Porter Jr.",
+   "position": "CB",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-244",
+   "team": "DAL",
+   "player": "Luke Schoonmaker",
+   "position": "TE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-245",
+   "team": "DAL",
+   "player": "Brevyn Spann-Ford",
+   "position": "TE",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-246",
+   "team": "DAL",
+   "player": "KaVontae Turpin",
+   "position": "WR",
+   "injury": "Ribs",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-247",
+   "team": "PIT",
+   "player": "Brandin Echols",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-248",
+   "team": "PIT",
+   "player": "DeShon Elliott",
+   "position": "S",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-249",
+   "team": "PIT",
+   "player": "Derrick Harmon",
+   "position": "DT",
+   "injury": "Designated to return from IR",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03"
+   ]
+  },
+  {
+   "id": "IR-250",
+   "team": "PIT",
+   "player": "Cameron Heyward",
+   "position": "DT",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-251",
+   "team": "PIT",
+   "player": "Ben Skowronek",
+   "position": "WR",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-252",
+   "team": "PIT",
+   "player": "Doneiko Slaughter",
+   "position": "CB",
+   "injury": "",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-253",
+   "team": "PIT",
+   "player": "Darnell Washington",
+   "position": "TE",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  },
+  {
+   "id": "IR-254",
+   "team": "PIT",
+   "player": "T.J. Watt",
+   "position": "LB",
+   "injury": "",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-01"
+   ]
+  }
+ ],
+ "supplemental_rows": [
+  {
+   "id": "SP-001",
+   "team": "SEA",
+   "player": "Sam Darnold",
+   "position": "QB",
+   "injury": "Ribs/quadricep",
+   "practice": "DNP",
+   "game_status": "Out",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": "Ruled out for Sunday's game vs Raiders (roundup)"
+  },
+  {
+   "id": "SP-002",
+   "team": "SEA",
+   "player": "Drew Lock",
+   "position": "QB",
+   "injury": "Right elbow/oblique",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-003",
+   "team": "SEA",
+   "player": "Rashid Shaheed",
+   "position": "WR",
+   "injury": "Knee",
+   "practice": "Full",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-004",
+   "team": "SEA",
+   "player": "Charles Cross",
+   "position": "T",
+   "injury": "Ankle",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-005",
+   "team": "SEA",
+   "player": "Anthony Bradford",
+   "position": "G",
+   "injury": "Knee",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-006",
+   "team": "SEA",
+   "player": "Quenton Nelson",
+   "position": "G",
+   "injury": "Knee",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-007",
+   "team": "SEA",
+   "player": "Jarran Reed",
+   "position": "DT",
+   "injury": "NIR-personal",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-008",
+   "team": "SEA",
+   "player": "Leonard Williams",
+   "position": "DT",
+   "injury": "Stinger",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-009",
+   "team": "SEA",
+   "player": "Derick Hall",
+   "position": "LB",
+   "injury": "Back",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-010",
+   "team": "SEA",
+   "player": "Uchenna Nwosu",
+   "position": "LB",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-011",
+   "team": "SEA",
+   "player": "Patrick O'Connell",
+   "position": "LB",
+   "injury": "Toe",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-012",
+   "team": "SEA",
+   "player": "Connor O'Toole",
+   "position": "LB",
+   "injury": "Foot",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-013",
+   "team": "CIN",
+   "player": "Dylan Fairchild",
+   "position": "G",
+   "injury": "Pectoral",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-014",
+   "team": "CIN",
+   "player": "DJ Turner II",
+   "position": "CB",
+   "injury": "Ankle",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-015",
+   "team": "CIN",
+   "player": "Kyle Dugger",
+   "position": "S",
+   "injury": "Quadricep",
+   "practice": "DNP",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": ""
+  },
+  {
+   "id": "SP-016",
+   "team": "ARI",
+   "player": "Andrew Wingard",
+   "position": "S",
+   "injury": "Groin",
+   "practice": "Limited",
+   "game_status": "",
+   "sources": [
+    "SRC-DD-03"
+   ],
+   "note": "Listed in the Wednesday roundup but absent from the official report page"
+  }
+ ],
+ "deficiencies": [
+  {
+   "id": "DEF-01",
+   "team": "SEA",
+   "side": "Offense",
+   "position": "QB",
+   "unit": "QB1",
+   "starter": "Sam Darnold",
+   "status": "OUT",
+   "starter_detail": "Ruled out for Week 10 (ribs/quadricep); DNP Wednesday",
+   "replacement": "Drew Lock",
+   "replacement_depth": "2nd string",
+   "next_up": "Jalen Milroe (3rd string, rookie)",
+   "evidence": "Darnold ruled out for Sunday vs Las Vegas; Lock (limited, elbow/oblique) expected to start again; Milroe is the rookie backup",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-04",
+    "SRC-DD-11"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-02",
+   "team": "MIA",
+   "side": "Offense",
+   "position": "QB",
+   "unit": "QB1",
+   "starter": "Malik Willis",
+   "status": "IR",
+   "starter_detail": "Placed on injured reserve (groin)",
+   "replacement": "Kyle McCord",
+   "replacement_depth": "chart 1st string",
+   "next_up": "Brady Cook (practice squad, likely elevated)",
+   "evidence": "Willis to IR; McCord in line for first NFL start; official depth chart lists McCord as the only QB and no kicker",
+   "sources": [
+    "SRC-DD-05",
+    "SRC-DD-12"
+   ],
+   "flagged": true,
+   "note": "Depth chart lists no QB2 and an empty K row — FL-DD-03/FL-DD-07"
+  },
+  {
+   "id": "DEF-03",
+   "team": "BAL",
+   "side": "Offense",
+   "position": "QB",
+   "unit": "QB1",
+   "starter": "Lamar Jackson",
+   "status": "IR",
+   "starter_detail": "Out 6-9 weeks (right thumb)",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "No official source names the Week 10 starter; depth chart still lists Jackson/Huntley/Fagnano and does not list acquired QB Jacoby Brissett",
+   "sources": [
+    "SRC-DD-06",
+    "SRC-DD-13"
+   ],
+   "flagged": true,
+   "note": "Week 10 starter unverified — FL-DD-03; left blank"
+  },
+  {
+   "id": "DEF-04",
+   "team": "BAL",
+   "side": "Offense",
+   "position": "QB",
+   "unit": "QB2",
+   "starter": "Tyler Huntley",
+   "status": "IR",
+   "starter_detail": "Out for the season",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Huntley on IR for the season; chart lists him as QB2 anyway; no official backup designation for Week 10",
+   "sources": [
+    "SRC-DD-06",
+    "SRC-DD-13"
+   ],
+   "flagged": true,
+   "note": "Chart stale — FL-DD-03; left blank"
+  },
+  {
+   "id": "DEF-05",
+   "team": "ARI",
+   "side": "Offense",
+   "position": "QB",
+   "unit": "QB1",
+   "starter": "Carson Beck",
+   "status": "STARTING",
+   "starter_detail": "First career start (3rd-round pick, 2026); announced Wednesday",
+   "replacement": "Josh Johnson",
+   "replacement_depth": "2nd string",
+   "next_up": "Joey Aguilar (3rd string)",
+   "evidence": "Coach Mike LaFleur announced Beck starts vs the Rams; chart lists Beck/Johnson/Aguilar in that order",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-14"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-06",
+   "team": "CLE",
+   "side": "Offense",
+   "position": "QB",
+   "unit": "QB1",
+   "starter": "Deshaun Watson",
+   "status": "STARTING",
+   "starter_detail": "Named starter Wednesday; cleared concussion protocol",
+   "replacement": "Shedeur Sanders",
+   "replacement_depth": "2nd string",
+   "next_up": "Dillon Gabriel (3rd), Taylen Green (4th)",
+   "evidence": "Team announced Watson starts vs Houston; chart order Watson/Sanders/Gabriel/Green; Sanders started Week 9",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-08",
+    "SRC-DD-15"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-07",
+   "team": "MIN",
+   "side": "Offense",
+   "position": "QB",
+   "unit": "QB1",
+   "starter": "Kyler Murray",
+   "status": "DNP",
+   "starter_detail": "Hamstring; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Murray DNP and Wentz (ankle) limited; coach O'Connell said it is 'too early' to commit to newly acquired Kirk Cousins; chart (stale) lists Murray/Wentz/Brosmer and no Cousins",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-21"
+   ],
+   "flagged": true,
+   "note": "Week 10 starter unverified — FL-DD-04; left blank"
+  },
+  {
+   "id": "DEF-08",
+   "team": "MIN",
+   "side": "Offense",
+   "position": "QB",
+   "unit": "QB2",
+   "starter": "Carson Wentz",
+   "status": "LIMITED",
+   "starter_detail": "Ankle; limited Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Wentz limited; behind him the chart lists Max Brosmer, but Cousins (acquired Tuesday) is not charted",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-21"
+   ],
+   "flagged": true,
+   "note": "FL-DD-04; left blank"
+  },
+  {
+   "id": "DEF-09",
+   "team": "GB",
+   "side": "Offense",
+   "position": "RB",
+   "unit": "RB1",
+   "starter": "Josh Jacobs",
+   "status": "OUT",
+   "starter_detail": "Broken ring finger; surgery this week; misses Week 10",
+   "replacement": "MarShawn Lloyd",
+   "replacement_depth": "2nd string",
+   "next_up": "Pierre Strong Jr. (3rd), K Jacobs (4th)",
+   "evidence": "Jacobs will miss Sunday vs Minnesota then the bye; chart (Unofficial, Nov. 10) lists Jacobs/Lloyd/Strong/Johnson",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-16"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-10",
+   "team": "NE",
+   "side": "Offense",
+   "position": "RB",
+   "unit": "RB1",
+   "starter": "Rhamondre Stevenson",
+   "status": "DNP",
+   "starter_detail": "Knee; DNP Wednesday",
+   "replacement": "Corey Kiner",
+   "replacement_depth": "3rd string",
+   "next_up": "Lan Larison (4th string)",
+   "evidence": "Stevenson DNP and 2nd-string TreVeyon Henderson ruled out (illness), so the next man up is the chart's 3rd-string Kiner",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-18"
+   ],
+   "flagged": false,
+   "note": "Both top-two RBs unavailable as of Wednesday"
+  },
+  {
+   "id": "DEF-11",
+   "team": "NE",
+   "side": "Offense",
+   "position": "RB",
+   "unit": "RB2",
+   "starter": "TreVeyon Henderson",
+   "status": "OUT",
+   "starter_detail": "Illness; ruled out for Week 10",
+   "replacement": "Corey Kiner",
+   "replacement_depth": "3rd string",
+   "next_up": "Lan Larison (4th string)",
+   "evidence": "Henderson ruled out; chart order Stevenson/Henderson/Kiner/Larison",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-18"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-12",
+   "team": "CAR",
+   "side": "Offense",
+   "position": "RB",
+   "unit": "RB1",
+   "starter": "Chuba Hubbard",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "Trevor Etienne",
+   "replacement_depth": "2nd string",
+   "next_up": "AJ Dillon (3rd), Anthony Tyus III (4th)",
+   "evidence": "Hubbard DNP; chart order Hubbard/Etienne/Dillon/Tyus",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-26"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-13",
+   "team": "JAX",
+   "side": "Offense",
+   "position": "RB",
+   "unit": "RB1",
+   "starter": "Bhayshul Tuten",
+   "status": "DNP",
+   "starter_detail": "Ankle/foot; DNP Wednesday",
+   "replacement": "LeQuint Allen",
+   "replacement_depth": "2nd string",
+   "next_up": "Treyvon Abdullah (3rd)",
+   "evidence": "Tuten DNP; chart order Tuten/Allen/Abdullah",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-23"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-14",
+   "team": "NO",
+   "side": "Offense",
+   "position": "RB",
+   "unit": "RB1",
+   "starter": "Alvin Kamara",
+   "status": "DNP",
+   "starter_detail": "NIR-rest/back; DNP Wednesday",
+   "replacement": "Audric Estimé",
+   "replacement_depth": "2nd string",
+   "next_up": "CJ Donaldson (3rd, also DNP)",
+   "evidence": "Kamara DNP and Donaldson DNP; chart order Kamara/Estimé/Donaldson",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-25"
+   ],
+   "flagged": false,
+   "note": "Only Estimé of the top three practiced fully"
+  },
+  {
+   "id": "DEF-15",
+   "team": "HOU",
+   "side": "Offense",
+   "position": "RB",
+   "unit": "RB1",
+   "starter": "David Montgomery",
+   "status": "DNP",
+   "starter_detail": "Groin; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Texans depth-chart page returned successfully but renders no table, so no replacement order can be verified",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-36"
+   ],
+   "flagged": true,
+   "note": "HOU replacement unverifiable — FL-DD-09; left blank"
+  },
+  {
+   "id": "DEF-16",
+   "team": "HOU",
+   "side": "Defense",
+   "position": "LB",
+   "unit": "LB?",
+   "starter": "Azeez Al-Shaair",
+   "status": "DNP",
+   "starter_detail": "Groin/NIR-personal; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Same as DEF-15: no Houston depth chart table available; Al-Shaair's chart position and successor cannot be confirmed",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-36"
+   ],
+   "flagged": true,
+   "note": "HOU replacement unverifiable — FL-DD-09; left blank"
+  },
+  {
+   "id": "DEF-17",
+   "team": "DET",
+   "side": "Offense",
+   "position": "RB",
+   "unit": "RB2",
+   "starter": "Sione Vaki",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "Jacob Saylors",
+   "replacement_depth": "3rd string",
+   "next_up": "",
+   "evidence": "Vaki (chart RB2) DNP; chart order Gibbs/Saylors/Vaki — Saylors steps into the No. 2 role",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-22"
+   ],
+   "flagged": false,
+   "note": "Chart RB1 Jahmyr Gibbs not on the report"
+  },
+  {
+   "id": "DEF-18",
+   "team": "TEN",
+   "side": "Offense",
+   "position": "RB",
+   "unit": "RB2",
+   "starter": "Tyjae Spears",
+   "status": "Knee",
+   "starter_detail": "Knee; DNP Wednesday",
+   "replacement": "Nick Singleton",
+   "replacement_depth": "2nd string (listed with Spears)",
+   "next_up": "Julius Chestnut (listed behind)",
+   "evidence": "Spears DNP; chart shows Pollard, then Spears and Singleton together in the second tier",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-27"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-19",
+   "team": "LAR",
+   "side": "Offense",
+   "position": "WR",
+   "unit": "WR1",
+   "starter": "Puka Nacua",
+   "status": "DNP",
+   "starter_detail": "Knee/toe; DNP Wednesday; expected to miss significant time (no IR)",
+   "replacement": "Jordan Whittington",
+   "replacement_depth": "2nd string",
+   "next_up": "Tutu Atwell (3rd string)",
+   "evidence": "McVay: Nacua will not go on IR but is expected to miss significant time; chart order Nacua/Whittington/Atwell; Davante Adams also out until ~Week 12 but is not on the chart",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-17"
+   ],
+   "flagged": true,
+   "note": "Chart omits Davante Adams — FL-DD-05"
+  },
+  {
+   "id": "DEF-20",
+   "team": "SF",
+   "side": "Offense",
+   "position": "WR",
+   "unit": "WR1",
+   "starter": "Mike Evans",
+   "status": "DNP",
+   "starter_detail": "Achilles; DNP Wednesday; 'week to week' per Shanahan",
+   "replacement": "Jordan Watkins",
+   "replacement_depth": "2nd string",
+   "next_up": "Brandin Cooks (3rd string)",
+   "evidence": "Evans week-to-week; chart order Evans/Watkins/Cooks",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-35"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-21",
+   "team": "JAX",
+   "side": "Offense",
+   "position": "WR",
+   "unit": "WR1",
+   "starter": "Jakobi Meyers",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "CJ Williams",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Meyers DNP; chart order Meyers/CJ Williams",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-23"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-22",
+   "team": "TEN",
+   "side": "Offense",
+   "position": "WR",
+   "unit": "WR2",
+   "starter": "Carnell Tate",
+   "status": "DNP",
+   "starter_detail": "Shoulder; DNP Wednesday",
+   "replacement": "Elic Ayomanor",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Tate DNP; chart order Tate/Ayomanor",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-27"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-23",
+   "team": "NYJ",
+   "side": "Offense",
+   "position": "WR",
+   "unit": "WR1",
+   "starter": "Garrett Wilson",
+   "status": "LIMITED",
+   "starter_detail": "Concussion; limited Wednesday",
+   "replacement": "Omar Cooper Jr.",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Wilson limited (concussion) after missing Week 9; chart order Wilson/Cooper",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-29"
+   ],
+   "flagged": false,
+   "note": "Monitor: game designation not yet issued"
+  },
+  {
+   "id": "DEF-24",
+   "team": "ATL",
+   "side": "Offense",
+   "position": "WR",
+   "unit": "WR2",
+   "starter": "Zachariah Branch",
+   "status": "DNP",
+   "starter_detail": "Hamstring; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Chart lists only Zaccheaus and Branch at that WR spot — no third string is published",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-30"
+   ],
+   "flagged": true,
+   "note": "No listed 3rd string — FL-DD-07; left blank"
+  },
+  {
+   "id": "DEF-25",
+   "team": "DAL",
+   "side": "Offense",
+   "position": "TE",
+   "unit": "TE1",
+   "starter": "Jake Ferguson",
+   "status": "DNP",
+   "starter_detail": "Knee/ankle; DNP Wednesday",
+   "replacement": "Luke Schoonmaker",
+   "replacement_depth": "2nd string",
+   "next_up": "Brevyn Spann-Ford (chart also lists Spann-Ford with Ferguson)",
+   "evidence": "Ferguson DNP; chart lists Ferguson/Spann-Ford then Schoonmaker",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-10"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-26",
+   "team": "MIN",
+   "side": "Offense",
+   "position": "TE",
+   "unit": "TE1",
+   "starter": "T.J. Hockenson",
+   "status": "DNP",
+   "starter_detail": "Wrist/chest; DNP Wednesday",
+   "replacement": "Gavin Bartholomew",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Hockenson DNP; chart order Hockenson/Bartholomew",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-21"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-27",
+   "team": "SEA",
+   "side": "Offense",
+   "position": "T",
+   "unit": "LT",
+   "starter": "Charles Cross",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "Josh Jones",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Cross DNP; chart order Cross/Josh Jones",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-11"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-28",
+   "team": "SEA",
+   "side": "Offense",
+   "position": "G",
+   "unit": "LG",
+   "starter": "Quenton Nelson",
+   "status": "DNP",
+   "starter_detail": "Knee; DNP Wednesday",
+   "replacement": "Anthony Bradford",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Nelson DNP; chart order Nelson/Bradford (Bradford also limited, knee)",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-11"
+   ],
+   "flagged": false,
+   "note": "Chart's 2nd-string Bradford is also limited"
+  },
+  {
+   "id": "DEF-29",
+   "team": "NE",
+   "side": "Offense",
+   "position": "G",
+   "unit": "LG",
+   "starter": "Ben Brown",
+   "status": "OUT",
+   "starter_detail": "Knee; ruled out for Week 10",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Chart's only backup at LG, Walter Rouse, is also DNP (concussion protocol); no third string is published at LG. Report lists Ben Brown as C while the chart starts him at LG",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-18"
+   ],
+   "flagged": true,
+   "note": "No available replacement — FL-DD-07/FL-DD-08; left blank"
+  },
+  {
+   "id": "DEF-30",
+   "team": "NO",
+   "side": "Offense",
+   "position": "C",
+   "unit": "C1",
+   "starter": "Erik McCoy",
+   "status": "DNP",
+   "starter_detail": "Biceps; DNP Wednesday",
+   "replacement": "Cesar Ruiz (moves from RG)",
+   "replacement_depth": "team announcement",
+   "next_up": "William Sherman (chart 2nd at C)",
+   "evidence": "Saints official announcement: Ruiz moves to center to replace injured McCoy",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-07",
+    "SRC-DD-25"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-31",
+   "team": "NO",
+   "side": "Offense",
+   "position": "G",
+   "unit": "RG",
+   "starter": "Cesar Ruiz",
+   "status": "PROMOTED",
+   "starter_detail": "Slides to center for Week 10",
+   "replacement": "Jeremiah Wright",
+   "replacement_depth": "team announcement",
+   "next_up": "",
+   "evidence": "Saints official announcement: rookie Jeremiah Wright will start at right guard",
+   "sources": [
+    "SRC-DD-07",
+    "SRC-DD-25"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-32",
+   "team": "GB",
+   "side": "Offense",
+   "position": "C",
+   "unit": "C1",
+   "starter": "Sean Rhyan",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "Jager Burton",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Rhyan DNP; chart order Rhyan/Burton",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-16"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-33",
+   "team": "KC",
+   "side": "Offense",
+   "position": "T",
+   "unit": "RT",
+   "starter": "Jaylon Moore",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "Joshua Ezeudu",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Moore DNP; chart order Moore/Ezeudu",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-24"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-34",
+   "team": "IND",
+   "side": "Offense",
+   "position": "T",
+   "unit": "RT",
+   "starter": "Jalen Travis",
+   "status": "DNP",
+   "starter_detail": "Knee; DNP Wednesday",
+   "replacement": "Luke Tenuta",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Travis DNP; chart order Travis/Tenuta",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-28"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-35",
+   "team": "CLE",
+   "side": "Offense",
+   "position": "C",
+   "unit": "C1",
+   "starter": "Elgton Jenkins",
+   "status": "DNP",
+   "starter_detail": "Knee; DNP Wednesday",
+   "replacement": "Luke Wypler",
+   "replacement_depth": "2nd string",
+   "next_up": "Parker Brailsford (3rd string)",
+   "evidence": "Jenkins DNP; chart order Jenkins/Wypler/Brailsford",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-15"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-36",
+   "team": "WAS",
+   "side": "Offense",
+   "position": "C",
+   "unit": "C?",
+   "starter": "Lucas Patrick",
+   "status": "OUT",
+   "starter_detail": "Concussion; ruled out for Thursday's game",
+   "replacement": "Nick Allegretti",
+   "replacement_depth": "chart 1st string",
+   "next_up": "Matt Gulbin (chart 2nd string)",
+   "evidence": "Report lists Patrick (C) as Out, but the Commanders' chart does not list Patrick at all; chart starters Allegretti/Gulbin are not on the report",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-20"
+   ],
+   "flagged": true,
+   "note": "Chart/report discrepancy — FL-DD-08"
+  },
+  {
+   "id": "DEF-37",
+   "team": "GB",
+   "side": "Offense",
+   "position": "G",
+   "unit": "LG",
+   "starter": "Aaron Banks",
+   "status": "LIMITED",
+   "starter_detail": "Knee/hip; limited Wednesday",
+   "replacement": "Travis Glover",
+   "replacement_depth": "2nd string",
+   "next_up": "Donovan Jennings (3rd string)",
+   "evidence": "Banks (chart LG1) limited and his chart backup Glover also limited (knee)",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-16"
+   ],
+   "flagged": false,
+   "note": "Chart's 2nd-string Glover is also limited"
+  },
+  {
+   "id": "DEF-38",
+   "team": "BUF",
+   "side": "Offense",
+   "position": "OL",
+   "unit": "4 starters",
+   "starter": "Dion Dawkins, Alec Anderson, Connor McGovern, Spencer Brown",
+   "status": "LIMITED",
+   "starter_detail": "All four limited Wednesday (rib, ankle, neck, ankle)",
+   "replacement": "Jude Bowry, Austin Corbett, Lloyd Cushenberry, Tylan Grable",
+   "replacement_depth": "2nd string at each spot",
+   "next_up": "",
+   "evidence": "Chart lists a second string at each of the four limited spots",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-32"
+   ],
+   "flagged": false,
+   "note": "Four of five starting OL limited — monitor"
+  },
+  {
+   "id": "DEF-39",
+   "team": "DAL",
+   "side": "Defense",
+   "position": "S",
+   "unit": "S1",
+   "starter": "Malik Hooker",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "Alijah Clark",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Hooker DNP; chart order Hooker/Clark",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-10"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-40",
+   "team": "DAL",
+   "side": "Defense",
+   "position": "S",
+   "unit": "S2",
+   "starter": "P.J. Locke",
+   "status": "DNP",
+   "starter_detail": "Concussion; DNP Wednesday",
+   "replacement": "Juanyeh Thomas",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Locke DNP; chart order Locke/Juanyeh Thomas (Markquese Bell also listed with Locke)",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-10"
+   ],
+   "flagged": false,
+   "note": "Both starting safeties DNP Wednesday"
+  },
+  {
+   "id": "DEF-41",
+   "team": "DAL",
+   "side": "Defense",
+   "position": "CB",
+   "unit": "CB1",
+   "starter": "Joey Porter Jr.",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "Shavon Revel Jr.",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Porter DNP; chart order Porter/Revel",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-10"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-42",
+   "team": "DAL",
+   "side": "Defense",
+   "position": "OLB",
+   "unit": "OLB1",
+   "starter": "Donovan Ezeiruaku",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "James Houston",
+   "replacement_depth": "2nd string",
+   "next_up": "Tyrus Wheat (3rd string)",
+   "evidence": "Ezeiruaku DNP; chart order Ezeiruaku/James Houston/Wheat",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-10"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-43",
+   "team": "DAL",
+   "side": "Defense",
+   "position": "OLB",
+   "unit": "OLB2",
+   "starter": "Von Miller",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "Marist Liufau",
+   "replacement_depth": "3rd string (chart)",
+   "next_up": "",
+   "evidence": "Chart order Rashan Gary/Von Miller/Liufau; with Miller DNP the top backup is the 3rd-string Liufau",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-10"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-44",
+   "team": "DET",
+   "side": "Defense",
+   "position": "C",
+   "unit": "C1",
+   "starter": "Cade Mays",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "Juice Scruggs",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Mays DNP; chart order Mays/Scruggs",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-22"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-45",
+   "team": "DET",
+   "side": "Defense",
+   "position": "CB",
+   "unit": "CB1",
+   "starter": "D.J. Reed",
+   "status": "DNP",
+   "starter_detail": "Hip; DNP Wednesday",
+   "replacement": "Rock Ya-Sin",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Reed DNP; chart order Reed/Rock Ya-Sin",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-22"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-46",
+   "team": "GB",
+   "side": "Defense",
+   "position": "NB",
+   "unit": "NB1",
+   "starter": "Javon Bullard",
+   "status": "DNP",
+   "starter_detail": "Ankle/knee; DNP Wednesday",
+   "replacement": "Kamal Hadden",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Bullard (chart NB1) DNP; chart order Bullard/Hadden",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-16"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-47",
+   "team": "GB",
+   "side": "Defense",
+   "position": "LB",
+   "unit": "LB1",
+   "starter": "Zaire Franklin",
+   "status": "DNP",
+   "starter_detail": "Shin; DNP Wednesday",
+   "replacement": "Ty'Ron Hopper",
+   "replacement_depth": "2nd string",
+   "next_up": "Kristian Welch (3rd string)",
+   "evidence": "Franklin DNP; chart order Franklin/Hopper/Welch",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-16"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-48",
+   "team": "GB",
+   "side": "Defense",
+   "position": "EDGE",
+   "unit": "EDGE1",
+   "starter": "Lukas Van Ness",
+   "status": "DNP",
+   "starter_detail": "Back; DNP Wednesday",
+   "replacement": "Brenton Cox Jr.",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Van Ness DNP; chart order Van Ness/Brenton Cox Jr",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-16"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-49",
+   "team": "GB",
+   "side": "Defense",
+   "position": "EDGE",
+   "unit": "EDGE?",
+   "starter": "Micah Parsons",
+   "status": "LIMITED",
+   "starter_detail": "Illness; limited Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Parsons appears in the official report and roundup as a Packers edge, but the Packers chart's EDGE rows do not list him",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-16"
+   ],
+   "flagged": true,
+   "note": "Chart omits a rostered edge — FL-DD-08; left blank"
+  },
+  {
+   "id": "DEF-50",
+   "team": "PIT",
+   "side": "Defense",
+   "position": "LOLB",
+   "unit": "LOLB1",
+   "starter": "T.J. Watt",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Steelers chart publishes no second string at LOLB behind Watt",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-19"
+   ],
+   "flagged": true,
+   "note": "No listed backup — FL-DD-07; left blank"
+  },
+  {
+   "id": "DEF-51",
+   "team": "PIT",
+   "side": "Defense",
+   "position": "DT",
+   "unit": "DT1",
+   "starter": "Cameron Heyward",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Steelers chart publishes no second string at DT behind Heyward",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-19"
+   ],
+   "flagged": true,
+   "note": "No listed backup — FL-DD-07; left blank"
+  },
+  {
+   "id": "DEF-52",
+   "team": "LAR",
+   "side": "Defense",
+   "position": "CB",
+   "unit": "CB1",
+   "starter": "Trent McDuffie",
+   "status": "DNP",
+   "starter_detail": "Back; DNP Wednesday",
+   "replacement": "Cam Lampkin",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "McDuffie DNP; chart order McDuffie/Lampkin",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-17"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-53",
+   "team": "LAR",
+   "side": "Defense",
+   "position": "S",
+   "unit": "S1",
+   "starter": "Kam Curl",
+   "status": "DNP",
+   "starter_detail": "Toe; DNP Wednesday",
+   "replacement": "Jaylen McCollough",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Curl DNP; chart order Curl/McCollough",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-17"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-54",
+   "team": "LAR",
+   "side": "Offense",
+   "position": "G",
+   "unit": "LG",
+   "starter": "Steve Avila",
+   "status": "DNP",
+   "starter_detail": "Hamstring; DNP Wednesday",
+   "replacement": "Bill Murray",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Avila DNP; chart order Avila/Bill Murray",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-17"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-55",
+   "team": "NE",
+   "side": "Defense",
+   "position": "CB",
+   "unit": "CB1",
+   "starter": "Carlton Davis III",
+   "status": "OUT",
+   "starter_detail": "Knee; ruled out for Week 10",
+   "replacement": "Channing Canada",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Davis ruled out; chart order Carlton Davis III/Channing Canada",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-18"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-56",
+   "team": "SF",
+   "side": "Defense",
+   "position": "CB",
+   "unit": "LCB1",
+   "starter": "Renardo Green",
+   "status": "DNP",
+   "starter_detail": "Back; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "49ers chart publishes no second string at LCB behind Green",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-35"
+   ],
+   "flagged": true,
+   "note": "No listed backup — FL-DD-07; left blank"
+  },
+  {
+   "id": "DEF-57",
+   "team": "SF",
+   "side": "Defense",
+   "position": "CB",
+   "unit": "RCB1",
+   "starter": "Deommodore Lenoir",
+   "status": "DNP",
+   "starter_detail": "Foot; DNP Wednesday",
+   "replacement": "Ephesians Prysock",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Lenoir DNP; chart order Lenoir/Prysock",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-35"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-58",
+   "team": "SF",
+   "side": "Offense",
+   "position": "T",
+   "unit": "LT",
+   "starter": "Trent Williams",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "Vederian Lowe",
+   "replacement_depth": "2nd string",
+   "next_up": "Enrique Cruz Jr. (3rd string)",
+   "evidence": "Williams DNP; chart order Trent Williams/Lowe/Cruz",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-35"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-59",
+   "team": "JAX",
+   "side": "Defense",
+   "position": "S",
+   "unit": "S1",
+   "starter": "Jessie Bates",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "Kaevon Merriweather",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Bates DNP; chart order Bates/Merriweather",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-23"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-60",
+   "team": "JAX",
+   "side": "Defense",
+   "position": "DE",
+   "unit": "DE2",
+   "starter": "Travon Walker",
+   "status": "DNP",
+   "starter_detail": "Rib; DNP Wednesday",
+   "replacement": "Danny Striggow",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Walker DNP; chart order Walker/Striggow",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-23"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-61",
+   "team": "JAX",
+   "side": "Defense",
+   "position": "NT",
+   "unit": "NT1",
+   "starter": "Jordan Davis",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "Davon Godchaux",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Davis DNP; chart order Jordan Davis/Godchaux",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-23"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-62",
+   "team": "NYJ",
+   "side": "Defense",
+   "position": "DL",
+   "unit": "DL1",
+   "starter": "Harrison Phillips",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "Jack Heflin",
+   "replacement_depth": "2nd string (only listed player)",
+   "next_up": "",
+   "evidence": "Chart's DL1 starter cell is empty; Heflin is the only listed player at that spot",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-29"
+   ],
+   "flagged": true,
+   "note": "Empty starter cell — FL-DD-07"
+  },
+  {
+   "id": "DEF-63",
+   "team": "KC",
+   "side": "Defense",
+   "position": "DT",
+   "unit": "DT2",
+   "starter": "Peter Woods",
+   "status": "DNP",
+   "starter_detail": "Neck; DNP Wednesday",
+   "replacement": "Bryson Eason",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Woods DNP; chart order Woods/Eason",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-24"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-64",
+   "team": "IND",
+   "side": "Defense",
+   "position": "LB",
+   "unit": "WLB",
+   "starter": "Jaylon Carlies",
+   "status": "DNP",
+   "starter_detail": "Neck; DNP Wednesday",
+   "replacement": "Bryce Boettcher",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Carlies DNP; chart order Carlies/Boettcher",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-28"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-65",
+   "team": "IND",
+   "side": "Defense",
+   "position": "LB",
+   "unit": "MLB",
+   "starter": "Akeem Davis-Gaither",
+   "status": "DNP",
+   "starter_detail": "Knee; DNP Wednesday",
+   "replacement": "CJ Allen",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Davis-Gaither DNP; chart order Davis-Gaither/CJ Allen",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-28"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-66",
+   "team": "IND",
+   "side": "Defense",
+   "position": "S",
+   "unit": "SS",
+   "starter": "A.J. Haulcy",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "Hunter Wohler",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Haulcy DNP; chart order Haulcy/Wohler",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-28"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-67",
+   "team": "IND",
+   "side": "Defense",
+   "position": "CB",
+   "unit": "CB1",
+   "starter": "Charvarius Ward",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "Kenneth Harris",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Ward DNP; chart order Ward/Kenneth Harris",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-28"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-68",
+   "team": "MIN",
+   "side": "Defense",
+   "position": "LB",
+   "unit": "LB1",
+   "starter": "Blake Cashman",
+   "status": "DNP",
+   "starter_detail": "Concussion; DNP Wednesday",
+   "replacement": "Ivan Pace Jr.",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Cashman DNP; chart order Cashman/Ivan Pace Jr.",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-21"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-69",
+   "team": "MIN",
+   "side": "Defense",
+   "position": "OLB",
+   "unit": "OLB1",
+   "starter": "Kyle Van Noy",
+   "status": "DNP",
+   "starter_detail": "Calf; DNP Wednesday",
+   "replacement": "Chaz Chambliss",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Van Noy DNP; chart order Van Noy/Chambliss",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-21"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-70",
+   "team": "CAR",
+   "side": "Defense",
+   "position": "LB",
+   "unit": "LB2",
+   "starter": "Bobby Okereke",
+   "status": "DNP",
+   "starter_detail": "Foot; DNP Wednesday",
+   "replacement": "Tyrel Dodson",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Okereke DNP; chart order Okereke/Dodson",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-26"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-71",
+   "team": "TEN",
+   "side": "Defense",
+   "position": "G",
+   "unit": "LG",
+   "starter": "Peter Skoronski",
+   "status": "DNP",
+   "starter_detail": "Hamstring; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Titans chart publishes no second string at LG behind Skoronski",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-27"
+   ],
+   "flagged": true,
+   "note": "No listed backup — FL-DD-07; left blank"
+  },
+  {
+   "id": "DEF-72",
+   "team": "TEN",
+   "side": "Defense",
+   "position": "LB",
+   "unit": "LB1",
+   "starter": "Cody Barton",
+   "status": "DNP",
+   "starter_detail": "Concussion; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Titans chart publishes no second string at LB behind Barton (chart stamped as of 11/10/26)",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-27"
+   ],
+   "flagged": true,
+   "note": "No listed backup — FL-DD-07; left blank"
+  },
+  {
+   "id": "DEF-73",
+   "team": "TEN",
+   "side": "Defense",
+   "position": "LB",
+   "unit": "LB3",
+   "starter": "Anthony Hill Jr.",
+   "status": "DNP",
+   "starter_detail": "Neck; DNP Wednesday",
+   "replacement": "Dorian Mausi",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Hill (chart LB3) DNP; chart order Hill/Mausi",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-27"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-74",
+   "team": "ATL",
+   "side": "Defense",
+   "position": "DE",
+   "unit": "DE1 backup",
+   "starter": "Za'Darius Smith",
+   "status": "DNP",
+   "starter_detail": "DNP Wednesday (report carries no injury name)",
+   "replacement": "Charles Snowden",
+   "replacement_depth": "3rd string",
+   "next_up": "",
+   "evidence": "Chart order Cameron Thomas/Za'Darius Smith/Charles Snowden; with the 2nd string DNP the top backup is the 3rd string",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-30"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-75",
+   "team": "ATL",
+   "side": "Defense",
+   "position": "DL",
+   "unit": "DL2",
+   "starter": "Gervon Dexter Sr.",
+   "status": "DNP",
+   "starter_detail": "Illness; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Chart lists only Maason Smith and Dexter at that DL spot — no third string is published",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-30"
+   ],
+   "flagged": true,
+   "note": "No listed 3rd string — FL-DD-07; left blank"
+  },
+  {
+   "id": "DEF-76",
+   "team": "ATL",
+   "side": "Defense",
+   "position": "ILB",
+   "unit": "ILB1 backup",
+   "starter": "Josh Woods",
+   "status": "DNP",
+   "starter_detail": "Ankle; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Chart order Deablo/Christian Harris/Josh Woods — Woods is the 3rd string and is DNP; starters Deablo (limited) and Daniels are ahead of him",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-30"
+   ],
+   "flagged": true,
+   "note": "3rd string DNP; chart publishes no 4th string — FL-DD-07; left blank"
+  },
+  {
+   "id": "DEF-77",
+   "team": "ATL",
+   "side": "Defense",
+   "position": "DE",
+   "unit": "DE2 3rd string",
+   "starter": "James Pearce Jr.",
+   "status": "DNP",
+   "starter_detail": "Back; DNP Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Chart order Dorlus/Abdullah/James Pearce Jr. — Pearce is the 3rd string and is DNP",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-30"
+   ],
+   "flagged": true,
+   "note": "3rd string DNP; chart publishes no 4th string — FL-DD-07; left blank"
+  },
+  {
+   "id": "DEF-78",
+   "team": "ATL",
+   "side": "Defense",
+   "position": "ILB",
+   "unit": "ILB1",
+   "starter": "Divine Deablo",
+   "status": "LIMITED",
+   "starter_detail": "Forearm; limited Wednesday",
+   "replacement": "Christian Harris",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Deablo limited; chart order Deablo/Christian Harris",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-30"
+   ],
+   "flagged": false,
+   "note": "Monitor"
+  },
+  {
+   "id": "DEF-79",
+   "team": "CIN",
+   "side": "Offense",
+   "position": "G",
+   "unit": "LG1",
+   "starter": "Dylan Fairchild",
+   "status": "LIMITED",
+   "starter_detail": "Pectoral; limited Wednesday",
+   "replacement": "Jalen Rivers",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Fairchild (chart LG1) limited; chart order Fairchild/Rivers",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-34"
+   ],
+   "flagged": false,
+   "note": "Report page showed 'No Injuries Reported' for Cincinnati — FL-DD-01"
+  },
+  {
+   "id": "DEF-80",
+   "team": "CIN",
+   "side": "Defense",
+   "position": "S",
+   "unit": "S2",
+   "starter": "Kyle Dugger",
+   "status": "DNP",
+   "starter_detail": "Quadricep; DNP Wednesday",
+   "replacement": "Russ Yeast",
+   "replacement_depth": "3rd string",
+   "next_up": "",
+   "evidence": "Chart order Jordan Battle/Kyle Dugger/Russ Yeast; with the 2nd string DNP the next man is the 3rd string",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-34"
+   ],
+   "flagged": false,
+   "note": "Report page showed 'No Injuries Reported' for Cincinnati — FL-DD-01"
+  },
+  {
+   "id": "DEF-81",
+   "team": "CIN",
+   "side": "Defense",
+   "position": "CB",
+   "unit": "CB2",
+   "starter": "DJ Turner II",
+   "status": "LIMITED",
+   "starter_detail": "Ankle; limited Wednesday",
+   "replacement": "Tacario Davis",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Turner (chart CB2) limited; chart order DJ Turner II/Tacario Davis",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-34"
+   ],
+   "flagged": false,
+   "note": "Report page showed 'No Injuries Reported' for Cincinnati — FL-DD-01"
+  },
+  {
+   "id": "DEF-82",
+   "team": "MIA",
+   "side": "Offense",
+   "position": "C",
+   "unit": "C1",
+   "starter": "Aaron Brewer",
+   "status": "DNP",
+   "starter_detail": "Concussion; DNP Wednesday",
+   "replacement": "Andrew Meyer",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Brewer DNP; chart order Brewer/Andrew Meyer",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-12"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-83",
+   "team": "DET",
+   "side": "Offense",
+   "position": "QB",
+   "unit": "QB1",
+   "starter": "Jared Goff",
+   "status": "LIMITED",
+   "starter_detail": "Chest; limited Wednesday",
+   "replacement": "Joshua Dobbs",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Goff limited; chart order Goff/Dobbs",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-22"
+   ],
+   "flagged": false,
+   "note": "Monitor"
+  },
+  {
+   "id": "DEF-84",
+   "team": "NE",
+   "side": "Offense",
+   "position": "WR",
+   "unit": "WR1",
+   "starter": "A.J. Brown",
+   "status": "LIMITED",
+   "starter_detail": "Ankle/knee; limited Wednesday",
+   "replacement": "DeMario Douglas",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "A.J. Brown limited; chart order Brown/Douglas/Chism",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-18"
+   ],
+   "flagged": false,
+   "note": "Monitor"
+  },
+  {
+   "id": "DEF-85",
+   "team": "NYG",
+   "side": "Defense",
+   "position": "LB",
+   "unit": "LB?",
+   "starter": "Malik Harrison",
+   "status": "QUESTIONABLE",
+   "starter_detail": "Groin; questionable for Thursday's game",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Harrison is listed by the report/roundup as questionable, but the Giants chart does not list him at any LB spot",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-02",
+    "SRC-DD-03",
+    "SRC-DD-31"
+   ],
+   "flagged": true,
+   "note": "Chart omits Harrison — FL-DD-08; left blank"
+  },
+  {
+   "id": "DEF-86",
+   "team": "BAL",
+   "side": "Special Teams",
+   "position": "K",
+   "unit": "K1",
+   "starter": "",
+   "status": "TRANSACTION",
+   "starter_detail": "Riley Patterson will kick Monday vs the Chargers (signed after a workout)",
+   "replacement": "Riley Patterson",
+   "replacement_depth": "newly signed",
+   "next_up": "",
+   "evidence": "Official roundup transaction; prior kicker is not named in any fetched official source, so the replaced player is left blank",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-13"
+   ],
+   "flagged": true,
+   "note": "Prior kicker unnamed in fetched sources — blank"
+  },
+  {
+   "id": "DEF-87",
+   "team": "ATL",
+   "side": "Special Teams",
+   "position": "K",
+   "unit": "K1",
+   "starter": "Jake Moody",
+   "status": "TRANSACTION",
+   "starter_detail": "Signed; Nick Folk cut (official transactions)",
+   "replacement": "Jake Moody",
+   "replacement_depth": "chart 1st string (no backup listed)",
+   "next_up": "",
+   "evidence": "Roundup lists Moody signing/Folk cut; chart lists Moody as the only kicker; team news: Stefanski on the kicking situation",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-30"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-88",
+   "team": "KC",
+   "side": "Special Teams",
+   "position": "K",
+   "unit": "K1",
+   "starter": "Harrison Butker",
+   "status": "RETAINED",
+   "starter_detail": "Coach Reid: Butker keeps kicking (12/19 this season); Justin Tucker on the practice squad",
+   "replacement": "Harrison Butker (retained as starter)",
+   "replacement_depth": "chart 1st string (no change)",
+   "next_up": "(blank)",
+   "evidence": "Official roundup depth-chart news; no change of kicker",
+   "sources": [
+    "SRC-DD-03",
+    "SRC-DD-24"
+   ],
+   "flagged": false,
+   "note": "Monitor:12 of 19 FG this season"
+  },
+  {
+   "id": "DEF-89",
+   "team": "CLE",
+   "side": "Defense",
+   "position": "S",
+   "unit": "FS1",
+   "starter": "Ronnie Hickman Jr.",
+   "status": "DNP",
+   "starter_detail": "Concussion; DNP Wednesday",
+   "replacement": "Donovan McMillon",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Hickman DNP; chart order Hickman/McMillon",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-15"
+   ],
+   "flagged": false,
+   "note": ""
+  },
+  {
+   "id": "DEF-90",
+   "team": "CLE",
+   "side": "Defense",
+   "position": "CB",
+   "unit": "CB2",
+   "starter": "Denzel Ward",
+   "status": "LIMITED",
+   "starter_detail": "Quadricep; limited Wednesday",
+   "replacement": "Mekhi Blackmon",
+   "replacement_depth": "2nd string",
+   "next_up": "Toriano Pride Jr. (3rd string)",
+   "evidence": "Ward limited; chart order Ward/Blackmon/Pride",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-15"
+   ],
+   "flagged": false,
+   "note": "Monitor"
+  },
+  {
+   "id": "DEF-91",
+   "team": "CLE",
+   "side": "Offense",
+   "position": "TE",
+   "unit": "TE1",
+   "starter": "Harold Fannin Jr.",
+   "status": "LIMITED",
+   "starter_detail": "Groin; limited Wednesday",
+   "replacement": "Blake Whiteheart",
+   "replacement_depth": "2nd string",
+   "next_up": "",
+   "evidence": "Fannin limited; chart order Fannin/Whiteheart",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-15"
+   ],
+   "flagged": false,
+   "note": "Monitor"
+  },
+  {
+   "id": "DEF-92",
+   "team": "LV",
+   "side": "Offense",
+   "position": "C",
+   "unit": "C2",
+   "starter": "Trey Zuhn III",
+   "status": "LIMITED",
+   "starter_detail": "Concussion; limited Wednesday",
+   "replacement": "",
+   "replacement_depth": "(blank)",
+   "next_up": "(blank)",
+   "evidence": "Chart publishes only Tyler Linderbaum at C — no second string; Zuhn (listed by the roundup as C) is not on the chart",
+   "sources": [
+    "SRC-DD-01",
+    "SRC-DD-03",
+    "SRC-DD-33"
+   ],
+   "flagged": true,
+   "note": "Chart gap — FL-DD-07/FL-DD-08; left blank"
+  }
+ ]
+}

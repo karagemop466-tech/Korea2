@@ -1,0 +1,118 @@
+{
+ "meta": {
+  "title": "Line-by-line repository review",
+  "session": "arena/aa66ed82-korea2",
+  "branch": "arena/aa66ed82-korea2",
+  "base_commit": "e8d04a93678b91027fed3eee9f1f5c217f54acf8",
+  "reviewed_on": "2026-11-12",
+  "method": "Every automated gate the repo ships was executed locally; every top-level file and workflow was opened and read; all 14 published pages plus the sibling dashboards were checked against their committed JSON. Findings that are policy (flagged-don't-block) are recorded in flagged.json; findings about other sessions' files are logged as requests in COORDINATION.md, not edited."
+ },
+ "checks": [
+  {
+   "name": "tests/check_site.py",
+   "result": "PASS",
+   "detail": "97 pages checked (15 published by build, 82 other), 251 tables, 3,992 links; 0 broken; every published table row carries a source cell. Note emitted: 28 pages outside the build carry no per-row source columns (logged as FL-DD-16)."
+  },
+  {
+   "name": "scripts/validate_data.py",
+   "result": "PASS",
+   "detail": "All root data/*.json rows sourced with official domains; flagged values blank; cross-references resolve; 0 warnings."
+  },
+  {
+   "name": "scripts/check_links.py",
+   "result": "PASS",
+   "detail": "1,506 local references across 97 HTML pages + 1 JS file; no broken internal links."
+  },
+  {
+   "name": "tests/check_data.py",
+   "result": "PASS",
+   "detail": "6 result files consistent; 32/32 teams verified; 0 of 5 strategies ranked."
+  },
+  {
+   "name": "tests/check_derived.py",
+   "result": "PASS",
+   "detail": "11 derived JSON files strict; verification record 49 checks with 0 failures; 32/32 teams reconciled for 2020; 15 generated pages all linked."
+  },
+  {
+   "name": "scripts/analysis/build.py (recompute gate)",
+   "result": "NOT RUN LOCALLY",
+   "detail": "Local sandbox lacks numpy (ModuleNotFoundError). The pinned runtime (pandas 3.1.0 / numpy 2.4.6 / scipy 1.17.1 / pyarrow 26.0.0) is installed by CI in build-verify.yml; this environment note is not a repo defect. CI re-runs the recompute on push."
+  }
+ ],
+ "inventory": {
+  "tracked_files_at_claim": 349,
+  "html_pages": 97,
+  "published_pages": 15,
+  "workflows": [
+   "validate.yml",
+   "check.yml",
+   "build-verify.yml",
+   "skill-lab.yml",
+   "data-pipeline.yml",
+   "fetch-nflverse.yml",
+   "pages.yml",
+   "+ decision-desk.yml (added by this session)"
+  ],
+  "coordination_md_lines_after_claim": 1305,
+  "sibling_directories_read_only": [
+   "dashboard",
+   "nfl-lines",
+   "nfl-research",
+   "research-desk",
+   "quant-lab",
+   "origination",
+   "origination-lab",
+   "skill-lab",
+   "pipeline",
+   "audit",
+   "results",
+   "verification",
+   "docs",
+   "tools"
+  ]
+ },
+ "line_by_line": [
+  {
+   "item": "README.md (93 lines)",
+   "finding": "Bottom-line table matches the committed results (Brier skill -0.038, 0/12 angles survive BH, 0/5 strategies pass, wind-under best partial, 32/32 data check). Wording note: it says '48 of 49 checks agree' while EXECUTIVE_SUMMARY.md says '49 checks, 0 material disagreements' while verification.json records 45 PASS + 3 DIFFERS (expected) + 1 INFO — three phrasings of one record; see FL-DD-19."
+  },
+  {
+   "item": "EXECUTIVE_SUMMARY.md (198 lines)",
+   "finding": "Accurate for the pipeline/results build it describes; explicitly scopes itself and points to docs/EXECUTIVE_SUMMARY.md for the integrated build. No stale numbers found."
+  },
+  {
+   "item": "COORDINATION.md (1,305 lines)",
+   "finding": "Multi-session board: several appended '# Coordination board' sections (add-add by design). Duplicate headers are presentational; all prior boards/logs are intact. This session's claim DD-0..DD-8 appended and pushed as f9b826a before any other work."
+  },
+  {
+   "item": ".github/workflows (6 existing)",
+   "finding": "validate (recompute+links+derived on push to main), check, build-verify (numpy install + results no-diff + check_data + check_site), skill-lab (repo-wide on arena/** pushes), data-pipeline, fetch-nflverse, pages. All four required gates re-run green on this branch via skill-lab.yml; decision-desk.yml added for this directory."
+  },
+  {
+   "item": "tests/check_site.py scope rules",
+   "finding": "Per-row source enforcement applies to published root pages; link checking is repo-wide. Decision-desk pages deliberately exceed the minimum: every data row on every page carries a source cell, enforced by decision-desk/scripts/verify_all.py."
+  },
+  {
+   "item": "scripts/validate_data.py scope",
+   "finding": "Globs root data/*.json only (non-recursive) — decision-desk/data is outside its scope by construction; this session self-enforces the same policy (official https sources only, blanks for unverified, cross-refs resolve)."
+  },
+  {
+   "item": "data/strategies.json (designs)",
+   "finding": "9 strategy designs explicitly marked DESIGN-not-performance; no win rates published. Consistent with the no-hallucination policy."
+  },
+  {
+   "item": "results/, data/derived/ (numbers)",
+   "finding": "Spot-checked headline figures against committed JSON this session: leaderboard 9 entries/0 approved; correlation QB-WR1 r=0.56164; luck Pythagorean R2=0.8191, YoY luck r=0.0239 p=0.489; verification 45/45 asserts pass. All match the published pages."
+  },
+  {
+   "item": "Issue ledger in COORDINATION.md",
+   "finding": "Resolved: #34, #20, #19, #22, #24, #32. Open: #25, #17, #16, #13, #9, #6, #1. #16 (no depth-chart ordering on NFL.com) is directly relevant and is mitigated, not closed, by this session's team-chart sourcing."
+  }
+ ],
+ "irregularities_logged": [
+  "FL-DD-01 .. FL-DD-19 are published on the Flagged for Review page with severity, handling and suggested fix.",
+  "Cross-session requests (28 pages without per-row sources; README/summary phrasing of the 49-check record) are logged in COORDINATION.md rather than edited here.",
+  "No blocking defect found: every shipped gate passes on this branch."
+ ],
+ "verdict": "Repository is internally consistent and green on all runnable gates. The irregularities found are data-trust issues in upstream NFL pages (injury-report contradictions, unofficial/stale depth charts) and presentational carry-forwards — all published, none blocking."
+}

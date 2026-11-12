@@ -1,0 +1,252 @@
+{
+ "meta": {
+  "title": "Cross-lab strategy leaderboard aggregation and measured correlations",
+  "session": "arena/aa66ed82-korea2",
+  "captured": "2026-11-12",
+  "rule": "One rule for the whole board: rank by gates passed, then by ROI. Positive ROI alone earns nothing; every lab's qualified count is zero as of this capture.",
+  "totals": {
+   "evaluations": 108,
+   "qualified": 0,
+   "labs": 7
+  },
+  "method": "Rows are read from the committed JSON of each lab (paths in source_file); the published leaderboard page for each lab is linked from its source row. Controls (skill-lab STR-16) are excluded from reward consideration.",
+  "counts": {
+   "leaderboard_rows": 7,
+   "correlation_rows": 12
+  },
+  "scope_note": "Six labs were captured at 2026-11-12 before this branch merged origin/main; the lineup-lab board (SRC-DD-50) was added to the aggregation from its committed meta on merge. The verify-hub cross-lab consolidation (11 rows) is a read-only audit of these same boards, not a separate competition, and is not double-counted. Sibling registers merged alongside (decision-hub, nfl-command, decisions, suggestions hubs) publish questions/suggestions/injury registers rather than strategy boards; their pages are linked from the root navigation."
+ },
+ "leaderboard": [
+  {
+   "id": "LB-01",
+   "lab": "Root Line Lab (integrated site)",
+   "board": "root pages/leaderboard.html",
+   "candidates": 9,
+   "qualified": 0,
+   "top_result": "S6 · Divisional home underdog — 5/10 gates, ROI -1.21% (n=137)",
+   "ranking_rule": "Rank by gates passed, then ROI; reward only at 10/10 (Tier 1), paper-trade at 8-9 with G9 (Tier 2)",
+   "sources": [
+    "SRC-DD-41",
+    "SRC-DD-39"
+   ]
+  },
+  {
+   "id": "LB-02",
+   "lab": "Pipeline/results build (six gates)",
+   "board": "results/strategies.json",
+   "candidates": 5,
+   "qualified": 0,
+   "top_result": "S5 · Model edge — 3/6 gates (best of five)",
+   "ranking_rule": "Six pre-registered gates: sample, significance, BH multiple-testing, positive-after-vig CI, stability, cost",
+   "sources": [
+    "SRC-DD-42"
+   ]
+  },
+  {
+   "id": "LB-03",
+   "lab": "Origination pipeline",
+   "board": "origination/site_data/leaderboard.json",
+   "candidates": 31,
+   "qualified": 0,
+   "top_result": "23 REJECTED, 8 NEEDS_REVIEW, 0 rewarded; 38,708 tickets evaluated 2015-2026",
+   "ranking_rule": "Ten gates incl. deflated Sharpe, permutation p, BH q=0.10, season-block bootstrap CI",
+   "sources": [
+    "SRC-DD-43"
+   ]
+  },
+  {
+   "id": "LB-04",
+   "lab": "Origination-lab",
+   "board": "origination-lab/data/derived/strategies.json",
+   "candidates": 18,
+   "qualified": 0,
+   "top_result": "Top of board: S11 wind-under (0 of 18 eligible for rewards)",
+   "ranking_rule": "Eligibility requires the lab's full gate set; 0 eligible",
+   "sources": [
+    "SRC-DD-44"
+   ]
+  },
+  {
+   "id": "LB-05",
+   "lab": "Quant-lab",
+   "board": "quant-lab/data/processed/leaderboard.json",
+   "candidates": 21,
+   "qualified": 0,
+   "top_result": "S10 · Wind 15+ under — 6/9 gates, holdout ROI +3.83% (p=0.174); 0 of 21 pass all nine",
+   "ranking_rule": "Discovery 2002-2019 / holdout 2020-2026 split; FDR q=0.10; nine gates incl. worst-LOSO and concentration",
+   "sources": [
+    "SRC-DD-45"
+   ]
+  },
+  {
+   "id": "LB-06",
+   "lab": "Skill-lab",
+   "board": "skill-lab/data/leaderboard.json",
+   "candidates": 16,
+   "qualified": 0,
+   "top_result": "Best non-control: STR-08 2-leg wind-under parlay, ROI +34.9% but luck-adjusted -3.9%; 0 qualified, pool 10,000 points (unfunded)",
+   "ranking_rule": "10/10 gates + Skill Score >=75 (Gold) or >=60 (Silver); controls excluded from rewards",
+   "sources": [
+    "SRC-DD-46"
+   ]
+  },
+  {
+   "id": "LB-07",
+   "lab": "Lineup-lab (merged to main after capture)",
+   "board": "lineup-lab/data/leaderboard.json",
+   "candidates": 8,
+   "qualified": 0,
+   "top_result": "0 of 8 approved at 100% stored closing odds (2018-2026 Wk 8, 2,247 games)",
+   "ranking_rule": "10-gate evaluation incl. point-in-time audit; approval requires every gate",
+   "sources": [
+    "SRC-DD-50"
+   ]
+  }
+ ],
+ "correlations": [
+  {
+   "id": "COR-DD-01",
+   "pair": "QB passing yards vs WR1 receiving yards (same team, same game)",
+   "source_file": "root data/derived/correlation.json",
+   "n": 7560,
+   "r": 0.5616,
+   "ci_low": 0.546,
+   "ci_high": 0.5769,
+   "p": 0.0,
+   "note": "Core same-game-parlay pair: same passing volume drives both legs.",
+   "source_id": "SRC-DD-47"
+  },
+  {
+   "id": "COR-DD-02",
+   "pair": "QB passing yards vs that game's top receiver (ex-post leader)",
+   "source_file": "results/correlations.json",
+   "n": 6021,
+   "r": 0.6296,
+   "ci_low": 0.6141,
+   "ci_high": 0.6446,
+   "p": 0.0,
+   "note": "Near-duplicates; the receiver is the game's yards leader, not a pregame choice.",
+   "source_id": "SRC-DD-42"
+  },
+  {
+   "id": "COR-DD-03",
+   "pair": "Top-two receivers' yards, holding team passing volume constant",
+   "source_file": "results/correlations.json",
+   "n": 6027,
+   "r": 0.1114,
+   "ci_low": 0.0864,
+   "ci_high": 0.1363,
+   "p": 0.0,
+   "note": "The residual 'positive correlation' a market SGP prices when pairing two receivers.",
+   "source_id": "SRC-DD-42"
+  },
+  {
+   "id": "COR-DD-04",
+   "pair": "Home QB vs away QB passing yards (same game)",
+   "source_file": "results/correlations.json",
+   "n": 2883,
+   "r": 0.1716,
+   "ci_low": 0.136,
+   "ci_high": 0.2068,
+   "p": 0.0,
+   "note": "Pace/shootout coupling — the one useful positive cross-team correlation.",
+   "source_id": "SRC-DD-42"
+  },
+  {
+   "id": "COR-DD-05",
+   "pair": "A player's own receptions vs own receiving yards (same game)",
+   "source_file": "results/correlations.json",
+   "n": 40439,
+   "r": 0.8597,
+   "ci_low": 0.8572,
+   "ci_high": 0.8622,
+   "p": 0.0,
+   "note": "Same player, two props — effectively one leg priced twice.",
+   "source_id": "SRC-DD-42"
+  },
+  {
+   "id": "COR-DD-06",
+   "pair": "Home ATS result vs game total (same game)",
+   "source_file": "results/correlations.json",
+   "n": 7087,
+   "r": 0.0209,
+   "ci_low": -0.0024,
+   "ci_high": 0.0442,
+   "p": 0.078,
+   "note": "Settlement-level independence for cross-market same-game parlays.",
+   "source_id": "SRC-DD-42"
+  },
+  {
+   "id": "COR-DD-07",
+   "pair": "Closing spread vs closing total",
+   "source_file": "results/correlations.json",
+   "n": 7087,
+   "r": -0.0101,
+   "ci_low": -0.0333,
+   "ci_high": 0.0132,
+   "p": 0.397,
+   "note": "The two prices are quoted almost independently.",
+   "source_id": "SRC-DD-42"
+  },
+  {
+   "id": "COR-DD-08",
+   "pair": "Home points vs away points (pace coupling)",
+   "source_file": "root data/derived/correlation.json",
+   "n": 7087,
+   "r": -0.0309,
+   "ci_low": -0.0542,
+   "ci_high": -0.0077,
+   "p": 0.009,
+   "note": "Weak negative coupling; significant only because n is large.",
+   "source_id": "SRC-DD-47"
+  },
+  {
+   "id": "COR-DD-09",
+   "pair": "Winning margin vs game total",
+   "source_file": "root data/derived/correlation.json",
+   "n": 7087,
+   "r": 0.017,
+   "ci_low": -0.0062,
+   "ci_high": 0.0403,
+   "p": 0.151,
+   "note": "Margin and total are close to orthogonal.",
+   "source_id": "SRC-DD-47"
+  },
+  {
+   "id": "COR-DD-10",
+   "pair": "Lead RB rushing yards vs team passing yards (same game)",
+   "source_file": "results/correlations.json",
+   "n": 6030,
+   "r": -0.1489,
+   "ci_low": -0.1735,
+   "ci_high": -0.1242,
+   "p": 0.0,
+   "note": "Game script: trailing teams abandon the run.",
+   "source_id": "SRC-DD-42"
+  },
+  {
+   "id": "COR-DD-11",
+   "pair": "Home ATS cover <-> game total over (skill-lab)",
+   "source_file": "skill-lab/data/correlations.json",
+   "n": 5110,
+   "r": 0.0215,
+   "ci_low": -0.0059,
+   "ci_high": 0.0489,
+   "p": 0.124,
+   "note": "Binary phi 0.0124; parlaying spread + over indiscriminately adds double vig with no correlation edge.",
+   "source_id": "SRC-DD-49"
+  },
+  {
+   "id": "COR-DD-12",
+   "pair": "Home favorite cover (-3.5+) <-> game total over (skill-lab)",
+   "source_file": "skill-lab/data/correlations.json",
+   "n": 2256,
+   "r": 0.0852,
+   "ci_low": 0.044,
+   "ci_high": 0.126,
+   "p": 5e-05,
+   "note": "Small but significant positive link on the favorite subset.",
+   "source_id": "SRC-DD-49"
+  }
+ ]
+}
