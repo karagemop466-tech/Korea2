@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary | Decision Hub</title>
+<meta name="description" content="Decision support for the NFL line-origination project: suggestions, open questions, strategy framework, injury and depth tracking, and an independent audit.">
+<meta name="generator" content="decision-hub/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html"><span class="mark">DH</span>
+    <span>DECISION HUB<small>NFL RESEARCH</small></span></a>
+  <div class="nav-label">Review</div>
+  <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/executive-summary.html" class="active" aria-current="page">Executive summary</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Questions &amp; unknowns</a><a href="../pages/decisions.html">Decisions</a><a href="../pages/strategies.html">Strategy framework</a><a href="../pages/injuries.html">Injuries &amp; depth</a><a href="../pages/audit.html">Line-by-line audit</a><a href="../pages/evidence.html">Evidence tables</a><a href="../pages/sources.html">Sources</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/workflow.html">Review workflow</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Decision support<br>
+    <strong>0 of 7 strategies approved</strong>
+    <span>Every suggestion is a proposal. Choose before implementing.</span></div>
+</aside>
+<main id="main">
+<header class="topbar"><span class="crumb">EXECUTIVE SUMMARY</span>
+  <span><a class="review-link" href="../../index.html">&larr; Line Lab</a>
+  &nbsp; <a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a></span></header>
+
+
+<div class="hero compact"><div class="eyebrow">EXECUTIVE SUMMARY</div>
+<h1>One page, every number classed.</h1>
+<p class="lede">The shortest honest version: the measurement apparatus works, the market wins,
+the injury/depth tracker is new and untested, and the suggestions below are proposals awaiting a
+decision.</p></div>
+
+<section class="block"><h2>Bottom line</h2>
+<div class="table-wrap"><table class=""><caption class="caption">Executive summary — each row carries the artefact that supports it.</caption><thead><tr><th>Question</th><th>Answer</th><th>Evidence</th><th>Source</th></tr></thead><tbody><tr><td>What the model is for</td><td>Measure whether an independent NFL line beats the closing line. Not to sell picks.</td><td>Model coefficient -0.019 (p = 0.881); MAE 10.39 vs 10.25</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse community data (not NFL-published)</a></td></tr><tr><td>Does it?</td><td>No. The closing line is better and the model adds no incremental information.</td><td>Recomputed at audit check market.spread_mae / market.slope</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse community data (not NFL-published)</a></td></tr><tr><td>Did any strategy pass the gates?</td><td>No. 0 of 7.</td><td>leaderboard.json, 9 entries incl. 2 controls</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse community data (not NFL-published)</a></td></tr><tr><td>Is the ATS 'coin flip' evidence?</td><td>No. It is an identity: every game is counted twice, once per side, so the rate is always exactly 50%.</td><td>data/derived/luck.json reports n=13784, wins=6892, rate=0.5 and p vs 50% = 1.0. The sample is built as x concatenated wi...</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse community data (not NFL-published)</a></td></tr><tr><td>Corrected ATS result</td><td>48.91% home covers, 95% CI 47.73-50.09%, p = 0.072687</td><td>n = 6892 decided games, one observation per game</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse community data (not NFL-published)</a></td></tr><tr><td>Are same-game legs correlated?</td><td>Yes, strongly. QB yards vs WR1 yards r = 0.562; four-leg joint 11.1% vs 5.7% independent.</td><td>correlation.json / verification sgp.* checks</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse community data (not NFL-published)</a></td></tr><tr><td>Is a season record a signal?</td><td>No. Pythagorean R-squared 0.83, year-over-year luck correlation 0.019.</td><td>luck.json</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse community data (not NFL-published)</a></td></tr><tr><td>Can prop ROI be measured?</td><td>Not with this data. No historical prop prices exist.</td><td>Blank and flagged, not estimated</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse community data (not NFL-published)</a></td></tr><tr><td>Is injury/depth tracked now?</td><td>Yes. 636 reported absences with a depth rank in 2026, snapshot 2026-11-12T07:01:31Z.</td><td>decision-hub/data/injuries.json</td><td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">NFL.com — official injury report (Week 10 of the...</a></td></tr><tr><td>Does depth loss affect the line?</td><td>Unmeasured. The tracker creates the feature; nobody has estimated the effect.</td><td>Q-04 is blocked on a timestamped price</td><td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse community data (not NFL-published)</a></td></tr><tr><td>What is the biggest risk?</td><td>Reading a guaranteed statistic as evidence, and treating a proposal as a result.</td><td>7 audit flags; 5 blocked questions</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">This repository on GitHub (official location for...</a></td></tr></tbody></table></div>
+</section>
+
+<section class="block"><h2>Site improvements recommended first</h2>
+<div class="grid2">
+<div class="panel"><h3>Do now (low cost, high impact)</h3><ul class="ticks">
+<li>S-02 — replace the ATS identity with the one-sided test. 1 day. Fixes a headline that cannot fail.</li>
+<li>S-01 — class every table row as official / computed / proposal. 2 days. Stops proposals reading as results.</li>
+<li>S-05 — publish this questions register. Done in this session.</li>
+</ul></div>
+<div class="panel"><h3>Decide before building</h3><ul class="crosses">
+<li>D-01 — is this a measurement system or a picks product?</li>
+<li>D-02 — is the leaderboard a rank or a cash prize?</li>
+<li>D-03 — which weakness is attacked first: price data, injury signal, or props?</li>
+</ul></div></div></section>
+
+<section class="block"><h2>Injury and depth intelligence — what is new</h2>
+<p class="muted">Built this session from the official injury report plus club depth charts. Every
+Out/Doubtful player is placed on his club's depth chart and numbered 1st, 2nd, 3rd string by
+position. The table shows the five team-weeks with the most depth lost in the latest report.</p>
+<div class="table-wrap"><table class=""><caption class="caption">Weighted depth lost = sum of 1/rank over absences with a known rank. Live data, refreshed by workflow.</caption><thead><tr><th>Team</th><th>Week</th><th>Weighted depth lost</th><th>Starters out</th><th>2-deep out</th><th>Positions down to a backup</th><th>Deepest replacement</th><th>Source</th></tr></thead><tbody><tr><td>SEA</td><td>9</td><td>6.00</td><td>5</td><td>7</td><td>2</td><td>2</td><td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">NFL.com — official injury report (Week 10 of the...</a></td></tr><tr><td>PHI</td><td>9</td><td>3.64</td><td>2</td><td>5</td><td>1</td><td>6</td><td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">NFL.com — official injury report (Week 10 of the...</a></td></tr><tr><td>LAC</td><td>9</td><td>2.87</td><td>1</td><td>3</td><td>0</td><td>0</td><td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">NFL.com — official injury report (Week 10 of the...</a></td></tr><tr><td>NE</td><td>10</td><td>2.00</td><td>1</td><td>3</td><td>2</td><td>3</td><td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">NFL.com — official injury report (Week 10 of the...</a></td></tr><tr><td>DEN</td><td>9</td><td>1.83</td><td>1</td><td>2</td><td>0</td><td>0</td><td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">NFL.com — official injury report (Week 10 of the...</a></td></tr></tbody></table></div></section>
+
+<section class="block"><h2>How to read this site</h2>
+<ul class="ticks">
+<li><strong>Questions</strong> — what must be answered before a decision is reasonable. Sorted by how many decisions each one blocks.</li>
+<li><strong>Suggestions</strong> — proposals with impact, cost, risk and the decision they unblock.</li>
+<li><strong>Decisions</strong> — the three choices that gate everything else, with the evidence for each option.</li>
+<li><strong>Strategies</strong> — the ten gates, why nothing passes, and the leaderboard competition design.</li>
+<li><strong>Injuries &amp; depth</strong> — the new tracker, with the method and its limits stated.</li>
+<li><strong>Audit</strong> — independent recomputation of every published number, with the failures named.</li>
+</ul></section>
+
+<footer>
+  <p>Research and decision support only — not betting advice. Nothing here has passed a validation gate. Values that could not be confirmed from an official source are blank and listed on Flagged for review.</p>
+  <p><a href="../pages/sources.html">Sources</a> &middot;
+     <a href="../pages/flagged.html">Flagged for review</a> &middot;
+     <a href="../pages/workflow.html">Review workflow</a></p>
+</footer>
+</main></div></body></html>

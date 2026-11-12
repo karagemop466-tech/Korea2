@@ -1431,6 +1431,27 @@ All 39 entries in `suggestions/data/sources.json` were opened via web_search or 
 **Session ID:** `arena/90e4fdbe-korea2` — branch fixed by the environment; it cannot create `session-<id>/<task>` branches, so the branch name *is* the session id (same constraint recorded by every previous session on this board).
 **Claimed:** 2026-11-12 UTC. **Base:** `e8d04a9` (merge of PR #64).
 
+## Duplicate-scope note — two suggestion hubs now exist (2026-11-12)
+
+Two sessions built an overlapping suggestions layer within the same hour:
+
+| Path | Session | Scope |
+|---|---|---|
+| `suggestions/` + root `pages/suggestions.html`, `pages/decision-questions.html`, `pages/injuries-depth.html` | arena/43870fb8, arena/cb5b61a7 (PR #65, #66) | 17 requirements, 12 proposals, 15 Q&A, 10 decision prerequisites, injury/depth **design** |
+| `decision-hub/` | arena/7dbbeba6 (this PR) | 14 suggestions, 16 questions, 3 decisions, 10-gate framework, injury/depth **built and refreshed by CI**, independent line-by-line audit |
+
+**No work was discarded.** This session kept both hubs, both sets of root pages and every
+coordination-log entry, and added one navigation entry for `decision-hub/` beside the existing ones.
+Integration decision for the reviewer: pick one hub as canonical and keep the other as a dated
+archive (suggestion S-13 applies to hubs as well as sibling labs).
+
+Resolution mechanics: on merging `origin/main` the only conflicting content was navigation lines in
+`index.html` and `pages/*.html`, plus this file. Those pages are generated, so main's versions were
+taken for the conflicted files and regenerated from `scripts/lib/site.py`, which now carries **all**
+navigation entries. Both boards are preserved verbatim above.
+
+## Final integration session `arena/578d4e5f-korea2` — sourced corrections and freshness
+
 | Task ID | Task | Status | Owner | File scope |
 | --- | --- | --- | --- | --- |
 | DD-01 | Read the merged repository line by line and re-verify the published headline numbers against the committed data (independent recomputation, no reuse of the publishing code paths) | in progress | `arena/90e4fdbe-korea2` | `site/scripts/reverify.py`, `COORDINATION.md` |
@@ -1467,3 +1488,16 @@ All 39 entries in `suggestions/data/sources.json` were opened via web_search or 
 
 Claim and implementation were started on the fixed Arena branch from `e8d04a9` before PR #65/#66 reached `main`. During `git pull --rebase origin main` on 2026-11-12, this claim conflicted with the two newly merged sessions' appended coordination boards. Resolved by retaining the complete `origin/main` board (including both sessions' logs) and re-appending this distinct integration claim. No sibling work was discarded; the merged Suggestions, Decision questions and Injury & depth pages are retained. This session contributes factual source corrections, stale-data flags and generator-level navigation integration instead of replacing those pages. Verification on 2026-11-12: `scripts/validate_data.py`, `tests/check_site.py` (113 pages, 276 tables, 4,841 links), `tests/check_data.py`, `tests/check_derived.py`, and `git diff --check` passed after rebuilding with `scripts/build_site.py`. PR [#71](https://github.com/karagemop466-tech/Korea2/pull/71) merged to `main` at `7a8f52f`; its `validate`, `build-verify`, `checks`, and GitHub Pages workflows passed. Pages build `1363236075` reports `built` for main commit `a421148`; the live decision and injury/depth pages were confirmed with cache-busted URLs. PR [#73](https://github.com/karagemop466-tech/Korea2/pull/73) records this deployment verification. A follow-up source-language correction now clarifies that QUESTIONABLE is not a confirmed absence, practice designations are not assumed monotonic, and the Week 10 example does not identify starters; after this correction, `tests/check_site.py` passed (127 pages, 302 tables, 5,976 links), along with data, derived-data, and source validation.
 - 2026-11-12 UTC — NC-9 final record: follow-up PR https://github.com/karagemop466-tech/Korea2/pull/72 merged to `main` (merge commit `bb97a2c`, 2026-11-12 13:28:24 UTC). Its checks passed (`decision-desk`, `tests-and-links`, `validate`, `verify`, `verify-skill-lab`). Pages: legacy build from `main` `/` reports `built` for `bb97a2c`. Live check (fetch tool): `https://karagemop466-tech.github.io/Korea2/nfl-command/pages/injuries.html` loads with 254 player rows. Final state: PR #70 (site, `a421148`) and PR #72 (flagged wording, `bb97a2c`) merged; no PR open from `arena/fc16e360-korea2`. Blocked and open items are unchanged: depth charts (Q01, SUG-01), Alberta reward legality (Q07), suggestions awaiting decision (SUG-01 to SUG-10).
+
+### Result record — `arena/90e4fdbe-korea2` (Decision Desk)
+
+| Item | Result |
+|---|---|
+| Pull request | [#69](https://github.com/karagemop466-tech/Korea2/pull/69) — Decision Desk: suggestions register, open questions, injury/depth evidence, signal lab, independent re-verification |
+| Merged | 2026-11-12T13:25:05Z, merge commit `e156ebd165224baa500fcb85fd243938a307a8ac` (`gh pr merge 69 --merge`) |
+| Checks on the merged head | `decision-desk`, `verify`, `validate`, `tests-and-links`, `verify-skill-lab` — all **pass** |
+| Pages deploy | Pages API reports `built` for `e156ebd`; live verified at https://karagemop466-tech.github.io/Korea2/pages/decision-hub.html and the other seven `decision-*` pages, plus https://karagemop466-tech.github.io/Korea2/site/index.html |
+| Follow-up | visual/link polish + this record: PR [#75](https://github.com/karagemop466-tech/Korea2/pull/75) |
+| Task status | DD-01…DD-06 **done / needs review** (the suggestions inside are `pending` a human decision, by design); DD-07 done via `.github/workflows/decisions.yml` |
+| Published, not blocking | IR-01…IR-10 on `pages/decision-verify.html`; QF-01…QF-08 on `pages/decision-questions.html`; IF-01…IF-06 on `pages/decision-injury-depth.html` |
+| Handover | No strategy is approved, no reward is funded, and no operator/licence/limit is verified. The next session should start with SG-02 (timestamped price capture) and SG-03 (injury/depth/snap feeds on a runner); everything else on the desk is blocked behind those two. |

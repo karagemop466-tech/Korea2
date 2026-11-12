@@ -1,0 +1,860 @@
+{
+ "meta": {
+  "generated_utc": "2026-11-12T13:28:19+00:00",
+  "auditor": "decision-hub/scripts/audit_root.py",
+  "rule": "A published number is PASS only if this independent implementation reproduces it from committed inputs within tolerance. Anything else is FAIL, BLANK or OBSERVATION."
+ },
+ "checks": [
+  {
+   "id": "data.games_rows",
+   "claim": "games in the committed extract (all types)",
+   "published": 7548,
+   "recomputed": 7548,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "row count of data/derived/games.csv.gz",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "data.settled_all",
+   "claim": "settled games (all types) = provenance.games_settled",
+   "published": 7396,
+   "recomputed": 7396,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "rows with both scores, every game type",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "data.settled_reg",
+   "claim": "settled regular-season games",
+   "published": 7087,
+   "recomputed": 7087,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "game_type == REG and both scores present",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "data.asof",
+   "claim": "latest settled gameday = provenance.data_as_of_gameday",
+   "published": "2026-11-01",
+   "recomputed": "2026-11-01",
+   "tolerance": 0,
+   "abs_diff": null,
+   "verdict": "PASS",
+   "method": "max(gameday) over settled regular-season rows",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "market.spread_mae",
+   "claim": "closing spread MAE vs actual margin",
+   "published": 10.25,
+   "recomputed": 10.2503,
+   "tolerance": 0.0005,
+   "abs_diff": 0.0003,
+   "verdict": "PASS",
+   "method": "mean |result - spread_line| over REG games with a closing spread",
+   "source_id": "nflverse-data",
+   "class": "stat"
+  },
+  {
+   "id": "market.spread_n",
+   "claim": "closing spread sample size",
+   "published": 7087,
+   "recomputed": 7087,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "count of REG settled games with spread_line",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "market.total_mae",
+   "claim": "closing total MAE",
+   "published": 10.617,
+   "recomputed": 10.6166,
+   "tolerance": 0.0005,
+   "abs_diff": 0.0004,
+   "verdict": "PASS",
+   "method": "mean |game total - total_line| over REG games with a closing total",
+   "source_id": "nflverse-data",
+   "class": "stat"
+  },
+  {
+   "id": "market.total_n",
+   "claim": "closing total sample size",
+   "published": 7087,
+   "recomputed": 7087,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "count of REG settled games with total_line",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "market.slope",
+   "claim": "slope of actual margin on closing spread",
+   "published": 1.05,
+   "recomputed": 1.049,
+   "tolerance": 0.0015,
+   "abs_diff": 0.001,
+   "verdict": "PASS",
+   "method": "OLS of result on spread_line, REG, closing spread present",
+   "source_id": "nflverse-data",
+   "class": "stat"
+  },
+  {
+   "id": "market.recent_mae",
+   "claim": "closing spread MAE 2023-2026",
+   "published": 9.711,
+   "recomputed": 9.711,
+   "tolerance": 0.0005,
+   "abs_diff": 0.0,
+   "verdict": "PASS",
+   "method": "same statistic, seasons >= 2023",
+   "source_id": "nflverse-data",
+   "class": "stat"
+  },
+  {
+   "id": "luck.ats_n",
+   "claim": "pooled ATS team-games (published method)",
+   "published": 13784,
+   "recomputed": 13784,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "each game counted twice, once per side",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "luck.ats_wins",
+   "claim": "pooled ATS wins (published method)",
+   "published": 6892,
+   "recomputed": 6892,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "exactly one of (+x,-x) is positive, so wins == n/2",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "luck.ats_rate",
+   "claim": "pooled ATS rate (published method)",
+   "published": 0.5,
+   "recomputed": 0.5,
+   "tolerance": 5e-05,
+   "abs_diff": 0.0,
+   "verdict": "PASS",
+   "method": "identical to 0.5 for ANY input; see flag FL-DH-01",
+   "source_id": "nflverse-data",
+   "class": "rate"
+  },
+  {
+   "id": "luck.ats_rate_one_sided",
+   "claim": "home ATS cover rate, one observation per game",
+   "published": null,
+   "recomputed": 0.4891,
+   "tolerance": 5e-05,
+   "abs_diff": null,
+   "verdict": "BLANK",
+   "method": "result - spread_line > 0, pushes removed; this is the only version of the test that can detect a tilt",
+   "source_id": "nflverse-data",
+   "class": "rate"
+  },
+  {
+   "id": "sign.handicap_cover",
+   "claim": "mean of result+spread_line>0 (the 'wrong formula' branch)",
+   "published": 0.6003,
+   "recomputed": 0.6003,
+   "tolerance": 5e-05,
+   "abs_diff": 0.0,
+   "verdict": "PASS",
+   "method": "reproduced exactly; the issue is what it means, not the arithmetic",
+   "source_id": "nflverse-data",
+   "class": "rate"
+  },
+  {
+   "id": "sign.favoured_cover",
+   "claim": "home cover rate under the stated convention",
+   "published": 0.4891,
+   "recomputed": 0.4891,
+   "tolerance": 5e-05,
+   "abs_diff": 0.0,
+   "verdict": "PASS",
+   "method": "result - spread_line > 0, pushes removed",
+   "source_id": "nflverse-data",
+   "class": "rate"
+  },
+  {
+   "id": "model.metric_present",
+   "claim": "model page publishes an incremental-information test",
+   "published": true,
+   "recomputed": true,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "presence check; the coefficient itself needs the predictions file and is re-estimated at market.fail_* below",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "model.predictions_rows",
+   "claim": "walk-forward prediction rows",
+   "published": null,
+   "recomputed": 936,
+   "tolerance": 0,
+   "abs_diff": null,
+   "verdict": "BLANK",
+   "method": "rows in data/derived/predictions.csv",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "lb.candidates",
+   "claim": "strategy candidates on the leaderboard",
+   "published": 9,
+   "recomputed": 9,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "self-consistent count",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "lb.approved",
+   "claim": "strategies approved (all ten gates)",
+   "published": 0,
+   "recomputed": 0,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "entries whose status is approved/qualified",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "props.has_roi",
+   "claim": "prop ROI published",
+   "published": false,
+   "recomputed": false,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "the site states no historical prop prices exist; a published ROI would contradict the flag",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "ver.no_failures",
+   "claim": "the project's own verification record has no FAIL",
+   "published": 0,
+   "recomputed": 0,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "count of verdict == FAIL in verification.json",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "ver.no_mismatch",
+   "claim": "no material mismatch",
+   "published": 0,
+   "recomputed": 0,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "count of verdict == MISMATCH in verification.json",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
+   "id": "rows.source_coverage",
+   "claim": "table rows carrying a source link",
+   "published": 855,
+   "recomputed": 855,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "7 of 862 rows have no link in the final cell",
+   "source_id": "nflverse-data",
+   "class": "count"
+  }
+ ],
+ "flags": [
+  {
+   "id": "FL-DH-01",
+   "severity": "high",
+   "item": "The published 'ATS coin-flip test' cannot fail",
+   "published_where": [
+    "index.html KPI",
+    "pages/luck.html",
+    "pages/executive.html",
+    "docs/EXECUTIVE_SUMMARY.md"
+   ],
+   "detail": "data/derived/luck.json reports n=13784, wins=6892, rate=0.5 and p vs 50% = 1.0. The sample is built as x concatenated with -x (scripts/analyze_luck.py pools ats_margin and its negation, and verification/recompute.py lines 195-205 reproduce it), so exactly one of each pair is positive: rate = 0.5 and p = 1.0 for every possible dataset. It is presented as evidence that 'the spread market shows no exploitable tilt', which it does not test. The one-sided version, one observation per game, is n=6892, home covers=3371, rate=0.4891, 95% Wilson CI (0.477326, 0.500922), two-sided p=0.072687.",
+   "corrected": {
+    "n": 6892,
+    "wins": 3371,
+    "rate": 0.4891,
+    "ci": [
+     0.477326,
+     0.500922
+    ],
+    "p_vs_50": 0.072687
+   },
+   "action": "Relabel the pooled figure as an arithmetic identity or replace it with the one-sided test before it is cited again. Until then no tilt conclusion can be drawn from it in either direction.",
+   "sources": [
+    "nflverse-data"
+   ]
+  },
+  {
+   "id": "FL-DH-02",
+   "severity": "medium",
+   "item": "The sign diagnostic compares two different formulae, not two hypotheses",
+   "published_where": [
+    "pages/validation.html",
+    "data/derived/diag_signs.json",
+    "verification/recompute.py sign.* checks"
+   ],
+   "detail": "Both branches reproduce (0.4891 and 0.6003). But if spread_line is the home team's expected margin (the convention the repository proves elsewhere with corr=0.43 and the moneyline cross-check), then result+spread_line is not 'the other sign convention'. Writing m for the home margin and h for the handicap, m + (-h) = m - h; the second expression is m + h, which is h's own negation, so a 60% 'cover rate' is what you get whenever the home team's margin is near zero relative to a large line. Evidence for the sign convention should come from the moneyline cross-check, not this ratio.",
+   "action": "Keep the moneyline cross-check; either drop the 0.6003 branch or describe it as the complement. Do not cite 0.6003 as a betting result.",
+   "sources": [
+    "nflverse-data",
+    "nflreadr-dictionary"
+   ]
+  },
+  {
+   "id": "FL-DH-03",
+   "severity": "medium",
+   "item": "Leaderboard rejection is reproducible only if every rejected candidate names its gate",
+   "published_where": [
+    "pages/leaderboard.html",
+    "data/derived/leaderboard.json"
+   ],
+   "detail": "9 entries, 0 approved, 0 record at least one failed gate, 7 rejected entries name none: ['Divisional home underdog', 'Team coming off a bye (13+ days rest) vs a normal-rest opponent', 'Under when wind >= 15 mph outdoors', 'Rest advantage >= 3 days', 'Model total edge >= 3.0 pts', 'Model spread edge >= 2.0 pts'].",
+   "action": "List the failed gate per row, or mark the row 'gate detail pending'.",
+   "sources": [
+    "nflverse-data"
+   ]
+  },
+  {
+   "id": "FL-DH-04",
+   "severity": "low",
+   "item": "Published correlation sample does not reproduce from the committed extract",
+   "published_where": [
+    "pages/correlation.html",
+    "pages/verification.html"
+   ],
+   "detail": "3 entries in the project's own verification record are marked 'DIFFERS (expected)'. The site discloses that the four-leg parlay n is 7,560 while a checkout recomputes 6,024, because the extract was pruned to a different season window than the one used for the published coefficients. The sign and magnitude of the correlation reproduce; the n does not.",
+   "action": "Re-run the analysis against the committed extract, or label the published n as the pre-pruning window.",
+   "sources": [
+    "nflverse-data"
+   ]
+  },
+  {
+   "id": "FL-DH-05",
+   "severity": "medium",
+   "item": "The official injury-policy page cited by the root site returns 404",
+   "published_where": [
+    "pages/flagged.html",
+    "pages/sources.html"
+   ],
+   "detail": "data/sources.json id 'nfl-injury-policy' points at https://operations.nfl.com/football-ops/league-governance/injury-report/, re-checked 2026-11-12: HTTP 404 ('404 - FLAG ON THE PLAY'). The root site therefore blocks injury signals. The league's live injury report itself (https://www.nfl.com/injuries/) DOES serve Week 10 of the 2026 season and is the feed used by decision-hub's own tracker, so the data availability claim is now out of date even though the policy document is still missing.",
+   "action": "Cite the live report for data and stop asserting that no injury source is available; keep the policy-PDF gap as an open item. See decision-hub/pages/injuries.html for the working tracker.",
+   "sources": [
+    "nfl-injury-policy",
+    "SRC-NFL-INJURIES"
+   ]
+  },
+  {
+   "id": "FL-DH-06",
+   "severity": "medium",
+   "item": "No page states whether a missing starter is replaced by a 2nd/3rd/4th-string player",
+   "published_where": [
+    "pages/signals.html (root nav has no equivalent page)",
+    "dashboard/pages/signals.html",
+    "origination/pages/signals.html"
+   ],
+   "detail": "The requirement is explicit: the system must know when a defense or offense is on its 2nd, 3rd or 4th string because starters are out. A grep of the repository finds no code that joins the injury report to a depth chart; the phrase appears only in prose. The nflverse depth_charts release does carry a per-snapshot rank (pos_rank) from the 2025 season onward, and decision-hub's tracker is the first code in this repository to use it.",
+   "action": "Publish depth lost per team-week from decision-hub/data/injuries.json; treat any strategy that assumes a backup's performance as unverified until it has a measured effect size.",
+   "sources": [
+    "nflverse-data",
+    "SRC-NFL-INJURIES"
+   ]
+  },
+  {
+   "id": "FL-DH-07",
+   "severity": "low",
+   "item": "Leaderboard rewards are a schedule, not a funded pool",
+   "published_where": [
+    "pages/leaderboard.html"
+   ],
+   "detail": "No prize money exists and no payout mechanism is verified. The reward tiers are a design proposal and are labelled as such on the root site.",
+   "action": "Keep labelled; do not rank strategies as 'earning' anything.",
+   "sources": [
+    "kelly-1956"
+   ]
+  }
+ ],
+ "rows": {
+  "index.html": {
+   "table_rows": 5,
+   "rows_without_source_cell": 0,
+   "tables": 1
+  },
+  "pages/archive.html": {
+   "table_rows": 7,
+   "rows_without_source_cell": 7,
+   "tables": 1
+  },
+  "pages/correlation.html": {
+   "table_rows": 23,
+   "rows_without_source_cell": 0,
+   "tables": 3
+  },
+  "pages/decision-hub.html": {
+   "table_rows": 4,
+   "rows_without_source_cell": 0,
+   "tables": 1
+  },
+  "pages/decision-injury-depth.html": {
+   "table_rows": 143,
+   "rows_without_source_cell": 0,
+   "tables": 6
+  },
+  "pages/decision-parlay.html": {
+   "table_rows": 35,
+   "rows_without_source_cell": 0,
+   "tables": 4
+  },
+  "pages/decision-questions.html": {
+   "table_rows": 25,
+   "rows_without_source_cell": 0,
+   "tables": 5
+  },
+  "pages/decision-signals.html": {
+   "table_rows": 33,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
+  "pages/decision-suggestions.html": {
+   "table_rows": 19,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
+  "pages/decision-summary.html": {
+   "table_rows": 29,
+   "rows_without_source_cell": 0,
+   "tables": 3
+  },
+  "pages/decision-verify.html": {
+   "table_rows": 37,
+   "rows_without_source_cell": 0,
+   "tables": 3
+  },
+  "pages/executive.html": {
+   "table_rows": 19,
+   "rows_without_source_cell": 0,
+   "tables": 3
+  },
+  "pages/flagged.html": {
+   "table_rows": 19,
+   "rows_without_source_cell": 0,
+   "tables": 1
+  },
+  "pages/injuries-depth.html": {
+   "table_rows": 12,
+   "rows_without_source_cell": 0,
+   "tables": 3
+  },
+  "pages/leaderboard.html": {
+   "table_rows": 12,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
+  "pages/lines.html": {
+   "table_rows": 68,
+   "rows_without_source_cell": 0,
+   "tables": 6
+  },
+  "pages/luck.html": {
+   "table_rows": 24,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
+  "pages/market.html": {
+   "table_rows": 34,
+   "rows_without_source_cell": 0,
+   "tables": 5
+  },
+  "pages/method.html": {
+   "table_rows": 11,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
+  "pages/props.html": {
+   "table_rows": 50,
+   "rows_without_source_cell": 0,
+   "tables": 6
+  },
+  "pages/sources.html": {
+   "table_rows": 62,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
+  "pages/strategies.html": {
+   "table_rows": 14,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
+  "pages/suggestions.html": {
+   "table_rows": 10,
+   "rows_without_source_cell": 0,
+   "tables": 1
+  },
+  "pages/validation.html": {
+   "table_rows": 43,
+   "rows_without_source_cell": 0,
+   "tables": 6
+  },
+  "pages/verification.html": {
+   "table_rows": 124,
+   "rows_without_source_cell": 0,
+   "tables": 5
+  }
+ },
+ "ats_honest": {
+  "n": 6892,
+  "wins": 3371,
+  "rate": 0.4891,
+  "ci": [
+   0.477326,
+   0.500922
+  ],
+  "p_vs_50": 0.072687
+ },
+ "predictions_columns": [
+  "season",
+  "week",
+  "game_id",
+  "home_team",
+  "away_team",
+  "model_margin",
+  "model_total",
+  "market_margin",
+  "market_total",
+  "result",
+  "total"
+ ],
+ "leaderboard_summary": {
+  "entries": 9,
+  "approved": 0,
+  "with_failed_gates": 0
+ },
+ "leaderboard_entries": [
+  {
+   "rank": 1,
+   "id": "S6_divisional_home_dog",
+   "name": "Divisional home underdog",
+   "family": "single bet (situational)",
+   "verdict": "REJECTED",
+   "gates_passed": "5/10",
+   "n_bets": 137,
+   "decided": 134,
+   "roi": -0.0121,
+   "roi_ci": [
+    -0.1677,
+    0.1465
+   ],
+   "win_rate": 0.5149,
+   "p_value": 0.795629,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.937314,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 2,
+   "id": "S5_bye_week_team",
+   "name": "Team coming off a bye (13+ days rest) vs a normal-rest opponent",
+   "family": "single bet (situational)",
+   "verdict": "REJECTED",
+   "gates_passed": "5/10",
+   "n_bets": 86,
+   "decided": 85,
+   "roi": -0.0587,
+   "roi_ci": [
+    -0.263,
+    0.1421
+   ],
+   "win_rate": 0.4941,
+   "p_value": 1.0,
+   "bh_adjusted_p": 1.0,
+   "deflated_sharpe_p": 0.974492,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 3,
+   "id": "S7_wind_under",
+   "name": "Under when wind >= 15 mph outdoors",
+   "family": "single bet (total)",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 46,
+   "decided": 45,
+   "roi": 0.0151,
+   "roi_ci": [
+    -0.2576,
+    0.2853
+   ],
+   "win_rate": 0.5333,
+   "p_value": 0.765992,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.899929,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 4,
+   "id": "S4_rest_advantage",
+   "name": "Rest advantage >= 3 days",
+   "family": "single bet (situational)",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 204,
+   "decided": 200,
+   "roi": 0.0009,
+   "roi_ci": [
+    -0.1275,
+    0.1274
+   ],
+   "win_rate": 0.525,
+   "p_value": 0.524622,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.915114,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 5,
+   "id": "S3_model_total_edge",
+   "name": "Model total edge >= 3.0 pts",
+   "family": "single bet (total)",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 370,
+   "decided": 366,
+   "roi": -0.0353,
+   "roi_ci": [
+    -0.129,
+    0.0629
+   ],
+   "win_rate": 0.5055,
+   "p_value": 0.87542,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.981829,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 6,
+   "id": "C1_all_home_control",
+   "name": "Control - back every home team",
+   "family": "control",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 936,
+   "decided": 911,
+   "roi": -0.0519,
+   "roi_ci": [
+    -0.1102,
+    0.0095
+   ],
+   "win_rate": 0.4962,
+   "p_value": 0.842442,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.998759,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 7,
+   "id": "S1_model_edge_2",
+   "name": "Model spread edge >= 2.0 pts",
+   "family": "single bet",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 572,
+   "decided": 557,
+   "roi": -0.0528,
+   "roi_ci": [
+    -0.1299,
+    0.0259
+   ],
+   "win_rate": 0.4955,
+   "p_value": 0.865434,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.99642,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 8,
+   "id": "C2_all_under_control",
+   "name": "Control - under every game",
+   "family": "control",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 936,
+   "decided": 931,
+   "roi": -0.0595,
+   "roi_ci": [
+    -0.1199,
+    0.0024
+   ],
+   "win_rate": 0.4919,
+   "p_value": 0.646379,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.999491,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  },
+  {
+   "rank": 9,
+   "id": "S2_model_edge_3",
+   "name": "Model spread edge >= 3.0 pts",
+   "family": "single bet",
+   "verdict": "REJECTED",
+   "gates_passed": "4/10",
+   "n_bets": 409,
+   "decided": 396,
+   "roi": -0.0819,
+   "roi_ci": [
+    -0.1717,
+    0.0114
+   ],
+   "win_rate": 0.4798,
+   "p_value": 0.451024,
+   "bh_adjusted_p": 0.984847,
+   "deflated_sharpe_p": 0.998996,
+   "reward": "none - gate failure",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ]
+  }
+ ],
+ "verification_summary": {
+  "checks": 49,
+  "fail": 0,
+  "mismatch": 0,
+  "reconciliation": {
+   "2020": {
+    "url": "https://www.nfl.com/standings/division/2020/REG",
+    "retrieved_utc": "2026-11-02",
+    "teams_compared": 32,
+    "teams_matched": 32,
+    "mismatched_teams": [],
+    "expectation": "exact",
+    "games_in_extract": 256,
+    "latest_gameday_in_extract": "2021-01-03"
+   },
+   "2026": {
+    "url": "https://www.nfl.com/standings/division/2026/REG",
+    "retrieved_utc": "2026-11-02",
+    "teams_compared": 32,
+    "teams_matched": 32,
+    "mismatched_teams": [],
+    "expectation": "lag",
+    "games_in_extract": 120,
+    "latest_gameday_in_extract": "2026-11-01"
+   }
+  }
+ },
+ "rows_totals": {
+  "pages": 25,
+  "table_rows": 862,
+  "rows_without_source_cell": 7
+ },
+ "summary": {
+  "checks": 24,
+  "pass": 22,
+  "fail": 0,
+  "blank": 2,
+  "flags": 7,
+  "high_flags": 1
+ }
+}

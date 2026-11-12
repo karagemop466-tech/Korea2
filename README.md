@@ -23,6 +23,41 @@ The dataset is through **2026-11-01**; this repository snapshot is not current t
 The honest headline is that the market is better than the model, and the gate system rejects
 everything as a result. That is the intended behaviour of the system, not a failure of it.
 
+## Decision hub — read this before changing anything
+
+The site answers "what is true". It did not answer "what should we do next". That layer now lives
+in [`decision-hub/`](decision-hub/index.html), and it is the place to start:
+
+| Page | What it is for |
+|---|---|
+| [Executive summary](decision-hub/pages/executive-summary.html) | the one-page version, every number classed |
+| [Suggestions](decision-hub/pages/suggestions.html) | 14 proposals, each with impact, cost, risk and the decision it unblocks |
+| [Questions & unknowns](decision-hub/pages/questions.html) | 16 questions split into what we know and what we do not, sorted by how many decisions each blocks |
+| [Decisions](decision-hub/pages/decisions.html) | the three choices that gate everything else, with the evidence for each option |
+| [Strategy framework](decision-hub/pages/strategies.html) | the ten gates, the leaderboard, and why nothing passes |
+| [Injuries & depth](decision-hub/pages/injuries.html) | who is out and how far down the depth chart it reaches — 1st/2nd/3rd string per position |
+| [Line-by-line audit](decision-hub/pages/audit.html) | every published number recomputed by an independent implementation |
+| [Review workflow](decision-hub/pages/workflow.html) | how to choose a path without implementing anything first |
+
+**One finding from that audit changes a published conclusion:** the headline "ATS coin-flip test —
+50.0%, p = 1.0" is an arithmetic identity, not a test (every game is pooled twice, once per side).
+The honest one-observation-per-game figure is 48.91% home covers, 95% CI 47.73–50.09%, p = 0.073.
+See [FL-DH-01](decision-hub/pages/flagged.html).
+
+### Injury and depth data
+
+`decision-hub/data/injuries.json` is built by `.github/workflows/fetch-injuries.yml` from the
+official NFL injury report plus the nflverse depth-chart, roster and snap-count releases. It runs on
+a GitHub runner because release assets redirect to a host the development sandbox cannot reach.
+Refresh locally with an unrestricted network:
+
+```bash
+python decision-hub/scripts/fetch_injuries.py --season 2026
+python decision-hub/scripts/audit_root.py
+python decision-hub/scripts/build_site.py
+python decision-hub/scripts/check_site.py
+```
+
 ## How it works
 
 ```

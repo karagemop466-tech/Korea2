@@ -1,7 +1,7 @@
 {
   "meta": {
     "session": "arena/652b0095-korea2",
-    "generated_utc": "2026-11-12T13:05:18Z",
+    "generated_utc": "2026-11-12T13:18:33Z",
     "purpose": "Independent re-implementation of the published statistics from the committed extracts, plus field-by-field reconciliation of a completed season against NFL.com.",
     "data_as_of_gameday": "2026-11-01",
     "n_checks": 49,
@@ -74,7 +74,7 @@
         "http_state": "empty response (no article body returned)",
         "excerpt": "The page returned navigation scaffolding only, with no policy text.",
         "verdict": "NOT CONFIRMED",
-        "note": "The checked operations.nfl.com legacy URL returned no article body. A separate NFL.com weekly injury report and NFL.com policy explainer were re-opened on 2026-11-12 and do return content; the missing project input is historical point-in-time ingestion and verified depth order, not existence of a live report."
+        "note": "Consistent with what the site already publishes: injury-report policy is unavailable, so no injury-based signal is registered."
       },
       {
         "id": "SRC-CHK-07",

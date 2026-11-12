@@ -1,0 +1,128 @@
+name: fetch-injuries
+
+# Builds decision-hub/data/injuries.json from the official NFL injury report plus the
+# nflverse depth charts / rosters / snap counts. It has to run on a GitHub runner: release
+# assets redirect to release-assets.githubusercontent.com, which the authoring sandbox cannot
+# reach, while a runner can.
+#
+# It never pushes to main. It commits the derived JSON (a few hundred KB, no raw CSVs) to the
+# branch it was dispatched on, or to a short-lived refresh branch when run on main.
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: 'Season to refresh'
+        required: false
+        default: '2026'
+  schedule:
+    # Wednesdays and Saturdays during the season: after the Wednesday practice report and
+    # after the final Saturday status report. Times are UTC.
+    - cron: '30 21 * * 3'
+    - cron: '30 21 * * 6'
+  push:
+    # `main` keeps the committed snapshot fresh; `arena/**` lets a working branch build its own
+    # snapshot while the change is still under review (same pattern as validate.yml).
+    branches: ['main', 'arena/**']
+    paths:
+      - 'decision-hub/scripts/fetch_injuries.py'
+      - '.github/workflows/fetch-injuries.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-injuries-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    env:
+      SEASON: ${{ github.event.inputs.season || '2026' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch and build (fail-closed)
+        run: |
+          set -euo pipefail
+          python decision-hub/scripts/fetch_injuries.py --season "$SEASON" \
+            --raw-dir "$RUNNER_TEMP/nflraw" \
+            --out decision-hub/data/injuries.json
+
+      - name: Validate the output before publishing it
+        run: |
+          set -euo pipefail
+          python - <<'EOF'
+          import json, sys
+          d = json.load(open("decision-hub/data/injuries.json"))
+          meta = d["meta"]
+          rows = d["absences"]
+          cur = d["current"]
+          print(f"files: {[f['name'] for f in meta['files']]}")
+          print(f"depth snapshot: {meta.get('depth_snapshot_dt')!r} of {meta.get('depth_snapshots_available')}")
+          print(f"absences {len(rows)}, current team rows {len(cur)}")
+          problems = []
+          if not rows:
+              problems.append("no absence rows")
+          if not meta.get("depth_snapshot_dt"):
+              problems.append("no depth-chart snapshot timestamp (schema change?)")
+          if len(cur) < 28:
+              problems.append(f"only {len(cur)} teams have a current report row")
+          bad = [r for r in rows if r.get("depth_rank") is not None and not isinstance(r["depth_rank"], int)]
+          if bad:
+              problems.append(f"{len(bad)} non-integer depth ranks")
+          for r in rows:
+              for k in ("team", "player", "position", "report_status"):
+                  if not r.get(k):
+                      problems.append(f"empty {k} in a published row")
+                      break
+          if problems:
+              print("BLOCKING:", problems)
+              sys.exit(1)
+          print("output validated")
+          EOF
+
+      - name: Commit the derived JSON (never the raw downloads)
+        run: |
+          set -euo pipefail
+          git config user.name  "decision-hub-bot"
+          git config user.email "decision-hub-bot@users.noreply.github.com"
+          git add decision-hub/data/injuries.json
+          if git diff --cached --quiet; then
+            echo "no change in the injury snapshot - nothing to commit"
+            exit 0
+          fi
+          git commit -m "data(injuries): refresh official NFL injury report + depth-chart snapshot"
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            BRANCH="decision-hub-refresh/run-${GITHUB_RUN_ID}"
+            git checkout -b "$BRANCH"
+            git push origin "$BRANCH"
+            echo "::notice title=Refresh branch pushed::Merge $BRANCH after review; this workflow never writes to main."
+          else
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "## Injury snapshot"
+            python - <<'EOF' || true
+          import json
+          d = json.load(open("decision-hub/data/injuries.json"))
+          m = d["meta"]
+          print(f"- season {m['season']}, depth snapshot `{m.get('depth_snapshot_dt')}`")
+          print(f"- {len(d['absences'])} reported absences on {len(d['team_week_summary'])} team-weeks")
+          top = sorted(d["current"], key=lambda s: -s["weighted_depth_lost"])[:5]
+          for s in top:
+              print(f"  - {s['team']} wk{s['week']}: depth lost {s['weighted_depth_lost']}, "
+                    f"{s['starters_out']} starters out")
+          EOF
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -249,8 +249,8 @@
    "recomputed": 0,
    "tolerance": 0,
    "status": "agree",
-   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/pages/leaderboard.html",
-   "source_text": "source",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json",
+   "source_text": "committed leaderboard.json",
    "published_on": "no published page recorded",
    "note": "Read from data/derived/leaderboard.json; the gate code is in scripts/analyze_strategies.py. Re-running the gate logic itself is out of scope for this check; only the published summary is cross-checked against its own entry list."
   },
@@ -261,8 +261,8 @@
    "recomputed": 10,
    "tolerance": 0,
    "status": "agree",
-   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/pages/validation.html",
-   "source_text": "source",
+   "source": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/strategies.json",
+   "source_text": "committed strategies.json",
    "published_on": "pages/validation.html",
    "note": ""
   },
