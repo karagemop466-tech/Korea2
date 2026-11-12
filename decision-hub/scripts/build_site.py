@@ -678,7 +678,9 @@ def page_flagged():
     flags = aud.get("flags", [])
     rows = []
     for f in flags:
+        status = f.get("status", "open")
         rows.append([f'<code>{esc(f["id"])}</code>', badges([f["severity"]], {"high": "bad", "medium": "warn", "low": "ok"}.get(f["severity"], "ok")),
+                     badges([status], "ok" if status.startswith("resolved") else "bad"),
                      esc(f["item"]), esc(f["detail"]), esc(f.get("action", "")),
                      ", ".join(esc(x) for x in f.get("published_where", [])) or "&mdash;",
                      " ".join(src(s) for s in f.get("sources", []))])
@@ -688,11 +690,11 @@ def page_flagged():
 <p class="lede">Nothing here blocks publication. Each item was found by checking rather than
 assumed away, and each one states what should happen next. Values that cannot be confirmed from
 an official source are left blank on the site and listed here instead.</p></div>
-<div class="notice"><span class="dot"></span><div><strong>{len(flags)} items ({len([f for f in flags if f['severity']=='high'])} high).</strong><br>
+<div class="notice"><span class="dot"></span><div><strong>{len([f for f in flags if not str(f.get('status','')).startswith('resolved')])} open of {len(flags)} items ({len([f for f in flags if f['severity']=='high'])} high).</strong><br>
 Generated from <code>decision-hub/data/root_audit.json</code>; regenerate with the audit script.</div>
 <a href="pages/audit.html">See the recomputation &rarr;</a></div>
 <section class="block"><h2>Register</h2>
-{table(["ID", "Severity", "Item", "Detail", "What should happen", "Published on", "Sources"], rows, "Every flag names the exact page or file where the problem appears.")}
+{table(["ID", "Severity", "Status", "Item", "Detail", "What should happen", "Published on", "Sources"], rows, "Every flag names the exact page or file where the problem appears. A flag can be closed by this audit; when it is, it stays on the page with the correction shown.")}
 </section>
 <section class="block"><h2>Unverified-value policy</h2>
 <ul class="ticks">
