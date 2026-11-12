@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_utc": "2026-11-12T13:32:04+00:00",
+  "generated_utc": "2026-11-12T13:34:49+00:00",
   "auditor": "decision-hub/scripts/audit_root.py",
   "rule": "A published number is PASS only if this independent implementation reproduces it from committed inputs within tolerance. Anything else is FAIL, BLANK or OBSERVATION."
  },
@@ -234,6 +234,18 @@
    "class": "count"
   },
   {
+   "id": "lb.gate_field",
+   "claim": "every leaderboard entry exposes its gate detail",
+   "published": true,
+   "recomputed": true,
+   "tolerance": 0,
+   "abs_diff": 0,
+   "verdict": "PASS",
+   "method": "presence of the failed_gates/gates_passed keys; a False here means this audit is reading the wrong schema, not that the site is wrong",
+   "source_id": "nflverse-data",
+   "class": "count"
+  },
+  {
    "id": "lb.approved",
    "claim": "strategies approved (all ten gates)",
    "published": 0,
@@ -339,14 +351,15 @@
   },
   {
    "id": "FL-DH-03",
-   "severity": "medium",
-   "item": "Leaderboard rejection is reproducible only if every rejected candidate names its gate",
+   "severity": "low",
+   "item": "Leaderboard gate detail is complete",
+   "status": "resolved in this audit - no finding",
    "published_where": [
     "pages/leaderboard.html",
     "data/derived/leaderboard.json"
    ],
-   "detail": "9 entries, 0 approved, 0 record at least one failed gate, 7 rejected entries name none: ['Divisional home underdog', 'Team coming off a bye (13+ days rest) vs a normal-rest opponent', 'Under when wind >= 15 mph outdoors', 'Rest advantage >= 3 days', 'Model total edge >= 3.0 pts', 'Model spread edge >= 2.0 pts'].",
-   "action": "List the failed gate per row, or mark the row 'gate detail pending'.",
+   "detail": "9 entries, 0 approved, 9 record their failed gates, 0 rejected entries name none. The first version of this audit read a field called `gates_failed`; every entry uses `failed_gates`, so it reported seven candidates as undocumented. That was a defect in the audit, not in the site: the field name is now read correctly and a presence check (lb.gate_field) fails loudly if the schema changes again. Kept on this page so the correction is visible rather than silently dropped.",
+   "action": "Nothing to fix on the site. This row exists to record that the audit's first report was wrong; re-read any row in this register against its `status` field before acting on it.",
    "sources": [
     "nflverse-data"
    ]
@@ -563,7 +576,7 @@
  "leaderboard_summary": {
   "entries": 9,
   "approved": 0,
-  "with_failed_gates": 0
+  "with_failed_gates": 9
  },
  "leaderboard_entries": [
   {
@@ -850,8 +863,8 @@
   "rows_without_source_cell": 7
  },
  "summary": {
-  "checks": 24,
-  "pass": 22,
+  "checks": 25,
+  "pass": 23,
   "fail": 0,
   "blank": 2,
   "flags": 7,

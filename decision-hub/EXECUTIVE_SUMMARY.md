@@ -40,11 +40,11 @@ the tolerance, and a verdict.
 
 | Result | Count |
 |---|---|
-| Checks | 24 |
-| Reproduced exactly | 22 |
+| Checks | 25 |
+| Reproduced exactly | 23 |
 | Failed | 0 |
 | Unverifiable with committed data | 2 |
-| Flags raised | 7 (1 high, 4 medium, 2 low) |
+| Flags | 7 raised, of which 6 remain open (1 high) |
 | Table rows on the published site | 862 across 25 pages |
 | Rows without a source link | 7 (all on the archive index) |
 
@@ -67,10 +67,12 @@ prediction count (936 rows exist; no published value to compare against).
 | FL-DH-04 | low | Published correlation sample (n=7,560) does not reproduce (6,024) |
 | FL-DH-05 | medium | The cited injury-policy URL returns 404; the *data* source is fine |
 | FL-DH-06 | medium | No code anywhere joined injuries to a depth chart (fixed this session) |
-| FL-DH-03 | low | Leaderboard gate-detail completeness |
+| FL-DH-03 | low | **resolved — my own false positive.** The first audit read `gates_failed`; the data uses `failed_gates`, so it wrongly reported seven candidates as undocumented. Corrected, with a schema-presence check added so it cannot recur. |
 | FL-DH-07 | low | Rewards are a schedule, not a funded pool |
 
 FL-DH-01 is the one that changes a conclusion. The others are disclosure and maintenance.
+FL-DH-03 is recorded as a correction of this session's own work: an audit that reports a finding
+must itself be checkable, and this one was wrong on its first run.
 
 ---
 
@@ -160,9 +162,9 @@ Unconfirmable items: `decision-hub/pages/flagged.html`.
 
 ## 8. Verification performed in this session
 
-* `python3 decision-hub/scripts/audit_root.py` → 24 checks, 22 pass, 0 fail, 2 blank, 7 flags.
+* `python3 decision-hub/scripts/audit_root.py` → 25 checks, 23 pass, 0 fail, 2 blank, 7 flags (6 open).
 * `python3 decision-hub/scripts/build_site.py` → 12 pages, byte-stable on re-run.
-* `python3 decision-hub/scripts/check_site.py` → 12 pages, 39 tables, **714 of 714 rows carry a
+* `python3 decision-hub/scripts/check_site.py` → 12 pages, 39 tables, **728 of 728 rows carry a
   source link**, every internal link and anchor resolves.
 * `python3 scripts/build_site.py` → root site rebuild unchanged except the added nav entry.
 * `python3 tests/check_site.py` → 109 pages, 290 tables, 5,124 links, all pass.

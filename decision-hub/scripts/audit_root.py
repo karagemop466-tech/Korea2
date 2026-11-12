@@ -332,26 +332,42 @@ def main() -> int:
     entries = lb.get("entries", [])
     checks.append(check("lb.candidates", "strategy candidates on the leaderboard",
                         len(entries), len(entries), 0, "self-consistent count", klass="count"))
+    # Guard against auditing the wrong field name: the first version read `gates_failed` while
+    # every entry uses `failed_gates`, and reported seven candidates as having no gate detail.
+    field_present = all(("failed_gates" in e) or ("gates_passed" in e) for e in entries) if entries else True
+    checks.append(check("lb.gate_field", "every leaderboard entry exposes its gate detail",
+                        True, field_present, 0,
+                        "presence of the failed_gates/gates_passed keys; a False here means this "
+                        "audit is reading the wrong schema, not that the site is wrong",
+                        klass="count"))
     approved = [e for e in entries if str(e.get("status", "")).lower() in ("approved", "qualified")]
     checks.append(check("lb.approved", "strategies approved (all ten gates)",
                         lb.get("approved_count"), len(approved), 0,
                         "entries whose status is approved/qualified", klass="count"))
-    gates_failed = [e for e in entries if e.get("gates_failed")]
+    gates_failed = [e for e in entries if e.get("failed_gates")]
     out["leaderboard_summary"] = {"entries": len(entries), "approved": len(approved),
                                  "with_failed_gates": len(gates_failed)}
     out["leaderboard_entries"] = entries
     # every non-control candidate must name at least one failed gate
     nameless = [e.get("name") for e in entries
-                if e.get("family") != "control" and not e.get("gates_failed")
-                and str(e.get("status", "")).lower() not in ("approved", "qualified")]
+                if e.get("family") != "control" and not e.get("failed_gates")
+                and str(e.get("verdict", e.get("status", ""))).lower() not in ("approved", "qualified")]
     flags.append({
         "id": "FL-DH-03", "severity": "low" if not nameless else "medium",
-        "item": "Leaderboard rejection is reproducible only if every rejected candidate names its gate",
+        "item": ("Leaderboard gate detail is complete" if not nameless else
+                 "Rejected candidates must name the gate that rejected them"),
+        "status": ("resolved in this audit - no finding" if not nameless else "open"),
         "published_where": ["pages/leaderboard.html", "data/derived/leaderboard.json"],
-        "detail": (f"{len(entries)} entries, {len(approved)} approved, "
-                   f"{len(gates_failed)} record at least one failed gate, "
-                   f"{len(nameless)} rejected entries name none: {nameless[:6]}."),
-        "action": "List the failed gate per row, or mark the row 'gate detail pending'.",
+        "detail": (f"{len(entries)} entries, {len(approved)} approved, {len(gates_failed)} record "
+                   f"their failed gates, {len(nameless)} rejected entries name none. The first "
+                   "version of this audit read a field called `gates_failed`; every entry uses "
+                   "`failed_gates`, so it reported seven candidates as undocumented. That was a "
+                   "defect in the audit, not in the site: the field name is now read correctly "
+                   "and a presence check (lb.gate_field) fails loudly if the schema changes again. "
+                   "Kept on this page so the correction is visible rather than silently dropped."),
+        "action": ("Nothing to fix on the site. This row exists to record that the audit's first "
+                   "report was wrong; re-read any row in this register against its `status` "
+                   "field before acting on it."),
         "sources": ["nflverse-data"]})
 
     # ---- 8. props

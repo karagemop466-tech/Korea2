@@ -1488,6 +1488,38 @@ navigation entries. Both boards are preserved verbatim above.
 
 Claim and implementation were started on the fixed Arena branch from `e8d04a9` before PR #65/#66 reached `main`. During `git pull --rebase origin main` on 2026-11-12, this claim conflicted with the two newly merged sessions' appended coordination boards. Resolved by retaining the complete `origin/main` board (including both sessions' logs) and re-appending this distinct integration claim. No sibling work was discarded; the merged Suggestions, Decision questions and Injury & depth pages are retained. This session contributes factual source corrections, stale-data flags and generator-level navigation integration instead of replacing those pages. Verification on 2026-11-12: `scripts/validate_data.py`, `tests/check_site.py` (113 pages, 276 tables, 4,841 links), `tests/check_data.py`, `tests/check_derived.py`, and `git diff --check` passed after rebuilding with `scripts/build_site.py`. PR [#71](https://github.com/karagemop466-tech/Korea2/pull/71) merged to `main` at `7a8f52f`; its `validate`, `build-verify`, `checks`, and GitHub Pages workflows passed. Pages build `1363236075` reports `built` for main commit `a421148`; the live decision and injury/depth pages were confirmed with cache-busted URLs. PR [#73](https://github.com/karagemop466-tech/Korea2/pull/73) records this deployment verification. A follow-up source-language correction now clarifies that QUESTIONABLE is not a confirmed absence, practice designations are not assumed monotonic, and the Week 10 example does not identify starters; after this correction, `tests/check_site.py` passed (127 pages, 302 tables, 5,976 links), along with data, derived-data, and source validation.
 
+### Follow-up corrections — `arena/7dbbeba6-korea2` (2026-11-12, after PR #68 merged)
+
+Both were found by reading the **deployed** page, not by the test suite, and both are recorded
+rather than quietly fixed:
+
+1. **Stored tallies drifted.** `suggestions.json` and `questions.json` carried hand-written
+   `meta.counts` blocks (6 high-impact, 4 blocked) that no longer matched the arrays (7 and 5) after
+   edits. The blocks are deleted; every count on the site is computed at build time, and
+   `decision-hub/scripts/check_site.py` now fails if a stored tally reappears.
+2. **FL-DH-03 was a false positive caused by this session's own code.** The audit read
+   `entry["gates_failed"]` while `data/derived/leaderboard.json` uses `failed_gates`, so it reported
+   seven rejected candidates as having no gate detail. Every entry does name its failed gates
+   (9 of 9). The audit now reads the correct field, adds `lb.gate_field` as a schema-presence check,
+   and FL-DH-03 stays on the flagged page marked **resolved in this audit — no finding**, so the
+   correction is visible. **Open flags: 6 of 7 (1 high).**
+
+Re-verified after the fixes: `audit_root.py` 25 checks / 23 pass / 0 fail / 2 blank / 7 flags
+(6 open); `build_site.py` byte-stable; `check_site.py` 12 pages, 39 tables, **729/729 rows carry a
+source link**, every link and anchor resolves; root `tests/check_site.py` and
+`scripts/check_links.py` pass on the merged tree.
+
+### Release record — `arena/7dbbeba6-korea2`
+
+| Item | Result |
+|---|---|
+| PR #68 | https://github.com/karagemop466-tech/Korea2/pull/68 — merged 2026-11-12T13:30:31Z, merge commit `c2c1b6e74107eede66ed47877e9b4bd812bf99ab`. All checks green (check, verify, validate, tests-and-links, verify-skill-lab, decision-desk). |
+| PR #77 | https://github.com/karagemop466-tech/Korea2/pull/77 — follow-up, merged, merge commit `97bd979f109680015ed79ebe64c03c48d660c5bb`. |
+| Pages deployment | run 43227955208 (for #68) **success**; run 43228445846 (for #77) **success**; `gh api .../pages` reports `status: built` for https://karagemop466-tech.github.io/Korea2/ |
+| Live verification | https://karagemop466-tech.github.io/Korea2/decision-hub/ fetched 2026-11-12 and rendered correctly (14 suggestions, 16 questions, 24 audit checks at the time of that build); /pages/flagged.html fetched and shows all 7 flags with source links. |
+| Conflicts resolved | Three parallel sessions merged into `main` while this branch was open (`suggestions/` + root `pages/suggestions.html`, `decision-questions.html`, `injuries-depth.html`; `nfl-command/`; and a `decision-*` page set). Each merge conflicted only on generated navigation and this board. Resolution: union of **all** navigation targets, all boards kept verbatim, generated pages rebuilt from `scripts/lib/site.py`. No session's work was deleted. |
+| Duplicate scope | Two further suggestion hubs now exist (`suggestions/`, `nfl-command/`, and the `decision-*` pages) alongside `decision-hub/`. They overlap heavily. This session did not delete or rewrite any of them; the choice of canonical hub is logged for the reviewer (suggestion S-13). |
+
 ### Result record — `arena/90e4fdbe-korea2` (Decision Desk)
 
 | Item | Result |
