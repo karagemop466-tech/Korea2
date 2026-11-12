@@ -1301,7 +1301,7 @@ therefore recorded here; a maintainer can close them against this table.
 | NC-6 | Suggestions register (options for review, nothing implemented) and missing-information / questions register | done | `arena/fc16e360-korea2` | `nfl-command/data/suggestions.json`, `nfl-command/data/questions.json` |
 | NC-7 | Static GitHub Pages site: landing page, category subpages, Flagged for Review, executive summary | done | `arena/fc16e360-korea2` | `nfl-command/**` (site + `nfl-command/scripts/build_site.py`) |
 | NC-8 | Verification gate: row-level source-link check, blank-unverified check, JSON check, local link check | done | `arena/fc16e360-korea2` | `nfl-command/scripts/verify.py` |
-| NC-9 | Integration: PR to `main`, merge, GitHub Pages deploy confirmation, record here | claimed | `arena/fc16e360-korea2` | this section of `COORDINATION.md`, PR |
+| NC-9 | Integration: PR to `main`, merge, GitHub Pages deploy confirmation, record here | done (PR #70 merged 2026-11-12 13:19 UTC; Pages built a421148) | `arena/fc16e360-korea2` | this section of `COORDINATION.md`, PR |
 
 **Log**
 - 2026-11-12 UTC: Claim written and pushed before implementation. Official reachability check: `fetch_page` returns the NFL.com 2026 injury report (Week 10) at `https://www.nfl.com/injuries/`; the sandbox shell cannot reach nfl.com, so NFL.com values are captured through the fetch tool only and recorded with the URL they came from.
@@ -1423,4 +1423,5 @@ All 39 entries in `suggestions/data/sources.json` were opened via web_search or 
 | Scope note | Non-overlapping: only `suggestions/` + `scripts/validate_data.py` allowlist entry for `colts.com` (official depth-chart source) + this board. Sibling directories untouched. |
 
 **Status update:** All 14 tasks in this session's board are now `done`. No strategy approved for capital (0/7); reward tiers remain paper schedule. The hub is the dedicated suggestions section the prompt requested — proposals must be approved before any implementation branch edits the referenced files.
-
+- 2026-11-12 UTC — NC-9 integration, record: PR https://github.com/karagemop466-tech/Korea2/pull/70 (`arena/fc16e360-korea2` → `main`) merged with a merge commit (`a421148`, 2026-11-12 13:19:20 UTC). Pre-merge: the PR was CONFLICTING only in COORDINATION.md after `main` moved (PRs #65–#67). Resolved by merging `origin/main` into the branch and keeping both session boards; no lines removed (base lines preserved in order). All four PR checks passed (`verify`, `validate`, `tests-and-links`, `verify-skill-lab`). Pages: legacy build from `main` `/` reports `built` for `a421148`. Live check (fetch tool): `https://karagemop466-tech.github.io/Korea2/nfl-command/` and `.../pages/flagged.html` load. Remaining live-site link checks are listed as F-18.
+- 2026-11-12 UTC — Follow-up (this PR): flagged wording corrected (F-01, F-02 state the cause is not known; F-18 partly checked). No data values changed.
