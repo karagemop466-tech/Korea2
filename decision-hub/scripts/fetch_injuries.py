@@ -11,16 +11,25 @@ script and commits the *derived* JSON (never the multi-megabyte raw CSVs) back t
 
 WHAT THIS DOES **NOT** DO
 -------------------------
-It does not claim a missing starter means the backup plays. Nothing in the official feed says
-who will play. What it measures, from the league's own injury report plus the depth chart, is:
+It does not claim a missing starter means the backup plays, or that the backup is worse.
+Nothing in the official feed says who will play. What it measures, from the league's own injury
+report plus the club depth chart, is how much known depth a team has reported unavailable:
 
-    a player is listed on the official report with game status Out / Doubtful
-    -> how many snaps he actually played recently (snap counts, 4-week mean)
-    -> his rank at that position on the most recent depth-chart snapshot
+    rank 1 at a position  -> "1st string",  rank 2 -> "2nd string",  rank 3 -> "3rd string" ...
 
-"Depth lost" is defined as the sum of 1/rank over the absent players whose rank is known. A
-rank-1 starter lost contributes 1.0, a second-stringer 0.5, a third-stringer 0.33. A player with
-no depth-chart row contributes nothing and is counted in `rank_unknown` instead of being guessed.
+and per team-week it reports which positions are down to a 2nd, 3rd or 4th string player.
+
+HOW THE RANK IS COMPUTED (and why it changed)
+---------------------------------------------
+`pos_rank` in the nflverse depth-chart feed is the rank **within a slot** (`pos_slot`), and a
+team can have several slots for one position: the 2026 Ravens list Lamar Jackson at slot 9 rank 4
+and Tyler Huntley at slot 9 rank 5, i.e. two different slots both called "QB". Taking
+`pos_rank` alone would therefore call the third-string QB a starter.
+
+So the rank used here is the ordinal of each player within (team, position) ordered by
+`pos_slot` then `pos_rank`: QB1 is the first QB on the chart, QB4 the fourth. The raw
+`pos_slot`/`pos_rank` pair is kept in the published rows so a reviewer can audit the ordering,
+and both numbers are shown on the page.
 
 SOURCE COLUMNS (verified against the published dictionaries on 2026-11-12)
 --------------------------------------------------------------------------
@@ -28,15 +37,15 @@ SOURCE COLUMNS (verified against the published dictionaries on 2026-11-12)
                 report_primary_injury, report_secondary_injury, report_status,
                 practice_primary_injury, practice_secondary_injury, practice_status
                 https://nflreadr.nflverse.com/reference/load_injuries.html
-* depth charts  dt, team, player_name, espn_id, gsis_id, pos_grp_id, pos_grp, pos_id,
-                pos_name, pos_abb, pos_slot, pos_rank   (schema from 2025 onward)
+* depth charts  dt, team, player_name, espn_id, gsis_id, pos_grp_id, pos_grp, pos_id, pos_name,
+                pos_abb, pos_slot, pos_rank   (schema from 2025 onward; 777,815 rows for 2026)
                 https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html
-* weekly roster season, team, position, depth_chart_position, jersey_number, status, full_name,
-                ... gsis_id, pfr_id ...
+* weekly roster season, team, position, depth_chart_position, ..., status, full_name, gsis_id,
+                pfr_id, ..., week
                 https://nflreadr.nflverse.com/articles/dictionary_rosters.html
-* snap counts   game_id, pfr_game_id, season, game_type, week, player, pfr_player_id, position,
-                team, opponent, offense_snaps, offense_pct, defense_snaps, defense_pct,
-                st_snaps, st_pct  -- NOTE: no gsis_id, so it is joined through the roster pfr_id
+* snap counts   game_id, ..., week, player, pfr_player_id, position, team, opponent,
+                offense_snaps, offense_pct, defense_snaps, defense_pct, st_snaps, st_pct
+                -- no gsis_id, so it is joined through the roster's pfr_id
                 https://nflreadr.nflverse.com/articles/dictionary_snap_counts.html
 
 Usage (on a runner):
@@ -49,7 +58,6 @@ import csv
 import hashlib
 import json
 import os
-import re
 import sys
 import urllib.request
 from collections import defaultdict
@@ -68,9 +76,31 @@ UA = {"User-Agent": "decision-hub/1.0 (+https://github.com/karagemop466-tech/Kor
 OUT_STATUSES = ("Out", "Doubtful")
 WATCH_STATUSES = ("Questionable",)
 
-OFFENSE = {"QB", "RB", "FB", "WR", "TE", "T", "G", "C", "OT", "OG", "OL", "LT", "RT", "LG", "RG",
-           "K", "P", "LS"}
-DEFENSE = {"DE", "DT", "NT", "EDGE", "LB", "ILB", "OLB", "MLB", "CB", "S", "SS", "FS", "DB", "SAF"}
+# Every position abbreviation the depth-chart feed uses, classified. The first version of this
+# script used a hand-written set and silently classified CB/S/LB as "special" because it only
+# matched exact strings like "LB" while the feed writes "RILB"/"LCB". Anything not in this map
+# is reported as "unclassified" rather than guessed.
+OFFENSE_POS = {"QB", "RB", "FB", "WR", "TE", "T", "G", "C", "OT", "OG", "OL", "LT", "RT", "LG",
+               "RG", "LWR", "RWR", "SWR", "LTE", "RTE", "UTE", "HB", "TB", "KR", "PR"}
+DEFENSE_POS = {"DE", "DT", "NT", "EDGE", "LB", "ILB", "OLB", "MLB", "LILB", "RILB", "WLB", "SLB",
+               "CB", "LCB", "RCB", "NCB", "S", "SS", "FS", "DB", "SAF", "LDE", "RDE", "LDT", "RDT",
+               "LOLB", "ROLB"}
+SPECIAL_POS = {"K", "P", "LS", "H", "PK"}
+
+
+def side_of(pos: str) -> str:
+    p = (pos or "").upper().strip()
+    if p in DEFENSE_POS:
+        return "defense"
+    if p in SPECIAL_POS:
+        return "special"
+    if p in OFFENSE_POS:
+        return "offense"
+    # suffix rules, used only for abbreviations not listed above (e.g. "RDT51")
+    if p.endswith("LB") or p.endswith("CB") or p.endswith("DE") or p.endswith("DT") or p.endswith("S"):
+        return "defense"
+    return "unclassified"
+
 
 TEAM_ALIAS = {"LAR": "LA", "JAC": "JAX", "WSH": "WAS", "OAK": "LV", "SD": "LAC", "STL": "LA",
               "LVR": "LV", "SFO": "SF", "TAM": "TB", "NWE": "NE", "NOR": "NO", "KAN": "KC",
@@ -105,10 +135,15 @@ def read_csv(path: str) -> tuple[list[dict], list[str]]:
 def schema_sample(rows: list[dict], cols: list[str], n: int = 2) -> dict:
     """A small, quoted sample kept in the committed JSON so a reviewer can see the exact
     columns and values this build consumed without needing the 74 MB raw file."""
-    sample = []
-    for r in rows[:n]:
-        sample.append({k: (r.get(k) or "")[:120] for k in cols if (r.get(k) or "") != ""})
-    return {"columns": cols, "rows": sample, "total_rows": len(rows)}
+    keep = [c for c in cols if c in
+            ("season", "season_type", "game_type", "team", "week", "gsis_id", "position",
+             "full_name", "report_primary_injury", "report_status", "practice_primary_injury",
+             "practice_status", "dt", "player_name", "pos_grp", "pos_name", "pos_abb", "pos_id",
+             "pos_slot", "pos_rank", "pfr_id", "status", "pfr_player_id", "offense_pct",
+             "defense_pct", "game_id", "player")]
+    sample = [{k: (r.get(k) or "")[:120] for k in keep if (r.get(k) or "") != ""}
+              for r in rows[:n]]
+    return {"columns": cols, "kept_columns": keep, "rows": sample, "total_rows": len(rows)}
 
 
 def to_int(v):
@@ -116,10 +151,6 @@ def to_int(v):
         return int(float(str(v).strip()))
     except (TypeError, ValueError):
         return None
-
-
-def week_of(r: dict) -> int | None:
-    return to_int(r.get("week"))
 
 
 def build(season: int, raw: str) -> dict:
@@ -152,26 +183,38 @@ def build(season: int, raw: str) -> dict:
     snap_rows = tables.get("snaps", [])
 
     # ---------------------------------------------------------------- depth chart: latest snapshot
-    # `dt` (ISO-8601) is the point-in-time stamp; without it a rank from August would be
-    # applied to a November game. Only the newest snapshot per team is used.
     dts = sorted({(r.get("dt") or "").strip() for r in depth_rows if (r.get("dt") or "").strip()})
     latest = dts[-1] if dts else ""
     meta["depth_snapshot_dt"] = latest
     meta["depth_snapshots_available"] = len(dts)
-    depth_by_id: dict[str, dict] = {}
-    for r in depth_rows:
-        if latest and (r.get("dt") or "").strip() != latest:
-            continue
-        gid = (r.get("gsis_id") or "").strip()
-        if gid:
-            depth_by_id[gid] = r
 
-    def d_rank(r: dict) -> int | None:
-        for key in ("pos_rank", "depth_pos_rank", "depth_team"):
-            v = to_int(r.get(key))
-            if v is not None:
-                return v
-        return None
+    snap = [r for r in depth_rows if not latest or (r.get("dt") or "").strip() == latest]
+    # ordinal within (team, position): sort by slot then slot-rank, then number them
+    by_team_pos: dict[tuple[str, str], list[dict]] = defaultdict(list)
+    for r in snap:
+        pos = (r.get("pos_abb") or "").strip().upper()
+        team = norm_team(r.get("team", ""))
+        if pos and team:
+            by_team_pos[(team, pos)].append(r)
+    depth_by_id: dict[str, dict] = {}
+    for (team, pos), lst in by_team_pos.items():
+        lst.sort(key=lambda r: (to_int(r.get("pos_slot")) or 99, to_int(r.get("pos_rank")) or 99,
+                                (r.get("player_name") or "")))
+        for i, r in enumerate(lst, start=1):
+            gid = (r.get("gsis_id") or "").strip()
+            if not gid:
+                continue
+            depth_by_id[gid] = {
+                "player": r.get("player_name", ""),
+                "team": team, "pos": pos, "pos_name": r.get("pos_name", ""),
+                "pos_grp": r.get("pos_grp", ""),
+                "pos_slot": to_int(r.get("pos_slot")),
+                "pos_rank_in_slot": to_int(r.get("pos_rank")),
+                "depth_rank": i,
+                "position_depth": len(lst),
+            }
+    meta["depth_players_in_snapshot"] = len(depth_by_id)
+    meta["positions_with_depth"] = len(by_team_pos)
 
     # ---------------------------------------------------------------- roster: status + pfr crosswalk
     roster_by_id: dict[str, dict] = {}
@@ -183,30 +226,32 @@ def build(season: int, raw: str) -> dict:
             pfr_to_gsis[pfr] = gid
         if not gid:
             continue
+        wk = to_int(r.get("week")) or 0
         prev = roster_by_id.get(gid)
-        wk = week_of(r) or 0
         if prev is None or wk >= (prev.get("_week") or 0):
             roster_by_id[gid] = {"team": norm_team(r.get("team", "")), "_week": wk,
                                  "status": r.get("status", ""),
                                  "position": r.get("position", ""),
+                                 "depth_chart_position": r.get("depth_chart_position", ""),
                                  "full_name": r.get("full_name", "")}
 
     # ---------------------------------------------------------------- snap counts, via pfr id
     snaps_by_id: dict[str, list[dict]] = defaultdict(list)
-    unmatched_snap_ids = 0
+    unmatched = 0
     for r in snap_rows:
         pfr = (r.get("pfr_player_id") or "").strip()
         gid = pfr_to_gsis.get(pfr)
         if not gid:
-            unmatched_snap_ids += 1
+            unmatched += 1
             continue
-        snaps_by_id[gid].append({"week": week_of(r) or 0,
+        snaps_by_id[gid].append({"week": to_int(r.get("week")) or 0,
                                  "off": r.get("offense_pct"), "def": r.get("defense_pct")})
-    meta["snap_rows_without_gsis_crosswalk"] = unmatched_snap_ids
+    meta["snap_rows_without_gsis_crosswalk"] = unmatched
+    meta["snap_rows_total"] = len(snap_rows)
+    meta["snap_players_matched"] = len(snaps_by_id)
 
     def snap_share(gid: str, side: str, through_week: int | None) -> float | None:
-        recs = [x for x in snaps_by_id.get(gid, [])
-                if through_week is None or x["week"] < through_week]
+        recs = [x for x in snaps_by_id.get(gid, []) if through_week is None or x["week"] < through_week]
         recs.sort(key=lambda x: x["week"])
         recs = recs[-4:]
         key = "off" if side == "offense" else "def"
@@ -223,21 +268,25 @@ def build(season: int, raw: str) -> dict:
     weeks_by_team: dict[str, set[int]] = defaultdict(set)
     for r in injuries:
         team = norm_team(r.get("team", ""))
-        wk = week_of(r)
+        wk = to_int(r.get("week"))
         if not team or wk is None:
             continue
         gid = (r.get("gsis_id") or "").strip()
         d = depth_by_id.get(gid, {})
         prof = roster_by_id.get(gid, {})
-        pos = (d.get("pos_abb") or r.get("position") or prof.get("position") or "").upper()
-        side = "offense" if pos in OFFENSE else "defense" if pos in DEFENSE else "special"
+        pos = (d.get("pos") or r.get("position") or prof.get("position") or "").upper()
+        side = side_of(pos)
         rec = {
             "gsis_id": gid,
-            "player": r.get("full_name", ""),
+            "player": r.get("full_name") or d.get("player") or prof.get("full_name", ""),
             "position": pos,
+            "position_name": d.get("pos_name", ""),
             "pos_grp": d.get("pos_grp", ""),
-            "pos_slot": to_int(d.get("pos_slot")),
-            "depth_rank": d_rank(d),
+            "pos_slot": d.get("pos_slot"),
+            "pos_rank_in_slot": d.get("pos_rank_in_slot"),
+            "depth_rank": d.get("depth_rank"),
+            "position_depth": d.get("position_depth"),
+            "on_depth_chart": gid in depth_by_id,
             "report_status": (r.get("report_status") or "").strip(),
             "report_injury": (r.get("report_primary_injury") or "").strip(),
             "practice_status": (r.get("practice_status") or "").strip(),
@@ -250,29 +299,55 @@ def build(season: int, raw: str) -> dict:
         weeks_by_team[team].add(wk)
 
     summary, rows = [], []
+
+    def string_label(rank):
+        return {1: "1st string", 2: "2nd string", 3: "3rd string", 4: "4th string",
+                5: "5th string"}.get(rank, f"{rank}th string" if rank else "unknown")
+
     for (team, wk), recs in sorted(by_team_week.items()):
         lost = [x for x in recs if x["report_status"] in OUT_STATUSES]
         watching = [x for x in recs if x["report_status"] in WATCH_STATUSES]
         dnp = [x for x in recs if x["practice_status"] == "Did Not Participate In Practice"]
         ranked = [x for x in lost if isinstance(x["depth_rank"], int)]
-        by_side = {"offense": 0, "defense": 0, "special": 0}
+        by_side = {"offense": 0, "defense": 0, "special": 0, "unclassified": 0}
         for x in lost:
-            by_side[x["side"]] += 1
-        # next man up per position where a rank-1 player is out
+            by_side[x["side"]] = by_side.get(x["side"], 0) + 1
+        # who is next up at each position where someone is out
         next_up = {}
-        for x in sorted(ranked, key=lambda y: y["position"]):
-            if x["depth_rank"] != 1:
+        positions_down = []
+        for pos in sorted({x["position"] for x in ranked}):
+            out_here = sorted([x for x in ranked if x["position"] == pos],
+                              key=lambda y: y["depth_rank"])
+            avail = [y for y in recs if y["position"] == pos
+                     and isinstance(y["depth_rank"], int)
+                     and y["report_status"] not in OUT_STATUSES]
+            avail.sort(key=lambda y: y["depth_rank"])
+            best_out = out_here[0] if out_here else None
+            if not avail:
                 continue
-            same = [y for y in recs if y["position"] == x["position"]
-                    and isinstance(y["depth_rank"], int) and y["depth_rank"] > 1
-                    and y["report_status"] not in OUT_STATUSES]
-            same.sort(key=lambda y: y["depth_rank"])
-            if same:
-                next_up[x["position"]] = {
-                    "player": same[0]["player"], "rank": same[0]["depth_rank"],
-                    "snap_share_4wk": same[0]["snap_share_4wk"],
-                    "report_status": same[0]["report_status"],
-                    "practice_status": same[0]["practice_status"]}
+            nxt = avail[0]
+            next_up[pos] = {
+                "player": nxt["player"], "rank": nxt["depth_rank"],
+                "string": string_label(nxt["depth_rank"]),
+                "snap_share_4wk": nxt["snap_share_4wk"],
+                "report_status": nxt["report_status"],
+                "practice_status": nxt["practice_status"],
+                "covering_for": [{"player": o["player"], "rank": o["depth_rank"],
+                                  "injury": o["report_injury"]} for o in out_here],
+            }
+            if best_out and nxt["depth_rank"] >= 2:
+                positions_down.append({
+                    "position": pos,
+                    "position_name": out_here[0]["position_name"],
+                    "starter_out": best_out["player"],
+                    "starter_injury": best_out["report_injury"],
+                    "replacement": nxt["player"],
+                    "replacement_rank": nxt["depth_rank"],
+                    "replacement_string": string_label(nxt["depth_rank"]),
+                    "replacement_snap_share_4wk": nxt["snap_share_4wk"],
+                    "out_count_at_position": len(out_here),
+                })
+        positions_down.sort(key=lambda p: -p["replacement_rank"])
         summary.append({
             "team": team, "week": wk,
             "listed": len(recs),
@@ -282,25 +357,39 @@ def build(season: int, raw: str) -> dict:
             "starters_out": sum(1 for x in ranked if x["depth_rank"] == 1),
             "two_deep_out": sum(1 for x in ranked if x["depth_rank"] <= 2),
             "three_deep_out": sum(1 for x in ranked if x["depth_rank"] <= 3),
+            "backup_replacement_count": len(positions_down),
+            "deepest_replacement_rank": max((p["replacement_rank"] for p in positions_down), default=0),
+            "offense_out": by_side.get("offense", 0),
+            "defense_out": by_side.get("defense", 0),
+            "special_out": by_side.get("special", 0),
+            "unclassified_out": by_side.get("unclassified", 0),
+            "on_depth_chart": sum(1 for x in lost if x["on_depth_chart"]),
             "rank_unknown": len(lost) - len(ranked),
-            "offense_out": by_side["offense"],
-            "defense_out": by_side["defense"],
             "weighted_depth_lost": round(sum(1.0 / x["depth_rank"] for x in ranked), 3),
             "next_up": next_up,
+            "positions_down": positions_down,
             "out_names": [{"player": x["player"], "pos": x["position"], "rank": x["depth_rank"],
-                           "injury": x["report_injury"], "status": x["report_status"],
-                           "snap_share_4wk": x["snap_share_4wk"]}
+                           "string": string_label(x["depth_rank"]), "injury": x["report_injury"],
+                           "status": x["report_status"], "snap_share_4wk": x["snap_share_4wk"],
+                           "pos_grp": x["pos_grp"], "pos_slot": x["pos_slot"],
+                           "pos_rank_in_slot": x["pos_rank_in_slot"]}
                           for x in sorted(ranked, key=lambda y: (y["depth_rank"], y["position"]))],
         })
         for x in lost:
             rows.append({"team": team, "week": wk, **{k: x[k] for k in
-                        ("player", "position", "pos_grp", "pos_slot", "depth_rank", "side",
+                        ("player", "position", "position_name", "pos_grp", "pos_slot",
+                         "pos_rank_in_slot", "depth_rank", "position_depth", "side",
                          "report_status", "report_injury", "practice_status", "practice_injury",
-                         "roster_status", "snap_share_4wk", "gsis_id")}})
+                         "roster_status", "snap_share_4wk", "on_depth_chart", "gsis_id")},
+                         "string": string_label(x["depth_rank"])})
 
     teams = sorted({s["team"] for s in summary})
     final_week = {t: max(weeks_by_team[t]) for t in weeks_by_team}
     current = [s for s in summary if s["week"] == final_week.get(s["team"])]
+    # week 10 is the report the league is publishing right now; teams whose latest row is week 9
+    # have not filed a week-10 report yet (or have a bye), which is stated rather than imputed.
+    league_week = max(final_week.values()) if final_week else 0
+    current.sort(key=lambda s: (-s["weighted_depth_lost"], s["team"]))
     return {
         "meta": {**meta,
                  "source_pages": [
@@ -311,22 +400,27 @@ def build(season: int, raw: str) -> dict:
                      "https://www.nfl.com/injuries/"],
                  "schema_samples": samples,
                  "teams": teams,
-                 "weeks": sorted({w for s in summary for w in [s["week"]]}),
+                 "weeks": sorted({s["week"] for s in summary}),
+                 "league_week": league_week,
                  "latest_week_by_team": final_week,
+                 "teams_on_latest_week": sum(1 for t in final_week if final_week[t] == league_week),
                  "definition": (
-                     "depth_rank is pos_rank on the newest nflverse depth-chart snapshot "
-                     "(meta.depth_snapshot_dt); NULL means no depth-chart row existed, and such "
-                     "a player is NOT counted as a starter. weighted_depth_lost = sum(1/rank). "
-                     "snap_share_4wk is the mean offense_pct or defense_pct over the four games "
-                     "before that week, joined through the roster's pfr_id because the snap-count "
-                     "feed has no gsis_id."),
+                     "depth_rank is the ordinal of the player within (team, position) on the "
+                     "newest depth-chart snapshot, ordered by pos_slot then pos_rank; the raw "
+                     "pos_slot and pos_rank_in_slot are kept on every row. NULL means the player "
+                     "has no depth-chart row and is NOT counted as a starter. "
+                     "weighted_depth_lost = sum(1/rank) over absences with a known rank. "
+                     "positions_down lists positions where the best available player is 2nd "
+                     "string or deeper because everyone ahead of him is Out/Doubtful."),
                  "caveats": [
                      "'Out' is a final designation; 'Doubtful' is a probability the league does "
                      "not quantify. Both are reported separately and neither is a performance claim.",
                      "'Not injury related - resting player' / 'personal matter' rows exist in the "
                      "feed and are counted in out_or_doubtful; they are disclosed, not filtered.",
-                     "Depth charts are club-supplied and scraped; a rank can lag a transaction, "
-                     "and the 2025+ schema is used (dt, pos_slot, pos_rank).",
+                     "Depth charts are club-supplied and scraped; a rank can lag a transaction "
+                     "and does not by itself show who will take the snaps.",
+                     "Snap share is joined through the roster's pfr_id (the snap-count feed has "
+                     f"no gsis_id); {unmatched} of {len(snap_rows)} snap rows had no crosswalk.",
                      "Nothing here says a backup will play, or how well."]},
         "weeks_by_team": {k: sorted(v) for k, v in weeks_by_team.items()},
         "team_week_summary": summary,
@@ -346,7 +440,8 @@ def main() -> None:
     with open(args.out, "w") as fh:
         json.dump(data, fh, indent=1)
     print(f"wrote {args.out}: {len(data['absences'])} absences, "
-          f"{len(data['team_week_summary'])} team-weeks, {len(data['current'])} current team rows")
+          f"{len(data['team_week_summary'])} team-weeks, {len(data['current'])} current team rows, "
+          f"league week {data['meta']['league_week']}")
 
 
 if __name__ == "__main__":
