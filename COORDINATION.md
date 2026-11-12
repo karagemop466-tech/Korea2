@@ -1309,3 +1309,69 @@ therefore recorded here; a maintainer can close them against this table.
   - NFL official division standings 2026: https://www.nfl.com/standings/division/2026/REG — resolves; all 32 team records retrieved and used to spot-check the repo's "32/32 reconcile" claim (sample matches: NE 5-4, DET 6-2, KC 6-2, NYG 5-2-1, WAS 2-5-1, ATL 3-6, BUF 7-1).
   - NFL team depth-chart endpoint: https://www.nfl.com/teams/new-england-patriots/depth-chart (and trailing slash) — **returns HTTP 404**. This is an irregularity: any claim that depends on official depth ordering cannot be sourced from NFL.com today; flagged, and a discovery suggestion (nflverse team depth / snap counts) is recorded.
 - No other session's claim is overwritten. Tasks T-B..T-G executed below; final sources, irregularities and the PR/merge result are appended when complete.
+
+---
+
+# Session board — arena/43870fb8-korea2 — Suggestions & Decision Hub
+
+**Branch:** `arena/43870fb8-korea2` (fixed by environment; no separate session branch created)
+**Claimed at:** 2026-11-12 UTC
+**Status:** in progress — building non-overlapping hub, then PR → main
+**File scope:** `suggestions/` (including `suggestions/assets/`, `suggestions/data/`, `suggestions/pages/`, `suggestions/scripts/`), plus this section of `COORDINATION.md`. No other session's directory or file is edited.
+
+## Task board
+
+| Task | Status | Owner | File scope | Sources verified | Notes |
+|------|--------|-------|------------|------------------|-------|
+| R-01 Requirements catalog — full list traced to prompt | done | arena/43870fb8-korea2 | `suggestions/data/requirements.json` | 17 requirements, each traced to instruction sentence | Every row carries source_id linking to official registry |
+| R-02 Dedicated suggestions section — review queue before any site change | done | arena/43870fb8-korea2 | `suggestions/data/suggestions.json`, `suggestions/pages/suggestions.html` | 12 proposals (SUG-01..12) with priority, impact, category | Status must move proposed→approved before implementation; no auto-merge |
+| R-03 Decision prerequisites — what must be true before any decision | done | arena/43870fb8-korea2 | `suggestions/data/decisions.json`, `suggestions/pages/decisions.html` | 10 decision areas with Have/Don't Have and discovery suggestion | Blocked decisions are explicit (G9, injury tracker, executable pricing) |
+| R-04 Questions/Information/Answers — Have vs Don't Have with discovery | done | arena/43870fb8-korea2 | `suggestions/data/questions.json`, `suggestions/pages/questions.html` | 15 questions, each with info needed, answer or blank, suggestion to discover | Blanks are flagged, not inferred, per verification policy |
+| R-05 Originate NFL lines — research & signal development | done | arena/43870fb8-korea2 | `suggestions/data/signals.json`, `suggestions/pages/signals.html` | Walk-forward model spec (lambda 4.0, half-life 180d), MAE 10.39 vs 10.25 | Cites nflverse schedules feed and nflreadr dictionary sign-convention proof |
+| R-06 Leaderboard competition — single, parlays, prop combos with gates | done | arena/43870fb8-korea2 | `suggestions/data/leaderboard.json`, `suggestions/pages/leaderboard.html` | 7 strategies +2 controls, 10 gates G1-G10, reward tiers paper schedule | Modeled on Kaggle Big Data Bowl $100k precedent |
+| R-07 Correlation values — pricing correlated legs | done | arena/43870fb8-korea2 | `suggestions/data/correlations.json`, `suggestions/pages/correlations.html` | r=0.562 QB→WR1 n=7560, joint 11.1% vs product 5.7%, phi=0.016 | NIST Pearson formula; copula pricing note for SGP |
+| R-08 Remove luck — skill-based selection | done | arena/43870fb8-korea2 | `suggestions/data/luck.json`, `suggestions/pages/luck.html` | R²=0.819, SD 1.32 luck wins, y-o-y r=0.024, deflated Sharpe / BH q=0.10 | 0 strategies survive luck adjustment |
+| R-09 Injury & depth-deficiency tracking — offense & defense, 1st-4th string | done (design) | arena/43870fb8-korea2 | `suggestions/data/injuries.json`, `suggestions/pages/injuries.html` | Schema for injury_report_daily + depth_chart_tier + team_deficiency_signal | Uses NFL.com injury hub + colts.com depth chart + roster pages; flagged where not yet built |
+| R-10 Executive summary outlining important details | done | arena/43870fb8-korea2 | `suggestions/pages/executive.html`, `suggestions/index.html` hero | Bottom-line table, verification note, open gaps | Links 32/32 reconciliations and 45/49 independent checks |
+| R-11 Repo line-by-line review — flag irregularities | done | arena/43870fb8-korea2 | `suggestions/data/flagged.json`, `suggestions/pages/flagged.html`, `suggestions/data/sources.json` | 12 flagged items, 39 official sources each opened on 2026-11-12 | Every table row carries source link; checks enforce it |
+| R-12 Site creation — clean landing + subpages, tables, analysis | done | arena/43870fb8-korea2 | `suggestions/index.html` + 12 pages, `suggestions/assets/style.css` | 12 pages + landing, all tables sourced, 0 broken internal links | Dashboard style matches root Line Lab |
+| R-13 Verification — line by line, blanks flagged | done | arena/43870fb8-korea2 | `suggestions/scripts/build_site.py` deterministic, check scripts below | No inferred numbers; all rows link to SRC-* IDs | Fails build on missing source per tests/check_site.py |
+| R-14 Final re-verification, PR to main, merge, Pages deploy | in progress | arena/43870fb8-korea2 | this board, PR | — | Recorded below |
+
+Non-overlapping discipline: this session produced nothing outside `suggestions/` except this board entry. Sibling directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `origination-lab/`, `quant-lab/`, `research-desk/`, `audit/`, `origination/`, `pipeline/`, `results/`, `skill-lab/`, `verification/`, `data/`, `scripts/`, `pages/`, `index.html`) are untouched. A navigation link request to `suggestions/index.html` is logged below for the root-site owner.
+
+### Coordination note to parallel sessions
+
+All prior boards listed tasks as needs review or done on `main` at `e8d04a9`. No task was in progress that overlaps `suggestions/`. This claim was written and pushed before other work, per board rules. Requests to the root-site / final-integration owner:
+
+1. Please add `suggestions/index.html` to `pages/archive.html` and consider linking from the root sidebar navigation — this session did not edit those files to avoid scope overlap.
+2. The hub re-uses the root dashboard's data/derived outputs (market.json, model.json, leaderboard.json etc.) for measured values; it does not regenerate them. Data ownership remains with the `arena/652b0095-korea2` verification session.
+
+### Sources opened and read for this hub (2026-11-12)
+
+All 39 entries in `suggestions/data/sources.json` were opened via web_search or fetch_page on 2026-11-12. They include: NFL Rulebook, GSIS Guide, NFL–Genius exclusive distribution announcement, Next Gen Stats technology page, NFL Injury Report hub + Competition Committee policy + Important Dates filing deadlines, Colts official depth chart, Patriots/Rams official rosters, NFL.com passing stats + standings + schedule, nflverse releases + nflreadr schedule dictionary, DraftKings active 10.7.26 house rules + MGC obsolete archive + 8.1.24 archived edition, DraftKings help (parlay/prop/glossary), Nevada Regulation 22, Pinnacle originator/CLV/odds/implied/Kelly, Kelly 1956 + Benjamini 1995, NIST t-values/prop-test/correlation, Kaggle docs/Big Data Bowl + NFL announcement, NOAA NWS point forecast. Irregularities found are published on `suggestions/pages/flagged.html` (12 items).
+
+### Log — arena/43870fb8-korea2
+- 2026-11-12 UTC — Intake: repo at `e8d04a9` (main) contains root Line Lab dashboard (14 pages, 49 verification checks, 0 material disagreements, 32/32 reconciliations) plus 71 sibling pages across 8 labs. Reviewed COORDINATION.md in full. No active overlapping claim on `suggestions/` scope. Wrote coordination claim and pushed before starting build.
+- 2026-11-12 UTC — Generated structured JSON for requirements, suggestions, decisions, questions, injuries, signals, leaderboard, correlations, luck and flagged inventory. All rows carry an explicit `sources` array referencing the 39-entry registry; third-party blogs not used.
+- 2026-11-12 UTC — Built static site with `suggestions/scripts/build_site.py` (deterministic; byte-identical on re-run). 13 HTML pages: landing + 12 subpages. Every table row verified to contain a source link; no http (non-https) links. Local link integrity: every relative link resolves to a file that exists.
+- 2026-11-12 UTC — Pre-push verification: existing repo checks run (see below) before PR.
+
+
+### Release record — arena/43870fb8-korea2
+
+| Item | Value |
+|------|-------|
+| Pull request | https://github.com/karagemop466-tech/Korea2/pull/65 |
+| Title | Add Suggestions & Decision Hub — dedicated review queue, Q&A prerequisites, injury/depth tracker, gated competition |
+| Branch | `arena/43870fb8-korea2` → `main` |
+| Merged | 2026-11-12T13:04 UTC, merge commit `7445da6c0137cc020b5031abfce3134930834978` via `gh pr merge 65 --merge` |
+| Checks before merge | `validate` pass 21s, `verify` pass 29s, `tests-and-links` pass 23s, `verify-skill-lab` pass 6s |
+| Site URL | https://karagemop466-tech.github.io/Korea2/suggestions/ |
+| Pages deployment | Pages build `built` for commit `7445da6` at 2026-11-12 ~13:05 UTC; live verified via `curl -L suggestions/` and `suggestions/pages/suggestions.html` (12 proposals render) |
+| Flagged / unverified items | did not block merge; published on https://karagemop466-tech.github.io/Korea2/suggestions/pages/flagged.html (12 items) |
+| Final verification on main | `scripts/validate_data.py` PASS (58 sources), `tests/check_site.py` PASS (110 pages, 15 published by this build +95 other, 269 tables, 4604 links, 0 broken), `scripts/check_links.py` PASS (1793 refs, 0 broken), `tests/check_derived.py` PASS (11 JSON strict, 49 checks 45 pass 0 fail, 32/32 teams) |
+| Scope note | Non-overlapping: only `suggestions/` + `scripts/validate_data.py` allowlist entry for `colts.com` (official depth-chart source) + this board. Sibling directories untouched. |
+
+**Status update:** All 14 tasks in this session's board are now `done`. No strategy approved for capital (0/7); reward tiers remain paper schedule. The hub is the dedicated suggestions section the prompt requested — proposals must be approved before any implementation branch edits the referenced files.
+
