@@ -2,9 +2,9 @@
   "meta": {
     "title": "Master source registry \u2014 all citations used across this project",
     "verified_on": "2026-11-01",
-    "verification_method": "Every URL below was opened and its content read on 2026-11-01 (UTC) via direct page fetch or full-content search result. No URL is included that was not checked on that date. Dynamic pages (odds boards, standings, injury reports) are cited as live official sources; snapshot values are recorded in league_facts.json with an as-of date.",
-    "policy": "Only official / first-party sources are used: the NFL and its official properties, licensed-sportsbook official help pages, state gaming regulators, NIST (US government statistics), Princeton University (hosting the original Kelly paper), Kaggle (official competition platform), NOAA/NWS, and the National Council on Problem Gambling. Third-party blogs are NOT used as sources; anything that could only be found there is left blank and listed in data/flagged.json.",
-    "integration_note": "Two independent registries were merged by the integration session (arena/70a33596-korea2): the SRC-* entries below were built by the sibling data/quant sessions, and the entries appended after them were opened and confirmed by the integration session for the published dashboard. Both sets were verified on 2026-11-01."
+    "verification_method": "Most inherited registry entries were checked by the sessions and dates recorded in each entry. This integration session opened AGLC, the NFL weekly injury page, the NFL roster page, the NFL injury-policy explainer, and cited NIST/Kaggle/NFL distribution references on 2026-11-12. Dynamic pages are cited with retrieval dates; the source type and verification scope are stated per entry.",
+    "policy": "Primary references are the NFL and its official properties, regulators, government/academic statistical sources, platform and operator documentation. Historical game/stat inputs are downloaded from the community-maintained nflverse repository, not directly published by the NFL; the source and verification limits are explicitly flagged. Third-party blogs are not used as primary sources; unconfirmed values are left blank and listed in data/flagged.json.",
+    "integration_note": "This registry combines multiple sessions. Per-source verified_by fields identify the session/date; the source list is not a claim that every historical data value was independently checked against an official NFL record."
   },
   "sources": [
     {
@@ -126,12 +126,12 @@
     },
     {
       "id": "SRC-NFL-ROSTER",
-      "label": "NFL.com \u2014 team roster pages incl. depth-chart order (e.g., Patriots 2026 roster)",
+      "label": "NFL.com \u2014 team roster listing (e.g., Patriots 2026 roster)",
       "url": "https://www.nfl.com/teams/new-england-patriots/roster",
       "org": "NFL (nfl.com)",
-      "type": "league official roster/depth chart",
-      "note": "Team pages under /teams/<team>/roster show the official roster with depth chart order (pattern confirmed for NE, DET, NYJ, BUF, AZ).",
-      "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
+      "type": "league official roster listing",
+      "note": "Re-opened 2026-11-12. NFL.com page returns a roster table with player, jersey number, position, roster status, measurements, experience and college. It does NOT show a depth-chart ordering in the returned page text. Do not cite this page for first-/second-/third-/fourth-string labels; exact depth values remain unverified.",
+      "verified_by": "arena/578d4e5f-korea2 - page opened and read 2026-11-12"
     },
     {
       "id": "SRC-NFL-RULEBOOK",
@@ -475,7 +475,7 @@
       "note": "Release assets downloaded by the repository's own CI run; per-file size and SHA-256 recorded in data/derived/manifest.json.",
       "confirmed": "Release assets downloaded by the repository's own CI run; per-file size and SHA-256 recorded in data/derived/manifest.json.",
       "supports": "The play-by-play-derived box scores and game lines behind every number on this site.",
-      "short": "nflverse feed (official NFL data)",
+      "short": "nflverse community data (not NFL-published)",
       "verified_on": "2026-11-01",
       "used_on": [
         "lines",
@@ -572,8 +572,8 @@
       "type": "unverified",
       "note": "NOT CONFIRMED - this URL returned HTTP 404 when fetched on 2026-11-01. A 2017 policy PDF at operations.nfl.com/media/2683/2017-nfl-injury-report-policy.pdf was referenced by third parties but was not fetched or confirmed by this session.",
       "confirmed": "NOT CONFIRMED - this URL returned HTTP 404 when fetched on 2026-11-01. A 2017 policy PDF at operations.nfl.com/media/2683/2017-nfl-injury-report-policy.pdf was referenced by third parties but was not fetched or confirmed by this session.",
-      "supports": "Nothing is published on this site that depends on it. Injury-report timing would be a required input for any injury-based strategy, so those strategies are marked blocked.",
-      "short": "NFL injury policy (404 - unverified)",
+      "supports": "This exact legacy operations.nfl.com URL was not available when checked. Do not confuse it with the working NFL.com weekly injury report (SRC-NFL-INJURIES) or the NFL.com policy explainer (SRC-NFL-INJURY-POLICY). Historical point-in-time snapshots and depth-order data are not ingested by this project.",
+      "short": "Legacy injury-policy URL (unavailable)",
       "verified_on": "2026-11-01",
       "used_on": [
         "flagged"
@@ -679,6 +679,29 @@
         "flagged"
       ],
       "verified_by": "integration session arena/89b8d356-korea2 - MGC pages opened and read on 2026-11-02"
+    },
+    {
+      "id": "SRC-AGLC-SPORTS",
+      "label": "AGLC — Play Alberta adds sports betting to roster (historical announcement)",
+      "title": "Play Alberta adds sports betting to roster",
+      "short": "AGLC historical announcement",
+      "url": "https://aglc.ca/news/play-alberta-adds-sports-betting-roster",
+      "org": "Alberta Gaming, Liquor and Cannabis (AGLC)",
+      "type": "provincial regulator — historical announcement",
+      "note": "Read on 2026-11-12. AGLC news release dated 2021-09-01 says Play Alberta sports betting was launched and listed single-/multi-event and NFL markets then.",
+      "verified_by": "arena/578d4e5f-korea2 — page opened and read on 2026-11-12",
+      "limitation": "Historical announcement only; does not establish current eligibility, market availability, operator terms, project access or legal advice. Re-check current primary rules before deployment."
+    },
+    {
+      "id": "SRC-NFL-SCHED-W10",
+      "label": "NFL.com — 2026 regular-season schedule, Week 10",
+      "title": "NFL Week 10 Schedule 2026",
+      "short": "NFL official Week 10 schedule",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "org": "NFL (nfl.com)",
+      "type": "league official schedule",
+      "note": "Opened and read 2026-11-12. Page identifies Thursday Nov 12 Commanders at Giants and the Nov 15 Week 10 slate. This dynamic schedule page does not refresh the committed model dataset.",
+      "verified_by": "arena/578d4e5f-korea2 — page opened and read 2026-11-12"
     }
   ]
 }

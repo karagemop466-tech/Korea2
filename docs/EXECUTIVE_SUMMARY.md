@@ -107,7 +107,7 @@ Prop forecasts beat a season-to-date mean by 0.0–0.9% MAE depending on the sta
 lines are calibrated within a few points of 50% — except passing yards, where the over rate is 54.5%
 because the pre-2023 correction is stale. That drift is published, not tuned away.
 
-No prop ROI is published. The official feed contains no historical prop prices, and the NFL's
+No prop ROI is published. The committed nflverse game/player-stat extracts contain no historical prop prices, and the NFL's
 official distributor is the entity that supplies prop and same-game-parlay pricing to operators. A
 computed ROI would require a price archive that does not exist here.
 
@@ -117,7 +117,7 @@ computed ROI would require a price archive that does not exist here.
    above zero, surviving BH correction across all tests.
 2. Verified executable prices with timestamps, enabling closing-line-value measurement.
 3. A historical prop price archive, converting prop calibration into a testable strategy.
-4. A confirmed official injury-report policy, unblocking injury-based signals.
+4. Historical point-in-time injury / active-inactive snapshots and a verified source for exact depth order; the official live report exists, but the project does not ingest it as an as-of-game feature.
 
 ## 8. Verification status
 
@@ -125,7 +125,7 @@ computed ROI would require a price archive that does not exist here.
 * The spread sign convention is proven from the data, not assumed.
 * 71 HTML pages, 152 tables, 2,252 links checked; no broken links.
 * Nine open items published on the Flagged for Review page, including the missing prop prices,
-  closing-line value, execution access, prize funding, parlay ladder, injury policy, model
+  closing-line value, execution access, prize funding, parlay ladder, injury/depth snapshots, model
   underperformance and the 2026 home-field anomaly.
 
 ## 9. Independent verification, 2026-11-02
@@ -173,3 +173,11 @@ the verifier is back to 0 disagreements with every player-level sample size matc
 
 **What the verification does not establish.** That a strategy is profitable, that a price is obtainable at any
 size, or that results will persist. Reproducibility is not validation.
+
+
+## 10. Integration review update — 2026-11-12
+
+- Historical game and player-stat inputs are from the community-maintained nflverse archive, not an NFL-published feed. The source register now labels this correctly; NFL.com reconciliation is limited to the exact seasons/fields documented on Verification, and the full historic archive is flagged as not independently NFL-confirmed.
+- NFL.com has a live weekly injury report and a policy explainer; the former missing legacy operations URL is a separate broken link. The repository does not capture historical pregame injury/active-inactive snapshots, and the reviewed roster page does not provide depth-chart order. No replacement level or 2nd/3rd/4th-string label is inferred.
+- The committed data snapshot ends 2026-11-01. The official NFL Week 10 schedule was read on 2026-11-12; old Week 9/next-slate projections are stale and must not be presented as current.
+- The new [Suggestions & decisions page](https://karagemop466-tech.github.io/Korea2/pages/suggestions.html) provides seven proposals and explicit decision questions. All remain pending; current recommendation is research-only, with no approved strategies or funded reward.

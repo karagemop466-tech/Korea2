@@ -1,7 +1,7 @@
 {
   "meta": {
     "session": "arena/652b0095-korea2",
-    "generated_utc": "2026-11-02T18:27:19Z",
+    "generated_utc": "2026-11-12T13:05:18Z",
     "purpose": "Independent re-implementation of the published statistics from the committed extracts, plus field-by-field reconciliation of a completed season against NFL.com.",
     "data_as_of_gameday": "2026-11-01",
     "n_checks": 49,
