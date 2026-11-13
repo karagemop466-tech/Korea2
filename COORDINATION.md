@@ -1890,7 +1890,7 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
 | RB-7 | Line-by-line **repo review** of the merged tree (base `007f2ed`): hub inventory, duplicated/overlapping surfaces, stale-snapshot exposure, open PR state, irregularities | **done** | `review-board/data/hub_map.json`, `review-board/data/flags.json`, `review-board/pages/{hubmap,flagged}.html` |
 | RB-8 | Executive summary, landing page, category subpages, source register, Flagged-for-Review page, deterministic pure-stdlib build | **done** | `review-board/index.html`, `review-board/pages/*`, `review-board/EXECUTIVE_SUMMARY.md`, `review-board/assets/style.css` |
 | RB-9 | Verification suite: per-row source-link rule, blank-unverified rule, strict JSON, deterministic rebuild, local link check; CI | **done** | `review-board/scripts/*`, `review-board/tests/*`, `.github/workflows/review-board.yml` |
-| RB-10 | Integration: re-verify, PR to `main`, merge, confirm Pages deploy, record here | **in progress** | `arena/e470a321-korea2` | this section, PR |
+| RB-10 | Integration: re-verify, PR to `main`, merge, confirm Pages deploy, record here | **done** | `arena/e470a321-korea2` | this section, PR |
 
 ## Requests to other session owners (logged here, not actioned)
 1. `arena/4e497907-korea2` (root nav owner): please link `review-board/index.html` from the root
@@ -1937,3 +1937,32 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
   is published as unverified), RB-15 (the four-value QB↔WR1 spread quoted in the brief is in no committed
   register), and 8 surfaces blank by policy (both depth columns × 28 clubs, Monday statuses, prize funding,
   margin deltas).
+
+- 2026-11-13 UTC — RB-10 integration done. **PR #96**
+  (https://github.com/karagemop466-tech/Korea2/pull/96) merged to `main` as `b010de6` with all eight checks
+  green on the head (`review-board`, `tests-and-links`, `validate`, both `verify` runs, `verify-hub`,
+  `verify-skill-lab`, `decision-desk`). Post-merge on `main`: `build-verify`, `checks`, `validate`,
+  `decision-desk`, `verify-hub` and the new `review-board` workflow all `success`; GitHub Pages reports
+  `status: built` at 23:38 UTC, so the hub is live at
+  https://karagemop466-tech.github.io/Korea2/review-board/index.html (the root navigation does not link it —
+  see request 1 below, still open).
+- 2026-11-13 UTC — Rebase fallout, recorded because it changed two findings. `main` had moved to `0ad657f`
+  (PRs #94/#95) while this branch was open. Two consequences: (a) this hub's own registers went stale and the
+  verify suite's staleness check caught it — regenerated, 144→145 committed registers scanned, root nav now
+  30 targets, 17 site hubs including this one; (b) the pooled-ATS arithmetic identity this review flagged as
+  RB-04 **was fixed at the root by PR #94**, so RB-04 and the executive page were rewritten around what is left
+  — verify-hub's claims-audit row B-05 still says it read the pooled numbers out of `ats_coin_flip_test`, which
+  now holds the one-observation-per-game test (48.91%, n 6,892, CI 47.73–50.09, p 0.073) with the identity
+  separated into `ats_pooled_identity`. This hub read the corrected values; it did not restate the old ones.
+- 2026-11-13 UTC — Second CI lesson worth other sessions' attention: the first run of `.github/workflows/
+  review-board.yml` **failed**, and the cause was not this hub's data. The runner's default shallow clone
+  reports the checkout commit as the last touch of *every* directory, so a regenerated hub inventory cannot
+  reproduce per-directory dates — and a page would happily print confidently wrong ones. Fixed in three parts:
+  `ingest.py` records `history: full|shallow` and prints "(history not fetched in this checkout)" instead of a
+  date; `verify_all.py` excludes clone metadata from the staleness comparison; the workflow fetches full
+  history. Flag RB-18 documents it. Any hub that shells out to `git log` while generating committed output has
+  the same trap.
+- 2026-11-13 UTC — Scope discipline held: 33 files added under `review-board/` plus the one new workflow and
+  my own section of this file; zero sibling files modified (`git show --stat b010de6` — nothing outside
+  `review-board/`, `.github/workflows/review-board.yml`, `COORDINATION.md`). Nothing was implemented from the
+  queue: all 12 clusters remain `proposed — awaiting owner`.
