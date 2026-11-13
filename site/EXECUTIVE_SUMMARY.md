@@ -5,7 +5,7 @@ Data as of 2026-11-01. Session `arena/90e4fdbe-korea2`.
 
 ## Where the project stands
 
-* 19 independent checks of the numbers the live dashboard publishes: 16 agree, 2 disagree, 0 unverified.
+* 19 independent checks of the numbers the live dashboard publishes: 18 agree, 0 disagree, 0 unverified.
 * 23 candidate signals tested against ten validation gates; 0 qualified.
 * 12 suggestions awaiting a reviewer's decision; 17 open questions across four groups.
 * 108 players transcribed from the official NFL injury report for five 2026 Week 10 games.
@@ -17,6 +17,8 @@ Data as of 2026-11-01. Session `arena/90e4fdbe-korea2`.
 | Closing spread MAE (all regular-season games with a line) | 10.25 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
 | Sample size behind the closing-spread MAE | 7087 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
 | Slope of actual margin on closing spread (1.0 = unbiased) | 1.049 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
+| Published pooled ATS 'cover rate' vs the home-side cover rate | 0.4891 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
+| Published pooled ATS 'wins' vs home-team covers | 3371 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
 | Over rate against the closing total (pushes excluded) | 0.4953 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
 | Model spread MAE, walk-forward 2023-2026 | 10.391 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
 | Market spread MAE on the same games (the benchmark) | 9.711 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
@@ -24,13 +26,9 @@ Data as of 2026-11-01. Session `arena/90e4fdbe-korea2`.
 | Coefficient on the model margin controlling for the closing line (HC1) | -0.0193 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
 | p-value on that coefficient | 0.8807 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
 | Pearson r: QB passing yards vs WR1 receiving yards (same team-game) | 0.561643 | https://github.com/nflverse/nflverse-data/releases/tag/stats_player |
-| Pythagorean expectation vs actual wins, R^2 | 0.8191 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
-| Year-over-year persistence of Pythagorean luck (r) | 0.023894 | https://github.com/nflverse/nflverse-data/releases/tag/schedules |
 
 ## What did not survive
 
-* **V-04** Published pooled ATS 'cover rate' vs the home-side cover rate: published 0.5, recomputed 0.4891. Published figure is per team-game from data/derived/luck.json; this recomputation is the same population reconstructed from the extract. Pushes are excluded.
-* **V-05** Published pooled ATS 'wins' vs home-team covers: published 6892, recomputed 3371. 
 
 ### Irregularities
 

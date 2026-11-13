@@ -69,7 +69,6 @@ def page_index() -> str:
     best = entries[0] if entries else {}
     sgp = corr.get("sgp_4leg_same_team", {})
     coin = luck.get("ats_coin_flip_test", {})
-    homecov = market.get("ats_home_cover", {})
     pluck = luck.get("luck_persistence", {})
 
     cards = [
@@ -88,11 +87,10 @@ def page_index() -> str:
         card("QB &harr; WR1 correlation", num(corr.get("qb_yards_vs_wr1_yards", {}).get("r"), 3),
              f"Measured on {corr.get('qb_yards_vs_wr1_yards', {}).get('n', 'n/a')} team-games: "
              "same-game parlay legs are not independent.", "pages/correlation.html", "Correlation"),
-        card("ATS home-cover test", pct(homecov.get("home_cover_rate")),
-             f"One observation per game: {homecov.get('home_covers', 'n/a')} home covers in "
-             f"n = {homecov.get('n', 'n/a')} decided games; p = {homecov.get('binomial_p')} vs 50%, "
-             f"95% CI {homecov.get('ci')}. No significant tilt &mdash; and none ruled out.",
-             "pages/luck.html", "Removing luck"),
+        card("ATS vs 50% (home covers)", pct(coin.get("rate")),
+             f"{coin.get('n', 'n/a')} decided games, one observation per game; "
+             f"p = {coin.get('binomial_p_vs_50')} against 50%. No significant tilt detected "
+             "&mdash; and none ruled out.", "pages/luck.html", "Removing luck"),
     ]
 
     findings = table(
@@ -186,6 +184,7 @@ def page_executive() -> str:
     incT = model.get("incremental_information_total", {})
     dis = model.get("disagreement_accuracy", [])
     coin = luck.get("ats_coin_flip_test", {})
+    pid = luck.get("ats_pooled_identity", {})
     over = market.get("totals_over_rate", {})
     cal = market.get("moneyline_calibration", {})
     pyr = luck.get("pythagorean", {})
@@ -225,10 +224,11 @@ def page_executive() -> str:
         [["Closing spread MAE (1999-2026)", num(cs.get("mae")) + " pts", f"n = {cs.get('n')} regular-season games", src("nflverse-data")],
          ["Closing spread MAE (2023-2026)", num(recent.get("mae")) + " pts", "The window every strategy is judged on", src("nflverse-data")],
          ["Spread-vs-result regression slope", num(market.get("spread_result_regression", {}).get("slope"), 3), "1.0 would be perfectly efficient", src("nflverse-data")],
-         ["Home cover rate (one per game)", pct(market.get("ats_home_cover", {}).get("home_cover_rate")), f"n = {market.get('ats_home_cover', {}).get('n')} decided; p = {market.get('ats_home_cover', {}).get('binomial_p')} vs 50%; CI {market.get('ats_home_cover', {}).get('ci')}", src("nflverse-data")],
+         ["Home cover rate", pct(market.get("ats_home_cover", {}).get("home_cover_rate")), f"CI {market.get('ats_home_cover', {}).get('ci')}", src("nflverse-data")],
          ["Over rate", pct(over.get("over_rate")), f"n = {over.get('n')} totals decisions", src("nflverse-data")],
          ["Moneyline Brier score", num(cal.get("brier_score"), 4), f"vs 0.25 for a coin flip, n = {cal.get('n')}", src("nflverse-data")],
-         ["Pooled ATS rate (arithmetic identity)", pct(coin.get("rate"), 1), "each game pooled twice (+x, &minus;x) &mdash; always 50.0% for any data; not evidence (flag FL-DH-01)", src("nflverse-data")]],
+         ["Pooled ATS figure (identity, not a test)", pct(pid.get("rate"), 1),
+          "Both sides of every game pooled, so the rate is always 50% with p = 1.0 regardless of the data", src("nflverse-data")]],
         caption="Market efficiency benchmarks. Every strategy is scored against these.")
 
     dis_table = table(
@@ -765,7 +765,7 @@ def page_luck() -> str:
     osp = luck.get("one_score_persistence", {})
     vd = luck.get("variance_decomposition", {})
     coin = luck.get("ats_coin_flip_test", {})
-    hc = W.load("market.json").get("ats_home_cover", {})
+    pid = luck.get("ats_pooled_identity", {})
     recent = luck.get("luck_table_recent", [])
     top = sorted(recent, key=lambda r: r["luck_wins"], reverse=True)[:8]
     bottom = sorted(recent, key=lambda r: r["luck_wins"])[:8]
@@ -790,10 +790,10 @@ excellent until it does not.</p></div>
      ["Year-over-year correlation of one-score win rate", num(osp.get("r"), 3),
       f"p = {num(osp.get('p'), 4)} - small but non-zero", src("nflverse-data")],
      ["One-score games as a share of all games", pct(osg.get("share_of_games")), "half the league lives here", src("nflverse-data")],
-     ["Home ATS cover rate (one observation per game)", pct(hc.get("home_cover_rate")),
-      f"n = {hc.get('n')} decided games; p = {hc.get('binomial_p')} vs 50%; CI {hc.get('ci')} &mdash; the real tilt test", src("nflverse-data")],
-     ["Pooled ATS rate (arithmetic identity)", pct(coin.get("rate")),
-      "each game pooled twice (+x, &minus;x) &mdash; exactly 50.0% for any data; not evidence (flag FL-DH-01)", src("nflverse-data")]]))
+     ["ATS vs 50% — home covers (one per game)", pct(coin.get("rate")),
+      f"n = {coin.get('n')} decided games; 95% CI {pct(coin.get('ci', [None, None])[0])}-{pct(coin.get('ci', [None, None])[1])}; p = {coin.get('binomial_p_vs_50')} vs 50%", src("nflverse-data")],
+     ["Pooled ATS figure (arithmetic identity)", pct(pid.get("rate")),
+      f"both sides of every game pooled, so the rate is always 50% with p = {pid.get('binomial_p_vs_50')} — not a test", src("nflverse-data")]]))
         + section("What this means for strategy design", f'''<ul class="ticks">
 <li>Ranking teams on wins imports luck. Deviation from Pythagorean expectation has essentially no
 predictive carry-over (r = {num(pl.get("r"), 3)}), so it cannot be a feature.</li>
@@ -807,7 +807,7 @@ large. That is why the gates require thousands of settled bets.</li></ul>''')
       src("nflverse-data")] for r in top + bottom],
     caption="Pythagorean expected wins vs actual wins, 2023-2026.")))
     return W.layout("Removing luck", "pages/luck.html", body,
-                    subtitle="Variance decomposition, persistence tests and the ATS tilt test.")
+                    subtitle="Variance decomposition, persistence tests and the coin-flip baseline.")
 
 
 # ---------------------------------------------------------------- market
@@ -1075,6 +1075,12 @@ published player-level coefficients are reproduced on a shorter window and their
 # ---------------------------------------------------------------- flagged
 def page_flagged() -> str:
     items = [
+        ("Flagged 2026-11-13: a Python virtualenv was committed to the repository (FL-INT-1)", "medium",
+         "Parallel session arena/b679b063-korea2 committed .venv-b6/ (about 6,200 files of Python "
+         "site-packages) and it reached main in PRs #94/#95. A virtualenv is generated tooling, not "
+         "source: it bloats the repository and can shadow installed packages. No product work is affected.",
+         "SRC-GH-REPO", "Integration session arena/193e54ca-korea2 excluded .venv-b6 from the merged tree "
+         "in PR #97 and hardened .gitignore to ignore .venv*. All product work from that session is preserved."),
         ("Resolved 2026-11-02: committed data lagged the official standings", "low",
          "The extract ended at gameday 2026-10-29, so a rebuild matched the live NFL.com standings for only 8 "
          "of 32 teams. The refresh workflow rewrote the extracts and every figure from a 2026-11-01 download, "
@@ -1201,7 +1207,7 @@ def archive_dirs() -> list[tuple[str, str, bool]]:
     """Sibling dashboards built by parallel sessions, kept verbatim for audit.
 
     The bool says whether the directory is reachable from the published navigation
-    (updated by integration session arena/193e54ca-korea2, 2026-11-13, task IR-4).
+    (integration session arena/193e54ca-korea2, 2026-11-13, task IR-4).
     """
     out = []
     labels = {
@@ -1209,8 +1215,8 @@ def archive_dirs() -> list[tuple[str, str, bool]]:
         "decision-hub": ("Decision Hub: cross-lab audit, decisions and suggestions", True),
         "suggestions": ("Suggestions lab: reviewable proposal registers", True),
         "nfl-command": ("NFL Command Center: injury and lineup tracking", True),
+        "lineup-lab": ("Lineup Lab: origination, backup-depth cascades and gates", True),
         "verify-hub": ("Cross-lab verification hub: claims audit and review queue", False),
-        "lineup-lab": ("Lineup Lab: origination, backup-depth cascades and gates", False),
         "skill-lab": ("Skill lab: signals, luck removal and strategy gates", False),
         "origination": ("Origination pipeline site (session 3f5af27c)", False),
         "pipeline": ("Pipeline scripts and unit tests (session 3f5af27c)", False),
@@ -1245,7 +1251,7 @@ def page_archive() -> str:
         'take precedence and the disagreement is recorded on the Flagged for Review page.</p></div>'
         + section("Preserved artefacts", table(
             ["Artefact", "Location", "Status", "Provenance"], rows,
-            caption="Nothing here is deleted or rewritten. Four of these directories are linked from the navigation; the rest stay outside it.")))
+            caption="Nothing here is deleted or rewritten. Several of these directories are linked from the navigation; the rest stay outside it.")))
     return W.layout("Archive", "pages/archive.html", body,
                     subtitle="Parallel-session dashboards retained for audit.")
 
@@ -1300,7 +1306,7 @@ def page_improve() -> str:
             '<a href="pages/decision-suggestions.html">the suggestion register</a>, '
             '<a href="decision-desk/pages/suggestions.html">Decision Desk suggestions</a>, '
             '<a href="suggestions/pages/suggestions.html">the Suggestions lab</a>, and the '
-            '<a href="verify-hub/pages/suggestions.html">cross-lab review queue</a>. Those registers '
+            '<a href="verify-hub/pages/suggestions.html">the cross-lab review queue</a>. Those registers '
             'hold the evidence; this page is where the site itself gets better.'), "EVIDENCE"))
     return W.layout("Improve this site", "pages/improve.html", body,
                     subtitle="Proposals, trade-offs and a review worksheet. Nothing is built before a choice is recorded.")

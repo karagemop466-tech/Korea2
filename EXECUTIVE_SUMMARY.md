@@ -16,7 +16,7 @@ favoured in this feed). Figures that changed carry the new value; nothing else w
 > build (ten gates, seven candidate strategies plus two controls); its summary is
 > [`docs/EXECUTIVE_SUMMARY.md`](docs/EXECUTIVE_SUMMARY.md), and the independent re-check of both is on the
 > [Verification page](https://karagemop466-tech.github.io/Korea2/pages/verification.html)
-> (53 checks, 0 material disagreements, 2020 season 32/32 vs NFL.com).
+> (56 checks: 52 pass, 0 mismatches, 2020 season 32/32 vs NFL.com).
 
 ---
 
@@ -170,6 +170,11 @@ Every table row on the published site carries an https source link, and
 6. Only 2026 is reconciled team by team; 1999–2025 shares the pipeline but was not
    individually checked.
 7. Push handling reduces a parlay ticket to its remaining legs.
+8. **FL-INT-1 (2026-11-13):** a Python virtualenv (`.venv-b6/`, ~6,200 files of
+   site-packages) was committed to the repository by parallel session
+   `arena/b679b063-korea2` and reached `main` in PRs #94/#95. The integration merge
+   (PR #97) excluded it, and `.gitignore` now covers `.venv*`. No product work is
+   affected; all product work from that session is preserved.
 8. Legal and jurisdictional status of wagering was not assessed.
 9. 1,902 of 7,075 settled games carry no stored spread price (1,904 no total price).
    Earlier revisions of this pipeline imputed −110 there; since the 2026-11-02 revision

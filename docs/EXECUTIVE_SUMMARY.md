@@ -198,11 +198,17 @@ size, or that results will persist. Reproducibility is not validation.
   `market.json → ats_home_cover`: **48.91% home covers (3,371 of 6,892 decided games), 95% CI
   47.73–50.09, two-sided exact binomial p = 0.0727**. The conclusion is now "no significant tilt
   detected, and none ruled out", not "no tilt exists".
-- The independent record grew to **53 checks (52 agree, 0 material disagreements)**: the four new
-  `market.ats_home_*` checks recompute the tilt test from the committed extract by a separate
-  implementation (`verification/recompute.py` imports nothing from `scripts/`).
-- Reproducibility proof for this change: `scripts/analyze_luck.py` was re-run against the committed
-  extract `data/derived/games.csv.gz` and reproduced `data/derived/luck.json` byte-for-byte apart
-  from the intended relabel (2 insertions, 1 deletion in the JSON diff).
+- The independent record is now **56 checks: 52 pass, 0 mismatches (11 observations, 3 of them
+  expected-to-differ)**. Six `luck.ats_*` checks verify the honest one-per-game test and the
+  pooled identity separately (`verification/recompute.py` imports nothing from `scripts/`), and
+  four `market.ats_home_*` checks recompute the tilt test against the copy published in
+  `market.json`, so the two published copies cannot drift apart unnoticed.
+- Two parallel sessions (this integration session and `arena/b679b063-korea2`) remediated the same
+  FL-DH-01 flag independently and identically: 3,371 home covers in 6,892 decided games, 48.91%,
+  CI 47.73-50.09, p = 0.0727. The merged record keeps the cleaner schema from PR #94 (honest test
+  in `ats_coin_flip_test`, the identity quarantined in `ats_pooled_identity`) plus a machine-readable
+  `is_identity: true` marker and the cross-copy checks above.
+- Reproducibility proof: `scripts/analyze_luck.py` was re-run against the committed extract
+  `data/derived/games.csv.gz` and reproduced `data/derived/luck.json` exactly under the merged schema.
 - No strategy is approved, no reward is funded, and no operator/licence/limit is verified. The
   remediation changes how a null result is presented; it does not change the null result.

@@ -106,23 +106,32 @@ def main() -> None:
         "sd_expected_win_pct": round(float(ts["exp_win_pct"].std(ddof=1)), 4),
     }
 
-    # ---------------------------------------------------------------- pooled ATS identity (and the real test elsewhere)
-    # NOTE (integration session arena/193e54ca-korea2, 2026-11-13, flag FL-DH-01): pooling every
-    # team-game with its own negation makes the cover rate exactly 0.5 for ANY dataset, so this
-    # block is an arithmetic identity, not a test. It is kept only for bookkeeping. The real ATS
-    # tilt test — one observation per game — is market.json -> ats_home_cover.
-    ats = tg.dropna(subset=["ats_margin"])
-    ats = ats[ats["ats_margin"] != 0]
-    k, n = int((ats["ats_margin"] > 0).sum()), int(len(ats))
+    # ---------------------------------------------------------------- ATS against 50%
+    # The pooled "coin-flip test" is an arithmetic identity, not a test: each game
+    # contributes two team-game rows (home and away) whose ats_margins are negations, so
+    # pooling them forces rate = 0.5 and p = 1.0 for every possible dataset. The honest
+    # test is one observation per game: the home team's cover result (pushes dropped).
+    ats_home = tg[tg["is_home"] == 1].dropna(subset=["ats_margin"])
+    ats_home = ats_home[ats_home["ats_margin"] != 0]
+    k, n = int((ats_home["ats_margin"] > 0).sum()), int(len(ats_home))
     lo, hi = S.wilson_ci(k, n)
     out["ats_coin_flip_test"] = {
         "n": n, "wins": k, "rate": round(k / n, 4), "ci": [round(lo, 4), round(hi, 4)],
         "binomial_p_vs_50": round(S.binomial_p(k, n), 4),
+        "note": ("One observation per game: the home team's ATS cover result, pushes dropped. "
+                 "A rate near 50% here means the closing spread carries no exploitable home tilt."),
+    }
+    # The pooled figure is kept only so the identity is visible and never re-presented as a test.
+    ats_pooled = tg.dropna(subset=["ats_margin"])
+    ats_pooled = ats_pooled[ats_pooled["ats_margin"] != 0]
+    pk, pn = int((ats_pooled["ats_margin"] > 0).sum()), int(len(ats_pooled))
+    out["ats_pooled_identity"] = {
+        "n": pn, "wins": pk, "rate": round(pk / pn, 4),
+        "binomial_p_vs_50": round(S.binomial_p(pk, pn), 4),
         "is_identity": True,
-        "note": ("Arithmetic identity (flag FL-DH-01): every team-game is pooled twice, once as "
-                 "+margin and once as -margin, so exactly one of each pair covers and the rate is "
-                 "0.5 for every possible dataset. Not evidence about the market. The real tilt "
-                 "test is one observation per game: market.json -> ats_home_cover."),
+        "note": ("Arithmetic identity: both sides of every game are pooled, so exactly one of each "
+                 "pair is a cover and the rate is always 50% with p = 1.0 regardless of the data. "
+                 "Not a test; published only so the pooled number cannot be mistaken for evidence."),
     }
 
     # ---------------------------------------------------------------- how much sample is enough

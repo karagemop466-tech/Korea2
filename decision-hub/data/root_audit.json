@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_utc": "2026-11-13T23:27:44+00:00",
+  "generated_utc": "2026-11-13T23:47:02+00:00",
   "auditor": "decision-hub/scripts/audit_root.py",
   "rule": "A published number is PASS only if this independent implementation reproduces it from committed inputs within tolerance. Anything else is FAIL, BLANK or OBSERVATION."
  },
@@ -128,11 +128,11 @@
   {
    "id": "luck.ats_n",
    "claim": "pooled ATS team-games (published method)",
-   "published": 13784,
+   "published": 6892,
    "recomputed": 13784,
    "tolerance": 0,
-   "abs_diff": 0,
-   "verdict": "PASS",
+   "abs_diff": 6892,
+   "verdict": "FAIL",
    "method": "each game counted twice, once per side",
    "source_id": "nflverse-data",
    "class": "count"
@@ -140,11 +140,11 @@
   {
    "id": "luck.ats_wins",
    "claim": "pooled ATS wins (published method)",
-   "published": 6892,
+   "published": 3371,
    "recomputed": 6892,
    "tolerance": 0,
-   "abs_diff": 0,
-   "verdict": "PASS",
+   "abs_diff": 3521,
+   "verdict": "FAIL",
    "method": "exactly one of (+x,-x) is positive, so wins == n/2",
    "source_id": "nflverse-data",
    "class": "count"
@@ -152,11 +152,11 @@
   {
    "id": "luck.ats_rate",
    "claim": "pooled ATS rate (published method)",
-   "published": 0.5,
+   "published": 0.4891,
    "recomputed": 0.5,
    "tolerance": 5e-05,
-   "abs_diff": 0.0,
-   "verdict": "PASS",
+   "abs_diff": 0.0109,
+   "verdict": "FAIL",
    "method": "identical to 0.5 for ANY input; see flag FL-DH-01",
    "source_id": "nflverse-data",
    "class": "rate"
@@ -296,12 +296,12 @@
   {
    "id": "rows.source_coverage",
    "claim": "table rows carrying a source link",
-   "published": 880,
-   "recomputed": 880,
+   "published": 884,
+   "recomputed": 884,
    "tolerance": 0,
    "abs_diff": 0,
    "verdict": "PASS",
-   "method": "15 of 895 rows have no link in the final cell",
+   "method": "15 of 899 rows have no link in the final cell",
    "source_id": "nflverse-data",
    "class": "count"
   }
@@ -317,7 +317,7 @@
     "pages/executive.html",
     "docs/EXECUTIVE_SUMMARY.md"
    ],
-   "detail": "data/derived/luck.json reports n=13784, wins=6892, rate=0.5 and p vs 50% = 1.0. The sample is built as x concatenated with -x (scripts/analyze_luck.py pools ats_margin and its negation, and verification/recompute.py lines 195-205 reproduce it), so exactly one of each pair is positive: rate = 0.5 and p = 1.0 for every possible dataset. It is presented as evidence that 'the spread market shows no exploitable tilt', which it does not test. The one-sided version, one observation per game, is n=6892, home covers=3371, rate=0.4891, 95% Wilson CI (0.477326, 0.500922), two-sided p=0.072687.",
+   "detail": "data/derived/luck.json reports n=6892, wins=3371, rate=0.4891 and p vs 50% = 0.0727. The sample is built as x concatenated with -x (scripts/analyze_luck.py pools ats_margin and its negation, and verification/recompute.py lines 195-205 reproduce it), so exactly one of each pair is positive: rate = 0.5 and p = 1.0 for every possible dataset. It is presented as evidence that 'the spread market shows no exploitable tilt', which it does not test. The one-sided version, one observation per game, is n=6892, home covers=3371, rate=0.4891, 95% Wilson CI (0.477326, 0.500922), two-sided p=0.072687.",
    "corrected": {
     "n": 6892,
     "wins": 3371,
@@ -485,7 +485,7 @@
    "tables": 3
   },
   "pages/flagged.html": {
-   "table_rows": 19,
+   "table_rows": 20,
    "rows_without_source_cell": 0,
    "tables": 1
   },
@@ -550,7 +550,7 @@
    "tables": 6
   },
   "pages/verification.html": {
-   "table_rows": 128,
+   "table_rows": 131,
    "rows_without_source_cell": 0,
    "tables": 5
   }
@@ -836,7 +836,7 @@
   }
  ],
  "verification_summary": {
-  "checks": 53,
+  "checks": 56,
   "fail": 0,
   "mismatch": 0,
   "reconciliation": {
@@ -864,13 +864,13 @@
  },
  "rows_totals": {
   "pages": 26,
-  "table_rows": 895,
+  "table_rows": 899,
   "rows_without_source_cell": 15
  },
  "summary": {
   "checks": 25,
-  "pass": 23,
-  "fail": 0,
+  "pass": 20,
+  "fail": 3,
   "blank": 2,
   "flags": 7,
   "high_flags": 1
