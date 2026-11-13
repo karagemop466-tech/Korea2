@@ -54,17 +54,18 @@
     },
     {
       "id": "RB-04",
-      "title": "A headline '50.0%, p = 1.0' ATS figure is an arithmetic identity, not a test",
+      "title": "A pooled ATS '50.0%, p = 1.0' figure was an arithmetic identity - the root register has since been corrected, a sibling audit has not",
       "kind": "method defect",
-      "severity": "high",
-      "finding": "The root register's ATS coin-flip statistic pools two observations per game (home covers and away overs against the same line), so its 'n' is exactly twice the game count and its pooled rate is fixed near 0.5 by construction, returning p = 1.0. The honest per-game figure in the same directory is home cover 48.91% with CI 47.73-50.09 and p = 0.073 - and the hub states outright that a one-sample test against 0.50 cannot support an ATS edge claim.",
-      "verification": "Read data/derived/luck.json (ats_coin_flip_test) and data/derived/market.json (ats_home_cover) and checked the pooled n against the game count recorded in data/derived/manifest.json.",
-      "action": "Retire the pooled statistic from any surface that presents it as evidence about home teams, or label it as the mechanical check it is. This is a root-page edit and belongs to the integration pass.",
+      "severity": "medium",
+      "finding": "At the base commit this review started from, the root register published ats_coin_flip_test as a pooled two-sides-per-game count (n = 13,784, rate 50.0%, p = 1.0), which is an arithmetic identity: exactly one side of every pair covers, so the rate cannot move. Since then the root register was rebuilt and now publishes the honest one-observation-per-game test under that name (home cover 48.91%, n = 6,892, CI 47.73-50.09, p = 0.0727) with the pooled figure separated into ats_pooled_identity and labelled an identity. The remaining problem is downstream: verify-hub's claims audit row B-05 still records that it read ats_coin_flip_test and got 'wins 6892, n 13784, rate 0.5, p 1.0' - a description of the pre-fix field, now attached to a field name that holds the per-game test.",
+      "verification": "Read data/derived/luck.json (ats_coin_flip_test n 6,892 rate 0.4891; ats_pooled_identity n 13,784 rate 0.5 p 1.0) and data/derived/market.json (ats_home_cover 0.4891, CI 0.4773-0.5009, p 0.0727) against verify-hub/data/claims_audit.json row B-05, which quotes the old pairing. Git history: the root fix arrived with PR #94 at da78bd0, after this review's base 007f2ed.",
+      "action": "Re-run verify-hub's audit against the corrected register so its claim text, the field it cites and the numbers agree; until then B-05 must not be quoted as a verification of the root KPI. This is a sibling-hub edit - reported here, not made here.",
       "source_id": "RB-SRC-09",
       "affects": [
         "pages/executive.html",
         "pages/competition.html",
-        "pages/flagged.html"
+        "pages/flagged.html",
+        "pages/reconciliation.html"
       ]
     },
     {
@@ -87,7 +88,7 @@
       "kind": "governance",
       "severity": "medium",
       "finding": "Reading every committed register in the repository, ten gate identifiers (G1-G10) carry more than one name, and the hub leaderboards state different gate counts - the root publishes ten gates, the skill leaderboard requires 10/10 for gold while the lineup leaderboard evaluates a different set. A claim of the form 'this strategy passed 9 of 10 gates' is therefore not comparable between hubs.",
-      "verification": "Scanned all 144 committed JSON files for gate definitions and matched by ID; the full side-by-side is on the reconciliation page, generated rather than curated.",
+      "verification": "Scanned every committed JSON file in the tree for gate definitions (145 at this build) and matched by ID; the full side-by-side is on the reconciliation page, generated rather than curated.",
       "action": "Adopt one gate set for the repository and make every hub build against it. Until then no cross-hub qualification claim should be quoted.",
       "source_id": "RB-SRC-08",
       "affects": [
@@ -249,6 +250,20 @@
       "affects": [
         "pages/suggestions.html",
         "pages/path.html"
+      ]
+    },
+    {
+      "id": "RB-18",
+      "title": "This board's own registers went stale the moment the branch was rebased",
+      "kind": "irregularity",
+      "severity": "low",
+      "finding": "The first rebuild after rebasing onto main changed two of the six generated registers (files_scanned 144 to 145, and the hub inventory picked up the merged navigation edit). Any register derived from sibling files is only as current as its last build, which is the same failure mode this hub flags in other hubs at flag RB-16.",
+      "verification": "verify_all.py compares each committed register against a fresh rebuild, ignoring the commit stamp; it reported exactly these two files as needing a rebuild, and the rebuild was committed with the review.",
+      "action": "None for the owner: the check exists so a future reader can see the registers were regenerated at the commit named in each file's _generated_from_repo_commit field.",
+      "source_id": "RB-SRC-13",
+      "affects": [
+        "pages/flagged.html",
+        "pages/hubmap.html"
       ]
     }
   ],

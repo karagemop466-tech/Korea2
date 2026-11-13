@@ -16,14 +16,17 @@ trail behind both. Nothing in this document is an implementation order; every pr
    `data/derived/model.json`: model MAE 9.70 against market MAE 9.70-ish on spreads (the registers publish the
    close-beat comparison twice, 10.38/10.39 vs 9.70/10.25 across the two evaluation windows), and the
    incremental-information coefficient is −0.02 with p = 0.85. The model adds nothing beyond the closing line.
-3. **One headline statistic on the live site is an arithmetic identity.** The pooled ATS test reports
-   n = 2,000 and rate 50.0% at p = 1.0 because it counts both sides of the same line twice; the honest
-   one-observation-per-game figure in the same directory is home cover 48.91% (CI 47.73–50.09, p = 0.073).
-   Flag RB-04.
+3. **A pooled ATS statistic that was an arithmetic identity is fixed at the root and stale in one audit.** At the
+   base commit of this review the root register published `ats_coin_flip_test` as a two-sides-per-game pool
+   (rate 50.0%, p = 1.0 — a value that cannot move, since exactly one side of each pair covers). `main` has since
+   been rebuilt: the field now carries the one-observation-per-game test (home cover 48.91%, n = 6,892,
+   CI 47.73–50.09, p = 0.073) and the pooled figure sits in `ats_pooled_identity`, labelled an identity. What is
+   left is downstream — verify-hub's claims audit row B-05 still says it read the pooled numbers from the per-game
+   field. Flag RB-04.
 4. **Prop profitability is unmeasurable with what is committed.** `data/derived/props.json` states its own
    limitation: accuracy is measured, prices are not, so no prop ROI claim in any hub is verifiable. Flag RB-10.
 5. **Parlay legs are not independent, and the hubs disagree about by how much.** Five quantities are published
-   with different values under one label across 144 registers, including the QB↔WR1 pair, where the label is
+   with different values under one label across 145 committed registers, including the QB↔WR1 pair, where the label is
    shared and the definition is not.
 6. **Availability is only knowable in the moment it is published.** Today's Friday report carries 213 rows, 66
    Out designations across 28 clubs and 14 games; the midweek sibling capture carries 6 designated players.
@@ -137,17 +140,17 @@ ever intended (owner), and an archive of point-in-time availability (a scheduled
 
 ## 8. Flags
 
-Seventeen items are on `review-board/pages/flagged.html` — irregularities, contradictions between official
+Eighteen items are on `review-board/pages/flagged.html` — irregularities, contradictions between official
 surfaces, method defects and governance conflicts, each with what was found, how it was checked and the action
 for the owner — plus eight surfaces deliberately left blank with the reason. None blocks the deploy; every one
 of them is something a reader would otherwise have to discover alone.
 
 ## 9. Provenance
 
-Twelve register entries on `review-board/pages/sources.html`: four official NFL pages read today, two NFL
+Thirteen register entries on `review-board/pages/sources.html`: four official NFL pages read today, two NFL
 Football Operations pages (one reachable, one 404 and marked as such), the league's injury hub, three committed
-files in this repository, one third-party feed carried from sibling registers, and this hub's own programme
-register for material that is authored rather than measured. Rows marked `carried` were not re-read by this
+files in this repository, one third-party feed carried from sibling registers, the Pages build endpoint, and
+this hub's own programme register for material that is authored rather than measured. Rows marked `carried` were not re-read by this
 session and say so on every table where they appear.
 
 *Research, measurement and review only — not betting advice, not a tip sheet, and no funded prize.*

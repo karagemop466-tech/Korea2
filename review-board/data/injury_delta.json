@@ -468,5 +468,5 @@
  ],
  "note": "The sibling capture is the Wednesday practice report; this one is the Friday report that carries game statuses. Designation counts are therefore not comparable as a rate - the point of the row is that the Friday statuses exist only on Friday, which is exactly why an archived point-in-time snapshot (and not a re-read of the live page) is required to backtest any availability signal.",
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "c44795ef6a3b7cd15a3d8a70043a81929159b873"
+ "_generated_from_repo_commit": "3451cb5094e7dbef26cc58aed8284fe02f8bf329"
 }

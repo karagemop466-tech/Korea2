@@ -1,6 +1,6 @@
 {
- "hubs_scanned": 14,
- "files_scanned": 144,
+ "hubs_scanned": 15,
+ "files_scanned": 145,
  "published_numbers": [
   {
    "hub": "decision-desk",
@@ -1765,14 +1765,14 @@
   {
    "hub": "data",
    "file": "data/derived/verification.json",
-   "stamp": "2026-11-12T13:18:33Z",
+   "stamp": "2026-11-13T23:15:06Z",
    "stamp_kind": "date",
    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/verification.json"
   },
   {
    "hub": "data",
    "file": "data/flagged.json",
-   "stamp": "2026-11-01",
+   "stamp": "2026-11-13",
    "stamp_kind": "date",
    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/flagged.json"
   },
@@ -2080,7 +2080,7 @@
   {
    "hub": "verification",
    "file": "verification/recompute.json",
-   "stamp": "2026-11-12T13:18:33Z",
+   "stamp": "2026-11-13T23:15:06Z",
    "stamp_kind": "date",
    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/verification/recompute.json"
   },
@@ -2129,7 +2129,7 @@
  ],
  "stamp_range": {
   "earliest": "2026-11-01",
-  "latest": "2026-11-12T14:46:06+00:00",
+  "latest": "2026-11-13T23:15:06Z",
   "dated_registers": 54,
   "window_only_registers": 1
  },
@@ -2172,5 +2172,5 @@
  ],
  "method": "Each hub's own committed JSON is read; a value counts as published only when the file carries it under a recognised field name (r / pearson_r / coefficient / correlation) with a label. Values are shown exactly as stored, rounded to three decimals. A quantity is a conflict when two or more hubs publish different numbers for the same label - the board shows both and links both files. Nothing is averaged and nothing is re-derived here.",
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "c44795ef6a3b7cd15a3d8a70043a81929159b873"
+ "_generated_from_repo_commit": "3451cb5094e7dbef26cc58aed8284fe02f8bf329"
 }

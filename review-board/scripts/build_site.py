@@ -355,9 +355,18 @@ def page_executive() -> str:
     root_props = load_repo("data", "derived", "props.json")
 
     def num(d, *keys, fmt="{:.3f}"):
+        """Walk a nested register by key (dict) or index (list) and format the number it holds.
+
+        Returns an empty string when the path does not exist, so a missing value renders as nothing
+        rather than as a zero - the same never-guess rule the tables follow."""
         v = d
         for k in keys:
-            v = v.get(k) if isinstance(v, dict) else None
+            if isinstance(v, dict):
+                v = v.get(k)
+            elif isinstance(v, (list, tuple)) and isinstance(k, int) and -len(v) <= k < len(v):
+                v = v[k]
+            else:
+                v = None
         return fmt.format(v) if isinstance(v, (int, float)) else ""
 
     top = q["clusters"][:5]
@@ -380,16 +389,17 @@ def page_executive() -> str:
          f'coefficient {esc(num(root_model, "incremental_information", "c_model"))}, p = '
          f'{esc(num(root_model, "incremental_information", "p_c_model"))}. The model adds nothing beyond the close.',
          "computed from hub registers", "RB-SRC-09"),
-        ("One headline statistic on the live site is an arithmetic identity, not a test",
-         f'The pooled ATS figure reads n={esc(num(root_luck, "ats_coin_flip_test", "n", fmt="{:.0f}"))} at '
-         f'{esc(num(root_luck, "ats_coin_flip_test", "rate", fmt="{:.1%}"))} (p = 1.0). The one-observation-per-game '
-         f'figure in <code>market.json</code> is home cover '
-         f'{esc(num(root_market, "ats_home_cover", "home_cover_rate", fmt="{:.2%}"))} on n='
-         f'{esc(num(root_market, "ats_home_cover", "n", fmt="{:.0f}"))}, CI '
-         f'{esc(num(root_market, "ats_home_cover", "ci", 0, fmt="{:.2%}"))}-'
-         f'{esc(num(root_market, "ats_home_cover", "ci", 1, fmt="{:.2%}"))}, p = '
-         f'{esc(num(root_market, "ats_home_cover", "binomial_p"))}. The pooled count is exactly twice the game '
-         "count - see flag RB-04.", "verified arithmetically here", "RB-SRC-09"),
+        ("A pooled ATS statistic that was an arithmetic identity is corrected at the root and stale in a sibling audit",
+         f'The root register now publishes the one-observation-per-game test under <code>ats_coin_flip_test</code>: '
+         f'home cover {esc(num(root_luck, "ats_coin_flip_test", "rate", fmt="{:.2%}"))} on n='
+         f'{esc(num(root_luck, "ats_coin_flip_test", "n", fmt="{:,.0f}"))}, CI '
+         f'{esc(num(root_luck, "ats_coin_flip_test", "ci", 0, fmt="{:.2%}"))}-'
+         f'{esc(num(root_luck, "ats_coin_flip_test", "ci", 1, fmt="{:.2%}"))}, p = '
+         f'{esc(num(root_luck, "ats_coin_flip_test", "binomial_p_vs_50"))}, with the pooled figure separated into '
+         f'<code>ats_pooled_identity</code> (n={esc(num(root_luck, "ats_pooled_identity", "n", fmt="{:,.0f}"))}, '
+         'rate 50%, p = 1.0) and labelled an identity. verify-hub\'s claims audit still describes itself as having '
+         "read the pooled numbers out of the per-game field - flag RB-04 tracks what is left to fix.",
+         "corrected upstream; downstream audit pending", "RB-SRC-09"),
         ("Player-prop profitability cannot be measured in this repository",
          esc(clip(root_props.get("limitation", ""), 300)), "stated by the root register", "RB-SRC-09"),
         ("Parlay legs are not independent, and the hubs disagree by how much",
