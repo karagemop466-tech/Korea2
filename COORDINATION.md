@@ -1716,3 +1716,38 @@ duplicate it; this session owns the cross-lab **decision layer** nobody has clai
 
 **2026-11-12 — merge conflict resolution (into PR #86):** `origin/main` moved to `966a764` (sessions `fc16e360`, `f1123a1a`, `bea6e3be`, `7dbbeba6`, `90e4fdbe`, `43870fb8`, `cb5b61a7`, `578d4e5f`, `578d4e5f`, `29806afc`-era work merged meanwhile). Conflicts: `COORDINATION.md` (add-add: my DD board vs sibling boards) and `index.html` (add-add: nav lines). Resolution: kept **every** sibling board and log verbatim, appended my board after them; root nav now carries all sibling entries **plus** `decision-desk/index.html` (DD-9). Because the root builder owns `index.html`, DD-9 was made durable in `scripts/lib/site.py` (NAV entry + `href="decision-desk/` depth-prefix rule) — the same two-line pattern earlier sessions used for `decision-hub/`, `suggestions/`, `nfl-command/`. Registers updated for the merged tree: leaderboard now aggregates lineup-lab too (108 evaluations, 0 qualified; SRC-DD-50), Q-12/Q-21 refreshed (site-wide disclaimer now exists on root pages; Decision Desk footers carry the same sentence), S-07 residual = jurisdiction line. Post-merge verification: `tests/check_site.py` 177 pages / 10,401 links PASS; `scripts/check_links.py` 3,554 refs PASS; `validate_data` / `check_data` / `check_derived` PASS; `decision-desk/scripts/verify_all.py` PASS (50 sources); sibling verifiers `audit/check_site.py`, `skill-lab/scripts/verify_all.py`, `decision-hub/scripts/check_site.py`, `verify-hub/scripts/verify.py`, `lineup-lab/scripts/verify_lineup_lab.py`, `pipeline/check_links.py` all PASS on the merged tree.
 
+
+---
+
+# Session board — `arena/193e54ca-korea2` — Final integration & line-by-line verification
+
+**Session ID:** `arena/193e54ca-korea2` (branch fixed by environment: `arena/193e54ca-korea2`)
+**Claimed at:** 2026-11-13 UTC
+**Role:** final integration session for the combined tree (all prior sessions' boards above read in
+full at intake; their tasks are `done` / `needs review`, nothing active was found).
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| IR-0 | Claim this scope on the shared board and push before any implementation | done | `arena/193e54ca-korea2` | this section of `COORDINATION.md` |
+| IR-1 | Integrate stale sibling PRs #76, #78, #84 (merge where clean; carry the content into the integration PR and close with a note where the branch conflicts) | in progress | `arena/193e54ca-korea2` | those PRs, this section |
+| IR-2 | FL-DH-01 remediation: relabel the pooled ATS figure as the arithmetic identity it is, publish the honest one-observation-per-game ATS test, and verify it in the independent recompute record | in progress | `arena/193e54ca-korea2` | `scripts/analyze_luck.py`, `scripts/build_site.py`, `verification/recompute.py`, `data/derived/luck.json`, `data/derived/verification.json`, `README.md`, `EXECUTIVE_SUMMARY.md`, `docs/`, root generated pages |
+| IR-3 | Dedicated site-improvement suggestions section: every proposal to improve the site's decision-making value, with trade-offs, a recommended path and a reviewer-choice column — nothing implemented before a reviewer chooses | unclaimed → claimed here | `arena/193e54ca-korea2` | `data/site_improvements.json` (new), `scripts/build_site.py` (new page), `scripts/lib/site.py` (nav) |
+| IR-4 | Navigation cleanup: duplicate sidebar labels disambiguated; sibling-lab link coverage confirmed on the archive page | unclaimed → claimed here | `arena/193e54ca-korea2` | `scripts/lib/site.py`, `scripts/build_site.py` |
+| IR-5 | Live official-source re-verification pass (2026-11-13) of every registered source URL and the current-week NFL state, with links; dead/stale sources flagged, never filled in | unclaimed → claimed here | `arena/193e54ca-korea2` | this section, `data/sources.json`, `data/flagged.json` (only if a check fails) |
+| IR-6 | Full local + CI verification of the combined tree (every checker owned by every lab) | unclaimed → claimed here | `arena/193e54ca-korea2` | — (runs only) |
+| IR-7 | Integration PR to `main`, merge without waiting, GitHub Pages confirmation, board release record | unclaimed → claimed here | `arena/193e54ca-korea2` | this section, PR |
+
+**Scope rule:** this session writes `COORDINATION.md` (this section), root pipeline/site files listed
+above, and the new `data/site_improvements.json`. Sibling lab directories (`decision-hub/`,
+`decision-desk/`, `verify-hub/`, `lineup-lab/`, `skill-lab/`, `suggestions/`, `nfl-command/`,
+`nfl-research/`, `research-desk/`, `quant-lab/`, `origination*`, `pipeline/`, `results/`, `audit/`,
+`dashboard/`, `nfl-lines/`, `site/`, `verification/` inputs) are **read-only** except where a task
+above explicitly names a file. Any change a task forces into a sibling scope is logged here first.
+
+## Log — `arena/193e54ca-korea2`
+- 2026-11-13 UTC — Intake: repository reviewed (541 files, 177 HTML pages, 12 GitHub workflows).
+  Full `COORDINATION.md` board read (9 prior session boards). Local suite green at intake:
+  `tests/check_site.py` (177 pages / 424 tables / 10,401 links), `tests/check_derived.py`
+  (11 strict-JSON derived files, 49-check verification record, 0 disagreements),
+  `scripts/check_links.py` (3,568 refs), `scripts/validate_data.py`, `tests/check_data.py` — all PASS.
+  Open sibling PRs at intake: #76, #78, #84. Three claims recorded and pushed before implementation.
