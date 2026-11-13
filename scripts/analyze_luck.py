@@ -128,6 +128,7 @@ def main() -> None:
     out["ats_pooled_identity"] = {
         "n": pn, "wins": pk, "rate": round(pk / pn, 4),
         "binomial_p_vs_50": round(S.binomial_p(pk, pn), 4),
+        "is_identity": True,
         "note": ("Arithmetic identity: both sides of every game are pooled, so exactly one of each "
                  "pair is a cover and the rate is always 50% with p = 1.0 regardless of the data. "
                  "Not a test; published only so the pooled number cannot be mistaken for evidence."),

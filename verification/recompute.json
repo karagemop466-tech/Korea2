@@ -1,11 +1,11 @@
 {
   "meta": {
     "session": "arena/652b0095-korea2",
-    "generated_utc": "2026-11-13T23:15:06Z",
+    "generated_utc": "2026-11-13T23:54:33Z",
     "purpose": "Independent re-implementation of the published statistics from the committed extracts, plus field-by-field reconciliation of a completed season against NFL.com.",
     "data_as_of_gameday": "2026-11-01",
-    "n_checks": 52,
-    "n_pass": 48,
+    "n_checks": 56,
+    "n_pass": 52,
     "n_fail": 0,
     "n_observations": 11,
     "independence": "Does not import scripts/ or pipeline/. Uses pandas/numpy/scipy only, so a definition error in the project's own code cannot make this agree with itself.",
@@ -286,6 +286,54 @@
       "verdict": "PASS",
       "class": "assert",
       "method": "wins / decided team-games; always 0.5",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.ats_home_n",
+      "claim": "ATS tilt test sample in market.json (cross-copy check)",
+      "published": 6892,
+      "recomputed": 6892,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "one observation per game (home covers or not), pushes removed",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.ats_home_covers",
+      "claim": "home covers in market.json (cross-copy check)",
+      "published": 3371,
+      "recomputed": 3371,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "result - spread_line > 0",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.ats_home_rate",
+      "claim": "home ATS cover rate in market.json (cross-copy check)",
+      "published": 0.4891,
+      "recomputed": 0.4891,
+      "abs_diff": 0.0,
+      "tolerance": 0.0006,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "must agree with luck.json -> ats_coin_flip_test",
+      "source_id": "nflverse-data"
+    },
+    {
+      "id": "market.ats_home_p",
+      "claim": "binomial p vs 50% in market.json (cross-copy check)",
+      "published": 0.0727,
+      "recomputed": 0.0727,
+      "abs_diff": 0.0,
+      "tolerance": 0.0005,
+      "verdict": "PASS",
+      "class": "assert",
+      "method": "exact binomial on home covers in decided games",
       "source_id": "nflverse-data"
     },
     {

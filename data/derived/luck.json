@@ -64,6 +64,7 @@
     "wins": 6892,
     "rate": 0.5,
     "binomial_p_vs_50": 1.0,
+    "is_identity": true,
     "note": "Arithmetic identity: both sides of every game are pooled, so exactly one of each pair is a cover and the rate is always 50% with p = 1.0 regardless of the data. Not a test; published only so the pooled number cannot be mistaken for evidence."
   },
   "sample_size_requirements": {

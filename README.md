@@ -18,7 +18,7 @@ The dataset is through **2026-11-01**; this repository snapshot is not current t
 | Are parlay legs independent? | No | QB passing yards ↔ WR1 receiving yards r = +0.561; 4-leg same-team joint 11.1% vs 5.7% under independence |
 | Is a season win-loss record a signal? | Mostly luck | Pythagorean R² = 0.83; year-over-year luck correlation 0.019 |
 | Can prop ROI be measured? | Not here | no historical prop prices in the feed — flagged, not invented |
-| Do the published numbers survive an independent recomputation? | Yes | 48 of 52 checks pass, 0 mismatches (11 expected-to-differ observations); the 2020 and 2026 seasons each reconcile 32/32 teams with NFL.com — [Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) |
+| Do the published numbers survive an independent recomputation? | Yes | 52 of 56 checks pass, 0 mismatches (11 observations, 3 of them expected-to-differ); the 2020 and 2026 seasons each reconcile 32/32 teams with NFL.com — [Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) |
 
 The honest headline is that the market is better than the model, and the gate system rejects
 everything as a result. That is the intended behaviour of the system, not a failure of it.
@@ -39,10 +39,14 @@ in [`decision-hub/`](decision-hub/index.html), and it is the place to start:
 | [Line-by-line audit](decision-hub/pages/audit.html) | every published number recomputed by an independent implementation |
 | [Review workflow](decision-hub/pages/workflow.html) | how to choose a path without implementing anything first |
 
-**One finding from that audit changes a published conclusion:** the headline "ATS coin-flip test —
+**One finding from that audit changed a published conclusion:** the headline "ATS coin-flip test —
 50.0%, p = 1.0" is an arithmetic identity, not a test (every game is pooled twice, once per side).
-The honest one-observation-per-game figure is 48.91% home covers, 95% CI 47.73–50.09%, p = 0.073.
-See [FL-DH-01](decision-hub/pages/flagged.html).
+**Remediated 2026-11-13 (integration pass IR-2):** the pooled figure is now labelled an identity
+everywhere it appears, and the site's headline ATS statistic is the honest one-observation-per-game
+test: **48.91% home covers, 95% CI 47.73–50.09%, p = 0.073 on 6,892 decided games** (independently
+recomputed as checks `market.ats_home_*` on the
+[Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) page).
+See [FL-DH-01](decision-hub/pages/flagged.html) for the original finding.
 
 ### Injury and depth data
 
