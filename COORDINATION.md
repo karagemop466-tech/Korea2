@@ -1516,7 +1516,8 @@ source link**, every link and anchor resolves; root `tests/check_site.py` and
 |---|---|
 | PR #68 | https://github.com/karagemop466-tech/Korea2/pull/68 — merged 2026-11-12T13:30:31Z, merge commit `c2c1b6e74107eede66ed47877e9b4bd812bf99ab`. All checks green (check, verify, validate, tests-and-links, verify-skill-lab, decision-desk). |
 | PR #77 | https://github.com/karagemop466-tech/Korea2/pull/77 — follow-up, merged, merge commit `97bd979f109680015ed79ebe64c03c48d660c5bb`. |
-| Pages deployment | run 43227955208 (for #68) **success**; run 43228445846 (for #77) **success**; `gh api .../pages` reports `status: built` for https://karagemop466-tech.github.io/Korea2/ |
+| Pages deployment | run 43227955208 (#68) **success**; 43228445846 (#77) **success**; 43229526839 (#79) **success**; 43230014336 (#82) **success**; `gh api .../pages` reports `status: built` for https://karagemop466-tech.github.io/Korea2/ |
+| Follow-up PRs | #77 (no stored tallies), #79 (withdraw FL-DH-03, add schema guard, merge `d241d23`), #82 (correct injury method text; separate "no report filed" from "healthy", merge `17e4cf7`) — all merged, all checks green |
 | Live verification | https://karagemop466-tech.github.io/Korea2/decision-hub/ fetched 2026-11-12 and rendered correctly (14 suggestions, 16 questions, 24 audit checks at the time of that build); /pages/flagged.html fetched and shows all 7 flags with source links. |
 | Conflicts resolved | Three parallel sessions merged into `main` while this branch was open (`suggestions/` + root `pages/suggestions.html`, `decision-questions.html`, `injuries-depth.html`; `nfl-command/`; and a `decision-*` page set). Each merge conflicted only on generated navigation and this board. Resolution: union of **all** navigation targets, all boards kept verbatim, generated pages rebuilt from `scripts/lib/site.py`. No session's work was deleted. |
 | Duplicate scope | Two further suggestion hubs now exist (`suggestions/`, `nfl-command/`, and the `decision-*` pages) alongside `decision-hub/`. They overlap heavily. This session did not delete or rewrite any of them; the choice of canonical hub is logged for the reviewer (suggestion S-13). |
@@ -1533,6 +1534,19 @@ source link**, every link and anchor resolves; root `tests/check_site.py` and
 | Task status | DD-01…DD-06 **done / needs review** (the suggestions inside are `pending` a human decision, by design); DD-07 done via `.github/workflows/decisions.yml` |
 | Published, not blocking | IR-01…IR-10 on `pages/decision-verify.html`; QF-01…QF-08 on `pages/decision-questions.html`; IF-01…IF-06 on `pages/decision-injury-depth.html` |
 | Handover | No strategy is approved, no reward is funded, and no operator/licence/limit is verified. The next session should start with SG-02 (timestamped price capture) and SG-03 (injury/depth/snap feeds on a runner); everything else on the desk is blocked behind those two. |
+
+### Post-merge observation — root site still presents the ATS identity as evidence (open request)
+
+`decision-hub` publishes FL-DH-01, but the **root** overview page still carries the KPI card
+"ATS coin-flip test **50.0%** — 13784 settled spread bets; p = 1.0 against 50%. The spread market
+shows no exploitable tilt." That number is an arithmetic identity (`scripts/analyze_luck.py` pools
+each game with its own negation), so the card reads a guaranteed constant as a finding.
+
+This session did **not** edit `scripts/analyze_luck.py` or the root generator's KPI text: the root
+site is another scope and suggestion S-02 is the proposed fix. Request to the root-site owner:
+replace the pooled figure with the one-sided test (48.91%, 95% CI 47.73–50.09%, p = 0.073 on 6,892
+decided games) or relabel the card as an identity. Suggestion S-02 on
+`decision-hub/pages/suggestions.html` carries the evidence and the 1-day cost.
 
 ---
 
