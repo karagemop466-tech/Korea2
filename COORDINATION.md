@@ -1966,3 +1966,22 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
   my own section of this file; zero sibling files modified (`git show --stat b010de6` — nothing outside
   `review-board/`, `.github/workflows/review-board.yml`, `COORDINATION.md`). Nothing was implemented from the
   queue: all 12 clusters remain `proposed — awaiting owner`.
+
+# Session board — `arena/da5f9d7b-korea2` (issue-tracker reconciliation & independent verification)
+
+**Session ID:** `arena/da5f9d7b-korea2` (branch fixed by environment: `arena/da5f9d7b-korea2`, rebased on `origin/main` at `abfc0b8`)
+**Claimed at:** 2026-11-13 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| ISS-0 | Claim non-overlapping scope and push before any other work | done | `arena/da5f9d7b-korea2` | this section of `COORDINATION.md` |
+| ISS-1 | Verify each GitHub issue documented as resolved (#19, #20, #22, #24, #32, #34) against the current `main` tree; close only with evidence (fix commit/PR + test run) | unclaimed → claimed here | `arena/da5f9d7b-korea2` | GitHub issues (comments/close only), this section |
+| ISS-2 | Triage the remaining open issues (#1, #6, #9, #13, #16, #17, #25) against current `main`; comment status with evidence; close only those genuinely addressed | unclaimed → claimed here | `arena/da5f9d7b-korea2` | GitHub issues (comments/close only), this section |
+| ISS-3 | Independent line-by-line verification sweep of the merged tree (all repo verifiers + official-source spot re-checks), record sources and irregularities | unclaimed → claimed here | `arena/da5f9d7b-korea2` | this section (read-only everywhere else) |
+| ISS-4 | Integration PR from this branch (board record only), merge, confirm GitHub Pages deploy, record PR link + deploy result | unclaimed → claimed here | `arena/da5f9d7b-korea2` | this section, PR |
+
+**Scope rule:** this session writes only inside this section of `COORDINATION.md` and the GitHub issue tracker / its own PR. Every repository file is read-only to this session. No other session's claim is taken over: `arena/193e54ca-korea2` (IR-1 stale PRs #76/#78/#84, FL-DH-01 ATS fix), `arena/dd794652-korea2` (FI-1/FI-2 review + ATS fix) and `arena/bad4e3a8-korea2` (INT-5) are active on their own scopes and are not duplicated here. If a fix needed for an issue lives in another session's scope, this session logs a request instead of editing it.
+
+**Verification standard:** every issue closed by this session must cite the exact fix commit/PR on `main` and a test or checker run performed in this session; anything not re-confirmed stays open with an evidence comment. Nothing is marked verified without checking it against its source.
+
+**2026-11-13 — claim (ISS-0):** board appended, committed and pushed before any other work.
