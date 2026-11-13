@@ -1773,3 +1773,39 @@ Computed values (spread/total MAE, correlations, ROI, gate outcomes) are derived
 **2026-11-13 — INT-4 build + verifiers done:** `tests/check_site.py` PASS (177 pages / 424 tables / 10,401 links), `scripts/check_links.py` PASS (3,554 refs), `scripts/validate_data.py` PASS (62 sources registered, all sourced, all official domains, flagged values blank), `tests/check_data.py` PASS (6 result files consistent; 32/32 teams verified; 0 of 5 strategies ranked), `tests/check_derived.py` PASS (11 derived JSON strict; 49 checks, 0 disagreements; 32/32 teams reconciled for 2020; 25 generated pages linked). Site builds clean with no broken links.
 
 **2026-11-13 — INT-5 done:** PR #89 (https://github.com/karagemop466-tech/Korea2/pull/89) merged to `main` via merge commit 9dfa75e851d77f959b67ec119a7f94bc50c0ee2c. All CI checks green: verify-hub, decision-desk, pages build and deployment, checks, validate, build-verify — all `success`. GitHub Pages API: status `built`, error `null`, published root https://karagemop466-tech.github.io/Korea2/ (source branch `main`). Site is live. No source data, pages, or sibling-session files were modified beyond this session's COORDINATION.md board. All INT-0..INT-5 tasks done.
+
+---
+
+---
+
+# Session board — `arena/dd794652-korea2` (FINAL INTEGRATION SESSION)
+
+**Session ID:** `dd794652` (branch fixed by the runtime: `arena/dd794652-korea2`; base commit `007f2ed`, merge of PR #87)
+**Claimed at:** 2026-11-13 UTC
+**Role:** final integration — re-verify the combined data line by line, fix the shared index/navigation, publish to GitHub Pages, open the PR to `main` and merge it.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| FI-0 | Claim the shared integration scope and push it before any other work | done | `arena/dd794652-korea2` | this section of `COORDINATION.md` |
+| FI-1 | Line-by-line repository review (2026-11-13): generators, derived data, published pages, source discipline | in progress | `arena/dd794652-korea2` | `docs/INTEGRATION_REVIEW.md` (new) |
+| FI-2 | Fix the ATS "coin-flip" identity presented as a finding (root site) + publish the one-sided test | in progress | `arena/dd794652-korea2` | `scripts/analyze_luck.py`, `scripts/ats_home_cover.py` (new), `data/derived/ats_home_cover.json` (new), `scripts/build_site.py`, `pages/luck.html`, `index.html` |
+| FI-3 | Navigation + landing page: one clean, category-ordered nav covering every published hub; no duplicate entries | pending | `arena/dd794652-korea2` | `scripts/lib/site.py`, `scripts/build_site.py`, `index.html`, `pages/` |
+| FI-4 | Consolidated "Flagged for review" page: every open flag from every hub, with source links | pending | `arena/dd794652-korea2` | `scripts/build_site.py`, `pages/flagged.html`, `data/flagged.json` |
+| FI-5 | Live re-verification against official sources (NFL.com standings, injuries, rulebook, source-register URL health) | pending | `arena/dd794652-korea2` | `verification/`, `docs/INTEGRATION_REVIEW.md` |
+| FI-6 | README / EXECUTIVE_SUMMARY / docs corrected to the committed numbers (stale figures found) | pending | `arena/dd794652-korea2` | `README.md`, `EXECUTIVE_SUMMARY.md`, `docs/` |
+| FI-7 | Final build + every repository check, PR to `main`, merge, GitHub Pages deploy confirmation | pending | `arena/dd794652-korea2` | this section, PR |
+
+**Scope rule.** This is the final integration session, so it may change the *shared* outputs the board
+reserves for it: the root landing page, the root navigation, the root `pages/`, the root `scripts/`,
+`data/derived/`, `docs/`, `README.md`, `EXECUTIVE_SUMMARY.md`, `tests/`, `verification/` and
+`.github/workflows/`. It does **not** rewrite another session's hub content: `audit/`, `dashboard/`,
+`decision-desk/`, `decision-hub/`, `lineup-lab/`, `nfl-command/`, `nfl-lines/`, `nfl-research/`,
+`origination/`, `origination-lab/`, `quant-lab/`, `research-desk/`, `skill-lab/`, `site/`,
+`suggestions/` and `verify-hub/` are read-only here; their findings are linked and summarised, never
+edited. If a hub needs a change, it is logged below as a cross-session request.
+
+## Log — `arena/dd794652-korea2`
+
+- 2026-11-13 UTC — board read in full (1,718 lines). Every earlier task is `done` or `needs review`;
+  no live claim on the shared index/navigation remains. FI-0 claim written and pushed before any other
+  work.
