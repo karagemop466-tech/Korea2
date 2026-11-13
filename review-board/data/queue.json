@@ -3116,5 +3116,5 @@
  "untriaged": [],
  "method": "Every suggestion published by a sibling hub is read from that hub's own JSON register, normalised to one row per hub proposal, then clustered by keyword rules (explicit overrides where a hub's wording was ambiguous). The cluster rank is arithmetic: 10 x number of hubs that proposed it, + 3 if any hub labelled it high priority, + 1 per other cluster it unblocks. No cluster contains a number that was typed in.",
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "6b6c262062e28d0a4ee3ab21da60b6b981677000"
+ "_generated_from_inputs": "61e8f9144a93"
 }

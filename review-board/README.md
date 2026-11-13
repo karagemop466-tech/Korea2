@@ -40,12 +40,16 @@ review-board/
 ```bash
 python3 review-board/scripts/ingest.py      # reads sibling registers + the raw capture, writes data/*.json
 python3 review-board/scripts/build_site.py  # data/*.json -> index.html + pages/*.html
-python3 review-board/scripts/verify_all.py  # 121 checks; exit 1 on any failure
+python3 review-board/scripts/verify_all.py  # 122 checks; exit 1 on any failure
 ```
 
 Stdlib only. No pandas, no numpy, no network — the same commands run in `.github/workflows/review-board.yml`.
 Both generators are deterministic: rebuilding into a clean checkout produces byte-identical output, and every
-generated register carries `_generated_by` plus `_generated_from_repo_commit`.
+generated register carries `_generated_by` plus `_generated_from_inputs` — a short digest of the exact bytes the
+derived registers read (every committed register in the repository, the raw capture, and the shared navigation
+file). Provenance is content-addressed rather than commit-addressed on purpose: a commit SHA changes whenever
+anyone merges anything, which would make this hub look stale without proving anything, and a CI clone without
+fetched history would report the wrong date for every directory.
 
 ## The rules this hub keeps
 

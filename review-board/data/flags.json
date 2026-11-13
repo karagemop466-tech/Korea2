@@ -254,12 +254,12 @@
     },
     {
       "id": "RB-18",
-      "title": "This board's own registers went stale the moment the branch was rebased",
+      "title": "This board's own registers went stale the moment the branch was rebased - and the fix removes the cause",
       "kind": "irregularity",
       "severity": "low",
-      "finding": "The first rebuild after rebasing onto main changed two of the six generated registers (files_scanned 144 to 145, and the hub inventory picked up the merged navigation edit). Any register derived from sibling files is only as current as its last build, which is the same failure mode this hub flags in other hubs at flag RB-16.",
-      "verification": "verify_all.py compares each committed register against a fresh rebuild, ignoring the commit stamp; it reported exactly these two files as needing a rebuild, and the rebuild was committed with the review.",
-      "action": "None for the owner: the check exists so a future reader can see the registers were regenerated at the commit named in each file's _generated_from_repo_commit field.",
+      "finding": "The first rebuild after rebasing onto main changed two of the six generated registers (files_scanned 144 to 145, and the hub inventory picked up the merged navigation edit). Any register derived from sibling files is only as current as its last build - the same failure mode this hub flags in other hubs at RB-16. A second defect surfaced in CI: provenance was stamped with the commit SHA the build ran at, so every unrelated merge elsewhere in the repository made this hub's output look changed, and a runner's default shallow clone reported the checkout commit as the last touch of every directory, which is confidently wrong rather than merely stale.",
+      "verification": "verify_all.py compares each committed register against a fresh rebuild, byte for byte on content; it reported exactly those two files as needing a rebuild. The shallow-clone behaviour was reproduced locally with a depth-1 clone before the fix and reproduced as clean after it.",
+      "action": "Adopted here: provenance is now a content digest of the exact bytes read (_generated_from_inputs), the hub inventory records history: full|shallow and prints '(history not fetched in this checkout)' instead of a wrong date, and the workflow fetches full history. Nothing for the owner to do - the flag stays published as the reason the schema looks the way it does.",
       "source_id": "RB-SRC-13",
       "affects": [
         "pages/flagged.html",
