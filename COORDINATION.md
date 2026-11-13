@@ -1716,3 +1716,13 @@ duplicate it; this session owns the cross-lab **decision layer** nobody has clai
 
 **2026-11-12 — merge conflict resolution (into PR #86):** `origin/main` moved to `966a764` (sessions `fc16e360`, `f1123a1a`, `bea6e3be`, `7dbbeba6`, `90e4fdbe`, `43870fb8`, `cb5b61a7`, `578d4e5f`, `578d4e5f`, `29806afc`-era work merged meanwhile). Conflicts: `COORDINATION.md` (add-add: my DD board vs sibling boards) and `index.html` (add-add: nav lines). Resolution: kept **every** sibling board and log verbatim, appended my board after them; root nav now carries all sibling entries **plus** `decision-desk/index.html` (DD-9). Because the root builder owns `index.html`, DD-9 was made durable in `scripts/lib/site.py` (NAV entry + `href="decision-desk/` depth-prefix rule) — the same two-line pattern earlier sessions used for `decision-hub/`, `suggestions/`, `nfl-command/`. Registers updated for the merged tree: leaderboard now aggregates lineup-lab too (108 evaluations, 0 qualified; SRC-DD-50), Q-12/Q-21 refreshed (site-wide disclaimer now exists on root pages; Decision Desk footers carry the same sentence), S-07 residual = jurisdiction line. Post-merge verification: `tests/check_site.py` 177 pages / 10,401 links PASS; `scripts/check_links.py` 3,554 refs PASS; `validate_data` / `check_data` / `check_derived` PASS; `decision-desk/scripts/verify_all.py` PASS (50 sources); sibling verifiers `audit/check_site.py`, `skill-lab/scripts/verify_all.py`, `decision-hub/scripts/check_site.py`, `verify-hub/scripts/verify.py`, `lineup-lab/scripts/verify_lineup_lab.py`, `pipeline/check_links.py` all PASS on the merged tree.
 
+
+---
+
+# Final integration session — `arena/4e497907-korea2`
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Integrate the official Lineup Lab dashboard into shared Line Lab navigation and verify its nested-page links | in progress | `arena/4e497907-korea2` | `scripts/lib/site.py`, generated root `index.html` and `pages/*.html`, this section of `COORDINATION.md` |
+
+**Claim note (2026-11-13 UTC):** The prior sessions' task scopes and source work are marked done; this final integration claim is limited to shared navigation and its generated output. Existing data and sibling dashboards remain read-only. The current Arena branch `arena/4e497907-korea2` is fixed; no other branch will be used.
