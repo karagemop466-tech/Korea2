@@ -40,7 +40,7 @@ review-board/
 ```bash
 python3 review-board/scripts/ingest.py      # reads sibling registers + the raw capture, writes data/*.json
 python3 review-board/scripts/build_site.py  # data/*.json -> index.html + pages/*.html
-python3 review-board/scripts/verify_all.py  # 119 checks; exit 1 on any failure
+python3 review-board/scripts/verify_all.py  # 121 checks; exit 1 on any failure
 ```
 
 Stdlib only. No pandas, no numpy, no network — the same commands run in `.github/workflows/review-board.yml`.
