@@ -1773,3 +1773,27 @@ Computed values (spread/total MAE, correlations, ROI, gate outcomes) are derived
 **2026-11-13 — INT-4 build + verifiers done:** `tests/check_site.py` PASS (177 pages / 424 tables / 10,401 links), `scripts/check_links.py` PASS (3,554 refs), `scripts/validate_data.py` PASS (62 sources registered, all sourced, all official domains, flagged values blank), `tests/check_data.py` PASS (6 result files consistent; 32/32 teams verified; 0 of 5 strategies ranked), `tests/check_derived.py` PASS (11 derived JSON strict; 49 checks, 0 disagreements; 32/32 teams reconciled for 2020; 25 generated pages linked). Site builds clean with no broken links.
 
 **2026-11-13 — INT-5 done:** PR #89 (https://github.com/karagemop466-tech/Korea2/pull/89) merged to `main` via merge commit 9dfa75e851d77f959b67ec119a7f94bc50c0ee2c. All CI checks green: verify-hub, decision-desk, pages build and deployment, checks, validate, build-verify — all `success`. GitHub Pages API: status `built`, error `null`, published root https://karagemop466-tech.github.io/Korea2/ (source branch `main`). Site is live. No source data, pages, or sibling-session files were modified beyond this session's COORDINATION.md board. All INT-0..INT-5 tasks done.
+
+---
+
+# Session board — `arena/e0d1c5c8-korea2` — Site-wide Source-Coverage & Link-Integrity Audit
+
+**Session ID:** `arena/e0d1c5c8-korea2` (branch fixed by environment: `arena/e0d1c5c8-korea2`)
+**Claimed at:** 2026-11-13 UTC
+**Base:** `007f2ed` (= `origin/main` HEAD at claim time; PR #87 merge).
+**Coordination note:** the final-integration task (INT-0..INT-5, session `arena/bad4e3a8-korea2`, PR #89) is claimed and active and edits only `COORDINATION.md`. This session does **not** duplicate it. It complements it with a dedicated, self-contained site-wide **source-coverage & link-integrity audit** that makes the repository's hard rule — *every table row carries a source link to an official site; unverifiable values stay blank and flagged* — auditable across **all** HTML pages, and organizes the subpages by category.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| CV-0 | Claim non-overlapping scope and push before work starts | done | `arena/e0d1c5c8-korea2` | this section of `COORDINATION.md` |
+| CV-1 | Site-wide coverage audit tool + machine-readable results (per-page per-row source coverage, link integrity, generator provenance, category) | in_progress | `arena/e0d1c5c8-korea2` | `coverage/scripts/audit_coverage.py`, `coverage/data/coverage.json` |
+| CV-2 | Coverage dashboard: landing + per-page coverage + legacy-review + links + method pages | in_progress | `arena/e0d1c5c8-korea2` | `coverage/index.html`, `coverage/pages/*.html`, `coverage/assets/style.css` |
+| CV-3 | Root navigation integration (single NAV entry + one href-prefix rule) and deterministic root rebuild | in_progress | `arena/e0d1c5c8-korea2` | `scripts/lib/site.py` (2 lines), regenerated root `index.html` + `pages/*.html` (navigation only) |
+| CV-4 | CI workflow for the coverage audit | in_progress | `arena/e0d1c5c8-korea2` | `.github/workflows/coverage.yml` |
+| CV-5 | Line-by-line verification, PR to `main`, merge, GitHub Pages deploy confirmation, board record | pending | `arena/e0d1c5c8-korea2` | this section, PR |
+
+**Scope rule:** this session writes only inside `coverage/**`, `.github/workflows/coverage.yml`, the two-line navigation change in `scripts/lib/site.py` (plus the deterministic rebuild it triggers on the shared root `index.html`/`pages/*.html`), and this section of `COORDINATION.md`. Every sibling lab directory (`decision-desk/`, `decision-hub/`, `lineup-lab/`, `verify-hub/`, `skill-lab/`, `quant-lab/`, `origination-lab/`, `origination/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `suggestions/`, `nfl-command/`, `dashboard/`, `audit/`, `data/`, `results/`, `pipeline/`, `tests/`, `scripts/` analysis inputs) is read-only; the audit reads them and never edits them. Legacy archive pages are preserved byte-for-byte — unsourced rows are **reported and flagged**, not rewritten.
+
+## Log — `arena/e0d1c5c8-korea2`
+
+- 2026-11-13 UTC — Read `COORDINATION.md` and surveyed the merged tree. Confirmed the integrated root Line Lab build (generator `line-lab/scripts/build_site.py`) carries per-row source links on every published row (`tests/check_site.py`: 177 pages, 424 tables, 10,401 links, PASS). Confirmed `scripts/build_site.py` is deterministic (a clean rebuild produced zero `git diff`). Identified the remaining, unclaimed gap: `tests/check_site.py` notes that 28 legacy archive pages are link-checked only and do not carry per-row source columns; the user's rule requires that gap to be explicit and auditable. PR #89 (`arena/bad4e3a8-korea2`) holds the final-integration claim and edits only `COORDINATION.md`; this session complements it and does not touch its scope.
