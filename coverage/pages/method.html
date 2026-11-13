@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method &amp; sources | Coverage Audit</title>
+<meta name="description" content="Site-wide per-row source-link and link-integrity audit of every HTML page in this repository.">
+<meta name="generator" content="coverage/scripts/build_site.py">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html">
+    <span class="mark">CV</span><span>COVERAGE<small>SITE AUDIT</small></span></a>
+  <div class="nav-label">Workspace</div>
+  <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/coverage.html">Page coverage</a><a href="../pages/legacy-review.html">Legacy review</a><a href="../pages/links.html">Link integrity</a><a href="../pages/method.html" class="active" aria-current="page">Method & sources</a></nav>
+  <div class="sidebar-note"><span class="dot"></span>Rule audit<br><strong>Every row needs a source</strong><span>Unverifiable values stay blank and are flagged.</span></div>
+</aside>
+<main id="main">
+<header class="topbar">
+  <span class="crumb">METHOD &AMP; SOURCES</span>
+  <a class="review-link" href="../pages/legacy-review.html">Legacy review &nearr;</a>
+</header>
+
+<div class="hero compact"><div class="eyebrow">METHOD</div><h1>How this audit is computed.</h1><p class="lede">No number here is typed by hand. The audit is a deterministic Python standard-library script that parses every HTML page and measures the rule; the dashboard is rendered from its JSON.</p></div><section class="block"><div class="eyebrow">MEASURES</div><h2>What is measured</h2><div class="table-wrap"><table><caption class="caption">The full audit is reproducible from the committed script and data.</caption><thead><tr><th>Check</th><th>Definition</th><th>Source</th></tr></thead><tbody><tr><td>Per-row source</td><td>A table row is sourced when its last cell contains an &lt;a href&gt;.</td><td class="src"><a href="../pages/coverage.html">Page coverage</a></td></tr><tr><td>Row counts</td><td>tbody rows are counted per page; thead cells are excluded.</td><td class="src"><a href="../pages/coverage.html">Page coverage</a></td></tr><tr><td>Link integrity</td><td>Internal links are resolved against the file tree; external links must be https.</td><td class="src"><a href="../pages/links.html">Link integrity</a></td></tr><tr><td>Tier / category</td><td>Each page is classified by its directory and generator stamp.</td><td class="src"><a href="../index.html">Overview</a></td></tr><tr><td>Legacy policy</td><td>Archive pages are read-only; unsourced rows are reported and flagged, never rewritten.</td><td class="src"><a href="../pages/legacy-review.html">Legacy review</a></td></tr></tbody></table></div></section><section class="block"><div class="eyebrow">REPRODUCE</div><h2>Reproduce it</h2><div class="panel"><pre class="mono">python3 coverage/scripts/audit_coverage.py
+python3 coverage/scripts/build_site.py</pre><p>The audit reads files only. It writes coverage/data/coverage.json and the rendered pages in this directory. It touches no audited file. The audit excludes its own <code>coverage/</code> output directory, so it is deterministic and not self-referential; the repository-wide link check still validates these pages.</p></div></section><section class="block"><div class="eyebrow">SOURCES</div><h2>Official sources referenced by the audit</h2><div class="table-wrap"><table><caption class="caption">The audit itself is a repository artefact; these are the official references it is checked against.</caption><thead><tr><th>Purpose</th><th>Official source</th><th>Source</th></tr></thead><tbody><tr><td>Rule source for injury/depth reporting</td><td>NFL.com official injury report</td><td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">nfl.com/injuries</a></td></tr><tr><td>Standings reconciliation reference</td><td>NFL.com official standings</td><td class="src"><a href="https://www.nfl.com/standings/league/2026/REG" rel="noopener">nfl.com/standings</a></td></tr><tr><td>Official data distribution context</td><td>NFL Football Operations performance tracking</td><td class="src"><a href="https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/" rel="noopener">operations.nfl.com</a></td></tr><tr><td>Repository of record</td><td>karagemop466-tech/Korea2</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2" rel="noopener">github.com/karagemop466-tech/Korea2</a></td></tr></tbody></table></div></section><div class="notice"><span class="dot"></span><div><strong>Audit scope:</strong> 177 pages, 424 tables, 6,106 rows. Source commit 3f230937c0e0d53790f1430af3de93df5dd12885.</div></div>
+<footer>
+  <p>An independent audit of this repository's own pages. It reports coverage; it does not change any audited file. Research and measurement, not betting advice.</p>
+  <p><a href="../pages/method.html">Method</a> &middot;
+     <a href="../pages/coverage.html">Page coverage</a> &middot;
+     <a href="../pages/legacy-review.html">Legacy review</a></p>
+</footer>
+</main></div></body></html>
