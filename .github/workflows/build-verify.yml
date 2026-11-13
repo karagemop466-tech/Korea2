@@ -38,3 +38,22 @@ jobs:
         run: python tests/check_data.py
       - name: Links, navigation and source coverage
         run: python tests/check_site.py
+      - name: Independent recomputation of the published numbers
+        # Second implementation, written by the 2026-11-13 integration session. It imports nothing
+        # from scripts/ or pipeline/, reads only committed extracts, and exits non-zero if a
+        # published value disagrees with the recomputed one.
+        run: |
+          python verification/integration_recompute.py
+          if ! git diff --quiet -- verification/integration_recompute.json; then
+            git --no-pager diff --stat -- verification/integration_recompute.json
+            echo "::error::the committed integration recomputation no longer matches the committed data"
+            exit 1
+          fi
+      - name: The published site is reproducible from the committed data
+        run: |
+          python scripts/build_site.py
+          if ! git diff --quiet -- index.html pages; then
+            git --no-pager diff --stat -- index.html pages
+            echo "::error::the published pages differ from what the generator produces"
+            exit 1
+          fi

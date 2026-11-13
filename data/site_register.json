@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "session": "arena/dd794652-korea2",
+    "generated_utc": "2026-11-13T00:00:00Z",
+    "purpose": "Directory of every published workspace in this repository: what each one contains, how many pages it publishes, and where its own review (flagged) page is.",
+    "method": "Descriptions are taken from each workspace's own landing page and register files in this repository. They are not marketing copy and no workspace's content was edited by this session.",
+    "flag_note": "flag_data / flag_key point at the register each workspace keeps for itself. The counts on the Flagged for review page are read from those files at build time, so the register cannot drift from the workspaces it summarises."
+  },
+  "rows": [
+    {
+      "id": "hub-decision-desk",
+      "name": "Decision Desk",
+      "category": "Decision support",
+      "path": "decision-desk/index.html",
+      "html_pages": 9,
+      "what_it_contains": "Official Week 10 injury and depth tracking transcribed from the NFL injury report, 22 decision questions split into what is known and what is missing, 15 suggestions waiting on a reviewer, and a six-lab leaderboard (100 evaluations, 0 qualified).",
+      "review_page": "decision-desk/pages/flagged.html",
+      "flag_data": "decision-desk/data/flagged.json",
+      "flag_key": "flagged",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-decision-hub",
+      "name": "Decision Hub",
+      "category": "Decision support",
+      "path": "decision-hub/index.html",
+      "html_pages": 12,
+      "what_it_contains": "The decision layer over the research: an executive summary with every number classed, 14 suggestions with impact, cost and risk, 16 questions, the three gating decisions with the evidence for each option, the strategy framework, injuries and depth, a line-by-line audit and the review workflow.",
+      "review_page": "decision-hub/pages/flagged.html",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-suggestions",
+      "name": "Suggestions Hub",
+      "category": "Decision support",
+      "path": "suggestions/index.html",
+      "html_pages": 13,
+      "what_it_contains": "The requirements matrix, the suggestion register, the decision questions, the signal and correlation tables, the leaderboard and a flagged register, in one hub. Proposals are published for review; approval is explicit by design.",
+      "review_page": "suggestions/pages/flagged.html",
+      "flag_data": "suggestions/data/flagged.json",
+      "flag_key": "rows",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-verify-hub",
+      "name": "Verify Hub",
+      "category": "Decision support",
+      "path": "verify-hub/index.html",
+      "html_pages": 9,
+      "what_it_contains": "Audits the published claims of every research lab line by line, consolidates the strategy, gate, correlation and luck findings, and holds the two registers a reviewer needs before anything changes: the questions that must be answered and the suggestions that unblock them.",
+      "review_page": "verify-hub/pages/flagged.html",
+      "flag_data": "verify-hub/data/flagged.json",
+      "flag_key": "rows",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-nfl-command",
+      "name": "NFL Command Center",
+      "category": "Decision support",
+      "path": "nfl-command/index.html",
+      "html_pages": 14,
+      "what_it_contains": "Injuries, depth deficiencies, originated lines, the strategy and validation-gate tables, correlations and luck, plus the requirements matrix and a flagged register for the NFL Command Center build.",
+      "review_page": "nfl-command/pages/flagged.html",
+      "flag_data": "nfl-command/data/flagged.json",
+      "flag_key": "rows",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-site",
+      "name": "Decision Desk site generator",
+      "category": "Decision support",
+      "path": "site/index.html",
+      "html_pages": 1,
+      "what_it_contains": "The generator and data behind the root /pages/decision-* set: the signal lab, parlay pricing, the independent re-verification of the published numbers and the decision summary.",
+      "review_page": "pages/decision-verify.html",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-skill-lab",
+      "name": "NFL Skill Lab",
+      "category": "Research labs",
+      "path": "skill-lab/index.html",
+      "html_pages": 12,
+      "what_it_contains": "Origination, copula dependence and a gated strategy competition: the signal catalog, the strategies, the ten gates, the measured correlations, the luck-versus-skill separation, the leaderboard, an official audit and a flagged register.",
+      "review_page": "skill-lab/pages/flagged.html",
+      "flag_data": "skill-lab/data/flagged.json",
+      "flag_key": "rows",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-lineup-lab",
+      "name": "Lineup Lab",
+      "category": "Research labs",
+      "path": "lineup-lab/index.html",
+      "html_pages": 12,
+      "what_it_contains": "A strict zero-leakage, zero-imputation audit of 2015-2026 data, NFL.com Week 9 standings reconciled 32/32, Week 10 injury and depth-chart cascades across nine clubs, and a ten-gate strategy competition.",
+      "review_page": "",
+      "flag_data": "lineup-lab/data/flagged.json",
+      "flag_key": "rows",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-origination",
+      "name": "Origination pipeline site",
+      "category": "Research labs",
+      "path": "origination/index.html",
+      "html_pages": 13,
+      "what_it_contains": "Originates a spread, total and moneyline for every NFL game, turns the disagreements into strategies and then tries to break those strategies with sample-size gates, bootstrap intervals and permutation tests.",
+      "review_page": "origination/pages/flagged.html",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-origination-lab",
+      "name": "Origination Lab",
+      "category": "Research labs",
+      "path": "origination-lab/index.html",
+      "html_pages": 15,
+      "what_it_contains": "Twenty-seven signals and eighteen strategy families tested against twenty-one seasons of priced games, with seven validation gates before anything is called skilful.",
+      "review_page": "origination-lab/flagged.html",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-quant-lab",
+      "name": "Quant Lab",
+      "category": "Research labs",
+      "path": "quant-lab/index.html",
+      "html_pages": 12,
+      "what_it_contains": "Originated lines, a gated strategy competition, measured correlations and a line-by-line audit against nfl.com.",
+      "review_page": "quant-lab/flagged.html",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-dashboard",
+      "name": "Framework dashboard",
+      "category": "Research labs",
+      "path": "dashboard/index.html",
+      "html_pages": 11,
+      "what_it_contains": "The first framework dashboard built in this repository: bet types, correlations, data sources, signals, strategies, validation gates, a leaderboard, an executive summary and a flagged register.",
+      "review_page": "dashboard/pages/flagged.html",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-audit",
+      "name": "Independent audit harness",
+      "category": "Evidence and audit",
+      "path": "audit/index.html",
+      "html_pages": 1,
+      "what_it_contains": "A separate harness that re-checks local links, anchors and JSON readability across the published pages and reports source-domain review flags. Its strict mode exits non-zero until the flagged source domains are resolved.",
+      "review_page": "audit/index.html",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-nfl-lines",
+      "name": "Line origination draft",
+      "category": "Earlier drafts (preserved for audit)",
+      "path": "nfl-lines/index.html",
+      "html_pages": 6,
+      "what_it_contains": "An early lines dashboard with its data tables, executive summary and flagged-review page. Preserved byte-for-byte; not part of the published navigation.",
+      "review_page": "nfl-lines/flagged-review.html",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-nfl-research",
+      "name": "Research brief",
+      "category": "Earlier drafts (preserved for audit)",
+      "path": "nfl-research/index.html",
+      "html_pages": 6,
+      "what_it_contains": "An early research brief with strategies, validation, correlations, a source library and its own flagged page. Preserved byte-for-byte; not part of the published navigation.",
+      "review_page": "nfl-research/flagged.html",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "hub-research-desk",
+      "name": "Research desk",
+      "category": "Earlier drafts (preserved for audit)",
+      "path": "research-desk/index.html",
+      "html_pages": 6,
+      "what_it_contains": "An early executive brief for the project with its own pages. Preserved byte-for-byte; not part of the published navigation.",
+      "review_page": "",
+      "flag_data": "",
+      "flag_key": "",
+      "sources": ["SRC-GH-REPO"]
+    }
+  ]
+}

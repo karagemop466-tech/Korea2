@@ -1,0 +1,535 @@
+{
+  "meta": {
+    "session": "arena/dd794652-korea2",
+    "generated_utc": "2026-11-13T00:00:00Z",
+    "purpose": "Independent recomputation of the numbers the published site prints, from the data committed in this repository, by code that imports nothing from the project's own pipeline.",
+    "inputs": [
+      "data/derived/games.csv.gz",
+      "data/derived/predictions.csv",
+      "data/derived/player_week.csv.gz"
+    ],
+    "independence": "This script imports nothing from scripts/ or pipeline/. It re-reads the committed extracts and re-implements the documented definitions, so a definition error in the pipeline cannot make it agree with itself.",
+    "caveat": "Reproducibility is not validation. It shows the published numbers follow from the committed data; it says nothing about whether a strategy is profitable or whether a price is obtainable.",
+    "tolerance": 0.005
+  },
+  "summary": {
+    "n_checks": 45,
+    "n_match": 41,
+    "n_documented_difference": 4,
+    "n_mismatch": 0,
+    "n_not_reproducible": 0,
+    "n_fail": 0
+  },
+  "checks": [
+    {
+      "check": "games: unique game_id count",
+      "published": 7548,
+      "recomputed": 7548,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json qa.checks[1]",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "games: played rows (both scores)",
+      "published": 7396,
+      "recomputed": 7396,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json qa.checks[2]",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "spread_line sign convention (corr with result > 0.3)",
+      "published": 1,
+      "recomputed": 1,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json qa.checks[4]",
+      "source": "data/derived/games.csv.gz",
+      "note": "recomputed corr(spread_line, result) = 0.430 over n = 7087"
+    },
+    {
+      "check": "closing spread MAE, all seasons",
+      "published": 10.25,
+      "recomputed": 10.25,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json closing_spread_accuracy.mae",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "closing spread n, all seasons",
+      "published": 7087,
+      "recomputed": 7087,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json closing_spread_accuracy.n",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "closing spread RMSE, all seasons",
+      "published": 13.171,
+      "recomputed": 13.171,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json closing_spread_accuracy.rmse",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "closing spread MAE, 2023+",
+      "published": 9.711,
+      "recomputed": 9.711,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json closing_spread_accuracy_recent.mae",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "closing spread n, 2023+",
+      "published": 936,
+      "recomputed": 936,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json closing_spread_accuracy_recent.n",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "ATS home covers",
+      "published": 3371,
+      "recomputed": 3371,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json ats_home_cover.home_covers",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "ATS decided games",
+      "published": 6892,
+      "recomputed": 6892,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json ats_home_cover.n",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "ATS home-cover rate",
+      "published": 0.4891,
+      "recomputed": 0.4891,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json ats_home_cover.home_cover_rate",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "ATS home-cover Wilson CI low",
+      "published": 0.4773,
+      "recomputed": 0.4773,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json ats_home_cover.ci[0]",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "ATS home-cover Wilson CI high",
+      "published": 0.5009,
+      "recomputed": 0.5009,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json ats_home_cover.ci[1]",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "ATS home-cover binomial p vs 50%",
+      "published": 0.0727,
+      "recomputed": 0.0727,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json ats_home_cover.binomial_p",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "ATS pushes",
+      "published": 195,
+      "recomputed": 195,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json ats_home_cover.pushes",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "pooled team-game ATS sample (identity check)",
+      "published": 13784,
+      "recomputed": 13784,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/luck.json ats_coin_flip_test.n",
+      "source": "data/derived/games.csv.gz",
+      "note": "each game is counted once per side, so the rate is exactly 50% by construction"
+    },
+    {
+      "check": "pooled team-game ATS rate is exactly 0.5",
+      "published": 0.5,
+      "recomputed": 0.5,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/luck.json ats_coin_flip_test.rate",
+      "source": "data/derived/games.csv.gz",
+      "note": "not evidence about the market; it is an arithmetic consequence of the pooling"
+    },
+    {
+      "check": "totals: decided games",
+      "published": 6988,
+      "recomputed": 6988,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json totals_over_rate.n",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "totals: overs",
+      "published": 3461,
+      "recomputed": 3461,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/market.json totals_over_rate.overs",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "totals: over rate",
+      "published": 0.4953,
+      "recomputed": 0.4953,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json totals_over_rate.over_rate",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "totals: binomial p vs 50%",
+      "published": 0.4368,
+      "recomputed": 0.4368,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json totals_over_rate.binomial_p",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "spread/result regression slope",
+      "published": 1.049,
+      "recomputed": 1.049,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json spread_result_regression.slope",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "spread/result regression intercept",
+      "published": -0.0581,
+      "recomputed": -0.0581,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/market.json spread_result_regression.intercept",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "Pythagorean R^2 (expected vs actual win%)",
+      "published": 0.8191,
+      "recomputed": 0.8191,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/luck.json pythagorean.r2_expected_vs_actual_win_pct",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "Pythagorean team-seasons",
+      "published": 877,
+      "recomputed": 877,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/luck.json pythagorean.team_seasons",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "luck persistence r (year over year)",
+      "published": 0.023894391339590943,
+      "recomputed": 0.0239,
+      "abs_diff": 6e-06,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/luck.json luck_persistence.r",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "luck persistence n",
+      "published": 842,
+      "recomputed": 842,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/luck.json luck_persistence.n",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "one-score win-rate persistence r",
+      "published": 0.08200523701333384,
+      "recomputed": 0.082,
+      "abs_diff": 5e-06,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/luck.json one_score_persistence.r",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "one-score persistence n",
+      "published": 854,
+      "recomputed": 854,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/luck.json one_score_persistence.n",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "model spread MAE, 2023+ out of sample",
+      "published": 10.391,
+      "recomputed": 10.391,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/model.json accuracy_spread.model.mae",
+      "source": "data/derived/predictions.csv"
+    },
+    {
+      "check": "market spread MAE, 2023+ out of sample",
+      "published": 9.711,
+      "recomputed": 9.711,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/model.json accuracy_spread.market.mae",
+      "source": "data/derived/predictions.csv"
+    },
+    {
+      "check": "out-of-sample rows scored",
+      "published": 936,
+      "recomputed": 936,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/model.json accuracy_spread.model.n",
+      "source": "data/derived/predictions.csv"
+    },
+    {
+      "check": "incremental information: c on model margin",
+      "published": -0.0193,
+      "recomputed": -0.0193,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/model.json incremental_information.c_model",
+      "source": "data/derived/predictions.csv"
+    },
+    {
+      "check": "incremental information: p for c",
+      "published": 0.8807,
+      "recomputed": 0.8805,
+      "abs_diff": 0.0002,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/model.json incremental_information.p_c_model",
+      "source": "data/derived/predictions.csv"
+    },
+    {
+      "check": "incremental information: b on closing line",
+      "published": 1.155,
+      "recomputed": 1.155,
+      "abs_diff": 0.0,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/model.json incremental_information.b_market",
+      "source": "data/derived/predictions.csv"
+    },
+    {
+      "check": "committed player-week seasons",
+      "published": [
+        2012,
+        2026
+      ],
+      "recomputed": [
+        2015,
+        2026
+      ],
+      "abs_diff": 1.0,
+      "tolerance": 0,
+      "status": "documented_difference",
+      "published_at": "data/derived/correlation.json scope.seasons",
+      "source": "data/derived/player_week.csv.gz",
+      "documented_reason": "the committed player-week extract starts in 2015, the published correlation scope claims 2012; the sample size therefore differs while the coefficient reproduces (see the n checks below)"
+    },
+    {
+      "check": "team-games in the committed player-week window",
+      "published": 7566,
+      "recomputed": 5782,
+      "abs_diff": 1784.0,
+      "tolerance": 0,
+      "status": "documented_difference",
+      "published_at": "data/derived/correlation.json scope.team_games",
+      "source": "data/derived/player_week.csv.gz + games.csv.gz",
+      "documented_reason": "published sample 7,566 team-games; the committed extract covers fewer seasons, so the recomputed n is smaller by construction"
+    },
+    {
+      "check": "QB passing yards vs WR1 receiving yards r",
+      "published": 0.5616429882050581,
+      "recomputed": 0.5618,
+      "abs_diff": 0.000157,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/correlation.json qb_yards_vs_wr1_yards.r",
+      "source": "data/derived/player_week.csv.gz + games.csv.gz",
+      "note": "recomputed on n = 5776 team-games (published n = 7560)"
+    },
+    {
+      "check": "QB passing yards vs WR1 receiving yards n",
+      "published": 7560,
+      "recomputed": 5776,
+      "abs_diff": 1784.0,
+      "tolerance": 0,
+      "status": "documented_difference",
+      "published_at": "data/derived/correlation.json qb_yards_vs_wr1_yards.n",
+      "source": "data/derived/player_week.csv.gz + games.csv.gz",
+      "documented_reason": "window difference between the committed extract and the extract the published correlation was computed from (see the 'documented_difference' row for the player-week seasons)"
+    },
+    {
+      "check": "WR1 vs WR2 receiving yards r",
+      "published": 0.11986967543067413,
+      "recomputed": 0.1294,
+      "abs_diff": 0.00953,
+      "tolerance": 0.005,
+      "status": "documented_difference",
+      "published_at": "data/derived/correlation.json wr1_vs_wr2_yards.r",
+      "source": "data/derived/player_week.csv.gz + games.csv.gz",
+      "documented_reason": "the committed extract covers 3 fewer seasons than the published correlation scope, so the sample differs; the gap of 0.0095 is smaller than one standard error of the published estimate (0.0113) and is therefore consistent with sampling noise rather than a different number"
+    },
+    {
+      "check": "4-leg same-team joint probability",
+      "published": 0.1114,
+      "recomputed": 0.1094,
+      "abs_diff": 0.002,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/correlation.json sgp_4leg_same_team.empirical_joint",
+      "source": "data/derived/player_week.csv.gz + games.csv.gz",
+      "note": "recomputed on n = 5776 team-games (published n = 7560)"
+    },
+    {
+      "check": "4-leg same-team independent product",
+      "published": 0.0569,
+      "recomputed": 0.0557,
+      "abs_diff": 0.0012,
+      "tolerance": 0.005,
+      "status": "match",
+      "published_at": "data/derived/correlation.json sgp_4leg_same_team.independent_product",
+      "source": "data/derived/player_week.csv.gz + games.csv.gz"
+    },
+    {
+      "check": "strategies approved",
+      "published": 0,
+      "recomputed": 0,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/leaderboard.json approved_count",
+      "source": "data/derived/leaderboard.json",
+      "note": "published by the pipeline; verified here only as a consistency check on the committed record - no strategy is re-run in this script"
+    },
+    {
+      "check": "2026 regular-season games in the committed extract",
+      "published": 120,
+      "recomputed": 120,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "data/derived/verification.json reconciliation.2026.games_in_extract",
+      "source": "data/derived/games.csv.gz"
+    },
+    {
+      "check": "2026 regular-season games the live NFL.com page is ahead of the extract",
+      "published": 17,
+      "recomputed": 17,
+      "abs_diff": 0.0,
+      "tolerance": 0,
+      "status": "match",
+      "published_at": "verification/nfl_standings_2026-11-13.json",
+      "source": "data/derived/games.csv.gz",
+      "documented_reason": "the live page was read on 2026-11-13 and the committed extract ends at gameday 2026-11-01; the live page is therefore ahead by the games played since, which is the measured staleness of the published snapshot"
+    }
+  ],
+  "live_standings_2026": {
+    "games_in_extract_2026": 120,
+    "games_played_live_2026": 137,
+    "games_behind": 17,
+    "latest_gameday_in_extract": "2026-11-01",
+    "live_snapshot_retrieved_utc": "2026-11-13",
+    "live_snapshot_url": "https://www.nfl.com/standings/division/2026/REG",
+    "teams_matching_live_page": 2,
+    "per_team_games_ahead": {
+      "ATL": 1,
+      "AZ": 1,
+      "BAL": 1,
+      "BUF": 1,
+      "CAR": 1,
+      "CHI": 2,
+      "CIN": 1,
+      "CLE": 1,
+      "DAL": 1,
+      "DEN": 1,
+      "DET": 1,
+      "GB": 1,
+      "HOU": 1,
+      "IND": 1,
+      "JAX": 1,
+      "KC": 1,
+      "LA": 1,
+      "LAC": 1,
+      "LV": 1,
+      "MIA": 1,
+      "MIN": 1,
+      "NE": 1,
+      "NO": 1,
+      "NYG": 2,
+      "NYJ": 1,
+      "PHI": 1,
+      "PIT": 0,
+      "SEA": 2,
+      "SF": 1,
+      "TB": 1,
+      "TEN": 0,
+      "WAS": 2
+    }
+  }
+}

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 
 from lib import site as W
 from lib.site import badge, card, esc, num, pct, src, table
@@ -34,6 +35,46 @@ def provenance() -> dict:
     except (OSError, ValueError):
         return {}
     return {f.get("name"): f for f in files if isinstance(f, dict)}
+
+
+def site_register() -> list[dict]:
+    """The directory of published workspaces (data/site_register.json)."""
+    path = os.path.join("data", "site_register.json")
+    try:
+        with open(path) as fh:
+            return json.load(fh).get("rows", [])
+    except (OSError, ValueError):
+        return []
+
+
+def hub_flags(row: dict) -> tuple[int, str]:
+    """Count the open items in a workspace's own flag register and name its top severity.
+
+    The count is read from the workspace's own file at build time, so the consolidated
+    register on the Flagged for review page cannot drift away from the workspaces it
+    summarises. Returns (count, highest severity) and (0, "") when a workspace keeps no
+    machine-readable register.
+    """
+    path = row.get("flag_data") or ""
+    key = row.get("flag_key") or ""
+    if not path or not os.path.exists(path):
+        return (0, "")
+    try:
+        with open(path) as fh:
+            doc = json.load(fh)
+    except (OSError, ValueError):
+        return (0, "")
+    items = doc.get(key) if key else None
+    if not isinstance(items, list):
+        items = next((v for v in doc.values() if isinstance(v, list) and
+                      v and isinstance(v[0], dict) and "id" in v[0]), [])
+    severity_order = {"high": 3, "medium": 2, "low": 1}
+    top = ""
+    for it in items:
+        sev = str(it.get("severity", "") or "").strip().lower()
+        if sev in severity_order and (not top or severity_order[sev] > severity_order[top]):
+            top = sev
+    return (len(items), top)
 
 
 def build_notice(missing: list[str]) -> str:
@@ -70,6 +111,10 @@ def page_index() -> str:
     sgp = corr.get("sgp_4leg_same_team", {})
     coin = luck.get("ats_coin_flip_test", {})
     pluck = luck.get("luck_persistence", {})
+    # One observation per game: the home side's cover rate. The pooled team-game figure in
+    # luck.json is an arithmetic identity (every game is counted once per side), so it is not
+    # evidence about the market and is never presented as a test.
+    cover = market.get("ats_home_cover", {})
 
     cards = [
         card("Closing line accuracy", num(cs.get("mae"), 2) + " pts",
@@ -87,9 +132,11 @@ def page_index() -> str:
         card("QB &harr; WR1 correlation", num(corr.get("qb_yards_vs_wr1_yards", {}).get("r"), 3),
              f"Measured on {corr.get('qb_yards_vs_wr1_yards', {}).get('n', 'n/a')} team-games: "
              "same-game parlay legs are not independent.", "pages/correlation.html", "Correlation"),
-        card("ATS coin-flip test", pct(coin.get("rate")),
-             f"{coin.get('n', 'n/a')} settled spread bets; p = {coin.get('binomial_p_vs_50')} against "
-             "50%. The spread market shows no exploitable tilt.", "pages/luck.html", "Removing luck"),
+        card("Home spread cover rate", pct(cover.get("home_cover_rate")),
+             f"One observation per game, n = {cover.get('n', 'n/a')} decided games; "
+             f"95% CI {cover.get('ci', ['n/a', 'n/a'])[0]}-{cover.get('ci', ['n/a', 'n/a'])[1]}, "
+             f"p = {cover.get('binomial_p')} against 50%. No exploitable tilt detected.",
+             "pages/luck.html", "Removing luck"),
     ]
 
     findings = table(
@@ -162,8 +209,122 @@ def page_index() -> str:
     <li>No funded prize pool for the leaderboard rewards.</li>
     <li>NFL.com publishes a live injury report; historical point-in-time snapshots and verified depth order are not ingested, so injury/depth adjustments remain blocked.</li>
   </ul><a class="panel-link" href="pages/flagged.html">Flagged for review &rarr;</a></div>
-</div>''')
+</div>'''
+        + section("Where everything lives", workspaces_table(), "WORKSHOPS")
+        + section("Decide before you build", decision_table(), "DECISION SUPPORT"))
     return W.layout("Overview", "index.html", body)
+
+
+# ---------------------------------------------------------------- workspaces
+def workspaces_table() -> str:
+    """The directory of published workspaces, grouped by category."""
+    rows = site_register()
+    out = []
+    for r in rows:
+        link = f'<a href="{esc(r["path"])}">{esc(r["name"])}</a>'
+        out.append([esc(r.get("category", "")), link, esc(r.get("what_it_contains", "")),
+                    str(r.get("html_pages", "")), repo_link(r.get("path", ""))])
+    return table(["Category", "Workspace", "What it contains", "Pages", "Source"], out,
+                 caption="Every workspace published in this repository. Each row links to the "
+                         "workspace and to its location in the repository.")
+
+
+def repo_link(path: str) -> str:
+    """Link to a workspace's folder in the official repository location."""
+    folder = path.split("/")[0] if path else ""
+    url = f"https://github.com/karagemop466-tech/Korea2/tree/main/{folder}"
+    return f'<a href="{url}" rel="noopener">{esc(folder)}/ in the repository</a>'
+
+
+def input_link(source: str) -> str:
+    """Link a committed input file to its location in the official repository."""
+    text = str(source or "")
+    match = re.search(r"(data/derived/[A-Za-z0-9_.\-]+)", text)
+    if match:
+        path = match.group(1)
+        url = f"https://github.com/karagemop466-tech/Korea2/blob/main/{path}"
+        return f'<a href="{url}" rel="noopener">{esc(path)}</a>'
+    return esc(text)
+
+
+def decision_table() -> str:
+    """The decision-support entries that answer 'what do we know, and what is missing?'."""
+    entries = [
+        ("Open questions", "pages/decision-questions.html",
+         "Every question that has to be answered before a decision can be made, split into what is "
+         "known, what is partial and what is unanswered."),
+        ("Suggestion register", "pages/decision-suggestions.html",
+         "Each suggestion with the decision it unblocks, its evidence, its effort and its risk - "
+         "published for review before anything is implemented."),
+        ("Injury and depth tracking", "pages/decision-injury-depth.html",
+         "The official injury report transcribed team by team, with the depth-rank cell left blank "
+         "where no official source states one."),
+        ("Signal lab", "pages/decision-signals.html",
+         "23 candidate signals measured against the ten gates, walk-forward, settled at the close."),
+        ("Parlay pricing", "pages/decision-parlay.html",
+         "Measured dependence between legs and the joint-versus-product pricing gap."),
+        ("Re-verify the numbers", "pages/decision-verify.html",
+         "An independent implementation re-derives the published headline numbers from the "
+         "committed data."),
+        ("Decision Desk", "decision-desk/index.html",
+         "The second, independently built decision layer: injury and depth tracking, questions, "
+         "suggestions and a cross-lab leaderboard."),
+    ]
+    rows = [[esc(name), f'<a href="{esc(href)}">Open</a>', esc(text), repo_link(href)]
+            for name, href, text in entries]
+    return table(["Register", "Page", "What it answers", "Source"], rows,
+                 caption="Read these before changing anything: they say what is known, what is "
+                         "missing and what is proposed - not what was measured as a result.")
+
+
+def page_workspaces() -> str:
+    rows = site_register()
+    total_pages = sum(int(r.get("html_pages") or 0) for r in rows)
+    open_flags = 0
+    flagged_rows = []
+    for r in rows:
+        count, sev = hub_flags(r)
+        open_flags += count
+        review = r.get("review_page") or ""
+        flagged_rows.append([
+            esc(r.get("name", "")),
+            esc(r.get("category", "")),
+            f'<a href="{esc(r["path"])}">Open workspace</a>',
+            (f'<a href="{esc(review)}">Review page</a>' if review else '<span class="na">not published</span>'),
+            str(count) if count else '<span class="na">no machine-readable register</span>',
+            repo_link(r.get("path", "")),
+        ])
+    body = (f'''<div class="hero compact"><div class="eyebrow">WORKSPACES</div>
+<h1>Every dashboard, register and audit in this repository.</h1>
+<p class="lede">{len(rows)} workspaces publish {total_pages} pages between them. This page is the
+map: what each workspace holds, how many pages it publishes, where its own review page is, and how
+many open items its own flag register carries. Nothing here was rewritten &mdash; the descriptions
+are taken from each workspace's own landing page.</p></div>
+'''
+        + section("The map", table(
+            ["Workspace", "Category", "Entry point", "Review page", "Open items", "Source"],
+            flagged_rows,
+            caption=f"{open_flags} open items across every workspace that keeps a machine-readable "
+                    "flag register. The counts are read from each workspace's own register file at "
+                    "build time, so they cannot drift."))
+        + section("What each workspace holds", table(
+            ["Workspace", "Category", "What it contains", "Pages", "Source"],
+            [[esc(r.get("name", "")), esc(r.get("category", "")), esc(r.get("what_it_contains", "")),
+              str(r.get("html_pages", "")), repo_link(r.get("path", ""))] for r in rows],
+            caption="Descriptions come from each workspace's own landing page and register files."))
+        + section("How the pieces fit", '''<ul class="ticks">
+<li><strong>Research</strong> produces the numbers: originated lines, player props, correlations,
+the ten gates, the leaderboard and the market benchmark.</li>
+<li><strong>Decide</strong> turns the numbers into a choice: what is known, what is missing, what
+is proposed, and what each proposal would unblock.</li>
+<li><strong>Evidence</strong> proves the numbers: the independent recomputation, the method, the
+source register and the review queue.</li>
+<li><strong>Workspaces</strong> hold the deeper builds - each lab, desk and audit keeps its own
+data, its own checks and its own flag register, and none of them was edited by the integration
+session.</li>
+</ul>'''))
+    return W.layout("Workspaces", "pages/workspaces.html", body,
+                    subtitle="The directory of everything published in this repository.")
 
 
 # ---------------------------------------------------------------- executive
@@ -755,15 +916,18 @@ def page_luck() -> str:
     luck = W.load("luck.json")
     if not luck:
         return W.layout("Removing luck", "pages/luck.html", build_notice(["luck.json"]))
+    market = W.load("market.json", {})
     pyr = luck.get("pythagorean", {})
     pl = luck.get("luck_persistence", {})
     osg = luck.get("one_score_games", {})
     osp = luck.get("one_score_persistence", {})
     vd = luck.get("variance_decomposition", {})
     coin = luck.get("ats_coin_flip_test", {})
+    cover = market.get("ats_home_cover", {})
     recent = luck.get("luck_table_recent", [])
     top = sorted(recent, key=lambda r: r["luck_wins"], reverse=True)[:8]
     bottom = sorted(recent, key=lambda r: r["luck_wins"])[:8]
+    ci = cover.get("ci", ["n/a", "n/a"])
 
     body = (f'''<div class="hero compact"><div class="eyebrow">REMOVING LUCK</div>
 <h1>Separating signal from the bounce of a ball.</h1>
@@ -785,21 +949,32 @@ excellent until it does not.</p></div>
      ["Year-over-year correlation of one-score win rate", num(osp.get("r"), 3),
       f"p = {num(osp.get('p'), 4)} - small but non-zero", src("nflverse-data")],
      ["One-score games as a share of all games", pct(osg.get("share_of_games")), "half the league lives here", src("nflverse-data")],
-     ["Pooled ATS win rate", pct(coin.get("rate")), f"p = {coin.get('binomial_p_vs_50')} against 50%", src("nflverse-data")]]))
+     ["Home spread cover rate (one observation per game)", pct(cover.get("home_cover_rate")),
+      f"n = {cover.get('n')} decided games, {cover.get('pushes')} pushes, 95% CI "
+      f"[{ci[0]}, {ci[1]}], p = {cover.get('binomial_p')} against 50% - the spread market shows no "
+      f"exploitable tilt at the 5% level", src("nflverse-data")],
+     ["Pooled team-game ATS rate (an arithmetic identity, not a test)", pct(coin.get("rate")),
+      f"n = {coin.get('n')} team-game rows: every game is counted once per side, so the rate is "
+      f"exactly 50% by construction and p = {coin.get('binomial_p_vs_50')} says nothing about the "
+      f"market", src("nflverse-data")]]))
         + section("What this means for strategy design", f'''<ul class="ticks">
 <li>Ranking teams on wins imports luck. Deviation from Pythagorean expectation has essentially no
 predictive carry-over (r = {num(pl.get("r"), 3)}), so it cannot be a feature.</li>
 <li>One-score records do carry a small signal (r = {num(osp.get("r"), 3)}, p = {num(osp.get("p"), 4)}),
 which is worth testing but is far too small to support a betting edge on its own.</li>
 <li>Any strategy whose profit is concentrated in close games is a lottery ticket until the sample is
-large. That is why the gates require thousands of settled bets.</li></ul>''')
+large. That is why the gates require thousands of settled bets.</li>
+<li>The spread itself shows no exploitable tilt: the home side covered
+{pct(cover.get("home_cover_rate"))} of {cover.get("n")} decided games (95% CI {ci[0]}-{ci[1]},
+p = {cover.get("binomial_p")}). That is the baseline any spread strategy has to beat, and the
+pooled 50% figure that also appears in the data is an identity, not a measurement.</li></ul>''')
         + section("Luckiest and unluckiest recent seasons", table(
     ["Season", "Team", "Wins", "Expected wins", "Luck (wins)", "Source"],
     [[str(r["season"]), esc(r["team"]), num(r["wins"], 0), num(r["exp_wins"]), num(r["luck_wins"], 2, sign=True),
       src("nflverse-data")] for r in top + bottom],
     caption="Pythagorean expected wins vs actual wins, 2023-2026.")))
     return W.layout("Removing luck", "pages/luck.html", body,
-                    subtitle="Variance decomposition, persistence tests and the coin-flip baseline.")
+                    subtitle="Variance decomposition, persistence tests and the cover-rate baseline.")
 
 
 # ---------------------------------------------------------------- market
@@ -1059,9 +1234,49 @@ current NFL.com standings page returns {summ.get("teams_2026_matched", 0)} of
 <li>Anything about the 2012-2014 player seasons: the committed pruned extract starts in 2015, so the
 published player-level coefficients are reproduced on a shorter window and their sample size is smaller here.</li>
 <li>That a page that loaded today will load tomorrow. Source availability is checked as of the date shown.</li>
-</ul>''', "LIMITS"))
+</ul>''', "LIMITS")
+        + integration_section())
     return W.layout("Verification", "pages/verification.html", body,
                     subtitle="Independent recomputation, official-source re-checks, and the disagreements.")
+
+
+# ---------------------------------------------------------------- integration recomputation
+def integration_section() -> str:
+    """The final-integration recomputation (verification/integration_recompute.py).
+
+    It is a second, independent implementation of the headline numbers, written by the
+    integration session and run against the committed extracts only - no network, no raw
+    downloads. The record it writes is committed with the site and re-checked in CI.
+    """
+    path = os.path.join("verification", "integration_recompute.json")
+    if not os.path.exists(path):
+        return ""
+    try:
+        with open(path) as fh:
+            rec = json.load(fh)
+    except (OSError, ValueError):
+        return ""
+    summ = rec.get("summary", {})
+    meta = rec.get("meta", {})
+    kind = {"match": "ok", "documented_difference": "warn", "mismatch": "bad",
+            "not_reproducible": "warn"}
+    rows = []
+    for c in rec.get("checks", []):
+        rows.append([
+            esc(c.get("check", "")),
+            esc(str(c.get("published", ""))),
+            esc(str(c.get("recomputed", ""))),
+            badge(kind.get(c.get("status"), "warn"), c.get("status", "")),
+            input_link(c.get("source", "")),
+        ])
+    return section("Integration recomputation, 2026-11-13", table(
+        ["Check", "Published", "Recomputed", "Result", "Committed input"], rows,
+        caption=f'{summ.get("n_match", 0)} of {summ.get("n_checks", 0)} checks match exactly, '
+                f'{summ.get("n_documented_difference", 0)} differ in a way this page explains, '
+                f'{summ.get("n_mismatch", 0)} disagree. Re-derived by '
+                f'verification/integration_recompute.py, which imports nothing from the pipeline; '
+                f'inputs: {esc(", ".join(meta.get("inputs", [])))}. '
+                f'{esc(meta.get("caveat", ""))}'))
 
 
 # ---------------------------------------------------------------- flagged
@@ -1163,12 +1378,64 @@ def page_flagged() -> str:
          "the cited push/parlay/teaser rules are standard, but the citation is edition-stale.",
          "SRC-MGC-DK-RULES-ARCHIVE",
          "Flagged, not silently swapped: re-point the citation at the active 10.7.26 edition at the next pipeline run."),
+        ("Fixed 2026-11-13: the ATS 'coin-flip test' was an arithmetic identity, not a measurement",
+         "medium",
+         "The overview and the Removing luck page published the pooled team-game ATS rate of exactly "
+         "50.0% with p = 1.0 against 50% and read it as evidence that the spread market shows no "
+         "exploitable tilt. That figure is 6,892 decided games counted once per side, so the rate is "
+         "50% by construction and the p-value is a restatement of the same arithmetic. The real "
+         "one-observation-per-game test was already in the data (home cover rate 48.91%, 95% CI "
+         "47.73-50.09%, p = 0.0727, n = 6,892) but was not the number on the page. The identity is "
+         "also flagged by the decision-hub audit as FL-DH-01.",
+         "nflverse-data",
+         "The overview card and the Removing luck page now publish the one-sided home-cover test as "
+         "the result and label the pooled 50% explicitly as an identity. The measured numbers are "
+         "unchanged; only the claim attached to them was corrected."),
+        ("The committed player-week extract starts in 2015, but the published correlation scope says "
+         "2012", "medium",
+         "The independent recomputation of 2026-11-13 re-derived the correlation figures from the "
+         "committed data/derived/player_week.csv.gz and found the file covers 2015-2026, not "
+         "2012-2026 as data/derived/correlation.json states. The four-leg same-team parlay sample "
+         "recomputes to 5,782 team-games rather than the published 7,566 (a difference of 1,784 = "
+         "three seasons x 32 teams x ~18.6 games). The coefficient itself reproduces: QB passing "
+         "yards vs WR1 receiving yards recomputes to r = 0.5618 against the published 0.5616.",
+         "nflverse-data",
+         "Published as a documented difference rather than a pass. The Verification page states the "
+         "window the committed extract actually covers, and the sign and magnitude of every "
+         "published correlation reproduce on the shorter window."),
+        ("The committed snapshot is older than the live slate (checked 2026-11-13)", "medium",
+         "The published numbers come from a snapshot whose data ends at gameday 2026-11-01. On "
+         "2026-11-13 the official NFL.com 2026 division standings show teams with more games played "
+         "than the committed extract contains, so the 2026 season on this site is behind the live "
+         "page and the originated Week 9 lines are not current.",
+         "nfl-standings-2026",
+         "Every page carries the date its data ends, and no page presents the snapshot as a current "
+         "line. A refresh is a pipeline run, not a manual edit."),
     ]
     rows = []
     for title, sev, detail, sid, status in items:
         kind = {"high": "bad", "medium": "warn", "low": "ok"}[sev]
         source_html = " · ".join(src(source_id) for source_id in sid) if isinstance(sid, (list, tuple)) else src(sid)
         rows.append([esc(title), badge(kind, sev), esc(detail), esc(status), source_html])
+
+    # the review queue across every workspace that keeps its own register
+    hub_rows = []
+    total_open = 0
+    for r in site_register():
+        count, sev = hub_flags(r)
+        if not count:
+            continue
+        total_open += count
+        review = r.get("review_page") or ""
+        hub_rows.append([
+            esc(r.get("name", "")),
+            str(count),
+            badge({"high": "bad", "medium": "warn", "low": "ok"}.get(sev, "warn"), sev or "mixed"),
+            f'<a href="{esc(r["path"])}">Workspace</a>',
+            (f'<a href="{esc(review)}">Review page</a>' if review else '<span class="na">not published</span>'),
+            repo_link(r.get("path", "")),
+        ])
+    hub_rows.sort(key=lambda row: row[0])
 
     body = (f'''<div class="hero compact"><div class="eyebrow">FLAGGED FOR REVIEW</div>
 <h1>What is missing, and why it is blank.</h1>
@@ -1178,6 +1445,13 @@ numbers that cannot be defended.</p></div>
 
 '''
         + section("Open items", table(["Item", "Severity", "What is missing", "How it is handled here", "Source"], rows))
+        + section("The whole-site review queue", table(
+            ["Workspace", "Open items", "Highest severity", "Entry point", "Its review page", "Source"],
+            hub_rows,
+            caption=f"{total_open} open items across the workspaces that keep a machine-readable "
+                    "register. Each count is read from that workspace's own register file at build "
+                    "time, so the queue cannot drift away from the workspaces it summarises. "
+                    "Items already recorded above are included in their workspace's count."))
         + section("Unverified values policy", '''<ul class="ticks">
 <li>If a value cannot be confirmed from a primary source, it is left blank.</li>
 <li>A blank is always accompanied by a reason, on this page.</li>
@@ -1242,6 +1516,7 @@ def main() -> None:
         "pages/method.html": page_method,
         "pages/sources.html": page_sources,
         "pages/flagged.html": page_flagged,
+        "pages/workspaces.html": page_workspaces,
         "pages/archive.html": page_archive,
     }
     W.write("index.html", page_index())

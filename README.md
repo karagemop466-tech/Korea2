@@ -9,19 +9,30 @@ reconciled against NFL.com, and the precise verification limits are flagged.
 
 ## Result of the committed data snapshot
 
-The dataset is through **2026-11-01**; this repository snapshot is not current to the live Week 10 slate checked on 2026-11-12. Do not use its Week 9/next-slate projections as current lines. See [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html).
+The dataset is through **2026-11-01**; this repository snapshot is not current to the live Week 10 slate, re-checked on **2026-11-13**: the official NFL.com standings show 137 regular-season games played against the 120 in the committed extract, so the snapshot is **17 games behind** the live page. Do not use its Week 9/next-slate projections as current lines. See [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html).
 
 | Question | Answer | Evidence |
 |---|---|---|
-| Can the closing line be beaten by this model? | No | model spread MAE 10.38 vs market 9.70; model coefficient on margin after controlling for the close = −0.02 (p = 0.85) |
+| Can the closing line be beaten by this model? | No | model spread MAE 10.39 vs market 9.71; model coefficient on margin after controlling for the close = −0.019 (p = 0.881) |
 | Did any strategy pass the gates? | No, 0 of 7 candidates (2 controls also fail) | see [Leaderboard](https://karagemop466-tech.github.io/Korea2/pages/leaderboard.html) |
-| Are parlay legs independent? | No | QB passing yards ↔ WR1 receiving yards r = +0.561; 4-leg same-team joint 11.1% vs 5.7% under independence |
-| Is a season win-loss record a signal? | Mostly luck | Pythagorean R² = 0.83; year-over-year luck correlation 0.019 |
+| Are parlay legs independent? | No | QB passing yards ↔ WR1 receiving yards r = +0.562; 4-leg same-team joint 11.14% vs 5.69% under independence |
+| Is a season win-loss record a signal? | Mostly luck | Pythagorean R² = 0.82; year-over-year luck correlation 0.024 (n = 842) |
 | Can prop ROI be measured? | Not here | no historical prop prices in the feed — flagged, not invented |
-| Do the published numbers survive an independent recomputation? | Yes | 48 of 49 checks agree, 0 material disagreements; the 2020 and 2026 seasons each reconcile 32/32 teams with NFL.com — [Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) |
+| Do the published numbers survive an independent recomputation? | Yes | 49 checks from the verification session: 45 strict equality checks agree, 0 disagree, 11 observations; plus a second, independent implementation added on 2026-11-13 — 45 checks, 41 exact matches, 4 documented differences, 0 mismatches. The 2020 season reconciles 32/32 with NFL.com — [Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) |
 
 The honest headline is that the market is better than the model, and the gate system rejects
 everything as a result. That is the intended behaviour of the system, not a failure of it.
+
+## Start here
+
+| If you want to… | Go to |
+|---|---|
+| see every published workspace in one map | [Workspaces](https://karagemop466-tech.github.io/Korea2/pages/workspaces.html) |
+| read the one-page summary | [Executive summary](https://karagemop466-tech.github.io/Korea2/pages/executive.html) |
+| decide what to do next | [Decision summary](https://karagemop466-tech.github.io/Korea2/pages/decision-summary.html) · [Open questions](https://karagemop466-tech.github.io/Korea2/pages/decision-questions.html) · [Suggestion register](https://karagemop466-tech.github.io/Korea2/pages/decision-suggestions.html) |
+| check the numbers | [Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) |
+| review what is missing | [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html) |
+| see what this integration pass changed | [`docs/INTEGRATION_REVIEW.md`](docs/INTEGRATION_REVIEW.md) |
 
 ## Decision hub — read this before changing anything
 
@@ -69,6 +80,7 @@ scripts/build_site.py   render the dashboard from that JSON               -> ind
 tests/check_site.py     link integrity + per-row source discipline
 tests/check_derived.py  strict JSON, verification record, no orphan pages
 verification/recompute.py  independent re-implementation of the headline numbers (imports nothing here)
+verification/integration_recompute.py  second independent implementation, written by the 2026-11-13 integration pass
 ```
 
 Nothing on the site is typed by hand; every number is read from the committed JSON. Re-running the
@@ -92,16 +104,17 @@ a push and the stake is returned), and pushes are removed from the win-rate deno
 
 | Path | Contents |
 |---|---|
-| `index.html`, `pages/` | the published dashboard (14 pages) |
+| `index.html`, `pages/` | the published dashboard (16 pages, grouped navigation) |
 | `data/derived/` | committed outputs: profile, manifest, market, model, correlation, luck, strategies, props, predictions |
 | `data/sources.json` | source register, each entry opened and confirmed on 2026-11-01 |
+| `data/site_register.json` | the directory of every published workspace: what it holds, how many pages it publishes, where its own review page is |
 | `scripts/` | fetch, profile, diagnostics, analysis, site build |
 | `tests/check_site.py` | fails the build on a broken link or a table row without a source |
 | `tests/check_derived.py` | fails the build on non-strict JSON, an orphan page, or a verification disagreement |
-| `verification/` | independent recomputation plus the transcribed NFL.com standings used to reconcile them |
-| `docs/` | executive summary, methodology, requirements matrix |
+| `verification/` | two independent recomputations plus the transcribed NFL.com standings used to reconcile them |
+| `docs/` | executive summary, methodology, requirements matrix, and the 2026-11-13 integration review |
 | `pipeline/`, `origination/` | session `3f5af27c`: the origination/strategy/gating pipeline and its 13-page site (`origination/index.html`) |
-| sibling directories | earlier parallel-session dashboards, preserved unchanged (`pages/archive.html`) |
+| sibling directories | the other workspaces — decision desks, research labs, audits — each with its own data and flags (`pages/workspaces.html`) |
 
 ## Running it
 

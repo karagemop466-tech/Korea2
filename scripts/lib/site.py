@@ -11,37 +11,53 @@ from __future__ import annotations
 import html as _html
 import json
 import os
+import re
 
-NAV = [
-    ("index.html", "Overview"),
-    ("pages/executive.html", "Executive summary"),
-    ("pages/lines.html", "Originated lines"),
-    ("pages/props.html", "Player props"),
-    ("pages/correlation.html", "Correlation &amp; parlays"),
-    ("pages/strategies.html", "Strategy lab"),
-    ("pages/validation.html", "Validation gates"),
-    ("pages/leaderboard.html", "Leaderboard"),
-    ("pages/luck.html", "Removing luck"),
-    ("pages/market.html", "Market benchmark"),
-    ("pages/verification.html", "Verification"),
-    ("pages/method.html", "Method &amp; data"),
-    ("pages/sources.html", "Source register"),
-    ("pages/flagged.html", "Flagged for review"),
-    ("decision-desk/index.html", "Decision Desk"),
-    ("lineup-lab/index.html", "Lineup Lab &nearr;"),
-    ("suggestions/index.html", "Suggestions hub"),
-    ("decision-hub/index.html", "Decision hub &nearr;"),
-    ("nfl-command/index.html", "NFL Command Center"),
-    ("pages/suggestions.html", "Suggestions hub"),
-    ("pages/decision-hub.html", "Decision desk"),
-    ("pages/decision-suggestions.html", "Suggestion register"),
-    ("pages/decision-questions.html", "Open questions"),
-    ("pages/decision-injury-depth.html", "Injury &amp; depth"),
-    ("pages/decision-signals.html", "Signal lab"),
-    ("pages/decision-parlay.html", "Parlay pricing"),
-    ("pages/decision-verify.html", "Re-verify the numbers"),
-    ("pages/decision-summary.html", "Decision summary"),
+# The published navigation is grouped by category so that a reader can find the page they
+# want without scrolling a flat list of 28 entries. Every published workspace in this
+# repository is reachable from `pages/workspaces.html`, which is linked from the last group.
+NAV_GROUPS = [
+    ("Research", [
+        ("index.html", "Overview"),
+        ("pages/executive.html", "Executive summary"),
+        ("pages/lines.html", "Originated lines"),
+        ("pages/props.html", "Player props"),
+        ("pages/correlation.html", "Correlation &amp; parlays"),
+        ("pages/strategies.html", "Strategy lab"),
+        ("pages/validation.html", "Validation gates"),
+        ("pages/leaderboard.html", "Leaderboard"),
+        ("pages/luck.html", "Removing luck"),
+        ("pages/market.html", "Market benchmark"),
+    ]),
+    ("Decide", [
+        ("pages/decision-summary.html", "Decision summary"),
+        ("pages/decision-questions.html", "Open questions"),
+        ("pages/decision-suggestions.html", "Suggestion register"),
+        ("pages/decision-injury-depth.html", "Injury &amp; depth"),
+        ("pages/decision-signals.html", "Signal lab"),
+        ("pages/decision-parlay.html", "Parlay pricing"),
+        ("pages/decision-verify.html", "Re-verify the numbers"),
+        ("pages/decision-hub.html", "Decision desk"),
+    ]),
+    ("Evidence", [
+        ("pages/verification.html", "Verification"),
+        ("pages/method.html", "Method &amp; data"),
+        ("pages/sources.html", "Source register"),
+        ("pages/flagged.html", "Flagged for review"),
+        ("pages/workspaces.html", "Workspaces"),
+        ("pages/archive.html", "Archive"),
+    ]),
+    ("Workspaces", [
+        ("decision-desk/index.html", "Decision Desk &nearr;"),
+        ("decision-hub/index.html", "Decision hub &nearr;"),
+        ("suggestions/index.html", "Suggestions hub &nearr;"),
+        ("nfl-command/index.html", "NFL Command Center &nearr;"),
+        ("lineup-lab/index.html", "Lineup Lab &nearr;"),
+    ]),
 ]
+
+# Flat list of the same entries, kept for callers that want a single sequence.
+NAV = [item for _, items in NAV_GROUPS for item in items]
 
 DISCLAIMER = (
     "Research and measurement, not betting advice. Every figure is computed by the code in this "
@@ -152,11 +168,33 @@ def status_note() -> str:
             f'<span>{fresh}Rejections are listed with the exact gate that failed.</span>')
 
 
+def _prefix_root_links(html_text: str, prefix: str) -> str:
+    """Rewrite root-relative links so they resolve from a page inside pages/.
+
+    Only local, root-relative targets are touched: absolute URLs, anchors and links that are
+    already relative to the current directory are left exactly as they are."""
+    if not prefix:
+        return html_text
+
+    def repl(match: "re.Match[str]") -> str:
+        target = match.group(1)
+        if target.startswith(("http://", "https://", "mailto:", "#", "/", "../", "./")):
+            return match.group(0)
+        return f'href="{prefix}{target}"'
+
+    return re.sub(r'href="([^"]+)"', repl, html_text)
+
+
 def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
+    # Pages under pages/ are one level down, so every root-relative link needs the prefix.
+    prefix = "../" if current.startswith("pages/") else ""
+    body = _prefix_root_links(body, prefix)
     nav = []
-    for href, label in NAV:
-        active = ' class="active" aria-current="page"' if href == current else ""
-        nav.append(f'<a href="{href}"{active}>{label[0].upper() + label[1:] if False else label}</a>')
+    for group, items in NAV_GROUPS:
+        nav.append(f'<span class="nav-label">{esc(group)}</span>')
+        for href, label in items:
+            active = ' class="active" aria-current="page"' if href == current else ""
+            nav.append(f'<a href="{prefix}{href}"{active}>{label}</a>')
     navhtml = "".join(nav)
     sub = f'<p class="lede">{subtitle}</p>' if subtitle else ""
     doc = f"""<!doctype html>
@@ -165,39 +203,31 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
 <title>{esc(page_title)} | Line Lab</title>
 <meta name="description" content="Independent NFL line origination, correlation measurement and strategy validation research.">
 <meta name="generator" content="line-lab/scripts/build_site.py">
-<link rel="stylesheet" href="{'../' if current.startswith('pages/') else ''}assets/style.css">
+<link rel="stylesheet" href="{prefix}assets/style.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="shell">
 <aside class="sidebar">
-  <a class="brand" href="{'../' if current.startswith('pages/') else ''}index.html">
+  <a class="brand" href="{prefix}index.html">
     <span class="mark">LL</span><span>LINE LAB<small>NFL RESEARCH</small></span></a>
-  <div class="nav-label">Workspace</div>
   <nav aria-label="Main navigation">{navhtml}</nav>
   <div class="sidebar-note">{status_note()}</div>
 </aside>
 <main id="main">
 <header class="topbar">
   <span class="crumb">{esc(page_title).upper()}</span>
-  <a class="review-link" href="pages/flagged.html">Flagged for review &nearr;</a>
+  <a class="review-link" href="{prefix}pages/flagged.html">Flagged for review &nearr;</a>
 </header>
 {sub}
 {body}
 <footer>
   <p>{DISCLAIMER}</p>
-  <p><a href="pages/sources.html">Source register</a> &middot;
-     <a href="pages/method.html">Method</a> &middot;
-     <a href="pages/flagged.html">Flagged for review</a></p>
+  <p><a href="{prefix}pages/sources.html">Source register</a> &middot;
+     <a href="{prefix}pages/method.html">Method</a> &middot;
+     <a href="{prefix}pages/flagged.html">Flagged for review</a> &middot;
+     <a href="{prefix}pages/workspaces.html">Workspaces</a></p>
 </footer>
 </main></div></body></html>"""
-    if current.startswith("pages/"):
-        doc = (doc.replace('href="pages/', 'href="../pages/')
-                  .replace('href="decision-hub/', 'href="../decision-hub/')
-                  .replace('href="suggestions/', 'href="../suggestions/')
-                  .replace('href="nfl-command/', 'href="../nfl-command/')
-                  .replace('href="decision-desk/', 'href="../decision-desk/')
-                  .replace('href="lineup-lab/', 'href="../lineup-lab/')
-                  .replace('href="index.html"', 'href="../index.html"'))
     return doc
 
 
