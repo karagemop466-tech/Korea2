@@ -19,10 +19,10 @@ evidence, and the places where the evidence stops.
 | Closing spread MAE (1999–2026) | 10.25 pts | 7,075 games |
 | Closing spread MAE (2023–2026) | 9.70 pts | 924 games |
 | Regression slope, closing spread on actual margin | 1.048 | 7,075 |
-| Home cover rate | 48.9% (CI 47.7–50.1) | 6,880 decided |
-| Over rate | 49.5% (CI 48.4–50.7) | 6,976 decided |
-| Moneyline Brier score (Shin-devigged) | 0.2112 vs 0.25 coin flip | 5,158 |
-| Pooled ATS win rate | 50.0%, p = 1.00 | 13,760 |
+| Home cover rate | 48.9% (CI 47.7–50.1) | 6,892 decided |
+| Over rate | 49.5% (CI 48.4–50.7) | 6,988 decided |
+| Moneyline Brier score (Shin-devigged) | 0.2111 vs 0.25 coin flip | 5,170 |
+| Pooled ATS figure (arithmetic identity, not a test) | 50.0%, p = 1.00 | 13,784 |
 
 The spread market shows no exploitable tilt, and its moneylines are essentially perfectly calibrated.
 

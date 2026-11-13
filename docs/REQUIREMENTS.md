@@ -16,7 +16,7 @@ it could not be established and is published on the Flagged for Review page inst
 | 8 | Player-prop bet combos | `pages/correlation.html`, `pages/props.html` | Partly computed | Leg correlations measured; combo pricing derived; market comparison flagged (no prop prices) |
 | 9 | Each strategy must pass validation gates | `pages/validation.html` | Computed | 10 gates, 0 strategies approved, exact failing gate listed per strategy |
 | 10 | Determine correlation values | `pages/correlation.html` | Computed | 15 pairs with r, 95% Fisher-z CI, n; 4-leg correlation matrix and copula price |
-| 11 | Remove luck from the equation | `pages/luck.html` | Computed | Pythagorean R², luck persistence r = 0.019, one-score persistence, ATS coin-flip test, sample-size table |
+| 11 | Remove luck from the equation | `pages/luck.html` | Computed | Pythagorean R², luck persistence r = 0.019, one-score persistence, ATS vs 50% (one-sided home-cover test; the pooled figure is flagged as an arithmetic identity), sample-size table |
 | 12 | Selectively skill-based strategies | `pages/validation.html`, `pages/leaderboard.html` | Computed | Gates G4 (BH-adjusted significance), G8 (deflated Sharpe) reject luck-driven results |
 | 13 | Executive summary | `docs/EXECUTIVE_SUMMARY.md`, `pages/executive.html` | Done | one-page summary with numbers and limits |
 | 14 | Review the repo line by line, flag irregularities | `pages/flagged.html`, `COORDINATION.md` | Done | 9 open items with severity and handling |

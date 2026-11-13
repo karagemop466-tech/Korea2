@@ -49,15 +49,22 @@
     "sd_expected_win_pct": 0.1574
   },
   "ats_coin_flip_test": {
+    "n": 6892,
+    "wins": 3371,
+    "rate": 0.4891,
+    "ci": [
+      0.4773,
+      0.5009
+    ],
+    "binomial_p_vs_50": 0.0727,
+    "note": "One observation per game: the home team's ATS cover result, pushes dropped. A rate near 50% here means the closing spread carries no exploitable home tilt."
+  },
+  "ats_pooled_identity": {
     "n": 13784,
     "wins": 6892,
     "rate": 0.5,
-    "ci": [
-      0.4917,
-      0.5083
-    ],
     "binomial_p_vs_50": 1.0,
-    "note": "Every team-game ATS result pooled. Any 'system' has to move this number."
+    "note": "Arithmetic identity: both sides of every game are pooled, so exactly one of each pair is a cover and the rate is always 50% with p = 1.0 regardless of the data. Not a test; published only so the pooled number cannot be mistaken for evidence."
   },
   "sample_size_requirements": {
     "note": "Bets needed for 80% power at alpha=0.05 to detect a true win rate, two-sided, against a null of 50%. Uses the standard normal approximation.",

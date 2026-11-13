@@ -191,19 +191,28 @@ def main() -> int:
                         round(float(ml[ml["home_moneyline"] > 0]["spread_line"].mean()), 3), 0.005,
                         "mean(spread_line | home_moneyline > 0)"))
 
-    # ---------------------------------------------------------------- ATS coin flip
+    # ---------------------------------------------------------------- ATS vs 50%
+    # The honest test is one observation per game (home cover). The pooled figure is an
+    # arithmetic identity and is checked separately as ats_pooled_identity.
     ats = (reg.dropna(subset=["spread_line"])["result"] - reg.dropna(subset=["spread_line"])["spread_line"])
     ats = ats[ats != 0]
     k, n = int((ats > 0).sum()), int(len(ats))
-    # every team-game, both sides of the same game, reproduces the pooled two-sided count
+    # pooling both sides of every game reproduces the identity (rate always 50%, p = 1.0)
     ats_all = pd.concat([ats, -ats])
     k2, n2 = int((ats_all > 0).sum()), int(len(ats_all))
     act = luck.get("ats_coin_flip_test", {})
-    checks.append(check("luck.ats_n", "pooled ATS team-games, pushes removed", act.get("n"), n2, 0,
+    pid = luck.get("ats_pooled_identity", {})
+    checks.append(check("luck.ats_n", "ATS decided games (one per game)", act.get("n"), n, 0,
+                        "home cover observations, pushes removed"))
+    checks.append(check("luck.ats_wins", "ATS home covers", act.get("wins"), k, 0, "count of home covers"))
+    checks.append(check("luck.ats_rate", "ATS home cover rate", act.get("rate"), round(k / n, 4), 0.0006,
+                        "home covers / decided games"))
+    checks.append(check("luck.ats_pooled_n", "pooled ATS team-games (identity)", pid.get("n"), n2, 0,
                         "each settled game contributes a home and an away ATS result"))
-    checks.append(check("luck.ats_wins", "pooled ATS wins", act.get("wins"), k2, 0, "count of ATS covers"))
-    checks.append(check("luck.ats_rate", "pooled ATS cover rate", act.get("rate"), round(k2 / n2, 4), 0.0006,
-                        "wins / decided team-games"))
+    checks.append(check("luck.ats_pooled_wins", "pooled ATS wins (identity)", pid.get("wins"), k2, 0,
+                        "count of ATS covers over both sides"))
+    checks.append(check("luck.ats_pooled_rate", "pooled ATS cover rate (identity)", pid.get("rate"),
+                        round(k2 / n2, 4), 0.0006, "wins / decided team-games; always 0.5"))
 
     # ---------------------------------------------------------------- Pythagorean luck
     rows = []
