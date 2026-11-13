@@ -566,7 +566,7 @@ def page_path() -> str:
                           "Unlocks", "Exit test", "Source"], rows,
          "Cluster counts come from the review queue; costs and exit tests are proposals in this hub's "
          "programme register."), "Sequence")}
-{section("Review rules for this board", table(["#", "Rule", "Why"], rules,
+{section("Review rules for this board", table(["#", "Rule", "Why", "Source"], rules,
          "Each rule exists because the repository's history shows the failure it prevents."), "Governance")}
 {notice("info", "What this page deliberately does not do",
         "It starts none of the phases. Every phase touches files owned by other sessions - root navigation, "
@@ -938,7 +938,8 @@ def page_hubmap() -> str:
 <div class="hero small">
   <div class="eyebrow">HUB MAP &amp; REPO REVIEW</div>
   <h1>{hm["hub_count"]} directories, {hm["kind_totals"].get("site hub", 0)} of them competing websites.</h1>
-  <p class="lede">Inventory computed from the tree at commit <code>{esc(hm["base_commit"])}</code>: page and
+  <p class="lede">Inventory computed from the {esc(hm["inputs_digest"])} tree digest - the hash of every
+  committed register, the raw capture and the navigation file this hub reads: page and
   register counts per directory, whether the shared navigation reaches it, and when it was last touched. This is
   a map, not a judgement - but it is the input a reviewer needs before deciding what to keep.
   {'Directory dates are omitted: this register was rebuilt from a checkout without fetched history.' if hm.get('history') == 'shallow' else 'Directory dates are the last commit that touched each path, read from full history.'}</p>
