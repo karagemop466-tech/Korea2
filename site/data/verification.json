@@ -281,7 +281,7 @@
   {
    "id": "V-19",
    "claim": "Independent recomputation already committed (verification/recompute.py)",
-   "published": "49 checks / 0 material disagreements",
+   "published": "53 checks / 0 material disagreements",
    "recomputed": "see data/derived/verification.json (built by that script, not by this one)",
    "tolerance": null,
    "status": "agree",
