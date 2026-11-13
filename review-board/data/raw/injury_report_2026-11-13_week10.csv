@@ -1,0 +1,214 @@
+slot,team,opp,player,pos,injury,practice,game_status
+Thu 20:15,WAS,NYG,Lucas Patrick,C,Concussion,DNP,Out
+Thu 20:15,WAS,NYG,Colson Yankoff,TE,Knee,DNP,Out
+Thu 20:15,WAS,NYG,Treylon Burks,WR,,DNP,
+Thu 20:15,WAS,NYG,Amik Robertson,CB,,Limited,
+Thu 20:15,NYG,WAS,Malik Harrison,LB,Groin,Limited,Questionable
+Sun 09:30,NE,DET,Ben Brown,C,Knee,DNP,Out
+Sun 09:30,NE,DET,A.J. Brown,WR,"Ankle, Knee",Limited,Questionable
+Sun 09:30,NE,DET,Kevin Byard,S,Chest,Full,Questionable
+Sun 09:30,NE,DET,Carlton Davis III,CB,Knee,DNP,Out
+Sun 09:30,NE,DET,Reggie Gilliam,FB,Knee,Limited,Questionable
+Sun 09:30,NE,DET,TreVeyon Henderson,RB,Illness,DNP,Out
+Sun 09:30,NE,DET,Hunter Henry,TE,,Limited,
+Sun 09:30,NE,DET,Cameron Latu,TE,Back,Limited,Questionable
+Sun 09:30,NE,DET,Walter Rouse,T,Concussion,Limited,Questionable
+Sun 09:30,NE,DET,Brenden Schooler,S,Hamstring,Limited,Questionable
+Sun 09:30,NE,DET,Rhamondre Stevenson,RB,Knee,Limited,Questionable
+Sun 09:30,NE,DET,Greg Van Roten,G,Hamstring,Full,Questionable
+Sun 09:30,NE,DET,Charles Woods,CB,Hamstring,Full,Questionable
+Sun 09:30,DET,NE,Kerby Joseph,S,Knee,DNP,Out
+Sun 09:30,DET,NE,Cade Mays,C,Ankle,DNP,Out
+Sun 09:30,DET,NE,D.J. Reed,CB,Hip,DNP,Out
+Sun 09:30,DET,NE,Amon-Ra St. Brown,WR,Rib,Limited,Questionable
+Sun 09:30,DET,NE,Sione Vaki,RB,Ankle,Limited,Questionable
+Sun 13:00,KC,ATL,Mansoor Delane,CB,Shoulder,Full,Questionable
+Sun 13:00,KC,ATL,Jaylon Moore,T,Ankle,DNP,Out
+Sun 13:00,KC,ATL,Omarr Norman-Lott,DT,Knee,Limited,Out
+Sun 13:00,KC,ATL,Jaydn Ott,RB,Hamstring,Limited,Questionable
+Sun 13:00,KC,ATL,Kenneth Walker III,RB,Groin,DNP,Questionable
+Sun 13:00,KC,ATL,Peter Woods,DT,Neck,DNP,Out
+Sun 13:00,ATL,KC,Zachariah Branch,WR,Hamstring,DNP,Out
+Sun 13:00,ATL,KC,Divine Deablo,LB,Forearm,DNP,Doubtful
+Sun 13:00,ATL,KC,Gervon Dexter Sr.,DT,Illness,Limited,Questionable
+Sun 13:00,ATL,KC,Jake Matthews,T,,Limited,
+Sun 13:00,ATL,KC,Liam McCullough,LS,,DNP,
+Sun 13:00,ATL,KC,James Pearce Jr.,DE,Back,Limited,Questionable
+Sun 13:00,ATL,KC,Jawaan Taylor,T,,Limited,
+Sun 13:00,ATL,KC,Josh Woods,LB,Ankle,Full,Questionable
+Sun 13:00,MIN,GB,Jordan Addison,WR,Thumb,Limited,Questionable
+Sun 13:00,MIN,GB,Blake Cashman,LB,Concussion,Limited,Out
+Sun 13:00,MIN,GB,Christian Darrisaw,T,,DNP,
+Sun 13:00,MIN,GB,T.J. Hockenson,TE,"Wrist, Chest",DNP,Out
+Sun 13:00,MIN,GB,Tyrion Ingram-Dawkins,DT,Ankle,DNP,Out
+Sun 13:00,MIN,GB,Jauan Jennings,WR,Calf,DNP,Out
+Sun 13:00,MIN,GB,Josh Metellus,S,Shoulder,Limited,Questionable
+Sun 13:00,MIN,GB,Kyler Murray,QB,Hamstring,DNP,Out
+Sun 13:00,MIN,GB,Harrison Smith,S,,Limited,
+Sun 13:00,MIN,GB,Kyle Van Noy,LB,Calf,Limited,Questionable
+Sun 13:00,GB,MIN,Aaron Banks,G,,Limited,
+Sun 13:00,GB,MIN,Chris Brooks,RB,Ankle,Limited,Questionable
+Sun 13:00,GB,MIN,Javon Bullard,S,"Ankle, Knee",Limited,Questionable
+Sun 13:00,GB,MIN,Zaire Franklin,LB,Shin,DNP,Doubtful
+Sun 13:00,GB,MIN,Travis Glover,G,Knee,Limited,Questionable
+Sun 13:00,GB,MIN,Josh Jacobs,RB,Finger,DNP,Out
+Sun 13:00,GB,MIN,Xavier McKinney,S,Foot,Limited,Questionable
+Sun 13:00,GB,MIN,Skyy Moore,WR,Ankle,Limited,Questionable
+Sun 13:00,GB,MIN,Micah Parsons,LB,"Knee, Illness",Limited,Out
+Sun 13:00,GB,MIN,Sean Rhyan,C,Ankle,DNP,Out
+Sun 13:00,GB,MIN,Lukas Van Ness,LB,Back,Limited,Questionable
+Sun 13:00,GB,MIN,Josh Whyle,TE,Concussion,DNP,Out
+Sun 13:00,GB,MIN,Savion Williams,WR,,Limited,
+Sun 13:00,GB,MIN,Kevin Zeitler,G,"Ankle, Triceps",DNP,Questionable
+Sun 13:00,JAX,TEN,Jessie Bates,S,Not injury related - resting player,Limited,Out
+Sun 13:00,JAX,TEN,Jordan Davis,DT,Not injury related - resting player,Limited,Out
+Sun 13:00,JAX,TEN,BJ Green II,DE,Forearm,Full,Out
+Sun 13:00,JAX,TEN,Robert Hainsey,C,Concussion,Limited,Questionable
+Sun 13:00,JAX,TEN,Antonio Johnson,S,,Limited,
+Sun 13:00,JAX,TEN,Jakobi Meyers,WR,,Limited,
+Sun 13:00,JAX,TEN,Chris Rodriguez Jr.,RB,,Limited,
+Sun 13:00,JAX,TEN,Bhayshul Tuten,RB,,Limited,
+Sun 13:00,JAX,TEN,Travon Walker,DE,,Limited,
+Sun 13:00,TEN,JAX,Cody Barton,LB,Concussion,DNP,Out
+Sun 13:00,TEN,JAX,Anthony Hill Jr.,LB,Neck,DNP,Out
+Sun 13:00,TEN,JAX,Peter Skoronski,G,Hamstring,DNP,Out
+Sun 13:00,TEN,JAX,Tyjae Spears,RB,Knee,Full,Questionable
+Sun 13:00,TEN,JAX,Carnell Tate,WR,Shoulder,DNP,Out
+Sun 13:00,TEN,JAX,Tommy Townsend,P,"Knee, Achilles",DNP,Out
+Sun 13:00,BUF,NYJ,Christian Benford,CB,Wrist,Full,Questionable
+Sun 13:00,BUF,NYJ,Terrel Bernard,LB,,DNP,
+Sun 13:00,BUF,NYJ,Spencer Brown,T,Ankle,DNP,Doubtful
+Sun 13:00,BUF,NYJ,Sam Franklin Jr.,S,Shoulder,Limited,Questionable
+Sun 13:00,BUF,NYJ,Jordan Hancock,CB,Hamstring,Full,Questionable
+Sun 13:00,BUF,NYJ,Ed Oliver,DE,,DNP,
+Sun 13:00,BUF,NYJ,Tyrell Shavers,WR,Knee,Full,Questionable
+Sun 13:00,NYJ,BUF,Jarvis Brownlee Jr.,CB,Illness,Limited,Questionable
+Sun 13:00,NYJ,BUF,Omar Cooper Jr.,WR,Ankle,Full,Questionable
+Sun 13:00,NYJ,BUF,Adonai Mitchell,WR,Knee,Full,Questionable
+Sun 13:00,NYJ,BUF,Joseph Ossai,DE,Ankle,Full,Questionable
+Sun 13:00,NYJ,BUF,VJ Payne,S,Knee,Full,Questionable
+Sun 13:00,NYJ,BUF,Harrison Phillips,DT,Ankle,Full,Questionable
+Sun 13:00,NYJ,BUF,Trevin Wallace,LB,Groin,DNP,Out
+Sun 13:00,NYJ,BUF,Garrett Wilson,WR,Concussion,Full,Questionable
+Sun 13:00,NYJ,BUF,Nahshon Wright,CB,Back,Full,Questionable
+Sun 13:00,MIA,IND,Tucker Addington,LS,,Limited,
+Sun 13:00,MIA,IND,Darrell Baker Jr.,CB,Knee,Full,Questionable
+Sun 13:00,MIA,IND,Chris Bell,WR,Knee,DNP,Doubtful
+Sun 13:00,MIA,IND,Aaron Brewer,C,Concussion,DNP,Out
+Sun 13:00,MIA,IND,Jared Wayne,WR,Quadricep,DNP,Out
+Sun 13:00,IND,MIA,Mo Alie-Cox,TE,Groin,DNP,Out
+Sun 13:00,IND,MIA,Jaylon Carlies,LB,Neck,DNP,Out
+Sun 13:00,IND,MIA,Akeem Davis-Gaither,LB,Knee,DNP,Out
+Sun 13:00,IND,MIA,Arden Key,DE,Hamstring,Full,Questionable
+Sun 13:00,IND,MIA,Will Mallory,TE,Hamstring,Limited,Questionable
+Sun 13:00,IND,MIA,Luke Rhodes,LS,Hamstring,DNP,Out
+Sun 13:00,IND,MIA,Jerry Tillery,DT,Calf,DNP,Out
+Sun 13:00,IND,MIA,Jalen Travis,T,Knee,DNP,Out
+Sun 13:00,CAR,NO,Jonathon Brooks,RB,Groin,Limited,Doubtful
+Sun 13:00,CAR,NO,Brady Christensen,G,Hamstring,Full,Questionable
+Sun 13:00,CAR,NO,Mike Jackson,CB,Groin,Limited,Doubtful
+Sun 13:00,CAR,NO,Will Lee III,CB,Hamstring,Limited,Questionable
+Sun 13:00,CAR,NO,Xavier Legette,WR,Knee,Full,Questionable
+Sun 13:00,CAR,NO,Bobby Okereke,LB,Foot,DNP,Out
+Sun 13:00,CAR,NO,Jaelan Phillips,LB,Hamstring,Full,Questionable
+Sun 13:00,NO,CAR,CJ Donaldson,RB,Shoulder,DNP,Out
+Sun 13:00,NO,CAR,Martin Emerson,CB,Shin,Limited,Questionable
+Sun 13:00,NO,CAR,Travis Etienne,RB,Hamstring,Full,Questionable
+Sun 13:00,NO,CAR,Taliese Fuaga,T,Knee,DNP,Out
+Sun 13:00,NO,CAR,Erik McCoy,C,Biceps,DNP,Out
+Sun 13:00,NO,CAR,Christen Miller,DT,Knee,DNP,Out
+Sun 13:00,HOU,CLE,Azeez Al-Shaair,LB,"Groin, Not injury related - personal matter",DNP,Out
+Sun 13:00,HOU,CLE,Will Anderson Jr.,DE,Ankle,DNP,Questionable
+Sun 13:00,HOU,CLE,Trent Brown,T,"Wrist, Illness",DNP,Questionable
+Sun 13:00,HOU,CLE,Marvin Harrison Jr.,WR,Hamstring,DNP,Out
+Sun 13:00,HOU,CLE,Jake Hummel,LB,Groin,Full,Questionable
+Sun 13:00,HOU,CLE,Danielle Hunter,DE,Hamstring,DNP,Out
+Sun 13:00,HOU,CLE,Brevin Jordan,TE,"Finger, Foot",DNP,Out
+Sun 13:00,HOU,CLE,David Montgomery,RB,Groin,Full,Questionable
+Sun 13:00,HOU,CLE,Keylan Rutledge,G,"Neck, Shoulder",DNP,Out
+Sun 13:00,HOU,CLE,Jaylin Smith,CB,Hamstring,Full,Questionable
+Sun 13:00,HOU,CLE,Wyatt Teller,G,"Illness, Back",Limited,Questionable
+Sun 13:00,CLE,HOU,Denzel Boston,WR,Toe,Limited,Questionable
+Sun 13:00,CLE,HOU,Michael Burton,FB,Calf,DNP,Out
+Sun 13:00,CLE,HOU,Ronnie Hickman Jr.,S,Concussion,DNP,Out
+Sun 13:00,CLE,HOU,Donovan McMillon,S,,Limited,
+Sun 13:00,CLE,HOU,Denzel Ward,CB,,Limited,
+Sun 16:05,LAR,AZ,Davis Allen,TE,Oblique,Limited,Questionable
+Sun 16:05,LAR,AZ,Steve Avila,G,Hamstring,DNP,Out
+Sun 16:05,LAR,AZ,Joe Cardona,LS,Ankle,Limited,Questionable
+Sun 16:05,LAR,AZ,Kam Curl,S,Toe,Limited,Questionable
+Sun 16:05,LAR,AZ,Aaron Donald,DT,,DNP,
+Sun 16:05,LAR,AZ,Terrance Ferguson,TE,"Ankle, Hamstring",DNP,Out
+Sun 16:05,LAR,AZ,Braden Fiske,DT,,DNP,
+Sun 16:05,LAR,AZ,Myles Garrett,LB,"Knee, Not injury related - resting player",DNP,Questionable
+Sun 16:05,LAR,AZ,Tyler Higbee,TE,,Limited,
+Sun 16:05,LAR,AZ,Trent McDuffie,CB,Back,Limited,Questionable
+Sun 16:05,LAR,AZ,Puka Nacua,WR,,DNP,
+Sun 16:05,LAR,AZ,Byron Young,LB,,DNP,
+Sun 16:05,AZ,LAR,Zachary Carter,DT,Knee,Limited,Out
+Sun 16:05,AZ,LAR,Hjalte Froholdt,C,Concussion,DNP,Out
+Sun 16:05,AZ,LAR,Jon Gaines II,G,Ankle,DNP,Out
+Sun 16:05,AZ,LAR,Hunter Long,TE,Knee,Limited,Questionable
+Sun 16:05,AZ,LAR,Roy Lopez,DT,"Toe, Ankle",Limited,Questionable
+Sun 16:05,AZ,LAR,Max Melton,CB,"Knee, Hand",Limited,Questionable
+Sun 16:05,AZ,LAR,Darius Robinson,DT,Wrist,Limited,Questionable
+Sun 16:05,AZ,LAR,Jayden Williams,T,Knee,Limited,Questionable
+Sun 16:05,AZ,LAR,Andrew Wingard,S,Groin,DNP,Questionable
+Sun 16:05,SEA,LV,Charles Cross,T,Ankle,DNP,Out
+Sun 16:05,SEA,LV,Sam Darnold,QB,"Ribs, Quadricep",DNP,Out
+Sun 16:05,SEA,LV,Derick Hall,LB,,DNP,
+Sun 16:05,SEA,LV,Drew Lock,QB,,Limited,
+Sun 16:05,SEA,LV,Quenton Nelson,G,Knee,DNP,Out
+Sun 16:05,SEA,LV,Leonard Williams,DT,Stinger,DNP,Out
+Sun 16:05,LV,SEA,Thomas Booker,DT,Ankle,Full,Questionable
+Sun 16:05,LV,SEA,Dont'e Thornton Jr.,WR,Back,DNP,Questionable
+Sun 16:25,SF,DAL,Mike Evans,WR,Achilles,DNP,Out
+Sun 16:25,SF,DAL,Renardo Green,CB,Back,Limited,Questionable
+Sun 16:25,SF,DAL,Dre Greenlaw,LB,Knee,Limited,Questionable
+Sun 16:25,SF,DAL,Nate Hobbs,CB,Groin,Full,Questionable
+Sun 16:25,SF,DAL,Deommodore Lenoir,CB,Foot,Limited,Questionable
+Sun 16:25,SF,DAL,Upton Stout,CB,"Shoulder, Neck",Limited,Questionable
+Sun 16:25,SF,DAL,C.J. West,DT,Knee,Full,Questionable
+Sun 16:25,SF,DAL,Trent Williams,T,Shoulder,DNP,Questionable
+Sun 16:25,DAL,SF,DaRon Bland,CB,Ankle,Limited,Questionable
+Sun 16:25,DAL,SF,Jonathan Bullard,DT,Calf,Full,Questionable
+Sun 16:25,DAL,SF,Alijah Clark,S,Illness,DNP,Questionable
+Sun 16:25,DAL,SF,Donovan Ezeiruaku,LB,Ankle,DNP,Out
+Sun 16:25,DAL,SF,Jake Ferguson,TE,"Knee, Ankle",DNP,Out
+Sun 16:25,DAL,SF,Tyler Goodson,RB,"Ankle, Knee",DNP,Out
+Sun 16:25,DAL,SF,Malik Hooker,S,,DNP,
+Sun 16:25,DAL,SF,P.J. Locke,S,Concussion,DNP,Out
+Sun 16:25,DAL,SF,Von Miller,LB,,DNP,
+Sun 16:25,DAL,SF,Jonathan Mingo,WR,Ankle,DNP,Out
+Sun 16:25,DAL,SF,Devin Moore,CB,Hip,Full,Questionable
+Sun 16:25,DAL,SF,Joey Porter Jr.,CB,"Ankle, Foot",Limited,Questionable
+Sun 16:25,DAL,SF,Juanyeh Thomas,S,Hamstring,DNP,Doubtful
+Sun 20:20,PIT,CIN,Derrick Harmon,DT,Foot,Full,Questionable
+Sun 20:20,CIN,PIT,Jonathan Allen,DT,,Limited,
+Sun 20:20,CIN,PIT,Jalen Davis,CB,Hamstring,Full,Doubtful
+Sun 20:20,CIN,PIT,Kyle Dugger,S,Quadricep,DNP,Out
+Sun 20:20,CIN,PIT,B.J. Hill,DT,,DNP,
+Sun 20:20,CIN,PIT,Andrei Iosivas,WR,Thumb,Full,Doubtful
+Sun 20:20,CIN,PIT,Dexter Lawrence,DT,,DNP,
+Sun 20:20,CIN,PIT,Brian Parker II,G,Knee,Full,Doubtful
+Mon 20:15,LAC,BAL,Kayode Awosika,G,,Limited,
+Mon 20:15,LAC,BAL,Justin Eboigbe,DE,,DNP,
+Mon 20:15,LAC,BAL,Alex Harkey,G,,Limited,
+Mon 20:15,LAC,BAL,Tre Harris,WR,,Limited,
+Mon 20:15,LAC,BAL,Cam Hart,CB,,Limited,
+Mon 20:15,LAC,BAL,Daiyan Henley,LB,,DNP,
+Mon 20:15,LAC,BAL,Deane Leonard,CB,,Limited,
+Mon 20:15,LAC,BAL,Khalil Mack,LB,,DNP,
+Mon 20:15,LAC,BAL,Ladd McConkey,WR,,DNP,
+Mon 20:15,LAC,BAL,Keaton Mitchell,RB,,Limited,
+Mon 20:15,LAC,BAL,David Njoku,TE,,Limited,
+Mon 20:15,LAC,BAL,Denzel Perryman,LB,,Limited,
+Mon 20:15,LAC,BAL,Trey Pipkins,T,,DNP,
+Mon 20:15,LAC,BAL,Rodney Shelley,CB,,Limited,
+Mon 20:15,LAC,BAL,Branson Taylor,G,,DNP,
+Mon 20:15,LAC,BAL,Brenen Thompson,WR,,DNP,
+Mon 20:15,LAC,BAL,Isas Waxter,CB,,DNP,
+Mon 20:15,LAC,BAL,Kendall Williamson,S,,DNP,
+Mon 20:15,BAL,LAC,Rashod Bateman,WR,,Limited,
+Mon 20:15,BAL,LAC,Jaylinn Hawkins,S,,Limited,
+Mon 20:15,BAL,LAC,Olaivavega Ioane,G,,Limited,

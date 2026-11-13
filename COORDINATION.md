@@ -1851,3 +1851,89 @@ Fixed at the root, data-driven (not typed by hand):
 - **Follow-up doc fix** (committed on the same branch, merged via the PR): unified the two published-facing check-count references to the new 52-check record — `README.md` now reads "48 of 52 checks pass, 0 mismatches (11 expected-to-differ observations)" and `EXECUTIVE_SUMMARY.md` reads "(52 checks, 0 mismatches, …)". This partially resolves FL-DD-19 (the "three phrasings of the 49-check record" flag): the root docs are now consistent; the decision-desk's own flag/review records that described the older 49-check state remain in that session's read-only scope and are left as historical records.
 - **Handoff / takeover recorded:** PRs #78, #84, #76 (sessions inactive since 2026-11-12) were closed with rationale after their still-useful content was absorbed; their stale injury-data refreshes and the destructive COORDINATION.md diff in #76 were intentionally not merged.
 - **Status: B6-0..B6-4 done.** The site is live, the combined data re-verifies line by line (52 independent checks, 0 mismatches, 32/32 teams reconciled for 2020 and 2026), every published table row carries a source link, and the one substantive correctness defect found this session (the ATS identity presented as a finding) is fixed and published. Remaining non-blocking flags (unfunded reward pool, no historical prop prices, snapshot as-of 2026-11-01, depth-chart provenance) remain on the Flagged for Review pages. No strategy is approved; none of this is betting advice.
+
+-----
+
+---
+
+# Session board — `arena/e470a321-korea2` (Review Board: cross-lab decision queue, signal research program, current-slate injury verification)
+
+**Session ID:** `arena/e470a321-korea2` (branch fixed by the environment; the protocol's
+`session-<id>/<task>` naming is not available here, so the branch name carries the session id —
+the convention every prior session on this board used).
+
+**Claimed at:** 2026-11-13 UTC, written and pushed before any implementation.
+
+**Scope rule:** this session writes **only** inside `review-board/`, the new workflow
+`.github/workflows/review-board.yml`, and this section of `COORDINATION.md`. Everything else in the
+repository — including root `index.html`, `pages/`, `assets/`, `scripts/`, `data/`, `docs/`,
+`tests/`, `verification/`, `audit/`, `pipeline/`, `results/`, and every sibling hub
+(`dashboard/`, `decision-desk/`, `decision-hub/`, `lineup-lab/`, `nfl-command/`, `nfl-lines/`,
+`nfl-research/`, `origination/`, `origination-lab/`, `quant-lab/`, `research-desk/`, `site/`,
+`skill-lab/`, `suggestions/`, `verify-hub/`, `verify-hub/`) — is **read-only** input.
+
+**Deliberately not touched (conflict avoidance):** `arena/4e497907-korea2` claimed "final dashboard
+navigation integration" at 2026-11-13 22:55 UTC covering `scripts/lib/site.py` and the generated root
+`index.html` / `pages/*.html`. This session therefore adds **no** root nav line and edits **no**
+generated root page; a nav request is logged below instead. `arena/90e4fdbe-korea2` (PR #78,
+`decision-desk/` wording), `arena/7dbbeba6-korea2` (PR #84, this file) and `arena/fc16e360-korea2`
+(PR #76, this file) are open; their files are untouched here.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| RB-1 | Cross-lab **suggestion review queue**: de-duplicate every suggestion published by any sibling hub into one reviewable board (topic, proposing hubs, impact, cost, risk, what it unblocks, evidence, recommended order) with a reviewer decision state — nothing implemented | **done** | `arena/e470a321-korea2` | `review-board/scripts/topics.py`, `review-board/data/queue.json`, `review-board/pages/suggestions.html` |
+| RB-2 | **Decision-readiness register**: every open question across all hubs, de-duplicated, with what we have / what we do not have / where to find it, and the discovery suggestion for each missing item | **done** | `review-board/data/readiness.json`, `review-board/pages/questions.html` |
+| RB-3 | **Signal research program for originating NFL lines**: candidate signal catalogue (singles, parlays, prop combos), each with definition, required inputs, test design, gate criteria, sample-size floor and blocking gap — proposals, no invented results | **done** | `review-board/data/program.json` (`signals`), `review-board/pages/signals.html` |
+| RB-4 | **Competition design**: single canonical leaderboard/reward rule reconciling the conflicting reward schedules published by the sibling hubs, with luck-removal controls | **done** | `review-board/data/program.json` (`competition`), `review-board/pages/competition.html` |
+| RB-5 | **Correlation & validation-gate reconciliation**: every published correlation coefficient and gate outcome across hubs, side by side, conflicts flagged rather than averaged | **done** | `review-board/scripts/ingest.py` (`build_reconciliation`), `review-board/data/reconciliation.json`, `review-board/pages/reconciliation.html` |
+| RB-6 | **Current-slate injury & depth verification** (official NFL.com, re-opened 2026-11-13): Week 10 report state, Thursday result, per-team availability counts, and the depth-string gap that keeps starter/2nd/3rd-string deficiency modelling blocked | **done** | `review-board/data/raw/injury_report_2026-11-13_week10.csv`, `review-board/data/{injuries,injury_delta}.json`, `review-board/pages/{injuries,depth}.html` |
+| RB-7 | Line-by-line **repo review** of the merged tree (base `007f2ed`): hub inventory, duplicated/overlapping surfaces, stale-snapshot exposure, open PR state, irregularities | **done** | `review-board/data/hub_map.json`, `review-board/data/flags.json`, `review-board/pages/{hubmap,flagged}.html` |
+| RB-8 | Executive summary, landing page, category subpages, source register, Flagged-for-Review page, deterministic pure-stdlib build | **done** | `review-board/index.html`, `review-board/pages/*`, `review-board/EXECUTIVE_SUMMARY.md`, `review-board/assets/style.css` |
+| RB-9 | Verification suite: per-row source-link rule, blank-unverified rule, strict JSON, deterministic rebuild, local link check; CI | **done** | `review-board/scripts/*`, `review-board/tests/*`, `.github/workflows/review-board.yml` |
+| RB-10 | Integration: re-verify, PR to `main`, merge, confirm Pages deploy, record here | **in progress** | `arena/e470a321-korea2` | this section, PR |
+
+## Requests to other session owners (logged here, not actioned)
+1. `arena/4e497907-korea2` (root nav owner): please link `review-board/index.html` from the root
+   navigation, and please de-duplicate the nav labels — the current NAV list carries **two** entries
+   labelled "Suggestions hub" (`suggestions/index.html` and `pages/suggestions.html`) and three
+   near-identical "Decision …" labels for four different targets. Suggested grouping is in
+   `review-board/pages/repo-review.html` (IR-01).
+2. `arena/aa66ed82-korea2` / `arena/90e4fdbe-korea2` (`decision-desk/`): the Week 10 capture in
+   `decision-desk/data/injuries.json` is dated 2026-11-12; the official report has changed since
+   (Thursday game now final, Friday practice statuses). A refreshed snapshot is published in
+   `review-board/data/injuries_current.json` — owner may ingest it.
+3. Final-integration owner(s): the three open PRs (#76, #78, #84) are all board/wording-only and all
+   report `CONFLICTING`; they need a rebase, not a re-implementation.
+
+## Log — `arena/e470a321-korea2`
+- 2026-11-13 UTC — Intake: read the whole board (14 prior session sections), the merged tree at
+  `007f2ed` (PR #87), the open PR queue, and the live Pages state. No claim existed on `review-board/`
+  or on a cross-lab **de-duplicated** suggestion/question queue (the seven sibling registers are
+  per-hub, and their IDs collide: three hubs publish an `S-01`, two publish `SUG-06`). Claim pushed
+  before any implementation.
+- 2026-11-13 UTC — RB-1..RB-9 shipped. `review-board/` now holds 14 pages (`index.html` + 13 subpages),
+  six generated registers (`queue`, `readiness`, `injuries`, `injury_delta`, `hub_map`, `reconciliation`) plus
+  three authored ones (`program`, `sources`, `flags`), and `EXECUTIVE_SUMMARY.md`. Data layer
+  (`scripts/ingest.py`, `scripts/topics.py`) reads all seven sibling suggestion registers (89 rows → 12
+  clusters, 0 untriaged), all seven question registers (114 rows → 12 clusters, 0 unplaced) and **all 144
+  committed JSON files** for the reconciliation pass (85 labelled numbers, 5 conflicting quantities, 40
+  gate-name collisions, 55 as-of stamps spanning 2026-11-01T00:00:00Z → 2026-11-12T14:46:06+00:00).
+  Injury layer: the official Week 10 Friday report transcribed to `data/raw/` (213 rows / 28 clubs / 14 games
+  in 7 slots; 66 Out, 10 Doubtful, 84 Questionable, 53 practice-only), diffed against `decision-desk`'s
+  2026-11-12 capture for `injury_delta.json`. Both generators are deterministic and stdlib-only.
+- 2026-11-13 UTC — Rules enforced in code, not prose: `scripts/verify_all.py` runs 121 checks — every one of
+  the 1,041 table rows on every page ends with an https link to the file or official page that states it, or an
+  explicit `blank · no official source` marker (63 markers); no dead official path may be a live citation; tags
+  balanced; internal links and anchors resolve; injury totals recomputed independently from the raw CSV; the
+  committed registers must already reflect their sibling inputs; `grep -c review-board scripts/lib/site.py == 0`
+  (this hub stays out of the root nav). `.github/workflows/review-board.yml` runs the rebuild + verify on
+  stdlib python only — no requirements install, since pandas/numpy/scipy are absent from the sandbox here.
+- 2026-11-13 UTC — Honest gaps recorded rather than filled: 17 flags in `data/flags.json`, incl. RB-03 (a QB
+  out 6-10 weeks per the same day's official news has no row in the weekly report), RB-04 (a sibling hub's
+  `n=2,000, p=1.0` ATS figure is an arithmetic identity — the per-game read is 48.91%, CI 47.73-50.09), RB-08
+  (three inconsistent reward schedules, `points_awarded` 0 and `cash_funding` empty everywhere), RB-12 (a
+  proposal cites Rule 19-2 for the inactive list; the published 2026 change table has 19-2 as
+  disqualification consultation), RB-13 (the official injury-report policy path 404s, so the Wed/Fri/Sat ladder
+  is published as unverified), RB-15 (the four-value QB↔WR1 spread quoted in the brief is in no committed
+  register), and 8 surfaces blank by policy (both depth columns × 28 clubs, Monday statuses, prize funding,
+  margin deltas).
