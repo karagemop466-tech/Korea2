@@ -191,7 +191,7 @@ def main() -> int:
                         round(float(ml[ml["home_moneyline"] > 0]["spread_line"].mean()), 3), 0.005,
                         "mean(spread_line | home_moneyline > 0)"))
 
-    # ---------------------------------------------------------------- ATS coin flip
+    # ---------------------------------------------------------------- ATS: pooled identity + the real tilt test
     ats = (reg.dropna(subset=["spread_line"])["result"] - reg.dropna(subset=["spread_line"])["spread_line"])
     ats = ats[ats != 0]
     k, n = int((ats > 0).sum()), int(len(ats))
@@ -199,11 +199,22 @@ def main() -> int:
     ats_all = pd.concat([ats, -ats])
     k2, n2 = int((ats_all > 0).sum()), int(len(ats_all))
     act = luck.get("ats_coin_flip_test", {})
-    checks.append(check("luck.ats_n", "pooled ATS team-games, pushes removed", act.get("n"), n2, 0,
+    checks.append(check("luck.ats_n", "pooled ATS team-games (arithmetic identity: each game counted twice)", act.get("n"), n2, 0,
                         "each settled game contributes a home and an away ATS result"))
-    checks.append(check("luck.ats_wins", "pooled ATS wins", act.get("wins"), k2, 0, "count of ATS covers"))
-    checks.append(check("luck.ats_rate", "pooled ATS cover rate", act.get("rate"), round(k2 / n2, 4), 0.0006,
-                        "wins / decided team-games"))
+    checks.append(check("luck.ats_wins", "pooled ATS wins (identity: exactly one of +x/-x covers)", act.get("wins"), k2, 0, "count of ATS covers"))
+    checks.append(check("luck.ats_rate", "pooled ATS cover rate (identity: 0.5 for ANY dataset, not evidence)", act.get("rate"), round(k2 / n2, 4), 0.0006,
+                        "wins / decided team-games; see flag FL-DH-01"))
+    # one observation per game: the only version of the test that can detect a tilt (market.json)
+    hc = market.get("ats_home_cover", {})
+    checks.append(check("market.ats_home_n", "ATS tilt test: decided games with a closing spread", hc.get("n"), n, 0,
+                        "one observation per game (home team covers or not), pushes removed"))
+    checks.append(check("market.ats_home_covers", "home covers against the closing spread", hc.get("home_covers"), k, 0,
+                        "result - spread_line > 0"))
+    checks.append(check("market.ats_home_rate", "home ATS cover rate, one observation per game", hc.get("home_cover_rate"), round(k / n, 4), 0.0006,
+                        "the published tilt test (market.json -> ats_home_cover)"))
+    checks.append(check("market.ats_home_p", "two-sided exact binomial p vs 50% (tilt test)", hc.get("binomial_p"),
+                        round(float(sps.binomtest(k, n, 0.5, alternative="two-sided").pvalue), 4), 0.0005,
+                        "exact binomial on home covers in decided games"))
 
     # ---------------------------------------------------------------- Pythagorean luck
     rows = []

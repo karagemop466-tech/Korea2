@@ -16,7 +16,7 @@ favoured in this feed). Figures that changed carry the new value; nothing else w
 > build (ten gates, seven candidate strategies plus two controls); its summary is
 > [`docs/EXECUTIVE_SUMMARY.md`](docs/EXECUTIVE_SUMMARY.md), and the independent re-check of both is on the
 > [Verification page](https://karagemop466-tech.github.io/Korea2/pages/verification.html)
-> (49 checks, 0 material disagreements, 2020 season 32/32 vs NFL.com).
+> (53 checks, 0 material disagreements, 2020 season 32/32 vs NFL.com).
 
 ---
 

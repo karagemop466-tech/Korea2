@@ -16,15 +16,19 @@ evidence, and the places where the evidence stops.
 
 | Measure | Value | n |
 |---|---|---|
-| Closing spread MAE (1999–2026) | 10.25 pts | 7,075 games |
-| Closing spread MAE (2023–2026) | 9.70 pts | 924 games |
-| Regression slope, closing spread on actual margin | 1.048 | 7,075 |
-| Home cover rate | 48.9% (CI 47.7–50.1) | 6,880 decided |
-| Over rate | 49.5% (CI 48.4–50.7) | 6,976 decided |
-| Moneyline Brier score (Shin-devigged) | 0.2112 vs 0.25 coin flip | 5,158 |
-| Pooled ATS win rate | 50.0%, p = 1.00 | 13,760 |
+| Closing spread MAE (1999–2026) | 10.25 pts | 7,087 games |
+| Closing spread MAE (2023–2026) | 9.71 pts | 936 games |
+| Regression slope, closing spread on actual margin | 1.049 | 7,087 |
+| Home cover rate (one observation per game) | 48.91% (CI 47.73–50.09), p = 0.073 | 6,892 decided |
+| Over rate | 49.53% (CI 48.36–50.70) | 6,988 decided |
+| Moneyline Brier score (Shin-devigged) | 0.2111 vs 0.25 coin flip | 5,170 |
+| Pooled ATS rate (arithmetic identity — not evidence) | exactly 50.0% by construction | 13,784 team-game rows |
 
-The spread market shows no exploitable tilt, and its moneylines are essentially perfectly calibrated.
+*(Table refreshed 2026-11-13 from the committed extract by integration pass IR-2; every value is
+reproduced by `verification/recompute.py` — the 2026-11-01 snapshot's counts above were stale.
+The "Pooled ATS" row is an identity: each game is pooled twice, so the rate is 0.5 for any dataset
+— flag FL-DH-01. The honest tilt test is the home-cover row: no significant tilt is detected, and a
+small one cannot be ruled out at n = 6,892.)*
 
 ## 2. Our originated lines are worse, and the test is decisive
 
@@ -141,8 +145,8 @@ official pages were re-read on 2026-11-02.
 
 | Result | Value |
 |---|---|
-| Independent checks | 49 |
-| Agree with the published value | 48 |
+| Independent checks | 53 |
+| Agree with the published value | 52 |
 | Material disagreements | 0 |
 | Observations (informational rows, not equality tests) | 11, all consistent |
 | 2020 regular season vs NFL.com | 32/32 teams match on W-L-T, PF and PA |
@@ -181,3 +185,24 @@ size, or that results will persist. Reproducibility is not validation.
 - NFL.com has a live weekly injury report and a policy explainer; the former missing legacy operations URL is a separate broken link. The repository does not capture historical pregame injury/active-inactive snapshots or league-wide depth charts. The reviewed NFL.com roster page lacks depth ordering; a Colts team-published chart exists but is explicitly unofficial and covers only one team. No replacement level or 2nd/3rd/4th-string label is ingested into the model.
 - The committed data snapshot ends 2026-11-01. The official NFL Week 10 schedule was read on 2026-11-12; old Week 9/next-slate projections are stale and must not be presented as current.
 - The new [Suggestions & decisions page](https://karagemop466-tech.github.io/Korea2/pages/suggestions.html) provides seven proposals and explicit decision questions. All remain pending; current recommendation is research-only, with no approved strategies or funded reward.
+
+## 11. Integration review update — 2026-11-13 (IR-2, FL-DH-01 remediation)
+
+- The pooled "ATS coin-flip" statistic (n = 13,784 team-game rows, rate exactly 50.0%, p = 1.0) was
+  published as evidence that "the spread market shows no exploitable tilt". It is an arithmetic
+  identity — each game is pooled as +x and −x, so exactly one of each pair covers — and can never
+  fail for any dataset (flag FL-DH-01, decision-hub audit).
+- **Remediated in this pass.** The pooled figure is now labelled `is_identity` in
+  `data/derived/luck.json` and rendered as "arithmetic identity — not evidence" everywhere it
+  appears. The site's headline ATS statistic is the one-observation-per-game test from
+  `market.json → ats_home_cover`: **48.91% home covers (3,371 of 6,892 decided games), 95% CI
+  47.73–50.09, two-sided exact binomial p = 0.0727**. The conclusion is now "no significant tilt
+  detected, and none ruled out", not "no tilt exists".
+- The independent record grew to **53 checks (52 agree, 0 material disagreements)**: the four new
+  `market.ats_home_*` checks recompute the tilt test from the committed extract by a separate
+  implementation (`verification/recompute.py` imports nothing from `scripts/`).
+- Reproducibility proof for this change: `scripts/analyze_luck.py` was re-run against the committed
+  extract `data/derived/games.csv.gz` and reproduced `data/derived/luck.json` byte-for-byte apart
+  from the intended relabel (2 insertions, 1 deletion in the JSON diff).
+- No strategy is approved, no reward is funded, and no operator/licence/limit is verified. The
+  remediation changes how a null result is presented; it does not change the null result.

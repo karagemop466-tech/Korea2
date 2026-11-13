@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_utc": "2026-11-12T13:34:49+00:00",
+  "generated_utc": "2026-11-13T23:16:30+00:00",
   "auditor": "decision-hub/scripts/audit_root.py",
   "rule": "A published number is PASS only if this independent implementation reproduces it from committed inputs within tolerance. Anything else is FAIL, BLANK or OBSERVATION."
  },
@@ -296,12 +296,12 @@
   {
    "id": "rows.source_coverage",
    "claim": "table rows carrying a source link",
-   "published": 855,
-   "recomputed": 855,
+   "published": 860,
+   "recomputed": 860,
    "tolerance": 0,
    "abs_diff": 0,
    "verdict": "PASS",
-   "method": "7 of 862 rows have no link in the final cell",
+   "method": "7 of 867 rows have no link in the final cell",
    "source_id": "nflverse-data",
    "class": "count"
   }
@@ -505,7 +505,7 @@
    "tables": 6
   },
   "pages/luck.html": {
-   "table_rows": 24,
+   "table_rows": 25,
    "rows_without_source_cell": 0,
    "tables": 2
   },
@@ -545,7 +545,7 @@
    "tables": 6
   },
   "pages/verification.html": {
-   "table_rows": 124,
+   "table_rows": 128,
    "rows_without_source_cell": 0,
    "tables": 5
   }
@@ -831,7 +831,7 @@
   }
  ],
  "verification_summary": {
-  "checks": 49,
+  "checks": 53,
   "fail": 0,
   "mismatch": 0,
   "reconciliation": {
@@ -859,7 +859,7 @@
  },
  "rows_totals": {
   "pages": 25,
-  "table_rows": 862,
+  "table_rows": 867,
   "rows_without_source_cell": 7
  },
  "summary": {

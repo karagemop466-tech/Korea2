@@ -69,6 +69,7 @@ def page_index() -> str:
     best = entries[0] if entries else {}
     sgp = corr.get("sgp_4leg_same_team", {})
     coin = luck.get("ats_coin_flip_test", {})
+    homecov = market.get("ats_home_cover", {})
     pluck = luck.get("luck_persistence", {})
 
     cards = [
@@ -87,9 +88,11 @@ def page_index() -> str:
         card("QB &harr; WR1 correlation", num(corr.get("qb_yards_vs_wr1_yards", {}).get("r"), 3),
              f"Measured on {corr.get('qb_yards_vs_wr1_yards', {}).get('n', 'n/a')} team-games: "
              "same-game parlay legs are not independent.", "pages/correlation.html", "Correlation"),
-        card("ATS coin-flip test", pct(coin.get("rate")),
-             f"{coin.get('n', 'n/a')} settled spread bets; p = {coin.get('binomial_p_vs_50')} against "
-             "50%. The spread market shows no exploitable tilt.", "pages/luck.html", "Removing luck"),
+        card("ATS home-cover test", pct(homecov.get("home_cover_rate")),
+             f"One observation per game: {homecov.get('home_covers', 'n/a')} home covers in "
+             f"n = {homecov.get('n', 'n/a')} decided games; p = {homecov.get('binomial_p')} vs 50%, "
+             f"95% CI {homecov.get('ci')}. No significant tilt &mdash; and none ruled out.",
+             "pages/luck.html", "Removing luck"),
     ]
 
     findings = table(
@@ -221,10 +224,10 @@ def page_executive() -> str:
         [["Closing spread MAE (1999-2026)", num(cs.get("mae")) + " pts", f"n = {cs.get('n')} regular-season games", src("nflverse-data")],
          ["Closing spread MAE (2023-2026)", num(recent.get("mae")) + " pts", "The window every strategy is judged on", src("nflverse-data")],
          ["Spread-vs-result regression slope", num(market.get("spread_result_regression", {}).get("slope"), 3), "1.0 would be perfectly efficient", src("nflverse-data")],
-         ["Home cover rate", pct(market.get("ats_home_cover", {}).get("home_cover_rate")), f"CI {market.get('ats_home_cover', {}).get('ci')}", src("nflverse-data")],
+         ["Home cover rate (one per game)", pct(market.get("ats_home_cover", {}).get("home_cover_rate")), f"n = {market.get('ats_home_cover', {}).get('n')} decided; p = {market.get('ats_home_cover', {}).get('binomial_p')} vs 50%; CI {market.get('ats_home_cover', {}).get('ci')}", src("nflverse-data")],
          ["Over rate", pct(over.get("over_rate")), f"n = {over.get('n')} totals decisions", src("nflverse-data")],
          ["Moneyline Brier score", num(cal.get("brier_score"), 4), f"vs 0.25 for a coin flip, n = {cal.get('n')}", src("nflverse-data")],
-         ["Pooled ATS result", pct(coin.get("rate"), 1), f"exact binomial p = {coin.get('binomial_p_vs_50')}", src("nflverse-data")]],
+         ["Pooled ATS rate (arithmetic identity)", pct(coin.get("rate"), 1), "each game pooled twice (+x, &minus;x) &mdash; always 50.0% for any data; not evidence (flag FL-DH-01)", src("nflverse-data")]],
         caption="Market efficiency benchmarks. Every strategy is scored against these.")
 
     dis_table = table(
@@ -761,6 +764,7 @@ def page_luck() -> str:
     osp = luck.get("one_score_persistence", {})
     vd = luck.get("variance_decomposition", {})
     coin = luck.get("ats_coin_flip_test", {})
+    hc = W.load("market.json").get("ats_home_cover", {})
     recent = luck.get("luck_table_recent", [])
     top = sorted(recent, key=lambda r: r["luck_wins"], reverse=True)[:8]
     bottom = sorted(recent, key=lambda r: r["luck_wins"])[:8]
@@ -785,7 +789,10 @@ excellent until it does not.</p></div>
      ["Year-over-year correlation of one-score win rate", num(osp.get("r"), 3),
       f"p = {num(osp.get('p'), 4)} - small but non-zero", src("nflverse-data")],
      ["One-score games as a share of all games", pct(osg.get("share_of_games")), "half the league lives here", src("nflverse-data")],
-     ["Pooled ATS win rate", pct(coin.get("rate")), f"p = {coin.get('binomial_p_vs_50')} against 50%", src("nflverse-data")]]))
+     ["Home ATS cover rate (one observation per game)", pct(hc.get("home_cover_rate")),
+      f"n = {hc.get('n')} decided games; p = {hc.get('binomial_p')} vs 50%; CI {hc.get('ci')} &mdash; the real tilt test", src("nflverse-data")],
+     ["Pooled ATS rate (arithmetic identity)", pct(coin.get("rate")),
+      "each game pooled twice (+x, &minus;x) &mdash; exactly 50.0% for any data; not evidence (flag FL-DH-01)", src("nflverse-data")]]))
         + section("What this means for strategy design", f'''<ul class="ticks">
 <li>Ranking teams on wins imports luck. Deviation from Pythagorean expectation has essentially no
 predictive carry-over (r = {num(pl.get("r"), 3)}), so it cannot be a feature.</li>
@@ -799,7 +806,7 @@ large. That is why the gates require thousands of settled bets.</li></ul>''')
       src("nflverse-data")] for r in top + bottom],
     caption="Pythagorean expected wins vs actual wins, 2023-2026.")))
     return W.layout("Removing luck", "pages/luck.html", body,
-                    subtitle="Variance decomposition, persistence tests and the coin-flip baseline.")
+                    subtitle="Variance decomposition, persistence tests and the ATS tilt test.")
 
 
 # ---------------------------------------------------------------- market

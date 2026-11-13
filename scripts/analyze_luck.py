@@ -106,7 +106,11 @@ def main() -> None:
         "sd_expected_win_pct": round(float(ts["exp_win_pct"].std(ddof=1)), 4),
     }
 
-    # ---------------------------------------------------------------- ATS is a coin flip
+    # ---------------------------------------------------------------- pooled ATS identity (and the real test elsewhere)
+    # NOTE (integration session arena/193e54ca-korea2, 2026-11-13, flag FL-DH-01): pooling every
+    # team-game with its own negation makes the cover rate exactly 0.5 for ANY dataset, so this
+    # block is an arithmetic identity, not a test. It is kept only for bookkeeping. The real ATS
+    # tilt test — one observation per game — is market.json -> ats_home_cover.
     ats = tg.dropna(subset=["ats_margin"])
     ats = ats[ats["ats_margin"] != 0]
     k, n = int((ats["ats_margin"] > 0).sum()), int(len(ats))
@@ -114,7 +118,11 @@ def main() -> None:
     out["ats_coin_flip_test"] = {
         "n": n, "wins": k, "rate": round(k / n, 4), "ci": [round(lo, 4), round(hi, 4)],
         "binomial_p_vs_50": round(S.binomial_p(k, n), 4),
-        "note": "Every team-game ATS result pooled. Any 'system' has to move this number.",
+        "is_identity": True,
+        "note": ("Arithmetic identity (flag FL-DH-01): every team-game is pooled twice, once as "
+                 "+margin and once as -margin, so exactly one of each pair covers and the rate is "
+                 "0.5 for every possible dataset. Not evidence about the market. The real tilt "
+                 "test is one observation per game: market.json -> ats_home_cover."),
     }
 
     # ---------------------------------------------------------------- how much sample is enough
