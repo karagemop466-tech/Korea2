@@ -940,7 +940,8 @@ def page_hubmap() -> str:
   <h1>{hm["hub_count"]} directories, {hm["kind_totals"].get("site hub", 0)} of them competing websites.</h1>
   <p class="lede">Inventory computed from the tree at commit <code>{esc(hm["base_commit"])}</code>: page and
   register counts per directory, whether the shared navigation reaches it, and when it was last touched. This is
-  a map, not a judgement - but it is the input a reviewer needs before deciding what to keep.</p>
+  a map, not a judgement - but it is the input a reviewer needs before deciding what to keep.
+  {'Directory dates are omitted: this register was rebuilt from a checkout without fetched history.' if hm.get('history') == 'shallow' else 'Directory dates are the last commit that touched each path, read from full history.'}</p>
 </div>
 {section("Directory inventory", table(["Directory", "Kind", "Pages", "JSON registers", "Scripts", "Nav",
                                        "Nav label", "Last touched", "Source"], rows,

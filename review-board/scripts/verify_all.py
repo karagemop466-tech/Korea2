@@ -97,9 +97,16 @@ def main() -> int:
     # ingest re-reads the sibling registers and the raw capture; the only permitted difference is the commit
     # stamp, which legitimately changes when a new commit is built. Any other difference means a register moved.
     def strip(doc: dict) -> dict:
-        """Drop provenance stamps, which legitimately change on every rebuild in a fresh checkout."""
-        return {k: v for k, v in doc.items()
-                if not k.startswith("_generated") and k != "base_commit"}
+        """Drop provenance stamps, which legitimately change on every rebuild in a fresh checkout.
+
+        Per-directory last-touched dates are dropped too: a checkout without fetched history (the default
+        runner clone) reports the checkout commit for every directory, so those dates describe the clone,
+        not the tree. The register records that case in its own `history` field and says so on the page."""
+        cut = {"base_commit", "history"}
+        out = {k: v for k, v in doc.items() if not k.startswith("_generated") and k not in cut}
+        if isinstance(out.get("hubs"), list):
+            out["hubs"] = [{k: x for k, x in h.items() if k != "last_touched"} for h in out["hubs"]]
+        return out
     pre = {n: strip(jload(f"{n}.json")) for n in
            ("queue", "readiness", "injuries", "hub_map", "reconciliation", "injury_delta")}
     r2 = subprocess.run([sys.executable, os.path.join(HERE, "ingest.py")],

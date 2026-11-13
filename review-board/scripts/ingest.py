@@ -431,7 +431,18 @@ def build_injuries() -> dict:
 IGNORE_DIRS = {".git", "assets", "node_modules", "__pycache__"}
 
 
+def git_history_depth() -> str:
+    """"shallow" when history was not fetched (the default CI checkout), else "full".
+
+    A shallow clone reports the checkout commit as the last touch of every directory, so the date would be
+    confidently wrong rather than missing; the register records which case it is in."""
+    out = subprocess.run(["git", "-C", REPO, "rev-parse", "--is-shallow-repository"],
+                         capture_output=True, text=True)
+    return "shallow" if out.stdout.strip() == "true" else "full"
+
+
 def build_hub_map() -> dict:
+    history = git_history_depth()
     nav_src = os.path.join(REPO, "scripts", "lib", "site.py")
     nav_targets, nav_labels = [], []
     if os.path.exists(nav_src):
@@ -478,7 +489,8 @@ def build_hub_map() -> dict:
             "pages": htmls,
             "data_files": datas,
             "scripts": py,
-            "last_touched": when or "(no commit recorded)",
+            "last_touched": ("(history not fetched in this checkout)" if history == "shallow"
+                             else when or "(no commit recorded)"),
             "nav_links": sorted({h for h in nav_targets if h.startswith(name + "/")}),
             "nav_labels": [l for href, l in zip(nav_targets, nav_labels)
                            if href.startswith(name + "/")],
@@ -488,6 +500,7 @@ def build_hub_map() -> dict:
     kinds = Counter(h["kind"] for h in hubs)
     return {
         "kind_totals": dict(sorted(kinds.items())),
+        "history": history,
         "base_commit": subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"],
                                       capture_output=True, text=True).stdout.strip(),
         "hub_count": len(hubs),
