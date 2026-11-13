@@ -1841,3 +1841,12 @@ above explicitly names a file. Any change a task forces into a sibling scope is 
 - 2026-11-13 — FI-05 complete: `python3 scripts/validate_data.py` PASS (62 sources, 15 flagged rows all blank-valued, all cross-refs resolve); `python3 tests/check_site.py` PASS (177 pages, 424 tables, 10401 links, all published rows sourced); `python3 scripts/check_links.py` PASS (3568 local references, no broken internal links).
 - 2026-11-13 — FI-06 in progress: integration PR to `main`, merge, GitHub Pages deploy confirmation.\n
 
+---
+
+# Final integration session — `arena/4e497907-korea2`
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Integrate the official Lineup Lab dashboard into shared Line Lab navigation and verify its nested-page links | in progress | `arena/4e497907-korea2` | `scripts/lib/site.py`, generated root `index.html` and `pages/*.html`, this section of `COORDINATION.md` |
+
+**Claim note (2026-11-13 UTC):** The prior sessions' task scopes and source work are marked done; this final integration claim is limited to shared navigation and its generated output. Existing data and sibling dashboards remain read-only. The current Arena branch `arena/4e497907-korea2` is fixed; no other branch will be used.
