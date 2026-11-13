@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_utc": "2026-11-13T23:47:02+00:00",
+  "generated_utc": "2026-11-13T23:54:31+00:00",
   "auditor": "decision-hub/scripts/audit_root.py",
   "rule": "A published number is PASS only if this independent implementation reproduces it from committed inputs within tolerance. Anything else is FAIL, BLANK or OBSERVATION."
  },

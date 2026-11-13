@@ -1,0 +1,421 @@
+{
+  "meta": {
+    "title": "Review Board programme layer",
+    "session": "arena/e470a321-korea2",
+    "written": "2026-11-13",
+    "class": "PROPOSALS. Nothing in this file is a measurement or a verified strategy. Every row states a test that has not been run, plus the input it is waiting for. Numbers that already exist in this repository are not repeated here - they are read from the committed registers by build_site.py and linked to their own file.",
+    "how_to_read": "A signal row is a *design*: hypothesis, required inputs, how it would be tested, and what stops it today. A row whose status is 'blocked' cannot be implemented no matter how it is coded, because the input does not exist in verified form."
+  },
+  "phases": [
+    {
+      "id": "P1",
+      "name": "Freeze the decision layer, spend nothing on models",
+      "decision": "Adopt one review queue, one leaderboard definition and one gate set for the whole repository, and publish the review state on the site.",
+      "clusters": [
+        "T10",
+        "T12"
+      ],
+      "cost": "no licence, no new feed: repository work only",
+      "why_first": "Twenty-eight nav labels, seven suggestion registers with colliding IDs, ten gate IDs used with two different meanings and four reward schedules are currently competing for the reader's attention. Any model work done before this is re-done afterwards.",
+      "unlocks": "A single 'passed / failed / blocked' answer per strategy that all hubs must agree with.",
+      "exit_test": "Every published number traces to one canonical register; the queue carries a recorded decision for each cluster.",
+      "source_id": "RB-SRC-13"
+    },
+    {
+      "id": "P2",
+      "name": "Capture the inputs that do not exist yet",
+      "decision": "Approve the capture of (a) the official injury report as a dated archive, and (b) a price source with prop and alt lines. Pick A or B for each.",
+      "clusters": [
+        "T03",
+        "T04",
+        "T02"
+      ],
+      "cost": "(a) a scheduled job, near zero cash; (b) a commercial licence, or a self-collected log with no history",
+      "why_first": "The three research questions that matter - can we beat the close, are injury absences priced in, can prop combos be priced - all fail today for want of data, not for want of method. This is the only phase that creates new information.",
+      "unlocks": "Point-in-time availability features, prop prices, opening-line timestamps.",
+      "exit_test": "A backtestable table where every row's timestamp is provably before kickoff.",
+      "source_id": "RB-SRC-13"
+    },
+    {
+      "id": "P3",
+      "name": "Fix the statistics that are wrong, then re-test",
+      "decision": "Replace the pooled ATS 'coin-flip test' with the one-observation-per-game test, publish confidence intervals, and add negative controls to every batch.",
+      "clusters": [
+        "T07",
+        "T08"
+      ],
+      "cost": "repository work only",
+      "why_first": "The published 50.0% / p = 1.0 figure is an arithmetic identity (each game is pooled twice, once per side), so it currently proves nothing. Fixing it is cheap and it is quoted on the landing page.",
+      "unlocks": "A gate set that can actually reject a lucky strategy.",
+      "exit_test": "One-observation-per-game figures with intervals, plus the two controls shown next to the candidates.",
+      "source_id": "RB-SRC-13"
+    },
+    {
+      "id": "P4",
+      "name": "Run the competition on paper",
+      "decision": "Approve a zero-payout leaderboard with the published gates and a variance-resistant score, and decide separately whether any prize is ever funded.",
+      "clusters": [
+        "T09"
+      ],
+      "cost": "no cash if the pool stays symbolic",
+      "why_first": "It creates the discipline the brief asks for - strategies earn a rank by passing gates, not by posting ROI - without attaching money to a system that has qualified nothing.",
+      "unlocks": "A ranked, auditable set of candidate signals and an incentive structure that can be pointed at real data later.",
+      "exit_test": "Every entry shows gates passed, bets settled, interval, and the gate it failed.",
+      "source_id": "RB-SRC-13"
+    },
+    {
+      "id": "P5",
+      "name": "Only then: decide on execution and funding",
+      "decision": "Legal/jurisdiction review outcome, whether a real account exists, and whether anything is ever staked.",
+      "clusters": [
+        "T01"
+      ],
+      "cost": "external advice",
+      "why_first": "It is last because it is the one phase that cannot be prepared by code and because nothing before it depends on it.",
+      "unlocks": "Nothing in the research path; it decides whether a betting product exists at all.",
+      "exit_test": "A written jurisdiction position, linked from the site.",
+      "source_id": "RB-SRC-13"
+    }
+  ],
+  "review_rules": [
+    {
+      "rule": "Nothing is implemented from this board by the agent that wrote it. A cluster moves only when the owner records approve / reject / modify.",
+      "why": "The brief is to review suggestions and choose the path before changes are made; several prior sessions implemented their own proposals, which is how the repository grew to the state described on the Hub map page.",
+      "source_id": "RB-SRC-13"
+    },
+    {
+      "rule": "A rejected suggestion stays on the board with its status and date; it is not deleted.",
+      "why": "The same idea has already been re-proposed by four sessions that did not see the earlier decision.",
+      "source_id": "RB-SRC-13"
+    },
+    {
+      "rule": "Two suggestions that touch the same file may not be implemented in the same change.",
+      "why": "Every session in this repository shares COORDINATION.md, and merge conflicts there are the dominant cost of parallel work.",
+      "source_id": "RB-SRC-13"
+    },
+    {
+      "rule": "A cluster may not be approved while a question inside it is 'unanswered', unless the approval explicitly says the gap is accepted.",
+      "why": "That is what turns 'we do not know' into a decision instead of an accident.",
+      "source_id": "RB-SRC-13"
+    },
+    {
+      "rule": "Every published value keeps its class: official fact, computed from a third-party feed, or proposal.",
+      "why": "The audit trail showed values quoted as verified that were model outputs, and vice versa.",
+      "source_id": "RB-SRC-13"
+    }
+  ],
+  "signals": [
+    {
+      "id": "SIG-01",
+      "name": "Starting-QB absence",
+      "family": "single bet - spread and total",
+      "hypothesis": "A confirmed absence of the designated starting quarterback moves a game's expected margin more than the posted line adjusts, in the first hours after the news breaks.",
+      "inputs_required": "Point-in-time 'who starts' record per team-game, kickoff timestamp, opening and closing spread/total, book and time of each price.",
+      "status": "blocked",
+      "blocked_on": "T03 (no archived point-in-time availability record) and T02 (no opening-line archive). Today's slate shows why a live read is not enough: the report lists Kyler Murray (QB) Out for MIN and Sam Darnold (QB) Out for SEA with Drew Lock starting - a fact published on Friday, not a fact stored anywhere in this repository.",
+      "test_design": "Event study: for each QB-absence announcement, measure the close-vs-open move and the residual margin against a model that already prices the close. One-sided test, Holm or Benjamini-Hochberg correction across all signal variants, minimum 300 qualifying games before any claim.",
+      "falsifier": "If the close has already absorbed the move (residual slope ~ 0), the signal is worthless as a bet and only useful as a feature for later-prop pricing.",
+      "prior_evidence": "none - never tested here",
+      "source_id": "RB-SRC-01"
+    },
+    {
+      "id": "SIG-02",
+      "name": "Backup-quality delta (1st vs 2nd/3rd/4th string)",
+      "family": "single bet - spread, team totals",
+      "hypothesis": "The cost of an absence depends on who replaces the absent player, so the same 'Out' tag has different value for a deep team and a thin one.",
+      "inputs_required": "A per-position depth ordering with a published source, plus the replacement's prior-season performance.",
+      "status": "blocked - hard",
+      "blocked_on": "T04. The league publishes no official depth chart at any path the sibling hubs could reach, and the club charts that do exist are labelled unofficial, are stale on at least five clubs, and omit the backup entirely at several starter-out positions (see each hub's own flags). Until a string source is chosen, every 'backup quality' number would be invented.",
+      "test_design": "Build a replacement-value index from snaps and participation rather than from any chart, then test the index against closing-line residuals. Publish the index definition next to every result.",
+      "falsifier": "If the index adds nothing beyond a plain 'count of Out players', drop it - one number is better than two.",
+      "prior_evidence": "none - never tested here",
+      "source_id": "RB-SRC-01"
+    },
+    {
+      "id": "SIG-03",
+      "name": "Defensive deficiency: shared absences in a secondary or front seven",
+      "family": "single bet - team totals, alt totals",
+      "hypothesis": "Two or more Out designations in the same defensive unit (e.g. both starting cornerbacks) degrade points allowed more than the market's linear adjustment, because the third-string player's snap share jumps.",
+      "inputs_required": "Position-group absence counts from the official report (available), snap share by defender for the replacement (available in a third-party feed), and a price for the alt total (not available).",
+      "status": "partially testable",
+      "blocked_on": "T02 for the price, but the *accuracy* half can be tested now: predict team points allowed from unit-absence counts and compare with the realised total. The root pipeline already measures the market's total at MAE 10.617 on the same games, which is the benchmark to beat.",
+      "test_design": "Walk-forward regression on unit-absence counts by position group, target = team points; then test whether the residual correlates with the closing total. Sample floor from the repo's own power table before any significance claim.",
+      "falsifier": "If unit-absence counts add nothing over team-level counts, the 'which unit' detail is noise and should not be published.",
+      "prior_evidence": "none - never tested here",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "SIG-04",
+      "name": "Offensive-line depletion vs sack and pressure props",
+      "family": "player prop combo",
+      "hypothesis": "Missing starters on the offensive line raise pass-rush product prices (sacks, pressures, QB hits) for the opposing edge rusher more than the passing-yards line moves.",
+      "inputs_required": "OL absence count per team-game (from the official report), a prop price series (absent), snap counts for the replacement (third-party feed).",
+      "status": "blocked",
+      "blocked_on": "T02. Prop ROI cannot be measured at all in this repository because no historical player-prop prices exist in the feed the pipeline consumes; the root site states this rather than inventing a price.",
+      "test_design": "Calibrate a sack-count model first (accuracy only), then once prices exist, evaluate as CLV, not ROI.",
+      "falsifier": "If the accuracy gain over a naive rate is inside the interval, stop.",
+      "prior_evidence": "none - never tested here",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "SIG-05",
+      "name": "Same-game parlay legs priced with measured dependence",
+      "family": "parlay / prop combo",
+      "hypothesis": "For same-team legs (QB passing yards + WR1 receiving yards), the market's multiplied-and-discounted parlay price mis-states the joint probability; a copula or direct joint estimate finds the difference.",
+      "inputs_required": "A parlay price series, or a house rule for same-game legs; plus the joint outcome distribution (available in the committed extracts).",
+      "status": "partially testable",
+      "blocked_on": "T02/T06 for the price. The dependence side is measurable today, and the hubs already disagree on its size - see the Reconciliation page: the same label carries different coefficients across hubs because 'WR1' is defined differently (designated starter, projected starter, actual game leader).",
+      "test_design": "Freeze one definition per leg, publish each coefficient with its interval and n, then compare the joint exceedance rate to the independence product on out-of-sample seasons.",
+      "falsifier": "If a single canonical definition collapses the spread between published coefficients to ~0, the disagreement was definitional and the parlay edge may be too small to trade.",
+      "prior_evidence": "the repository's own measurement, quoted from its file rather than restated here",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "SIG-06",
+      "name": "Availability-delta line move (news-to-close latency)",
+      "family": "single bet - spread, any market",
+      "hypothesis": "The bet is on the gap between the Friday/saturday availability news and the close, not on the news itself; a strategy that only reads the close is measuring the market's own skill.",
+      "inputs_required": "Timestamped line history (absent), timestamped availability capture (buildable).",
+      "status": "blocked",
+      "blocked_on": "T02. This is the reason the CLV-logging proposal ranks where it does: without timestamps there is no way to distinguish a skill claim from a race to the close.",
+      "test_design": "Log every price with its source and time; measure median absolute price improvement vs close after the fact; report as CLV, with a minimum-holdout rule so the leaderboard cannot be gamed by a single lucky week.",
+      "falsifier": "If price improvement is indistinguishable from zero, the strategy has no edge to develop.",
+      "prior_evidence": "none - never tested here",
+      "source_id": "RB-SRC-01"
+    },
+    {
+      "id": "SIG-07",
+      "name": "Inactives-minus-report gap",
+      "family": "feature engineering, all markets",
+      "hypothesis": "The gap between 'players listed Out on the report' and 'players actually declared inactive 90 minutes before kickoff' is a measurable, usable signal - and a data-quality trap for anyone building features from the report alone.",
+      "inputs_required": "Per-game inactive lists (public on the official site as game news), the report for the same game (available), and a price series (absent).",
+      "status": "testable now for data quality, blocked for pricing",
+      "blocked_on": "nothing for the first half. Today's capture already demonstrates the trap: four clubs printed 'No Injuries Reported' in one hub's earlier capture while the same day's official news listed injuries for them, and the Monday-night game carries no game-status designations at all in the Friday report.",
+      "test_design": "Build the inactive-vs-report difference table for every game in one week, measure how often a player declared Out plays and how often an unlisted player is inactive. Publish the error rate as a feature-quality note on every availability-based page.",
+      "falsifier": "If the report and the inactives agree almost always, drop the reconciliation step and document the single exception class (rested players).",
+      "prior_evidence": "none - never tested here",
+      "source_id": "RB-SRC-04"
+    }
+  ],
+  "gates": [
+    {
+      "id": "G1",
+      "name": "Point-in-time integrity",
+      "requirement": "Every input provably timestamped before kickoff; feature builders refuse future-dated rows.",
+      "why": "This is the project's dominant failure mode: an 'injury signal' built by re-reading the live report today is hindsight, and every hub that skipped it produced an unbeatable result.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G2",
+      "name": "Sample floor before the test, not after",
+      "requirement": "Declare n and the effect size; a candidate with fewer settled bets than the power analysis requires is reported as 'insufficient', never as 'passed' or 'rejected'.",
+      "why": "The repository's own power table shows how large 'enough' is; without it a 137-bet strategy looks like a finding.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G3",
+      "name": "Correction for the number of things tried",
+      "requirement": "Benjamini-Hochberg across the whole batch, plus a deflated-Sharpe-style adjustment for variants of the same idea.",
+      "why": "A leaderboard where 31 variants compete will produce a winner by construction.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G4",
+      "name": "Interval, not a point estimate",
+      "requirement": "Every ROI, win rate and coefficient published with a bootstrap or Wilson interval; a claim whose interval crosses the break-even line is labelled 'not distinguishable from zero'.",
+      "why": "It stops a positive number from being read as an edge.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G5",
+      "name": "Settlement rules written down first",
+      "requirement": "Push, void, no-action, each-leg-loses and altered-leg rules recorded with the operator source and effective date before any price is used.",
+      "why": "Different hubs currently disagree on push handling, which moves win rates by more than most candidate edges.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G6",
+      "name": "Market benchmark required",
+      "requirement": "Every accuracy claim must be compared with the closing market on the same games, not with a naive baseline.",
+      "why": "The site's own headline result is that the close beats the model; a claim that only beats 'average yards' is not a claim about betting.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G7",
+      "name": "Out-of-sample, walk-forward, untouched holdout",
+      "requirement": "Fit on the past, test on the future, and reserve a final window no run is allowed to touch more than once.",
+      "why": "It is the only part of the design that removes the researcher's own luck.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G8",
+      "name": "Luck removal / variance controls",
+      "requirement": "Score the leaderboard on CLV and Brier-type skill against the market with a minimum-bet floor and a shrinkage factor; season-length results may not promote a strategy.",
+      "why": "'Remove luck from the equation' is a requirement, and ROI at small n is mostly luck.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G9",
+      "name": "Executable price, no reprice",
+      "requirement": "Settle at the price a bettor could actually have taken; a multi-leg bet may not be repriced to a more favourable combination of legs.",
+      "why": "An audit of a sibling lab found exactly that in its price-sensitivity gate, which inflated its results.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G10",
+      "name": "Reproducible and source-disciplined",
+      "requirement": "Rebuild from a clean checkout reproduces every published number; every table row links a source; unverifiable values stay blank and appear on the flagged page.",
+      "why": "It is the project's stated rule, and the audit trail shows where the site breaks it.",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "G11",
+      "name": "Depth and opponent adjustment (proposed, not implementable today)",
+      "requirement": "Any 'backup quality' or 'defensive deficiency' claim must name the source that defines the string depth, or it is not a claim.",
+      "why": "Included so the requirement in the brief is visible as a gate, not as a vague aspiration. No source currently satisfies it.",
+      "source_id": "RB-SRC-13"
+    },
+    {
+      "id": "G12",
+      "name": "Correlation-stability check for parlays (proposed)",
+      "requirement": "A parlay claim may not rest on a coefficient measured on a different leg definition than the one being bet, and the coefficient must be stable across seasons.",
+      "why": "The Reconciliation page shows the same label carrying several different coefficients across hubs; today that would pass unnoticed.",
+      "source_id": "RB-SRC-13"
+    }
+  ],
+  "competition": {
+    "entry_unit": "A strategy = a written rule + a market + a stake rule + a settlement rule, submitted as code with a fixed seed. No rule text, no entry.",
+    "scoring": [
+      {
+        "metric": "Closing-line value (median price improvement vs close)",
+        "weight": "primary",
+        "min_n": "declared before the run; insufficient n is reported as insufficient"
+      },
+      {
+        "metric": "Brier / log-loss skill vs the closing market probability",
+        "weight": "secondary, removes outcome luck at small n",
+        "min_n": "same"
+      },
+      {
+        "metric": "ROI with bootstrap interval",
+        "weight": "reported, never used to promote on its own",
+        "min_n": "same"
+      },
+      {
+        "metric": "Stability across seasons (share of seasons profitable, no single-season dominance)",
+        "weight": "tie-breaker",
+        "min_n": "at least three full seasons"
+      },
+      {
+        "metric": "Capacity (price improvement achievable at the stake rule's limit)",
+        "weight": "reported",
+        "min_n": "n/a"
+      }
+    ],
+    "anti_luck": [
+      "A final holdout window is sealed: no entry may be re-run against it more than once, and the count of runs against it is published.",
+      "A negative control (all home teams, all overs) enters every batch and is published next to the candidates; a candidate that does not beat its own control is not ranked.",
+      "Every batch declares how many variants were tried; the multiple-comparison correction uses that number, not the number that survived.",
+      "Pushes and voids are settled by the written operator rule and removed from the win-rate denominator; the removal count is shown.",
+      "The leaderboard ranks on intervals: an entry whose confidence interval overlaps break-even is marked 'not distinguishable from zero' regardless of its point estimate."
+    ],
+    "tiers": [
+      {
+        "tier": "Tier 1 - validated",
+        "requirement": "all gates pass on recorded prices, holdout untouched",
+        "reward": "the only tier eligible for any funded prize or allocation; today no reward is funded"
+      },
+      {
+        "tier": "Tier 2 - provisional",
+        "requirement": "all gates pass except those blocked by missing data (price feed, depth source)",
+        "reward": "paper leaderboard placement and a 'blocked on' label naming the missing input"
+      },
+      {
+        "tier": "Tier 3 - rejected",
+        "requirement": "any statistical gate fails",
+        "reward": "stays published with the failing gate named - a rejection is a finding"
+      },
+      {
+        "tier": "Tier 0 - insufficient",
+        "requirement": "sample floor not met",
+        "reward": "listed with the number of bets still needed"
+      }
+    ],
+    "funding_note": "Whether any prize is ever funded is cluster T09 and an owner decision; nothing in this repository records a funded pool, and no hub may state a payout as available.",
+    "source_id": "RB-SRC-09"
+  },
+  "information_gaps": [
+    {
+      "id": "GAP-01",
+      "question": "Can any strategy beat the closing line on a price a bettor could actually take?",
+      "have": "Model-vs-close accuracy on the committed extract, and the gate results showing nothing passes.",
+      "missing": "Opening-line and prop price history with timestamps.",
+      "discover_by": "Compare two routes before spending: a licensed historical archive (instant backtest, licence review needed, no republishing rights assumed) versus starting a self-collected log now (no cost, no history for months). A one-week spike on a single operator's public odds page settles whether the second route is even technically possible under its terms.",
+      "owner_of_answer": "Owner (budget) + a session (spike).",
+      "source_id": "RB-SRC-09"
+    },
+    {
+      "id": "GAP-02",
+      "question": "How much is a starter's absence worth, and does the line already know?",
+      "have": "The official weekly report (statuses, practice participation), per-team news roundups, and today's example slate with two QBs Out.",
+      "missing": "A dated archive of those reports, a definition of who the 'starter' is, and the price at the moment the news hit.",
+      "discover_by": "Capture the official report on a schedule for four weeks and publish the capture log; the archive itself answers the 'was it knowable pre-game' question that no single re-read can.",
+      "owner_of_answer": "A session can build the capture; the owner approves the schedule.",
+      "source_id": "RB-SRC-01"
+    },
+    {
+      "id": "GAP-03",
+      "question": "Which backup is playing, and how much worse is he?",
+      "have": "Nothing official. Club charts are labelled unofficial, several are stale, some list no backup at a starter-out position, and one club's chart page renders no table at all.",
+      "missing": "A citable per-position ordering and the replacement's prior performance.",
+      "discover_by": "Derive an order from snaps and participation (third-party feed, labelled as a construct) and validate it against the club charts where both exist - the disagreement rate is itself the answer to 'can we trust the charts'.",
+      "owner_of_answer": "A session.",
+      "source_id": "RB-SRC-06"
+    },
+    {
+      "id": "GAP-04",
+      "question": "What are the settlement rules that our prices must respect?",
+      "have": "Operators publish house rules; the sibling hubs cite them with dates.",
+      "missing": "One written settlement spec in this repository (push, void, each-leg-loses, altered legs, live-ball voids) with an effective date and a source per clause.",
+      "discover_by": "Read the operator rules pages already in the hub registers, copy the clauses into a spec file, and have the checker require every price-sensitive claim to cite it.",
+      "owner_of_answer": "A session.",
+      "source_id": "RB-SRC-12"
+    },
+    {
+      "id": "GAP-05",
+      "question": "Which published number is the canonical one when hubs disagree?",
+      "have": "The Reconciliation page: five quantities where the same label carries different values across hubs, and ten gate IDs where two hubs use the same ID for different tests.",
+      "missing": "A decision: which definition wins per quantity.",
+      "discover_by": "Adopt a rule instead of a tie-break - the canonical value is the one whose definition file names the sample, the season window and the leg definition. Anything else is quarantined to the flagged page.",
+      "owner_of_answer": "Owner (rule) + a session (apply).",
+      "source_id": "RB-SRC-08"
+    },
+    {
+      "id": "GAP-06",
+      "question": "How current is the site a reader is looking at?",
+      "have": "Every hub carries its own as-of stamp; this board lists them per file on the Reconciliation page.",
+      "missing": "A site-wide freshness rule: no page may present a slate or a 'current' state older than the next scheduled capture, and the notice must be generated, not typed.",
+      "discover_by": "Compute the oldest stamp on each page at build time and render a badge; a page whose inputs are older than the next capture is labelled 'reference only'.",
+      "owner_of_answer": "A session.",
+      "source_id": "RB-SRC-08"
+    },
+    {
+      "id": "GAP-07",
+      "question": "Is there any legal way to act on this at all?",
+      "have": "Nothing in the repository records a jurisdiction determination, a licence, or an account.",
+      "missing": "That determination.",
+      "discover_by": "A single external review, scoped to: is operating/using such a system from the owner's jurisdiction lawful, and under what terms may results be published publicly. Nothing else should be built before the answer exists.",
+      "owner_of_answer": "Owner.",
+      "source_id": "RB-SRC-11"
+    },
+    {
+      "id": "GAP-08",
+      "question": "Does the leaderboard need money to work?",
+      "have": "Four reward schedules across hubs, none with a funded pool; a documented public precedent for prize-funded NFL analytics competitions with published award amounts.",
+      "missing": "The owner's position on funding.",
+      "discover_by": "Decide funding last (see phase P4): a paper leaderboard tests the mechanism with no exposure, and its results are the input to the funding decision rather than the other way round.",
+      "owner_of_answer": "Owner.",
+      "source_id": "RB-SRC-12"
+    }
+  ]
+}

@@ -1,0 +1,487 @@
+{
+ "kind_totals": {
+  "code": 6,
+  "data register": 1,
+  "other": 1,
+  "site hub": 17
+ },
+ "history": "shallow",
+ "base_commit": "6b6c262",
+ "hub_count": 25,
+ "nav_target_count": 30,
+ "nav_duplicate_labels": [
+  {
+   "label": "Suggestions hub",
+   "count": 2
+  }
+ ],
+ "nav": [
+  {
+   "href": "index.html",
+   "label": "Overview"
+  },
+  {
+   "href": "pages/executive.html",
+   "label": "Executive summary"
+  },
+  {
+   "href": "pages/lines.html",
+   "label": "Originated lines"
+  },
+  {
+   "href": "pages/props.html",
+   "label": "Player props"
+  },
+  {
+   "href": "pages/correlation.html",
+   "label": "Correlation &amp; parlays"
+  },
+  {
+   "href": "pages/strategies.html",
+   "label": "Strategy lab"
+  },
+  {
+   "href": "pages/validation.html",
+   "label": "Validation gates"
+  },
+  {
+   "href": "pages/leaderboard.html",
+   "label": "Leaderboard"
+  },
+  {
+   "href": "pages/luck.html",
+   "label": "Removing luck"
+  },
+  {
+   "href": "pages/market.html",
+   "label": "Market benchmark"
+  },
+  {
+   "href": "pages/verification.html",
+   "label": "Verification"
+  },
+  {
+   "href": "pages/method.html",
+   "label": "Method &amp; data"
+  },
+  {
+   "href": "pages/sources.html",
+   "label": "Source register"
+  },
+  {
+   "href": "pages/flagged.html",
+   "label": "Flagged for review"
+  },
+  {
+   "href": "decision-desk/index.html",
+   "label": "Decision Desk"
+  },
+  {
+   "href": "lineup-lab/index.html",
+   "label": "Lineup Lab"
+  },
+  {
+   "href": "suggestions/index.html",
+   "label": "Suggestions hub"
+  },
+  {
+   "href": "decision-hub/index.html",
+   "label": "Decision hub"
+  },
+  {
+   "href": "nfl-command/index.html",
+   "label": "NFL Command Center"
+  },
+  {
+   "href": "pages/suggestions.html",
+   "label": "Suggestions hub"
+  },
+  {
+   "href": "pages/decision-hub.html",
+   "label": "Decision desk"
+  },
+  {
+   "href": "pages/decision-suggestions.html",
+   "label": "Suggestion register"
+  },
+  {
+   "href": "pages/decision-questions.html",
+   "label": "Open questions"
+  },
+  {
+   "href": "pages/decision-injury-depth.html",
+   "label": "Injury &amp; depth"
+  },
+  {
+   "href": "pages/decision-signals.html",
+   "label": "Signal lab"
+  },
+  {
+   "href": "pages/decision-parlay.html",
+   "label": "Parlay pricing"
+  },
+  {
+   "href": "pages/decision-verify.html",
+   "label": "Re-verify the numbers"
+  },
+  {
+   "href": "pages/decision-summary.html",
+   "label": "Decision summary"
+  },
+  {
+   "href": "data",
+   "label": "sources.json"
+  },
+  {
+   "href": "data",
+   "label": "provenance.json"
+  }
+ ],
+ "hubs": [
+  {
+   "dir": "audit",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 1,
+   "data_files": 0,
+   "scripts": 2,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "dashboard",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 11,
+   "data_files": 0,
+   "scripts": 0,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "data",
+   "kind": "code",
+   "index_page": false,
+   "pages": 0,
+   "data_files": 22,
+   "scripts": 3,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "decision-desk",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 9,
+   "data_files": 7,
+   "scripts": 2,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [
+    "decision-desk/index.html"
+   ],
+   "nav_labels": [
+    "Decision Desk"
+   ]
+  },
+  {
+   "dir": "decision-hub",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 12,
+   "data_files": 6,
+   "scripts": 4,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [
+    "decision-hub/index.html"
+   ],
+   "nav_labels": [
+    "Decision hub"
+   ]
+  },
+  {
+   "dir": "lineup-lab",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 12,
+   "data_files": 14,
+   "scripts": 7,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [
+    "lineup-lab/index.html"
+   ],
+   "nav_labels": [
+    "Lineup Lab"
+   ]
+  },
+  {
+   "dir": "nfl-command",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 14,
+   "data_files": 11,
+   "scripts": 2,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [
+    "nfl-command/index.html"
+   ],
+   "nav_labels": [
+    "NFL Command Center"
+   ]
+  },
+  {
+   "dir": "nfl-lines",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 6,
+   "data_files": 0,
+   "scripts": 0,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "nfl-research",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 6,
+   "data_files": 0,
+   "scripts": 4,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "origination",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 13,
+   "data_files": 8,
+   "scripts": 0,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "origination-lab",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 15,
+   "data_files": 9,
+   "scripts": 14,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "pages",
+   "kind": "other",
+   "index_page": false,
+   "pages": 24,
+   "data_files": 0,
+   "scripts": 0,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [
+    "pages/correlation.html",
+    "pages/decision-hub.html",
+    "pages/decision-injury-depth.html",
+    "pages/decision-parlay.html",
+    "pages/decision-questions.html",
+    "pages/decision-signals.html",
+    "pages/decision-suggestions.html",
+    "pages/decision-summary.html",
+    "pages/decision-verify.html",
+    "pages/executive.html",
+    "pages/flagged.html",
+    "pages/leaderboard.html",
+    "pages/lines.html",
+    "pages/luck.html",
+    "pages/market.html",
+    "pages/method.html",
+    "pages/props.html",
+    "pages/sources.html",
+    "pages/strategies.html",
+    "pages/suggestions.html",
+    "pages/validation.html",
+    "pages/verification.html"
+   ],
+   "nav_labels": [
+    "Executive summary",
+    "Originated lines",
+    "Player props",
+    "Correlation &amp; parlays",
+    "Strategy lab",
+    "Validation gates",
+    "Leaderboard",
+    "Removing luck",
+    "Market benchmark",
+    "Verification",
+    "Method &amp; data",
+    "Source register",
+    "Flagged for review",
+    "Suggestions hub",
+    "Decision desk",
+    "Suggestion register",
+    "Open questions",
+    "Injury &amp; depth",
+    "Signal lab",
+    "Parlay pricing",
+    "Re-verify the numbers",
+    "Decision summary"
+   ]
+  },
+  {
+   "dir": "pipeline",
+   "kind": "code",
+   "index_page": false,
+   "pages": 0,
+   "data_files": 0,
+   "scripts": 16,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "quant-lab",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 12,
+   "data_files": 23,
+   "scripts": 8,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "research-desk",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 6,
+   "data_files": 0,
+   "scripts": 2,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "results",
+   "kind": "data register",
+   "index_page": false,
+   "pages": 0,
+   "data_files": 6,
+   "scripts": 0,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "review-board",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 14,
+   "data_files": 9,
+   "scripts": 4,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "scripts",
+   "kind": "code",
+   "index_page": false,
+   "pages": 0,
+   "data_files": 0,
+   "scripts": 30,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "site",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 1,
+   "data_files": 6,
+   "scripts": 7,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "skill-lab",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 12,
+   "data_files": 10,
+   "scripts": 9,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "suggestions",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 13,
+   "data_files": 11,
+   "scripts": 1,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [
+    "suggestions/index.html"
+   ],
+   "nav_labels": [
+    "Suggestions hub"
+   ]
+  },
+  {
+   "dir": "tests",
+   "kind": "code",
+   "index_page": false,
+   "pages": 0,
+   "data_files": 0,
+   "scripts": 3,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "tools",
+   "kind": "code",
+   "index_page": false,
+   "pages": 0,
+   "data_files": 0,
+   "scripts": 3,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "verification",
+   "kind": "code",
+   "index_page": false,
+   "pages": 0,
+   "data_files": 4,
+   "scripts": 1,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "verify-hub",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 9,
+   "data_files": 7,
+   "scripts": 4,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  }
+ ],
+ "total_pages": 191,
+ "total_data_files": 153,
+ "_generated_by": "review-board/scripts/ingest.py",
+ "_generated_from_repo_commit": "6b6c262062e28d0a4ee3ab21da60b6b981677000"
+}

@@ -1,0 +1,320 @@
+{
+  "generated_on": "2026-11-13",
+  "policy": "Non-blocking by design: a flag is published rather than resolved silently, and the field it touches is left blank until a source supports a value. Every row names how it was checked, so a reviewer can re-run the check instead of trusting the finding.",
+  "kind_definitions": {
+    "data gap": "the information required does not exist in a source this project can cite",
+    "contradiction": "two official or two sibling-hub statements disagree about the same fact",
+    "method defect": "a published calculation does not measure what its label claims",
+    "irregularity": "a published value, label or citation is wrong, stale or misplaced",
+    "governance": "two or more hubs published incompatible rules for the same object"
+  },
+  "flags": [
+    {
+      "id": "RB-01",
+      "title": "No official source publishes depth, so every string-depth cell on this hub is blank",
+      "kind": "data gap",
+      "severity": "high",
+      "finding": "The brief requires knowing when a second, third or fourth-stringer replaces a starter. Nothing the league publishes carries a depth string: the report lists designations only. The one league policy page the sibling hubs cited for injury reporting returns 404 today, and the club charts the sibling hubs used are labelled unofficial, are stale in several cases, and in at least three clubs omit a backup entirely at a position where a starter is out.",
+      "verification": "Checked the depth page's source list in decision-desk and data/derived/manifest.json, attempted the operations-site injury-report policy path (404), and re-read the Week 10 report: it has columns for practice and game status and none for depth.",
+      "action": "Decide cluster T04: accept a playing-time construct (snap share) as the substitute for depth, label it a construct everywhere, and stop calling it a depth chart.",
+      "source_id": "RB-SRC-06",
+      "affects": [
+        "pages/depth.html",
+        "pages/signals.html",
+        "pages/questions.html"
+      ]
+    },
+    {
+      "id": "RB-02",
+      "title": "The Monday game carries no game statuses in the Friday report at all",
+      "kind": "data gap",
+      "severity": "high",
+      "finding": "The Mon 20:15 block (LAC at BAL) holds 21 rows in this hub's transcription and exactly zero of them carry a game status: only practice marks. Khalil Mack (DNP) and David Njoku (Limited) are examples where a model reading only designations sees nothing.",
+      "verification": "Counted the status column per slot in review-board/data/raw/injury_report_2026-11-13_week10.csv: Monday rows 21, with a status 0. 53 rows across the whole capture are practice-only.",
+      "action": "Saturday capture is mandatory for any Monday-night slate. Until then the Monday matchup is unmodellable from the official report and should be listed as such rather than inferred.",
+      "source_id": "RB-SRC-01",
+      "affects": [
+        "pages/injuries.html",
+        "pages/signals.html"
+      ]
+    },
+    {
+      "id": "RB-03",
+      "title": "A quarterback confirmed out for 6-10 weeks appears nowhere in the weekly report",
+      "kind": "contradiction",
+      "severity": "high",
+      "finding": "The league's Friday news reports the Baltimore quarterback out 6-10 weeks after thumb surgery, on a club medical statement. The Week 10 report for Baltimore prints three rows - Bateman, Hawkins, Ioane - and no quarterback row at all. Long-term absences live on the IR and transaction side, not in the weekly practice report, so the report alone systematically understates the biggest availability shocks.",
+      "verification": "Grepped the transcribed report for the club's rows and for the player named in the same day's news block; compared with decision-desk Q-08, which records both that club quarterbacks on IR and leaves the starter blank.",
+      "action": "An absence ledger must union the weekly report with IR and transaction listings. Sibling hubs that read only the report are missing the largest absences.",
+      "source_id": "RB-SRC-04",
+      "affects": [
+        "pages/depth.html",
+        "pages/executive.html"
+      ]
+    },
+    {
+      "id": "RB-04",
+      "title": "A pooled ATS '50.0%, p = 1.0' figure was an arithmetic identity - the root register has since been corrected, a sibling audit has not",
+      "kind": "method defect",
+      "severity": "medium",
+      "finding": "At the base commit this review started from, the root register published ats_coin_flip_test as a pooled two-sides-per-game count (n = 13,784, rate 50.0%, p = 1.0), which is an arithmetic identity: exactly one side of every pair covers, so the rate cannot move. Since then the root register was rebuilt and now publishes the honest one-observation-per-game test under that name (home cover 48.91%, n = 6,892, CI 47.73-50.09, p = 0.0727) with the pooled figure separated into ats_pooled_identity and labelled an identity. The remaining problem is downstream: verify-hub's claims audit row B-05 still records that it read ats_coin_flip_test and got 'wins 6892, n 13784, rate 0.5, p 1.0' - a description of the pre-fix field, now attached to a field name that holds the per-game test.",
+      "verification": "Read data/derived/luck.json (ats_coin_flip_test n 6,892 rate 0.4891; ats_pooled_identity n 13,784 rate 0.5 p 1.0) and data/derived/market.json (ats_home_cover 0.4891, CI 0.4773-0.5009, p 0.0727) against verify-hub/data/claims_audit.json row B-05, which quotes the old pairing. Git history: the root fix arrived with PR #94 at da78bd0, after this review's base 007f2ed.",
+      "action": "Re-run verify-hub's audit against the corrected register so its claim text, the field it cites and the numbers agree; until then B-05 must not be quoted as a verification of the root KPI. This is a sibling-hub edit - reported here, not made here.",
+      "source_id": "RB-SRC-09",
+      "affects": [
+        "pages/executive.html",
+        "pages/competition.html",
+        "pages/flagged.html",
+        "pages/reconciliation.html"
+      ]
+    },
+    {
+      "id": "RB-05",
+      "title": "Eight clubs printed 'No Injuries Reported' midweek while their own news said otherwise",
+      "kind": "contradiction",
+      "severity": "medium",
+      "finding": "The midweek sibling capture records eight clubs whose injury page rendered an explicit no-injuries block, while the same site's news feed for that period reported a designation for at least one player at several of them. An empty report block is therefore not a clean bill of health, and any model that treats 'no row' as 'available' inherits that error.",
+      "verification": "Diffed this hub's Friday transcription against decision-desk/data/injuries.json (254 rows captured 2026-11-12) and recorded the club list in review-board/data/injury_delta.json; cross-read the league's Friday roundup wire.",
+      "action": "Absence of a row must be encoded as unknown, never as available. Encode it in the schema, not in a comment.",
+      "source_id": "RB-SRC-01",
+      "affects": [
+        "pages/injuries.html",
+        "pages/questions.html"
+      ]
+    },
+    {
+      "id": "RB-06",
+      "title": "Ten gate IDs are published with more than one definition across the hubs",
+      "kind": "governance",
+      "severity": "medium",
+      "finding": "Reading every committed register in the repository, ten gate identifiers (G1-G10) carry more than one name, and the hub leaderboards state different gate counts - the root publishes ten gates, the skill leaderboard requires 10/10 for gold while the lineup leaderboard evaluates a different set. A claim of the form 'this strategy passed 9 of 10 gates' is therefore not comparable between hubs.",
+      "verification": "Scanned every committed JSON file in the tree for gate definitions (145 at this build) and matched by ID; the full side-by-side is on the reconciliation page, generated rather than curated.",
+      "action": "Adopt one gate set for the repository and make every hub build against it. Until then no cross-hub qualification claim should be quoted.",
+      "source_id": "RB-SRC-08",
+      "affects": [
+        "pages/gates.html",
+        "pages/competition.html",
+        "pages/reconciliation.html"
+      ]
+    },
+    {
+      "id": "RB-07",
+      "title": "Five quantities are published with different values under the same label",
+      "kind": "irregularity",
+      "severity": "medium",
+      "finding": "From 85 labelled numbers read across the repository, five quantities appear with conflicting values - including the home-ATS-cover against game-total-over relationship, a home-versus-away points split, and a wide-side yardage pair. Each conflict is a definition difference (sample window, pooled versus per-game, side of the line), not a measurement error, but no hub states which convention it uses in its label.",
+      "verification": "Reconciliation pass over every committed register using a declared alias table (printed on the reconciliation page) so the matching rule itself is auditable.",
+      "action": "Each hub should rename its quantity to carry the convention (pooling, side, window). Renaming is a sibling-file edit: proposed, not done.",
+      "source_id": "RB-SRC-08",
+      "affects": [
+        "pages/reconciliation.html",
+        "pages/executive.html"
+      ]
+    },
+    {
+      "id": "RB-08",
+      "title": "Three inconsistent reward schedules exist for one competition, and nothing has been awarded",
+      "kind": "governance",
+      "severity": "high",
+      "finding": "The root leaderboard defines tier 1 as '10/10 gates - full allocation'; the skill hub defines Gold as '10/10 gates plus Skill Score 75 - 4,500 of a 10,000-point pool' with cash_funding an empty string on every tier; a third register models a Kaggle-style schedule with $100,000 prizes. All three coexist in the tree. The state common to all of them: points_awarded 0, approved_count 0.",
+      "verification": "Read data/derived/leaderboard.json, skill-lab/data/leaderboard.json and data/leaderboard.json and compared their published tier fields and award counters directly.",
+      "action": "Owner decision (cluster T09): adopt one schedule, mark the money columns as unfunded until money exists, and stop publishing prize figures the project has no funding for.",
+      "source_id": "RB-SRC-11",
+      "affects": [
+        "pages/competition.html",
+        "pages/executive.html"
+      ]
+    },
+    {
+      "id": "RB-09",
+      "title": "The Friday capture includes a game that had already been played",
+      "kind": "irregularity",
+      "severity": "medium",
+      "finding": "The Week 10 report page printed seven game blocks, the first of which was the Thursday fixture already final (Washington 24, New York Giants 21). A pipeline that treats every block on the page as an upcoming game counts a completed match as a slate item - and, worse, could score a prediction against a result the report itself does not contain.",
+      "verification": "Compared the report's block list with nfl.com/schedules/2026/by-week/week-10, which marks that fixture FINAL.",
+      "action": "Store the slot plus a played/upcoming flag with every capture, and derive 'slate' from the schedule page rather than from the injury page's headings.",
+      "source_id": "RB-SRC-03",
+      "affects": [
+        "pages/injuries.html"
+      ]
+    },
+    {
+      "id": "RB-10",
+      "title": "Prop profitability cannot be measured with the data this repository holds",
+      "kind": "data gap",
+      "severity": "medium",
+      "finding": "The root props register states its own limitation: the model predicts whether a player clears a projected line, but no historical sportsbook price data exists in this project, so real profitability - return, win rate against actual market lines - is unmeasurable. Any prop ROI figure shown on any hub page is therefore not verifiable against a market price.",
+      "verification": "Read data/derived/props.json and data/props_model.json limitation fields in this build; no price file was found anywhere in the tree.",
+      "action": "Either acquire a citable price history or keep prop ROI off every surface. This is cluster T05 plus the price-history gate G11.",
+      "source_id": "RB-SRC-09",
+      "affects": [
+        "pages/signals.html",
+        "pages/gates.html",
+        "pages/executive.html"
+      ]
+    },
+    {
+      "id": "RB-11",
+      "title": "Two hubs give opposite advice about whether practice participation is usable as a feature",
+      "kind": "contradiction",
+      "severity": "medium",
+      "finding": "One hub's own suggestion says to add an injury-probability model because no feature for Wednesday practice participation exists in the tree, and scores 'add a practice-status feature' as low effort / high impact. Another hub has already built a decision desk whose injury register carries practice fields for 254 rows and whose open questions convert DNP and Limited marks into availability judgements. A reviewer reading only one hub concludes the feature is missing; reading both, it exists and is unused.",
+      "verification": "Read verify-hub/data/strategies.json (SG-07), lineup-lab/data/suggestions.json (SUG-12) and decision-desk/data/injuries.json in this build.",
+      "action": "Answer is an integration task, not a research task: wire the existing practice register into the model that ignores it, then re-run that hub's gates.",
+      "source_id": "RB-SRC-12",
+      "affects": [
+        "pages/suggestions.html",
+        "pages/questions.html",
+        "pages/flagged.html"
+      ]
+    },
+    {
+      "id": "RB-12",
+      "title": "A sibling hub's proposal cites a rulebook article that does not say what it claims",
+      "kind": "irregularity",
+      "severity": "medium",
+      "finding": "One proposal states that 'the NFL Rule 19-2 inactive list is due 90 minutes before kickoff' and that a 30-day injured-reserve return window applies this week, and says all four relevant hubs show the same 'no games' placeholder. The published 2026 rulebook change table lists article 19-2 as a disqualification-consultation change for flagrant acts, not inactive lists; the inactive-list deadline is a game-operations policy. Three of those hubs, not four, have the page in the tree.",
+      "verification": "Fetched operations.nfl.com/rules-officiating/2026-nfl-rulebook (reachable, changes table read) and the injury-report policy path (404), and checked which sibling directories contain a lineup page. The 30-day IR-return detail was not confirmable from any reachable official page.",
+      "action": "Correct or drop the citations before the proposal is implemented; a rulebook article number that does not match the rule is the kind of error that survives into a shipped UI. Confirm the 30-day return window against the transactions register before using it.",
+      "source_id": "RB-SRC-05",
+      "affects": [
+        "pages/suggestions.html",
+        "pages/questions.html"
+      ]
+    },
+    {
+      "id": "RB-13",
+      "title": "The official policy text behind the injury-report timing rules could not be re-read today",
+      "kind": "data gap",
+      "severity": "medium",
+      "finding": "The timing and accuracy duties a sibling hub attributes to the league's injury-reporting policy - designation by 16:00 ET Friday, 90 minutes before kickoff, an 80% accuracy requirement - are carried in that hub's source register. The URL it cites returns 404 today, so this hub repeats the rule only as 'as recorded by a sibling register' and does not present it as verified policy.",
+      "verification": "Attempted the policy path and the standings paths the sibling registers cite; two 404, one reachable. Recorded in the source register as a 404 row rather than dropped.",
+      "action": "Owner: supply a reachable policy document, or restate the timing rule as an empirical observation of the publication ladder, which the Friday capture does support.",
+      "source_id": "RB-SRC-05",
+      "affects": [
+        "pages/sources.html",
+        "pages/injuries.html"
+      ]
+    },
+    {
+      "id": "RB-14",
+      "title": "Most hubs in the repository are unreachable from the shared navigation, and one label points at two pages",
+      "kind": "irregularity",
+      "severity": "medium",
+      "finding": "Twenty-five directories carry generated content and seventeen of them are standalone websites. The shared navigation exposes thirty targets, so eighteen directories - including this review hub, skill-lab, verify-hub, research-desk, origination-lab and the results register - are reachable only by typing a path. One label, 'Suggestions hub', appears twice pointing at two different pages. No navigation entry carries an as-of date, so a reader cannot tell that the analytical hubs are stamped weeks before the slate they are being read against.",
+      "verification": "Generated at build time from scripts/lib/site.py's NAV tuple and the directory tree (review-board/data/hub_map.json): page and register counts per directory, and whether a nav target starts with that directory name. No hand-counted number is used on the page.",
+      "action": "Cluster T10: group the nav by function, de-duplicate the label, add the as-of stamp to the shared header, and link this hub. Root-file edit, integration pass - deliberately not done here.",
+      "source_id": "RB-SRC-08",
+      "affects": [
+        "pages/hubmap.html"
+      ]
+    },
+    {
+      "id": "RB-15",
+      "title": "A number quoted in the review brief is not reproducible from any committed register",
+      "kind": "irregularity",
+      "severity": "medium",
+      "finding": "The brief asked for review of a QB-to-WR1 correlation spread of 0.562 / 0.631 / 0.614 / 0.372 across hubs. No committed register in this repository publishes that set: the labelled QB-WR1 value found is +0.561 from a midweek hub snapshot, and the hub that owns the pair correlation publishes a different quantity family entirely. Either the figure came from an uncommitted rebuild, or the labels were re-cut since - and the difference matters, because the spread was the evidence for a correlation-claiming feature.",
+      "verification": "Grepped every committed JSON in the tree for the label and for those four values; the reconciliation page lists every value actually published under that quantity name.",
+      "action": "Do not implement anything justified by that spread until a build reproduces it. Add the reproduction command to the gate, which is cluster T11.",
+      "source_id": "RB-SRC-10",
+      "affects": [
+        "pages/reconciliation.html",
+        "pages/questions.html"
+      ]
+    },
+    {
+      "id": "RB-16",
+      "title": "Analytical hubs are weeks behind the slate they discuss, and the gap is not shown on the pages",
+      "kind": "irregularity",
+      "severity": "high",
+      "finding": "Register stamps across the repository span 2026-11-01T00:00:00Z to 2026-11-12T14:46:06+00:00 while root pages carry Week 10 slate prose captured against a 2026-11-13 report. A reader of the root site sees model claims and a current matchup list side by side with no indication that the model output is twelve days old.",
+      "verification": "Stamp sweep over all committed registers (reconciliation page), compared with each hub's generated page timestamps.",
+      "action": "Print the data as-of stamp in the shared header and in every verdict box. Cheapest honesty fix in the repository.",
+      "source_id": "RB-SRC-08",
+      "affects": [
+        "pages/reconciliation.html",
+        "pages/hubmap.html",
+        "pages/executive.html"
+      ]
+    },
+    {
+      "id": "RB-17",
+      "title": "No hub has recorded a reviewer decision on anything",
+      "kind": "irregularity",
+      "severity": "low",
+      "finding": "Across 89 suggestion rows read from seven sibling registers, the status column carries values such as proposed, needs-decision and open. Not one row records an approval, a rejection, or a date a decision was made - so the boards describe a backlog rather than a history, and nothing here can be attributed to a reviewer's choice.",
+      "verification": "Status tally in review-board/data/queue.json, grouped per cluster at build time.",
+      "action": "Add a decision field to each hub's own register schema. This hub records nothing on a reviewer's behalf, so the 'pending' markers on the queue are intentional.",
+      "source_id": "RB-SRC-10",
+      "affects": [
+        "pages/suggestions.html",
+        "pages/path.html"
+      ]
+    },
+    {
+      "id": "RB-18",
+      "title": "This board's own registers went stale the moment the branch was rebased",
+      "kind": "irregularity",
+      "severity": "low",
+      "finding": "The first rebuild after rebasing onto main changed two of the six generated registers (files_scanned 144 to 145, and the hub inventory picked up the merged navigation edit). Any register derived from sibling files is only as current as its last build, which is the same failure mode this hub flags in other hubs at flag RB-16.",
+      "verification": "verify_all.py compares each committed register against a fresh rebuild, ignoring the commit stamp; it reported exactly these two files as needing a rebuild, and the rebuild was committed with the review.",
+      "action": "None for the owner: the check exists so a future reader can see the registers were regenerated at the commit named in each file's _generated_from_repo_commit field.",
+      "source_id": "RB-SRC-13",
+      "affects": [
+        "pages/flagged.html",
+        "pages/hubmap.html"
+      ]
+    }
+  ],
+  "blank_by_policy": [
+    {
+      "surface": "pages/depth.html - 'Incoming starter'",
+      "value": "blank on all 28 rows",
+      "why": "No official source publishes a starter or a replacement; a club chart is a team document, is labelled unofficial, and in three clubs omits a backup at a position where a starter is out.",
+      "source_id": "RB-SRC-06"
+    },
+    {
+      "surface": "pages/depth.html - 'Their backing depth'",
+      "value": "blank on all 28 rows",
+      "why": "Same reason, one level deeper: with no official depth string, a second- or third-stringer label cannot be verified, so it is not invented here even though the brief asked for it.",
+      "source_id": "RB-SRC-06"
+    },
+    {
+      "surface": "pages/injuries.html - club totals",
+      "value": "computed here, not quoted as the league's",
+      "why": "The report prints no totals per club; every count on that page is this hub's row count over its own transcription and is labelled as such.",
+      "source_id": "RB-SRC-01"
+    },
+    {
+      "surface": "pages/injuries.html - Monday game statuses",
+      "value": "blank on all 21 rows of that block",
+      "why": "The Friday report carries no game status for the Monday fixture; the Saturday capture has not happened relative to this snapshot.",
+      "source_id": "RB-SRC-01"
+    },
+    {
+      "surface": "pages/competition.html - prize funding",
+      "value": "empty string in the source register",
+      "why": "The skill hub publishes pool points with cash_funding empty on every tier; a dollar figure exists only in a register that models an external competition, so no funded amount is shown.",
+      "source_id": "RB-SRC-11"
+    },
+    {
+      "surface": "pages/suggestions.html - decision column",
+      "value": "'pending' on every cluster",
+      "why": "This hub records proposals and their evidence. A reviewer's approval is not something a build can assert.",
+      "source_id": "RB-SRC-10"
+    },
+    {
+      "surface": "pages/sources.html - league injury-report policy text",
+      "value": "no citation",
+      "why": "The policy URL in the sibling register returns 404, so the timing rule is carried as 'recorded by a hub' rather than as verified policy.",
+      "source_id": "RB-SRC-05"
+    },
+    {
+      "surface": "pages/signals.html - expected-margin delta per game",
+      "value": "not shown",
+      "why": "There is no citable market price for this week's slate in the tree, so a margin shift could only be asserted, not measured.",
+      "source_id": "RB-SRC-09"
+    }
+  ]
+}
