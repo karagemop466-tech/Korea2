@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "title": "Site improvement proposals",
+    "as_of": "2026-11-13",
+    "owner": "arena/193e54ca-korea2 (integration session), scope IR-3",
+    "policy": "Nothing in this register is implemented. Each row is a proposal to improve the site's decision-making value, with its trade-offs and one recommended path. A reviewer records a choice per row (accept / modify / reject) in COORDINATION.md or a GitHub issue before any change is made."
+  },
+  "rows": [
+    {
+      "id": "SI-01",
+      "proposal": "Refresh the committed data snapshot weekly and stamp every page with the exact as-of date of its inputs",
+      "improves": "Every downstream decision: stale inputs were the top irregularity of the 2026-11-12 audits (snapshot ended 2026-11-01 while the live slate was Week 10)",
+      "impact": "high",
+      "cost": "low (one scheduled workflow already exists; needs a freshness gate)",
+      "risk": "low",
+      "tradeoffs": "Weekly refresh keeps decisions current but can silently change published numbers between reviews; pinning a release tag per snapshot costs storage but makes any figure reproducible forever",
+      "recommended_path": "Keep the scheduled refresh, add a CI freshness check that fails when the extract lags the current game week, and render the as-of date in every page header",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["nflverse-data", "SRC-GH-REPO"]
+    },
+    {
+      "id": "SI-02",
+      "proposal": "Capture timestamped pre-kickoff price snapshots (a real price feed, not just the closing line)",
+      "improves": "Gate G1 (point-in-time integrity) can then be evidenced at all; without it no strategy can ever pass, and closing-line value cannot be measured",
+      "impact": "high",
+      "cost": "medium (collector service or licensed feed; storage is small)",
+      "risk": "medium (source licensing; feed reliability)",
+      "tradeoffs": "A free scraped board costs nothing but is fragile and may violate terms; a licensed feed is reliable but paid. Closing-line-only settlement is honest but structurally cannot demonstrate edge capture",
+      "recommended_path": "Start with a licensed or officially permitted feed for spreads/totals/moneylines only, timestamped server-side; do not collect player props until the singles market is proven",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["SRC-PIN-CLV", "nflverse-data"]
+    },
+    {
+      "id": "SI-03",
+      "proposal": "Ingest the official injury report and team depth charts as point-in-time features labelled by depth string (1st/2nd/3rd/4th) on both offense and defense",
+      "improves": "Injury/depth decisions: the requirement is to know when a 2nd-4th string backup replaces a starter, and no lab currently has verified league-wide depth order",
+      "impact": "high",
+      "cost": "medium (snapshot storage; mapping players to depth strings)",
+      "risk": "medium (league charts are labelled unofficial; missing rows must stay blank, never inferred)",
+      "tradeoffs": "Team-published charts are easy to fetch but unofficial and inconsistent (only Arizona's is labelled official); an nflverse-derived depth is reproducible but third-party. Both must be labelled by provenance",
+      "recommended_path": "Store daily snapshots of the official report plus each team's chart with a strict provenance label per row; blank any string a chart does not publish; estimate replacement-level effects only after SI-02 lands",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["SRC-NFL-INJURIES", "SRC-COLTS-DEPTH-CHART"]
+    },
+    {
+      "id": "SI-04",
+      "proposal": "Name one canonical suggestion review queue and make every lab's register feed it read-only",
+      "improves": "Decision speed: eight overlapping hubs currently publish suggestions under four different ID schemes, and reviewers cannot see the whole queue in one place",
+      "impact": "medium",
+      "cost": "low (aggregation only; no lab content changes)",
+      "risk": "low",
+      "tradeoffs": "A single queue is auditable but becomes a new shared file that every session must not hand-edit; keeping labs independent preserves their context but keeps proposals scattered",
+      "recommended_path": "Adopt the verify-hub consolidated queue as canonical, link it from every hub, and regenerate (never hand-edit) it from the lab registers",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "SI-05",
+      "proposal": "Render a verification badge (verified / blank-unverified) and a source link in every table row on every lab page",
+      "improves": "Trust in every number: 28 pages outside the published build still lack per-row source columns and are only link-checked",
+      "impact": "medium",
+      "cost": "low-medium (per-lab generator edits)",
+      "risk": "low",
+      "tradeoffs": "Badges make status obvious but add visual noise; strictly blank-unverified cells are honest but leave holes a reader may want filled — the policy says the holes stay",
+      "recommended_path": "Extend the root table() source discipline (already enforced by tests/check_site.py) to the remaining labs in one pass per lab, with the badge derived from a checked field, never typed",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "SI-06",
+      "proposal": "Require a pre-registration template for every strategy submission (hypothesis, stake rule, gates, evaluation window) committed before evaluation",
+      "improves": "Skill-vs-luck integrity of the leaderboard: hindsight selection is the main way luck masquerades as skill",
+      "impact": "high",
+      "cost": "low (a template file plus a gate that checks it exists)",
+      "risk": "low",
+      "tradeoffs": "Pre-registration slows experimentation but makes gate G10 (no hindsight) checkable instead of asserted; relaxed modes invite silent threshold tuning",
+      "recommended_path": "Add the template to the strategy schema and fail gate G10 when a strategy has no pre-evaluation commitment record",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["SRC-NIST-BONFERRONI", "kelly-1956"]
+    },
+    {
+      "id": "SI-07",
+      "proposal": "Decide the leaderboard reward question explicitly: fund a pool, publish it as recognition-only, or drop rewards — and clear the Alberta legality question first",
+      "improves": "The competition design: four conflicting reward schedules exist across labs and no prize is funded, so 'rewards for top strategies' is currently an unfunded claim",
+      "impact": "medium",
+      "cost": "low to decide; funding cost is whatever the reviewer chooses",
+      "risk": "medium (regulatory if money moves; reputational if a prize is promised and not funded)",
+      "tradeoffs": "Cash prizes attract submissions but trigger gaming-regulator questions by jurisdiction; recognition-only is safe but weaker incentive",
+      "recommended_path": "Publish recognition-only tiers now (no money, no promises), and keep any funded pool behind a written legal review of the operator's jurisdiction",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["SRC-AGLC-SPORTS", "SRC-KAGGLE-BDB2027"]
+    },
+    {
+      "id": "SI-08",
+      "proposal": "Make the landing page decision-first: open with the blocking questions and their owners instead of the research summary",
+      "improves": "Time-to-decision for a reviewer: the most valuable layer (what to decide next) is currently three clicks deep",
+      "impact": "medium",
+      "cost": "low",
+      "risk": "low",
+      "tradeoffs": "A decision-first front page is faster for reviewers but hides the evidence layout new readers expect; two entry paths (by question / by evidence) cost a little duplication",
+      "recommended_path": "Add a 'Decide first' panel at the top of the overview linking each open decision to its evidence, without moving the existing sections",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["SRC-GH-REPO"]
+    },
+    {
+      "id": "SI-09",
+      "proposal": "Ship a parlay correlation calculator: enter legs, get the copula-priced joint probability with an interval, compared against naive multiplication",
+      "improves": "Parlay and prop-combo decisions: the measured QB-WR1 correlations are the site's strongest finding but readers cannot apply them to their own ticket",
+      "impact": "medium",
+      "cost": "medium (small static calculator over the measured correlation matrix)",
+      "risk": "medium (users may read a pricing tool as betting advice; needs the standing disclaimer)",
+      "tradeoffs": "A calculator is the most used feature but also the easiest to over-trust; showing intervals and the naive price side-by-side mitigates but does not remove that risk",
+      "recommended_path": "Build it with intervals on every output, the naive product shown next to the copula price, and no stake or bankroll advice anywhere",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["SRC-NIST-CORR", "SRC-DK-PARLAY"]
+    },
+    {
+      "id": "SI-10",
+      "proposal": "Publish a weekly market-benchmark report (closing-line accuracy drift, cover/over rates with intervals) as the early-warning layer for regime change",
+      "improves": "Detection of market regime changes before any strategy is trusted: a stable-looking edge can be a drifting market",
+      "impact": "low-medium",
+      "cost": "low (derived from data already committed)",
+      "risk": "low",
+      "tradeoffs": "Weekly reports are cheap but add another artefact to keep consistent with the site; monthly would be quieter but slower to notice drift",
+      "recommended_path": "Generate it from the same derived JSON the site renders, so the report can never disagree with the published numbers",
+      "status": "awaiting reviewer decision",
+      "reviewer_decision": "",
+      "sources": ["SRC-PIN-ODDS", "nflverse-data"]
+    }
+  ]
+}

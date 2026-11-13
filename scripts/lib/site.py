@@ -27,12 +27,13 @@ NAV = [
     ("pages/method.html", "Method &amp; data"),
     ("pages/sources.html", "Source register"),
     ("pages/flagged.html", "Flagged for review"),
-    ("decision-desk/index.html", "Decision Desk"),
-    ("suggestions/index.html", "Suggestions hub"),
-    ("decision-hub/index.html", "Decision hub &nearr;"),
-    ("nfl-command/index.html", "NFL Command Center"),
+    ("pages/improve.html", "Improve this site"),
+    ("decision-desk/index.html", "Decision Desk &nearr;"),
+    ("suggestions/index.html", "Suggestions lab &nearr;"),
+    ("decision-hub/index.html", "Decision Hub &nearr;"),
+    ("nfl-command/index.html", "NFL Command Center &nearr;"),
     ("pages/suggestions.html", "Suggestions hub"),
-    ("pages/decision-hub.html", "Decision desk"),
+    ("pages/decision-hub.html", "Decision support"),
     ("pages/decision-suggestions.html", "Suggestion register"),
     ("pages/decision-questions.html", "Open questions"),
     ("pages/decision-injury-depth.html", "Injury &amp; depth"),
@@ -40,6 +41,7 @@ NAV = [
     ("pages/decision-parlay.html", "Parlay pricing"),
     ("pages/decision-verify.html", "Re-verify the numbers"),
     ("pages/decision-summary.html", "Decision summary"),
+    ("pages/archive.html", "Sibling labs"),
 ]
 
 DISCLAIMER = (
@@ -195,6 +197,9 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
                   .replace('href="suggestions/', 'href="../suggestions/')
                   .replace('href="nfl-command/', 'href="../nfl-command/')
               .replace('href="decision-desk/', 'href="../decision-desk/')
+                  .replace('href="verify-hub/', 'href="../verify-hub/')
+                  .replace('href="lineup-lab/', 'href="../lineup-lab/')
+                  .replace('href="skill-lab/', 'href="../skill-lab/')
                   .replace('href="index.html"', 'href="../index.html"'))
     return doc
 

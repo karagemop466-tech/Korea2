@@ -164,7 +164,8 @@ def page_index() -> str:
     <li>No verified execution access, limits or jurisdiction.</li>
     <li>No funded prize pool for the leaderboard rewards.</li>
     <li>NFL.com publishes a live injury report; historical point-in-time snapshots and verified depth order are not ingested, so injury/depth adjustments remain blocked.</li>
-  </ul><a class="panel-link" href="pages/flagged.html">Flagged for review &rarr;</a></div>
+  </ul><a class="panel-link" href="pages/flagged.html">Flagged for review &rarr;</a>
+  <a class="panel-link" href="pages/improve.html">Improve this site (review queue) &rarr;</a></div>
 </div>''')
     return W.layout("Overview", "index.html", body)
 
@@ -1196,30 +1197,45 @@ numbers that cannot be defended.</p></div>
 
 
 
-def archive_dirs() -> list[tuple[str, str]]:
-    """Sibling dashboards built by parallel sessions, kept verbatim for audit."""
+def archive_dirs() -> list[tuple[str, str, bool]]:
+    """Sibling dashboards built by parallel sessions, kept verbatim for audit.
+
+    The bool says whether the directory is reachable from the published navigation
+    (updated by integration session arena/193e54ca-korea2, 2026-11-13, task IR-4).
+    """
     out = []
     labels = {
-        "dashboard": "Framework dashboard (session arena/97d4c0f1)",
-        "nfl-lines": "Line origination draft (parallel session)",
-        "nfl-research": "Research brief (session arena/e0d506a4)",
-        "origination-lab": "Origination lab draft (parallel session)",
-        "quant-lab": "Quant lab draft (parallel session)",
-        "research-desk": "Research desk draft (parallel session)",
-        "audit": "Independent audit harness (parallel session)",
-        "results": "Results artefacts (parallel session)",
+        "decision-desk": ("Decision Desk: questions, suggestions, injury/depth tracking", True),
+        "decision-hub": ("Decision Hub: cross-lab audit, decisions and suggestions", True),
+        "suggestions": ("Suggestions lab: reviewable proposal registers", True),
+        "nfl-command": ("NFL Command Center: injury and lineup tracking", True),
+        "verify-hub": ("Cross-lab verification hub: claims audit and review queue", False),
+        "lineup-lab": ("Lineup Lab: origination, backup-depth cascades and gates", False),
+        "skill-lab": ("Skill lab: signals, luck removal and strategy gates", False),
+        "origination": ("Origination pipeline site (session 3f5af27c)", False),
+        "pipeline": ("Pipeline scripts and unit tests (session 3f5af27c)", False),
+        "dashboard": ("Framework dashboard (session arena/97d4c0f1)", False),
+        "nfl-lines": ("Line origination draft (parallel session)", False),
+        "nfl-research": ("Research brief (session arena/e0d506a4)", False),
+        "origination-lab": ("Origination lab draft (parallel session)", False),
+        "quant-lab": ("Quant lab draft (parallel session)", False),
+        "research-desk": ("Research desk draft (parallel session)", False),
+        "audit": ("Independent audit harness (parallel session)", False),
+        "results": ("Results artefacts (parallel session)", False),
     }
-    for d, label in labels.items():
+    for d, (label, in_nav) in labels.items():
         if os.path.exists(os.path.join(d, "index.html")):
-            out.append((d, label))
+            out.append((d, label, in_nav))
     return out
 
 
 def page_archive() -> str:
     dirs = archive_dirs()
     rows = [[esc(label), f'<a href="../{esc(d)}/index.html">{esc(d)}/</a>',
-             "Preserved unchanged; not part of the published navigation", "Sibling session artefact"]
-            for d, label in dirs]
+             ("Preserved unchanged; linked from the navigation" if in_nav
+              else "Preserved unchanged; not part of the published navigation"),
+             "Sibling session artefact"]
+            for d, label, in_nav in dirs]
     body = (
         '<div class="hero compact"><div class="eyebrow">ARCHIVE</div>'
         '<h1>Earlier parallel-session work, kept intact.</h1>'
@@ -1229,9 +1245,65 @@ def page_archive() -> str:
         'take precedence and the disagreement is recorded on the Flagged for Review page.</p></div>'
         + section("Preserved artefacts", table(
             ["Artefact", "Location", "Status", "Provenance"], rows,
-            caption="Nothing here is deleted or rewritten. These directories are outside the published navigation.")))
+            caption="Nothing here is deleted or rewritten. Four of these directories are linked from the navigation; the rest stay outside it.")))
     return W.layout("Archive", "pages/archive.html", body,
                     subtitle="Parallel-session dashboards retained for audit.")
+
+
+def page_improve() -> str:
+    """IR-3: the dedicated review queue for site improvements (choose a path before building)."""
+    path = os.path.join("data", "site_improvements.json")
+    doc = {}
+    if os.path.exists(path):
+        with open(path) as fh:
+            doc = json.load(fh)
+    rows = doc.get("rows", [])
+    meta = doc.get("meta", {})
+
+    def srcs(row):
+        return " &middot; ".join(W.src(s) for s in row.get("sources", [])) or '<span class="flag">source missing</span>'
+
+    proposals = table(
+        ["ID", "Proposal", "What decision it improves", "Impact", "Source"],
+        [[f"<strong>{esc(r['id'])}</strong>", esc(r["proposal"]), esc(r["improves"]),
+          W.badge({"high": "bad", "medium": "warn", "low": "info"}.get(r.get("impact", ""), "info"),
+                  r.get("impact", "")), srcs(r)] for r in rows],
+        caption=(f"Every proposal is a suggestion, not a change. As of {esc(meta.get('as_of', ''))}; "
+                 "each row links the source behind the finding that motivated it."))
+    worksheet = table(
+        ["ID", "Options &amp; trade-offs", "Recommended path", "Cost", "Risk", "Reviewer decision", "Source"],
+        [[f"<strong>{esc(r['id'])}</strong>", esc(r["tradeoffs"]), esc(r["recommended_path"]),
+          esc(r["cost"]), esc(r["risk"]),
+          '<span class="flag">&mdash; awaiting reviewer</span>', srcs(r)] for r in rows],
+        caption=("Choose one path per row (accept / modify / reject) and record it in COORDINATION.md "
+                 "or a GitHub issue. Implementation starts only after a recorded choice."))
+
+    body = (
+        '<div class="hero compact"><div class="eyebrow">SITE IMPROVEMENTS &mdash; REVIEW QUEUE</div>\n'
+        '<h1>Improve this site.<br><em>Choose the path first.</em></h1>\n'
+        '<p class="lede">This section collects every proposal to make the site more useful for '
+        'decision-making, with the trade-offs and one recommended path per proposal. Nothing here is '
+        'implemented. A reviewer compares the options, picks a path, and only then does anything change.</p></div>\n'
+        '<div class="notice warn"><span class="dot"></span><div><strong>How to review.</strong><br>\n'
+        '1. Read the proposal and the finding behind it (source column).<br>\n'
+        '2. Compare the options and trade-offs with the recommended path in the worksheet below.<br>\n'
+        '3. Record a decision per row &mdash; accept, modify, or reject &mdash; in COORDINATION.md or a '
+        'GitHub issue. The row stays "awaiting reviewer" until a choice is recorded.</div>\n'
+        '<a href="pages/flagged.html">Known gaps &rarr;</a></div>\n'
+        + section("The proposals", proposals, "PROPOSALS")
+        + section("Review worksheet", worksheet, "WORKSHEET")
+        + section("Where these come from", (
+            '<p>Each proposal is grounded in a finding recorded elsewhere on this site: the '
+            '<a href="pages/flagged.html">Flagged for Review</a> page, the independent '
+            '<a href="pages/verification.html">Verification</a> record, and the sibling decision '
+            'registers at <a href="decision-hub/pages/suggestions.html">Decision Hub suggestions</a>, '
+            '<a href="pages/decision-suggestions.html">the suggestion register</a>, '
+            '<a href="decision-desk/pages/suggestions.html">Decision Desk suggestions</a>, '
+            '<a href="suggestions/pages/suggestions.html">the Suggestions lab</a>, and the '
+            '<a href="verify-hub/pages/suggestions.html">cross-lab review queue</a>. Those registers '
+            'hold the evidence; this page is where the site itself gets better.'), "EVIDENCE"))
+    return W.layout("Improve this site", "pages/improve.html", body,
+                    subtitle="Proposals, trade-offs and a review worksheet. Nothing is built before a choice is recorded.")
 
 
 def main() -> None:
@@ -1249,6 +1321,7 @@ def main() -> None:
         "pages/method.html": page_method,
         "pages/sources.html": page_sources,
         "pages/flagged.html": page_flagged,
+        "pages/improve.html": page_improve,
         "pages/archive.html": page_archive,
     }
     W.write("index.html", page_index())
