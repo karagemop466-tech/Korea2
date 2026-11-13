@@ -1891,3 +1891,43 @@ Computed values (spread/total MAE, correlations, ROI, gate outcomes) are derived
 **2026-11-13 — INT-4 build + verifiers done:** `tests/check_site.py` PASS (177 pages / 424 tables / 10,401 links), `scripts/check_links.py` PASS (3,554 refs), `scripts/validate_data.py` PASS (62 sources registered, all sourced, all official domains, flagged values blank), `tests/check_data.py` PASS (6 result files consistent; 32/32 teams verified; 0 of 5 strategies ranked), `tests/check_derived.py` PASS (11 derived JSON strict; 49 checks, 0 disagreements; 32/32 teams reconciled for 2020; 25 generated pages linked). Site builds clean with no broken links.
 
 **2026-11-13 — INT-5 done:** PR #89 (https://github.com/karagemop466-tech/Korea2/pull/89) merged to `main` via merge commit 9dfa75e851d77f959b67ec119a7f94bc50c0ee2c. All CI checks green: verify-hub, decision-desk, pages build and deployment, checks, validate, build-verify — all `success`. GitHub Pages API: status `built`, error `null`, published root https://karagemop466-tech.github.io/Korea2/ (source branch `main`). Site is live. No source data, pages, or sibling-session files were modified beyond this session's COORDINATION.md board. All INT-0..INT-5 tasks done.
+
+---
+
+# Session board — `arena/b679b063-korea2` (Final integration, line-by-line verification & site publication)
+
+**Session ID:** `arena/b679b063-korea2` (branch fixed by the environment: `arena/b679b063-korea2`).
+**Claimed at:** 2026-11-13 UTC. **Base:** `007f2ed` (PR #87 merged — Decision Desk session
+`arena/aa66ed82-korea2`), which is the current tip of `origin/main`.
+
+**Role:** final integration session for this branch. All earlier tasks on this board are
+`done` or `needs review` (published, non-blocking), so this session takes the final-integration
+role: it re-verifies the combined tree line by line against official sources, absorbs the
+remaining open session PRs' still-useful content, fixes defects found, and owns the PR to
+`main` plus the GitHub Pages deploy confirmation.
+
+**Scope rule:** this session writes inside `COORDINATION.md` (this section), the shared root
+site files it must touch to land the pending fixes (`pages/decision-signals.html`,
+`decision-hub/pages/executive-summary.html`, `decision-hub/scripts/build_site.py`, and any
+defect file found during verification), and any files needed for the integration PR. Sibling
+lab directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`,
+`origination-lab/`, `origination/`, `pipeline/`, `results/`, `audit/`, `skill-lab/`,
+`suggestions/`, `nfl-command/`, `verify-hub/`, `decision-desk/`, `lineup-lab/`, `site/`,
+`decision-hub/data/injuries.json`) are **read-only** for this session and are never modified.
+Requests to a sibling owner are logged here, not actioned.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| B6-0 | Claim non-overlapping scope and push before work starts | done | `arena/b679b063-korea2` | this section of `COORDINATION.md` |
+| B6-1 | Line-by-line repo review & official-source verification (2026-11-13); irregularity register | in progress | `arena/b679b063-korea2` | this section; any defect file found |
+| B6-2 | Absorb remaining open session PRs' still-useful content (stale injury refreshes skipped) | in progress | `arena/b679b063-korea2` | `pages/decision-signals.html`, `decision-hub/pages/executive-summary.html`, `decision-hub/scripts/build_site.py` |
+| B6-3 | Re-verify combined tree; fix defects found; confirm deterministic build | in progress | `arena/b679b063-korea2` | defect files + shared checks |
+| B6-4 | Integration PR to `main`, merge, confirm GitHub Pages deploy, record result | pending | `arena/b679b063-korea2` | this section, PR |
+
+**Open PRs observed at intake (2026-11-13 UTC):** PR #88 (`arena/4e497907-korea2`,
+"Integrate Lineup Lab into shared NFL dashboard navigation") had already **MERGED** at
+2026-11-13T22:56:43Z before this claim. PRs #84 (`arena/7dbbeba6-korea2`, docs/release record),
+#78 (`arena/90e4fdbe-korea2`, signal-lab KPI wording) and #76 (`arena/fc16e360-korea2`,
+coordination record) remain open from sessions inactive since 2026-11-12 (well past the 60-minute
+staleness rule), so this session takes them over as the final integration session and logs the
+handoff here.
