@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-02T17:38:45+00:00",
+  "generated_utc": "2026-11-13T22:57:02+00:00",
   "source_repository": "https://github.com/nflverse/nflverse-data",
   "source_description": "nflverse redistributes the NFL's official play-by-play and box score feeds; game-level market lines in games.parquet are third-party (sportsbook-derived) and are not an official sportsbook archive.",
   "downloads": [
@@ -9,8 +9,8 @@
       "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.parquet",
       "desc": "Game-level results and pregame market lines, 1999-present",
       "status": 200,
-      "bytes": 523149,
-      "sha256": "a3ee01d2511d3048f52e1ebec5e9aceb59cc0652c6edafeeb2c515a0459d8ebb"
+      "bytes": 523832,
+      "sha256": "1821c02fa1eb96deeace225b95863c72e59115eebec6594e05a9e249b8551731"
     },
     {
       "name": "stats_player_week_2012.parquet",
@@ -270,8 +270,8 @@
       "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_player/stats_player_week_2026.parquet",
       "desc": "Player box score by week, 2026",
       "status": 200,
-      "bytes": 455689,
-      "sha256": "73af8773b176a510690344a4e93cd8c16eae861c1bec2b4318c240b2ec316fa4"
+      "bytes": 499986,
+      "sha256": "d48304a8e6b084eee51edbe2c5bde645c9854a01a8fb7356bd13aebaa47017fc"
     },
     {
       "name": "stats_team_week_2026.parquet",
@@ -279,24 +279,24 @@
       "url": "https://github.com/nflverse/nflverse-data/releases/download/stats_team/stats_team_week_2026.parquet",
       "desc": "Team box score by week, 2026",
       "status": 200,
-      "bytes": 89234,
-      "sha256": "40e472ecd1f71be32b04880d8116828585e2e4f6bcd8a6850d0bc0d27f7aea52"
+      "bytes": 93938,
+      "sha256": "65d61da7ea62e340234e4edc1f99a75889b690084d14c39ae1e76dddc7eb37b1"
     }
   ],
   "releases": {
     "schedules": {
       "tag": "schedules",
-      "updated_at": "2026-11-02T17:16:34Z",
+      "updated_at": "2026-11-13T22:36:53Z",
       "html_url": "https://github.com/nflverse/nflverse-data/releases/tag/schedules"
     },
     "stats_player": {
       "tag": "stats_player",
-      "updated_at": "2026-11-02T13:50:19Z",
+      "updated_at": "2026-11-13T17:14:38Z",
       "html_url": "https://github.com/nflverse/nflverse-data/releases/tag/stats_player"
     },
     "stats_team": {
       "tag": "stats_team",
-      "updated_at": "2026-11-02T13:50:35Z",
+      "updated_at": "2026-11-13T17:14:53Z",
       "html_url": "https://github.com/nflverse/nflverse-data/releases/tag/stats_team"
     }
   },
