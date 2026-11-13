@@ -1,0 +1,57 @@
+name: Verify Coverage Audit
+
+# Verifies the site-wide source-coverage & link-integrity audit: the audit is
+# deterministic, the canonical build and active labs carry a source on every row,
+# the only unsourced rows are on preserved legacy archive pages, there are no broken
+# or insecure links, the rendered pages follow the same per-row source rule, and the
+# root navigation rebuild stays reproducible. Fails closed.
+on:
+  push:
+    branches: [main, "arena/**"]
+    paths:
+      - "coverage/**"
+      - "scripts/lib/site.py"
+      - "index.html"
+      - "pages/*.html"
+      - ".github/workflows/coverage.yml"
+  pull_request:
+    paths:
+      - "coverage/**"
+      - "scripts/lib/site.py"
+      - "index.html"
+      - "pages/*.html"
+      - ".github/workflows/coverage.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Recompute the coverage audit and render the dashboard
+        run: |
+          python3 coverage/scripts/audit_coverage.py
+          python3 coverage/scripts/build_site.py
+      - name: Verify the coverage audit and rendered pages
+        run: python3 coverage/scripts/verify_coverage.py
+      - name: Rebuild the root navigation so it stays in step
+        run: python3 scripts/build_site.py
+      - name: Repository checks still pass
+        run: |
+          python3 tests/check_site.py
+          python3 scripts/check_links.py
+      - name: Assert a reproducible working tree
+        # Scoped to the audit's own output and the root pages its navigation change rebuilds.
+        run: |
+          set -euo pipefail
+          if ! git diff --quiet -- coverage/ index.html pages/; then
+            git --no-pager diff --stat -- coverage/ index.html pages/
+            echo "::error::the coverage audit / navigation rebuild is not reproducible - commit the regenerated files"
+            exit 1
+          fi
