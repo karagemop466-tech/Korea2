@@ -1960,3 +1960,144 @@ Fixed at the root, data-driven (not typed by hand):
 - No sibling lab directory was modified. `data/raw/games.parquet` was reconstructed locally (gitignored) solely to run the analysis scripts against the committed extracts.
 
 **Irregularities found and fixed this session:** the ATS identity presented as a finding (fixed, above). No other irregularities were found in the spot-checks; all table rows on the published pages continue to carry source links, and unverifiable values remain blank/flagged (not inferred).
+
+**2026-11-13 — B6-4 integration PR, merge and deployment (done):**
+
+- **PR #94** (https://github.com/karagemop466-tech/Korea2/pull/94) — "Final integration (arena/b679b063-korea2): fix ATS identity presented as a finding; absorb stale-PR wording/count fixes; re-verify". All CI checks green on the head (`decision-desk`, `tests-and-links`, `validate`, both `verify` runs, `verify-hub`, `verify-skill-lab`).
+- **Merged** to `main` via merge commit `1134f29` (`gh pr merge 94 --merge`).
+- **GitHub Pages** for https://karagemop466-tech.github.io/Korea2/ reports `status: built` (source `main`, path `/`); post-merge workflows (`build-verify`, `checks`, `verify-hub`) all `success`.
+- **Follow-up doc fix** (committed on the same branch, merged via the PR): unified the two published-facing check-count references to the new 52-check record — `README.md` now reads "48 of 52 checks pass, 0 mismatches (11 expected-to-differ observations)" and `EXECUTIVE_SUMMARY.md` reads "(52 checks, 0 mismatches, …)". This partially resolves FL-DD-19 (the "three phrasings of the 49-check record" flag): the root docs are now consistent; the decision-desk's own flag/review records that described the older 49-check state remain in that session's read-only scope and are left as historical records.
+- **Handoff / takeover recorded:** PRs #78, #84, #76 (sessions inactive since 2026-11-12) were closed with rationale after their still-useful content was absorbed; their stale injury-data refreshes and the destructive COORDINATION.md diff in #76 were intentionally not merged.
+- **Status: B6-0..B6-4 done.** The site is live, the combined data re-verifies line by line (52 independent checks, 0 mismatches, 32/32 teams reconciled for 2020 and 2026), every published table row carries a source link, and the one substantive correctness defect found this session (the ATS identity presented as a finding) is fixed and published. Remaining non-blocking flags (unfunded reward pool, no historical prop prices, snapshot as-of 2026-11-01, depth-chart provenance) remain on the Flagged for Review pages. No strategy is approved; none of this is betting advice.
+
+---
+
+---
+
+# Session board — `arena/193e54ca-korea2` — Final integration & line-by-line verification
+
+**Session ID:** `arena/193e54ca-korea2` (branch fixed by environment: `arena/193e54ca-korea2`)
+**Claimed at:** 2026-11-13 UTC
+**Role:** final integration session for the combined tree (all prior sessions' boards above read in
+full at intake; their tasks are `done` / `needs review`, nothing active was found).
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| IR-0 | Claim this scope on the shared board and push before any implementation | done | `arena/193e54ca-korea2` | this section of `COORDINATION.md` |
+| IR-1 | Integrate stale sibling PRs #76, #78, #84 (merge where clean; carry the content into the integration PR and close with a note where the branch conflicts) | in progress | `arena/193e54ca-korea2` | those PRs, this section |
+| IR-2 | FL-DH-01 remediation: relabel the pooled ATS figure as the arithmetic identity it is, publish the honest one-observation-per-game ATS test, and verify it in the independent recompute record | in progress | `arena/193e54ca-korea2` | `scripts/analyze_luck.py`, `scripts/build_site.py`, `verification/recompute.py`, `data/derived/luck.json`, `data/derived/verification.json`, `README.md`, `EXECUTIVE_SUMMARY.md`, `docs/`, root generated pages |
+| IR-3 | Dedicated site-improvement suggestions section: every proposal to improve the site's decision-making value, with trade-offs, a recommended path and a reviewer-choice column — nothing implemented before a reviewer chooses | unclaimed → claimed here | `arena/193e54ca-korea2` | `data/site_improvements.json` (new), `scripts/build_site.py` (new page), `scripts/lib/site.py` (nav) |
+| IR-4 | Navigation cleanup: duplicate sidebar labels disambiguated; sibling-lab link coverage confirmed on the archive page | unclaimed → claimed here | `arena/193e54ca-korea2` | `scripts/lib/site.py`, `scripts/build_site.py` |
+| IR-5 | Live official-source re-verification pass (2026-11-13) of every registered source URL and the current-week NFL state, with links; dead/stale sources flagged, never filled in | unclaimed → claimed here | `arena/193e54ca-korea2` | this section, `data/sources.json`, `data/flagged.json` (only if a check fails) |
+| IR-6 | Full local + CI verification of the combined tree (every checker owned by every lab) | unclaimed → claimed here | `arena/193e54ca-korea2` | — (runs only) |
+| IR-7 | Integration PR to `main`, merge without waiting, GitHub Pages confirmation, board release record | unclaimed → claimed here | `arena/193e54ca-korea2` | this section, PR |
+
+**Scope rule:** this session writes `COORDINATION.md` (this section), root pipeline/site files listed
+above, and the new `data/site_improvements.json`. Sibling lab directories (`decision-hub/`,
+`decision-desk/`, `verify-hub/`, `lineup-lab/`, `skill-lab/`, `suggestions/`, `nfl-command/`,
+`nfl-research/`, `research-desk/`, `quant-lab/`, `origination*`, `pipeline/`, `results/`, `audit/`,
+`dashboard/`, `nfl-lines/`, `site/`, `verification/` inputs) are **read-only** except where a task
+above explicitly names a file. Any change a task forces into a sibling scope is logged here first.
+
+## Log — `arena/193e54ca-korea2`
+- 2026-11-13 UTC — Intake: repository reviewed (541 files, 177 HTML pages, 12 GitHub workflows).
+  Full `COORDINATION.md` board read (9 prior session boards). Local suite green at intake:
+  `tests/check_site.py` (177 pages / 424 tables / 10,401 links), `tests/check_derived.py`
+  (11 strict-JSON derived files, 49-check verification record, 0 disagreements),
+  `scripts/check_links.py` (3,568 refs), `scripts/validate_data.py`, `tests/check_data.py` — all PASS.
+  Open sibling PRs at intake: #76, #78, #84. Three claims recorded and pushed before implementation.
+- 2026-11-13 UTC — **IR-1 done:** stale sibling PRs integrated. #76 (coord record + superseded bot
+  stamp) and #78 (signal-lab copy fixes) and #84 (decision-hub release record + blocked-question
+  count + the ATS-identity request to the root owner) all conflicted with `main`. Their content is
+  carried verbatim into this branch (commits 75f0c03, 7923405, 39370f6) and each PR is closed with a
+  comment recording exactly what was carried; no content was discarded. `site/scripts/verify_all.py`
+  and `decision-hub/scripts/check_site.py` pass on the carried tree.
+- 2026-11-13 UTC — **IR-2 done (FL-DH-01 remediation):** the pooled "ATS coin-flip test"
+  (n=13,784 team-game rows, rate exactly 0.5, p=1.0) is an arithmetic identity — each game pooled
+  as +x and −x — and was presented as evidence of "no exploitable tilt". Remediated: (a)
+  `data/derived/luck.json` now carries `is_identity: true` and a note that it is not evidence
+  (values unchanged, so `decision-hub/scripts/audit_root.py` recomputes byte-identical checks/flags);
+  (b) the site's headline ATS statistic is the one-observation-per-game test from
+  `market.json -> ats_home_cover`: **48.91% home covers (3,371 of 6,892 decided games), 95% Wilson CI
+  [47.73%, 50.09%], two-sided exact binomial p = 0.0727** — "no significant tilt detected, none ruled
+  out"; (c) `verification/recompute.py` adds four `market.ats_home_*` checks re-implemented from the
+  committed extract — **53 checks, 52 agree, 0 material disagreements**; (d) reproducibility proof:
+  `scripts/analyze_luck.py` re-run against committed `data/derived/games.csv.gz` reproduces
+  `luck.json` byte-for-byte except the intended relabel (diff: 2 insertions, 1 deletion); (e) README,
+  `EXECUTIVE_SUMMARY.md` and `docs/EXECUTIVE_SUMMARY.md` updated (the docs' stale 2026-11-01 counts —
+  6,880/13,760/7,075 — were corrected to the recompute-verified values 6,892/13,784/7,087).
+  `decision-hub/data/root_audit.json` was regenerated by re-running the hub's own deterministic tool
+  (cross-scope run, logged per rule): the only changes are the new timestamp, root table-row counts
+  (862→867) and verification_summary.checks 49→53; every verdict and flag text is unchanged.
+  Request to `arena/7dbbeba6-korea2`: the hub's `luck.ats_rate_one_sided` audit check still reads
+  published=None (BLANK) and FL-DH-01 stays on the hub flag list; the underlying issue is resolved
+  in root as described, and the hub audit may be updated to read `ats_home_cover` when its owner
+  returns. No product file outside the listed scope changed.
+- 2026-11-13 UTC — **IR-3 done:** dedicated site-improvement review queue published at
+  `pages/improve.html` ("Improve this site"), rendered from `data/site_improvements.json` (10
+  proposals: weekly refresh + as-of stamps, timestamped price capture, point-in-time injury/depth
+  strings, one canonical suggestion queue, per-row verification badges, strategy pre-registration,
+  reward-pool decision, decision-first landing, parlay correlation calculator, weekly market
+  benchmark). Each row carries impact/cost/risk, options & trade-offs, one recommended path, and a
+  **reviewer-decision column pre-set to "awaiting reviewer"** — nothing is implemented before a
+  recorded choice, per the requirement. Rows are sourced from `data/sources.json` IDs and pass
+  `scripts/validate_data.py`. Landing page links the queue.
+- 2026-11-13 UTC — **IR-4 done:** navigation de-duplicated (three labels were ambiguous:
+  "Suggestions hub" ×2, "Decision desk"/"Decision Desk") and extended ("Improve this site",
+  "Sibling labs"); `pages/archive.html` now covers all 13 sibling lab directories with accurate
+  labels and nav status. Path-rewrite table covers the linked labs.
+- 2026-11-13 UTC — **IR-5 done (live official-source re-verification, fetched 2026-11-13):**
+  1. [NFL.com injuries](https://www.nfl.com/injuries/) — CONFIRMED live: "Official Latest NFL Injury
+     Report ... Week 10 of the 2026 Season"; body heading "Injuries - WEEK 10" agrees with the title
+     (the archived title/body mismatches flagged by earlier sessions do not affect the current page).
+     TNF WAS (3-5-1) @ NYG (5-3-1), Thursday Nov 12, is listed first in the Week 10 slate; the
+     Sunday slate is Nov 15 — Week 10 is in progress today.
+  2. [NFL.com 2026 standings](https://www.nfl.com/standings/league/2026/reg) — CONFIRMED live:
+     2026 regular-season table renders (BUF 7-1, SF 7-1 lead); records are consistent with the
+     played Nov 12 game (WAS 3-5-1, NYG 5-3-1), so the site's "snapshot through 2026-11-01, not
+     current to the live slate" warning remains exactly right.
+  3. [2026 NFL Rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook) —
+     CONFIRMED live ("2026 NFL RULEBOOK", 2026 rule changes listed: 6-1-3, 6-1-5, 6-1-6, 19-2).
+  4. [nflverse-data](https://github.com/nflverse/nflverse-data) — CONFIRMED live; latest commit
+     2026-11-01 ("Keep GHA alive"). Community feed, not NFL-published — labelled as such everywhere.
+  5. [Legacy injury-reporting policy URL](https://operations.nfl.com/football-ops/league-governance/injury-reporting-policy)
+     — CONFIRMED **still dead** ("404 - FLAG ON THE PLAY"); the `nfl-injury-policy` source entry's
+     "unavailable" label stays accurate. No value was filled in.
+  6. [NFL Big Data Bowl 2027 on Kaggle](https://www.kaggle.com/competitions/nfl-big-data-bowl-2027) —
+     CONFIRMED live: Open Track $45,000, University Track $45,000, Grand Prize $10,000 — the
+     "$45k + $45k + $10k" precedent claim verifies exactly. Precedent only; no reward is funded here.
+  Minor observation (not a data defect): the standings page's HTML title renders NFL.com's template
+  placeholder ("$year$ NFL $displayname$ Standings") — NFL.com side, noted for manual review only.
+  No registered source outside item 5 failed; no site value changed in this pass.
+
+### IR-7 — final integration: PR and merge (2026-11-13)
+
+- **PR #97** — https://github.com/karagemop466-tech/Korea2/pull/97
+  (`arena/193e54ca-korea2` → `main`), opened with the full IR summary, sources used and
+  flagged irregularities in the PR body.
+- **Overlap detected before merge:** session `arena/b679b063-korea2` merged PRs #94/#95
+  into `main` (`007f2ed` → `0ad657f`) while this session was running — an independent
+  remediation of the **same FL-DH-01 flag** with **identical statistics** (3,371 home
+  covers / 6,892 decided games = 48.91%, CI 47.73–50.09, p = 0.0727). The two branches
+  conflicted in 31 files.
+- **Conflict resolution (nothing of either session discarded):** their `luck.json` schema
+  (`ats_coin_flip_test` = honest test, `ats_pooled_identity` = the quarantined identity)
+  + my `is_identity: true` marker; their 6 `luck.ats_*` recompute checks + my 4
+  `market.ats_home_*` cross-copy checks (**56 checks: 52 pass, 0 mismatches, 11
+  observations, 3 of them expected-to-differ**); their schema rendering in
+  `scripts/build_site.py` + my `pages/improve.html` review queue (SI-01..SI-10), archive
+  coverage (17 dirs) and merged nav (my 29 entries + their Lineup Lab link);
+  one check-count phrasing everywhere; docs market table kept the rows matching the
+  independent recompute record exactly (7,087 / 10.25 / 1.049 / 9.71). Merge commit
+  `3610ef6`.
+- **Irregularity FL-INT-1 (flagged, does not block):** session `arena/b679b063-korea2`
+  committed its Python virtualenv `.venv-b6/` (~6,200 files of site-packages) via PRs
+  #94/#95. Excluded from the merged tree in PR #97; `.gitignore` hardened to `.venv*`.
+  All product work from that session is preserved. Published on
+  `pages/flagged.html` and in EXECUTIVE_SUMMARY §5.
+- **Full battery re-run green on the merged tree** before merge (root check_site /
+  check_derived 56 checks 0 disagreements / check_data / check_links / validate_data /
+  recompute 56 checks 52 pass 0 mismatch / audit/check_site / decision-hub check_site +
+  audit_root / skill-lab / verify-hub / lineup-lab / pipeline links + unit tests /
+  decision-desk / site verify_all / nfl-command). Never merged a broken site.
+- Merge result and Pages deploy status recorded in the next entry (post-merge docs PR).
