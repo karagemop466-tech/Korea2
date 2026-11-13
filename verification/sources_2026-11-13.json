@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "Official-source re-checks performed on 2026-11-13",
+    "session": "arena/dd794652-korea2",
+    "retrieved_utc": "2026-11-13",
+    "method": "Each URL was opened with a page-retrieval tool on 2026-11-13 and the returned text was read. 'excerpt' quotes what the page actually returned. A page that does not return the value it is cited for is recorded as NOT CONFIRMED, not as confirmed.",
+    "policy": "Nothing here is inferred. Where a page could not be read, the entry says so and the dependent site claim stays flagged.",
+    "relation_to_the_2026-11-02_pass": "verification/sources_2026-11-02.json re-checked eight pages on 2026-11-02. This file re-checks the pages that carry the numbers published on the site, on the day this integration pass ran."
+  },
+  "checks": [
+    {
+      "id": "SRC-CHK-2026-01",
+      "label": "NFL.com official division standings, 2026 regular season",
+      "url": "https://www.nfl.com/standings/division/2026/REG",
+      "supports": "Team records (W-L-T) and points for/against for the current season; used for the live reconciliation and for measuring how far the committed snapshot is behind.",
+      "http_state": "200 (page read)",
+      "excerpt": "AFC East: Buffalo Bills 7-1-0, 256 PF / 187 PA. AFC West: Los Angeles Chargers 0-8-0, 121 PF / 219 PA. NFC East: New York Giants 5-3-1, 203 / 196 (retrieved 2026-11-13).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-2026-02",
+      "label": "NFL.com official division standings, 2020 regular season (completed-season control)",
+      "url": "https://www.nfl.com/standings/division/2020/REG",
+      "supports": "Completed-season reconciliation: 32 teams, all fields compared with the committed extract.",
+      "http_state": "200 (page read)",
+      "excerpt": "AFC East: Buffalo Bills 13-3-0, 501 PF / 375 PA. AFC West: Kansas City Chiefs 14-2-0, 473 / 362. NFC North: Green Bay Packers 13-3-0, 509 / 369 (retrieved 2026-11-13; identical to the 2026-11-02 reading, as a completed season must be).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-2026-03",
+      "label": "NFL.com official passing statistics, 2026 regular season",
+      "url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
+      "supports": "Quarterback stat lines; cross-check of the player feed.",
+      "http_state": "200 (page read)",
+      "excerpt": "Jordan Love 2,618 passing yards, 341 attempts, 215 completions, 19 TD, 6 INT, 97.9 rating; Joe Burrow 2,386; Dak Prescott 2,381 (retrieved 2026-11-13). The same page read 2,246 yards for Jordan Love on 2026-11-02, which confirms the page advances with the season.",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-2026-04",
+      "label": "NFL.com official injury report (current week)",
+      "url": "https://www.nfl.com/injuries/",
+      "supports": "The live weekly injury report that the injury and depth workspaces transcribe.",
+      "http_state": "200 (page read)",
+      "excerpt": "Page title: 'Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season'; body heading 'Injuries - WEEK 10'; sections dated 'THURSDAY, NOVEMBER 12TH' and 'SUNDAY, NOVEMBER 15TH'; the Washington and New York (Giants) tables show their records as 3-5-1 and 5-3-1, matching the standings rows above (retrieved 2026-11-13).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-2026-05",
+      "label": "NFL.com Week 10 schedule, 2026",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "supports": "Which games are live in the current week, used to date the committed snapshot against the live slate.",
+      "http_state": "200 (page read)",
+      "excerpt": "Thursday Night Football, November 12th: 'Commanders 24, Giants 21, FINAL'. International Game, November 15th: 'Patriots at Lions, Sunday, November 15th, 9:30 AM, FOX'. Sunday, November 15th: Chiefs at Falcons, Texans at Browns, Vikings at Packers, Dolphins at Colts, Panthers at Saints, Bills at Jets (retrieved 2026-11-13).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-2026-06",
+      "label": "NFL Football Communications - 2026 NFL Schedule Announced",
+      "url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced",
+      "supports": "The season structure quoted in the source register: 18 weeks, 272 regular-season games, 17 games per team, start and end dates, and the international slate.",
+      "http_state": "200 (page read)",
+      "excerpt": "'The NFL announced its 18-week, 272-game regular-season schedule for 2026, which kicks off on Wednesday night, September 9, in Seattle and concludes with 16 division games in Week 18 - three on Saturday, January 9, and 13 on Sunday, January 10'; 'each team playing 17 regular-season games and three preseason games'; 'nine international games, the most-ever in a season'; Week 9 in Madrid (Atlanta at Cincinnati) and Week 10 in Munich (New England at Detroit) (retrieved 2026-11-13).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-2026-07",
+      "label": "NFL Football Operations - 2026 NFL Rulebook",
+      "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "supports": "Rulebook citation used for game-settlement context (final score, overtime, ties).",
+      "http_state": "200 (page read)",
+      "excerpt": "'2026 NFL RULEBOOK - Explore the official 2026 NFL rulebook', with the 2026 rule-change table (6-1-3, 6-1-5, 6-1-6, 19-2) and a link to the 'ops-2026-NFL-Rulebook-FINAL (PDF)' document (retrieved 2026-11-13).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "SRC-CHK-2026-08",
+      "label": "nflverse data dictionary - schedules",
+      "url": "https://nflreadr.nflverse.com/articles/dictionary_schedules.html",
+      "supports": "Field definitions for the schedule extract (result, total, score columns).",
+      "http_state": "200 (page read)",
+      "excerpt": "'result: The number of points the home team scored minus the number of points the visiting team scored. Equals h_score - v_score.'; 'total: The sum of each team's score in the game. Equals h_score + v_score.'; 'home_score ... Is NA for games which haven't yet been played.'; 'Showing 1 to 25 of 45 entries' - the remaining entries, including spread_line, are on the second page, so this page still does not define the spread sign convention, which the site therefore proves from the data (retrieved 2026-11-13).",
+      "verdict": "CONFIRMED"
+    }
+  ]
+}

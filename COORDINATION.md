@@ -1809,3 +1809,53 @@ edited. If a hub needs a change, it is logged below as a cross-session request.
 - 2026-11-13 UTC — board read in full (1,718 lines). Every earlier task is `done` or `needs review`;
   no live claim on the shared index/navigation remains. FI-0 claim written and pushed before any other
   work.
+
+### Result log — `arena/dd794652-korea2` (final integration, 2026-11-13)
+
+| Task | Status | Result |
+|---|---|---|
+| FI-1 line-by-line repository review | done | `docs/INTEGRATION_REVIEW.md` — 10 findings (IR-01…IR-10) with evidence, sources and what was changed |
+| FI-2 ATS identity corrected | done | overview card + Removing luck page now publish the one-sided home-cover test (48.91%, 95% CI 47.73–50.09%, p = 0.0727, n = 6,892); the pooled 50% row is labelled an arithmetic identity (IR-01) |
+| FI-3 navigation + landing page | done | grouped nav (Research / Decide / Evidence), duplicates removed, new `pages/workspaces.html` listing all 16 workspaces (IR-05) |
+| FI-4 consolidated review queue | done | `pages/flagged.html` carries the whole-site queue: 89 open items across the 7 workspaces that keep a machine-readable register, counts read at build time (IR-06) |
+| FI-5 live re-verification | done | 8 official pages re-read on 2026-11-13, recorded in `verification/sources_2026-11-13.json` and rendered on the Verification page; NFL.com 2026 standings transcribed in `verification/nfl_standings_2026-11-13.json` |
+| FI-6 documentation corrected | done | 28 stale figures in `README.md` and `docs/EXECUTIVE_SUMMARY.md` corrected to the committed values (IR-02) |
+| FI-7 build, PR, merge, deploy | in progress | see the release record below |
+
+**Independent recomputation (new).** `verification/integration_recompute.py` re-derives the published
+numbers from the committed extracts only, importing nothing from `scripts/` or `pipeline/`.
+Result: **45 checks — 41 exact matches, 4 documented differences, 0 mismatches.** The four
+differences are one root cause: the committed `player_week.csv.gz` covers 2015–2026 while
+`data/derived/correlation.json` states a 2012–2026 scope, so the published sample sizes
+(7,566 team-games / 7,560 for the QB↔WR1 pair) cannot be reproduced (5,782 / 5,776) while the
+coefficients do (QB↔WR1 r recomputes to 0.5618 against the published 0.5616). Published as IR-03.
+
+**Measured staleness.** The official NFL.com 2026 division standings read on 2026-11-13 show
+**137** regular-season games played; the committed extract holds **120** (last gameday 2026-11-01).
+The published snapshot is therefore **17 games behind** the live page — two teams two games behind
+(Washington and the Giants, who played on Thursday 2026-11-12), two level (Pittsburgh and Tennessee,
+bye) and 28 one game behind. Published as IR-04. The 32/32 reconciliation recorded on 2026-11-02
+remains valid for its own snapshot.
+
+**Checks run on the merged tree.** `scripts/build_site.py` (16 pages), `tests/check_site.py`
+(178 pages, 431 tables, 10,584 links — all passed), `scripts/check_links.py` (3,633 references — no
+broken links), `tests/check_derived.py` (49 checks, 0 disagreements, 26 generated pages all linked),
+`scripts/validate_data.py` (PASS), `tests/check_data.py` (PASS),
+`verification/integration_recompute.py` (0 failures). CI additionally re-runs the recomputation and
+fails if the published pages are not reproducible from the committed data.
+
+**Open items published, not blocking.** No strategy is approved; the reward pool is unfunded; there
+are no prop prices, no timestamped lines, no verified execution access, no official depth order and
+no point-in-time injury history; the 2012–2026 extract window (IR-03) and the stale snapshot
+(IR-04) need a pipeline re-run; 28 sibling pages still lack a per-row source column (IR-08);
+two generators still stamp the same generator marker on root pages (IR-07); two independent builds
+of the same decision desk still coexist (IR-09).
+
+**Cross-session requests (logged, not edited).**
+1. `site/scripts/build_site.py` — stamp its pages with its own generator marker (IR-07).
+2. `site/` and `decision-desk/` — agree which desk is canonical, or state the difference (IR-09).
+3. `suggestions/` and `decision-hub/` — their hubs duplicate `pages/suggestions.html` and
+   `pages/decision-hub.html`; the duplicates are now linked from the Workspaces page and flagged.
+4. Sibling generators — add a per-row source column to the 28 pages that lack one (IR-08/FL-DD-16).
+5. Owners of `README.md` / `EXECUTIVE_SUMMARY.md` wording — the "48 of 49" phrasing is now unified
+   to "49 checks: 45 strict equality checks agree, 0 disagree, 11 observations" (FL-DD-19).

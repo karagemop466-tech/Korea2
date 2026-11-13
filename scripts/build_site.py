@@ -1235,7 +1235,8 @@ current NFL.com standings page returns {summ.get("teams_2026_matched", 0)} of
 published player-level coefficients are reproduced on a shorter window and their sample size is smaller here.</li>
 <li>That a page that loaded today will load tomorrow. Source availability is checked as of the date shown.</li>
 </ul>''', "LIMITS")
-        + integration_section())
+        + integration_section()
+        + source_recheck_section())
     return W.layout("Verification", "pages/verification.html", body,
                     subtitle="Independent recomputation, official-source re-checks, and the disagreements.")
 
@@ -1277,6 +1278,33 @@ def integration_section() -> str:
                 f'verification/integration_recompute.py, which imports nothing from the pipeline; '
                 f'inputs: {esc(", ".join(meta.get("inputs", [])))}. '
                 f'{esc(meta.get("caveat", ""))}'))
+
+
+def source_recheck_section() -> str:
+    """The official-source re-checks performed by the 2026-11-13 integration pass."""
+    path = os.path.join("verification", "sources_2026-11-13.json")
+    if not os.path.exists(path):
+        return ""
+    try:
+        with open(path) as fh:
+            rec = json.load(fh)
+    except (OSError, ValueError):
+        return ""
+    rows = []
+    for c in rec.get("checks", []):
+        rows.append([
+            esc(c.get("label", "")),
+            esc(c.get("supports", "")),
+            esc(c.get("http_state", "")),
+            badge("ok" if str(c.get("verdict", "")).startswith("CONFIRMED") else "bad",
+                  c.get("verdict", "")),
+            f'<a href="{esc(c.get("url", ""))}" rel="noopener">Open the page</a>',
+        ])
+    return section("Official-source re-checks, 2026-11-13", table(
+        ["Source", "What it supports", "Response", "Verdict", "Link"], rows,
+        caption="Opened and read on 2026-11-13 by the integration session. The excerpt for each row "
+                "is in verification/sources_2026-11-13.json. A page that does not return the value "
+                "it is cited for is recorded as NOT CONFIRMED, not as confirmed."))
 
 
 # ---------------------------------------------------------------- flagged

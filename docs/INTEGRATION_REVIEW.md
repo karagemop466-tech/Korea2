@@ -213,13 +213,20 @@ Navigation groups: **Research** (10 entries) → **Decide** (8) → **Evidence**
 
 ## 5. Live re-checks against official sources (2026-11-13)
 
+Every page below was opened and read on 2026-11-13; the recorded excerpts are committed at
+[`verification/sources_2026-11-13.json`](../verification/sources_2026-11-13.json) and rendered on the
+[Verification page](https://karagemop466-tech.github.io/Korea2/pages/verification.html).
+
 | # | Official page | What was read | Verdict |
 |---|---|---|---|
-| 1 | [NFL.com — 2026 division standings](https://www.nfl.com/standings/division/2026/REG) | W-L-T and PF-PA for all 32 teams | transcribed in full; 137 games played |
-| 2 | [NFL.com — official injury report](https://www.nfl.com/injuries/) | page title and week selector: Week 10; games dated 2026-11-12 and 2026-11-15; the report shows Washington 3-5-1 and New York 5-3-1, matching the standings rows | confirmed |
-| 3 | [NFL.com — Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) | Commanders 24, Giants 21 final on Thursday 2026-11-12; the remaining games Sunday 2026-11-15 | confirmed |
-| 4 | [NFL.com — 2026 schedule announcement](https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced) | 18-week, 272-game regular season | confirmed (source register entry `SRC-NFL-SCHED-2026`) |
-| 5 | [NFL.com — rules and officiating, 2026 rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook) | current rulebook URL | confirmed; the 2025 URL that 404s is named in the flag register |
+| 1 | [NFL.com — 2026 division standings](https://www.nfl.com/standings/division/2026/REG) | W-L-T and PF-PA for all 32 teams | confirmed; 137 games played |
+| 2 | [NFL.com — 2020 division standings](https://www.nfl.com/standings/division/2020/REG) | Buffalo 13-3-0 501/375, Green Bay 13-3-0 509/369, Kansas City 14-2-0 473/362 | confirmed; identical to the 2026-11-02 reading, as a completed season must be |
+| 3 | [NFL.com — official injury report](https://www.nfl.com/injuries/) | page title and week selector: Week 10; games dated 2026-11-12 and 2026-11-15; the report shows Washington 3-5-1 and New York 5-3-1, matching the standings rows | confirmed |
+| 4 | [NFL.com — Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) | Commanders 24, Giants 21 final on Thursday 2026-11-12; the remaining games Sunday 2026-11-15 | confirmed |
+| 5 | [NFL.com — 2026 schedule announcement](https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced) | "18-week, 272-game regular-season schedule"; kickoff Wednesday 2026-09-09 in Seattle; 16 divisional games in Week 18; 17 games per team; nine international games; Week 9 Madrid, Week 10 Munich | confirmed |
+| 6 | [NFL.com — 2026 passing statistics](https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc) | Jordan Love 2,618 yds, Joe Burrow 2,386, Dak Prescott 2,381 (2,246 for Love on 2026-11-02, so the page advances with the season) | confirmed |
+| 7 | [NFL.com — rules and officiating, 2026 rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook) | "2026 NFL RULEBOOK", rule changes 6-1-3 / 6-1-5 / 6-1-6 / 19-2, and the final PDF link | confirmed; the 2025 URL that 404s is named in the flag register |
+| 8 | [nflverse data dictionary — schedules](https://nflreadr.nflverse.com/articles/dictionary_schedules.html) | `result` = home_score − away_score, `total` = the sum, scores are NA for unplayed games; 45 entries, the first 25 shown | confirmed; `spread_line` is still not defined there, which is why the sign convention is proven from the data |
 
 The full official source register for the site is
 [data/sources.json](../data/sources.json); each entry states who opened it and when.
