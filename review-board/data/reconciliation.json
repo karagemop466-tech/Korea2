@@ -1,0 +1,2176 @@
+{
+ "hubs_scanned": 14,
+ "files_scanned": 144,
+ "published_numbers": [
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "A player's own receptions vs own receiving yards (same game)",
+   "field": "r",
+   "values": "0.860",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "A player's own receptions vs own receiving yards (same game)",
+   "field": "r",
+   "values": "0.860",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Adjacent Same-Week Game ATS Cover <-> Next Game ATS Cover",
+   "field": "pearson_r",
+   "values": "0.010",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Adjacent Same-Week Game ATS Cover <-> Next Game ATS Cover",
+   "field": "pearson_r",
+   "values": "0.010",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "Carries vs rushing yards (same player-game)",
+   "field": "r",
+   "values": "0.848",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Closing spread vs closing total",
+   "field": "r",
+   "values": "-0.010",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Closing spread vs closing total",
+   "field": "r",
+   "values": "-0.010",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "Combined QB passing yards vs game total points",
+   "field": "r",
+   "values": "0.475",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Ex-Ante WR1 Receiving Yards <-> Ex-Ante WR2 Receiving Yards",
+   "field": "pearson_r",
+   "values": "-0.004",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Ex-Ante WR1 Receiving Yards <-> Ex-Ante WR2 Receiving Yards",
+   "field": "pearson_r",
+   "values": "-0.004",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home ATS Cover <-> Game Total Over (All Games)",
+   "field": "pearson_r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home ATS Cover <-> Game Total Over (All Games)",
+   "field": "pearson_r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Home ATS cover <-> game total over (skill-lab)",
+   "field": "r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Home ATS result vs game total (same game)",
+   "field": "r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Home ATS result vs game total, same game",
+   "field": "r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/correlations.json",
+   "quantity": "Home cover vs over (binary association, phi)",
+   "field": "r",
+   "values": "0.016",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home Favorite Cover (-3.5+) <-> Game Total Over",
+   "field": "pearson_r",
+   "values": "0.085",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home Favorite Cover (-3.5+) <-> Game Total Over",
+   "field": "pearson_r",
+   "values": "0.085",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Home favorite cover (-3.5+) <-> game total over (skill-lab)",
+   "field": "r",
+   "values": "0.085",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Home margin vs game total (completed games)",
+   "field": "r",
+   "values": "0.017",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home Outright Win <-> Home ATS Cover",
+   "field": "pearson_r",
+   "values": "0.912",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home Outright Win <-> Home ATS Cover",
+   "field": "pearson_r",
+   "values": "0.912",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home Points Scored <-> Away Points Scored",
+   "field": "pearson_r",
+   "values": "-0.048",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home Points Scored <-> Away Points Scored",
+   "field": "pearson_r",
+   "values": "-0.048",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "Home points vs away points (pace coupling)",
+   "field": "r",
+   "values": "-0.031",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Home points vs away points (pace coupling)",
+   "field": "r",
+   "values": "-0.031",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/correlations.json",
+   "quantity": "Home points vs away points (pace coupling)",
+   "field": "r",
+   "values": "-0.031",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/correlations.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Home QB passing yards vs away QB passing yards (same game)",
+   "field": "r",
+   "values": "0.172",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Home QB vs away QB passing yards (same game)",
+   "field": "r",
+   "values": "0.172",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home QB1 Passing Yards <-> Opposing Away QB1 Passing Yards",
+   "field": "pearson_r",
+   "values": "0.089",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home QB1 Passing Yards <-> Opposing Away QB1 Passing Yards",
+   "field": "pearson_r",
+   "values": "0.089",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home Underdog Cover (+3.5+) <-> Game Total Over",
+   "field": "pearson_r",
+   "values": "-0.070",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home Underdog Cover (+3.5+) <-> Game Total Over",
+   "field": "pearson_r",
+   "values": "-0.070",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Lead RB rushing yards vs team passing yards (same game)",
+   "field": "r",
+   "values": "-0.149",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Lead RB rushing yards vs team passing yards (same game)",
+   "field": "r",
+   "values": "-0.149",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "Lead RB rushing yards vs team points",
+   "field": "r",
+   "values": "0.291",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Lead RB rushing yards vs top receiver's yards (same team, same game, ex-post leaders)",
+   "field": "r",
+   "values": "-0.039",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "Leading receiver yards vs team points",
+   "field": "r",
+   "values": "0.328",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "Passing yards vs passing TDs (same QB-game)",
+   "field": "r",
+   "values": "0.515",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "Placebo: QB yards in unrelated team-games. Should be ~0, which validates the measurement method.",
+   "field": "r",
+   "values": "-0.030",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "QB passing yards vs his leading receiver's yards",
+   "field": "r",
+   "values": "0.674",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "QB passing yards vs opponent points",
+   "field": "r",
+   "values": "0.183",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "QB passing yards vs opposing QB passing yards",
+   "field": "r",
+   "values": "0.167",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "QB passing yards vs own team points",
+   "field": "r",
+   "values": "0.400",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "QB passing yards vs that game's top receiver (ex-post leader)",
+   "field": "r",
+   "values": "0.630",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "QB passing yards vs that team's top receiver (same game, ex-post leader)",
+   "field": "r",
+   "values": "0.630",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "QB passing yards vs WR1 receiving yards",
+   "field": "r",
+   "values": "0.562",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/correlations.json",
+   "quantity": "QB passing yards vs WR1 receiving yards (same team)",
+   "field": "r",
+   "values": "0.562",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/correlations.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "QB passing yards vs WR1 receiving yards (same team, same game)",
+   "field": "r",
+   "values": "0.562",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "QB passing yards vs WR2 receiving yards",
+   "field": "r",
+   "values": "0.506",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/correlations.json",
+   "quantity": "QB passing yards vs WR2 receiving yards",
+   "field": "r",
+   "values": "0.506",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "QB1 2+ Passing TDs <-> Ex-Ante WR1 Anytime Receiving TD",
+   "field": "pearson_r",
+   "values": "0.457",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "QB1 2+ Passing TDs <-> Ex-Ante WR1 Anytime Receiving TD",
+   "field": "pearson_r",
+   "values": "0.457",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "QB1 Passing Yards <-> Ex-Ante WR1 Receiving Yards (Same Team)",
+   "field": "pearson_r",
+   "values": "0.372",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "QB1 Passing Yards <-> Ex-Ante WR1 Receiving Yards (Same Team)",
+   "field": "pearson_r",
+   "values": "0.372",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "QB1 Passing Yards <-> EX-POST Game Leading Receiver Yards (Lookahead Bias)",
+   "field": "pearson_r",
+   "values": "0.614",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "QB1 Passing Yards <-> EX-POST Game Leading Receiver Yards (Lookahead Bias)",
+   "field": "pearson_r",
+   "values": "0.614",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "QB1 Passing Yards <-> Same-Game Total Over",
+   "field": "pearson_r",
+   "values": "0.297",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "QB1 Passing Yards <-> Same-Game Total Over",
+   "field": "pearson_r",
+   "values": "0.297",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "RB1 Rushing Yards <-> Same-Team ATS Cover",
+   "field": "pearson_r",
+   "values": "0.281",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "RB1 Rushing Yards <-> Same-Team ATS Cover",
+   "field": "pearson_r",
+   "values": "0.281",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "RB1 Rushing Yards <-> Same-Team QB1 Pass Attempts",
+   "field": "pearson_r",
+   "values": "-0.167",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "RB1 Rushing Yards <-> Same-Team QB1 Pass Attempts",
+   "field": "pearson_r",
+   "values": "-0.167",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "RB1 rushing yards vs own team points",
+   "field": "r",
+   "values": "0.301",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "RB1 rushing yards vs QB passing yards",
+   "field": "r",
+   "values": "-0.127",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/correlations.json",
+   "quantity": "RB1 rushing yards vs QB passing yards (same team)",
+   "field": "r",
+   "values": "-0.127",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "Receptions vs receiving yards (same player-game)",
+   "field": "r",
+   "values": "0.840",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "Team passing vs rushing yards",
+   "field": "r",
+   "values": "-0.220",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "Team passing yards vs team points",
+   "field": "r",
+   "values": "0.370",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Team passing yards vs top receiver's yards (same game, ex-post leader)",
+   "field": "r",
+   "values": "0.645",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "Team points vs opponent points",
+   "field": "r",
+   "values": "-0.042",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "Team rushing yards vs team points",
+   "field": "r",
+   "values": "0.373",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "Team WR1 yards vs team WR2 yards",
+   "field": "r",
+   "values": "0.501",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Top-two receivers' yards (same team, same game, ranked ex-post)",
+   "field": "r",
+   "values": "0.474",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Top-two receivers' yards, holding team passing volume constant",
+   "field": "r",
+   "values": "0.111",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Top-two receivers' yards, holding team passing volume constant (ex-post ranks)",
+   "field": "r",
+   "values": "0.111",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Total receiving yards, home vs away (same game)",
+   "field": "r",
+   "values": "0.174",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "Winning margin vs game total",
+   "field": "r",
+   "values": "0.017",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Winning margin vs game total",
+   "field": "r",
+   "values": "0.017",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/correlations.json",
+   "quantity": "Winning margin vs game total (score correlation)",
+   "field": "r",
+   "values": "0.017",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "WR1 receiving yards vs own team points",
+   "field": "r",
+   "values": "0.280",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "WR1 receiving yards vs WR2 receiving yards",
+   "field": "r",
+   "values": "0.120",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/correlations.json",
+   "quantity": "WR1 receiving yards vs WR2 receiving yards (same team)",
+   "field": "r",
+   "values": "0.120",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/luck.json",
+   "quantity": "Year-over-year correlation of one-score win rate",
+   "field": "r",
+   "values": "0.082",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/luck.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/luck.json",
+   "quantity": "Year-over-year correlation of Pythagorean luck (wins)",
+   "field": "r",
+   "values": "0.024",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/luck.json"
+  }
+ ],
+ "quantity_conflicts": [
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Home ATS result vs game total (same game)",
+   "field": "r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Home ATS cover <-> game total over (skill-lab)",
+   "field": "r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Home favorite cover (-3.5+) <-> game total over (skill-lab)",
+   "field": "r",
+   "values": "0.085",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home ATS Cover <-> Game Total Over (All Games)",
+   "field": "pearson_r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home Favorite Cover (-3.5+) <-> Game Total Over",
+   "field": "pearson_r",
+   "values": "0.085",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home Underdog Cover (+3.5+) <-> Game Total Over",
+   "field": "pearson_r",
+   "values": "-0.070",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "Home ATS result vs game total, same game",
+   "field": "r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home ATS Cover <-> Game Total Over (All Games)",
+   "field": "pearson_r",
+   "values": "0.021",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home Favorite Cover (-3.5+) <-> Game Total Over",
+   "field": "pearson_r",
+   "values": "0.085",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home Underdog Cover (+3.5+) <-> Game Total Over",
+   "field": "pearson_r",
+   "values": "-0.070",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json",
+   "quantity_canonical": "Home ATS cover vs game total over",
+   "all_values": "-0.070, 0.021, 0.085"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "Home points vs away points (pace coupling)",
+   "field": "r",
+   "values": "-0.031",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json",
+   "quantity_canonical": "Home points vs away points",
+   "all_values": "-0.031, -0.048"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "Home points vs away points (pace coupling)",
+   "field": "r",
+   "values": "-0.031",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json",
+   "quantity_canonical": "Home points vs away points",
+   "all_values": "-0.031, -0.048"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Home Points Scored <-> Away Points Scored",
+   "field": "pearson_r",
+   "values": "-0.048",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json",
+   "quantity_canonical": "Home points vs away points",
+   "all_values": "-0.031, -0.048"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Home Points Scored <-> Away Points Scored",
+   "field": "pearson_r",
+   "values": "-0.048",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json",
+   "quantity_canonical": "Home points vs away points",
+   "all_values": "-0.031, -0.048"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/correlations.json",
+   "quantity": "Home points vs away points (pace coupling)",
+   "field": "r",
+   "values": "-0.031",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/correlations.json",
+   "quantity_canonical": "Home points vs away points",
+   "all_values": "-0.031, -0.048"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "Receptions vs receiving yards (same player-game)",
+   "field": "r",
+   "values": "0.840",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json",
+   "quantity_canonical": "Player's own receptions vs own receiving yards",
+   "all_values": "0.840, 0.860"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "quantity": "A player's own receptions vs own receiving yards (same game)",
+   "field": "r",
+   "values": "0.860",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json",
+   "quantity_canonical": "Player's own receptions vs own receiving yards",
+   "all_values": "0.840, 0.860"
+  },
+  {
+   "hub": "results",
+   "file": "results/correlations.json",
+   "quantity": "A player's own receptions vs own receiving yards (same game)",
+   "field": "r",
+   "values": "0.860",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/correlations.json",
+   "quantity_canonical": "Player's own receptions vs own receiving yards",
+   "all_values": "0.840, 0.860"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "RB1 rushing yards vs own team points",
+   "field": "r",
+   "values": "0.301",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json",
+   "quantity_canonical": "RB rushing yards vs team points",
+   "all_values": "0.291, 0.301"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "Lead RB rushing yards vs team points",
+   "field": "r",
+   "values": "0.291",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json",
+   "quantity_canonical": "RB rushing yards vs team points",
+   "all_values": "0.291, 0.301"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/correlation.json",
+   "quantity": "WR1 receiving yards vs WR2 receiving yards",
+   "field": "r",
+   "values": "0.120",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json",
+   "quantity_canonical": "WR1 vs WR2 receiving yards",
+   "all_values": "-0.004, 0.120, 0.501"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/models.json",
+   "quantity": "Ex-Ante WR1 Receiving Yards <-> Ex-Ante WR2 Receiving Yards",
+   "field": "pearson_r",
+   "values": "-0.004",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/models.json",
+   "quantity_canonical": "WR1 vs WR2 receiving yards",
+   "all_values": "-0.004, 0.120, 0.501"
+  },
+  {
+   "hub": "origination",
+   "file": "origination/site_data/props.json",
+   "quantity": "Team WR1 yards vs team WR2 yards",
+   "field": "r",
+   "values": "0.501",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json",
+   "quantity_canonical": "WR1 vs WR2 receiving yards",
+   "all_values": "-0.004, 0.120, 0.501"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/correlations.json",
+   "quantity": "Ex-Ante WR1 Receiving Yards <-> Ex-Ante WR2 Receiving Yards",
+   "field": "pearson_r",
+   "values": "-0.004",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/correlations.json",
+   "quantity_canonical": "WR1 vs WR2 receiving yards",
+   "all_values": "-0.004, 0.120, 0.501"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/correlations.json",
+   "quantity": "WR1 receiving yards vs WR2 receiving yards (same team)",
+   "field": "r",
+   "values": "0.120",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/correlations.json",
+   "quantity_canonical": "WR1 vs WR2 receiving yards",
+   "all_values": "-0.004, 0.120, 0.501"
+  }
+ ],
+ "conflict_quantity_count": 5,
+ "quantity_aliases": {
+  "QB passing yards vs WR1 receiving yards": "qb.{0,28}wr ?1",
+  "WR1 vs WR2 receiving yards": "wr ?1.{0,30}wr ?2",
+  "Home ATS cover vs game total over": "(cover|ats).{0,26}(game total|total over)",
+  "Home points vs away points": "home p?oints.{0,22}away",
+  "RB rushing yards vs team points": "rb.{0,25}(rush|yards).{0,30}team p?oints",
+  "Winning margin vs game total": "margin.{0,20}total",
+  "Player's own receptions vs own receiving yards": "receptions? vs.{0,20}receiving",
+  "QB passing yards vs game total points": "qb.{0,25}(game total|total points)"
+ },
+ "gate_definitions": [
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G1",
+   "name": "Point-in-time integrity",
+   "rule": "Inputs are strictly pre-kickoff; no result-derived feature; source hashes recorded.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G1",
+   "name": "Point-in-time integrity",
+   "rule": "Inputs are strictly pre-kickoff; no result-derived feature; source hashes recorded.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G1",
+   "name": "Sample size",
+   "rule": "At least 300 settled bets; the luck page's own power table says 9,806 bets are needed to detect a 52% win rate at 80% power.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G1",
+   "name": "Point-in-time integrity",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G10",
+   "name": "Reproducible",
+   "rule": "Committed code + data manifest + fixed seed reproduce the published numbers.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G10",
+   "name": "Reproducible",
+   "rule": "Committed code + data manifest + fixed seed reproduce the published numbers.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G10",
+   "name": "Independent re-check",
+   "rule": "Reproduces within tolerance.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G10",
+   "name": "No hindsight selection",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G2",
+   "name": "Sample size",
+   "rule": "n >= 1000 settled bets (or the power-analysis minimum, whichever is larger).",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G2",
+   "name": "Sample size",
+   "rule": "n >= 1000 settled bets (or the power-analysis minimum, whichever is larger).",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G2",
+   "name": "Significance",
+   "rule": "p < 0.05.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G2",
+   "name": "Sample size",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G3",
+   "name": "Out-of-sample",
+   "rule": "Evaluated on walk-forward seasons never used to fit the model.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G3",
+   "name": "Out-of-sample",
+   "rule": "Evaluated on walk-forward seasons never used to fit the model.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G3",
+   "name": "Multiple testing",
+   "rule": "Survives at q = 0.10.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G3",
+   "name": "Out-of-sample",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G4",
+   "name": "Significance after multiple testing",
+   "rule": "Two-sided p < 0.01 AND Benjamini-Hochberg q-value <= 0.10 across all tested strategies.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G4",
+   "name": "Significance after multiple testing",
+   "rule": "Two-sided p < 0.01 AND Benjamini-Hochberg q-value <= 0.10 across all tested strategies.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G4",
+   "name": "Positive after vig",
+   "rule": "ROI > 0 and the 95% interval excludes zero.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G4",
+   "name": "Significance after multiple testing",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G5",
+   "name": "Positive lower bound",
+   "rule": "Lower 95% bootstrap bound on ROI is above 0.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G5",
+   "name": "Positive lower bound",
+   "rule": "Lower 95% bootstrap bound on ROI is above 0.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G5",
+   "name": "Luck permutation",
+   "rule": "The candidate beats at least 95% of them.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G5",
+   "name": "Positive lower bound",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G6",
+   "name": "Stability",
+   "rule": "Profitable in >= 60% of evaluated seasons and no single season > 50% of total profit.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G6",
+   "name": "Stability",
+   "rule": "Profitable in >= 60% of evaluated seasons and no single season > 50% of total profit.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G6",
+   "name": "Track-record length",
+   "rule": "Enough bets for the observed effect to be distinguishable from zero.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G6",
+   "name": "Stability",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G7",
+   "name": "Beats the closing line",
+   "rule": "ROI is measured against the closing line, i.e. it must beat the sharpest public price.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G7",
+   "name": "Beats the closing line",
+   "rule": "ROI is measured against the closing line, i.e. it must beat the sharpest public price.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G7",
+   "name": "Correlation validity",
+   "rule": "The dependence model is estimated from data and validated out of sample.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G7",
+   "name": "Beats the closing line",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G8",
+   "name": "Survives luck adjustment",
+   "rule": "Deflated-Sharpe p < 0.05 given the number of variants tried.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G8",
+   "name": "Survives luck adjustment",
+   "rule": "Deflated-Sharpe p < 0.05 given the number of variants tried.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G8",
+   "name": "Temporal stability",
+   "rule": "The effect holds in the untouched window.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G8",
+   "name": "Survives luck adjustment",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G9",
+   "name": "Executable",
+   "rule": "Price, limit and jurisdiction verified for the exact bet and time window.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G9",
+   "name": "Executable",
+   "rule": "Price, limit and jurisdiction verified for the exact bet and time window.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G9",
+   "name": "Executable price",
+   "rule": "The bet is profitable at both the recorded price and a plausible worse price.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G9",
+   "name": "Price robustness",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  }
+ ],
+ "gate_name_conflicts": [
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G1",
+   "name": "Point-in-time integrity",
+   "rule": "Inputs are strictly pre-kickoff; no result-derived feature; source hashes recorded.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Point-in-time integrity | Sample size"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G1",
+   "name": "Point-in-time integrity",
+   "rule": "Inputs are strictly pre-kickoff; no result-derived feature; source hashes recorded.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Point-in-time integrity | Sample size"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G1",
+   "name": "Sample size",
+   "rule": "At least 300 settled bets; the luck page's own power table says 9,806 bets are needed to detect a 52% win rate at 80% power.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Point-in-time integrity | Sample size"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G1",
+   "name": "Point-in-time integrity",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Point-in-time integrity | Sample size"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G10",
+   "name": "Reproducible",
+   "rule": "Committed code + data manifest + fixed seed reproduce the published numbers.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Independent re-check | No hindsight selection | Reproducible"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G10",
+   "name": "Reproducible",
+   "rule": "Committed code + data manifest + fixed seed reproduce the published numbers.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Independent re-check | No hindsight selection | Reproducible"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G10",
+   "name": "Independent re-check",
+   "rule": "Reproduces within tolerance.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Independent re-check | No hindsight selection | Reproducible"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G10",
+   "name": "No hindsight selection",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Independent re-check | No hindsight selection | Reproducible"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G2",
+   "name": "Sample size",
+   "rule": "n >= 1000 settled bets (or the power-analysis minimum, whichever is larger).",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Sample size | Significance"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G2",
+   "name": "Sample size",
+   "rule": "n >= 1000 settled bets (or the power-analysis minimum, whichever is larger).",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Sample size | Significance"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G2",
+   "name": "Significance",
+   "rule": "p < 0.05.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Sample size | Significance"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G2",
+   "name": "Sample size",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Sample size | Significance"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G3",
+   "name": "Out-of-sample",
+   "rule": "Evaluated on walk-forward seasons never used to fit the model.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Multiple testing | Out-of-sample"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G3",
+   "name": "Out-of-sample",
+   "rule": "Evaluated on walk-forward seasons never used to fit the model.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Multiple testing | Out-of-sample"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G3",
+   "name": "Multiple testing",
+   "rule": "Survives at q = 0.10.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Multiple testing | Out-of-sample"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G3",
+   "name": "Out-of-sample",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Multiple testing | Out-of-sample"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G4",
+   "name": "Significance after multiple testing",
+   "rule": "Two-sided p < 0.01 AND Benjamini-Hochberg q-value <= 0.10 across all tested strategies.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Positive after vig | Significance after multiple testing"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G4",
+   "name": "Significance after multiple testing",
+   "rule": "Two-sided p < 0.01 AND Benjamini-Hochberg q-value <= 0.10 across all tested strategies.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Positive after vig | Significance after multiple testing"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G4",
+   "name": "Positive after vig",
+   "rule": "ROI > 0 and the 95% interval excludes zero.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Positive after vig | Significance after multiple testing"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G4",
+   "name": "Significance after multiple testing",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Positive after vig | Significance after multiple testing"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G5",
+   "name": "Positive lower bound",
+   "rule": "Lower 95% bootstrap bound on ROI is above 0.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Luck permutation | Positive lower bound"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G5",
+   "name": "Positive lower bound",
+   "rule": "Lower 95% bootstrap bound on ROI is above 0.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Luck permutation | Positive lower bound"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G5",
+   "name": "Luck permutation",
+   "rule": "The candidate beats at least 95% of them.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Luck permutation | Positive lower bound"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G5",
+   "name": "Positive lower bound",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Luck permutation | Positive lower bound"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G6",
+   "name": "Stability",
+   "rule": "Profitable in >= 60% of evaluated seasons and no single season > 50% of total profit.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Stability | Track-record length"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G6",
+   "name": "Stability",
+   "rule": "Profitable in >= 60% of evaluated seasons and no single season > 50% of total profit.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Stability | Track-record length"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G6",
+   "name": "Track-record length",
+   "rule": "Enough bets for the observed effect to be distinguishable from zero.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Stability | Track-record length"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G6",
+   "name": "Stability",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Stability | Track-record length"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G7",
+   "name": "Beats the closing line",
+   "rule": "ROI is measured against the closing line, i.e. it must beat the sharpest public price.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Beats the closing line | Correlation validity"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G7",
+   "name": "Beats the closing line",
+   "rule": "ROI is measured against the closing line, i.e. it must beat the sharpest public price.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Beats the closing line | Correlation validity"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G7",
+   "name": "Correlation validity",
+   "rule": "The dependence model is estimated from data and validated out of sample.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Beats the closing line | Correlation validity"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G7",
+   "name": "Beats the closing line",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Beats the closing line | Correlation validity"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G8",
+   "name": "Survives luck adjustment",
+   "rule": "Deflated-Sharpe p < 0.05 given the number of variants tried.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Survives luck adjustment | Temporal stability"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G8",
+   "name": "Survives luck adjustment",
+   "rule": "Deflated-Sharpe p < 0.05 given the number of variants tried.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Survives luck adjustment | Temporal stability"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G8",
+   "name": "Temporal stability",
+   "rule": "The effect holds in the untouched window.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Survives luck adjustment | Temporal stability"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G8",
+   "name": "Survives luck adjustment",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Survives luck adjustment | Temporal stability"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "gate": "G9",
+   "name": "Executable",
+   "rule": "Price, limit and jurisdiction verified for the exact bet and time window.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json",
+   "all_names": "Executable | Executable price | Price robustness"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/strategies.json",
+   "gate": "G9",
+   "name": "Executable",
+   "rule": "Price, limit and jurisdiction verified for the exact bet and time window.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/strategies.json",
+   "all_names": "Executable | Executable price | Price robustness"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "gate": "G9",
+   "name": "Executable price",
+   "rule": "The bet is profitable at both the recorded price and a plausible worse price.",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json",
+   "all_names": "Executable | Executable price | Price robustness"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "gate": "G9",
+   "name": "Price robustness",
+   "rule": "",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json",
+   "all_names": "Executable | Executable price | Price robustness"
+  }
+ ],
+ "stamps": [
+  {
+   "hub": "data",
+   "file": "data/bet_types.json",
+   "stamp": "2026-11-01",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/bet_types.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/correlations.json",
+   "stamp": "2026-11-01",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/correlations.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/manifest.json",
+   "stamp": "2026-11-02T17:38:45+00:00",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/manifest.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/derived/verification.json",
+   "stamp": "2026-11-12T13:18:33Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/verification.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/flagged.json",
+   "stamp": "2026-11-01",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/flagged.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/leaderboard.json",
+   "stamp": "2026-11-01",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/leaderboard.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/league_facts.json",
+   "stamp": "2026-11-01",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/league_facts.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/signals.json",
+   "stamp": "2026-11-01",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/signals.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/sources.json",
+   "stamp": "2026-11-01",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/sources.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/strategies.json",
+   "stamp": "2026-11-01",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/strategies.json"
+  },
+  {
+   "hub": "data",
+   "file": "data/validation_gates.json",
+   "stamp": "2026-11-01",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/validation_gates.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/flagged.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/flagged.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/injuries.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/injuries.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/leaderboard.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/leaderboard.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/questions.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/questions.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/sources.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/sources.json"
+  },
+  {
+   "hub": "decision-desk",
+   "file": "decision-desk/data/suggestions.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/suggestions.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/gate_framework.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/gate_framework.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/injuries.json",
+   "stamp": "2026-11-12T14:46:06+00:00",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/injuries.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/questions.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/questions.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/root_audit.json",
+   "stamp": "2026-11-12T13:34:49+00:00",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/root_audit.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/sources.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/sources.json"
+  },
+  {
+   "hub": "decision-hub",
+   "file": "decision-hub/data/suggestions.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/suggestions.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/correlations.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/correlations.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/flagged.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/flagged.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/injuries_depth.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/injuries_depth.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/leaderboard.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/leaderboard.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/luck.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/luck.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/official_reconciliation.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/official_reconciliation.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/origination.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/origination.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/questions.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/questions.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/requirements.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/requirements.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/signals.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/signals.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/sources.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/sources.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/strategies.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/strategies.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/suggestions.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/suggestions.json"
+  },
+  {
+   "hub": "nfl-command",
+   "file": "nfl-command/data/depth.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/nfl-command/data/depth.json"
+  },
+  {
+   "hub": "origination-lab",
+   "file": "origination-lab/data/derived/integrity.json",
+   "stamp": "2026-11-02T17:39:43Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination-lab/data/derived/integrity.json"
+  },
+  {
+   "hub": "origination-lab",
+   "file": "origination-lab/data/manifest.json",
+   "stamp": "2026-11-01T13:24:26Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination-lab/data/manifest.json"
+  },
+  {
+   "hub": "results",
+   "file": "results/originate.json",
+   "stamp": "window only: games_used_for_ratings 643, last_scored_week 8, season 2026, week 8",
+   "stamp_kind": "no date published",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/originate.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/injury_depth.json",
+   "stamp": "2026-11-01T00:00:00Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/injury_depth.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/parlay.json",
+   "stamp": "2026-11-01T00:00:00Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/parlay.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/questions.json",
+   "stamp": "2026-11-01T00:00:00Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/questions.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/signals.json",
+   "stamp": "2026-11-01T00:00:00Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/signals.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/suggestions.json",
+   "stamp": "2026-11-01T00:00:00Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/suggestions.json"
+  },
+  {
+   "hub": "site",
+   "file": "site/data/verification.json",
+   "stamp": "2026-11-01T00:00:00Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/site/data/verification.json"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/flagged.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/flagged.json"
+  },
+  {
+   "hub": "suggestions",
+   "file": "suggestions/data/sources.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/suggestions/data/sources.json"
+  },
+  {
+   "hub": "verification",
+   "file": "verification/recompute.json",
+   "stamp": "2026-11-12T13:18:33Z",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/verification/recompute.json"
+  },
+  {
+   "hub": "verify-hub",
+   "file": "verify-hub/data/flagged.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/verify-hub/data/flagged.json"
+  },
+  {
+   "hub": "verify-hub",
+   "file": "verify-hub/data/injuries_gap.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/verify-hub/data/injuries_gap.json"
+  },
+  {
+   "hub": "verify-hub",
+   "file": "verify-hub/data/questions.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/verify-hub/data/questions.json"
+  },
+  {
+   "hub": "verify-hub",
+   "file": "verify-hub/data/sources.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/verify-hub/data/sources.json"
+  },
+  {
+   "hub": "verify-hub",
+   "file": "verify-hub/data/strategies.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/verify-hub/data/strategies.json"
+  },
+  {
+   "hub": "verify-hub",
+   "file": "verify-hub/data/suggestions.json",
+   "stamp": "2026-11-12",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/verify-hub/data/suggestions.json"
+  }
+ ],
+ "stamp_range": {
+  "earliest": "2026-11-01",
+  "latest": "2026-11-12T14:46:06+00:00",
+  "dated_registers": 54,
+  "window_only_registers": 1
+ },
+ "verdicts": [
+  {
+   "hub": "data",
+   "file": "data/derived/leaderboard.json",
+   "evaluated": 9,
+   "passed": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/leaderboard.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/leaderboard.json",
+   "evaluated": 8,
+   "passed": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/leaderboard.json"
+  },
+  {
+   "hub": "lineup-lab",
+   "file": "lineup-lab/data/strategies.json",
+   "evaluated": 8,
+   "passed": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/lineup-lab/data/strategies.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/leaderboard.json",
+   "evaluated": 16,
+   "passed": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/leaderboard.json"
+  },
+  {
+   "hub": "skill-lab",
+   "file": "skill-lab/data/strategies.json",
+   "evaluated": 16,
+   "passed": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data/strategies.json"
+  }
+ ],
+ "method": "Each hub's own committed JSON is read; a value counts as published only when the file carries it under a recognised field name (r / pearson_r / coefficient / correlation) with a label. Values are shown exactly as stored, rounded to three decimals. A quantity is a conflict when two or more hubs publish different numbers for the same label - the board shows both and links both files. Nothing is averaged and nothing is re-derived here.",
+ "_generated_by": "review-board/scripts/ingest.py",
+ "_generated_from_repo_commit": "c44795ef6a3b7cd15a3d8a70043a81929159b873"
+}

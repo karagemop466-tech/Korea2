@@ -1,0 +1,472 @@
+{
+ "available": true,
+ "previous_capture": "2026-11-12",
+ "previous_source": "decision-desk/data/injuries.json",
+ "previous_source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data/injuries.json",
+ "current_capture": "2026-11-13",
+ "current_source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+ "counts": {
+  "in_previous": 254,
+  "in_current": 160,
+  "players_listed_with_a_designation_before": 6,
+  "players_listed_with_a_designation_now": 160,
+  "added": 31,
+  "changed": 123,
+  "dropped": 0
+ },
+ "teams_that_said_no_injuries": [
+  {
+   "team": "SEA",
+   "page_says": "No Injuries Reported",
+   "contradicted_by": "SRC-DD-03 (Darnold ruled out; 11 more rows)",
+   "flagged": "FL-DD-01",
+   "source": "SRC-DD-01"
+  },
+  {
+   "team": "CIN",
+   "page_says": "No Injuries Reported",
+   "contradicted_by": "SRC-DD-03 (Fairchild, Turner, Dugger)",
+   "flagged": "FL-DD-01",
+   "source": "SRC-DD-01"
+  },
+  {
+   "team": "LAC",
+   "page_says": "No Injuries Reported",
+   "contradicted_by": "SRC-DD-09 (Derwin James on IR; IR players do not appear on the weekly report)",
+   "flagged": "FL-DD-01",
+   "source": "SRC-DD-01"
+  },
+  {
+   "team": "BAL",
+   "page_says": "No Injuries Reported",
+   "contradicted_by": "SRC-DD-06 (Lamar Jackson IR 6-9 weeks; Tyler Huntley IR for the season)",
+   "flagged": "FL-DD-01",
+   "source": "SRC-DD-01"
+  }
+ ],
+ "changed": [
+  {
+   "player": "Divine Deablo",
+   "team": "ATL",
+   "pos": "LB",
+   "was": "Limited",
+   "now": "DNP / Doubtful"
+  },
+  {
+   "player": "Gervon Dexter Sr.",
+   "team": "ATL",
+   "pos": "DT",
+   "was": "DNP",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "James Pearce Jr.",
+   "team": "ATL",
+   "pos": "DE",
+   "was": "DNP",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Josh Woods",
+   "team": "ATL",
+   "pos": "LB",
+   "was": "DNP",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Zachariah Branch",
+   "team": "ATL",
+   "pos": "WR",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Hjalte Froholdt",
+   "team": "AZ",
+   "pos": "C",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Hunter Long",
+   "team": "AZ",
+   "pos": "TE",
+   "was": "Limited",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Jayden Williams",
+   "team": "AZ",
+   "pos": "T",
+   "was": "Limited",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Jon Gaines II",
+   "team": "AZ",
+   "pos": "G",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Max Melton",
+   "team": "AZ",
+   "pos": "CB",
+   "was": "Limited",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Roy Lopez",
+   "team": "AZ",
+   "pos": "DT",
+   "was": "DNP",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Zachary Carter",
+   "team": "AZ",
+   "pos": "DT",
+   "was": "Limited",
+   "now": "Limited / Out"
+  },
+  {
+   "player": "Christian Benford",
+   "team": "BUF",
+   "pos": "CB",
+   "was": "Limited",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Jordan Hancock",
+   "team": "BUF",
+   "pos": "CB",
+   "was": "Full",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Spencer Brown",
+   "team": "BUF",
+   "pos": "T",
+   "was": "Limited",
+   "now": "DNP / Doubtful"
+  },
+  {
+   "player": "Tyrell Shavers",
+   "team": "BUF",
+   "pos": "WR",
+   "was": "Full",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Bobby Okereke",
+   "team": "CAR",
+   "pos": "LB",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Brady Christensen",
+   "team": "CAR",
+   "pos": "G",
+   "was": "Full",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Jaelan Phillips",
+   "team": "CAR",
+   "pos": "LB",
+   "was": "Full",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Jonathon Brooks",
+   "team": "CAR",
+   "pos": "RB",
+   "was": "Full",
+   "now": "Limited / Doubtful"
+  },
+  {
+   "player": "Mike Jackson",
+   "team": "CAR",
+   "pos": "CB",
+   "was": "Full",
+   "now": "Limited / Doubtful"
+  },
+  {
+   "player": "Will Lee III",
+   "team": "CAR",
+   "pos": "CB",
+   "was": "Full",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Xavier Legette",
+   "team": "CAR",
+   "pos": "WR",
+   "was": "Full",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Denzel Boston",
+   "team": "CLE",
+   "pos": "WR",
+   "was": "DNP",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Michael Burton",
+   "team": "CLE",
+   "pos": "FB",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Ronnie Hickman Jr.",
+   "team": "CLE",
+   "pos": "S",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Devin Moore",
+   "team": "DAL",
+   "pos": "CB",
+   "was": "Full",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Donovan Ezeiruaku",
+   "team": "DAL",
+   "pos": "LB",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Jake Ferguson",
+   "team": "DAL",
+   "pos": "TE",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Joey Porter Jr.",
+   "team": "DAL",
+   "pos": "CB",
+   "was": "DNP",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Jonathan Bullard",
+   "team": "DAL",
+   "pos": "DT",
+   "was": "Full",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Jonathan Mingo",
+   "team": "DAL",
+   "pos": "WR",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "P.J. Locke",
+   "team": "DAL",
+   "pos": "S",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Tyler Goodson",
+   "team": "DAL",
+   "pos": "RB",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Amon-Ra St. Brown",
+   "team": "DET",
+   "pos": "WR",
+   "was": "Limited",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Cade Mays",
+   "team": "DET",
+   "pos": "C",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "D.J. Reed",
+   "team": "DET",
+   "pos": "CB",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Kerby Joseph",
+   "team": "DET",
+   "pos": "S",
+   "was": "Limited",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Sione Vaki",
+   "team": "DET",
+   "pos": "RB",
+   "was": "DNP",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Chris Brooks",
+   "team": "GB",
+   "pos": "RB",
+   "was": "Limited",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Javon Bullard",
+   "team": "GB",
+   "pos": "S",
+   "was": "DNP",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Josh Jacobs",
+   "team": "GB",
+   "pos": "RB",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Josh Whyle",
+   "team": "GB",
+   "pos": "TE",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Kevin Zeitler",
+   "team": "GB",
+   "pos": "G",
+   "was": "Limited",
+   "now": "DNP / Questionable"
+  },
+  {
+   "player": "Lukas Van Ness",
+   "team": "GB",
+   "pos": "LB",
+   "was": "DNP",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Micah Parsons",
+   "team": "GB",
+   "pos": "LB",
+   "was": "Limited",
+   "now": "Limited / Out"
+  },
+  {
+   "player": "Sean Rhyan",
+   "team": "GB",
+   "pos": "C",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Skyy Moore",
+   "team": "GB",
+   "pos": "WR",
+   "was": "Limited",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Travis Glover",
+   "team": "GB",
+   "pos": "G",
+   "was": "Limited",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Zaire Franklin",
+   "team": "GB",
+   "pos": "LB",
+   "was": "DNP",
+   "now": "DNP / Doubtful"
+  },
+  {
+   "player": "Azeez Al-Shaair",
+   "team": "HOU",
+   "pos": "LB",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Brevin Jordan",
+   "team": "HOU",
+   "pos": "TE",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "David Montgomery",
+   "team": "HOU",
+   "pos": "RB",
+   "was": "DNP",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Jaylin Smith",
+   "team": "HOU",
+   "pos": "CB",
+   "was": "Limited",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Keylan Rutledge",
+   "team": "HOU",
+   "pos": "G",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Marvin Harrison Jr.",
+   "team": "HOU",
+   "pos": "WR",
+   "was": "Limited",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Wyatt Teller",
+   "team": "HOU",
+   "pos": "G",
+   "was": "Limited",
+   "now": "Limited / Questionable"
+  },
+  {
+   "player": "Akeem Davis-Gaither",
+   "team": "IND",
+   "pos": "LB",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Arden Key",
+   "team": "IND",
+   "pos": "DE",
+   "was": "Full",
+   "now": "Full / Questionable"
+  },
+  {
+   "player": "Jalen Travis",
+   "team": "IND",
+   "pos": "T",
+   "was": "DNP",
+   "now": "DNP / Out"
+  }
+ ],
+ "note": "The sibling capture is the Wednesday practice report; this one is the Friday report that carries game statuses. Designation counts are therefore not comparable as a rate - the point of the row is that the Friday statuses exist only on Friday, which is exactly why an archived point-in-time snapshot (and not a re-read of the live page) is required to backtest any availability signal.",
+ "_generated_by": "review-board/scripts/ingest.py",
+ "_generated_from_repo_commit": "c44795ef6a3b7cd15a3d8a70043a81929159b873"
+}

@@ -1,0 +1,37 @@
+name: review-board
+
+# The Review Board regenerates from committed files only: sibling hubs' registers and this hub's transcribed
+# capture. No network, no pandas/numpy/scipy - everything below runs on the interpreter the runner already has.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review-board:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Pages are a pure function of the committed registers, so this comparison is exact. Data files carry a
+      # commit stamp that legitimately changes in a fresh checkout; verify_all.py compares them modulo the stamp.
+      - name: Pages match a clean rebuild from the committed registers
+        run: |
+          python review-board/scripts/build_site.py
+          git add -A review-board/index.html review-board/pages
+          git diff --cached --quiet -- review-board/index.html review-board/pages || {
+            echo "::error::committed pages differ from a clean rebuild - run review-board/scripts/build_site.py and commit";
+            git diff --cached --stat -- review-board; exit 1; }
+
+      - name: Verify every rule this hub claims to follow
+        run: python review-board/scripts/verify_all.py

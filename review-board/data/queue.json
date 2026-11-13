@@ -1,0 +1,3120 @@
+{
+ "generated_from": [
+  "decision-desk/data/suggestions.json",
+  "decision-hub/data/suggestions.json",
+  "lineup-lab/data/suggestions.json",
+  "nfl-command/data/suggestions.json",
+  "site/data/suggestions.json",
+  "suggestions/data/suggestions.json",
+  "verify-hub/data/suggestions.json"
+ ],
+ "unreadable_registers": [],
+ "proposal_rows": 89,
+ "clusters": [
+  {
+   "id": "T03",
+   "title": "Injury and availability data engineering",
+   "decision": "Do we archive the official report as a point-in-time series (so availability can be backtested), or keep reading it as a weekly page?",
+   "options": [
+    [
+     "A. Daily automated capture of the official report",
+     "Creates the as-of history that every lab says is missing; storage is trivial; needs a scheduled job and a retention rule."
+    ],
+    [
+     "B. Manual weekly capture",
+     "No engineering, but the history is thin and the timestamps are not trustworthy - which is exactly the flaw already flagged in this repo."
+    ],
+    [
+     "C. Do nothing; treat injuries as commentary",
+     "Honest, and keeps the site free of un-backtested injury 'signals'."
+    ]
+   ],
+   "why_now": "The Friday report is not final, Monday's status is not published until Saturday, and an archived snapshot is the only way to know what was actually knowable pre-game.",
+   "prerequisite_of": [
+    "T04",
+    "T05"
+   ],
+   "owner_of_change": "A session can build the capture; the owner chooses retention and licensing terms.",
+   "proposals_total": 16,
+   "hubs": [
+    "decision-desk",
+    "decision-hub",
+    "lineup-lab",
+    "nfl-command",
+    "site",
+    "suggestions",
+    "verify-hub"
+   ],
+   "hub_count": 7,
+   "priority_votes": {
+    "high": 7,
+    "medium": 3,
+    "": 6
+   },
+   "status_votes": {
+    "proposed": 8,
+    "in_progress": 2,
+    "": 1,
+    "pending": 3,
+    "proposed - awaiting owner approval": 2
+   },
+   "effort_votes": {
+    "s": 2,
+    "m": 3,
+    "6": 1,
+    "0.5": 1,
+    "low (1 script)": 1,
+    "low-medium": 1,
+    "low": 1,
+    "": 3,
+    "l": 1,
+    "high (ingestion + point-in-time store + tier rules)": 1,
+    "medium (store reports with published_at timestamps)": 1
+   },
+   "evidence_urls": [
+    "https://forecast.weather.gov/MapClick.php?lat=40.7128&lon=-74.006",
+    "https://github.com/karagemop466-tech/Korea2",
+    "https://github.com/nflverse/nflverse-data/releases",
+    "https://nflreadr.nflverse.com/articles/dictionary_schedules.html",
+    "https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/",
+    "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+    "https://scikit-learn.org/stable/modules/linear_model.html",
+    "https://www.nfl.com/injuries/",
+    "https://www.nfl.com/injuries/league/2026/REG10",
+    "https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693",
+    "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+    "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11",
+    "https://www.nfl.com/news/ravens-lamar-jackson-right-thumb-out-6-9-weeks-expects-to-return-this-season",
+    "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again",
+    "https://www.nfl.com/teams/new-england-patriots/depth-chart"
+   ],
+   "proposal_ids": [
+    "decision-desk:S-06",
+    "decision-desk:S-08",
+    "decision-desk:S-10",
+    "decision-hub:S-04",
+    "decision-hub:S-10",
+    "lineup-lab:SUG-01",
+    "lineup-lab:SUG-06",
+    "lineup-lab:SUG-11",
+    "nfl-command:SUG-03",
+    "site:SG-03",
+    "site:SG-07",
+    "site:SG-08",
+    "suggestions:SUG-02",
+    "suggestions:SUG-04",
+    "verify-hub:SG-02",
+    "verify-hub:SG-13"
+   ],
+   "rows": [
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-06",
+     "text": "Add a Friday starter-confirmation sweep",
+     "detail": "Each Friday (after inactives), update the injuries page: convert DNP/limited into final Out/active designations and fill the blank QB rows for MIN and BAL once announced.",
+     "recommended": "",
+     "category": "Injuries",
+     "priority": "High",
+     "effort": "S",
+     "impact": "Turns Wednesday snapshots into decision-grade Friday lineups.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-08",
+     "text": "Automate the official injury-report fetch",
+     "detail": "Script the weekly fetch of nfl.com/injuries plus the Wednesday roundup, diff against last week, and write the snapshot JSON automatically (with source URLs and fetch timestamps).",
+     "recommended": "",
+     "category": "Data",
+     "priority": "High",
+     "effort": "M",
+     "impact": "Replaces hand transcription; catches 'No Injuries Reported' contradictions automatically (FL-DD-01).",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-10",
+     "text": "Add an availability gate for injury-alpha strategies",
+     "detail": "Any strategy that claims injury/depth alpha must pass a pre-registered gate: point-in-time injury inputs (SIG-05), no post-kickoff data, and a stability test across weeks.",
+     "recommended": "",
+     "category": "Gates",
+     "priority": "Medium",
+     "effort": "M",
+     "impact": "Prevents untestable injury claims from entering the competition.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-04",
+     "text": "Track depth lost per team-week and test it against the line before using it",
+     "detail": "The requirement is to know when a defence or offence is on its 2nd, 3rd or 4th string. Nothing in the repository joined the injury report to a depth chart, so the claim in prose was unsupported.",
+     "recommended": "",
+     "category": "Injury and lineup intelligence",
+     "priority": "",
+     "effort": "6",
+     "impact": "5",
+     "risk": "Depth charts are club-supplied and can lag a transaction. The tracker reports an absence, not a performance drop; the effect size is still unmeasured.",
+     "status": "in_progress",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-10",
+     "text": "Stop calling the injury feed 'unavailable' and cite what it is",
+     "detail": "The root site says 'no injury-report source confirmed, so injury signals are blocked'. The league's live injury report page serves Week 10 of 2026 and the nflverse mirror carries 2009-2026 in a stable schema. The policy PDF is what is missing, not the data.",
+     "recommended": "",
+     "category": "Injury and lineup intelligence",
+     "priority": "",
+     "effort": "0.5",
+     "impact": "3",
+     "risk": "The live page is dynamic and will be stale quickly; the derived JSON records the retrieval timestamp.",
+     "status": "in_progress",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-01",
+     "text": "Cross-check weekly league table (REG10) against official NFL.com practice roundups, IR wire, and 90-minute inactives",
+     "detail": "Cross-check weekly league table (REG10) against official NFL.com practice roundups, IR wire, and 90-minute inactives",
+     "recommended": "BUILD \u2014 Dual-feed parser flagging any team with empty REG table vs roundup/IR mentions.",
+     "category": "Injury Feed Engineering",
+     "priority": "",
+     "effort": "Low (1 script)",
+     "impact": "Eliminates blind spots when scraping league summary pages before kickoff.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NFL-INJURIES-W10",
+       "url": "https://www.nfl.com/injuries/league/2026/REG10",
+       "label": "NFL.com Official Week 10 Injury Report Hub (REG10)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-ROUNDUP-NOV11",
+       "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11",
+       "label": "NFL.com League News Roundup (Wednesday Nov 11, 2026)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-SEA-DARNOLD",
+       "url": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again",
+       "label": "NFL.com \u2014 Sam Darnold ruled out for Seahawks Week 10; Drew Lock expected to start",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-BAL-JACKSON",
+       "url": "https://www.nfl.com/news/ravens-lamar-jackson-right-thumb-out-6-9-weeks-expects-to-return-this-season",
+       "label": "NFL.com \u2014 Ravens QB Lamar Jackson (right thumb) out 6-9 weeks; Joe Fagnano Wk 9 start",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-06",
+     "text": "Condition team-margin Ridge origination on confirmed QB tenure & WR1/RB1 availability",
+     "detail": "Condition team-margin Ridge origination on confirmed QB tenure & WR1/RB1 availability",
+     "recommended": "BUILD \u2014 Add explicit ex-ante starter/backup adjustment term in benchmark origination.",
+     "category": "Lineup-Conditioned Origination",
+     "priority": "",
+     "effort": "Low-Medium",
+     "impact": "Prevents stale team ratings from misquoting backup-QB games like MIA@IND (McCord), LA@ARI (Beck), and SEA@LV (Lock).",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-SKLEARN-LINEAR",
+       "url": "https://scikit-learn.org/stable/modules/linear_model.html",
+       "label": "scikit-learn Official Documentation \u2014 Linear & Ridge Regression (1.9.1)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-GITHUB-REPO",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "GitHub \u2014 karagemop466-tech/Korea2 Repository Source",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-MIA-WILLIS",
+       "url": "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start",
+       "label": "NFL.com \u2014 Dolphins place QB Malik Willis (groin) on IR; Kyle McCord in line for first start",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-SEA-DARNOLD",
+       "url": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again",
+       "label": "NFL.com \u2014 Sam Darnold ruled out for Seahawks Week 10; Drew Lock expected to start",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-11",
+     "text": "Enforce T-85 minute Sunday pre-kickoff verification against mandatory NFL Rule 19-2 inactive list",
+     "detail": "Enforce T-85 minute Sunday pre-kickoff verification against mandatory NFL Rule 19-2 inactive list",
+     "recommended": "BUILD \u2014 Add Sunday T-85m checklist gate before releasing final Week 10 matchup briefs.",
+     "category": "Game-Day Execution Window",
+     "priority": "",
+     "effort": "Low",
+     "impact": "Eliminates stale-starter assumption errors on late scratch slates.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-OPS-RULEBOOK",
+       "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+       "label": "NFL Football Operations \u2014 2026 Official NFL Rulebook",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-ROUNDUP-NOV11",
+       "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-wednesday-nov-11",
+       "label": "NFL.com League News Roundup (Wednesday Nov 11, 2026)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-03",
+     "text": "Reconcile injured-reserve and ruled-out players against the report",
+     "detail": "Three NFL.com news conflicts are unresolved: Jackson and Huntley (BAL) and Darnold (SEA).",
+     "recommended": "Option A now, and C as a question (Q02).",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option A now, and C as a question (Q02).",
+     "risk": "",
+     "status": "",
+     "decision": "Approve the conflict column.",
+     "sources": [
+      {
+       "id": "NFL-NEWS-JACKSON",
+       "url": "https://www.nfl.com/news/ravens-lamar-jackson-right-thumb-out-6-9-weeks-expects-to-return-this-season",
+       "label": "NFL Network: Ravens' Lamar Jackson (right thumb) out 6-9 weeks, expects to return this season",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "NFL-NEWS-DARNOLD",
+       "url": "https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again",
+       "label": "Sam Darnold ruled out for Seahawks' Week 10 game vs. Raiders; Drew Lock expected to start again",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "NFL-INJ",
+       "url": "https://www.nfl.com/injuries/",
+       "label": "2026 NFL Injury Report: Week 10",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-03",
+     "text": "Commit the injury, depth-chart and snap-count feeds on a runner",
+     "detail": "Injury and 2nd/3rd/4th-string depth work cannot be done from the sandbox: the release assets redirect to a host it cannot reach, and none of the three feeds is committed. The Injury & depth page therefore has 108 transcribed players and 108 blank 'which string' cells.",
+     "recommended": "Approve",
+     "category": "injury",
+     "priority": "High",
+     "effort": "M",
+     "impact": "Injury and 2nd/3rd/4th-string depth work cannot be done from the sandbox: the release assets redirect to a host it cannot reach, and none of the three feeds is committed. The Injury & depth page therefore has 108 transcribed players and 108 blank 'which string' cells.",
+     "risk": "Low - all three releases exist and are CC-BY-4.0",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-07",
+     "text": "Stop publishing a 'current slate' that the data cannot support",
+     "detail": "The committed extract ends 2026-11-01 while the official Week 10 injury report (games of 12-15 November) is already out. Any latest-week slate is a snapshot at best and stale at worst.",
+     "recommended": "Approve",
+     "category": "publication",
+     "priority": "Medium",
+     "effort": "S",
+     "impact": "The committed extract ends 2026-11-01 while the official Week 10 injury report (games of 12-15 November) is already out. Any latest-week slate is a snapshot at best and stale at worst.",
+     "risk": "Low",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-08",
+     "text": "Quantify what a starting QB absence is worth, before adding any other injury signal",
+     "detail": "Losing a starting QB is the one injury the market is known to move on, and this repository has never measured it. The backup-QB candidate in this session's lab returned ROI -13.9% over 208 bets, which is evidence that the naive version of the signal is already priced - but the sample is small and the rule was crude.",
+     "recommended": "Park until SG-02 and SG-03 are done",
+     "category": "injury",
+     "priority": "High",
+     "effort": "L",
+     "impact": "Losing a starting QB is the one injury the market is known to move on, and this repository has never measured it. The backup-QB candidate in this session's lab returned ROI -13.9% over 208 bets, which is evidence that the naive version of the signal is already priced - but the sample is small and the rule was crude.",
+     "risk": "Medium - needs SG-02 and SG-03 first",
+     "status": "pending",
+     "decision": "Park until SG-02 and SG-03 are done",
+     "sources": []
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-02",
+     "text": "Publish a Have / Don't Have inventory for every signal feature",
+     "detail": "For each candidate input (rest days, wind, past margin, injury tags, depth-chart tier, Next Gen tracking aggregates) list source feed, timestamp rule, missingness per season, and whether it is point-in-time. Turns the vague 'missing information' note into a field-by-field spec.",
+     "recommended": "",
+     "category": "data transparency",
+     "priority": "high",
+     "effort": "",
+     "impact": "Makes REQ-03 answerable: reviewers can see exactly which inputs are hypothetical vs measured.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NFLVERSE-RELEASES",
+       "url": "https://github.com/nflverse/nflverse-data/releases",
+       "label": "nflverse-data releases \u2014 schedules, stats_player, stats_team",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFLREADR-DICT-SCHED",
+       "url": "https://nflreadr.nflverse.com/articles/dictionary_schedules.html",
+       "label": "nflreadr \u2014 Data Dictionary: Schedules (nflreadr)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-NGS-TECH",
+       "url": "https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/",
+       "label": "NFL Football Operations \u2014 Performance Tracking Data (Next Gen Stats) technology page",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NOAA-NWS",
+       "url": "https://forecast.weather.gov/MapClick.php?lat=40.7128&lon=-74.006",
+       "label": "NOAA National Weather Service \u2014 official point forecasts (forecast.weather.gov)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-04",
+     "text": "Separate the injury-report policy citation into confirmed vs 404 components",
+     "detail": "The Competition Committee status-definition article is confirmed; the operations.nfl.com/football-ops/league-governance/injury-report/ page returns no article body and is 404. Split the citation so the confirmed definitions still support the tracker, while the 404 is retained as a flagged item rather than a silent source.",
+     "recommended": "",
+     "category": "source hygiene",
+     "priority": "medium",
+     "effort": "",
+     "impact": "Improves citation precision without dropping a useful page.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NFL-INJURY-POLICY-COMP",
+       "url": "https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693",
+       "label": "NFL Competition Committee \u2014 Revisions to Injury Report Policy (status definitions)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-INJURIES-HUB",
+       "url": "https://www.nfl.com/injuries/",
+       "label": "NFL.com \u2014 Official Injury Report hub",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-02",
+     "text": "Build ONE injury & depth-deficiency tracker (offense/defense, 1st-4th string) on the official weekly injury report plus inferred usage tiers",
+     "detail": "Build ONE injury & depth-deficiency tracker (offense/defense, 1st-4th string) on the official weekly injury report plus inferred usage tiers",
+     "recommended": "Recommended: one implementation (the decision-hub fetcher already exists) adopted repo-wide; weekly ingest before kickoff, blank depth-string cells where unverifiable, published on one injuries page",
+     "category": "injuries/depth",
+     "priority": "high",
+     "effort": "high (ingestion + point-in-time store + tier rules)",
+     "impact": "Closes the only major requirement with no working implementation; enables injury-aware signals later",
+     "risk": "Depth strings must be inferred (no league source, VH-SRC-03): tiers are only as good as the usage rule and must be labelled inferred",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-02",
+       "url": "https://www.nfl.com/injuries/league/2026/REG10",
+       "label": "Official NFL injury report, Week 10 of the 2026 season",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "VH-SRC-03",
+       "url": "https://www.nfl.com/teams/new-england-patriots/depth-chart",
+       "label": "NFL.com club depth-chart path (tried for depth strings)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-13",
+     "text": "Point-in-time discipline for injuries: only the report published before kickoff may be used; never update history retroactively",
+     "detail": "Point-in-time discipline for injuries: only the report published before kickoff may be used; never update history retroactively",
+     "recommended": "Recommended: immutable append-only report store keyed by (week, team, published_at); features join on the latest report strictly before kickoff",
+     "category": "injuries/depth",
+     "priority": "high",
+     "effort": "medium (store reports with published_at timestamps)",
+     "impact": "Prevents lookahead leakage into injury features (the largest leakage risk in the requirement)",
+     "risk": "Storage of superseded reports; slightly more pipeline code",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-02",
+       "url": "https://www.nfl.com/injuries/league/2026/REG10",
+       "label": "Official NFL injury report, Week 10 of the 2026 season",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 75,
+   "rank": 1
+  },
+  {
+   "id": "T11",
+   "title": "Reproducibility, CI and provenance hygiene",
+   "decision": "Must every published number be regenerable in CI from committed inputs, and does a failing check block publication?",
+   "options": [
+    [
+     "A. Fail-closed CI on every PR (links, per-row sources, rebuild equality)",
+     "Publishing a stale number becomes a build failure; costs CI minutes and forces the 28 source-less pages to be fixed or demoted."
+    ],
+    [
+     "B. Advisory checks",
+     "Keeps velocity; this repository already has a direct-to-main refresh that bypassed CI (logged as an irregularity)."
+    ]
+   ],
+   "why_now": "The data snapshot behind the live pages is 12 days older than the slate on the site that reports it, and the flag exists precisely because regeneration is not enforced.",
+   "prerequisite_of": [
+    "T12"
+   ],
+   "owner_of_change": "A session can implement; the owner accepts the CI cost.",
+   "proposals_total": 11,
+   "hubs": [
+    "decision-desk",
+    "decision-hub",
+    "lineup-lab",
+    "nfl-command",
+    "site",
+    "suggestions",
+    "verify-hub"
+   ],
+   "hub_count": 7,
+   "priority_votes": {
+    "medium": 6,
+    "": 4,
+    "high": 1
+   },
+   "status_votes": {
+    "proposed": 4,
+    "": 2,
+    "pending": 1,
+    "proposed - awaiting owner approval": 4
+   },
+   "effort_votes": {
+    "s": 2,
+    "3": 1,
+    "high (licensed historical data)": 1,
+    "": 3,
+    "medium (template change in generators + a definitions page)": 1,
+    "low": 1,
+    "medium": 1,
+    "medium (schedule + workflow coordination)": 1
+   },
+   "evidence_urls": [
+    "https://api.github.com/repos/nflverse/nflverse-data/releases",
+    "https://github.com/karagemop466-tech/Korea2",
+    "https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md",
+    "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data",
+    "https://github.com/nflverse/nflverse-data/releases",
+    "https://operations.nfl.com/football-ops/league-governance/injury-report/",
+    "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
+    "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm",
+    "https://www.nfl.com/standings/division/2020/REG",
+    "https://www.nfl.com/standings/division/2026/REG",
+    "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
+    "https://www.nfl.com/teams/new-england-patriots/depth-chart"
+   ],
+   "proposal_ids": [
+    "decision-desk:S-13",
+    "decision-hub:S-07",
+    "lineup-lab:SUG-05",
+    "nfl-command:SUG-05",
+    "nfl-command:SUG-10",
+    "site:SG-09",
+    "suggestions:SUG-10",
+    "verify-hub:SG-06",
+    "verify-hub:SG-07",
+    "verify-hub:SG-08",
+    "verify-hub:SG-10"
+   ],
+   "rows": [
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-13",
+     "text": "Extend CI to the Decision Desk verifier on every PR",
+     "detail": "decision-desk.yml already runs verify_all; add it to the required PR checks alongside validate/checks/build-verify.",
+     "recommended": "",
+     "category": "CI",
+     "priority": "Medium",
+     "effort": "S",
+     "impact": "Keeps per-row source links and blank-unverified policy enforced after this session.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-07",
+     "text": "Make every published number reproducible from a clean checkout in CI",
+     "detail": "The project's own verification record marks 5 values 'DIFFERS (expected)' because the committed extract covers 2015-2026 while the published coefficients were measured on 2012-2026. A reader cannot reproduce the published n.",
+     "recommended": "",
+     "category": "Reproducibility",
+     "priority": "",
+     "effort": "3",
+     "impact": "4",
+     "risk": "Will turn several currently-green checks red on day one. That is the point, but it must be a deliberate decision.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-05",
+     "text": "Build a verified multi-season database of player-prop opening and closing lines & vig",
+     "detail": "Build a verified multi-season database of player-prop opening and closing lines & vig",
+     "recommended": "DEFER STAKING \u2014 Publish stat forecast accuracy only; withhold all prop ROI/edge claims until >= 2 seasons of real prop odds are archived.",
+     "category": "Player Prop Odds History",
+     "priority": "",
+     "effort": "High (licensed historical data)",
+     "impact": "Makes player-prop strategy backtesting mathematically possible for the first time.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-GITHUB-REPO",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "GitHub \u2014 karagemop466-tech/Korea2 Repository Source",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-PASSING-2026",
+       "url": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc",
+       "label": "NFL.com Official 2026 Regular-Season Player Passing Stats",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-DK-PARLAY",
+       "url": "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
+       "label": "DraftKings Support \u2014 Parlay Rules & Correlated Outcomes (KB0010683)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-05",
+     "text": "Make the Skill Lab reproducible",
+     "detail": "Re-running the Skill Lab on this branch changed 12 committed files. The two hash seeds tested give identical output, so the cause is the committed snapshot, not randomness. Counts moved by one (e.g. tickets 857 to 856).",
+     "recommended": "Option A first, then B if the diff persists.",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option A first, then B if the diff persists.",
+     "risk": "",
+     "status": "",
+     "decision": "Approve running the CI-version comparison.",
+     "sources": [
+      {
+       "id": "REPO-SKILL-JSON",
+       "url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data",
+       "label": "Skill Lab committed outputs (skill-lab/data/*.json)",
+       "official": false,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-10",
+     "text": "Decide how computed rows are labelled",
+     "detail": "Model and strategy rows are computed from third-party inputs, so they cannot have an official value source. They are shown with an 'UNVERIFIED-INPUT' flag and a method link.",
+     "recommended": "Option A, with the flag visible.",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option A, with the flag visible.",
+     "risk": "",
+     "status": "",
+     "decision": "Choose A or B.",
+     "sources": [
+      {
+       "id": "REPO-PROV",
+       "url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md",
+       "label": "Repository data provenance (data/PROVENANCE.md)",
+       "official": false,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "REPO-SKILL-JSON",
+       "url": "https://github.com/karagemop466-tech/Korea2/tree/main/skill-lab/data",
+       "label": "Skill Lab committed outputs (skill-lab/data/*.json)",
+       "official": false,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-09",
+     "text": "Treat third-party feeds as third-party, in the UI",
+     "detail": "Several numbers rest on the nflverse mirror, which redistributes the NFL feed, and snap counts come from Pro Football Reference. The site sometimes reads as if the NFL itself published the number.",
+     "recommended": "Approve",
+     "category": "provenance",
+     "priority": "Medium",
+     "effort": "S",
+     "impact": "Several numbers rest on the nflverse mirror, which redistributes the NFL feed, and snap counts come from Pro Football Reference. The site sometimes reads as if the NFL itself published the number.",
+     "risk": "Low",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-10",
+     "text": "Add a weekly reconciliation job that compares rebuilt standings against NFL.com before any new model is published",
+     "detail": "Extend the existing 2020/2026 recomputation to run weekly in CI: download NFL.com division standings, rebuild from committed games.csv.gz, fail the workflow if >0 teams mismatch. The verification page already does this spot check; automation would make staleness immediately visible.",
+     "recommended": "",
+     "category": "verification",
+     "priority": "medium",
+     "effort": "",
+     "impact": "Closes the 2026 staleness risk that previously left the site a week behind the official table.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NFL-STANDINGS-2020",
+       "url": "https://www.nfl.com/standings/division/2020/REG",
+       "label": "NFL.com \u2014 2020 division standings",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-STANDINGS-2026",
+       "url": "https://www.nfl.com/standings/division/2026/REG",
+       "label": "NFL.com \u2014 2026 division standings",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFLVERSE-RELEASES",
+       "url": "https://github.com/nflverse/nflverse-data/releases",
+       "label": "nflverse-data releases \u2014 schedules, stats_player, stats_team",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-06",
+     "text": "Stamp every published number with its definition, window and as-of date",
+     "detail": "Stamp every published number with its definition, window and as-of date",
+     "recommended": "Recommended: a tooltip-free convention - each value cell carries 'r=0.614 (ex-post leader, 2018-2026, n=6,984, as-of 2026-11-02)' style labels",
+     "category": "documentation",
+     "priority": "high",
+     "effort": "medium (template change in generators + a definitions page)",
+     "impact": "Kills the QB-WR1 four-coefficient hazard (I-02) and the mixed as-of confusion (I-07)",
+     "risk": "Noisier tables",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-06",
+       "url": "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm",
+       "label": "NIST Dataplot reference manual \u2014 CORRELATION",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-07",
+     "text": "Source-register hygiene sweep: mark dead URLs with retrieval dates, pin the active rulebook edition",
+     "detail": "Source-register hygiene sweep: mark dead URLs with retrieval dates, pin the active rulebook edition",
+     "recommended": "Recommended: each register entry gains last_checked_utc + status (live / dead / archived); CI prints any entry unchecked for 30 days",
+     "category": "verification",
+     "priority": "medium",
+     "effort": "low",
+     "impact": "Two dead official URLs (VH-SRC-03, VH-SRC-05) and one archived rules edition are currently cited as live",
+     "risk": "None; status fields only",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-05",
+       "url": "https://operations.nfl.com/football-ops/league-governance/injury-report/",
+       "label": "NFL Operations league-governance injury-report policy path",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "VH-SRC-03",
+       "url": "https://www.nfl.com/teams/new-england-patriots/depth-chart",
+       "label": "NFL.com club depth-chart path (tried for depth strings)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-08",
+     "text": "Publish one 'Data & Definitions' dictionary mapping every metric to its formula, window and role labels",
+     "detail": "Publish one 'Data & Definitions' dictionary mapping every metric to its formula, window and role labels",
+     "recommended": "Recommended: single page generated from one JSON; every table value links its definition id",
+     "category": "documentation",
+     "priority": "medium",
+     "effort": "medium",
+     "impact": "Makes ex-ante vs ex-post, designation vs leader, team-game vs player-game unambiguous",
+     "risk": "Maintenance cost as metrics evolve",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-06",
+       "url": "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm",
+       "label": "NIST Dataplot reference manual \u2014 CORRELATION",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-10",
+     "text": "Align refresh cadence: one weekly data refresh, one PR, one as-of stamp across labs",
+     "detail": "Align refresh cadence: one weekly data refresh, one PR, one as-of stamp across labs",
+     "recommended": "Recommended: the existing PR-based refresh workflow as the single entry point; every lab rebuilds from the same extracts in the same PR",
+     "category": "operations",
+     "priority": "medium",
+     "effort": "medium (schedule + workflow coordination)",
+     "impact": "Ends mixed-date pages; keeps the byte-compare audit (A-05) meaningful",
+     "risk": "Less ad-hoc freshness; automation token limits require PR-based publishing (already the post-#20 design)",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-04",
+       "url": "https://api.github.com/repos/nflverse/nflverse-data/releases",
+       "label": "nflverse-data release metadata (GitHub Releases API)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 74,
+   "rank": 2
+  },
+  {
+   "id": "T07",
+   "title": "Validation gates and statistical rigour",
+   "decision": "Which gate set is canonical, and are its thresholds (sample floor, correction, push handling, leakage tests) enforced in CI or only described?",
+   "options": [
+    [
+     "A. Adopt the root ten-gate set as the single standard",
+     "One definition of 'passed'; every other hub reports against it; requires the labs' differing implementations to be labelled."
+    ],
+    [
+     "B. Keep per-lab gate sets, publish the differences",
+     "Preserves each lab's independence; leaves the same strategy passing in one lab and failing in another."
+    ],
+    [
+     "C. Strengthen the gates (bootstrap CIs, BH correction, minimum-events floor, push-inclusive settlement)",
+     "Fewer false positives; more candidates rejected, which is already the site's dominant outcome."
+    ]
+   ],
+   "why_now": "The audit found gate implementations that differ materially (push handling, repricing in G9, pooled ATS arithmetic); the leaderboard is only as trustworthy as that choice.",
+   "prerequisite_of": [
+    "T08",
+    "T09"
+   ],
+   "owner_of_change": "A session can implement; the owner approves the standard.",
+   "proposals_total": 15,
+   "hubs": [
+    "decision-desk",
+    "decision-hub",
+    "lineup-lab",
+    "site",
+    "suggestions",
+    "verify-hub"
+   ],
+   "hub_count": 6,
+   "priority_votes": {
+    "high": 7,
+    "": 6,
+    "very high": 1,
+    "medium": 1
+   },
+   "status_votes": {
+    "proposed": 9,
+    "pending": 3,
+    "proposed - awaiting owner approval": 3
+   },
+   "effort_votes": {
+    "s": 3,
+    "1": 3,
+    "4": 1,
+    "2": 1,
+    "zero (already live in lineup lab)": 1,
+    "m": 1,
+    "": 2,
+    "medium (merge root g1-g10 with quant g9 repricing and skill-lab g10 price provenance)": 1,
+    "low (already policy in two labs; extend the wording to all)": 1,
+    "low": 1
+   },
+   "evidence_urls": [
+    "https://github.com/karagemop466-tech/Korea2",
+    "https://github.com/nflverse/nflverse-data/releases",
+    "https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/archive-sports-wagering-licensees-obsolete-house-rules/",
+    "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-10.7.26.pdf",
+    "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-8.1.24.pdf",
+    "https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm",
+    "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+    "https://www.weather.gov/safety/wind"
+   ],
+   "proposal_ids": [
+    "decision-desk:S-01",
+    "decision-hub:S-02",
+    "decision-hub:S-06",
+    "decision-hub:S-11",
+    "decision-hub:S-12",
+    "decision-hub:S-14",
+    "lineup-lab:SUG-09",
+    "site:SG-02",
+    "site:SG-04",
+    "site:SG-10",
+    "suggestions:SUG-07",
+    "suggestions:SUG-12",
+    "verify-hub:SG-03",
+    "verify-hub:SG-05",
+    "verify-hub:SG-09"
+   ],
+   "rows": [
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-01",
+     "text": "Hold a no-bet status quo until a strategy clears 10/10 gates",
+     "detail": "Formally keep allocation at zero and publish that decision on the landing page; re-open only when a strategy passes every gate in any lab.",
+     "recommended": "",
+     "category": "Policy",
+     "priority": "High",
+     "effort": "S",
+     "impact": "Prevents capital from chasing noise; matches every lab's current 0-qualified result.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-02",
+     "text": "Replace the pooled ATS 'coin-flip test' with a one-sided test",
+     "detail": "The headline '50.0%, p = 1.0' ATS result is an arithmetic identity: the sample contains every game twice, once per side, so exactly half the rows win. It cannot detect a market tilt in either direction, yet it is presented as evidence that the market is efficient.",
+     "recommended": "",
+     "category": "Statistical validity",
+     "priority": "",
+     "effort": "1",
+     "impact": "5",
+     "risk": "The honest test is closer to significance, which invites over-reading. Publish the CI, not just the p-value.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-06",
+     "text": "Add negative controls to every strategy batch and publish them next to the candidates",
+     "detail": "A screen that rejects everything looks rigorous, but it looks identical to a screen that is simply broken. Two controls already exist in the leaderboard; they are not shown as a diagnostic.",
+     "recommended": "",
+     "category": "Statistical validity",
+     "priority": "",
+     "effort": "4",
+     "impact": "4",
+     "risk": "A clairvoyant control validates the plumbing only; it says nothing about whether a real edge exists.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-11",
+     "text": "Write the settlement and void rules down before pricing anything",
+     "detail": "Parlay and prop settlement differ by operator (push handling, void legs, minimum leg count, same-game restrictions). A strategy that looks profitable under one rulebook can be unprofitable under another.",
+     "recommended": "",
+     "category": "Bet definitions",
+     "priority": "",
+     "effort": "2",
+     "impact": "3",
+     "risk": "A single operator's rules will not generalise; the choice must be stated as a limitation.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-12",
+     "text": "Put the price-sensitivity gate (G9) in front of every other gate",
+     "detail": "Every strategy currently fails G9 by construction because no executable price exists. The screen therefore rejects everything for one reason and the other nine gates do relatively little work.",
+     "recommended": "",
+     "category": "Validation gates",
+     "priority": "",
+     "effort": "1",
+     "impact": "3",
+     "risk": "Reordering the gates changes the published '5/10' style counts; those must be recomputed, not relabelled.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-14",
+     "text": "State the sample-size floor for a 'signal' before testing, and publish it",
+     "detail": "The luck page computes 39,240 bets needed to detect a 51% win rate at 80% power, yet candidate strategies are presented with 137 to 649 bets. A reader has to do the arithmetic to see the screen cannot possibly distinguish skill.",
+     "recommended": "",
+     "category": "Statistical validity",
+     "priority": "",
+     "effort": "1",
+     "impact": "2",
+     "risk": "Almost every candidate becomes 'not testable', which is the honest label but a less satisfying dashboard.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-09",
+     "text": "Maintain 10-gate hard filter (NIST z-test, BH FDR q<0.10, Empirical Bayes > 0%) before capital allocation",
+     "detail": "Maintain 10-gate hard filter (NIST z-test, BH FDR q<0.10, Empirical Bayes > 0%) before capital allocation",
+     "recommended": "KEEP \u2014 Maintain strict 0% live bankroll deployment posture.",
+     "category": "Validation & Risk Posture",
+     "priority": "",
+     "effort": "Zero (already live in Lineup Lab)",
+     "impact": "Protects bankroll from overfitting finite-sample noise and market vig.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NIST-PROP-TEST",
+       "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm",
+       "label": "NIST/SEMATECH e-Handbook \u2014 Binomial Proportion Test (Section 7.2.4)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NWS-WIND",
+       "url": "https://www.weather.gov/safety/wind",
+       "label": "NOAA / National Weather Service \u2014 High Wind Thresholds",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-GITHUB-REPO",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "GitHub \u2014 karagemop466-tech/Korea2 Repository Source",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-02",
+     "text": "Timestamp every line, or stop calling any edge 'live'",
+     "detail": "The only line the repository holds is one closing number per game with no capture time. That makes Gate G1 - point-in-time integrity - impossible to satisfy, which is why every candidate in this session's lab fails at gate one regardless of its ROI.",
+     "recommended": "Approve",
+     "category": "data",
+     "priority": "Very high",
+     "effort": "M",
+     "impact": "The only line the repository holds is one closing number per game with no capture time. That makes Gate G1 - point-in-time integrity - impossible to satisfy, which is why every candidate in this session's lab fails at gate one regardless of its ROI.",
+     "risk": "Medium - a licensed price source is needed; none is verified here",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-04",
+     "text": "Fix the ATS coin-flip statistic before it is cited again",
+     "detail": "data/derived/luck.json reports n=13,784 ATS bets and a 50.0% cover rate with p=1.0. 13,784 is exactly twice 6,892 because every game contributes a cover on both sides, so the statistic is 50% by construction and the p-value means nothing. The conclusion ('no exploitable tilt') is still supported, but by the home-side rate of 48.91%, not by that number.",
+     "recommended": "Approve",
+     "category": "measurement",
+     "priority": "Medium",
+     "effort": "S",
+     "impact": "data/derived/luck.json reports n=13,784 ATS bets and a 50.0% cover rate with p=1.0. 13,784 is exactly twice 6,892 because every game contributes a cover on both sides, so the statistic is 50% by construction and the p-value means nothing. The conclusion ('no exploitable tilt') is still supported, but by the home-side rate of 48.91%, not by that number.",
+     "risk": "Low",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-10",
+     "text": "Add a leakage test to CI that fails on any future-dated feature",
+     "detail": "G1 fails structurally today, and nothing stops a future commit from quietly using a post-kickoff field. A gate that is only described in prose is not a gate.",
+     "recommended": "Approve",
+     "category": "process",
+     "priority": "High",
+     "effort": "S",
+     "impact": "G1 fails structurally today, and nothing stops a future commit from quietly using a post-kickoff field. A gate that is only described in prose is not a gate.",
+     "risk": "Low",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-07",
+     "text": "Record closing-price exclusion counts as first-class metrics beside every ROI table",
+     "detail": "Every backtest row currently publishes n, decided, pushes via lib/backtest. Extend to n_excluded_missing_price per side (already in results/*.json after PR #52) and show it in the UI. Prevents silent -110 imputation from reappearing.",
+     "recommended": "",
+     "category": "backtest integrity",
+     "priority": "high",
+     "effort": "",
+     "impact": "Makes the price-integrity fix durable across future generators.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NFLVERSE-RELEASES",
+       "url": "https://github.com/nflverse/nflverse-data/releases",
+       "label": "nflverse-data releases \u2014 schedules, stats_player, stats_team",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-DK-HOUSE-RULES-824",
+       "url": "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-8.1.24.pdf",
+       "label": "DraftKings Sportsbook Betting Rules (filed with MGC, 8.1.24 edition \u2014 now archived)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-DK-HOUSE-RULES-CURRENT",
+       "url": "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-10.7.26.pdf",
+       "label": "DraftKings Massachusetts Sportsbook House Rules \u2014 active edition (approved 10.7.26)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-12",
+     "text": "Replace edition-stale operator citations with the active 10.7.26 house-rules PDF and re-read the cited settlement sentences",
+     "detail": "The flagged FL-11 notes the 8.1.24 edition is archived as obsolete since 8.18.15. Point citations at DraftKings-House-Rules-10.7.26.pdf and re-fetch the exact push/parlay/teaser sentences that the site quotes; keep the old edition as a historical note rather than a live source.",
+     "recommended": "",
+     "category": "source hygiene",
+     "priority": "high",
+     "effort": "",
+     "impact": "Removes a known medium-flagged irregularity from the live site.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-DK-HOUSE-RULES-OBS-ARCHIVE",
+       "url": "https://massgaming.com/about/sports-wagering-in-massachusetts/sports-wagering-licensees/archive-sports-wagering-licensees-obsolete-house-rules/",
+       "label": "Massachusetts Gaming Commission \u2014 Archive of obsolete sports-wagering house rules",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-DK-HOUSE-RULES-CURRENT",
+       "url": "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-10.7.26.pdf",
+       "label": "DraftKings Massachusetts Sportsbook House Rules \u2014 active edition (approved 10.7.26)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-DK-HOUSE-RULES-824",
+       "url": "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-8.1.24.pdf",
+       "label": "DraftKings Sportsbook Betting Rules (filed with MGC, 8.1.24 edition \u2014 now archived)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-03",
+     "text": "Adopt a single validation-gate catalog and one holdout split for the whole competition",
+     "detail": "Adopt a single validation-gate catalog and one holdout split for the whole competition",
+     "recommended": "Recommended: the merged 10-gate catalog in leaderboard.html (this hub) as the single rulebook; declare holdout = most recent 2 seasons, untouched until a run is frozen",
+     "category": "strategy competition",
+     "priority": "high",
+     "effort": "medium (merge root G1-G10 with quant G9 repricing and skill-lab G10 price provenance)",
+     "impact": "Makes leaderboard rows comparable across labs; stops gate-cherry-picking",
+     "risk": "Re-scoring historical rows under one catalog may change some gate counts; old rows must keep their original labels",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-09",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "This repository on GitHub (karagemop466-tech/Korea2)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "VH-SRC-12",
+       "url": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+       "label": "Kelly (1956), A New Interpretation of Information Rate",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-05",
+     "text": "Keep stored-price-only settlement repo-wide and publish the exclusion counts with every ROI",
+     "detail": "Keep stored-price-only settlement repo-wide and publish the exclusion counts with every ROI",
+     "recommended": "Recommended: make it a written rule in the gate catalog (G10 price provenance) and print n_excluded_missing_price next to every ROI",
+     "category": "measurement integrity",
+     "priority": "high",
+     "effort": "low (already policy in two labs; extend the wording to all)",
+     "impact": "Prevents the issue-#19 class of error from returning anywhere (the wind-under edge dropped from +8.65% to +7.14% when imputed prices were removed)",
+     "risk": "Smaller samples; some rows lose significance",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-09",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "This repository on GitHub (karagemop466-tech/Korea2)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-09",
+     "text": "Pre-register signal families in one file before any new test run",
+     "detail": "Pre-register signal families in one file before any new test run",
+     "recommended": "Recommended: a pre-registration.json per lab (hypothesis, market, window, direction, n) committed before the run; FDR family = all rows in that file",
+     "category": "methodology",
+     "priority": "high",
+     "effort": "low",
+     "impact": "Keeps the BH family definition honest; prevents post-hoc signal counts",
+     "risk": "Slower experimentation",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-14",
+       "url": "https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm",
+       "label": "NIST handbook \u2014 one-sample and two-sample proportion tests",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 65,
+   "rank": 3
+  },
+  {
+   "id": "T10",
+   "title": "Site and information architecture",
+   "decision": "Which surface is the canonical site, and do the sibling hubs get archived, merged, or kept as linked category pages?",
+   "options": [
+    [
+     "A. One root site, hubs become category subpages",
+     "One navigation, one disclaimer, one place to review; needs link surgery and an archive page."
+    ],
+    [
+     "B. Keep every hub, link them all from one index",
+     "Zero risk of losing work; the reader still faces ~20 near-identical pages with duplicated labels."
+    ],
+    [
+     "C. Freeze the hubs, build one review layer above them",
+     "What review-board/ does now; cheap, but it adds a layer unless it later replaces the hubs."
+    ]
+   ],
+   "why_now": "The shared navigation now carries 28 links, including two labelled 'Suggestions hub', and the same suggestion exists in seven registers with colliding IDs.",
+   "prerequisite_of": [
+    "T11",
+    "T12"
+   ],
+   "owner_of_change": "Root-site/final-integration owner (this session may not edit root nav).",
+   "proposals_total": 7,
+   "hubs": [
+    "decision-desk",
+    "decision-hub",
+    "nfl-command",
+    "suggestions",
+    "verify-hub"
+   ],
+   "hub_count": 5,
+   "priority_votes": {
+    "medium": 1,
+    "": 3,
+    "low": 1,
+    "high": 2
+   },
+   "status_votes": {
+    "proposed": 4,
+    "": 1,
+    "proposed - awaiting owner approval": 2
+   },
+   "effort_votes": {
+    "m": 1,
+    "2": 1,
+    "1": 1,
+    "": 2,
+    "low (navigation + a board note)": 1,
+    "low (this hub already aggregates; add links from the other hubs)": 1
+   },
+   "evidence_urls": [
+    "https://github.com/karagemop466-tech/Korea2",
+    "https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md",
+    "https://github.com/nflverse/nflverse-data/releases"
+   ],
+   "proposal_ids": [
+    "decision-desk:S-12",
+    "decision-hub:S-01",
+    "decision-hub:S-13",
+    "nfl-command:SUG-06",
+    "suggestions:SUG-11",
+    "verify-hub:SG-01",
+    "verify-hub:SG-11"
+   ],
+   "rows": [
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-12",
+     "text": "Merge the six separate leaderboards into one cross-lab board",
+     "detail": "One page ranking all 100 evaluations under a single, documented rule (gates passed, then ROI, with lab provenance on every row).",
+     "recommended": "",
+     "category": "Site",
+     "priority": "Medium",
+     "effort": "M",
+     "impact": "Today the same idea (e.g. wind-under) appears in four labs with four different gate sets; a reviewer cannot compare them.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-01",
+     "text": "Publish a one-page 'decision register' above any dashboard number",
+     "detail": "The dashboard leads with computed statistics. A reader cannot tell which numbers are verified facts, which are computations, and which are proposals. The verification page exists but is three clicks deep.",
+     "recommended": "",
+     "category": "Site structure",
+     "priority": "",
+     "effort": "2",
+     "impact": "5",
+     "risk": "Adds a page to maintain; the class must be set by the generator, not by hand, or it will drift.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-13",
+     "text": "Publish an archive index instead of keeping nine sibling dashboards live",
+     "detail": "Nine parallel-session dashboards are published at once (dashboard, nfl-lines, nfl-research, research-desk, quant-lab, origination, origination-lab, skill-lab, audit). They contradict each other on the same statistics, and the root navigation says so.",
+     "recommended": "",
+     "category": "Site structure",
+     "priority": "",
+     "effort": "1",
+     "impact": "2",
+     "risk": "Deleting nothing; the pages stay reachable, only the navigation changes.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-06",
+     "text": "Consolidate the nine other parallel site folders into one canonical site",
+     "detail": "The repo publishes nine other site folders besides the root Line Lab, each with its own numbers. The root Line Lab reports 0 of 7 candidates, and Skill Lab reports 0 of 16.",
+     "recommended": "Option A now, B later.",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option A now, B later.",
+     "risk": "",
+     "status": "",
+     "decision": "Approve A.",
+     "sources": [
+      {
+       "id": "REPO-PROV",
+       "url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md",
+       "label": "Repository data provenance (data/PROVENANCE.md)",
+       "official": false,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-11",
+     "text": "Expose the archive navigation from the root dashboard so sibling labs are discoverable",
+     "detail": "The root pages/archive.html already lists dashboard/, nfl-lines/, nfl-research/, research-desk/, origination-lab/, quant-lab/, skill-lab/ etc. Add a first-class nav link from the sidebar to Archive so a reviewer does not need to guess that sibling work exists.",
+     "recommended": "",
+     "category": "navigation",
+     "priority": "low",
+     "effort": "",
+     "impact": "Improves discoverability of work that is already published but unlinked from the main nav.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NFLVERSE-RELEASES",
+       "url": "https://github.com/nflverse/nflverse-data/releases",
+       "label": "nflverse-data releases \u2014 schedules, stats_player, stats_team",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-01",
+     "text": "Declare the root Line Lab the canonical site; treat sibling hubs as category archives and stop new parallel hubs",
+     "detail": "Declare the root Line Lab the canonical site; treat sibling hubs as category archives and stop new parallel hubs",
+     "recommended": "Recommended: root index.html as landing; add verify-hub/ (decisions) and the sibling labs to the archive page; log a board rule that new work extends existing labs instead of creating new roots",
+     "category": "information architecture",
+     "priority": "high",
+     "effort": "low (navigation + a board note)",
+     "impact": "One place for a reader to make decisions; ends the eight-way duplication (I-04)",
+     "risk": "Sibling labs contain deeper single-lab analysis; keeping them linked (not merged) preserves that depth at the cost of two click levels",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-09",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "This repository on GitHub (karagemop466-tech/Korea2)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-11",
+     "text": "Consolidate the Q&A and flag registers cross-lab (this hub's registers as the triage layer)",
+     "detail": "Consolidate the Q&A and flag registers cross-lab (this hub's registers as the triage layer)",
+     "recommended": "Recommended: keep lab registers as the source, render this hub's pages from them at each release, and route review comments to COORDINATION.md",
+     "category": "decision process",
+     "priority": "high",
+     "effort": "low (this hub already aggregates; add links from the other hubs)",
+     "impact": "One reviewer view for questions, flags and suggestions instead of four divergent copies",
+     "risk": "Labs lose some local register convenience",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-09",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "This repository on GitHub (karagemop466-tech/Korea2)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 55,
+   "rank": 4
+  },
+  {
+   "id": "T06",
+   "title": "Correlation, parlays and player-prop combos",
+   "decision": "Do we price multi-leg bets with measured joint outcomes (and a published correlation matrix), or refuse to publish parlay edges at all?",
+   "options": [
+    [
+     "A. Measure joint distributions from player box scores",
+     "Already partially done (QB-WR1 r = 0.562 in the root site) and reproducible; it prices correlation but not the operator's actual parlay price."
+    ],
+    [
+     "B. Wait for a parlay price archive, then price against the market",
+     "Correct comparison, blocked on T02."
+    ],
+    [
+     "C. No parlay content",
+     "Removes the most misleading surface on a site like this."
+    ]
+   ],
+   "why_now": "Parlays are where an independent-legs assumption does the most damage, and the hubs publish four different QB-WR1 coefficients for the same quantity.",
+   "prerequisite_of": [
+    "T09"
+   ],
+   "owner_of_change": "A session can publish one canonical matrix; the owner decides whether parlay edges are ever shown.",
+   "proposals_total": 5,
+   "hubs": [
+    "decision-hub",
+    "lineup-lab",
+    "site",
+    "suggestions",
+    "verify-hub"
+   ],
+   "hub_count": 5,
+   "priority_votes": {
+    "": 2,
+    "high": 2,
+    "medium": 1
+   },
+   "status_votes": {
+    "proposed": 3,
+    "pending": 1,
+    "proposed - awaiting owner approval": 1
+   },
+   "effort_votes": {
+    "2": 1,
+    "low": 1,
+    "s": 1,
+    "": 1,
+    "medium (pricing table already exists in two labs; unify)": 1
+   },
+   "evidence_urls": [
+    "https://github.com/karagemop466-tech/Korea2",
+    "https://support.draftkings.com/dk/en-us/glossary-of-betting-terms?id=kb_article_view&sysparm_article=KB0010398",
+    "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
+    "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm"
+   ],
+   "proposal_ids": [
+    "decision-hub:S-09",
+    "lineup-lab:SUG-08",
+    "site:SG-05",
+    "suggestions:SUG-08",
+    "verify-hub:SG-14"
+   ],
+   "rows": [
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-09",
+     "text": "Give the correlation page an uncertainty interval, not just a coefficient",
+     "detail": "QB-to-WR1 is published as a single number (0.562). Parlay pricing under a Gaussian copula is extremely sensitive to the copula parameter, so a point estimate understates the uncertainty in the joint probability.",
+     "recommended": "",
+     "category": "Correlation / parlays",
+     "priority": "",
+     "effort": "2",
+     "impact": "3",
+     "risk": "None material; the interval is strictly more information.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-08",
+     "text": "Benchmark quoted SGP payouts against bivariate Gaussian copula probabilities",
+     "detail": "Benchmark quoted SGP payouts against bivariate Gaussian copula probabilities",
+     "recommended": "BUILD \u2014 Keep copula pricer as diagnostic calculator; never bet SGPs blindly assuming +300 independence.",
+     "category": "Same-Game Parlay Pricing",
+     "priority": "",
+     "effort": "Low",
+     "impact": "Identifies toxic anti-correlated SGP legs and measures exact parlay vig haircut.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-DK-PARLAY",
+       "url": "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
+       "label": "DraftKings Support \u2014 Parlay Rules & Correlated Outcomes (KB0010683)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-GITHUB-REPO",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "GitHub \u2014 karagemop466-tech/Korea2 Repository Source",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-05",
+     "text": "Publish the parlay pricing gap as the headline, not correlation coefficients",
+     "detail": "The site leads with r = 0.561 between QB and WR1 yards. A reader cannot act on a correlation coefficient; they can act on 'a 2-leg same-team ticket priced independently is short by 38% on its fair price'.",
+     "recommended": "Approve",
+     "category": "pricing",
+     "priority": "High",
+     "effort": "S",
+     "impact": "The site leads with r = 0.561 between QB and WR1 yards. A reader cannot act on a correlation coefficient; they can act on 'a 2-leg same-team ticket priced independently is short by 38% on its fair price'.",
+     "risk": "Low",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-08",
+     "text": "Introduce a controlled parlay pricing mode that uses measured correlations instead of naive multiplication",
+     "detail": "For correlated same-team legs (QB\u2192WR1 r=0.562), price with a bivariate-normal copula calibrated to the measured r (\u03c1\u22480.60) rather than p1\u00d7p2. Show both naive and correlation-aware break-even prices; only the latter counts for gate G4.",
+     "recommended": "",
+     "category": "pricing",
+     "priority": "high",
+     "effort": "",
+     "impact": "Prevents overstating parlay value; aligns with the flagged push-handling and parlay-ladder notes.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NIST-CORR",
+       "url": "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm",
+       "label": "NIST/SEMATECH e-Handbook \u2014 CORRELATION: Pearson r formula r=Sxy/sqrt(Sxx\u00b7Syy)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-DK-PARLAY-HELP",
+       "url": "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
+       "label": "DraftKings Support \u2014 What is a parlay bet? (all legs must win; push handling)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-DK-GLOSSARY",
+       "url": "https://support.draftkings.com/dk/en-us/glossary-of-betting-terms?id=kb_article_view&sysparm_article=KB0010398",
+       "label": "DraftKings Support \u2014 Glossary of Betting Terms (ATS, spread, moneyline, over/under, teaser, push)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-14",
+     "text": "Price same-game parlays with the correlation-aware (copula) table; treat cross-game legs as approximately independent but disclose it",
+     "detail": "Price same-game parlays with the correlation-aware (copula) table; treat cross-game legs as approximately independent but disclose it",
+     "recommended": "Recommended: one copula pricing table generated with the weekly refresh; every parlay row shows both the naive and correlation-aware price",
+     "category": "parlays/pricing",
+     "priority": "medium",
+     "effort": "medium (pricing table already exists in two labs; unify)",
+     "impact": "Removes the systematic mispricing of correlated stacks (multipliers 1.26x-2.05x measured)",
+     "risk": "Copula parameters drift by window; the table needs the same weekly refresh as the data",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-06",
+       "url": "https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm",
+       "label": "NIST Dataplot reference manual \u2014 CORRELATION",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "VH-SRC-13",
+       "url": "https://support.draftkings.com/dk/en-us/what-is-a-parlay-bet?id=kb_article_view&sysparm_article=KB0010683",
+       "label": "DraftKings help \u2014 what is a parlay bet",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 54,
+   "rank": 5
+  },
+  {
+   "id": "T12",
+   "title": "Review workflow, disclosure and decision record",
+   "decision": "How is a reviewer's choice recorded and enforced - status fields on the suggestion page, a decision register, or nothing?",
+   "options": [
+    [
+     "A. Decision register in the repo, one row per choice, with date and evidence",
+     "Auditable, survives agent sessions, and stops a rejected idea being rebuilt next week."
+    ],
+    [
+     "B. Decisions live only in chat/issues",
+     "Faster, but the site then re-proposes what was already refused."
+    ],
+    [
+     "C. No register, add a legal/responsible-use notice only",
+     "Covers disclosure, not governance."
+    ]
+   ],
+   "why_now": "The brief is 'review suggestions and choose the best path before implementing'; without a register there is no place to choose.",
+   "prerequisite_of": [],
+   "owner_of_change": "Owner writes the choice; the board stores it.",
+   "proposals_total": 8,
+   "hubs": [
+    "decision-desk",
+    "decision-hub",
+    "lineup-lab",
+    "site",
+    "suggestions"
+   ],
+   "hub_count": 5,
+   "priority_votes": {
+    "high": 4,
+    "": 3,
+    "medium": 1
+   },
+   "status_votes": {
+    "proposed": 6,
+    "in_progress": 1,
+    "pending": 1
+   },
+   "effort_votes": {
+    "m": 1,
+    "s": 2,
+    "1": 1,
+    "low": 1,
+    "medium (separate pr on main)": 1,
+    "": 2
+   },
+   "evidence_urls": [
+    "https://github.com/karagemop466-tech/Korea2",
+    "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-10.7.26.pdf",
+    "https://www.gaming.nv.gov/siteassets/content/regs/regulation-22-as-of-1-26.pdf",
+    "https://www.nfl.com/standings/division/2020/REG",
+    "https://www.nfl.com/standings/division/2026/REG",
+    "https://www.nfl.com/standings/league/2020/REG",
+    "https://www.nfl.com/standings/league/2026/REG",
+    "https://www.nflgsis.com/gsis/documentation/stadiumguides/guide_for_statisticians.pdf",
+    "https://www.pinnacle.com/betting-resources/en/educational/what-is-closing-line-value-clv-in-sports-betting"
+   ],
+   "proposal_ids": [
+    "decision-desk:S-04",
+    "decision-desk:S-15",
+    "decision-hub:S-05",
+    "lineup-lab:SUG-07",
+    "lineup-lab:SUG-10",
+    "site:SG-01",
+    "suggestions:SUG-01",
+    "suggestions:SUG-05"
+   ],
+   "rows": [
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-04",
+     "text": "Commission a jurisdiction-specific legal review",
+     "detail": "Obtain a written review for Calgary, AB covering sportsbook access, advertising rules and personal use before any real-money step.",
+     "recommended": "",
+     "category": "Governance",
+     "priority": "High",
+     "effort": "M",
+     "impact": "Only way to answer the legal question with an official source instead of an assumption.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-15",
+     "text": "Hold a reviewer decision session on the four blocking questions",
+     "detail": "Reviewer answers S-01..S-04 (status quo, pool funding, legal review, prop feed) in one pass; results are recorded in this register.",
+     "recommended": "",
+     "category": "Governance",
+     "priority": "High",
+     "effort": "S",
+     "impact": "The only path from research to an actual decision.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-05",
+     "text": "Publish an explicit 'answers we do not have' section with the decision each one blocks",
+     "detail": "Missing information is scattered across flagged pages. A reviewer cannot see which unknown is load-bearing for which decision.",
+     "recommended": "",
+     "category": "Decision quality",
+     "priority": "",
+     "effort": "1",
+     "impact": "4",
+     "risk": "None material; keep it short or it becomes noise.",
+     "status": "in_progress",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-07",
+     "text": "Weight Net EPA/gm (r=0.491) heavily over Win%-Pyth% residuals (r=0.059) and 1-score record (r=0.050)",
+     "detail": "Weight Net EPA/gm (r=0.491) heavily over Win%-Pyth% residuals (r=0.059) and 1-score record (r=0.050)",
+     "recommended": "BUILD \u2014 Incorporate EPA-weighted strength in power ratings; reject naive standalone luck-fade bets.",
+     "category": "Luck-Adjusted Ratings",
+     "priority": "",
+     "effort": "Low",
+     "impact": "Improves power-rating stability without falling into naive 'fade lucky team blindly' trap.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NFL-STANDINGS-2026",
+       "url": "https://www.nfl.com/standings/league/2026/REG",
+       "label": "NFL.com Official 2026 Regular-Season Standings (all 32 teams through Week 9)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-GITHUB-REPO",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "GitHub \u2014 karagemop466-tech/Korea2 Repository Source",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-10",
+     "text": "Remediate 5 confirmed repo/pipeline bugs found in Lineup Lab's Repo Review (REV-01..REV-16)",
+     "detail": "Remediate 5 confirmed repo/pipeline bugs found in Lineup Lab's Repo Review (REV-01..REV-16)",
+     "recommended": "SCHEDULE CLEANUP PR \u2014 Document cleanly in Lineup Lab now without modifying sibling directories; patch root separately after coordination.",
+     "category": "Repo Integrity & Bug Fixes",
+     "priority": "",
+     "effort": "Medium (separate PR on main)",
+     "impact": "Eliminates misleading metrics and broken CI workflows across root repository.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-GITHUB-REPO",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "GitHub \u2014 karagemop466-tech/Korea2 Repository Source",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-STANDINGS-2020",
+       "url": "https://www.nfl.com/standings/league/2020/REG",
+       "label": "NFL.com Official 2020 Regular-Season Standings (completed 16-game control season)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-01",
+     "text": "Approve or reject the site's current answer before adding another model",
+     "detail": "The three sibling research builds in this repository disagree in places, and a reader cannot tell which verdict to act on: the root site says the closing market beats the model, the Skill Lab says 0 of 21 strategies qualify, the origination lab publishes a 2026 Week 9 slate that cannot be priced because no prop prices exist.",
+     "recommended": "Approve",
+     "category": "decision",
+     "priority": "High",
+     "effort": "S",
+     "impact": "The three sibling research builds in this repository disagree in places, and a reader cannot tell which verdict to act on: the root site says the closing market beats the model, the Skill Lab says 0 of 21 strategies qualify, the origination lab publishes a 2026 Week 9 slate that cannot be priced because no prop prices exist.",
+     "risk": "Low",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-01",
+     "text": "Add a decision-gate page that must be completed before any wager or allocation",
+     "detail": "A short checklist (model vs close? closing-price cost? injury deltas? execution verified?) that blocks the decision if a required field is blank. Keeps the dashboard from being used as a tip sheet.",
+     "recommended": "",
+     "category": "decision workflow",
+     "priority": "high",
+     "effort": "",
+     "impact": "Prevents premature risk-taking; aligns with G9 executable gate that currently fails for every strategy.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-DK-HOUSE-RULES-CURRENT",
+       "url": "https://massgaming.com/wp-content/uploads/DraftKings-House-Rules-10.7.26.pdf",
+       "label": "DraftKings Massachusetts Sportsbook House Rules \u2014 active edition (approved 10.7.26)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-PINNACLE-CLV",
+       "url": "https://www.pinnacle.com/betting-resources/en/educational/what-is-closing-line-value-clv-in-sports-betting",
+       "label": "Pinnacle \u2014 What Is Closing Line Value (CLV) in Sports Betting?",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NV-REG22",
+       "url": "https://www.gaming.nv.gov/siteassets/content/regs/regulation-22-as-of-1-26.pdf",
+       "label": "Nevada Gaming Control Board \u2014 Regulation 22, Race Books and Sports Pools",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-05",
+     "text": "Upgrade the source register to record HTTP status and excerpt per source on the day it was read",
+     "detail": "Add two columns already used by verification: http_state and excerpt. The Source register page would then show what the reader actually saw, not just that a URL exists.",
+     "recommended": "",
+     "category": "source hygiene",
+     "priority": "medium",
+     "effort": "",
+     "impact": "Moves from link collection to verifiable reading record; directly supports manual review.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NFL-STANDINGS-2020",
+       "url": "https://www.nfl.com/standings/division/2020/REG",
+       "label": "NFL.com \u2014 2020 division standings",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-STANDINGS-2026",
+       "url": "https://www.nfl.com/standings/division/2026/REG",
+       "label": "NFL.com \u2014 2026 division standings",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-GSIS-GUIDE",
+       "url": "https://www.nflgsis.com/gsis/documentation/stadiumguides/guide_for_statisticians.pdf",
+       "label": "NFL Game Statistics & Information System \u2014 Guide for Statisticians (2025 edition, 38 pp.)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 53,
+   "rank": 6
+  },
+  {
+   "id": "T02",
+   "title": "Price data: closing/opening lines and player-prop prices",
+   "decision": "Which price feed becomes the project's source of truth, and does it carry historical player-prop and alt-line prices at the granularity the props work needs?",
+   "options": [
+    [
+     "A. Stay on the nflverse community release",
+     "Free and reproducible; already the committed input; but community-maintained, so it must be labelled third-party, and it has no historical prop prices."
+    ],
+    [
+     "B. License a commercial archive",
+     "Point-in-time prices, prop/alt lines, closing timestamps; recurring cost and a data-licence review before any of it can be republished on a public site."
+    ],
+    [
+     "C. Build a self-collected timestamped log",
+     "Full provenance and it is the only route to opening-line data; earns nothing retrospectively, so validation stays blocked for months."
+    ]
+   ],
+   "why_now": "It is the single input that unblocks prop ROI, CLV, and any 'we beat the close' claim. Six of the seven hubs ask for it.",
+   "prerequisite_of": [
+    "T05",
+    "T06",
+    "T08",
+    "T09"
+   ],
+   "owner_of_change": "Owner approves spend; a session can wire the fetcher and the schema.",
+   "proposals_total": 6,
+   "hubs": [
+    "decision-desk",
+    "lineup-lab",
+    "nfl-command",
+    "verify-hub"
+   ],
+   "hub_count": 4,
+   "priority_votes": {
+    "high": 2,
+    "medium": 1,
+    "": 3
+   },
+   "status_votes": {
+    "proposed": 3,
+    "": 2,
+    "proposed - awaiting owner approval": 1
+   },
+   "effort_votes": {
+    "l": 1,
+    "m": 1,
+    "medium (licensed feed)": 1,
+    "": 2,
+    "low (rule text + gate check)": 1
+   },
+   "evidence_urls": [
+    "https://github.com/karagemop466-tech/Korea2",
+    "https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md",
+    "https://www.nfl.com/injuries/",
+    "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf"
+   ],
+   "proposal_ids": [
+    "decision-desk:S-02",
+    "decision-desk:S-05",
+    "lineup-lab:SUG-04",
+    "nfl-command:SUG-02",
+    "nfl-command:SUG-08",
+    "verify-hub:SG-12"
+   ],
+   "rows": [
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-02",
+     "text": "Acquire a licensed historical player-prop price feed",
+     "detail": "Source a historical props price archive (or start a forward-only paper props book with logged prices) so prop strategies can be scored at recorded prices.",
+     "recommended": "",
+     "category": "Data",
+     "priority": "High",
+     "effort": "L",
+     "impact": "Unblocks prop ROI measurement (currently impossible); closes the longest-standing data gap.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-05",
+     "text": "Build a line-timestamping and CLV logger",
+     "detail": "Every originated line gets an ISO timestamp and price; log the eventual closing line to compute CLV per line.",
+     "recommended": "",
+     "category": "Measurement",
+     "priority": "Medium",
+     "effort": "M",
+     "impact": "CLV is the fastest honest measure of origination skill; currently uncomputable.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-04",
+     "text": "Store timestamped opening, mid-week practice, T-90m, and closing odds snapshots",
+     "detail": "Store timestamped opening, mid-week practice, T-90m, and closing odds snapshots",
+     "recommended": "DEFER LIVE / SOURCE FEED \u2014 Do not impute -110 or backfill missing prices; integrate licensed odds feed before testing timing edges.",
+     "category": "Market Odds Timestamps",
+     "priority": "",
+     "effort": "Medium (licensed feed)",
+     "impact": "Enables real Closing Line Value (CLV) attribution instead of static close-only backtests.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-GITHUB-REPO",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "GitHub \u2014 karagemop466-tech/Korea2 Repository Source",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-SCHED-W10",
+       "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+       "label": "NFL.com Official 2026 Week 10 Schedule (14 games, Nov 12-16; byes CHI, DEN, PHI, TB)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-02",
+     "text": "Keep a timestamped weekly archive of the NFL.com injury report",
+     "detail": "The page text has no as-of time, and only one week is stored. Deficiency trends cannot be measured without history.",
+     "recommended": "Option C.",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option C.",
+     "risk": "",
+     "status": "",
+     "decision": "Approve the weekly capture schedule and whether to test a runner fetch.",
+     "sources": [
+      {
+       "id": "NFL-INJ",
+       "url": "https://www.nfl.com/injuries/",
+       "label": "2026 NFL Injury Report: Week 10",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-08",
+     "text": "Source closing-line prices from an identified archive",
+     "detail": "Gate G10 needs recorded historical prices. The repo uses nflverse-derived prices, which are third-party. No official archive was identified.",
+     "recommended": "Option A now. Revisit B when budget and terms are known.",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option A now. Revisit B when budget and terms are known.",
+     "risk": "",
+     "status": "",
+     "decision": "Approve A.",
+     "sources": [
+      {
+       "id": "REPO-PROV",
+       "url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/PROVENANCE.md",
+       "label": "Repository data provenance (data/PROVENANCE.md)",
+       "official": false,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-12",
+     "text": "Capital rule: no strategy goes live until it passes 10/10 gates on the untouched holdout at recorded prices, with controls re-run",
+     "detail": "Capital rule: no strategy goes live until it passes 10/10 gates on the untouched holdout at recorded prices, with controls re-run",
+     "recommended": "Recommended: encode as the top rule of the leaderboard page and the executive summary",
+     "category": "risk",
+     "priority": "high",
+     "effort": "low (rule text + gate check)",
+     "impact": "Guarantees the leaderboard stays skill-filtered; controls C1/C2 and STR-15/16 stay in every run",
+     "risk": "Nothing ships fast - by design",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-12",
+       "url": "https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf",
+       "label": "Kelly (1956), A New Interpretation of Information Rate",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 47,
+   "rank": 7
+  },
+  {
+   "id": "T04",
+   "title": "Depth charts, starter definition and 'who replaces whom'",
+   "decision": "How is a 'starter', '2nd string' or '4th string' defined with a citable source, given that the league publishes no official depth chart?",
+   "options": [
+    [
+     "A. Club-published charts, captured weekly and labelled 'unofficial team document'",
+     "Closest to official; 32 fragile pages; several clubs' pages were already found stale or missing in this repo's own audit."
+    ],
+    [
+     "B. Derived depth from snaps + participation (nflverse)",
+     "Consistent and reproducible across all clubs; it is a construct, so the definition and its limits must be published with it."
+    ],
+    [
+     "C. Leave depth blank",
+     "Keeps every published number verifiable; makes the 'backup quality' requirement unanswerable."
+    ]
+   ],
+   "why_now": "The 'defence missing its 2nd/3rd/4th string' requirement cannot be met without a source that defines strings, and the audit shows the official path returns 404.",
+   "prerequisite_of": [
+    "T05"
+   ],
+   "owner_of_change": "Owner picks A or B; a session implements the capture and the label.",
+   "proposals_total": 6,
+   "hubs": [
+    "decision-desk",
+    "lineup-lab",
+    "nfl-command",
+    "suggestions"
+   ],
+   "hub_count": 4,
+   "priority_votes": {
+    "medium": 2,
+    "": 3,
+    "high": 1
+   },
+   "status_votes": {
+    "proposed": 4,
+    "": 2
+   },
+   "effort_votes": {
+    "m": 1,
+    "s": 1,
+    "medium (2 scripts + manual check)": 1,
+    "": 3
+   },
+   "evidence_urls": [
+    "https://nfl-depth-charts.com/",
+    "https://www.baltimoreravens.com/team/depth-chart",
+    "https://www.colts.com/team/depth-chart",
+    "https://www.commanders.com/depth-chart/",
+    "https://www.detroitlions.com/team/depth-chart",
+    "https://www.lineups.com/nfl/depth-charts/",
+    "https://www.miamidolphins.com/team/depth-chart",
+    "https://www.nfl.com/injuries/",
+    "https://www.nfl.com/news/2026-27-national-football-league-important-dates",
+    "https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693",
+    "https://www.nfl.com/schedules/2026/REG10",
+    "https://www.nfl.com/teams/",
+    "https://www.nfl.com/teams/new-england-patriots/roster",
+    "https://www.nfl.com/teams/washington-commanders/depth-chart",
+    "https://www.packers.com/team/depth-chart",
+    "https://www.therams.com/team/depth-chart"
+   ],
+   "proposal_ids": [
+    "decision-desk:S-09",
+    "decision-desk:S-11",
+    "lineup-lab:SUG-02",
+    "nfl-command:SUG-01",
+    "nfl-command:SUG-04",
+    "suggestions:SUG-03"
+   ],
+   "rows": [
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-09",
+     "text": "Publish machine-readable depth-chart strings per team",
+     "detail": "Extract each team's chart into a small JSON (team, position, string1..4) with fetch date and the chart's own 'official/unofficial' label.",
+     "recommended": "",
+     "category": "Data",
+     "priority": "Medium",
+     "effort": "M",
+     "impact": "Removes the main manual step in the deficiency table; makes replacements queryable.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-11",
+     "text": "Run a weekly chart-vs-report consistency check",
+     "detail": "Automated diff: players OUT/DNP on the report but absent from the team chart, and chart starters contradicted by transactions (the FL-DD-08 family).",
+     "recommended": "",
+     "category": "Quality",
+     "priority": "Medium",
+     "effort": "S",
+     "impact": "Would have caught WAS/NE/GB/NYG/LV mismatches without manual review.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-02",
+     "text": "Validate 'unofficial' club depth charts against active roster & game-status reports before projecting next-man-up cascades",
+     "detail": "Validate 'unofficial' club depth charts against active roster & game-status reports before projecting next-man-up cascades",
+     "recommended": "BUILD \u2014 Cross-check club DC strings against official NFL.com team rosters & active gamebooks; never auto-trust stale club HTML.",
+     "category": "Club Depth Charts",
+     "priority": "",
+     "effort": "Medium (2 scripts + manual check)",
+     "impact": "Prevents catastrophic starter misidentification in automated lineup cascades.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-CLUB-LAR-DC",
+       "url": "https://www.therams.com/team/depth-chart",
+       "label": "Los Angeles Rams Official Unofficial Depth Chart",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-CLUB-GB-DC",
+       "url": "https://www.packers.com/team/depth-chart",
+       "label": "Green Bay Packers Official Unofficial Depth Chart (Nov 10, 2026)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-CLUB-DET-DC",
+       "url": "https://www.detroitlions.com/team/depth-chart",
+       "label": "Detroit Lions Official Unofficial Depth Chart",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-CLUB-MIA-DC",
+       "url": "https://www.miamidolphins.com/team/depth-chart",
+       "label": "Miami Dolphins Official Depth Chart",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-CLUB-BAL-DC",
+       "url": "https://www.baltimoreravens.com/team/depth-chart",
+       "label": "Baltimore Ravens Official Depth Chart",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-TEAMS",
+       "url": "https://www.nfl.com/teams/",
+       "label": "NFL.com Official 32-Team Directory",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-01",
+     "text": "Get an official, per-club depth-chart source (blocks the starter-vs-backup analysis)",
+     "detail": "No official depth chart was reachable for any club checked. NFL.com and the Commanders club page both returned 404. Third-party depth charts are not official, so no starter or backup value can be verified.",
+     "recommended": "Option A now to prove the method on 4 clubs, then decide on B. Do not use C in verified tables.",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option A now to prove the method on 4 clubs, then decide on B. Do not use C in verified tables.",
+     "risk": "",
+     "status": "",
+     "decision": "Which option, and which clubs first?",
+     "sources": [
+      {
+       "id": "NFL-DEPTH-WAS",
+       "url": "https://www.nfl.com/teams/washington-commanders/depth-chart",
+       "label": "Washington Commanders depth chart (NFL.com path)",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "CLUB-DEPTH-WAS",
+       "url": "https://www.commanders.com/depth-chart/",
+       "label": "Washington Commanders club site depth chart path",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "NONOFF-DEPTH-1",
+       "url": "https://www.lineups.com/nfl/depth-charts/",
+       "label": "NFL Depth Charts 2026 (lineups.com)",
+       "official": false,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "NONOFF-DEPTH-2",
+       "url": "https://nfl-depth-charts.com/",
+       "label": "NFL Depth Charts (nfl-depth-charts.com)",
+       "official": false,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-04",
+     "text": "Define 'starter' and 'backup' using a source that is actually official",
+     "detail": "Without a definition, no starter-vs-backup claim can be checked. Snap counts and depth order come from different places, and only depth order is what the user asked for.",
+     "recommended": "Option A once SUG-01 is answered, with B as a cross-check.",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option A once SUG-01 is answered, with B as a cross-check.",
+     "risk": "",
+     "status": "",
+     "decision": "Choose the definition.",
+     "sources": [
+      {
+       "id": "NFL-DEPTH-WAS",
+       "url": "https://www.nfl.com/teams/washington-commanders/depth-chart",
+       "label": "Washington Commanders depth chart (NFL.com path)",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "NFL-SCHED",
+       "url": "https://www.nfl.com/schedules/2026/REG10",
+       "label": "NFL Schedules: Games, Times, Matchups & Tickets (2026, Week 10 view)",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-03",
+     "text": "Build a live injury & depth-chart tracker from official NFL feeds",
+     "detail": "Daily scrape pattern: at 4pm ET practice-report deadline, ingest /injuries/league/<season>/regN; map Player\u2192Team\u2192Position\u2192DepthRank from official depth charts (e.g., colts.com/team/depth-chart and nfl.com/teams/<team>/roster). Emit per-team depth-deficiency signal: starter out + backup tier, with explicit unknown when depth missing. Do not invent tiers; publish the roster sentence that was read.",
+     "recommended": "",
+     "category": "injury & roster",
+     "priority": "high",
+     "effort": "",
+     "impact": "Closes REQ-10 gap. Gives offense/defense deficiency scores that can be gated rather than guessed.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NFL-INJURIES-HUB",
+       "url": "https://www.nfl.com/injuries/",
+       "label": "NFL.com \u2014 Official Injury Report hub",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-INJURY-POLICY-COMP",
+       "url": "https://www.nfl.com/news/competition-committee-approves-revisions-to-injury-report-0ap3000000688693",
+       "label": "NFL Competition Committee \u2014 Revisions to Injury Report Policy (status definitions)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-IMPORTANT-DATES-2026",
+       "url": "https://www.nfl.com/news/2026-27-national-football-league-important-dates",
+       "label": "NFL.com \u2014 2026-27 Important Dates (Personnel (Injury) Report Policy filing deadlines)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-COLTS-DEPTH-CHART",
+       "url": "https://www.colts.com/team/depth-chart",
+       "label": "Indianapolis Colts \u2014 Official Depth Chart",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-ROSTER-PATRIOTS",
+       "url": "https://www.nfl.com/teams/new-england-patriots/roster",
+       "label": "NFL.com \u2014 New England Patriots official roster",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 44,
+   "rank": 8
+  },
+  {
+   "id": "T09",
+   "title": "Leaderboard, rewards and competition governance",
+   "decision": "Is there a leaderboard competition at all, what does a winner receive, and who funds it - given that no strategy currently qualifies?",
+   "options": [
+    [
+     "A. Run a paper leaderboard with zero payout",
+     "Real signal about methodology, no money, no legal exposure; publishable today."
+    ],
+    [
+     "B. Fund prizes now",
+     "Attracts participation but attaches a reward to a system with no qualified strategy and no verified legal position."
+    ],
+    [
+     "C. No competition",
+     "Cheapest; loses the incentive mechanism the project was asked to build."
+    ]
+   ],
+   "why_now": "Four different reward schedules are published across the hubs; a competition with no agreed prize rule cannot be judged, and 'reward for top performers' is currently unfunded.",
+   "prerequisite_of": [],
+   "owner_of_change": "Owner funds/declines; a session writes the rule into the site.",
+   "proposals_total": 4,
+   "hubs": [
+    "decision-desk",
+    "nfl-command",
+    "suggestions",
+    "verify-hub"
+   ],
+   "hub_count": 4,
+   "priority_votes": {
+    "high": 1,
+    "": 1,
+    "medium": 2
+   },
+   "status_votes": {
+    "proposed": 2,
+    "": 1,
+    "proposed - awaiting owner approval": 1
+   },
+   "effort_votes": {
+    "s": 1,
+    "": 2,
+    "low": 1
+   },
+   "evidence_urls": [
+    "https://aglc.ca/",
+    "https://media.nfl.com/news-and-releases/corporate-communications/national-football-league-announces-seventh-annual-big-data-bowl-",
+    "https://www.kaggle.com/competitions/nfl-big-data-bowl-2027",
+    "https://www.kaggle.com/docs/competitions"
+   ],
+   "proposal_ids": [
+    "decision-desk:S-03",
+    "nfl-command:SUG-07",
+    "suggestions:SUG-09",
+    "verify-hub:SG-04"
+   ],
+   "rows": [
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-03",
+     "text": "Decide the reward-pool funding question",
+     "detail": "Reviewer chooses: fund a cash pool, keep a points-only competition, or defer. Record the choice in the pool JSON and on the leaderboard page.",
+     "recommended": "",
+     "category": "Governance",
+     "priority": "High",
+     "effort": "S",
+     "impact": "The competition cannot pay rewards until this is decided; points-only is viable but should be explicit.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-07",
+     "text": "Keep leaderboard rewards at zero points until gates and legal review are both done",
+     "detail": "No strategy passes the gates, so nothing qualifies for a reward. Whether a prize leaderboard is allowed in Alberta has not been checked.",
+     "recommended": "Option A.",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option A.",
+     "risk": "",
+     "status": "",
+     "decision": "Approve A.",
+     "sources": [
+      {
+       "id": "AGLC",
+       "url": "https://aglc.ca/",
+       "label": "Alberta Gaming, Liquor & Cannabis (AGLC): home page",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-09",
+     "text": "Keep the leaderboard reward schedule as a paper schedule until G9 can be verified",
+     "detail": "Tier badges and reward descriptions stay labelled as design proposal; no cash or allocation is implied. Add a one-line ledger on the leaderboard page that records the date each tier was last considered for funding and the outcome.",
+     "recommended": "",
+     "category": "competition",
+     "priority": "medium",
+     "effort": "",
+     "impact": "Prevents REQ-05 presentation from implying funded prizes; keeps competition incentive without misrepresentation.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-KAGGLE-BDB2027",
+       "url": "https://www.kaggle.com/competitions/nfl-big-data-bowl-2027",
+       "label": "Kaggle \u2014 NFL Big Data Bowl 2027 (hosted by NFL; $100,000 prize pool)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-BDB-ANNOUNCE",
+       "url": "https://media.nfl.com/news-and-releases/corporate-communications/national-football-league-announces-seventh-annual-big-data-bowl-",
+       "label": "NFL Media \u2014 National Football League Announces Seventh Annual Big Data Bowl Powered by AWS",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-KAGGLE-DOCS",
+       "url": "https://www.kaggle.com/docs/competitions",
+       "label": "Kaggle official docs \u2014 Competitions: public vs private leaderboard, overfitting warning",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "verify-hub",
+     "hub_id": "SG-04",
+     "text": "Publish one reward schedule, paper-labelled until funding exists",
+     "detail": "Publish one reward schedule, paper-labelled until funding exists",
+     "recommended": "Recommended: BDB-2027-style tiers (Gold 10/10 + skill score, Silver 10/10, Bronze 9/10 with mandatory G1/G3/G5/G6/G10), pool labelled 'paper points, not funded'; fund only via an explicit decision (Q-10)",
+     "category": "strategy competition",
+     "priority": "medium",
+     "effort": "low",
+     "impact": "Removes the four-schedule conflict (I-06); keeps the leaderboard honest",
+     "risk": "A paper schedule motivates less than cash; an unfunded cash-looking schedule is a misrepresentation",
+     "status": "proposed - awaiting owner approval",
+     "decision": "",
+     "sources": [
+      {
+       "id": "VH-SRC-08",
+       "url": "https://www.kaggle.com/competitions/nfl-big-data-bowl-2027",
+       "label": "NFL Big Data Bowl 2027 (Kaggle) \u2014 competition and awards",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 43,
+   "rank": 9
+  },
+  {
+   "id": "T05",
+   "title": "Line-origination model and feature set",
+   "decision": "Given the committed result that the ratings model does not beat the close, does the model keep being developed, or does the project pivot to pricing only what the market cannot see (availability, lineup structure, market microstructure)?",
+   "options": [
+    [
+     "A. Keep improving the ratings model",
+     "Cheap to try, but the published MAE gap is ~0.14 pts and the incremental-information test is p = 0.881; expect another null."
+    ],
+    [
+     "B. Pivot features to availability and slate structure",
+     "Uses T02/T03 data; the only direction with information the close may not contain; unproven until those feeds exist."
+    ],
+    [
+     "C. Freeze the model, keep the pipeline",
+     "Preserves a reproducible benchmark and stops spending on a null result."
+    ]
+   ],
+   "why_now": "It decides whether more analysis time goes into the model or into the data gaps.",
+   "prerequisite_of": [
+    "T08"
+   ],
+   "owner_of_change": "A session can implement; the owner chooses the research direction.",
+   "proposals_total": 4,
+   "hubs": [
+    "decision-hub",
+    "lineup-lab",
+    "nfl-command",
+    "suggestions"
+   ],
+   "hub_count": 4,
+   "priority_votes": {
+    "": 3,
+    "medium": 1
+   },
+   "status_votes": {
+    "proposed": 3,
+    "": 1
+   },
+   "effort_votes": {
+    "1": 1,
+    "medium-high (new ingestion)": 1,
+    "": 2
+   },
+   "evidence_urls": [
+    "https://forecast.weather.gov/MapClick.php?lat=40.7128&lon=-74.006",
+    "https://github.com/karagemop466-tech/Korea2",
+    "https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/",
+    "https://www.nfl.com/injuries/",
+    "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports"
+   ],
+   "proposal_ids": [
+    "decision-hub:S-08",
+    "lineup-lab:SUG-03",
+    "nfl-command:SUG-09",
+    "suggestions:SUG-06"
+   ],
+   "rows": [
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-08",
+     "text": "Separate 'model beats market' from 'model is useful' in the scorecard",
+     "detail": "The site's single verdict, that the market beats the model, is correct but hides a second question: does the model add information anywhere, even if it does not beat the line overall? A model can be worse on average and still sharpen a specific subset.",
+     "recommended": "",
+     "category": "Strategy evaluation",
+     "priority": "",
+     "effort": "1",
+     "impact": "3",
+     "risk": "Bucketing invites post-hoc cherry-picking; the correction across buckets is what keeps it honest.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-03",
+     "text": "Ingest weekly defensive/OL snap percentages and Genius Sports/NGS charting data",
+     "detail": "Ingest weekly defensive/OL snap percentages and Genius Sports/NGS charting data",
+     "recommended": "BUY/INGEST \u2014 Add verified weekly snap-count & participation feed; keep historical defensive dropoff blank until loaded.",
+     "category": "Defense & OL Snap Data",
+     "priority": "",
+     "effort": "Medium-High (new ingestion)",
+     "impact": "Unlocks direct causal valuation of Week 10 clusters like SF Trent Williams, PIT Watt/Heyward, LA McDuffie/Curl, and IND's 4 DNP defenders.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-GITHUB-REPO",
+       "url": "https://github.com/karagemop466-tech/Korea2",
+       "label": "GitHub \u2014 karagemop466-tech/Korea2 Repository Source",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-GENIUS",
+       "url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+       "label": "NFL.com \u2014 NFL Extends Strategic Partnership with Genius Sports",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-OPS-NGS",
+       "url": "https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/",
+       "label": "NFL Football Operations \u2014 Next Gen Stats Performance Tracking Technology",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "nfl-command",
+     "hub_id": "SUG-09",
+     "text": "Add an injury feature to the origination model only after SUG-01 and SUG-02",
+     "detail": "The injury layer is not yet in the origination model. Adding it now would be untestable against history.",
+     "recommended": "Option A now, B after both data sources exist.",
+     "category": "",
+     "priority": "",
+     "effort": "",
+     "impact": "Option A now, B after both data sources exist.",
+     "risk": "",
+     "status": "",
+     "decision": "Approve A.",
+     "sources": [
+      {
+       "id": "NFL-INJ",
+       "url": "https://www.nfl.com/injuries/",
+       "label": "2026 NFL Injury Report: Week 10",
+       "official": true,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "suggestions",
+     "hub_id": "SUG-06",
+     "text": "Add weather enrichment as a first-class field in games.csv.gz with explicit coverage flag",
+     "detail": "Match each outdoor game to forecast.weather.gov point forecast by stadium lat/lon at the day-of-game 12Z issuance; store wind_gust, temp, precip and a weather_available boolean. Historical coverage will stay ~57% for 2020-2026 outdoors (verified in prior flagged entry); the boolean stops silent fallbacks to domestic means.",
+     "recommended": "",
+     "category": "data enrichment",
+     "priority": "medium",
+     "effort": "",
+     "impact": "Makes S7 wind-under testable on new seasons without re-introducing the 219-row no-price bias that collapsed it from +8.65% to +7.14%.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-NOAA-NWS",
+       "url": "https://forecast.weather.gov/MapClick.php?lat=40.7128&lon=-74.006",
+       "label": "NOAA National Weather Service \u2014 official point forecasts (forecast.weather.gov)",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NFL-NGS-TECH",
+       "url": "https://operations.nfl.com/game-operations-logistics/technology/performance-tracking-data-next-gen-stats/",
+       "label": "NFL Football Operations \u2014 Performance Tracking Data (Next Gen Stats) technology page",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    }
+   ],
+   "rank_score": 41,
+   "rank": 10
+  },
+  {
+   "id": "T01",
+   "title": "Execution, jurisdiction and licensing",
+   "decision": "Is there a legal, verifiable way to place and settle a bet from here at all - and if not, does the project stay a research system?",
+   "options": [
+    [
+     "A. Keep the project research-only",
+     "Zero legal exposure, zero bankroll; nothing on the site may be described as a betting edge. Cheapest and consistent with every lab's '0 approved' verdict."
+    ],
+    [
+     "B. Commission a jurisdiction-specific legal review",
+     "Answers licensing, geolocation, age and operator-terms questions with evidence; costs external advice and changes nothing about the maths."
+    ],
+    [
+     "C. Assume a broker or account exists",
+     "Fastest to a bet, unverifiable from this repository, and it breaks the project's own rule that nothing unverified is asserted."
+    ]
+   ],
+   "why_now": "Every lab fails the same gate (executable pricing / access), so no measured edge can be turned into anything until this is chosen.",
+   "prerequisite_of": [
+    "T02",
+    "T09"
+   ],
+   "owner_of_change": "Owner (legal decision), not an agent session.",
+   "proposals_total": 4,
+   "hubs": [
+    "decision-desk",
+    "lineup-lab",
+    "site"
+   ],
+   "hub_count": 3,
+   "priority_votes": {
+    "medium": 1,
+    "low": 1,
+    "": 1,
+    "required": 1
+   },
+   "status_votes": {
+    "proposed": 3,
+    "pending": 1
+   },
+   "effort_votes": {
+    "s": 2,
+    "l": 1,
+    "low (embedded)": 1
+   },
+   "evidence_urls": [
+    "https://massgaming.com/about/sports-wagering-in-massachusetts/",
+    "https://www.gaming.nv.gov/",
+    "https://www.ncpgambling.org/help-treatment/faqs-what-is-problem-gambling/"
+   ],
+   "proposal_ids": [
+    "decision-desk:S-07",
+    "decision-desk:S-14",
+    "lineup-lab:SUG-12",
+    "site:SG-12"
+   ],
+   "rows": [
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-07",
+     "text": "Add a legal/responsible-use disclaimer",
+     "detail": "The root site already carries a site-wide disclaimer ('Research and measurement, not betting advice...'); extend the same sentence to decision-desk footers (done in this session) and add the missing jurisdiction-specific line for Calgary, AB / Canada across the published pages.",
+     "recommended": "",
+     "category": "Compliance",
+     "priority": "Medium",
+     "effort": "S",
+     "impact": "Closes the remaining compliance gap (Q-21 partial -> answered).",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "decision-desk",
+     "hub_id": "S-14",
+     "text": "Request an official stats/injury API for programmatic access",
+     "detail": "Evaluate NFL's official developer/stats endpoints (and nflverse updates) for a licensed feed of injuries and box scores.",
+     "recommended": "",
+     "category": "Data",
+     "priority": "Low",
+     "effort": "L",
+     "impact": "Reduces reliance on page scraping; complements S-08.",
+     "risk": "",
+     "status": "proposed",
+     "decision": "(awaiting reviewer)",
+     "sources": []
+    },
+    {
+     "hub": "lineup-lab",
+     "hub_id": "SUG-12",
+     "text": "Embed state wagering disclosures, no-imputation badges, and responsible-gaming links across deliverables",
+     "detail": "Embed state wagering disclosures, no-imputation badges, and responsible-gaming links across deliverables",
+     "recommended": "KEEP \u2014 Research & benchmark publication only; zero automated execution.",
+     "category": "Regulatory & Research Governance",
+     "priority": "",
+     "effort": "Low (embedded)",
+     "impact": "Maintains audit-grade research compliance and avoids prohibited advisory posture.",
+     "risk": "",
+     "status": "PROPOSED",
+     "decision": "",
+     "sources": [
+      {
+       "id": "SRC-MGC-SPORTS",
+       "url": "https://massgaming.com/about/sports-wagering-in-massachusetts/",
+       "label": "Massachusetts Gaming Commission \u2014 Sports Wagering Regulations & Oversight",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NV-GCB",
+       "url": "https://www.gaming.nv.gov/",
+       "label": "Nevada Gaming Control Board & Gaming Commission \u2014 Statutes & Notices",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      },
+      {
+       "id": "SRC-NCPG-FAQ",
+       "url": "https://www.ncpgambling.org/help-treatment/faqs-what-is-problem-gambling/",
+       "label": "National Council on Problem Gambling \u2014 Official FAQs",
+       "official": null,
+       "accessed": "",
+       "quote": ""
+      }
+     ]
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-12",
+     "text": "Fund nothing, and say so, until there is a verified execution path",
+     "detail": "The brief asks for a leaderboard that pays rewards. No operator account, jurisdiction, limit, or licence has been verified here, and this repository cannot verify one.",
+     "recommended": "Approve",
+     "category": "governance",
+     "priority": "Required",
+     "effort": "S",
+     "impact": "The brief asks for a leaderboard that pays rewards. No operator account, jurisdiction, limit, or licence has been verified here, and this repository cannot verify one.",
+     "risk": "High if skipped",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    }
+   ],
+   "rank_score": 32,
+   "rank": 11
+  },
+  {
+   "id": "T08",
+   "title": "Removing luck: skill measurement and sizing",
+   "decision": "What is the headline skill metric - closing-line value, Brier score against the market, or ROI - and at what sample size is a strategy allowed to be called skilled?",
+   "options": [
+    [
+     "A. CLV vs the close as the primary metric",
+     "Least luck-dependent per bet, available immediately once lines are timestamped; needs T02 option C."
+    ],
+    [
+     "B. ROI with a fixed minimum-bets floor and variance-adjusted leaderboard",
+     "Directly decision-relevant; noisy at small n and gameable by low-frequency bets."
+    ],
+    [
+     "C. Both, with ROI demoted until n is sufficient",
+     "Harder to explain, hardest to game."
+    ]
+   ],
+   "why_now": "The repo already shows why: Pythagorean luck does not persist (r ~ 0.02) and every published ROI sits inside its own noise band.",
+   "prerequisite_of": [
+    "T09"
+   ],
+   "owner_of_change": "A session can define and compute it; the owner sets the floor.",
+   "proposals_total": 3,
+   "hubs": [
+    "decision-hub",
+    "site"
+   ],
+   "hub_count": 2,
+   "priority_votes": {
+    "": 1,
+    "high": 1,
+    "medium": 1
+   },
+   "status_votes": {
+    "proposed": 1,
+    "pending": 2
+   },
+   "effort_votes": {
+    "15": 1,
+    "s": 2
+   },
+   "evidence_urls": [],
+   "proposal_ids": [
+    "decision-hub:S-03",
+    "site:SG-06",
+    "site:SG-11"
+   ],
+   "rows": [
+    {
+     "hub": "decision-hub",
+     "hub_id": "S-03",
+     "text": "Add closing-line value as the headline skill metric",
+     "detail": "ROI over a season is dominated by variance: with a 300-bet sample the interval on ROI is roughly +/- 12 percentage points, which is wider than any edge being hunted. CLV measures skill against the market's own final opinion and needs far fewer observations.",
+     "recommended": "",
+     "category": "Strategy evaluation",
+     "priority": "",
+     "effort": "15",
+     "impact": "5",
+     "risk": "Requires a price feed that does not exist yet. Until then, CLV can only be computed for bets logged live going forward.",
+     "status": "proposed",
+     "decision": "",
+     "sources": []
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-06",
+     "text": "Give the leaderboard a reward rule that cannot be gamed by variance",
+     "detail": "'Rewards for top performing strategies' is currently undefined, and a naive highest-ROI rule rewards the luckiest of many variants. With 23 variants tested here the best zero-skill per-bet Sharpe rises with the number of tries.",
+     "recommended": "Approve",
+     "category": "competition",
+     "priority": "High",
+     "effort": "S",
+     "impact": "'Rewards for top performing strategies' is currently undefined, and a naive highest-ROI rule rewards the luckiest of many variants. With 23 variants tested here the best zero-skill per-bet Sharpe rises with the number of tries.",
+     "risk": "Low - no money is held by this project",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    },
+    {
+     "hub": "site",
+     "hub_id": "SG-11",
+     "text": "Do not chase a profit until the hold is modelled",
+     "detail": "At -110 a bettor needs 52.381% of decided bets to break even; the repository quotes this but never shows what it implies for a 4-leg correlated ticket, where the house margin compounds.",
+     "recommended": "Approve",
+     "category": "pricing",
+     "priority": "Medium",
+     "effort": "S",
+     "impact": "At -110 a bettor needs 52.381% of decided bets to break even; the repository quotes this but never shows what it implies for a 4-leg correlated ticket, where the house margin compounds.",
+     "risk": "Low",
+     "status": "pending",
+     "decision": "Approve",
+     "sources": []
+    }
+   ],
+   "rank_score": 24,
+   "rank": 12
+  }
+ ],
+ "untriaged": [],
+ "method": "Every suggestion published by a sibling hub is read from that hub's own JSON register, normalised to one row per hub proposal, then clustered by keyword rules (explicit overrides where a hub's wording was ambiguous). The cluster rank is arithmetic: 10 x number of hubs that proposed it, + 3 if any hub labelled it high priority, + 1 per other cluster it unblocks. No cluster contains a number that was typed in.",
+ "_generated_by": "review-board/scripts/ingest.py",
+ "_generated_from_repo_commit": "c44795ef6a3b7cd15a3d8a70043a81929159b873"
+}

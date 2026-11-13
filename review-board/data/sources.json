@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "title": "Review Board source register",
+    "session": "arena/e470a321-korea2",
+    "captured": "2026-11-13",
+    "rule": "Every table row on this site links one entry below. `opened` records whether THIS session fetched and read the page on 2026-11-13; `carried` means the URL and its finding come from a sibling hub's register (that hub's own capture date is shown) and were not re-read here. Values that no listed source supports are left blank and appear on the Flagged for Review page.",
+    "classes": {
+      "official-nfl": "Published by the National Football League on an NFL-controlled host.",
+      "nfl-operations": "Published by NFL Football Operations (rulebook, policy documents).",
+      "third-party-feed": "Community or vendor data used as an input; not an NFL publication.",
+      "repository": "A file committed in this repository - evidence of what the system computed, not of an external fact."
+    },
+    "reachability_rule": "A source marked reachable: false is never rendered as a hyperlink on this site. Its URL is printed as text so a reader can see what was tried, and no claim on any page cites it as support."
+  },
+  "sources": [
+    {
+      "id": "RB-SRC-01",
+      "label": "NFL official Week 10 2026 injury report",
+      "url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "class": "official-nfl",
+      "opened": "2026-11-13",
+      "page_title": "Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com",
+      "supports": "All player rows, positions, injuries, practice participation and game statuses on the Injury tracking and Depth & deficiency pages; the 28-team slate for Week 10; team records printed beside each matchup.",
+      "note": "Read in full (8 chunks). The page prints each club's record next to the matchup, which is how the records on this site were checked without a second source.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-02",
+      "label": "NFL 2026 division standings",
+      "url": "https://www.nfl.com/standings/",
+      "class": "official-nfl",
+      "opened": "2026-11-13",
+      "page_title": "2026 NFL Division Standings",
+      "supports": "All 32 team records, points for/against and streaks shown on the Current slate table.",
+      "note": "The 28 clubs playing in Week 10 reconcile 28/28 with the records printed on the injury-report page; the 4 clubs not in the report (CHI, DEN, PHI, TB) are taken from the standings page alone.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-03",
+      "label": "NFL Week 10 2026 schedule",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "class": "official-nfl",
+      "opened": "2026-11-13",
+      "page_title": "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets",
+      "supports": "Kickoff slots, broadcast partners and the Thursday result (Commanders 24, Giants 21, Final).",
+      "note": "The league labels the Nov 12-16 slate as Week 10 (reg10), which is the week number used throughout this hub.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-04",
+      "label": "NFL news roundup - Friday, Nov 13, 2026",
+      "url": "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-nov-13",
+      "class": "official-nfl",
+      "opened": "2026-11-13",
+      "page_title": "NFL news roundup: Ravens confirm Lamar Jackson expected to miss 6-10 weeks; Kenneth Walker questionable",
+      "supports": "Ravens QB timeline (6-10 weeks, surgery for a broken and dislocated thumb, per coach Jesse Minter); per-team Friday status notes used in the report-vs-roundup comparison.",
+      "note": "Chunk 0 of 4 read; the per-team items quoted on this site all appear in the portion read.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-05",
+      "label": "2026 NFL Rulebook (NFL Football Operations)",
+      "url": "https://operations.nfl.com/rules-officiating/2026-nfl-rulebook",
+      "class": "nfl-operations",
+      "opened": "2026-11-13",
+      "page_title": "NFL Football Operations | 2026 NFL RULEBOOK",
+      "supports": "What Rule 19-2 actually covers in the current edition (disqualification consultation), used to check a citation in a sibling hub.",
+      "note": "Reached by redirect from operations.nfl.com/the-rules/nfl-rulebook/. The page also lists the four 2026 rule changes (6-1-3, 6-1-5, 6-1-6, 19-2).",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-06",
+      "label": "NFL injury-report policy page (dead)",
+      "url": "https://operations.nfl.com/the-rules/nfl-injury-report-policy/",
+      "class": "nfl-operations",
+      "opened": "2026-11-13",
+      "page_title": "404 - Flag on the Play",
+      "supports": "Nothing - the page returns a 404. Recorded so the missing policy citation is not re-invented by the next session.",
+      "note": "Carried flag re-checked today: the path siblings cite is dead, so the Wednesday/Friday/Saturday reporting cadence could not be confirmed from an official page in this session and is published as unverified.",
+      "reachable": false
+    },
+    {
+      "id": "RB-SRC-07",
+      "label": "NFL latest injury report (landing path)",
+      "url": "https://www.nfl.com/injuries/",
+      "class": "official-nfl",
+      "opened": "2026-11-13",
+      "page_title": "Official Latest NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com",
+      "supports": "That the live 'latest' report is the Week 10 report, and that its title and body agree on the week number.",
+      "note": "Prior sessions flagged a title/body week mismatch on archived weeks. As of this capture, title ('Week 10'), heading ('Injuries - WEEK 10') and URL (reg10) agree.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-08",
+      "label": "This repository at the review base commit",
+      "url": "https://github.com/karagemop466-tech/Korea2/tree/007f2edede05bca015d70ab760d139daea86fc28",
+      "class": "repository",
+      "opened": "2026-11-13",
+      "supports": "Every count on the Hub map, Repo review and Reconciliation pages (directories, pages, JSON registers, nav labels, register sizes) - all computed from this commit.",
+      "note": "The board's 14 session sections and 541 tracked files are read from here, not summarised.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-09",
+      "label": "Line Lab committed pipeline results (data/derived)",
+      "url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived",
+      "class": "repository",
+      "opened": "2026-11-13",
+      "supports": "Model-vs-close benchmark numbers, leaderboard state, correlation coefficients and the luck measurements quoted on the Strategy programme and Reconciliation pages.",
+      "note": "Read-only. Third-party community extracts underlie these files, so they evidence what this repository computed, not an NFL-published fact.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-10",
+      "label": "nflverse data releases (community feed)",
+      "url": "https://github.com/nflverse/nflverse-data",
+      "class": "third-party-feed",
+      "opened": "carried - recorded by sibling hubs (2026-11-01 / 2026-11-12), not re-opened by this session",
+      "supports": "The provenance of the game, schedule and weekly-stat extracts the pipeline consumes. No value on this site is attributed to the NFL through this feed.",
+      "note": "Labelled third-party wherever it appears, per the project's source rule.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-11",
+      "label": "GitHub API - repository Pages and workflow state",
+      "url": "https://api.github.com/repos/karagemop466-tech/Korea2/pages",
+      "class": "repository",
+      "opened": "2026-11-13",
+      "supports": "Pages build type (legacy, serves main root), and the check/workflow state recorded on the Repo review page.",
+      "note": "Queried with the authenticated gh CLI in this session.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-12",
+      "label": "Sibling hub registers (suggestions, questions, leaderboards, injuries)",
+      "url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-desk/data",
+      "class": "repository",
+      "opened": "2026-11-13",
+      "supports": "Every proposal row and question row in the review queue, the Week 10 Wednesday capture used for the day-over-day delta, and the per-hub verdict counts.",
+      "note": "Seven hubs expose machine-readable registers: decision-desk, decision-hub, lineup-lab, nfl-command, site, suggestions, verify-hub. Each row in the queue links its own hub register.",
+      "reachable": true
+    },
+    {
+      "id": "RB-SRC-13",
+      "label": "This hub's programme register",
+      "url": "https://github.com/karagemop466-tech/Korea2/tree/main/review-board/data/program.json",
+      "class": "repository",
+      "opened": "2026-11-13",
+      "page_title": "review-board/data/program.json",
+      "supports": "Anything authored here rather than measured elsewhere: the phase sequence, the review rules, signals SIG-01 to SIG-07, gates G11 and G12, and the competition design.",
+      "note": "A proposal's source is the file that states it. Marking it 'repository' says plainly that no external page has confirmed it yet.",
+      "reachable": true
+    }
+  ]
+}
