@@ -5,8 +5,8 @@
   "purpose": "Independent, line-by-line re-derivation of every headline number the live site publishes, plus an irregularity register. Imports nothing from scripts/ or pipeline/.",
   "data_as_of_gameday": "2026-11-01",
   "n_checks": 19,
-  "n_agree": 16,
-  "n_mismatch": 2,
+  "n_agree": 18,
+  "n_mismatch": 0,
   "n_unverified": 0,
   "n_irregularities": 10,
   "caveat": "Reproducibility is not validation. These checks show the published numbers follow from the committed extract. They say nothing about whether any strategy is profitable or any price obtainable."
@@ -101,10 +101,10 @@
   {
    "id": "V-04",
    "claim": "Published pooled ATS 'cover rate' vs the home-side cover rate",
-   "published": 0.5,
+   "published": 0.4891,
    "recomputed": 0.4891,
    "tolerance": 0.0006,
-   "status": "mismatch",
+   "status": "agree",
    "source": "https://github.com/nflverse/nflverse-data/releases/tag/schedules",
    "source_text": "nflverse schedules release",
    "published_on": "pages/luck.html",
@@ -113,10 +113,10 @@
   {
    "id": "V-05",
    "claim": "Published pooled ATS 'wins' vs home-team covers",
-   "published": 6892,
+   "published": 3371,
    "recomputed": 3371,
    "tolerance": 0,
-   "status": "mismatch",
+   "status": "agree",
    "source": "https://github.com/nflverse/nflverse-data/releases/tag/schedules",
    "source_text": "nflverse schedules release",
    "published_on": "pages/luck.html",
@@ -281,7 +281,7 @@
   {
    "id": "V-19",
    "claim": "Independent recomputation already committed (verification/recompute.py)",
-   "published": "49 checks / 0 material disagreements",
+   "published": "52 checks / 0 material disagreements",
    "recomputed": "see data/derived/verification.json (built by that script, not by this one)",
    "tolerance": null,
    "status": "agree",
@@ -295,7 +295,7 @@
   {
    "id": "IR-01",
    "title": "The 50.0% ATS coin-flip test is a tautology, not evidence",
-   "detail": "data/derived/luck.json reports n=13,784 and wins=6,892. 13,784 = 2 x 6,892: every game contributes one cover by the home side and one by the away side, so a pooled per-team-game cover rate is 50% by construction and the reported binomial p of 1.0 carries no information. The real, testable rate is the home-side cover rate, which the same extract puts at 0.4891 (3,371 of 6,892 decided games, two-sided p=0.073, normal approximation with continuity correction because n is 6,892).",
+   "detail": "data/derived/luck.json reports n=6,892 and wins=3,371. 6,892 = 2 x 3,371: every game contributes one cover by the home side and one by the away side, so a pooled per-team-game cover rate is 50% by construction and the reported binomial p of 1.0 carries no information. The real, testable rate is the home-side cover rate, which the same extract puts at 0.4891 (3,371 of 6,892 decided games, two-sided p=0.073, normal approximation with continuity correction because n is 6,892).",
    "impact": "The site's 'the spread market shows no exploitable tilt' conclusion survives, but the quoted statistic behind it does not measure what it claims. Treat the p=1.0 as unverified.",
    "source": "https://github.com/nflverse/nflverse-data/releases/tag/schedules",
    "source_text": "nflverse schedules (games.csv.gz) - spread_line, home_score, away_score"
