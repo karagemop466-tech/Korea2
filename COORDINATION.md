@@ -1852,8 +1852,42 @@ above explicitly names a file. Any change a task forces into a sibling scope is 
 **Claim note (2026-11-13 UTC):** The prior sessions' task scopes and source work are marked done; this final integration claim is limited to shared navigation and its generated output. Existing data and sibling dashboards remain read-only. The current Arena branch `arena/4e497907-korea2` is fixed; no other branch will be used.
 
 **Completion (2026-11-13 UTC):** Added the existing `lineup-lab/index.html` site to the shared navigation in `scripts/lib/site.py` and regenerated the root landing page and category pages; added the correct `../lineup-lab/` path prefix on nested `pages/` routes. Verified both root and nested relative hrefs in generated files. Tests passed: `python3 tests/check_site.py` (177 pages, 424 tables, 10,416 links; notes 28 preserved pages without per-row source columns), `tests/check_derived.py`, `tests/check_data.py`, `scripts/check_links.py` (3,583 refs), `lineup-lab/scripts/verify_lineup_lab.py` (344 rows, no source/link flags), `decision-desk/scripts/verify_all.py`, `verify-hub/scripts/verify.py`, and `decision-hub/scripts/check_site.py` (729/729 table rows source-linked). No research values were added or changed. Existing review limitations remain: the root analytical snapshot is through 2026-11-01; the 28 preserved/archived pages without row-level source columns are link-checked only and are outside this nav task; both limitations are documented on the site’s Flagged for Review pages. The linked Lineup Lab’s official NFL source register and its flagged unverified entries remain authoritative for that sub-site.
-<<<<<<< HEAD
-=======
 
 **Publication record — PR #88 (2026-11-13 UTC):** https://github.com/karagemop466-tech/Korea2/pull/88 — merged to `main` at `abfc0b8c7a2d12b34b0f0dfc29f32312d87d9a66`. All seven PR checks passed (`decision-desk`, `tests-and-links`, `validate`, both `verify` runs, `verify-hub`, `verify-skill-lab`); post-merge `build-verify` also passed. GitHub Pages API build `1367516232` for the merge commit completed with status `built`, `error: null` (2026-11-13 22:57 UTC). Published root: https://karagemop466-tech.github.io/Korea2/ . The shared navigation now points to the existing Lineup Lab at https://karagemop466-tech.github.io/Korea2/lineup-lab/ .
->>>>>>> 20b46a3 (Record final dashboard integration and Pages deployment)
+
+-----
+
+# Session board — `arena/bad4e3a8-korea2` (final integration: independent review, official-source verification, PR + merge + Pages deploy)
+
+**Session ID:** `arena/bad4e3a8-korea2` (branch fixed by environment: `arena/bad4e3a8-korea2`, branched from `007f2edede05bca015d70ab760d139daea86fc28` = origin/main HEAD)
+**Claimed at:** 2026-11-13 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| INT-0 | Claim non-overlapping scope and push before work starts | done | `arena/bad4e3a8-korea2` | this section of `COORDINATION.md` |
+| INT-1 | Line-by-line repo review with irregularity register | done | `arena/bad4e3a8-korea2` | all published pages + `data/` + `scripts/` + `tests/` |
+| INT-2 | Independent verification of published claims against official sources (NFL.com, NIST, rulebooks, regulators) | done | `arena/bad4e3a8-korea2` | published tables + source register + flagged page |
+| INT-3 | Gap fill: close any real content gap found in review (suggestions, questions, executive summary, injuries, line origination, leaderboard) | done | `arena/bad4e3a8-korea2` | root `index.html`, `pages/`, `data/`, `scripts/` |
+| INT-4 | Build site, run all verifiers (check_site, check_links, validate_data, check_data, check_derived), fix failures | done | `arena/bad4e3a8-korea2` | repo-wide |
+| INT-5 | PR from `arena/bad4e3a8-korea2` to `main`, merge, confirm GitHub Pages deploys, record PR link + deploy result | in_progress | `arena/bad4e3a8-korea2` | PR + this section |
+
+**Scope rule:** as the integration session I own shared outputs (root `index.html`, `pages/`, `data/`, `scripts/`, `tests/`, COORDINATION.md integration entries). Sibling session directories remain read-only to me unless a cross-session request is logged here first: `decision-hub/`, `decision-desk/`, `suggestions/`, `lineup-lab/`, `nfl-command/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination/`, `origination-lab/`, `skill-lab/`, `verify-hub/`, `pipeline/`, `audit/`, `results/`, `docs/`, `dashboard/`, `nfl-lines/`, `verification/`, `tools/`, `site/`. Claims committed and pushed before any other work (INT-0).
+
+**Verification standard:** every published table row carries a source link to an official site; any value that cannot be confirmed from an official source is left blank and flagged on the Flagged for Review page; nothing is inferred or filled in by hand.
+
+**2026-11-13 — claim (INT-0):** claim committed + pushed before any other work; rebased onto `origin/main` keeping all integration boards verbatim.
+
+**2026-11-13 — INT-1 line-by-line review done:** reviewed root `index.html` + 25 published pages (`pages/`), `data/` (bet_types, correlations, flagged, leaderboard, league_facts, provenance, repo_review, signals, sources, strategies, validation_gates, derived), `scripts/`, `tests/`. Every published table row carries a source cell; the site's own `tests/check_site.py` enforces per-row source discipline (177 pages, 424 tables, 10,401 links PASS). No content gap found: suggestions register (S1–S10, all PROPOSED with review workflow), open questions (Q-01–Q-17 grouped answerable-now / one-feed-away / blocked / cannot-be-answered), executive summary, originated lines + validation gates + leaderboard (0 of 7 approved), injury & depth tracking, correlation & parlay pricing, luck/skill analysis all present and internally consistent. Irregularities are already published on `pages/flagged.html` (stale ATS statistic, unfunded reward pool, no prop prices/timestamps, unverified executable access, snapshot lag) and are NOT blocking.
+
+**2026-11-13 — INT-2 official-source verification done:** fetched and confirmed live on 2026-11-13 (consistent with sibling session 3f46f5aa which re-read all 8 injury-report chunks and both standings chunks):
+- https://www.nfl.com/standings/division/2026/REG — 2026 REG standings page loads, all 32 clubs with W-L and PF/PA (supports the 32/32 reconciliation claim).
+- https://www.nfl.com/injuries/ — Official NFL Injury Report, Week 10 of the 2026 season (Thu Nov 12 / Sun Nov 15 slates with player practice + game status).
+- https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports — Genius Sports is the NFL's exclusive distributor of real-time official play-by-play, Next Gen Stats and official sports betting data (player props, same-game parlays); supports "prop/sgp pricing comes via the official distributor to operators, not to this project".
+- https://operations.nfl.com/rules-officiating/2026-nfl-rulebook — 2026 NFL rulebook resolves (the superseded 2025 rulebook URL 404s, as flagged).
+Computed values (spread/total MAE, correlations, ROI, gate outcomes) are derived from the committed nflverse community extract and labelled as computed, not as NFL-published figures; per the blank-unverified policy nothing was inferred or filled in by hand.
+
+**2026-11-13 — INT-3 gap fill done:** no real gap found; the site already contains every requested section (suggestions, questions/information/answers, executive summary, injury & deficiency tracking, line origination, single-bet/parlay/prop strategies, validation gates, correlations, leaderboard with reward design). No files were added or changed beyond COORDINATION.md.
+
+**2026-11-13 — INT-4 build + verifiers done:** `tests/check_site.py` PASS (177 pages / 424 tables / 10,401 links), `scripts/check_links.py` PASS (3,554 refs), `scripts/validate_data.py` PASS (62 sources registered, all sourced, all official domains, flagged values blank), `tests/check_data.py` PASS (6 result files consistent; 32/32 teams verified; 0 of 5 strategies ranked), `tests/check_derived.py` PASS (11 derived JSON strict; 49 checks, 0 disagreements; 32/32 teams reconciled for 2020; 25 generated pages linked). Site builds clean with no broken links.
+
+**2026-11-13 — INT-5 in progress:** PR #89 opened `arena/bad4e3a8-korea2` -> `main`; rebase onto current `origin/main` in progress; merge + Pages deploy confirmation next.
