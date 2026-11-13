@@ -28,6 +28,7 @@ NAV = [
     ("pages/sources.html", "Source register"),
     ("pages/flagged.html", "Flagged for review"),
     ("decision-desk/index.html", "Decision Desk"),
+    ("lineup-lab/index.html", "Lineup Lab &nearr;"),
     ("suggestions/index.html", "Suggestions hub"),
     ("decision-hub/index.html", "Decision hub &nearr;"),
     ("nfl-command/index.html", "NFL Command Center"),
@@ -194,7 +195,8 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
                   .replace('href="decision-hub/', 'href="../decision-hub/')
                   .replace('href="suggestions/', 'href="../suggestions/')
                   .replace('href="nfl-command/', 'href="../nfl-command/')
-              .replace('href="decision-desk/', 'href="../decision-desk/')
+                  .replace('href="decision-desk/', 'href="../decision-desk/')
+                  .replace('href="lineup-lab/', 'href="../lineup-lab/')
                   .replace('href="index.html"', 'href="../index.html"'))
     return doc
 
