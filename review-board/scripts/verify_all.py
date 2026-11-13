@@ -94,16 +94,16 @@ def main() -> int:
     check("pages are a pure function of the committed registers (rebuild byte-identical)", not changed,
           ", ".join(changed[:4]) or f"{len(after)} pages")
 
-    # ingest re-reads the sibling registers and the raw capture; the only permitted difference is the commit
-    # stamp, which legitimately changes when a new commit is built. Any other difference means a register moved.
+    # Provenance is content-addressed, not commit-addressed: each register carries the digest of the bytes it
+    # was derived from. That makes the check below exact and reproducible in any checkout, shallow or full -
+    # and it means an unrelated commit elsewhere in the repository cannot make this hub look stale.
     def strip(doc: dict) -> dict:
-        """Drop provenance stamps, which legitimately change on every rebuild in a fresh checkout.
+        """Drop the clone-dependent fields from the hub inventory.
 
-        Per-directory last-touched dates are dropped too: a checkout without fetched history (the default
-        runner clone) reports the checkout commit for every directory, so those dates describe the clone,
-        not the tree. The register records that case in its own `history` field and says so on the page."""
-        cut = {"base_commit", "history"}
-        out = {k: v for k, v in doc.items() if not k.startswith("_generated") and k not in cut}
+        A checkout without fetched history (a default runner clone) reports the checkout commit as the last
+        touch of every directory, so those dates describe the clone rather than the tree; the register records
+        that case in its own `history` field and the page says so."""
+        out = dict(doc)
         if isinstance(out.get("hubs"), list):
             out["hubs"] = [{k: x for k, x in h.items() if k != "last_touched"} for h in out["hubs"]]
         return out
@@ -161,6 +161,21 @@ def main() -> int:
         check(f"{rel}: all {len(rows)} rows end with a source link or a blank marker",
               not unproven, "; ".join(unproven[:2]))
 
+    # every table's header row must describe the rows under it - a 4-cell row under 3 headers means a
+    # column was added to the data and forgotten in the heading, which is how a source link goes invisible
+    ragged = []
+    for rel in PAGES:
+        s_ = read(os.path.join(HUB, rel))
+        for tblock in re.findall(r"<table[^>]*>(.*?)</table>", s_, re.S):
+            head = re.search(r"<thead>(.*?)</thead>", tblock, re.S)
+            ncol = len(re.findall(r"<th>", head.group(1))) if head else 0
+            for x in re.findall(r"<tr>(.*?)</tr>", tblock, re.S):
+                cells = len(re.findall(r"<td", x))
+                if cells and cells != ncol:
+                    ragged.append(f"{rel}: {ncol} headers vs {cells} cells")
+                    break
+    check("every table's column count matches its header", not ragged, "; ".join(ragged[:3]))
+
     # ---------------------------------------------------------------- 3. links resolve inside the hub
     broken = []
     for rel in PAGES:
@@ -201,8 +216,19 @@ def main() -> int:
     check("no sibling register was unreadable", not q["unreadable_registers"],
           ", ".join(q["unreadable_registers"]) or "all read")
     unstamped = [n for n in ("queue", "readiness", "injuries", "hub_map", "reconciliation", "injury_delta")
-                 if "_generated_by" not in data[n] or "_generated_from_repo_commit" not in data[n]]
-    check("every generated register names its generator and commit", not unstamped, ", ".join(unstamped))
+                 if not data[n].get("_generated_by") or not data[n].get("_generated_from_inputs")]
+    check("every generated register names its generator and its input digest", not unstamped, ", ".join(unstamped))
+    digests = {data[n].get("_generated_from_inputs") for n in
+               ("queue", "readiness", "injuries", "hub_map", "reconciliation", "injury_delta")}
+    check("all six registers were derived from the same tree digest", len(digests) == 1, str(digests))
+    sys.path.insert(0, HERE)
+    try:
+        import ingest as ingest_mod
+        fresh = ingest_mod.inputs_digest()
+        check("the recorded input digest still matches the bytes on disk (registers are not stale)",
+              digests == {fresh}, f"committed {sorted(digests)} vs recomputed {fresh}")
+    except Exception as exc:                                        # noqa: BLE001 - provenance is best-effort
+        check("input digest recomputable", False, f"{type(exc).__name__}: {exc}")
 
     src_ids = {s["id"] for s in data["sources"]["sources"]}
     for label, rows in (("signals", data["program"]["signals"]),

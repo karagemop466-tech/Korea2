@@ -1915,20 +1915,20 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
   six generated registers (`queue`, `readiness`, `injuries`, `injury_delta`, `hub_map`, `reconciliation`) plus
   three authored ones (`program`, `sources`, `flags`), and `EXECUTIVE_SUMMARY.md`. Data layer
   (`scripts/ingest.py`, `scripts/topics.py`) reads all seven sibling suggestion registers (89 rows → 12
-  clusters, 0 untriaged), all seven question registers (114 rows → 12 clusters, 0 unplaced) and **all 144
-  committed JSON files** for the reconciliation pass (85 labelled numbers, 5 conflicting quantities, 40
+  clusters, 0 untriaged), all seven question registers (114 rows → 12 clusters, 0 unplaced) and **every committed
+  JSON file in the tree (145)** for the reconciliation pass (85 labelled numbers, 5 conflicting quantities, 40
   gate-name collisions, 55 as-of stamps spanning 2026-11-01T00:00:00Z → 2026-11-12T14:46:06+00:00).
   Injury layer: the official Week 10 Friday report transcribed to `data/raw/` (213 rows / 28 clubs / 14 games
   in 7 slots; 66 Out, 10 Doubtful, 84 Questionable, 53 practice-only), diffed against `decision-desk`'s
   2026-11-12 capture for `injury_delta.json`. Both generators are deterministic and stdlib-only.
-- 2026-11-13 UTC — Rules enforced in code, not prose: `scripts/verify_all.py` runs 121 checks — every one of
-  the 1,041 table rows on every page ends with an https link to the file or official page that states it, or an
+- 2026-11-13 UTC — Rules enforced in code, not prose: `scripts/verify_all.py` runs 124 checks — every one of
+  the 1,043 table rows on every page ends with an https link to the file or official page that states it, or an
   explicit `blank · no official source` marker (63 markers); no dead official path may be a live citation; tags
   balanced; internal links and anchors resolve; injury totals recomputed independently from the raw CSV; the
   committed registers must already reflect their sibling inputs; `grep -c review-board scripts/lib/site.py == 0`
   (this hub stays out of the root nav). `.github/workflows/review-board.yml` runs the rebuild + verify on
   stdlib python only — no requirements install, since pandas/numpy/scipy are absent from the sandbox here.
-- 2026-11-13 UTC — Honest gaps recorded rather than filled: 17 flags in `data/flags.json`, incl. RB-03 (a QB
+- 2026-11-13 UTC — Honest gaps recorded rather than filled: 18 flags in `data/flags.json`, incl. RB-03 (a QB
   out 6-10 weeks per the same day's official news has no row in the weekly report), RB-04 (a sibling hub's
   `n=2,000, p=1.0` ATS figure is an arithmetic identity — the per-game read is 48.91%, CI 47.73-50.09), RB-08
   (three inconsistent reward schedules, `points_awarded` 0 and `cash_funding` empty everywhere), RB-12 (a
@@ -1962,6 +1962,15 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
   date; `verify_all.py` excludes clone metadata from the staleness comparison; the workflow fetches full
   history. Flag RB-18 documents it. Any hub that shells out to `git log` while generating committed output has
   the same trap.
+- 2026-11-13 UTC — Provenance model changed, in `review-board` follow-up. Generated registers no longer stamp
+  the commit they were built at; they carry `_generated_from_inputs`, a digest of the exact bytes read (every
+  committed register, the raw capture, `scripts/lib/site.py`). Commit-addressed stamps were the wrong quantity:
+  they changed on unrelated merges elsewhere in the repository (making this hub look stale) and, in a runner's
+  default shallow clone, made every directory report the checkout date. `hub_map.json` now records
+  `history: full|shallow`, the page says when dates are unavailable rather than printing a wrong one, the
+  workflow fetches full history, and `verify_all.py` gained a header-vs-row column check (124 checks) that
+  immediately caught a Source column rendered under a three-column heading on the path page. Sibling sessions
+  generating committed output from `git log` share the trap.
 - 2026-11-13 UTC — Scope discipline held: 33 files added under `review-board/` plus the one new workflow and
   my own section of this file; zero sibling files modified (`git show --stat b010de6` — nothing outside
   `review-board/`, `.github/workflows/review-board.yml`, `COORDINATION.md`). Nothing was implemented from the

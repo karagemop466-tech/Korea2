@@ -17,6 +17,7 @@ Outputs (all under review-board/data/):
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import os
 import re
@@ -33,6 +34,7 @@ from topics import TOPICS, classify                # noqa: E402
 
 CAPTURE_DATE = "2026-11-13"
 SOURCE_PAGE_URL = "https://www.nfl.com/injuries/league/2026/reg10"
+INPUTS_DIGEST = ""
 
 # Every sibling hub that publishes a suggestion or question register, with the JSON key that holds
 # the rows and the fields to read. Heterogeneous schemas are normalised here rather than by hand.
@@ -501,8 +503,7 @@ def build_hub_map() -> dict:
     return {
         "kind_totals": dict(sorted(kinds.items())),
         "history": history,
-        "base_commit": subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"],
-                                      capture_output=True, text=True).stdout.strip(),
+        "inputs_digest": INPUTS_DIGEST,
         "hub_count": len(hubs),
         "nav_target_count": len(nav_targets),
         "nav_duplicate_labels": [{"label": l, "count": n} for l, n in sorted(label_counts.items())
@@ -563,6 +564,38 @@ ALIAS_TABLE = {
     "Player's own receptions vs own receiving yards": r"receptions? vs.{0,20}receiving",
     "QB passing yards vs game total points": r"qb.{0,25}(game total|total points)",
 }
+
+
+def inputs_digest() -> str:
+    """A short hash over every input the derived registers read: each committed register, the raw capture, the nav owner.
+
+    Deliberately not the commit SHA. A commit changes whenever anything in the repository is committed, so a
+    commit stamp makes the generated output look stale after every unrelated merge and makes a CI rebuild
+    non-reproducible - while proving nothing about the inputs. A content digest says exactly what it means:
+    these registers were derived from these bytes, and a rebuild in any checkout of the same tree reproduces
+    them byte for byte."""
+    h = hashlib.sha256()
+    files = sorted(set(repo_json_files()) | {
+        # the raw capture and the navigation owner are read too, so a change there must show up here
+        os.path.relpath(os.path.join(HUB, "data", "raw",
+                                     "injury_report_2026-11-13_week10.csv"), REPO).replace(os.sep, "/"),
+        "scripts/lib/site.py",
+    })
+    # This hub's own authored registers (program, sources, flags) are deliberately NOT inputs: they feed the
+    # pages, not the derived registers, and build-time page identity is checked separately. Including them
+    # would mean a wording fix made every derived register look stale.
+    for rel in files:
+        path = os.path.join(REPO, rel)
+        try:
+            with open(path, "rb") as fh:
+                blob = fh.read()
+        except OSError:
+            blob = b"<missing>"
+        h.update(rel.encode())
+        h.update(b"\0")
+        h.update(hashlib.sha256(blob).hexdigest().encode())
+        h.update(b"\0")
+    return h.hexdigest()[:12]
 
 
 def repo_json_files() -> list[str]:
@@ -764,22 +797,22 @@ def build_injury_delta() -> dict:
 
 def main() -> int:
     os.makedirs(os.path.join(HUB, "data"), exist_ok=True)
-    commit = subprocess.run(["git", "-C", REPO, "rev-parse", "HEAD"],
-                            capture_output=True, text=True).stdout.strip()
+    global INPUTS_DIGEST
+    INPUTS_DIGEST = inputs_digest()
     hub_map = build_hub_map()
     out = {"queue.json": build_queue(), "readiness.json": build_readiness(),
            "injuries.json": build_injuries(), "hub_map.json": hub_map,
            "reconciliation.json": build_reconciliation()}
     for name, doc in out.items():
         doc["_generated_by"] = "review-board/scripts/ingest.py"
-        doc["_generated_from_repo_commit"] = commit
+        doc["_generated_from_inputs"] = INPUTS_DIGEST
         with open(os.path.join(HUB, "data", name), "w") as fh:
             json.dump(doc, fh, indent=1, sort_keys=False)
             fh.write("\n")
         print(f"wrote review-board/data/{name}")
     delta = build_injury_delta()
     delta["_generated_by"] = "review-board/scripts/ingest.py"
-    delta["_generated_from_repo_commit"] = commit
+    delta["_generated_from_inputs"] = INPUTS_DIGEST
     with open(os.path.join(HUB, "data", "injury_delta.json"), "w") as fh:
         json.dump(delta, fh, indent=1)
         fh.write("\n")
