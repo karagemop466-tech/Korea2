@@ -15,7 +15,7 @@ a value could not be confirmed it is left blank and listed as an open item rathe
 
 | Step | What it covered | Result |
 |---|---|---|
-| Repository inventory | 178 HTML pages, 541 files, 17 published workspaces, 12 CI workflows | every published page reachable from the root site after the navigation change (section 4) |
+| Repository inventory | 178 HTML pages, 548 tracked files, 16 published workspaces, 12 CI workflows | every published page reachable from the root site after the navigation change (section 4) |
 | Generator review | `scripts/build_site.py`, `scripts/lib/site.py`, `scripts/analysis/*`, and each sibling workspace's generator | two generators write the same root paths with the same generator marker — logged as IR-07 |
 | Data review | every file in `data/`, `data/derived/`, `verification/`, and each workspace's own data folder | the committed extracts are internally consistent; one published scope claim does not match the committed file — IR-03 |
 | Number review | 45 published headline figures re-derived by a second independent implementation | 41 exact matches, 4 documented differences, 0 mismatches |
@@ -92,7 +92,7 @@ were checked one by one against the committed JSON; every drift was corrected:
 | Placebo cross-game r | −0.013 | −0.030 |
 | Strategy bets and ROI (7 candidates + 2 controls) | 133 / 81 / 45 / 195 / 550 / 390 / 357 | 137 / 86 / 46 / 204 / 572 / 409 / 370 (ROI re-read from `leaderboard.json`) |
 | Verification record | "48 of 49 checks agree" | 49 checks: 45 strict equality checks agree, 0 disagree, 11 observations |
-| Site check counts | 71 pages / 152 tables / 2,252 links | 178 pages / 430 tables / 10,574 links |
+| Site check counts | 71 pages / 152 tables / 2,252 links | 178 pages / 432 tables / 10,697 links |
 
 ### IR-03 — The published correlation scope does not match the committed extract *(open — published)*
 
@@ -112,7 +112,7 @@ This is the same window problem the root flagged page already described; this se
 and published it as a documented difference rather than a pass. Fixing it properly means re-running
 the pipeline against a 2012-2026 extract.
 
-### IR-04 — The published snapshot is behind the live page *(open — published)*
+### IR-04 — The published snapshot is behind the live page *(reconciled — the gap is now fully explained)*
 
 Checked on **2026-11-13** against the official pages:
 
@@ -120,15 +120,34 @@ Checked on **2026-11-13** against the official pages:
 |---|---|
 | [NFL.com injury report](https://www.nfl.com/injuries/) | "Week 10 of the 2026 Season", games dated Thursday 2026-11-12 to Sunday 2026-11-15 |
 | [NFL.com Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) | Commanders 24, Giants 21 (final, Thursday 2026-11-12); the rest of the slate Sunday 2026-11-15 |
+| [NFL.com Week 9 schedule](https://www.nfl.com/schedules/2026/by-week/week-9) | all 15 Week 9 results, final |
+| [NFL.com Week 8 game center](https://www.nfl.com/games/bears-at-seahawks-2026-reg-8) | Bears 34, Seahawks 17, final, Monday 2026-11-02 |
 | [NFL.com 2026 division standings](https://www.nfl.com/standings/division/2026/REG) | 137 regular-season games played; transcribed in `verification/nfl_standings_2026-11-13.json` |
 | Committed extract | 120 regular-season games, last gameday 2026-11-01 |
 
-**17 games behind.** Two teams (Washington, New York Giants) are two games behind because they played
-on Thursday 2026-11-12; two (Pittsburgh, Tennessee) are level because they were on bye; the other 28
-are one game behind. The 32/32 reconciliation against NFL.com recorded on 2026-11-02 remains valid
-for its own snapshot; it is simply no longer the current page.
+**17 games behind, and now accounted for.** The committed extract ends at gameday 2026-11-01. The 17
+games the official page shows beyond that are exactly the games the extract does not yet carry: the
+Week 8 Monday Night Football game (1), all 15 Week 9 games (15), and Washington's 24-21 win over the
+Giants on Thursday 2026-11-12 (1). Every one of those scores was transcribed from an official NFL.com
+page into [`verification/nfl_results_2026_through_week10.json`](../verification/nfl_results_2026_through_week10.json),
+with the page it was read from named on each row.
 
-### IR-05 — The navigation listed 28 flat entries, with duplicates, and reached 4 of 17 workspaces *(fixed)*
+**The reconciliation is complete, and it includes the row pair that could not previously be
+confirmed.** [`verification/standings_reconcile.py`](../verification/standings_reconcile.py) replays
+the committed extract game by game, applies those 17 officially reported results on top, and compares
+the result with the standings page field by field: **32 of 32 teams agree** on wins, losses, ties,
+points for and points against. 120 extract games + 17 official results = 137 games, which is exactly
+the number the live page shows. Washington and New York are now confirmed individually: Washington
+3-5-1 (196 for, 223 against) after its 24-21 win, New York 5-3-1 (203 for, 196 against). The report is
+committed at [`verification/standings_reconcile.json`](../verification/standings_reconcile.json) and
+rendered on the [Verification page](https://karagemop466-tech.github.io/Korea2/pages/verification.html).
+
+**What is still open.** The committed *extract* itself is still 17 games behind the official page, so
+the site's analytical numbers are still historical relative to the live season. Closing that gap is a
+pipeline run (`scripts/fetch_data.py` then the analysis steps), not a manual edit. This remains a
+published, non-blocking flag.
+
+### IR-05 — The navigation listed 28 flat entries, with duplicates, and reached 4 of 16 workspaces *(fixed)*
 
 The sidebar contained two entries labelled "Suggestions hub" and three different labels for the same
 decision layer ("Decision Desk", "Decision hub", "Decision desk"). Thirteen published workspaces —
@@ -195,7 +214,7 @@ counts rows in the file will get 7,548 rather than the 7,396 the analyses use.
 | Page | Purpose |
 |---|---|
 | `index.html` | landing page: six headline cards, the five findings, the workspace directory, the decision-support entries |
-| `pages/workspaces.html` | **new** — the map of all 17 workspaces, their contents, page counts, review pages and open-item counts |
+| `pages/workspaces.html` | **new** — the map of all 16 workspaces, their contents, page counts, review pages and open-item counts |
 | `pages/executive.html` | one-page summary with every number classed |
 | `pages/lines.html`, `pages/props.html`, `pages/correlation.html` | the originated lines, the player props, the measured correlations |
 | `pages/strategies.html`, `pages/validation.html`, `pages/leaderboard.html` | the strategies, the ten gates, the leaderboard and the reward schedule |
@@ -227,6 +246,8 @@ Every page below was opened and read on 2026-11-13; the recorded excerpts are co
 | 6 | [NFL.com — 2026 passing statistics](https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc) | Jordan Love 2,618 yds, Joe Burrow 2,386, Dak Prescott 2,381 (2,246 for Love on 2026-11-02, so the page advances with the season) | confirmed |
 | 7 | [NFL.com — rules and officiating, 2026 rulebook](https://operations.nfl.com/rules-officiating/2026-nfl-rulebook) | "2026 NFL RULEBOOK", rule changes 6-1-3 / 6-1-5 / 6-1-6 / 19-2, and the final PDF link | confirmed; the 2025 URL that 404s is named in the flag register |
 | 8 | [nflverse data dictionary — schedules](https://nflreadr.nflverse.com/articles/dictionary_schedules.html) | `result` = home_score − away_score, `total` = the sum, scores are NA for unplayed games; 45 entries, the first 25 shown | confirmed; `spread_line` is still not defined there, which is why the sign convention is proven from the data |
+| 9 | [NFL.com — Week 9 schedule](https://www.nfl.com/schedules/2026/by-week/week-9) | all 15 results final: Jaguars 33 Ravens 10, Bengals 34 Falcons 17, Broncos 26 Panthers 21, Cowboys 27 Colts 23, Jets 12 Chiefs 35, Lions 19 Dolphins 9, Browns 22 Saints 23, Giants 19 Eagles 11, Rams 20 Commanders 13, Texans 44 Chargers 22, Raiders 17 49ers 38, Packers 45 Patriots 27, Cardinals 3 Seahawks 17, Buccaneers 24 Bears 27, Bills 23 Vikings 6 | confirmed; used to close the reconciliation gap |
+| 10 | [NFL.com — Week 8 game center, Bears at Seahawks](https://www.nfl.com/games/bears-at-seahawks-2026-reg-8) | Bears 34, Seahawks 17, Final, Week 8, Nov 2, Lumen Field | confirmed; the one Week 8 game the extract carries with no score |
 
 The full official source register for the site is
 [data/sources.json](../data/sources.json); each entry states who opened it and when.
@@ -240,7 +261,7 @@ The full official source register for the site is
 | Historical prop prices, opening lines with timestamps, verified execution access, funded reward pool | no official source provides them | [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html) |
 | Injury/depth feature | no official depth order, and no point-in-time injury history is ingested | [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html), decision-hub injury pages |
 | The 2012-2026 extract window (IR-03) | needs a pipeline re-run against the wider extract | [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html) |
-| The stale snapshot (IR-04) | needs a pipeline refresh; the committed data ends 2026-11-01 | [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html) |
+| The stale *extract* (IR-04) | the snapshot is now reconciled 32/32, but the committed extract still ends 2026-11-01 and needs a pipeline refresh | [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html) |
 | Generator marker (IR-07) and duplicate desks (IR-09) | owned by other sessions | this document, and the review queues of those sessions |
 
 ---
@@ -265,10 +286,16 @@ The full official source register for the site is
 
 ```
 python3 scripts/build_site.py              # 16 pages written from data/derived/*.json
-python3 tests/check_site.py                 # 178 pages, 430 tables, 10,574 links - all checks passed
-python3 scripts/check_links.py              # 3,633 local references - no broken internal links
+python3 tests/check_site.py                 # 178 pages, 432 tables, 10,697 links - all checks passed
+python3 scripts/check_links.py              # 3,713 local references - no broken internal links
 python3 tests/check_derived.py              # 11 derived JSON files strict; 49 checks, 0 disagreements; 26 generated pages all linked
 python3 scripts/validate_data.py            # 16 data files, all rows sourced, official domains only - PASS
 python3 tests/check_data.py                 # 6 result files consistent; 32/32 teams verified; 0 of 5 strategies ranked
 python3 verification/integration_recompute.py  # 45 checks: 41 match, 4 documented differences, 0 mismatches
+python3 verification/standings_reconcile.py # 32/32 teams reconciled; 120 + 17 = 137 games; 0 mismatches
 ```
+
+**Two independent implementations, two different questions.** `verification/integration_recompute.py`
+re-derives the site's published *statistics*. `verification/standings_reconcile.py` re-derives the
+*current-season snapshot* against the official standings page. Both read only committed files and
+both exit non-zero on a disagreement. CI runs both and fails if either committed report drifts.

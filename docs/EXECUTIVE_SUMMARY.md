@@ -134,7 +134,7 @@ computed ROI would require a price archive that does not exist here.
 
 * 11 sources opened and confirmed on 2026-11-01; each site table row links to one.
 * The spread sign convention is proven from the data, not assumed.
-* 178 HTML pages, 430 tables, 10,574 links checked; no broken links (2026-11-13).
+* 178 HTML pages, 432 tables, 10,697 links checked; no broken links (2026-11-13).
 * Open items published on the Flagged for Review page, including the missing prop prices,
   closing-line value, execution access, prize funding, parlay ladder, injury/depth snapshots, model
   underperformance and the 2026 home-field anomaly. The page also carries the whole-site review
@@ -250,3 +250,60 @@ No strategy passed. The reward tiers are still a proposal with no funded pool, n
 verified execution access, no historical prop prices and no timestamped lines exist. The
 injury/depth feature is still blocked on a point-in-time snapshot and an official depth order. The
 research snapshot is still not current to the live slate, and the site says so on every page.
+
+---
+
+## 12. Current-season reconciliation — 2026-11-13 (session `arena/dd794652-korea2`)
+
+The 17-game gap between the committed extract and the live NFL.com page is now fully explained,
+and the snapshot is confirmed team by team.
+
+### What closes the gap
+
+| Games | Which | Official source |
+|---|---|---|
+| 1 | Week 8 Monday Night Football: Bears 34, Seahawks 17 (2026-11-02) | [NFL.com game center](https://www.nfl.com/games/bears-at-seahawks-2026-reg-8) |
+| 15 | every Week 9 result (2026-11-05 to 2026-11-09) | [NFL.com Week 9 schedule](https://www.nfl.com/schedules/2026/by-week/week-9) |
+| 1 | Commanders 24, Giants 21 (2026-11-12) | [NFL.com Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) |
+| **17** | **total** | all three pages are official NFL.com |
+
+Each score is committed with the page it was read from in
+`verification/nfl_results_2026_through_week10.json`. Nothing is entered for a game that has not
+been played: the remaining 13 Week 10 games are deliberately absent.
+
+### The reconciliation result
+
+`verification/standings_reconcile.py` replays the committed extract game by game, applies those 17
+officially reported results on top, and compares the result with the official standings page field
+by field.
+
+| Result | Count |
+|---|---|
+| Teams agreeing on wins, losses, ties, points for and points against | **32 of 32** |
+| Teams that disagree | 0 |
+| Committed extract games | 120 (through gameday 2026-11-01) |
+| Officially reported results applied | 17 |
+| Total | 137 — exactly the number the live page shows |
+
+Washington and New York, the pair that could not previously be confirmed, are now settled
+individually: **Washington 3-5-1 (196 for, 223 against)** after its 24-21 win on Thursday
+2026-11-12, and **New York 5-3-1 (203 for, 196 against)**.
+
+### The ATS identity, resolved at the source
+
+`scripts/analyze_luck.py` still computes the pooled team-game ATS rate, because sibling workspaces
+read it. What changed is what the file now says about it: the payload is flagged `is_identity`,
+carries an explicit interpretation ("every settled game is counted once per side, so the pooled
+rate is 50% by construction and the p-value carries no information about the market"), and points
+to the testable result — `market.json → ats_home_cover`, the home cover rate of 48.91%
+(95% CI 47.73–50.09%, p = 0.0727, n = 6,892, one observation per game). The executive summary's
+market-benchmark table now labels the pooled row as an identity rather than listing it as a
+benchmark to beat.
+
+### What did not change
+
+The committed *extract* is still 17 games behind the live season, so the site's analytical numbers
+are still historical. Closing that is a pipeline run, not a manual edit, and it stays published as
+an open item. No strategy was approved, the reward pool is still unfunded, and there are still no
+prop prices, no timestamped lines, no verified execution access, no official depth order and no
+point-in-time injury history.

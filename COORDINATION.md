@@ -1838,7 +1838,7 @@ bye) and 28 one game behind. Published as IR-04. The 32/32 reconciliation record
 remains valid for its own snapshot.
 
 **Checks run on the merged tree.** `scripts/build_site.py` (16 pages), `tests/check_site.py`
-(178 pages, 431 tables, 10,584 links — all passed), `scripts/check_links.py` (3,633 references — no
+(178 pages, 432 tables, 10,697 links — all passed), `scripts/check_links.py` (3,713 references — no
 broken links), `tests/check_derived.py` (49 checks, 0 disagreements, 26 generated pages all linked),
 `scripts/validate_data.py` (PASS), `tests/check_data.py` (PASS),
 `verification/integration_recompute.py` (0 failures). CI additionally re-runs the recomputation and
@@ -1859,3 +1859,42 @@ of the same decision desk still coexist (IR-09).
 4. Sibling generators — add a per-row source column to the 28 pages that lack one (IR-08/FL-DD-16).
 5. Owners of `README.md` / `EXECUTIVE_SUMMARY.md` wording — the "48 of 49" phrasing is now unified
    to "49 checks: 45 strict equality checks agree, 0 disagree, 11 observations" (FL-DD-19).
+
+### Continuation, 2026-11-13 (later) — the reconciliation that was left provisional is now done
+
+**The 32-team official reconciliation was redone in full, and it passes 32/32.** The earlier pass
+had only partially transcribed the live page. This pass re-read the official standings in both
+chunks and reconciled every team against the committed data:
+
+| Step | What was done | Result |
+|---|---|---|
+| Re-read the official page | `nfl.com/standings/division/2026/REG`, both chunks, on 2026-11-13 | all 32 rows transcribed, including the AFC East and WAS/NYG rows that were previously unconfirmed |
+| Transcribed the missing results | the Week 8 Monday Night Football game center (Bears 34, Seahawks 17), all 15 Week 9 results from the official Week 9 schedule page, and the 2026-11-12 Commanders 24, Giants 21 from the official Week 10 schedule page | 17 results, each with the URL it was read from, committed at `verification/nfl_results_2026_through_week10.json` |
+| Reconciled | `verification/standings_reconcile.py` replays the committed extract game by game, applies those 17 official results, and compares all 32 teams with the live page field by field | **32 of 32 teams agree** on wins, losses, ties, points for and points against; 120 extract games + 17 official results = 137 games, exactly what the live page shows |
+| Washington / New York | the specific row pair that could not be confirmed before | **Confirmed.** Washington 3-5-1 (196 for, 223 against), New York 5-3-1 (203 for, 196 against) — the 24-21 result is reflected in both rows |
+| Published | the per-team table renders on the Verification page; CI runs the reconciler and fails on any disagreement | `verification/standings_reconcile.json` committed; 35 checks, 35 matches, 0 mismatches |
+
+**Two documentation defects corrected.** The review said "17 published workspaces" and quoted
+10,574 links while the site has 16 workspaces and the checker reports 10,697; all three documents
+now carry the numbers the checker actually produces.
+
+**The pooled ATS identity is now labelled at its source, not only in the UI.**
+`scripts/analyze_luck.py` still emits the key `ats_coin_flip_test` (sibling workspaces read it),
+but the payload now carries `is_identity: true`, an explicit interpretation and a pointer to the
+testable one-observation-per-game result in `market.json`. The executive summary's market-benchmark
+row now says "an identity, not a test" instead of listing it as a benchmark. No number changed:
+`data/derived/luck.json` reproduces byte-for-byte from the committed extract, and the only
+difference from the previously committed file is the added wording.
+
+**Rebased onto `main` before merging.** `git pull --rebase` brought in the three merged PRs
+(#89, #91, #92) since this branch was created. `COORDINATION.md` conflicted; it was resolved by
+keeping every sibling session's board verbatim and appending this session's. `scripts/lib/site.py`
+also conflicted: the grouped navigation was kept and the sibling workspace links that PR #88 had
+added to the flat list (Decision Desk, Decision Hub, Suggestions Hub, NFL Command Center, Lineup
+Lab) were carried into a new "Workspaces" nav group, so no sibling's navigation entry was lost.
+
+**Checks on the merged tree:** `tests/check_site.py` PASS (178 pages, 432 tables, 10,697 links) ·
+`scripts/check_links.py` PASS (3,713 local references, none broken) · `tests/check_derived.py` PASS ·
+`scripts/validate_data.py` PASS · `tests/check_data.py` PASS · `verification/integration_recompute.py`
+45 checks, 41 matches, 4 documented differences, 0 mismatches · `verification/standings_reconcile.py`
+35 checks, 35 matches, 0 mismatches.

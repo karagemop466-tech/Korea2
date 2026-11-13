@@ -385,7 +385,9 @@ def page_executive() -> str:
          ["Home cover rate", pct(market.get("ats_home_cover", {}).get("home_cover_rate")), f"CI {market.get('ats_home_cover', {}).get('ci')}", src("nflverse-data")],
          ["Over rate", pct(over.get("over_rate")), f"n = {over.get('n')} totals decisions", src("nflverse-data")],
          ["Moneyline Brier score", num(cal.get("brier_score"), 4), f"vs 0.25 for a coin flip, n = {cal.get('n')}", src("nflverse-data")],
-         ["Pooled ATS result", pct(coin.get("rate"), 1), f"exact binomial p = {coin.get('binomial_p_vs_50')}", src("nflverse-data")]],
+         ["Pooled ATS rate (an identity, not a test)", pct(coin.get("rate"), 1),
+          f"every settled game counted once per side, so this is 50% by construction; "
+          f"the testable figure is the home cover rate above", src("nflverse-data")]],
         caption="Market efficiency benchmarks. Every strategy is scored against these.")
 
     dis_table = table(
@@ -1236,7 +1238,8 @@ published player-level coefficients are reproduced on a shorter window and their
 <li>That a page that loaded today will load tomorrow. Source availability is checked as of the date shown.</li>
 </ul>''', "LIMITS")
         + integration_section()
-        + source_recheck_section())
+        + source_recheck_section()
+        + standings_reconcile_section())
     return W.layout("Verification", "pages/verification.html", body,
                     subtitle="Independent recomputation, official-source re-checks, and the disagreements.")
 
@@ -1305,6 +1308,42 @@ def source_recheck_section() -> str:
         caption="Opened and read on 2026-11-13 by the integration session. The excerpt for each row "
                 "is in verification/sources_2026-11-13.json. A page that does not return the value "
                 "it is cited for is recorded as NOT CONFIRMED, not as confirmed."))
+
+
+def standings_reconcile_section() -> str:
+    """The 2026 snapshot reconciled end to end against the official standings page."""
+    path = os.path.join("verification", "standings_reconcile.json")
+    if not os.path.exists(path):
+        return ""
+    try:
+        with open(path) as fh:
+            rec = json.load(fh)
+    except (OSError, ValueError):
+        return ""
+    summ = rec.get("summary", {})
+    rows = []
+    for t in rec.get("teams", []):
+        off = t.get("official_standings", {})
+        cal = t.get("extract_plus_official_results", {})
+        rec_txt = lambda v: f"{v.get('wins')}-{v.get('losses')}-{v.get('ties')}" if v else "n/a"
+        pfpa = lambda v: f"{v.get('points_for')}/{v.get('points_against')}" if v else "n/a"
+        rows.append([
+            esc(t.get("team", "")),
+            rec_txt(off), rec_txt(cal),
+            pfpa(off), pfpa(cal),
+            badge("ok", "match") if t.get("agrees") else badge("bad", "differs"),
+            src("nfl-standings-2026", "Official standings"),
+        ])
+    meta = rec.get("meta", {})
+    return section("Current-season reconciliation: every team, every field", table(
+        ["Team", "NFL.com W-L-T", "Rebuilt W-L-T", "NFL.com PF/PA", "Rebuilt PF/PA", "Result", "Source"],
+        rows,
+        caption=(f'{summ.get("teams_agreeing", 0)} of {summ.get("teams_agreeing", 0) + summ.get("teams_disagreeing", 0)} '
+                 "teams agree on wins, losses, ties, points for and points against. The rebuild replays the "
+                 "committed extract game by game and then applies the officially reported results that "
+                 f'post-date it (through {esc(str(meta.get("extract_last_gameday", "")))}). Every applied '
+                 "result and the page it was read from are listed in "
+                 "verification/nfl_results_2026_through_week10.json.")))
 
 
 # ---------------------------------------------------------------- flagged
@@ -1431,14 +1470,28 @@ def page_flagged() -> str:
          "Published as a documented difference rather than a pass. The Verification page states the "
          "window the committed extract actually covers, and the sign and magnitude of every "
          "published correlation reproduce on the shorter window."),
-        ("The committed snapshot is older than the live slate (checked 2026-11-13)", "medium",
-         "The published numbers come from a snapshot whose data ends at gameday 2026-11-01. On "
-         "2026-11-13 the official NFL.com 2026 division standings show teams with more games played "
-         "than the committed extract contains, so the 2026 season on this site is behind the live "
-         "page and the originated Week 9 lines are not current.",
+        ("The committed extract is older than the live slate (checked 2026-11-13)", "medium",
+         "The published numbers come from an extract whose data ends at gameday 2026-11-01. On "
+         "2026-11-13 the official NFL.com 2026 division standings show 137 regular-season games "
+         "played, which is 17 more than the committed extract holds, so the 2026 season on this site "
+         "is behind the live page and the originated Week 9 lines are not current.",
          "nfl-standings-2026",
-         "Every page carries the date its data ends, and no page presents the snapshot as a current "
-         "line. A refresh is a pipeline run, not a manual edit."),
+         "The 17-game gap is now fully accounted for and the snapshot reconciles 32 of 32 teams: the "
+         "missing games are the Week 8 Monday Night Football game, all 15 Week 9 games and the "
+         "2026-11-12 Washington 24-21 New York game, each transcribed from an official NFL.com page "
+         "(verification/nfl_results_2026_through_week10.json) and checked by "
+         "verification/standings_reconcile.py. Every page still carries the date its data ends and "
+         "presents nothing as a current line. Closing the gap in the extract itself is a pipeline "
+         "run, not a manual edit."),
+        ("The pooled ATS figure is an arithmetic identity, not a test (checked 2026-11-13)", "medium",
+         "data/derived/luck.json publishes a 50.0% pooled ATS cover rate over 13,784 team-game rows "
+         "with a binomial p of 1.0. That is 6,892 decided games counted once per side, so the rate "
+         "is 50% by construction and the p-value restates the same arithmetic. A reader who takes it "
+         "as evidence about the spread market is reading an identity as a measurement.",
+         "nflverse-data",
+         "The generator now labels the payload as an identity and points to the testable result "
+         "(market.json -> ats_home_cover: home cover rate 48.91%, 95% CI 47.73-50.09%, p = 0.0727, "
+         "n = 6,892, one observation per game). The site publishes that figure, not the pooled one."),
     ]
     rows = []
     for title, sev, detail, sid, status in items:

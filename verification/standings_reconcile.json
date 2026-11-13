@@ -1,0 +1,1340 @@
+{
+  "meta": {
+    "title": "Reconciliation of the committed 2026 snapshot against the official NFL.com standings",
+    "session": "arena/dd794652-korea2",
+    "generated_utc": "2026-11-13",
+    "method": "The committed extract is replayed game by game, the officially reported results that post-date the extract are applied on top of it, and the resulting record and points for every one of the 32 teams are compared with the transcribed official standings page. Every input carries an official source.",
+    "sources": {
+      "extract": "data/derived/games.csv.gz",
+      "official_results": "verification/nfl_results_2026_through_week10.json",
+      "official_standings": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    "extract_last_gameday": "2026-11-01",
+    "teams_checked": 32
+  },
+  "summary": {
+    "checks": 35,
+    "matches": 35,
+    "mismatches": 0,
+    "teams_agreeing": 32,
+    "teams_disagreeing": 0
+  },
+  "checks": [
+    {
+      "id": "STAND-ATL",
+      "label": "ATL record and points reconcile with the official standings page",
+      "expected": [
+        3,
+        6,
+        0,
+        188,
+        223
+      ],
+      "actual": [
+        3,
+        6,
+        0,
+        188,
+        223
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-AZ",
+      "label": "AZ record and points reconcile with the official standings page",
+      "expected": [
+        3,
+        6,
+        0,
+        178,
+        255
+      ],
+      "actual": [
+        3,
+        6,
+        0,
+        178,
+        255
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-BAL",
+      "label": "BAL record and points reconcile with the official standings page",
+      "expected": [
+        4,
+        5,
+        0,
+        189,
+        236
+      ],
+      "actual": [
+        4,
+        5,
+        0,
+        189,
+        236
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-BUF",
+      "label": "BUF record and points reconcile with the official standings page",
+      "expected": [
+        7,
+        1,
+        0,
+        256,
+        187
+      ],
+      "actual": [
+        7,
+        1,
+        0,
+        256,
+        187
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-CAR",
+      "label": "CAR record and points reconcile with the official standings page",
+      "expected": [
+        3,
+        5,
+        0,
+        199,
+        219
+      ],
+      "actual": [
+        3,
+        5,
+        0,
+        199,
+        219
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-CHI",
+      "label": "CHI record and points reconcile with the official standings page",
+      "expected": [
+        7,
+        2,
+        0,
+        241,
+        184
+      ],
+      "actual": [
+        7,
+        2,
+        0,
+        241,
+        184
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-CIN",
+      "label": "CIN record and points reconcile with the official standings page",
+      "expected": [
+        6,
+        2,
+        0,
+        240,
+        175
+      ],
+      "actual": [
+        6,
+        2,
+        0,
+        240,
+        175
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-CLE",
+      "label": "CLE record and points reconcile with the official standings page",
+      "expected": [
+        5,
+        4,
+        0,
+        161,
+        196
+      ],
+      "actual": [
+        5,
+        4,
+        0,
+        161,
+        196
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-DAL",
+      "label": "DAL record and points reconcile with the official standings page",
+      "expected": [
+        4,
+        5,
+        0,
+        246,
+        236
+      ],
+      "actual": [
+        4,
+        5,
+        0,
+        246,
+        236
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-DEN",
+      "label": "DEN record and points reconcile with the official standings page",
+      "expected": [
+        7,
+        2,
+        0,
+        198,
+        186
+      ],
+      "actual": [
+        7,
+        2,
+        0,
+        198,
+        186
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-DET",
+      "label": "DET record and points reconcile with the official standings page",
+      "expected": [
+        6,
+        2,
+        0,
+        222,
+        189
+      ],
+      "actual": [
+        6,
+        2,
+        0,
+        222,
+        189
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-GB",
+      "label": "GB record and points reconcile with the official standings page",
+      "expected": [
+        6,
+        3,
+        0,
+        216,
+        191
+      ],
+      "actual": [
+        6,
+        3,
+        0,
+        216,
+        191
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-HOU",
+      "label": "HOU record and points reconcile with the official standings page",
+      "expected": [
+        3,
+        5,
+        0,
+        209,
+        192
+      ],
+      "actual": [
+        3,
+        5,
+        0,
+        209,
+        192
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-IND",
+      "label": "IND record and points reconcile with the official standings page",
+      "expected": [
+        2,
+        7,
+        0,
+        184,
+        249
+      ],
+      "actual": [
+        2,
+        7,
+        0,
+        184,
+        249
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-JAX",
+      "label": "JAX record and points reconcile with the official standings page",
+      "expected": [
+        6,
+        2,
+        0,
+        229,
+        121
+      ],
+      "actual": [
+        6,
+        2,
+        0,
+        229,
+        121
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-KC",
+      "label": "KC record and points reconcile with the official standings page",
+      "expected": [
+        6,
+        2,
+        0,
+        202,
+        143
+      ],
+      "actual": [
+        6,
+        2,
+        0,
+        202,
+        143
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-LA",
+      "label": "LA record and points reconcile with the official standings page",
+      "expected": [
+        5,
+        4,
+        0,
+        214,
+        181
+      ],
+      "actual": [
+        5,
+        4,
+        0,
+        214,
+        181
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-LAC",
+      "label": "LAC record and points reconcile with the official standings page",
+      "expected": [
+        0,
+        8,
+        0,
+        121,
+        219
+      ],
+      "actual": [
+        0,
+        8,
+        0,
+        121,
+        219
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-LV",
+      "label": "LV record and points reconcile with the official standings page",
+      "expected": [
+        4,
+        5,
+        0,
+        238,
+        268
+      ],
+      "actual": [
+        4,
+        5,
+        0,
+        238,
+        268
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-MIA",
+      "label": "MIA record and points reconcile with the official standings page",
+      "expected": [
+        1,
+        7,
+        0,
+        126,
+        200
+      ],
+      "actual": [
+        1,
+        7,
+        0,
+        126,
+        200
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-MIN",
+      "label": "MIN record and points reconcile with the official standings page",
+      "expected": [
+        6,
+        2,
+        0,
+        146,
+        116
+      ],
+      "actual": [
+        6,
+        2,
+        0,
+        146,
+        116
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-NE",
+      "label": "NE record and points reconcile with the official standings page",
+      "expected": [
+        5,
+        4,
+        0,
+        211,
+        207
+      ],
+      "actual": [
+        5,
+        4,
+        0,
+        211,
+        207
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-NO",
+      "label": "NO record and points reconcile with the official standings page",
+      "expected": [
+        3,
+        5,
+        0,
+        185,
+        216
+      ],
+      "actual": [
+        3,
+        5,
+        0,
+        185,
+        216
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-NYG",
+      "label": "NYG record and points reconcile with the official standings page",
+      "expected": [
+        5,
+        3,
+        1,
+        203,
+        196
+      ],
+      "actual": [
+        5,
+        3,
+        1,
+        203,
+        196
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-NYJ",
+      "label": "NYJ record and points reconcile with the official standings page",
+      "expected": [
+        2,
+        7,
+        0,
+        182,
+        223
+      ],
+      "actual": [
+        2,
+        7,
+        0,
+        182,
+        223
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-PHI",
+      "label": "PHI record and points reconcile with the official standings page",
+      "expected": [
+        2,
+        7,
+        0,
+        148,
+        221
+      ],
+      "actual": [
+        2,
+        7,
+        0,
+        148,
+        221
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-PIT",
+      "label": "PIT record and points reconcile with the official standings page",
+      "expected": [
+        6,
+        2,
+        0,
+        180,
+        144
+      ],
+      "actual": [
+        6,
+        2,
+        0,
+        180,
+        144
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-SEA",
+      "label": "SEA record and points reconcile with the official standings page",
+      "expected": [
+        5,
+        4,
+        0,
+        202,
+        162
+      ],
+      "actual": [
+        5,
+        4,
+        0,
+        202,
+        162
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-SF",
+      "label": "SF record and points reconcile with the official standings page",
+      "expected": [
+        7,
+        1,
+        0,
+        235,
+        156
+      ],
+      "actual": [
+        7,
+        1,
+        0,
+        235,
+        156
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-TB",
+      "label": "TB record and points reconcile with the official standings page",
+      "expected": [
+        3,
+        6,
+        0,
+        202,
+        178
+      ],
+      "actual": [
+        3,
+        6,
+        0,
+        202,
+        178
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-TEN",
+      "label": "TEN record and points reconcile with the official standings page",
+      "expected": [
+        1,
+        7,
+        0,
+        144,
+        199
+      ],
+      "actual": [
+        1,
+        7,
+        0,
+        144,
+        199
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-WAS",
+      "label": "WAS record and points reconcile with the official standings page",
+      "expected": [
+        3,
+        5,
+        1,
+        196,
+        223
+      ],
+      "actual": [
+        3,
+        5,
+        1,
+        196,
+        223
+      ],
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-WAS-NYG",
+      "label": "Washington 24-21 New York (2026-11-12) is reflected in both rows",
+      "expected": {
+        "WAS": {
+          "wins": 3,
+          "losses": 5,
+          "ties": 1,
+          "points_for": 196,
+          "points_against": 223
+        },
+        "NYG": {
+          "wins": 5,
+          "losses": 3,
+          "ties": 1,
+          "points_for": 203,
+          "points_against": 196
+        },
+        "source": "https://www.nfl.com/schedules/2026/by-week/week-10",
+        "note": "Commanders 24, Giants 21, FINAL on Thursday 2026-11-12."
+      },
+      "actual": {
+        "WAS": {
+          "wins": 3,
+          "losses": 5,
+          "ties": 1,
+          "points_for": 196,
+          "points_against": 223
+        },
+        "NYG": {
+          "wins": 5,
+          "losses": 3,
+          "ties": 1,
+          "points_for": 203,
+          "points_against": 196
+        }
+      },
+      "status": "match"
+    },
+    {
+      "id": "STAND-LAG",
+      "label": "How many games the committed extract is behind the live official page",
+      "expected": {
+        "live_games": 137.0,
+        "extract_games": 120
+      },
+      "actual": {
+        "lag_games": 17.0
+      },
+      "status": "match",
+      "source": "https://www.nfl.com/standings/division/2026/REG"
+    },
+    {
+      "id": "STAND-COUNT",
+      "label": "Extract games plus officially reported results equal the live games",
+      "expected": {
+        "live_games": 137.0
+      },
+      "actual": {
+        "extract_games": 120,
+        "official_results_applied": 17,
+        "total": 137
+      },
+      "status": "match"
+    }
+  ],
+  "teams": [
+    {
+      "team": "ATL",
+      "official_standings": {
+        "wins": 3,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 188,
+        "points_against": 223
+      },
+      "extract_plus_official_results": {
+        "wins": 3,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 188,
+        "points_against": 223
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "AZ",
+      "official_standings": {
+        "wins": 3,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 178,
+        "points_against": 255
+      },
+      "extract_plus_official_results": {
+        "wins": 3,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 178,
+        "points_against": 255
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "BAL",
+      "official_standings": {
+        "wins": 4,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 189,
+        "points_against": 236
+      },
+      "extract_plus_official_results": {
+        "wins": 4,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 189,
+        "points_against": 236
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "BUF",
+      "official_standings": {
+        "wins": 7,
+        "losses": 1,
+        "ties": 0,
+        "points_for": 256,
+        "points_against": 187
+      },
+      "extract_plus_official_results": {
+        "wins": 7,
+        "losses": 1,
+        "ties": 0,
+        "points_for": 256,
+        "points_against": 187
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "CAR",
+      "official_standings": {
+        "wins": 3,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 199,
+        "points_against": 219
+      },
+      "extract_plus_official_results": {
+        "wins": 3,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 199,
+        "points_against": 219
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "CHI",
+      "official_standings": {
+        "wins": 7,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 241,
+        "points_against": 184
+      },
+      "extract_plus_official_results": {
+        "wins": 7,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 241,
+        "points_against": 184
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "CIN",
+      "official_standings": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 240,
+        "points_against": 175
+      },
+      "extract_plus_official_results": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 240,
+        "points_against": 175
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "CLE",
+      "official_standings": {
+        "wins": 5,
+        "losses": 4,
+        "ties": 0,
+        "points_for": 161,
+        "points_against": 196
+      },
+      "extract_plus_official_results": {
+        "wins": 5,
+        "losses": 4,
+        "ties": 0,
+        "points_for": 161,
+        "points_against": 196
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "DAL",
+      "official_standings": {
+        "wins": 4,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 246,
+        "points_against": 236
+      },
+      "extract_plus_official_results": {
+        "wins": 4,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 246,
+        "points_against": 236
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "DEN",
+      "official_standings": {
+        "wins": 7,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 198,
+        "points_against": 186
+      },
+      "extract_plus_official_results": {
+        "wins": 7,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 198,
+        "points_against": 186
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "DET",
+      "official_standings": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 222,
+        "points_against": 189
+      },
+      "extract_plus_official_results": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 222,
+        "points_against": 189
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "GB",
+      "official_standings": {
+        "wins": 6,
+        "losses": 3,
+        "ties": 0,
+        "points_for": 216,
+        "points_against": 191
+      },
+      "extract_plus_official_results": {
+        "wins": 6,
+        "losses": 3,
+        "ties": 0,
+        "points_for": 216,
+        "points_against": 191
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "HOU",
+      "official_standings": {
+        "wins": 3,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 209,
+        "points_against": 192
+      },
+      "extract_plus_official_results": {
+        "wins": 3,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 209,
+        "points_against": 192
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "IND",
+      "official_standings": {
+        "wins": 2,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 184,
+        "points_against": 249
+      },
+      "extract_plus_official_results": {
+        "wins": 2,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 184,
+        "points_against": 249
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "JAX",
+      "official_standings": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 229,
+        "points_against": 121
+      },
+      "extract_plus_official_results": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 229,
+        "points_against": 121
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "KC",
+      "official_standings": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 202,
+        "points_against": 143
+      },
+      "extract_plus_official_results": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 202,
+        "points_against": 143
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "LA",
+      "official_standings": {
+        "wins": 5,
+        "losses": 4,
+        "ties": 0,
+        "points_for": 214,
+        "points_against": 181
+      },
+      "extract_plus_official_results": {
+        "wins": 5,
+        "losses": 4,
+        "ties": 0,
+        "points_for": 214,
+        "points_against": 181
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "LAC",
+      "official_standings": {
+        "wins": 0,
+        "losses": 8,
+        "ties": 0,
+        "points_for": 121,
+        "points_against": 219
+      },
+      "extract_plus_official_results": {
+        "wins": 0,
+        "losses": 8,
+        "ties": 0,
+        "points_for": 121,
+        "points_against": 219
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "LV",
+      "official_standings": {
+        "wins": 4,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 238,
+        "points_against": 268
+      },
+      "extract_plus_official_results": {
+        "wins": 4,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 238,
+        "points_against": 268
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "MIA",
+      "official_standings": {
+        "wins": 1,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 126,
+        "points_against": 200
+      },
+      "extract_plus_official_results": {
+        "wins": 1,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 126,
+        "points_against": 200
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "MIN",
+      "official_standings": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 146,
+        "points_against": 116
+      },
+      "extract_plus_official_results": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 146,
+        "points_against": 116
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "NE",
+      "official_standings": {
+        "wins": 5,
+        "losses": 4,
+        "ties": 0,
+        "points_for": 211,
+        "points_against": 207
+      },
+      "extract_plus_official_results": {
+        "wins": 5,
+        "losses": 4,
+        "ties": 0,
+        "points_for": 211,
+        "points_against": 207
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "NO",
+      "official_standings": {
+        "wins": 3,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 185,
+        "points_against": 216
+      },
+      "extract_plus_official_results": {
+        "wins": 3,
+        "losses": 5,
+        "ties": 0,
+        "points_for": 185,
+        "points_against": 216
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "NYG",
+      "official_standings": {
+        "wins": 5,
+        "losses": 3,
+        "ties": 1,
+        "points_for": 203,
+        "points_against": 196
+      },
+      "extract_plus_official_results": {
+        "wins": 5,
+        "losses": 3,
+        "ties": 1,
+        "points_for": 203,
+        "points_against": 196
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "NYJ",
+      "official_standings": {
+        "wins": 2,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 182,
+        "points_against": 223
+      },
+      "extract_plus_official_results": {
+        "wins": 2,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 182,
+        "points_against": 223
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "PHI",
+      "official_standings": {
+        "wins": 2,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 148,
+        "points_against": 221
+      },
+      "extract_plus_official_results": {
+        "wins": 2,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 148,
+        "points_against": 221
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "PIT",
+      "official_standings": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 180,
+        "points_against": 144
+      },
+      "extract_plus_official_results": {
+        "wins": 6,
+        "losses": 2,
+        "ties": 0,
+        "points_for": 180,
+        "points_against": 144
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "SEA",
+      "official_standings": {
+        "wins": 5,
+        "losses": 4,
+        "ties": 0,
+        "points_for": 202,
+        "points_against": 162
+      },
+      "extract_plus_official_results": {
+        "wins": 5,
+        "losses": 4,
+        "ties": 0,
+        "points_for": 202,
+        "points_against": 162
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "SF",
+      "official_standings": {
+        "wins": 7,
+        "losses": 1,
+        "ties": 0,
+        "points_for": 235,
+        "points_against": 156
+      },
+      "extract_plus_official_results": {
+        "wins": 7,
+        "losses": 1,
+        "ties": 0,
+        "points_for": 235,
+        "points_against": 156
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "TB",
+      "official_standings": {
+        "wins": 3,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 202,
+        "points_against": 178
+      },
+      "extract_plus_official_results": {
+        "wins": 3,
+        "losses": 6,
+        "ties": 0,
+        "points_for": 202,
+        "points_against": 178
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "TEN",
+      "official_standings": {
+        "wins": 1,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 144,
+        "points_against": 199
+      },
+      "extract_plus_official_results": {
+        "wins": 1,
+        "losses": 7,
+        "ties": 0,
+        "points_for": 144,
+        "points_against": 199
+      },
+      "agrees": true,
+      "differing_fields": []
+    },
+    {
+      "team": "WAS",
+      "official_standings": {
+        "wins": 3,
+        "losses": 5,
+        "ties": 1,
+        "points_for": 196,
+        "points_against": 223
+      },
+      "extract_plus_official_results": {
+        "wins": 3,
+        "losses": 5,
+        "ties": 1,
+        "points_for": 196,
+        "points_against": 223
+      },
+      "agrees": true,
+      "differing_fields": []
+    }
+  ],
+  "disagreements": []
+}

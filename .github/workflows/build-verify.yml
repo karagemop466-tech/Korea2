@@ -49,6 +49,16 @@ jobs:
             echo "::error::the committed integration recomputation no longer matches the committed data"
             exit 1
           fi
+      - name: The committed 2026 snapshot reconciles with the official standings page
+        # Replays the committed extract game by game, applies the officially reported results that
+        # post-date it, and compares every one of the 32 teams with the transcribed official page.
+        run: |
+          python verification/standings_reconcile.py
+          if ! git diff --quiet -- verification/standings_reconcile.json; then
+            git --no-pager diff --stat -- verification/standings_reconcile.json
+            echo "::error::the committed standings reconciliation no longer matches the committed data"
+            exit 1
+          fi
       - name: The published site is reproducible from the committed data
         run: |
           python scripts/build_site.py

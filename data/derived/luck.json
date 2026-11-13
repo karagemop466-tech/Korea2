@@ -57,7 +57,10 @@
       0.5083
     ],
     "binomial_p_vs_50": 1.0,
-    "note": "Every team-game ATS result pooled. Any 'system' has to move this number."
+    "is_identity": true,
+    "interpretation": "Arithmetic identity, not a measurement: every settled game is counted once per side, so the pooled rate is 50% by construction and the p-value carries no information about the market.",
+    "testable_result": "data/derived/market.json -> ats_home_cover: one observation per game, the home team's cover rate, which is the figure the site publishes.",
+    "note": "Pooled team-game ATS rows. The 50% rate and its p-value are an arithmetic identity; use the home-side cover rate in market.json for any claim about the market."
   },
   "sample_size_requirements": {
     "note": "Bets needed for 80% power at alpha=0.05 to detect a true win rate, two-sided, against a null of 50%. Uses the standard normal approximation.",

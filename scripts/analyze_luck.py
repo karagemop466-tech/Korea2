@@ -106,7 +106,12 @@ def main() -> None:
         "sd_expected_win_pct": round(float(ts["exp_win_pct"].std(ddof=1)), 4),
     }
 
-    # ---------------------------------------------------------------- ATS is a coin flip
+    # ------------------------------------------------- pooled ATS: an identity, not a test
+    # Every settled game contributes one row per side, so the pooled team-game cover rate is
+    # exactly 50% by construction and the binomial p-value restates that same arithmetic.
+    # The key name is kept because sibling workspaces read it, but the payload now says what
+    # the number is, and the testable one-observation-per-game result lives in market.json
+    # (ats_home_cover). Do not read the pooled rate as evidence about the market.
     ats = tg.dropna(subset=["ats_margin"])
     ats = ats[ats["ats_margin"] != 0]
     k, n = int((ats["ats_margin"] > 0).sum()), int(len(ats))
@@ -114,7 +119,14 @@ def main() -> None:
     out["ats_coin_flip_test"] = {
         "n": n, "wins": k, "rate": round(k / n, 4), "ci": [round(lo, 4), round(hi, 4)],
         "binomial_p_vs_50": round(S.binomial_p(k, n), 4),
-        "note": "Every team-game ATS result pooled. Any 'system' has to move this number.",
+        "is_identity": True,
+        "interpretation": ("Arithmetic identity, not a measurement: every settled game is counted "
+                           "once per side, so the pooled rate is 50% by construction and the p-value "
+                           "carries no information about the market."),
+        "testable_result": ("data/derived/market.json -> ats_home_cover: one observation per game, "
+                             "the home team's cover rate, which is the figure the site publishes."),
+        "note": ("Pooled team-game ATS rows. The 50% rate and its p-value are an arithmetic identity; "
+                 "use the home-side cover rate in market.json for any claim about the market."),
     }
 
     # ---------------------------------------------------------------- how much sample is enough
