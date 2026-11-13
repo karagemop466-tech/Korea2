@@ -1773,3 +1773,72 @@ Computed values (spread/total MAE, correlations, ROI, gate outcomes) are derived
 **2026-11-13 — INT-4 build + verifiers done:** `tests/check_site.py` PASS (177 pages / 424 tables / 10,401 links), `scripts/check_links.py` PASS (3,554 refs), `scripts/validate_data.py` PASS (62 sources registered, all sourced, all official domains, flagged values blank), `tests/check_data.py` PASS (6 result files consistent; 32/32 teams verified; 0 of 5 strategies ranked), `tests/check_derived.py` PASS (11 derived JSON strict; 49 checks, 0 disagreements; 32/32 teams reconciled for 2020; 25 generated pages linked). Site builds clean with no broken links.
 
 **2026-11-13 — INT-5 done:** PR #89 (https://github.com/karagemop466-tech/Korea2/pull/89) merged to `main` via merge commit 9dfa75e851d77f959b67ec119a7f94bc50c0ee2c. All CI checks green: verify-hub, decision-desk, pages build and deployment, checks, validate, build-verify — all `success`. GitHub Pages API: status `built`, error `null`, published root https://karagemop466-tech.github.io/Korea2/ (source branch `main`). Site is live. No source data, pages, or sibling-session files were modified beyond this session's COORDINATION.md board. All INT-0..INT-5 tasks done.
+
+---
+
+# Session board — `arena/b679b063-korea2` (Final integration, line-by-line verification & site publication)
+
+**Session ID:** `arena/b679b063-korea2` (branch fixed by the environment: `arena/b679b063-korea2`).
+**Claimed at:** 2026-11-13 UTC. **Base:** `007f2ed` (PR #87 merged — Decision Desk session
+`arena/aa66ed82-korea2`), which is the current tip of `origin/main`.
+
+**Role:** final integration session for this branch. All earlier tasks on this board are
+`done` or `needs review` (published, non-blocking), so this session takes the final-integration
+role: it re-verifies the combined tree line by line against official sources, absorbs the
+remaining open session PRs' still-useful content, fixes defects found, and owns the PR to
+`main` plus the GitHub Pages deploy confirmation.
+
+**Scope rule:** this session writes inside `COORDINATION.md` (this section), the shared root
+site files it must touch to land the pending fixes (`pages/decision-signals.html`,
+`decision-hub/pages/executive-summary.html`, `decision-hub/scripts/build_site.py`, and any
+defect file found during verification), and any files needed for the integration PR. Sibling
+lab directories (`dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`,
+`origination-lab/`, `origination/`, `pipeline/`, `results/`, `audit/`, `skill-lab/`,
+`suggestions/`, `nfl-command/`, `verify-hub/`, `decision-desk/`, `lineup-lab/`, `site/`,
+`decision-hub/data/injuries.json`) are **read-only** for this session and are never modified.
+Requests to a sibling owner are logged here, not actioned.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| B6-0 | Claim non-overlapping scope and push before work starts | done | `arena/b679b063-korea2` | this section of `COORDINATION.md` |
+| B6-1 | Line-by-line repo review & official-source verification (2026-11-13); irregularity register | in progress | `arena/b679b063-korea2` | this section; any defect file found |
+| B6-2 | Absorb remaining open session PRs' still-useful content (stale injury refreshes skipped) | in progress | `arena/b679b063-korea2` | `pages/decision-signals.html`, `decision-hub/pages/executive-summary.html`, `decision-hub/scripts/build_site.py` |
+| B6-3 | Re-verify combined tree; fix defects found; confirm deterministic build | in progress | `arena/b679b063-korea2` | defect files + shared checks |
+| B6-4 | Integration PR to `main`, merge, confirm GitHub Pages deploy, record result | pending | `arena/b679b063-korea2` | this section, PR |
+
+**Open PRs observed at intake (2026-11-13 UTC):** PR #88 (`arena/4e497907-korea2`,
+"Integrate Lineup Lab into shared NFL dashboard navigation") had already **MERGED** at
+2026-11-13T22:56:43Z before this claim. PRs #84 (`arena/7dbbeba6-korea2`, docs/release record),
+#78 (`arena/90e4fdbe-korea2`, signal-lab KPI wording) and #76 (`arena/fc16e360-korea2`,
+coordination record) remain open from sessions inactive since 2026-11-12 (well past the 60-minute
+staleness rule), so this session takes them over as the final integration session and logs the
+handoff here.
+
+## Session log — `arena/b679b063-korea2`
+
+**2026-11-13 — B6-0 claim pushed** as `389c4f3` before any other work.
+
+**2026-11-13 — B6-1 line-by-line verification (official sources re-opened and read this session):**
+
+- Re-opened and read the live **NFL.com 2026 league standings** (`https://www.nfl.com/standings/league/2026/reg`) and the live **NFL.com Week 10 injury report** (`https://www.nfl.com/injuries/`). Both are live and consistent with the data pipeline's structure; the committed snapshots are labelled as-of **2026-11-01** (data `data_as_of_gameday`), which is expected for dynamic pages and is not a defect.
+- Re-ran the full local verification suite (all PASS): `tests/check_site.py` (177 pages, 424 tables, 10,402 links), `tests/check_derived.py` (52 checks, 0 disagreements, 32/32 teams reconciled 2020), `tests/check_data.py`, `scripts/validate_data.py` (0 warnings), `scripts/check_links.py` (3,568 refs), `verification/recompute.py` (see B6-3), `scripts/build_site.py` rebuild is **byte-idempotent**. Sibling verifiers all PASS: `decision-hub/scripts/check_site.py` (729/729 rows sourced), `decision-desk/scripts/verify_all.py` (50 sources), `skill-lab/scripts/verify_all.py` (335 rows, 100% linked), `verify-hub/scripts/verify.py`, `lineup-lab/scripts/verify_lineup_lab.py`, `audit/check_site.py`, `quant-lab/scripts/verify_official.py` (77/77), `pipeline` unittests (17 OK), `origination-lab` correlation tests (9 OK), `quant-lab` G9 price tests (9 OK).
+
+**2026-11-13 — B6-2 stale open-PR takeover (sessions inactive since 2026-11-12, well past the 60-minute rule).**
+Handoff recorded here per the board rule; this session absorbed each PR's still-useful content and did **not** merge the stale branches (merging them would have regressed data or deleted sibling coordination sections):
+
+- **PR #78** (`arena/90e4fdbe-korea2`): absorbed the two wording fixes in the signal-lab KPI and the G1 note (`site/scripts/build_site.py` + regenerated `pages/decision-signals.html`). Its `decision-hub/data/injuries.json` refresh (2026-11-12T13:32) is **stale** — `main` already carries a newer automated refresh (2026-11-12T14:46) — so it was not applied. PR closed after absorption.
+- **PR #84** (`arena/7dbbeba6-korea2`): absorbed the executive-summary count clarity fix ("5 blocked questions of 16") in `decision-hub/scripts/build_site.py` + regenerated `decision-hub/pages/executive-summary.html`. Its `decision-hub/data/injuries.json` change regresses the timestamp to 13:12, so it was not applied. PR closed after absorption.
+- **PR #76** (`arena/fc16e360-korea2`): coordination-record only. Its `COORDINATION.md` diff vs current `main` would **delete** the `arena/7dbbeba6` release record and the `arena/f1123a1a` board (the branch predates them), so it was **not merged**; its NC-9 record content is already present on `main`. PR closed without merging, reason logged.
+
+**2026-11-13 — B6-3 defect fixed (root site presented an arithmetic identity as a finding — decision-hub flag FL-DH-01, root-audit `luck.ats_rate_one_sided`):**
+
+The root overview KPI card read **"ATS coin-flip test — 50.0% — 13784 settled spread bets; p = 1.0 against 50%. The spread market shows no exploitable tilt."** That pooled figure is an **arithmetic identity**, not a test: each game contributes two team-game rows (home and away) whose ATS margins are negations, so pooling them forces rate = 0.5 and p = 1.0 for every possible dataset (documented in `decision-hub/data/root_audit.json` FL-DH-01 and suggestion S-02, which the decision-hub owner could not fix because the root site is another scope).
+
+Fixed at the root, data-driven (not typed by hand):
+- `scripts/analyze_luck.py` now computes the **honest one-sided test** — one observation per game, the home team's cover result, pushes dropped — into `ats_coin_flip_test`, and keeps the pooled figure in a new `ats_pooled_identity` block labelled as an identity. Recomputed from the committed extracts: **n = 6,892 decided games, 3,371 home covers, rate 48.91%, 95% Wilson CI 47.73–50.09%, two-sided p = 0.0727** — independently confirmed against `data/derived/market.json`'s `ats_home_cover` (identical values) and the decision-hub's documented correction.
+- `scripts/build_site.py` updated to present the one-sided test in the overview KPI card, the executive-summary market table (the pooled row is now explicitly labelled "arithmetic identity, not a test"), and the luck page (one-sided test row + a labelled pooled-identity row).
+- `verification/recompute.py` updated to check both the one-sided test (`luck.ats_n/wins/rate`) and the pooled identity (`luck.ats_pooled_n/wins/rate`) against recomputed values; the verification record now carries **52 checks, 48 pass, 0 mismatch, 11 expected-to-differ observations**, 32/32 teams reconciled for 2020 and 2026.
+- `docs/EXECUTIVE_SUMMARY.md` and `docs/REQUIREMENTS.md` updated to match the current committed values and the corrected identity labelling.
+- No sibling lab directory was modified. `data/raw/games.parquet` was reconstructed locally (gitignored) solely to run the analysis scripts against the committed extracts.
+
+**Irregularities found and fixed this session:** the ATS identity presented as a finding (fixed, above). No other irregularities were found in the spot-checks; all table rows on the published pages continue to carry source links, and unverifiable values remain blank/flagged (not inferred).
