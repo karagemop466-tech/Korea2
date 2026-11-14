@@ -2067,3 +2067,48 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
 ## Log
 
 - 2026-11-14 — Board read in full (13 prior session sections). Claimed SD-01…SD-12 above and pushing this claim before starting work, per the standing rule.
+- 2026-11-14 — SD-01…SD-12 **done**. Everything below is in `signal-desk/`; no other session's files were edited or regenerated. Outside `signal-desk/`: this board section, one NAV line in `scripts/lib/site.py` (+ its `../` rewrite for `pages/`), one README section, one new workflow `.github/workflows/signal-desk.yml`, and `signal-desk/data/raw/` added to `.gitignore`.
+
+### Sources used by this session (all opened and read 2026-11-14)
+
+| Source | URL | What it settled |
+|---|---|---|
+| NFL.com division standings 2026 | https://www.nfl.com/standings/division/2026/REG | 32-team W/L/T/PF/PA reconciliation target |
+| NFL.com division standings 2025 | https://www.nfl.com/standings/division/2025/REG | full-season reconciliation + YoY persistence |
+| NFL.com division standings 2020 | https://www.nfl.com/standings/division/2020/REG | independent second-season check of the repo's transcription |
+| NFL.com scores week 8 | https://www.nfl.com/scores/2026/week-8 | 14 final scores (byes HOU/NO/NYG/SF) |
+| NFL.com scores week 9 | https://www.nfl.com/scores/2026/week-9 | 15 final scores (byes PIT/TEN) |
+| NFL.com scores week 10 | https://www.nfl.com/scores/2026/week-10 | 1 final score (WAS@NYG) |
+| NFL.com passing leaders 2026 | https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc | official player totals + date-gap check |
+| NFL.com receiving leaders 2026 | https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingyards/desc | tested for a computable QB↔WR join (none) |
+| NFL.com injury report (current) | https://www.nfl.com/injuries/ | week-10 report; columns and no depth ordinal |
+| NFL.com injury report week 9 | https://www.nfl.com/injuries/league/2026/reg9 | week-9 report; title/heading contradiction |
+| NFL.com team roster | https://www.nfl.com/teams/arizona-cardinals/roster | tested for a depth ordinal (absent) |
+| nflverse/nfldata initial_lines.csv @ a270278f | https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv | opening snapshot: 1 season, 1 book, 0 moneylines |
+| nflverse/nfldata closing_lines.csv @ a270278f | https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/closing_lines.csv | stops at 2018, so no open/close overlap exists |
+| committed extract data/derived/games.csv.gz | nflverse/nfldata games.csv, hashed in data/PROVENANCE.md | closing coverage 2014–2026, results |
+
+### Verification performed
+
+- **32/32 teams** reconcile on W/L/T/PF/PA after adding the transcribed official scores; the same holds for 2020 and 2025. The first attempt failed (6/32) because 13 week-8 games were already in the snapshot and were being counted twice; the double count was found by the test `test_no_game_is_double_counted` and fixed by skipping games the snapshot already carries. 17 games were genuinely new.
+- **Upstream integrity:** the two fetched files hash to `654770173d11…` and `3571e1c9fc8d…`, matching the SHA-256 prefixes already recorded in `data/PROVENANCE.md`. This confirms the pinned files are the ones used.
+- **Origination-order invariant** recomputed independently in `check.py`: worst gap 0.00136 over 15 games, limit 0.002. The build fails above the limit.
+- `signal-desk/scripts/check.py`: 14 pages, 32 tables, 297 rows, every row with a source link, no broken internal links, no off-allowlist external hosts, no placeholder text.
+- `signal-desk/tests/test_artefacts.py`: **18 tests OK**, including byte-for-byte rebuild reproducibility, "an unverified value never carries a number", and "nothing from nflverse is classed official".
+- `scripts/build_site.py` + `tests/check_site.py` still pass after the NAV addition (205 pages / 531 tables / 12,317 links). `pipeline/tests` still pass (17 OK).
+
+### Irregularities found (published on signal-desk/pages/flagged.html)
+
+1. FL-SD-01 no official price source; every price is third-party, so CLV can never be official.
+2. FL-SD-02 no season has both an opening and a closing number (opening 2021 only, closing stops 2018).
+3. FL-SD-03 the opening file has zero moneyline rows, so every opening-moneyline cell is blank.
+4. FL-SD-04 15 finished games absent from the snapshot (weeks 8–10); listed as absent, not back-filled.
+5. FL-SD-05 neither the official roster nor the official injury report publishes a depth ordinal.
+6. FL-SD-06 the QB↔WR per-game join is not obtainable from the official season-leader pages.
+7. FL-SD-07 four of eight demotion rules cannot fire yet (no validated path, no opening prices, no executable prices).
+8. FL-SD-08 the week-9 injury page's title says Week 10 while its heading says WEEK 9 (observed again today).
+9. FL-SD-09 committed player data ends at week 8 while the official leader pages are through week 10; the gaps match the missing games, so the two must never be mixed without a date.
+10. FL-SD-10 nothing is live, so the demotion gate has never fired and its thresholds are untested.
+
+Two **checks that came back clean** and are worth recording because they were suspicions, not assumptions: the committed `spread_line` sign convention (positive = home favoured) holds against results on n=7,087 settled games, and the committed 2020/2025 season tables reconcile 32/32 against NFL.com.
+
