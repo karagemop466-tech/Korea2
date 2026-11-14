@@ -2029,3 +2029,41 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
 6. nfl-lines (issues #13/#17): "verified source file" wording; official-source links or blanks for the 402 mirror-only rows; road-underdog label; drop the nonexistent F-11 board reference.
 
 **2026-11-14 — ISS-4 (final):** PR [#100](https://github.com/karagemop466-tech/Korea2/pull/100) opened from this branch on top of `42d9397` (rebase kept every session's board: b679b063, e470a321 and this one all intact); all 8 checks green (`validate`, `tests-and-links`, `verify` ×2, `verify-hub`, `verify-skill-lab`, `decision-desk`, `review-board`); merged as **`ffa6b7fe`** at 2026-11-14T01:19:10Z. GitHub Pages deploy confirmed first-hand: run **43539863389 completed/success**, `GET /repos/karagemop466-tech/Korea2/pages` → **`status=built`**, site at https://karagemop466-tech.github.io/Korea2/. Final state: 8 issues dispositioned for close, 5 kept open with evidence, all three test suites (19/9/9) and all five repo verifiers green on the merged tree; GitHub issue-write stayed HTTP 403 for the whole session, so the tracker itself was not modified — the dispositions in the ISS-1/ISS-2 tables above are the authoritative record for whoever holds issues-write access.
+
+---
+
+# Session board — arena/afa08e81-korea2 (branch `arena/afa08e81-korea2`)
+
+**Session ID:** arena/afa08e81-korea2
+**Branch:** `arena/afa08e81-korea2`, branched from `a6981b6` of `main` (the branch name is fixed by the environment; other session branches cannot be created by this session).
+**Claim opened:** 2026-11-14 UTC. No other claim was open when this board was written; the last merged work on `main` is PR #101.
+
+## Scope claimed (non-overlapping)
+
+| ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| SD-01 | Price-snapshot store: opening and closing numbers per market, with an explicit blank-and-flag rule where no official source exists | in progress | arena/afa08e81-korea2 | `signal-desk/data/price_snapshots.json`, `signal-desk/scripts/` |
+| SD-02 | Verified results feed: reconcile committed results against official NFL.com standings | in progress | arena/afa08e81-korea2 | `signal-desk/data/results_feed.json` |
+| SD-03 | Origination order: side, then total, then moneyline — enforced and evidenced | in progress | arena/afa08e81-korea2 | `signal-desk/data/origination_order.json` |
+| SD-04 | Fair / market / difference published as three separate numeric columns | in progress | arena/afa08e81-korea2 | `signal-desk/data/fair_market_gap.json` |
+| SD-05 | Leaderboard split into a signal table and a staking table | in progress | arena/afa08e81-korea2 | `signal-desk/data/signal_vs_staking.json` |
+| SD-06 | Replacement **depth** tracked, not just the fact of a replacement | in progress | `signal-desk/data/replacement_depth.json` |
+| SD-07 | Correlations only from officially sourced numbers, with `n` and source class published per value | in progress | `signal-desk/data/correlation_official.json` |
+| SD-08 | A demotion gate that returns a live strategy to paper | in progress | `signal-desk/data/demotion_gate.json` |
+| SD-09 | Suggestions register + questions/unknowns + decision paths, reviewable before implementation | in progress | `signal-desk/pages/suggestions.html`, `signal-desk/pages/questions.html`, `signal-desk/data/suggestions.json` |
+| SD-10 | Executive summary | in progress | `signal-desk/EXECUTIVE_SUMMARY.md`, `signal-desk/pages/summary.html` |
+| SD-11 | Site: landing page + category pages, table-first, every row sourced or blank-and-flagged | in progress | `signal-desk/` only (new directory; nothing existing is edited except the board section below) |
+| SD-12 | Integration: re-verify, one nav link from the root site, PR, merge, confirm Pages deploy | in progress | this board section, `scripts/lib/site.py` (NAV line only), `README.md` (one line) |
+
+**Edits outside `signal-desk/`:** this board section, one `NAV` entry in `scripts/lib/site.py`, one link line in `README.md`, and one workflow file `signal-desk/.github`-free CI hook added to `.github/workflows/signal-desk.yml`. Nothing under `pages/`, `data/`, `pipeline/`, or any other session's lab directory is edited or regenerated.
+
+## Rules this session operates under
+
+- No value is typed by hand into HTML: every number in `signal-desk/` is rendered from `signal-desk/data/*.json` by `signal-desk/scripts/build.py`.
+- A value that cannot be confirmed from an official source is published **blank** with `"status": "unverified"` and appears on the Flagged for Review page.
+- The sandbox cannot download GitHub *release assets* (`objects.githubusercontent.com` is blocked) and cannot `curl` nfl.com, so no upstream data file was re-downloaded. Official NFL.com pages **were** read through the page-retrieval tool on 2026-11-14 and are quoted with their retrieval date.
+- `nflverse` is a third-party community feed, not the league. Any figure derived from it is labelled `source_class: third-party`, never `official`.
+
+## Log
+
+- 2026-11-14 — Board read in full (13 prior session sections). Claimed SD-01…SD-12 above and pushing this claim before starting work, per the standing rule.
