@@ -159,7 +159,7 @@
       renderTable(el, doc.rows, [
         idCell,
         { key: "name", label: "Gate" },
-        { key: "rule", label: "Rule (how luck is removed)" },
+        { key: "rule", label: "Rule (how luck is priced out)" },
         { key: "pass_criteria", label: "Pass criteria" },
         srcCol
       ]);

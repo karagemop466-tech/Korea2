@@ -4,6 +4,15 @@
 All bets are settled at the closing line that the feed reports, so a strategy must beat the
 sharpest available price - there is no soft line to hide behind.
 
+Price policy (revised 2026-11-14): a bet with no stored price is EXCLUDED and counted
+(`n_excluded_missing_price`, disclosed per strategy and in meta) - it is never settled at an
+assumed -110. An unpriced bet has no ROI evidence, and imputing a price would manufacture a
+staking result.
+
+Leaderboard policy (revised 2026-11-14): entries are ranked by SIGNAL ONLY (gates passed, then
+Benjamini-Hochberg-adjusted p, then sample size). Staking metrics (ROI and its CI) are reported
+under `staking` but never affect rank ordering, so a lucky staking run cannot mask a bad signal.
+
 Outputs data/derived/strategies.json and data/derived/leaderboard.json
 """
 from __future__ import annotations
@@ -22,18 +31,9 @@ from lib import stats as S
 
 DERIVED = os.path.join("data", "derived")
 
-
-# --- missing-price policy (hardening 2026-11-14, session arena/71d26167) -------------------
-# A bet the feed has no price for is EXCLUDED from settlement and counted here. No default
-# price (e.g. -110) is ever imputed: an imputed price would let a strategy look settled at a
-# price nobody offered. market.py applies the same policy and publishes n_excluded_missing_price.
-_price_exclusions: dict[str, int] = {}
-
-
-def _price(odds) -> float | None:
-    """Return the reported American-odds float, or None when the feed has no price."""
-    return None if pd.isna(odds) else float(odds)
-
+# Bets excluded because the feed stores no price for them (per strategy). Disclosed in output;
+# never settled at an assumed price.
+MISSING_PRICE_EXCLUSIONS: dict[str, int] = {}
 
 
 def load_inputs() -> tuple[pd.DataFrame, dict]:
@@ -46,7 +46,11 @@ def load_inputs() -> tuple[pd.DataFrame, dict]:
 
 
 def spread_bets(df: pd.DataFrame, pick, strategy: str, note: str) -> list[dict]:
-    """`pick` maps a game row -> 'home' | 'away' | None. Settlement is push-aware."""
+    """`pick` maps a game row -> 'home' | 'away' | None. Settlement is push-aware.
+
+    A bet whose stored price is missing is excluded and counted (MISSING_PRICE_EXCLUSIONS), never
+    settled at an assumed price.
+    """
     recs = []
     for r in df.itertuples():
         side = pick(r)
@@ -55,39 +59,37 @@ def spread_bets(df: pd.DataFrame, pick, strategy: str, note: str) -> list[dict]:
         # Proven convention: spread_line is the home team's expected margin, so the home team's
         # handicap is -spread_line and the away team's is +spread_line.
         if side == "home":
-            price = _price(getattr(r, "home_spread_odds", np.nan))
+            odds = getattr(r, "home_spread_odds", np.nan)
             team, margin, handicap = r.home_team, r.result, -r.spread_line
         else:
-            price = _price(getattr(r, "away_spread_odds", np.nan))
+            odds = getattr(r, "away_spread_odds", np.nan)
             team, margin, handicap = r.away_team, -r.result, r.spread_line
-        if price is None:
-            _price_exclusions[strategy] = _price_exclusions.get(strategy, 0) + 1
+        if pd.isna(odds):
+            MISSING_PRICE_EXCLUSIONS[strategy] = MISSING_PRICE_EXCLUSIONS.get(strategy, 0) + 1
             continue
-        odds = price
-        outcome, profit, staked = B.settle_spread(margin, handicap, odds)
+        outcome, profit, staked = B.settle_spread(margin, handicap, float(odds))
         recs.append({"strategy": strategy, "game_id": r.game_id, "season": int(r.season),
                      "week": int(r.week), "team": team, "side": side, "line": r.spread_line,
-                     "odds": odds, "outcome": outcome, "profit": profit, "staked": staked,
+                     "odds": float(odds), "outcome": outcome, "profit": profit, "staked": staked,
                      "note": note})
     return recs
 
 
 def total_bets(df: pd.DataFrame, pick, strategy: str, note: str) -> list[dict]:
+    """Total bets. Missing-price bets are excluded and counted, never settled at an assumed price."""
     recs = []
     for r in df.itertuples():
         side = pick(r)
         if side is None:
             continue
         odds = getattr(r, "over_odds" if side == "over" else "under_odds", np.nan)
-        price = _price(odds)
-        if price is None:
-            _price_exclusions[strategy] = _price_exclusions.get(strategy, 0) + 1
+        if pd.isna(odds):
+            MISSING_PRICE_EXCLUSIONS[strategy] = MISSING_PRICE_EXCLUSIONS.get(strategy, 0) + 1
             continue
-        odds = price
-        outcome, profit, staked = B.settle_total(r.total, r.total_line, side, odds)
+        outcome, profit, staked = B.settle_total(r.total, r.total_line, side, float(odds))
         recs.append({"strategy": strategy, "game_id": r.game_id, "season": int(r.season),
                      "week": int(r.week), "team": f"{r.away_team}@{r.home_team}",
-                     "side": side, "line": r.total_line, "odds": odds,
+                     "side": side, "line": r.total_line, "odds": float(odds),
                      "outcome": outcome, "profit": profit, "staked": staked, "note": note})
     return recs
 
@@ -186,14 +188,14 @@ def main() -> None:
         "meta": {**meta, "n_strategies_tested": n_strategies,
                  "test_window": f"{int(df['season'].min())}-{int(df['season'].max())}",
                  "benchmark": "closing line reported in the nflverse schedules feed",
-                 "missing_price_policy": {
-                     "rule": "A selected bet with no reported price is excluded from settlement "
-                             "and counted; no default price is imputed.",
-                     "n_excluded_missing_price": dict(sorted(_price_exclusions.items())),
-                 },
+                 "missing_price_policy": ("bets without a stored closing price are EXCLUDED and "
+                                          "counted (n_excluded_missing_price per strategy); no "
+                                          "-110 imputation since revision 2026-11-14"),
+                 "n_excluded_missing_price_total": 0,  # filled after strategies are built
                  "multiple_testing": {"method": "Benjamini-Hochberg", "q": 0.10,
                                       "n_tests": bh["n_tests"]}},
         "gates_definition": B.GATES,
+        "demotion_gate": B.DEMOTION_GATE,
         "strategies": {},
     }
     ranked = []
@@ -204,6 +206,7 @@ def main() -> None:
             "closing_line_benchmark": True,
             "executable_verified": False,   # no verified price/limit access in this project
             "reproducible": True,
+            "live": False,                  # no strategy is promoted; D1 is armed but dormant
             "min_n": S.min_sample_size(0.524, 0.5),  # bets needed to detect a 52.4% edge vs 50%
             "bh_adjusted_p": bh["adjusted"][i],
         }
@@ -212,21 +215,52 @@ def main() -> None:
             "name": v["name"], "family": v["family"], "hypothesis": v["hypothesis"],
             "summary": summaries[k], "gates": gates,
             "min_n_required": ctx["min_n"], "bh_adjusted_p": round(bh["adjusted"][i], 6),
+            "n_excluded_missing_price": MISSING_PRICE_EXCLUSIONS.get(k, 0),
+            "demotion_gate": B.evaluate_demotion(v["bets"], ctx["live"]),
         }
-        ranked.append((k, gates["n_passed"], summaries[k].get("roi") or -9,
+        out["meta"]["n_excluded_missing_price_total"] += MISSING_PRICE_EXCLUSIONS.get(k, 0)
+        ranked.append((k, gates["n_passed"], bh["adjusted"][i],
                        summaries[k].get("n", 0)))
 
-    # ---- leaderboard: only fully-approved strategies can earn rewards
-    ranked.sort(key=lambda t: (-t[1], -(t[2] if t[2] is not None else -9), -t[3]))
+    # ---- leaderboard: SIGNAL-ONLY ordering; staking reported separately
+    # Sort key: gates passed (desc), then Benjamini-Hochberg-adjusted p (asc - lower means stronger
+    # skill evidence after multiple-testing control), then sample size (desc). ROI is deliberately
+    # absent from the key: a lucky staking run cannot reorder the board.
+    ranked.sort(key=lambda t: (-t[1], t[2], -t[3]))
     board = []
-    for rank, (k, npass, roi, n) in enumerate(ranked, start=1):
+    for rank, (k, npass, bp, n) in enumerate(ranked, start=1):
         s = out["strategies"][k]
         approved = s["gates"]["verdict"] == "APPROVED"
         board.append({
             "rank": rank, "id": k, "name": s["name"], "family": s["family"],
             "verdict": s["gates"]["verdict"], "gates_passed": f"{npass}/10",
-            "n_bets": s["summary"].get("n"), "decided": s["summary"].get("decided"),
-            "roi": s["summary"].get("roi"), "roi_ci": s["summary"].get("roi_ci"),
+            # ---- signal group: skill evidence, ordering basis
+            "signal": {
+                "gates_passed": f"{npass}/10",
+                "win_rate": s["summary"].get("win_rate"),
+                "win_rate_ci": s["summary"].get("win_rate_ci"),
+                "p_value": s["summary"].get("binomial_p_vs_50"),
+                "bh_adjusted_p": s["bh_adjusted_p"],
+                "deflated_sharpe_p": s["summary"].get("deflated_sharpe_p"),
+                "n_bets": s["summary"].get("n"),
+                "decided": s["summary"].get("decided"),
+                "clv": None,  # no opening prices in the committed feed; see demotion_gate note
+            },
+            # ---- staking group: money outcome, reported but NEVER ordering
+            "staking": {
+                "roi": s["summary"].get("roi"),
+                "roi_ci": s["summary"].get("roi_ci"),
+                "profit_units": s["summary"].get("profit_units"),
+                "units_staked": s["summary"].get("units_staked"),
+            },
+            "demotion_gate": s["demotion_gate"],
+            # ---- flat aliases of the group fields, kept for sibling consumers that read the
+            # pre-split shape (root pages renderer, signal-desk aggregation). They mirror the
+            # groups above; the groups are the source of truth.
+            "n_bets": s["summary"].get("n"),
+            "decided": s["summary"].get("decided"),
+            "roi": s["summary"].get("roi"),
+            "roi_ci": s["summary"].get("roi_ci"),
             "win_rate": s["summary"].get("win_rate"),
             "p_value": s["summary"].get("binomial_p_vs_50"),
             "bh_adjusted_p": s["bh_adjusted_p"],
@@ -235,8 +269,17 @@ def main() -> None:
             "failed_gates": s["gates"]["failed"],
         })
     out["leaderboard"] = {
-        "ranking_rule": ("Rank by gates passed, then by ROI. A strategy can only earn a reward when "
-                         "all ten gates pass; a positive ROI alone earns nothing."),
+        "ranking_rule": ("Rank by SIGNAL ONLY: gates passed, then Benjamini-Hochberg-adjusted p "
+                         "(lower = stronger skill evidence), then sample size. Staking metrics "
+                         "(ROI and its CI) are reported under `staking` but never affect rank "
+                         "ordering, so a lucky staking run cannot mask a bad signal. A strategy "
+                         "can only earn a reward when all ten gates pass; a positive ROI alone "
+                         "earns nothing."),
+        "signal_vs_staking": ("signal = gates, adjusted significance, win rate, deflated Sharpe, "
+                              "sample size (ordering basis); staking = ROI, ROI CI, units (money "
+                              "outcome only). The split implements the requirement that a lucky "
+                              "staking run cannot mask a bad signal."),
+        "demotion_gate": B.DEMOTION_GATE,
         "reward_schedule": [
             {"tier": "Tier 1 - validated", "requirement": "10/10 gates", "reward": "Full strategy allocation and public listing as a live signal"},
             {"tier": "Tier 2 - provisional", "requirement": "8-9/10 gates with G9 (executable) verified", "reward": "Paper-trade only until the remaining gate closes"},
@@ -261,8 +304,10 @@ def main() -> None:
     with open(os.path.join(DERIVED, "leaderboard.json"), "w") as fh:
         json.dump(out["leaderboard"] | {"gates_definition": B.GATES}, fh, indent=2, default=str)
     for b in board:
-        print(f"{b['rank']:2d} {b['id']:26s} {b['gates_passed']:>5s} n={b['n_bets'] or 0:5d} "
-              f"ROI={b['roi'] if b['roi'] is None else round(b['roi']*100,1)}% {b['verdict']}")
+        roi = b["staking"]["roi"]
+        print(f"{b['rank']:2d} {b['id']:26s} {b['signal']['gates_passed']:>5s} "
+              f"n={b['signal']['n_bets'] or 0:5d} BH-p={b['signal']['bh_adjusted_p']:.4f} "
+              f"ROI={roi if roi is None else round(roi*100,1)}% {b['verdict']}")
 
 
 def parlay_ev_table() -> list[dict]:

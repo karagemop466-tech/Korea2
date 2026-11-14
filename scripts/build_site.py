@@ -743,14 +743,14 @@ and therefore worth refining first.</div><a href="pages/flagged.html">Flags &rar
         + section("Standings", table(
     ["#", "Strategy", "Family", "Signal: gates passed", "Signal verdict", "Staking: settled bets", "Staking ROI", "95% ROI CI", "BH-adjusted p", "Source"], rows,
     caption="Signal (gate/model evidence) is shown separately from staking (ROI/bankroll outcome). A lucky staking run cannot mask a bad signal: reward requires 10/10 gates. Control strategies (back every home team, under every game) are included to show what the vig costs."))
-        + section("Signal vs staking", f'''<p class=\"lede\"><strong>Signal</strong> is the strategy's evidence edge: whether it clears all ten validation gates (data integrity, out-of-sample holdout, significance vs break-even, sample size, CLV, multiple-comparison control, correlation screen, execution, and the G10 demotion trigger). <strong>Staking</strong> is what the sizing actually earns or loses (ROI, bankroll drawdown). The leaderboard is ranked by gates first, then by ROI, and only a 10/10 gate score is eligible for capital &mdash; so a positive ROI from luck alone is never rewarded.</p>''')
+        + section("Signal vs staking", f'''<p class=\"lede\"><strong>Signal</strong> is the strategy's evidence edge: whether it clears all ten validation gates (data integrity, out-of-sample holdout, significance vs break-even, sample size, CLV, multiple-comparison control, correlation screen, execution, reproducibility). <strong>Staking</strong> is what the sizing actually earns or loses (ROI, bankroll drawdown). The leaderboard is ranked by signal only &mdash; gates passed, then Benjamini-Hochberg-adjusted p, then sample size &mdash; and only a 10/10 gate score is eligible for capital, so a positive ROI from luck alone is never rewarded and a lucky staking run cannot mask a bad signal. A live strategy whose signal later decays is returned to paper by the demotion gate (register row G10; code-enforced as D1 via evaluate_demotion()).</p>''')
         + section("Reward schedule", table(["Tier", "Requirement", "Reward", "Staking basis"], reward_rows,
     caption="Rewards are a project design, not a funded prize pool - see Flagged for review."))
         + section("How the ranking is computed", '''<ol class="steps">
 <li>Every registered strategy is settled on the same out-of-sample window.</li>
-<li>Each is scored against the ten gates (signal). G10 demotes any live strategy back to paper if a monitoring trigger breaches.</li>
-<li>Survivors are ranked by gates passed, then by ROI (staking); ties break on sample size.</li>
-<li>Only a 10/10 score is eligible for capital. Anything less stays in the research record.</li>
+<li>Each is scored against the ten gates, with the binomial p-value corrected for the number of tests.</li>
+<li>Survivors are ranked by gates passed, then by BH-adjusted p; ties break on sample size (signal only — ROI is reported under a separate staking group and never affects ordering).</li>
+<li>Only a 10/10 score is eligible for capital. Anything less stays in the research record. A live strategy that later decays is returned to paper by the demotion gate (register row G10; code-enforced as D1 via <code>evaluate_demotion()</code>).</li>
 </ol>'''))
     return W.layout("Leaderboard", "pages/leaderboard.html", body,
                     subtitle="Standings, rewards and the rule that binds them.")

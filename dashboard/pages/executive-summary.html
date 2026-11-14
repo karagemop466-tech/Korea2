@@ -16,8 +16,7 @@
 
   <section class="panel">
     <h2>1 · Goal</h2>
-    <p>Originate our own NFL betting lines (bottom-up from raw official data) instead of following market lines; develop strategies that generate useful signals; run them as a <strong>leaderboard competition with rewards for top performers</strong>; cover <strong>single bets, parlays, and player-prop combos</strong>; require every strategy to pass <strong>validation gates</strong>; explicitly <strong>determine correlation values</strong>; and <strong>control for luck</strong> by demanding statistical evidence of skill before any strategy is trusted.</p>
-  </section>
+    <p>Originate our own NFL betting lines (bottom-up from raw official data) instead of following market lines; develop strategies that generate useful signals; run them as a <strong>leaderboard competition with rewards for top performers</strong>; cover <strong>single bets, parlays, and player-prop combos</strong>; require every strategy to pass <strong>validation gates</strong>; explicitly <strong>determine correlation values</strong>; and <strong>price luck out of the results</strong> by demanding statistical evidence of skill before any strategy is trusted.</p>  </section>
 
   <section class="panel">
     <h2>2 · What “originating our own line” means (verified definition)</h2>
@@ -41,7 +40,7 @@
   </section>
 
   <section class="panel">
-    <h2>4 · Removing luck — validation gates G1–G8 (details on <a href="validation.html">Validation Gates</a>)</h2>
+    <h2>4 · Pricing luck out — validation gates G1–G8 and demotion gate D1 (details on <a href="validation.html">Validation Gates</a>)</h2>
     <ul class="tight">
       <li><strong>G1</strong> official-data-only; <strong>G2</strong> out-of-sample holdout (Kaggle public/private split + anti-leakage: <a href="https://www.kaggle.com/docs/competitions" target="_blank" rel="noopener noreferrer">kaggle.com/docs/competitions ↗</a>); <strong>G3</strong> binomial z-test of win rate vs price-implied break-even, p&lt;0.05, N&gt;30 (<a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc24.htm" target="_blank" rel="noopener noreferrer">NIST 7.2.4 ↗</a>); <strong>G4</strong> minimum N from NIST sample-size formula (<a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc242.htm" target="_blank" rel="noopener noreferrer">NIST 7.2.4.2 ↗</a>); <strong>G5</strong> positive average CLV on holdout (<a href="https://www.pinnacle.com/betting-resources/en/educational/what-is-closing-line-value-clv-in-sports-betting" target="_blank" rel="noopener noreferrer">Pinnacle CLV ↗</a>); <strong>G6</strong> Bonferroni α/g across candidate signals (<a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm" target="_blank" rel="noopener noreferrer">NIST 7.4.7.3 ↗</a>); <strong>G7</strong> Pearson-r correlation screen on parlay legs + fractional-Kelly staking (<a href="https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/correlat.htm" target="_blank" rel="noopener noreferrer">NIST correlation ↗</a>, <a href="https://www.princeton.edu/~wbialek/rome/refs/kelly_56.pdf" target="_blank" rel="noopener noreferrer">Kelly 1956 original paper, Princeton-hosted ↗</a>, <a href="https://www.pinnacle.com/betting-resources/en/betting-strategy/the-kelly-criterion-a-stock-trader-and-betting-experts-perspective/h8k2p3f2r8b7rzdp" target="_blank" rel="noopener noreferrer">Pinnacle Kelly ↗</a>); <strong>G8</strong> settlement audited vs official NFL stats (NV Reg 22).</li>
     </ul>

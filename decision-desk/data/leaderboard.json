@@ -3,7 +3,7 @@
   "title": "Cross-lab strategy leaderboard aggregation and measured correlations",
   "session": "arena/aa66ed82-korea2",
   "captured": "2026-11-12",
-  "rule": "One rule for the whole board: rank by gates passed, then by ROI. Positive ROI alone earns nothing; every lab's qualified count is zero as of this capture.",
+  "rule": "Rank by SIGNAL ONLY: gates passed, then Benjamini-Hochberg-adjusted p, then sample size; ROI is reported under a separate staking group and never affects ordering (root board revision 2026-11-14). Positive ROI alone earns nothing; every lab's qualified count is zero as of the capture.",
   "totals": {
    "evaluations": 108,
    "qualified": 0,
@@ -14,7 +14,8 @@
    "leaderboard_rows": 7,
    "correlation_rows": 12
   },
-  "scope_note": "Six labs were captured at 2026-11-12 before this branch merged origin/main; the lineup-lab board (SRC-DD-50) was added to the aggregation from its committed meta on merge. The verify-hub cross-lab consolidation (11 rows) is a read-only audit of these same boards, not a separate competition, and is not double-counted. Sibling registers merged alongside (decision-hub, nfl-command, decisions, suggestions hubs) publish questions/suggestions/injury registers rather than strategy boards; their pages are linked from the root navigation."
+  "scope_note": "Six labs were captured at 2026-11-12 before this branch merged origin/main; the lineup-lab board (SRC-DD-50) was added to the aggregation from its committed meta on merge. The verify-hub cross-lab consolidation (11 rows) is a read-only audit of these same boards, not a separate competition, and is not double-counted. Sibling registers merged alongside (decision-hub, nfl-command, decisions, suggestions hubs) publish questions/suggestions/injury registers rather than strategy boards; their pages are linked from the root navigation.",
+  "rule_updated": "2026-11-14 - the root board (data/derived/leaderboard.json) replaced its ROI tiebreak with a signal-only ordering; this aggregation's rule statement was updated to match."
  },
  "leaderboard": [
   {
@@ -24,11 +25,12 @@
    "candidates": 9,
    "qualified": 0,
    "top_result": "S6 · Divisional home underdog — 5/10 gates, ROI -1.21% (n=137)",
-   "ranking_rule": "Rank by gates passed, then ROI; reward only at 10/10 (Tier 1), paper-trade at 8-9 with G9 (Tier 2)",
+   "ranking_rule": "Rank by gates passed, then BH-adjusted p, then n (signal only; ROI excluded from the ordering since revision 2026-11-14); reward only at 10/10 (Tier 1), paper-trade at 8-9 with G9 (Tier 2); demotion gate D1 returns a live strategy to paper",
    "sources": [
     "SRC-DD-41",
     "SRC-DD-39"
-   ]
+   ],
+   "ranking_rule_updated": "2026-11-14 - updated from the 2026-11-12 capture after the root board's signal/staking split"
   },
   {
    "id": "LB-02",
