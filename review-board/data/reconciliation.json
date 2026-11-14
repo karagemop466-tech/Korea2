@@ -1,6 +1,6 @@
 {
- "hubs_scanned": 18,
- "files_scanned": 168,
+ "hubs_scanned": 19,
+ "files_scanned": 184,
  "published_numbers": [
   {
    "hub": "decision-desk",
@@ -345,6 +345,15 @@
    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/origination/site_data/props.json"
   },
   {
+   "hub": "line-desk",
+   "file": "line-desk/data/correlations.json",
+   "quantity": "Net points vs wins",
+   "field": "r",
+   "values": "0.848, 0.919",
+   "spread": 0.071,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/line-desk/data/correlations.json"
+  },
+  {
    "hub": "data",
    "file": "data/derived/correlation.json",
    "quantity": "Passing yards vs passing TDs (same QB-game)",
@@ -361,6 +370,42 @@
    "values": "-0.030",
    "spread": 0,
    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/correlation.json"
+  },
+  {
+   "hub": "line-desk",
+   "file": "line-desk/data/correlations.json",
+   "quantity": "Points against vs losses",
+   "field": "r",
+   "values": "0.673, 0.762",
+   "spread": 0.089,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/line-desk/data/correlations.json"
+  },
+  {
+   "hub": "line-desk",
+   "file": "line-desk/data/correlations.json",
+   "quantity": "Points against vs losses (pooled)",
+   "field": "r",
+   "values": "0.804",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/line-desk/data/correlations.json"
+  },
+  {
+   "hub": "line-desk",
+   "file": "line-desk/data/correlations.json",
+   "quantity": "Points for vs wins",
+   "field": "r",
+   "values": "0.666, 0.709",
+   "spread": 0.043,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/line-desk/data/correlations.json"
+  },
+  {
+   "hub": "line-desk",
+   "file": "line-desk/data/correlations.json",
+   "quantity": "Points for vs wins (pooled)",
+   "field": "r",
+   "values": "0.800",
+   "spread": 0,
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/line-desk/data/correlations.json"
   },
   {
    "hub": "origination",
@@ -1903,6 +1948,34 @@
    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/suggestions.json"
   },
   {
+   "hub": "line-desk",
+   "file": "line-desk/data/flagged.json",
+   "stamp": "2026-11-14",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/line-desk/data/flagged.json"
+  },
+  {
+   "hub": "line-desk",
+   "file": "line-desk/data/questions.json",
+   "stamp": "2026-11-14",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/line-desk/data/questions.json"
+  },
+  {
+   "hub": "line-desk",
+   "file": "line-desk/data/requirements.json",
+   "stamp": "2026-11-14",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/line-desk/data/requirements.json"
+  },
+  {
+   "hub": "line-desk",
+   "file": "line-desk/data/suggestions.json",
+   "stamp": "2026-11-14",
+   "stamp_kind": "date",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/line-desk/data/suggestions.json"
+  },
+  {
    "hub": "lineup-lab",
    "file": "lineup-lab/data/correlations.json",
    "stamp": "2026-11-12",
@@ -2214,7 +2287,7 @@
  "stamp_range": {
   "earliest": "2026-11-01",
   "latest": "committed data through 2026-11-01",
-  "dated_registers": 66,
+  "dated_registers": 70,
   "window_only_registers": 1
  },
  "verdicts": [
@@ -2256,5 +2329,5 @@
  ],
  "method": "Each hub's own committed JSON is read; a value counts as published only when the file carries it under a recognised field name (r / pearson_r / coefficient / correlation) with a label. Values are shown exactly as stored, rounded to three decimals. A quantity is a conflict when two or more hubs publish different numbers for the same label - the board shows both and links both files. Nothing is averaged and nothing is re-derived here.",
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "466b19e6f203063f8137ec9196fd4f4e56bf4fa4"
+ "_generated_from_repo_commit": "86dbc0afac5a2f377b0a7bad35544de300cfecb7"
 }
