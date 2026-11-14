@@ -3,7 +3,7 @@
 validation.py — validation gates, luck removal, and the leaderboard.
 
 Each strategy in data/processed/strategies.json must clear ALL nine gates below. Thresholds are
-pre-registered here (not chosen after seeing results), and the family-wise error rate is
+specified here as fixed gates (they are not tuned per-strategy), and the family-wise error rate is
 controlled with Benjamini-Hochberg FDR across every strategy tested.
 
 G1 SAMPLE      holdout sample >= 100 settled bets (60 for props)

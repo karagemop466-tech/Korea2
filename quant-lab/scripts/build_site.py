@@ -224,7 +224,7 @@ def page_index():
     navcards = """<div class="grid navcards">
   <a class="navcard" href="lines.html"><h3>Originated lines</h3><p>Our spread, total and moneyline for Week 9 and 10, beside the market close and the edge between them.</p></a>
   <a class="navcard" href="props.html"><h3>Player props &amp; SGP</h3><p>Player-yardage lines from official game logs, plus measured quarterback/receiver correlation and what it does to a same-game price.</p></a>
-  <a class="navcard" href="strategies.html"><h3>Strategies</h3><p>All 21 pre-registered rules with discovery and holdout performance, side by side.</p></a>
+  <a class="navcard" href="strategies.html"><h3>Strategies</h3><p>All 21 proposed rules with discovery and holdout performance, side by side.</p></a>
   <a class="navcard" href="leaderboard.html"><h3>Leaderboard</h3><p>The competition, its scoring formula and rewards, and who is on it.</p></a>
   <a class="navcard" href="correlation.html"><h3>Correlations</h3><p>Every correlation value used for parlay pricing, with sample sizes and confidence intervals.</p></a>
   <a class="navcard" href="validation.html"><h3>Validation gates</h3><p>The nine gates, their thresholds, and a pass/fail matrix for every strategy.</p></a>
@@ -416,8 +416,9 @@ def page_strategies():
             badge(r["qualified"]) if r.get("status") != "needs review" else review(),
         ])
     body = f"""
-<p class="lede">Every rule below was registered before its results were computed. Discovery is 2002–2019,
-holdout is 2020–2026, and the holdout was never used to choose a rule, a threshold or a hyper-parameter.</p>
+<p class="lede">The rules below are proposed in this project and scored on the committed feed; no
+registration predates the results, so read every figure as exploratory. Discovery is 2002–2019,
+holdout is 2020–2026, and the holdout was not used to choose a rule, a threshold or a hyper-parameter.</p>
 {table("All tested strategies", ["Strategy", "Type", "Rule", "n (holdout)", "ROI holdout", "ROI discovery",
        "95% CI holdout", "luck z", "p (raw)", "Gates", "Verdict"], rows, wide=(2,))}
 <h2>What the results say</h2>
@@ -433,7 +434,7 @@ interval still spans zero.</li>
 cannot beat it is just paying the book.</li>
 </ul>"""
     return shell("Strategies", "strategies.html", body,
-                 "21 pre-registered rules, one settlement engine, two windows: discovery 2002–2019 and holdout 2020–2026.")
+                 "21 proposed rules (binary bucket rules specified in this project), one settlement engine, two windows: discovery 2002–2019 and holdout 2020–2026.")
 
 
 def page_leaderboard():
