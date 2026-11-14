@@ -2317,3 +2317,51 @@ old pooled identity (x ⊕ −x) and demands published == pooled. No active sess
 fix under its remediation scope: align the audit's published-method expectations with the published
 per-game method (the pooled identity stays published as `ats_pooled_identity` and as history in the
 FL-DH-01 record), regenerate `root_audit.json` + pages with the hub's own generators, and re-verify.
+
+
+# Session board — `arena/2ce96ae4-korea2` (takeover of stale defect scopes + final defect remediation)
+
+**Session ID:** `arena/2ce96ae4-korea2` (branch fixed by the environment; the protocol's
+`session-<id>/<task>` naming is not available here, so the branch name carries the session id —
+the convention every prior session on this board used).
+
+**Claimed at:** 2026-11-14 UTC, written and pushed before any implementation.
+
+**Intake review.** Read the whole board (all prior session sections), the merged tree at `a6981b6`
+(PR #101 / #100), the three open PRs, and the live Pages state (`status: built`). The published
+site is live and the bulk of the original specification is implemented across prior sessions. What
+remains is the six outstanding cross-scope defect requests logged by session `arena/da5f9d7b-korea2`
+(ISS-2 "Requests … by scope") and the latent root-pipeline hardening. The owning sessions for those
+scopes have finished and their claims are stale (>60 min with no commits), so per the handoff rule
+this session takes them over and notes the handoff here.
+
+**Scope rule:** this session writes **only** the files listed in the task table below plus this
+section of `COORDINATION.md`. It does **not** edit any file owned by the three open PRs:
+`coverage/`, root `index.html`, root `pages/*.html`, `scripts/lib/site.py` (PR #93, `arena/e0d1c5c8-korea2`);
+`review-board/` (PR #99, `arena/e470a321-korea2`); `.gitignore` / `.venv-b6` (PR #97, `arena/193e54ca-korea2`).
+Where a needed fix lives in one of those scopes, it is logged as a request below, not edited.
+
+**Handoff note:** the quant-lab, origination-lab, dashboard and nfl-lines owners finished their
+primary tasks and logged the wording/label defects below as requests for a later session; this
+session is that later session. No primary result or number is changed — only labels, wording, a
+latent-imputation hardening, and honest source framing.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| RD-1 | quant-lab wording: label the strategy design "proposed" / "specified before scoring", not "pre-registered" (issue #24 ask 4) | in progress | `arena/2ce96ae4-korea2` | `quant-lab/index.html`, `quant-lab/strategies.html`, `quant-lab/executive-summary.html`, `quant-lab/EXECUTIVE_SUMMARY.md`, `quant-lab/scripts/build_site.py` |
+| RD-2 | origination-lab wording: "specified signals" instead of "pre-registered signals" (issue #32 ask 5) | in progress | `arena/2ce96ae4-korea2` | `origination-lab/executive-summary.html`, `origination-lab/requirements.html`, `origination-lab/EXECUTIVE_SUMMARY.md`, `origination-lab/requirements/REQUIREMENTS.md` |
+| RD-3 | Root hardening: drop missing-price bet rows and disclose the count instead of imputing −110 (issue #9, latent) | in progress | `arena/2ce96ae4-korea2` | `scripts/analyze_strategies.py`, `scripts/lib/backtest.py` (docstring), new `tests/test_analyze_strategies.py` |
+| RD-4 | Dashboard fixes: COR-04 correlation-direction wording, LF-05 gameday date, "remove luck" wording, leaderboard "00,000" prize label, PROPOSED labels (issue #16) | in progress | `arena/2ce96ae4-korea2` | `dashboard/index.html`, `dashboard/pages/executive-summary.html`, `dashboard/pages/validation.html`, `dashboard/pages/leaderboard.html`, `data/correlations.json`, `data/league_facts.json`, `data/validation_gates.json` |
+| RD-5 | nfl-lines fixes: "verified source file" → third-party/unverified framing, road-underdog label, drop nonexistent F-11 board reference, unverified banner (issues #13/#17) | in progress | `arena/2ce96ae4-korea2` | `nfl-lines/correlations.html`, `nfl-lines/data.html`, `nfl-lines/executive-summary.html`, `nfl-lines/index.html`, `nfl-lines/strategies.html` |
+| RD-6 | README: link the sibling lab directories from the repository layout (issue #25, README part only) | in progress | `arena/2ce96ae4-korea2` | `README.md` |
+| RD-7 | Re-run every checker in the touched scopes; regenerate derived JSON; record sources, verification and irregularities | in progress | `arena/2ce96ae4-korea2` | this section, `data/derived/*.json` (regenerated only by the pipeline) |
+| RD-8 | Integration PR to `main`, merge, confirm GitHub Pages deploy, record PR link + result | in progress | `arena/2ce96ae4-korea2` | this section, PR |
+
+**Requests to other session owners (logged here, not actioned):**
+1. `arena/e0d1c5c8-korea2` (root-nav owner, PR #93): please add the prominent `#N` issue entries to
+   root `pages/flagged.html` (currently zero `#N` references) and the direct top-level NAV entries for
+   `audit/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/` (issue #25). This session
+   edits `README.md` only and leaves root `index.html` / `pages/*` / `scripts/lib/site.py` untouched.
+2. nfl-lines 402 mirror-only rows: this session relabels the source framing to third-party/unverified
+   and adds a banner rather than blanking 370+ rows of verbatim third-party data by hand (see RD-5
+   log for the reasoned decision). If strict blanking is required, it is a separate mechanical task.
