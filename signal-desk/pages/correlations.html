@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Correlations from officially sourced numbers &middot; Signal Desk</title>
+<meta name="generator" content="signal-desk/scripts/build.py">
+<meta name="description" content="NFL line origination, verification and decision desk: Requirement 7. Official inputs only, n published with every value, blanks where the official join does not exist.">
+<style>
+:root{--bg:#0e1117;--panel:#161b24;--panel2:#1c2330;--line:#28303d;--txt:#e6e9ee;--dim:#9aa4b2;
+--acc:#4c8dff;--ok:#37b26c;--warn:#e0a83a;--bad:#e5534b;--tp:#8b7ce8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.6 -apple-system,BlinkMacSystemFont,
+"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.bar{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;gap:18px;align-items:baseline;
+flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;letter-spacing:.2px;color:#fff;white-space:nowrap}
+.brand span{color:var(--acc)}
+.stamp{color:var(--dim);font-size:12px;white-space:nowrap}
+nav{max-width:1240px;margin:0 auto;padding:0 20px 10px;display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-size:13px;color:var(--dim);padding:5px 9px;border-radius:6px;border:1px solid transparent}
+nav a:hover{background:var(--panel2);color:var(--txt);text-decoration:none}
+nav a.on{background:var(--panel2);color:#fff;border-color:var(--line)}
+main{max-width:1240px;margin:0 auto;padding:26px 20px 70px}
+h1{font-size:27px;line-height:1.25;margin:6px 0 8px}
+h2{font-size:19px;margin:0 0 12px}
+h3{font-size:15px;margin:22px 0 8px;color:#cfd6e0}
+p{margin:0 0 12px;max-width:78ch}
+.lede{color:var(--dim);font-size:16px;max-width:80ch}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700}
+.block{margin:30px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:20px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+.kpi .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.kpi .v{font-size:23px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:12px;color:var(--dim);margin-top:2px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+caption{text-align:left;padding:11px 14px 0;color:var(--dim);font-size:12.5px}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+color:var(--dim);position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a212c}
+td.src{font-size:12px;max-width:230px}
+td.src a{display:inline-block;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.badge{display:inline-block;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+padding:2px 7px;border-radius:20px;font-weight:700;white-space:nowrap}
+.badge.ok{background:rgba(55,178,108,.16);color:#5ed492;border:1px solid rgba(55,178,108,.35)}
+.badge.tp{background:rgba(139,124,232,.16);color:#a99cf0;border:1px solid rgba(139,124,232,.35)}
+.badge.flag{background:rgba(224,168,58,.14);color:#e8bd63;border:1px solid rgba(224,168,58,.35)}
+.badge.bad{background:rgba(229,83,75,.14);color:#f0837c;border:1px solid rgba(229,83,75,.35)}
+.badge.gray{background:#232b38;color:var(--dim);border:1px solid var(--line)}
+.na{color:#6d7787;font-style:italic}
+.flag{color:var(--warn)}
+.callout{border:1px solid var(--line);border-left:3px solid var(--acc);background:var(--panel);
+border-radius:8px;padding:13px 16px;margin:14px 0}
+.callout.warn{border-left-color:var(--warn)}
+.callout.good{border-left-color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}
+.callout strong{display:block;margin-bottom:4px}
+.callout p{margin:0;color:#cfd6e0;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:15px;color:#fff}
+.card p{font-size:13.5px;color:var(--dim);margin:0 0 10px}
+.card a{font-size:13px;font-weight:600}
+.tnote{color:var(--dim);font-size:12.5px;margin:8px 0 0;max-width:80ch}
+details{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px;
+margin:10px 0}
+summary{cursor:pointer;font-weight:600;font-size:14px}
+details p,details ul{font-size:13.5px;color:#cfd6e0}
+ul{padding-left:20px}li{margin:3px 0;max-width:80ch}
+footer{border-top:1px solid var(--line);color:var(--dim);font-size:12px;padding:22px 20px;
+max-width:1240px;margin:0 auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+</style></head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">SIGNAL <span>DESK</span></div>
+    <div class="stamp">Data built 2026-11-14T20:05:04+00:00</div>
+    <div class="stamp" style="margin-left:auto">
+      <a href="../../index.html">Line Lab &rarr;</a>
+    </div>
+  </div>
+  <nav><a href="../index.html">Overview</a><a href="../pages/prices.html">1 &middot; Prices</a><a href="../pages/results.html">2 &middot; Results</a><a href="../pages/order.html">3 &middot; Origination order</a><a href="../pages/gap.html">4 &middot; Fair vs market</a><a href="../pages/leaderboard.html">5 &middot; Signal vs staking</a><a href="../pages/depth.html">6 &middot; Replacement depth</a><a href="../pages/correlations.html" class="on">7 &middot; Correlations</a><a href="../pages/demotion.html">8 &middot; Demotion gate</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Questions</a><a href="../pages/summary.html">Executive summary</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Sources</a></nav>
+</header>
+<main>
+<h1>Correlations from officially sourced numbers</h1>
+<p class="lede">Requirement 7. Official inputs only, n published with every value, blanks where the official join does not exist.</p>
+<div class="callout warn"><strong>The rule</strong><p>A correlation is published only if both variables come from an official source for the same units, and only with n and a confidence interval. Where the official overlap is too small or does not exist, the value is blank and the reason is stated.</p></div><section class="block"><h2>Published values</h2><div class="tw"><table class=""><caption>Every value below comes from an official page. None is a third-party figure relabelled as official.</caption><thead><tr><th>Correlation</th><th>r</th><th>n</th><th>95% interval</th><th>Class</th><th>Note</th><th>Source</th></tr></thead><tbody><tr><td>team points for vs points against (2026, n=32 teams)</td><td>-0.0869</td><td>32</td><td>-0.4228 to 0.27</td><td><span class="badge ok">official</span></td><td>Both columns are official standings columns. A strong team necessarily pairs high PF with low PA, so this is descriptive, not a signal.</td><td class=src><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener" target="_blank">www.nfl.com/standings/division/2026/REG</a></td></tr><tr><td>team wins vs point differential (2026, n=32 teams)</td><td>0.8482</td><td>32</td><td>0.7093 to 0.9237</td><td><span class="badge ok">official</span></td><td>Point differential travels between seasons better than wins do; this is the 2026 snapshot.</td><td class=src><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener" target="_blank">www.nfl.com/standings/division/2026/REG</a></td></tr><tr><td>point differential persistence (2025 to 2026, n=32 teams)</td><td>0.5031</td><td>32</td><td>0.1872 to 0.7247</td><td><span class="badge ok">official</span></td><td>The 2026 value is a part-season (8-9 games); a full-season persistence figure cannot be computed until the season ends and is not inferred. The 2025 season is 17 games.</td><td class=src><a href="https://www.nfl.com/standings/division/2025/REG + https://www.nfl.com/standings/division/2026/REG" rel="noopener" target="_blank">www.nfl.com/standings/division/2025/REG + www.nfl&amp;hellip;</a></td></tr><tr><td>win-total persistence (2025 to 2026, n=32 teams)</td><td>0.3988</td><td>32</td><td>0.0582 to 0.6562</td><td><span class="badge ok">official</span></td><td>Wins are compared across unequal game counts (17 vs 8-9), which flatters the correlation; the ratio is not rescaled because rescaling would be an inference.</td><td class=src><a href="https://www.nfl.com/standings/division/2025/REG + https://www.nfl.com/standings/division/2026/REG" rel="noopener" target="_blank">www.nfl.com/standings/division/2025/REG + www.nfl&amp;hellip;</a></td></tr><tr><td>QB passing yards vs WR1 receiving yards (same player)</td><td><span class="na">blank</span></td><td><span class="na">0</span></td><td><span class="na">blank</span></td><td><span class="badge flag">unverified</span></td><td>The two official leader tables describe different players, so they cannot be paired into one observation. The statistic the project needs is a per-team-game join of a quarterback&#x27;s passing yards and his top receiver&#x27;s yards; the official season-leader pages do not publish that join and the official team pages do not expose it in a machine-readable form. Published as blank rather than replaced with the committed third-party figure. <em>Needed: Per-game official passing and receiving lines for the same games, for a large enough sample to estimate r.</em></td><td class=src><a href="https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc + https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingyards/desc" rel="noopener" target="_blank">www.nfl.com/stats/player-stats/category/passing/2&amp;hellip;</a></td></tr></tbody></table></div></section><section class="block"><h2>Why the parlay pair is blank</h2><div class="callout bad"><strong>Blank on purpose</strong><p>The parlay pricing this project wants depends on how a quarterback's passing yards move with his top receiver's receiving yards in the same game. The official season-leader pages publish the two quantities for <em>different players</em>, so they cannot be paired. The value is published blank and the reason is stated, rather than replaced with the committed third-party estimate &mdash; which exists, and is r = 0.5616 at n = 7,560, but is not official.</p></div></section><section class="block"><h2>What n=32 means</h2><div class="callout warn"><strong>Small n, stated plainly</strong><p>The team-level correlations are computed over 32 team-seasons. That is enough to describe the season and nowhere near enough to claim a stable effect. The interval is reported with every value for exactly this reason.</p></div></section>
+</main>
+<footer>
+  Research and measurement, not betting advice. Every number on this page is rendered from
+  <span class="mono">signal-desk/data/*.json</span>; none is typed by hand. A blank cell means the
+  value could not be confirmed from the source named in that row &mdash; it is never inferred.
+  <br>Official figures are transcribed from nfl.com pages read on the date shown in each row.
+  Third-party figures come from nflverse community data and are labelled as such.
+</footer>
+</body></html>

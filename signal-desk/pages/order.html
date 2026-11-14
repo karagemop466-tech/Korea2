@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Origination order: side, then total, then moneyline &middot; Signal Desk</title>
+<meta name="generator" content="signal-desk/scripts/build.py">
+<meta name="description" content="NFL line origination, verification and decision desk: Requirement 3. The moneyline must be a function of the side, not a third opinion.">
+<style>
+:root{--bg:#0e1117;--panel:#161b24;--panel2:#1c2330;--line:#28303d;--txt:#e6e9ee;--dim:#9aa4b2;
+--acc:#4c8dff;--ok:#37b26c;--warn:#e0a83a;--bad:#e5534b;--tp:#8b7ce8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.6 -apple-system,BlinkMacSystemFont,
+"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.bar{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;gap:18px;align-items:baseline;
+flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;letter-spacing:.2px;color:#fff;white-space:nowrap}
+.brand span{color:var(--acc)}
+.stamp{color:var(--dim);font-size:12px;white-space:nowrap}
+nav{max-width:1240px;margin:0 auto;padding:0 20px 10px;display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-size:13px;color:var(--dim);padding:5px 9px;border-radius:6px;border:1px solid transparent}
+nav a:hover{background:var(--panel2);color:var(--txt);text-decoration:none}
+nav a.on{background:var(--panel2);color:#fff;border-color:var(--line)}
+main{max-width:1240px;margin:0 auto;padding:26px 20px 70px}
+h1{font-size:27px;line-height:1.25;margin:6px 0 8px}
+h2{font-size:19px;margin:0 0 12px}
+h3{font-size:15px;margin:22px 0 8px;color:#cfd6e0}
+p{margin:0 0 12px;max-width:78ch}
+.lede{color:var(--dim);font-size:16px;max-width:80ch}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700}
+.block{margin:30px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:20px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+.kpi .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.kpi .v{font-size:23px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:12px;color:var(--dim);margin-top:2px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+caption{text-align:left;padding:11px 14px 0;color:var(--dim);font-size:12.5px}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+color:var(--dim);position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a212c}
+td.src{font-size:12px;max-width:230px}
+td.src a{display:inline-block;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.badge{display:inline-block;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+padding:2px 7px;border-radius:20px;font-weight:700;white-space:nowrap}
+.badge.ok{background:rgba(55,178,108,.16);color:#5ed492;border:1px solid rgba(55,178,108,.35)}
+.badge.tp{background:rgba(139,124,232,.16);color:#a99cf0;border:1px solid rgba(139,124,232,.35)}
+.badge.flag{background:rgba(224,168,58,.14);color:#e8bd63;border:1px solid rgba(224,168,58,.35)}
+.badge.bad{background:rgba(229,83,75,.14);color:#f0837c;border:1px solid rgba(229,83,75,.35)}
+.badge.gray{background:#232b38;color:var(--dim);border:1px solid var(--line)}
+.na{color:#6d7787;font-style:italic}
+.flag{color:var(--warn)}
+.callout{border:1px solid var(--line);border-left:3px solid var(--acc);background:var(--panel);
+border-radius:8px;padding:13px 16px;margin:14px 0}
+.callout.warn{border-left-color:var(--warn)}
+.callout.good{border-left-color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}
+.callout strong{display:block;margin-bottom:4px}
+.callout p{margin:0;color:#cfd6e0;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:15px;color:#fff}
+.card p{font-size:13.5px;color:var(--dim);margin:0 0 10px}
+.card a{font-size:13px;font-weight:600}
+.tnote{color:var(--dim);font-size:12.5px;margin:8px 0 0;max-width:80ch}
+details{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px;
+margin:10px 0}
+summary{cursor:pointer;font-weight:600;font-size:14px}
+details p,details ul{font-size:13.5px;color:#cfd6e0}
+ul{padding-left:20px}li{margin:3px 0;max-width:80ch}
+footer{border-top:1px solid var(--line);color:var(--dim);font-size:12px;padding:22px 20px;
+max-width:1240px;margin:0 auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+</style></head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">SIGNAL <span>DESK</span></div>
+    <div class="stamp">Data built 2026-11-14T20:05:04+00:00</div>
+    <div class="stamp" style="margin-left:auto">
+      <a href="../../index.html">Line Lab &rarr;</a>
+    </div>
+  </div>
+  <nav><a href="../index.html">Overview</a><a href="../pages/prices.html">1 &middot; Prices</a><a href="../pages/results.html">2 &middot; Results</a><a href="../pages/order.html" class="on">3 &middot; Origination order</a><a href="../pages/gap.html">4 &middot; Fair vs market</a><a href="../pages/leaderboard.html">5 &middot; Signal vs staking</a><a href="../pages/depth.html">6 &middot; Replacement depth</a><a href="../pages/correlations.html">7 &middot; Correlations</a><a href="../pages/demotion.html">8 &middot; Demotion gate</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Questions</a><a href="../pages/summary.html">Executive summary</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Sources</a></nav>
+</header>
+<main>
+<h1>Origination order: side, then total, then moneyline</h1>
+<p class="lede">Requirement 3. The moneyline must be a function of the side, not a third opinion.</p>
+<div class="callout good"><strong>The claimed order holds, mechanically</strong><p>The published order does hold mechanically: the side is modelled first, the total is estimated from its own attack/defence terms, and the moneyline is Phi(side/sigma). What the order does not buy is accuracy - both originated markets are worse than the market closing line on the same games.</p></div><section class="block"><h2>The order</h2><div class="tw"><table class=""><caption>The moneyline must be a re-expression of the side, not an independent third model. If it were fitted separately the three markets could contradict each other and a parlay across them would inherit the contradiction.</caption><thead><tr><th>Step</th><th>Market</th><th>Why it is in this position</th></tr></thead><tbody><tr><td>1</td><td>Side (spread)</td><td class=src>The attack/defence model estimates a scoring margin. Nothing downstream can contradict it.</td></tr><tr><td>2</td><td>Total</td><td class=src>Estimated from the same terms but a separate quantity, so the side and the total cannot be a by-product of one another.</td></tr><tr><td>3</td><td>Moneyline</td><td class=src>A re-expression of the side through Phi(side / sigma). Not a third independent model.</td></tr></tbody></table></div></section><section class="block"><h2>Tests</h2><div class="tw"><table class=""><thead><tr><th>Test</th><th>Verdict</th><th>What the numbers show</th><th>Source</th></tr></thead><tbody><tr><td><strong>moneyline is a monotone function of the side</strong></td><td><span class="badge ok">pass</span></td><td>P(home win) is printed to 4 decimals from Phi(spread / sigma). Recomputing it from the published side reproduces every one of the 15 games within 0.0014.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td><strong>total is not a by-product of the side</strong></td><td><span class="badge ok">pass</span></td><td>Across the board the side and the total are close to uncorrelated, which is what independent estimation should look like.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td><strong>the side is originated, not copied from the market</strong></td><td><span class="badge ok">pass</span></td><td>The side is produced by the model with no market input. It is worse than the market (higher MAE), which is the honest outcome to publish.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td><strong>the total is originated, not copied from the market</strong></td><td><span class="badge ok">pass</span></td><td>Same construction as the side; also worse than the market.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr></tbody></table></div></section><section class="block"><h2>Moneyline reconstructed from the side</h2><div class="tw"><table class=""><caption>sigma = 13.347. A difference above 0.002 would fail the build.</caption><thead><tr><th>Game</th><th>Side</th><th>Published P(home)</th><th>Phi(side / sigma)</th><th>Difference</th><th>Published ML</th><th>Recomputed ML</th><th>Check</th><th>Source</th></tr></thead><tbody><tr><td>2026_09_JAX_BAL</td><td>-5.8</td><td>0.3307</td><td>0.3319</td><td>+0.0012</td><td>202.0</td><td>201</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_CIN_ATL</td><td>-4.1</td><td>0.3796</td><td>0.3794</td><td>-0.0002</td><td>163.0</td><td>164</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_DEN_CAR</td><td>+0.4</td><td>0.5129</td><td>0.5120</td><td>-0.0009</td><td>-105.0</td><td>-105</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_DAL_IND</td><td>-0.0</td><td>0.4988</td><td>0.5000</td><td>+0.0012</td><td>100.0</td><td>-100</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_NYJ_KC</td><td>+7.3</td><td>0.7076</td><td>0.7078</td><td>+0.0002</td><td>-242.0</td><td>-242</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_DET_MIA</td><td>-2.2</td><td>0.4357</td><td>0.4345</td><td>-0.0012</td><td>130.0</td><td>130</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_CLE_NO</td><td>+1.6</td><td>0.5475</td><td>0.5477</td><td>+0.0002</td><td>-121.0</td><td>-121</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_NYG_PHI</td><td>+3.4</td><td>0.6008</td><td>0.6005</td><td>-0.0003</td><td>-150.0</td><td>-150</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_LA_WAS</td><td>+0.5</td><td>0.5140</td><td>0.5149</td><td>+0.0009</td><td>-106.0</td><td>-106</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_HOU_LAC</td><td>-2.7</td><td>0.4212</td><td>0.4198</td><td>-0.0014</td><td>137.0</td><td>138</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_LV_SF</td><td>+8.5</td><td>0.7368</td><td>0.7379</td><td>+0.0011</td><td>-280.0</td><td>-282</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_GB_NE</td><td>+4.8</td><td>0.6393</td><td>0.6404</td><td>+0.0011</td><td>-177.0</td><td>-178</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_ARI_SEA</td><td>+11.2</td><td>0.7998</td><td>0.7993</td><td>-0.0005</td><td>-400.0</td><td>-398</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_TB_CHI</td><td>-1.5</td><td>0.4551</td><td>0.4553</td><td>+0.0002</td><td>120.0</td><td>120</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2026_09_BUF_MIN</td><td>+1.4</td><td>0.5425</td><td>0.5418</td><td>-0.0007</td><td>-119.0</td><td>-118</td><td><span class="badge ok">reproduces</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr></tbody></table></div><p class="tnote">Board is season 2026, week 9. The committed board is the week the pipeline last ran, not the live week. It is presented as of that week and not as a current slate.</p></section><section class="block"><h2>Enforcement</h2><div class="callout warn"><strong>How this is kept true</strong><p>signal-desk/scripts/build.py:build_order() recomputes the moneyline from the side on every build and fails the build if the two disagree by more than 0.002.</p></div></section>
+</main>
+<footer>
+  Research and measurement, not betting advice. Every number on this page is rendered from
+  <span class="mono">signal-desk/data/*.json</span>; none is typed by hand. A blank cell means the
+  value could not be confirmed from the source named in that row &mdash; it is never inferred.
+  <br>Official figures are transcribed from nfl.com pages read on the date shown in each row.
+  Third-party figures come from nflverse community data and are labelled as such.
+</footer>
+</body></html>

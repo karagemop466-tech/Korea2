@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-09",
   "title": "Questions, unknowns and suggestions, for review before anything is implemented",
-  "generated_utc": "2026-11-14T20:05:04+00:00",
+  "generated_utc": "2026-11-14T20:07:07+00:00",
   "how_to_use": "Read the questions first. A question is listed because a decision cannot be made without it. Each suggestion names the question it waits on, so nothing on this page has to be implemented to be evaluated.",
   "counts": {
    "questions": 12,

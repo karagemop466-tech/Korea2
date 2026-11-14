@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions for review &middot; Signal Desk</title>
+<meta name="generator" content="signal-desk/scripts/build.py">
+<meta name="description" content="NFL line origination, verification and decision desk: A proposal list you can read and reject before anything is built. Each proposal names the question it is waiting on.">
+<style>
+:root{--bg:#0e1117;--panel:#161b24;--panel2:#1c2330;--line:#28303d;--txt:#e6e9ee;--dim:#9aa4b2;
+--acc:#4c8dff;--ok:#37b26c;--warn:#e0a83a;--bad:#e5534b;--tp:#8b7ce8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.6 -apple-system,BlinkMacSystemFont,
+"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.bar{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;gap:18px;align-items:baseline;
+flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;letter-spacing:.2px;color:#fff;white-space:nowrap}
+.brand span{color:var(--acc)}
+.stamp{color:var(--dim);font-size:12px;white-space:nowrap}
+nav{max-width:1240px;margin:0 auto;padding:0 20px 10px;display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-size:13px;color:var(--dim);padding:5px 9px;border-radius:6px;border:1px solid transparent}
+nav a:hover{background:var(--panel2);color:var(--txt);text-decoration:none}
+nav a.on{background:var(--panel2);color:#fff;border-color:var(--line)}
+main{max-width:1240px;margin:0 auto;padding:26px 20px 70px}
+h1{font-size:27px;line-height:1.25;margin:6px 0 8px}
+h2{font-size:19px;margin:0 0 12px}
+h3{font-size:15px;margin:22px 0 8px;color:#cfd6e0}
+p{margin:0 0 12px;max-width:78ch}
+.lede{color:var(--dim);font-size:16px;max-width:80ch}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700}
+.block{margin:30px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:20px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+.kpi .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.kpi .v{font-size:23px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:12px;color:var(--dim);margin-top:2px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+caption{text-align:left;padding:11px 14px 0;color:var(--dim);font-size:12.5px}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+color:var(--dim);position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a212c}
+td.src{font-size:12px;max-width:230px}
+td.src a{display:inline-block;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.badge{display:inline-block;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+padding:2px 7px;border-radius:20px;font-weight:700;white-space:nowrap}
+.badge.ok{background:rgba(55,178,108,.16);color:#5ed492;border:1px solid rgba(55,178,108,.35)}
+.badge.tp{background:rgba(139,124,232,.16);color:#a99cf0;border:1px solid rgba(139,124,232,.35)}
+.badge.flag{background:rgba(224,168,58,.14);color:#e8bd63;border:1px solid rgba(224,168,58,.35)}
+.badge.bad{background:rgba(229,83,75,.14);color:#f0837c;border:1px solid rgba(229,83,75,.35)}
+.badge.gray{background:#232b38;color:var(--dim);border:1px solid var(--line)}
+.na{color:#6d7787;font-style:italic}
+.flag{color:var(--warn)}
+.callout{border:1px solid var(--line);border-left:3px solid var(--acc);background:var(--panel);
+border-radius:8px;padding:13px 16px;margin:14px 0}
+.callout.warn{border-left-color:var(--warn)}
+.callout.good{border-left-color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}
+.callout strong{display:block;margin-bottom:4px}
+.callout p{margin:0;color:#cfd6e0;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:15px;color:#fff}
+.card p{font-size:13.5px;color:var(--dim);margin:0 0 10px}
+.card a{font-size:13px;font-weight:600}
+.tnote{color:var(--dim);font-size:12.5px;margin:8px 0 0;max-width:80ch}
+details{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px;
+margin:10px 0}
+summary{cursor:pointer;font-weight:600;font-size:14px}
+details p,details ul{font-size:13.5px;color:#cfd6e0}
+ul{padding-left:20px}li{margin:3px 0;max-width:80ch}
+footer{border-top:1px solid var(--line);color:var(--dim);font-size:12px;padding:22px 20px;
+max-width:1240px;margin:0 auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+</style></head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">SIGNAL <span>DESK</span></div>
+    <div class="stamp">Data built 2026-11-14T20:05:04+00:00</div>
+    <div class="stamp" style="margin-left:auto">
+      <a href="../../index.html">Line Lab &rarr;</a>
+    </div>
+  </div>
+  <nav><a href="../index.html">Overview</a><a href="../pages/prices.html">1 &middot; Prices</a><a href="../pages/results.html">2 &middot; Results</a><a href="../pages/order.html">3 &middot; Origination order</a><a href="../pages/gap.html">4 &middot; Fair vs market</a><a href="../pages/leaderboard.html">5 &middot; Signal vs staking</a><a href="../pages/depth.html">6 &middot; Replacement depth</a><a href="../pages/correlations.html">7 &middot; Correlations</a><a href="../pages/demotion.html">8 &middot; Demotion gate</a><a href="../pages/suggestions.html" class="on">Suggestions</a><a href="../pages/questions.html">Questions</a><a href="../pages/summary.html">Executive summary</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Sources</a></nav>
+</header>
+<main>
+<h1>Suggestions for review</h1>
+<p class="lede">A proposal list you can read and reject before anything is built. Each proposal names the question it is waiting on.</p>
+<div class="callout warn"><strong>Nothing on this page is implemented</strong><p>Read the questions first. A question is listed because a decision cannot be made without it. Each suggestion names the question it waits on, so nothing on this page has to be implemented to be evaluated.</p></div><section class="block"><h2>Eight suggestions</h2><div class="tw"><table class=""><thead><tr><th>ID</th><th>Suggestion</th><th>Problem</th><th>Change</th><th>Impact</th><th>Effort</th><th>Risk</th><th>Waits on</th><th>How you would know it worked</th><th>Evidence</th></tr></thead><tbody><tr><td><strong>S1</strong></td><td><strong>Timestamp every price and reject any bet settled on an untimestamped price</strong></td><td>A price without a time is not a price you could have taken.</td><td>Add price_time and book columns to the snapshot store; every settlement joins on them and the backtest refuses rows without them.</td><td><span class="badge gray">high</span></td><td><span class="badge gray">medium</span></td><td><span class="badge flag">low</span></td><td>Q1, Q2, Q12</td><td>100% of settled bets carry a price_time and a book.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/price_snapshots.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>S2</strong></td><td><strong>Buy or drop prop prices; stop pricing prop combos with model probabilities</strong></td><td>A model probability is not a price. Prop combos currently cannot yield an ROI at all.</td><td>Either source historical prop prices or remove the prop ROI column and label the page as unpriceable.</td><td><span class="badge gray">high</span></td><td><span class="badge gray">high</span></td><td><span class="badge flag">low</span></td><td>Q8</td><td>Every prop combo row has a market price or explicitly none.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/props.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td><strong>S3</strong></td><td><strong>Stage promotion: paper, then live, with a hard bet cap while in paper</strong></td><td>Ten gates on 1,000+ bets is a high bar that will approve almost nothing; a lower bar with no staging approves too much.</td><td>Add a three-state path (paper, capped live, full live) where demotion is automatic.</td><td><span class="badge gray">medium</span></td><td><span class="badge gray">medium</span></td><td><span class="badge flag">medium</span></td><td>Q4, Q7</td><td>A strategy can fail its way back to paper without human action.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>S4</strong></td><td><strong>Publish CLV against the closing line only where a real closing number exists</strong></td><td>CLV is the strongest skill measure available, and it needs two numbers from the same book.</td><td>Compute CLV per bet against the closing snapshot; leave it blank where the closing row is absent instead of substituting a different book.</td><td><span class="badge gray">high</span></td><td><span class="badge gray">low</span></td><td><span class="badge flag">low</span></td><td>Q1, Q2</td><td>CLV published with n, and blanks where the closing number is missing.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/price_snapshots.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>S5</strong></td><td><strong>Two-column leaderboard: signal rank and staking rank, never one blended score</strong></td><td>A blended score hides exactly the case the user asked about: a lucky staking run masking a bad signal.</td><td>Show signal rank (significance) and staking rank (return) side by side, and reward only when both clear their own bar.</td><td><span class="badge gray">high</span></td><td><span class="badge gray">low</span></td><td><span class="badge flag">low</span></td><td>Q5, Q10</td><td>No strategy can rank above another on staking alone.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/signal_vs_staking.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>S6</strong></td><td><strong>Make depth a model input behind a walk-forward test, not a separate page</strong></td><td>The depth work is descriptive today; it changes no number the model produces.</td><td>Feed a weighted depth-lost term into the ridge engine on a walk-forward basis and report the MAE change out of sample.</td><td><span class="badge gray">medium</span></td><td><span class="badge gray">high</span></td><td><span class="badge flag">medium</span></td><td>Q3, Q11</td><td>Out-of-sample spread MAE falls versus the current 10.39 points.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/replacement_depth.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>S7</strong></td><td><strong>Pre-register every new correlation before computing it</strong></td><td>Trying many pairs and publishing the big ones is how a false signal gets built.</td><td>Write the pair, the units, the n and the threshold to a file first; the build fails if an unregistered pair appears in the output.</td><td><span class="badge gray">medium</span></td><td><span class="badge gray">low</span></td><td><span class="badge flag">low</span></td><td>Q6</td><td>0 correlations published without a prior registration row.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/correlation_official.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>S8</strong></td><td><strong>Make the executable gate a hard, named, one-time test</strong></td><td>Every strategy fails gate G9 because no book, licence or limit was ever verified. That is an unanswered question, not a strategy defect.</td><td>Record one verified book, jurisdiction and limit, then re-test G9 as a yes/no.</td><td><span class="badge gray">high</span></td><td><span class="badge gray">low</span></td><td><span class="badge bad">high</span></td><td>Q9</td><td>G9 evaluable for at least one strategy.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr></tbody></table></div></section><section class="block"><h2>The three decisions that gate everything else</h2><details><summary>D1 &middot; Where do prices come from?</summary>
+<p><strong>Gated by:</strong> Q1, Q2, Q12 &middot;
+<strong>Evidence:</strong> price_snapshots.json</p>
+<table><thead><tr><th>Option</th><th>Cost</th><th>What you get</th><th>What could go wrong</th></tr></thead>
+<tbody><tr><td><strong>Licensed official feed</strong></td><td>money + contract</td><td>defensible CLV and a real demotion trigger D3/D4</td><td>may not exist at any price you accept</td></tr><tr><td><strong>Third-party aggregator, labelled</strong></td><td>none</td><td>coverage today</td><td>no book identity, no timestamp, CLV stays unverifiable</td></tr><tr><td><strong>Stop publishing CLV</strong></td><td>none</td><td>honesty</td><td>loses the best available skill measure</td></tr>
+</tbody></table></details><details><summary>D2 &middot; How does a strategy earn capital, and how does it lose it?</summary>
+<p><strong>Gated by:</strong> Q4, Q7, Q9 &middot;
+<strong>Evidence:</strong> demotion_gate.json + leaderboard.json</p>
+<table><thead><tr><th>Option</th><th>Cost</th><th>What you get</th><th>What could go wrong</th></tr></thead>
+<tbody><tr><td><strong>Keep the ten-gate bar only</strong></td><td>none</td><td>nothing goes live</td><td>the system never produces a signal</td></tr><tr><td><strong>Ten gates + staged live + automatic demotion</strong></td><td>engineering</td><td>a defined entry and exit</td><td>thresholds are untested</td></tr><tr><td><strong>Lower the static gates</strong></td><td>none</td><td>more candidates</td><td>lets luck through by construction</td></tr>
+</tbody></table></details><details><summary>D3 &middot; Where does injuries and depth sit?</summary>
+<p><strong>Gated by:</strong> Q3, Q11 &middot;
+<strong>Evidence:</strong> replacement_depth.json</p>
+<table><thead><tr><th>Option</th><th>Cost</th><th>What you get</th><th>What could go wrong</th></tr></thead>
+<tbody><tr><td><strong>Keep it descriptive</strong></td><td>none</td><td>context</td><td>changes no number</td></tr><tr><td><strong>Model input behind a walk-forward test</strong></td><td>engineering</td><td>a possible MAE gain</td><td>third-party depth, so the gain may not be real</td></tr><tr><td><strong>Model input from an official source only</strong></td><td>sourcing</td><td>defensibility</td><td>no official depth source was found</td></tr>
+</tbody></table></details></section>
+</main>
+<footer>
+  Research and measurement, not betting advice. Every number on this page is rendered from
+  <span class="mono">signal-desk/data/*.json</span>; none is typed by hand. A blank cell means the
+  value could not be confirmed from the source named in that row &mdash; it is never inferred.
+  <br>Official figures are transcribed from nfl.com pages read on the date shown in each row.
+  Third-party figures come from nflverse community data and are labelled as such.
+</footer>
+</body></html>

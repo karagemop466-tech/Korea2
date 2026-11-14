@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demotion gate: sending a live strategy back to paper &middot; Signal Desk</title>
+<meta name="generator" content="signal-desk/scripts/build.py">
+<meta name="description" content="NFL line origination, verification and decision desk: Requirement 8. A promotion-only system is a ratchet. This is the exit.">
+<style>
+:root{--bg:#0e1117;--panel:#161b24;--panel2:#1c2330;--line:#28303d;--txt:#e6e9ee;--dim:#9aa4b2;
+--acc:#4c8dff;--ok:#37b26c;--warn:#e0a83a;--bad:#e5534b;--tp:#8b7ce8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.6 -apple-system,BlinkMacSystemFont,
+"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.bar{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;gap:18px;align-items:baseline;
+flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;letter-spacing:.2px;color:#fff;white-space:nowrap}
+.brand span{color:var(--acc)}
+.stamp{color:var(--dim);font-size:12px;white-space:nowrap}
+nav{max-width:1240px;margin:0 auto;padding:0 20px 10px;display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-size:13px;color:var(--dim);padding:5px 9px;border-radius:6px;border:1px solid transparent}
+nav a:hover{background:var(--panel2);color:var(--txt);text-decoration:none}
+nav a.on{background:var(--panel2);color:#fff;border-color:var(--line)}
+main{max-width:1240px;margin:0 auto;padding:26px 20px 70px}
+h1{font-size:27px;line-height:1.25;margin:6px 0 8px}
+h2{font-size:19px;margin:0 0 12px}
+h3{font-size:15px;margin:22px 0 8px;color:#cfd6e0}
+p{margin:0 0 12px;max-width:78ch}
+.lede{color:var(--dim);font-size:16px;max-width:80ch}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700}
+.block{margin:30px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:20px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+.kpi .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.kpi .v{font-size:23px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:12px;color:var(--dim);margin-top:2px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+caption{text-align:left;padding:11px 14px 0;color:var(--dim);font-size:12.5px}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+color:var(--dim);position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a212c}
+td.src{font-size:12px;max-width:230px}
+td.src a{display:inline-block;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.badge{display:inline-block;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+padding:2px 7px;border-radius:20px;font-weight:700;white-space:nowrap}
+.badge.ok{background:rgba(55,178,108,.16);color:#5ed492;border:1px solid rgba(55,178,108,.35)}
+.badge.tp{background:rgba(139,124,232,.16);color:#a99cf0;border:1px solid rgba(139,124,232,.35)}
+.badge.flag{background:rgba(224,168,58,.14);color:#e8bd63;border:1px solid rgba(224,168,58,.35)}
+.badge.bad{background:rgba(229,83,75,.14);color:#f0837c;border:1px solid rgba(229,83,75,.35)}
+.badge.gray{background:#232b38;color:var(--dim);border:1px solid var(--line)}
+.na{color:#6d7787;font-style:italic}
+.flag{color:var(--warn)}
+.callout{border:1px solid var(--line);border-left:3px solid var(--acc);background:var(--panel);
+border-radius:8px;padding:13px 16px;margin:14px 0}
+.callout.warn{border-left-color:var(--warn)}
+.callout.good{border-left-color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}
+.callout strong{display:block;margin-bottom:4px}
+.callout p{margin:0;color:#cfd6e0;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:15px;color:#fff}
+.card p{font-size:13.5px;color:var(--dim);margin:0 0 10px}
+.card a{font-size:13px;font-weight:600}
+.tnote{color:var(--dim);font-size:12.5px;margin:8px 0 0;max-width:80ch}
+details{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px;
+margin:10px 0}
+summary{cursor:pointer;font-weight:600;font-size:14px}
+details p,details ul{font-size:13.5px;color:#cfd6e0}
+ul{padding-left:20px}li{margin:3px 0;max-width:80ch}
+footer{border-top:1px solid var(--line);color:var(--dim);font-size:12px;padding:22px 20px;
+max-width:1240px;margin:0 auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+</style></head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">SIGNAL <span>DESK</span></div>
+    <div class="stamp">Data built 2026-11-14T20:05:04+00:00</div>
+    <div class="stamp" style="margin-left:auto">
+      <a href="../../index.html">Line Lab &rarr;</a>
+    </div>
+  </div>
+  <nav><a href="../index.html">Overview</a><a href="../pages/prices.html">1 &middot; Prices</a><a href="../pages/results.html">2 &middot; Results</a><a href="../pages/order.html">3 &middot; Origination order</a><a href="../pages/gap.html">4 &middot; Fair vs market</a><a href="../pages/leaderboard.html">5 &middot; Signal vs staking</a><a href="../pages/depth.html">6 &middot; Replacement depth</a><a href="../pages/correlations.html">7 &middot; Correlations</a><a href="../pages/demotion.html" class="on">8 &middot; Demotion gate</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Questions</a><a href="../pages/summary.html">Executive summary</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Sources</a></nav>
+</header>
+<main>
+<h1>Demotion gate: sending a live strategy back to paper</h1>
+<p class="lede">Requirement 8. A promotion-only system is a ratchet. This is the exit.</p>
+<div class="callout warn"><strong>The gap this closes</strong><p>The ten static gates decide whether a strategy may go live. Nothing decided what happens after it is live. A promotion-only system is a ratchet: one lucky validation keeps a strategy funded forever.</p></div><section class="block"><h2>Rules</h2><div class="tw"><table class=""><caption>A rule fires on its trigger alone; no judgement call is needed at the moment it matters.</caption><thead><tr><th>ID</th><th>Rule</th><th>Trigger</th><th>Action</th><th>Source</th></tr></thead><tbody><tr><td><strong>D1</strong></td><td>Signal decay</td><td>The live strategy&#x27;s lower 95% ROI bound falls to 0 or below over its last 200 settled bets.</td><td><span class="badge bad">automatic</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>D2</strong></td><td>Drawdown against the validated curve</td><td>Cumulative profit falls more than 2 standard deviations below the validated backtest path.</td><td><span class="badge bad">automatic</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>D3</strong></td><td>Market move against the origin</td><td>The closing line no longer differs from the fair line in the direction the signal claims, for 3 consecutive weeks.</td><td><span class="badge bad">automatic</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>D4</strong></td><td>Price availability</td><td>The price taken is worse than the validated price by more than the modelled edge for 10 consecutive bets.</td><td><span class="badge bad">automatic</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>D5</strong></td><td>Data integrity</td><td>Any input hash changes without a recorded re-validation, or the official results feed disagrees with the committed data for a week in the live window.</td><td><span class="badge bad">automatic</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>D6</strong></td><td>Gate re-test</td><td>The strategy fails any of the ten static gates when re-tested on new data.</td><td><span class="badge bad">automatic</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>D7</strong></td><td>Replacement-depth shock</td><td>A team the strategy depends on loses a first-string player at a position the strategy&#x27;s edge is built on, and depth is 3rd string or worse.</td><td><span class="badge flag">flagged for review, not auto-demoted</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td><strong>D8</strong></td><td>Silence</td><td>No settled bet for 21 days during the live window.</td><td><span class="badge flag">flagged for review</span></td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr></tbody></table></div></section><section class="block"><h2>State machine</h2><div class="tw"><table class=""><caption>There is no transition from paper (demoted) straight back to live on the old evidence. A demoted strategy must re-earn its place on data it has not seen.</caption><thead><tr><th>From</th><th></th><th>To</th><th>Requires</th><th>Source</th></tr></thead><tbody><tr><td>paper</td><td>&rarr;</td><td>live</td><td>all ten static gates pass AND D1-D6 have an evaluable history</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td>live</td><td>&rarr;</td><td>paper (demoted)</td><td>any of D1, D2, D3, D4, D6 fires</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td>live</td><td>&rarr;</td><td>suspended</td><td>D5 fires</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td>suspended</td><td>&rarr;</td><td>paper</td><td>the input hash is restored or the official results are reconciled</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td>paper (demoted)</td><td>&rarr;</td><td>live</td><td>the full ten-gate validation is re-run on fresh data and passes</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr></tbody></table></div></section><section class="block"><h2>Can each rule be evaluated today?</h2><div class="tw"><table class=""><caption>Four of the eight rules cannot fire yet because their inputs do not exist. That is a finding, not an omission.</caption><thead><tr><th>Rule</th><th>Evaluable</th><th>Why</th><th>Source</th></tr></thead><tbody><tr><td>D1</td><td><span class="badge ok">evaluable</span></td><td>Needs 200 settled live bets; computable as soon as a strategy is live.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td>D2</td><td><span class="badge flag">not yet</span></td><td>Needs a validated backtest path; none exists because no strategy passed.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td>D3</td><td><span class="badge flag">not yet</span></td><td>Needs an opening price snapshot; only one season of opening lines exists (SD-01).</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td>D4</td><td><span class="badge flag">not yet</span></td><td>Needs verified executable prices; the executable gate has never been verified.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td>D5</td><td><span class="badge ok">evaluable</span></td><td>The manifest already hashes every input.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr><tr><td>D6</td><td><span class="badge ok">evaluable</span></td><td>The ten static gates already run.</td><td class=src><a href="https://github.com/karagemop466-tech/Korea2/blob/main/signal-desk/data/demotion_gate.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/sig&amp;hellip;</a></td></tr></tbody></table></div></section><section class="block"><h2>Deliberate asymmetry</h2><div class="callout good"><strong>Slow in, fast out</strong><p>Promotion is slow (ten gates on a large sample). Demotion is fast (a single rule breach). That asymmetry is deliberate.</p></div></section><section class="block"><h2>Current state</h2><div class="callout warn"><strong>Nothing is live</strong><p>Nothing is live, so no demotion has fired. The gate is published pre-armed so that the first live strategy has a defined exit before it has a defined entry.</p></div></section>
+</main>
+<footer>
+  Research and measurement, not betting advice. Every number on this page is rendered from
+  <span class="mono">signal-desk/data/*.json</span>; none is typed by hand. A blank cell means the
+  value could not be confirmed from the source named in that row &mdash; it is never inferred.
+  <br>Official figures are transcribed from nfl.com pages read on the date shown in each row.
+  Third-party figures come from nflverse community data and are labelled as such.
+</footer>
+</body></html>

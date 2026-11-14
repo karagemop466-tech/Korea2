@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-08",
   "title": "A demotion gate that sends a live strategy back to paper",
-  "generated_utc": "2026-11-14T20:05:04+00:00",
+  "generated_utc": "2026-11-14T20:07:07+00:00",
   "problem_it_fixes": "The ten static gates decide whether a strategy may go live. Nothing decided what happens after it is live. A promotion-only system is a ratchet: one lucky validation keeps a strategy funded forever.",
   "promotion_gate": {
    "tier_1": "10/10 gates - full allocation",
