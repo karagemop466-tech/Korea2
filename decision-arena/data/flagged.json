@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:40:47Z",
+ "generated_utc": "2026-11-14T20:45:07Z",
  "policy": "A flag is not a blocker to publication; it is a blocker to trusting the affected number without reading it. Flags are closed only when a source exists.",
  "items": [
   {

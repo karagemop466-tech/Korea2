@@ -175,16 +175,17 @@ class TestDepthBand(unittest.TestCase):
     """
 
     def _build(self, plan):
-        import pandas as pd
+        # Deliberately plain dicts, no pandas: the whole build is stdlib-only so a runner needs no
+        # wheels, and a test that imports pandas breaks that contract (it did, in CI).
         import build_depth as D
         rows = []
         for wk, ps in plan.items():
             for pct, p in ps:
-                rows.append(dict(game_type="REG", season=2026, week=wk, player=p, pfr_player_id=p,
-                                 position="WR", team="KC", opponent="DEN",
-                                 offense_snaps=int(float(pct) * 60), offense_pct=pct,
-                                 defense_snaps=0, defense_pct="0"))
-        return D.build_from_snap_counts(pd.DataFrame(rows).to_dict("records"))
+                rows.append({"game_type": "REG", "season": "2026", "week": str(wk), "player": p,
+                             "pfr_player_id": p, "position": "WR", "team": "KC", "opponent": "DEN",
+                             "offense_snaps": str(int(float(pct) * 60)), "offense_pct": pct,
+                             "defense_snaps": "0", "defense_pct": "0"})
+        return D.build_from_snap_counts(rows)
 
     def test_second_string_replacement_is_counted_deeper(self):
         d = self._build({1: [("0.90", "A1"), ("0.50", "B1")], 2: [("0.85", "B1"), ("0.40", "A1")]})
