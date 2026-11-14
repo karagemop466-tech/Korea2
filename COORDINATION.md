@@ -2198,3 +2198,42 @@ Files added or changed in this session: `price-store/**` and this section of `CO
 - What changed in this session's pages after the merge: R5 now says the columns are split on the public leaderboard but **the rank order is still gates passed, then ROI** (PS-F3 stands); a new flag PS-F6 records the two price stores and asks for one canonical store. Gate code `price-store/scripts/gates.py` remains the only executable demotion test; PR #104's G10 is text. The two demotion definitions differ on one point worth an owner's decision: G10 monitors on a rolling window and includes drawdown and G3 triggers; `gates.py` judges full-sample mean CLV only. Logged, not reconciled.
 - 2026-11-14 UTC — **`main` was red after PR #104** (`build-verify` run 43635797502/43635802395 on `3cd5a7e`): `scripts/analysis/pricesnapshots.py` stamped `generated_utc` with the wall clock, so `results/price_snapshots.json` could never match a rebuild. Fixed on this branch: the stamp now comes from the committed `data/derived/manifest.json` (`generated_utc` 2026-11-02T17:38:45+00:00). Rebuilt with `scripts/analysis/build.py` in a venv (pandas 3.1.1, numpy, scipy from PyPI): the **only** `results/` change is that one stamp; a second rebuild shows **no diff** (reproducible). `tests/check_data.py` PASS, `tests/check_site.py` all pass, `review-board/scripts/verify_all.py` 121/121 after regenerating `reconciliation` (commit `a0bed18`). Owner of that file is the PR #104 session; the change is a determinism fix only, no number changed.
 - Git note: an accidental `git pull --rebase` replayed main's commits and stopped on a conflict; aborted with `git rebase --abort` (no work lost), then pushed the branch as a fast-forward (`0d62889`), never a force push.
+
+# Session board — `arena/52a496d0-korea2` (Decision Arena: price snapshots, verified results, gated signal competition)
+
+**Session ID:** `arena/52a496d0-korea2` (branch fixed by the environment; it is the only branch this
+session may write to).
+**Claimed at:** 2026-11-14 UTC. **Base:** `a6981b6` (merge of PR #101) = `origin/main` tip at intake.
+
+**Scope (non-overlapping, additive only).** New directory `decision-arena/` (data, generators, pages,
+tests), one new workflow `.github/workflows/decision-arena.yml`, and this section of `COORDINATION.md`.
+No existing product file is modified by this session: `index.html`, `pages/`, `assets/`, `scripts/`,
+`tests/`, `data/`, `results/`, `pipeline/` and every sibling hub (`dashboard/`, `nfl-lines/`,
+`quant-lab/`, `origination-lab/`, `origination/`, `lineup-lab/`, `review-board/`, `skill-lab/`,
+`verify-hub/`, `decision-desk/`, `decision-hub/`, `site/`, `nfl-command/`, `audit/`, `suggestions/`,
+`docs/`) stay read-only for this session. Requests to their owners are logged here instead of edits.
+This deliberately avoids the two open PRs that do touch root nav (`#93` → `scripts/lib/site.py`,
+`#97` → root pages), so merging either cannot conflict with this work.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| DA-1 | Repo review at `a6981b6` + line-by-line verification of the committed numbers against upstream/official sources; irregularity register | in progress | arena/52a496d0-korea2 | `decision-arena/data/*`, this section |
+| DA-2 | **Price-snapshot store**: every market we originate gets an opening and a closing record with timestamp, source, quality and an explicit "single-observation" limit | in progress | arena/52a496d0-korea2 | `decision-arena/data/price_snapshots.json` |
+| DA-3 | **Verified results feed**: final scores from the upstream schedules feed, reconciled against NFL.com game pages where reachable; unverifiable values left blank and flagged | in progress | arena/52a496d0-korea2 | `decision-arena/data/results_feed.json` |
+| DA-4 | Origination order **side → total → moneyline** (dependency is enforced in code, not prose) | in progress | arena/52a496d0-korea2 | `decision-arena/data/origination.json` |
+| DA-5 | Publish **model fair line, market line and difference** as three separate columns | in progress | arena/52a496d0-korea2 | `decision-arena/data/origination.json` |
+| DA-6 | Leaderboard with **signal separated from staking** (per-bet CLV/edge vs bankroll ROI, best-of-N luck test) | in progress | arena/52a496d0-korea2 | `decision-arena/data/leaderboard.json` |
+| DA-7 | **Replacement depth**: nflverse depth charts + snap counts, measuring the depth rank of the replacement and the snap-share delta, not just the fact of a replacement | in progress | arena/52a496d0-korea2 | `decision-arena/data/depth.json` |
+| DA-8 | Correlations computed **only from the officially sourced box scores**, each published with **n** and a confidence interval | in progress | arena/52a496d0-korea2 | `decision-arena/data/correlation.json` |
+| DA-9 | **Demotion gate**: an explicit, numeric rule that returns a live strategy to paper | in progress | arena/52a496d0-korea2 | `decision-arena/data/gates.json` |
+| DA-10 | **Suggestions section** (reviewable, decision-gated) + decision-questions register (what we have / do not have / how to discover it) | in progress | arena/52a496d0-korea2 | `decision-arena/data/suggestions.json`, `decision-arena/data/questions.json` |
+| DA-11 | Strategy competition: singles, parlays and player-prop combos, every candidate through validation gates | in progress | arena/52a496d0-korea2 | `decision-arena/data/strategies.json` |
+| DA-12 | Landing page + category subpages, every table row carrying a source link, plus Flagged-for-Review and Executive-summary pages | in progress | arena/52a496d0-korea2 | `decision-arena/index.html`, `decision-arena/pages/*` |
+| DA-13 | Verification suite: per-row source-link rule, blank-if-unverified rule, determinism rebuild, local link/anchor check, unit tests; CI workflow | in progress | arena/52a496d0-korea2 | `decision-arena/scripts/*`, `decision-arena/tests/*`, `.github/workflows/decision-arena.yml` |
+| DA-14 | Integration: re-verify, PR to `main`, merge, confirm GitHub Pages deploy, record here | in progress | arena/52a496d0-korea2 | this section, PR |
+
+**Intake notes.** The board already carries 21 session sections; every prior claim is either `done` or
+`needs review`, none is `in progress` on this scope. Three sibling PRs are open (`#93`, `#97`, `#99`);
+`#99` is `review-board/`-scoped only and cannot collide with this scope. Baseline `main` at intake was
+all-green (14 Nov 2026 01:22Z: `build-verify`, `checks`, `validate`, `verify-hub`, `verify-hub`,
+`decision-desk`, `review-board`, Pages build `success`).
