@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Pre-decision Q&A register - questions, information needed, known answers, and what is missing",
+    "author": "arena/4a709dd0-korea2",
+    "date": "2026-11-14",
+    "rule": "Every answer below was checked against a named source in this session or is explicitly marked as missing. Nothing is inferred. 'blocks' names the decisions that cannot reasonably be made until the missing information exists."
+  },
+  "rows": [
+    {
+      "id": "Q-01",
+      "question": "Where can opening and closing odds be obtained from an official source?",
+      "information_needed": "An authoritative, timestamped odds source covering the origination window (2023-2026) for spread, total and moneyline markets.",
+      "known_answers": [
+        "No official body publishes historical betting odds. NFL.com score and game pages carry no odds (checked on 2026-11-14 while verifying results).",
+        "The repository's only opening-line archive is origination-lab/data/raw/initial_lines.csv (WSGT, 2021 season, spread/total only) - outside our window.",
+        "Closing numbers exist only as a third-party archive (games.csv.gz, nflverse-derived; closing_lines.csv 2006-2018 with outcomes)."
+      ],
+      "missing": "A licensed or official odds feed for opens and closes.",
+      "discovery_suggestions": [
+        "Approach a licensed odds provider or book partnership for a research data licence (this is the only route to genuinely official prices).",
+        "Check whether the Nevada Gaming Control Board or a state regulator publishes any historical line archive (none is known - would need confirmation).",
+        "Begin recording our own point-in-time snapshots from a licensed feed going forward - the store schema in price-desk already reserves the columns (PS-1 becomes self-sustaining from the day a feed exists)."
+      ],
+      "blocks": ["Opening-line value strategies (OPEN_EDGE family)", "True CLV measurement", "Verified price columns in the snapshot store"],
+      "source": "price-desk/data/store_summary.json open_column_status; nfl.com pages checked 2026-11-14"
+    },
+    {
+      "id": "Q-02",
+      "question": "Which results are officially verified, and how do we verify the rest?",
+      "information_needed": "Digit-for-digit final scores from an official source for every settled game used in a backtest.",
+      "known_answers": [
+        "22 games are verified-official as of 2026-11-14 (2026 weeks 8-10) from nfl.com scores pages and two official gamebooks; 5 of these were cross-checked against the third-party archive and all 5 agreed.",
+        "The archive was stale at this check: it had no scores at all for week 9, week 10, and week 8 MNF - the verified feed fills those from official sources.",
+        "Every official game has a Game Center gamebook PDF (linked from its game page) with the full scoring summary - an authoritative per-game source."
+      ],
+      "missing": "Verified scores for 2023-2025 seasons and 2026 weeks 1-7 (931 rows archived-unverified).",
+      "discovery_suggestions": [
+        "Build the gamebook-ingestion pipeline (suggestion S-02): one fetch per game extracts score, starters, inactives and weather from the official PDF.",
+        "Batch-verify week by week against nfl.com/scores/{season}/week-{n} pages (each covers a full week)."
+      ],
+      "blocks": ["Officially verified backtests and ROI claims", "Any 'verified' label on historical strategy performance"],
+      "source": "price-desk/data/verified_results_2026.json"
+    },
+    {
+      "id": "Q-03",
+      "question": "Are our correlations computed from officially sourced numbers?",
+      "information_needed": "Correlation inputs whose provenance is official.",
+      "known_answers": [
+        "No. All published correlations in the repo are computed on third-party archives (nflverse-derived datasets); each publishes n with the value and carries an archived-unverified label.",
+        "n is published with every value (e.g., results/correlations.json headline pair n = 6,021)."
+      ],
+      "missing": "An officially sourced game-stats dataset wide enough to recompute correlations (the gamebooks are official but per-game; ingestion needed).",
+      "discovery_suggestions": ["Grow the verified results feed (S-02), then recompute the correlation table on the verified subset and publish both versions side by side."],
+      "blocks": ["Correlation values labelled 'officially sourced'"],
+      "source": "results/correlations.json; data/derived/correlation.json"
+    },
+    {
+      "id": "Q-04",
+      "question": "What is the depth string (2nd/3rd/4th) of a replacement player?",
+      "information_needed": "An official depth chart per team per week.",
+      "known_answers": [
+        "No official depth chart is reachable: NFL.com team depth-chart URLs return 404 (FL-15, checked 2026-11-12). The official injury report carries Position/Injuries/Practice Status/Game Status only - no depth rank.",
+        "NEW: official gamebooks publish who actually STARTED each game (plus Did-Not-Play and Not-Active lists) - demonstrated on WAS@NYG 2026 wk10. This gives the fact of a replacement AND the identity of the replacement, officially."
+      ],
+      "missing": "An official string label (2nd/3rd/4th) for each player.",
+      "discovery_suggestions": [
+        "Ingest gamebooks weekly (S-02) and track 'started in place of X' as an official fact.",
+        "If string labels are required, define them as OUR derived labels (e.g., starts in season to date per position) and publish them as derived, never as official."
+      ],
+      "blocks": ["Verified replacement-depth features in models", "Any claim about 2nd/3rd/4th string impact"],
+      "source": "nfl-command/data/depth.json (blank policy); price-desk/data/verified_results_2026.json official_gamebook_discovery"
+    },
+    {
+      "id": "Q-05",
+      "question": "Is the leaderboard competition funded, and what do rewards cost?",
+      "information_needed": "A rewards budget decision from the owner.",
+      "known_answers": [
+        "No. Rewards are virtual points only; the pool is unfunded and all strategy reward_points are currently 0 (no strategy has passed the gates). The NFL Big Data Bowl reference ($100,000 on Kaggle) is competition-design context, not our funding."
+      ],
+      "missing": "Owner decision: fund, virtualize explicitly, or remove.",
+      "discovery_suggestions": ["Decide among the three options in S-06 before promoting any strategy to live."],
+      "blocks": ["Promotion of any strategy to live", "Any 'prize' language on the site"],
+      "source": "data/leaderboard.json; origination/site_data/leaderboard.csv (reward_points column)"
+    },
+    {
+      "id": "Q-06",
+      "question": "Which strategies have passed validation and may compete for rewards?",
+      "information_needed": "Gate results per strategy.",
+      "known_answers": ["None. Every entrant in the ledger is tier NEEDS_REVIEW or REJECTED as of the latest build (insufficient sample, or failed integrity/statistical gates). The CTRL_LEAK control demonstrates why the gates exist (93.9% ROI via lookahead, rejected)."],
+      "missing": "Larger verified samples and (for several families) the data gaps above.",
+      "discovery_suggestions": ["Grow the verified feed; re-run gates per strategy after each verified batch."],
+      "blocks": ["Rewards distribution", "Live promotion"],
+      "source": "origination/site_data/leaderboard.csv (tier column)"
+    },
+    {
+      "id": "Q-07",
+      "question": "What demotion thresholds should a live strategy face?",
+      "information_needed": "Owner decision on window length, p threshold, drawdown cap.",
+      "known_answers": ["A full specification is proposed (price-desk/data/demotion_gate.json): 100-bet window, permutation p > 0.10, 25% drawdown cap, process-violation and data-withdrawal triggers, one re-promotion per season."],
+      "missing": "Owner approval or revision of those parameters.",
+      "discovery_suggestions": ["Review S-07's parameter trade-off table and choose; the spec is parameterised so values can change without redesign."],
+      "blocks": ["Enforcement of the demotion gate"],
+      "source": "price-desk/data/demotion_gate.json"
+    },
+    {
+      "id": "Q-08",
+      "question": "Can the model's published numbers be trusted given the open holdout-leakage issue?",
+      "information_needed": "Resolution of issue #9 (sigma fitted on holdout residuals in scripts/analyze_model.py).",
+      "known_answers": ["Issue #9 remains open with three specific defects (leakage in sigma fit, a misnamed 0.25 baseline key, missing tie term in away_fair). The disposition record is in COORDINATION.md (ISS-2 table); the fix has not landed."],
+      "missing": "The three localised edits plus a regression test (queued as S-05).",
+      "discovery_suggestions": ["Implement S-05 in the next root-pipeline session; until then treat calibration outputs as provisional."],
+      "blocks": ["Trusting model calibration metrics", "Any claim that the model is market-grade"],
+      "source": "COORDINATION.md ISS-2 table (issue #9 disposition, arena/da5f9d7b-korea2, 2026-11-13)"
+    },
+    {
+      "id": "Q-09",
+      "question": "How reliable is the third-party archive we compute on?",
+      "information_needed": "Cross-checks of archive values against official sources.",
+      "known_answers": [
+        "Scores: 5 of 5 cross-checkable rows agreed digit-for-digit with official sources (2026 week 8, checked 2026-11-14); 17 more rows had no archive value and were filled from official sources; the archive was otherwise stale for weeks 9-10.",
+        "Prices: unverifiable (no official odds source, Q-01). The archive is the only price source and stays labelled archived-unverified."
+      ],
+      "missing": "Price verification of any kind.",
+      "discovery_suggestions": ["Keep cross-checking scores weekly via gamebooks (S-02); treat prices as unverified indefinitely until Q-01 resolves."],
+      "blocks": ["Verified price claims"],
+      "source": "price-desk/data/store_summary.json archive_crosscheck"
+    },
+    {
+      "id": "Q-10",
+      "question": "Which decisions does this register block right now?",
+      "information_needed": "Owner triage.",
+      "known_answers": [
+        "Blocked: promoting any strategy to live (Q-05, Q-06), verified ROI claims (Q-02), opening-value strategies (Q-01), official correlation claims (Q-03), verified replacement-depth features (Q-04), trusting calibration (Q-08).",
+        "Not blocked: continuing research, paper competition, growing the verified feed, choosing S-01..S-10 paths."
+      ],
+      "missing": "Nothing - this row is the triage summary.",
+      "discovery_suggestions": ["Work the suggestions queue top-down; S-02 (gamebook ingestion) unblocks the most items per unit of effort."],
+      "blocks": [],
+      "source": "this register"
+    }
+  ]
+}

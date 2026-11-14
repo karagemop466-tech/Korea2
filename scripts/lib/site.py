@@ -33,6 +33,12 @@ NAV = [
     ("suggestions/index.html", "Suggestions hub"),
     ("decision-hub/index.html", "Decision hub &nearr;"),
     ("nfl-command/index.html", "NFL Command Center"),
+    ("price-desk/index.html", "Price desk"),
+    ("audit/index.html", "Audit"),
+    ("dashboard/index.html", "Dashboard"),
+    ("nfl-lines/index.html", "NFL Lines"),
+    ("nfl-research/index.html", "NFL Research"),
+    ("research-desk/index.html", "Research desk"),
     ("pages/suggestions.html", "Suggestions hub"),
     ("pages/decision-hub.html", "Decision desk"),
     ("pages/decision-suggestions.html", "Suggestion register"),
@@ -199,6 +205,12 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
                   .replace('href="decision-desk/', 'href="../decision-desk/')
                   .replace('href="lineup-lab/', 'href="../lineup-lab/')
                   .replace('href="signal-desk/', 'href="../signal-desk/')
+                  .replace('href="price-desk/', 'href="../price-desk/')
+                  .replace('href="audit/', 'href="../audit/')
+                  .replace('href="dashboard/', 'href="../dashboard/')
+                  .replace('href="nfl-lines/', 'href="../nfl-lines/')
+                  .replace('href="nfl-research/', 'href="../nfl-research/')
+                  .replace('href="research-desk/', 'href="../research-desk/')
                   .replace('href="index.html"', 'href="../index.html"'))
     return doc
 

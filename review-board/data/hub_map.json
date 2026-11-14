@@ -3,12 +3,12 @@
   "code": 6,
   "data register": 1,
   "other": 1,
-  "site hub": 19
+  "site hub": 20
  },
  "history": "shallow",
- "base_commit": "81d7560",
- "hub_count": 27,
- "nav_target_count": 31,
+ "base_commit": "ee05290",
+ "hub_count": 28,
+ "nav_target_count": 37,
  "nav_duplicate_labels": [
   {
    "label": "Suggestions hub",
@@ -97,6 +97,30 @@
    "label": "NFL Command Center"
   },
   {
+   "href": "price-desk/index.html",
+   "label": "Price desk"
+  },
+  {
+   "href": "audit/index.html",
+   "label": "Audit"
+  },
+  {
+   "href": "dashboard/index.html",
+   "label": "Dashboard"
+  },
+  {
+   "href": "nfl-lines/index.html",
+   "label": "NFL Lines"
+  },
+  {
+   "href": "nfl-research/index.html",
+   "label": "NFL Research"
+  },
+  {
+   "href": "research-desk/index.html",
+   "label": "Research desk"
+  },
+  {
    "href": "pages/suggestions.html",
    "label": "Suggestions hub"
   },
@@ -150,8 +174,12 @@
    "data_files": 0,
    "scripts": 2,
    "last_touched": "(history not fetched in this checkout)",
-   "nav_links": [],
-   "nav_labels": []
+   "nav_links": [
+    "audit/index.html"
+   ],
+   "nav_labels": [
+    "Audit"
+   ]
   },
   {
    "dir": "dashboard",
@@ -161,8 +189,12 @@
    "data_files": 0,
    "scripts": 0,
    "last_touched": "(history not fetched in this checkout)",
-   "nav_links": [],
-   "nav_labels": []
+   "nav_links": [
+    "dashboard/index.html"
+   ],
+   "nav_labels": [
+    "Dashboard"
+   ]
   },
   {
    "dir": "data",
@@ -243,8 +275,12 @@
    "data_files": 0,
    "scripts": 0,
    "last_touched": "(history not fetched in this checkout)",
-   "nav_links": [],
-   "nav_labels": []
+   "nav_links": [
+    "nfl-lines/index.html"
+   ],
+   "nav_labels": [
+    "NFL Lines"
+   ]
   },
   {
    "dir": "nfl-research",
@@ -254,8 +290,12 @@
    "data_files": 0,
    "scripts": 4,
    "last_touched": "(history not fetched in this checkout)",
-   "nav_links": [],
-   "nav_labels": []
+   "nav_links": [
+    "nfl-research/index.html"
+   ],
+   "nav_labels": [
+    "NFL Research"
+   ]
   },
   {
    "dir": "origination",
@@ -348,6 +388,21 @@
    "nav_labels": []
   },
   {
+   "dir": "price-desk",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 10,
+   "data_files": 10,
+   "scripts": 5,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [
+    "price-desk/index.html"
+   ],
+   "nav_labels": [
+    "Price desk"
+   ]
+  },
+  {
    "dir": "price-store",
    "kind": "site hub",
    "index_page": true,
@@ -377,8 +432,12 @@
    "data_files": 0,
    "scripts": 2,
    "last_touched": "(history not fetched in this checkout)",
-   "nav_links": [],
-   "nav_labels": []
+   "nav_links": [
+    "research-desk/index.html"
+   ],
+   "nav_labels": [
+    "Research desk"
+   ]
   },
   {
    "dir": "results",
@@ -510,8 +569,8 @@
    "nav_labels": []
   }
  ],
- "total_pages": 206,
- "total_data_files": 166,
+ "total_pages": 216,
+ "total_data_files": 176,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "81d7560537dc6f3832e2fcbfb4c1e4770a98b8d7"
+ "_generated_from_repo_commit": "ee05290d9c0baa6394484dac17ed5879942ef9e4"
 }

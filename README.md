@@ -144,6 +144,7 @@ parallel session and preserved unchanged. The root [archive page](pages/archive.
 | NFL Research | [`nfl-research/`](nfl-research/) |
 | Origination | [`origination/`](origination/) |
 | Origination Lab | [`origination-lab/`](origination-lab/) |
+| Price Desk | [`price-desk/`](price-desk/) |
 | Quant Lab | [`quant-lab/`](quant-lab/) |
 | Research Desk | [`research-desk/`](research-desk/) |
 | Review Board | [`review-board/`](review-board/) |

@@ -1,0 +1,40 @@
+{
+  "price_snapshots.csv": {
+    "grain": "one row per (game_id, market_type, origin_engine)",
+    "convention": "SPREAD and TOTAL and MONEYLINE values are home-perspective: positive spread values mean the HOME team is favoured by that many points (verified empirically in results/market.json convention_check). MONEYLINE rows carry home win probability. The origination-lab slate's 'our_spread' is display convention and is negated on ingest (verified against our_home_win_prob).",
+    "columns": {
+      "market_id": "game_id:market_type:origin_engine",
+      "market_type": "SPREAD | TOTAL | MONEYLINE",
+      "origin_engine": "root-pipeline (data/derived/predictions.csv) | origination-lab (origination-lab/data/derived/lines.json slate)",
+      "our_fair_line": "our number at origination (home margin / game total / home win prob). Status: ours-reproducible",
+      "our_fair_price_american": "our american price where the engine publishes one (moneyline rows)",
+      "market_open_line": "market's opening number. BLANK today - no source (PS-F-01)",
+      "market_close_line": "market's closing number (probability for MONEYLINE rows, normalised over both prices). Status: archived-unverified",
+      "difference": "our_fair_line - market_close_line in difference_unit; computed, inherits the weaker input status",
+      "difference_unit": "points (home margin) | points | home win probability",
+      "*_status": "verified-official | archived-unverified | blank-missing-no-source | ours-reproducible | computed (...)",
+      "official_source_url": "filled only for rows whose values were checked against an official source",
+      "flags": "register ids from price-desk/data/flagged.json"
+    }
+  },
+  "price_snapshots_props.csv": {
+    "grain": "one row per (season, week, player_id, market)",
+    "columns": {
+      "our_line": "our prop line at origination (ours-reproducible)",
+      "market_open_line / market_close_line": "BLANK - no prop-price source exists (PS-F-02)",
+      "actual": "archived actual (archived-unverified)",
+      "settle_vs_our_line": "win | loss | push of actual vs our_line (computed)"
+    }
+  },
+  "results_feed.csv": {
+    "grain": "one row per REG game 2023+ (1,088 rows)",
+    "columns": {
+      "away_score / home_score": "official digits where score_status starts verified-official; archived digits where archived-unverified; blank where missing",
+      "score_status": "verified-official (...archive agrees/disagrees/empty) | archived-unverified | missing",
+      "spread_close_home / total_close / home_ml_close / away_ml_close": "archived closing numbers (archived-unverified; official odds do not exist, PS-F-08)",
+      "ats_home_result / total_over_result / ml_home_result": "win | loss | push vs the closing number (computed; inherits the line status)",
+      "settle_status": "settled | partial | unsettled",
+      "official_source_url": "the official page/PDF the score was checked against (verified rows only)"
+    }
+  }
+}
