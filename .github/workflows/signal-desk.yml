@@ -29,17 +29,29 @@ jobs:
       # The opening and closing line files are fetched, never committed. If the fetch fails the
       # analysis still runs and records the snapshot as "not loaded" rather than guessing.
       - name: Fetch the upstream price files
+        id: fetch
         run: python signal-desk/scripts/fetch_prices.py
         continue-on-error: true
 
+      # The analysis always runs. If the fetch failed it records the opening snapshot as
+      # "not loaded" instead of guessing, which is the documented behaviour.
       - name: Rebuild the artefacts from committed data
         env:
           SD_INITIAL_LINES: signal-desk/data/raw/initial_lines.csv
           SD_CLOSING_LINES: signal-desk/data/raw/closing_lines.csv
         run: python signal-desk/scripts/analysis.py
 
+      # Byte-for-byte reproducibility is only meaningful when the same inputs were available.
       - name: The rebuild must reproduce the committed JSON
+        if: steps.fetch.outcome == 'success'
         run: git diff --exit-code --stat signal-desk/data/
+
+      - name: Say so when the price files could not be re-derived
+        if: steps.fetch.outcome != 'success'
+        run: |
+          echo "::warning::The upstream price files could not be fetched, so the opening/closing"
+          echo "snapshot was not re-derived in this run. Rebuild it locally to verify."
+          git diff --stat signal-desk/data/ || true
 
       - name: Render the site
         run: python signal-desk/scripts/build.py
