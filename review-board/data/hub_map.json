@@ -6,7 +6,7 @@
   "site hub": 18
  },
  "history": "full",
- "base_commit": "fb43868",
+ "base_commit": "a27b018",
  "hub_count": 26,
  "nav_target_count": 30,
  "nav_duplicate_labels": [
@@ -167,7 +167,7 @@
    "pages": 0,
    "data_files": 22,
    "scripts": 3,
-   "last_touched": "2026-11-13",
+   "last_touched": "2026-11-14",
    "nav_links": [],
    "nav_labels": []
   },
@@ -381,9 +381,9 @@
    "kind": "data register",
    "index_page": false,
    "pages": 0,
-   "data_files": 6,
+   "data_files": 7,
    "scripts": 0,
-   "last_touched": "2026-11-02",
+   "last_touched": "2026-11-14",
    "nav_links": [],
    "nav_labels": []
   },
@@ -394,7 +394,7 @@
    "pages": 14,
    "data_files": 9,
    "scripts": 4,
-   "last_touched": "2026-11-13",
+   "last_touched": "2026-11-14",
    "nav_links": [],
    "nav_labels": []
   },
@@ -404,7 +404,7 @@
    "index_page": false,
    "pages": 0,
    "data_files": 0,
-   "scripts": 30,
+   "scripts": 31,
    "last_touched": "2026-11-14",
    "nav_links": [],
    "nav_labels": []
@@ -492,7 +492,7 @@
   }
  ],
  "total_pages": 192,
- "total_data_files": 155,
+ "total_data_files": 156,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "fb438684f764f97a83d6762eb128711dbc7775e1"
+ "_generated_from_repo_commit": "a27b018e020321b366303d642f93cc3524814ef2"
 }
