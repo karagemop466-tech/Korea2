@@ -2217,7 +2217,7 @@ rule. No active session claims these scopes: the sessions opened on 2026-11-14 c
 | REM-4 | R5 (issue #16): COR-04 method-sentence reversal fixed in `data/correlations.json`; LF-05 Week-8 gameday corrected in `data/league_facts.json` after a first-hand NFL.com read; "remove luck" wording ×3; leaderboard "00,000" placeholder replaced with the register-verified $100,000 figure; PROPOSED—awaiting-review labels on `dashboard/pages/validation.html` + `leaderboard.html` | done | arena/71d26167-korea2 | `dashboard/`, `data/correlations.json`, `data/league_facts.json`, `data/validation_gates.json`, `data/sources.json` |
 | REM-5 | R6 (issues #13/#17): "verified source file" → third-party-mirror wording (12 instances in `nfl-lines/`); road-Elo-favourite rows relabelled (Elo designation, no market line in source); F-11 row added to `nfl-lines/flagged-review.html` | done | arena/71d26167-korea2 | `nfl-lines/` |
 | REM-6 | Verification sweep (results recorded below) | done | arena/71d26167-korea2 | read-only |
-| REM-7 | PR from this branch, merge, confirm GitHub Pages deploy, record result here | pending | arena/71d26167-korea2 | this section, PR |
+| REM-7 | PR from this branch, merge, confirm GitHub Pages deploy, record result here | done | arena/71d26167-korea2 | this section, PR |
 
 ## Completion record — 2026-11-14 UTC
 
@@ -2306,7 +2306,26 @@ sentence until that session's rebuild; the dashboard renders the corrected JSON 
 `.gitignore`/`.venv-b6` (PR #97); `review-board/` (PR #99); `decision-arena/`, `price-store/`,
 `requirements-audit/` (sessions 52a496d0 / f9e0aea9 / 7d42ec5b).
 
-**2026-11-14 — REM-8 amendment (recorded before the edit):** CI on this PR failed in the
+**2026-11-14 — REM-8 amendment (recorded before the edit):**
+
+**2026-11-14 — REM-7 (final):** PR [#110](https://github.com/karagemop466-tech/Korea2/pull/110) opened
+from this branch; after one CI iteration (see REM-8) all ten checks passed (`validate`, `checks`,
+`build-and-verify`, `tests-and-links`, `review-board`, `decision-desk`, `decision-hub`, `verify` ×2,
+`verify-hub`, `verify-skill-lab`); merged as **`76bf8bf`** at 2026-11-14T20:24:08Z. All post-merge
+workflows on `main` succeeded, including `data-pipeline` (3m4s; it validated the refresh branch
+`line-lab-refresh/run-43637303255` but, per the standing token limitation, could not open its own PR —
+merging that refresh is a future integration step, not this session's scope). GitHub Pages deploy
+confirmed first-hand via the Pages builds API: **`built | commit 76bf8bf`**; live-site spot checks
+read back the deployed content: F-11 present on nfl-lines/flagged-review.html, the corrected COR-04
+sentence in data/correlations.json, and the third-party-source wording throughout.
+
+**2026-11-14 — REM-8 (done):** `decision-hub/scripts/audit_root.py` published-method expectations
+aligned with the corrected per-game ATS statistic; `root_audit.json` + pages regenerated with the
+hub's own generators (25 checks: 23 pass, 0 fail, 2 blank; FL-DH-01 marked resolved with the
+remediation history). The failing `decision-hub` check on this PR was a **pre-existing main
+failure** (every run since the IR-2 FL-DH-01 remediation ~20 h earlier), verified first-hand before
+the fix; main is green again post-merge.
+ CI on this PR failed in the
 `decision-hub` workflow's "reproduce its own committed output" step. Verified first-hand that this
 is **pre-existing on main**: every `decision-hub` run since session 193e54ca's IR-2 FL-DH-01
 remediation (~20 h ago, runs 43526096046/43527309739/43529717334/43530591620) is `failure` — the
