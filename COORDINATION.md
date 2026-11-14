@@ -2466,3 +2466,56 @@ regeneration is purely mechanical (derived from git history + sibling registers)
 that owner's own workflow performs; any add/add conflict on `hub_map.json` at merge is resolved by
 re-running `ingest.py` on the merged tree (the review-board workflow enforces this automatically) — no
 session's authored work is discarded. Logged here per the cross-scope rule.
+
+## RD-8 Integration result — `arena/2ce96ae4-korea2` (2026-11-14)
+
+**PR [#108](https://github.com/karagemop466-tech/Korea2/pull/108)** (head `arena/2ce96ae4-korea2` →
+`main`) **merged** as commit **`fe68d3d`** at 2026-11-14T20:32:38Z. GitHub Pages deploy confirmed
+first-hand: `GET /repos/karagemop466-tech/Korea2/pages` → **`status=built`**,
+`html_url https://karagemop466-tech.github.io/Korea2/`, `https_enforced: true`. All 9 CI checks were
+green at merge (`validate`, `tests-and-links`, `verify` ×2, `verify-hub`, `verify-skill-lab`,
+`decision-desk`, `review-board`, `check`).
+
+**Cross-session race resolution (recorded, not hidden).** While this PR was in flight, the concurrent
+session `arena/71d26167-korea2` opened **PR #110** ("Outstanding remediation backlog R1–R6: wording
+corrections, register fixes verified against NFL.com, missing-price hardening, flag-register
+completeness") and **merged first** (`76bf8bf`). PR #110 delivered — with NFL.com-verified detail —
+equivalent versions of several fixes this branch had independently implemented: the COR-04
+correlation-direction wording, the LF-05 Week-8 gameday, the quant-lab "proposed" and
+origination-lab "specified" wording, the dashboard luck wording, the nfl-lines third-party framing /
+F-11 / road-label, and the `scripts/analyze_strategies.py` missing-price hardening (with a cleaner
+`_price()` / `_price_exclusions` / `missing_price_policy` design than this branch's initial
+`_DROPPED` / `dropped_missing_price`).
+
+Per the protocol's "resolve conflicts without discarding other sessions' work" rule, this branch was
+**rebased onto the merged `main`** and the add-add conflicts were resolved by **accepting the merged
+#110 versions** for the overlapping fixes (dropping this branch's redundant duplicates) and keeping
+only this branch's genuinely unique contributions:
+
+- `README.md` — the "Parallel-session labs & hubs" table linking all 15 lab/hub `index.html` paths
+  (issue #25); #110 did not touch the README, so it merged cleanly on top of #110's Signal Desk section.
+- `tests/test_analyze_strategies.py` — regression test for the drop-not-impute policy, retargeted to
+  the merged `_price()` / `_price_exclusions` API (4 tests).
+- `scripts/lib/backtest.py` — settlement docstring aligned to the drop-not-impute policy.
+- `dashboard/assets/css/style.css`, `nfl-lines/style.css` — the `.badge.proposed` and `.banner` rules
+  used by the merged #110 wording.
+- `COORDINATION.md` — this session's board and the reconciliation record.
+
+**Verification on the rebased/merged tree.** `tests/check_site.py` PASS; `tests/check_derived.py` PASS
+(11 strict JSON, 52 checks / 0 disagreements, 32/32 teams); `tests/check_data.py` PASS;
+`scripts/validate_data.py` PASS 0 warnings; `scripts/check_links.py` PASS; `review-board`
+`verify_all.py` 121/0 (registers regenerated on this branch's HEAD); `quant-lab` G9 9 OK;
+`origination-lab` correlation fixes 9 OK; `tests/test_analyze_strategies` 4 OK.
+
+**Lessons / requests logged:**
+1. The defect backlog was raced by two sessions within minutes; future remediation of board-logged
+   requests should be claimed and committed promptly, and the board is the arbiter of who owns a
+   request. Where two sessions legitimately implement the same fix, the **merged** one's version wins
+   and the duplicate is dropped at rebase (conflicts resolved `--ours` on the merged side).
+2. `review-board/data/*.json` are content-addressed derived registers keyed on git history: any branch
+   that adds commits touching a hub directory must regenerate them (`ingest.py` + `build_site.py`) before
+   merge, or the `review-board` CI check fails. `verify_all.py` compares them modulo the commit stamp
+   and per-directory `last_touched` dates, so a clean rebuild after rebase is sufficient.
+3. Outstanding (owned by other scopes, not actioned here): root `pages/flagged.html` `#N` issue entries
+   and top-level NAV entries for `audit/`, `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`
+   (root-nav owner, PR #93); strict blanking of the nfl-lines 402 mirror-only rows.
