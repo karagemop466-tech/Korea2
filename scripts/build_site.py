@@ -1180,6 +1180,43 @@ def page_flagged() -> str:
         source_html = " · ".join(src(source_id) for source_id in sid) if isinstance(sid, (list, tuple)) else src(sid)
         rows.append([esc(title), badge(kind, sev), esc(detail), esc(status), source_html])
 
+    # Prominent GitHub issue-tracker entries (request logged by arena/da5f9d7b-korea2,
+    # landed by arena/4a709dd0-korea2). Dispositions are the authoritative ISS-1/ISS-2
+    # record in COORDINATION.md; the tracker itself rejected writes (HTTP 403).
+    gh = "https://github.com/karagemop466-tech/Korea2/issues/"
+    issue_rows = [
+        ["#1", "Coordination: concurrent claims overlap", "close",
+         "Board-claim practice adopted by every session; twelve session boards retained in COORDINATION.md."],
+        ["#6", "Verification review: source coverage", "close",
+         "Official-domain allowlist enforced (validate_data.py); availability claims narrowed; nflverse labelled third-party."],
+        ["#9", "Pipeline provenance, holdout leakage, CI", "KEEP OPEN",
+         "Sigma fitted on evaluated holdout residuals; misnamed baseline key; missing tie term. Fix queued as S-05 (price-desk suggestions)."],
+        ["#13", "Third-party data labelled verified (PR #12)", "KEEP OPEN (wording fixed 2026-11-14)",
+         "'verified source file' wording replaced with third-party labelling; road-favourite label corrected; F-11 register entry added. Mirror-only rows stay labelled archived-unverified (see price-desk policy)."],
+        ["#16", "Correlation reversal and unverified claims (dashboard)", "fixed 2026-11-14",
+         "COR-04 joint-probability direction corrected; LF-05 gameday corrected (Week 8 ended Mon Nov 2); 'remove luck' softened; '00,000' placeholder replaced; PROPOSED labels added."],
+        ["#17", "nfl-lines third-party rows and labels", "KEEP OPEN (wording fixed 2026-11-14)",
+         "Labels corrected as in #13; values remain third-party with explicit unverified labelling pending a licensed source."],
+        ["#19", "Imputed prices, reversed favourite, retrospective props (PR #18)", "close",
+         "PR #52 excluded missing prices and disclosed exclusions; away_fav selects spread_line < 0; SGP example labelled descriptive."],
+        ["#20", "Refresh workflow pushed main directly", "close",
+         "PRs #52/#56/#59: both refresh workflows build on a short-lived branch and open a PR; fail-closed shell; no [skip ci]."],
+        ["#22", "Overview misattributed weather ROI to the rating model", "close",
+         "PR #43: S5_model_edge cited by explicit ID; regression test IndexAttributionTests."],
+        ["#24", "Synthetic prices and price sensitivity (PR #21)", "close (wording fixed 2026-11-14)",
+         "PR #52 reprices from recorded prices; 'pre-registered' wording replaced with 'proposed (specified before scoring)'."],
+        ["#25", "Expose research sections and review flags", "addressed 2026-11-14",
+         "This nav now links audit/, dashboard/, nfl-lines/, nfl-research/, research-desk/ and price-desk/ directly; README lists the labs; issue entries are on this page."],
+        ["#32", "Origination Lab labels and correlation inference (PR #26)", "close (wording fixed 2026-11-14)",
+         "PR #52/#53 corrected push-rate signs and labels; 'pre-registered signals' replaced with 'pre-specified (retrospective)'."],
+        ["#34", "Sources page read the wrong provenance path", "close",
+         "PR #52: page_sources reads data/provenance.json; per-season URLs expanded; regression tests."],
+    ]
+    issue_table_rows = [
+        [f'<a href="{gh}{n[1:]}" rel="noopener">{esc(n)}</a>', esc(t), esc(d), esc(note)]
+        for n, t, d, note in issue_rows
+    ]
+
     body = (f'''<div class="hero compact"><div class="eyebrow">FLAGGED FOR REVIEW</div>
 <h1>What is missing, and why it is blank.</h1>
 <p class="lede">Nothing on this page blocks the site from publishing. Each item is a gap that was
@@ -1187,6 +1224,11 @@ found by checking rather than assumed away - the alternative is a dashboard full
 numbers that cannot be defended.</p></div>
 
 '''
+        + section("GitHub issue tracker — dispositions", table(
+            ["Issue", "Title", "Disposition", "Evidence / current state"], issue_table_rows,
+            caption="Full evidence in COORDINATION.md (ISS-1/ISS-2 tables, session arena/da5f9d7b-korea2). "
+                    "GitHub rejected issue writes (HTTP 403) from the agent sessions, so the tracker may still "
+                    "show these as open; this table is the record. Flags and open items do not block publication."))
         + section("Open items", table(["Item", "Severity", "What is missing", "How it is handled here", "Source"], rows))
         + section("Unverified values policy", '''<ul class="ticks">
 <li>If a value cannot be confirmed from a primary source, it is left blank.</li>
