@@ -1,0 +1,63 @@
+name: signal-desk
+
+on:
+  push:
+    branches: [main]
+    paths: ['signal-desk/**', 'data/derived/*.json', '.github/workflows/signal-desk.yml']
+  pull_request:
+    paths: ['signal-desk/**', 'data/derived/*.json']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install the two libraries the analysis needs
+        run: |
+          python -m pip install --upgrade pip
+          pip install "numpy==2.4.6" "scipy==1.17.1"
+
+      # The opening and closing line files are fetched, never committed. If the fetch fails the
+      # analysis still runs and records the snapshot as "not loaded" rather than guessing.
+      - name: Fetch the upstream price files
+        id: fetch
+        run: python signal-desk/scripts/fetch_prices.py
+        continue-on-error: true
+
+      # The analysis always runs. If the fetch failed it records the opening snapshot as
+      # "not loaded" instead of guessing, which is the documented behaviour.
+      - name: Rebuild the artefacts from committed data
+        env:
+          SD_INITIAL_LINES: signal-desk/data/raw/initial_lines.csv
+          SD_CLOSING_LINES: signal-desk/data/raw/closing_lines.csv
+        run: python signal-desk/scripts/analysis.py
+
+      # Byte-for-byte reproducibility is only meaningful when the same inputs were available.
+      - name: The rebuild must reproduce the committed JSON
+        if: steps.fetch.outcome == 'success'
+        run: git diff --exit-code --stat signal-desk/data/
+
+      - name: Say so when the price files could not be re-derived
+        if: steps.fetch.outcome != 'success'
+        run: |
+          echo "::warning::The upstream price files could not be fetched, so the opening/closing"
+          echo "snapshot was not re-derived in this run. Rebuild it locally to verify."
+          git diff --stat signal-desk/data/ || true
+
+      - name: Render the site
+        run: python signal-desk/scripts/build.py
+
+      - name: Verify every row has a source and every link resolves
+        run: python signal-desk/scripts/check.py
+
+      - name: Artefact tests (reconciliation, sourcing discipline, demotion gate, determinism)
+        run: python -m unittest discover -s signal-desk/tests -t signal-desk/tests -v

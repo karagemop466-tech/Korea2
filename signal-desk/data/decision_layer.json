@@ -1,0 +1,454 @@
+{
+ "meta": {
+  "id": "SD-09",
+  "title": "Questions, unknowns and suggestions, for review before anything is implemented",
+  "generated_utc": "committed data through 2026-11-01",
+  "how_to_use": "Read the questions first. A question is listed because a decision cannot be made without it. Each suggestion names the question it waits on, so nothing on this page has to be implemented to be evaluated.",
+  "counts": {
+   "questions": 12,
+   "suggestions": 8,
+   "decisions": 3
+  }
+ },
+ "questions": [
+  {
+   "id": "Q1",
+   "question": "Is there any source that publishes official NFL prices (opening or closing)?",
+   "what_we_know": "None was located. The official scores and schedules pages publish results and links, not prices, and no official NFL price feed was found. Every price in this repository is third-party.",
+   "what_we_do_not_know": "Whether a licensed price vendor could be contracted, and at what cost.",
+   "blocks": [
+    "S1",
+    "S2",
+    "S5",
+    "D3",
+    "D4"
+   ],
+   "decisions_blocked": 5,
+   "how_to_close": "Either contract a licensed feed and record its licence, or accept third-party prices and mark every CLV figure as third-party on the site forever.",
+   "owner_action": "a sourcing decision only you can make",
+   "priority": 1
+  },
+  {
+   "id": "Q9",
+   "question": "Which books, jurisdictions and limits are actually available to you?",
+   "what_we_know": "None have been verified. The executable gate has never been satisfied, which is why nothing is live.",
+   "what_we_do_not_know": "Country, licence, stake limits, and whether same-game parlays are even offered in your jurisdiction.",
+   "blocks": [
+    "S8",
+    "D4"
+   ],
+   "decisions_blocked": 2,
+   "how_to_close": "Name one book and one jurisdiction; the executable gate can then be tested once instead of assumed.",
+   "owner_action": "fact only you can supply",
+   "priority": 1
+  },
+  {
+   "id": "Q2",
+   "question": "Can an opening number be recorded for the moneyline at all?",
+   "what_we_know": "The upstream opening-line file has zero MONEYLINE rows. It carries one sportsbook and one season (2021).",
+   "what_we_do_not_know": "Whether any accessible source records an opening moneyline with a timestamp and a book.",
+   "blocks": [
+    "S1",
+    "S4"
+   ],
+   "decisions_blocked": 2,
+   "how_to_close": "Locate a source with opening moneylines before promising CLV on the moneyline.",
+   "owner_action": "sourcing",
+   "priority": 2
+  },
+  {
+   "id": "Q3",
+   "question": "Does an official source publish depth-chart order (1st/2nd/3rd string)?",
+   "what_we_know": "Not on the team roster page and not on the injury report; both were read and neither has a depth column.",
+   "what_we_do_not_know": "Whether the league publishes it anywhere accessible, or whether a team-by-team scrape is the only route.",
+   "blocks": [
+    "S6",
+    "D7"
+   ],
+   "decisions_blocked": 2,
+   "how_to_close": "Check the league's roster/depth publication directly, or accept third-party depth and label it.",
+   "owner_action": "sourcing",
+   "priority": 2
+  },
+  {
+   "id": "Q12",
+   "question": "Does the market still move after the snapshot we record?",
+   "what_we_know": "The extract's prices are described as closing, but the timestamp is not published with the row; the hold is about 4.2% on the current board.",
+   "what_we_do_not_know": "The exact minute each price was true.",
+   "blocks": [
+    "S1",
+    "D4"
+   ],
+   "decisions_blocked": 2,
+   "how_to_close": "Record a timestamp with every price, even a third-party one.",
+   "owner_action": "engineering",
+   "priority": 2
+  },
+  {
+   "id": "Q8",
+   "question": "Can prop prices be obtained, so prop ROI is measurable at all?",
+   "what_we_know": "The repository holds no historical prop prices, so no prop ROI has ever been computed. Prop combos are priced with model probabilities, not market prices.",
+   "what_we_do_not_know": "Whether any vendor sells historical prop prices back far enough to test.",
+   "blocks": [
+    "S2"
+   ],
+   "decisions_blocked": 1,
+   "how_to_close": "Price the data before pricing the strategy.",
+   "owner_action": "sourcing",
+   "priority": 2
+  },
+  {
+   "id": "Q4",
+   "question": "What is the minimum sample a strategy must reach before it can be called live?",
+   "what_we_know": "The static gates require n>=1000 settled bets, and the project's own power analysis needs about 10,598 bets to detect a 3% edge.",
+   "what_we_do_not_know": "Whether a smaller sample with a larger edge would be acceptable, and who decides.",
+   "blocks": [
+    "S3",
+    "D1"
+   ],
+   "decisions_blocked": 2,
+   "how_to_close": "Choose between the strict gate and a staged paper->live path with a smaller sample and a tighter demotion.",
+   "owner_action": "policy decision",
+   "priority": 3
+  },
+  {
+   "id": "Q5",
+   "question": "Should the leaderboard rank on signal, staking, or both?",
+   "what_we_know": "2 of 9 strategies show a positive ROI their own significance test does not support.",
+   "what_we_do_not_know": "Whether you want the leaderboard to motivate (staking) or to inform (signal).",
+   "blocks": [
+    "S5"
+   ],
+   "decisions_blocked": 1,
+   "how_to_close": "Pick the ranking column; the data now supports either.",
+   "owner_action": "preference",
+   "priority": 3
+  },
+  {
+   "id": "Q7",
+   "question": "What happens to a live strategy that stops working?",
+   "what_we_know": "Until this build, nothing did. Eight demotion rules now exist with explicit triggers and actions.",
+   "what_we_do_not_know": "Whether the demotion thresholds are tight enough; four of the eight rules are not evaluable today.",
+   "blocks": [
+    "D1",
+    "D2"
+   ],
+   "decisions_blocked": 1,
+   "how_to_close": "Run the rules on paper for a season and count how often each fires.",
+   "owner_action": "policy decision",
+   "priority": 3
+  },
+  {
+   "id": "Q11",
+   "question": "Are injuries and depth priced in by the model at all?",
+   "what_we_know": "No. The originated lines take no injury or depth input; the depth page is descriptive and separate.",
+   "what_we_do_not_know": "How much of the model's 0.68-point spread MAE gap to the market is exactly this missing input.",
+   "blocks": [
+    "S6"
+   ],
+   "decisions_blocked": 1,
+   "how_to_close": "Add a depth feature behind a walk-forward test and measure the MAE change.",
+   "owner_action": "engineering",
+   "priority": 3
+  },
+  {
+   "id": "Q6",
+   "question": "Is a 2026 part-season enough to measure skill persistence?",
+   "what_we_know": "Year-over-year point-differential persistence from the official tables is 0.5031, but the 2026 side is 8-9 games.",
+   "what_we_do_not_know": "Whether that ordering survives a full season.",
+   "blocks": [
+    "S7"
+   ],
+   "decisions_blocked": 1,
+   "how_to_close": "Recompute after Week 18; the code already does it from two official pages.",
+   "owner_action": "wait for the season",
+   "priority": 4
+  },
+  {
+   "id": "Q10",
+   "question": "Is a reward pool funded, and who judges it?",
+   "what_we_know": "No pool is funded and no strategy has qualified. Every published reward is 0.",
+   "what_we_do_not_know": "Whether rewards are symbolic, funded, or dropped entirely.",
+   "blocks": [
+    "S5"
+   ],
+   "decisions_blocked": 1,
+   "how_to_close": "Decide whether the competition has a prize before designing around one.",
+   "owner_action": "preference",
+   "priority": 4
+  }
+ ],
+ "suggestions": [
+  {
+   "id": "S1",
+   "title": "Timestamp every price and reject any bet settled on an untimestamped price",
+   "problem": "A price without a time is not a price you could have taken.",
+   "change": "Add price_time and book columns to the snapshot store; every settlement joins on them and the backtest refuses rows without them.",
+   "impact": "high",
+   "effort": "medium",
+   "risk": "low",
+   "unblocks": [
+    "Q1",
+    "Q2",
+    "Q12"
+   ],
+   "evidence": "signal-desk/data/price_snapshots.json",
+   "measure_of_success": "100% of settled bets carry a price_time and a book.",
+   "do_not_implement_until": "Q1 is answered, or the store will only ever hold third-party times."
+  },
+  {
+   "id": "S2",
+   "title": "Buy or drop prop prices; stop pricing prop combos with model probabilities",
+   "problem": "A model probability is not a price. Prop combos currently cannot yield an ROI at all.",
+   "change": "Either source historical prop prices or remove the prop ROI column and label the page as unpriceable.",
+   "impact": "high",
+   "effort": "high",
+   "risk": "low",
+   "unblocks": [
+    "Q8"
+   ],
+   "evidence": "data/derived/props.json",
+   "measure_of_success": "Every prop combo row has a market price or explicitly none.",
+   "do_not_implement_until": "Q8 is answered."
+  },
+  {
+   "id": "S3",
+   "title": "Stage promotion: paper, then live, with a hard bet cap while in paper",
+   "problem": "Ten gates on 1,000+ bets is a high bar that will approve almost nothing; a lower bar with no staging approves too much.",
+   "change": "Add a three-state path (paper, capped live, full live) where demotion is automatic.",
+   "impact": "medium",
+   "effort": "medium",
+   "risk": "medium",
+   "unblocks": [
+    "Q4",
+    "Q7"
+   ],
+   "evidence": "signal-desk/data/demotion_gate.json",
+   "measure_of_success": "A strategy can fail its way back to paper without human action.",
+   "do_not_implement_until": "Q4 and Q9 are answered, because the cap depends on real limits."
+  },
+  {
+   "id": "S4",
+   "title": "Publish CLV against the closing line only where a real closing number exists",
+   "problem": "CLV is the strongest skill measure available, and it needs two numbers from the same book.",
+   "change": "Compute CLV per bet against the closing snapshot; leave it blank where the closing row is absent instead of substituting a different book.",
+   "impact": "high",
+   "effort": "low",
+   "risk": "low",
+   "unblocks": [
+    "Q1",
+    "Q2"
+   ],
+   "evidence": "signal-desk/data/price_snapshots.json",
+   "measure_of_success": "CLV published with n, and blanks where the closing number is missing.",
+   "do_not_implement_until": "Q1 is answered about the book identity."
+  },
+  {
+   "id": "S5",
+   "title": "Two-column leaderboard: signal rank and staking rank, never one blended score",
+   "problem": "A blended score hides exactly the case the user asked about: a lucky staking run masking a bad signal.",
+   "change": "Show signal rank (significance) and staking rank (return) side by side, and reward only when both clear their own bar.",
+   "impact": "high",
+   "effort": "low",
+   "risk": "low",
+   "unblocks": [
+    "Q5",
+    "Q10"
+   ],
+   "evidence": "signal-desk/data/signal_vs_staking.json",
+   "measure_of_success": "No strategy can rank above another on staking alone.",
+   "do_not_implement_until": "Q5 is answered (it is a preference, not a fact)."
+  },
+  {
+   "id": "S6",
+   "title": "Make depth a model input behind a walk-forward test, not a separate page",
+   "problem": "The depth work is descriptive today; it changes no number the model produces.",
+   "change": "Feed a weighted depth-lost term into the ridge engine on a walk-forward basis and report the MAE change out of sample.",
+   "impact": "medium",
+   "effort": "high",
+   "risk": "medium",
+   "unblocks": [
+    "Q3",
+    "Q11"
+   ],
+   "evidence": "signal-desk/data/replacement_depth.json",
+   "measure_of_success": "Out-of-sample spread MAE falls versus the current 10.39 points.",
+   "do_not_implement_until": "Q3 is answered, so the feature has a source you trust."
+  },
+  {
+   "id": "S7",
+   "title": "Pre-register every new correlation before computing it",
+   "problem": "Trying many pairs and publishing the big ones is how a false signal gets built.",
+   "change": "Write the pair, the units, the n and the threshold to a file first; the build fails if an unregistered pair appears in the output.",
+   "impact": "medium",
+   "effort": "low",
+   "risk": "low",
+   "unblocks": [
+    "Q6"
+   ],
+   "evidence": "signal-desk/data/correlation_official.json",
+   "measure_of_success": "0 correlations published without a prior registration row.",
+   "do_not_implement_until": "Nothing; this is safe to do now."
+  },
+  {
+   "id": "S8",
+   "title": "Make the executable gate a hard, named, one-time test",
+   "problem": "Every strategy fails gate G9 because no book, licence or limit was ever verified. That is an unanswered question, not a strategy defect.",
+   "change": "Record one verified book, jurisdiction and limit, then re-test G9 as a yes/no.",
+   "impact": "high",
+   "effort": "low",
+   "risk": "high",
+   "unblocks": [
+    "Q9"
+   ],
+   "evidence": "data/derived/leaderboard.json (G9 fails on every row)",
+   "measure_of_success": "G9 evaluable for at least one strategy.",
+   "do_not_implement_until": "Q9 is answered by you; this cannot be discovered from data."
+  }
+ ],
+ "decisions": [
+  {
+   "id": "D1",
+   "decision": "Where do prices come from?",
+   "options": [
+    {
+     "option": "Licensed official feed",
+     "cost": "money + contract",
+     "gives": "defensible CLV and a real demotion trigger D3/D4",
+     "risk": "may not exist at any price you accept"
+    },
+    {
+     "option": "Third-party aggregator, labelled",
+     "cost": "none",
+     "gives": "coverage today",
+     "risk": "no book identity, no timestamp, CLV stays unverifiable"
+    },
+    {
+     "option": "Stop publishing CLV",
+     "cost": "none",
+     "gives": "honesty",
+     "risk": "loses the best available skill measure"
+    }
+   ],
+   "gated_by": [
+    "Q1",
+    "Q2",
+    "Q12"
+   ],
+   "evidence": "price_snapshots.json"
+  },
+  {
+   "id": "D2",
+   "decision": "How does a strategy earn capital, and how does it lose it?",
+   "options": [
+    {
+     "option": "Keep the ten-gate bar only",
+     "cost": "none",
+     "gives": "nothing goes live",
+     "risk": "the system never produces a signal"
+    },
+    {
+     "option": "Ten gates + staged live + automatic demotion",
+     "cost": "engineering",
+     "gives": "a defined entry and exit",
+     "risk": "thresholds are untested"
+    },
+    {
+     "option": "Lower the static gates",
+     "cost": "none",
+     "gives": "more candidates",
+     "risk": "lets luck through by construction"
+    }
+   ],
+   "gated_by": [
+    "Q4",
+    "Q7",
+    "Q9"
+   ],
+   "evidence": "demotion_gate.json + leaderboard.json"
+  },
+  {
+   "id": "D3",
+   "decision": "Where does injuries and depth sit?",
+   "options": [
+    {
+     "option": "Keep it descriptive",
+     "cost": "none",
+     "gives": "context",
+     "risk": "changes no number"
+    },
+    {
+     "option": "Model input behind a walk-forward test",
+     "cost": "engineering",
+     "gives": "a possible MAE gain",
+     "risk": "third-party depth, so the gain may not be real"
+    },
+    {
+     "option": "Model input from an official source only",
+     "cost": "sourcing",
+     "gives": "defensibility",
+     "risk": "no official depth source was found"
+    }
+   ],
+   "gated_by": [
+    "Q3",
+    "Q11"
+   ],
+   "evidence": "replacement_depth.json"
+  }
+ ],
+ "not_implemented": "Nothing on this page is implemented. It is a proposal list; the numbers that support it are on the other pages and every one of them is reproducible from the committed data.",
+ "recommended_path": {
+  "why": "If one path had to be picked without any further input from you, it is the one that buys the most honesty for the least work and depends on no unanswered question. It is a recommendation, not a decision that has been taken.",
+  "steps": [
+   {
+    "order": 1,
+    "suggestion": "S5",
+    "reason": "Two-column leaderboard. No new data needed, low effort, and it removes the exact failure the brief names: a lucky staking run masking a bad signal.",
+    "waits_on_nothing": true
+   },
+   {
+    "order": 2,
+    "suggestion": "S7",
+    "reason": "Pre-register correlations. Low effort, and it stops the correlation table from becoming a fishing expedition as official data accumulates.",
+    "waits_on_nothing": true
+   },
+   {
+    "order": 3,
+    "suggestion": "S4",
+    "reason": "Publish CLV only where a real closing number exists. Cheap, and it makes the blanks honest instead of optional.",
+    "waits_on_nothing": true
+   },
+   {
+    "order": 4,
+    "suggestion": "S3",
+    "reason": "Staged promotion with automatic demotion. This is the change that lets the competition actually start, so it is worth doing once Q4 and Q9 are answered.",
+    "waits_on_nothing": false
+   },
+   {
+    "order": 5,
+    "suggestion": "S8",
+    "reason": "One verified book, jurisdiction and limit. Blocked on a fact only you hold; without it nothing can ever pass the executable gate.",
+    "waits_on_nothing": false
+   },
+   {
+    "order": 6,
+    "suggestion": "S1 / S2 / S6",
+    "reason": "The expensive, source-dependent work. Do not start any of it until Q1, Q2, Q8, Q3 and Q11 are answered, or it will be rebuilt when the answer arrives.",
+    "waits_on_nothing": false
+   }
+  ],
+  "do_first_regardless": [
+   "S5",
+   "S7",
+   "S4"
+  ],
+  "blocked_on_you": [
+   "S8",
+   "S1",
+   "S2",
+   "S6"
+  ],
+  "cost_note": "The three do-first items need no new data and no purchase. The blocked items need a sourcing or jurisdiction answer before any engineering is worth doing."
+ }
+}
