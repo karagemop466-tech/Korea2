@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:35:15Z",
+ "generated_utc": "2026-11-14T20:36:30Z",
  "checks": [
   {
    "name": "Every published table row carries a source",
@@ -21,7 +21,7 @@
    "name": "Week 9 finals reconcile to NFL.com",
    "rule": "Each of the 15 official finals equals the feed's score, or is reported as absent.",
    "pass": true,
-   "proves": "0 match, 15 absent, 0 mismatched.",
+   "proves": "15 match, 0 absent, 0 mismatched.",
    "does_not_prove": "Anything before Week 9 2026, which was not read against an official page this session.",
    "source": "SRC-NFL-SCHED-9"
   },
@@ -37,7 +37,7 @@
    "name": "Every price snapshot carries a provenance grade",
    "rule": "Each snapshot has a quality field from the fixed grade list.",
    "pass": true,
-   "proves": "7,103 snapshots graded; 0 are upgraded to verified without a timestamp.",
+   "proves": "7,130 snapshots graded; 0 are upgraded to verified without a timestamp.",
    "does_not_prove": "That the unattributed price is the closing price.",
    "source": "SRC-NFLVERSE-SCHED"
   },
@@ -180,9 +180,30 @@
    "bytes": 16994
   },
   {
+   "name": "fetched depth_charts.csv.gz",
+   "path": "decision-arena/data/inputs/depth_charts.csv.gz",
+   "sha256": "b7255be47a0b160c39dfec0c76573e1153fe1f8d784a0038f1ad1a4b390ff54a",
+   "rows": 0,
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "name": "fetched snap_counts.csv.gz",
+   "path": "decision-arena/data/inputs/snap_counts.csv.gz",
+   "sha256": "bafba52352606945fde0250b3d15b4030adfc7be26e5076e9ac7e9e0a6835645",
+   "rows": 0,
+   "source": "SRC-NFLVERSE-SNAP"
+  },
+  {
+   "name": "fetched injuries.csv.gz",
+   "path": "decision-arena/data/inputs/injuries.csv.gz",
+   "sha256": "12f61a8b3fd97d87afa376136f4a140d6c540fb0d6a5331fc2bcb60d26dabe90",
+   "rows": 0,
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
    "name": "fetched games.csv.gz",
    "path": "decision-arena/data/inputs/games.csv.gz",
-   "sha256": "6eb2771047ba844c7887800b38a664fc32731a9d17f0c202eebc1418d53399f3",
+   "sha256": "35f9e0eefb3d2eac7b457c5d7f21b3e9cfc559f96606e4ab543a1ed0e658d423",
    "rows": 0,
    "source": "SRC-NFLVERSE-SCHED"
   }
@@ -194,7 +215,7 @@
    "source_name": "NFL.com 2026 Week 9 schedule",
    "source": "SRC-NFL-SCHED-9",
    "method": "Read each final score from the official schedule page on 2026-11-14 and compared with the feed.",
-   "result": "0/15 match, 0 mismatch"
+   "result": "15/15 match, 0 mismatch"
   },
   {
    "item": "Week 10 2026 Thursday result",
@@ -229,7 +250,7 @@
    "source_name": "nflverse schedules feed (third party)",
    "source": "SRC-NFLVERSE-SCHED",
    "method": "Counted rows with both scores in regular season play.",
-   "result": "match: 7,088 games"
+   "result": "match: 7,104 games"
   }
  ],
  "summary": {

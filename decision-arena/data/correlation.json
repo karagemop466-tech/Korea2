@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:35:14Z",
+ "generated_utc": "2026-11-14T20:36:29Z",
  "scope": {
   "inputs": "player-week box scores only (SRC-NFLVERSE-STATS, GSIS definitions SRC-NFL-GSIS); team points joined from the schedules feed (SRC-NFLVERSE-SCHED)",
   "excluded": "no market price, no line, no model output enters any coefficient on this page",
@@ -90,7 +90,7 @@
     -0.0547,
     -0.0037
    ],
-   "p": 0.024656474309141974,
+   "p": 0.02465647430914375,
    "r2": 0.0009,
    "ci_excludes_zero": true,
    "note": ""

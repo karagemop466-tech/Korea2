@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:35:21Z",
+ "generated_utc": "2026-11-14T20:35:55Z",
  "order": [
   "side",
   "total",
@@ -8,20 +8,20 @@
  "order_rule": "The total is computed after the side model and the moneyline from the side model's margin distribution. A total/moneyline row is emitted only if the side row exists; otherwise it is marked blocked_by_side.",
  "slate": {
   "season": 2026,
-  "week": 9,
-  "games": 15,
-  "first_kickoff_gameday": "2026-11-05",
-  "train_games_strictly_before": 7087,
+  "week": 11,
+  "games": 13,
+  "first_kickoff_gameday": "2026-11-19",
+  "train_games_strictly_before": 7104,
   "train_window": [
    "1999-09-12",
-   "2026-11-01"
+   "2026-11-12"
   ],
   "slate_rule": "Earliest week in the feed in which no game has a score. The feed is frozen at its own last settled gameday, so this is the last pregame slate it contains, not the live card."
  },
  "pending_slate": {
   "season": 2026,
-  "week": 10,
-  "games": 14,
+  "week": 12,
+  "games": 16,
   "note": "The following week's pregame lines, published with the same model. They are pregame numbers from a frozen feed; the live market has moved since."
  },
  "model": {
@@ -29,9 +29,9 @@
   "half_life_days": 180,
   "ridge": 4.0,
   "mu": 22.098,
-  "hfa": 1.412,
-  "sigma_margin": 13.002,
-  "sigma_total": 13.609,
+  "hfa": 0.998,
+  "sigma_margin": 13.024,
+  "sigma_total": 13.6,
   "leakage_control": "Training is every settled game strictly before the slate's first gameday; sigma is fitted on residuals from the same pre-cutoff window, never on the slate."
  },
  "walk_forward": [
@@ -58,456 +58,145 @@
   },
   {
    "season": 2026,
-   "n": 120,
-   "model_mae": 9.922,
-   "market_mae": 9.483,
-   "model_ats_win_rate": 0.45
+   "n": 137,
+   "model_mae": 10.034,
+   "market_mae": 9.449,
+   "model_ats_win_rate": 0.4526
   }
  ],
  "walk_forward_note": "Refit on all prior seasons, evaluated on the next season's settled games with a market line. Error is mean absolute error in points.",
  "verified_scoring": {
   "slate": {
    "season": 2026,
-   "week": 9,
-   "games_graded": 15,
-   "games_on_slate": 15
+   "week": 11,
+   "games_graded": 0,
+   "games_on_slate": 13
   },
-  "model_side_mae": 9.169,
-  "market_side_mae": 8.367,
-  "model_total_mae": 11.003,
-  "market_total_mae": 10.233,
-  "model_ats_wins": 4,
-  "model_ats_losses": 11,
+  "model_side_mae": null,
+  "market_side_mae": null,
+  "model_total_mae": null,
+  "market_total_mae": null,
+  "model_ats_wins": 0,
+  "model_ats_losses": 0,
   "note": "Each game is scored once (n = games, not bets). ATS counts the model's own side against the market line; a game that pushes the market line is excluded from the win/loss count. The market is the benchmark, not an opponent.",
   "rows": [
    {
-    "game_id": "2026_09_JAX_BAL",
-    "matchup": "JAX at BAL",
-    "official_score": "33-10",
-    "official_margin_home": -23,
-    "official_total": 43,
-    "model_margin": -5.57,
-    "market_line_home": -8.5,
-    "model_abs_error": 17.43,
-    "market_abs_error": 14.5,
-    "model_total": 45.95,
-    "market_total": 43.5,
-    "model_total_abs_error": 2.95,
-    "market_total_abs_error": 0.5,
-    "model_home_cover": false,
-    "market_favoured_home": false,
-    "model_favoured_home": false,
-    "model_over": false,
-    "market_over": false,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_IND_HOU",
+    "matchup": "IND at HOU",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_ARI_SEA",
-    "matchup": "ARI at SEA",
-    "official_score": "3-17",
-    "official_margin_home": 14,
-    "official_total": 20,
-    "model_margin": 11.33,
-    "market_line_home": 11.5,
-    "model_abs_error": 2.67,
-    "market_abs_error": 2.5,
-    "model_total": 45.95,
-    "market_total": 44.5,
-    "model_total_abs_error": 25.95,
-    "market_total_abs_error": 24.5,
-    "model_home_cover": true,
-    "market_favoured_home": true,
-    "model_favoured_home": true,
-    "model_over": false,
-    "market_over": false,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_ARI_KC",
+    "matchup": "ARI at KC",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_CIN_ATL",
-    "matchup": "CIN at ATL",
-    "official_score": "34-17",
-    "official_margin_home": -17,
-    "official_total": 51,
-    "model_margin": -3.68,
-    "market_line_home": -3.0,
-    "model_abs_error": 13.32,
-    "market_abs_error": 14.0,
-    "model_total": 45.95,
-    "market_total": 51.5,
-    "model_total_abs_error": 5.05,
-    "market_total_abs_error": 0.5,
-    "model_home_cover": false,
-    "market_favoured_home": false,
-    "model_favoured_home": false,
-    "model_over": true,
-    "market_over": false,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_BAL_CAR",
+    "matchup": "BAL at CAR",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_CLE_NO",
-    "matchup": "CLE at NO",
-    "official_score": "22-23",
-    "official_margin_home": 1,
-    "official_total": 45,
-    "model_margin": 2.08,
-    "market_line_home": 2.5,
-    "model_abs_error": 1.08,
-    "market_abs_error": 1.5,
-    "model_total": 45.95,
-    "market_total": 43.5,
-    "model_total_abs_error": 0.95,
-    "market_total_abs_error": 1.5,
-    "model_home_cover": false,
-    "market_favoured_home": true,
-    "model_favoured_home": true,
-    "model_over": false,
-    "market_over": true,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_JAX_NYG",
+    "matchup": "JAX at NYG",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_DAL_IND",
-    "matchup": "DAL at IND",
-    "official_score": "27-23",
-    "official_margin_home": -4,
-    "official_total": 50,
-    "model_margin": 0.08,
-    "market_line_home": -6.0,
-    "model_abs_error": 4.08,
-    "market_abs_error": 2.0,
-    "model_total": 45.95,
-    "market_total": 51.5,
-    "model_total_abs_error": 4.05,
-    "market_total_abs_error": 1.5,
-    "model_home_cover": true,
-    "market_favoured_home": false,
-    "model_favoured_home": true,
-    "model_over": true,
-    "market_over": false,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_LV_DEN",
+    "matchup": "LV at DEN",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_DEN_CAR",
-    "matchup": "DEN at CAR",
-    "official_score": "26-21",
-    "official_margin_home": -5,
-    "official_total": 47,
-    "model_margin": -4.09,
-    "market_line_home": -3.0,
-    "model_abs_error": 0.91,
-    "market_abs_error": 2.0,
-    "model_total": 45.95,
-    "market_total": 43.5,
-    "model_total_abs_error": 1.05,
-    "market_total_abs_error": 3.5,
-    "model_home_cover": false,
-    "market_favoured_home": false,
-    "model_favoured_home": false,
-    "model_over": true,
-    "market_over": true,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_MIA_BUF",
+    "matchup": "MIA at BUF",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_DET_MIA",
-    "matchup": "DET at MIA",
-    "official_score": "19-9",
-    "official_margin_home": -10,
-    "official_total": 28,
-    "model_margin": -6.08,
-    "market_line_home": -7.0,
-    "model_abs_error": 3.92,
-    "market_abs_error": 3.0,
-    "model_total": 45.95,
-    "market_total": 49.5,
-    "model_total_abs_error": 17.95,
-    "market_total_abs_error": 21.5,
-    "model_home_cover": false,
-    "market_favoured_home": false,
-    "model_favoured_home": false,
-    "model_over": false,
-    "market_over": false,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_MIN_SF",
+    "matchup": "MIN at SF",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_GB_NE",
-    "matchup": "GB at NE",
-    "official_score": "45-27",
-    "official_margin_home": -18,
-    "official_total": 72,
-    "model_margin": 3.36,
-    "market_line_home": 3.0,
-    "model_abs_error": 21.36,
-    "market_abs_error": 21.0,
-    "model_total": 45.95,
-    "market_total": 47.5,
-    "model_total_abs_error": 26.05,
-    "market_total_abs_error": 24.5,
-    "model_home_cover": false,
-    "market_favoured_home": true,
-    "model_favoured_home": true,
-    "model_over": true,
-    "market_over": true,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_NO_CHI",
+    "matchup": "NO at CHI",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_HOU_LAC",
-    "matchup": "HOU at LAC",
-    "official_score": "44-22",
-    "official_margin_home": -22,
-    "official_total": 66,
-    "model_margin": -2.89,
-    "market_line_home": -4.5,
-    "model_abs_error": 19.11,
-    "market_abs_error": 17.5,
-    "model_total": 45.95,
-    "market_total": 40.5,
-    "model_total_abs_error": 20.05,
-    "market_total_abs_error": 25.5,
-    "model_home_cover": false,
-    "market_favoured_home": false,
-    "model_favoured_home": false,
-    "model_over": true,
-    "market_over": true,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_NYJ_LAC",
+    "matchup": "NYJ at LAC",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_LA_WAS",
-    "matchup": "LA at WAS",
-    "official_score": "20-13",
-    "official_margin_home": -7,
-    "official_total": 33,
-    "model_margin": -5.33,
-    "market_line_home": -5.5,
-    "model_abs_error": 1.67,
-    "market_abs_error": 1.5,
-    "model_total": 45.95,
-    "market_total": 47.5,
-    "model_total_abs_error": 12.95,
-    "market_total_abs_error": 14.5,
-    "model_home_cover": false,
-    "market_favoured_home": false,
-    "model_favoured_home": false,
-    "model_over": false,
-    "market_over": false,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_PIT_PHI",
+    "matchup": "PIT at PHI",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_LV_SF",
-    "matchup": "LV at SF",
-    "official_score": "17-38",
-    "official_margin_home": 21,
-    "official_total": 55,
-    "model_margin": 9.47,
-    "market_line_home": 9.5,
-    "model_abs_error": 11.53,
-    "market_abs_error": 11.5,
-    "model_total": 45.95,
-    "market_total": 51.5,
-    "model_total_abs_error": 9.05,
-    "market_total_abs_error": 3.5,
-    "model_home_cover": true,
-    "market_favoured_home": true,
-    "model_favoured_home": true,
-    "model_over": true,
-    "market_over": true,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_TB_DET",
+    "matchup": "TB at DET",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_NYG_PHI",
-    "matchup": "NYG at PHI",
-    "official_score": "19-11",
-    "official_margin_home": -8,
-    "official_total": 30,
-    "model_margin": 1.16,
-    "market_line_home": -3.5,
-    "model_abs_error": 9.16,
-    "market_abs_error": 4.5,
-    "model_total": 45.95,
-    "market_total": 40.5,
-    "model_total_abs_error": 15.95,
-    "market_total_abs_error": 10.5,
-    "model_home_cover": false,
-    "market_favoured_home": false,
-    "model_favoured_home": true,
-    "model_over": false,
-    "market_over": false,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_TEN_DAL",
+    "matchup": "TEN at DAL",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    },
    {
-    "game_id": "2026_09_NYJ_KC",
-    "matchup": "NYJ at KC",
-    "official_score": "12-35",
-    "official_margin_home": 23,
-    "official_total": 47,
-    "model_margin": 8.54,
-    "market_line_home": 10.0,
-    "model_abs_error": 14.46,
-    "market_abs_error": 13.0,
-    "model_total": 45.95,
-    "market_total": 46.5,
-    "model_total_abs_error": 1.05,
-    "market_total_abs_error": 0.5,
-    "model_home_cover": true,
-    "market_favoured_home": true,
-    "model_favoured_home": true,
-    "model_over": true,
-    "market_over": true,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
-   },
-   {
-    "game_id": "2026_09_TB_CHI",
-    "matchup": "TB at CHI",
-    "official_score": "24-27",
-    "official_margin_home": 3,
-    "official_total": 51,
-    "model_margin": 2.26,
-    "market_line_home": 5.5,
-    "model_abs_error": 0.74,
-    "market_abs_error": 2.5,
-    "model_total": 45.95,
-    "market_total": 47.5,
-    "model_total_abs_error": 5.05,
-    "market_total_abs_error": 3.5,
-    "model_home_cover": false,
-    "market_favoured_home": true,
-    "model_favoured_home": true,
-    "model_over": true,
-    "market_over": true,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
-   },
-   {
-    "game_id": "2026_09_BUF_MIN",
-    "matchup": "BUF at MIN",
-    "official_score": "23-6",
-    "official_margin_home": -17,
-    "official_total": 29,
-    "model_margin": -0.91,
-    "market_line_home": -2.5,
-    "model_abs_error": 16.09,
-    "market_abs_error": 14.5,
-    "model_total": 45.95,
-    "market_total": 46.5,
-    "model_total_abs_error": 16.95,
-    "market_total_abs_error": 17.5,
-    "model_home_cover": false,
-    "market_favoured_home": false,
-    "model_favoured_home": false,
-    "model_over": false,
-    "market_over": false,
-    "status": "graded",
-    "source_result": "SRC-NFL-SCHED-9",
-    "source_market": "SRC-NFLVERSE-SCHED"
+    "game_id": "2026_11_CIN_WAS",
+    "matchup": "CIN at WAS",
+    "status": "no_verified_result",
+    "note": "The official page read for this session does not cover this game."
    }
   ],
   "source_result": "SRC-NFL-SCHED-9"
  },
  "rows": [
   {
-   "game_id": "2026_09_JAX_BAL",
+   "game_id": "2026_11_IND_HOU",
    "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-05",
+   "week": 11,
+   "gameday": "2026-11-19",
    "kickoff_et": "20:15",
-   "away": "JAX",
-   "home": "BAL",
+   "away": "IND",
+   "home": "HOU",
    "neutral": false,
    "side": {
     "market": "side",
-    "fair_line_home": -5.57,
-    "market_line_home": -8.5,
-    "difference": 2.93,
-    "model_home_cover_prob": 0.5893,
-    "sigma": 13.002,
+    "fair_line_home": 6.34,
+    "market_line_home": 10.0,
+    "difference": -3.66,
+    "model_home_cover_prob": 0.3894,
+    "sigma": 13.024,
     "status": "originated"
    },
    "total": {
     "market": "total",
-    "fair_line": 45.95,
-    "market_line": 43.5,
-    "difference": 2.45,
-    "model_over_prob": 0.5714,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.3343,
-    "fair_home_ml": 199.1,
-    "fair_away_ml": -199.1,
-    "market_home_ml": 330.0,
-    "market_away_ml": -425.0,
-    "difference_prob": 0.1017,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_ARI_SEA",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "16:25",
-   "away": "ARI",
-   "home": "SEA",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": 11.33,
-    "market_line_home": 11.5,
-    "difference": -0.17,
-    "model_home_cover_prob": 0.4949,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
+    "fair_line": 45.92,
     "market_line": 44.5,
-    "difference": 1.45,
-    "model_over_prob": 0.5424,
-    "sigma": 13.609,
+    "difference": 1.42,
+    "model_over_prob": 0.5416,
+    "sigma": 13.6,
     "status": "originated"
    },
    "moneyline": {
     "market": "moneyline",
-    "fair_home_prob": 0.8083,
-    "fair_home_ml": -421.8,
-    "fair_away_ml": 421.8,
-    "market_home_ml": -700.0,
-    "market_away_ml": 500.0,
-    "difference_prob": -0.0667,
+    "fair_home_prob": 0.6868,
+    "fair_home_ml": -219.3,
+    "fair_away_ml": 219.3,
+    "market_home_ml": -455.0,
+    "market_away_ml": 350.0,
+    "difference_prob": -0.133,
     "status": "originated"
    },
    "market_present": {
@@ -518,480 +207,40 @@
    "source_market": "SRC-NFLVERSE-SCHED"
   },
   {
-   "game_id": "2026_09_CIN_ATL",
+   "game_id": "2026_11_ARI_KC",
    "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "09:30",
-   "away": "CIN",
-   "home": "ATL",
-   "neutral": true,
-   "side": {
-    "market": "side",
-    "fair_line_home": -3.68,
-    "market_line_home": -3.0,
-    "difference": -0.68,
-    "model_home_cover_prob": 0.479,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 51.5,
-    "difference": -5.55,
-    "model_over_prob": 0.3417,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.3884,
-    "fair_home_ml": 157.4,
-    "fair_away_ml": -157.4,
-    "market_home_ml": 140.0,
-    "market_away_ml": -166.0,
-    "difference_prob": -0.0282,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_CLE_NO",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
+   "week": 11,
+   "gameday": "2026-11-22",
    "kickoff_et": "13:00",
-   "away": "CLE",
-   "home": "NO",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": 2.08,
-    "market_line_home": 2.5,
-    "difference": -0.42,
-    "model_home_cover_prob": 0.487,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 43.5,
-    "difference": 2.45,
-    "model_over_prob": 0.5714,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.5635,
-    "fair_home_ml": -129.1,
-    "fair_away_ml": 129.1,
-    "market_home_ml": -142.0,
-    "market_away_ml": 120.0,
-    "difference_prob": -0.0233,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_DAL_IND",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "13:00",
-   "away": "DAL",
-   "home": "IND",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": 0.08,
-    "market_line_home": -6.0,
-    "difference": 6.08,
-    "model_home_cover_prob": 0.6799,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 51.5,
-    "difference": -5.55,
-    "model_over_prob": 0.3417,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.5023,
-    "fair_home_ml": -100.9,
-    "fair_away_ml": 100.9,
-    "market_home_ml": 210.0,
-    "market_away_ml": -258.0,
-    "difference_prob": 0.1798,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_DEN_CAR",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "13:00",
-   "away": "DEN",
-   "home": "CAR",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -4.09,
-    "market_line_home": -3.0,
-    "difference": -1.09,
-    "model_home_cover_prob": 0.4665,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 43.5,
-    "difference": 2.45,
-    "model_over_prob": 0.5714,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.3765,
-    "fair_home_ml": 165.6,
-    "fair_away_ml": -165.6,
-    "market_home_ml": 124.0,
-    "market_away_ml": -148.0,
-    "difference_prob": -0.0699,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_DET_MIA",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "13:00",
-   "away": "DET",
-   "home": "MIA",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -6.08,
-    "market_line_home": -7.0,
-    "difference": 0.92,
-    "model_home_cover_prob": 0.5282,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 49.5,
-    "difference": -3.55,
-    "model_over_prob": 0.3971,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.32,
-    "fair_home_ml": 212.5,
-    "fair_away_ml": -212.5,
-    "market_home_ml": 295.0,
-    "market_away_ml": -375.0,
-    "difference_prob": 0.0668,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_GB_NE",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "16:25",
-   "away": "GB",
-   "home": "NE",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": 3.36,
-    "market_line_home": 3.0,
-    "difference": 0.36,
-    "model_home_cover_prob": 0.5112,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 47.5,
-    "difference": -1.55,
-    "model_over_prob": 0.4547,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.6021,
-    "fair_home_ml": -151.3,
-    "fair_away_ml": 151.3,
-    "market_home_ml": -155.0,
-    "market_away_ml": 130.0,
-    "difference_prob": -0.0058,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_HOU_LAC",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "16:05",
-   "away": "HOU",
-   "home": "LAC",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -2.89,
-    "market_line_home": -4.5,
-    "difference": 1.61,
-    "model_home_cover_prob": 0.5492,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 40.5,
-    "difference": 5.45,
-    "model_over_prob": 0.6556,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.412,
-    "fair_home_ml": 142.7,
-    "fair_away_ml": -142.7,
-    "market_home_ml": 180.0,
-    "market_away_ml": -218.0,
-    "difference_prob": 0.0548,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_LA_WAS",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "13:00",
-   "away": "LA",
-   "home": "WAS",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -5.33,
-    "market_line_home": -5.5,
-    "difference": 0.17,
-    "model_home_cover_prob": 0.5052,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 47.5,
-    "difference": -1.55,
-    "model_over_prob": 0.4547,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.3409,
-    "fair_home_ml": 193.4,
-    "fair_away_ml": -193.4,
-    "market_home_ml": 180.0,
-    "market_away_ml": -218.0,
-    "difference_prob": -0.0163,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_LV_SF",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "16:05",
-   "away": "LV",
-   "home": "SF",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": 9.47,
-    "market_line_home": 9.5,
-    "difference": -0.03,
-    "model_home_cover_prob": 0.4992,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 51.5,
-    "difference": -5.55,
-    "model_over_prob": 0.3417,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.7669,
-    "fair_home_ml": -329.0,
-    "fair_away_ml": 329.0,
-    "market_home_ml": -500.0,
-    "market_away_ml": 380.0,
-    "difference_prob": -0.0665,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_NYG_PHI",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "13:00",
-   "away": "NYG",
-   "home": "PHI",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": 1.16,
-    "market_line_home": -3.5,
-    "difference": 4.66,
-    "model_home_cover_prob": 0.6401,
-    "sigma": 13.002,
-    "status": "originated"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": 40.5,
-    "difference": 5.45,
-    "model_over_prob": 0.6556,
-    "sigma": 13.609,
-    "status": "originated"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.5357,
-    "fair_home_ml": -115.4,
-    "fair_away_ml": 115.4,
-    "market_home_ml": 140.0,
-    "market_away_ml": -166.0,
-    "difference_prob": 0.119,
-    "status": "originated"
-   },
-   "market_present": {
-    "side": true,
-    "total": true,
-    "moneyline": true
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_09_NYJ_KC",
-   "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
-   "kickoff_et": "13:00",
-   "away": "NYJ",
+   "away": "ARI",
    "home": "KC",
    "neutral": false,
    "side": {
     "market": "side",
-    "fair_line_home": 8.54,
-    "market_line_home": 10.0,
-    "difference": -1.46,
-    "model_home_cover_prob": 0.4554,
-    "sigma": 13.002,
+    "fair_line_home": 8.36,
+    "market_line_home": 14.0,
+    "difference": -5.64,
+    "model_home_cover_prob": 0.3326,
+    "sigma": 13.024,
     "status": "originated"
    },
    "total": {
     "market": "total",
-    "fair_line": 45.95,
-    "market_line": 46.5,
-    "difference": -0.55,
-    "model_over_prob": 0.4839,
-    "sigma": 13.609,
+    "fair_line": 45.92,
+    "market_line": 42.5,
+    "difference": 3.42,
+    "model_over_prob": 0.5993,
+    "sigma": 13.6,
     "status": "originated"
    },
    "moneyline": {
     "market": "moneyline",
-    "fair_home_prob": 0.7444,
-    "fair_home_ml": -291.3,
-    "fair_away_ml": 291.3,
-    "market_home_ml": -500.0,
-    "market_away_ml": 380.0,
-    "difference_prob": -0.0889,
+    "fair_home_prob": 0.7396,
+    "fair_home_ml": -284.0,
+    "fair_away_ml": 284.0,
+    "market_home_ml": -900.0,
+    "market_away_ml": 600.0,
+    "difference_prob": -0.1604,
     "status": "originated"
    },
    "market_present": {
@@ -1002,40 +251,260 @@
    "source_market": "SRC-NFLVERSE-SCHED"
   },
   {
-   "game_id": "2026_09_TB_CHI",
+   "game_id": "2026_11_BAL_CAR",
    "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-08",
+   "week": 11,
+   "gameday": "2026-11-22",
+   "kickoff_et": "13:00",
+   "away": "BAL",
+   "home": "CAR",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": -0.4,
+    "market_line_home": 1.5,
+    "difference": -1.9,
+    "model_home_cover_prob": 0.4419,
+    "sigma": 13.024,
+    "status": "originated"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": 44.5,
+    "difference": 1.42,
+    "model_over_prob": 0.5416,
+    "sigma": 13.6,
+    "status": "originated"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.4877,
+    "fair_home_ml": 105.1,
+    "fair_away_ml": -105.1,
+    "market_home_ml": -125.0,
+    "market_away_ml": 105.0,
+    "difference_prob": -0.0679,
+    "status": "originated"
+   },
+   "market_present": {
+    "side": true,
+    "total": true,
+    "moneyline": true
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_11_JAX_NYG",
+   "season": 2026,
+   "week": 11,
+   "gameday": "2026-11-22",
+   "kickoff_et": "13:00",
+   "away": "JAX",
+   "home": "NYG",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": -8.25,
+    "market_line_home": -6.0,
+    "difference": -2.25,
+    "model_home_cover_prob": 0.4315,
+    "sigma": 13.024,
+    "status": "originated"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": 44.5,
+    "difference": 1.42,
+    "model_over_prob": 0.5416,
+    "sigma": 13.6,
+    "status": "originated"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.2633,
+    "fair_home_ml": 279.9,
+    "fair_away_ml": -279.9,
+    "market_home_ml": 215.0,
+    "market_away_ml": -265.0,
+    "difference_prob": -0.0542,
+    "status": "originated"
+   },
+   "market_present": {
+    "side": true,
+    "total": true,
+    "moneyline": true
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_11_LV_DEN",
+   "season": 2026,
+   "week": 11,
+   "gameday": "2026-11-22",
+   "kickoff_et": "16:25",
+   "away": "LV",
+   "home": "DEN",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 8.48,
+    "market_line_home": 8.5,
+    "difference": -0.02,
+    "model_home_cover_prob": 0.4994,
+    "sigma": 13.024,
+    "status": "originated"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": 41.5,
+    "difference": 4.42,
+    "model_over_prob": 0.6274,
+    "sigma": 13.6,
+    "status": "originated"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.7425,
+    "fair_home_ml": -288.3,
+    "fair_away_ml": 288.3,
+    "market_home_ml": -440.0,
+    "market_away_ml": 340.0,
+    "difference_prob": -0.0723,
+    "status": "originated"
+   },
+   "market_present": {
+    "side": true,
+    "total": true,
+    "moneyline": true
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_11_MIA_BUF",
+   "season": 2026,
+   "week": 11,
+   "gameday": "2026-11-22",
+   "kickoff_et": "13:00",
+   "away": "MIA",
+   "home": "BUF",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 11.82,
+    "market_line_home": 16.5,
+    "difference": -4.68,
+    "model_home_cover_prob": 0.3597,
+    "sigma": 13.024,
+    "status": "originated"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": 46.5,
+    "difference": -0.58,
+    "model_over_prob": 0.483,
+    "sigma": 13.6,
+    "status": "originated"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.8179,
+    "fair_home_ml": -449.3,
+    "fair_away_ml": 449.3,
+    "market_home_ml": -1650.0,
+    "market_away_ml": 950.0,
+    "difference_prob": -0.1249,
+    "status": "originated"
+   },
+   "market_present": {
+    "side": true,
+    "total": true,
+    "moneyline": true
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_11_MIN_SF",
+   "season": 2026,
+   "week": 11,
+   "gameday": "2026-11-22",
    "kickoff_et": "20:20",
-   "away": "TB",
+   "away": "MIN",
+   "home": "SF",
+   "neutral": true,
+   "side": {
+    "market": "side",
+    "fair_line_home": 2.18,
+    "market_line_home": 3.5,
+    "difference": -1.32,
+    "model_home_cover_prob": 0.4596,
+    "sigma": 13.024,
+    "status": "originated"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": 45.5,
+    "difference": 0.42,
+    "model_over_prob": 0.5123,
+    "sigma": 13.6,
+    "status": "originated"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.5665,
+    "fair_home_ml": -130.7,
+    "fair_away_ml": 130.7,
+    "market_home_ml": -205.0,
+    "market_away_ml": 170.0,
+    "difference_prob": -0.1057,
+    "status": "originated"
+   },
+   "market_present": {
+    "side": true,
+    "total": true,
+    "moneyline": true
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_11_NO_CHI",
+   "season": 2026,
+   "week": 11,
+   "gameday": "2026-11-22",
+   "kickoff_et": "13:00",
+   "away": "NO",
    "home": "CHI",
    "neutral": false,
    "side": {
     "market": "side",
-    "fair_line_home": 2.26,
-    "market_line_home": 5.5,
-    "difference": -3.24,
-    "model_home_cover_prob": 0.4017,
-    "sigma": 13.002,
+    "fair_line_home": 7.57,
+    "market_line_home": 9.5,
+    "difference": -1.93,
+    "model_home_cover_prob": 0.441,
+    "sigma": 13.024,
     "status": "originated"
    },
    "total": {
     "market": "total",
-    "fair_line": 45.95,
-    "market_line": 47.5,
-    "difference": -1.55,
-    "model_over_prob": 0.4547,
-    "sigma": 13.609,
+    "fair_line": 45.92,
+    "market_line": 48.5,
+    "difference": -2.58,
+    "model_over_prob": 0.4248,
+    "sigma": 13.6,
     "status": "originated"
    },
    "moneyline": {
     "market": "moneyline",
-    "fair_home_prob": 0.5691,
-    "fair_home_ml": -132.1,
-    "fair_away_ml": 132.1,
-    "market_home_ml": -238.0,
-    "market_away_ml": 195.0,
-    "difference_prob": -0.135,
+    "fair_home_prob": 0.7194,
+    "fair_home_ml": -256.4,
+    "fair_away_ml": 256.4,
+    "market_home_ml": -485.0,
+    "market_away_ml": 370.0,
+    "difference_prob": -0.1097,
     "status": "originated"
    },
    "market_present": {
@@ -1046,40 +515,216 @@
    "source_market": "SRC-NFLVERSE-SCHED"
   },
   {
-   "game_id": "2026_09_BUF_MIN",
+   "game_id": "2026_11_NYJ_LAC",
    "season": 2026,
-   "week": 9,
-   "gameday": "2026-11-09",
-   "kickoff_et": "20:15",
-   "away": "BUF",
-   "home": "MIN",
+   "week": 11,
+   "gameday": "2026-11-22",
+   "kickoff_et": "16:05",
+   "away": "NYJ",
+   "home": "LAC",
    "neutral": false,
    "side": {
     "market": "side",
-    "fair_line_home": -0.91,
-    "market_line_home": -2.5,
-    "difference": 1.59,
-    "model_home_cover_prob": 0.5488,
-    "sigma": 13.002,
+    "fair_line_home": 2.75,
+    "market_line_home": 1.5,
+    "difference": 1.25,
+    "model_home_cover_prob": 0.5382,
+    "sigma": 13.024,
     "status": "originated"
    },
    "total": {
     "market": "total",
-    "fair_line": 45.95,
-    "market_line": 46.5,
-    "difference": -0.55,
-    "model_over_prob": 0.4839,
-    "sigma": 13.609,
+    "fair_line": 45.92,
+    "market_line": 42.5,
+    "difference": 3.42,
+    "model_over_prob": 0.5993,
+    "sigma": 13.6,
     "status": "originated"
    },
    "moneyline": {
     "market": "moneyline",
-    "fair_home_prob": 0.4722,
-    "fair_home_ml": 111.8,
-    "fair_away_ml": -111.8,
-    "market_home_ml": 130.0,
-    "market_away_ml": -155.0,
-    "difference_prob": 0.0374,
+    "fair_home_prob": 0.5836,
+    "fair_home_ml": -140.1,
+    "fair_away_ml": 140.1,
+    "market_home_ml": -125.0,
+    "market_away_ml": 105.0,
+    "difference_prob": 0.028,
+    "status": "originated"
+   },
+   "market_present": {
+    "side": true,
+    "total": true,
+    "moneyline": true
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_11_PIT_PHI",
+   "season": 2026,
+   "week": 11,
+   "gameday": "2026-11-22",
+   "kickoff_et": "16:25",
+   "away": "PIT",
+   "home": "PHI",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": -3.27,
+    "market_line_home": -4.5,
+    "difference": 1.23,
+    "model_home_cover_prob": 0.5375,
+    "sigma": 13.024,
+    "status": "originated"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": 38.5,
+    "difference": 7.42,
+    "model_over_prob": 0.7073,
+    "sigma": 13.6,
+    "status": "originated"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.4007,
+    "fair_home_ml": 149.5,
+    "fair_away_ml": -149.5,
+    "market_home_ml": 164.0,
+    "market_away_ml": -198.0,
+    "difference_prob": 0.0219,
+    "status": "originated"
+   },
+   "market_present": {
+    "side": true,
+    "total": true,
+    "moneyline": true
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_11_TB_DET",
+   "season": 2026,
+   "week": 11,
+   "gameday": "2026-11-22",
+   "kickoff_et": "13:00",
+   "away": "TB",
+   "home": "DET",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 3.2,
+    "market_line_home": 3.5,
+    "difference": -0.3,
+    "model_home_cover_prob": 0.4907,
+    "sigma": 13.024,
+    "status": "originated"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": 47.5,
+    "difference": -1.58,
+    "model_over_prob": 0.4538,
+    "sigma": 13.6,
+    "status": "originated"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.5969,
+    "fair_home_ml": -148.1,
+    "fair_away_ml": 148.1,
+    "market_home_ml": -180.0,
+    "market_away_ml": 150.0,
+    "difference_prob": -0.0459,
+    "status": "originated"
+   },
+   "market_present": {
+    "side": true,
+    "total": true,
+    "moneyline": true
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_11_TEN_DAL",
+   "season": 2026,
+   "week": 11,
+   "gameday": "2026-11-22",
+   "kickoff_et": "13:00",
+   "away": "TEN",
+   "home": "DAL",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 6.56,
+    "market_line_home": 7.5,
+    "difference": -0.94,
+    "model_home_cover_prob": 0.4713,
+    "sigma": 13.024,
+    "status": "originated"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": 51.5,
+    "difference": -5.58,
+    "model_over_prob": 0.3408,
+    "sigma": 13.6,
+    "status": "originated"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.6929,
+    "fair_home_ml": -225.6,
+    "fair_away_ml": 225.6,
+    "market_home_ml": -425.0,
+    "market_away_ml": 330.0,
+    "difference_prob": -0.1167,
+    "status": "originated"
+   },
+   "market_present": {
+    "side": true,
+    "total": true,
+    "moneyline": true
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_11_CIN_WAS",
+   "season": 2026,
+   "week": 11,
+   "gameday": "2026-11-23",
+   "kickoff_et": "20:15",
+   "away": "CIN",
+   "home": "WAS",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": -4.34,
+    "market_line_home": -3.5,
+    "difference": -0.84,
+    "model_home_cover_prob": 0.4742,
+    "sigma": 13.024,
+    "status": "originated"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": 51.5,
+    "difference": -5.58,
+    "model_over_prob": 0.3408,
+    "sigma": 13.6,
+    "status": "originated"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.3694,
+    "fair_home_ml": 170.7,
+    "fair_away_ml": -170.7,
+    "market_home_ml": 170.0,
+    "market_away_ml": -205.0,
+    "difference_prob": -0.001,
     "status": "originated"
    },
    "market_present": {
@@ -1092,37 +737,37 @@
  ],
  "pending_rows": [
   {
-   "game_id": "2026_10_WAS_NYG",
+   "game_id": "2026_12_GB_LA",
    "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-12",
-   "kickoff_et": "20:15",
-   "away": "WAS",
-   "home": "NYG",
+   "week": 12,
+   "gameday": "2026-11-25",
+   "kickoff_et": "20:00",
+   "away": "GB",
+   "home": "LA",
    "neutral": false,
    "side": {
     "market": "side",
-    "fair_line_home": 2.1,
+    "fair_line_home": 2.3,
     "market_line_home": null,
     "difference": null,
     "model_home_cover_prob": null,
-    "sigma": 13.002,
+    "sigma": 13.024,
     "status": "originated_no_market"
    },
    "total": {
     "market": "total",
-    "fair_line": 45.95,
+    "fair_line": 45.92,
     "market_line": null,
     "difference": null,
     "model_over_prob": null,
-    "sigma": 13.609,
+    "sigma": 13.6,
     "status": "blocked_by_side"
    },
    "moneyline": {
     "market": "moneyline",
-    "fair_home_prob": 0.5643,
-    "fair_home_ml": -129.5,
-    "fair_away_ml": 129.5,
+    "fair_home_prob": 0.57,
+    "fair_home_ml": -132.6,
+    "fair_away_ml": 132.6,
     "market_home_ml": null,
     "market_away_ml": null,
     "difference_prob": null,
@@ -1136,389 +781,37 @@
    "source_market": "SRC-NFLVERSE-SCHED"
   },
   {
-   "game_id": "2026_10_BUF_NYJ",
+   "game_id": "2026_12_CHI_DET",
    "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
+   "week": 12,
+   "gameday": "2026-11-26",
    "kickoff_et": "13:00",
-   "away": "BUF",
-   "home": "NYJ",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -9.03,
-    "market_line_home": null,
-    "difference": null,
-    "model_home_cover_prob": null,
-    "sigma": 13.002,
-    "status": "originated_no_market"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": null,
-    "difference": null,
-    "model_over_prob": null,
-    "sigma": 13.609,
-    "status": "blocked_by_side"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.2437,
-    "fair_home_ml": 310.4,
-    "fair_away_ml": -310.4,
-    "market_home_ml": null,
-    "market_away_ml": null,
-    "difference_prob": null,
-    "status": "originated_no_market"
-   },
-   "market_present": {
-    "side": false,
-    "total": false,
-    "moneyline": false
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_10_CAR_NO",
-   "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "13:00",
-   "away": "CAR",
-   "home": "NO",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": 0.97,
-    "market_line_home": null,
-    "difference": null,
-    "model_home_cover_prob": null,
-    "sigma": 13.002,
-    "status": "originated_no_market"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": null,
-    "difference": null,
-    "model_over_prob": null,
-    "sigma": 13.609,
-    "status": "blocked_by_side"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.5299,
-    "fair_home_ml": -112.7,
-    "fair_away_ml": 112.7,
-    "market_home_ml": null,
-    "market_away_ml": null,
-    "difference_prob": null,
-    "status": "originated_no_market"
-   },
-   "market_present": {
-    "side": false,
-    "total": false,
-    "moneyline": false
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_10_HOU_CLE",
-   "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "13:00",
-   "away": "HOU",
-   "home": "CLE",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -3.88,
-    "market_line_home": null,
-    "difference": null,
-    "model_home_cover_prob": null,
-    "sigma": 13.002,
-    "status": "originated_no_market"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": null,
-    "difference": null,
-    "model_over_prob": null,
-    "sigma": 13.609,
-    "status": "blocked_by_side"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.3828,
-    "fair_home_ml": 161.2,
-    "fair_away_ml": -161.2,
-    "market_home_ml": null,
-    "market_away_ml": null,
-    "difference_prob": null,
-    "status": "originated_no_market"
-   },
-   "market_present": {
-    "side": false,
-    "total": false,
-    "moneyline": false
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_10_JAX_TEN",
-   "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "13:00",
-   "away": "JAX",
-   "home": "TEN",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -11.75,
-    "market_line_home": null,
-    "difference": null,
-    "model_home_cover_prob": null,
-    "sigma": 13.002,
-    "status": "originated_no_market"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": null,
-    "difference": null,
-    "model_over_prob": null,
-    "sigma": 13.609,
-    "status": "blocked_by_side"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.1831,
-    "fair_home_ml": 446.1,
-    "fair_away_ml": -446.1,
-    "market_home_ml": null,
-    "market_away_ml": null,
-    "difference_prob": null,
-    "status": "originated_no_market"
-   },
-   "market_present": {
-    "side": false,
-    "total": false,
-    "moneyline": false
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_10_KC_ATL",
-   "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "13:00",
-   "away": "KC",
-   "home": "ATL",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -2.53,
-    "market_line_home": null,
-    "difference": null,
-    "model_home_cover_prob": null,
-    "sigma": 13.002,
-    "status": "originated_no_market"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": null,
-    "difference": null,
-    "model_over_prob": null,
-    "sigma": 13.609,
-    "status": "blocked_by_side"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.4227,
-    "fair_home_ml": 136.5,
-    "fair_away_ml": -136.5,
-    "market_home_ml": null,
-    "market_away_ml": null,
-    "difference_prob": null,
-    "status": "originated_no_market"
-   },
-   "market_present": {
-    "side": false,
-    "total": false,
-    "moneyline": false
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_10_LA_ARI",
-   "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "16:05",
-   "away": "LA",
-   "home": "ARI",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -6.76,
-    "market_line_home": null,
-    "difference": null,
-    "model_home_cover_prob": null,
-    "sigma": 13.002,
-    "status": "originated_no_market"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": null,
-    "difference": null,
-    "model_over_prob": null,
-    "sigma": 13.609,
-    "status": "blocked_by_side"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.3015,
-    "fair_home_ml": 231.7,
-    "fair_away_ml": -231.7,
-    "market_home_ml": null,
-    "market_away_ml": null,
-    "difference_prob": null,
-    "status": "originated_no_market"
-   },
-   "market_present": {
-    "side": false,
-    "total": false,
-    "moneyline": false
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_10_MIA_IND",
-   "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "13:00",
-   "away": "MIA",
-   "home": "IND",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": 3.1,
-    "market_line_home": null,
-    "difference": null,
-    "model_home_cover_prob": null,
-    "sigma": 13.002,
-    "status": "originated_no_market"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": null,
-    "difference": null,
-    "model_over_prob": null,
-    "sigma": 13.609,
-    "status": "blocked_by_side"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.5941,
-    "fair_home_ml": -146.4,
-    "fair_away_ml": 146.4,
-    "market_home_ml": null,
-    "market_away_ml": null,
-    "difference_prob": null,
-    "status": "originated_no_market"
-   },
-   "market_present": {
-    "side": false,
-    "total": false,
-    "moneyline": false
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_10_MIN_GB",
-   "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "13:00",
-   "away": "MIN",
-   "home": "GB",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -0.33,
-    "market_line_home": null,
-    "difference": null,
-    "model_home_cover_prob": null,
-    "sigma": 13.002,
-    "status": "originated_no_market"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": null,
-    "difference": null,
-    "model_over_prob": null,
-    "sigma": 13.609,
-    "status": "blocked_by_side"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.49,
-    "fair_home_ml": 104.1,
-    "fair_away_ml": -104.1,
-    "market_home_ml": null,
-    "market_away_ml": null,
-    "difference_prob": null,
-    "status": "originated_no_market"
-   },
-   "market_present": {
-    "side": false,
-    "total": false,
-    "moneyline": false
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_10_NE_DET",
-   "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "09:30",
-   "away": "NE",
+   "away": "CHI",
    "home": "DET",
-   "neutral": true,
+   "neutral": false,
    "side": {
     "market": "side",
-    "fair_line_home": -0.23,
+    "fair_line_home": 1.26,
     "market_line_home": null,
     "difference": null,
     "model_home_cover_prob": null,
-    "sigma": 13.002,
+    "sigma": 13.024,
     "status": "originated_no_market"
    },
    "total": {
     "market": "total",
-    "fair_line": 45.95,
+    "fair_line": 45.92,
     "market_line": null,
     "difference": null,
     "model_over_prob": null,
-    "sigma": 13.609,
+    "sigma": 13.6,
     "status": "blocked_by_side"
    },
    "moneyline": {
     "market": "moneyline",
-    "fair_home_prob": 0.4929,
-    "fair_home_ml": 102.9,
-    "fair_away_ml": -102.9,
+    "fair_home_prob": 0.5384,
+    "fair_home_ml": -116.6,
+    "fair_away_ml": 116.6,
     "market_home_ml": null,
     "market_away_ml": null,
     "difference_prob": null,
@@ -1532,37 +825,37 @@
    "source_market": "SRC-NFLVERSE-SCHED"
   },
   {
-   "game_id": "2026_10_PIT_CIN",
+   "game_id": "2026_12_KC_BUF",
    "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
+   "week": 12,
+   "gameday": "2026-11-26",
    "kickoff_et": "20:20",
-   "away": "PIT",
-   "home": "CIN",
+   "away": "KC",
+   "home": "BUF",
    "neutral": false,
    "side": {
     "market": "side",
-    "fair_line_home": 1.66,
+    "fair_line_home": 4.35,
     "market_line_home": null,
     "difference": null,
     "model_home_cover_prob": null,
-    "sigma": 13.002,
+    "sigma": 13.024,
     "status": "originated_no_market"
    },
    "total": {
     "market": "total",
-    "fair_line": 45.95,
+    "fair_line": 45.92,
     "market_line": null,
     "difference": null,
     "model_over_prob": null,
-    "sigma": 13.609,
+    "sigma": 13.6,
     "status": "blocked_by_side"
    },
    "moneyline": {
     "market": "moneyline",
-    "fair_home_prob": 0.5508,
-    "fair_home_ml": -122.6,
-    "fair_away_ml": 122.6,
+    "fair_home_prob": 0.6308,
+    "fair_home_ml": -170.9,
+    "fair_away_ml": 170.9,
     "market_home_ml": null,
     "market_away_ml": null,
     "difference_prob": null,
@@ -1576,81 +869,37 @@
    "source_market": "SRC-NFLVERSE-SCHED"
   },
   {
-   "game_id": "2026_10_SEA_LV",
+   "game_id": "2026_12_PHI_DAL",
    "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "16:05",
-   "away": "SEA",
-   "home": "LV",
-   "neutral": false,
-   "side": {
-    "market": "side",
-    "fair_line_home": -8.24,
-    "market_line_home": null,
-    "difference": null,
-    "model_home_cover_prob": null,
-    "sigma": 13.002,
-    "status": "originated_no_market"
-   },
-   "total": {
-    "market": "total",
-    "fair_line": 45.95,
-    "market_line": null,
-    "difference": null,
-    "model_over_prob": null,
-    "sigma": 13.609,
-    "status": "blocked_by_side"
-   },
-   "moneyline": {
-    "market": "moneyline",
-    "fair_home_prob": 0.2631,
-    "fair_home_ml": 280.1,
-    "fair_away_ml": -280.1,
-    "market_home_ml": null,
-    "market_away_ml": null,
-    "difference_prob": null,
-    "status": "originated_no_market"
-   },
-   "market_present": {
-    "side": false,
-    "total": false,
-    "moneyline": false
-   },
-   "source_market": "SRC-NFLVERSE-SCHED"
-  },
-  {
-   "game_id": "2026_10_SF_DAL",
-   "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-15",
-   "kickoff_et": "16:25",
-   "away": "SF",
+   "week": 12,
+   "gameday": "2026-11-26",
+   "kickoff_et": "16:30",
+   "away": "PHI",
    "home": "DAL",
    "neutral": false,
    "side": {
     "market": "side",
-    "fair_line_home": -3.9,
+    "fair_line_home": 2.66,
     "market_line_home": null,
     "difference": null,
     "model_home_cover_prob": null,
-    "sigma": 13.002,
+    "sigma": 13.024,
     "status": "originated_no_market"
    },
    "total": {
     "market": "total",
-    "fair_line": 45.95,
+    "fair_line": 45.92,
     "market_line": null,
     "difference": null,
     "model_over_prob": null,
-    "sigma": 13.609,
+    "sigma": 13.6,
     "status": "blocked_by_side"
    },
    "moneyline": {
     "market": "moneyline",
-    "fair_home_prob": 0.3821,
-    "fair_home_ml": 161.7,
-    "fair_away_ml": -161.7,
+    "fair_home_prob": 0.5809,
+    "fair_home_ml": -138.6,
+    "fair_away_ml": 138.6,
     "market_home_ml": null,
     "market_away_ml": null,
     "difference_prob": null,
@@ -1664,37 +913,521 @@
    "source_market": "SRC-NFLVERSE-SCHED"
   },
   {
-   "game_id": "2026_10_LAC_BAL",
+   "game_id": "2026_12_DEN_PIT",
    "season": 2026,
-   "week": 10,
-   "gameday": "2026-11-16",
-   "kickoff_et": "20:15",
-   "away": "LAC",
-   "home": "BAL",
+   "week": 12,
+   "gameday": "2026-11-27",
+   "kickoff_et": "15:00",
+   "away": "DEN",
+   "home": "PIT",
    "neutral": false,
    "side": {
     "market": "side",
-    "fair_line_home": 3.77,
+    "fair_line_home": -0.17,
     "market_line_home": null,
     "difference": null,
     "model_home_cover_prob": null,
-    "sigma": 13.002,
+    "sigma": 13.024,
     "status": "originated_no_market"
    },
    "total": {
     "market": "total",
-    "fair_line": 45.95,
+    "fair_line": 45.92,
     "market_line": null,
     "difference": null,
     "model_over_prob": null,
-    "sigma": 13.609,
+    "sigma": 13.6,
     "status": "blocked_by_side"
    },
    "moneyline": {
     "market": "moneyline",
-    "fair_home_prob": 0.6142,
-    "fair_home_ml": -159.2,
-    "fair_away_ml": 159.2,
+    "fair_home_prob": 0.4949,
+    "fair_home_ml": 102.1,
+    "fair_away_ml": -102.1,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_ATL_MIN",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "13:00",
+   "away": "ATL",
+   "home": "MIN",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 5.81,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.6721,
+    "fair_home_ml": -205.0,
+    "fair_away_ml": 205.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_BAL_HOU",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "13:00",
+   "away": "BAL",
+   "home": "HOU",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 5.01,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.6497,
+    "fair_home_ml": -185.5,
+    "fair_away_ml": 185.5,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_LV_CLE",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "13:00",
+   "away": "LV",
+   "home": "CLE",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 1.81,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.5553,
+    "fair_home_ml": -124.9,
+    "fair_away_ml": 124.9,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_NE_LAC",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "20:20",
+   "away": "NE",
+   "home": "LAC",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": -5.14,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.3464,
+    "fair_home_ml": 188.6,
+    "fair_away_ml": -188.6,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_NO_CIN",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "13:00",
+   "away": "NO",
+   "home": "CIN",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 7.09,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.7068,
+    "fair_home_ml": -241.1,
+    "fair_away_ml": 241.1,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_NYG_IND",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "13:00",
+   "away": "NYG",
+   "home": "IND",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 0.16,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.505,
+    "fair_home_ml": -102.0,
+    "fair_away_ml": 102.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_NYJ_MIA",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "13:00",
+   "away": "NYJ",
+   "home": "MIA",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 2.06,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.5629,
+    "fair_home_ml": -128.8,
+    "fair_away_ml": 128.8,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_SEA_SF",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "16:25",
+   "away": "SEA",
+   "home": "SF",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 1.0,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.5307,
+    "fair_home_ml": -113.1,
+    "fair_away_ml": 113.1,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_TEN_JAX",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "16:05",
+   "away": "TEN",
+   "home": "JAX",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 14.97,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.8748,
+    "fair_home_ml": -698.7,
+    "fair_away_ml": 698.7,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_WAS_ARI",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-29",
+   "kickoff_et": "16:25",
+   "away": "WAS",
+   "home": "ARI",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": -0.88,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.473,
+    "fair_home_ml": 111.4,
+    "fair_away_ml": -111.4,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference_prob": null,
+    "status": "originated_no_market"
+   },
+   "market_present": {
+    "side": false,
+    "total": false,
+    "moneyline": false
+   },
+   "source_market": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "game_id": "2026_12_CAR_TB",
+   "season": 2026,
+   "week": 12,
+   "gameday": "2026-11-30",
+   "kickoff_et": "20:15",
+   "away": "CAR",
+   "home": "TB",
+   "neutral": false,
+   "side": {
+    "market": "side",
+    "fair_line_home": 4.98,
+    "market_line_home": null,
+    "difference": null,
+    "model_home_cover_prob": null,
+    "sigma": 13.024,
+    "status": "originated_no_market"
+   },
+   "total": {
+    "market": "total",
+    "fair_line": 45.92,
+    "market_line": null,
+    "difference": null,
+    "model_over_prob": null,
+    "sigma": 13.6,
+    "status": "blocked_by_side"
+   },
+   "moneyline": {
+    "market": "moneyline",
+    "fair_home_prob": 0.649,
+    "fair_home_ml": -184.9,
+    "fair_away_ml": 184.9,
     "market_home_ml": null,
     "market_away_ml": null,
     "difference_prob": null,

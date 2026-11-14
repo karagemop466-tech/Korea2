@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:35:15Z",
+ "generated_utc": "2026-11-14T20:36:30Z",
  "policy": "A flag is not a blocker to publication; it is a blocker to trusting the affected number without reading it. Flags are closed only when a source exists.",
  "items": [
   {
@@ -7,7 +7,7 @@
    "title": "No price has a published sampling time, so opening and closing cannot be distinguished",
    "severity": "high",
    "affects": "price snapshots, CLV, line-move signals, demotion DM-1",
-   "evidence": "7,103 of 7,103 snapshots are graded unattributed_single_observation.",
+   "evidence": "7,130 of 7,130 snapshots are graded unattributed_single_observation.",
    "source": "SRC-NFLVERSE-SCHED"
   },
   {
@@ -55,7 +55,7 @@
    "title": "No strategy clears the sample floor, so every family is untested rather than disproven",
    "severity": "medium",
    "affects": "any statement that a strategy 'does not work'",
-   "evidence": "5 of 12 fail DA-G2; the honest verdict is UNTESTED, which the gate reports separately from REJECTED.",
+   "evidence": "6 of 12 fail DA-G2; the honest verdict is UNTESTED, which the gate reports separately from REJECTED.",
    "source": "SRC-NIST-MULT"
   },
   {
@@ -63,7 +63,7 @@
    "title": "Staking history covers 73% of spread legs and less of nothing else",
    "severity": "medium",
    "affects": "every ROI figure",
-   "evidence": "10,402 of 14,206 spread legs carry a price; unpriced legs are excluded rather than filled.",
+   "evidence": "10,456 of 14,260 spread legs carry a price; unpriced legs are excluded rather than filled.",
    "source": "SRC-NFLVERSE-SCHED"
   },
   {
@@ -107,7 +107,7 @@
    "source": "SRC-NFLVERSE-STATS"
   }
  ],
- "blanked_value_count": 21,
+ "blanked_value_count": 8,
  "blanked_note": "Counted from the built output: markets on the originated slate with no line or price, Week 9 games absent from the snapshot, and strategies with no measurable signal or staking value.",
  "open_questions": 12
 }

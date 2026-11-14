@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:35:11Z",
+ "generated_utc": "2026-11-14T20:36:27Z",
  "principle": "Demotion is mechanical and pre-committed. A live strategy is demoted the moment any trigger fires; no discretion, no 'keep watching it'. Paper is the default state and live is the exception.",
  "live_requirements": {
   "min_bets_before_live": 300,
@@ -112,11 +112,11 @@
    "DA-S07",
    "DA-S05",
    "DA-S06",
-   "DA-S08",
    "DA-S04",
+   "DA-S08",
    "DA-S03",
-   "DA-S02",
    "DA-S12",
+   "DA-S02",
    "DA-S09",
    "DA-S10",
    "DA-S11",
