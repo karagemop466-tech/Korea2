@@ -2,7 +2,7 @@
   "meta": {
     "title": "Validation gates — a strategy may only go live (and appear on the leaderboard) after passing ALL gates",
     "verified_on": "2026-11-01",
-    "note": "Gates are designed to remove luck and data-mining bias: official data only, out-of-sample testing with a private (unseen) segment, statistical significance of win rate vs the price-implied break-even, minimum sample sizes, CLV as the skill metric, multiple-comparison correction, correlation control, and bankroll survival rules, and G10, the demotion gate that returns a live strategy to paper trading when any monitoring trigger breaches."
+    "note": "Gates are designed to control for luck and data-mining bias (luck cannot be removed, only accounted for): official data only, out-of-sample testing with a private (unseen) segment, statistical significance of win rate vs the price-implied break-even, minimum sample sizes, CLV as the skill metric, multiple-comparison correction, correlation control, and bankroll survival rules, and G10, the demotion gate that returns a live strategy to paper trading when any monitoring trigger breaches."
   },
   "rows": [
     {"id": "G1", "name": "Data integrity gate", "rule": "Every input must come from an official verified source listed in data/sources.json (NFL official stats/NGS/injuries/schedule, NWS, licensed-sportsbook official pages, state regulator). No third-party or unverifiable data. Any value that cannot be confirmed from an official source is left blank and flagged (data/flagged.json).", "pass_criteria": "100% of inputs mapped to source IDs; zero unverified hard inputs", "sources": ["SRC-NFL-PLAYER-STATS", "SRC-NFL-TEAM-STATS", "SRC-NFL-NGS", "SRC-NFL-INJURIES", "SRC-NWS", "SRC-NV-REG22"]},
