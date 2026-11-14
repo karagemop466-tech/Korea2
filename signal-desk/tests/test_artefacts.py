@@ -178,6 +178,45 @@ class DemotionGate(unittest.TestCase):
         self.assertEqual(direct, [])
 
 
+class RenderedPages(unittest.TestCase):
+    """Catch the presentation defects that structural link checks cannot see."""
+
+    def pages(self):
+        out = {}
+        base = os.path.join(SD, "pages")
+        for name in os.listdir(base):
+            if name.endswith(".html"):
+                out[name] = open(os.path.join(base, name)).read()
+        return out
+
+    def test_no_href_contains_two_urls(self):
+        import re
+        for name, text in self.pages().items():
+            for href in re.findall(r'href="([^"]*)"', text):
+                self.assertLessEqual(href.count("https://"), 1, f"{name}: {href[:80]}")
+                self.assertNotIn("%20", href, f"{name}: {href[:80]}")
+
+    def test_flagged_counts_match_the_data(self):
+        """A headline count must be the same number everywhere it appears."""
+        r = j("results_feed.json")["game_feed"]["committed_absent"]
+        text = self.pages()["flagged.html"]
+        import re
+        m = re.search(r"FL-SD-04</strong></td><td>([^<]+)", text)
+        self.assertIsNotNone(m, "FL-SD-04 row is missing")
+        self.assertIn(str(r), m.group(1),
+                      f"FL-SD-04 headline says {m.group(1)!r} but the data says {r}")
+
+    def test_every_source_link_resolves_to_a_file_or_a_page(self):
+        """Repository paths cited as sources must exist; external links must be https."""
+        import re
+        root = os.path.join(SD, "..")
+        for name, text in self.pages().items():
+            for href in re.findall(r'href="(https://github\.com/karagemop466-tech/Korea2/blob/main/[^"]+)"', text):
+                rel = href.split("/blob/main/", 1)[1]
+                self.assertTrue(os.path.exists(os.path.join(root, rel)),
+                                f"{name}: cites a repository path that does not exist: {rel}")
+
+
 class Deterministic(unittest.TestCase):
     def test_rebuild_reproduces_committed_json(self):
         """Rebuild with the same inputs and compare, ignoring only generated_utc."""

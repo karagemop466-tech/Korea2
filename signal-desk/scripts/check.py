@@ -134,6 +134,8 @@ def main() -> int:
         if doc.rows_without_source:
             fails.append(f"{page}: {len(doc.rows_without_source)} table row(s) without a source "
                          f"(rows {doc.rows_without_source[:5]})")
+        for m in re.finditer(r'<a[^>]*href="([^"]*)"[^>]*>\s*</a>', text):
+            fails.append(f"{page}: empty anchor tag: {m.group(1)[:60]}")
         for token in PLACEHOLDERS:
             if token in text:
                 fails.append(f"{page}: placeholder text {token!r} leaked into the page")
@@ -148,6 +150,10 @@ def main() -> int:
             if re.match(r"^[a-z]+://", href):
                 if not href.startswith("https://"):
                     fails.append(f"{page}: non-https external link {href}")
+                    continue
+                # one href must never carry two URLs (this happened once: "urlA%20+%20urlB")
+                if href.count("https://") > 1 or "%20" in href or " + " in href:
+                    fails.append(f"{page}: malformed href containing more than one URL: {href[:90]}")
                     continue
                 host = href.split("/")[2]
                 if host not in ALLOWED_HOSTS:
