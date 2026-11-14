@@ -49,12 +49,12 @@
     {
       "id": "R5",
       "requirement": "Separate 'signal' from 'staking' in the leaderboard so a lucky staking run cannot mask a bad signal",
-      "status": "partial · gate built, leaderboard not yet using it",
-      "what_exists": "A demotion gate that judges signal (closing-line value) and reports staking (ROI) separately, with tests showing a lucky staking run cannot keep a bad signal live.",
-      "gap": "The published leaderboard still ranks by gates passed and then by ROI, so the staking metric is part of the ordering. No live strategy exists to evaluate.",
+      "status": "partial · columns split, rank order unchanged",
+      "what_exists": "Gate code (price-store/scripts/gates.py) judges signal (closing-line value) and reports staking (ROI) separately, with tests. The public leaderboard now groups its columns into Signal and Staking (PR #104, another session).",
+      "gap": "The rank order is still gates passed, then ROI, so staking still enters the ordering. No live strategy exists to evaluate.",
       "evidence_path": "data/derived/leaderboard.json",
       "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/data/derived/leaderboard.json",
-      "source_label": "leaderboard ranking_rule field (repo file; read 2026-11-14)",
+      "source_label": "leaderboard ranking_rule field (repo file; read 2026-11-14 on origin/main)",
       "verified": "yes (ranking rule text)"
     },
     {
@@ -108,10 +108,10 @@
     },
     {
       "id": "PS-F3",
-      "issue": "The leaderboard ranks by gates passed and then by ROI. ROI is a staking metric, which the brief asks to keep separate from the signal.",
+      "issue": "The leaderboard ranks by gates passed and then by ROI, so ROI (a staking metric) still affects the order. PR #104 separated the columns on the page but did not change the ranking rule.",
       "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/data/derived/leaderboard.json",
       "source_label": "leaderboard ranking_rule (repo file)",
-      "action": "Decide whether ROI stays as a tie-breaker. The demotion gate is built so that it does not depend on it."
+      "action": "Decide whether ROI stays as a tie-breaker. The demotion gate does not depend on it."
     },
     {
       "id": "PS-F4",
@@ -126,6 +126,13 @@
       "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/price-store/scripts/gates.py",
       "source_label": "gate source (repo file)",
       "action": "Review the thresholds before any strategy is judged against them."
+    },
+    {
+      "id": "PS-F6",
+      "issue": "Two price stores now exist: results/price_snapshots.json (PR #104; nflverse closing line, third-party, opening blank, 7,548 games) and price-store/data/snapshots.csv (this session; official-only, 0 rows). Both keep opening blank. They should be reconciled into one canonical store.",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/results/price_snapshots.json",
+      "source_label": "results/price_snapshots.json on main (repo file)",
+      "action": "Owner decision: keep the official-only store as canonical and label the nflverse store as third-party, or merge them. Not changed in this session."
     }
   ]
 }
