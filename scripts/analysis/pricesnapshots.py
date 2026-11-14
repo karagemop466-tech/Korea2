@@ -19,7 +19,6 @@ Outputs results/price_snapshots.json
 from __future__ import annotations
 
 import math
-from datetime import datetime, timezone
 
 import pandas as pd
 
@@ -47,8 +46,6 @@ def main() -> dict:
     for c in num:
         g[c] = pd.to_numeric(g[c], errors="coerce")
     g = g.sort_values(["season", "week", "gameday"]).reset_index(drop=True)
-
-    as_of = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     games = []
     n_closing = {m: 0 for m in MARKETS}
@@ -86,7 +83,6 @@ def main() -> dict:
     out = {
         "meta": {
             "title": "Price-snapshot store — opening and closing numbers for every originated market",
-            "generated_utc": as_of,
             "data_as_of_gameday": "2026-11-01",
             "source": DATA_SOURCE,
             "source_label": DATA_SOURCE_LABEL,

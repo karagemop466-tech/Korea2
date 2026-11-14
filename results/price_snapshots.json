@@ -1,7 +1,6 @@
 {
  "meta": {
   "title": "Price-snapshot store \u2014 opening and closing numbers for every originated market",
-  "generated_utc": "2026-11-14T19:57:20Z",
   "data_as_of_gameday": "2026-11-01",
   "source": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
   "source_label": "nflverse schedules extract (games.csv) \u2014 community-maintained, not an NFL-published feed",
