@@ -28,6 +28,13 @@ sys.path.insert(0, str(HERE))
 import build_site  # noqa: E402
 from common import ROOT  # noqa: E402
 
+# scripts/analyze_strategies.py lives one level up and imports "from lib import ...",
+# so the scripts/ directory must be importable too.
+SCRIPTS = HERE.parent
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(1, str(SCRIPTS))
+import analyze_strategies  # noqa: E402
+
 PROV = ROOT / "data" / "provenance.json"
 RESULTS = ROOT / "results"
 
@@ -133,6 +140,56 @@ class NoImputationTests(unittest.TestCase):
         self.assertEqual(t["side"], "away")
         self.assertEqual(t["n_selected"], n_neg,
                          "away_fav must select exactly the negative-spread (road favourite) games")
+
+
+class StrategiesMissingPriceTests(unittest.TestCase):
+    """da5f9d7b request 3 (ISS-3 hardening): scripts/analyze_strategies.py must exclude and
+    count a selected bet whose price the feed does not report, instead of settling it at
+    B.DEFAULT_AMERICAN. The exclusion counts are published in
+    data/derived/strategies.json -> meta.missing_price_policy."""
+
+    def test_source_has_no_default_price_fallback(self):
+        text = (SCRIPTS / "analyze_strategies.py").read_text()
+        self.assertNotIn("DEFAULT_AMERICAN", text,
+                         "analyze_strategies.py still imputes a default price")
+
+    def _row(self):
+        import pandas as pd
+        return pd.DataFrame([{
+            "game_id": "2025_01_TEST", "season": 2025, "week": 1,
+            "home_team": "HOME", "away_team": "AWAY", "result": 7, "total": 41,
+            "spread_line": -3.0, "total_line": 44.0,
+            "home_spread_odds": float("nan"), "away_spread_odds": -110.0,
+            "over_odds": -110.0, "under_odds": float("nan"),
+        }])
+
+    def test_missing_price_bet_is_excluded_and_counted(self):
+        row = self._row()
+        recs = analyze_strategies.spread_bets(row, lambda r: "home", "T_spread", "test")
+        self.assertEqual(recs, [], "a spread bet with no reported price must not be settled")
+        self.assertEqual(analyze_strategies._price_exclusions.get("T_spread"), 1,
+                         "the excluded spread bet is not counted")
+        recs = analyze_strategies.total_bets(row, lambda r: "under", "T_total", "test")
+        self.assertEqual(recs, [], "a total bet with no reported price must not be settled")
+        self.assertEqual(analyze_strategies._price_exclusions.get("T_total"), 1,
+                         "the excluded total bet is not counted")
+
+    def test_priced_bet_still_settles_at_the_reported_price(self):
+        row = self._row()
+        recs = analyze_strategies.spread_bets(row, lambda r: "away", "T_spread", "test")
+        self.assertEqual(len(recs), 1)
+        self.assertEqual(recs[0]["odds"], -110.0,
+                         "the odds recorded must be the price the feed reports, not a default")
+        recs = analyze_strategies.total_bets(row, lambda r: "over", "T_total", "test")
+        self.assertEqual(len(recs), 1)
+        self.assertEqual(recs[0]["odds"], -110.0)
+
+    def test_policy_block_present_in_published_meta(self):
+        strat = json.loads((ROOT / "data" / "derived" / "strategies.json").read_text())
+        pol = strat["meta"].get("missing_price_policy")
+        self.assertIsNotNone(pol, "strategies.json meta lacks missing_price_policy")
+        self.assertIn("no default price is imputed", pol["rule"])
+        self.assertIsInstance(pol["n_excluded_missing_price"], dict)
 
 
 class CorrelationHonestyTests(unittest.TestCase):
