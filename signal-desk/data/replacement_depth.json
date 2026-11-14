@@ -1,0 +1,2406 @@
+{
+ "meta": {
+  "id": "SD-06",
+  "title": "Replacement depth, not just the fact of a replacement",
+  "generated_utc": "committed data through 2026-11-01",
+  "what_changed": "The old pages counted that a starter was replaced. This page records how far down the depth chart the replacement came from, and states which part of that depth figure is officially sourced.",
+  "official_depth_published": false,
+  "key_limitation": "NFL.com publishes an official injury report with position, practice and game status, and a roster with position and roster status. Neither publishes a depth ordinal. Every 1st/2nd/3rd-string value on this page is therefore third-party and is labelled as such."
+ },
+ "official_position": {
+  "rows": [
+   {
+    "week": 9,
+    "team": "BAL",
+    "player": "Lamar Jackson",
+    "position": "QB",
+    "injury": "Thumb",
+    "practice": "Did Not Participate In Practice",
+    "game_status": "Out",
+    "url": "https://www.nfl.com/injuries/league/2026/reg9"
+   },
+   {
+    "week": 9,
+    "team": "BAL",
+    "player": "Tyler Huntley",
+    "position": "QB",
+    "injury": "Toe",
+    "practice": "Did Not Participate In Practice",
+    "game_status": "Out",
+    "url": "https://www.nfl.com/injuries/league/2026/reg9"
+   },
+   {
+    "week": 9,
+    "team": "BAL",
+    "player": "Joe Fagnano",
+    "position": "QB",
+    "injury": "",
+    "practice": "Full Participation in Practice",
+    "game_status": "",
+    "url": "https://www.nfl.com/injuries/league/2026/reg9"
+   },
+   {
+    "week": 10,
+    "team": "DET",
+    "player": "Kerby Joseph",
+    "position": "S",
+    "injury": "Knee",
+    "practice": "Did Not Participate In Practice",
+    "game_status": "Out",
+    "url": "https://www.nfl.com/injuries/"
+   },
+   {
+    "week": 10,
+    "team": "DET",
+    "player": "D.J. Reed",
+    "position": "CB",
+    "injury": "Hip",
+    "practice": "Did Not Participate In Practice",
+    "game_status": "Out",
+    "url": "https://www.nfl.com/injuries/"
+   },
+   {
+    "week": 10,
+    "team": "DET",
+    "player": "Cade Mays",
+    "position": "C",
+    "injury": "Ankle",
+    "practice": "Did Not Participate In Practice",
+    "game_status": "Out",
+    "url": "https://www.nfl.com/injuries/"
+   },
+   {
+    "week": 10,
+    "team": "NE",
+    "player": "Carlton Davis III",
+    "position": "CB",
+    "injury": "Knee",
+    "practice": "Did Not Participate In Practice",
+    "game_status": "Out",
+    "url": "https://www.nfl.com/injuries/"
+   },
+   {
+    "week": 10,
+    "team": "NE",
+    "player": "Ben Brown",
+    "position": "C",
+    "injury": "Knee",
+    "practice": "Did Not Participate In Practice",
+    "game_status": "Out",
+    "url": "https://www.nfl.com/injuries/"
+   },
+   {
+    "week": 10,
+    "team": "NE",
+    "player": "TreVeyon Henderson",
+    "position": "RB",
+    "injury": "Illness",
+    "practice": "Did Not Participate In Practice",
+    "game_status": "Out",
+    "url": "https://www.nfl.com/injuries/"
+   },
+   {
+    "week": 10,
+    "team": "WAS",
+    "player": "Lucas Patrick",
+    "position": "C",
+    "injury": "Concussion",
+    "practice": "Did Not Participate In Practice",
+    "game_status": "Out",
+    "url": "https://www.nfl.com/injuries/"
+   }
+  ],
+  "matched_to_third_party": 9,
+  "probed": 10,
+  "source": "https://www.nfl.com/injuries/",
+  "source_class": "official"
+ },
+ "third_party_depth": {
+  "rows": [
+   {
+    "team": "ARI",
+    "week": 1,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "ARI",
+    "week": 2,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "ARI",
+    "week": 3,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "ARI",
+    "week": 4,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "ARI",
+    "week": 5,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "ARI",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "ARI",
+    "week": 7,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "ARI",
+    "week": 8,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "ARI",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "ATL",
+    "week": 1,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 3
+   },
+   {
+    "team": "ATL",
+    "week": 2,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "ATL",
+    "week": 3,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "ATL",
+    "week": 5,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "ATL",
+    "week": 6,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "ATL",
+    "week": 7,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 3,
+    "second_string": 2
+   },
+   {
+    "team": "ATL",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "ATL",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "BAL",
+    "week": 1,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "BAL",
+    "week": 2,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "BAL",
+    "week": 3,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "BAL",
+    "week": 4,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "BAL",
+    "week": 5,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "BAL",
+    "week": 6,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "BAL",
+    "week": 7,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "BAL",
+    "week": 8,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "BAL",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "BUF",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "BUF",
+    "week": 4,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "BUF",
+    "week": 5,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 7,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "BUF",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "BUF",
+    "week": 9,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 7,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "CAR",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "CAR",
+    "week": 2,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CAR",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "CAR",
+    "week": 4,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "CAR",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "CAR",
+    "week": 7,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "CAR",
+    "week": 8,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "CAR",
+    "week": 9,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CHI",
+    "week": 3,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "CHI",
+    "week": 4,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "CHI",
+    "week": 5,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "CHI",
+    "week": 6,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "CHI",
+    "week": 7,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "CHI",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CIN",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CIN",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "CIN",
+    "week": 4,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "CIN",
+    "week": 5,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CIN",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CIN",
+    "week": 9,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CLE",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CLE",
+    "week": 2,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CLE",
+    "week": 3,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "CLE",
+    "week": 4,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "CLE",
+    "week": 5,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 3,
+    "second_string": 2
+   },
+   {
+    "team": "CLE",
+    "week": 6,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 2,
+    "second_string": 3
+   },
+   {
+    "team": "CLE",
+    "week": 7,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 2,
+    "second_string": 2
+   },
+   {
+    "team": "CLE",
+    "week": 9,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "DAL",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "DAL",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "DAL",
+    "week": 3,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "DAL",
+    "week": 4,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "DAL",
+    "week": 5,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "DAL",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "DAL",
+    "week": 7,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "DAL",
+    "week": 8,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "DAL",
+    "week": 9,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "DEN",
+    "week": 2,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "DEN",
+    "week": 3,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "DEN",
+    "week": 4,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "DEN",
+    "week": 5,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "DEN",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "DEN",
+    "week": 7,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "DEN",
+    "week": 8,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "DEN",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "DET",
+    "week": 2,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "DET",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "DET",
+    "week": 4,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "DET",
+    "week": 5,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "DET",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "DET",
+    "week": 9,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "GB",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "GB",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "GB",
+    "week": 3,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 8,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "GB",
+    "week": 4,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "GB",
+    "week": 5,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 3,
+    "second_string": 0
+   },
+   {
+    "team": "GB",
+    "week": 6,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 7,
+    "third_or_deeper": 3,
+    "second_string": 2
+   },
+   {
+    "team": "GB",
+    "week": 7,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "GB",
+    "week": 8,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "GB",
+    "week": 9,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 3,
+    "second_string": 0
+   },
+   {
+    "team": "HOU",
+    "week": 2,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "HOU",
+    "week": 3,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "HOU",
+    "week": 4,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "HOU",
+    "week": 5,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "HOU",
+    "week": 6,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "HOU",
+    "week": 7,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "HOU",
+    "week": 9,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "IND",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "IND",
+    "week": 2,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "IND",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "IND",
+    "week": 5,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 3
+   },
+   {
+    "team": "IND",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "IND",
+    "week": 7,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "IND",
+    "week": 8,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "IND",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "JAX",
+    "week": 3,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "JAX",
+    "week": 5,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "JAX",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "JAX",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "KC",
+    "week": 1,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "KC",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "KC",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "KC",
+    "week": 4,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "KC",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "KC",
+    "week": 7,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "KC",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "KC",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "LA",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "LA",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 7,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "LA",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "LA",
+    "week": 4,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "LA",
+    "week": 7,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "LA",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "LA",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "LAC",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "LAC",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "LAC",
+    "week": 3,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "LAC",
+    "week": 4,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "LAC",
+    "week": 5,
+    "absences_with_rank": 8,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 4,
+    "second_string": 2
+   },
+   {
+    "team": "LAC",
+    "week": 6,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 2,
+    "second_string": 2
+   },
+   {
+    "team": "LAC",
+    "week": 8,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "LAC",
+    "week": 9,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 3,
+    "second_string": 2
+   },
+   {
+    "team": "LV",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "LV",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "LV",
+    "week": 3,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "LV",
+    "week": 4,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "LV",
+    "week": 5,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "LV",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "LV",
+    "week": 7,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "LV",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "LV",
+    "week": 9,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "MIA",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "MIA",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "MIA",
+    "week": 4,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "MIA",
+    "week": 5,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "MIA",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "MIN",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "MIN",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "MIN",
+    "week": 4,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "MIN",
+    "week": 5,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "MIN",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "NE",
+    "week": 1,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "NE",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "NE",
+    "week": 3,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "NE",
+    "week": 4,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "NE",
+    "week": 5,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 3,
+    "second_string": 0
+   },
+   {
+    "team": "NE",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "NE",
+    "week": 7,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 3,
+    "second_string": 1
+   },
+   {
+    "team": "NE",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "NE",
+    "week": 10,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "NO",
+    "week": 1,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "NO",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "NO",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "NO",
+    "week": 4,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "NO",
+    "week": 5,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "NO",
+    "week": 6,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "NO",
+    "week": 9,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "NYG",
+    "week": 5,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "NYG",
+    "week": 6,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 3
+   },
+   {
+    "team": "NYG",
+    "week": 7,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "NYG",
+    "week": 9,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "NYJ",
+    "week": 1,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 2,
+    "second_string": 2
+   },
+   {
+    "team": "NYJ",
+    "week": 2,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "NYJ",
+    "week": 3,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "NYJ",
+    "week": 4,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "NYJ",
+    "week": 5,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "NYJ",
+    "week": 6,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "NYJ",
+    "week": 7,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "NYJ",
+    "week": 8,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "NYJ",
+    "week": 9,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 3
+   },
+   {
+    "team": "PHI",
+    "week": 1,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "PHI",
+    "week": 2,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "PHI",
+    "week": 3,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "PHI",
+    "week": 4,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "PHI",
+    "week": 5,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 5,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "PHI",
+    "week": 6,
+    "absences_with_rank": 9,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 4,
+    "second_string": 3
+   },
+   {
+    "team": "PHI",
+    "week": 7,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "PHI",
+    "week": 8,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 7,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "PHI",
+    "week": 9,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 7,
+    "third_or_deeper": 1,
+    "second_string": 3
+   },
+   {
+    "team": "PIT",
+    "week": 2,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "PIT",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "PIT",
+    "week": 4,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "PIT",
+    "week": 5,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "PIT",
+    "week": 6,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 7,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "PIT",
+    "week": 7,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "PIT",
+    "week": 8,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "SEA",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "SEA",
+    "week": 2,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "SEA",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "SEA",
+    "week": 4,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "SEA",
+    "week": 5,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "SEA",
+    "week": 6,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "SEA",
+    "week": 7,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "SEA",
+    "week": 8,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "SEA",
+    "week": 9,
+    "absences_with_rank": 7,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 2
+   },
+   {
+    "team": "SF",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "SF",
+    "week": 2,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 9,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "SF",
+    "week": 3,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "SF",
+    "week": 4,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "SF",
+    "week": 5,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "SF",
+    "week": 6,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 3
+   },
+   {
+    "team": "SF",
+    "week": 7,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 4
+   },
+   {
+    "team": "SF",
+    "week": 9,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 10,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "TB",
+    "week": 1,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 3,
+    "second_string": 0
+   },
+   {
+    "team": "TB",
+    "week": 3,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "TB",
+    "week": 4,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 1,
+    "second_string": 0
+   },
+   {
+    "team": "TB",
+    "week": 5,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "TB",
+    "week": 6,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "TB",
+    "week": 7,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "TB",
+    "week": 8,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "TB",
+    "week": 9,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "TEN",
+    "week": 1,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "TEN",
+    "week": 5,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "TEN",
+    "week": 6,
+    "absences_with_rank": 1,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "TEN",
+    "week": 8,
+    "absences_with_rank": 3,
+    "deepest_rank_lost": 2,
+    "third_or_deeper": 0,
+    "second_string": 1
+   },
+   {
+    "team": "WAS",
+    "week": 2,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "WAS",
+    "week": 3,
+    "absences_with_rank": 5,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "WAS",
+    "week": 4,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 1,
+    "third_or_deeper": 0,
+    "second_string": 0
+   },
+   {
+    "team": "WAS",
+    "week": 5,
+    "absences_with_rank": 6,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 2
+   },
+   {
+    "team": "WAS",
+    "week": 6,
+    "absences_with_rank": 4,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 1
+   },
+   {
+    "team": "WAS",
+    "week": 8,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 3,
+    "third_or_deeper": 1,
+    "second_string": 1
+   },
+   {
+    "team": "WAS",
+    "week": 9,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 6,
+    "third_or_deeper": 2,
+    "second_string": 0
+   },
+   {
+    "team": "WAS",
+    "week": 10,
+    "absences_with_rank": 2,
+    "deepest_rank_lost": 4,
+    "third_or_deeper": 2,
+    "second_string": 0
+   }
+  ],
+  "absences_total": 636,
+  "absences_with_depth_rank": 614,
+  "share_with_depth_rank": 0.9654,
+  "distribution_by_rank": {
+   "1": 251,
+   "2": 181,
+   "3": 101,
+   "4": 40,
+   "5": 21,
+   "6": 10,
+   "7": 7,
+   "8": 1,
+   "9": 1,
+   "10": 1
+  },
+  "deepest_rank_observed": 10,
+  "source": "https://github.com/nflverse/nflverse-data/releases/download/depth_charts/depth_charts_2026.csv",
+  "source_class": "third-party",
+  "caveat": "Depth ranks come from a community depth-chart release joined to the official injury report by name. A name mismatch drops the rank; it is never imputed."
+ },
+ "current_week": [
+  {
+   "team": "SEA",
+   "week": 9,
+   "starters_out": 5,
+   "two_deep_out": 7,
+   "three_deep_out": 7,
+   "deepest_replacement_rank": 2,
+   "weighted_depth_lost": 6.0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "PHI",
+   "week": 9,
+   "starters_out": 2,
+   "two_deep_out": 5,
+   "three_deep_out": 5,
+   "deepest_replacement_rank": 6,
+   "weighted_depth_lost": 3.643,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "LAC",
+   "week": 9,
+   "starters_out": 1,
+   "two_deep_out": 3,
+   "three_deep_out": 5,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 2.867,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "NE",
+   "week": 10,
+   "starters_out": 1,
+   "two_deep_out": 3,
+   "three_deep_out": 3,
+   "deepest_replacement_rank": 3,
+   "weighted_depth_lost": 2.0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "DEN",
+   "week": 9,
+   "starters_out": 1,
+   "two_deep_out": 2,
+   "three_deep_out": 3,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 1.833,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "BAL",
+   "week": 9,
+   "starters_out": 1,
+   "two_deep_out": 1,
+   "three_deep_out": 1,
+   "deepest_replacement_rank": 2,
+   "weighted_depth_lost": 1.45,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "TB",
+   "week": 9,
+   "starters_out": 1,
+   "two_deep_out": 1,
+   "three_deep_out": 1,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 1.0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "WAS",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 1,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0.583,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "CIN",
+   "week": 9,
+   "starters_out": 0,
+   "two_deep_out": 1,
+   "three_deep_out": 1,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0.5,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "ARI",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "ATL",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "BUF",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "CAR",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "CHI",
+   "week": 9,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "CLE",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "DAL",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "DET",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "GB",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "HOU",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "IND",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "JAX",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "KC",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "LA",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "LV",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "MIA",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "MIN",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "NO",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "NYG",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "NYJ",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "PIT",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "SF",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  },
+  {
+   "team": "TEN",
+   "week": 10,
+   "starters_out": 0,
+   "two_deep_out": 0,
+   "three_deep_out": 0,
+   "deepest_replacement_rank": 0,
+   "weighted_depth_lost": 0,
+   "source": "decision-hub/data/injuries.json",
+   "source_class": "third-party"
+  }
+ ],
+ "page_findings": [
+  {
+   "claim": "The official team roster page lists players with position and roster status (e.g. ACT).",
+   "verdict": "confirmed",
+   "url": "https://www.nfl.com/teams/arizona-cardinals/roster",
+   "detail": "Arizona Cardinals roster returns players with position and ACT status."
+  },
+  {
+   "claim": "The official team roster page publishes a depth-chart rank (1st/2nd/3rd string).",
+   "verdict": "not confirmed",
+   "url": "https://www.nfl.com/teams/arizona-cardinals/roster",
+   "detail": "No depth ordinal appears in the roster table; only position, status, height, weight, experience and college."
+  },
+  {
+   "claim": "The official injury report publishes, per player, position, injury, practice and game status.",
+   "verdict": "confirmed",
+   "url": "https://www.nfl.com/injuries/",
+   "detail": "Columns: Player, Position, Injuries, Practice Status, Game Status."
+  },
+  {
+   "claim": "The official injury report publishes depth-chart order.",
+   "verdict": "not confirmed",
+   "url": "https://www.nfl.com/injuries/",
+   "detail": "No depth column exists on the page."
+  },
+  {
+   "claim": "The NFL publishes official game odds (opening or closing prices) as a data feed.",
+   "verdict": "not confirmed",
+   "url": "https://www.nfl.com/scores/2026/week-9",
+   "detail": "The scores page publishes final scores and a game link, not prices. No official price feed was located; prices in this repository are third-party."
+  },
+  {
+   "claim": "The Week 9 injury report page's own heading says 'WEEK 9'.",
+   "verdict": "confirmed",
+   "url": "https://www.nfl.com/injuries/league/2026/reg9",
+   "detail": "In-page heading reads 'Injuries - WEEK 9', the document title says Week 10, and the week-10 page is the default. The mismatch is flagged."
+  }
+ ],
+ "conclusion": "Depth can be measured, but not from an official source. That is the whole finding: the replacement-depth signal is real enough to track and cannot yet be verified against the league, so it is published with its provenance attached and its official status blank."
+}

@@ -1,0 +1,207 @@
+{
+ "meta": {
+  "id": "SD-03",
+  "title": "Origination order: side, then total, then moneyline",
+  "generated_utc": "committed data through 2026-11-01",
+  "order_claimed": [
+   "side (spread)",
+   "total",
+   "moneyline"
+  ],
+  "why_this_order": "The moneyline must be a re-expression of the side, not an independent third model. If it were fitted separately the three markets could contradict each other and a parlay across them would inherit the contradiction.",
+  "as_of_season_week": [
+   2026,
+   9
+  ],
+  "as_of_note": "The committed board is the week the pipeline last ran, not the live week. It is presented as of that week and not as a current slate."
+ },
+ "tests": [
+  {
+   "test": "moneyline is a monotone function of the side",
+   "verdict": "pass",
+   "stat": {
+    "max_abs_diff_between_published_prob_and_phi_spread_over_sigma": 0.00136,
+    "sigma": 13.347
+   },
+   "detail": "P(home win) is printed to 4 decimals from Phi(spread / sigma). Recomputing it from the published side reproduces every one of the 15 games within 0.0014.",
+   "source": "data/derived/model.json (epoch: this repository)",
+   "source_class": "third-party"
+  },
+  {
+   "test": "total is not a by-product of the side",
+   "verdict": "pass",
+   "stat": {
+    "corr_side_vs_total_across_board": 0.012,
+    "n": 15
+   },
+   "detail": "Across the board the side and the total are close to uncorrelated, which is what independent estimation should look like.",
+   "source": "data/derived/model.json (epoch: this repository)",
+   "source_class": "third-party"
+  },
+  {
+   "test": "the side is originated, not copied from the market",
+   "verdict": "pass",
+   "stat": {
+    "model_mae": 10.391,
+    "market_mae": 9.711,
+    "n": 936
+   },
+   "detail": "The side is produced by the model with no market input. It is worse than the market (higher MAE), which is the honest outcome to publish.",
+   "source": "data/derived/model.json",
+   "source_class": "third-party"
+  },
+  {
+   "test": "the total is originated, not copied from the market",
+   "verdict": "pass",
+   "stat": {
+    "model_mae": 10.735,
+    "market_mae": 10.196,
+    "n": 936
+   },
+   "detail": "Same construction as the side; also worse than the market.",
+   "source": "data/derived/model.json",
+   "source_class": "third-party"
+  }
+ ],
+ "enforcement": {
+  "code": "signal-desk/scripts/build.py:build_order() recomputes the moneyline from the side on every build and fails the build if the two disagree by more than 0.002.",
+  "board_rows": [
+   {
+    "game_id": "2026_09_JAX_BAL",
+    "side": -5.8,
+    "published_prob": 0.3307,
+    "phi_of_side": 0.3319,
+    "diff": 0.0012,
+    "fair_home_ml": 202.0,
+    "recomputed_from_side": 201
+   },
+   {
+    "game_id": "2026_09_CIN_ATL",
+    "side": -4.1,
+    "published_prob": 0.3796,
+    "phi_of_side": 0.3794,
+    "diff": -0.0002,
+    "fair_home_ml": 163.0,
+    "recomputed_from_side": 164
+   },
+   {
+    "game_id": "2026_09_DEN_CAR",
+    "side": 0.4,
+    "published_prob": 0.5129,
+    "phi_of_side": 0.512,
+    "diff": -0.0009,
+    "fair_home_ml": -105.0,
+    "recomputed_from_side": -105
+   },
+   {
+    "game_id": "2026_09_DAL_IND",
+    "side": -0.0,
+    "published_prob": 0.4988,
+    "phi_of_side": 0.5,
+    "diff": 0.0012,
+    "fair_home_ml": 100.0,
+    "recomputed_from_side": -100
+   },
+   {
+    "game_id": "2026_09_NYJ_KC",
+    "side": 7.3,
+    "published_prob": 0.7076,
+    "phi_of_side": 0.7078,
+    "diff": 0.0002,
+    "fair_home_ml": -242.0,
+    "recomputed_from_side": -242
+   },
+   {
+    "game_id": "2026_09_DET_MIA",
+    "side": -2.2,
+    "published_prob": 0.4357,
+    "phi_of_side": 0.4345,
+    "diff": -0.0012,
+    "fair_home_ml": 130.0,
+    "recomputed_from_side": 130
+   },
+   {
+    "game_id": "2026_09_CLE_NO",
+    "side": 1.6,
+    "published_prob": 0.5475,
+    "phi_of_side": 0.5477,
+    "diff": 0.0002,
+    "fair_home_ml": -121.0,
+    "recomputed_from_side": -121
+   },
+   {
+    "game_id": "2026_09_NYG_PHI",
+    "side": 3.4,
+    "published_prob": 0.6008,
+    "phi_of_side": 0.6005,
+    "diff": -0.0003,
+    "fair_home_ml": -150.0,
+    "recomputed_from_side": -150
+   },
+   {
+    "game_id": "2026_09_LA_WAS",
+    "side": 0.5,
+    "published_prob": 0.514,
+    "phi_of_side": 0.5149,
+    "diff": 0.0009,
+    "fair_home_ml": -106.0,
+    "recomputed_from_side": -106
+   },
+   {
+    "game_id": "2026_09_HOU_LAC",
+    "side": -2.7,
+    "published_prob": 0.4212,
+    "phi_of_side": 0.4198,
+    "diff": -0.0014,
+    "fair_home_ml": 137.0,
+    "recomputed_from_side": 138
+   },
+   {
+    "game_id": "2026_09_LV_SF",
+    "side": 8.5,
+    "published_prob": 0.7368,
+    "phi_of_side": 0.7379,
+    "diff": 0.0011,
+    "fair_home_ml": -280.0,
+    "recomputed_from_side": -282
+   },
+   {
+    "game_id": "2026_09_GB_NE",
+    "side": 4.8,
+    "published_prob": 0.6393,
+    "phi_of_side": 0.6404,
+    "diff": 0.0011,
+    "fair_home_ml": -177.0,
+    "recomputed_from_side": -178
+   },
+   {
+    "game_id": "2026_09_ARI_SEA",
+    "side": 11.2,
+    "published_prob": 0.7998,
+    "phi_of_side": 0.7993,
+    "diff": -0.0005,
+    "fair_home_ml": -400.0,
+    "recomputed_from_side": -398
+   },
+   {
+    "game_id": "2026_09_TB_CHI",
+    "side": -1.5,
+    "published_prob": 0.4551,
+    "phi_of_side": 0.4553,
+    "diff": 0.0002,
+    "fair_home_ml": 120.0,
+    "recomputed_from_side": 120
+   },
+   {
+    "game_id": "2026_09_BUF_MIN",
+    "side": 1.4,
+    "published_prob": 0.5425,
+    "phi_of_side": 0.5418,
+    "diff": -0.0007,
+    "fair_home_ml": -119.0,
+    "recomputed_from_side": -118
+   }
+  ]
+ },
+ "conclusion": "The published order does hold mechanically: the side is modelled first, the total is estimated from its own attack/defence terms, and the moneyline is Phi(side/sigma). What the order does not buy is accuracy - both originated markets are worse than the market closing line on the same games."
+}

@@ -44,6 +44,31 @@ in [`decision-hub/`](decision-hub/index.html), and it is the place to start:
 The honest one-observation-per-game figure is 48.91% home covers, 95% CI 47.73–50.09%, p = 0.073.
 See [FL-DH-01](decision-hub/pages/flagged.html).
 
+## Signal Desk — the eight requirements, verified one line at a time
+
+[`signal-desk/`](signal-desk/index.html) is the decision desk for this project. It takes the eight
+requirements that were still open — a price-snapshot store, a verified results feed, the origination
+order, fair/market/difference columns, signal separated from staking, replacement *depth*, correlations
+from officially sourced numbers, and a demotion gate — and answers each with a number, a source, or an
+explicit blank.
+
+| Page | What it shows |
+|---|---|
+| [Prices](signal-desk/pages/prices.html) | Opening coverage is one season, one book, and has **no moneyline at all**. No season has both an opening and a closing number. |
+| [Results](signal-desk/pages/results.html) | **32 of 32 teams** reconcile on W/L/T/PF/PA against NFL.com; 15 finished games were absent from the snapshot and are listed, not back-filled. |
+| [Origination order](signal-desk/pages/order.html) | P(home win) reproduces Φ(side/σ) within 0.0014 on every game; the build fails above 0.002. |
+| [Fair vs market](signal-desk/pages/gap.html) | Three separate numeric columns per market, the sign convention, and the 4.22% hold. |
+| [Signal vs staking](signal-desk/pages/leaderboard.html) | Two tables. 2 of 9 strategies have a positive ROI their own test does not support; 0 rewards paid. |
+| [Replacement depth](signal-desk/pages/depth.html) | Depth to the 10th string, and proof that **no official page publishes a depth ordinal**. |
+| [Correlations](signal-desk/pages/correlations.html) | Four official values at n=32; the per-game QB-to-receiver pair is blank because the official pages cannot produce it. |
+| [Demotion gate](signal-desk/pages/demotion.html) | Eight rules, four evaluable today, and no direct route back from demoted to live. |
+| [Suggestions](signal-desk/pages/suggestions.html) / [Questions](signal-desk/pages/questions.html) | 8 proposals and 12 questions. Nothing is implemented; each proposal names the question it waits on. |
+
+Every row carries a source link and a class (`official` or `third-party`); a value that could not be
+confirmed is published blank with the reason. `signal-desk/tests/` holds 18 tests, including a rebuild
+that must reproduce the committed JSON byte for byte. Official NFL.com pages were read on 2026-11-14;
+the register is on the [Sources](signal-desk/pages/sources.html) page.
+
 ### Injury and depth data
 
 `decision-hub/data/injuries.json` is built by `.github/workflows/fetch-injuries.yml` from the
