@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions · Requirements audit</title>
+<style>
+:root{--ink:#1d2430;--mute:#5b6675;--line:#dfe4ec;--bg:#f6f8fb;--ok:#18794e;--warn:#9a6700;--bad:#b42318;--info:#1f4e9c}
+*{box-sizing:border-box} body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:#fff;border-bottom:1px solid var(--line);padding:14px 22px;display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+header b{margin-right:auto} nav a{color:var(--info);text-decoration:none;margin-right:14px} nav a.on{font-weight:600;text-decoration:underline}
+main{max-width:1180px;margin:0 auto;padding:22px}
+h1{font-size:24px;margin:4px 0 6px} h2{font-size:18px;margin:26px 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.card .n{font-size:26px;font-weight:700} .card .l{color:var(--mute);font-size:13px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{background:#eef2f7;font-weight:600;font-size:13px} tr:last-child td{border-bottom:0}
+td.src a{word-break:break-all} .note{color:var(--mute);font-size:13px;margin-top:4px}
+.badge{display:inline-block;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap}
+.badge.ok{background:var(--ok)} .badge.warn{background:var(--warn)} .badge.bad{background:var(--bad)} .badge.info{background:var(--info)}
+.flag{border-left:4px solid var(--warn);background:#fff8e6;padding:10px 14px;border-radius:6px;margin:12px 0}
+.wrap{overflow-x:auto} footer{color:var(--mute);font-size:12px;padding:20px 22px;text-align:center}
+</style></head><body>
+<header><b>Requirements audit · Line Lab</b>
+<nav><a href="index.html">Overview</a><a href="requirements.html">Requirements</a><a href="questions.html">Questions</a><a href="suggestions.html" class=on>Suggestions</a><a href="flagged.html">Flagged &amp; sources</a></nav></header>
+<main><h1>Suggestions — choose a path</h1>
+<p>These are proposals, not changes. Nothing is implemented until a path is chosen. Each option lists its trade-off in
+plain terms. The integration session will apply only the paths that are chosen.</p>
+<div class="wrap"><table><thead><tr><th>ID</th><th>Item</th><th>Options</th><th>Unblocks</th><th>Status</th></tr></thead>
+<tbody><tr><td>S-01</td><td>Price-snapshot store (R1)</td><td><ul><li><b>A. Licensed price archive</b> — Best history; cost and terms unknown (Q1).</li><li><b>B. Dated snapshots from today</b> — Starts the record now; no history; need to check the terms of any source used.</li><li><b>C. Keep closings only</b> — No new cost; CLV stays blank.</li></ul></td><td>R1, Q1</td>
+<td><span class="badge info">Awaiting choice</span></td></tr><tr><td>S-02</td><td>Results feed freshness and reconciliation (R2, Q2, Q3)</td><td><ul><li><b>A. Add a freshness gate in the build</b> — Fails the build on lag; small effort.</li><li><b>B. Reconcile every season against NFL.com</b> — Full verification; large effort, and the sandbox cannot reach NFL.com directly.</li><li><b>C. Keep the current community feed and label it</b> — No effort; less trust.</li></ul></td><td>R2, Q2, Q3</td>
+<td><span class="badge info">Awaiting choice</span></td></tr><tr><td>S-03</td><td>Split the leaderboard into signal and staking (R5, Q4)</td><td><ul><li><b>A. Rank on signal only; show staking separately</b> — Directly answers the brief.</li><li><b>B. Two rankings side by side</b> — More information; more to read.</li><li><b>C. Leave the single score</b> — Brief not met.</li></ul></td><td>R5, Q4</td>
+<td><span class="badge info">Awaiting choice</span></td></tr><tr><td>S-04</td><td>Implement the demotion gate in code (R8, Q5)</td><td><ul><li><b>A. Code the 100-bet rule as written</b> — Fast; the window is unjustified.</li><li><b>B. Choose the window by power analysis first</b> — Justified; needs historical settled bets.</li><li><b>C. Keep the rule as text</b> — Not a gate.</li></ul></td><td>R8, Q5</td>
+<td><span class="badge info">Awaiting choice</span></td></tr><tr><td>S-05</td><td>Correlation source policy (R7, Q7)</td><td><ul><li><b>A. Blank correlations until an official source exists</b> — Honest; the page goes mostly empty.</li><li><b>B. Publish labelled &#x27;community-sourced&#x27; with n</b> — Informative; does not meet the brief.</li><li><b>C. Search for official bulk per-game data first</b> — Needed before A or B can be settled.</li></ul></td><td>R7, Q7</td>
+<td><span class="badge info">Awaiting choice</span></td></tr><tr><td>S-06</td><td>Refresh injuries to the current official week and keep dated copies (R9, Q3, Q9)</td><td><ul><li><b>A. Re-run the injury refresh and add a week check</b> — Small effort; matches S1 current week.</li><li><b>B. Also archive dated copies of the official page</b> — Builds the point-in-time record the brief needs.</li></ul></td><td>R9, Q3, Q9</td>
+<td><span class="badge info">Awaiting choice</span></td></tr><tr><td>S-07</td><td>Enforce the origination order (R3, Q6)</td><td><ul><li><b>A. Add a test that the total model does not read the side</b> — Small effort; needs Q6 answered first.</li><li><b>B. Leave as output order and document it</b> — No effort; not enforced.</li></ul></td><td>R3, Q6</td>
+<td><span class="badge info">Awaiting choice</span></td></tr></tbody></table></div></main>
+<footer>Built from data/audit.json on 2026-11-14. Read-only audit; no value is inferred. Source: branch arena/7d42ec5b-korea2.</footer>
+</body></html>

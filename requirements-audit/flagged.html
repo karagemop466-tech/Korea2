@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged &amp; sources · Requirements audit</title>
+<style>
+:root{--ink:#1d2430;--mute:#5b6675;--line:#dfe4ec;--bg:#f6f8fb;--ok:#18794e;--warn:#9a6700;--bad:#b42318;--info:#1f4e9c}
+*{box-sizing:border-box} body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:#fff;border-bottom:1px solid var(--line);padding:14px 22px;display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+header b{margin-right:auto} nav a{color:var(--info);text-decoration:none;margin-right:14px} nav a.on{font-weight:600;text-decoration:underline}
+main{max-width:1180px;margin:0 auto;padding:22px}
+h1{font-size:24px;margin:4px 0 6px} h2{font-size:18px;margin:26px 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.card .n{font-size:26px;font-weight:700} .card .l{color:var(--mute);font-size:13px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{background:#eef2f7;font-weight:600;font-size:13px} tr:last-child td{border-bottom:0}
+td.src a{word-break:break-all} .note{color:var(--mute);font-size:13px;margin-top:4px}
+.badge{display:inline-block;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap}
+.badge.ok{background:var(--ok)} .badge.warn{background:var(--warn)} .badge.bad{background:var(--bad)} .badge.info{background:var(--info)}
+.flag{border-left:4px solid var(--warn);background:#fff8e6;padding:10px 14px;border-radius:6px;margin:12px 0}
+.wrap{overflow-x:auto} footer{color:var(--mute);font-size:12px;padding:20px 22px;text-align:center}
+</style></head><body>
+<header><b>Requirements audit · Line Lab</b>
+<nav><a href="index.html">Overview</a><a href="requirements.html">Requirements</a><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html" class=on>Flagged &amp; sources</a></nav></header>
+<main><h1>Flagged for review &amp; sources</h1>
+<div class="flag"><b>For manual review.</b> Irregularities found while building this audit, each linked to its source.
+Flagged items do not block anything; they are published so they can be reviewed.</div>
+<h2>Flagged items</h2>
+<div class="wrap"><table><thead><tr><th>ID</th><th>Item</th><th>Detail</th><th>Source</th></tr></thead><tbody><tr><td>FL-01</td><td>Results feed is two weeks behind the official injury page</td><td>Latest scored game 2026-10-29 in games.csv (R2); official page titled Week 10 (S1).</td>
+<td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">https://www.nfl.com/injuries/</a><div class="note">NFL.com — 2026 NFL Injury Report (live page) · verified</div></td></tr><tr><td>FL-02</td><td>Injury snapshot is Week 9, official page is Week 10</td><td>decision-hub/data/injuries.json (generated 2026-11-12) vs S1.</td>
+<td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">https://www.nfl.com/injuries/</a><div class="note">NFL.com — 2026 NFL Injury Report (live page) · verified</div></td></tr><tr><td>FL-03</td><td>Demotion gate is text only</td><td>quant-lab/leaderboard.html rule; no code path found (R8).</td>
+<td class="src"><a href="https://github.com/karagemop466-tech/Korea2/tree/a6981b6ff12d4554b9d43a6012d3a3c6109edad9" rel="noopener">https://github.com/karagemop466-tech/Korea2/tree/a6981b6ff12d4554b9d43a6012d3a3c6109edad9</a><div class="note">Repository files at commit a6981b6 (read in this session) · verified</div></td></tr><tr><td>FL-04</td><td>Correlations are from community extracts, not official numbers</td><td>R7.</td>
+<td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">https://github.com/nflverse/nflverse-data</a><div class="note">nflverse-data — release repository (community extracts) · verified</div></td></tr><tr><td>FL-05</td><td>Opening prices exist for one season only</td><td>origination-lab/data/raw/initial_lines.csv (R1).</td>
+<td class="src"><a href="https://github.com/karagemop466-tech/Korea2/tree/a6981b6ff12d4554b9d43a6012d3a3c6109edad9" rel="noopener">https://github.com/karagemop466-tech/Korea2/tree/a6981b6ff12d4554b9d43a6012d3a3c6109edad9</a><div class="note">Repository files at commit a6981b6 (read in this session) · verified</div></td></tr><tr><td>FL-06</td><td>NFL.com is not reachable from the sandbox shell</td><td>A direct curl to https://www.nfl.com/injuries/ returned no response in this session; S1 was read through the page-retrieval tool instead.</td>
+<td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">https://www.nfl.com/injuries/</a><div class="note">NFL.com — 2026 NFL Injury Report (live page) · verified</div></td></tr><tr><td>FL-07</td><td>Leaderboard score mixes ROI with luck and sample terms</td><td>R5.</td>
+<td class="src"><a href="https://github.com/karagemop466-tech/Korea2/tree/a6981b6ff12d4554b9d43a6012d3a3c6109edad9" rel="noopener">https://github.com/karagemop466-tech/Korea2/tree/a6981b6ff12d4554b9d43a6012d3a3c6109edad9</a><div class="note">Repository files at commit a6981b6 (read in this session) · verified</div></td></tr><tr><td>FL-08</td><td>Four-string depth is not tracked</td><td>R9 and Q8.</td>
+<td class="src"><a href="https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html" rel="noopener">https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html</a><div class="note">nflreadr — data dictionary, depth charts · NOT re-verified this session</div></td></tr></tbody></table></div>
+<h2>Source register</h2>
+<div class="wrap"><table><thead><tr><th>ID</th><th>Source</th><th>Type</th><th>Checked</th><th>Result</th><th>Status</th></tr></thead><tbody><tr><td>S1</td><td><a href="https://www.nfl.com/injuries/" rel="noopener">NFL.com — 2026 NFL Injury Report (live page)</a></td><td>official (league)</td>
+<td>2026-11-14, opened via page retrieval</td><td>Title reads &#x27;Week 10 of the 2026 Season&#x27;. Table columns: Player, Position, Injuries, Practice Status, Game Status. No depth-chart order is shown on this page.</td><td><span class="badge ok">Implemented</span> verified</td></tr><tr><td>S2</td><td><a href="https://github.com/nflverse/nflverse-data" rel="noopener">nflverse-data — release repository (community extracts)</a></td><td>community (third party, not the NFL)</td>
+<td>2026-11-14, opened via page retrieval</td><td>Public repository, latest commit dated Nov 1, 2026. Confirms the repo is a community mirror of league data; it is not an official NFL feed.</td><td><span class="badge ok">Implemented</span> verified</td></tr><tr><td>S3</td><td><a href="https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html" rel="noopener">nflreadr — data dictionary, depth charts</a></td><td>community (documentation)</td>
+<td>Registered in decision-hub/data/sources.json; NOT re-opened in this session</td><td>Not re-verified in this session. Cited only as the documented source of the depth-chart fields used in the repo.</td><td><span class="badge warn">Open</span> not re-verified</td></tr><tr><td>S4</td><td><a href="https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports" rel="noopener">NFL.com — NFL extends strategic partnership with Genius Sports</a></td><td>official (league announcement)</td>
+<td>Registered in decision-hub/data/sources.json; NOT re-opened in this session</td><td>Not re-verified in this session. Cited as context for the league&#x27;s official data-distribution arrangement; it does not establish that any price archive is available.</td><td><span class="badge warn">Open</span> not re-verified</td></tr><tr><td>S5</td><td><a href="https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm" rel="noopener">NIST — correlation coefficient reference (Dataplot)</a></td><td>official (government statistics reference)</td>
+<td>Registered in COORDINATION.md by an earlier session; NOT re-opened in this session</td><td>Not re-verified in this session. Method reference only.</td><td><span class="badge warn">Open</span> not re-verified</td></tr><tr><td>S6</td><td><a href="https://github.com/karagemop466-tech/Korea2/tree/a6981b6ff12d4554b9d43a6012d3a3c6109edad9" rel="noopener">Repository files at commit a6981b6 (read in this session)</a></td><td>repository (internal evidence)</td>
+<td>2026-11-14, read locally in the sandbox</td><td>Each internal claim in this audit points to the file it was read from; row counts and column headers were counted or read directly.</td><td><span class="badge ok">Implemented</span> verified</td></tr></tbody></table></div></main>
+<footer>Built from data/audit.json on 2026-11-14. Read-only audit; no value is inferred. Source: branch arena/7d42ec5b-korea2.</footer>
+</body></html>
