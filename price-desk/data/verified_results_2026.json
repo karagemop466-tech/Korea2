@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "Official-source result verification record — 2026 season",
+    "verified_by": "arena/4a709dd0-korea2",
+    "verified_on": "2026-11-14",
+    "method": "Each row's score was read from the official NFL scores page or official NFL Game Center page/gamebook named in source_url, on 2026-11-14, and transcribed digit-for-digit. Nothing was inferred; games whose digits the official page did not expose ('Hidden Score' at retrieval) are recorded in hidden_scores with no score values.",
+    "scope": "2026 REG weeks 8-10 as retrievable on 2026-11-14 (week 10 in progress; only the Thursday game had been played).",
+    "sources": {
+      "week_8_scores": "https://www.nfl.com/scores/2026/week-8",
+      "week_9_scores": "https://www.nfl.com/scores/2026/week-9",
+      "week_10_scores": "https://www.nfl.com/scores/2026/week-10",
+      "bal_buf_game": "https://www.nfl.com/games/ravens-at-bills-2026-reg-8",
+      "bal_buf_gamebook": "https://static.www.nfl.com/image/upload/v1793617588/gamecenter/aaf70dac-4feb-11f1-abca-2c54536568a9.pdf",
+      "was_nyg_game": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+      "was_nyg_gamebook": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf"
+    }
+  },
+  "verified_scores": [
+    {"game_id": "2026_08_BAL_BUF", "season": 2026, "week": 8, "away": "BAL", "home": "BUF", "away_score": 10, "home_score": 36, "source_url": "https://www.nfl.com/games/ravens-at-bills-2026-reg-8", "source_note": "Game Center page and official gamebook; quarter line 7-0/0-3 wait: Q-by-Q BAL 7,0,3,0 BUF 10,6,7,13 = 10-36"},
+    {"game_id": "2026_08_LAC_LA", "season": 2026, "week": 8, "away": "LAC", "home": "LA", "away_score": 9, "home_score": 24, "source_url": "https://www.nfl.com/scores/2026/week-8", "source_note": "Week 8 scores page"},
+    {"game_id": "2026_08_KC_DEN", "season": 2026, "week": 8, "away": "KC", "home": "DEN", "away_score": 24, "home_score": 28, "source_url": "https://www.nfl.com/scores/2026/week-8", "source_note": "Week 8 scores page"},
+    {"game_id": "2026_08_NE_MIA", "season": 2026, "week": 8, "away": "NE", "home": "MIA", "away_score": 24, "home_score": 19, "source_url": "https://www.nfl.com/scores/2026/week-8", "source_note": "Week 8 scores page"},
+    {"game_id": "2026_08_PHI_WAS", "season": 2026, "week": 8, "away": "PHI", "home": "WAS", "away_score": 10, "home_score": 27, "source_url": "https://www.nfl.com/scores/2026/week-8", "source_note": "Week 8 scores page (SNF Nov 1)"},
+    {"game_id": "2026_08_CHI_SEA", "season": 2026, "week": 8, "away": "CHI", "home": "SEA", "away_score": 34, "home_score": 17, "source_url": "https://www.nfl.com/scores/2026/week-8", "source_note": "Week 8 scores page (MNF Nov 2)"},
+    {"game_id": "2026_09_JAX_BAL", "season": 2026, "week": 9, "away": "JAX", "home": "BAL", "away_score": 33, "home_score": 10, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page (TNF Nov 5)"},
+    {"game_id": "2026_09_CIN_ATL", "season": 2026, "week": 9, "away": "CIN", "home": "ATL", "away_score": 34, "home_score": 17, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page (International game Nov 8)"},
+    {"game_id": "2026_09_DEN_CAR", "season": 2026, "week": 9, "away": "DEN", "home": "CAR", "away_score": 26, "home_score": 21, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_DAL_IND", "season": 2026, "week": 9, "away": "DAL", "home": "IND", "away_score": 27, "home_score": 23, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_NYJ_KC", "season": 2026, "week": 9, "away": "NYJ", "home": "KC", "away_score": 12, "home_score": 35, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_DET_MIA", "season": 2026, "week": 9, "away": "DET", "home": "MIA", "away_score": 19, "home_score": 9, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_CLE_NO", "season": 2026, "week": 9, "away": "CLE", "home": "NO", "away_score": 22, "home_score": 23, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_NYG_PHI", "season": 2026, "week": 9, "away": "NYG", "home": "PHI", "away_score": 19, "home_score": 11, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_LA_WAS", "season": 2026, "week": 9, "away": "LA", "home": "WAS", "away_score": 20, "home_score": 13, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_HOU_LAC", "season": 2026, "week": 9, "away": "HOU", "home": "LAC", "away_score": 44, "home_score": 22, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_LV_SF", "season": 2026, "week": 9, "away": "LV", "home": "SF", "away_score": 17, "home_score": 38, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_GB_NE", "season": 2026, "week": 9, "away": "GB", "home": "NE", "away_score": 45, "home_score": 27, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_ARI_SEA", "season": 2026, "week": 9, "away": "ARI", "home": "SEA", "away_score": 3, "home_score": 17, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page"},
+    {"game_id": "2026_09_TB_CHI", "season": 2026, "week": 9, "away": "TB", "home": "CHI", "away_score": 24, "home_score": 27, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page (SNF Nov 8)"},
+    {"game_id": "2026_09_BUF_MIN", "season": 2026, "week": 9, "away": "BUF", "home": "MIN", "away_score": 23, "home_score": 6, "source_url": "https://www.nfl.com/scores/2026/week-9", "source_note": "Week 9 scores page (MNF Nov 9)"},
+    {"game_id": "2026_10_WAS_NYG", "season": 2026, "week": 10, "away": "WAS", "home": "NYG", "away_score": 24, "home_score": 21, "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf", "source_note": "Official NFL Game Summary (gamebook), Thu 11/12/2026, MetLife Stadium; scoring plays sum WAS 24 - NYG 21 (3+7+7+7 vs 7+7+7); paid attendance 80,450; game weather 48F, wind NE 9 mph, light rain/fog"}
+  ],
+  "hidden_scores": [
+    {"game_id": "2026_08_CAR_GB", "season": 2026, "week": 8, "away": "CAR", "home": "GB", "note": "Official week-8 scores page returned 'Hidden Score' for both teams at retrieval on 2026-11-14; digits not transcribed, not inferred", "source_url": "https://www.nfl.com/scores/2026/week-8"},
+    {"game_id": "2026_08_TEN_CIN", "season": 2026, "week": 8, "away": "TEN", "home": "CIN", "note": "Official week-8 scores page returned 'Hidden Score' for both teams at retrieval on 2026-11-14; digits not transcribed, not inferred", "source_url": "https://www.nfl.com/scores/2026/week-8"},
+    {"game_id": "2026_08_ARI_DAL", "season": 2026, "week": 8, "away": "ARI", "home": "DAL", "note": "Official week-8 scores page returned 'Hidden Score' for both teams at retrieval on 2026-11-14; digits not transcribed, not inferred", "source_url": "https://www.nfl.com/scores/2026/week-8"},
+    {"game_id": "2026_08_MIN_DET", "season": 2026, "week": 8, "away": "MIN", "home": "DET", "note": "Official week-8 scores page returned 'Hidden Score' for both teams at retrieval on 2026-11-14; digits not transcribed, not inferred", "source_url": "https://www.nfl.com/scores/2026/week-8"},
+    {"game_id": "2026_08_IND_JAX", "season": 2026, "week": 8, "away": "IND", "home": "JAX", "note": "Official week-8 scores page returned 'Hidden Score' for both teams at retrieval on 2026-11-14; digits not transcribed, not inferred", "source_url": "https://www.nfl.com/scores/2026/week-8"},
+    {"game_id": "2026_08_LV_NYJ", "season": 2026, "week": 8, "away": "LV", "home": "NYJ", "note": "Official week-8 scores page returned 'Hidden Score' for both teams at retrieval on 2026-11-14; digits not transcribed, not inferred", "source_url": "https://www.nfl.com/scores/2026/week-8"},
+    {"game_id": "2026_08_CLE_PIT", "season": 2026, "week": 8, "away": "CLE", "home": "PIT", "note": "Official week-8 scores page returned 'Hidden Score' for both teams at retrieval on 2026-11-14; digits not transcribed, not inferred", "source_url": "https://www.nfl.com/scores/2026/week-8"},
+    {"game_id": "2026_08_ATL_TB", "season": 2026, "week": 8, "away": "ATL", "home": "TB", "note": "Official week-8 scores page returned 'Hidden Score' for both teams at retrieval on 2026-11-14; digits not transcribed, not inferred", "source_url": "https://www.nfl.com/scores/2026/week-8"}
+  ],
+  "official_gamebook_discovery": {
+    "note": "The official NFL Game Center gamebook PDF for each game (linked from the game page) is an authoritative primary source that publishes: final score and quarter lines, scoring plays, official starting lineups (offense and defense), Did Not Play and Not Active lists, game-day weather, officials, and paid attendance. This is the missing official feed for replacement-depth tracking (who actually started) and for per-game official weather. Demonstrated on WAS@NYG 2026 week 10 (gamebook link in sources).",
+    "was_nyg_starters_offense": {
+      "WAS": "QB 5 J.Daniels; RB 1 R.White; WR 14 A.Williams, 13 T.Burks; TE 87 J.Bates, 82 B.Sinnott; OL 74 B.Coleman, 75 C.Paul, 67 N.Allegretti, 76 S.Cosmi, 72 J.Conerly",
+      "NYG": "QB 18 J.McCarthy; RB 44 C.Skattebo; WR 17 D.Mooney, 1 M.Nabers; TE 84 T.Johnson, 9 I.Likely; OL 78 A.Thomas, 76 J.Runyan, 60 B.Hudson, 65 F.Mauigoa, 72 J.Eluemunor"
+    },
+    "was_nyg_not_active": {
+      "WAS": "3QB 16 A.Kaliakmanis, CB 37 I.Yiadom, DT 50 R.Barber, G 62 T.Togiai, G 63 L.Patrick, TE 80 C.Yankoff",
+      "NYG": "CB 21 P.Adebo, CB 35 N.Reed, LB 54 M.Harrison, OL 67 J.Sills, OL 74 J.Davis, TE 86 T.Fidone, DL 99 B.Okoye"
+    },
+    "was_nyg_did_not_play": {
+      "WAS": "QB 8 M.Mariota, C/G 61 J.Good-Jones, C 66 M.Gulbin",
+      "NYG": "C 61 J.Schmitz"
+    },
+    "source_url": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf",
+    "retrieved": "2026-11-14"
+  }
+}

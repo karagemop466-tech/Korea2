@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Flagged for review - price-desk register",
+    "author": "arena/4a709dd0-korea2",
+    "date": "2026-11-14",
+    "policy": "A flagged value is a value we could not confirm from an official source. Per project policy the value is left blank in verified columns (or retained only inside clearly labelled archive layers used for computation), never inferred, and listed here with its source links so the owner can review after the site is live. Flags do not block publication."
+  },
+  "rows": [
+    {
+      "id": "PS-F-01",
+      "title": "No opening-line source exists for the origination window",
+      "detail": "market_open_line / market_open_price_american are blank in all 2,364 snapshot rows. The only opening archive in the repo (origination-lab/data/raw/initial_lines.csv) covers WSGT 2021 spread/total only; no official body publishes historical odds.",
+      "affected": "price-desk/data/price_snapshots.csv (open_status column); OPEN_EDGE strategy family",
+      "status": "unverified - value blank",
+      "sources": ["https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/data/raw/initial_lines.csv"],
+      "suggestion": "S-03"
+    },
+    {
+      "id": "PS-F-02",
+      "title": "No player-prop market price archive exists",
+      "detail": "11,370 prop rows carry our own line and the archived actual; market open/close columns are blank (no source).",
+      "affected": "price-desk/data/price_snapshots_props.csv",
+      "status": "unverified - value blank",
+      "sources": ["https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/data/derived/prop_lines.csv"],
+      "suggestion": "S-03"
+    },
+    {
+      "id": "PS-F-03",
+      "title": "Third-party results archive was stale at verification time",
+      "detail": "games.csv.gz had no scores for 2026 weeks 9-10 and week 8 MNF at the 2026-11-14 check. The price-desk results feed fills the verified rows from official sources; the upstream archive itself remains stale until its refresh workflow runs.",
+      "affected": "data/derived/games.csv.gz (upstream), price-desk/data/results_feed.csv (mitigated for 22 rows)",
+      "status": "irregularity - recorded",
+      "sources": ["https://www.nfl.com/scores/2026/week-9"],
+      "suggestion": "S-02"
+    },
+    {
+      "id": "PS-F-04",
+      "title": "A Python virtualenv is tracked in git (.venv-b6, 6,214 files)",
+      "detail": "git ls-files reports 6,214 tracked files under .venv-b6/; open PR #97 modifies them. Unconventional and repo-bloating; may be deliberate.",
+      "affected": "repository root",
+      "status": "irregularity - owner decision",
+      "sources": ["https://github.com/karagemop466-tech/Korea2/pull/97"],
+      "suggestion": "S-08"
+    },
+    {
+      "id": "PS-F-05",
+      "title": "Three stale sibling PRs are open",
+      "detail": "PR #93 (coverage dashboard, CONFLICTING), PR #97 (venv churn + .gitignore only), PR #99 (review-board provenance, MERGEABLE). Their sessions' claims are >60 minutes idle. This session did not merge any of them without re-verification.",
+      "affected": "pull request queue",
+      "status": "irregularity - owner decision",
+      "sources": ["https://github.com/karagemop466-tech/Korea2/pulls"],
+      "suggestion": "S-09"
+    },
+    {
+      "id": "PS-F-06",
+      "title": "'Hidden Score' retrieval limitation on 8 week-8 games",
+      "detail": "The official week-8 scores page returned 'Hidden Score' for both teams on 8 game cards at retrieval (2026-11-14); digits were not transcribed and not inferred. Official gamebooks exist for those games.",
+      "affected": "price-desk/data/verified_results_2026.json hidden_scores",
+      "status": "unverified - value blank",
+      "sources": ["https://www.nfl.com/scores/2026/week-8"],
+      "suggestion": "S-02"
+    },
+    {
+      "id": "PS-F-07",
+      "title": "Rewards pool is unfunded; no strategy has qualified",
+      "detail": "All strategy reward_points are 0; tiers are NEEDS_REVIEW or REJECTED; 'prize' language anywhere on the site is design context only.",
+      "affected": "leaderboards across the repo",
+      "status": "unverified claim prevented - labels kept",
+      "sources": ["https://github.com/karagemop466-tech/Korea2/blob/main/origination/site_data/leaderboard.csv"],
+      "suggestion": "S-06"
+    },
+    {
+      "id": "PS-F-08",
+      "title": "Market prices can never be verified against an official source",
+      "detail": "No official body publishes betting odds (Q-01). Every market price in the store and feed is archived-unverified permanently until a licensed feed is obtained. The 5/5 archive-vs-official agreement applies to SCORES only, not prices.",
+      "affected": "price-desk/data/price_snapshots.csv close_status; results_feed.csv line_status",
+      "status": "unverified - labelled archived-unverified",
+      "sources": ["https://www.nfl.com/scores/2026/week-9"],
+      "suggestion": "S-03"
+    },
+    {
+      "id": "PS-F-09",
+      "title": "No official source labels depth strings (2nd/3rd/4th)",
+      "detail": "NFL.com team depth-chart URLs return 404 (carried from FL-15, checked 2026-11-12). Gamebooks give the official STARTER (demonstrated WAS@NYG) but no string ranking. Replacement-depth string columns stay blank.",
+      "affected": "site/data/injury_depth.json; nfl-command/data/depth.json",
+      "status": "unverified - value blank",
+      "sources": ["https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf"],
+      "suggestion": "S-02"
+    },
+    {
+      "id": "PS-F-10",
+      "title": "Model calibration defects remain open (issue #9)",
+      "detail": "scripts/analyze_model.py: sigma fitted on evaluated holdout residuals (leakage); misnamed brier_market_50_50 baseline key; missing tie term in away_fair. Dispositioned in COORDINATION.md (ISS-2) but unfixed.",
+      "affected": "calibration outputs on root pages",
+      "status": "open defect",
+      "sources": ["https://github.com/karagemop466-tech/Korea2/issues/9"],
+      "suggestion": "S-05"
+    },
+    {
+      "id": "PS-F-11",
+      "title": "COR-04 correlation interpretation was reversed (issue #16) - FIXED this session",
+      "detail": "data/correlations.json COR-04 claimed positive correlation implies LOWER combined probability than independence; the correct statement is that positive correlation raises the joint above the product. Corrected in PS-6; recorded here as a resolved flag with the pre-fix claim preserved in the issue record.",
+      "affected": "data/correlations.json; dashboard/pages/correlations.html",
+      "status": "resolved 2026-11-14 (PS-6)",
+      "sources": ["https://github.com/karagemop466-tech/Korea2/issues/16"],
+      "suggestion": ""
+    },
+    {
+      "id": "PS-F-12",
+      "title": "The root-pipeline board stops at 2026 week 8",
+      "detail": "data/derived/predictions.csv covers 2023 REG - 2026 week 8 (936 games); weeks 9+ have no fair lines from that engine yet. The origination-lab slate covers the full 2026 schedule (164 rows).",
+      "affected": "price-desk/data/price_snapshots.csv board A",
+      "status": "irregularity - recorded",
+      "sources": ["https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/predictions.csv"],
+      "suggestion": "S-01"
+    },
+    {
+      "id": "PS-F-13",
+      "title": "Duplicate suggestion and decision hubs",
+      "detail": "suggestions/, decision-desk, decision-hub, review-board and now price-desk all carry suggestion/question registers (a duplication noted by earlier sessions too). Cross-linked rather than merged.",
+      "affected": "site navigation",
+      "status": "irregularity - owner decision",
+      "sources": ["https://karagemop466-tech.github.io/Korea2/pages/archive.html"],
+      "suggestion": "S-04"
+    }
+  ]
+}

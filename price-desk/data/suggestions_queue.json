@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "title": "Suggestion review queue - choose the best path BEFORE anything is implemented",
+    "author": "arena/4a709dd0-korea2",
+    "date": "2026-11-14",
+    "workflow": "Every suggestion carries options with trade-offs, an effort/impact estimate, and a recommended path. Status moves: proposed -> chosen (owner picks an option) -> implementing -> done. Nothing is implemented until an option is chosen; the 'recommended' field is advice, not a decision.",
+    "duplicate_note": "Earlier suggestion hubs (suggestions/, decision-desk, decision-hub, review-board) remain live. This queue does not replace them; S-04 proposes consolidation."
+  },
+  "rows": [
+    {
+      "id": "S-01",
+      "title": "Adopt the price-snapshot store and verified results feed as the canonical data layer",
+      "category": "data",
+      "problem": "Market snapshots and results were scattered across labs with no single store recording open/close per originated market.",
+      "options": [
+        {"path": "A: link price-desk from root nav now, consolidate later", "trade-offs": "fast, no risk to existing labs; duplication remains short-term", "effort": "low", "impact": "high"},
+        {"path": "B: fold the store into the root pipeline immediately", "trade-offs": "single source of truth faster; touches files owned by root pipeline; higher regression risk", "effort": "high", "impact": "high"}
+      ],
+      "recommended": "A",
+      "status": "proposed",
+      "blocks": [],
+      "sources": ["price-desk/data/price_snapshots.csv", "price-desk/data/results_feed.csv"]
+    },
+    {
+      "id": "S-02",
+      "title": "Build the official-gamebook ingestion pipeline (scores, starters, inactives, weather)",
+      "category": "data / verification",
+      "problem": "Verification is manual; 931 results rows are archive-only; replacement depth and per-game official weather have no feed.",
+      "options": [
+        {"path": "A: GitHub Action that fetches each week's gamebooks (PDF) and extracts score/lineups/weather into the results feed, opening PRs only (fail-closed)", "trade-offs": "automates everything downstream (Q-02/Q-03/Q-04/Q-09); needs PDF parsing + rate-limit care; run cost per week", "effort": "medium", "impact": "very high"},
+        {"path": "B: manual transcription per week", "trade-offs": "no code; slow, error-prone, not scalable", "effort": "low per week", "impact": "medium"},
+        {"path": "C: leave as-is and verify on demand", "trade-offs": "zero effort; the verified feed stays tiny and decisions stay blocked", "effort": "none", "impact": "none"}
+      ],
+      "recommended": "A",
+      "status": "proposed",
+      "blocks": ["Q-02", "Q-03", "Q-04", "Q-09"],
+      "sources": ["https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf"]
+    },
+    {
+      "id": "S-03",
+      "title": "Source opening-line data (or retire opening-value strategies)",
+      "category": "data",
+      "problem": "The snapshot store's open columns are blank for the whole window (PS-F-01); OPEN_EDGE strategies cannot be validated.",
+      "options": [
+        {"path": "A: licensed odds feed / book partnership (research licence)", "trade-offs": "only genuinely official route; cost + negotiation; solves Q-01", "effort": "high", "impact": "very high"},
+        {"path": "B: begin our own point-in-time snapshots from any licensed feed going forward", "trade-offs": "self-sustaining from day one; no history", "effort": "medium", "impact": "high"},
+        {"path": "C: retire opening-value features until data exists", "trade-offs": "honest; loses a strategy family", "effort": "low", "impact": "medium"}
+      ],
+      "recommended": "A then B (B can start immediately regardless)",
+      "status": "proposed",
+      "blocks": ["Q-01"],
+      "sources": ["origination-lab/data/raw/initial_lines.csv (2021-only archive)"]
+    },
+    {
+      "id": "S-04",
+      "title": "Consolidate the duplicated hubs and navigation",
+      "category": "site",
+      "problem": "Twelve-plus session hubs (dashboard, nfl-lines, nfl-research, research-desk, quant-lab, origination-lab, origination, skill-lab, suggestions, verify-hub, decision-desk, decision-hub, site, nfl-command, lineup-lab, review-board, coverage) each with their own pages; nav and 'suggestions' entry points are duplicated (PS-F-13).",
+      "options": [
+        {"path": "A: freeze old hubs as archive, one live hub per category", "trade-offs": "clean UX; needs a mapping pass; old deep links must keep resolving", "effort": "medium", "impact": "high"},
+        {"path": "B: keep all hubs, maintain one curated index page", "trade-offs": "no breakage; navigation stays heavy", "effort": "low", "impact": "medium"},
+        {"path": "C: full restructure into a single app", "trade-offs": "best end state; highest risk to a site that currently builds and deploys cleanly", "effort": "very high", "impact": "high"}
+      ],
+      "recommended": "B now, A after the current review backlog clears",
+      "status": "proposed",
+      "blocks": [],
+      "sources": ["pages/archive.html"]
+    },
+    {
+      "id": "S-05",
+      "title": "Fix the model-calibration defects in scripts/analyze_model.py (issue #9)",
+      "category": "model / integrity",
+      "problem": "Sigma is fitted on holdout residuals that are then evaluated (leakage); a misnamed baseline key (0.25); missing tie term in away_fair.",
+      "options": [
+        {"path": "A: refit sigma on the training window only, rename the key, add the tie term, add regression tests", "trade-offs": "small diff, closes the issue honestly; published calibration numbers will move", "effort": "low", "impact": "high"},
+        {"path": "B: label all calibration outputs provisional and defer", "trade-offs": "zero code; trust stays blocked (Q-08)", "effort": "none", "impact": "negative"}
+      ],
+      "recommended": "A",
+      "status": "proposed",
+      "blocks": ["Q-08"],
+      "sources": ["COORDINATION.md ISS-2 (issue #9 disposition table)"]
+    },
+    {
+      "id": "S-06",
+      "title": "Decide the rewards model (fund / virtualize / remove)",
+      "category": "competition",
+      "problem": "Rewards language exists while the pool is unfunded and no strategy is eligible (PS-F-07).",
+      "options": [
+        {"path": "A: explicitly virtual points, no monetary language anywhere", "trade-offs": "honest, cheap; less motivating", "effort": "low", "impact": "medium"},
+        {"path": "B: fund a prize pool", "trade-offs": "motivating; costs money; needs rules/legal", "effort": "high", "impact": "high"},
+        {"path": "C: remove rewards until a strategy passes gates", "trade-offs": "cleanest; loses the competition framing the brief asks for", "effort": "low", "impact": "medium"}
+      ],
+      "recommended": "A now; revisit B when a strategy passes the gates",
+      "status": "proposed",
+      "blocks": ["Q-05"],
+      "sources": ["data/leaderboard.json"]
+    },
+    {
+      "id": "S-07",
+      "title": "Approve or revise the demotion-gate parameters",
+      "category": "competition / risk",
+      "problem": "The demotion gate is proposed but unenforced; parameters need an owner decision.",
+      "options": [
+        {"path": "A: adopt as proposed (100-bet window, p > 0.10, 25% drawdown, 1 re-promotion/season)", "trade-offs": "balanced; matches the earlier quant-lab sketch's 100-bet figure", "effort": "low", "impact": "high"},
+        {"path": "B: stricter (50-bet window, p > 0.05, 15% drawdown)", "trade-offs": "faster demotion; more false demotions on noise", "effort": "low", "impact": "high"},
+        {"path": "C: looser (150-bet window, p > 0.20, 35% drawdown)", "trade-offs": "fewer false demotions; slower to catch decay", "effort": "low", "impact": "high"}
+      ],
+      "recommended": "A",
+      "status": "proposed",
+      "blocks": ["Q-07"],
+      "sources": ["price-desk/data/demotion_gate.json"]
+    },
+    {
+      "id": "S-08",
+      "title": "Remove the committed virtualenv (.venv-b6, 6,214 tracked files) from git",
+      "category": "repo hygiene",
+      "problem": "A Python virtualenv is tracked in git (PR #97 even modifies its files). It bloats the repo and risks accidental dependency churn in reviews.",
+      "options": [
+        {"path": "A: git rm -r --cached .venv-b6 + add to .gitignore + document the Python setup in README", "trade-offs": "clean history going forward; one large deletion commit", "effort": "low", "impact": "medium"},
+        {"path": "B: keep it as a convenience runtime", "trade-offs": "works offline; unconventional; keeps polluting diffs", "effort": "none", "impact": "negative"}
+      ],
+      "recommended": "A (owner decision - it may be deliberate)",
+      "status": "proposed",
+      "blocks": [],
+      "sources": ["git ls-files | grep -c venv-b6 = 6214"]
+    },
+    {
+      "id": "S-09",
+      "title": "Resolve the three stale sibling PRs (#93 conflicting, #97 venv-only, #99 review-board)",
+      "category": "repo hygiene",
+      "problem": "Three PRs from idle sessions are open; #93 conflicts with main, #97's non-venv diff is only .gitignore, #99 is review-board-only and mergeable.",
+      "options": [
+        {"path": "A: re-verify and merge #99; ask owners to rebase #93; close or rework #97", "trade-offs": "keeps sibling work; requires checks to pass", "effort": "medium", "impact": "medium"},
+        {"path": "B: close all three with notes", "trade-offs": "clean board; discards work (against project rules)", "effort": "low", "impact": "negative"}
+      ],
+      "recommended": "A",
+      "status": "proposed",
+      "blocks": [],
+      "sources": ["https://github.com/karagemop466-tech/Korea2/pulls"]
+    },
+    {
+      "id": "S-10",
+      "title": "Recompute correlations on the verified subset and publish both versions",
+      "category": "analysis",
+      "problem": "Correlations are archive-based (Q-03); R7 requires officially sourced numbers.",
+      "options": [
+        {"path": "A: as the verified feed grows (S-02), recompute each correlation on the verified subset and publish archive vs verified side by side with n for each", "trade-offs": "honest progress; verified n will be small at first", "effort": "medium", "impact": "high"},
+        {"path": "B: wait until the feed is complete", "trade-offs": "simpler; delays everything", "effort": "none", "impact": "negative"}
+      ],
+      "recommended": "A",
+      "status": "proposed",
+      "blocks": ["Q-03"],
+      "sources": ["results/correlations.json"]
+    }
+  ]
+}
