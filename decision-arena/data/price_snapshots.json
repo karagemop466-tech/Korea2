@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:17:40Z",
+ "generated_utc": "2026-11-14T20:20:27Z",
  "schema": {
   "snapshot": "one observation of one market on one game, with its sampling basis and quality grade",
   "quality_grades": {

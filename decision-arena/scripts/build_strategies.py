@@ -292,6 +292,13 @@ def closing_line_value(market, side, line, f):
     the closing number on the field?
     """
     close = f["spread_line"] if market == "spread" else (f["total_line"] if market == "total" else None)
+    if market == "moneyline":
+        # There is no line to beat, but the signal question still has an answer: did the side we
+        # took win? That is price-free and is what the beat-close column measures elsewhere.
+        margin = f["home_score"] - f["away_score"]
+        if margin == 0:
+            return (None, None)
+        return (0.0, (margin > 0) if side == "home" else (margin < 0))
     if close is None or line is None:
         return (None, None)
     if market == "spread":
@@ -498,6 +505,9 @@ def main():
         gates = {}
         gates["DA-G1"] = True
         gates["DA-G2"] = (s["n_graded"] >= 300) and (s["n_priced_bets"] >= 100)
+        # a family with no priceable observation cannot pass the sample gate by vacuity
+        if s["n_graded"] == 0:
+            gates["DA-G2"] = False
         gates["DA-G3"] = True
         q = qmap.get(i)
         bonferroni = (s["hit_p_vs_half"] * n_trials) if s["hit_p_vs_half"] is not None else None
@@ -536,8 +546,11 @@ def main():
             "gates": gates,
             "gates_passed": sum(1 for g in GATES if gates.get(g["id"])),
             "verdict": verdict(gates),
-            "status_detail": ("needs a prop price feed this repository does not have" if not gates["DA-G9"]
-                              else "all inputs present"),
+            "status_detail": (
+                "needs a prop price feed this repository does not have" if not gates["DA-G9"]
+                else ("no observations: the rule never fired on the graded history"
+                      if s["n_graded"] == 0
+                      else "measured, and it did not clear the bar")),
         })
 
     # ---- strategy DA-S01 (2021 early snapshot) is scored separately: it needs the nfldata file
@@ -545,11 +558,18 @@ def main():
     if s01:
         out_entries.append(s01)
 
-    ranked = sorted(out_entries, key=lambda e: (
-        -e["gates_passed"],
-        -(e["signal"]["beat_close_rate"] if e["signal"]["beat_close_rate"] is not None else -9),
-        -(e["staking"]["roi"] if e["staking"]["roi"] is not None else -9),
-    ))
+    # Ranking is lexicographic and measurable-first:
+    #   1. gates passed (descending)
+    #   2. has a measured signal at all (a measured 40% beats an unmeasurable nothing)
+    #   3. beat-the-close rate (descending)
+    #   4. ROI (descending) only as the last tie-break, never to lift a weak signal
+    def sort_key(e):
+        b = e["signal"]["beat_close_rate"]
+        roi = e["staking"]["roi"]
+        return (-e["gates_passed"], 0 if b is not None else 1, -(b if b is not None else 0),
+                -(roi if roi is not None else -9))
+
+    ranked = sorted(out_entries, key=sort_key)
     for r, e in enumerate(ranked, 1):
         e["rank"] = r
         e["newly_live"] = []

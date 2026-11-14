@@ -12,7 +12,14 @@
   <div class="nav-label">Workspace</div>
   <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/executive.html" class="active" aria-current="page">Executive summary</a><a href="../pages/prices.html">Price snapshots</a><a href="../pages/results.html">Results feed</a><a href="../pages/origination.html">Origination</a><a href="../pages/leaderboard.html">Leaderboard</a><a href="../pages/strategies.html">Strategy lab</a><a href="../pages/gates.html">Gates &amp; demotion</a><a href="../pages/correlation.html">Correlation</a><a href="../pages/depth.html">Injuries &amp; depth</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Decision questions</a><a href="../pages/verification.html">Verification</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Source register</a><a href="../pages/methods.html">Methods</a></nav>
   <div class="side-note"><span class="dot"></span><strong>No strategy is live.</strong>
-  <div>Signals and staking are reported separately; every value is blank unless a source states it.</div></div>
+  <div>Signals and staking are reported separately; every value is blank unless a source states it.</div>
+  <div style="margin-top:8px;border-top:1px solid #243040;padding-top:8px">
+  This hub adds what the rest of the site does not hold: a graded
+  <a href="../pages/prices.html">price store</a>, a re-derived
+  <a href="../pages/results.html">results feed</a> and a
+  <a href="../pages/origination.html">side &rarr; total &rarr; moneyline board</a>.
+  The sibling <a href="../../decision-desk/index.html">Decision Desk</a> covers injuries, questions
+  and flags.</div></div>
 </aside>
 <main id="main">
 <header class="topbar"><span class="crumb">EXECUTIVE SUMMARY</span>
@@ -37,7 +44,7 @@ total is emitted only after the side exists, and the moneyline only after the si
 <section class="block"><h2>3. Signal and staking are separate, and both are mostly empty</h2>
 <p>Ranking is by gates, then by beat-the-close rate, then by ROI. A lucky staking run cannot lift a
 strategy with a negative signal because signal sorts first. The best-ranked strategy is
-<strong>Model-edge moneyline</strong> with 6 of 10 gates and a beat-the-close rate of &mdash;.</p>
+<strong>Model-edge moneyline</strong> with 6 of 10 gates and a beat-the-close rate of 0.3660.</p>
 <div class="table-wrap"><table class=""><caption class="caption">Verdict counts across all registered strategies.</caption><thead><tr><th>Verdict</th><th>Count</th><th>Meaning</th><th>Source</th></tr></thead><tbody><tr><td class="">LIVE</td><td class="num">0</td><td class="">All ten gates, execution included. Nothing qualifies.</td><td class="src"><a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm" rel="noopener">Multiple comparisons / Bonferroni-type adjustments</a></td></tr><tr><td class="">PAPER</td><td class="num">0</td><td class="">Nine of ten gates with execution satisfied. Nothing qualifies.</td><td class="src"><a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm" rel="noopener">Multiple comparisons / Bonferroni-type adjustments</a></td></tr><tr><td class="">REJECTED</td><td class="num">12</td><td class="">At least two gates fail. This is every registered strategy.</td><td class="src"><a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm" rel="noopener">Multiple comparisons / Bonferroni-type adjustments</a></td></tr></tbody></table></div>
 </section>
 

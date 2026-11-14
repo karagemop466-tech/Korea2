@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:18:19Z",
+ "generated_utc": "2026-11-14T20:20:59Z",
  "inputs": {
   "games_path": "data/derived/games.csv.gz",
   "games_sha256": "ccbca2cb34ec44d0eb1c500ec33cfd638e57bbbe8ff72020d9289845f98ae6db",
@@ -103,12 +103,15 @@
     "hit_p": 0.0,
     "bh_q": 0.0,
     "bonferroni_p": 0.0,
-    "beat_close_rate": null,
-    "beat_close_ci": null,
-    "beat_close_p": null,
-    "edge_points_mean": null,
-    "n_beat": 0,
-    "permutation_p": null
+    "beat_close_rate": 0.366,
+    "beat_close_ci": [
+     0.3498,
+     0.3825
+    ],
+    "beat_close_p": 0.0,
+    "edge_points_mean": 0.0,
+    "n_beat": 3328,
+    "permutation_p": 0.0
    },
    "staking": {
     "n_bets": 3328,
@@ -127,127 +130,127 @@
       "n": 133,
       "profit": 45.425,
       "wins": 61,
-      "beats": 0
+      "beats": 61
      },
      "2007": {
       "n": 188,
       "profit": -21.382,
       "wins": 56,
-      "beats": 0
+      "beats": 56
      },
      "2008": {
       "n": 115,
       "profit": -16.36,
       "wins": 37,
-      "beats": 0
+      "beats": 37
      },
      "2009": {
       "n": 163,
       "profit": 8.167,
       "wins": 52,
-      "beats": 0
+      "beats": 52
      },
      "2010": {
       "n": 154,
       "profit": -3.089,
       "wins": 56,
-      "beats": 0
+      "beats": 56
      },
      "2011": {
       "n": 159,
       "profit": 10.376,
       "wins": 59,
-      "beats": 0
+      "beats": 59
      },
      "2012": {
       "n": 143,
       "profit": -12.512,
       "wins": 55,
-      "beats": 0
+      "beats": 55
      },
      "2013": {
       "n": 165,
       "profit": -13.815,
       "wins": 57,
-      "beats": 0
+      "beats": 57
      },
      "2014": {
       "n": 153,
       "profit": 20.896,
       "wins": 73,
-      "beats": 0
+      "beats": 73
      },
      "2015": {
       "n": 150,
       "profit": 24.098,
       "wins": 70,
-      "beats": 0
+      "beats": 70
      },
      "2016": {
       "n": 164,
       "profit": -7.718,
       "wins": 66,
-      "beats": 0
+      "beats": 66
      },
      "2017": {
       "n": 159,
       "profit": -24.511,
       "wins": 50,
-      "beats": 0
+      "beats": 50
      },
      "2018": {
       "n": 170,
       "profit": 18.43,
       "wins": 71,
-      "beats": 0
+      "beats": 71
      },
      "2019": {
       "n": 172,
       "profit": -9.516,
       "wins": 62,
-      "beats": 0
+      "beats": 62
      },
      "2020": {
       "n": 171,
       "profit": -36.697,
       "wins": 54,
-      "beats": 0
+      "beats": 54
      },
      "2021": {
       "n": 192,
       "profit": -15.55,
       "wins": 67,
-      "beats": 0
+      "beats": 67
      },
      "2022": {
       "n": 175,
       "profit": -39.378,
       "wins": 52,
-      "beats": 0
+      "beats": 52
      },
      "2023": {
       "n": 180,
       "profit": -6.095,
       "wins": 65,
-      "beats": 0
+      "beats": 65
      },
      "2024": {
       "n": 177,
       "profit": -31.991,
       "wins": 65,
-      "beats": 0
+      "beats": 65
      },
      "2025": {
       "n": 170,
       "profit": -23.131,
       "wins": 58,
-      "beats": 0
+      "beats": 58
      },
      "2026": {
       "n": 75,
       "profit": 7.646,
       "wins": 32,
-      "beats": 0
+      "beats": 32
      }
     },
     "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
@@ -265,7 +268,7 @@
    },
    "gates_passed": 6,
    "verdict": "REJECTED",
-   "status_detail": "all inputs present",
+   "status_detail": "measured, and it did not clear the bar",
    "rank": 1,
    "newly_live": []
   },
@@ -449,7 +452,7 @@
    },
    "gates_passed": 5,
    "verdict": "REJECTED",
-   "status_detail": "all inputs present",
+   "status_detail": "measured, and it did not clear the bar",
    "rank": 2,
    "newly_live": []
   },
@@ -639,7 +642,7 @@
    },
    "gates_passed": 5,
    "verdict": "REJECTED",
-   "status_detail": "all inputs present",
+   "status_detail": "measured, and it did not clear the bar",
    "rank": 3,
    "newly_live": []
   },
@@ -829,7 +832,7 @@
    },
    "gates_passed": 5,
    "verdict": "REJECTED",
-   "status_detail": "all inputs present",
+   "status_detail": "measured, and it did not clear the bar",
    "rank": 4,
    "newly_live": []
   },
@@ -1019,7 +1022,7 @@
    },
    "gates_passed": 5,
    "verdict": "REJECTED",
-   "status_detail": "all inputs present",
+   "status_detail": "measured, and it did not clear the bar",
    "rank": 5,
    "newly_live": []
   },
@@ -1209,7 +1212,7 @@
    },
    "gates_passed": 5,
    "verdict": "REJECTED",
-   "status_detail": "all inputs present",
+   "status_detail": "measured, and it did not clear the bar",
    "rank": 6,
    "newly_live": []
   },
@@ -1398,7 +1401,7 @@
    },
    "gates_passed": 5,
    "verdict": "REJECTED",
-   "status_detail": "all inputs present",
+   "status_detail": "measured, and it did not clear the bar",
    "rank": 7,
    "newly_live": []
   },
@@ -1588,7 +1591,7 @@
    },
    "gates_passed": 4,
    "verdict": "REJECTED",
-   "status_detail": "all inputs present",
+   "status_detail": "measured, and it did not clear the bar",
    "rank": 8,
    "newly_live": []
   },

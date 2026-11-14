@@ -208,7 +208,14 @@ def shell(title: str, crumb: str, body: str, active: str, subtitle: str = "") ->
   <div class="nav-label">Workspace</div>
   <nav aria-label="Main navigation">{nav}</nav>
   <div class="side-note"><span class="dot"></span><strong>No strategy is live.</strong>
-  <div>Signals and staking are reported separately; every value is blank unless a source states it.</div></div>
+  <div>Signals and staking are reported separately; every value is blank unless a source states it.</div>
+  <div style="margin-top:8px;border-top:1px solid #243040;padding-top:8px">
+  This hub adds what the rest of the site does not hold: a graded
+  <a href="{up}pages/prices.html">price store</a>, a re-derived
+  <a href="{up}pages/results.html">results feed</a> and a
+  <a href="{up}pages/origination.html">side &rarr; total &rarr; moneyline board</a>.
+  The sibling <a href="{up}../decision-desk/index.html">Decision Desk</a> covers injuries, questions
+  and flags.</div></div>
 </aside>
 <main id="main">
 <header class="topbar"><span class="crumb">{crumb}</span>

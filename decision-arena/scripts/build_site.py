@@ -646,6 +646,7 @@ def page_leaderboard():
               pct(e["staking"]["roi"]), n(e["staking"]["n_bets"]),
               badge(e["verdict"], "ok" if e["verdict"] == "LIVE"
                     else ("info" if e["verdict"] == "PAPER" else "bad")),
+              esc(e.get("status_detail", "")),
               src("SRC-NFLVERSE-SCHED")] for e in ents]
     why_rows = [
         ["Beat the close", "Was the side we took right against the closing number?",
@@ -707,7 +708,7 @@ $fund_notice
         "measured evidence rather than a podium. That is the honest result and it is the headline.", "warn",
         "pages/questions.html", "Q-08: is the bar right?"),
     board_table=table(["#", "Strategy", "Family", "Gates", "Signal: beat close", "n", "Staking: ROI",
-                       "Priced bets", "Verdict", "Source"], board, s.get("ranking_rule", "")),
+                       "Priced bets", "Verdict", "Diagnosis", "Source"], board, s.get("ranking_rule", "")),
     why_table=table(["Column", "Question it answers", "How it is computed", "Can luck inflate it?", "Source"],
                     why_rows, "The three columns exist so a reader can tell skill from a good run."),
     tier_table=table(["Tier", "Requirement", "What it would award", "Awarded to", "Source"], tier_rows,
@@ -727,7 +728,7 @@ def page_strategies():
                  esc(", ".join(k.split("-")[1] for k, v in e["gates"].items() if not v) or "none"),
                  badge(e["verdict"], "ok" if e["verdict"] == "LIVE"
                        else ("info" if e["verdict"] == "PAPER" else "bad")),
-                 src("SRC-NFLVERSE-SCHED")] for e in ents]
+                 esc(e.get("status_detail", "")), src("SRC-NFLVERSE-SCHED")] for e in ents]
     sig_rows = [[esc(e["id"]), pct(e["signal"]["beat_close_rate"]), ci(e["signal"]["beat_close_ci"]),
                  n(e["signal"]["n_graded"]), fmt(e["signal"]["permutation_p"], 4),
                  fmt(e["signal"]["hit_p"], 4), fmt(e["signal"]["bh_q"], 4),
@@ -794,8 +795,10 @@ $luck_table
 </section>
 """,
     spec=esc(s.get("spec_sha256", "")[:16]), kpis=kpis,
-    reg_table=table(["#", "ID", "Name", "Rule as registered", "Gates", "Failed gates", "Verdict", "Source"],
-                    reg_rows, "The complete registered family. The failing gate ids are the diagnosis."),
+    reg_table=table(["#", "ID", "Name", "Rule as registered", "Gates", "Failed gates", "Verdict",
+                     "Diagnosis", "Source"], reg_rows,
+                    "The complete registered family. A family with zero observations is UNTESTED, which "
+                    "is a different statement from a family that was measured and lost."),
     sig_table=table(["Strategy", "Beat-close rate", "95% interval", "n", "Permutation p", "Hit-rate p",
                      "BH q", "Edge (pts)", "Source"], sig_rows,
                     "Signal, price-free. An interval that includes 0.5 means the rate is indistinguishable "

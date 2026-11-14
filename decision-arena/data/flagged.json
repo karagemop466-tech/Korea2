@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:18:23Z",
+ "generated_utc": "2026-11-14T20:21:03Z",
  "policy": "A flag is not a blocker to publication; it is a blocker to trusting the affected number without reading it. Flags are closed only when a source exists.",
  "items": [
   {
@@ -115,7 +115,7 @@
    "source": "SRC-NFLVERSE-STATS"
   }
  ],
- "blanked_value_count": 22,
+ "blanked_value_count": 21,
  "blanked_note": "Counted from the built output: markets on the originated slate with no line or price, Week 9 games absent from the snapshot, and strategies with no measurable signal or staking value.",
  "open_questions": 12
 }
