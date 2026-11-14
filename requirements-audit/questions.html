@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Questions · Requirements audit</title>
+<style>
+:root{--ink:#1d2430;--mute:#5b6675;--line:#dfe4ec;--bg:#f6f8fb;--ok:#18794e;--warn:#9a6700;--bad:#b42318;--info:#1f4e9c}
+*{box-sizing:border-box} body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:#fff;border-bottom:1px solid var(--line);padding:14px 22px;display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+header b{margin-right:auto} nav a{color:var(--info);text-decoration:none;margin-right:14px} nav a.on{font-weight:600;text-decoration:underline}
+main{max-width:1180px;margin:0 auto;padding:22px}
+h1{font-size:24px;margin:4px 0 6px} h2{font-size:18px;margin:26px 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.card .n{font-size:26px;font-weight:700} .card .l{color:var(--mute);font-size:13px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{background:#eef2f7;font-weight:600;font-size:13px} tr:last-child td{border-bottom:0}
+td.src a{word-break:break-all} .note{color:var(--mute);font-size:13px;margin-top:4px}
+.badge{display:inline-block;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap}
+.badge.ok{background:var(--ok)} .badge.warn{background:var(--warn)} .badge.bad{background:var(--bad)} .badge.info{background:var(--info)}
+.flag{border-left:4px solid var(--warn);background:#fff8e6;padding:10px 14px;border-radius:6px;margin:12px 0}
+.wrap{overflow-x:auto} footer{color:var(--mute);font-size:12px;padding:20px 22px;text-align:center}
+</style></head><body>
+<header><b>Requirements audit · Line Lab</b>
+<nav><a href="index.html">Overview</a><a href="requirements.html">Requirements</a><a href="questions.html" class=on>Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged &amp; sources</a></nav></header>
+<main><h1>Questions and information gaps</h1>
+<p>What must be answered before a decision can reasonably be made. The left column is what we already know; the next is
+what we do not. Answers are written in only when a source confirms them.</p>
+<div class="wrap"><table><thead><tr><th>ID</th><th>Question</th><th>Known</th><th>Unknown</th><th>How to find out</th><th>Blocks</th><th>Answer</th><th>Source</th></tr></thead>
+<tbody><tr><td>Q1</td><td>Is there an official or licensed source of opening and closing prices for every market, with capture timestamps?</td><td>The repo has one season of openings (2021, 1,088 rows) and closings with no timestamps (R1).</td>
+<td>Whether any price archive is licensed for this use, its cost, its terms, and its coverage back to 1999.</td><td>Request written terms and coverage from each vendor; confirm whether a licence permits storing and publishing the data. Until then, start a dated snapshot of the live numbers for the coming weeks.</td><td>R1, R4 (market line), every ROI and closing-line-value claim</td><td><span class="badge warn">Open</span></td>
+<td class="src"><a href="https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports" rel="noopener">https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports</a><div class="note">NFL.com — NFL extends strategic partnership with Genius Sports</div></td></tr><tr><td>Q2</td><td>Which official source reconciles every game result, and how often?</td><td>The repo reports reconciliation for 2020 and 2026 only (README; not re-run here).</td>
+<td>The reconciliation status for seasons 1999–2019 and 2021–2025.</td><td>Re-run the NFL.com comparison for every season and record a row count and a match rate per season.</td><td>R2, every ROI figure</td><td><span class="badge warn">Open</span></td>
+<td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">https://www.nfl.com/injuries/</a><div class="note">NFL.com — 2026 NFL Injury Report (live page)</div></td></tr><tr><td>Q3</td><td>Why does the results feed stop at 2026-10-29 when the official page is on Week 10?</td><td>Latest scored game in games.csv: 2026-10-29 (R2). The official injury page is titled Week 10 (S1).</td>
+<td>Whether the feed lag is upstream (nflverse) or in our refresh job.</td><td>Compare the newest game ID in each feed refresh with the official schedule; add a freshness check that fails the build when the newest scored game is older than the newest official week.</td><td>R2, R9 (injury and results must be aligned to the same week)</td><td><span class="badge warn">Open</span></td>
+<td class="src"><a href="https://github.com/nflverse/nflverse-data" rel="noopener">https://github.com/nflverse/nflverse-data</a><div class="note">nflverse-data — release repository (community extracts)</div></td></tr><tr><td>Q4</td><td>Should the leaderboard rank on signal alone, with staking reported separately?</td><td>The current score mixes ROI with luck, stability and sample size (R5).</td>
+<td>The owner&#x27;s preference. This is a decision, not a fact.</td><td>Owner selects an option on the suggestions page (S-03).</td><td>R5</td><td><span class="badge info">Decision needed</span></td>
+<td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/scripts/build_site.py" rel="noopener">https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/scripts/build_site.py</a><div class="note">Repository files at commit a6981b6 (read in this session)</div></td></tr><tr><td>Q5</td><td>Is 100 settled bets the right window for the demotion gate?</td><td>The rule text says 100 bets (R8). No code or justification was found.</td>
+<td>The statistical power of a 100-bet window. Arithmetic only (not from a source): at a 50% win rate the standard error of the win rate over 100 bets is 5.0 points, so a 95% band is about ±10 points.</td><td>Choose a window from a power calculation on the historical settled-bet distribution, using a stated significance level and a minimum effect size.</td><td>R8</td><td><span class="badge warn">Open</span></td>
+<td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/leaderboard.html" rel="noopener">https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/leaderboard.html</a><div class="note">Repository files at commit a6981b6 (read in this session)</div></td></tr><tr><td>Q6</td><td>Does &#x27;side&#x27; mean the spread (margin), and must the total be set without seeing the side?</td><td>The repo&#x27;s &#x27;side&#x27; is the spread/margin line (R3).</td>
+<td>The owner&#x27;s intent for the dependency rule.</td><td>Owner confirms the definition; the pipeline then enforces it with a test.</td><td>R3</td><td><span class="badge info">Decision needed</span></td>
+<td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/scripts/build_lines.py" rel="noopener">https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/scripts/build_lines.py</a><div class="note">Repository files at commit a6981b6 (read in this session)</div></td></tr><tr><td>Q7</td><td>May correlations use community-sourced data, or only official numbers?</td><td>All current correlations use nflverse extracts (R7).</td>
+<td>Whether any official per-game numbers are available in bulk, and under what terms.</td><td>Check NFL.com&#x27;s statistics pages for a bulk or downloadable form (NOT checked in this session); if none, the owner decides between blanking correlations and publishing them labelled community-sourced.</td><td>R7</td><td><span class="badge warn">Open</span></td>
+<td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">https://www.nfl.com/injuries/</a><div class="note">NFL.com — 2026 NFL Injury Report (live page)</div></td></tr><tr><td>Q8</td><td>Does the depth view need 4th-string tracking?</td><td>The repo tracks up to 3rd string (R9).</td>
+<td>Whether the owner wants 4th string, and whether a 4th-string depth source exists.</td><td>Owner decision; then check the depth-chart feed for a fourth rank field.</td><td>R9</td><td><span class="badge info">Decision needed</span></td>
+<td class="src"><a href="https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html" rel="noopener">https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html</a><div class="note">nflreadr — data dictionary, depth charts</div></td></tr><tr><td>Q9</td><td>Are there point-in-time injury snapshots for past weeks?</td><td>Only the live official page and the current nflverse release were read (S1, S2).</td>
+<td>Whether historical snapshots exist. The brief&#x27;s injuries need them for backtests.</td><td>Begin saving a dated copy of the official page each week; check whether the archive permits this.</td><td>R9, any injury-based backtest</td><td><span class="badge warn">Open</span></td>
+<td class="src"><a href="https://www.nfl.com/injuries/" rel="noopener">https://www.nfl.com/injuries/</a><div class="note">NFL.com — 2026 NFL Injury Report (live page)</div></td></tr></tbody></table></div></main>
+<footer>Built from data/audit.json on 2026-11-14. Read-only audit; no value is inferred. Source: branch arena/7d42ec5b-korea2.</footer>
+</body></html>

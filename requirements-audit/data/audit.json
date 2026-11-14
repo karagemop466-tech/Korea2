@@ -1,0 +1,475 @@
+{
+  "meta": {
+    "session": "arena/7d42ec5b-korea2",
+    "built_for_branch": "arena/7d42ec5b-korea2",
+    "base_commit": "a6981b6ff12d4554b9d43a6012d3a3c6109edad9",
+    "as_of": "2026-11-14",
+    "scope_note": "Read-only audit of the existing repository plus a traceability map of the brief. No strategy, price, or result was created. Values not confirmed from an official source are left blank and flagged."
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "label": "NFL.com — 2026 NFL Injury Report (live page)",
+      "url": "https://www.nfl.com/injuries/",
+      "type": "official (league)",
+      "checked": "2026-11-14, opened via page retrieval",
+      "result": "Title reads 'Week 10 of the 2026 Season'. Table columns: Player, Position, Injuries, Practice Status, Game Status. No depth-chart order is shown on this page.",
+      "verified": true
+    },
+    {
+      "id": "S2",
+      "label": "nflverse-data — release repository (community extracts)",
+      "url": "https://github.com/nflverse/nflverse-data",
+      "type": "community (third party, not the NFL)",
+      "checked": "2026-11-14, opened via page retrieval",
+      "result": "Public repository, latest commit dated Nov 1, 2026. Confirms the repo is a community mirror of league data; it is not an official NFL feed.",
+      "verified": true
+    },
+    {
+      "id": "S3",
+      "label": "nflreadr — data dictionary, depth charts",
+      "url": "https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html",
+      "type": "community (documentation)",
+      "checked": "Registered in decision-hub/data/sources.json; NOT re-opened in this session",
+      "result": "Not re-verified in this session. Cited only as the documented source of the depth-chart fields used in the repo.",
+      "verified": false
+    },
+    {
+      "id": "S4",
+      "label": "NFL.com — NFL extends strategic partnership with Genius Sports",
+      "url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "type": "official (league announcement)",
+      "checked": "Registered in decision-hub/data/sources.json; NOT re-opened in this session",
+      "result": "Not re-verified in this session. Cited as context for the league's official data-distribution arrangement; it does not establish that any price archive is available.",
+      "verified": false
+    },
+    {
+      "id": "S5",
+      "label": "NIST — correlation coefficient reference (Dataplot)",
+      "url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+      "type": "official (government statistics reference)",
+      "checked": "Registered in COORDINATION.md by an earlier session; NOT re-opened in this session",
+      "result": "Not re-verified in this session. Method reference only.",
+      "verified": false
+    },
+    {
+      "id": "S6",
+      "label": "Repository files at commit a6981b6 (read in this session)",
+      "url": "https://github.com/karagemop466-tech/Korea2/tree/a6981b6ff12d4554b9d43a6012d3a3c6109edad9",
+      "type": "repository (internal evidence)",
+      "checked": "2026-11-14, read locally in the sandbox",
+      "result": "Each internal claim in this audit points to the file it was read from; row counts and column headers were counted or read directly.",
+      "verified": true
+    }
+  ],
+  "requirements": [
+    {
+      "id": "R1",
+      "requirement": "Price-snapshot store that records opening and closing numbers for every market we originate",
+      "status": "Missing",
+      "where": "No store exists. Partial inputs: origination-lab/data/raw/initial_lines.csv and origination-lab/data/raw/closing_lines.csv",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/data/raw/initial_lines.csv",
+      "evidence": "initial_lines.csv has 1,088 rows, all with season 2021 (counted). closing_lines.csv has 20,490 rows with no timestamp column (columns: game_id, alt_game_id, type, side, line, odds, outcome). origination-lab/flagged.html states opening prices exist for one season only.",
+      "gap": "Openings for 2002–2026 and every other market (totals, moneylines, props); no capture timestamp; no store with a schema or write process.",
+      "source_url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "source_id": "S4",
+      "source_note": "Context only. No official price source was identified or verified in this session.",
+      "verified_value": false
+    },
+    {
+      "id": "R2",
+      "requirement": "Verified results feed so backtests and ROI can be computed",
+      "status": "Partial",
+      "where": "origination-lab/data/raw/games.csv (nflverse community extract); reconciliation pages in verification/ and decision-hub/pages/audit.html",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/data/raw/games.csv",
+      "evidence": "games.csv has 7,548 rows for seasons 1999–2026 (counted). 108 games in season 2026 have a recorded score; the latest scored gameday is 2026-10-29 (counted). The repo README says 2020 and 2026 were reconciled against NFL.com; this was not re-run in this session.",
+      "gap": "The feed is community-maintained, not an official NFL results feed. It is about two weeks behind the official injury page (see R9). Only 2 of the 28 seasons (1999–2026) are described as reconciled.",
+      "source_url": "https://github.com/nflverse/nflverse-data",
+      "source_id": "S2",
+      "source_note": "Community extract. Official reconciliation not re-run in this session.",
+      "verified_value": false
+    },
+    {
+      "id": "R3",
+      "requirement": "Originate the side first, then the total, then the moneyline",
+      "status": "Partial",
+      "where": "origination-lab/scripts/build_lines.py (main)",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/scripts/build_lines.py",
+      "evidence": "main() writes the margin (spread) metrics first, then total, then the moneyline calibration block. The model order is therefore side → total → moneyline in the output payload.",
+      "gap": "The sequence is an output order, not an enforced origination procedure. Nothing checks that the total is not used to set the side, and the word 'side' is not defined in the page, so it is not clear whether 'side' means the spread (margin).",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/scripts/build_lines.py",
+      "source_id": "S6",
+      "source_note": "Internal evidence.",
+      "verified_value": false
+    },
+    {
+      "id": "R4",
+      "requirement": "Publish the model's fair line, the market line, and the difference as separate columns",
+      "status": "Implemented",
+      "where": "origination-lab/lines.html (game table)",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/lines.html",
+      "evidence": "The game table headers are: 'Our line (home)', 'Mkt line (home)', 'Spread edge, pts', 'Our total', 'Mkt total', 'Total edge, pts', 'Our H ML', 'Mkt H ML' (read directly from the file). Fair line = 'Our line'/'Our total'; market line = 'Mkt line'/'Mkt total'; difference = 'edge' columns.",
+      "gap": "The 'market line' is the community closing-line extract, not an official price. The model is not shown to have an edge (see the repo's own MAE comparison).",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/lines.html",
+      "source_id": "S6",
+      "source_note": "Internal evidence; the market column source is S2.",
+      "verified_value": false
+    },
+    {
+      "id": "R5",
+      "requirement": "Separate 'signal' from 'staking' in the leaderboard so a lucky staking run cannot mask a bad signal",
+      "status": "Missing",
+      "where": "quant-lab/scripts/build_site.py (leaderboard score formula); quant-lab/leaderboard.html",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/scripts/build_site.py",
+      "evidence": "The published score is one formula: score = ROI(holdout) × 100 × (1 + max(0, luck_z)/3) × (0.5 + 0.5·stability) × (0.5 + 0.5·√(n/300)). ROI is per 1-unit flat stake at the recorded price, so no staking policy is varied or compared.",
+      "gap": "No separate signal metric (for example closing-line value or a calibration measure against the market) and no separate staking comparison. The single score can still be pushed up by sample size and luck terms.",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/scripts/build_site.py",
+      "source_id": "S6",
+      "source_note": "Internal evidence.",
+      "verified_value": false
+    },
+    {
+      "id": "R6",
+      "requirement": "Track the depth of the replacement, not just the fact of a replacement",
+      "status": "Implemented",
+      "where": "decision-hub/pages/injuries.html; decision-hub/data/injuries.json (fields: depth_rank, weighted_depth_lost, deepest_replacement_rank, next_up)",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/decision-hub/pages/injuries.html",
+      "evidence": "Columns include '1st string out', '2-deep out', '3-deep out', 'Depth lost' and 'Positions on a backup'. The JSON records a deepest_replacement_rank and a weighted_depth_lost per team-week (read directly; e.g. SEA week 9: weighted_depth_lost 6.0, deepest_replacement_rank 2).",
+      "gap": "Depth comes from the nflverse community depth-chart feed (S3). The NFL injury page (S1) has no depth order, so the depth ranks cannot be checked against an official source.",
+      "source_url": "https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html",
+      "source_id": "S3",
+      "source_note": "Documentation of the community feed; not re-opened this session.",
+      "verified_value": false
+    },
+    {
+      "id": "R7",
+      "requirement": "Compute correlations only from officially sourced numbers and publish n with each value",
+      "status": "Partial",
+      "where": "origination-lab/correlation.html (leg-pair table)",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/correlation.html",
+      "evidence": "The leg-pair table publishes n, φ, 95% CI and p for each pair (read directly). n is published with each value, as required.",
+      "gap": "The inputs are nflverse community extracts (S2), not officially sourced numbers, so the 'officially sourced only' condition is not met. Any correlation published here is labelled as community-sourced until that changes.",
+      "source_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+      "source_id": "S5",
+      "source_note": "Method reference only; not re-opened this session.",
+      "verified_value": false
+    },
+    {
+      "id": "R8",
+      "requirement": "Define a demotion gate that sends a live strategy back to paper",
+      "status": "Partial",
+      "where": "quant-lab/leaderboard.html (rule text); quant-lab/scripts/build_site.py (text only)",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/leaderboard.html",
+      "evidence": "The page states: 'A qualified strategy that turns negative over its next 100 settled bets drops back to Development.' A search of quant-lab/scripts found this rule only in the HTML text, not in executable code.",
+      "gap": "No code enforces the rule and no strategy is live (0 of 7 approved per the decision hub), so the gate has never been exercised. The 100-bet window is not justified in the repo.",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/leaderboard.html",
+      "source_id": "S6",
+      "source_note": "Internal evidence.",
+      "verified_value": false
+    },
+    {
+      "id": "R9",
+      "requirement": "Track injuries and any deficiency in defensive or offensive depth, when starters are replaced by 2nd, 3rd or 4th string backups",
+      "status": "Partial",
+      "where": "decision-hub/scripts/fetch_injuries.py; decision-hub/data/injuries.json",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/decision-hub/scripts/fetch_injuries.py",
+      "evidence": "injuries.json holds offense_out and defense_out per team-week, plus starters_out, two_deep_out and three_deep_out (read directly). The latest team-week it records is week 9 (generated 2026-11-12). The NFL page (S1) is titled Week 10.",
+      "gap": "The snapshot is one week behind the official injury page. The repo tracks up to 3rd-string depth; the brief asks about 4th string as well, and that is not tracked. No historical point-in-time injury snapshots exist.",
+      "source_url": "https://www.nfl.com/injuries/",
+      "source_id": "S1",
+      "source_note": "Official page opened 2026-11-14; its Week 10 content was read.",
+      "verified_value": false
+    },
+    {
+      "id": "R10",
+      "requirement": "Suggestions section, questions and information gaps, and an executive summary, for review before any change",
+      "status": "Implemented",
+      "where": "decision-hub/pages/suggestions.html; decision-hub/pages/questions.html; decision-hub/pages/executive-summary.html",
+      "where_url": "https://github.com/karagemop466-tech/Korea2/blob/main/decision-hub/pages/suggestions.html",
+      "evidence": "Pages exist and are linked from decision-hub/index.html (read directly). Several parallel dashboards also contain suggestion or summary pages (see COORDINATION.md, issue #25 and the duplicate-scope note).",
+      "gap": "Duplicate suggestion hubs exist across sessions. This audit does not merge them; that is a decision for the integration session.",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/decision-hub/index.html",
+      "source_id": "S6",
+      "source_note": "Internal evidence.",
+      "verified_value": false
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "Is there an official or licensed source of opening and closing prices for every market, with capture timestamps?",
+      "known": "The repo has one season of openings (2021, 1,088 rows) and closings with no timestamps (R1).",
+      "unknown": "Whether any price archive is licensed for this use, its cost, its terms, and its coverage back to 1999.",
+      "how_to_find": "Request written terms and coverage from each vendor; confirm whether a licence permits storing and publishing the data. Until then, start a dated snapshot of the live numbers for the coming weeks.",
+      "blocks": "R1, R4 (market line), every ROI and closing-line-value claim",
+      "source_url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "source_id": "S4",
+      "answer_status": "Open"
+    },
+    {
+      "id": "Q2",
+      "question": "Which official source reconciles every game result, and how often?",
+      "known": "The repo reports reconciliation for 2020 and 2026 only (README; not re-run here).",
+      "unknown": "The reconciliation status for seasons 1999–2019 and 2021–2025.",
+      "how_to_find": "Re-run the NFL.com comparison for every season and record a row count and a match rate per season.",
+      "blocks": "R2, every ROI figure",
+      "source_url": "https://www.nfl.com/injuries/",
+      "source_id": "S1",
+      "answer_status": "Open"
+    },
+    {
+      "id": "Q3",
+      "question": "Why does the results feed stop at 2026-10-29 when the official page is on Week 10?",
+      "known": "Latest scored game in games.csv: 2026-10-29 (R2). The official injury page is titled Week 10 (S1).",
+      "unknown": "Whether the feed lag is upstream (nflverse) or in our refresh job.",
+      "how_to_find": "Compare the newest game ID in each feed refresh with the official schedule; add a freshness check that fails the build when the newest scored game is older than the newest official week.",
+      "blocks": "R2, R9 (injury and results must be aligned to the same week)",
+      "source_url": "https://github.com/nflverse/nflverse-data",
+      "source_id": "S2",
+      "answer_status": "Open"
+    },
+    {
+      "id": "Q4",
+      "question": "Should the leaderboard rank on signal alone, with staking reported separately?",
+      "known": "The current score mixes ROI with luck, stability and sample size (R5).",
+      "unknown": "The owner's preference. This is a decision, not a fact.",
+      "how_to_find": "Owner selects an option on the suggestions page (S-03).",
+      "blocks": "R5",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/scripts/build_site.py",
+      "source_id": "S6",
+      "answer_status": "Decision needed"
+    },
+    {
+      "id": "Q5",
+      "question": "Is 100 settled bets the right window for the demotion gate?",
+      "known": "The rule text says 100 bets (R8). No code or justification was found.",
+      "unknown": "The statistical power of a 100-bet window. Arithmetic only (not from a source): at a 50% win rate the standard error of the win rate over 100 bets is 5.0 points, so a 95% band is about ±10 points.",
+      "how_to_find": "Choose a window from a power calculation on the historical settled-bet distribution, using a stated significance level and a minimum effect size.",
+      "blocks": "R8",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/quant-lab/leaderboard.html",
+      "source_id": "S6",
+      "answer_status": "Open"
+    },
+    {
+      "id": "Q6",
+      "question": "Does 'side' mean the spread (margin), and must the total be set without seeing the side?",
+      "known": "The repo's 'side' is the spread/margin line (R3).",
+      "unknown": "The owner's intent for the dependency rule.",
+      "how_to_find": "Owner confirms the definition; the pipeline then enforces it with a test.",
+      "blocks": "R3",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/scripts/build_lines.py",
+      "source_id": "S6",
+      "answer_status": "Decision needed"
+    },
+    {
+      "id": "Q7",
+      "question": "May correlations use community-sourced data, or only official numbers?",
+      "known": "All current correlations use nflverse extracts (R7).",
+      "unknown": "Whether any official per-game numbers are available in bulk, and under what terms.",
+      "how_to_find": "Check NFL.com's statistics pages for a bulk or downloadable form (NOT checked in this session); if none, the owner decides between blanking correlations and publishing them labelled community-sourced.",
+      "blocks": "R7",
+      "source_url": "https://www.nfl.com/injuries/",
+      "source_id": "S1",
+      "answer_status": "Open"
+    },
+    {
+      "id": "Q8",
+      "question": "Does the depth view need 4th-string tracking?",
+      "known": "The repo tracks up to 3rd string (R9).",
+      "unknown": "Whether the owner wants 4th string, and whether a 4th-string depth source exists.",
+      "how_to_find": "Owner decision; then check the depth-chart feed for a fourth rank field.",
+      "blocks": "R9",
+      "source_url": "https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html",
+      "source_id": "S3",
+      "answer_status": "Decision needed"
+    },
+    {
+      "id": "Q9",
+      "question": "Are there point-in-time injury snapshots for past weeks?",
+      "known": "Only the live official page and the current nflverse release were read (S1, S2).",
+      "unknown": "Whether historical snapshots exist. The brief's injuries need them for backtests.",
+      "how_to_find": "Begin saving a dated copy of the official page each week; check whether the archive permits this.",
+      "blocks": "R9, any injury-based backtest",
+      "source_url": "https://www.nfl.com/injuries/",
+      "source_id": "S1",
+      "answer_status": "Open"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "S-01",
+      "title": "Price-snapshot store (R1)",
+      "options": [
+        {
+          "label": "A. Licensed price archive",
+          "trade_off": "Best history; cost and terms unknown (Q1)."
+        },
+        {
+          "label": "B. Dated snapshots from today",
+          "trade_off": "Starts the record now; no history; need to check the terms of any source used."
+        },
+        {
+          "label": "C. Keep closings only",
+          "trade_off": "No new cost; CLV stays blank."
+        }
+      ],
+      "unblocks": "R1, Q1"
+    },
+    {
+      "id": "S-02",
+      "title": "Results feed freshness and reconciliation (R2, Q2, Q3)",
+      "options": [
+        {
+          "label": "A. Add a freshness gate in the build",
+          "trade_off": "Fails the build on lag; small effort."
+        },
+        {
+          "label": "B. Reconcile every season against NFL.com",
+          "trade_off": "Full verification; large effort, and the sandbox cannot reach NFL.com directly."
+        },
+        {
+          "label": "C. Keep the current community feed and label it",
+          "trade_off": "No effort; less trust."
+        }
+      ],
+      "unblocks": "R2, Q2, Q3"
+    },
+    {
+      "id": "S-03",
+      "title": "Split the leaderboard into signal and staking (R5, Q4)",
+      "options": [
+        {
+          "label": "A. Rank on signal only; show staking separately",
+          "trade_off": "Directly answers the brief."
+        },
+        {
+          "label": "B. Two rankings side by side",
+          "trade_off": "More information; more to read."
+        },
+        {
+          "label": "C. Leave the single score",
+          "trade_off": "Brief not met."
+        }
+      ],
+      "unblocks": "R5, Q4"
+    },
+    {
+      "id": "S-04",
+      "title": "Implement the demotion gate in code (R8, Q5)",
+      "options": [
+        {
+          "label": "A. Code the 100-bet rule as written",
+          "trade_off": "Fast; the window is unjustified."
+        },
+        {
+          "label": "B. Choose the window by power analysis first",
+          "trade_off": "Justified; needs historical settled bets."
+        },
+        {
+          "label": "C. Keep the rule as text",
+          "trade_off": "Not a gate."
+        }
+      ],
+      "unblocks": "R8, Q5"
+    },
+    {
+      "id": "S-05",
+      "title": "Correlation source policy (R7, Q7)",
+      "options": [
+        {
+          "label": "A. Blank correlations until an official source exists",
+          "trade_off": "Honest; the page goes mostly empty."
+        },
+        {
+          "label": "B. Publish labelled 'community-sourced' with n",
+          "trade_off": "Informative; does not meet the brief."
+        },
+        {
+          "label": "C. Search for official bulk per-game data first",
+          "trade_off": "Needed before A or B can be settled."
+        }
+      ],
+      "unblocks": "R7, Q7"
+    },
+    {
+      "id": "S-06",
+      "title": "Refresh injuries to the current official week and keep dated copies (R9, Q3, Q9)",
+      "options": [
+        {
+          "label": "A. Re-run the injury refresh and add a week check",
+          "trade_off": "Small effort; matches S1 current week."
+        },
+        {
+          "label": "B. Also archive dated copies of the official page",
+          "trade_off": "Builds the point-in-time record the brief needs."
+        }
+      ],
+      "unblocks": "R9, Q3, Q9"
+    },
+    {
+      "id": "S-07",
+      "title": "Enforce the origination order (R3, Q6)",
+      "options": [
+        {
+          "label": "A. Add a test that the total model does not read the side",
+          "trade_off": "Small effort; needs Q6 answered first."
+        },
+        {
+          "label": "B. Leave as output order and document it",
+          "trade_off": "No effort; not enforced."
+        }
+      ],
+      "unblocks": "R3, Q6"
+    }
+  ],
+  "flagged": [
+    {
+      "id": "FL-01",
+      "item": "Results feed is two weeks behind the official injury page",
+      "source_id": "S1",
+      "detail": "Latest scored game 2026-10-29 in games.csv (R2); official page titled Week 10 (S1)."
+    },
+    {
+      "id": "FL-02",
+      "item": "Injury snapshot is Week 9, official page is Week 10",
+      "source_id": "S1",
+      "detail": "decision-hub/data/injuries.json (generated 2026-11-12) vs S1."
+    },
+    {
+      "id": "FL-03",
+      "item": "Demotion gate is text only",
+      "source_id": "S6",
+      "detail": "quant-lab/leaderboard.html rule; no code path found (R8)."
+    },
+    {
+      "id": "FL-04",
+      "item": "Correlations are from community extracts, not official numbers",
+      "source_id": "S2",
+      "detail": "R7."
+    },
+    {
+      "id": "FL-05",
+      "item": "Opening prices exist for one season only",
+      "source_id": "S6",
+      "detail": "origination-lab/data/raw/initial_lines.csv (R1)."
+    },
+    {
+      "id": "FL-06",
+      "item": "NFL.com is not reachable from the sandbox shell",
+      "source_id": "S1",
+      "detail": "A direct curl to https://www.nfl.com/injuries/ returned no response in this session; S1 was read through the page-retrieval tool instead."
+    },
+    {
+      "id": "FL-07",
+      "item": "Leaderboard score mixes ROI with luck and sample terms",
+      "source_id": "S6",
+      "detail": "R5."
+    },
+    {
+      "id": "FL-08",
+      "item": "Four-string depth is not tracked",
+      "source_id": "S3",
+      "detail": "R9 and Q8."
+    }
+  ]
+}
