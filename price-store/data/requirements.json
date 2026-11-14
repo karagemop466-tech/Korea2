@@ -1,0 +1,131 @@
+{
+  "branch_link_base": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/",
+  "as_of": "2026-11-14",
+  "rows": [
+    {
+      "id": "R1",
+      "requirement": "Price-snapshot store that records opening and closing numbers for every market we originate",
+      "status": "missing data · schema built",
+      "what_exists": "Schema, an empty snapshot table (0 rows) and a validator that refuses unverified prices.",
+      "gap": "The committed feed holds one closing-type value per market (spread_line, total_line, moneylines, spread and total odds) and no opening value or capture time. Nothing can be back-filled from it, so the opening-vs-closing comparison is blocked.",
+      "evidence_path": "price-store/data/schema.json",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/data/derived/games.csv.gz",
+      "source_label": "committed feed, 7,548 rows (repo file; columns read on 2026-11-14)",
+      "verified": "yes (columns); no opening prices exist"
+    },
+    {
+      "id": "R2",
+      "requirement": "Verified results feed so backtests and ROI can be computed",
+      "status": "partial · 1 verified game",
+      "what_exists": "A results feed with one game verified against NFL.com: 2026 Week 10, Washington 24 at New York Giants 21 (Thu 12 Nov, Final).",
+      "gap": "The committed nflverse snapshot shows this game with blank scores, so it is stale for Week 10. Every other game is unverified against an official page, so backtests and ROI cannot be computed yet.",
+      "evidence_path": "price-store/data/results_feed.csv",
+      "source_url": "https://www.nfl.com/schedules/",
+      "source_label": "NFL.com schedule page (read 2026-11-14): 'Commanders 24, Giants 21, FINAL'",
+      "verified": "yes (one row)"
+    },
+    {
+      "id": "R3",
+      "requirement": "Originate the side first, then the total, then the moneyline",
+      "status": "partial · order stated, not enforced",
+      "what_exists": "The origination module's docstring lists the outputs as spread, total, then moneyline. The brief's 'side' is read as the spread.",
+      "gap": "No gate checks the order of origination or stores it per row. The snapshot schema carries origination_order (1 spread, 2 total, 3 moneyline) so the order can be enforced once data exists.",
+      "evidence_path": "pipeline/originate.py",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/pipeline/originate.py",
+      "source_label": "module docstring, lines 1–3 (repo file)",
+      "verified": "yes (docstring text)"
+    },
+    {
+      "id": "R4",
+      "requirement": "Publish the model's fair line, the market line, and the difference as separate columns",
+      "status": "built",
+      "what_exists": "The origination board publishes own_spread, mkt_spread and edge_spread as separate columns (and the same pattern for the total and the moneyline).",
+      "gap": "The board is the 2026-11-01 Week 8 snapshot, not the current slate. Its market columns carry no capture time, so they cannot be tied to an opening or closing snapshot.",
+      "evidence_path": "origination/site_data/current_board.csv",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/origination/site_data/current_board.csv",
+      "source_label": "published board (repo file; header read 2026-11-14)",
+      "verified": "column names yes; market values not checked against a sportsbook"
+    },
+    {
+      "id": "R5",
+      "requirement": "Separate 'signal' from 'staking' in the leaderboard so a lucky staking run cannot mask a bad signal",
+      "status": "partial · gate built, leaderboard not yet using it",
+      "what_exists": "A demotion gate that judges signal (closing-line value) and reports staking (ROI) separately, with tests showing a lucky staking run cannot keep a bad signal live.",
+      "gap": "The published leaderboard still ranks by gates passed and then by ROI, so the staking metric is part of the ordering. No live strategy exists to evaluate.",
+      "evidence_path": "data/derived/leaderboard.json",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/data/derived/leaderboard.json",
+      "source_label": "leaderboard ranking_rule field (repo file; read 2026-11-14)",
+      "verified": "yes (ranking rule text)"
+    },
+    {
+      "id": "R6",
+      "requirement": "Track the depth of the replacement, not just the fact of a replacement",
+      "status": "partial · injuries tracked, depth order blocked",
+      "what_exists": "Injury report rows are tracked per team and slot (review-board/data/injuries.json). The depth page exists.",
+      "gap": "The official report says who is out but not who replaces them, and no official depth order is in the verified data. The depth page therefore leaves both replacement columns blank on every row, so the depth of a replacement (starter / 2nd / 3rd / 4th string) cannot yet be measured.",
+      "evidence_path": "review-board/pages/depth.html",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/review-board/pages/depth.html",
+      "source_label": "depth page; blank-by-policy rows (repo file)",
+      "verified": "blanks verified; no depth order published"
+    },
+    {
+      "id": "R7",
+      "requirement": "Compute correlations only from officially sourced numbers and publish n with each value",
+      "status": "missing · no official-only set",
+      "what_exists": "Correlations are published with n (for example home vs away points, n = 7,087 games).",
+      "gap": "Every input comes from nflverse, which is a third-party extract, not the league. Under the official-only rule the set is empty: 1 verified game (R2) is too few for any correlation.",
+      "evidence_path": "data/derived/correlation.json",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/data/derived/correlation.json",
+      "source_label": "published correlations with n (repo file)",
+      "verified": "n yes; official-source status no"
+    },
+    {
+      "id": "R8",
+      "requirement": "Define a demotion gate that sends a live strategy back to paper",
+      "status": "built · not applied",
+      "what_exists": "A pure-function gate with three outcomes (HOLD, KEEP_LIVE, DEMOTE_TO_PAPER) and nine passing unit tests on synthetic fixtures.",
+      "gap": "Thresholds (200 settled bets, one-sided 95%) and the use of closing-line value as the signal are PROPOSED. They are not from an official source and have not been validated on real results. No live strategy exists yet.",
+      "evidence_path": "price-store/scripts/gates.py",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/price-store/scripts/gates.py",
+      "source_label": "gate source (repo file)",
+      "verified": "code and tests yes; thresholds are proposals"
+    }
+  ],
+  "flags": [
+    {
+      "id": "PS-F1",
+      "issue": "Committed nflverse snapshot (extract dated 2026-11-01) has the 2026 Week 10 game WAS @ NYG with blank scores, though NFL.com lists it Final.",
+      "source_url": "https://www.nfl.com/schedules/",
+      "source_label": "NFL.com schedule (read 2026-11-14)",
+      "action": "Refresh the third-party snapshot or ingest official results; do not treat the committed Week 10 rows as settled."
+    },
+    {
+      "id": "PS-F2",
+      "issue": "The NFL.com game-centre page for the same game was read with scores hidden. The score was taken from the schedule page instead.",
+      "source_url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+      "source_label": "NFL.com game centre (read 2026-11-14)",
+      "action": "Confirm the score in a browser before the row is treated as final for a backtest."
+    },
+    {
+      "id": "PS-F3",
+      "issue": "The leaderboard ranks by gates passed and then by ROI. ROI is a staking metric, which the brief asks to keep separate from the signal.",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/data/derived/leaderboard.json",
+      "source_label": "leaderboard ranking_rule (repo file)",
+      "action": "Decide whether ROI stays as a tie-breaker. The demotion gate is built so that it does not depend on it."
+    },
+    {
+      "id": "PS-F4",
+      "issue": "Correlations are published with n, but every input is a third-party extract. Under the official-only rule they are unverified.",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/data/derived/correlation.json",
+      "source_label": "published correlations (repo file)",
+      "action": "Replace with an official source or blank the values. Not done in this session."
+    },
+    {
+      "id": "PS-F5",
+      "issue": "The demotion thresholds (200 bets, one-sided 95%, closing-line value as signal) are proposals. They are not an official or validated standard.",
+      "source_url": "https://github.com/karagemop466-tech/Korea2/blob/arena/f9e0aea9-korea2/price-store/scripts/gates.py",
+      "source_label": "gate source (repo file)",
+      "action": "Review the thresholds before any strategy is judged against them."
+    }
+  ]
+}

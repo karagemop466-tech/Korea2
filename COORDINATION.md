@@ -2029,3 +2029,56 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
 6. nfl-lines (issues #13/#17): "verified source file" wording; official-source links or blanks for the 402 mirror-only rows; road-underdog label; drop the nonexistent F-11 board reference.
 
 **2026-11-14 — ISS-4 (final):** PR [#100](https://github.com/karagemop466-tech/Korea2/pull/100) opened from this branch on top of `42d9397` (rebase kept every session's board: b679b063, e470a321 and this one all intact); all 8 checks green (`validate`, `tests-and-links`, `verify` ×2, `verify-hub`, `verify-skill-lab`, `decision-desk`, `review-board`); merged as **`ffa6b7fe`** at 2026-11-14T01:19:10Z. GitHub Pages deploy confirmed first-hand: run **43539863389 completed/success**, `GET /repos/karagemop466-tech/Korea2/pages` → **`status=built`**, site at https://karagemop466-tech.github.io/Korea2/. Final state: 8 issues dispositioned for close, 5 kept open with evidence, all three test suites (19/9/9) and all five repo verifiers green on the merged tree; GitHub issue-write stayed HTTP 403 for the whole session, so the tracker itself was not modified — the dispositions in the ISS-1/ISS-2 tables above are the authoritative record for whoever holds issues-write access.
+
+---
+
+# Session board — `arena/f9e0aea9-korea2` (price-snapshot store, demotion gate, requirements trace)
+
+**Session ID:** `arena/f9e0aea9-korea2` · **Base:** `a6981b6` (main) · **Claimed:** 2026-11-14 UTC
+
+## Task board
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| PS-1 | **Price-snapshot store** (partial: schema + empty store; no capture exists): schema + empty, validated store for opening and closing prices per market (side → total → moneyline origination order). No historical prices are invented; rows stay absent until an official capture exists | **done** | `arena/f9e0aea9-korea2` | `price-store/schema.json`, `price-store/data/snapshots.csv`, `price-store/scripts/validate_snapshots.py` |
+| PS-2 | **Demotion gate** (live → paper) that judges the *signal* (closing-line value) and *staking* (ROI) separately, so a lucky staking run cannot mask a bad signal; unit-tested on synthetic fixtures labelled as such | **done** | `arena/f9e0aea9-korea2` | `price-store/scripts/gates.py`, `price-store/tests/test_gates.py` |
+| PS-3 | **Requirements trace**: each of the eight explicit brief requirements mapped to built / partial / missing, with the file that evidences it and the gap | **done** | `arena/f9e0aea9-korea2` | `price-store/data/requirements.json`, `price-store/scripts/build_site.py`, `price-store/index.html` |
+| PS-4 | Verify, commit, push, record irregularities here. No root nav, no sibling-hub file is edited; root-site requests are logged below | **done** | `arena/f9e0aea9-korea2` | this section |
+
+## Log — `arena/f9e0aea9-korea2`
+- 2026-11-14 UTC — Intake: read the board (last section `da5f9d7b`), open PRs #93/#97/#99 (all owned by other sessions, not touched). Checked the committed feed `data/derived/games.csv.gz` (7,548 rows): it has **one** closing-type value per market (`spread_line`, `total_line`, `*_moneyline`, `*_spread_odds`, `over/under_odds`) and **no opening value and no capture timestamp**, so an opening-vs-closing store cannot be back-filled from it. Claim pushed before implementation.
+
+## Result record — `arena/f9e0aea9-korea2`
+- **PS-1 done (partial by necessity).** `price-store/data/schema.json`, `snapshots.csv` (header only, 0 rows) and `scripts/validate_snapshots.py`. The validator rejects any unverified price and any non-official source. **Why 0 rows:** the committed feed (`data/derived/games.csv.gz`, 7,548 rows) holds only closing-type values per market; no opening value or capture time exists, so none can be back-filled.
+- **PS-2 done.** `scripts/gates.py` judges the signal (mean closing-line value, one-sided 95% upper bound) and reports staking (ROI) separately; the decision never reads ROI. `tests/test_gates.py`: **9 OK**, all on synthetic fixtures (labelled in the file). Thresholds (N_MIN 200, z 1.645) and the CLV-as-signal method are **PROPOSED**.
+- **PS-3 done.** `data/requirements.json` maps the eight brief requirements to built / partial / missing / blocked with the evidence file and the gap; `scripts/build_site.py` renders `index.html` (20 table rows, 0 rows without an https link).
+- **PS-4 done.** Existing checks re-run on the branch and still pass: `tests/check_site.py` (192 pages, 11,829 links), `scripts/validate_data.py` (0 warnings).
+
+### Sources (read first-hand 2026-11-14)
+- NFL.com schedule, Week 10 Thursday: https://www.nfl.com/schedules/ — shows "Commanders 24, Giants 21, FINAL, Thursday, November 12th" (the only verified result row).
+- NFL.com game centre: https://www.nfl.com/games/commanders-at-giants-2026-reg-10 — Week 10, Final; scores hidden in the fetched text (see PS-F2).
+- Committed data and code (repo files, branch `arena/f9e0aea9-korea2`): `data/derived/games.csv.gz`, `origination/site_data/current_board.csv`, `data/derived/correlation.json`, `data/derived/leaderboard.json`, `pipeline/originate.py`, `review-board/pages/depth.html`.
+
+### Verification performed
+- Results row WAS 24 / NYG 21 cross-read on the NFL.com schedule; the committed nflverse row for `2026_10_WAS_NYG` was checked and has blank scores.
+- Column checks on the committed feed: closing-type columns only; no opening or timestamp column.
+- Depth gap re-read on `review-board/pages/depth.html`: "The two right-hand columns are therefore blank on every row … nothing official says who comes in."
+- Not verified: sportsbook prices, any opening line, the other 2026 results, injury data beyond what was already published by the review board.
+
+### Irregularities (published on `price-store/index.html` → Flagged for Review)
+- PS-F1: committed nflverse snapshot (2026-11-01 extract) shows Week 10 WAS @ NYG with blank scores; NFL.com lists it Final. Committed Week 10 rows are not settled data.
+- PS-F2: NFL.com game-centre page read with scores hidden; the score was taken from the schedule page.
+- PS-F3: `data/derived/leaderboard.json` ranks by gates passed and then by ROI. ROI is a staking metric, so the published ordering can let staking influence rank. **Not changed here** (the existing leaderboard belongs to another session's scope); logged as a request below.
+- PS-F4: correlations (`data/derived/correlation.json`, n = 7,087 games) are built from nflverse, a third-party extract; under the official-only rule they are unverified. Not blanked here (owned by other sessions).
+- PS-F5: the demotion thresholds and CLV-as-signal method are proposals, not an official or validated standard.
+
+### Requests to other session owners (logged, not actioned)
+1. `data/derived/leaderboard.json` ranking_rule and `quant-lab/leaderboard.html`: separate the staking metric from ranking (PS-F3).
+2. Root navigation: link `price-store/index.html` from the root site (not added here; root nav is owned by the integration session).
+3. Any future price capture: needs a dated, official, timestamped source before any row is entered in `price-store/data/snapshots.csv`; the validator enforces that.
+
+### Scope discipline
+Files added or changed in this session: `price-store/**` and this section of `COORDINATION.md` only. No sibling file, root navigation or workflow was edited.
+- 2026-11-14 UTC — **PR [#103](https://github.com/karagemop466-tech/Korea2/pull/103)** opened from `arena/f9e0aea9-korea2` into `main`. First CI run on the head failed in `review-board` step "Verify every rule this hub claims to follow": the hub's staleness check reads every committed JSON file, and `price-store/` adds new ones, so `hub_map.json` and `reconciliation.json` were out of date. Remedy: ran the hub's own documented generators (`ingest.py`, then `build_site.py`) on a full-history clone, committed the regenerated registers and pages as `aa750f2` (content unchanged apart from the commit stamp and the hub map's new `price-store/` entry; no sibling file edited). `verify_all.py` then reports 121/121. Rerun CI: all eight checks `pass`.
+- Note for future sessions: `verify_all.py` compares registers against **committed HEAD**, so a regeneration must be committed before the check can pass; and any hub that scans every committed JSON will go stale when a new JSON file is added.
+- Merge result of PR #103 and the GitHub Pages deploy are recorded on the PR itself (`gh pr view 103`) and in the final note of this session.

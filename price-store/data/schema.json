@@ -1,0 +1,47 @@
+{
+  "status": "PROPOSED schema; the store is empty by design until official captures exist",
+  "rules": [
+    "A row is written only when the price was captured from a source, never inferred or back-filled.",
+    "verified must be 'yes' for a row to count. If verified is not 'yes', line and price_american must be blank.",
+    "source_url must be https and on an allow-listed official domain (see scripts/validate_snapshots.py).",
+    "origination_order follows the brief: 1 = spread (side), 2 = total, 3 = moneyline. The moneyline is never originated before the side and total.",
+    "timing is 'open' or 'close'. A market with only a close row is reported as incomplete, not as a full open/close pair."
+  ],
+  "snapshots_csv": {
+    "columns": {
+      "snapshot_id": "unique id, e.g. SNAP-000001",
+      "game_id": "nflverse-style id, season_week_AWAY_HOME, e.g. 2026_10_WAS_NYG",
+      "market": "spread | total | moneyline",
+      "side": "home | away | over | under | blank for total-only fields",
+      "timing": "open | close",
+      "origination_order": "1 | 2 | 3",
+      "captured_utc": "ISO-8601 UTC timestamp of the capture",
+      "book": "name of the publisher of the price",
+      "line": "spread or total number; blank for moneyline",
+      "price_american": "American odds integer; blank if unverified",
+      "source_url": "https URL of the official page or capture record",
+      "verified": "yes | no",
+      "verified_on": "YYYY-MM-DD the row was checked against source_url",
+      "note": "free text, required when verified = no"
+    }
+  },
+  "results_feed_csv": {
+    "columns": {
+      "game_id": "season_week_AWAY_HOME",
+      "season": "integer",
+      "week": "integer",
+      "game_date": "YYYY-MM-DD",
+      "away_team": "3-letter club code",
+      "away_score": "integer; blank if unverified",
+      "home_team": "3-letter club code",
+      "home_score": "integer; blank if unverified",
+      "status": "Final | Scheduled | Postponed",
+      "source_url": "official NFL.com page that shows the score",
+      "second_source_url": "optional second official page",
+      "verified": "yes | no",
+      "verified_on": "YYYY-MM-DD",
+      "nflverse_committed_snapshot": "what the committed third-party snapshot says, for cross-check only",
+      "note": "free text"
+    }
+  }
+}
