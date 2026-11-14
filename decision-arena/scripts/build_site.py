@@ -1012,12 +1012,13 @@ def page_depth():
     ]
     if depth.get("status") == "MEASURED":
         d_rows = [[str(t["season"]), t["side"], n(t["n_replacements"]), fmt(t["mean_replacement_depth"], 2),
-                   pct(t["share_by_second_string_or_deeper"]),
+                   n(t.get("n_deeper_than_first")) + " (" + pct(t["share_by_second_string_or_deeper"]) + ")",
                    ", ".join(k + ": " + str(v) for k, v in sorted(t["bands"].items())),
                    src("SRC-NFLVERSE-SNAP")] for t in depth.get("by_season_side", [])]
         depth_block = table(["Season", "Side", "Replacements", "Mean depth of replacement",
-                             "Share 2nd-string or deeper", "Bands", "Source"], d_rows,
-                            depth.get("definition", ""))
+                             "2nd string or deeper (share)", "Bands", "Source"], d_rows,
+                            depth.get("definition", "") + " A replacement whose previous-week rank is "
+                            "unknown is excluded from the aggregate rather than assumed to be a backup.")
         depth_block += ("<p class=\"small\">" + esc(depth.get("caveat", ""))
                         + " The rank is measured, so no row on this page claims an official depth rank.</p>")
     else:

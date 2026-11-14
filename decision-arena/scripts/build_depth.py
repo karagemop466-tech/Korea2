@@ -145,6 +145,8 @@ def build_from_snap_counts(snap_rows):
         d["n"] += 1
         d["sum_depth"] += e["replacement_depth_rank"]
         d["by_band"][e["depth_band"]] = d["by_band"].get(e["depth_band"], 0) + 1
+        if e["replacement_depth_rank"] >= 2:
+            d["deeper_than_first"] = d.get("deeper_than_first", 0) + 1
         if e["share_delta"] is not None:
             d["deltas"].append(e["share_delta"])
     table = []
@@ -152,8 +154,11 @@ def build_from_snap_counts(snap_rows):
         table.append({
             "season": season, "side": sd, "n_replacements": d["n"],
             "mean_replacement_depth": round(d["sum_depth"] / d["n"], 2),
-            "share_by_second_string_or_deeper": round(
-                sum(v for k, v in d["by_band"].items() if k.startswith(("2", "3", "4")) or k.startswith("outside")) / d["n"], 4),
+            # The rank, not the label string: "2nd string" starts with '2' but so do "2 remaining"
+            # style labels, and a first-string replacement must count as ZERO here. The earlier
+            # version string-matched the band and reported 100% for every group.
+            "share_by_second_string_or_deeper": round(d.get("deeper_than_first", 0) / d["n"], 4),
+            "n_deeper_than_first": d.get("deeper_than_first", 0),
             "bands": d["by_band"],
             "mean_share_delta": (round(statistics.fmean(d["deltas"]), 4) if d["deltas"] else None),
         })

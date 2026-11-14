@@ -166,6 +166,38 @@ class TestFreshFeedTolerance(unittest.TestCase):
         self.assertGreater(len(feats), 5000)
 
 
+class TestDepthBand(unittest.TestCase):
+    """Depth is a rank, not a label string.
+
+    The first version classified "2nd string or deeper" by testing whether the band label started
+    with "2", "3", "4" or "outside" - which is right by luck for those labels and wrong the moment
+    a first-string replacement appears. The share then read 100% for every group on real data.
+    """
+
+    def _build(self, plan):
+        import pandas as pd
+        import build_depth as D
+        rows = []
+        for wk, ps in plan.items():
+            for pct, p in ps:
+                rows.append(dict(game_type="REG", season=2026, week=wk, player=p, pfr_player_id=p,
+                                 position="WR", team="KC", opponent="DEN",
+                                 offense_snaps=int(float(pct) * 60), offense_pct=pct,
+                                 defense_snaps=0, defense_pct="0"))
+        return D.build_from_snap_counts(pd.DataFrame(rows).to_dict("records"))
+
+    def test_second_string_replacement_is_counted_deeper(self):
+        d = self._build({1: [("0.90", "A1"), ("0.50", "B1")], 2: [("0.85", "B1"), ("0.40", "A1")]})
+        t = d["by_season_side"][0]
+        self.assertEqual(t["n_deeper_than_first"], 1)
+        self.assertAlmostEqual(t["share_by_second_string_or_deeper"], 1.0)
+
+    def test_first_string_replacement_counts_as_zero(self):
+        # A1 debuts as the starter: the man he replaced was never on the chart, so rank is unknown
+        d = self._build({1: [("0.90", "B1")], 2: [("0.95", "A1")]})
+        self.assertEqual(d["by_season_side"], [], "an unrankable replacement must not enter the aggregate")
+
+
 class TestStatistics(unittest.TestCase):
     def test_norm_ppf_known_values(self):
         self.assertAlmostEqual(A.norm_ppf(0.975), 1.959964, places=4)
