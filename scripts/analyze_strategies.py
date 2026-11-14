@@ -36,19 +36,6 @@ DERIVED = os.path.join("data", "derived")
 MISSING_PRICE_EXCLUSIONS: dict[str, int] = {}
 
 
-# --- missing-price policy (hardening 2026-11-14, session arena/71d26167) -------------------
-# A bet the feed has no price for is EXCLUDED from settlement and counted here. No default
-# price (e.g. -110) is ever imputed: an imputed price would let a strategy look settled at a
-# price nobody offered. market.py applies the same policy and publishes n_excluded_missing_price.
-_price_exclusions: dict[str, int] = {}
-
-
-def _price(odds) -> float | None:
-    """Return the reported American-odds float, or None when the feed has no price."""
-    return None if pd.isna(odds) else float(odds)
-
-
-
 def load_inputs() -> tuple[pd.DataFrame, dict]:
     games, checks = D.load_games()
     pred_path = os.path.join(DERIVED, "predictions.csv")
@@ -72,15 +59,16 @@ def spread_bets(df: pd.DataFrame, pick, strategy: str, note: str) -> list[dict]:
         # Proven convention: spread_line is the home team's expected margin, so the home team's
         # handicap is -spread_line and the away team's is +spread_line.
         if side == "home":
-            price = _price(getattr(r, "home_spread_odds", np.nan))
+            odds = getattr(r, "home_spread_odds", np.nan)
             team, margin, handicap = r.home_team, r.result, -r.spread_line
         else:
-            price = _price(getattr(r, "away_spread_odds", np.nan))
+            odds = getattr(r, "away_spread_odds", np.nan)
             team, margin, handicap = r.away_team, -r.result, r.spread_line
         if pd.isna(odds):
             MISSING_PRICE_EXCLUSIONS[strategy] = MISSING_PRICE_EXCLUSIONS.get(strategy, 0) + 1
             continue
-        outcome, profit, staked = B.settle_spread(margin, handicap, float(odds))        recs.append({"strategy": strategy, "game_id": r.game_id, "season": int(r.season),
+        outcome, profit, staked = B.settle_spread(margin, handicap, float(odds))
+        recs.append({"strategy": strategy, "game_id": r.game_id, "season": int(r.season),
                      "week": int(r.week), "team": team, "side": side, "line": r.spread_line,
                      "odds": float(odds), "outcome": outcome, "profit": profit, "staked": staked,
                      "note": note})
@@ -98,7 +86,8 @@ def total_bets(df: pd.DataFrame, pick, strategy: str, note: str) -> list[dict]:
         if pd.isna(odds):
             MISSING_PRICE_EXCLUSIONS[strategy] = MISSING_PRICE_EXCLUSIONS.get(strategy, 0) + 1
             continue
-        outcome, profit, staked = B.settle_total(r.total, r.total_line, side, float(odds))        recs.append({"strategy": strategy, "game_id": r.game_id, "season": int(r.season),
+        outcome, profit, staked = B.settle_total(r.total, r.total_line, side, float(odds))
+        recs.append({"strategy": strategy, "game_id": r.game_id, "season": int(r.season),
                      "week": int(r.week), "team": f"{r.away_team}@{r.home_team}",
                      "side": side, "line": r.total_line, "odds": float(odds),
                      "outcome": outcome, "profit": profit, "staked": staked, "note": note})
@@ -202,7 +191,8 @@ def main() -> None:
                  "missing_price_policy": ("bets without a stored closing price are EXCLUDED and "
                                           "counted (n_excluded_missing_price per strategy); no "
                                           "-110 imputation since revision 2026-11-14"),
-                 "n_excluded_missing_price_total": 0,  # filled after strategies are built                 "multiple_testing": {"method": "Benjamini-Hochberg", "q": 0.10,
+                 "n_excluded_missing_price_total": 0,  # filled after strategies are built
+                 "multiple_testing": {"method": "Benjamini-Hochberg", "q": 0.10,
                                       "n_tests": bh["n_tests"]}},
         "gates_definition": B.GATES,
         "demotion_gate": B.DEMOTION_GATE,
