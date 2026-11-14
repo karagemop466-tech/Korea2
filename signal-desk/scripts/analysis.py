@@ -175,7 +175,7 @@ def build_prices(gm):
                                          "moneyline": c["moneyline"]})
         opening["moneyline"] = sum(v["moneyline"] for v in opening["by_season"]) or 0
         opening["note"] = (
-            "Every season below is what the upstream opening-line file actually contains. It holds "
+            "This is every season the upstream opening-line file actually contains. It holds "
             "one sportsbook and only spread and total prices; there is no moneyline at all. An "
             "opening moneyline therefore cannot be recorded for any season from this source.")
 
@@ -203,6 +203,14 @@ def build_prices(gm):
         close_file["rows"] = len(rows)
         close_file["games"] = len({r.get("alt_game_id") for r in rows if r.get("alt_game_id")})
         close_file["prices_present"] = sum(1 for r in rows if (r.get("odds") or "").strip())
+        types_with_price = Counter(r["type"].lower() for r in rows if (r.get("odds") or "").strip())
+        close_file["types_with_price"] = dict(types_with_price)
+        no_price_spread = sum(1 for r in rows if r["type"] == "SPREAD" and not (r.get("odds") or "").strip())
+        close_file["spread_rows_without_a_price"] = no_price_spread
+        close_file["note"] = (
+            "Only some rows carry a price: " + ", ".join(f"{k} {v}" for k, v in sorted(types_with_price.items()))
+            + f". {no_price_spread} spread rows have a line but no odds at all, so a spread price cannot be "
+              "recorded for those games even though the line can.")
         for y in sorted(per, key=int):
             c = per[y]
             close_file["by_season"].append({"season": int(y), "games": len(games_seen[y]),
@@ -219,7 +227,7 @@ def build_prices(gm):
     if opening["status"] == "loaded" and close_file["status"] == "loaded" and not join["seasons_with_both"]:
         join["detail"] = (
             "There is no season in which this repository holds both an opening and a closing number. "
-            f"The opening file covers {min(have_open)}-{max(have_open)} only; the closing file stops at "
+            f"The opening file covers {min(have_open)} only; the closing file stops at "
             f"{max(have_close)}. A per-bet open-to-close move, which is the number a demotion rule needs, "
             "therefore cannot be computed for any game from these two files together.")
 
@@ -878,9 +886,9 @@ def build_decision_layer(art):
 
     questions = [
         {"id": "Q1", "question": "Is there any source that publishes official NFL prices (opening or closing)?",
-         "what_we_know": "No. The scores and schedules pages publish results and links, not prices; "
-                         f"the source check is {'confirmed' if not prices['meta']['official_price_feed_located'] else 'open'}. "
-                         "Every price in this repository is third-party.",
+         "what_we_know": "None was located. The official scores and schedules pages publish results "
+                         "and links, not prices, and no official NFL price feed was found. Every price "
+                         "in this repository is third-party.",
          "what_we_do_not_know": "Whether a licensed price vendor could be contracted, and at what cost.",
          "blocks": ["S1", "S2", "S5", "D3", "D4"], "decisions_blocked": 5,
          "how_to_close": "Either contract a licensed feed and record its licence, or accept third-party "
@@ -1091,6 +1099,34 @@ def build_decision_layer(art):
         "not_implemented": "Nothing on this page is implemented. It is a proposal list; the numbers that "
                            "support it are on the other pages and every one of them is reproducible from "
                            "the committed data.",
+        "recommended_path": {
+            "why": "If one path had to be picked without any further input from you, it is the one that "
+                   "buys the most honesty for the least work and depends on no unanswered question. "
+                   "It is a recommendation, not a decision that has been taken.",
+            "steps": [
+                {"order": 1, "suggestion": "S5", "reason": "Two-column leaderboard. No new data needed, "
+                 "low effort, and it removes the exact failure the brief names: a lucky staking run "
+                 "masking a bad signal.", "waits_on_nothing": True},
+                {"order": 2, "suggestion": "S7", "reason": "Pre-register correlations. Low effort, and it "
+                 "stops the correlation table from becoming a fishing expedition as official data "
+                 "accumulates.", "waits_on_nothing": True},
+                {"order": 3, "suggestion": "S4", "reason": "Publish CLV only where a real closing number "
+                 "exists. Cheap, and it makes the blanks honest instead of optional.", "waits_on_nothing": True},
+                {"order": 4, "suggestion": "S3", "reason": "Staged promotion with automatic demotion. "
+                 "This is the change that lets the competition actually start, so it is worth doing "
+                 "once Q4 and Q9 are answered.", "waits_on_nothing": False},
+                {"order": 5, "suggestion": "S8", "reason": "One verified book, jurisdiction and limit. "
+                 "Blocked on a fact only you hold; without it nothing can ever pass the executable gate.",
+                 "waits_on_nothing": False},
+                {"order": 6, "suggestion": "S1 / S2 / S6", "reason": "The expensive, source-dependent "
+                 "work. Do not start any of it until Q1, Q2, Q8, Q3 and Q11 are answered, or it will be "
+                 "rebuilt when the answer arrives.", "waits_on_nothing": False},
+            ],
+            "do_first_regardless": ["S5", "S7", "S4"],
+            "blocked_on_you": ["S8", "S1", "S2", "S6"],
+            "cost_note": "The three do-first items need no new data and no purchase. The blocked items "
+                         "need a sourcing or jurisdiction answer before any engineering is worth doing.",
+        },
     }
 
 

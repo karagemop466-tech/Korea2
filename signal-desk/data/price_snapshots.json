@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-01",
   "title": "Price-snapshot store: opening and closing numbers per market",
-  "generated_utc": "2026-11-14T20:07:07+00:00",
+  "generated_utc": "2026-11-14T20:07:56+00:00",
   "markets": [
    "side (spread)",
    "total",
@@ -298,7 +298,7 @@
   ],
   "moneyline": 0,
   "status": "loaded",
-  "note": "Every season below is what the upstream opening-line file actually contains. It holds one sportsbook and only spread and total prices; there is no moneyline at all. An opening moneyline therefore cannot be recorded for any season from this source.",
+  "note": "This is every season the upstream opening-line file actually contains. It holds one sportsbook and only spread and total prices; there is no moneyline at all. An opening moneyline therefore cannot be recorded for any season from this source.",
   "books": {
    "WSGT": 1088
   }
@@ -420,11 +420,18 @@
    }
   ],
   "games": 3415,
-  "prices_present": 8850
+  "prices_present": 8850,
+  "types_with_price": {
+   "moneyline": 6830,
+   "spread": 1010,
+   "total": 1010
+  },
+  "spread_rows_without_a_price": 5820,
+  "note": "Only some rows carry a price: moneyline 6830, spread 1010, total 1010. 5820 spread rows have a line but no odds at all, so a spread price cannot be recorded for those games even though the line can."
  },
  "join": {
   "seasons_with_both": [],
-  "detail": "There is no season in which this repository holds both an opening and a closing number. The opening file covers 2021-2021 only; the closing file stops at 2018. A per-bet open-to-close move, which is the number a demotion rule needs, therefore cannot be computed for any game from these two files together.",
+  "detail": "There is no season in which this repository holds both an opening and a closing number. The opening file covers 2021 only; the closing file stops at 2018. A per-bet open-to-close move, which is the number a demotion rule needs, therefore cannot be computed for any game from these two files together.",
   "seasons_opening": [
    2021
   ],

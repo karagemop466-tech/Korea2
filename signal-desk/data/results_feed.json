@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-02",
   "title": "Verified results feed",
-  "generated_utc": "2026-11-14T20:07:07+00:00",
+  "generated_utc": "2026-11-14T20:07:56+00:00",
   "what_it_is": "Every result used by a backtest must resolve to an official NFL page. This feed records, per game, the official score and whether the committed data agrees.",
   "what_it_is_not": "It does not claim the committed results are wrong; it states exactly which ones were checked against nfl.com and which were not."
  },

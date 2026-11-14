@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-05",
   "title": "Signal is separated from staking on the leaderboard",
-  "generated_utc": "2026-11-14T20:07:07+00:00",
+  "generated_utc": "2026-11-14T20:07:56+00:00",
   "why": "A positive ROI from a small sample is a statement about the stakes that happened to be placed, not about an edge. Ranking on ROI alone lets one lucky run hide a signal that is indistinguishable from zero.",
   "ranking_rule": "Signal first (is the edge distinguishable from zero after multiple testing?), staking second (what did the stakes earn?), reward last (only a lower bound above zero earns anything)."
  },

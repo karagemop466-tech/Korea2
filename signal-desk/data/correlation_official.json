@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-07",
   "title": "Correlations from officially sourced numbers, with n",
-  "generated_utc": "2026-11-14T20:07:07+00:00",
+  "generated_utc": "2026-11-14T20:07:56+00:00",
   "rule": "A correlation is published only if both variables come from an official source for the same units, and only with n and a confidence interval. Where the official overlap is too small or does not exist, the value is blank and the reason is stated.",
   "confidence": "95% interval on r via Fisher z."
  },

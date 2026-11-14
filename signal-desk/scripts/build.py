@@ -111,7 +111,8 @@ def table(headers, rows, caption="", cls="", notes=None):
     body = []
     for r in rows:
         cells = "".join(
-            f'<td{" class=src" if i == len(r) - 1 else ""}>{c}</td>' for i, c in enumerate(r))
+            ('<td class="src">' if i == len(r) - 1 else "<td>") + c + "</td>"
+            for i, c in enumerate(r))
         body.append(f"<tr>{cells}</tr>")
     cap = f'<caption>{caption}</caption>' if caption else ""
     note = f'<p class="tnote">{notes}</p>' if notes else ""
@@ -244,7 +245,8 @@ def layout(title, path, body, subtitle="", stamp=""):
   Research and measurement, not betting advice. Every number on this page is rendered from
   <span class="mono">signal-desk/data/*.json</span>; none is typed by hand. A blank cell means the
   value could not be confirmed from the source named in that row &mdash; it is never inferred.
-  <br>Official figures are transcribed from nfl.com pages read on the date shown in each row.
+  <br>Official figures are transcribed from nfl.com pages read on 2026-11-14; every source is
+  listed on the <a href="{up}pages/sources.html">Sources</a> page.
   Third-party figures come from nflverse community data and are labelled as such.
 </footer>
 </body></html>
@@ -392,8 +394,10 @@ def page_prices():
                   f'<p class="tnote">{esc(p["opening"].get("note", ""))}</p>')
         + section("Closing file (third-party, separate upstream file)",
                   table(["Season", "Games", "Moneyline rows", "Spread rows", "Total rows",
-                         "Rows carrying a price", "Source"], close_file_rows,
-                        caption="This file stops at 2018, which is why no season overlaps the opening file."))
+                         "Rows with any price", "Source"], close_file_rows,
+                        caption="This file stops at 2018, which is why no season overlaps the "
+                                "opening file.") +
+                  f'<p class="tnote">{esc(p["closing_file"].get("note", ""))}</p>')
         + section("Closing snapshot used by the models (committed extract)",
                   table(["Season", "Games", "Side", "Total", "Moneyline", "Side prices", "Total prices",
                          "Source"], committed_rows,
@@ -583,8 +587,9 @@ def page_leaderboard():
         + section("Table B &mdash; staking", table(
             ["Rank", "Strategy", "ROI", "95% interval", "Staking verdict", "Reward", "Source"],
             stake_rows,
-            caption="Ranked by return on the stakes actually placed. Notice how different the order "
-                    "is, and that the top row is flagged as a lucky run."))
+            caption="Ranked by return on the stakes actually placed. The order is different from "
+                    "Table A, and the top row is marked because its return is not supported by any "
+                    "signal test &mdash; the definition of a lucky run."))
         + section("The rule", callout("warn", "Ranking rule", esc(s["meta"]["ranking_rule"])))
     )
     return layout("Signal is not staking", "pages/leaderboard.html", body,
@@ -732,6 +737,20 @@ def page_suggestions():
         + section("Eight suggestions",
                   table(["ID", "Suggestion", "Problem", "Change", "Impact", "Effort", "Risk",
                          "Waits on", "How you would know it worked", "Evidence"], rows))
+        + section("If you pick one path", f"""<p class="lede">{esc(s['recommended_path']['why'])}</p>"""
+                  + table(["Order", "Suggestion", "Why here", "Needs a decision first?"],
+                          [[str(x["order"]), f'<strong>{esc(x["suggestion"])}</strong>', esc(x["reason"]),
+                            badge("ok", "no - do it now") if x["waits_on_nothing"]
+                            else badge("flag", "yes")]
+                           for x in s["recommended_path"]["steps"]],
+                          caption=esc(s["recommended_path"]["cost_note"]))
+                  + callout("good", "Do these three first, regardless of anything else",
+                            f'<span class="mono">{esc(", ".join(s["recommended_path"]["do_first_regardless"]))}</span>'
+                            " &mdash; each is low effort, needs no purchase, and depends on no "
+                            "unanswered question.")
+                  + callout("warn", "These four wait on you",
+                            f'<span class="mono">{esc(", ".join(s["recommended_path"]["blocked_on_you"]))}</span>'
+                            " &mdash; starting them now means rebuilding them later."))
         + section("The three decisions that gate everything else", "".join(
             f"""<details><summary>{esc(x["id"])} &middot; {esc(x["decision"])}</summary>
 <p><strong>Gated by:</strong> {esc(', '.join(x["gated_by"]))} &middot;

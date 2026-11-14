@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-09",
   "title": "Questions, unknowns and suggestions, for review before anything is implemented",
-  "generated_utc": "2026-11-14T20:07:07+00:00",
+  "generated_utc": "2026-11-14T20:07:56+00:00",
   "how_to_use": "Read the questions first. A question is listed because a decision cannot be made without it. Each suggestion names the question it waits on, so nothing on this page has to be implemented to be evaluated.",
   "counts": {
    "questions": 12,
@@ -14,7 +14,7 @@
   {
    "id": "Q1",
    "question": "Is there any source that publishes official NFL prices (opening or closing)?",
-   "what_we_know": "No. The scores and schedules pages publish results and links, not prices; the source check is confirmed. Every price in this repository is third-party.",
+   "what_we_know": "None was located. The official scores and schedules pages publish results and links, not prices, and no official NFL price feed was found. Every price in this repository is third-party.",
    "what_we_do_not_know": "Whether a licensed price vendor could be contracted, and at what cost.",
    "blocks": [
     "S1",
@@ -397,5 +397,58 @@
    "evidence": "replacement_depth.json"
   }
  ],
- "not_implemented": "Nothing on this page is implemented. It is a proposal list; the numbers that support it are on the other pages and every one of them is reproducible from the committed data."
+ "not_implemented": "Nothing on this page is implemented. It is a proposal list; the numbers that support it are on the other pages and every one of them is reproducible from the committed data.",
+ "recommended_path": {
+  "why": "If one path had to be picked without any further input from you, it is the one that buys the most honesty for the least work and depends on no unanswered question. It is a recommendation, not a decision that has been taken.",
+  "steps": [
+   {
+    "order": 1,
+    "suggestion": "S5",
+    "reason": "Two-column leaderboard. No new data needed, low effort, and it removes the exact failure the brief names: a lucky staking run masking a bad signal.",
+    "waits_on_nothing": true
+   },
+   {
+    "order": 2,
+    "suggestion": "S7",
+    "reason": "Pre-register correlations. Low effort, and it stops the correlation table from becoming a fishing expedition as official data accumulates.",
+    "waits_on_nothing": true
+   },
+   {
+    "order": 3,
+    "suggestion": "S4",
+    "reason": "Publish CLV only where a real closing number exists. Cheap, and it makes the blanks honest instead of optional.",
+    "waits_on_nothing": true
+   },
+   {
+    "order": 4,
+    "suggestion": "S3",
+    "reason": "Staged promotion with automatic demotion. This is the change that lets the competition actually start, so it is worth doing once Q4 and Q9 are answered.",
+    "waits_on_nothing": false
+   },
+   {
+    "order": 5,
+    "suggestion": "S8",
+    "reason": "One verified book, jurisdiction and limit. Blocked on a fact only you hold; without it nothing can ever pass the executable gate.",
+    "waits_on_nothing": false
+   },
+   {
+    "order": 6,
+    "suggestion": "S1 / S2 / S6",
+    "reason": "The expensive, source-dependent work. Do not start any of it until Q1, Q2, Q8, Q3 and Q11 are answered, or it will be rebuilt when the answer arrives.",
+    "waits_on_nothing": false
+   }
+  ],
+  "do_first_regardless": [
+   "S5",
+   "S7",
+   "S4"
+  ],
+  "blocked_on_you": [
+   "S8",
+   "S1",
+   "S2",
+   "S6"
+  ],
+  "cost_note": "The three do-first items need no new data and no purchase. The blocked items need a sourcing or jurisdiction answer before any engineering is worth doing."
+ }
 }
