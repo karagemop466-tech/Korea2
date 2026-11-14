@@ -1,0 +1,141 @@
+{
+ "policy": "A strategy is PAPER until it passes promotion checks, then LIVE, and can be sent back to PAPER by a demotion gate. Staking metrics never promote a strategy; a lucky ROI run alone cannot keep a bad signal live.",
+ "status": "PROPOSED design - thresholds are proposals from this project, not an official standard; the CLV-side gate and its tests live in price-store/scripts/gates.py (parallel session).",
+ "states": [
+  "PAPER",
+  "LIVE"
+ ],
+ "promotion": [
+  {
+   "id": "P1",
+   "rule": "All ten committed validation gates pass (10/10).",
+   "current_result": "0 of 7 candidates pass (max 5/10)"
+  },
+  {
+   "id": "P2",
+   "rule": "G9 (executable pricing) verified against a real, licensed source.",
+   "current_result": "not verified for any candidate"
+  },
+  {
+   "id": "P3",
+   "rule": "Price-snapshot feed active so closing-line value can be measured.",
+   "current_result": "0 market captures; feed empty (price-store)"
+  }
+ ],
+ "demotion": [
+  {
+   "id": "D1-CLV",
+   "rule": "n_live >= 200 settled bets AND one-sided 95% upper bound of mean CLV < 0 -> DEMOTE_TO_PAPER.",
+   "input": "closing-line value from the price-snapshot store",
+   "owner": "price-store/scripts/gates.py",
+   "current_result": "blocked - store has 0 market captures"
+  },
+  {
+   "id": "D2-outcome",
+   "rule": "n_live >= 200 settled bets AND one-sided 95% upper bound of mean per-bet ROI < 0 -> DEMOTE_TO_PAPER.",
+   "input": "officially verified results + recorded prices",
+   "owner": "this desk (line-desk/scripts/compute.py)",
+   "current_result": "dry run below: 0 strategies would be demoted because none are live; no candidate's upper bound is below 0"
+  },
+  {
+   "id": "D3-integrity",
+   "rule": "Official results-feed or snapshot gaps -> HOLD (state unchanged). Missing data never demotes by itself.",
+   "input": "results-feed coverage",
+   "owner": "this desk",
+   "current_result": "feed covers weeks 7-10 Thu; weeks 1-6 pending (HOLD applies)"
+  }
+ ],
+ "dry_run": {
+  "input": "data/derived/leaderboard.json (committed backtest, third-party prices - labelled)",
+  "n_evaluated": 7,
+  "n_promoted": 0,
+  "n_demoted": 0,
+  "n_stay_paper": 7,
+  "rows": [
+   {
+    "id": "S6_divisional_home_dog",
+    "current_state": "PAPER",
+    "promotion_blockers": [
+     "P1 fails: 5/10 gates (need 10/10)",
+     "P3 fails: price-snapshot feed has 0 market captures, so closing-line value cannot be measured"
+    ],
+    "d1_clv": "blocked - no price feed (price-store gate has no input)",
+    "d2_outcome_harm": "HOLD (n below 200; never decide on noise)",
+    "n_decided": 134,
+    "roi_ci95_upper": 0.1465
+   },
+   {
+    "id": "S5_bye_week_team",
+    "current_state": "PAPER",
+    "promotion_blockers": [
+     "P1 fails: 5/10 gates (need 10/10)",
+     "P3 fails: price-snapshot feed has 0 market captures, so closing-line value cannot be measured"
+    ],
+    "d1_clv": "blocked - no price feed (price-store gate has no input)",
+    "d2_outcome_harm": "HOLD (n below 200; never decide on noise)",
+    "n_decided": 85,
+    "roi_ci95_upper": 0.1421
+   },
+   {
+    "id": "S2_model_edge_3",
+    "current_state": "PAPER",
+    "promotion_blockers": [
+     "P1 fails: 4/10 gates (need 10/10)",
+     "P3 fails: price-snapshot feed has 0 market captures, so closing-line value cannot be measured"
+    ],
+    "d1_clv": "blocked - no price feed (price-store gate has no input)",
+    "d2_outcome_harm": "would hold (ROI upper bound >= 0)",
+    "n_decided": 396,
+    "roi_ci95_upper": 0.0114
+   },
+   {
+    "id": "S4_rest_advantage",
+    "current_state": "PAPER",
+    "promotion_blockers": [
+     "P1 fails: 4/10 gates (need 10/10)",
+     "P3 fails: price-snapshot feed has 0 market captures, so closing-line value cannot be measured"
+    ],
+    "d1_clv": "blocked - no price feed (price-store gate has no input)",
+    "d2_outcome_harm": "would hold (ROI upper bound >= 0)",
+    "n_decided": 200,
+    "roi_ci95_upper": 0.1274
+   },
+   {
+    "id": "S7_wind_under",
+    "current_state": "PAPER",
+    "promotion_blockers": [
+     "P1 fails: 4/10 gates (need 10/10)",
+     "P3 fails: price-snapshot feed has 0 market captures, so closing-line value cannot be measured"
+    ],
+    "d1_clv": "blocked - no price feed (price-store gate has no input)",
+    "d2_outcome_harm": "HOLD (n below 200; never decide on noise)",
+    "n_decided": 45,
+    "roi_ci95_upper": 0.2853
+   },
+   {
+    "id": "S1_model_edge_2",
+    "current_state": "PAPER",
+    "promotion_blockers": [
+     "P1 fails: 4/10 gates (need 10/10)",
+     "P3 fails: price-snapshot feed has 0 market captures, so closing-line value cannot be measured"
+    ],
+    "d1_clv": "blocked - no price feed (price-store gate has no input)",
+    "d2_outcome_harm": "would hold (ROI upper bound >= 0)",
+    "n_decided": 557,
+    "roi_ci95_upper": 0.0259
+   },
+   {
+    "id": "S3_model_total_edge",
+    "current_state": "PAPER",
+    "promotion_blockers": [
+     "P1 fails: 4/10 gates (need 10/10)",
+     "P3 fails: price-snapshot feed has 0 market captures, so closing-line value cannot be measured"
+    ],
+    "d1_clv": "blocked - no price feed (price-store gate has no input)",
+    "d2_outcome_harm": "would hold (ROI upper bound >= 0)",
+    "n_decided": 366,
+    "roi_ci95_upper": 0.0629
+   }
+  ]
+ }
+}

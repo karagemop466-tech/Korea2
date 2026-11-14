@@ -1,0 +1,1001 @@
+{
+ "policy": "A row carries scores only when transcribed first-hand from an official NFL.com page. Every other game is listed as pending with blank scores. Cross-checks against the third-party snapshot are recorded but never override the official value.",
+ "retrieved_on": "2026-11-14",
+ "verified_rows": 44,
+ "weeks_verified": [
+  7,
+  8,
+  9,
+  10
+ ],
+ "cross_check_summary": {
+  "compared": 27,
+  "match": 27,
+  "mismatch": 0,
+  "absent_from_committed_snapshot": 0
+ },
+ "coverage": {
+  "pending_weeks": [
+   {
+    "week": 1,
+    "games_played_per_committed_snapshot": 16,
+    "status": "pending official capture - scores not transcribed by this session",
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-1",
+    "note": "count is third-party coverage metadata (data/derived/games.csv.gz); score cells stay blank until transcribed from the official page"
+   },
+   {
+    "week": 2,
+    "games_played_per_committed_snapshot": 16,
+    "status": "pending official capture - scores not transcribed by this session",
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-2",
+    "note": "count is third-party coverage metadata (data/derived/games.csv.gz); score cells stay blank until transcribed from the official page"
+   },
+   {
+    "week": 3,
+    "games_played_per_committed_snapshot": 16,
+    "status": "pending official capture - scores not transcribed by this session",
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-3",
+    "note": "count is third-party coverage metadata (data/derived/games.csv.gz); score cells stay blank until transcribed from the official page"
+   },
+   {
+    "week": 4,
+    "games_played_per_committed_snapshot": 16,
+    "status": "pending official capture - scores not transcribed by this session",
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-4",
+    "note": "count is third-party coverage metadata (data/derived/games.csv.gz); score cells stay blank until transcribed from the official page"
+   },
+   {
+    "week": 5,
+    "games_played_per_committed_snapshot": 15,
+    "status": "pending official capture - scores not transcribed by this session",
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-5",
+    "note": "count is third-party coverage metadata (data/derived/games.csv.gz); score cells stay blank until transcribed from the official page"
+   },
+   {
+    "week": 6,
+    "games_played_per_committed_snapshot": 14,
+    "status": "pending official capture - scores not transcribed by this session",
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-6",
+    "note": "count is third-party coverage metadata (data/derived/games.csv.gz); score cells stay blank until transcribed from the official page"
+   }
+  ],
+  "week10_note": "Only the Thursday game (WAS at NYG, 2026-11-12) was final when this feed was captured; the Week 10 Sunday/Monday slate had not been played.",
+  "denominator_source": "data/derived/games.csv.gz (third-party, as-of 2026-11-01) for pre-Nov-01 counts; official pages for everything transcribed here."
+ },
+ "rows": [
+  {
+   "game_id": "2026_7_NE_CHI",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-22",
+   "away": "NE",
+   "home": "CHI",
+   "away_score": 24,
+   "home_score": 30,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/patriots-at-bears-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 24,
+    "committed_home_score": 30,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_PIT_NO",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "PIT",
+   "home": "NO",
+   "away_score": 16,
+   "home_score": 10,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/steelers-at-saints-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 16,
+    "committed_home_score": 10,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_SF_ATL",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "SF",
+   "home": "ATL",
+   "away_score": 20,
+   "home_score": 29,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/49ers-at-falcons-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 20,
+    "committed_home_score": 29,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_CIN_BAL",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "CIN",
+   "home": "BAL",
+   "away_score": 35,
+   "home_score": 13,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/bengals-at-ravens-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 35,
+    "committed_home_score": 13,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_TB_CAR",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "TB",
+   "home": "CAR",
+   "away_score": 43,
+   "home_score": 13,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/buccaneers-at-panthers-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 43,
+    "committed_home_score": 13,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_NYG_HOU",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "NYG",
+   "home": "HOU",
+   "away_score": 27,
+   "home_score": 21,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/giants-at-texans-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 27,
+    "committed_home_score": 21,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_IND_MIN",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "IND",
+   "home": "MIN",
+   "away_score": 10,
+   "home_score": 16,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/colts-at-vikings-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 10,
+    "committed_home_score": 16,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_MIA_NYJ",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "MIA",
+   "home": "NYJ",
+   "away_score": 28,
+   "home_score": 25,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/dolphins-at-jets-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 28,
+    "committed_home_score": 25,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_CLE_TEN",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "CLE",
+   "home": "TEN",
+   "away_score": 27,
+   "home_score": 24,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/browns-at-titans-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 27,
+    "committed_home_score": 24,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_DEN_ARI",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "DEN",
+   "home": "ARI",
+   "away_score": 30,
+   "home_score": 16,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/broncos-at-cardinals-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 30,
+    "committed_home_score": 16,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_GB_DET",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "GB",
+   "home": "DET",
+   "away_score": 17,
+   "home_score": 20,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/packers-at-lions-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 17,
+    "committed_home_score": 20,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_LA_LV",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "LA",
+   "home": "LV",
+   "away_score": 35,
+   "home_score": 21,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/rams-at-raiders-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 35,
+    "committed_home_score": 21,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_KC_SEA",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-25",
+   "away": "KC",
+   "home": "SEA",
+   "away_score": 3,
+   "home_score": 20,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/chiefs-at-seahawks-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 3,
+    "committed_home_score": 20,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_7_DAL_PHI",
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-26",
+   "away": "DAL",
+   "home": "PHI",
+   "away_score": 38,
+   "home_score": 21,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-7",
+   "game_url": "https://www.nfl.com/games/cowboys-at-eagles-2026-reg-7",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 38,
+    "committed_home_score": 21,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_CAR_GB",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-10-29",
+   "away": "CAR",
+   "home": "GB",
+   "away_score": 19,
+   "home_score": 27,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/panthers-at-packers-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 19,
+    "committed_home_score": 27,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_BAL_BUF",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "BAL",
+   "home": "BUF",
+   "away_score": 10,
+   "home_score": 36,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/ravens-at-bills-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 10,
+    "committed_home_score": 36,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_TEN_CIN",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "TEN",
+   "home": "CIN",
+   "away_score": 36,
+   "home_score": 43,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/titans-at-bengals-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 36,
+    "committed_home_score": 43,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_ARI_DAL",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "ARI",
+   "home": "DAL",
+   "away_score": 33,
+   "home_score": 30,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/cardinals-at-cowboys-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 33,
+    "committed_home_score": 30,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_MIN_DET",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "MIN",
+   "home": "DET",
+   "away_score": 15,
+   "home_score": 19,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/vikings-at-lions-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 15,
+    "committed_home_score": 19,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_IND_JAX",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "IND",
+   "home": "JAX",
+   "away_score": 7,
+   "home_score": 42,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/colts-at-jaguars-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 7,
+    "committed_home_score": 42,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_LV_NYJ",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "LV",
+   "home": "NYJ",
+   "away_score": 38,
+   "home_score": 33,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/raiders-at-jets-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 38,
+    "committed_home_score": 33,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_CLE_PIT",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "CLE",
+   "home": "PIT",
+   "away_score": 6,
+   "home_score": 27,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/browns-at-steelers-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 6,
+    "committed_home_score": 27,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_ATL_TB",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "ATL",
+   "home": "TB",
+   "away_score": 0,
+   "home_score": 16,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/falcons-at-buccaneers-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 0,
+    "committed_home_score": 16,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_LAC_LA",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "LAC",
+   "home": "LA",
+   "away_score": 9,
+   "home_score": 24,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/chargers-at-rams-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 9,
+    "committed_home_score": 24,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_KC_DEN",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "KC",
+   "home": "DEN",
+   "away_score": 24,
+   "home_score": 28,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/chiefs-at-broncos-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 24,
+    "committed_home_score": 28,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_NE_MIA",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "NE",
+   "home": "MIA",
+   "away_score": 24,
+   "home_score": 19,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/patriots-at-dolphins-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 24,
+    "committed_home_score": 19,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_PHI_WAS",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-01",
+   "away": "PHI",
+   "home": "WAS",
+   "away_score": 10,
+   "home_score": 27,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/eagles-at-commanders-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": true,
+    "committed_away_score": 10,
+    "committed_home_score": 27,
+    "note": "compared against data/derived/games.csv.gz (third-party snapshot, as-of 2026-11-01)"
+   }
+  },
+  {
+   "game_id": "2026_8_CHI_SEA",
+   "season": 2026,
+   "week": 8,
+   "date": "2026-11-02",
+   "away": "CHI",
+   "home": "SEA",
+   "away_score": 34,
+   "home_score": 17,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+   "game_url": "https://www.nfl.com/games/bears-at-seahawks-2026-reg-8",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_JAX_BAL",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-05",
+   "away": "JAX",
+   "home": "BAL",
+   "away_score": 33,
+   "home_score": 10,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_CIN_ATL",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "CIN",
+   "home": "ATL",
+   "away_score": 34,
+   "home_score": 17,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/bengals-at-falcons-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_DEN_CAR",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "DEN",
+   "home": "CAR",
+   "away_score": 26,
+   "home_score": 21,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/broncos-at-panthers-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_DAL_IND",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "DAL",
+   "home": "IND",
+   "away_score": 27,
+   "home_score": 23,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/cowboys-at-colts-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_NYJ_KC",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "NYJ",
+   "home": "KC",
+   "away_score": 12,
+   "home_score": 35,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/jets-at-chiefs-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_DET_MIA",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "DET",
+   "home": "MIA",
+   "away_score": 19,
+   "home_score": 9,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/lions-at-dolphins-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_CLE_NO",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "CLE",
+   "home": "NO",
+   "away_score": 22,
+   "home_score": 23,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/browns-at-saints-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_NYG_PHI",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "NYG",
+   "home": "PHI",
+   "away_score": 19,
+   "home_score": 11,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/giants-at-eagles-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_LA_WAS",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "LA",
+   "home": "WAS",
+   "away_score": 20,
+   "home_score": 13,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_HOU_LAC",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "HOU",
+   "home": "LAC",
+   "away_score": 44,
+   "home_score": 22,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/texans-at-chargers-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_LV_SF",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "LV",
+   "home": "SF",
+   "away_score": 17,
+   "home_score": 38,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/raiders-at-49ers-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_GB_NE",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "GB",
+   "home": "NE",
+   "away_score": 45,
+   "home_score": 27,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/packers-at-patriots-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_ARI_SEA",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "ARI",
+   "home": "SEA",
+   "away_score": 3,
+   "home_score": 17,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_TB_CHI",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-08",
+   "away": "TB",
+   "home": "CHI",
+   "away_score": 24,
+   "home_score": 27,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_9_BUF_MIN",
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-09",
+   "away": "BUF",
+   "home": "MIN",
+   "away_score": 23,
+   "home_score": 6,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+   "game_url": "https://www.nfl.com/games/bills-at-vikings-2026-reg-9",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  },
+  {
+   "game_id": "2026_10_WAS_NYG",
+   "season": 2026,
+   "week": 10,
+   "date": "2026-11-12",
+   "away": "WAS",
+   "home": "NYG",
+   "away_score": 24,
+   "home_score": 21,
+   "status": "FINAL",
+   "verified": true,
+   "source_url": "https://www.nfl.com/schedules/",
+   "game_url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+   "retrieved_on": "2026-11-14",
+   "cross_check": {
+    "present": true,
+    "match": null,
+    "note": "committed snapshot has blank scores for this game (stale)"
+   }
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="line-desk/scripts/build_site.py">
+<meta name="description" content="Line Desk: price snapshots, verified results, origination order, signal vs staking leaderboard, official-only correlations, replacement depth, demotion gate.">
+<title>Official correlations | Line Desk</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="app">
+<aside class="sidebar">
+<a class="brand" href="../index.html">LINE<b>DESK</b><small>NFL origination requirements</small></a>
+<nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/requirements.html">Requirements</a><a href="../pages/results-feed.html">Results feed</a><a href="../pages/price-snapshots.html">Price snapshots</a><a href="../pages/origination.html">Origination (side-T-ML)</a><a href="../pages/leaderboard.html">Signal vs staking</a><a href="../pages/gates.html">Gates &amp; demotion</a><a href="../pages/correlations.html" class="active" aria-current="page">Official correlations</a><a href="../pages/depth.html">Replacement depth</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Questions &amp; answers</a><a href="../pages/executive.html">Executive summary</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/repo-review.html">Repo review</a><a href="../pages/sources.html">Sources</a></nav>
+<div class="sidebar-note">As of 2026-11-14<br>Research mode &mdash; no live recommendations</div>
+</aside>
+<main id="main">
+<header class="topbar"><h1>Official correlations</h1><span class="date">AS OF 2026-11-14</span></header>
+
+<section class="block note"><h3>Official-only policy</h3><p>Computed ONLY from numbers transcribed from official NFL.com standings pages. No third-party value enters any coefficient. n is published with every value; 95% CI via Fisher&#x27;s normal approximation (NIST).</p>
+<p>Method: Pearson r; 95% confidence interval by Fisher's normal approximation per
+<a href="https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm" rel="noopener">NIST Dataplot - correlation confidence limits</a>.
+Inputs transcribed from <a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener">NFL.com 2026 standings</a> and
+<a href="https://www.nfl.com/standings/division/2025/REG" rel="noopener">NFL.com 2025 standings</a> on 2026-11-14
+(64 club-season rows). No third-party number enters any coefficient.</p></section>
+<section class="block"><h2>Coefficients</h2>
+<div class="table-wrap"><table><thead><tr><th>ID</th><th>Pair</th><th>Season</th><th>r</th><th>n</th><th>95% CI</th><th>Inputs</th><th>Data source</th></tr></thead><tbody><tr><td><b>C-PF-W-2026</b></td><td>Points for vs wins</td><td>2026</td><td><b>+0.6659</b></td><td><b>32</b></td><td>[+0.4131, +0.8234]</td><td><small>W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)</small></td><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener">NFL.com standings</a></tr><tr><td><b>C-PA-L-2026</b></td><td>Points against vs losses</td><td>2026</td><td><b>+0.6729</b></td><td><b>32</b></td><td>[+0.4236, +0.8274]</td><td><small>W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)</small></td><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener">NFL.com standings</a></tr><tr><td><b>C-NET-W-2026</b></td><td>Net points vs wins</td><td>2026</td><td><b>+0.8482</b></td><td><b>32</b></td><td>[+0.7093, +0.9237]</td><td><small>W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)</small></td><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener">NFL.com standings</a></tr><tr><td><b>C-PF-W-2025</b></td><td>Points for vs wins</td><td>2025</td><td><b>+0.7087</b></td><td><b>32</b></td><td>[+0.4782, +0.8479]</td><td><small>W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)</small></td><a href="https://www.nfl.com/standings/division/2025/REG" rel="noopener">NFL.com standings</a></tr><tr><td><b>C-PA-L-2025</b></td><td>Points against vs losses</td><td>2025</td><td><b>+0.7617</b></td><td><b>32</b></td><td>[+0.5624, +0.8774]</td><td><small>W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)</small></td><a href="https://www.nfl.com/standings/division/2025/REG" rel="noopener">NFL.com standings</a></tr><tr><td><b>C-NET-W-2025</b></td><td>Net points vs wins</td><td>2025</td><td><b>+0.9191</b></td><td><b>32</b></td><td>[+0.8394, +0.9601]</td><td><small>W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)</small></td><a href="https://www.nfl.com/standings/division/2025/REG" rel="noopener">NFL.com standings</a></tr><tr><td><b>C-PF-W-POOL</b></td><td>Points for vs wins (pooled)</td><td>2025+2026</td><td><b>+0.7999</b></td><td><b>64</b></td><td>[+0.6897, +0.8739]</td><td><small>W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)</small></td><a href="https://www.nfl.com/standings/division/2026/REG | https://www.nfl.com/standings/division/2025/REG" rel="noopener">NFL.com standings</a></tr><tr><td><b>C-PA-L-POOL</b></td><td>Points against vs losses (pooled)</td><td>2025+2026</td><td><b>+0.8041</b></td><td><b>64</b></td><td>[+0.6958, +0.8766]</td><td><small>W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)</small></td><a href="https://www.nfl.com/standings/division/2026/REG | https://www.nfl.com/standings/division/2025/REG" rel="noopener">NFL.com standings</a></tr></tbody></table></div>
+</section>
+
+<footer>Line Desk &mdash; research and measurement, not betting advice. Values that cannot be confirmed from an official source are left blank and flagged.</footer>
+</main>
+</div>
+</body>
+</html>
