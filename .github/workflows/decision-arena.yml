@@ -69,7 +69,24 @@ jobs:
       - name: Build and verify
         run: |
           set -euo pipefail
-          python decision-arena/scripts/run_all.py
+          python decision-arena/scripts/run_all.py 2>&1 | tee /tmp/build.log
+
+      - name: Show the failing step in the job summary
+        if: failure()
+        run: |
+          {
+            echo "## Build failed"
+            echo '```'
+            tail -80 /tmp/build.log 2>/dev/null || echo "no build log captured"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the build log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: decision-arena-build-log
+          path: /tmp/build.log
 
       - name: Report what the build measured
         if: always()

@@ -70,7 +70,9 @@ def get(url: str) -> bytes:
 
 def prune_csv_bytes(body: bytes, keep: list[str]) -> tuple[bytes, int, list[str]]:
     """Keep only `keep` columns; return gzipped bytes, row count and the header actually seen."""
-    text = gzip.decompress(body).decode("utf-8", "replace") if body[:2] == b"\x1f\x8b" else body.decode("utf-8", "replace")
+    raw = gzip.decompress(body) if body[:2] == b"\x1f\x8b" else body
+    text = raw.decode("utf-8-sig", "replace")   # utf-8-sig strips a BOM; without this the first
+    # column is named "\ufeffgame_type" and is silently dropped by the pruning step.
     reader = csv.DictReader(io.StringIO(text))
     header = reader.fieldnames or []
     missing = [c for c in keep if c not in header]
@@ -130,6 +132,13 @@ def main() -> int:
         }
         if missing:
             entry["columns_absent_upstream"] = missing
+            # Some columns are optional (weather, odds); others the build cannot run without.
+            required = {"game_type", "season", "week", "team", "position"}
+            fatal = sorted(required & set(missing))
+            if fatal:
+                problems.append(f"{name}: required column(s) absent upstream: {fatal}")
+                os.remove(path)
+                continue
         manifest["files"].append(entry)
         print(f"  {name:24s} rows={rows:7d}  -> {len(pruned)/1024:.0f} KiB")
 
