@@ -1,109 +1,62 @@
-rc market=0 strategies=0 corr=0 depth=0
-=== fetch ===
-  depth_charts.csv.gz      rows= 789449  -> 11148 KiB
-  snap_counts.csv.gz       rows=  12785  -> 193 KiB
-  injuries.csv.gz          rows=   3166  -> 31 KiB
-  games.csv.gz             rows=   7548  -> 181 KiB
-fetched 4 feeds for season 2026
-=== market ===
-inputs: decision-arena/data/inputs/games.csv.gz  sha256=ebc55f2f2634d934  rows=7548
-results_feed: 7104 settled REG, latest 2026-11-12
-  week 9 reconciliation: 15/15 agree with NFL.com
-price_snapshots: 7130 games, spread price share 0.7332
-  opening-number study seasons: [2021] n=67
-  walk-forward 2023 (train n=6151)     walk-forward 2024 (train n=6423)     walk-forward 2025 (train n=6695)     walk-forward 2026 (train n=6967)   
-origination: week 11 of 2026, 13 games, train n=7104
-  walk-forward: [{'season': 2023, 'n': 272, 'model_mae': 10.648, 'market_mae': 9.901, 'model_ats_win_rate': 0.4779}, {'season': 2024, 'n': 272, 'model_mae': 11.18, 'market_mae': 9.61, 'model_ats_win_rate': 0.489}, {'season': 2025, 'n': 272, 'model_mae': 11.128, 'market_mae': 9.722, 'model_ats_win_rate': 0.4375}, {'season': 2026, 'n': 137, 'model_mae': 10.034, 'market_mae': 9.449, 'model_ats_win_rate': 0.4526}]
-=== strategies ===
-games 7548 from decision-arena/data/inputs/games.csv.gz
-features: 7239 games, 7104 graded
-strategies: 12 ranked, verdicts {'LIVE': 0, 'PAPER': 0, 'REJECTED': 12}
-  1. DA-S07 Model-edge moneyline                     gates 6/10 n=  3337 hit=0.365 beat=0.365 verdict=REJECTED
-  2. DA-S05 Wind under                               gates 5/10 n=   430 hit=0.5506 beat=0.5442 verdict=REJECTED
-  3. DA-S06 Dome over                                gates 5/10 n=  1391 hit=0.5149 beat=0.509 verdict=REJECTED
-  4. DA-S04 Rest mismatch of 3+ days                 gates 5/10 n=  1105 hit=0.5162 beat=0.5032 verdict=REJECTED
-  5. DA-S08 Model-edge spread                        gates 5/10 n=  4341 hit=0.516 beat=0.5026 verdict=REJECTED
-  6. DA-S03 Road favourite off a short week          gates 5/10 n=   389 hit=0.4947 beat=0.4833 verdict=REJECTED
-gates/demotion: 6 rules, transition matrix published
-=== corr ===
-live_values:
-  qb_yards_vs_team_points            r=0.4061 n=5893 ci=[0.3845, 0.4272] excl0=True
-  rb_yards_vs_team_points            r=0.3384 n=5902 ci=[0.3156, 0.3608] excl0=True
-  wr1_yards_vs_team_points           r=0.285 n=5902 ci=[0.2614, 0.3083] excl0=True
-  rb_yards_vs_qb_yards               r=-0.1287 n=5893 ci=[-0.1537, -0.1035] excl0=True
-  qb_yards_vs_opp_qb_yards           r=0.1694 n=5773 ci=[0.1442, 0.1943] excl0=True
-  team_points_vs_opp_points          r=-0.0292 n=5902 ci=[-0.0547, -0.0037] excl0=True
-  rush_yards_vs_pass_yards           r=-0.2189 n=5902 ci=[-0.243, -0.1944] excl0=True
+run_all rc=1
+=== last 60 lines ===
+  wrote pages/gates.html
+  wrote pages/correlation.html
+  wrote pages/depth.html
+  wrote pages/suggestions.html
+  wrote pages/questions.html
+  wrote pages/verification.html
+  wrote pages/flagged.html
+  wrote pages/sources.html
+  wrote pages/methods.html
+site rendered
+--- pages: ok in 0.1s
 
-same_game:
-  qb_yards_vs_wr1_yards              r=0.5514 n=5893 ci=[0.5334, 0.5689] excl0=True
-  qb_yards_vs_wr2_yards              r=0.4668 n=5891 ci=[0.4466, 0.4866] excl0=True
-  wr1_vs_wr2_yards                   r=0.1376 n=5891 ci=[0.1124, 0.1625] excl0=True
-  receptions_vs_receiving_yards      r=0.7994 n=45315 ci=[0.7961, 0.8027] excl0=True
+=== unit tests (sign, leakage, statistics) ===
+test_features_tolerate_a_blank_week (__main__.TestFreshFeedTolerance.test_features_tolerate_a_blank_week) ... ok
+test_origination_tolerates_a_blank_week (__main__.TestFreshFeedTolerance.test_origination_tolerates_a_blank_week) ...   walk-forward 2024 (train n=6423)     walk-forward 2025 (train n=6695)     walk-forward 2026 (train n=6967)   ok
+test_prices_tolerate_a_blank_week (__main__.TestFreshFeedTolerance.test_prices_tolerate_a_blank_week) ... ok
+test_results_tolerate_a_blank_week (__main__.TestFreshFeedTolerance.test_results_tolerate_a_blank_week) ... ok
+test_features_never_see_the_current_game (__main__.TestLeakage.test_features_never_see_the_current_game)
+A game's rolling features must be built only from games that finished earlier. ... ok
+test_model_train_set_excludes_the_slate (__main__.TestLeakage.test_model_train_set_excludes_the_slate) ... 
+  walk-forward 2023 (train n=6151)     walk-forward 2024 (train n=6423)     walk-forward 2025 (train n=6695)     walk-forward 2026 (train n=6967)   ok
+test_missing_price_yields_no_profit (__main__.TestNoPriceNoBet.test_missing_price_yields_no_profit) ... ok
+test_unpriced_rows_are_counted_not_imputed (__main__.TestNoPriceNoBet.test_unpriced_rows_are_counted_not_imputed) ... ok
+test_every_suggestion_has_a_registered_question (__main__.TestRegisters.test_every_suggestion_has_a_registered_question) ... ok
+test_no_official_depth_claim (__main__.TestRegisters.test_no_official_depth_claim) ... ok
+test_price_grades_sum_to_the_snapshot_count (__main__.TestRegisters.test_price_grades_sum_to_the_snapshot_count) ... ok
+test_strategy_verdicts_follow_the_gates (__main__.TestRegisters.test_strategy_verdicts_follow_the_gates) ... ok
+test_home_cover_rate_is_near_half_over_the_real_feed (__main__.TestSpreadSign.test_home_cover_rate_is_near_half_over_the_real_feed)
+A sign error produces a 77% home cover rate; the true rate is close to 50%. ... ok
+test_home_favourite_lays_points (__main__.TestSpreadSign.test_home_favourite_lays_points) ... ok
+test_home_underdog_covering (__main__.TestSpreadSign.test_home_underdog_covering) ... ok
+test_line_mean_matches_margin_mean (__main__.TestSpreadSign.test_line_mean_matches_margin_mean)
+The strongest single proof of the convention: mean(line) ~= mean(home margin). ... ok
+test_push_is_a_push_not_a_loss (__main__.TestSpreadSign.test_push_is_a_push_not_a_loss) ... ok
+test_real_game_2013_week1_baltimore_at_denver (__main__.TestSpreadSign.test_real_game_2013_week1_baltimore_at_denver) ... ok
+test_american_prices (__main__.TestStatistics.test_american_prices) ... ok
+test_bh_monotone (__main__.TestStatistics.test_bh_monotone) ... ok
+test_norm_ppf_known_values (__main__.TestStatistics.test_norm_ppf_known_values) ... ok
+test_pearson_perfect_and_negative (__main__.TestStatistics.test_pearson_perfect_and_negative) ... ok
+test_wilson_reproduces_the_repository (__main__.TestStatistics.test_wilson_reproduces_the_repository)
+The repository's published ATS interval is the check value. ... ok
+test_blank_marker_is_accepted (__main__.TestTableGuard.test_blank_marker_is_accepted) ... ok
+test_real_source_is_accepted (__main__.TestTableGuard.test_real_source_is_accepted) ... ok
+test_row_without_source_raises (__main__.TestTableGuard.test_row_without_source_raises) ... ok
+test_over_and_under (__main__.TestTotalSign.test_over_and_under) ... ok
+test_total_push (__main__.TestTotalSign.test_total_push) ... ok
 
-control:
-  receptions_vs_targets              r=0.8925 n=50587 ci=[0.8907, 0.8943] excl0=True
-  margin_vs_total                    r=0.0747 n=7087 ci=[0.0515, 0.0978] excl0=True
+----------------------------------------------------------------------
+Ran 28 tests in 1.200s
 
-parlay pricing: 4-leg joint 0.1121 vs independent 0.0625 (overstatement factor 1.793), n=5893
-=== depth ===
-snap-count rows: 12785
-replacement events: 654 (latest season 2026: 654)
-  2026 defence  n= 375 mean depth 2.26 bands {'2nd string': 305, '3rd string': 50, '4th string': 16, 'outside the top 4': 4}
-  2026 offence  n= 171 mean depth 2.29 bands {'2nd string': 130, '3rd string': 34, '4th string': 5, 'outside the top 4': 2}
-official report rows: 345
-wrote data/depth.json
-=== inputs ===
-total 11592
-drwxr-xr-x 2 runner runner     4096 Nov 14 20:31 .
-drwxr-xr-x 3 runner runner     4096 Nov 14 20:30 ..
--rw-r--r-- 1 runner runner 11415383 Nov 14 20:31 depth_charts.csv.gz
--rw-r--r-- 1 runner runner   185359 Nov 14 20:31 games.csv.gz
--rw-r--r-- 1 runner runner    32071 Nov 14 20:31 injuries.csv.gz
--rw-r--r-- 1 runner runner    16994 Nov 14 20:30 injury_report_week10.csv
--rw-r--r-- 1 runner runner     1802 Nov 14 20:31 manifest.json
--rw-r--r-- 1 runner runner   197594 Nov 14 20:31 snap_counts.csv.gz
-=== manifest ===
-{
- "generated_utc": "2026-11-14T20:30:59Z",
- "season": "2026",
- "publisher": "nflverse-data releases (third party; not the league)",
- "note": "Pruned to the columns the build reads. Raw downloads are never committed. Each sha256 is of the pruned file as committed, and raw_sha256 is of the unpruned download, so either can be re-checked.",
- "files": [
-  {
-   "name": "depth_charts.csv.gz",
-   "url": "https://github.com/nflverse/nflverse-data/releases/download/depth_charts/depth_charts_2026.csv.gz",
-   "rows": 789449,
-   "raw_sha256": "413b74a6a81ec8c4dc8f074b9a1eebc9073ead2c473719285c2faf1ae383dd55",
-   "sha256": "1451673a77c180adf28ebf6cc1f2115b96e65aa08666f5c5a950bbd09ec6c30e",
-   "bytes": 11415383
-  },
-  {
-   "name": "snap_counts.csv.gz",
-   "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv.gz",
-   "rows": 12785,
-   "raw_sha256": "7dd345c4e0a55ce8441a59d0e83420492f18bc4887e894f00fab6d0290c31208",
-   "sha256": "56dfba5a45d0844b556b52393723a278b120f2ece1533ee31af9fe61882e9134",
-   "bytes": 197594
-  },
-  {
-   "name": "injuries.csv.gz",
-   "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv.gz",
-   "rows": 3166,
-   "raw_sha256": "6e56f7302777a9cf2933045ddbe54ff8cbdbfeb007feac0cb1d65adb2528869a",
-   "sha256": "b3b984ef4ce38c775998725a1d5ef778f39cc75d34edd6d04218b62e671f42f0",
-   "bytes": 32071,
-   "columns_absent_upstream": [
-    "date_modified"
-   ]
-  },
-  {
-   "name": "games.csv.gz",
-   "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
-   "rows": 7548,
-   "raw_sha256": "9db91d15266f2b25544aac41ee58b17397f68c5caad6900fd4fa17de3c0b6d6a",
-   "sha256": "ebc55f2f2634d93432db21874b4cd14292f1a5e6b16c00209b568917ffca0893",
-   "bytes": 185359
-  }
- ]
-}
+OK
+
+--- unit tests (sign, leakage, statistics): ok in 1.5s
+
+=== verification suite ===
+pages 16, table rows 575, links 1063, rows missing a source 0
+FAIL: data checks failed: ['The stale snapshot is proven stale, not assumed']
+--- verification suite: FAILED (1) in 0.1s
+
+PIPELINE FAILED: ['verification suite']
