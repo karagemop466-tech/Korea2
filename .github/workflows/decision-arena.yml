@@ -31,10 +31,7 @@ on:
   push:
     branches: ['main', 'arena/**']
     paths:
-      - 'decision-arena/scripts/**'
-      - 'decision-arena/data/sources.json'
-      - 'decision-arena/data/suggestions.json'
-      - 'decision-arena/data/questions.json'
+      - 'decision-arena/**'
       - '.github/workflows/decision-arena.yml'
 
 permissions:
