@@ -6,7 +6,7 @@
   "site hub": 17
  },
  "history": "shallow",
- "base_commit": "6b6c262",
+ "base_commit": "bfa5adc",
  "hub_count": 25,
  "nav_target_count": 30,
  "nav_duplicate_labels": [
@@ -393,7 +393,7 @@
    "index_page": false,
    "pages": 0,
    "data_files": 0,
-   "scripts": 30,
+   "scripts": 31,
    "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
@@ -483,5 +483,5 @@
  "total_pages": 191,
  "total_data_files": 153,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "6b6c262062e28d0a4ee3ab21da60b6b981677000"
+ "_generated_from_repo_commit": "bfa5adcf66cfb75f87435aae9a700349621e1acc"
 }
