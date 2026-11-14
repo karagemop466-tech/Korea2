@@ -26,7 +26,7 @@
 <main>
   <div class="section">
     <h2>Strategy Framework — Singles, Parlays, Player-Prop Combos</h2>
-    <p class="lead">Each strategy below is a template that must pass every validation gate (G-1 &hellip; G-8) before it can be considered. Betting lines, odds, and player-prop prices are <strong>not published by the NFL or any official league source</strong>; all line/odds fields are therefore left blank and flagged <span class="badge warn">unverified</span>. Historical game results used for backtesting are from the verified source file.</p>
+    <p class="lead">Each strategy below is a template that must pass every validation gate (G-1 &hellip; G-8) before it can be considered. Betting lines, odds, and player-prop prices are <strong>not published by the NFL or any official league source</strong>; all line/odds fields are therefore left blank and flagged <span class="badge warn">unverified</span>. Historical game results used for backtesting are from the third-party source file (see flag F-07).</p>
   </div>
 
   <div class="section">
@@ -70,7 +70,7 @@
         <tr class="flagged">
           <td class="cen"><strong>S-02</strong></td>
           <td>Single</td>
-          <td>Road underdog when road team favored by Elo</td>
+          <td>Road team when it is the Elo favourite (Elo designation only — no market line in the source)</td>
           <td>Bet road team when team2 (road) is Elo-favorite and moneyline edge &ge; 4%</td>
           <td>Game results + Elo probabilities (source CSV)</td>
           <td class="cen"><span class="badge blank">— blank —</span></td>
