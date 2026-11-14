@@ -1,0 +1,69 @@
+{
+ "meta": {
+  "id": "SD-10",
+  "title": "Executive summary",
+  "generated_utc": "2026-11-14T20:05:04+00:00"
+ },
+ "headline": [
+  {
+   "topic": "Results are now verified against the league, not just internally",
+   "finding": "32 of 32 teams reconcile exactly on W/L/T/PF/PA against NFL.com once the official scores for the checked weeks are added.",
+   "source": "https://www.nfl.com/standings/division/2026/REG",
+   "source_class": "official"
+  },
+  {
+   "topic": "The committed data is a week-and-a-half stale",
+   "finding": "17 games that had already finished were absent from the committed snapshot. They are listed, not back-filled.",
+   "source": "https://www.nfl.com/scores/2026/week-9",
+   "source_class": "official"
+  },
+  {
+   "topic": "Opening prices barely exist",
+   "finding": "The only opening-line source in the repository covers one season, one sportsbook, and has no moneyline at all.",
+   "source": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv",
+   "source_class": "third-party"
+  },
+  {
+   "topic": "The origination order holds mechanically",
+   "finding": "P(home win) is printed to 4 decimals from Phi(spread / sigma). Recomputing it from the published side reproduces every one of the 15 games within 0.0014.",
+   "source": "data/derived/model.json",
+   "source_class": "third-party"
+  },
+  {
+   "topic": "Fair, market and difference are now three columns",
+   "finding": "Across the board the fair side and the market side correlate at 0.823 (n=15); the average hold is 0.0422.",
+   "source": "data/derived/model.json",
+   "source_class": "third-party"
+  },
+  {
+   "topic": "Staking is separated from signal",
+   "finding": "2 of 9 strategies have a positive ROI that their own test does not support, and 0 reward is paid.",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "topic": "Depth is measurable, but not from an official source",
+   "finding": "The official roster and injury pages carry no depth ordinal; every 1st/2nd/3rd-string value is third-party and labelled.",
+   "source": "https://www.nfl.com/teams/arizona-cardinals/roster",
+   "source_class": "official"
+  },
+  {
+   "topic": "Official correlations are mostly uncomputable yet",
+   "finding": "The official season-leader pages give team-level correlations at n=32 and a year-over-year point-differential persistence of 0.5031 (n=32), but not the per-game QB-to-receiver pair the parlay pricing needs.",
+   "source": "https://www.nfl.com/standings/division/2025/REG",
+   "source_class": "official"
+  },
+  {
+   "topic": "A demotion gate now exists",
+   "finding": "Eight rules, four evaluable today, with an explicit asymmetry: promotion is slow, demotion is fast.",
+   "source": "signal-desk/data/demotion_gate.json",
+   "source_class": "third-party"
+  }
+ ],
+ "questions_first": [
+  "Is there any source that publishes official NFL prices (opening or closing)?",
+  "Which books, jurisdictions and limits are actually available to you?",
+  "Can an opening number be recorded for the moneyline at all?",
+  "Does an official source publish depth-chart order (1st/2nd/3rd string)?"
+ ]
+}

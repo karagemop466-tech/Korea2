@@ -1,0 +1,147 @@
+{
+ "meta": {
+  "id": "SD-08",
+  "title": "A demotion gate that sends a live strategy back to paper",
+  "generated_utc": "2026-11-14T20:05:04+00:00",
+  "problem_it_fixes": "The ten static gates decide whether a strategy may go live. Nothing decided what happens after it is live. A promotion-only system is a ratchet: one lucky validation keeps a strategy funded forever.",
+  "promotion_gate": {
+   "tier_1": "10/10 gates - full allocation",
+   "tier_2": "8-9 of 10 with the executable gate verified - paper trade",
+   "tier_3": "7 or fewer - no allocation"
+  },
+  "asymmetry": "Promotion is slow (ten gates on a large sample). Demotion is fast (a single rule breach). That asymmetry is deliberate."
+ },
+ "rules": [
+  {
+   "id": "D1",
+   "name": "Signal decay",
+   "trigger": "The live strategy's lower 95% ROI bound falls to 0 or below over its last 200 settled bets.",
+   "action": "returns to paper",
+   "automatic": true
+  },
+  {
+   "id": "D2",
+   "name": "Drawdown against the validated curve",
+   "trigger": "Cumulative profit falls more than 2 standard deviations below the validated backtest path.",
+   "action": "returns to paper",
+   "automatic": true
+  },
+  {
+   "id": "D3",
+   "name": "Market move against the origin",
+   "trigger": "The closing line no longer differs from the fair line in the direction the signal claims, for 3 consecutive weeks.",
+   "action": "returns to paper",
+   "automatic": true
+  },
+  {
+   "id": "D4",
+   "name": "Price availability",
+   "trigger": "The price taken is worse than the validated price by more than the modelled edge for 10 consecutive bets.",
+   "action": "returns to paper",
+   "automatic": true
+  },
+  {
+   "id": "D5",
+   "name": "Data integrity",
+   "trigger": "Any input hash changes without a recorded re-validation, or the official results feed disagrees with the committed data for a week in the live window.",
+   "action": "suspended to paper immediately",
+   "automatic": true
+  },
+  {
+   "id": "D6",
+   "name": "Gate re-test",
+   "trigger": "The strategy fails any of the ten static gates when re-tested on new data.",
+   "action": "returns to paper",
+   "automatic": true
+  },
+  {
+   "id": "D7",
+   "name": "Replacement-depth shock",
+   "trigger": "A team the strategy depends on loses a first-string player at a position the strategy's edge is built on, and depth is 3rd string or worse.",
+   "action": "flagged for review, not auto-demoted",
+   "automatic": false
+  },
+  {
+   "id": "D8",
+   "name": "Silence",
+   "trigger": "No settled bet for 21 days during the live window.",
+   "action": "flagged for review",
+   "automatic": false
+  }
+ ],
+ "state_machine": {
+  "states": [
+   "paper",
+   "live",
+   "paper (demoted)",
+   "suspended"
+  ],
+  "transitions": [
+   {
+    "from": "paper",
+    "to": "live",
+    "requires": "all ten static gates pass AND D1-D6 have an evaluable history"
+   },
+   {
+    "from": "live",
+    "to": "paper (demoted)",
+    "requires": "any of D1, D2, D3, D4, D6 fires"
+   },
+   {
+    "from": "live",
+    "to": "suspended",
+    "requires": "D5 fires"
+   },
+   {
+    "from": "suspended",
+    "to": "paper",
+    "requires": "the input hash is restored or the official results are reconciled"
+   },
+   {
+    "from": "paper (demoted)",
+    "to": "live",
+    "requires": "the full ten-gate validation is re-run on fresh data and passes"
+   }
+  ],
+  "no_route": "There is no transition from paper (demoted) straight back to live on the old evidence. A demoted strategy must re-earn its place on data it has not seen."
+ },
+ "current_state": {
+  "live_strategies": 0,
+  "paper_strategies": 9,
+  "note": "Nothing is live, so no demotion has fired. The gate is published pre-armed so that the first live strategy has a defined exit before it has a defined entry.",
+  "source": "data/derived/leaderboard.json",
+  "source_class": "third-party"
+ },
+ "evaluability": [
+  {
+   "rule": "D1",
+   "evaluable_today": true,
+   "note": "Needs 200 settled live bets; computable as soon as a strategy is live."
+  },
+  {
+   "rule": "D2",
+   "evaluable_today": false,
+   "note": "Needs a validated backtest path; none exists because no strategy passed."
+  },
+  {
+   "rule": "D3",
+   "evaluable_today": false,
+   "note": "Needs an opening price snapshot; only one season of opening lines exists (SD-01)."
+  },
+  {
+   "rule": "D4",
+   "evaluable_today": false,
+   "note": "Needs verified executable prices; the executable gate has never been verified."
+  },
+  {
+   "rule": "D5",
+   "evaluable_today": true,
+   "note": "The manifest already hashes every input."
+  },
+  {
+   "rule": "D6",
+   "evaluable_today": true,
+   "note": "The ten static gates already run."
+  }
+ ]
+}

@@ -1,0 +1,1409 @@
+{
+ "meta": {
+  "id": "SD-02",
+  "title": "Verified results feed",
+  "generated_utc": "2026-11-14T20:05:04+00:00",
+  "what_it_is": "Every result used by a backtest must resolve to an official NFL page. This feed records, per game, the official score and whether the committed data agrees.",
+  "what_it_is_not": "It does not claim the committed results are wrong; it states exactly which ones were checked against nfl.com and which were not."
+ },
+ "standings_check": {
+  "season": 2026,
+  "teams_compared": 32,
+  "teams_reconciling_after_official_scores": 32,
+  "teams_reconciling_before": 2,
+  "official_games_added": 17,
+  "official_games_read": 30,
+  "rows": [
+   {
+    "team": "ARI",
+    "official": {
+     "w": 3,
+     "l": 6,
+     "t": 0,
+     "pf": 178,
+     "pa": 255
+    },
+    "committed_only": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 175,
+     "pa": 238
+    },
+    "committed_plus_official_scores": {
+     "w": 3,
+     "l": 6,
+     "t": 0,
+     "pf": 178,
+     "pa": 255
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "ATL",
+    "official": {
+     "w": 3,
+     "l": 6,
+     "t": 0,
+     "pf": 188,
+     "pa": 223
+    },
+    "committed_only": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 171,
+     "pa": 189
+    },
+    "committed_plus_official_scores": {
+     "w": 3,
+     "l": 6,
+     "t": 0,
+     "pf": 188,
+     "pa": 223
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "BAL",
+    "official": {
+     "w": 4,
+     "l": 5,
+     "t": 0,
+     "pf": 189,
+     "pa": 236
+    },
+    "committed_only": {
+     "w": 4,
+     "l": 4,
+     "t": 0,
+     "pf": 179,
+     "pa": 203
+    },
+    "committed_plus_official_scores": {
+     "w": 4,
+     "l": 5,
+     "t": 0,
+     "pf": 189,
+     "pa": 236
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "BUF",
+    "official": {
+     "w": 7,
+     "l": 1,
+     "t": 0,
+     "pf": 256,
+     "pa": 187
+    },
+    "committed_only": {
+     "w": 6,
+     "l": 1,
+     "t": 0,
+     "pf": 233,
+     "pa": 181
+    },
+    "committed_plus_official_scores": {
+     "w": 7,
+     "l": 1,
+     "t": 0,
+     "pf": 256,
+     "pa": 187
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "CAR",
+    "official": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 199,
+     "pa": 219
+    },
+    "committed_only": {
+     "w": 3,
+     "l": 4,
+     "t": 0,
+     "pf": 178,
+     "pa": 193
+    },
+    "committed_plus_official_scores": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 199,
+     "pa": 219
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "CHI",
+    "official": {
+     "w": 7,
+     "l": 2,
+     "t": 0,
+     "pf": 241,
+     "pa": 184
+    },
+    "committed_only": {
+     "w": 5,
+     "l": 2,
+     "t": 0,
+     "pf": 180,
+     "pa": 143
+    },
+    "committed_plus_official_scores": {
+     "w": 7,
+     "l": 2,
+     "t": 0,
+     "pf": 241,
+     "pa": 184
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "CIN",
+    "official": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 240,
+     "pa": 175
+    },
+    "committed_only": {
+     "w": 5,
+     "l": 2,
+     "t": 0,
+     "pf": 206,
+     "pa": 158
+    },
+    "committed_plus_official_scores": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 240,
+     "pa": 175
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "CLE",
+    "official": {
+     "w": 5,
+     "l": 4,
+     "t": 0,
+     "pf": 161,
+     "pa": 196
+    },
+    "committed_only": {
+     "w": 5,
+     "l": 3,
+     "t": 0,
+     "pf": 139,
+     "pa": 173
+    },
+    "committed_plus_official_scores": {
+     "w": 5,
+     "l": 4,
+     "t": 0,
+     "pf": 161,
+     "pa": 196
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "DAL",
+    "official": {
+     "w": 4,
+     "l": 5,
+     "t": 0,
+     "pf": 246,
+     "pa": 236
+    },
+    "committed_only": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 219,
+     "pa": 213
+    },
+    "committed_plus_official_scores": {
+     "w": 4,
+     "l": 5,
+     "t": 0,
+     "pf": 246,
+     "pa": 236
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "DEN",
+    "official": {
+     "w": 7,
+     "l": 2,
+     "t": 0,
+     "pf": 198,
+     "pa": 186
+    },
+    "committed_only": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 172,
+     "pa": 165
+    },
+    "committed_plus_official_scores": {
+     "w": 7,
+     "l": 2,
+     "t": 0,
+     "pf": 198,
+     "pa": 186
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "DET",
+    "official": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 222,
+     "pa": 189
+    },
+    "committed_only": {
+     "w": 5,
+     "l": 2,
+     "t": 0,
+     "pf": 203,
+     "pa": 180
+    },
+    "committed_plus_official_scores": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 222,
+     "pa": 189
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "GB",
+    "official": {
+     "w": 6,
+     "l": 3,
+     "t": 0,
+     "pf": 216,
+     "pa": 191
+    },
+    "committed_only": {
+     "w": 5,
+     "l": 3,
+     "t": 0,
+     "pf": 171,
+     "pa": 164
+    },
+    "committed_plus_official_scores": {
+     "w": 6,
+     "l": 3,
+     "t": 0,
+     "pf": 216,
+     "pa": 191
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "HOU",
+    "official": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 209,
+     "pa": 192
+    },
+    "committed_only": {
+     "w": 2,
+     "l": 5,
+     "t": 0,
+     "pf": 165,
+     "pa": 170
+    },
+    "committed_plus_official_scores": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 209,
+     "pa": 192
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "IND",
+    "official": {
+     "w": 2,
+     "l": 7,
+     "t": 0,
+     "pf": 184,
+     "pa": 249
+    },
+    "committed_only": {
+     "w": 2,
+     "l": 6,
+     "t": 0,
+     "pf": 161,
+     "pa": 222
+    },
+    "committed_plus_official_scores": {
+     "w": 2,
+     "l": 7,
+     "t": 0,
+     "pf": 184,
+     "pa": 249
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "JAX",
+    "official": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 229,
+     "pa": 121
+    },
+    "committed_only": {
+     "w": 5,
+     "l": 2,
+     "t": 0,
+     "pf": 196,
+     "pa": 111
+    },
+    "committed_plus_official_scores": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 229,
+     "pa": 121
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "KC",
+    "official": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 202,
+     "pa": 143
+    },
+    "committed_only": {
+     "w": 5,
+     "l": 2,
+     "t": 0,
+     "pf": 167,
+     "pa": 131
+    },
+    "committed_plus_official_scores": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 202,
+     "pa": 143
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "LA",
+    "official": {
+     "w": 5,
+     "l": 4,
+     "t": 0,
+     "pf": 214,
+     "pa": 181
+    },
+    "committed_only": {
+     "w": 4,
+     "l": 4,
+     "t": 0,
+     "pf": 194,
+     "pa": 168
+    },
+    "committed_plus_official_scores": {
+     "w": 5,
+     "l": 4,
+     "t": 0,
+     "pf": 214,
+     "pa": 181
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "LAC",
+    "official": {
+     "w": 0,
+     "l": 8,
+     "t": 0,
+     "pf": 121,
+     "pa": 219
+    },
+    "committed_only": {
+     "w": 0,
+     "l": 7,
+     "t": 0,
+     "pf": 99,
+     "pa": 175
+    },
+    "committed_plus_official_scores": {
+     "w": 0,
+     "l": 8,
+     "t": 0,
+     "pf": 121,
+     "pa": 219
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "LV",
+    "official": {
+     "w": 4,
+     "l": 5,
+     "t": 0,
+     "pf": 238,
+     "pa": 268
+    },
+    "committed_only": {
+     "w": 4,
+     "l": 4,
+     "t": 0,
+     "pf": 221,
+     "pa": 230
+    },
+    "committed_plus_official_scores": {
+     "w": 4,
+     "l": 5,
+     "t": 0,
+     "pf": 238,
+     "pa": 268
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "MIA",
+    "official": {
+     "w": 1,
+     "l": 7,
+     "t": 0,
+     "pf": 126,
+     "pa": 200
+    },
+    "committed_only": {
+     "w": 1,
+     "l": 6,
+     "t": 0,
+     "pf": 117,
+     "pa": 181
+    },
+    "committed_plus_official_scores": {
+     "w": 1,
+     "l": 7,
+     "t": 0,
+     "pf": 126,
+     "pa": 200
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "MIN",
+    "official": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 146,
+     "pa": 116
+    },
+    "committed_only": {
+     "w": 6,
+     "l": 1,
+     "t": 0,
+     "pf": 140,
+     "pa": 93
+    },
+    "committed_plus_official_scores": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 146,
+     "pa": 116
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "NE",
+    "official": {
+     "w": 5,
+     "l": 4,
+     "t": 0,
+     "pf": 211,
+     "pa": 207
+    },
+    "committed_only": {
+     "w": 5,
+     "l": 3,
+     "t": 0,
+     "pf": 184,
+     "pa": 162
+    },
+    "committed_plus_official_scores": {
+     "w": 5,
+     "l": 4,
+     "t": 0,
+     "pf": 211,
+     "pa": 207
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "NO",
+    "official": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 185,
+     "pa": 216
+    },
+    "committed_only": {
+     "w": 2,
+     "l": 5,
+     "t": 0,
+     "pf": 162,
+     "pa": 194
+    },
+    "committed_plus_official_scores": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 185,
+     "pa": 216
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "NYG",
+    "official": {
+     "w": 5,
+     "l": 3,
+     "t": 1,
+     "pf": 203,
+     "pa": 196
+    },
+    "committed_only": {
+     "w": 4,
+     "l": 2,
+     "t": 1,
+     "pf": 163,
+     "pa": 161
+    },
+    "committed_plus_official_scores": {
+     "w": 5,
+     "l": 3,
+     "t": 1,
+     "pf": 203,
+     "pa": 196
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "NYJ",
+    "official": {
+     "w": 2,
+     "l": 7,
+     "t": 0,
+     "pf": 182,
+     "pa": 223
+    },
+    "committed_only": {
+     "w": 2,
+     "l": 6,
+     "t": 0,
+     "pf": 170,
+     "pa": 188
+    },
+    "committed_plus_official_scores": {
+     "w": 2,
+     "l": 7,
+     "t": 0,
+     "pf": 182,
+     "pa": 223
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "PHI",
+    "official": {
+     "w": 2,
+     "l": 7,
+     "t": 0,
+     "pf": 148,
+     "pa": 221
+    },
+    "committed_only": {
+     "w": 2,
+     "l": 6,
+     "t": 0,
+     "pf": 137,
+     "pa": 202
+    },
+    "committed_plus_official_scores": {
+     "w": 2,
+     "l": 7,
+     "t": 0,
+     "pf": 148,
+     "pa": 221
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "PIT",
+    "official": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 180,
+     "pa": 144
+    },
+    "committed_only": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 180,
+     "pa": 144
+    },
+    "committed_plus_official_scores": {
+     "w": 6,
+     "l": 2,
+     "t": 0,
+     "pf": 180,
+     "pa": 144
+    },
+    "reconciles_after": true,
+    "reconciles_before": true,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "SEA",
+    "official": {
+     "w": 5,
+     "l": 4,
+     "t": 0,
+     "pf": 202,
+     "pa": 162
+    },
+    "committed_only": {
+     "w": 4,
+     "l": 3,
+     "t": 0,
+     "pf": 168,
+     "pa": 125
+    },
+    "committed_plus_official_scores": {
+     "w": 5,
+     "l": 4,
+     "t": 0,
+     "pf": 202,
+     "pa": 162
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "SF",
+    "official": {
+     "w": 7,
+     "l": 1,
+     "t": 0,
+     "pf": 235,
+     "pa": 156
+    },
+    "committed_only": {
+     "w": 6,
+     "l": 1,
+     "t": 0,
+     "pf": 197,
+     "pa": 139
+    },
+    "committed_plus_official_scores": {
+     "w": 7,
+     "l": 1,
+     "t": 0,
+     "pf": 235,
+     "pa": 156
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "TB",
+    "official": {
+     "w": 3,
+     "l": 6,
+     "t": 0,
+     "pf": 202,
+     "pa": 178
+    },
+    "committed_only": {
+     "w": 3,
+     "l": 5,
+     "t": 0,
+     "pf": 178,
+     "pa": 151
+    },
+    "committed_plus_official_scores": {
+     "w": 3,
+     "l": 6,
+     "t": 0,
+     "pf": 202,
+     "pa": 178
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "TEN",
+    "official": {
+     "w": 1,
+     "l": 7,
+     "t": 0,
+     "pf": 144,
+     "pa": 199
+    },
+    "committed_only": {
+     "w": 1,
+     "l": 7,
+     "t": 0,
+     "pf": 144,
+     "pa": 199
+    },
+    "committed_plus_official_scores": {
+     "w": 1,
+     "l": 7,
+     "t": 0,
+     "pf": 144,
+     "pa": 199
+    },
+    "reconciles_after": true,
+    "reconciles_before": true,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   },
+   {
+    "team": "WAS",
+    "official": {
+     "w": 3,
+     "l": 5,
+     "t": 1,
+     "pf": 196,
+     "pa": 223
+    },
+    "committed_only": {
+     "w": 2,
+     "l": 4,
+     "t": 1,
+     "pf": 159,
+     "pa": 182
+    },
+    "committed_plus_official_scores": {
+     "w": 3,
+     "l": 5,
+     "t": 1,
+     "pf": 196,
+     "pa": 223
+    },
+    "reconciles_after": true,
+    "reconciles_before": false,
+    "source": "https://www.nfl.com/standings/division/2026/REG",
+    "source_class": "official"
+   }
+  ],
+  "source": "https://www.nfl.com/standings/division/2026/REG",
+  "source_class": "official",
+  "result": "zero differences on W/L/T/PF/PA for all 32 teams once the transcribed official scores are added"
+ },
+ "game_feed": {
+  "weeks_verified": [
+   8,
+   9,
+   10
+  ],
+  "games": 30,
+  "agree": 13,
+  "committed_absent": 17,
+  "note": "Games the committed snapshot did not yet carry are shown as absent rather than back-filled.",
+  "rows": [
+   {
+    "game_id": "2026_08_ARI_DAL",
+    "week": 8,
+    "away": "ARI",
+    "home": "DAL",
+    "official_away_score": 33,
+    "official_home_score": 30,
+    "committed_away_score": 33,
+    "committed_home_score": 30,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/cardinals-at-dal-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_ATL_TB",
+    "week": 8,
+    "away": "ATL",
+    "home": "TB",
+    "official_away_score": 0,
+    "official_home_score": 16,
+    "committed_away_score": 0,
+    "committed_home_score": 16,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/atl-at-tb-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_BAL_BUF",
+    "week": 8,
+    "away": "BAL",
+    "home": "BUF",
+    "official_away_score": 10,
+    "official_home_score": 36,
+    "committed_away_score": 10,
+    "committed_home_score": 36,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/bal-at-buf-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_CAR_GB",
+    "week": 8,
+    "away": "CAR",
+    "home": "GB",
+    "official_away_score": 19,
+    "official_home_score": 27,
+    "committed_away_score": 19,
+    "committed_home_score": 27,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/car-at-gb-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_CHI_SEA",
+    "week": 8,
+    "away": "CHI",
+    "home": "SEA",
+    "official_away_score": 34,
+    "official_home_score": 17,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/chi-at-sea-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_CLE_PIT",
+    "week": 8,
+    "away": "CLE",
+    "home": "PIT",
+    "official_away_score": 6,
+    "official_home_score": 27,
+    "committed_away_score": 6,
+    "committed_home_score": 27,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/cle-at-pit-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_IND_JAX",
+    "week": 8,
+    "away": "IND",
+    "home": "JAX",
+    "official_away_score": 7,
+    "official_home_score": 42,
+    "committed_away_score": 7,
+    "committed_home_score": 42,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/ind-at-jax-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_KC_DEN",
+    "week": 8,
+    "away": "KC",
+    "home": "DEN",
+    "official_away_score": 24,
+    "official_home_score": 28,
+    "committed_away_score": 24,
+    "committed_home_score": 28,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/kc-at-den-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_LAC_LA",
+    "week": 8,
+    "away": "LAC",
+    "home": "LA",
+    "official_away_score": 9,
+    "official_home_score": 24,
+    "committed_away_score": 9,
+    "committed_home_score": 24,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/ramsc-at-rams-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_LV_NYJ",
+    "week": 8,
+    "away": "LV",
+    "home": "NYJ",
+    "official_away_score": 38,
+    "official_home_score": 33,
+    "committed_away_score": 38,
+    "committed_home_score": 33,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/lv-at-nyj-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_MIN_DET",
+    "week": 8,
+    "away": "MIN",
+    "home": "DET",
+    "official_away_score": 15,
+    "official_home_score": 19,
+    "committed_away_score": 15,
+    "committed_home_score": 19,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/min-at-det-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_NE_MIA",
+    "week": 8,
+    "away": "NE",
+    "home": "MIA",
+    "official_away_score": 24,
+    "official_home_score": 19,
+    "committed_away_score": 24,
+    "committed_home_score": 19,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/ne-at-mia-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_PHI_WAS",
+    "week": 8,
+    "away": "PHI",
+    "home": "WAS",
+    "official_away_score": 10,
+    "official_home_score": 27,
+    "committed_away_score": 10,
+    "committed_home_score": 27,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/phi-at-was-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_08_TEN_CIN",
+    "week": 8,
+    "away": "TEN",
+    "home": "CIN",
+    "official_away_score": 36,
+    "official_home_score": 43,
+    "committed_away_score": 36,
+    "committed_home_score": 43,
+    "agree": true,
+    "committed_status": "present",
+    "nfl_game_page": "https://www.nfl.com/games/ten-at-cin-2026-reg-8",
+    "source": "https://www.nfl.com/scores/2026/week-8",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_ARI_SEA",
+    "week": 9,
+    "away": "ARI",
+    "home": "SEA",
+    "official_away_score": 3,
+    "official_home_score": 17,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/cardinals-at-sea-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_BUF_MIN",
+    "week": 9,
+    "away": "BUF",
+    "home": "MIN",
+    "official_away_score": 23,
+    "official_home_score": 6,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/buf-at-min-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_CIN_ATL",
+    "week": 9,
+    "away": "CIN",
+    "home": "ATL",
+    "official_away_score": 34,
+    "official_home_score": 17,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/cin-at-atl-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_CLE_NO",
+    "week": 9,
+    "away": "CLE",
+    "home": "NO",
+    "official_away_score": 22,
+    "official_home_score": 23,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/cle-at-no-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_DAL_IND",
+    "week": 9,
+    "away": "DAL",
+    "home": "IND",
+    "official_away_score": 27,
+    "official_home_score": 23,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/dal-at-ind-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_DEN_CAR",
+    "week": 9,
+    "away": "DEN",
+    "home": "CAR",
+    "official_away_score": 26,
+    "official_home_score": 21,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/den-at-car-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_DET_MIA",
+    "week": 9,
+    "away": "DET",
+    "home": "MIA",
+    "official_away_score": 19,
+    "official_home_score": 9,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/det-at-mia-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_GB_NE",
+    "week": 9,
+    "away": "GB",
+    "home": "NE",
+    "official_away_score": 45,
+    "official_home_score": 27,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/gb-at-ne-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_HOU_LAC",
+    "week": 9,
+    "away": "HOU",
+    "home": "LAC",
+    "official_away_score": 44,
+    "official_home_score": 22,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/hou-at-ramsc-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_JAX_BAL",
+    "week": 9,
+    "away": "JAX",
+    "home": "BAL",
+    "official_away_score": 33,
+    "official_home_score": 10,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/jax-at-bal-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_LA_WAS",
+    "week": 9,
+    "away": "LA",
+    "home": "WAS",
+    "official_away_score": 20,
+    "official_home_score": 13,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/rams-at-was-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_LV_SF",
+    "week": 9,
+    "away": "LV",
+    "home": "SF",
+    "official_away_score": 17,
+    "official_home_score": 38,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/lv-at-sf-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_NYG_PHI",
+    "week": 9,
+    "away": "NYG",
+    "home": "PHI",
+    "official_away_score": 19,
+    "official_home_score": 11,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/nyg-at-phi-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_NYJ_KC",
+    "week": 9,
+    "away": "NYJ",
+    "home": "KC",
+    "official_away_score": 12,
+    "official_home_score": 35,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/nyj-at-kc-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_09_TB_CHI",
+    "week": 9,
+    "away": "TB",
+    "home": "CHI",
+    "official_away_score": 24,
+    "official_home_score": 27,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/tb-at-chi-2026-reg-9",
+    "source": "https://www.nfl.com/scores/2026/week-9",
+    "source_class": "official"
+   },
+   {
+    "game_id": "2026_10_WAS_NYG",
+    "week": 10,
+    "away": "WAS",
+    "home": "NYG",
+    "official_away_score": 24,
+    "official_home_score": 21,
+    "committed_away_score": null,
+    "committed_home_score": null,
+    "agree": null,
+    "committed_status": "absent",
+    "nfl_game_page": "https://www.nfl.com/games/was-at-nyg-2026-reg-10",
+    "source": "https://www.nfl.com/scores/2026/week-10",
+    "source_class": "official"
+   }
+  ]
+ },
+ "season_reconciliation": {
+  "rows": [
+   {
+    "season": 2020,
+    "teams_match": 32,
+    "teams_compared": 32,
+    "source": "https://www.nfl.com/standings/division/2020/REG",
+    "source_class": "official"
+   },
+   {
+    "season": 2025,
+    "teams_match": 32,
+    "teams_compared": 32,
+    "source": "https://www.nfl.com/standings/division/2025/REG",
+    "source_class": "official"
+   }
+  ],
+  "note": "The 2020 season contains two ties (CIN, PHI); ties are counted in the T column exactly as the official page prints them."
+ },
+ "coverage": {
+  "value": 13,
+  "n": 30,
+  "status": "measured",
+  "method": "official final scores read for the listed weeks",
+  "source": "https://www.nfl.com/scores/2026/week-9",
+  "source_class": "official",
+  "note": "Only these weeks were checked first-hand. The other 120 committed 2026 results are reconciled indirectly through the 32-team standings identity above, not row by row."
+ }
+}

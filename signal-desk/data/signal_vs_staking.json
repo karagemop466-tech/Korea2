@@ -1,0 +1,341 @@
+{
+ "meta": {
+  "id": "SD-05",
+  "title": "Signal is separated from staking on the leaderboard",
+  "generated_utc": "2026-11-14T20:05:04+00:00",
+  "why": "A positive ROI from a small sample is a statement about the stakes that happened to be placed, not about an edge. Ranking on ROI alone lets one lucky run hide a signal that is indistinguishable from zero.",
+  "ranking_rule": "Signal first (is the edge distinguishable from zero after multiple testing?), staking second (what did the stakes earn?), reward last (only a lower bound above zero earns anything)."
+ },
+ "rows": [
+  {
+   "id": "S6_divisional_home_dog",
+   "name": "Divisional home underdog",
+   "family": "single bet (situational)",
+   "signal": {
+    "n": 137,
+    "win_rate": 0.5149,
+    "p_value": 0.795629,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.937314,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": -0.0121,
+    "roi_ci": [
+     -0.1677,
+     0.1465
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "staking shows no profit",
+    "lucky_run": false
+   },
+   "gates_passed": "5/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "S5_bye_week_team",
+   "name": "Team coming off a bye (13+ days rest) vs a normal-rest opponent",
+   "family": "single bet (situational)",
+   "signal": {
+    "n": 86,
+    "win_rate": 0.4941,
+    "p_value": 1.0,
+    "bh_adjusted_p": 1.0,
+    "deflated_sharpe_p": 0.974492,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": -0.0587,
+    "roi_ci": [
+     -0.263,
+     0.1421
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "staking shows no profit",
+    "lucky_run": false
+   },
+   "gates_passed": "5/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "S7_wind_under",
+   "name": "Under when wind >= 15 mph outdoors",
+   "family": "single bet (total)",
+   "signal": {
+    "n": 46,
+    "win_rate": 0.5333,
+    "p_value": 0.765992,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.899929,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": 0.0151,
+    "roi_ci": [
+     -0.2576,
+     0.2853
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "profit could be staking",
+    "lucky_run": true
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "S4_rest_advantage",
+   "name": "Rest advantage >= 3 days",
+   "family": "single bet (situational)",
+   "signal": {
+    "n": 204,
+    "win_rate": 0.525,
+    "p_value": 0.524622,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.915114,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": 0.0009,
+    "roi_ci": [
+     -0.1275,
+     0.1274
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "profit could be staking",
+    "lucky_run": true
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "S3_model_total_edge",
+   "name": "Model total edge >= 3.0 pts",
+   "family": "single bet (total)",
+   "signal": {
+    "n": 370,
+    "win_rate": 0.5055,
+    "p_value": 0.87542,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.981829,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": -0.0353,
+    "roi_ci": [
+     -0.129,
+     0.0629
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "staking shows no profit",
+    "lucky_run": false
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "C1_all_home_control",
+   "name": "Control - back every home team",
+   "family": "control",
+   "signal": {
+    "n": 936,
+    "win_rate": 0.4962,
+    "p_value": 0.842442,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.998759,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": -0.0519,
+    "roi_ci": [
+     -0.1102,
+     0.0095
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "staking shows no profit",
+    "lucky_run": false
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "S1_model_edge_2",
+   "name": "Model spread edge >= 2.0 pts",
+   "family": "single bet",
+   "signal": {
+    "n": 572,
+    "win_rate": 0.4955,
+    "p_value": 0.865434,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.99642,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": -0.0528,
+    "roi_ci": [
+     -0.1299,
+     0.0259
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "staking shows no profit",
+    "lucky_run": false
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "C2_all_under_control",
+   "name": "Control - under every game",
+   "family": "control",
+   "signal": {
+    "n": 936,
+    "win_rate": 0.4919,
+    "p_value": 0.646379,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.999491,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": -0.0595,
+    "roi_ci": [
+     -0.1199,
+     0.0024
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "staking shows no profit",
+    "lucky_run": false
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "S2_model_edge_3",
+   "name": "Model spread edge >= 3.0 pts",
+   "family": "single bet",
+   "signal": {
+    "n": 409,
+    "win_rate": 0.4798,
+    "p_value": 0.451024,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.998996,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": -0.0819,
+    "roi_ci": [
+     -0.1717,
+     0.0114
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "staking shows no profit",
+    "lucky_run": false
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  }
+ ],
+ "summary": {
+  "strategies": 9,
+  "positive_roi": 2,
+  "signal_distinguishable": 0,
+  "positive_roi_but_unproven_signal": 2,
+  "rewards_paid": 0
+ },
+ "conclusion": "2 of 9 published strategies show a positive ROI that their own significance test does not support. Under a staking-only ranking those strategies would appear above a genuinely better one with a smaller stake-weighted return; under the signal-first ranking they cannot."
+}

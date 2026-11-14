@@ -1,0 +1,491 @@
+{
+ "meta": {
+  "id": "SD-01",
+  "title": "Price-snapshot store: opening and closing numbers per market",
+  "generated_utc": "2026-11-14T20:05:04+00:00",
+  "markets": [
+   "side (spread)",
+   "total",
+   "moneyline"
+  ],
+  "rule": "A snapshot exists only where a named source publishes the number. Every other cell is blank with status 'unverified'.",
+  "records": [
+   "opening",
+   "closing"
+  ],
+  "official_price_feed_located": false
+ },
+ "closing": {
+  "source": {
+   "url": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv",
+   "publisher": "nflverse/nfldata (third party, not the league)",
+   "note": "Committed to this repository as data/derived/games.csv.gz and hashed in data/derived/manifest.json and data/PROVENANCE.md."
+  },
+  "source_class": "third-party",
+  "definition": "The committed games extract's spread_line / total_line / moneyline columns. data/PROVENANCE.md describes the upstream file as carrying 'closing spread/total/moneyline prices'.",
+  "caveat": "Third-party aggregator. No official NFL price feed was located, so the closing snapshot is third-party by construction. Where the columns combine several books the snapshot is not a single-book quote; that is unverified.",
+  "by_season": [
+   {
+    "season": 1999,
+    "games": 248,
+    "side": 248,
+    "total": 248,
+    "moneyline": 0,
+    "side_price": 0,
+    "total_price": 0
+   },
+   {
+    "season": 2000,
+    "games": 248,
+    "side": 248,
+    "total": 248,
+    "moneyline": 0,
+    "side_price": 0,
+    "total_price": 0
+   },
+   {
+    "season": 2001,
+    "games": 248,
+    "side": 248,
+    "total": 248,
+    "moneyline": 0,
+    "side_price": 0,
+    "total_price": 0
+   },
+   {
+    "season": 2002,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 0,
+    "side_price": 0,
+    "total_price": 0
+   },
+   {
+    "season": 2003,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 0,
+    "side_price": 0,
+    "total_price": 0
+   },
+   {
+    "season": 2004,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 0,
+    "side_price": 0,
+    "total_price": 0
+   },
+   {
+    "season": 2005,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 0,
+    "side_price": 0,
+    "total_price": 0
+   },
+   {
+    "season": 2006,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 209,
+    "side_price": 209,
+    "total_price": 207
+   },
+   {
+    "season": 2007,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 255,
+    "side_price": 255,
+    "total_price": 255
+   },
+   {
+    "season": 2008,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 185,
+    "side_price": 185,
+    "total_price": 185
+   },
+   {
+    "season": 2009,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 242,
+    "side_price": 242,
+    "total_price": 242
+   },
+   {
+    "season": 2010,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2011,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2012,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2013,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2014,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2015,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2016,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2017,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 255,
+    "side_price": 255,
+    "total_price": 255
+   },
+   {
+    "season": 2018,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2019,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2020,
+    "games": 256,
+    "side": 256,
+    "total": 256,
+    "moneyline": 256,
+    "side_price": 256,
+    "total_price": 256
+   },
+   {
+    "season": 2021,
+    "games": 272,
+    "side": 272,
+    "total": 272,
+    "moneyline": 272,
+    "side_price": 272,
+    "total_price": 272
+   },
+   {
+    "season": 2022,
+    "games": 271,
+    "side": 271,
+    "total": 271,
+    "moneyline": 271,
+    "side_price": 271,
+    "total_price": 271
+   },
+   {
+    "season": 2023,
+    "games": 272,
+    "side": 272,
+    "total": 272,
+    "moneyline": 272,
+    "side_price": 272,
+    "total_price": 272
+   },
+   {
+    "season": 2024,
+    "games": 272,
+    "side": 272,
+    "total": 272,
+    "moneyline": 272,
+    "side_price": 272,
+    "total_price": 272
+   },
+   {
+    "season": 2025,
+    "games": 272,
+    "side": 272,
+    "total": 272,
+    "moneyline": 272,
+    "side_price": 272,
+    "total_price": 272
+   },
+   {
+    "season": 2026,
+    "games": 272,
+    "side": 136,
+    "total": 136,
+    "moneyline": 136,
+    "side_price": 136,
+    "total_price": 136
+   }
+  ]
+ },
+ "opening": {
+  "source": {
+   "url": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv",
+   "raw": "https://api.github.com/repos/nflverse/nfldata/contents/data/initial_lines.csv?ref=a270278f3ac4e937295fe6a27814b3c4a2b62645",
+   "commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+   "publisher": "nflverse/nfldata (third party, not the league)"
+  },
+  "source_class": "third-party",
+  "rows": 1088,
+  "by_season": [
+   {
+    "season": 2021,
+    "spread": 544,
+    "total": 544,
+    "moneyline": 0
+   }
+  ],
+  "moneyline": 0,
+  "status": "loaded",
+  "note": "Every season below is what the upstream opening-line file actually contains. It holds one sportsbook and only spread and total prices; there is no moneyline at all. An opening moneyline therefore cannot be recorded for any season from this source.",
+  "books": {
+   "WSGT": 1088
+  }
+ },
+ "closing_file": {
+  "source": {
+   "url": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/closing_lines.csv",
+   "raw": "https://api.github.com/repos/nflverse/nfldata/contents/data/closing_lines.csv?ref=a270278f3ac4e937295fe6a27814b3c4a2b62645",
+   "commit": "a270278f3ac4e937295fe6a27814b3c4a2b62645",
+   "publisher": "nflverse/nfldata (third party, not the league)"
+  },
+  "source_class": "third-party",
+  "status": "loaded",
+  "rows": 20490,
+  "by_season": [
+   {
+    "season": 2006,
+    "games": 267,
+    "moneyline": 534,
+    "spread": 534,
+    "total": 534,
+    "rows_with_price": 534
+   },
+   {
+    "season": 2007,
+    "games": 266,
+    "moneyline": 532,
+    "spread": 532,
+    "total": 532,
+    "rows_with_price": 532
+   },
+   {
+    "season": 2008,
+    "games": 265,
+    "moneyline": 530,
+    "spread": 530,
+    "total": 530,
+    "rows_with_price": 530
+   },
+   {
+    "season": 2009,
+    "games": 265,
+    "moneyline": 530,
+    "spread": 530,
+    "total": 530,
+    "rows_with_price": 530
+   },
+   {
+    "season": 2010,
+    "games": 262,
+    "moneyline": 524,
+    "spread": 524,
+    "total": 524,
+    "rows_with_price": 524
+   },
+   {
+    "season": 2011,
+    "games": 265,
+    "moneyline": 530,
+    "spread": 530,
+    "total": 530,
+    "rows_with_price": 530
+   },
+   {
+    "season": 2012,
+    "games": 266,
+    "moneyline": 532,
+    "spread": 532,
+    "total": 532,
+    "rows_with_price": 532
+   },
+   {
+    "season": 2013,
+    "games": 265,
+    "moneyline": 530,
+    "spread": 530,
+    "total": 530,
+    "rows_with_price": 530
+   },
+   {
+    "season": 2014,
+    "games": 263,
+    "moneyline": 526,
+    "spread": 526,
+    "total": 526,
+    "rows_with_price": 526
+   },
+   {
+    "season": 2015,
+    "games": 263,
+    "moneyline": 526,
+    "spread": 526,
+    "total": 526,
+    "rows_with_price": 526
+   },
+   {
+    "season": 2016,
+    "games": 263,
+    "moneyline": 526,
+    "spread": 526,
+    "total": 526,
+    "rows_with_price": 526
+   },
+   {
+    "season": 2017,
+    "games": 266,
+    "moneyline": 532,
+    "spread": 532,
+    "total": 532,
+    "rows_with_price": 1596
+   },
+   {
+    "season": 2018,
+    "games": 239,
+    "moneyline": 478,
+    "spread": 478,
+    "total": 478,
+    "rows_with_price": 1434
+   }
+  ],
+  "games": 3415,
+  "prices_present": 8850
+ },
+ "join": {
+  "seasons_with_both": [],
+  "detail": "There is no season in which this repository holds both an opening and a closing number. The opening file covers 2021-2021 only; the closing file stops at 2018. A per-bet open-to-close move, which is the number a demotion rule needs, therefore cannot be computed for any game from these two files together.",
+  "seasons_opening": [
+   2021
+  ],
+  "seasons_closing": [
+   2006,
+   2007,
+   2008,
+   2009,
+   2010,
+   2011,
+   2012,
+   2013,
+   2014,
+   2015,
+   2016,
+   2017,
+   2018
+  ]
+ },
+ "coverage": [
+  {
+   "record": "open-to-close move, any market",
+   "seasons": "",
+   "status": "unverified",
+   "note": "No season is covered by both an opening and a closing file, so a move cannot be computed for a single game.",
+   "needed": "Opening and closing numbers for the same games, from the same book.",
+   "source": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv",
+   "source_class": "third-party"
+  },
+  {
+   "record": "opening side",
+   "seasons": "2021 only",
+   "status": "unverified",
+   "note": "Upstream opening file covers one season and one book.",
+   "source": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv",
+   "source_class": "third-party"
+  },
+  {
+   "record": "opening total",
+   "seasons": "2021 only",
+   "status": "unverified",
+   "note": "Same file; spread and total only.",
+   "source": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv",
+   "source_class": "third-party"
+  },
+  {
+   "record": "opening moneyline",
+   "seasons": "",
+   "status": "unverified",
+   "note": "The upstream opening file has no MONEYLINE rows at all. No value is recorded.",
+   "needed": "Any source that publishes an opening moneyline, with its timestamp and book.",
+   "source": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv",
+   "source_class": "third-party"
+  },
+  {
+   "record": "closing side/total/moneyline",
+   "seasons": "2014-2026",
+   "status": "measured",
+   "note": "Present for every regular-season game from 2014 onward in the committed extract.",
+   "source": "https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/games.csv",
+   "source_class": "third-party"
+  }
+ ]
+}

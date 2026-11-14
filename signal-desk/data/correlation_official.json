@@ -1,0 +1,79 @@
+{
+ "meta": {
+  "id": "SD-07",
+  "title": "Correlations from officially sourced numbers, with n",
+  "generated_utc": "2026-11-14T20:05:04+00:00",
+  "rule": "A correlation is published only if both variables come from an official source for the same units, and only with n and a confidence interval. Where the official overlap is too small or does not exist, the value is blank and the reason is stated.",
+  "confidence": "95% interval on r via Fisher z."
+ },
+ "rows": [
+  {
+   "correlation": "team points for vs points against (2026, n=32 teams)",
+   "value": -0.0869,
+   "n": 32,
+   "n_official": 32,
+   "p": 0.6361727603831142,
+   "ci_low": -0.4228,
+   "ci_high": 0.27,
+   "status": "measured",
+   "source": "https://www.nfl.com/standings/division/2026/REG",
+   "source_class": "official",
+   "units": "team-seasons",
+   "note": "Both columns are official standings columns. A strong team necessarily pairs high PF with low PA, so this is descriptive, not a signal."
+  },
+  {
+   "correlation": "team wins vs point differential (2026, n=32 teams)",
+   "value": 0.8482,
+   "n": 32,
+   "n_official": 32,
+   "p": 8.826185576019836e-10,
+   "ci_low": 0.7093,
+   "ci_high": 0.9237,
+   "status": "measured",
+   "source": "https://www.nfl.com/standings/division/2026/REG",
+   "source_class": "official",
+   "units": "team-seasons",
+   "note": "Point differential travels between seasons better than wins do; this is the 2026 snapshot."
+  },
+  {
+   "correlation": "point differential persistence (2025 to 2026, n=32 teams)",
+   "value": 0.5031,
+   "n": 32,
+   "n_official": 32,
+   "p": 0.0033373040971045745,
+   "ci_low": 0.1872,
+   "ci_high": 0.7247,
+   "status": "measured",
+   "source": "https://www.nfl.com/standings/division/2025/REG + https://www.nfl.com/standings/division/2026/REG",
+   "source_class": "official",
+   "units": "team-seasons",
+   "note": "The 2026 value is a part-season (8-9 games); a full-season persistence figure cannot be computed until the season ends and is not inferred. The 2025 season is 17 games."
+  },
+  {
+   "correlation": "win-total persistence (2025 to 2026, n=32 teams)",
+   "value": 0.3988,
+   "n": 32,
+   "n_official": 32,
+   "p": 0.023774410173535095,
+   "ci_low": 0.0582,
+   "ci_high": 0.6562,
+   "status": "measured",
+   "source": "https://www.nfl.com/standings/division/2025/REG + https://www.nfl.com/standings/division/2026/REG",
+   "source_class": "official",
+   "units": "team-seasons",
+   "note": "Wins are compared across unequal game counts (17 vs 8-9), which flatters the correlation; the ratio is not rescaled because rescaling would be an inference."
+  },
+  {
+   "correlation": "QB passing yards vs WR1 receiving yards (same player)",
+   "value": null,
+   "n": null,
+   "n_official": 0,
+   "status": "unverified",
+   "source": "https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc + https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingyards/desc",
+   "source_class": "official",
+   "units": "",
+   "note": "The two official leader tables describe different players, so they cannot be paired into one observation. The statistic the project needs is a per-team-game join of a quarterback's passing yards and his top receiver's yards; the official season-leader pages do not publish that join and the official team pages do not expose it in a machine-readable form. Published as blank rather than replaced with the committed third-party figure.",
+   "needed": "Per-game official passing and receiving lines for the same games, for a large enough sample to estimate r."
+  }
+ ]
+}

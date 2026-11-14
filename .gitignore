@@ -12,3 +12,6 @@ origination-lab/data/raw/
 # Session arena-3f5af27c (origination/)
 data/interim/
 data/raw/_tarballs/
+
+# signal-desk: raw upstream price files are fetched, never committed (derived JSON is committed)
+signal-desk/data/raw/
