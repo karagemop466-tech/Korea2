@@ -19,11 +19,11 @@ Outputs results/price_snapshots.json
 from __future__ import annotations
 
 import math
-from datetime import datetime, timezone
+import json
 
 import pandas as pd
 
-from common import RESULTS, jdump, load_games
+from common import DERIVED, RESULTS, jdump, load_games
 
 MARKETS = ["spread", "total", "moneyline"]
 DATA_SOURCE = "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv"
@@ -48,7 +48,9 @@ def main() -> dict:
         g[c] = pd.to_numeric(g[c], errors="coerce")
     g = g.sort_values(["season", "week", "gameday"]).reset_index(drop=True)
 
-    as_of = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    # Deterministic: the stamp is the data extract's own time (data/derived/manifest.json), never the wall
+    # clock. A clock stamp made every rebuild differ from the committed file (build-verify fails on main).
+    as_of = str(json.loads((DERIVED / "manifest.json").read_text())["generated_utc"])
 
     games = []
     n_closing = {m: 0 for m in MARKETS}
