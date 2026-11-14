@@ -2485,3 +2485,26 @@ regeneration is purely mechanical (derived from git history + sibling registers)
 that owner's own workflow performs; any add/add conflict on `hub_map.json` at merge is resolved by
 re-running `ingest.py` on the merged tree (the review-board workflow enforces this automatically) — no
 session's authored work is discarded. Logged here per the cross-scope rule.
+
+**2026-11-14 — overlap discovered at rebase (logged per the parallel-session rule):** while this session worked, PRs #104/#105/#106/#107 merged a second price-snapshot store (`results/price_snapshots.json`, `price-store/scripts/gates.py`, G9/G10 text in `data/validation_gates.json`, Signal/Staking column grouping on their leaderboard). File scopes do not overlap (their store lives in `results/` + `price-store/`; this session's in `price-desk/`), so no work was discarded. Differences worth an owner decision (also recorded in their PS-F6 and in this session's S-01): this store adds per-row **official-source verification** (22 rows digit-for-digit from nfl.com/gamebooks), player props, fair/market/difference columns with per-value status, a **signal-only rank** (staking outcomes can never affect rank), and the gamebook discovery; their store adds an executable demotion test (`price-store/scripts/gates.py`) whose CLV rule differs from the DG-1 spec on windowing and drawdown. Recommendation on the suggestions page (S-01 path A now, B later): keep `price-desk/` as the verification-and-audit layer and fold any unique executable pieces (e.g., `gates.py`) into it when the owner chooses the canonical store.
+# Session board — `arena/4a709dd0-korea2` (Requirements closure: price-snapshot store, verified results feed, signal/staking split, demotion gate, decision Q&A, suggestion review queue)
+
+**Session ID:** `arena/4a709dd0-korea2` (branch fixed by environment: `arena/4a709dd0-korea2`, branched from `a6981b6` = merge of PR #101, current `origin/main` tip at claim time)
+**Claimed at:** 2026-11-14 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| PS-0 | Claim non-overlapping scope and push before any other work | in progress | `arena/4a709dd0-korea2` | this section of `COORDINATION.md` |
+| PS-1 | Price-snapshot store: opening + closing numbers for every market we originate (schema, data, site page) | unclaimed | `arena/4a709dd0-korea2` | `price-desk/` (new) |
+| PS-2 | Verified results feed: settled scores/lines/outcomes with per-row official source links so backtests and ROI are computable | unclaimed | `arena/4a709dd0-korea2` | `price-desk/` (new) |
+| PS-3 | Leaderboard: signal quality separated from staking outcome (ranking on signal only, luck controls published) | unclaimed | `arena/4a709dd0-korea2` | `price-desk/` (new) |
+| PS-4 | Demotion gate spec: live → paper criteria, cadence, re-promotion | unclaimed | `arena/4a709dd0-korea2` | `price-desk/` (new) |
+| PS-5 | Requirements traceability for the nine named requirements + pre-decision Q&A register + suggestion review queue (choose best path before implementing) | unclaimed | `arena/4a709dd0-korea2` | `price-desk/` (new) |
+| PS-6 | Take over the six stale fix-requests logged 2026-11-13 by `arena/da5f9d7b-korea2` (handoff below) | unclaimed | `arena/4a709dd0-korea2` | `quant-lab/*.html`, `origination-lab/*.html`, `scripts/analyze_strategies.py`, `scripts/analysis/test_issue_fixes.py`, `index.html`, `pages/flagged.html`, `README.md`, `dashboard/`, `nfl-lines/*.html` |
+| PS-7 | Re-run all repo verifiers/tests; final PR to `main`, merge, confirm GitHub Pages, record results | unclaimed | `arena/4a709dd0-korea2` | this section, PR |
+
+**Scope rule:** this session writes inside `price-desk/` (new directory, unowned), this section of `COORDINATION.md`, and — as a logged takeover of stale scopes only — the files listed in PS-6. Everything else is read-only.
+
+**Stale-scope handoff (per the 60-minute rule in the project brief):** the PS-6 file scopes were last claimed by sessions whose boards are closed (`arena/29806afc-korea2`, `arena/89b8d356-korea2`, root line-lab session) or whose claims have been idle >60 minutes with no commits (`arena/da5f9d7b-korea2` closed after ISS-4). The six fix-requests were logged by `arena/da5f9d7b-korea2` on 2026-11-13 and remain unactioned. This session takes them over and notes the handoff here; no other session's in-flight claim is taken. Open sibling PRs #93 (`arena/e0d1c5c8-korea2`, CONFLICTING), #97 (`arena/193e54ca-korea2`, MERGEABLE but its entire non-venv diff is `.gitignore` and it modifies 6,214 tracked `.venv-b6/` files) and #99 (`arena/e470a321-korea2`, MERGEABLE, review-board only) are NOT merged by this session without re-verification; dispositions are recorded at PS-7 and on the Flagged page.
+
+**Verification standard:** every number published by this session is checked against a named source page with a retrieval date, or explicitly labelled unverified/archived with provenance and left out of verified columns. Nothing is marked verified without checking it against its source.
