@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:38:46Z",
+ "generated_utc": "2026-11-14T20:40:47Z",
  "checks": [
   {
    "name": "Every published table row carries a source",
@@ -123,10 +123,10 @@
   },
   {
    "name": "The official injury transcription matches an independent one",
-   "rule": "Every shared (club, player) row agrees on game status with the repository's separate transcription.",
+   "rule": "Every (club, player) row shared with the repository's separate transcription agrees on game status.",
    "pass": true,
-   "proves": "28 clubs; 0 status disagreements on 191 shared rows.",
-   "does_not_prove": "That either transcription is complete against the live page; the page can change after the read.",
+   "proves": "28 clubs; 0 status disagreements on 212 shared rows.",
+   "does_not_prove": "That either transcription is complete against the live page, or that rows only one of them lists are right; the page can change after it was read.",
    "source": "SRC-NFL-INJ-10"
   },
   {
@@ -178,13 +178,6 @@
    "rows": 345,
    "source": "SRC-NFL-INJ-10",
    "bytes": 16994
-  },
-  {
-   "name": "fetched depth_charts.csv.gz",
-   "path": "decision-arena/data/inputs/depth_charts.csv.gz",
-   "sha256": "b7255be47a0b160c39dfec0c76573e1153fe1f8d784a0038f1ad1a4b390ff54a",
-   "rows": 0,
-   "source": "SRC-NFLVERSE-SCHED"
   },
   {
    "name": "fetched injuries.csv.gz",

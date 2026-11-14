@@ -214,11 +214,37 @@ def build_registers():
         f"{len(sugg.get('suggestions', []))} proposals, all gated.",
         "That the questions are the right ones.",
         "SRC-NIST-MULT")
+    # Actually re-run the comparison rather than trusting a status field. The repository holds a
+    # separately transcribed week-10 report; every (club, player) the two share must agree on game
+    # status, and the comparison is published so a reviewer can see the row count it covers.
+    _inj_pairs = (0, 0)
+    try:
+        import csv as _csv
+        _mine = {}
+        with open(os.path.join(ROOT, "data", "inputs", "injury_report_week10.csv"), newline="") as fh:
+            for r in _csv.DictReader(fh):
+                _mine[(r["team"], r["player"])] = r["game_status"]
+        _theirs_path = os.path.join(REPO, "review-board", "data", "raw",
+                                    "injury_report_2026-11-13_week10.csv")
+        _theirs = {}
+        if os.path.exists(_theirs_path):
+            alias = {"AZ": "ARI", "LAR": "LA", "JAC": "JAX", "WSH": "WAS", "LVR": "LV"}
+            with open(_theirs_path, newline="") as fh:
+                for r in _csv.DictReader(fh):
+                    t = alias.get((r["team"] or "").upper(), (r["team"] or "").upper())
+                    _theirs[(t, r["player"])] = r["game_status"]
+        _shared = set(_mine) & set(_theirs)
+        _bad = sum(1 for k in _shared if _mine[k] != _theirs[k])
+        _inj_pairs = (_bad, len(_shared))
+    except Exception:
+        _inj_pairs = (0, 0)
     add("The official injury transcription matches an independent one",
-        "Every shared (club, player) row agrees on game status with the repository's separate transcription.",
-        rep.get("status") == "JOINED",
-        f"{rep.get('clubs_reported', 0)} clubs; 0 status disagreements on 191 shared rows.",
-        "That either transcription is complete against the live page; the page can change after the read.",
+        "Every (club, player) row shared with the repository's separate transcription agrees on game status.",
+        rep.get("status") == "JOINED" and _inj_pairs[0] == 0 and _inj_pairs[1] > 100,
+        f"{rep.get('clubs_reported', 0)} clubs; {_inj_pairs[0]} status disagreements on "
+        f"{_inj_pairs[1]} shared rows.",
+        "That either transcription is complete against the live page, or that rows only one of them "
+        "lists are right; the page can change after it was read.",
         "SRC-NFL-INJ-10")
     add("No page claims an official depth rank",
         "The only depth ranks published are measured from participation and labelled so.",

@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import csv
 import gzip
+import json
 import os
 import statistics
 import sys
@@ -279,14 +280,37 @@ def main():
                 print(f"  {t['season']} {t['side']:8s} n={t['n_replacements']:4d} "
                       f"mean depth {t['mean_replacement_depth']} bands {t['bands']}")
     else:
-        payload["depth"] = {
-            "status": "BLOCKED_NO_INPUT",
-            "reason": ("data/inputs/snap_counts.csv.gz is produced by scripts/fetch_inputs.py, which "
-                       "needs GitHub release assets. This sandbox cannot reach them; "
-                       ".github/workflows/decision-arena.yml runs the fetch and rebuilds this file."),
-            "what_is_missing": "the nflverse snap-count release, one third-party file per season",
-            "how_to_discover": "python decision-arena/scripts/fetch_inputs.py --season 2026 (on a runner)",
-        }
+        # NEVER degrade a measured result to a blank one. The CI runner can fetch the snap counts and
+        # this environment cannot; if a previous build already measured, keep that measurement and
+        # label it with the build that produced it, so a local rebuild cannot erase real data.
+        prior_path = os.path.join(ROOT, "data", "depth.json")
+        prior = None
+        if os.path.exists(prior_path):
+            try:
+                prior = json.load(open(prior_path)).get("depth", {})
+            except Exception:
+                prior = None
+        if prior and prior.get("status") == "MEASURED":
+            # Carry forward ONLY the measurement. The official report join is rebuilt from the
+            # committed transcription on every run, so a carried-forward result cannot leave the
+            # injury table empty (which is exactly what happened on the first attempt).
+            payload["depth"] = dict(prior)
+            payload["depth"]["carried_forward"] = {
+                "reason": "snap counts are absent in this environment; the measurement from the "
+                          "last build that had them is retained unchanged",
+                "note": "Re-run .github/workflows/decision-arena.yml to refresh it.",
+            }
+            print(f"depth: carrying forward the previous MEASURED result "
+                  f"({prior.get('events_total')} events) instead of publishing BLOCKED")
+        else:
+            payload["depth"] = {
+                "status": "BLOCKED_NO_INPUT",
+                "reason": ("data/inputs/snap_counts.csv.gz is produced by scripts/fetch_inputs.py, "
+                           "which needs GitHub release assets. This sandbox cannot reach them; "
+                           ".github/workflows/decision-arena.yml runs the fetch and rebuilds this file."),
+                "what_is_missing": "the nflverse snap-count release, one third-party file per season",
+                "how_to_discover": "python decision-arena/scripts/fetch_inputs.py --season 2026 (on a runner)",
+            }
 
     report = load_official_report()
     payload["official_injury_report"] = build_report_join(report, payload.get("depth", {}))

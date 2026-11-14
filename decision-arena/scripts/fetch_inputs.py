@@ -32,11 +32,11 @@ REL = "https://github.com/nflverse/nflverse-data/releases/download"
 
 # (local name, url, columns to keep when pruning)
 FEEDS = [
-    (
-        "depth_charts.csv.gz",
-        f"{REL}/depth_charts/depth_charts_{'{season}'}.csv.gz",
-        ["dt", "team", "player_name", "gsis_id", "pos_grp", "pos_name", "pos_abb", "pos_slot", "pos_rank"],
-    ),
+    # depth_charts is deliberately NOT fetched: 75 MB raw / 11 MB pruned, and nothing in this hub
+    # reads it. Replacement depth is measured from snap counts, which is a smaller file and a
+    # better answer to the question actually asked ("how deep was the man who played"). The
+    # release is cited on the sources page so a reader knows where an official-rank substitute
+    # would come from if one were ever needed.
     (
         "snap_counts.csv.gz",
         f"{REL}/snap_counts/snap_counts_{'{season}'}.csv.gz",

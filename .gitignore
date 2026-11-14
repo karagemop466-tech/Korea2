@@ -15,3 +15,9 @@ data/raw/_tarballs/
 
 # signal-desk: raw upstream price files are fetched, never committed (derived JSON is committed)
 signal-desk/data/raw/
+
+# Decision Arena: the fetched release assets are inputs, not artefacts. They are re-fetched by
+# .github/workflows/decision-arena.yml on every run; committing them would add ~12 MB and would let
+# a local build silently overwrite the snapshot CI just produced. Only the manifest, the derived
+# JSON and the transcribed official report are tracked.
+decision-arena/data/inputs/*.csv.gz
