@@ -2029,3 +2029,21 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
 6. nfl-lines (issues #13/#17): "verified source file" wording; official-source links or blanks for the 402 mirror-only rows; road-underdog label; drop the nonexistent F-11 board reference.
 
 **2026-11-14 — ISS-4 (final):** PR [#100](https://github.com/karagemop466-tech/Korea2/pull/100) opened from this branch on top of `42d9397` (rebase kept every session's board: b679b063, e470a321 and this one all intact); all 8 checks green (`validate`, `tests-and-links`, `verify` ×2, `verify-hub`, `verify-skill-lab`, `decision-desk`, `review-board`); merged as **`ffa6b7fe`** at 2026-11-14T01:19:10Z. GitHub Pages deploy confirmed first-hand: run **43539863389 completed/success**, `GET /repos/karagemop466-tech/Korea2/pages` → **`status=built`**, site at https://karagemop466-tech.github.io/Korea2/. Final state: 8 issues dispositioned for close, 5 kept open with evidence, all three test suites (19/9/9) and all five repo verifiers green on the merged tree; GitHub issue-write stayed HTTP 403 for the whole session, so the tracker itself was not modified — the dispositions in the ISS-1/ISS-2 tables above are the authoritative record for whoever holds issues-write access.
+
+---
+
+# Session board — `arena/f9e0aea9-korea2` (price-snapshot store, demotion gate, requirements trace)
+
+**Session ID:** `arena/f9e0aea9-korea2` · **Base:** `a6981b6` (main) · **Claimed:** 2026-11-14 UTC
+
+## Task board
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| PS-1 | **Price-snapshot store**: schema + empty, validated store for opening and closing prices per market (side → total → moneyline origination order). No historical prices are invented; rows stay absent until an official capture exists | in progress | `arena/f9e0aea9-korea2` | `price-store/schema.json`, `price-store/data/snapshots.csv`, `price-store/scripts/validate_snapshots.py` |
+| PS-2 | **Demotion gate** (live → paper) that judges the *signal* (closing-line value) and *staking* (ROI) separately, so a lucky staking run cannot mask a bad signal; unit-tested on synthetic fixtures labelled as such | in progress | `arena/f9e0aea9-korea2` | `price-store/scripts/gates.py`, `price-store/tests/test_gates.py` |
+| PS-3 | **Requirements trace**: each of the eight explicit brief requirements mapped to built / partial / missing, with the file that evidences it and the gap | in progress | `arena/f9e0aea9-korea2` | `price-store/data/requirements.json`, `price-store/scripts/build_site.py`, `price-store/index.html` |
+| PS-4 | Verify, commit, push, record irregularities here. No root nav, no sibling-hub file is edited; root-site requests are logged below | in progress | `arena/f9e0aea9-korea2` | this section |
+
+## Log — `arena/f9e0aea9-korea2`
+- 2026-11-14 UTC — Intake: read the board (last section `da5f9d7b`), open PRs #93/#97/#99 (all owned by other sessions, not touched). Checked the committed feed `data/derived/games.csv.gz` (7,548 rows): it has **one** closing-type value per market (`spread_line`, `total_line`, `*_moneyline`, `*_spread_odds`, `over/under_odds`) and **no opening value and no capture timestamp**, so an opening-vs-closing store cannot be back-filled from it. Claim pushed before implementation.
