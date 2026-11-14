@@ -1,0 +1,1131 @@
+{
+ "policy": "Origination order is fixed: 1 side (spread), 2 total, 3 moneyline. The moneyline is never originated before the side and total. Fair line is this repository's model output (positive = home favoured). Market line and difference stay blank because no official price source exists (LD-S10); third-party closes are not published here.",
+ "as_of_slate": {
+  "season": 2026,
+  "week": 9,
+  "generated_from": "games through week 8 of 2026",
+  "market_source_recorded_upstream": "nflverse schedules feed (third-party closing lines, not an official book archive)"
+ },
+ "order": [
+  {
+   "step": 1,
+   "market": "side (spread)"
+  },
+  {
+   "step": 2,
+   "market": "total"
+  },
+  {
+   "step": 3,
+   "market": "moneyline"
+  }
+ ],
+ "sign_convention": "data/derived/model.json reads POSITIVE = home favoured. Verified on all 15 slate games: model_spread_home > 0 pairs exactly with model_home_win_prob > 0.5 (e.g. NYJ at KC +7.3 with p_home 0.71; JAX at BAL -5.8 with p_home 0.33). results/originate.json states the same positive = home favoured convention for its own lines.",
+ "n_games": 15,
+ "n_with_official_result": 15,
+ "market_columns_published": 0,
+ "discrepancy_vs_retired_pipeline": {
+  "note": "results/originate.json (retired pipeline) states the opposite sign convention and carries different 'our' lines for the same games. Not resolved here; flagged as FL-LD-08.",
+  "rows": [
+   {
+    "game_id": "2026_09_JAX_BAL",
+    "model_json_line": -5.8,
+    "results_originate_line": -10.0,
+    "gap_points": 4.2
+   },
+   {
+    "game_id": "2026_09_CIN_ATL",
+    "model_json_line": -4.1,
+    "results_originate_line": -5.6,
+    "gap_points": 1.5
+   },
+   {
+    "game_id": "2026_09_DEN_CAR",
+    "model_json_line": 0.4,
+    "results_originate_line": -3.7,
+    "gap_points": 4.1
+   },
+   {
+    "game_id": "2026_09_DAL_IND",
+    "model_json_line": -0.0,
+    "results_originate_line": -5.4,
+    "gap_points": 5.4
+   },
+   {
+    "game_id": "2026_09_NYJ_KC",
+    "model_json_line": 7.3,
+    "results_originate_line": 2.8,
+    "gap_points": 4.5
+   },
+   {
+    "game_id": "2026_09_DET_MIA",
+    "model_json_line": -2.2,
+    "results_originate_line": -10.5,
+    "gap_points": 8.3
+   },
+   {
+    "game_id": "2026_09_CLE_NO",
+    "model_json_line": 1.6,
+    "results_originate_line": -2.1,
+    "gap_points": 3.7
+   },
+   {
+    "game_id": "2026_09_NYG_PHI",
+    "model_json_line": 3.4,
+    "results_originate_line": -5.6,
+    "gap_points": 9.0
+   },
+   {
+    "game_id": "2026_09_LA_WAS",
+    "model_json_line": 0.5,
+    "results_originate_line": -6.6,
+    "gap_points": 7.1
+   },
+   {
+    "game_id": "2026_09_HOU_LAC",
+    "model_json_line": -2.7,
+    "results_originate_line": -12.0,
+    "gap_points": 9.3
+   },
+   {
+    "game_id": "2026_09_LV_SF",
+    "model_json_line": 8.5,
+    "results_originate_line": 9.9,
+    "gap_points": -1.4
+   },
+   {
+    "game_id": "2026_09_GB_NE",
+    "model_json_line": 4.8,
+    "results_originate_line": -1.9,
+    "gap_points": 6.7
+   },
+   {
+    "game_id": "2026_09_ARI_SEA",
+    "model_json_line": 11.2,
+    "results_originate_line": 13.5,
+    "gap_points": -2.3
+   },
+   {
+    "game_id": "2026_09_TB_CHI",
+    "model_json_line": -1.5,
+    "results_originate_line": -2.2,
+    "gap_points": 0.7
+   },
+   {
+    "game_id": "2026_09_BUF_MIN",
+    "model_json_line": 1.4,
+    "results_originate_line": 4.7,
+    "gap_points": -3.3
+   }
+  ]
+ },
+ "sanity_market_numbers": [
+  {
+   "game_id": "2026_09_JAX_BAL",
+   "model_spread_home": -5.8,
+   "model_home_win_prob": 0.3307,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_CIN_ATL",
+   "model_spread_home": -4.1,
+   "model_home_win_prob": 0.3796,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_DEN_CAR",
+   "model_spread_home": 0.4,
+   "model_home_win_prob": 0.5129,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_DAL_IND",
+   "model_spread_home": -0.0,
+   "model_home_win_prob": 0.4988,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_NYJ_KC",
+   "model_spread_home": 7.3,
+   "model_home_win_prob": 0.7076,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_DET_MIA",
+   "model_spread_home": -2.2,
+   "model_home_win_prob": 0.4357,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_CLE_NO",
+   "model_spread_home": 1.6,
+   "model_home_win_prob": 0.5475,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_NYG_PHI",
+   "model_spread_home": 3.4,
+   "model_home_win_prob": 0.6008,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_LA_WAS",
+   "model_spread_home": 0.5,
+   "model_home_win_prob": 0.514,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_HOU_LAC",
+   "model_spread_home": -2.7,
+   "model_home_win_prob": 0.4212,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_LV_SF",
+   "model_spread_home": 8.5,
+   "model_home_win_prob": 0.7368,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_GB_NE",
+   "model_spread_home": 4.8,
+   "model_home_win_prob": 0.6393,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_ARI_SEA",
+   "model_spread_home": 11.2,
+   "model_home_win_prob": 0.7998,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_TB_CHI",
+   "model_spread_home": -1.5,
+   "model_home_win_prob": 0.4551,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  },
+  {
+   "game_id": "2026_09_BUF_MIN",
+   "model_spread_home": 1.4,
+   "model_home_win_prob": 0.5425,
+   "consistent": true,
+   "note": "sign convention cross-check: positive line must pair with p_home > 0.5; market number exists upstream but is blank here (third-party)"
+  }
+ ],
+ "games": [
+  {
+   "game_id": "2026_09_JAX_BAL",
+   "week": 9,
+   "gameday": "2026-11-05",
+   "away": "JAX",
+   "home": "BAL",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": -5.8,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 33,
+     "home_score": 10,
+     "home_margin": -23,
+     "total": 43,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 46.6,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 33,
+     "home_score": 10,
+     "home_margin": -23,
+     "total": 43,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": false
+   },
+   "step3_moneyline": {
+    "fair_home_ml": 202.0,
+    "fair_away_ml": -202.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 33,
+     "home_score": 10,
+     "home_margin": -23,
+     "total": 43,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/jaguars-at-ravens-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_CIN_ATL",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "CIN",
+   "home": "ATL",
+   "neutral_site": true,
+   "step1_side": {
+    "fair_line": -4.1,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 34,
+     "home_score": 17,
+     "home_margin": -17,
+     "total": 51,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/bengals-at-falcons-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 43.8,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 34,
+     "home_score": 17,
+     "home_margin": -17,
+     "total": 51,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/bengals-at-falcons-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": true
+   },
+   "step3_moneyline": {
+    "fair_home_ml": 163.0,
+    "fair_away_ml": -163.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 34,
+     "home_score": 17,
+     "home_margin": -17,
+     "total": 51,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/bengals-at-falcons-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_DEN_CAR",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "DEN",
+   "home": "CAR",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": 0.4,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 26,
+     "home_score": 21,
+     "home_margin": -5,
+     "total": 47,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/broncos-at-panthers-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 43.5,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 26,
+     "home_score": 21,
+     "home_margin": -5,
+     "total": 47,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/broncos-at-panthers-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": true
+   },
+   "step3_moneyline": {
+    "fair_home_ml": -105.0,
+    "fair_away_ml": 105.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 26,
+     "home_score": 21,
+     "home_margin": -5,
+     "total": 47,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/broncos-at-panthers-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_DAL_IND",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "DAL",
+   "home": "IND",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": -0.0,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 27,
+     "home_score": 23,
+     "home_margin": -4,
+     "total": 50,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/cowboys-at-colts-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 52.5,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 27,
+     "home_score": 23,
+     "home_margin": -4,
+     "total": 50,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/cowboys-at-colts-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": false
+   },
+   "step3_moneyline": {
+    "fair_home_ml": 100.0,
+    "fair_away_ml": -100.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 27,
+     "home_score": 23,
+     "home_margin": -4,
+     "total": 50,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/cowboys-at-colts-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_NYJ_KC",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "NYJ",
+   "home": "KC",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": 7.3,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 12,
+     "home_score": 35,
+     "home_margin": 23,
+     "total": 47,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/jets-at-chiefs-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": true
+   },
+   "step2_total": {
+    "fair_line": 44.5,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 12,
+     "home_score": 35,
+     "home_margin": 23,
+     "total": 47,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/jets-at-chiefs-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": true
+   },
+   "step3_moneyline": {
+    "fair_home_ml": -242.0,
+    "fair_away_ml": 242.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 12,
+     "home_score": 35,
+     "home_margin": 23,
+     "total": 47,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/jets-at-chiefs-2026-reg-9",
+     "verified": true
+    },
+    "home_won": true
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_DET_MIA",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "DET",
+   "home": "MIA",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": -2.2,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 19,
+     "home_score": 9,
+     "home_margin": -10,
+     "total": 28,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/lions-at-dolphins-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 49.9,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 19,
+     "home_score": 9,
+     "home_margin": -10,
+     "total": 28,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/lions-at-dolphins-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": false
+   },
+   "step3_moneyline": {
+    "fair_home_ml": 130.0,
+    "fair_away_ml": -130.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 19,
+     "home_score": 9,
+     "home_margin": -10,
+     "total": 28,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/lions-at-dolphins-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_CLE_NO",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "CLE",
+   "home": "NO",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": 1.6,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 22,
+     "home_score": 23,
+     "home_margin": 1,
+     "total": 45,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/browns-at-saints-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 42.1,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 22,
+     "home_score": 23,
+     "home_margin": 1,
+     "total": 45,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/browns-at-saints-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": true
+   },
+   "step3_moneyline": {
+    "fair_home_ml": -121.0,
+    "fair_away_ml": 121.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 22,
+     "home_score": 23,
+     "home_margin": 1,
+     "total": 45,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/browns-at-saints-2026-reg-9",
+     "verified": true
+    },
+    "home_won": true
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_NYG_PHI",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "NYG",
+   "home": "PHI",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": 3.4,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 19,
+     "home_score": 11,
+     "home_margin": -8,
+     "total": 30,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/giants-at-eagles-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 43.3,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 19,
+     "home_score": 11,
+     "home_margin": -8,
+     "total": 30,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/giants-at-eagles-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": false
+   },
+   "step3_moneyline": {
+    "fair_home_ml": -150.0,
+    "fair_away_ml": 150.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 19,
+     "home_score": 11,
+     "home_margin": -8,
+     "total": 30,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/giants-at-eagles-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_LA_WAS",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "LA",
+   "home": "WAS",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": 0.5,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 20,
+     "home_score": 13,
+     "home_margin": -7,
+     "total": 33,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 47.8,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 20,
+     "home_score": 13,
+     "home_margin": -7,
+     "total": 33,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": false
+   },
+   "step3_moneyline": {
+    "fair_home_ml": -106.0,
+    "fair_away_ml": 106.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 20,
+     "home_score": 13,
+     "home_margin": -7,
+     "total": 33,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/rams-at-commanders-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_HOU_LAC",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "HOU",
+   "home": "LAC",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": -2.7,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 44,
+     "home_score": 22,
+     "home_margin": -22,
+     "total": 66,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/texans-at-chargers-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 37.5,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 44,
+     "home_score": 22,
+     "home_margin": -22,
+     "total": 66,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/texans-at-chargers-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": true
+   },
+   "step3_moneyline": {
+    "fair_home_ml": 137.0,
+    "fair_away_ml": -137.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 44,
+     "home_score": 22,
+     "home_margin": -22,
+     "total": 66,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/texans-at-chargers-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_LV_SF",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "LV",
+   "home": "SF",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": 8.5,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 17,
+     "home_score": 38,
+     "home_margin": 21,
+     "total": 55,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/raiders-at-49ers-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": true
+   },
+   "step2_total": {
+    "fair_line": 49.4,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 17,
+     "home_score": 38,
+     "home_margin": 21,
+     "total": 55,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/raiders-at-49ers-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": true
+   },
+   "step3_moneyline": {
+    "fair_home_ml": -280.0,
+    "fair_away_ml": 280.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 17,
+     "home_score": 38,
+     "home_margin": 21,
+     "total": 55,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/raiders-at-49ers-2026-reg-9",
+     "verified": true
+    },
+    "home_won": true
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_GB_NE",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "GB",
+   "home": "NE",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": 4.8,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 45,
+     "home_score": 27,
+     "home_margin": -18,
+     "total": 72,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/packers-at-patriots-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 46.1,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 45,
+     "home_score": 27,
+     "home_margin": -18,
+     "total": 72,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/packers-at-patriots-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": true
+   },
+   "step3_moneyline": {
+    "fair_home_ml": -177.0,
+    "fair_away_ml": 177.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 45,
+     "home_score": 27,
+     "home_margin": -18,
+     "total": 72,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/packers-at-patriots-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_ARI_SEA",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "ARI",
+   "home": "SEA",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": 11.2,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 3,
+     "home_score": 17,
+     "home_margin": 14,
+     "total": 20,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": true
+   },
+   "step2_total": {
+    "fair_line": 43.0,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 3,
+     "home_score": 17,
+     "home_margin": 14,
+     "total": 20,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": false
+   },
+   "step3_moneyline": {
+    "fair_home_ml": -400.0,
+    "fair_away_ml": 400.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 3,
+     "home_score": 17,
+     "home_margin": 14,
+     "total": 20,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/cardinals-at-seahawks-2026-reg-9",
+     "verified": true
+    },
+    "home_won": true
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_TB_CHI",
+   "week": 9,
+   "gameday": "2026-11-08",
+   "away": "TB",
+   "home": "CHI",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": -1.5,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 24,
+     "home_score": 27,
+     "home_margin": 3,
+     "total": 51,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": true
+   },
+   "step2_total": {
+    "fair_line": 45.4,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 24,
+     "home_score": 27,
+     "home_margin": 3,
+     "total": 51,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": true
+   },
+   "step3_moneyline": {
+    "fair_home_ml": 120.0,
+    "fair_away_ml": -120.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 24,
+     "home_score": 27,
+     "home_margin": 3,
+     "total": 51,
+     "home_won": true,
+     "source_url": "https://www.nfl.com/games/buccaneers-at-bears-2026-reg-9",
+     "verified": true
+    },
+    "home_won": true
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  },
+  {
+   "game_id": "2026_09_BUF_MIN",
+   "week": 9,
+   "gameday": "2026-11-09",
+   "away": "BUF",
+   "home": "MIN",
+   "neutral_site": false,
+   "step1_side": {
+    "fair_line": 1.4,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10); third-party close exists in data/derived/model.json but is not published here",
+    "official_result": {
+     "away_score": 23,
+     "home_score": 6,
+     "home_margin": -17,
+     "total": 29,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/bills-at-vikings-2026-reg-9",
+     "verified": true
+    },
+    "our_side_covered": null,
+    "home_side_of_our_line_covered": false
+   },
+   "step2_total": {
+    "fair_line": 48.0,
+    "market_line": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 23,
+     "home_score": 6,
+     "home_margin": -17,
+     "total": 29,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/bills-at-vikings-2026-reg-9",
+     "verified": true
+    },
+    "over_at_our_line": false
+   },
+   "step3_moneyline": {
+    "fair_home_ml": -119.0,
+    "fair_away_ml": 119.0,
+    "market_home_ml": null,
+    "market_away_ml": null,
+    "difference": null,
+    "market_blank_reason": "no official price source (LD-S10)",
+    "official_result": {
+     "away_score": 23,
+     "home_score": 6,
+     "home_margin": -17,
+     "total": 29,
+     "home_won": false,
+     "source_url": "https://www.nfl.com/games/bills-at-vikings-2026-reg-9",
+     "verified": true
+    },
+    "home_won": false
+   },
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/model.json"
+  }
+ ]
+}

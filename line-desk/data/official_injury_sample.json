@@ -1,0 +1,26 @@
+{
+  "description": "First-hand sample of the official NFL.com Week 10 2026 injury report, read 2026-11-14 (page chunk 1 of 8: WAS, NYG, NE, DET, start of KC). The report columns are exactly Player | Position | Injuries | Practice Status | Game Status. There is NO depth-rank / string-tier column, so every replacement and string field is left blank by policy.",
+  "retrieved_on": "2026-11-14",
+  "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+  "columns_observed": ["Player", "Position", "Injuries", "Practice Status", "Game Status"],
+  "depth_column_present": false,
+  "coverage_note": "4 clubs fully transcribed first-hand (WAS, NYG, NE, DET) out of the clubs listed on the report; the remaining clubs were not transcribed by this session and are not published here. Replacement and string-tier fields are blank on every row because no official source states them.",
+  "rows": [
+    {"club": "WAS", "player": "Lucas Patrick", "position": "C", "injury": "Concussion", "practice_status": "Did Not Participate In Practice", "game_status": "Out", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "WAS", "player": "Colson Yankoff", "position": "TE", "injury": "Knee", "practice_status": "Did Not Participate In Practice", "game_status": "Out", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "NYG", "player": "Malik Harrison", "position": "LB", "injury": "Groin", "practice_status": "Limited Participation in Practice", "game_status": "Questionable", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "NE", "player": "Ben Brown", "position": "C", "injury": "Knee", "practice_status": "Did Not Participate In Practice", "game_status": "Out", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "NE", "player": "Carlton Davis III", "position": "CB", "injury": "Knee", "practice_status": "Did Not Participate In Practice", "game_status": "Out", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "NE", "player": "TreVeyon Henderson", "position": "RB", "injury": "Illness", "practice_status": "Did Not Participate In Practice", "game_status": "Out", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "NE", "player": "A.J. Brown", "position": "WR", "injury": "Ankle, Knee", "practice_status": "Limited Participation in Practice", "game_status": "Questionable", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "DET", "player": "Kerby Joseph", "position": "S", "injury": "Knee", "practice_status": "Did Not Participate In Practice", "game_status": "Out", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "DET", "player": "Cade Mays", "position": "C", "injury": "Ankle", "practice_status": "Did Not Participate In Practice", "game_status": "Out", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "DET", "player": "D.J. Reed", "position": "CB", "injury": "Hip", "practice_status": "Did Not Participate In Practice", "game_status": "Out", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"},
+    {"club": "DET", "player": "Amon-Ra St. Brown", "position": "WR", "injury": "Rib", "practice_status": "Limited Participation in Practice", "game_status": "Questionable", "replacement_player": null, "replacement_string": null, "depth_source": null, "source_url": "https://www.nfl.com/injuries/league/2026/reg10"}
+  ],
+  "blocked": {
+    "reason": "No official depth chart exists to source replacement identity or string tier from: the NFL.com team depth-chart path returns HTTP 404 (checked first-hand 2026-11-14), and the official injury report carries no depth-rank column.",
+    "depth_chart_check_url": "https://www.nfl.com/teams/new-england-patriots/depth-chart",
+    "depth_chart_check_result": "404 - Flag on the Play (HTTP 404 page rendered)"
+  }
+}

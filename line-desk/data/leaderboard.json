@@ -1,0 +1,293 @@
+{
+ "policy": "Signal and staking are measured and ranked separately. The signal rank uses only gate outcomes and outcome statistics (gates, BH-adjusted p, raw p, sample). Staking metrics (ROI and its interval) are reported in their own block and are NEVER an input to the signal rank, so a lucky staking run cannot mask a bad signal. Ranking staking separately is for transparency only; it earns nothing.",
+ "ranking_rule_signal": "gates passed desc, then BH-adjusted p asc, then raw p asc, then decided n desc",
+ "ranking_rule_staking": "ROI desc (reported only, never used for rewards or promotion)",
+ "upstream_rule_note": "The committed leaderboard ranks 'by gates passed, then by ROI' (data/derived/leaderboard.json). This desk separates the two blocks instead; PS-F3.",
+ "n_candidates": 7,
+ "n_controls": 2,
+ "n_qualified": 0,
+ "demonstration": {
+  "best_staking": {
+   "id": "S7_wind_under",
+   "staking_rank": 1,
+   "signal_rank": 5,
+   "roi": 0.0151
+  },
+  "best_signal": {
+   "id": "S6_divisional_home_dog",
+   "signal_rank": 1,
+   "staking_rank": 3,
+   "gates": "5/10"
+  },
+  "reading": "The strategy with the best staking rank does not hold the best signal rank; under this desk's rule only the signal rank governs promotion and rewards."
+ },
+ "reward_schedule_note": "Rewards are a project design, not a funded pool (see Flagged). 0 rewards are payable: 0 candidates pass all gates.",
+ "rows": [
+  {
+   "id": "S6_divisional_home_dog",
+   "name": "Divisional home underdog",
+   "family": "single bet (situational)",
+   "signal_rank": 1,
+   "signal": {
+    "gates_passed": "5/10",
+    "failed_gates": [
+     "G2",
+     "G4",
+     "G5",
+     "G8",
+     "G9"
+    ],
+    "bh_adjusted_p": 0.984847,
+    "p_value": 0.795629,
+    "win_rate": 0.5149,
+    "decided": 134,
+    "verdict": "REJECTED"
+   },
+   "staking_rank": 3,
+   "staking": {
+    "roi": -0.0121,
+    "roi_ci95": [
+     -0.1677,
+     0.1465
+    ],
+    "n_bets": 137
+   },
+   "rank_gap": 2,
+   "reward": "none - gate failure",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json"
+  },
+  {
+   "id": "S5_bye_week_team",
+   "name": "Team coming off a bye (13+ days rest) vs a normal-rest opponent",
+   "family": "single bet (situational)",
+   "signal_rank": 2,
+   "signal": {
+    "gates_passed": "5/10",
+    "failed_gates": [
+     "G2",
+     "G4",
+     "G5",
+     "G8",
+     "G9"
+    ],
+    "bh_adjusted_p": 1.0,
+    "p_value": 1.0,
+    "win_rate": 0.4941,
+    "decided": 85,
+    "verdict": "REJECTED"
+   },
+   "staking_rank": 6,
+   "staking": {
+    "roi": -0.0587,
+    "roi_ci95": [
+     -0.263,
+     0.1421
+    ],
+    "n_bets": 86
+   },
+   "rank_gap": 4,
+   "reward": "none - gate failure",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json"
+  },
+  {
+   "id": "S2_model_edge_3",
+   "name": "Model spread edge >= 3.0 pts",
+   "family": "single bet",
+   "signal_rank": 3,
+   "signal": {
+    "gates_passed": "4/10",
+    "failed_gates": [
+     "G2",
+     "G4",
+     "G5",
+     "G6",
+     "G8",
+     "G9"
+    ],
+    "bh_adjusted_p": 0.984847,
+    "p_value": 0.451024,
+    "win_rate": 0.4798,
+    "decided": 396,
+    "verdict": "REJECTED"
+   },
+   "staking_rank": 7,
+   "staking": {
+    "roi": -0.0819,
+    "roi_ci95": [
+     -0.1717,
+     0.0114
+    ],
+    "n_bets": 409
+   },
+   "rank_gap": 4,
+   "reward": "none - gate failure",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json"
+  },
+  {
+   "id": "S4_rest_advantage",
+   "name": "Rest advantage >= 3 days",
+   "family": "single bet (situational)",
+   "signal_rank": 4,
+   "signal": {
+    "gates_passed": "4/10",
+    "failed_gates": [
+     "G2",
+     "G4",
+     "G5",
+     "G6",
+     "G8",
+     "G9"
+    ],
+    "bh_adjusted_p": 0.984847,
+    "p_value": 0.524622,
+    "win_rate": 0.525,
+    "decided": 200,
+    "verdict": "REJECTED"
+   },
+   "staking_rank": 2,
+   "staking": {
+    "roi": 0.0009,
+    "roi_ci95": [
+     -0.1275,
+     0.1274
+    ],
+    "n_bets": 204
+   },
+   "rank_gap": -2,
+   "reward": "none - gate failure",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json"
+  },
+  {
+   "id": "S7_wind_under",
+   "name": "Under when wind >= 15 mph outdoors",
+   "family": "single bet (total)",
+   "signal_rank": 5,
+   "signal": {
+    "gates_passed": "4/10",
+    "failed_gates": [
+     "G2",
+     "G4",
+     "G5",
+     "G6",
+     "G8",
+     "G9"
+    ],
+    "bh_adjusted_p": 0.984847,
+    "p_value": 0.765992,
+    "win_rate": 0.5333,
+    "decided": 45,
+    "verdict": "REJECTED"
+   },
+   "staking_rank": 1,
+   "staking": {
+    "roi": 0.0151,
+    "roi_ci95": [
+     -0.2576,
+     0.2853
+    ],
+    "n_bets": 46
+   },
+   "rank_gap": -4,
+   "reward": "none - gate failure",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json"
+  },
+  {
+   "id": "S1_model_edge_2",
+   "name": "Model spread edge >= 2.0 pts",
+   "family": "single bet",
+   "signal_rank": 6,
+   "signal": {
+    "gates_passed": "4/10",
+    "failed_gates": [
+     "G2",
+     "G4",
+     "G5",
+     "G6",
+     "G8",
+     "G9"
+    ],
+    "bh_adjusted_p": 0.984847,
+    "p_value": 0.865434,
+    "win_rate": 0.4955,
+    "decided": 557,
+    "verdict": "REJECTED"
+   },
+   "staking_rank": 5,
+   "staking": {
+    "roi": -0.0528,
+    "roi_ci95": [
+     -0.1299,
+     0.0259
+    ],
+    "n_bets": 572
+   },
+   "rank_gap": -1,
+   "reward": "none - gate failure",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json"
+  },
+  {
+   "id": "S3_model_total_edge",
+   "name": "Model total edge >= 3.0 pts",
+   "family": "single bet (total)",
+   "signal_rank": 7,
+   "signal": {
+    "gates_passed": "4/10",
+    "failed_gates": [
+     "G2",
+     "G4",
+     "G5",
+     "G6",
+     "G8",
+     "G9"
+    ],
+    "bh_adjusted_p": 0.984847,
+    "p_value": 0.87542,
+    "win_rate": 0.5055,
+    "decided": 366,
+    "verdict": "REJECTED"
+   },
+   "staking_rank": 4,
+   "staking": {
+    "roi": -0.0353,
+    "roi_ci95": [
+     -0.129,
+     0.0629
+    ],
+    "n_bets": 370
+   },
+   "rank_gap": -3,
+   "reward": "none - gate failure",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json"
+  }
+ ],
+ "controls": [
+  {
+   "id": "C1_all_home_control",
+   "name": "Control - back every home team",
+   "gates_passed": "4/10",
+   "roi": -0.0519,
+   "roi_ci95": [
+    -0.1102,
+    0.0095
+   ],
+   "win_rate": 0.4962,
+   "decided": 911,
+   "note": "control (vig baseline) - excluded from candidate ranks",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json"
+  },
+  {
+   "id": "C2_all_under_control",
+   "name": "Control - under every game",
+   "gates_passed": "4/10",
+   "roi": -0.0595,
+   "roi_ci95": [
+    -0.1199,
+    0.0024
+   ],
+   "win_rate": 0.4919,
+   "decided": 931,
+   "note": "control (vig baseline) - excluded from candidate ranks",
+   "source_url": "https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json"
+  }
+ ]
+}

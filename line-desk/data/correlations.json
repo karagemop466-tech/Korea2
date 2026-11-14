@@ -1,0 +1,127 @@
+{
+ "policy": "Computed ONLY from numbers transcribed from official NFL.com standings pages. No third-party value enters any coefficient. n is published with every value; 95% CI via Fisher's normal approximation (NIST).",
+ "retrieved_on": "2026-11-14",
+ "n_official_rows": 64,
+ "correlations": [
+  {
+   "id": "C-PF-W-2026",
+   "season": 2026,
+   "pair": "Points for vs wins",
+   "r": 0.6659,
+   "n": 32,
+   "ci95": [
+    0.4131,
+    0.8234
+   ],
+   "inputs": "W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)",
+   "data_source_url": "https://www.nfl.com/standings/division/2026/REG",
+   "method_source_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+   "official_only": true
+  },
+  {
+   "id": "C-PA-L-2026",
+   "season": 2026,
+   "pair": "Points against vs losses",
+   "r": 0.6729,
+   "n": 32,
+   "ci95": [
+    0.4236,
+    0.8274
+   ],
+   "inputs": "W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)",
+   "data_source_url": "https://www.nfl.com/standings/division/2026/REG",
+   "method_source_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+   "official_only": true
+  },
+  {
+   "id": "C-NET-W-2026",
+   "season": 2026,
+   "pair": "Net points vs wins",
+   "r": 0.8482,
+   "n": 32,
+   "ci95": [
+    0.7093,
+    0.9237
+   ],
+   "inputs": "W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)",
+   "data_source_url": "https://www.nfl.com/standings/division/2026/REG",
+   "method_source_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+   "official_only": true
+  },
+  {
+   "id": "C-PF-W-2025",
+   "season": 2025,
+   "pair": "Points for vs wins",
+   "r": 0.7087,
+   "n": 32,
+   "ci95": [
+    0.4782,
+    0.8479
+   ],
+   "inputs": "W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)",
+   "data_source_url": "https://www.nfl.com/standings/division/2025/REG",
+   "method_source_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+   "official_only": true
+  },
+  {
+   "id": "C-PA-L-2025",
+   "season": 2025,
+   "pair": "Points against vs losses",
+   "r": 0.7617,
+   "n": 32,
+   "ci95": [
+    0.5624,
+    0.8774
+   ],
+   "inputs": "W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)",
+   "data_source_url": "https://www.nfl.com/standings/division/2025/REG",
+   "method_source_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+   "official_only": true
+  },
+  {
+   "id": "C-NET-W-2025",
+   "season": 2025,
+   "pair": "Net points vs wins",
+   "r": 0.9191,
+   "n": 32,
+   "ci95": [
+    0.8394,
+    0.9601
+   ],
+   "inputs": "W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)",
+   "data_source_url": "https://www.nfl.com/standings/division/2025/REG",
+   "method_source_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+   "official_only": true
+  },
+  {
+   "id": "C-PF-W-POOL",
+   "season": "2025+2026",
+   "pair": "Points for vs wins (pooled)",
+   "r": 0.7999,
+   "n": 64,
+   "ci95": [
+    0.6897,
+    0.8739
+   ],
+   "inputs": "W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)",
+   "data_source_url": "https://www.nfl.com/standings/division/2026/REG | https://www.nfl.com/standings/division/2025/REG",
+   "method_source_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+   "official_only": true
+  },
+  {
+   "id": "C-PA-L-POOL",
+   "season": "2025+2026",
+   "pair": "Points against vs losses (pooled)",
+   "r": 0.8041,
+   "n": 64,
+   "ci95": [
+    0.6958,
+    0.8766
+   ],
+   "inputs": "W/L/T/PF/PA exactly as printed on the official standings page; ties counted as printed (no adjustment)",
+   "data_source_url": "https://www.nfl.com/standings/division/2026/REG | https://www.nfl.com/standings/division/2025/REG",
+   "method_source_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+   "official_only": true
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+name: line-desk
+
+on:
+  push:
+    paths: ["line-desk/**", ".github/workflows/line-desk.yml"]
+  pull_request:
+    paths: ["line-desk/**", ".github/workflows/line-desk.yml"]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Deterministic rebuild of derived data
+        run: python3 line-desk/scripts/compute.py
+      - name: Deterministic rebuild of pages (must not change committed bytes)
+        run: python3 line-desk/scripts/build_site.py --check
+      - name: line-desk verifier (blank policy, per-row sources, recomputed correlations)
+        run: python3 line-desk/scripts/verify.py
+      - name: Root site checks (titles, links, https)
+        run: python3 tests/check_site.py
+      - name: Root link checker
+        run: python3 scripts/check_links.py

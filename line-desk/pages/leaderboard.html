@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="line-desk/scripts/build_site.py">
+<meta name="description" content="Line Desk: price snapshots, verified results, origination order, signal vs staking leaderboard, official-only correlations, replacement depth, demotion gate.">
+<title>Signal vs staking | Line Desk</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="app">
+<aside class="sidebar">
+<a class="brand" href="../index.html">LINE<b>DESK</b><small>NFL origination requirements</small></a>
+<nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/requirements.html">Requirements</a><a href="../pages/results-feed.html">Results feed</a><a href="../pages/price-snapshots.html">Price snapshots</a><a href="../pages/origination.html">Origination (side-T-ML)</a><a href="../pages/leaderboard.html" class="active" aria-current="page">Signal vs staking</a><a href="../pages/gates.html">Gates &amp; demotion</a><a href="../pages/correlations.html">Official correlations</a><a href="../pages/depth.html">Replacement depth</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Questions &amp; answers</a><a href="../pages/executive.html">Executive summary</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/repo-review.html">Repo review</a><a href="../pages/sources.html">Sources</a></nav>
+<div class="sidebar-note">As of 2026-11-14<br>Research mode &mdash; no live recommendations</div>
+</aside>
+<main id="main">
+<header class="topbar"><h1>Signal vs staking</h1><span class="date">AS OF 2026-11-14</span></header>
+
+<section class="block note">
+<h3>Signal and staking are measured and ranked separately. The signal rank uses only gate outcomes and outcome statistics (gates, BH-adjusted p, raw p, sample). Staking metrics (ROI and its interval) are reported in their own block and are NEVER an input to the signal rank, so a lucky staking run cannot mask a bad signal. Ranking staking separately is for transparency only; it earns nothing.</h3>
+<p>Signal rank rule: gates passed desc, then BH-adjusted p asc, then raw p asc, then decided n desc. Staking rank rule: ROI desc (reported only, never used for rewards or promotion).
+The committed leaderboard ranks &#x27;by gates passed, then by ROI&#x27; (data/derived/leaderboard.json). This desk separates the two blocks instead; PS-F3.</p>
+</section>
+<section class="kpis">
+<div class="kpi"><strong>7</strong><span>candidates</span><small>controls ranked separately</small></div>
+<div class="kpi"><strong>0</strong><span>qualified</span><small>10/10 gates required</small></div>
+<div class="kpi"><strong>#5</strong><span>best-staking strategy signal rank</span><small>S7_wind_under holds staking #1</small></div>
+<div class="kpi"><strong>0</strong><span>rewards payable</span><small>Rewards are a project design, not a funded pool (see Flagged). 0 rewards are payable: 0 candidates pass all gates.</small></div>
+</section>
+<section class="block"><h2>Signal board (governs promotion and rewards)</h2>
+<div class="table-wrap"><table><thead><tr><th>Signal rank</th><th>Strategy</th><th>Gates (failed)</th><th>BH-adjusted p</th><th>Raw p</th><th>Win rate</th><th>Verdict</th><th>Source</th></tr></thead><tbody><tr><td><b>#1</b></td><td>Divisional home underdog<br><small>S6_divisional_home_dog</small></td><td>5/10 <small>(failed: G2, G4, G5, G8, G9)</small></td><td>0.985</td><td>0.796</td><td>51.5% (n=134)</td><td><span class="badge bad">REJECTED</span></td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">gate output (repo)</a></tr><tr><td><b>#2</b></td><td>Team coming off a bye (13+ days rest) vs a normal-rest opponent<br><small>S5_bye_week_team</small></td><td>5/10 <small>(failed: G2, G4, G5, G8, G9)</small></td><td>1.000</td><td>1.000</td><td>49.4% (n=85)</td><td><span class="badge bad">REJECTED</span></td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">gate output (repo)</a></tr><tr><td><b>#3</b></td><td>Model spread edge &gt;= 3.0 pts<br><small>S2_model_edge_3</small></td><td>4/10 <small>(failed: G2, G4, G5, G6, G8, G9)</small></td><td>0.985</td><td>0.451</td><td>48.0% (n=396)</td><td><span class="badge bad">REJECTED</span></td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">gate output (repo)</a></tr><tr><td><b>#4</b></td><td>Rest advantage &gt;= 3 days<br><small>S4_rest_advantage</small></td><td>4/10 <small>(failed: G2, G4, G5, G6, G8, G9)</small></td><td>0.985</td><td>0.525</td><td>52.5% (n=200)</td><td><span class="badge bad">REJECTED</span></td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">gate output (repo)</a></tr><tr><td><b>#5</b></td><td>Under when wind &gt;= 15 mph outdoors<br><small>S7_wind_under</small></td><td>4/10 <small>(failed: G2, G4, G5, G6, G8, G9)</small></td><td>0.985</td><td>0.766</td><td>53.3% (n=45)</td><td><span class="badge bad">REJECTED</span></td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">gate output (repo)</a></tr><tr><td><b>#6</b></td><td>Model spread edge &gt;= 2.0 pts<br><small>S1_model_edge_2</small></td><td>4/10 <small>(failed: G2, G4, G5, G6, G8, G9)</small></td><td>0.985</td><td>0.865</td><td>49.5% (n=557)</td><td><span class="badge bad">REJECTED</span></td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">gate output (repo)</a></tr><tr><td><b>#7</b></td><td>Model total edge &gt;= 3.0 pts<br><small>S3_model_total_edge</small></td><td>4/10 <small>(failed: G2, G4, G5, G6, G8, G9)</small></td><td>0.985</td><td>0.875</td><td>50.5% (n=366)</td><td><span class="badge bad">REJECTED</span></td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">gate output (repo)</a></tr></tbody></table></div>
+</section>
+<section class="block"><h2>Staking block (reported only &mdash; never ranked into signal)</h2>
+<div class="table-wrap"><table><caption>Staking order is shown for transparency only. It never affects promotion, rewards or the signal rank.</caption><thead><tr><th>Staking rank</th><th>Strategy</th><th>ROI</th><th>95% ROI CI</th><th>Bets</th><th>Signal rank</th><th>Rank gap</th><th>Source</th></tr></thead><tbody><tr><td><b>#3</b></td><td>Divisional home underdog</td><td>-1.21%</td><td>[-16.8%, +14.6%]</td><td>137</td><td>#1</td><td>+2</td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">ROI from committed backtest</a></tr><tr><td><b>#6</b></td><td>Team coming off a bye (13+ days rest) vs a normal-rest opponent</td><td>-5.87%</td><td>[-26.3%, +14.2%]</td><td>86</td><td>#2</td><td>+4</td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">ROI from committed backtest</a></tr><tr><td><b>#7</b></td><td>Model spread edge &gt;= 3.0 pts</td><td>-8.19%</td><td>[-17.2%, +1.1%]</td><td>409</td><td>#3</td><td>+4</td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">ROI from committed backtest</a></tr><tr><td><b>#2</b></td><td>Rest advantage &gt;= 3 days</td><td>+0.09%</td><td>[-12.8%, +12.7%]</td><td>204</td><td>#4</td><td>-2</td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">ROI from committed backtest</a></tr><tr><td><b>#1</b></td><td>Under when wind &gt;= 15 mph outdoors</td><td>+1.51%</td><td>[-25.8%, +28.5%]</td><td>46</td><td>#5</td><td>-4</td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">ROI from committed backtest</a></tr><tr><td><b>#5</b></td><td>Model spread edge &gt;= 2.0 pts</td><td>-5.28%</td><td>[-13.0%, +2.6%]</td><td>572</td><td>#6</td><td>-1</td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">ROI from committed backtest</a></tr><tr><td><b>#4</b></td><td>Model total edge &gt;= 3.0 pts</td><td>-3.53%</td><td>[-12.9%, +6.3%]</td><td>370</td><td>#7</td><td>-3</td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">ROI from committed backtest</a></tr></tbody></table></div>
+</section>
+<section class="block"><h2>Controls (vig baselines)</h2>
+<div class="table-wrap"><table><thead><tr><th>Control</th><th>ROI</th><th>95% ROI CI</th><th>Decided</th><th>Note</th><th>Source</th></tr></thead><tbody><tr><td>Control - back every home team</td><td>-5.19%</td><td>[-11.0%, +0.9%]</td><td>911</td><td>control (vig baseline) - excluded from candidate ranks</td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">control (repo)</a></tr><tr><td>Control - under every game</td><td>-5.95%</td><td>[-12.0%, +0.2%]</td><td>931</td><td>control (vig baseline) - excluded from candidate ranks</td><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener">control (repo)</a></tr></tbody></table></div>
+</section>
+<section class="block note"><h3>Demonstration</h3>
+<p>The strategy with the best staking rank does not hold the best signal rank; under this desk&#x27;s rule only the signal rank governs promotion and rewards. Best staking: <b>S7_wind_under</b> (ROI +1.51%, staking #1, signal #5).
+Best signal: <b>S6_divisional_home_dog</b> (5/10 gates, signal #1, staking #3).</p></section>
+
+<footer>Line Desk &mdash; research and measurement, not betting advice. Values that cannot be confirmed from an official source are left blank and flagged.</footer>
+</main>
+</div>
+</body>
+</html>

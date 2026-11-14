@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="line-desk/scripts/build_site.py">
+<meta name="description" content="Line Desk: price snapshots, verified results, origination order, signal vs staking leaderboard, official-only correlations, replacement depth, demotion gate.">
+<title>Overview | Line Desk</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="app">
+<aside class="sidebar">
+<a class="brand" href="index.html">LINE<b>DESK</b><small>NFL origination requirements</small></a>
+<nav aria-label="Main navigation"><a href="index.html" class="active" aria-current="page">Overview</a><a href="pages/requirements.html">Requirements</a><a href="pages/results-feed.html">Results feed</a><a href="pages/price-snapshots.html">Price snapshots</a><a href="pages/origination.html">Origination (side-T-ML)</a><a href="pages/leaderboard.html">Signal vs staking</a><a href="pages/gates.html">Gates &amp; demotion</a><a href="pages/correlations.html">Official correlations</a><a href="pages/depth.html">Replacement depth</a><a href="pages/suggestions.html">Suggestions</a><a href="pages/questions.html">Questions &amp; answers</a><a href="pages/executive.html">Executive summary</a><a href="pages/flagged.html">Flagged for review</a><a href="pages/repo-review.html">Repo review</a><a href="pages/sources.html">Sources</a></nav>
+<div class="sidebar-note">As of 2026-11-14<br>Research mode &mdash; no live recommendations</div>
+</aside>
+<main id="main">
+<header class="topbar"><h1>Overview</h1><span class="date">AS OF 2026-11-14</span></header>
+
+<section class="kpis"><div class="kpi"><strong>44</strong><span>verified results</span><small>NFL.com finals, weeks 7-10 Thu</small></div><div class="kpi"><strong>8</strong><span>official correlations</span><small>n = 32 / 32 / 64, CI each</small></div><div class="kpi"><strong>0/45</strong><span>market prices captured</span><small>no official price source</small></div><div class="kpi"><strong>0/7</strong><span>strategies qualified</span><small>10/10 gates required</small></div><div class="kpi"><strong>0/11</strong><span>depth tiers sourced</span><small>official depth chart 404s</small></div><div class="kpi"><strong>10/19</strong><span>requirements built</span><small>5 partial, 4 other</small></div></section>
+<section class="block">
+<h2>What this desk adds</h2>
+<div class="cards"><a class="card" href="pages/requirements.html"><h3>Requirements</h3><p>Every brief requirement traced to status and evidence.</p></a><a class="card" href="pages/results-feed.html"><h3>Verified results feed</h3><p>44 official finals with per-row source links.</p></a><a class="card" href="pages/price-snapshots.html"><h3>Price snapshots</h3><p>Open/close store coverage for every originated market.</p></a><a class="card" href="pages/origination.html"><h3>Origination order</h3><p>Side first, then total, then moneyline &mdash; fair / market / difference columns.</p></a><a class="card" href="pages/leaderboard.html"><h3>Signal vs staking</h3><p>Two ranks: signal governs, staking is reported only.</p></a><a class="card" href="pages/gates.html"><h3>Gates &amp; demotion</h3><p>Promotion checks and the live&rarr;paper demotion gate, dry-run on real results.</p></a><a class="card" href="pages/correlations.html"><h3>Official correlations</h3><p>8 coefficients from NFL.com numbers only, each with n.</p></a><a class="card" href="pages/depth.html"><h3>Replacement depth</h3><p>Depth-of-replacement store; string tiers blank until an official source exists.</p></a><a class="card" href="pages/suggestions.html"><h3>Suggestions</h3><p>12 proposals for review &mdash; nothing implemented without a decision.</p></a><a class="card" href="pages/questions.html"><h3>Questions &amp; answers</h3><p>What we have, what is missing, how to discover it.</p></a><a class="card" href="pages/executive.html"><h3>Executive summary</h3><p>The one-page version of everything below.</p></a><a class="card" href="pages/flagged.html"><h3>Flagged for review</h3><p>16 irregularities, each with a source.</p></a><a class="card" href="pages/repo-review.html"><h3>Repo review</h3><p>Line-by-line review of the repository and its checks.</p></a><a class="card" href="pages/sources.html"><h3>Sources</h3><p>Every source opened first-hand on 2026-11-14.</p></a></div>
+</section>
+<section class="block note">
+<h3>Honest state of play</h3>
+<p>The verified results feed and the official-only correlation set are <b>live and sourced</b>.
+The price-snapshot store exists as a contract with <b>0 market captures</b> because no official
+price source exists (the NFL's official betting feed goes to operators via an exclusive
+distributor). Because prices are absent, closing-line value cannot be measured, no strategy can
+be promoted to live, and the demotion gate has no subject &mdash; it is defined, dry-run and
+waiting. 7 of 7 candidates stay PAPER.
+Every blocked value is blank and listed on <a href="pages/flagged.html">Flagged for review</a>.</p>
+</section>
+
+<footer>Line Desk &mdash; research and measurement, not betting advice. Values that cannot be confirmed from an official source are left blank and flagged.</footer>
+</main>
+</div>
+</body>
+</html>
