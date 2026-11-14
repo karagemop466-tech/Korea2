@@ -17,6 +17,7 @@ import strategies      # noqa: E402
 import correlations    # noqa: E402
 import props           # noqa: E402
 import originate       # noqa: E402
+import pricesnapshots  # noqa: E402
 import verification     # noqa: E402
 import build_site      # noqa: E402
 
@@ -26,6 +27,7 @@ STEPS = [
     ("correlation study", correlations.main),
     ("player props", props.main),
     ("line origination", originate.main),
+    ("price-snapshot store (open / close)", pricesnapshots.main),
     ("official verification", verification.main),
     ("render site", build_site.main),
 ]

@@ -716,12 +716,14 @@ def page_leaderboard() -> str:
         return W.layout("Leaderboard", "pages/leaderboard.html", build_notice(["leaderboard.json"]))
     rows = []
     for e in lb.get("entries", []):
+        # Signal = gate / model-skill evidence (gates passed, verdict). Staking = ROI / bankroll outcome.
+        # A lucky staking run cannot mask a bad signal: reward requires 10/10 gates.
         rows.append([str(e["rank"]), esc(e["name"]), esc(e["family"]), esc(e["gates_passed"]),
+                     badge("bad" if e["verdict"] != "APPROVED" else "ok", e["verdict"]),
                      str(e.get("decided") or e.get("n_bets") or 0),
                      pct(e.get("roi"), 1, sign=True) if e.get("roi") is not None else '<span class="na">n/a</span>',
                      f"[{pct((e.get('roi_ci') or [None, None])[0])}, {pct((e.get('roi_ci') or [None, None])[1])}]",
-                     num(e.get("bh_adjusted_p"), 3), badge("bad" if e["verdict"] != "APPROVED" else "ok", e["verdict"]),
-                     src("nflverse-data", "Gate output")])
+                     num(e.get("bh_adjusted_p"), 3), src("nflverse-data", "Gate output")])
     reward_rows = [[esc(r["tier"]), esc(r["requirement"]), esc(r["reward"]),
                     src("kelly-1956", "Staking logic")] for r in lb.get("reward_schedule", [])]
     body = (f'''<div class="hero compact"><div class="eyebrow">LEADERBOARD</div>
@@ -739,14 +741,15 @@ and therefore worth refining first.</div><a href="pages/flagged.html">Flags &rar
 
 '''
         + section("Standings", table(
-    ["#", "Strategy", "Family", "Gates", "Settled bets", "ROI", "95% ROI CI", "BH-adjusted p", "Verdict", "Source"], rows,
-    caption="Control strategies (back every home team, under every game) are included to show what the vig costs."))
+    ["#", "Strategy", "Family", "Signal: gates passed", "Signal verdict", "Staking: settled bets", "Staking ROI", "95% ROI CI", "BH-adjusted p", "Source"], rows,
+    caption="Signal (gate/model evidence) is shown separately from staking (ROI/bankroll outcome). A lucky staking run cannot mask a bad signal: reward requires 10/10 gates. Control strategies (back every home team, under every game) are included to show what the vig costs."))
+        + section("Signal vs staking", f'''<p class=\"lede\"><strong>Signal</strong> is the strategy's evidence edge: whether it clears all ten validation gates (data integrity, out-of-sample holdout, significance vs break-even, sample size, CLV, multiple-comparison control, correlation screen, execution, and the G10 demotion trigger). <strong>Staking</strong> is what the sizing actually earns or loses (ROI, bankroll drawdown). The leaderboard is ranked by gates first, then by ROI, and only a 10/10 gate score is eligible for capital &mdash; so a positive ROI from luck alone is never rewarded.</p>''')
         + section("Reward schedule", table(["Tier", "Requirement", "Reward", "Staking basis"], reward_rows,
     caption="Rewards are a project design, not a funded prize pool - see Flagged for review."))
         + section("How the ranking is computed", '''<ol class="steps">
 <li>Every registered strategy is settled on the same out-of-sample window.</li>
-<li>Each is scored against the ten gates, with the binomial p-value corrected for the number of tests.</li>
-<li>Survivors are ranked by gates passed, then by ROI; ties break on sample size.</li>
+<li>Each is scored against the ten gates (signal). G10 demotes any live strategy back to paper if a monitoring trigger breaches.</li>
+<li>Survivors are ranked by gates passed, then by ROI (staking); ties break on sample size.</li>
 <li>Only a 10/10 score is eligible for capital. Anything less stays in the research record.</li>
 </ol>'''))
     return W.layout("Leaderboard", "pages/leaderboard.html", body,
