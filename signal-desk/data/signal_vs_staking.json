@@ -78,114 +78,6 @@
    "source_class": "third-party"
   },
   {
-   "id": "S7_wind_under",
-   "name": "Under when wind >= 15 mph outdoors",
-   "family": "single bet (total)",
-   "signal": {
-    "n": 46,
-    "win_rate": 0.5333,
-    "p_value": 0.765992,
-    "bh_adjusted_p": 0.984847,
-    "deflated_sharpe_p": 0.899929,
-    "verdict": "not distinguishable from zero",
-    "passes_signal_test": false
-   },
-   "staking": {
-    "roi": 0.0151,
-    "roi_ci": [
-     -0.2576,
-     0.2853
-    ],
-    "reward": "none - gate failure",
-    "staking_verdict": "profit could be staking",
-    "lucky_run": true
-   },
-   "gates_passed": "4/10",
-   "failed_gates": [
-    "G2",
-    "G4",
-    "G5",
-    "G6",
-    "G8",
-    "G9"
-   ],
-   "booked_verdict": "REJECTED",
-   "source": "data/derived/leaderboard.json",
-   "source_class": "third-party"
-  },
-  {
-   "id": "S4_rest_advantage",
-   "name": "Rest advantage >= 3 days",
-   "family": "single bet (situational)",
-   "signal": {
-    "n": 204,
-    "win_rate": 0.525,
-    "p_value": 0.524622,
-    "bh_adjusted_p": 0.984847,
-    "deflated_sharpe_p": 0.915114,
-    "verdict": "not distinguishable from zero",
-    "passes_signal_test": false
-   },
-   "staking": {
-    "roi": 0.0009,
-    "roi_ci": [
-     -0.1275,
-     0.1274
-    ],
-    "reward": "none - gate failure",
-    "staking_verdict": "profit could be staking",
-    "lucky_run": true
-   },
-   "gates_passed": "4/10",
-   "failed_gates": [
-    "G2",
-    "G4",
-    "G5",
-    "G6",
-    "G8",
-    "G9"
-   ],
-   "booked_verdict": "REJECTED",
-   "source": "data/derived/leaderboard.json",
-   "source_class": "third-party"
-  },
-  {
-   "id": "S3_model_total_edge",
-   "name": "Model total edge >= 3.0 pts",
-   "family": "single bet (total)",
-   "signal": {
-    "n": 370,
-    "win_rate": 0.5055,
-    "p_value": 0.87542,
-    "bh_adjusted_p": 0.984847,
-    "deflated_sharpe_p": 0.981829,
-    "verdict": "not distinguishable from zero",
-    "passes_signal_test": false
-   },
-   "staking": {
-    "roi": -0.0353,
-    "roi_ci": [
-     -0.129,
-     0.0629
-    ],
-    "reward": "none - gate failure",
-    "staking_verdict": "staking shows no profit",
-    "lucky_run": false
-   },
-   "gates_passed": "4/10",
-   "failed_gates": [
-    "G2",
-    "G4",
-    "G5",
-    "G6",
-    "G8",
-    "G9"
-   ],
-   "booked_verdict": "REJECTED",
-   "source": "data/derived/leaderboard.json",
-   "source_class": "third-party"
-  },
-  {
    "id": "C1_all_home_control",
    "name": "Control - back every home team",
    "family": "control",
@@ -203,42 +95,6 @@
     "roi_ci": [
      -0.1102,
      0.0095
-    ],
-    "reward": "none - gate failure",
-    "staking_verdict": "staking shows no profit",
-    "lucky_run": false
-   },
-   "gates_passed": "4/10",
-   "failed_gates": [
-    "G2",
-    "G4",
-    "G5",
-    "G6",
-    "G8",
-    "G9"
-   ],
-   "booked_verdict": "REJECTED",
-   "source": "data/derived/leaderboard.json",
-   "source_class": "third-party"
-  },
-  {
-   "id": "S1_model_edge_2",
-   "name": "Model spread edge >= 2.0 pts",
-   "family": "single bet",
-   "signal": {
-    "n": 572,
-    "win_rate": 0.4955,
-    "p_value": 0.865434,
-    "bh_adjusted_p": 0.984847,
-    "deflated_sharpe_p": 0.99642,
-    "verdict": "not distinguishable from zero",
-    "passes_signal_test": false
-   },
-   "staking": {
-    "roi": -0.0528,
-    "roi_ci": [
-     -0.1299,
-     0.0259
     ],
     "reward": "none - gate failure",
     "staking_verdict": "staking shows no profit",
@@ -294,6 +150,42 @@
    "source_class": "third-party"
   },
   {
+   "id": "S1_model_edge_2",
+   "name": "Model spread edge >= 2.0 pts",
+   "family": "single bet",
+   "signal": {
+    "n": 572,
+    "win_rate": 0.4955,
+    "p_value": 0.865434,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.99642,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": -0.0528,
+    "roi_ci": [
+     -0.1299,
+     0.0259
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "staking shows no profit",
+    "lucky_run": false
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
    "id": "S2_model_edge_3",
    "name": "Model spread edge >= 3.0 pts",
    "family": "single bet",
@@ -315,6 +207,114 @@
     "reward": "none - gate failure",
     "staking_verdict": "staking shows no profit",
     "lucky_run": false
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "S3_model_total_edge",
+   "name": "Model total edge >= 3.0 pts",
+   "family": "single bet (total)",
+   "signal": {
+    "n": 370,
+    "win_rate": 0.5055,
+    "p_value": 0.87542,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.981829,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": -0.0353,
+    "roi_ci": [
+     -0.129,
+     0.0629
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "staking shows no profit",
+    "lucky_run": false
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "S4_rest_advantage",
+   "name": "Rest advantage >= 3 days",
+   "family": "single bet (situational)",
+   "signal": {
+    "n": 204,
+    "win_rate": 0.525,
+    "p_value": 0.524622,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.915114,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": 0.0009,
+    "roi_ci": [
+     -0.1275,
+     0.1274
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "profit could be staking",
+    "lucky_run": true
+   },
+   "gates_passed": "4/10",
+   "failed_gates": [
+    "G2",
+    "G4",
+    "G5",
+    "G6",
+    "G8",
+    "G9"
+   ],
+   "booked_verdict": "REJECTED",
+   "source": "data/derived/leaderboard.json",
+   "source_class": "third-party"
+  },
+  {
+   "id": "S7_wind_under",
+   "name": "Under when wind >= 15 mph outdoors",
+   "family": "single bet (total)",
+   "signal": {
+    "n": 46,
+    "win_rate": 0.5333,
+    "p_value": 0.765992,
+    "bh_adjusted_p": 0.984847,
+    "deflated_sharpe_p": 0.899929,
+    "verdict": "not distinguishable from zero",
+    "passes_signal_test": false
+   },
+   "staking": {
+    "roi": 0.0151,
+    "roi_ci": [
+     -0.2576,
+     0.2853
+    ],
+    "reward": "none - gate failure",
+    "staking_verdict": "profit could be staking",
+    "lucky_run": true
    },
    "gates_passed": "4/10",
    "failed_gates": [

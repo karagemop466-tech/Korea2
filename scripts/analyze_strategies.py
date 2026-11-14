@@ -254,6 +254,17 @@ def main() -> None:
                 "units_staked": s["summary"].get("units_staked"),
             },
             "demotion_gate": s["demotion_gate"],
+            # ---- flat aliases of the group fields, kept for sibling consumers that read the
+            # pre-split shape (root pages renderer, signal-desk aggregation). They mirror the
+            # groups above; the groups are the source of truth.
+            "n_bets": s["summary"].get("n"),
+            "decided": s["summary"].get("decided"),
+            "roi": s["summary"].get("roi"),
+            "roi_ci": s["summary"].get("roi_ci"),
+            "win_rate": s["summary"].get("win_rate"),
+            "p_value": s["summary"].get("binomial_p_vs_50"),
+            "bh_adjusted_p": s["bh_adjusted_p"],
+            "deflated_sharpe_p": s["summary"].get("deflated_sharpe_p"),
             "reward": "eligible" if approved else "none - gate failure",
             "failed_gates": s["gates"]["failed"],
         })

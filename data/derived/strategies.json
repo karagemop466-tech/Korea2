@@ -1028,6 +1028,17 @@
           "status": "dormant",
           "reason": "strategy is not live; D1 applies only after promotion"
         },
+        "n_bets": 137,
+        "decided": 134,
+        "roi": -0.0121,
+        "roi_ci": [
+          -0.1677,
+          0.1465
+        ],
+        "win_rate": 0.5149,
+        "p_value": 0.795629,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.937314,
         "reward": "none - gate failure",
         "failed_gates": [
           "G2",
@@ -1076,6 +1087,17 @@
           "status": "dormant",
           "reason": "strategy is not live; D1 applies only after promotion"
         },
+        "n_bets": 86,
+        "decided": 85,
+        "roi": -0.0587,
+        "roi_ci": [
+          -0.263,
+          0.1421
+        ],
+        "win_rate": 0.4941,
+        "p_value": 1.0,
+        "bh_adjusted_p": 1.0,
+        "deflated_sharpe_p": 0.974492,
         "reward": "none - gate failure",
         "failed_gates": [
           "G2",
@@ -1124,6 +1146,17 @@
           "status": "dormant",
           "reason": "strategy is not live; D1 applies only after promotion"
         },
+        "n_bets": 936,
+        "decided": 911,
+        "roi": -0.0519,
+        "roi_ci": [
+          -0.1102,
+          0.0095
+        ],
+        "win_rate": 0.4962,
+        "p_value": 0.842442,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.998759,
         "reward": "none - gate failure",
         "failed_gates": [
           "G2",
@@ -1173,6 +1206,17 @@
           "status": "dormant",
           "reason": "strategy is not live; D1 applies only after promotion"
         },
+        "n_bets": 936,
+        "decided": 931,
+        "roi": -0.0595,
+        "roi_ci": [
+          -0.1199,
+          0.0024
+        ],
+        "win_rate": 0.4919,
+        "p_value": 0.646379,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.999491,
         "reward": "none - gate failure",
         "failed_gates": [
           "G2",
@@ -1222,6 +1266,17 @@
           "status": "dormant",
           "reason": "strategy is not live; D1 applies only after promotion"
         },
+        "n_bets": 572,
+        "decided": 557,
+        "roi": -0.0528,
+        "roi_ci": [
+          -0.1299,
+          0.0259
+        ],
+        "win_rate": 0.4955,
+        "p_value": 0.865434,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.99642,
         "reward": "none - gate failure",
         "failed_gates": [
           "G2",
@@ -1271,6 +1326,17 @@
           "status": "dormant",
           "reason": "strategy is not live; D1 applies only after promotion"
         },
+        "n_bets": 409,
+        "decided": 396,
+        "roi": -0.0819,
+        "roi_ci": [
+          -0.1717,
+          0.0114
+        ],
+        "win_rate": 0.4798,
+        "p_value": 0.451024,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.998996,
         "reward": "none - gate failure",
         "failed_gates": [
           "G2",
@@ -1320,6 +1386,17 @@
           "status": "dormant",
           "reason": "strategy is not live; D1 applies only after promotion"
         },
+        "n_bets": 370,
+        "decided": 366,
+        "roi": -0.0353,
+        "roi_ci": [
+          -0.129,
+          0.0629
+        ],
+        "win_rate": 0.5055,
+        "p_value": 0.87542,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.981829,
         "reward": "none - gate failure",
         "failed_gates": [
           "G2",
@@ -1369,6 +1446,17 @@
           "status": "dormant",
           "reason": "strategy is not live; D1 applies only after promotion"
         },
+        "n_bets": 204,
+        "decided": 200,
+        "roi": 0.0009,
+        "roi_ci": [
+          -0.1275,
+          0.1274
+        ],
+        "win_rate": 0.525,
+        "p_value": 0.524622,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.915114,
         "reward": "none - gate failure",
         "failed_gates": [
           "G2",
@@ -1418,6 +1506,17 @@
           "status": "dormant",
           "reason": "strategy is not live; D1 applies only after promotion"
         },
+        "n_bets": 46,
+        "decided": 45,
+        "roi": 0.0151,
+        "roi_ci": [
+          -0.2576,
+          0.2853
+        ],
+        "win_rate": 0.5333,
+        "p_value": 0.765992,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.899929,
         "reward": "none - gate failure",
         "failed_gates": [
           "G2",

@@ -1,6 +1,6 @@
 {
  "hubs_scanned": 17,
- "files_scanned": 158,
+ "files_scanned": 159,
  "published_numbers": [
   {
    "hub": "decision-desk",
@@ -1884,7 +1884,7 @@
   {
    "hub": "decision-hub",
    "file": "decision-hub/data/root_audit.json",
-   "stamp": "2026-11-14T20:20:41+00:00",
+   "stamp": "2026-11-14T20:35:16+00:00",
    "stamp_kind": "date",
    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/decision-hub/data/root_audit.json"
   },
@@ -2249,5 +2249,5 @@
  ],
  "method": "Each hub's own committed JSON is read; a value counts as published only when the file carries it under a recognised field name (r / pearson_r / coefficient / correlation) with a label. Values are shown exactly as stored, rounded to three decimals. A quantity is a conflict when two or more hubs publish different numbers for the same label - the board shows both and links both files. Nothing is averaged and nothing is re-derived here.",
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "d0e6adf493adc45af584b8141194f2751699d293"
+ "_generated_from_repo_commit": "44146187dd0904cb05196ca9da4ce023cc16c92c"
 }
