@@ -2306,3 +2306,17 @@ sentence until that session's rebuild; the dashboard renders the corrected JSON 
 `.gitignore`/`.venv-b6` (PR #97); `review-board/` (PR #99); `decision-arena/`, `price-store/`,
 `requirements-audit/` (sessions 52a496d0 / f9e0aea9 / 7d42ec5b).
 
+<<<<<<< HEAD
+=======
+**2026-11-14 — REM-8 amendment (recorded before the edit):** CI on this PR failed in the
+`decision-hub` workflow's "reproduce its own committed output" step. Verified first-hand that this
+is **pre-existing on main**: every `decision-hub` run since session 193e54ca's IR-2 FL-DH-01
+remediation (~20 h ago, runs 43526096046/43527309739/43529717334/43530591620) is `failure` — the
+published `data/derived/luck.json` was corrected to the one-observation-per-game ATS method
+(n=6,892, wins=3,371, rate=0.4891), but `decision-hub/scripts/audit_root.py` still recomputes the
+old pooled identity (x ⊕ −x) and demands published == pooled. No active session claims
+`decision-hub/scripts/` (193e54ca's PR #97 file list no longer includes it). This session takes the
+fix under its remediation scope: align the audit's published-method expectations with the published
+per-game method (the pooled identity stays published as `ats_pooled_identity` and as history in the
+FL-DH-01 record), regenerate `root_audit.json` + pages with the hub's own generators, and re-verify.
+>>>>>>> d81f761 (coord(71d26167): REM-8 amendment - decision-hub audit misalignment pre-existing on main; claiming the fix)
