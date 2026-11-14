@@ -1,8 +1,8 @@
 {
- "generated_utc": "2026-11-14T20:45:07Z",
+ "generated_utc": "2026-11-14T20:50:13Z",
  "question": "Who replaced the starter, and how deep was the replacement? Tracked for offence and defence, with the official injury report joined to the measured depth.",
  "inputs_present": {
-  "snap_counts": false,
+  "snap_counts": true,
   "depth_charts": false,
   "official_report": true
  },
@@ -24,6 +24,7 @@
     "n_replacements": 375,
     "mean_replacement_depth": 2.26,
     "share_by_second_string_or_deeper": 1.0,
+    "n_deeper_than_first": 375,
     "bands": {
      "2nd string": 305,
      "3rd string": 50,
@@ -38,6 +39,7 @@
     "n_replacements": 171,
     "mean_replacement_depth": 2.29,
     "share_by_second_string_or_deeper": 1.0,
+    "n_deeper_than_first": 171,
     "bands": {
      "2nd string": 130,
      "3rd string": 34,
@@ -571,11 +573,7 @@
   ],
   "definition": "A replacement event is a week where the top snap-share player at a team-position differs from the previous week's. The replacement's depth is his OWN rank at that position in the previous week, so a 4th-string fill-in is recorded as such.",
   "source": "SRC-NFLVERSE-SNAP",
-  "caveat": "Snap share is a third-party redistribution of official participation data. It measures who PLAYED, not who was listed first on a chart; that is a strength for this question and a limitation for any 'depth chart' claim.",
-  "carried_forward": {
-   "reason": "snap counts are absent in this environment; the measurement from the last build that had them is retained unchanged",
-   "note": "Re-run .github/workflows/decision-arena.yml to refresh it."
-  }
+  "caveat": "Snap share is a third-party redistribution of official participation data. It measures who PLAYED, not who was listed first on a chart; that is a strength for this question and a limitation for any 'depth chart' claim."
  },
  "official_injury_report": {
   "status": "JOINED",
@@ -1633,10 +1631,10 @@
  "readiness": {
   "can_answer_who_is_out": true,
   "can_answer_which_position_is_thin": true,
-  "can_answer_how_deep_is_the_replacement": false,
+  "can_answer_how_deep_is_the_replacement": true,
   "can_answer_from_an_OFFICIAL_depth_rank": false,
   "blocking_gap": "no official depth-chart publication",
-  "source_for_depth": null,
+  "source_for_depth": "SRC-NFLVERSE-SNAP",
   "third_party_depth_source": "SRC-NFLVERSE-DEPTH"
  }
 }

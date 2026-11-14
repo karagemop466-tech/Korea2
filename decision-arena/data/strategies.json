@@ -1,8 +1,8 @@
 {
- "generated_utc": "2026-11-14T20:45:04Z",
+ "generated_utc": "2026-11-14T20:50:10Z",
  "inputs": {
   "games_path": "decision-arena/data/inputs/games.csv.gz",
-  "games_sha256": "35f9e0eefb3d2eac7b457c5d7f21b3e9cfc559f96606e4ab543a1ed0e658d423",
+  "games_sha256": "641d103577a1a40f7c5f42a33e2b85e3fb9bca2ee1f8fa5c1a2cde1193576fc7",
   "source": "SRC-NFLVERSE-SCHED"
  },
  "spec_sha256": "5738b8ee65ce87920306ab24a27bc673fd581cdcbc7e784806b65895c16b259e",
@@ -314,7 +314,7 @@
      0.1642
     ],
     "profit_units": 30.714,
-    "deflated_sharpe_p": 0.5362552955405457,
+    "deflated_sharpe_p": 0.5362552955405462,
     "by_season": {
      "2006": {
       "n": 20,
@@ -688,7 +688,7 @@
      0.065
     ],
     "profit_units": 6.242,
-    "deflated_sharpe_p": 0.9232488185405718,
+    "deflated_sharpe_p": 0.923248818540572,
     "by_season": {
      "2006": {
       "n": 40,
@@ -878,7 +878,7 @@
      0.0303
     ],
     "profit_units": 7.223,
-    "deflated_sharpe_p": 0.9342076524070293,
+    "deflated_sharpe_p": 0.934207652407028,
     "by_season": {
      "2006": {
       "n": 167,

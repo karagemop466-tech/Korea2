@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:45:07Z",
+ "generated_utc": "2026-11-14T20:50:13Z",
  "checks": [
   {
    "name": "Every published table row carries a source",
@@ -180,16 +180,23 @@
    "bytes": 16994
   },
   {
+   "name": "fetched snap_counts.csv.gz",
+   "path": "decision-arena/data/inputs/snap_counts.csv.gz",
+   "sha256": "59d218f9b839bfd1f24c6f940f21e89b97fab7909f63ac1aeda6f0ed84713b8e",
+   "rows": 0,
+   "source": "SRC-NFLVERSE-SNAP"
+  },
+  {
    "name": "fetched injuries.csv.gz",
    "path": "decision-arena/data/inputs/injuries.csv.gz",
-   "sha256": "12f61a8b3fd97d87afa376136f4a140d6c540fb0d6a5331fc2bcb60d26dabe90",
+   "sha256": "dc5dcf17a0aa9ba12d36e226adee50bee2dc83ea324477568b74db569f96b041",
    "rows": 0,
    "source": "SRC-NFLVERSE-SCHED"
   },
   {
    "name": "fetched games.csv.gz",
    "path": "decision-arena/data/inputs/games.csv.gz",
-   "sha256": "35f9e0eefb3d2eac7b457c5d7f21b3e9cfc559f96606e4ab543a1ed0e658d423",
+   "sha256": "641d103577a1a40f7c5f42a33e2b85e3fb9bca2ee1f8fa5c1a2cde1193576fc7",
    "rows": 0,
    "source": "SRC-NFLVERSE-SCHED"
   }

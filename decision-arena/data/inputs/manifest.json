@@ -1,23 +1,15 @@
 {
- "generated_utc": "2026-11-14T20:35:46Z",
+ "generated_utc": "2026-11-14T20:49:34Z",
  "season": "2026",
  "publisher": "nflverse-data releases (third party; not the league)",
  "note": "Pruned to the columns the build reads. Raw downloads are never committed. Each sha256 is of the pruned file as committed, and raw_sha256 is of the unpruned download, so either can be re-checked.",
  "files": [
   {
-   "name": "depth_charts.csv.gz",
-   "url": "https://github.com/nflverse/nflverse-data/releases/download/depth_charts/depth_charts_2026.csv.gz",
-   "rows": 789449,
-   "raw_sha256": "413b74a6a81ec8c4dc8f074b9a1eebc9073ead2c473719285c2faf1ae383dd55",
-   "sha256": "b7255be47a0b160c39dfec0c76573e1153fe1f8d784a0038f1ad1a4b390ff54a",
-   "bytes": 11415383
-  },
-  {
    "name": "snap_counts.csv.gz",
    "url": "https://github.com/nflverse/nflverse-data/releases/download/snap_counts/snap_counts_2026.csv.gz",
    "rows": 12785,
    "raw_sha256": "7dd345c4e0a55ce8441a59d0e83420492f18bc4887e894f00fab6d0290c31208",
-   "sha256": "bafba52352606945fde0250b3d15b4030adfc7be26e5076e9ac7e9e0a6835645",
+   "sha256": "59d218f9b839bfd1f24c6f940f21e89b97fab7909f63ac1aeda6f0ed84713b8e",
    "bytes": 197594
   },
   {
@@ -25,7 +17,7 @@
    "url": "https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_2026.csv.gz",
    "rows": 3166,
    "raw_sha256": "6e56f7302777a9cf2933045ddbe54ff8cbdbfeb007feac0cb1d65adb2528869a",
-   "sha256": "12f61a8b3fd97d87afa376136f4a140d6c540fb0d6a5331fc2bcb60d26dabe90",
+   "sha256": "dc5dcf17a0aa9ba12d36e226adee50bee2dc83ea324477568b74db569f96b041",
    "bytes": 32071,
    "columns_absent_upstream": [
     "date_modified"
@@ -36,7 +28,7 @@
    "url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
    "rows": 7548,
    "raw_sha256": "9db91d15266f2b25544aac41ee58b17397f68c5caad6900fd4fa17de3c0b6d6a",
-   "sha256": "35f9e0eefb3d2eac7b457c5d7f21b3e9cfc559f96606e4ab543a1ed0e658d423",
+   "sha256": "641d103577a1a40f7c5f42a33e2b85e3fb9bca2ee1f8fa5c1a2cde1193576fc7",
    "bytes": 185359
   }
  ]

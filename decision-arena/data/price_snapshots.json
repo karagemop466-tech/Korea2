@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:44:28Z",
+ "generated_utc": "2026-11-14T20:49:35Z",
  "schema": {
   "snapshot": "one observation of one market on one game, with its sampling basis and quality grade",
   "quality_grades": {
@@ -11,7 +11,7 @@
   "invariant": "A market may never have a closing snapshot without an opening snapshot of equal or better quality; where only one exists the row is published as unattributed and counted as missing_open or missing_close."
  },
  "input": {
-  "schedules_sha256": "35f9e0eefb3d2eac7b457c5d7f21b3e9cfc559f96606e4ab543a1ed0e658d423",
+  "schedules_sha256": "641d103577a1a40f7c5f42a33e2b85e3fb9bca2ee1f8fa5c1a2cde1193576fc7",
   "source": "SRC-NFLVERSE-SCHED",
   "initial_lines_present": true,
   "initial_lines_source": "SRC-NFLVERSE-NFLDATA",
