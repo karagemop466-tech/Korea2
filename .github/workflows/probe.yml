@@ -1,6 +1,5 @@
 name: probe
 on:
-  workflow_dispatch:
   push:
     branches: ['arena/52a496d0-korea2']
     paths: ['decision-arena/PROBE']
@@ -13,33 +12,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Reproduce the build and capture the error
+      - name: Run run_all exactly as the workflow does
         run: |
           set +e
-          python decision-arena/scripts/fetch_inputs.py --season 2026 > /tmp/fetch.log 2>&1
-          python decision-arena/scripts/build_market.py > /tmp/b1.log 2>&1; R1=$?
-          python decision-arena/scripts/build_strategies.py > /tmp/b2.log 2>&1; R2=$?
-          python decision-arena/scripts/build_correlation.py > /tmp/b3.log 2>&1; R3=$?
-          python decision-arena/scripts/build_depth.py > /tmp/b4.log 2>&1; R4=$?
+          python decision-arena/scripts/fetch_inputs.py --season 2026 > /tmp/f.log 2>&1
+          python decision-arena/scripts/run_all.py > /tmp/r.log 2>&1; RC=$?
           {
-            echo "rc market=$R1 strategies=$R2 corr=$R3 depth=$R4"
-            echo "=== fetch ==="; tail -20 /tmp/fetch.log
-            echo "=== market ==="; tail -40 /tmp/b1.log
-            echo "=== strategies ==="; tail -40 /tmp/b2.log
-            echo "=== corr ==="; tail -20 /tmp/b3.log
-            echo "=== depth ==="; tail -20 /tmp/b4.log
-            echo "=== inputs ==="; ls -la decision-arena/data/inputs/ 2>/dev/null
-            echo "=== manifest ==="; cat decision-arena/data/inputs/manifest.json 2>/dev/null
+            echo "run_all rc=$RC"
+            echo "=== last 60 lines ==="
+            tail -60 /tmp/r.log
           } > decision-arena/PROBE_RESULT.txt
-      - name: Commit the probe output
+      - name: Commit
         run: |
-          set -x
-          git config user.name "probe-bot"; git config user.email "probe@users.noreply.github.com"
-          git checkout -B probe-out
+          git config user.name "probe-bot"; git config user.email "p@users.noreply.github.com"
           git add -f decision-arena/PROBE_RESULT.txt
-          git commit -m "probe: capture the runner-side build error" || true
-          for i in 1 2 3; do
-            git pull --rebase origin "${{ github.ref_name }}" || true
-            git push origin "HEAD:${{ github.ref_name }}" && break
-            sleep 5
-          done
+          git commit -m "probe: run_all on the runner" || true
+          for i in 1 2 3; do git pull --rebase origin "${{ github.ref_name }}" || true; git push origin "HEAD:${{ github.ref_name }}" && break; sleep 4; done
