@@ -6,7 +6,8 @@ Settlement convention (documented in docs/METHODOLOGY.md):
   * A total bet wins if (game total - line) > 0 for over, < 0 for under, pushes if == 0.
   * Pushes refund the stake and are excluded from the win-rate denominator.
   * Profit is expressed per 1.00 unit staked at the price actually quoted for that game in the
-    source feed (American odds -> decimal), with -110 used only when the feed has no price.
+    source feed (American odds -> decimal). A bet whose price is missing from the feed is dropped
+    and counted by the caller rather than imputed at a default price.
 """
 from __future__ import annotations
 

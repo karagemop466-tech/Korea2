@@ -126,7 +126,30 @@ a push and the stake is returned), and pushes are removed from the win-rate deno
 | `verification/` | independent recomputation plus the transcribed NFL.com standings used to reconcile them |
 | `docs/` | executive summary, methodology, requirements matrix |
 | `pipeline/`, `origination/` | session `3f5af27c`: the origination/strategy/gating pipeline and its 13-page site (`origination/index.html`) |
-| sibling directories | earlier parallel-session dashboards, preserved unchanged (`pages/archive.html`) |
+| sibling labs & hubs | parallel-session dashboards, each a self-contained site (listed below) |
+
+### Parallel-session labs & hubs
+
+Each of these is a self-contained static site (its own `index.html` and navigation), built by a
+parallel session and preserved unchanged. The root [archive page](pages/archive.html) links every lab.
+
+| Lab / hub | Path |
+|---|---|
+| Dashboard | [`dashboard/`](dashboard/) |
+| Decision Desk | [`decision-desk/`](decision-desk/) |
+| Decision Hub | [`decision-hub/`](decision-hub/) |
+| Lineup Lab | [`lineup-lab/`](lineup-lab/) |
+| NFL Command | [`nfl-command/`](nfl-command/) |
+| NFL Lines | [`nfl-lines/`](nfl-lines/) |
+| NFL Research | [`nfl-research/`](nfl-research/) |
+| Origination | [`origination/`](origination/) |
+| Origination Lab | [`origination-lab/`](origination-lab/) |
+| Quant Lab | [`quant-lab/`](quant-lab/) |
+| Research Desk | [`research-desk/`](research-desk/) |
+| Review Board | [`review-board/`](review-board/) |
+| Skill Lab | [`skill-lab/`](skill-lab/) |
+| Suggestions | [`suggestions/`](suggestions/) |
+| Verify Hub | [`verify-hub/`](verify-hub/) |
 
 ## Running it
 
