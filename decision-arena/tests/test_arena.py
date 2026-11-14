@@ -128,6 +128,44 @@ class TestLeakage(unittest.TestCase):
                          "train size does not equal settled games before the cutoff")
 
 
+class TestFreshFeedTolerance(unittest.TestCase):
+    """A live feed carries future rows with blank scores and blank weeks.
+
+    The CI job fetches a current feed, not the frozen extract. A blank `week` on one future row
+    aborted the entire build with ValueError before this test existed.
+    """
+
+    def _feed_with_a_future_blank_row(self):
+        games, src, sha = M.load_games()
+        patched = [dict(g) for g in games]
+        row = dict(patched[0])
+        row.update(game_id="2027_HOF_X_Y", season="2027", week="", gameday="2027-08-01",
+                   home_score="", away_score="", game_type="REG")
+        patched.append(row)
+        return patched, src, sha
+
+    def test_prices_tolerate_a_blank_week(self):
+        games, src, sha = self._feed_with_a_future_blank_row()
+        out = M.build_prices(games, sha)
+        self.assertGreater(out["n_snapshots"], 5000)
+
+    def test_results_tolerate_a_blank_week(self):
+        games, src, sha = self._feed_with_a_future_blank_row()
+        out = M.build_results(games, src, sha)
+        self.assertGreater(out["coverage"]["settled_reg_games"], 5000)
+
+    def test_origination_tolerates_a_blank_week(self):
+        games, src, sha = self._feed_with_a_future_blank_row()
+        out = M.build_origination(games)
+        self.assertIn("slate", out)
+        self.assertGreater(out["slate"]["games"], 0)
+
+    def test_features_tolerate_a_blank_week(self):
+        games, src, sha = self._feed_with_a_future_blank_row()
+        feats = B.build_features(games)
+        self.assertGreater(len(feats), 5000)
+
+
 class TestStatistics(unittest.TestCase):
     def test_norm_ppf_known_values(self):
         self.assertAlmostEqual(A.norm_ppf(0.975), 1.959964, places=4)

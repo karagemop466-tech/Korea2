@@ -65,6 +65,21 @@ def read_gz_csv(path):
         return list(csv.DictReader(fh))
 
 
+def iint(v, default=None):
+    """A tolerant int for feed columns that a fresh snapshot can leave blank.
+
+    A live nflverse schedule carries future rows whose week or score is empty; int(None) and
+    int("") would abort the whole build on a row it does not need. Returning the default keeps
+    the row out of the aggregates instead of failing the job.
+    """
+    try:
+        if v is None or v == "" or v == "NA":
+            return default
+        return int(float(v))
+    except (TypeError, ValueError):
+        return default
+
+
 def fnum(v):
     try:
         if v is None or v == "" or v == "NA":
@@ -111,8 +126,8 @@ def build_results(games, src_path, src_sha):
         total = hs + as_
         rows.append({
             "game_id": g["game_id"],
-            "season": int(g["season"]),
-            "week": int(g["week"]),
+            "season": iint(g["season"]),
+            "week": iint(g["week"]),
             "gameday": g["gameday"],
             "kickoff_et": g.get("gametime") or None,
             "away": g["away_team"], "home": g["home_team"],
@@ -211,7 +226,7 @@ def market_from_game(g):
         out.append(dict(market="moneyline", side="home", line=None, price=fnum(g["home_moneyline"])))
         out.append(dict(market="moneyline", side="away", line=None, price=fnum(g["away_moneyline"])))
     snap = {
-        "game_id": g["game_id"], "season": int(g["season"]), "week": int(g["week"]),
+        "game_id": g["game_id"], "season": iint(g["season"]), "week": iint(g["week"]),
         "gameday": g["gameday"], "kickoff_et": kick or None,
         "captured_utc": None,
         "captured_basis": "unattributed",
@@ -225,9 +240,11 @@ def market_from_game(g):
 
 
 def build_prices(games, src_sha):
-    snaps = [market_from_game(g) for g in games if g.get("game_type") == "REG"]
+    snaps = [market_from_game(g) for g in games
+             if g.get("game_type") == "REG" and iint(g.get("week")) is not None]
     snaps = [s for s in snaps if s["markets"]]
     by_season = {}
+    snaps = [sn for sn in snaps if sn["season"] is not None]
     for s in snaps:
         d = by_season.setdefault(s["season"], {"games": 0, "spread": 0, "total": 0, "moneyline": 0,
                                                "with_price": 0})
@@ -259,7 +276,7 @@ def build_prices(games, src_sha):
         over = {}
         for r in ini:
             gid = r["about"]
-            season = int(r["season"])
+            season = iint(r["season"])
             if r["type"] == "SPREAD":
                 # nfldata convention: the listed favourite carries the negative number. The games
                 # feed's convention (positive = home favoured) is the negation for the home side.
@@ -271,7 +288,10 @@ def build_prices(games, src_sha):
         for g in games:
             if g.get("game_type") != "REG":
                 continue
-            alt = f"{g['season']}_{int(g['week']):02d}_{g['away_team']}_{g['home_team']}"
+            wk = iint(g.get("week"))
+            if wk is None:
+                continue
+            alt = f"{iint(g['season'])}_{wk:02d}_{g['away_team']}_{g['home_team']}"
             gmap[alt] = g
         for season in sorted(home_spread):
             srows = home_spread[season]
@@ -446,15 +466,16 @@ def build_origination(games):
     published (SRC-NFL-SCHED-9), the same slate is scored against those verified results, which
     makes the model's out-of-sample error a measured number rather than a promise.
     """
-    history = [g for g in games if g.get("game_type") == "REG" and fnum(g.get("home_score")) is not None]
+    history = [g for g in games if g.get("game_type") == "REG"
+               and fnum(g.get("home_score")) is not None and g.get("gameday")]
     history.sort(key=lambda g: (g["gameday"], g["game_id"]))
-    season = max(int(g["season"]) for g in games)
+    season = max(iint(g["season"]) for g in games)
 
     by_week = {}
     for g in games:
-        if g.get("game_type") != "REG" or int(g["season"]) != season:
+        if g.get("game_type") != "REG" or iint(g["season"]) != season:
             continue
-        by_week.setdefault(int(g["week"]), []).append(g)
+        by_week.setdefault(iint(g["week"]), []).append(g)
     pending_weeks = [w for w, gs in sorted(by_week.items())
                      if gs and all(fnum(x.get("home_score")) is None for x in gs)]
     target_week = pending_weeks[0] if pending_weeks else None
@@ -464,7 +485,7 @@ def build_origination(games):
     train = [g for g in history if g["gameday"] < cutoff]
 
     ratings, hfa, mu = fit_ratings(train)
-    recent = [g for g in train if int(g["season"]) >= season - 2]
+    recent = [g for g in train if iint(g["season"]) >= season - 2]
     resid = []
     for g in recent:
         pred = rating_margin(g["home_team"], g["away_team"], ratings, mu, hfa,
@@ -591,8 +612,8 @@ def build_origination(games):
 
     # ---- walk-forward, honest MAE (not RMSE)
     wf = []
-    for seasonal in sorted({int(g["season"]) for g in history if int(g["season"]) >= season - 3}):
-        prev = [g for g in history if int(g["season"]) < seasonal]
+    for seasonal in sorted({iint(g["season"]) for g in history if iint(g["season"]) >= season - 3}):
+        prev = [g for g in history if iint(g["season"]) < seasonal]
         if len(prev) < 200:
             continue
         r2, h2, m2 = fit_ratings(prev)
@@ -600,7 +621,7 @@ def build_origination(games):
         n = 0
         abs_m = abs_k = 0.0
         right = 0
-        for g in [x for x in history if int(x["season"]) == seasonal]:
+        for g in [x for x in history if iint(x["season"]) == seasonal]:
             mk = fnum(g.get("spread_line"))
             if mk is None:
                 continue

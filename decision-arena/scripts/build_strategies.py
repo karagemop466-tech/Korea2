@@ -45,6 +45,11 @@ SRC_G9 = "SRC-NFL-SCHED-9"
 OFFICIAL_2026_W9 = {(a, h): (as_, hs) for a, as_, h, hs in M.NFL_WEEK9}
 
 
+def iint(v, default=None):
+    """Tolerant int for feed columns a live snapshot can leave blank (see build_market.iint)."""
+    return M.iint(v, default)
+
+
 def load_games():
     games, src, sha = M.load_games()
     return games, src, sha
@@ -68,7 +73,7 @@ def build_features(games):
         hs, as_ = M.fnum(g.get("home_score")), M.fnum(g.get("away_score"))
         h, a = g["home_team"], g["away_team"]
         feats.append({
-            "game_id": g["game_id"], "season": int(g["season"]), "week": int(g["week"]),
+            "game_id": g["game_id"], "season": iint(g["season"]), "week": iint(g["week"]),
             "gameday": g["gameday"], "home": h, "away": a,
             "spread_line": M.fnum(g.get("spread_line")),
             "total_line": M.fnum(g.get("total_line")),
@@ -96,9 +101,9 @@ def build_features(games):
         hist.setdefault(a, []).append({"margin_for": as_ - hs, "pts": hs + as_})
         last_played[h] = _days(g["gameday"])
         last_played[a] = _days(g["gameday"])
-        key = (int(g["season"]), h)
+        key = (iint(g["season"]), h)
         season_wins[key] = season_wins.get(key, 0) + (1 if hs > as_ else 0)
-        season_wins[(int(g["season"]), a)] = season_wins.get((int(g["season"]), a), 0) + (1 if as_ > hs else 0)
+        season_wins[(iint(g["season"]), a)] = season_wins.get((iint(g["season"]), a), 0) + (1 if as_ > hs else 0)
     return feats
 
 
@@ -368,9 +373,9 @@ def model_bundle_for(season, week):
     games, _, _ = _GAMES_CACHE
     hist = [g for g in games if g.get("game_type") == "REG"
             and M.fnum(g.get("home_score")) is not None
-            and (int(g["season"]) < season or (int(g["season"]) == season and int(g["week"]) < week))]
+            and (iint(g["season"]) < season or (iint(g["season"]) == season and iint(g["week"]) < week))]
     ratings, hfa, mu = M.fit_ratings(hist)
-    recent = [g for g in hist if int(g["season"]) >= season - 2]
+    recent = [g for g in hist if iint(g["season"]) >= season - 2]
     resid = []
     for g in recent:
         pred = M.rating_margin(g["home_team"], g["away_team"], ratings, mu, hfa,
@@ -648,7 +653,7 @@ def score_early_snapshot():
         price = M.fnum(g.get("home_spread_odds")) if side == "home" else M.fnum(g.get("away_spread_odds"))
         margin = M.fnum(g["home_score"]) - M.fnum(g["away_score"])
         profit, won = settle("spread", side, line, price, margin, None)
-        bets.append({"game_id": gid, "season": int(g["season"]), "week": int(g["week"]),
+        bets.append({"game_id": gid, "season": iint(g["season"]), "week": iint(g["week"]),
                      "market": "spread", "side": side, "line": line, "price": price,
                      "status": ("won" if won else ("push" if profit == 0.0 else "lost")) if profit is not None else "price_missing",
                      "profit": profit, "won": won,
