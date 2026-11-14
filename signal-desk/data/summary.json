@@ -7,7 +7,7 @@
  "headline": [
   {
    "topic": "Results are now verified against the league, not just internally",
-   "finding": "32 of 32 teams reconcile exactly on W/L/T/PF/PA against NFL.com once the official scores for the checked weeks are added.",
+   "finding": "All 32 of 32 teams reconcile exactly on W/L/T/PF/PA against NFL.com once the official scores for the checked weeks are added: zero differences, no tolerance applied.",
    "source": "https://www.nfl.com/standings/division/2026/REG",
    "source_class": "official"
   },
@@ -31,7 +31,7 @@
   },
   {
    "topic": "Fair, market and difference are now three columns",
-   "finding": "Across the board the fair side and the market side correlate at 0.823 (n=15); the average hold is 0.0422.",
+   "finding": "Across the board the fair side and the market side correlate at 0.823 (n=15); the average two-way hold is 4.22%.",
    "source": "data/derived/model.json",
    "source_class": "third-party"
   },
@@ -49,7 +49,7 @@
   },
   {
    "topic": "Official correlations are mostly uncomputable yet",
-   "finding": "The official season-leader pages give team-level correlations at n=32 and a year-over-year point-differential persistence of 0.5031 (n=32), but not the per-game QB-to-receiver pair the parlay pricing needs.",
+   "finding": "The official pages support team-level correlations at n=32, including a year-over-year point-differential persistence of 0.5031 (n=32), but they cannot produce the per-game QB-to-receiver pair the parlay pricing needs.",
    "source": "https://www.nfl.com/standings/division/2025/REG",
    "source_class": "official"
   },

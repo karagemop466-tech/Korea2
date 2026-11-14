@@ -1161,10 +1161,10 @@ def build_summary(art):
         "meta": {"id": "SD-10", "title": "Executive summary", "generated_utc": GENERATED},
         "headline": [
             {"topic": "Results are now verified against the league, not just internally",
-             "finding": f"{res['standings_check']['teams_reconciling_after_official_scores']} of "
+             "finding": f"All {res['standings_check']['teams_reconciling_after_official_scores']} of "
                         f"{res['standings_check']['teams_compared']} teams reconcile exactly on "
                         "W/L/T/PF/PA against NFL.com once the official scores for the checked weeks "
-                        "are added.",
+                        "are added: zero differences, no tolerance applied.",
              "source": T.URL["standings_2026"], "source_class": "official"},
             {"topic": "The committed data is a week-and-a-half stale",
              "finding": f"{res['game_feed']['committed_absent']} games that had already finished were "
@@ -1180,8 +1180,8 @@ def build_summary(art):
             {"topic": "Fair, market and difference are now three columns",
              "finding": f"Across the board the fair side and the market side correlate at "
                         f"{art['gap']['agreement'][0]['r']} (n={art['gap']['agreement'][0]['n']}); the "
-                        "average hold is "
-                        f"{art['gap']['vig']['value']}.",
+                        "average two-way hold is "
+                        f"{round(art['gap']['vig']['value'] * 100, 2)}%.",
              "source": "data/derived/model.json", "source_class": "third-party"},
             {"topic": "Staking is separated from signal",
              "finding": f"{ss['summary']['positive_roi_but_unproven_signal']} of "
@@ -1194,10 +1194,10 @@ def build_summary(art):
                         "1st/2nd/3rd-string value is third-party and labelled.",
              "source": T.URL["roster_ari"], "source_class": "official"},
             {"topic": "Official correlations are mostly uncomputable yet",
-             "finding": f"The official season-leader pages give team-level correlations at n=32 and a "
+             "finding": "The official pages support team-level correlations at n=32, including a "
                         f"year-over-year point-differential persistence of {pers.get('value')} "
-                        f"(n={pers.get('n')}), but not the per-game QB-to-receiver pair the parlay "
-                        "pricing needs.",
+                        f"(n={pers.get('n')}), but they cannot produce the per-game QB-to-receiver "
+                        "pair the parlay pricing needs.",
              "source": T.URL["standings_2025"], "source_class": "official"},
             {"topic": "A demotion gate now exists",
              "finding": "Eight rules, four evaluable today, with an explicit asymmetry: promotion is "

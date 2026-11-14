@@ -98,6 +98,9 @@ def src(url, label=None):
         return '<span class="flag">no source</span>'
     if isinstance(url, list):
         return " ".join(src(u) for u in url)
+    if isinstance(url, str) and " + " in url and "://" in url:
+        # a value sourced from two pages: render two links rather than one malformed href
+        return " ".join(src(part.strip()) for part in url.split(" + ") if part.strip())
     if not re.match(r"^[a-z]+://", str(url)):
         url = REPO_BLOB + str(url).split(" ")[0]
     text = label or str(url).replace("https://", "").replace("http://", "")
@@ -840,9 +843,10 @@ def page_flagged():
         "Opening moneyline cells are blank, not zero and not estimated.",
         "The upstream opening file contains zero MONEYLINE rows.",
         p["opening"]["source"]["url"])
-    add("FL-SD-04", "15 finished games were missing from the committed snapshot",
-        f"{res['game_feed']['committed_absent']} games read from nfl.com were absent from the "
-        "committed data and are listed as absent.",
+    absent = res["game_feed"]["committed_absent"]
+    add("FL-SD-04", f"{absent} finished games were missing from the committed snapshot",
+        f"{absent} games read from nfl.com were absent from the committed data and are listed as "
+        "absent.",
         "The snapshot is roughly a week behind the live slate. Backtests run on it understate the "
         "sample by those games.",
         res["game_feed"]["rows"][0]["source"] if res["game_feed"]["rows"] else "")
@@ -871,7 +875,7 @@ def page_flagged():
     add("FL-SD-10", "Nothing is live, so the demotion gate has never fired",
         "Zero strategies passed; zero rewards were paid; no live strategy exists to demote.",
         "The gate is published pre-armed. Its thresholds are untested.",
-        "signal-desk/data/leaderboard.json")
+        "signal-desk/data/signal_vs_staking.json")
     body = (
         callout("warn", "Flagged items do not block publication",
                 "Every item below is published openly with its source so it can be checked and "
