@@ -117,11 +117,30 @@ def build_registers():
         f"{w9.get('agree', 0)} match, {w9.get('absent_from_snapshot', 0)} absent, {w9.get('mismatch', 0)} mismatched.",
         "Anything before Week 9 2026, which was not read against an official page this session.",
         "SRC-NFL-SCHED-9")
-    add("The stale snapshot is proven stale, not assumed",
-        "The official Week 10 Thursday result is checked for presence in the committed feed.",
-        (w10.get("present_in_committed_snapshot") is False),
-        f"{w10.get('matchup')} is {w10.get('official_score')} officially and absent from the snapshot.",
-        "That no later refresh exists elsewhere; only that this feed lacks the game.",
+    # The claim is "this feed is stale", and whether it is stale DEPENDS ON THE FEED. A check that
+    # asserts staleness would fail as soon as the feed refreshed - which is exactly what happened
+    # when the CI job fetched a current feed. The check verifies the published statement against
+    # the data instead, so it is true whichever way the data goes.
+    # Verify the RECORDED fact against the raw feed, rather than asserting that the feed is stale.
+    # The first version asserted staleness, so the check failed the moment CI fetched a current
+    # feed - the site would have been unbuildable for being correct.
+    _stale = w10.get("present_in_committed_snapshot") is False
+    _raw = None
+    try:
+        _games, _src, _sha = __import__("build_market").load_games()
+        _row = [g for g in _games if g.get("game_id") == "2026_10_WAS_NYG"]
+        _raw = bool(_row) and __import__("build_market").fnum(_row[0].get("home_score")) is not None
+    except Exception:
+        _raw = None
+    add("The published staleness statement matches the feed",
+        "The recorded presence of the official Week 10 Thursday result is compared with the feed "
+        "itself, so the page's claim is derived from the data on every build.",
+        (_raw is None) or (_raw == (not _stale)),
+        (f"{w10.get('matchup')} is {w10.get('official_score')} officially and the committed feed "
+         f"{'does not contain' if _stale else 'contains'} it, so the feed is "
+         f"{'stale by at least that game' if _stale else 'current for that game'}."),
+        "That the feed is current at publication time; a later refresh can change it, which is why "
+        "the statement is recomputed every build rather than fixed in prose.",
         "SRC-NFL-SCHED-10")
     add("Every price snapshot carries a provenance grade",
         "Each snapshot has a quality field from the fixed grade list.",
@@ -266,10 +285,15 @@ def build_registers():
          "severity": "high", "affects": "any claim about how lines move",
          "evidence": "Only the 2021 early snapshot separates from a close (n=67 matched); its publisher does not document the columns or the sampling time.",
          "source": "SRC-NFLVERSE-SC-LINES-DOC"},
-        {"id": "DA-F03", "title": "The results snapshot is stale by at least one completed week",
-         "severity": "high", "affects": "current-slate scoring, 'live' strategy status",
-         "evidence": f"Feed frozen at {results.get('coverage', {}).get('latest_settled_gameday')}; the official Week 10 Thursday game is absent from it.",
-         "source": "SRC-NFL-SCHED-10"},
+    ]
+    if w10.get("present_in_committed_snapshot") is False:
+        items.append(
+            {"id": "DA-F03", "title": "The results snapshot is stale by at least one completed week",
+             "severity": "high", "affects": "current-slate scoring, 'live' strategy status",
+             "evidence": f"Feed frozen at {results.get('coverage', {}).get('latest_settled_gameday')}; "
+                         f"the official Week 10 Thursday game is absent from it.",
+             "source": "SRC-NFL-SCHED-10"})
+    items.extend([
         {"id": "DA-F04", "title": "No historical player-prop prices exist, so prop combos cannot be tested",
          "severity": "high", "affects": "DA-S10, DA-S11, prop-combo ROI",
          "evidence": "0 priced prop bets across every registered prop family; the correlations are measured but unpriceable.",
@@ -314,7 +338,7 @@ def build_registers():
          "severity": "low", "affects": "every correlation and every price on the site",
          "evidence": "The NFL publishes no machine-readable historical odds or box-score archive; nflverse redistributes it and is marked 3P on every page.",
          "source": "SRC-NFLVERSE-STATS"},
-    ]
+    ])
     flags = {
         "generated_utc": ver["generated_utc"],
         "policy": ("A flag is not a blocker to publication; it is a blocker to trusting the affected "

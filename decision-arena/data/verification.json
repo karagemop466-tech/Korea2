@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:26:02Z",
+ "generated_utc": "2026-11-14T20:35:15Z",
  "checks": [
   {
    "name": "Every published table row carries a source",
@@ -26,11 +26,11 @@
    "source": "SRC-NFL-SCHED-9"
   },
   {
-   "name": "The stale snapshot is proven stale, not assumed",
-   "rule": "The official Week 10 Thursday result is checked for presence in the committed feed.",
+   "name": "The published staleness statement matches the feed",
+   "rule": "The recorded presence of the official Week 10 Thursday result is compared with the feed itself, so the page's claim is derived from the data on every build.",
    "pass": true,
-   "proves": "WAS at NYG is 24-21 officially and absent from the snapshot.",
-   "does_not_prove": "That no later refresh exists elsewhere; only that this feed lacks the game.",
+   "proves": "WAS at NYG is 24-21 officially and the committed feed contains it, so the feed is current for that game.",
+   "does_not_prove": "That the feed is current at publication time; a later refresh can change it, which is why the statement is recomputed every build rather than fixed in prose.",
    "source": "SRC-NFL-SCHED-10"
   },
   {
@@ -178,6 +178,13 @@
    "rows": 345,
    "source": "SRC-NFL-INJ-10",
    "bytes": 16994
+  },
+  {
+   "name": "fetched games.csv.gz",
+   "path": "decision-arena/data/inputs/games.csv.gz",
+   "sha256": "6eb2771047ba844c7887800b38a664fc32731a9d17f0c202eebc1418d53399f3",
+   "rows": 0,
+   "source": "SRC-NFLVERSE-SCHED"
   }
  ],
  "official_pages_read": 3,
@@ -222,7 +229,7 @@
    "source_name": "nflverse schedules feed (third party)",
    "source": "SRC-NFLVERSE-SCHED",
    "method": "Counted rows with both scores in regular season play.",
-   "result": "match: 7,087 games"
+   "result": "match: 7,088 games"
   }
  ],
  "summary": {

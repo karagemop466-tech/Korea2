@@ -1,8 +1,8 @@
 {
- "generated_utc": "2026-11-14T20:25:59Z",
+ "generated_utc": "2026-11-14T20:35:11Z",
  "inputs": {
-  "games_path": "data/derived/games.csv.gz",
-  "games_sha256": "ccbca2cb34ec44d0eb1c500ec33cfd638e57bbbe8ff72020d9289845f98ae6db",
+  "games_path": "decision-arena/data/inputs/games.csv.gz",
+  "games_sha256": "6eb2771047ba844c7887800b38a664fc32731a9d17f0c202eebc1418d53399f3",
   "source": "SRC-NFLVERSE-SCHED"
  },
  "spec_sha256": "5738b8ee65ce87920306ab24a27bc673fd581cdcbc7e784806b65895c16b259e",

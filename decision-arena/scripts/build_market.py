@@ -143,6 +143,9 @@ def build_results(games, src_path, src_sha):
     for r in rows:
         if r["season"] == 2026 and r["week"] == 9:
             by_teams[(r["away"], r["home"])] = r
+    # If the feed carries no Week 9 scores at all, every official final is reported as
+    # absent_from_snapshot; that is a statement about the feed, and the official scores are still
+    # published so a reader is never left without the verified result.
     recon9 = []
     for away, a_s, home, h_s in NFL_WEEK9:
         r = by_teams.get((away, home))

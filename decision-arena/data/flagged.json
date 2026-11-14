@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-14T20:26:02Z",
+ "generated_utc": "2026-11-14T20:35:15Z",
  "policy": "A flag is not a blocker to publication; it is a blocker to trusting the affected number without reading it. Flags are closed only when a source exists.",
  "items": [
   {
@@ -17,14 +17,6 @@
    "affects": "any claim about how lines move",
    "evidence": "Only the 2021 early snapshot separates from a close (n=67 matched); its publisher does not document the columns or the sampling time.",
    "source": "SRC-NFLVERSE-SC-LINES-DOC"
-  },
-  {
-   "id": "DA-F03",
-   "title": "The results snapshot is stale by at least one completed week",
-   "severity": "high",
-   "affects": "current-slate scoring, 'live' strategy status",
-   "evidence": "Feed frozen at 2026-11-01; the official Week 10 Thursday game is absent from it.",
-   "source": "SRC-NFL-SCHED-10"
   },
   {
    "id": "DA-F04",

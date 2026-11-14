@@ -1,62 +1,0 @@
-run_all rc=1
-=== last 60 lines ===
-  wrote pages/gates.html
-  wrote pages/correlation.html
-  wrote pages/depth.html
-  wrote pages/suggestions.html
-  wrote pages/questions.html
-  wrote pages/verification.html
-  wrote pages/flagged.html
-  wrote pages/sources.html
-  wrote pages/methods.html
-site rendered
---- pages: ok in 0.1s
-
-=== unit tests (sign, leakage, statistics) ===
-test_features_tolerate_a_blank_week (__main__.TestFreshFeedTolerance.test_features_tolerate_a_blank_week) ... ok
-test_origination_tolerates_a_blank_week (__main__.TestFreshFeedTolerance.test_origination_tolerates_a_blank_week) ...   walk-forward 2024 (train n=6423)     walk-forward 2025 (train n=6695)     walk-forward 2026 (train n=6967)   ok
-test_prices_tolerate_a_blank_week (__main__.TestFreshFeedTolerance.test_prices_tolerate_a_blank_week) ... ok
-test_results_tolerate_a_blank_week (__main__.TestFreshFeedTolerance.test_results_tolerate_a_blank_week) ... ok
-test_features_never_see_the_current_game (__main__.TestLeakage.test_features_never_see_the_current_game)
-A game's rolling features must be built only from games that finished earlier. ... ok
-test_model_train_set_excludes_the_slate (__main__.TestLeakage.test_model_train_set_excludes_the_slate) ... 
-  walk-forward 2023 (train n=6151)     walk-forward 2024 (train n=6423)     walk-forward 2025 (train n=6695)     walk-forward 2026 (train n=6967)   ok
-test_missing_price_yields_no_profit (__main__.TestNoPriceNoBet.test_missing_price_yields_no_profit) ... ok
-test_unpriced_rows_are_counted_not_imputed (__main__.TestNoPriceNoBet.test_unpriced_rows_are_counted_not_imputed) ... ok
-test_every_suggestion_has_a_registered_question (__main__.TestRegisters.test_every_suggestion_has_a_registered_question) ... ok
-test_no_official_depth_claim (__main__.TestRegisters.test_no_official_depth_claim) ... ok
-test_price_grades_sum_to_the_snapshot_count (__main__.TestRegisters.test_price_grades_sum_to_the_snapshot_count) ... ok
-test_strategy_verdicts_follow_the_gates (__main__.TestRegisters.test_strategy_verdicts_follow_the_gates) ... ok
-test_home_cover_rate_is_near_half_over_the_real_feed (__main__.TestSpreadSign.test_home_cover_rate_is_near_half_over_the_real_feed)
-A sign error produces a 77% home cover rate; the true rate is close to 50%. ... ok
-test_home_favourite_lays_points (__main__.TestSpreadSign.test_home_favourite_lays_points) ... ok
-test_home_underdog_covering (__main__.TestSpreadSign.test_home_underdog_covering) ... ok
-test_line_mean_matches_margin_mean (__main__.TestSpreadSign.test_line_mean_matches_margin_mean)
-The strongest single proof of the convention: mean(line) ~= mean(home margin). ... ok
-test_push_is_a_push_not_a_loss (__main__.TestSpreadSign.test_push_is_a_push_not_a_loss) ... ok
-test_real_game_2013_week1_baltimore_at_denver (__main__.TestSpreadSign.test_real_game_2013_week1_baltimore_at_denver) ... ok
-test_american_prices (__main__.TestStatistics.test_american_prices) ... ok
-test_bh_monotone (__main__.TestStatistics.test_bh_monotone) ... ok
-test_norm_ppf_known_values (__main__.TestStatistics.test_norm_ppf_known_values) ... ok
-test_pearson_perfect_and_negative (__main__.TestStatistics.test_pearson_perfect_and_negative) ... ok
-test_wilson_reproduces_the_repository (__main__.TestStatistics.test_wilson_reproduces_the_repository)
-The repository's published ATS interval is the check value. ... ok
-test_blank_marker_is_accepted (__main__.TestTableGuard.test_blank_marker_is_accepted) ... ok
-test_real_source_is_accepted (__main__.TestTableGuard.test_real_source_is_accepted) ... ok
-test_row_without_source_raises (__main__.TestTableGuard.test_row_without_source_raises) ... ok
-test_over_and_under (__main__.TestTotalSign.test_over_and_under) ... ok
-test_total_push (__main__.TestTotalSign.test_total_push) ... ok
-
-----------------------------------------------------------------------
-Ran 28 tests in 1.200s
-
-OK
-
---- unit tests (sign, leakage, statistics): ok in 1.5s
-
-=== verification suite ===
-pages 16, table rows 575, links 1063, rows missing a source 0
-FAIL: data checks failed: ['The stale snapshot is proven stale, not assumed']
---- verification suite: FAILED (1) in 0.1s
-
-PIPELINE FAILED: ['verification suite']
