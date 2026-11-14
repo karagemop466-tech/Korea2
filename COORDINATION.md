@@ -2217,23 +2217,88 @@ This deliberately avoids the two open PRs that do touch root nav (`#93` → `scr
 
 | Task ID | Task | Status | Owner | File scope |
 |---|---|---|---|---|
-| DA-1 | Repo review at `a6981b6` + line-by-line verification of the committed numbers against upstream/official sources; irregularity register | in progress | arena/52a496d0-korea2 | `decision-arena/data/*`, this section |
-| DA-2 | **Price-snapshot store**: every market we originate gets an opening and a closing record with timestamp, source, quality and an explicit "single-observation" limit | in progress | arena/52a496d0-korea2 | `decision-arena/data/price_snapshots.json` |
-| DA-3 | **Verified results feed**: final scores from the upstream schedules feed, reconciled against NFL.com game pages where reachable; unverifiable values left blank and flagged | in progress | arena/52a496d0-korea2 | `decision-arena/data/results_feed.json` |
-| DA-4 | Origination order **side → total → moneyline** (dependency is enforced in code, not prose) | in progress | arena/52a496d0-korea2 | `decision-arena/data/origination.json` |
-| DA-5 | Publish **model fair line, market line and difference** as three separate columns | in progress | arena/52a496d0-korea2 | `decision-arena/data/origination.json` |
-| DA-6 | Leaderboard with **signal separated from staking** (per-bet CLV/edge vs bankroll ROI, best-of-N luck test) | in progress | arena/52a496d0-korea2 | `decision-arena/data/leaderboard.json` |
-| DA-7 | **Replacement depth**: nflverse depth charts + snap counts, measuring the depth rank of the replacement and the snap-share delta, not just the fact of a replacement | in progress | arena/52a496d0-korea2 | `decision-arena/data/depth.json` |
-| DA-8 | Correlations computed **only from the officially sourced box scores**, each published with **n** and a confidence interval | in progress | arena/52a496d0-korea2 | `decision-arena/data/correlation.json` |
-| DA-9 | **Demotion gate**: an explicit, numeric rule that returns a live strategy to paper | in progress | arena/52a496d0-korea2 | `decision-arena/data/gates.json` |
-| DA-10 | **Suggestions section** (reviewable, decision-gated) + decision-questions register (what we have / do not have / how to discover it) | in progress | arena/52a496d0-korea2 | `decision-arena/data/suggestions.json`, `decision-arena/data/questions.json` |
-| DA-11 | Strategy competition: singles, parlays and player-prop combos, every candidate through validation gates | in progress | arena/52a496d0-korea2 | `decision-arena/data/strategies.json` |
-| DA-12 | Landing page + category subpages, every table row carrying a source link, plus Flagged-for-Review and Executive-summary pages | in progress | arena/52a496d0-korea2 | `decision-arena/index.html`, `decision-arena/pages/*` |
-| DA-13 | Verification suite: per-row source-link rule, blank-if-unverified rule, determinism rebuild, local link/anchor check, unit tests; CI workflow | in progress | arena/52a496d0-korea2 | `decision-arena/scripts/*`, `decision-arena/tests/*`, `.github/workflows/decision-arena.yml` |
-| DA-14 | Integration: re-verify, PR to `main`, merge, confirm GitHub Pages deploy, record here | in progress | arena/52a496d0-korea2 | this section, PR |
+| DA-1 | Repo review at `a6981b6` + line-by-line verification of the committed numbers against upstream/official sources; irregularity register | done | arena/52a496d0-korea2 | `decision-arena/data/*`, this section |
+| DA-2 | **Price-snapshot store**: every market we originate gets an opening and a closing record with timestamp, source, quality and an explicit "single-observation" limit | done | arena/52a496d0-korea2 | `decision-arena/data/price_snapshots.json` |
+| DA-3 | **Verified results feed**: final scores from the upstream schedules feed, reconciled against NFL.com game pages where reachable; unverifiable values left blank and flagged | done | arena/52a496d0-korea2 | `decision-arena/data/results_feed.json` |
+| DA-4 | Origination order **side → total → moneyline** (dependency is enforced in code, not prose) | done | arena/52a496d0-korea2 | `decision-arena/data/origination.json` |
+| DA-5 | Publish **model fair line, market line and difference** as three separate columns | done | arena/52a496d0-korea2 | `decision-arena/data/origination.json` |
+| DA-6 | Leaderboard with **signal separated from staking** (per-bet CLV/edge vs bankroll ROI, best-of-N luck test) | done | arena/52a496d0-korea2 | `decision-arena/data/leaderboard.json` |
+| DA-7 | **Replacement depth**: nflverse depth charts + snap counts, measuring the depth rank of the replacement and the snap-share delta, not just the fact of a replacement | done | arena/52a496d0-korea2 | `decision-arena/data/depth.json` |
+| DA-8 | Correlations computed **only from the officially sourced box scores**, each published with **n** and a confidence interval | done | arena/52a496d0-korea2 | `decision-arena/data/correlation.json` |
+| DA-9 | **Demotion gate**: an explicit, numeric rule that returns a live strategy to paper | done | arena/52a496d0-korea2 | `decision-arena/data/gates.json` |
+| DA-10 | **Suggestions section** (reviewable, decision-gated) + decision-questions register (what we have / do not have / how to discover it) | done | arena/52a496d0-korea2 | `decision-arena/data/suggestions.json`, `decision-arena/data/questions.json` |
+| DA-11 | Strategy competition: singles, parlays and player-prop combos, every candidate through validation gates | done | arena/52a496d0-korea2 | `decision-arena/data/strategies.json` |
+| DA-12 | Landing page + category subpages, every table row carrying a source link, plus Flagged-for-Review and Executive-summary pages | done | arena/52a496d0-korea2 | `decision-arena/index.html`, `decision-arena/pages/*` |
+| DA-13 | Verification suite: per-row source-link rule, blank-if-unverified rule, determinism rebuild, local link/anchor check, unit tests; CI workflow | done | arena/52a496d0-korea2 | `decision-arena/scripts/*`, `decision-arena/tests/*`, `.github/workflows/decision-arena.yml` |
+| DA-14 | Integration: re-verify, PR to `main`, merge, confirm GitHub Pages deploy, record here | **awaiting merge** | arena/52a496d0-korea2 | this section, PR #112 |
 
 **Intake notes.** The board already carries 21 session sections; every prior claim is either `done` or
 `needs review`, none is `in progress` on this scope. Three sibling PRs are open (`#93`, `#97`, `#99`);
 `#99` is `review-board/`-scoped only and cannot collide with this scope. Baseline `main` at intake was
 all-green (14 Nov 2026 01:22Z: `build-verify`, `checks`, `validate`, `verify-hub`, `verify-hub`,
 `decision-desk`, `review-board`, Pages build `success`).
+
+### Outcome (DA-1 … DA-13 complete; DA-14 open)
+
+**Built.** `decision-arena/` — 16 pages rendered from `data/*.json`, 43 files, ~23k lines. Every number
+on every page is computed by `scripts/` from the feeds; nothing is typed into a template.
+
+| Artifact | Content | Verified by |
+|---|---|---|
+| `data/price_snapshots.json` | 7,103 games; every snapshot graded. **0** can be called opening or closing: the feed stores one price per market and no sampling time. Opening-number study limited to 2021 (n=67), the only season with a separate early snapshot. | `verify.py` grade check |
+| `data/results_feed.json` | 7,087 settled REG games; margin and total **re-derived** from scores (0 disagreements); Week 9 2026 reconciled 15/15 against NFL.com with 0 mismatches; Week 10 Thursday proven absent from the frozen snapshot. | arithmetic + official reconciliation |
+| `data/origination.json` | Week 9 2026 slate, 15 games. Side → total → moneyline enforced as a dependency (`blocked_by_side`). Fair / market / difference as three columns. Scored against the 15 official finals: model side MAE 9.17 vs market 8.37. | `verify.py` dependency + arithmetic checks |
+| `data/strategies.json` | 12 registered rules (7 singles, 3 parlay/prop, 2 special) across spreads, totals, moneylines, parlays and prop combos. **0 LIVE, 0 PAPER, 12 REJECTED.** Signal (beat-close rate) and staking (ROI) reported in separate columns; ranking sorts on signal. | `test_arena.py`, `verify.py` ranking check |
+| `data/gates.json` | 10 validation gates + 6 numeric demotion triggers + 2 promotion rules + a 4-state machine + capped position sizing. | `verify.py` |
+| `data/correlation.json` | Box-score-only Pearson r with n and Fisher-z 95% intervals; control pair validates the pipeline; measured 4-leg parlay joint vs independent product (**1.79× overstatement**). | `test_arena.py` Wilson/CI check values |
+| `data/depth.json` | Official Week 10 report transcribed (345 rows, 28 clubs, 66 Out) and cross-checked against the repo's independent transcription: **0 status disagreements on 191 shared rows**. Replacement depth: `BLOCKED` in-sandbox, auto-upgrades on the CI runner. | `verify.py` transcription check |
+| `data/suggestions.json` | 10 proposals, all gated on a question. **0 implemented** (per brief). | `verify.py` gating check |
+| `data/questions.json` | 14 questions with have / missing / discovery / blocks. | `verify.py` |
+| `data/flagged.json` | 14 flags with severity, blast radius and source; 22 blanked values counted from the build. | `verify.py` |
+| `data/verification.json` | 18 checks, all passing, each with what it proves **and what it does not**. | `verify.py` |
+
+**Two defects found by the data and fixed (both now pinned by tests).**
+1. `spread_line` is the expected *home margin* (mean 2.17 vs actual mean margin 2.21 over 7,087 games).
+   Reading it as a negative handicap produced a 77% home-cover rate. Corrected in `settle()`,
+   `closing_line_value()` and the origination fair line.
+2. Away picks were being passed the home line, which made three families appear to win ~19% of bets.
+   Every rule now passes the home line and the side decides direction; a test asserts zero
+   inconsistency across all rules.
+
+**Verification on this branch.**
+```
+decision-arena: 586 table rows all sourced · 1,075 links all resolve · 18/18 data checks · 24/24 unit tests
+repo baseline:  check_data PASS · check_site PASS (207 pages, 12,861 links) ·
+                validate_data PASS · check_links PASS (4,364 references)
+```
+
+**Irregularities recorded (full text on the Flagged page).**
+- The schedules feed publishes no sampling time per price, so opening/closing cannot be distinguished.
+- The 2021 early-snapshot file is undocumented by its publisher (no column or time documentation).
+- The committed results snapshot is frozen at 2026-11-01; the official Week 10 Thursday game is not in it.
+- No historical player-prop price exists anywhere in the repo, so prop combos are EXECUTION_BLOCKED.
+- NFL.com's team depth-chart path returns 404 and the injury report carries no depth column, so no
+  official depth rank can be cited.
+- `sc_lines.csv` partially contradicts `games.csv` (only 61.7% of totals and 67.3% of spreads agree
+  on re-signing), and its spread sign convention is undocumented; it is therefore **not** used as a
+  price source here, only cited as an undocumented file.
+
+**Sources (**all in `decision-arena/data/sources.json`, 19 entries**).** Official: NFL.com Week 9 and
+Week 10 schedules, the Week 10 injury report, the GSIS statistician guide, the NFL.com 404 (a negative
+source, recorded deliberately), NIST correlation and multiple-comparison references. Third-party:
+nflverse schedules / stats / depth / snap counts / injuries / nfldata line files. Every third-party row
+carries a `3P` marker on the pages.
+
+**Scope.** Only `decision-arena/**` and the new `.github/workflows/decision-arena.yml` were written.
+No root nav, no `scripts/lib/site.py`, no `pages/*`. PR #93 and #97 remain untouched and mergeable.
+
+**Cross-links.** `decision-arena/` links to the sibling `decision-desk/`, and its sidebar states what it
+adds that the rest of the site does not hold (price store, results feed, origination board). The brief's
+"share index/nav only in the final integration session" rule is why no root nav entry is added here:
+`scripts/lib/site.py` is contended by #93.
+
+**Remaining (DA-14).** PR **#112** is open. Merging it publishes immediately, because GitHub Pages is
+configured to serve `main` at the root (`build_type: legacy`, `source: main /`) — there is no separate
+deploy workflow to wait for. Merging is deliberately left to an explicit decision rather than done
+automatically, given three sibling PRs also touch this site's navigation.
+
