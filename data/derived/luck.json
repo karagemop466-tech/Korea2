@@ -1,67 +1,67 @@
 {
   "pythagorean": {
     "exponent": 2.37,
-    "team_seasons": 877,
+    "team_seasons": 893,
     "seasons": [
       1999,
       2026
     ],
-    "r2_expected_vs_actual_win_pct": 0.8191,
-    "sd_luck_wins": 1.323,
-    "mean_abs_luck_wins": 1.063,
+    "r2_expected_vs_actual_win_pct": 0.8214,
+    "sd_luck_wins": 1.319,
+    "mean_abs_luck_wins": 1.06,
     "definition": "luck_wins = actual wins - Pythagorean expected wins over the same games",
     "method_source": "Bill James Pythagorean expectation; exponent 2.37 is the value used for the NFL in the literature"
   },
   "luck_persistence": {
-    "n": 842,
-    "r": 0.023894391339590943,
-    "p": 0.4886748431776462,
-    "ci_low": -0.04373860722042898,
-    "ci_high": 0.09130937355058343,
-    "r2": 0.0005709419374895187,
+    "n": 858,
+    "r": 0.02210076663263829,
+    "p": 0.5179537643839008,
+    "ci_low": -0.04489478897694176,
+    "ci_high": 0.08889841727441862,
+    "r2": 0.0004884438857503381,
     "status": "measured",
     "label": "Year-over-year correlation of Pythagorean luck (wins)",
     "interpretation": "Near zero means last season's luck did not carry forward: the deviation was noise, not skill."
   },
   "one_score_games": {
     "n_team_seasons": 891,
-    "mean_win_rate": 0.4972,
-    "sd_win_rate": 0.1983,
-    "share_of_games": 0.5099,
+    "mean_win_rate": 0.4974,
+    "sd_win_rate": 0.198,
+    "share_of_games": 0.5097,
     "note": "A team that wins most one-score games is mostly lucky; the rate should regress hard."
   },
   "one_score_persistence": {
     "n": 854,
-    "r": 0.08200523701333384,
-    "p": 0.016530375420471685,
-    "ci_low": 0.015001981178157642,
-    "ci_high": 0.14827530486393278,
-    "r2": 0.006724858897613059,
+    "r": 0.08153644699167917,
+    "p": 0.017160934668065654,
+    "ci_low": 0.014530138406860989,
+    "ci_high": 0.14781370290776147,
+    "r2": 0.006648192188026907,
     "status": "measured",
     "label": "Year-over-year correlation of one-score win rate"
   },
   "variance_decomposition": {
     "note": "Share of variance in season win% explained by point differential, and by Pythagorean expectation. The unexplained part is the luck budget.",
-    "r2_point_diff": 0.821,
-    "r2_pythagorean": 0.8191,
-    "unexplained_share": 0.1809,
-    "sd_actual_win_pct": 0.192,
-    "sd_expected_win_pct": 0.1574
+    "r2_point_diff": 0.8129,
+    "r2_pythagorean": 0.8214,
+    "unexplained_share": 0.1786,
+    "sd_actual_win_pct": 0.1939,
+    "sd_expected_win_pct": 0.1579
   },
   "ats_coin_flip_test": {
-    "n": 6892,
-    "wins": 3371,
-    "rate": 0.4891,
+    "n": 6909,
+    "wins": 3375,
+    "rate": 0.4885,
     "ci": [
-      0.4773,
-      0.5009
+      0.4767,
+      0.5003
     ],
-    "binomial_p_vs_50": 0.0727,
+    "binomial_p_vs_50": 0.0573,
     "note": "One observation per game: the home team's ATS cover result, pushes dropped. A rate near 50% here means the closing spread carries no exploitable home tilt."
   },
   "ats_pooled_identity": {
-    "n": 13784,
-    "wins": 6892,
+    "n": 13818,
+    "wins": 6909,
     "rate": 0.5,
     "binomial_p_vs_50": 1.0,
     "note": "Arithmetic identity: both sides of every game are pooled, so exactly one of each pair is a cover and the rate is always 50% with p = 1.0 regardless of the data. Not a test; published only so the pooled number cannot be mistaken for evidence."
@@ -898,19 +898,51 @@
     },
     {
       "season": 2026,
-      "team": "CLE",
-      "wins": 5.0,
-      "gp": 8,
-      "exp_wins": 2.99,
-      "luck_wins": 2.01
+      "team": "DEN",
+      "wins": 7.0,
+      "gp": 9,
+      "exp_wins": 4.83,
+      "luck_wins": 2.17
     },
     {
       "season": 2026,
-      "team": "DEN",
+      "team": "BUF",
+      "wins": 7.0,
+      "gp": 8,
+      "exp_wins": 5.42,
+      "luck_wins": 1.58
+    },
+    {
+      "season": 2026,
+      "team": "CLE",
+      "wins": 5.0,
+      "gp": 9,
+      "exp_wins": 3.47,
+      "luck_wins": 1.53
+    },
+    {
+      "season": 2026,
+      "team": "DET",
       "wins": 6.0,
       "gp": 8,
-      "exp_wins": 4.2,
-      "luck_wins": 1.8
+      "exp_wins": 4.75,
+      "luck_wins": 1.25
+    },
+    {
+      "season": 2026,
+      "team": "SF",
+      "wins": 7.0,
+      "gp": 8,
+      "exp_wins": 5.8,
+      "luck_wins": 1.2
+    },
+    {
+      "season": 2026,
+      "team": "CHI",
+      "wins": 7.0,
+      "gp": 9,
+      "exp_wins": 5.89,
+      "luck_wins": 1.11
     },
     {
       "season": 2026,
@@ -922,91 +954,179 @@
     },
     {
       "season": 2026,
-      "team": "GB",
-      "wins": 5.0,
+      "team": "MIN",
+      "wins": 6.0,
       "gp": 8,
-      "exp_wins": 4.2,
-      "luck_wins": 0.8
+      "exp_wins": 5.06,
+      "luck_wins": 0.94
+    },
+    {
+      "season": 2026,
+      "team": "GB",
+      "wins": 6.0,
+      "gp": 9,
+      "exp_wins": 5.15,
+      "luck_wins": 0.85
     },
     {
       "season": 2026,
       "team": "BAL",
       "wins": 4.0,
+      "gp": 9,
+      "exp_wins": 3.34,
+      "luck_wins": 0.66
+    },
+    {
+      "season": 2026,
+      "team": "CIN",
+      "wins": 6.0,
       "gp": 8,
-      "exp_wins": 3.41,
-      "luck_wins": 0.59
+      "exp_wins": 5.43,
+      "luck_wins": 0.57
+    },
+    {
+      "season": 2026,
+      "team": "KC",
+      "wins": 6.0,
+      "gp": 8,
+      "exp_wins": 5.55,
+      "luck_wins": 0.45
     },
     {
       "season": 2026,
       "team": "NE",
       "wins": 5.0,
-      "gp": 8,
+      "gp": 9,
       "exp_wins": 4.6,
       "luck_wins": 0.4
     },
     {
       "season": 2026,
+      "team": "NYG",
+      "wins": 5.0,
+      "gp": 9,
+      "exp_wins": 4.69,
+      "luck_wins": 0.31
+    },
+    {
+      "season": 2026,
       "team": "ARI",
       "wins": 3.0,
-      "gp": 8,
-      "exp_wins": 2.6,
-      "luck_wins": 0.4
+      "gp": 9,
+      "exp_wins": 2.69,
+      "luck_wins": 0.31
     },
     {
       "season": 2026,
       "team": "LV",
       "wins": 4.0,
+      "gp": 9,
+      "exp_wins": 3.87,
+      "luck_wins": 0.13
+    },
+    {
+      "season": 2026,
+      "team": "NO",
+      "wins": 3.0,
       "gp": 8,
-      "exp_wins": 3.81,
-      "luck_wins": 0.19
+      "exp_wins": 3.27,
+      "luck_wins": -0.27
+    },
+    {
+      "season": 2026,
+      "team": "LA",
+      "wins": 5.0,
+      "gp": 9,
+      "exp_wins": 5.38,
+      "luck_wins": -0.38
     },
     {
       "season": 2026,
       "team": "PHI",
       "wins": 2.0,
+      "gp": 9,
+      "exp_wins": 2.51,
+      "luck_wins": -0.51
+    },
+    {
+      "season": 2026,
+      "team": "CAR",
+      "wins": 3.0,
       "gp": 8,
-      "exp_wins": 2.28,
-      "luck_wins": -0.28
+      "exp_wins": 3.55,
+      "luck_wins": -0.55
+    },
+    {
+      "season": 2026,
+      "team": "JAX",
+      "wins": 6.0,
+      "gp": 8,
+      "exp_wins": 6.55,
+      "luck_wins": -0.55
     },
     {
       "season": 2026,
       "team": "ATL",
       "wins": 3.0,
-      "gp": 8,
-      "exp_wins": 3.53,
-      "luck_wins": -0.53
+      "gp": 9,
+      "exp_wins": 3.6,
+      "luck_wins": -0.6
+    },
+    {
+      "season": 2026,
+      "team": "SEA",
+      "wins": 5.0,
+      "gp": 9,
+      "exp_wins": 5.65,
+      "luck_wins": -0.65
+    },
+    {
+      "season": 2026,
+      "team": "DAL",
+      "wins": 4.0,
+      "gp": 9,
+      "exp_wins": 4.72,
+      "luck_wins": -0.72
+    },
+    {
+      "season": 2026,
+      "team": "WAS",
+      "wins": 3.0,
+      "gp": 9,
+      "exp_wins": 3.82,
+      "luck_wins": -0.82
     },
     {
       "season": 2026,
       "team": "IND",
       "wins": 2.0,
-      "gp": 8,
-      "exp_wins": 2.55,
-      "luck_wins": -0.55
+      "gp": 9,
+      "exp_wins": 2.95,
+      "luck_wins": -0.95
     },
     {
       "season": 2026,
-      "team": "LA",
-      "wins": 4.0,
+      "team": "MIA",
+      "wins": 1.0,
       "gp": 8,
-      "exp_wins": 4.68,
-      "luck_wins": -0.68
+      "exp_wins": 2.01,
+      "luck_wins": -1.01
     },
     {
       "season": 2026,
-      "team": "DAL",
+      "team": "HOU",
       "wins": 3.0,
       "gp": 8,
-      "exp_wins": 4.13,
-      "luck_wins": -1.13
+      "exp_wins": 4.4,
+      "luck_wins": -1.4
     },
     {
       "season": 2026,
       "team": "NYJ",
       "wins": 2.0,
-      "gp": 8,
-      "exp_wins": 3.53,
-      "luck_wins": -1.53
+      "gp": 9,
+      "exp_wins": 3.44,
+      "luck_wins": -1.44
     },
     {
       "season": 2026,
@@ -1018,11 +1138,19 @@
     },
     {
       "season": 2026,
+      "team": "LAC",
+      "wins": 0.0,
+      "gp": 8,
+      "exp_wins": 1.57,
+      "luck_wins": -1.57
+    },
+    {
+      "season": 2026,
       "team": "TB",
       "wins": 3.0,
-      "gp": 8,
-      "exp_wins": 4.77,
-      "luck_wins": -1.77
+      "gp": 9,
+      "exp_wins": 5.17,
+      "luck_wins": -2.17
     }
   ]
 }

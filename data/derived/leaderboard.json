@@ -35,26 +35,26 @@
       "gates_passed": "5/10",
       "signal": {
         "gates_passed": "5/10",
-        "win_rate": 0.5149,
+        "win_rate": 0.5111,
         "win_rate_ci": [
-          0.4311,
-          0.5979
+          0.4277,
+          0.594
         ],
-        "p_value": 0.795629,
-        "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.937314,
-        "n_bets": 137,
-        "decided": 134,
+        "p_value": 0.863415,
+        "bh_adjusted_p": 0.971342,
+        "deflated_sharpe_p": 0.947534,
+        "n_bets": 138,
+        "decided": 135,
         "clv": null
       },
       "staking": {
-        "roi": -0.0121,
+        "roi": -0.0194,
         "roi_ci": [
-          -0.1677,
-          0.1465
+          -0.178,
+          0.1375
         ],
-        "profit_units": -1.626,
-        "units_staked": 134.0
+        "profit_units": -2.626,
+        "units_staked": 135.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -65,17 +65,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 137,
-      "decided": 134,
-      "roi": -0.0121,
+      "n_bets": 138,
+      "decided": 135,
+      "roi": -0.0194,
       "roi_ci": [
-        -0.1677,
-        0.1465
+        -0.178,
+        0.1375
       ],
-      "win_rate": 0.5149,
-      "p_value": 0.795629,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.937314,
+      "win_rate": 0.5111,
+      "p_value": 0.863415,
+      "bh_adjusted_p": 0.971342,
+      "deflated_sharpe_p": 0.947534,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -94,26 +94,26 @@
       "gates_passed": "5/10",
       "signal": {
         "gates_passed": "5/10",
-        "win_rate": 0.4941,
+        "win_rate": 0.5056,
         "win_rate_ci": [
-          0.3904,
-          0.5983
+          0.4037,
+          0.6071
         ],
         "p_value": 1.0,
         "bh_adjusted_p": 1.0,
-        "deflated_sharpe_p": 0.974492,
-        "n_bets": 86,
-        "decided": 85,
+        "deflated_sharpe_p": 0.959724,
+        "n_bets": 90,
+        "decided": 89,
         "clv": null
       },
       "staking": {
-        "roi": -0.0587,
+        "roi": -0.0366,
         "roi_ci": [
-          -0.263,
-          0.1421
+          -0.2299,
+          0.1552
         ],
-        "profit_units": -4.99,
-        "units_staked": 85.0
+        "profit_units": -3.262,
+        "units_staked": 89.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -124,17 +124,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 86,
-      "decided": 85,
-      "roi": -0.0587,
+      "n_bets": 90,
+      "decided": 89,
+      "roi": -0.0366,
       "roi_ci": [
-        -0.263,
-        0.1421
+        -0.2299,
+        0.1552
       ],
-      "win_rate": 0.4941,
+      "win_rate": 0.5056,
       "p_value": 1.0,
       "bh_adjusted_p": 1.0,
-      "deflated_sharpe_p": 0.974492,
+      "deflated_sharpe_p": 0.959724,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -153,26 +153,26 @@
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.4962,
+        "win_rate": 0.4914,
         "win_rate_ci": [
-          0.4638,
-          0.5286
+          0.4593,
+          0.5235
         ],
-        "p_value": 0.842442,
-        "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.998759,
-        "n_bets": 936,
-        "decided": 911,
+        "p_value": 0.622461,
+        "bh_adjusted_p": 0.971342,
+        "deflated_sharpe_p": 0.999572,
+        "n_bets": 953,
+        "decided": 928,
         "clv": null
       },
       "staking": {
-        "roi": -0.0519,
+        "roi": -0.0611,
         "roi_ci": [
-          -0.1102,
-          0.0095
+          -0.1187,
+          -0.0
         ],
-        "profit_units": -47.31,
-        "units_staked": 911.0
+        "profit_units": -56.729,
+        "units_staked": 928.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -183,17 +183,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 936,
-      "decided": 911,
-      "roi": -0.0519,
+      "n_bets": 953,
+      "decided": 928,
+      "roi": -0.0611,
       "roi_ci": [
-        -0.1102,
-        0.0095
+        -0.1187,
+        -0.0
       ],
-      "win_rate": 0.4962,
-      "p_value": 0.842442,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.998759,
+      "win_rate": 0.4914,
+      "p_value": 0.622461,
+      "bh_adjusted_p": 0.971342,
+      "deflated_sharpe_p": 0.999572,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -213,26 +213,26 @@
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.4919,
+        "win_rate": 0.4916,
         "win_rate_ci": [
-          0.4599,
-          0.524
+          0.4598,
+          0.5234
         ],
-        "p_value": 0.646379,
-        "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.999491,
-        "n_bets": 936,
-        "decided": 931,
+        "p_value": 0.626156,
+        "bh_adjusted_p": 0.971342,
+        "deflated_sharpe_p": 0.999562,
+        "n_bets": 953,
+        "decided": 948,
         "clv": null
       },
       "staking": {
-        "roi": -0.0595,
+        "roi": -0.0603,
         "roi_ci": [
-          -0.1199,
-          0.0024
+          -0.1195,
+          -0.0001
         ],
-        "profit_units": -55.418,
-        "units_staked": 931.0
+        "profit_units": -57.149,
+        "units_staked": 948.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -243,17 +243,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 936,
-      "decided": 931,
-      "roi": -0.0595,
+      "n_bets": 953,
+      "decided": 948,
+      "roi": -0.0603,
       "roi_ci": [
-        -0.1199,
-        0.0024
+        -0.1195,
+        -0.0001
       ],
-      "win_rate": 0.4919,
-      "p_value": 0.646379,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.999491,
+      "win_rate": 0.4916,
+      "p_value": 0.626156,
+      "bh_adjusted_p": 0.971342,
+      "deflated_sharpe_p": 0.999562,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -273,26 +273,26 @@
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.4955,
+        "win_rate": 0.4903,
         "win_rate_ci": [
-          0.4542,
-          0.5369
+          0.4495,
+          0.5313
         ],
-        "p_value": 0.865434,
-        "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.99642,
-        "n_bets": 572,
-        "decided": 557,
+        "p_value": 0.675091,
+        "bh_adjusted_p": 0.971342,
+        "deflated_sharpe_p": 0.998409,
+        "n_bets": 584,
+        "decided": 569,
         "clv": null
       },
       "staking": {
-        "roi": -0.0528,
+        "roi": -0.0627,
         "roi_ci": [
-          -0.1299,
-          0.0259
+          -0.138,
+          0.0148
         ],
-        "profit_units": -29.42,
-        "units_staked": 557.0
+        "profit_units": -35.672,
+        "units_staked": 569.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -303,17 +303,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 572,
-      "decided": 557,
-      "roi": -0.0528,
+      "n_bets": 584,
+      "decided": 569,
+      "roi": -0.0627,
       "roi_ci": [
-        -0.1299,
-        0.0259
+        -0.138,
+        0.0148
       ],
-      "win_rate": 0.4955,
-      "p_value": 0.865434,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.99642,
+      "win_rate": 0.4903,
+      "p_value": 0.675091,
+      "bh_adjusted_p": 0.971342,
+      "deflated_sharpe_p": 0.998409,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -333,26 +333,26 @@
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.4798,
+        "win_rate": 0.4752,
         "win_rate_ci": [
-          0.431,
-          0.529
+          0.427,
+          0.5239
         ],
-        "p_value": 0.451024,
-        "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.998996,
-        "n_bets": 409,
-        "decided": 396,
+        "p_value": 0.344524,
+        "bh_adjusted_p": 0.971342,
+        "deflated_sharpe_p": 0.999501,
+        "n_bets": 417,
+        "decided": 404,
         "clv": null
       },
       "staking": {
-        "roi": -0.0819,
+        "roi": -0.0907,
         "roi_ci": [
-          -0.1717,
-          0.0114
+          -0.1768,
+          0.0047
         ],
-        "profit_units": -32.44,
-        "units_staked": 396.0
+        "profit_units": -36.644,
+        "units_staked": 404.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -363,17 +363,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 409,
-      "decided": 396,
-      "roi": -0.0819,
+      "n_bets": 417,
+      "decided": 404,
+      "roi": -0.0907,
       "roi_ci": [
-        -0.1717,
-        0.0114
+        -0.1768,
+        0.0047
       ],
-      "win_rate": 0.4798,
-      "p_value": 0.451024,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.998996,
+      "win_rate": 0.4752,
+      "p_value": 0.344524,
+      "bh_adjusted_p": 0.971342,
+      "deflated_sharpe_p": 0.999501,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -393,26 +393,26 @@
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.5055,
+        "win_rate": 0.5067,
         "win_rate_ci": [
-          0.4545,
-          0.5564
+          0.4561,
+          0.5573
         ],
-        "p_value": 0.87542,
-        "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.981829,
-        "n_bets": 370,
-        "decided": 366,
+        "p_value": 0.835522,
+        "bh_adjusted_p": 0.971342,
+        "deflated_sharpe_p": 0.979858,
+        "n_bets": 375,
+        "decided": 371,
         "clv": null
       },
       "staking": {
-        "roi": -0.0353,
+        "roi": -0.0329,
         "roi_ci": [
-          -0.129,
-          0.0629
+          -0.1296,
+          0.0646
         ],
-        "profit_units": -12.914,
-        "units_staked": 366.0
+        "profit_units": -12.223,
+        "units_staked": 371.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -423,17 +423,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 370,
-      "decided": 366,
-      "roi": -0.0353,
+      "n_bets": 375,
+      "decided": 371,
+      "roi": -0.0329,
       "roi_ci": [
-        -0.129,
-        0.0629
+        -0.1296,
+        0.0646
       ],
-      "win_rate": 0.5055,
-      "p_value": 0.87542,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.981829,
+      "win_rate": 0.5067,
+      "p_value": 0.835522,
+      "bh_adjusted_p": 0.971342,
+      "deflated_sharpe_p": 0.979858,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -453,26 +453,26 @@
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.525,
+        "win_rate": 0.5314,
         "win_rate_ci": [
-          0.456,
-          0.5931
+          0.4635,
+          0.5982
         ],
-        "p_value": 0.524622,
-        "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.915114,
-        "n_bets": 204,
-        "decided": 200,
+        "p_value": 0.404307,
+        "bh_adjusted_p": 0.971342,
+        "deflated_sharpe_p": 0.879935,
+        "n_bets": 211,
+        "decided": 207,
         "clv": null
       },
       "staking": {
-        "roi": 0.0009,
+        "roi": 0.0141,
         "roi_ci": [
-          -0.1275,
-          0.1274
+          -0.1103,
+          0.1384
         ],
-        "profit_units": 0.187,
-        "units_staked": 200.0
+        "profit_units": 2.915,
+        "units_staked": 207.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -483,17 +483,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 204,
-      "decided": 200,
-      "roi": 0.0009,
+      "n_bets": 211,
+      "decided": 207,
+      "roi": 0.0141,
       "roi_ci": [
-        -0.1275,
-        0.1274
+        -0.1103,
+        0.1384
       ],
-      "win_rate": 0.525,
-      "p_value": 0.524622,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.915114,
+      "win_rate": 0.5314,
+      "p_value": 0.404307,
+      "bh_adjusted_p": 0.971342,
+      "deflated_sharpe_p": 0.879935,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -519,7 +519,7 @@
           0.6706
         ],
         "p_value": 0.765992,
-        "bh_adjusted_p": 0.984847,
+        "bh_adjusted_p": 0.971342,
         "deflated_sharpe_p": 0.899929,
         "n_bets": 46,
         "decided": 45,
@@ -552,7 +552,7 @@
       ],
       "win_rate": 0.5333,
       "p_value": 0.765992,
-      "bh_adjusted_p": 0.984847,
+      "bh_adjusted_p": 0.971342,
       "deflated_sharpe_p": 0.899929,
       "reward": "none - gate failure",
       "failed_gates": [
