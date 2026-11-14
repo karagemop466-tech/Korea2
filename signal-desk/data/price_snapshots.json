@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-01",
   "title": "Price-snapshot store: opening and closing numbers per market",
-  "generated_utc": "2026-11-14T20:07:56+00:00",
+  "generated_utc": "committed data through 2026-11-01",
   "markets": [
    "side (spread)",
    "total",

@@ -46,7 +46,28 @@ import transcripts as T  # noqa: E402
 GAMES = os.path.join(ROOT, "data", "derived", "games.csv.gz")
 PRICES_OPEN = os.environ.get("SD_INITIAL_LINES", "")
 PRICES_CLOSE = os.environ.get("SD_CLOSING_LINES", "")
-GENERATED = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+def _stamp() -> str:
+    """A deterministic build stamp.
+
+    Wall-clock time would make every rebuild a diff, which defeats the reproducibility test and
+    makes the committed JSON churn. The stamp is therefore the newest gameday in the committed
+    data, overridable with ``SD_BUILD_STAMP`` when you want to mark a specific run.
+    """
+    env = os.environ.get("SD_BUILD_STAMP")
+    if env:
+        return env
+    newest = ""
+    with gzip.open(GAMES, "rt") as fh:
+        for row in csv.DictReader(fh):
+            if row["game_type"] == "REG" and str(row["home_score"]).strip() not in ("", "NA"):
+                newest = max(newest, row["gameday"])
+    return f"committed data through {newest}"
+
+
+try:
+    GENERATED = _stamp()
+except Exception:            # a missing extract must not stop the import
+    GENERATED = "committed data through unknown"
 
 
 # --------------------------------------------------------------------------- helpers

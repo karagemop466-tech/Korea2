@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-04",
   "title": "Fair line, market line and difference as three separate columns",
-  "generated_utc": "2026-11-14T20:07:56+00:00",
+  "generated_utc": "committed data through 2026-11-01",
   "rule": "No cell may contain 'edge' text without the two parent numbers in the same row. A difference whose sign is not stated unambiguously is not published.",
   "sign_convention": "diff = fair - market, in points for side and total and in probability for the moneyline. A positive diff on the side means the model likes the home team more than the market does.",
   "market_side_convention": "market_side_home follows the committed extract, where a positive spread_line means the home team is favoured."

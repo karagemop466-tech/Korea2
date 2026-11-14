@@ -2,7 +2,7 @@
  "meta": {
   "id": "SD-03",
   "title": "Origination order: side, then total, then moneyline",
-  "generated_utc": "2026-11-14T20:07:56+00:00",
+  "generated_utc": "committed data through 2026-11-01",
   "order_claimed": [
    "side (spread)",
    "total",
