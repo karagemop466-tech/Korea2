@@ -9,7 +9,7 @@
 ## 1. The one-paragraph version
 
 We built our own NFL spread, total and moneyline from team ratings estimated walk-forward on 21 seasons
-of priced games, tested 27 pre-registered signals and 18 strategy families (singles, parlays, same-game
+of priced games, tested 27 specified signals (specified within this project, not externally pre-registered) and 18 strategy families (singles, parlays, same-game
 combinations, teasers), and subject every one of them to seven validation gates. **No strategy qualified.**
 That is the finding, not a failure of the exercise: the data says the closing line is extremely well
 priced, that most apparent edges vanish once you correct for multiple testing, and that a strategy needs
@@ -23,7 +23,7 @@ evidence, and a live dashboard instead of a fantasy bankroll.
 | Ingestion | 9 extracts, SHA-256 hashed, pinned to a commit | `data/manifest.json`, `docs/data.html` |
 | Verification | 9 integrity / reconciliation checks | `docs/data.html` |
 | Line origination | Ridge rating model → spread, total, moneyline | `docs/lines.html` |
-| Signal research | 27 pre-registered signals, FDR + out-of-sample | `docs/signals.html` |
+| Signal research | 27 specified signals (specified within this project, not externally pre-registered), FDR + out-of-sample | `docs/signals.html` |
 | Strategy competition | 18 families, 7 gates, leaderboard + rewards | `docs/strategies.html`, `docs/gates.html` |
 | Correlation | φ coefficients with CIs, copula pricing | `docs/correlation.html` |
 | Luck removal | Permutation nulls, reliability, evidence bar | `docs/luck.html` |

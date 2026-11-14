@@ -746,8 +746,8 @@ and therefore worth refining first.</div><a href="pages/flagged.html">Flags &rar
         + section("How the ranking is computed", '''<ol class="steps">
 <li>Every registered strategy is settled on the same out-of-sample window.</li>
 <li>Each is scored against the ten gates, with the binomial p-value corrected for the number of tests.</li>
-<li>Survivors are ranked by gates passed, then by ROI; ties break on sample size.</li>
-<li>Only a 10/10 score is eligible for capital. Anything less stays in the research record.</li>
+<li>Survivors are ranked by gates passed, then by BH-adjusted p; ties break on sample size (signal only — ROI is reported under a separate staking group and never affects ordering).</li>
+<li>Only a 10/10 score is eligible for capital. Anything less stays in the research record. A live strategy that later decays is returned to paper by the demotion gate D1.</li>
 </ol>'''))
     return W.layout("Leaderboard", "pages/leaderboard.html", body,
                     subtitle="Standings, rewards and the rule that binds them.")

@@ -1,5 +1,13 @@
 {
-  "ranking_rule": "Rank by gates passed, then by ROI. A strategy can only earn a reward when all ten gates pass; a positive ROI alone earns nothing.",
+  "ranking_rule": "Rank by SIGNAL ONLY: gates passed, then Benjamini-Hochberg-adjusted p (lower = stronger skill evidence), then sample size. Staking metrics (ROI and its CI) are reported under `staking` but never affect rank ordering, so a lucky staking run cannot mask a bad signal. A strategy can only earn a reward when all ten gates pass; a positive ROI alone earns nothing.",
+  "signal_vs_staking": "signal = gates, adjusted significance, win rate, deflated Sharpe, sample size (ordering basis); staking = ROI, ROI CI, units (money outcome only). The split implements the requirement that a lucky staking run cannot mask a bad signal.",
+  "demotion_gate": {
+    "id": "D1",
+    "name": "Demotion gate (live -> paper)",
+    "rule": "A live strategy is demoted to paper immediately when EITHER (a) its rolling window of the last 50 decided bets shows mean closing-line value (CLV) <= 0 - the signal itself has decayed - OR (b) the same rolling window shows flat-stake ROI < -5% - a staking collapse. The gate reads the signal first: condition (a) alone is sufficient, because a lucky staking run must not keep a decayed signal live. Re-promotion requires a full re-qualification (all ten gates re-passed on the merged sample). D1 never uses in-season ROI alone to keep a strategy live.",
+    "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+    "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed."
+  },
   "reward_schedule": [
     {
       "tier": "Tier 1 - validated",
@@ -25,17 +33,38 @@
       "family": "single bet (situational)",
       "verdict": "REJECTED",
       "gates_passed": "5/10",
-      "n_bets": 137,
-      "decided": 134,
-      "roi": -0.0121,
-      "roi_ci": [
-        -0.1677,
-        0.1465
-      ],
-      "win_rate": 0.5149,
-      "p_value": 0.795629,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.937314,
+      "signal": {
+        "gates_passed": "5/10",
+        "win_rate": 0.5149,
+        "win_rate_ci": [
+          0.4311,
+          0.5979
+        ],
+        "p_value": 0.795629,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.937314,
+        "n_bets": 137,
+        "decided": 134,
+        "clv": null
+      },
+      "staking": {
+        "roi": -0.0121,
+        "roi_ci": [
+          -0.1677,
+          0.1465
+        ],
+        "profit_units": -1.626,
+        "units_staked": 134.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -52,17 +81,38 @@
       "family": "single bet (situational)",
       "verdict": "REJECTED",
       "gates_passed": "5/10",
-      "n_bets": 86,
-      "decided": 85,
-      "roi": -0.0587,
-      "roi_ci": [
-        -0.263,
-        0.1421
-      ],
-      "win_rate": 0.4941,
-      "p_value": 1.0,
-      "bh_adjusted_p": 1.0,
-      "deflated_sharpe_p": 0.974492,
+      "signal": {
+        "gates_passed": "5/10",
+        "win_rate": 0.4941,
+        "win_rate_ci": [
+          0.3904,
+          0.5983
+        ],
+        "p_value": 1.0,
+        "bh_adjusted_p": 1.0,
+        "deflated_sharpe_p": 0.974492,
+        "n_bets": 86,
+        "decided": 85,
+        "clv": null
+      },
+      "staking": {
+        "roi": -0.0587,
+        "roi_ci": [
+          -0.263,
+          0.1421
+        ],
+        "profit_units": -4.99,
+        "units_staked": 85.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -74,22 +124,43 @@
     },
     {
       "rank": 3,
-      "id": "S7_wind_under",
-      "name": "Under when wind >= 15 mph outdoors",
-      "family": "single bet (total)",
+      "id": "C1_all_home_control",
+      "name": "Control - back every home team",
+      "family": "control",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
-      "n_bets": 46,
-      "decided": 45,
-      "roi": 0.0151,
-      "roi_ci": [
-        -0.2576,
-        0.2853
-      ],
-      "win_rate": 0.5333,
-      "p_value": 0.765992,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.899929,
+      "signal": {
+        "gates_passed": "4/10",
+        "win_rate": 0.4962,
+        "win_rate_ci": [
+          0.4638,
+          0.5286
+        ],
+        "p_value": 0.842442,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.998759,
+        "n_bets": 936,
+        "decided": 911,
+        "clv": null
+      },
+      "staking": {
+        "roi": -0.0519,
+        "roi_ci": [
+          -0.1102,
+          0.0095
+        ],
+        "profit_units": -47.31,
+        "units_staked": 911.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -102,22 +173,43 @@
     },
     {
       "rank": 4,
-      "id": "S4_rest_advantage",
-      "name": "Rest advantage >= 3 days",
-      "family": "single bet (situational)",
+      "id": "C2_all_under_control",
+      "name": "Control - under every game",
+      "family": "control",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
-      "n_bets": 204,
-      "decided": 200,
-      "roi": 0.0009,
-      "roi_ci": [
-        -0.1275,
-        0.1274
-      ],
-      "win_rate": 0.525,
-      "p_value": 0.524622,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.915114,
+      "signal": {
+        "gates_passed": "4/10",
+        "win_rate": 0.4919,
+        "win_rate_ci": [
+          0.4599,
+          0.524
+        ],
+        "p_value": 0.646379,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.999491,
+        "n_bets": 936,
+        "decided": 931,
+        "clv": null
+      },
+      "staking": {
+        "roi": -0.0595,
+        "roi_ci": [
+          -0.1199,
+          0.0024
+        ],
+        "profit_units": -55.418,
+        "units_staked": 931.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -130,22 +222,43 @@
     },
     {
       "rank": 5,
-      "id": "S3_model_total_edge",
-      "name": "Model total edge >= 3.0 pts",
-      "family": "single bet (total)",
+      "id": "S1_model_edge_2",
+      "name": "Model spread edge >= 2.0 pts",
+      "family": "single bet",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
-      "n_bets": 370,
-      "decided": 366,
-      "roi": -0.0353,
-      "roi_ci": [
-        -0.129,
-        0.0629
-      ],
-      "win_rate": 0.5055,
-      "p_value": 0.87542,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.981829,
+      "signal": {
+        "gates_passed": "4/10",
+        "win_rate": 0.4955,
+        "win_rate_ci": [
+          0.4542,
+          0.5369
+        ],
+        "p_value": 0.865434,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.99642,
+        "n_bets": 572,
+        "decided": 557,
+        "clv": null
+      },
+      "staking": {
+        "roi": -0.0528,
+        "roi_ci": [
+          -0.1299,
+          0.0259
+        ],
+        "profit_units": -29.42,
+        "units_staked": 557.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -158,22 +271,43 @@
     },
     {
       "rank": 6,
-      "id": "C1_all_home_control",
-      "name": "Control - back every home team",
-      "family": "control",
+      "id": "S2_model_edge_3",
+      "name": "Model spread edge >= 3.0 pts",
+      "family": "single bet",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
-      "n_bets": 936,
-      "decided": 911,
-      "roi": -0.0519,
-      "roi_ci": [
-        -0.1102,
-        0.0095
-      ],
-      "win_rate": 0.4962,
-      "p_value": 0.842442,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.998759,
+      "signal": {
+        "gates_passed": "4/10",
+        "win_rate": 0.4798,
+        "win_rate_ci": [
+          0.431,
+          0.529
+        ],
+        "p_value": 0.451024,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.998996,
+        "n_bets": 409,
+        "decided": 396,
+        "clv": null
+      },
+      "staking": {
+        "roi": -0.0819,
+        "roi_ci": [
+          -0.1717,
+          0.0114
+        ],
+        "profit_units": -32.44,
+        "units_staked": 396.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -186,22 +320,43 @@
     },
     {
       "rank": 7,
-      "id": "S1_model_edge_2",
-      "name": "Model spread edge >= 2.0 pts",
-      "family": "single bet",
+      "id": "S3_model_total_edge",
+      "name": "Model total edge >= 3.0 pts",
+      "family": "single bet (total)",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
-      "n_bets": 572,
-      "decided": 557,
-      "roi": -0.0528,
-      "roi_ci": [
-        -0.1299,
-        0.0259
-      ],
-      "win_rate": 0.4955,
-      "p_value": 0.865434,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.99642,
+      "signal": {
+        "gates_passed": "4/10",
+        "win_rate": 0.5055,
+        "win_rate_ci": [
+          0.4545,
+          0.5564
+        ],
+        "p_value": 0.87542,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.981829,
+        "n_bets": 370,
+        "decided": 366,
+        "clv": null
+      },
+      "staking": {
+        "roi": -0.0353,
+        "roi_ci": [
+          -0.129,
+          0.0629
+        ],
+        "profit_units": -12.914,
+        "units_staked": 366.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -214,22 +369,43 @@
     },
     {
       "rank": 8,
-      "id": "C2_all_under_control",
-      "name": "Control - under every game",
-      "family": "control",
+      "id": "S4_rest_advantage",
+      "name": "Rest advantage >= 3 days",
+      "family": "single bet (situational)",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
-      "n_bets": 936,
-      "decided": 931,
-      "roi": -0.0595,
-      "roi_ci": [
-        -0.1199,
-        0.0024
-      ],
-      "win_rate": 0.4919,
-      "p_value": 0.646379,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.999491,
+      "signal": {
+        "gates_passed": "4/10",
+        "win_rate": 0.525,
+        "win_rate_ci": [
+          0.456,
+          0.5931
+        ],
+        "p_value": 0.524622,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.915114,
+        "n_bets": 204,
+        "decided": 200,
+        "clv": null
+      },
+      "staking": {
+        "roi": 0.0009,
+        "roi_ci": [
+          -0.1275,
+          0.1274
+        ],
+        "profit_units": 0.187,
+        "units_staked": 200.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -242,22 +418,43 @@
     },
     {
       "rank": 9,
-      "id": "S2_model_edge_3",
-      "name": "Model spread edge >= 3.0 pts",
-      "family": "single bet",
+      "id": "S7_wind_under",
+      "name": "Under when wind >= 15 mph outdoors",
+      "family": "single bet (total)",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
-      "n_bets": 409,
-      "decided": 396,
-      "roi": -0.0819,
-      "roi_ci": [
-        -0.1717,
-        0.0114
-      ],
-      "win_rate": 0.4798,
-      "p_value": 0.451024,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.998996,
+      "signal": {
+        "gates_passed": "4/10",
+        "win_rate": 0.5333,
+        "win_rate_ci": [
+          0.3908,
+          0.6706
+        ],
+        "p_value": 0.765992,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.899929,
+        "n_bets": 46,
+        "decided": 45,
+        "clv": null
+      },
+      "staking": {
+        "roi": 0.0151,
+        "roi_ci": [
+          -0.2576,
+          0.2853
+        ],
+        "profit_units": 0.68,
+        "units_staked": 45.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 45,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",

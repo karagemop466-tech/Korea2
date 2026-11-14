@@ -6,7 +6,17 @@ Settlement convention (documented in docs/METHODOLOGY.md):
   * A total bet wins if (game total - line) > 0 for over, < 0 for under, pushes if == 0.
   * Pushes refund the stake and are excluded from the win-rate denominator.
   * Profit is expressed per 1.00 unit staked at the price actually quoted for that game in the
-    source feed (American odds -> decimal), with -110 used only when the feed has no price.
+    source feed (American odds -> decimal).
+
+Imputation policy (revised 2026-11-14): the root pipeline no longer settles any bet at an assumed
+price. `analyze_strategies.py` excludes and counts bets whose stored price is missing; the
+`DEFAULT_AMERICAN` constant is retained only for reference and for sibling pipelines that may still
+document it. A bet without a price has no ROI evidence, and inventing one would manufacture a
+staking result.
+
+Demotion gate D1 (see `DEMOTION_GATE` below): once a strategy is promoted to live, a separate gate
+sends it back to paper trading. It reads the signal first (closing-line value) and the staking
+result second, so a lucky staking run cannot keep a decayed signal live.
 """
 from __future__ import annotations
 
@@ -152,3 +162,55 @@ def evaluate_gates(summary: dict, ctx: dict) -> dict:
         "verdict": "APPROVED" if passed == len(res) else "REJECTED",
         "failed": [g for g, ok in res.items() if not ok],
     }
+
+
+# ------------------------------------------------------------------ demotion gate (live -> paper)
+DEMOTION_GATE = {
+    "id": "D1",
+    "name": "Demotion gate (live -> paper)",
+    "rule": ("A live strategy is demoted to paper immediately when EITHER (a) its rolling window of "
+             "the last 50 decided bets shows mean closing-line value (CLV) <= 0 - the signal itself "
+             "has decayed - OR (b) the same rolling window shows flat-stake ROI < -5% - a staking "
+             "collapse. The gate reads the signal first: condition (a) alone is sufficient, because "
+             "a lucky staking run must not keep a decayed signal live. Re-promotion requires a full "
+             "re-qualification (all ten gates re-passed on the merged sample). D1 never uses "
+             "in-season ROI alone to keep a strategy live."),
+    "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not "
+                         "yet calibrated on live data; D1 is armed but dormant while no strategy is "
+                         "live. Calibration is a prerequisite for the first promotion, not after it.",
+    "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores "
+                       "closing-type prices only (opening prices exist for 2021), so condition (a) "
+                       "evaluates only when a bet carries a measured CLV; strategies without "
+                       "opening prices are judged on (b) alone and the gap is disclosed.",
+}
+
+
+def evaluate_demotion(bets: list[dict], live: bool, window: int = 50,
+                      roi_floor: float = -0.05, clv_floor: float = 0.0) -> dict:
+    """Apply the D1 demotion gate to a bet list.
+
+    Dormant for strategies that are not live - every published entry in this dataset is a design or
+    research entry (G9 executable_verified=False), so D1 is armed but dormant here. The evaluation
+    path is implemented and unit-checkable so that a future promotion inherits it unchanged.
+    """
+    decided = [r for r in bets if r.get("outcome") in ("win", "loss")][-window:]
+    base = {"gate": DEMOTION_GATE["id"], "name": DEMOTION_GATE["name"],
+            "window_decided": len(decided), "thresholds_status": DEMOTION_GATE["thresholds_status"],
+            "data_limitation": DEMOTION_GATE["data_limitation"]}
+    if not live:
+        return {**base, "status": "dormant",
+                "reason": "strategy is not live; D1 applies only after promotion"}
+    staked = sum(r["staked"] for r in decided)
+    roi = (sum(r["profit"] for r in decided) / staked) if staked > 0 else None
+    clvs = [r["clv"] for r in decided if r.get("clv") is not None]
+    clv_mean = (sum(clvs) / len(clvs)) if clvs else None
+    reasons = []
+    if roi is not None and roi < roi_floor:
+        reasons.append(f"rolling-{len(decided)} flat-stake ROI {roi:.4f} < floor {roi_floor}")
+    if clv_mean is not None and clv_mean <= clv_floor:
+        reasons.append(f"rolling-{len(clvs)} mean CLV {clv_mean:.4f} <= floor {clv_floor}")
+    return {**base, "status": "demote-to-paper" if reasons else "live",
+            "rolling_roi": None if roi is None else round(roi, 4),
+            "rolling_clv": None if clv_mean is None else round(clv_mean, 4),
+            "clv_bets_in_window": len(clvs),
+            "reasons": reasons}

@@ -27,6 +27,9 @@ jobs:
       - name: Unit tests (settlement, odds, statistics, published artefacts)
         run: python -m unittest discover -s pipeline/tests -t pipeline -v
 
+      - name: Correctness-sweep unit tests (D1 demotion gate, missing-price exclusion)
+        run: python scripts/test_correctness_sweep.py -v
+
       - name: Static link check (no network required)
         run: python pipeline/check_links.py
 

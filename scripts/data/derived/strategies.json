@@ -1,0 +1,4 @@
+{
+  "status": "failed",
+  "error": "Traceback (most recent call last):\n  File \"/home/user/Korea2/scripts/analyze_strategies.py\", line 317, in <module>\n    main()\n  File \"/home/user/Korea2/scripts/analyze_strategies.py\", line 178, in main\n    df, meta = load_inputs()\n               ^^^^^^^^^^^^^\n  File \"/home/user/Korea2/scripts/analyze_strategies.py\", line 40, in load_inputs\n    games, checks = D.load_games()\n                    ^^^^^^^^^^^^^^\n  File \"/home/user/Korea2/scripts/lib/data.py\", line 33, in load_games\n    df = _read_parquet(os.path.join(RAW, \"games.parquet\"))\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/Korea2/scripts/lib/data.py\", line 28, in _read_parquet\n    raise FileNotFoundError(path)\nFileNotFoundError: data/raw/games.parquet\n"
+}
