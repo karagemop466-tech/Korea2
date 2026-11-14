@@ -1,0 +1,39 @@
+name: probe
+on:
+  workflow_dispatch:
+  push:
+    branches: ['arena/52a496d0-korea2']
+    paths: ['decision-arena/PROBE']
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Reproduce the build and capture the error
+        run: |
+          set +e
+          python decision-arena/scripts/fetch_inputs.py --season 2026 > /tmp/fetch.log 2>&1
+          python decision-arena/scripts/build_market.py > /tmp/b1.log 2>&1; R1=$?
+          python decision-arena/scripts/build_strategies.py > /tmp/b2.log 2>&1; R2=$?
+          python decision-arena/scripts/build_correlation.py > /tmp/b3.log 2>&1; R3=$?
+          python decision-arena/scripts/build_depth.py > /tmp/b4.log 2>&1; R4=$?
+          {
+            echo "rc market=$R1 strategies=$R2 corr=$R3 depth=$R4"
+            echo "=== fetch ==="; tail -20 /tmp/fetch.log
+            echo "=== market ==="; tail -40 /tmp/b1.log
+            echo "=== strategies ==="; tail -40 /tmp/b2.log
+            echo "=== corr ==="; tail -20 /tmp/b3.log
+            echo "=== depth ==="; tail -20 /tmp/b4.log
+            echo "=== inputs ==="; ls -la decision-arena/data/inputs/ 2>/dev/null
+            echo "=== manifest ==="; cat decision-arena/data/inputs/manifest.json 2>/dev/null
+          } > decision-arena/PROBE_RESULT.txt
+      - name: Commit the probe output
+        run: |
+          git config user.name "probe-bot"; git config user.email "probe@users.noreply.github.com"
+          git add decision-arena/PROBE_RESULT.txt
+          git commit -m "probe: capture the runner-side build error" || true
+          git push origin "HEAD:${{ github.ref_name }}"
