@@ -131,9 +131,9 @@ def build_index() -> str:
     req = load("requirements.json")
     flagged = load("flagged.json")
 
-    statuses = [r["status"].split(" - ")[0] for r in req["rows"]]
-    built = sum(1 for s in statuses if s == "built")
-    partial = sum(1 for s in statuses if s == "partial")
+    statuses = [r["status"].lower() for r in req["rows"]]
+    built = sum(1 for s in statuses if s.startswith("built"))
+    partial = sum(1 for s in statuses if s.startswith("partial"))
     other = len(statuses) - built - partial
 
     links = [
@@ -614,8 +614,9 @@ def build_executive() -> str:
     req = load("requirements.json")
     orig = load("origination.json")
 
-    statuses = [r["status"].split(" - ")[0] for r in req["rows"]]
-    built = sum(1 for s in statuses if s == "built")
+    statuses = [r["status"].lower() for r in req["rows"]]
+    built = sum(1 for s in statuses if s.startswith("built"))
+    partial = sum(1 for s in statuses if s.startswith("partial"))
 
     head_rows = [
         ["Verified results feed", f"{feed['verified_rows']} official finals (weeks 7-10 Thu), cross-check {feed['cross_check_summary']['match']}/{feed['cross_check_summary']['compared']} vs committed snapshot",
