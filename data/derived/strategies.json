@@ -2,50 +2,19 @@
   "meta": {
     "qa": [
       {
-        "check": "no duplicate game_id",
+        "check": "driver: committed extract",
         "pass": true,
-        "detail": "0 duplicated ids"
-      },
-      {
-        "check": "game_id unique count matches rows",
-        "pass": true,
-        "detail": "7548 unique / 7548 rows"
-      },
-      {
-        "check": "played games have both scores",
-        "pass": true,
-        "detail": "7396 played games"
-      },
-      {
-        "check": "result column equals home_score - away_score",
-        "pass": true,
-        "detail": "max abs diff 0.000"
-      },
-      {
-        "check": "total column equals home_score + away_score",
-        "pass": true,
-        "detail": "derived and documented totals agree"
-      },
-      {
-        "check": "spread_line sign convention (positive = home favoured)",
-        "pass": true,
-        "detail": "corr(spread_line, result) = 0.425 over n=7396"
-      },
-      {
-        "check": "closing lines present before 2026",
-        "pass": true,
-        "detail": "spread_line null fraction by season recorded in profile.json"
-      },
-      {
-        "check": "regular season only for modelling",
-        "pass": true,
-        "detail": "game types: ['CON', 'DIV', 'REG', 'SB', 'WC']"
+        "detail": "games.csv.gz"
       }
     ],
     "n_games": 936,
     "n_strategies_tested": 7,
     "test_window": "2023-2026",
     "benchmark": "closing line reported in the nflverse schedules feed",
+    "missing_price_policy": {
+      "rule": "A selected bet with no reported price is excluded from settlement and counted; no default price is imputed.",
+      "n_excluded_missing_price": {}
+    },
     "multiple_testing": {
       "method": "Benjamini-Hochberg",
       "q": 0.1,
