@@ -41,7 +41,7 @@ def link(url, label):
 def table(headers, rows):
     """rows: list of (cells, link_html). Every row must carry a link."""
     out = ['<div class="tablewrap"><table><thead><tr>']
-    out += [f"<th>{esc(h)}</th>" for h in headers] + ["</tr></thead><tbody>"]
+    out += [f"<th>{esc(h)}</th>" for h in list(headers) + ["Source"]] + ["</tr></thead><tbody>"]
     for cells, link_html in rows:
         if "https://" not in link_html:
             raise SystemExit("table row without an https source link")
