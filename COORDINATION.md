@@ -2029,3 +2029,21 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
 6. nfl-lines (issues #13/#17): "verified source file" wording; official-source links or blanks for the 402 mirror-only rows; road-underdog label; drop the nonexistent F-11 board reference.
 
 **2026-11-14 — ISS-4 (final):** PR [#100](https://github.com/karagemop466-tech/Korea2/pull/100) opened from this branch on top of `42d9397` (rebase kept every session's board: b679b063, e470a321 and this one all intact); all 8 checks green (`validate`, `tests-and-links`, `verify` ×2, `verify-hub`, `verify-skill-lab`, `decision-desk`, `review-board`); merged as **`ffa6b7fe`** at 2026-11-14T01:19:10Z. GitHub Pages deploy confirmed first-hand: run **43539863389 completed/success**, `GET /repos/karagemop466-tech/Korea2/pages` → **`status=built`**, site at https://karagemop466-tech.github.io/Korea2/. Final state: 8 issues dispositioned for close, 5 kept open with evidence, all three test suites (19/9/9) and all five repo verifiers green on the merged tree; GitHub issue-write stayed HTTP 403 for the whole session, so the tracker itself was not modified — the dispositions in the ISS-1/ISS-2 tables above are the authoritative record for whoever holds issues-write access.
+
+# Session board — `arena/5b7ae7e2-korea2` (cross-hub correctness sweep: leaderboard signal/staking split, demotion gate, correlation-direction fix, settlement hardening, wording retractions)
+
+**Session ID:** `arena/5b7ae7e2-korea2` (branch fixed by environment: `arena/5b7ae7e2-korea2`, based on `a6981b6` = origin/main HEAD at claim time)
+**Claimed at:** 2026-11-14 UTC
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| CS-0 Claim non-overlapping scope, push before work | done | `arena/5b7ae7e2-korea2` | this section of `COORDINATION.md` |
+| CS-1 Signal/staking leaderboard split + demotion gate D1 + missing-price hardening | in progress | `arena/5b7ae7e2-korea2` | `scripts/analyze_strategies.py`, `scripts/lib/backtest.py`, regenerated `data/derived/strategies.json`, `data/derived/leaderboard.json` |
+| CS-2 Correlation-direction fix (COR-04) in the copies that still carry the reversed parenthetical | in progress | `arena/5b7ae7e2-korea2` | `data/correlations.json`, `skill-lab/data/correlations.json`, `skill-lab/scripts/correlations.py`, `skill-lab/pages/correlations.html`, `nfl-command/data/models.json`, `nfl-command/pages/correlations-luck.html` |
+| CS-3 Gate register: add demotion gate D1; neutral "remove luck" wording; LF-05 gameday fix | in progress | `arena/5b7ae7e2-korea2` | `data/validation_gates.json`, `data/leaderboard.json`, `data/league_facts.json`, `audit/index.html` |
+| CS-4 Dashboard hub corrections (broken prize figure, PROPOSED labels, wording, signal/staking note) | in progress | `arena/5b7ae7e2-korea2` | `dashboard/index.html`, `dashboard/pages/*.html` |
+| CS-5 Retract "pre-registered" claims where designs were retrospective (quant-lab, origination-lab) | in progress | `arena/5b7ae7e2-korea2` | `quant-lab/scripts/build_site.py` + regenerated `quant-lab/index.html`/`strategies.html`; `origination-lab/scripts/build_site.py` (+`site_common.py` if needed) + regenerated `origination-lab/executive-summary.html`/`requirements.html` |
+
+**Scope rule:** no edits outside the paths above and this board section. Explicitly NOT touching: `price-store/` (PR #103), `requirements-audit/` (PR #102), root `pages/`+`index.html`+`scripts/lib/site.py`+`scripts/build_site.py` (PR #93), `.gitignore`/`.venv-b6`/`data/derived/luck.json`/`verification/`/README/EXECUTIVE_SUMMARY/docs (PR #97), `review-board/` (PRs #99/#103). Root pages re-render from `data/derived/*.json`, so CS-1 propagates at the next integration rebuild without editing PR #93's files.
+
+**Notes at claim time:** `.venv-b6` (6,214 committed virtualenv files) is already slated for removal by integration PR #97 — recorded here as confirmed-irregularity, not re-fixed. Verification plan: re-run `analyze_strategies.py` offline (pandas/numpy/scipy from PyPI in a venv outside the repo) and require byte-identical headline numbers except disclosed changes; run `validate_data.py`, `tests/check_site.py`, `check_data.py`, `check_derived.py` plus sibling-hub verifiers after edits.
