@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_utc": "2026-11-14T20:20:41+00:00",
+  "generated_utc": "2026-11-14T20:41:01+00:00",
   "auditor": "decision-hub/scripts/audit_root.py",
   "rule": "A published number is PASS only if this independent implementation reproduces it from committed inputs within tolerance. Anything else is FAIL, BLANK or OBSERVATION."
  },
@@ -296,12 +296,12 @@
   {
    "id": "rows.source_coverage",
    "claim": "table rows carrying a source link",
-   "published": 859,
-   "recomputed": 859,
+   "published": 873,
+   "recomputed": 873,
    "tolerance": 0,
    "abs_diff": 0,
    "verdict": "PASS",
-   "method": "7 of 866 rows have no link in the final cell",
+   "method": "7 of 880 rows have no link in the final cell",
    "source_id": "nflverse-data",
    "class": "count"
   }
@@ -485,9 +485,9 @@
    "tables": 3
   },
   "pages/flagged.html": {
-   "table_rows": 19,
+   "table_rows": 32,
    "rows_without_source_cell": 0,
-   "tables": 1
+   "tables": 2
   },
   "pages/injuries-depth.html": {
    "table_rows": 12,
@@ -525,7 +525,7 @@
    "tables": 6
   },
   "pages/sources.html": {
-   "table_rows": 62,
+   "table_rows": 63,
    "rows_without_source_cell": 0,
    "tables": 2
   },
@@ -859,7 +859,7 @@
  },
  "rows_totals": {
   "pages": 25,
-  "table_rows": 866,
+  "table_rows": 880,
   "rows_without_source_cell": 7
  },
  "summary": {

@@ -1213,7 +1213,7 @@ def page_flagged() -> str:
          "PR #52: page_sources reads data/provenance.json; per-season URLs expanded; regression tests."],
     ]
     issue_table_rows = [
-        [f'<a href="{gh}{n[1:]}" rel="noopener">{esc(n)}</a>', esc(t), esc(d), esc(note)]
+        [esc(n), esc(t), esc(d), esc(note), f'<a href="{gh}{n[1:]}" rel="noopener">{esc(n)} on GitHub</a>']
         for n, t, d, note in issue_rows
     ]
 
@@ -1225,7 +1225,7 @@ numbers that cannot be defended.</p></div>
 
 '''
         + section("GitHub issue tracker — dispositions", table(
-            ["Issue", "Title", "Disposition", "Evidence / current state"], issue_table_rows,
+            ["Issue", "Title", "Disposition", "Evidence / current state", "Source"], issue_table_rows,
             caption="Full evidence in COORDINATION.md (ISS-1/ISS-2 tables, session arena/da5f9d7b-korea2). "
                     "GitHub rejected issue writes (HTTP 403) from the agent sessions, so the tracker may still "
                     "show these as open; this table is the record. Flags and open items do not block publication."))
