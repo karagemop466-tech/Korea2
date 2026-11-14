@@ -1,0 +1,30 @@
+name: probe
+on:
+  push:
+    branches: ['arena/52a496d0-korea2']
+    paths: ['decision-arena/PROBE']
+permissions: {contents: write}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: run_all
+        run: |
+          set +e
+          python decision-arena/scripts/fetch_inputs.py --season 2026 > /tmp/f.log 2>&1; echo "fetch rc=$?" > /tmp/out.txt
+          cat /tmp/f.log >> /tmp/out.txt
+          echo "--- inputs ---" >> /tmp/out.txt
+          ls -la decision-arena/data/inputs/ >> /tmp/out.txt 2>&1
+          echo "--- run_all ---" >> /tmp/out.txt
+          python decision-arena/scripts/run_all.py >> /tmp/out.txt 2>&1
+          echo "run_all rc=$?" >> /tmp/out.txt
+          tail -50 /tmp/out.txt > decision-arena/PROBE_RESULT.txt
+      - name: commit
+        run: |
+          git config user.name p; git config user.email p@x
+          git add -f decision-arena/PROBE_RESULT.txt
+          git commit -m "probe 2" || true
+          for i in 1 2 3; do git pull --rebase -q origin "${{ github.ref_name }}" || true; git push -q origin "HEAD:${{ github.ref_name }}" && break; sleep 4; done
