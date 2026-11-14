@@ -2083,3 +2083,27 @@ Files added or changed in this session: `price-store/**` and this section of `CO
 - Note for future sessions: `verify_all.py` compares registers against **committed HEAD**, so a regeneration must be committed before the check can pass; and any hub that scans every committed JSON will go stale when a new JSON file is added.
 - Merge result of PR #103 and the GitHub Pages deploy are recorded on the PR itself (`gh pr view 103`) and in the final note of this session.
 - 2026-11-14 UTC — **PR #103 merged** to `main` as `7d73080` (`mergedAt` 2026-11-14T20:00:13Z, merge commit, all eight checks green on head `627928e`). The GitHub Pages build for `7d73080` completed `success`; `gh api repos/karagemop466-tech/Korea2/pages` → `status: built`. Live check (fetch of `/price-store/index.html`) showed a defect: the rendered tables had no header for the Source link column. Fixed in follow-up **PR [#105](https://github.com/karagemop466-tech/Korea2/pull/105)** (`ce5aad4`: Source header on every table; header/cell counts now match; no data or claims changed). PR #105 checks: all eight `pass` before merge.
+
+
+# Session board — `arena/b484601f-korea2` (NFL platform completion: price-snapshot store, signal/staking leaderboard, demotion gate, rebuild, PR + merge + Pages deploy)
+
+**Session ID:** `arena/b484601f-korea2` (branch fixed by environment: `arena/b484601f-korea2`, at `a6981b6` = merge of PR #101)
+**Claimed at:** 2026-11-14 UTC
+**Base:** `a6981b6` = `origin/main` tip at claim time; rebased onto `origin/main` 7d73080 (merge of PR #103)
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| BC-01 | Claim non-overlapping scope and push before any other work | done | `arena/b484601f-korea2` | this section of `COORDINATION.md` |
+| BC-02 | Price-snapshot store: opening + closing line for every originated market (spread, total, moneyline); blanks flagged, never inferred | done | `arena/b484601f-korea2` | `scripts/analysis/pricesnapshots.py`, `results/price_snapshots.json`, `scripts/build_site.py` (leaderboard page) |
+| BC-03 | Validation gates completed: document G9/G10 + explicit demotion gate (live strategy → paper) | done | `arena/b484601f-korea2` | `data/validation_gates.json` |
+| BC-04 | Leaderboard: separate 'signal' (gate/CLV evidence) from 'staking' (ROI/bankroll outcome) in the public table | done | `arena/b484601f-korea2` | `scripts/build_site.py` (leaderboard page) |
+| BC-05 | Run all repo checkers (check_derived, check_data, analysis unittest, check_site, check_links) | done | `arena/b484601f-korea2` | scripts/, tests/ |
+| BC-06 | Integration PR from this branch to `main`, merge, confirm GitHub Pages deploy, record PR link + deploy result | in progress | `arena/b484601f-korea2` | this section, PR #104 |
+
+**Scope rule:** this session writes `COORDINATION.md` (this section only), `scripts/analysis/pricesnapshots.py`, `results/price_snapshots.json`, `data/validation_gates.json`, and `scripts/build_site.py` (leaderboard rendering only). Every other repository file is read-only to this session. No other session's claim is taken over; all earlier session board sections are retained verbatim, including the sibling `arena/f9e0aea9-korea2` section above, which works in the non-overlapping `price-store/` scope.
+
+**Verification standard:** every published number is read from committed JSON produced by the deterministic pipeline; anything that cannot be confirmed from an official source is left blank and flagged. Official NFL/NIST/regulator pages cannot be re-fetched from this sandbox (egress limited to github.com / api.github.com / codeload.github.com plus package registries), so prior official-source readings are treated as the record and not re-claimed here.
+
+**2026-11-14 — BC-01 (claim):** board appended, committed and pushed before any other work.
+**2026-11-14 — BC-02/BC-03/BC-04:** implemented; all repo checkers pass (check_derived, check_data, analysis unittest 19 OK, check_site 191 pages/11,802 links, check_links 3,891 refs).
+**2026-11-14 — BC-06:** PR #104 opened `arena/b484601f-korea2` → `main`; rebased onto `origin/main` 7d73080; merge + Pages deploy confirmation pending.
