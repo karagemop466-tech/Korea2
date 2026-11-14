@@ -2198,3 +2198,122 @@ Files added or changed in this session: `price-store/**` and this section of `CO
 - What changed in this session's pages after the merge: R5 now says the columns are split on the public leaderboard but **the rank order is still gates passed, then ROI** (PS-F3 stands); a new flag PS-F6 records the two price stores and asks for one canonical store. Gate code `price-store/scripts/gates.py` remains the only executable demotion test; PR #104's G10 is text. The two demotion definitions differ on one point worth an owner's decision: G10 monitors on a rolling window and includes drawdown and G3 triggers; `gates.py` judges full-sample mean CLV only. Logged, not reconciled.
 - 2026-11-14 UTC — **`main` was red after PR #104** (`build-verify` run 43635797502/43635802395 on `3cd5a7e`): `scripts/analysis/pricesnapshots.py` stamped `generated_utc` with the wall clock, so `results/price_snapshots.json` could never match a rebuild. Fixed on this branch: the stamp now comes from the committed `data/derived/manifest.json` (`generated_utc` 2026-11-02T17:38:45+00:00). Rebuilt with `scripts/analysis/build.py` in a venv (pandas 3.1.1, numpy, scipy from PyPI): the **only** `results/` change is that one stamp; a second rebuild shows **no diff** (reproducible). `tests/check_data.py` PASS, `tests/check_site.py` all pass, `review-board/scripts/verify_all.py` 121/121 after regenerating `reconciliation` (commit `a0bed18`). Owner of that file is the PR #104 session; the change is a determinism fix only, no number changed.
 - Git note: an accidental `git pull --rebase` replayed main's commits and stopped on a conflict; aborted with `git rebase --abort` (no work lost), then pushed the branch as a fast-forward (`0d62889`), never a force push.
+# Session board — `arena/71d26167-korea2` (outstanding remediation backlog: R1–R6 + register corrections)
+
+**Session ID:** `arena/71d26167-korea2` · **Base:** `a6981b6` (merge of PR #101) = `origin/main` tip at intake · **Claimed:** 2026-11-14 UTC
+
+**Basis of claim.** The six requests below were logged by session `da5f9d7b` for "whoever picks them
+up"; every owning hub session is closed (its work merged) and its claim is stale per the handoff
+rule. No active session claims these scopes: the sessions opened on 2026-11-14 claim
+`decision-arena/` (52a496d0), `price-store/` (f9e0aea9, PR #103 merged) and `requirements-audit/`
+(7d42ec5b), and open PRs #93/#97/#99 claim root `pages/`+`scripts/lib/site.py`, `.gitignore`+
+`.venv-b6`, and `review-board/` respectively. This session takes none of those.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| REM-1 | R1 wording (issue #24 ask 4): "pre-registered / registered before its results were computed" → "proposed / specified" in `quant-lab/strategies.html` + `quant-lab/index.html` | done | arena/71d26167-korea2 | `quant-lab/` |
+| REM-2 | R2 wording (issue #32 ask 5): "pre-registered signals" → "specified signals" in `origination-lab/executive-summary.html` + `origination-lab/requirements.html` | done | arena/71d26167-korea2 | `origination-lab/` |
+| REM-3 | R3 root hardening (latent −110 imputation, ISS-3): `scripts/analyze_strategies.py` drops missing-price rows and discloses counts instead of the `DEFAULT_AMERICAN` fallback; regression tests appended to unowned `scripts/analysis/test_issue_fixes.py`; re-run from committed derived inputs proved outputs unchanged | done | arena/71d26167-korea2 | `scripts/analyze_strategies.py`, `scripts/analysis/test_issue_fixes.py` (append only) |
+| REM-4 | R5 (issue #16): COR-04 method-sentence reversal fixed in `data/correlations.json`; LF-05 Week-8 gameday corrected in `data/league_facts.json` after a first-hand NFL.com read; "remove luck" wording ×3; leaderboard "00,000" placeholder replaced with the register-verified $100,000 figure; PROPOSED—awaiting-review labels on `dashboard/pages/validation.html` + `leaderboard.html` | done | arena/71d26167-korea2 | `dashboard/`, `data/correlations.json`, `data/league_facts.json`, `data/validation_gates.json`, `data/sources.json` |
+| REM-5 | R6 (issues #13/#17): "verified source file" → third-party-mirror wording (12 instances in `nfl-lines/`); road-Elo-favourite rows relabelled (Elo designation, no market line in source); F-11 row added to `nfl-lines/flagged-review.html` | done | arena/71d26167-korea2 | `nfl-lines/` |
+| REM-6 | Verification sweep (results recorded below) | done | arena/71d26167-korea2 | read-only |
+| REM-7 | PR from this branch, merge, confirm GitHub Pages deploy, record result here | pending | arena/71d26167-korea2 | this section, PR |
+
+## Completion record — 2026-11-14 UTC
+
+**Process note (logged per the conflict rule).** The first claim push collided with `main` moving to
+`7d73080` (PR #103). The rebase conflict on this file was resolved with a script that kept HEAD's
+side and — because the conflict sat at end-of-file — silently dropped this session's own section.
+The error was caught at status-update time; no other session's section was touched, and the claim
+was re-added (this section) before any PR. Lesson recorded: resolve board conflicts by concatenating
+both sides, never by taking one side.
+
+**REM-1** — quant-lab pages are generator-produced, so the wording was fixed in
+`quant-lab/scripts/build_site.py` (:227/:419/:436), `quant-lab/EXECUTIVE_SUMMARY.md` and two script
+docstrings, then the site was regenerated. Determinism check first: a regeneration run *before* the
+edits produced zero diff, so the post-edit diff contains only the wording changes. Residual grep:
+0 instances of "pre-registered / registered before" in quant-lab.
+
+**REM-2** — `origination-lab/executive-summary.html` + `requirements.html` are generated from
+`EXECUTIVE_SUMMARY.md` and `requirements/REQUIREMENTS.md`; both markdown sources edited, pages
+rebuilt (`scripts/build_site.py`, 15 pages). A full `build_all.py` dry-run touched
+`data/derived/integrity.json` (timestamp only) and was reverted — out of wording scope.
+
+**REM-3** — `scripts/analyze_strategies.py`: both `B.DEFAULT_AMERICAN` fallbacks removed; a
+selected bet with no reported price is now excluded and counted per strategy, published as
+`meta.missing_price_policy` in `data/derived/strategies.json`. Reproduction evidence: a driver
+monkeypatching `lib.data.load_games` to the committed `data/derived/games.csv.gz` (same producer
+lineage as the raw parquet per `scripts/export_extracts.py`) reproduced the committed
+`strategies.json` and `leaderboard.json` **exactly** before the edit; after the edit
+`leaderboard.json` is byte-identical and `strategies.json` differs only by the additive
+`meta.missing_price_policy` block with `n_excluded_missing_price: {}` (0 affected bets — ISS-3's
+latent-not-live classification confirmed). `scripts/analysis/test_issue_fixes.py` gains
+`StrategiesMissingPriceTests` (4 tests; suite 19 → 23 OK).
+
+**REM-4** — Official-source verifications performed first-hand via page fetch on 2026-11-14:
+(a) `nfl.com/schedules/2026/by-week/week-8` read in full: Week 8 ran Thu Oct 29 (Packers 27,
+Panthers 19) through MNF Mon Nov 2 (Bears 34, Seahawks 17), SNF Nov 1 Commanders 27 Eagles 10, byes
+HOU/NO/NYG/SF. All 14 games cross-checked against the committed feed: 13 scored feed games match
+NFL.com **exactly** (ARI↔Cardinals is an abbreviation difference only); the feed lacks the Mon Nov 2
+final score — concrete evidence for the standing data-staleness flag. LF-05 corrected accordingly;
+`SRC-NFL-SCHED-W8` added to `data/sources.json` marked first-hand-read (scope amendment: sources.json
+was not in the original file-scope list; recorded here before the edit). (b)
+`media.nfl.com` Big Data Bowl announcement read: "$100,000 in prize money … judged by data analysts
+from NFL teams" — the leaderboard "00,000" placeholder is restored to the register-backed $100,000
+figure (sources already in the register: SRC-KAGGLE-BDB2027, SRC-NFL-BDB-ANNOUNCE). COR-04 method
+sentence fixed (positive correlation ⇒ joint probability **above** the product, not below).
+"remove luck" → "control for luck" in `dashboard/pages/executive-summary.html`,
+`dashboard/index.html` nav list, `dashboard/pages/validation.html` title/h1 and
+`data/validation_gates.json` meta. PROPOSED—awaiting-review notices added to the two pages the
+request named.
+
+**REM-5** — 12 "verified source file" instances reworded to name the third-party mirror and point
+at flag F-07; the contradictory "Road-underdog win rate (road team favored)" row and its two
+strategy/exec-summary siblings relabelled "road team when it is the Elo favourite (no market line in
+the source)"; F-11 row appended to `nfl-lines/flagged-review.html` matching the board's register
+description.
+
+**REM-6 — verification sweep (all run in this session on the committed tree):**
+- `scripts.analysis.test_issue_fixes` **23 OK** (was 19); `quant-lab` G9 suite **9 OK**;
+  `origination-lab` correlation-fixes suite **9 OK**.
+- `scripts/validate_data.py` **PASS** (0 warnings) — includes the edited registers.
+- `tests/check_derived.py` **PASS** (52 checks, 0 disagreements, 32/32 teams 2020).
+- `tests/check_data.py` **PASS** (6 result files consistent).
+- `tests/check_site.py` **PASS** — 192 pages, 504 tables, 11,834 links.
+- `scripts/check_links.py` **PASS** — 3,894 local references.
+- `review-board/scripts/verify_all.py` **121/121** — the verifier regenerates its own registers when
+  run (clone-metadata stamps; the RB-18 trap); those regenerations were reverted, not committed, as
+  `review-board/` is PR #99's scope.
+- `verify-hub`, `skill-lab`, `decision-desk` verifiers: **all PASS**.
+
+**Irregularities flagged by this session (published, non-blocking):**
+1. `.venv-b6/` — a machine-local Python virtualenv (~10k files incl. pandas/scipy) is **committed to
+   the repository**, and open PR #97 modifies it. Should be gitignored and removed from the index in
+   a dedicated integration PR; several hubs already run stdlib-only to avoid depending on it.
+2. Committed feed `data/derived/games.csv.gz` lacks the Week-8 Mon Nov 2 final score (CHI@SEA,
+   officially Bears 34–17 Seahawks per NFL.com, read 2026-11-14) — evidence the snapshot predates
+   Week 8's true close; the data-pipeline refresh remains the owner of the fix.
+3. `scripts/analyze_model.py` issue-#9 fixes (sigma-fit leakage, `brier_market_50_50` key,
+   `away_fair` tie term) still **not landed** here: each changes `model.json`/`predictions.csv`, so
+   they must land together with a pipeline re-run + root-site rebuild (root `pages/` = PR #93
+   scope). Request stands as logged by `da5f9d7b`.
+4. `nfl-lines/data.html` 402/405 mirror-only rows: kept valued+flagged (F-07) pending official
+   per-row reconciliation, per the ISS-2 keep-open record.
+
+**Out of scope (logged, not edited):** root `pages/*.html`, `index.html`, `scripts/lib/site.py`
+(PR #93 — note: the root `pages/correlation.html` static render still carries the pre-fix COR-04
+sentence until that session's rebuild; the dashboard renders the corrected JSON live);
+`.gitignore`/`.venv-b6` (PR #97); `review-board/` (PR #99); `decision-arena/`, `price-store/`,
+`requirements-audit/` (sessions 52a496d0 / f9e0aea9 / 7d42ec5b).
+
+**2026-11-14 — REM-8 amendment (recorded before the edit):** CI on this PR failed in the
+`decision-hub` workflow's "reproduce its own committed output" step. Verified first-hand that this
+is **pre-existing on main**: every `decision-hub` run since session 193e54ca's IR-2 FL-DH-01
+remediation (~20 h ago, runs 43526096046/43527309739/43529717334/43530591620) is `failure` — the
+published `data/derived/luck.json` was corrected to the one-observation-per-game ATS method
+(n=6,892, wins=3,371, rate=0.4891), but `decision-hub/scripts/audit_root.py` still recomputes the
+old pooled identity (x ⊕ −x) and demands published == pooled. No active session claims
+`decision-hub/scripts/` (193e54ca's PR #97 file list no longer includes it). This session takes the
+fix under its remediation scope: align the audit's published-method expectations with the published
+per-game method (the pooled identity stays published as `ats_pooled_identity` and as history in the
+FL-DH-01 record), regenerate `root_audit.json` + pages with the hub's own generators, and re-verify.

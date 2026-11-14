@@ -107,6 +107,15 @@
       "verified_by": "sibling session registry entry - recorded as verified on 2026-11-01 by that session (not re-read by this build)"
     },
     {
+      "id": "SRC-NFL-SCHED-W8",
+      "label": "NFL.com — 2026 regular-season schedule, Week 8",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-8",
+      "org": "NFL (nfl.com)",
+      "type": "league official schedule",
+      "note": "Read first-hand on 2026-11-14 (session arena/71d26167). Week 8, 2026 ran Thu Oct 29 (Packers 27, Panthers 19) through Monday Night Football Nov 2 (Bears 34, Seahawks 17), with the full Sunday Nov 1 slate (12 games incl. SNF: Commanders 27, Eagles 10) between; teams on bye: Houston Texans, New Orleans Saints, New York Giants, San Francisco 49ers. All 14 game scores transcribed from the page matched the committed nflverse feed 13/13 scored games (ARI transcribed as Cardinals; the feed additionally lacks the Mon Nov 2 final score).",
+      "verified_by": "arena/71d26167-korea2 — page fetched and read on 2026-11-14 (first-hand)"
+    },
+    {
       "id": "SRC-NFL-SCHED-W9",
       "label": "NFL.com — 2026 regular-season schedule, Week 9",
       "url": "https://www.nfl.com/schedules/2026/by-week/week-9",

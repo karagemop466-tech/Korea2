@@ -26,7 +26,7 @@
 <main>
   <div class="section">
     <h2>Correlation Values</h2>
-    <p class="lead">Correlations are measured from historical game results so parlay legs can be priced correctly (gate G-4). Values marked <span class="badge ok">computed</span> are project computations reproduced from the verified source file. Values marked <span class="badge warn">unverified</span> are left blank because the source does not contain the required data — never inferred or filled in.</p>
+    <p class="lead">Correlations are measured from historical game results so parlay legs can be priced correctly (gate G-4). Values marked <span class="badge ok">computed</span> are project computations reproduced from the third-party source file (FiveThirtyEight NFL Elo mirror — not an NFL-published feed; see flag F-07). Values marked <span class="badge warn">unverified</span> are left blank because the source does not contain the required data — never inferred or filled in.</p>
   </div>
 
   <div class="section">
@@ -53,8 +53,8 @@
           <td><span class="badge ok">computed</span></td>
         </tr>
         <tr>
-          <td>Road-underdog win rate (road team favored)</td>
-          <td>Share of games won by team 2 when team 2 is the Elo favorite (road underdog vs market)</td>
+          <td>Road-team win rate when the road team is the Elo favourite</td>
+          <td>Share of games won by the road team (team 2) when it is the Elo favourite; the favourite designation is inferred from the Elo file — the source contains no market line, so no market comparison is possible</td>
           <td class="num">65.38%</td>
           <td class="num">153 / 234 games</td>
           <td class="source"><a href="https://github.com/fivethirtyeight/nfl-elo-game/blob/master/data/nfl_games.csv" target="_blank" rel="noopener">nfl_games.csv</a></td>

@@ -219,25 +219,31 @@ def main() -> int:
                         round(cma, 4), TOL["stat"], "same statistic, seasons >= 2023",
                         klass="stat"))
 
-    # ---- 3. THE ATS COIN-FLIP TEST: reproduce the published method, then the correct one
+    # ---- 3. THE ATS TEST: reproduce the published per-game method, then the honest one-sided read
+    # History: the original published test pooled each game twice (x concatenated with -x), which is
+    # an arithmetic identity (rate = 0.5, p = 1.0 for any input) — see FL-DH-01. PR #94 replaced the
+    # published statistic with the one-observation-per-game version, and the pooled identity is now
+    # published separately as `ats_pooled_identity` in data/derived/luck.json. This audit's
+    # "published method" expectations were aligned with that corrected method in 2026-11-14
+    # (REM-8, session arena/71d26167); the misalignment had left the decision-hub check red on main.
     one_sided = []
     for r in with_line:
         v = fnum(r["result"]) - fnum(r["spread_line"])
         if v != 0:
             one_sided.append(v)
-    both = one_sided + [-v for v in one_sided]
     pub_ats = luck.get("ats_coin_flip_test", {})
-    checks.append(check("luck.ats_n", "pooled ATS team-games (published method)", pub_ats.get("n"),
-                        len(both), 0, "each game counted twice, once per side", klass="count"))
-    checks.append(check("luck.ats_wins", "pooled ATS wins (published method)", pub_ats.get("wins"),
-                        sum(1 for v in both if v > 0) if False else len(one_sided), 0,
-                        "exactly one of (+x,-x) is positive, so wins == n/2", klass="count"))
-    rate_pooled = (len(one_sided) / len(both)) if both else None
-    checks.append(check("luck.ats_rate", "pooled ATS rate (published method)", pub_ats.get("rate"),
-                        round(rate_pooled, 6), TOL["rate"],
-                        "identical to 0.5 for ANY input; see flag FL-DH-01", klass="rate"))
     k = sum(1 for v in one_sided if v > 0)
     n = len(one_sided)
+    checks.append(check("luck.ats_n", "per-game ATS observations (published method since the FL-DH-01 fix)",
+                        pub_ats.get("n"), n, 0,
+                        "one observation per game: home cover margin = result - spread_line, pushes removed",
+                        klass="count"))
+    checks.append(check("luck.ats_wins", "per-game home ATS covers (published method)",
+                        pub_ats.get("wins"), k, 0, "result - spread_line > 0", klass="count"))
+    checks.append(check("luck.ats_rate", "per-game home ATS cover rate (published method)",
+                        pub_ats.get("rate"), round(k / n, 6) if n else None, TOL["rate"],
+                        "home covers / decided games; the pooled 50% identity is published "
+                        "separately as ats_pooled_identity", klass="rate"))
     honest = {"n": n, "wins": k, "rate": round(k / n, 4), "ci": wilson(k, n),
               "p_vs_50": p_two_sided(k, n)}
     out["ats_honest"] = honest
@@ -247,24 +253,27 @@ def main() -> int:
                         "the test that can detect a tilt", verdict="BLANK",
                         klass="rate", source="nflverse-data"))
     flags.append({
-        "id": "FL-DH-01", "severity": "high",
-        "item": "The published 'ATS coin-flip test' cannot fail",
+        "id": "FL-DH-01", "severity": "resolved-2026-11-14",
+        "item": "The original 'ATS coin-flip test' was an arithmetic identity — REMEDIATED",
         "published_where": ["index.html KPI", "pages/luck.html", "pages/executive.html",
                             "docs/EXECUTIVE_SUMMARY.md"],
-        "detail": (f"data/derived/luck.json reports n={pub_ats.get('n')}, "
-                   f"wins={pub_ats.get('wins')}, rate={pub_ats.get('rate')} and p vs 50% = "
-                   f"{pub_ats.get('binomial_p_vs_50')}. The sample is built as x concatenated "
-                   "with -x (scripts/analyze_luck.py pools ats_margin and its negation, and "
-                   "verification/recompute.py lines 195-205 reproduce it), so exactly one of "
-                   "each pair is positive: rate = 0.5 and p = 1.0 for every possible dataset. "
-                   "It is presented as evidence that 'the spread market shows no exploitable "
-                   "tilt', which it does not test. The one-sided version, one observation per "
-                   f"game, is n={n}, home covers={k}, rate={honest['rate']:.4f}, "
-                   f"95% Wilson CI {honest['ci']}, two-sided p={honest['p_vs_50']}."),
+        "detail": (f"RESOLVED. The originally published ATS test pooled each game twice (x "
+                   "concatenated with -x, scripts/analyze_luck.py), so exactly one of each pair "
+                   "is positive: rate = 0.5 and p = 1.0 for every possible dataset — an identity, "
+                   "not a test. PR #94 replaced the published statistic with the "
+                   "one-observation-per-game version: data/derived/luck.json -> ats_coin_flip_test "
+                   f"now reports n={pub_ats.get('n')}, wins={pub_ats.get('wins')}, "
+                   f"rate={pub_ats.get('rate')}, 95% CI {tuple(pub_ats.get('ci') or ())}, "
+                   f"p vs 50% = {pub_ats.get('binomial_p_vs_50')}, and the retired pooled figure "
+                   "is published separately as ats_pooled_identity with a note that it is an "
+                   "arithmetic identity. The recomputation in this audit reproduces the published "
+                   f"per-game values exactly (recomputed n={n}, wins={k}, "
+                   f"rate={round(k / n, 6) if n else None}). Residual openness: pages that "
+                   "predate the fix may still quote the pooled 50%/p=1.0 figure until rebuilt."),
         "corrected": honest,
-        "action": ("Relabel the pooled figure as an arithmetic identity or replace it with the "
-                   "one-sided test before it is cited again. Until then no tilt conclusion can "
-                   "be drawn from it in either direction."),
+        "action": ("No action pending on the statistic itself. Audit expectations aligned with the "
+                   "corrected method (REM-8, session arena/71d26167, 2026-11-14) after the "
+                   "decision-hub reproduction check had been failing on main since the fix."),
         "sources": ["nflverse-data"]})
 
     # ---- 4. sign convention diagnostic
