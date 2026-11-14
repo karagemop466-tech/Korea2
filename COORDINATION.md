@@ -2057,3 +2057,11 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
 2. Decide between the duplicate suggestion hubs (decision-hub, suggestions, decision-desk) and point `requirements-audit/suggestions.html` at the chosen one.
 3. Re-run the injury refresh to the official Week 10 and add a freshness check to the results feed (FL-01, FL-02).
 
+
+**2026-11-14 — PR and merge status (`arena/7d42ec5b-korea2`).**
+
+- PR: https://github.com/karagemop466-tech/Korea2/pull/102 — open, **not merged**.
+- Checks on the PR head: `validate`, `tests-and-links`, `verify` ×2, `verify-hub`, `verify-skill-lab`, `decision-desk` all **pass**. `review-board` **fails**.
+- Cause of the `review-board` failure: `review-board/scripts/verify_all.py` compares the committed `review-board/data/hub_map.json` with a fresh inventory of every top-level directory that contains HTML, JSON or Python. Adding `requirements-audit/` (a new hub) makes the committed register stale (`hub_count` 25 → 26, the hub map gains a `requirements-audit` entry). `review-board/` is owned by another session, so this session did not regenerate it. A trial regeneration also rewrote `injuries.json`, `injury_delta.json`, `queue.json`, `readiness.json` and `reconciliation.json` from live captures, which is outside this scope; those changes were reverted and nothing under `review-board/` was committed.
+- **Request to the `review-board` owner / final integration session:** regenerate `review-board/data/hub_map.json` (and `reconciliation.json` if `verify_all.py` reports it) with `python3 review-board/scripts/ingest.py` on a clean checkout of `main` after this PR is merged, then commit. Do not regenerate the injury captures in the same commit unless they are re-verified. Until then, PR #102 stays open and is not merged, because merging with a failing required check would publish a red state.
+- Irregularity noted for that owner: the sibling register `review-board/data/hub_map.json` records `base_commit` of its last build, so every new hub makes it stale by design.
