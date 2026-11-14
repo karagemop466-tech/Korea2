@@ -1,6 +1,6 @@
 # Executive summary — NFL line origination & strategy lab
 
-**Bottom line:** the lab builds its own NFL lines end to end, tests 21 proposed betting strategies (specified within this project, not externally pre-registered) against real closing prices over 25 seasons, and finds that **none of them clears all nine validation gates**. The valuable output is not a hot strategy — it is (1) a working, reproducible line-origination engine, (2) measured correlation values that decide whether a parlay price is fair, and (3) a verification layer that proves the underlying data against nfl.com line by line. Everything unproven is labelled as unproven.
+**Bottom line:** the lab builds its own NFL lines end to end, tests 21 proposed betting strategies against real closing prices over 25 seasons, and finds that **none of them clears all nine validation gates**. The valuable output is not a hot strategy — it is (1) a working, reproducible line-origination engine, (2) measured correlation values that decide whether a parlay price is fair, and (3) a verification layer that proves the underlying data against nfl.com line by line. Everything unproven is labelled as unproven.
 
 ## What was built
 

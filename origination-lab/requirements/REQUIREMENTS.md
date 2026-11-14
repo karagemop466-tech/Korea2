@@ -17,8 +17,7 @@ evidence a reviewer can check by hand. Nothing in this register is asserted with
 | A3 | Organise the data | met | Provenance manifest + pinned commit + SHA-256 per file | `docs/data.html` |
 | A4 | Analyse the data | met | 6 analysis layers (lines, signals, strategies, correlation, luck, props) | `docs/lines.html`, `docs/signals.html`, `docs/strategies.html`, `docs/correlation.html`, `docs/luck.html`, `docs/props.html` |
 | A5 | Originate own NFL lines | met with limitation | Walk-forward rating model produces spread, total and moneyline for every game 2002–2026 and for the live slate; calibration vs the market is published including where it loses | `docs/lines.html` |
-| A6 | Research strategies for useful signals | met | 27 specified signals (specified within this project, not externally pre-registered) + 18 strategy families | `docs/signals.html`, `docs/strategies.html` |
-| A7 | Leaderboard competition with rewards for top strategies | met | 7-gate qualification, composite score, 4 reward tiers, published pool split | `docs/strategies.html` |
+| A6 | Research strategies for useful signals | met | 27 specified signals (specified within this project, not externally pre-registered) + 18 strategy families | `docs/signals.html`, `docs/strategies.html` || A7 | Leaderboard competition with rewards for top strategies | met | 7-gate qualification, composite score, 4 reward tiers, published pool split | `docs/strategies.html` |
 | A8 | Single bets | met | 13 single-bet strategies | `docs/strategies.html` |
 | A9 | Parlays | met | 3 parlay families (2-leg, 3-leg, moneyline) | `docs/strategies.html`, `docs/parlays.html` |
 | A10 | Player prop bet combos | met with limitation | 4 prop markets originated and graded; combos analysed for correlation — **cannot be settled against a market** because no verified prop prices exist | `docs/props.html`, `docs/flagged.html` (F3) |

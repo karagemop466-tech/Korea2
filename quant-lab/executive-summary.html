@@ -16,7 +16,7 @@
 <h1>Executive summary</h1>
 <p class="lede">One page for a reader with two minutes: what was built, what it found, what is unproven.</p>
 <h2>Executive summary — NFL line origination &amp; strategy lab</h2>
-<p><b>Bottom line:</b> the lab builds its own NFL lines end to end, tests 21 proposed betting strategies (specified within this project, not externally pre-registered) against real closing prices over 25 seasons, and finds that <b>none of them clears all nine validation gates</b>. The valuable output is not a hot strategy — it is (1) a working, reproducible line-origination engine, (2) measured correlation values that decide whether a parlay price is fair, and (3) a verification layer that proves the underlying data against nfl.com line by line. Everything unproven is labelled as unproven.</p>
+<p><b>Bottom line:</b> the lab builds its own NFL lines end to end, tests 21 proposed betting strategies against real closing prices over 25 seasons, and finds that <b>none of them clears all nine validation gates</b>. The valuable output is not a hot strategy — it is (1) a working, reproducible line-origination engine, (2) measured correlation values that decide whether a parlay price is fair, and (3) a verification layer that proves the underlying data against nfl.com line by line. Everything unproven is labelled as unproven.</p>
 <h3>What was built</h3>
 <div class="tablewrap"><table><thead><tr><th>Layer</th><th>What it does</th><th>Where it lives</th></tr></thead><tbody>
 <tr><td>Data</td><td>6,607 completed NFL games (6,331 regular season) from 2002 to 2026, with closing spread, total and moneylines</td><td><code>scripts/fetch_data.sh</code>, <code>data/processed/games.json</code></td></tr>

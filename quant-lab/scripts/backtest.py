@@ -3,7 +3,7 @@
 backtest.py — the strategy lab.
 
 Every strategy is a *selection rule* over legs that the origination model produced. The rules
-are pre-registered below (they are data-independent predicates), evaluated on identical
+are specified below as data-independent predicates, evaluated on identical
 mechanics, and split into a DISCOVERY window (2002-2019) and a HOLDOUT window (2020-2026).
 Nothing is tuned on the holdout.
 
@@ -138,7 +138,7 @@ def s_ml_value(preds, min_ev):
     return [[l] for l in legs]
 
 
-# --- situational rules (pre-registered; they use the same market price as everyone else) ---
+# --- situational rules (specified in this project; they use the same market price as everyone else) ---
 def _spread_leg(p, side):
     return leg_for_spread(p, side, 0.0)
 

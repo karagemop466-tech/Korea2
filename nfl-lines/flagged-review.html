@@ -116,6 +116,14 @@
           <td>No ranking/reward system today.</td>
           <td>Implement after lines source added.</td>
         </tr>
+        <tr class="flagged">
+          <td class="cen"><strong>F-11</strong></td>
+          <td>Empirical win rates reclassified — not correlations</td>
+          <td>The rates on the correlations page (home win rate 53.82%, home-favourite 62.93%, road-Elo-favourite 65.38%) are marginal win rates, not correlation coefficients; true parlay-leg correlations are unavailable from the source. Reclassified per the cross-session review recorded on the coordination board (issue #13).</td>
+          <td class="source"><a href="correlations.html" rel="noopener">correlations.html</a></td>
+          <td>No measured correlation is available for parlay pricing in this hub.</td>
+          <td>Price legs independently until a correlation source with leg-level data is reachable.</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -125,7 +133,7 @@
     <ul>
       <li>Every table row across the site carries a source link for manual review.</li>
       <li>Values not confirmable from an official source are left blank and flagged <span class="badge warn">unverified</span> — never inferred or filled in.</li>
-      <li>Computed values (e.g., home win rate 53.82%) are reproduced by tools/empirical_correlations.py from the verified source CSV and flagged <span class="badge ok">computed</span>.</li>
+      <li>Computed values (e.g., home win rate 53.82%) are reproduced by tools/empirical_correlations.py from the third-party source CSV (F-07) and flagged <span class="badge ok">computed</span>.</li>
     </ul>
   </div>
 </main>
