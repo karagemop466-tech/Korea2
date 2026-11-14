@@ -157,6 +157,38 @@ class CorrelationHonestyTests(unittest.TestCase):
         self.assertIn("does not establish", corr["cross_game"]["note"])
 
 
+class IndexAttributionTests(unittest.TestCase):
+    """Issue #22: the homepage must cite the model strategy by explicit ID.
+
+    The generator used to interpolate `best` (the maximum ROI across every
+    strategy in `strategies.json`) into the rating-model sentence, so
+    S3_weather_under's positive ROI was published as the rating model's
+    disagreements result while S5_model_edge was negative. The sentence now
+    reads `s5` fetched by the explicit key; this renders the homepage and
+    checks the published numbers against that key's values, and fails if the
+    max-ROI strategy's number ever reappears there.
+    """
+
+    def test_disagreements_sentence_cites_s5_by_explicit_id(self):
+        strat = rload("strategies.json")
+        self.assertIsNotNone(strat)
+        s5 = (strat.get("strategies") or {}).get("S5_model_edge")
+        self.assertIsNotNone(s5, "S5_model_edge must exist for the homepage sentence")
+        best = max((v for v in (strat.get("strategies") or {}).values()
+                    if v.get("n")), key=lambda v: v["roi"], default={})
+        html = build_site.page_index()
+        m = re.search(
+            r"disagreements returned (\S+) over ([\d,]+) bets \(p = ([^)]+)\)", html)
+        self.assertIsNotNone(m, "homepage must carry the disagreements sentence")
+        self.assertEqual(m.group(1), build_site.pct(s5.get("roi")),
+                         "ROI must come from S5_model_edge (explicit ID), not best")
+        self.assertEqual(m.group(2), build_site.integer(s5.get("n")))
+        if best.get("roi") != s5.get("roi"):
+            self.assertNotEqual(
+                m.group(1), build_site.pct(best.get("roi")),
+                "the sentence must not carry the max-ROI strategy's number")
+
+
 class OfficialSnapshotTests(unittest.TestCase):
     """The official transcriptions must reconcile with the committed data.
 
