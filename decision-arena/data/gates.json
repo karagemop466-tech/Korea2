@@ -1,0 +1,135 @@
+{
+ "generated_utc": "2026-11-14T20:08:39Z",
+ "principle": "Demotion is mechanical and pre-committed. A live strategy is demoted the moment any trigger fires; no discretion, no 'keep watching it'. Paper is the default state and live is the exception.",
+ "live_requirements": {
+  "min_bets_before_live": 300,
+  "min_bets_before_paper": 100,
+  "min_signal_clv_lower_bound": 0.0,
+  "note": "A strategy may not be live on fewer than 300 priced bets, however good it looks."
+ },
+ "demotion_rules": [
+  {
+   "id": "DM-1",
+   "trigger": "Trailing 50-bet mean CLV <= 0",
+   "action": "DEMOTE to paper immediately",
+   "resets": "live clock restarts at 0",
+   "rationale": "The signal stopped beating the close; the staking result is irrelevant.",
+   "source": "SRC-NIST-CORR"
+  },
+  {
+   "id": "DM-2",
+   "trigger": "Trailing 100-bet ROI lower bootstrap bound < 0 while the signal CLV bound is also < 0",
+   "action": "DEMOTE to paper",
+   "resets": "live clock restarts at 0",
+   "rationale": "Both columns negative: neither luck nor skill explains the run.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "id": "DM-3",
+   "trigger": "Any single bet exceeding the pre-committed max stake (2 units)",
+   "action": "DEMOTE to paper and void the offending bet",
+   "resets": "live clock restarts at 0",
+   "rationale": "Staking discipline is a gate, not a preference.",
+   "source": "SRC-DK-PARLAY"
+  },
+  {
+   "id": "DM-4",
+   "trigger": "Point-in-time integrity broken (an input later shown to be leaked, restated, or unavailable before kickoff)",
+   "action": "DEMOTE to paper and re-run from the corrected data",
+   "resets": "full re-qualification required",
+   "rationale": "A leaked feature can manufacture any result.",
+   "source": "SRC-SKLEARN-LEAK"
+  },
+  {
+   "id": "DM-5",
+   "trigger": "The family of strategies grows by 50% or more (new variants added) without a matching rise in the significance bar",
+   "action": "DEMOTE every member of the family to paper until BH/Bonferroni are recomputed",
+   "resets": "family-wide",
+   "rationale": "Trying more variants raises the chance that one looks good by luck.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "id": "DM-6",
+   "trigger": "No settled bet for 21 days during the season, or the feed stops carrying prices for the market",
+   "action": "DEMOTE to paper; status becomes STALE, not live",
+   "resets": "live clock restarts at 0",
+   "rationale": "An unmeasurable strategy cannot be a live one.",
+   "source": "SRC-NFLVERSE-SCHED"
+  }
+ ],
+ "promotion_rules": [
+  {
+   "id": "PM-1",
+   "requirement": "300 priced bets, all 10 gates, CLV lower bound > 0",
+   "action": "PAPER -> LIVE with a 1-unit cap for the first 100 bets"
+  },
+  {
+   "id": "PM-2",
+   "requirement": "A further 100 bets with CLV lower bound > 0 at the 1-unit cap",
+   "action": "cap rises to 2 units; any DM trigger resets to paper"
+  }
+ ],
+ "state_machine": {
+  "states": [
+   "REJECTED",
+   "PAPER",
+   "LIVE",
+   "STALE"
+  ],
+  "transitions": [
+   {
+    "from": "REJECTED",
+    "to": "PAPER",
+    "when": "all gates except execution pass"
+   },
+   {
+    "from": "PAPER",
+    "to": "LIVE",
+    "when": "PM-1"
+   },
+   {
+    "from": "LIVE",
+    "to": "PAPER",
+    "when": "DM-1..DM-6"
+   },
+   {
+    "from": "LIVE",
+    "to": "STALE",
+    "when": "DM-6"
+   },
+   {
+    "from": "STALE",
+    "to": "PAPER",
+    "when": "prices return and a bet settles"
+   }
+  ],
+  "note": "A strategy can only move one step at a time and only by a computed trigger."
+ },
+ "current_state": {
+  "live": [],
+  "paper": [],
+  "rejected": [
+   "DA-S07",
+   "DA-S05",
+   "DA-S06",
+   "DA-S08",
+   "DA-S04",
+   "DA-S03",
+   "DA-S02",
+   "DA-S12",
+   "DA-S01",
+   "DA-S09",
+   "DA-S10",
+   "DA-S11",
+   "DA-S01"
+  ],
+  "demotions_triggered_this_run": [],
+  "note": "Nothing is live, so no demotion can have fired. The rules above are what make the next live strategy demotable without a judgement call."
+ },
+ "position_sizing": {
+  "base_unit": 1.0,
+  "max_unit": 2.0,
+  "rule": "stake = min(2, 1 + 0.25 * max(0, floor((CLV_lower_bound - 0) / 0.01)))",
+  "note": "A strategy with a CLV lower bound above zero earns more than 1 unit only while the bound stays above zero; the demotion rule removes it the moment it does not."
+ }
+}

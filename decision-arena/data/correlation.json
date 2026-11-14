@@ -1,0 +1,282 @@
+{
+ "generated_utc": "2026-11-14T20:09:10Z",
+ "scope": {
+  "inputs": "player-week box scores only (SRC-NFLVERSE-STATS, GSIS definitions SRC-NFL-GSIS); team points joined from the schedules feed (SRC-NFLVERSE-SCHED)",
+  "excluded": "no market price, no line, no model output enters any coefficient on this page",
+  "team_games": 6296,
+  "player_games": 208231,
+  "seasons": [
+   2015,
+   2026
+  ]
+ },
+ "method": {
+  "estimator": "Pearson product-moment r",
+  "interval": "Fisher z, 95% (NIST/SEMATECH)",
+  "p_value": "two-sided t approximation, normal limit above n=400",
+  "multiple_comparisons": "not applied: these are descriptive measurements published with n, not hypothesis tests used to select a strategy. The strategy page applies BH/Bonferroni where selection happens."
+ },
+ "live_values": {
+  "qb_yards_vs_team_points": {
+   "label": "QB passing yards vs own team points",
+   "n": 5893,
+   "r": 0.4061,
+   "ci": [
+    0.3845,
+    0.4272
+   ],
+   "p": 0.0,
+   "r2": 0.1649,
+   "ci_excludes_zero": true,
+   "note": ""
+  },
+  "rb_yards_vs_team_points": {
+   "label": "RB1 rushing yards vs own team points",
+   "n": 5902,
+   "r": 0.3384,
+   "ci": [
+    0.3156,
+    0.3608
+   ],
+   "p": 0.0,
+   "r2": 0.1145,
+   "ci_excludes_zero": true,
+   "note": ""
+  },
+  "wr1_yards_vs_team_points": {
+   "label": "WR1 receiving yards vs own team points",
+   "n": 5902,
+   "r": 0.285,
+   "ci": [
+    0.2614,
+    0.3083
+   ],
+   "p": 0.0,
+   "r2": 0.0812,
+   "ci_excludes_zero": true,
+   "note": ""
+  },
+  "rb_yards_vs_qb_yards": {
+   "label": "RB1 rushing yards vs QB passing yards",
+   "n": 5893,
+   "r": -0.1287,
+   "ci": [
+    -0.1537,
+    -0.1035
+   ],
+   "p": 0.0,
+   "r2": 0.0166,
+   "ci_excludes_zero": true,
+   "note": ""
+  },
+  "qb_yards_vs_opp_qb_yards": {
+   "label": "QB passing yards vs opposing QB passing yards",
+   "n": 5773,
+   "r": 0.1694,
+   "ci": [
+    0.1442,
+    0.1943
+   ],
+   "p": 0.0,
+   "r2": 0.0287,
+   "ci_excludes_zero": true,
+   "note": ""
+  },
+  "team_points_vs_opp_points": {
+   "label": "Team points vs opponent points",
+   "n": 5902,
+   "r": -0.0292,
+   "ci": [
+    -0.0547,
+    -0.0037
+   ],
+   "p": 0.024656474309141974,
+   "r2": 0.0009,
+   "ci_excludes_zero": true,
+   "note": ""
+  },
+  "rush_yards_vs_pass_yards": {
+   "label": "Team rushing yards vs team passing yards",
+   "n": 5902,
+   "r": -0.2189,
+   "ci": [
+    -0.243,
+    -0.1944
+   ],
+   "p": 0.0,
+   "r2": 0.0479,
+   "ci_excludes_zero": true,
+   "note": ""
+  }
+ },
+ "same_game": {
+  "qb_yards_vs_wr1_yards": {
+   "label": "QB passing yards vs WR1 receiving yards",
+   "n": 5893,
+   "r": 0.5514,
+   "ci": [
+    0.5334,
+    0.5689
+   ],
+   "p": 0.0,
+   "r2": 0.304,
+   "ci_excludes_zero": true,
+   "note": "the core same-game parlay pair"
+  },
+  "qb_yards_vs_wr2_yards": {
+   "label": "QB passing yards vs WR2 receiving yards",
+   "n": 5891,
+   "r": 0.4668,
+   "ci": [
+    0.4466,
+    0.4866
+   ],
+   "p": 0.0,
+   "r2": 0.2179,
+   "ci_excludes_zero": true,
+   "note": ""
+  },
+  "wr1_vs_wr2_yards": {
+   "label": "WR1 receiving yards vs WR2 receiving yards",
+   "n": 5891,
+   "r": 0.1376,
+   "ci": [
+    0.1124,
+    0.1625
+   ],
+   "p": 0.0,
+   "r2": 0.0189,
+   "ci_excludes_zero": true,
+   "note": ""
+  },
+  "receptions_vs_receiving_yards": {
+   "label": "Receptions vs receiving yards (same player-game)",
+   "n": 45315,
+   "r": 0.7994,
+   "ci": [
+    0.7961,
+    0.8027
+   ],
+   "p": 0.0,
+   "r2": 0.6391,
+   "ci_excludes_zero": true,
+   "note": "near-substitutes: do not price as independent legs"
+  }
+ },
+ "control": {
+  "receptions_vs_targets": {
+   "label": "Receptions vs targets (same player-game)",
+   "n": 50587,
+   "r": 0.8925,
+   "ci": [
+    0.8907,
+    0.8943
+   ],
+   "p": 0.0,
+   "r2": 0.7966,
+   "ci_excludes_zero": true,
+   "note": "control pair: a mechanically near-tautological relation that must come out high if the pipeline is sane"
+  },
+  "margin_vs_total": {
+   "label": "Absolute margin vs game total",
+   "n": 7087,
+   "r": 0.0747,
+   "ci": [
+    0.0515,
+    0.0978
+   ],
+   "p": 2.842162061256204e-10,
+   "r2": 0.0056,
+   "ci_excludes_zero": true,
+   "note": "control pair from the results feed, not the box score"
+  }
+ },
+ "parlay_pricing": {
+  "definition": "4-leg parlay = QB-over + WR1-over (same game) in two independent games.",
+  "thresholds": {
+   "qb_pass_yards_over": 236.0,
+   "wr1_rec_yards_over": 67.0,
+   "rule": "sample median, so each leg is a 50% proposition by construction"
+  },
+  "n": 5893,
+  "p_leg_each": 0.5,
+  "joint_2leg_same_game": 0.3348,
+  "joint_2leg_ci": [
+   0.3229,
+   0.347
+  ],
+  "independent_2leg": 0.25,
+  "joint_4leg": 0.1121,
+  "independent_4leg": 0.0625,
+  "factor_4leg": 1.793,
+  "note": "Multiplying four legs as if independent would price this parlay at the independent figure; the measured joint is the correct number because two legs share a game. The cross-game step IS an independence assumption and is labelled.",
+  "source": "SRC-NFLVERSE-STATS"
+ },
+ "prop_combos": {
+  "status": "MEASURED_BUT_UNPRICEABLE",
+  "reason": "No historical player-prop prices exist in any committed feed, so no combo can be priced or ROI-tested. The joint rates below are what a pricer needs.",
+  "combos": [
+   {
+    "id": "PC-1",
+    "label": "Receptions over X + receiving yards over Y (same player)",
+    "r": 0.7994,
+    "n": 45315,
+    "ci": [
+     0.7961,
+     0.8027
+    ],
+    "ci_excludes_zero": true,
+    "pricing_implication": "positive: independent pricing understates the joint, so the operator's adjusted price is the one that matters",
+    "price_available": false,
+    "roi_testable": false,
+    "source": "SRC-NFLVERSE-STATS"
+   },
+   {
+    "id": "PC-2",
+    "label": "QB passing yards over X + WR1 receiving yards over Y (same game)",
+    "r": 0.5514,
+    "n": 5893,
+    "ci": [
+     0.5334,
+     0.5689
+    ],
+    "ci_excludes_zero": true,
+    "pricing_implication": "positive: independent pricing understates the joint, so the operator's adjusted price is the one that matters",
+    "price_available": false,
+    "roi_testable": false,
+    "source": "SRC-NFLVERSE-STATS"
+   },
+   {
+    "id": "PC-3",
+    "label": "QB passing yards over X + WR2 receiving yards over Y (same game)",
+    "r": 0.4668,
+    "n": 5891,
+    "ci": [
+     0.4466,
+     0.4866
+    ],
+    "ci_excludes_zero": true,
+    "pricing_implication": "positive: independent pricing understates the joint, so the operator's adjusted price is the one that matters",
+    "price_available": false,
+    "roi_testable": false,
+    "source": "SRC-NFLVERSE-STATS"
+   },
+   {
+    "id": "PC-4",
+    "label": "WR1 yards over X + WR2 yards over Y (same game)",
+    "r": 0.1376,
+    "n": 5891,
+    "ci": [
+     0.1124,
+     0.1625
+    ],
+    "ci_excludes_zero": true,
+    "pricing_implication": "positive: independent pricing understates the joint, so the operator's adjusted price is the one that matters",
+    "price_available": false,
+    "roi_testable": false,
+    "source": "SRC-NFLVERSE-STATS"
+   }
+  ],
+  "source": "SRC-NFLVERSE-STATS"
+ }
+}

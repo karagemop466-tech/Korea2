@@ -1,0 +1,212 @@
+{
+  "policy": "Every number published by this hub must resolve to one of these entries or to an explicit blank. 'official' means the publisher is the National Football League. 'third_party' means a redistributor/aggregator whose numbers are not published by the league; those rows are labelled as such on every page and are never described as official.",
+  "retrieved_utc": "2026-11-14",
+  "sources": [
+    {
+      "id": "SRC-NFL-SCHED-9",
+      "tier": "official",
+      "publisher": "NFL.com (National Football League)",
+      "title": "NFL 2026 Week 9 schedule and final scores",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-9",
+      "supports": "Final scores for all 15 Week 9 games, including the Monday game, read from the official schedule page on 2026-11-14.",
+      "read_on": "2026-11-14",
+      "state": "read"
+    },
+    {
+      "id": "SRC-NFL-SCHED-10",
+      "tier": "official",
+      "publisher": "NFL.com (National Football League)",
+      "title": "NFL 2026 Week 10 schedule, times and final score of the Thursday game",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "supports": "The Week 10 slate, kickoff times, and the Thursday result WAS 24, NYG 21 (final).",
+      "read_on": "2026-11-14",
+      "state": "read"
+    },
+    {
+      "id": "SRC-NFL-GAME-WASNYG",
+      "tier": "official",
+      "publisher": "NFL.com (National Football League)",
+      "title": "Commanders at Giants, 2026 regular season Week 10, game page",
+      "url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+      "supports": "Single-game reference for the Week 10 Thursday result.",
+      "read_on": "2026-11-14",
+      "state": "linked_not_individually_read"
+    },
+    {
+      "id": "SRC-NFL-INJ-10",
+      "tier": "official",
+      "publisher": "NFL.com (National Football League)",
+      "title": "Official NFL injury report, Week 10 of the 2026 season",
+      "url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "supports": "Per-player practice status and game status (Out / Doubtful / Questionable) for Week 10. The page carries no depth rank for any player.",
+      "read_on": "2026-11-14",
+      "state": "read"
+    },
+    {
+      "id": "SRC-NFL-DEPTH-404",
+      "tier": "official",
+      "publisher": "NFL.com (National Football League)",
+      "title": "NFL.com team depth-chart path (checked: 404)",
+      "url": "https://www.nfl.com/teams/kansas-city-chiefs/depth-chart/",
+      "supports": "Negative result: NFL.com returns its 404 page at the team depth-chart path, so the league itself publishes no machine-readable starter/backup order there. This is why depth rank comes from a third party and is labelled as such.",
+      "read_on": "2026-11-14",
+      "state": "read_404"
+    },
+    {
+      "id": "SRC-NFLVERSE-SCHED",
+      "tier": "third_party",
+      "publisher": "nflverse (nflverse-data releases, schedules tag)",
+      "title": "nflverse schedules feed (games.csv) \u2014 results and one pregame line per game",
+      "url": "https://github.com/nflverse/nflverse-data/releases/tag/schedules",
+      "supports": "Scores, kickoff time, venue, roof/surface for 1999-2026, plus one spread/total/moneyline value per game. The feed does not state WHEN the line was sampled, so it cannot by itself establish an opening number.",
+      "read_on": "2026-11-14",
+      "state": "read_metadata",
+      "caveat": "Redistributor, not the league. Line values are sportsbook-derived and are not an official sportsbook archive."
+    },
+    {
+      "id": "SRC-NFLVERSE-STATS",
+      "tier": "third_party",
+      "publisher": "nflverse (nflverse-data releases, stats_player / stats_team tags)",
+      "title": "nflverse player and team weekly box scores",
+      "url": "https://github.com/nflverse/nflverse-data/releases/tag/stats_player",
+      "supports": "The ONLY input this hub uses for correlations: per-player, per-week official stat lines as redistributed by nflverse. No market price enters a correlation.",
+      "read_on": "2026-11-14",
+      "state": "read_metadata",
+      "caveat": "Redistributor. Stat definitions follow the NFL Game Statistics & Information System (see SRC-NFL-GSIS)."
+    },
+    {
+      "id": "SRC-NFL-GSIS",
+      "tier": "official",
+      "publisher": "NFL Game Statistics & Information System",
+      "title": "Guide for Statisticians (official NFL scoring and stat-crediting rules)",
+      "url": "https://www.nflgsis.com/gsis/documentation/stadiumguides/guide_for_statisticians.pdf",
+      "supports": "Defines how yards, targets and scores are credited, which is the definition every box-score correlation in this hub assumes.",
+      "read_on": "2026-11-14",
+      "state": "linked_not_re_read_this_session"
+    },
+    {
+      "id": "SRC-NFLVERSE-DEPTH",
+      "tier": "third_party",
+      "publisher": "nflverse (nflverse-data releases, depth_charts tag)",
+      "title": "nflverse weekly depth charts (timestamped), 2001-2026",
+      "url": "https://github.com/nflverse/nflverse-data/releases/tag/depth_charts",
+      "supports": "Depth rank per player per week (pos_rank within pos_slot) with a load timestamp `dt`, which is what makes 'depth of the replacement' measurable. The league publishes no equivalent machine-readable file (SRC-NFL-DEPTH-404).",
+      "read_on": "2026-11-14",
+      "state": "read_metadata",
+      "caveat": "Third party. Rank is a snapshot at `dt`, not at kickoff."
+    },
+    {
+      "id": "SRC-NFLVERSE-DEPTH-DICT",
+      "tier": "third_party",
+      "publisher": "nflreadr documentation",
+      "title": "Data dictionary \u2014 depth charts (post-2024 schema)",
+      "url": "https://nflreadr.nflverse.com/articles/dictionary_depth_charts.html",
+      "supports": "Field definitions: `dt` (load timestamp), `pos_rank` (rank on the depth chart grouped by position slot), `pos_grp` (offense/defense/special teams).",
+      "read_on": "2026-11-14",
+      "state": "read"
+    },
+    {
+      "id": "SRC-NFLVERSE-SNAP",
+      "tier": "third_party",
+      "publisher": "nflverse (nflverse-data releases, snap_counts tag)",
+      "title": "nflverse snap counts by player-week",
+      "url": "https://github.com/nflverse/nflverse-data/releases/tag/snap_counts",
+      "supports": "Offensive/defensive snap share per player per week: the measurable consequence of a replacement, as opposed to the bare fact that a starter was listed Out.",
+      "read_on": "2026-11-14",
+      "state": "read_metadata",
+      "caveat": "Third party."
+    },
+    {
+      "id": "SRC-NFLVERSE-INJ",
+      "tier": "third_party",
+      "publisher": "nflverse (nflverse-data releases, injuries tag)",
+      "title": "nflverse injury-report mirror, 2009-2026",
+      "url": "https://github.com/nflverse/nflverse-data/releases/tag/injuries",
+      "supports": "Machine-readable mirror of the official weekly report (practice status, game status) joined to gsis_id. Used only to attach gsis ids for the depth join; the official page is the citation for every status shown.",
+      "read_on": "2026-11-14",
+      "state": "read_metadata",
+      "caveat": "Third party mirror of official content."
+    },
+    {
+      "id": "SRC-NFLVERSE-NFLDATA",
+      "tier": "third_party",
+      "publisher": "nflverse / Lee Sharpe (nfldata)",
+      "title": "nfldata line files: initial_lines.csv, closing_lines.csv, sc_lines.csv",
+      "url": "https://github.com/nflverse/nfldata/tree/a270278f3ac4e937295fe6a27814b3c4a2b62645/data",
+      "supports": "The only committed pregame line files in this repository that are separate from the schedules feed. Used ONLY as a labelled early snapshot for 2021 and as evidence of the timestamp gap; never called an 'opening line' unless its provenance supports that.",
+      "read_on": "2026-11-14",
+      "state": "read_metadata",
+      "caveat": "The publisher's DATASETS.md does not document these three files, so the column meanings and sampling times are undocumented; this hub measures what it can and flags the rest."
+    },
+    {
+      "id": "SRC-NFLVERSE-SC-LINES-DOC",
+      "tier": "third_party",
+      "publisher": "nflverse / Lee Sharpe (nfldata)",
+      "title": "nfldata DATASETS.md (documents games, standings, rosters \u2014 not the line files)",
+      "url": "https://raw.githubusercontent.com/nflverse/nfldata/a270278f3ac4e937295fe6a27814b3c4a2b62645/DATASETS.md",
+      "supports": "Documents the games feed, its `result` and `spread_line` conventions; contains no section for initial_lines.csv, closing_lines.csv or sc_lines.csv, which is the evidence that their contents are undocumented.",
+      "read_on": "2026-11-14",
+      "state": "read"
+    },
+    {
+      "id": "SRC-NIST-CORR",
+      "tier": "official",
+      "publisher": "NIST/SEMATECH e-Handbook of Statistical Methods",
+      "title": "Confidence interval for a correlation coefficient",
+      "url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+      "supports": "Fisher z transformation used for every confidence interval published here.",
+      "read_on": "2026-11-14",
+      "state": "linked_not_re_read_this_session"
+    },
+    {
+      "id": "SRC-NIST-MULT",
+      "tier": "official",
+      "publisher": "NIST/SEMATECH e-Handbook of Statistical Methods",
+      "title": "Multiple comparisons / Bonferroni-type adjustments",
+      "url": "https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm",
+      "supports": "The family-wise correction applied to the strategy competition: the more variants tried, the higher the bar.",
+      "read_on": "2026-11-14",
+      "state": "linked_not_re_read_this_session"
+    },
+    {
+      "id": "SRC-SKLEARN-LEAK",
+      "tier": "third_party",
+      "publisher": "scikit-learn documentation",
+      "title": "Common pitfalls: data leakage",
+      "url": "https://scikit-learn.org/stable/common_pitfalls.html",
+      "supports": "Why a holdout used to fit a parameter is not a holdout; the split discipline enforced in code here.",
+      "read_on": "2026-11-14",
+      "state": "linked_not_re_read_this_session"
+    },
+    {
+      "id": "SRC-BAILEY-LOPEZ",
+      "tier": "third_party",
+      "publisher": "Bailey & L\u00f3pez de Prado, Journal of Portfolio Management (via SSRN listing)",
+      "title": "The Deflated Sharpe Ratio",
+      "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551",
+      "supports": "The best-of-N luck correction used in the leaderboard: a strategy chosen from many variants must beat a higher bar than one chosen a priori.",
+      "read_on": "2026-11-14",
+      "state": "linked_not_read_in_full"
+    },
+    {
+      "id": "SRC-DK-PARLAY",
+      "tier": "third_party",
+      "publisher": "DraftKings Help Center",
+      "title": "What is a parlay bet?",
+      "url": "https://help.draftkings.com/hc/en-us/articles/4405235694739-What-is-a-parlay-bet-US",
+      "supports": "Operator definition that every leg must win and that correlated legs are restricted in same-game parlays \u2014 the reason correlation is priced rather than ignored.",
+      "read_on": "2026-11-14",
+      "state": "linked_not_re_read_this_session"
+    },
+    {
+      "id": "SRC-DK-SGP",
+      "tier": "third_party",
+      "publisher": "DraftKings Network",
+      "title": "How same-game parlays are constructed",
+      "url": "https://dknetwork.draftkings.com/2026/02/06/how-to-build-super-bowl-lx-same-game-parlay-draftkings/",
+      "supports": "Illustrates that correlated legs are combined at operator-adjusted prices rather than at the independent product.",
+      "read_on": "2026-11-14",
+      "state": "linked_not_re_read_this_session"
+    }
+  ]
+}

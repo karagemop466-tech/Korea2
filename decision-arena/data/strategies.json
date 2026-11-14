@@ -1,0 +1,1920 @@
+{
+ "generated_utc": "2026-11-14T20:08:39Z",
+ "inputs": {
+  "games_path": "data/derived/games.csv.gz",
+  "games_sha256": "ccbca2cb34ec44d0eb1c500ec33cfd638e57bbbe8ff72020d9289845f98ae6db",
+  "source": "SRC-NFLVERSE-SCHED"
+ },
+ "spec_sha256": "736dfa9a90aac1f8dc644c21e5b991d51dd3980d5f9555db4c09c90369ada96e",
+ "ranking_rule": "Rank by gates passed, then by beat-the-close rate (signal), then by ROI (staking). A strategy with a lucky staking run but a negative signal cannot rise: the signal column breaks ties and carries 0.6 of the composite shown below.",
+ "composite": {
+  "signal_weight": 0.6,
+  "staking_weight": 0.4,
+  "note": "Shown for readability only; no strategy has a positive-signal composite unless its CLV interval excludes zero, which none currently does."
+ },
+ "multiple_testing": {
+  "method": "Benjamini-Hochberg",
+  "q": 0.1,
+  "tests": 12,
+  "bonferroni_alpha": 0.004167,
+  "n_trials": 12
+ },
+ "gates": [
+  {
+   "id": "DA-G1",
+   "name": "Point-in-time integrity",
+   "rule": "Every input is knowable before kickoff; no feature reads a result, a same-day game, or a later game.",
+   "enforced": "build_features() walks games in date order and updates its state only after grading."
+  },
+  {
+   "id": "DA-G2",
+   "name": "Sample floor",
+   "rule": "n >= 300 graded opportunities for a signal verdict; n >= 100 priced bets for a staking verdict.",
+   "enforced": "checked per strategy; failing either floor marks that verdict UNTESTED, not failed-soft."
+  },
+  {
+   "id": "DA-G3",
+   "name": "Out-of-sample",
+   "rule": "Evaluation seasons are never used to choose the rule. Rules are fixed in data/strategies_spec.json before scoring.",
+   "enforced": "the spec file is committed and hashed into the output; a rule that changes gets a new id."
+  },
+  {
+   "id": "DA-G4",
+   "name": "Multiple testing",
+   "rule": "Benjamini-Hochberg q <= 0.10 across all tested strategies, and Bonferroni p < 0.05/N.",
+   "enforced": "computed once over the whole family in this file."
+  },
+  {
+   "id": "DA-G5",
+   "name": "Positive lower bound",
+   "rule": "Lower 95% bootstrap bound on per-bet return is above zero.",
+   "enforced": "bootstrap_mean_ci over per-bet returns (2000 resamples, fixed seed)."
+  },
+  {
+   "id": "DA-G6",
+   "name": "Stability",
+   "rule": "Positive signal in >= 60% of evaluated seasons and no single season > 50% of the total.",
+   "enforced": "per-season table on the strategy page."
+  },
+  {
+   "id": "DA-G7",
+   "name": "Price discipline",
+   "rule": "Staking is computed only where a real price exists; imputed prices are forbidden.",
+   "enforced": "price_missing rows are counted and excluded, never filled with -110."
+  },
+  {
+   "id": "DA-G8",
+   "name": "Survives luck removal",
+   "rule": "Deflated-Sharpe p < 0.05 given the number of variants tried, AND a 2000-draw permutation test p < 0.05.",
+   "enforced": "deflated_sharpe_p() with n_trials = number of registered strategies; permutation test below."
+  },
+  {
+   "id": "DA-G9",
+   "name": "Executable",
+   "rule": "The strategy needs no live account, no unlisted market, and no price better than the published one.",
+   "enforced": "any strategy that would need an unlisted price or a same-game-parlay price is EXECUTION_BLOCKED."
+  },
+  {
+   "id": "DA-G10",
+   "name": "Rule 4 compliance",
+   "rule": "LIVE requires every gate above; PAPER requires all but G9; anything else is REJECTED.",
+   "enforced": "assign_verdict()."
+  }
+ ],
+ "entries": [
+  {
+   "id": "DA-S07",
+   "name": "Model-edge moneyline",
+   "family": "single / moneyline",
+   "rule": "Take the moneyline side where the rating model's probability exceeds the de-vigged market probability by >= 4 pts.",
+   "needs": [
+    "moneyline",
+    "price",
+    "model"
+   ],
+   "signal": {
+    "n_graded": 3328,
+    "n_price_missing": 8,
+    "hit_rate": 0.366,
+    "hit_ci": [
+     0.3498,
+     0.3825
+    ],
+    "hit_p": 0.0,
+    "bh_q": 0.0,
+    "bonferroni_p": 0.0,
+    "beat_close_rate": null,
+    "beat_close_ci": null,
+    "beat_close_p": null,
+    "edge_points_mean": null,
+    "n_beat": 0,
+    "permutation_p": null
+   },
+   "staking": {
+    "n_bets": 3328,
+    "wins": 1218,
+    "losses": 2110,
+    "pushes": 0,
+    "roi": -0.0381,
+    "roi_ci": [
+     -0.0879,
+     0.0106
+    ],
+    "profit_units": -126.709,
+    "deflated_sharpe_p": 0.9992961181835152,
+    "by_season": {
+     "2006": {
+      "n": 133,
+      "profit": 45.425,
+      "wins": 61,
+      "beats": 0
+     },
+     "2007": {
+      "n": 188,
+      "profit": -21.382,
+      "wins": 56,
+      "beats": 0
+     },
+     "2008": {
+      "n": 115,
+      "profit": -16.36,
+      "wins": 37,
+      "beats": 0
+     },
+     "2009": {
+      "n": 163,
+      "profit": 8.167,
+      "wins": 52,
+      "beats": 0
+     },
+     "2010": {
+      "n": 154,
+      "profit": -3.089,
+      "wins": 56,
+      "beats": 0
+     },
+     "2011": {
+      "n": 159,
+      "profit": 10.376,
+      "wins": 59,
+      "beats": 0
+     },
+     "2012": {
+      "n": 143,
+      "profit": -12.512,
+      "wins": 55,
+      "beats": 0
+     },
+     "2013": {
+      "n": 165,
+      "profit": -13.815,
+      "wins": 57,
+      "beats": 0
+     },
+     "2014": {
+      "n": 153,
+      "profit": 20.896,
+      "wins": 73,
+      "beats": 0
+     },
+     "2015": {
+      "n": 150,
+      "profit": 24.098,
+      "wins": 70,
+      "beats": 0
+     },
+     "2016": {
+      "n": 164,
+      "profit": -7.718,
+      "wins": 66,
+      "beats": 0
+     },
+     "2017": {
+      "n": 159,
+      "profit": -24.511,
+      "wins": 50,
+      "beats": 0
+     },
+     "2018": {
+      "n": 170,
+      "profit": 18.43,
+      "wins": 71,
+      "beats": 0
+     },
+     "2019": {
+      "n": 172,
+      "profit": -9.516,
+      "wins": 62,
+      "beats": 0
+     },
+     "2020": {
+      "n": 171,
+      "profit": -36.697,
+      "wins": 54,
+      "beats": 0
+     },
+     "2021": {
+      "n": 192,
+      "profit": -15.55,
+      "wins": 67,
+      "beats": 0
+     },
+     "2022": {
+      "n": 175,
+      "profit": -39.378,
+      "wins": 52,
+      "beats": 0
+     },
+     "2023": {
+      "n": 180,
+      "profit": -6.095,
+      "wins": 65,
+      "beats": 0
+     },
+     "2024": {
+      "n": 177,
+      "profit": -31.991,
+      "wins": 65,
+      "beats": 0
+     },
+     "2025": {
+      "n": 170,
+      "profit": -23.131,
+      "wins": 58,
+      "beats": 0
+     },
+     "2026": {
+      "n": 75,
+      "profit": 7.646,
+      "wins": 32,
+      "beats": 0
+     }
+    },
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": true,
+    "DA-G3": true,
+    "DA-G4": true,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 6,
+   "verdict": "REJECTED",
+   "status_detail": "all inputs present",
+   "rank": 1,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S05",
+   "name": "Wind under",
+   "family": "single / total",
+   "rule": "Outdoor game with wind >= 15 mph: take the under.",
+   "needs": [
+    "total",
+    "price",
+    "weather"
+   ],
+   "signal": {
+    "n_graded": 430,
+    "n_price_missing": 219,
+    "hit_rate": 0.5506,
+    "hit_ci": [
+     0.5031,
+     0.5972
+    ],
+    "hit_p": 0.037,
+    "bh_q": 0.09867,
+    "bonferroni_p": 0.444,
+    "beat_close_rate": 0.5442,
+    "beat_close_ci": [
+     0.4969,
+     0.5907
+    ],
+    "beat_close_p": 0.06687,
+    "edge_points_mean": 0.0,
+    "n_beat": 430,
+    "permutation_p": 0.037126
+   },
+   "staking": {
+    "n_bets": 425,
+    "wins": 234,
+    "losses": 191,
+    "pushes": 5,
+    "roi": 0.0723,
+    "roi_ci": [
+     -0.0233,
+     0.1642
+    ],
+    "profit_units": 30.714,
+    "deflated_sharpe_p": 0.5531465057038706,
+    "by_season": {
+     "2006": {
+      "n": 20,
+      "profit": 1.448,
+      "wins": 11,
+      "beats": 11
+     },
+     "2007": {
+      "n": 23,
+      "profit": -1.783,
+      "wins": 11,
+      "beats": 11
+     },
+     "2008": {
+      "n": 31,
+      "profit": 12.4,
+      "wins": 22,
+      "beats": 22
+     },
+     "2009": {
+      "n": 18,
+      "profit": 3.493,
+      "wins": 11,
+      "beats": 11
+     },
+     "2010": {
+      "n": 30,
+      "profit": -8.397,
+      "wins": 11,
+      "beats": 11
+     },
+     "2011": {
+      "n": 28,
+      "profit": 3.37,
+      "wins": 16,
+      "beats": 16
+     },
+     "2012": {
+      "n": 23,
+      "profit": 6.372,
+      "wins": 15,
+      "beats": 15
+     },
+     "2013": {
+      "n": 18,
+      "profit": -0.327,
+      "wins": 9,
+      "beats": 9
+     },
+     "2014": {
+      "n": 20,
+      "profit": -0.396,
+      "wins": 10,
+      "beats": 10
+     },
+     "2015": {
+      "n": 22,
+      "profit": 3.406,
+      "wins": 13,
+      "beats": 13
+     },
+     "2016": {
+      "n": 22,
+      "profit": -4.51,
+      "wins": 9,
+      "beats": 9
+     },
+     "2017": {
+      "n": 18,
+      "profit": 1.649,
+      "wins": 10,
+      "beats": 10
+     },
+     "2018": {
+      "n": 17,
+      "profit": 8.284,
+      "wins": 13,
+      "beats": 13
+     },
+     "2019": {
+      "n": 22,
+      "profit": -0.695,
+      "wins": 11,
+      "beats": 11
+     },
+     "2020": {
+      "n": 26,
+      "profit": -8.35,
+      "wins": 9,
+      "beats": 9
+     },
+     "2021": {
+      "n": 29,
+      "profit": 11.622,
+      "wins": 21,
+      "beats": 21
+     },
+     "2022": {
+      "n": 13,
+      "profit": 2.448,
+      "wins": 8,
+      "beats": 8
+     },
+     "2023": {
+      "n": 11,
+      "profit": 4.364,
+      "wins": 8,
+      "beats": 8
+     },
+     "2024": {
+      "n": 15,
+      "profit": -3.639,
+      "wins": 6,
+      "beats": 6
+     },
+     "2025": {
+      "n": 19,
+      "profit": -0.045,
+      "wins": 10,
+      "beats": 10
+     }
+    },
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": true,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 5,
+   "verdict": "REJECTED",
+   "status_detail": "all inputs present",
+   "rank": 2,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S06",
+   "name": "Dome over",
+   "family": "single / total",
+   "rule": "Roof is a dome or closed: take the over.",
+   "needs": [
+    "total",
+    "price",
+    "roof"
+   ],
+   "signal": {
+    "n_graded": 1387,
+    "n_price_missing": 383,
+    "hit_rate": 0.515,
+    "hit_ci": [
+     0.4885,
+     0.5413
+    ],
+    "hit_p": 0.26816,
+    "bh_q": 0.5247,
+    "bonferroni_p": 1.0,
+    "beat_close_rate": 0.509,
+    "beat_close_ci": [
+     0.4827,
+     0.5353
+    ],
+    "beat_close_p": 0.50204,
+    "edge_points_mean": 0.0,
+    "n_beat": 1387,
+    "permutation_p": 0.251022
+   },
+   "staking": {
+    "n_bets": 1371,
+    "wins": 706,
+    "losses": 665,
+    "pushes": 16,
+    "roi": -0.0002,
+    "roi_ci": [
+     -0.0508,
+     0.0522
+    ],
+    "profit_units": -0.284,
+    "deflated_sharpe_p": 0.9528067429070515,
+    "by_season": {
+     "2006": {
+      "n": 40,
+      "profit": 4.964,
+      "wins": 23,
+      "beats": 23
+     },
+     "2007": {
+      "n": 57,
+      "profit": 11.641,
+      "wins": 35,
+      "beats": 35
+     },
+     "2008": {
+      "n": 34,
+      "profit": 2.86,
+      "wins": 19,
+      "beats": 19
+     },
+     "2009": {
+      "n": 61,
+      "profit": -10.291,
+      "wins": 26,
+      "beats": 26
+     },
+     "2010": {
+      "n": 63,
+      "profit": 4.875,
+      "wins": 35,
+      "beats": 35
+     },
+     "2011": {
+      "n": 66,
+      "profit": -3.564,
+      "wins": 32,
+      "beats": 32
+     },
+     "2012": {
+      "n": 68,
+      "profit": 0.309,
+      "wins": 35,
+      "beats": 35
+     },
+     "2013": {
+      "n": 70,
+      "profit": 9.985,
+      "wins": 41,
+      "beats": 41
+     },
+     "2014": {
+      "n": 60,
+      "profit": -1.489,
+      "wins": 30,
+      "beats": 30
+     },
+     "2015": {
+      "n": 59,
+      "profit": -2.286,
+      "wins": 29,
+      "beats": 29
+     },
+     "2016": {
+      "n": 62,
+      "profit": -6.938,
+      "wins": 28,
+      "beats": 28
+     },
+     "2017": {
+      "n": 59,
+      "profit": -8.659,
+      "wins": 26,
+      "beats": 26
+     },
+     "2018": {
+      "n": 60,
+      "profit": -7.569,
+      "wins": 27,
+      "beats": 27
+     },
+     "2019": {
+      "n": 59,
+      "profit": 6.747,
+      "wins": 34,
+      "beats": 34
+     },
+     "2020": {
+      "n": 89,
+      "profit": 10.707,
+      "wins": 51,
+      "beats": 51
+     },
+     "2021": {
+      "n": 79,
+      "profit": 0.961,
+      "wins": 41,
+      "beats": 41
+     },
+     "2022": {
+      "n": 83,
+      "profit": 5.056,
+      "wins": 45,
+      "beats": 45
+     },
+     "2023": {
+      "n": 81,
+      "profit": -8.482,
+      "wins": 38,
+      "beats": 38
+     },
+     "2024": {
+      "n": 93,
+      "profit": -3.339,
+      "wins": 47,
+      "beats": 47
+     },
+     "2025": {
+      "n": 92,
+      "profit": -4.323,
+      "wins": 46,
+      "beats": 46
+     },
+     "2026": {
+      "n": 36,
+      "profit": -1.45,
+      "wins": 18,
+      "beats": 18
+     }
+    },
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": true,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 5,
+   "verdict": "REJECTED",
+   "status_detail": "all inputs present",
+   "rank": 3,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S08",
+   "name": "Model-edge spread",
+   "family": "single / spread",
+   "rule": "Take the side where |model fair line - market line| >= 3 pts.",
+   "needs": [
+    "spread",
+    "price",
+    "model"
+   ],
+   "signal": {
+    "n_graded": 4325,
+    "n_price_missing": 1584,
+    "hit_rate": 0.5165,
+    "hit_ci": [
+     0.5014,
+     0.5316
+    ],
+    "hit_p": 0.03223,
+    "bh_q": 0.09867,
+    "bonferroni_p": 0.38676,
+    "beat_close_rate": 0.5031,
+    "beat_close_ci": [
+     0.4882,
+     0.518
+    ],
+    "beat_close_p": 0.6814,
+    "edge_points_mean": 0.0,
+    "n_beat": 4325,
+    "permutation_p": 0.3407
+   },
+   "staking": {
+    "n_bets": 4213,
+    "wins": 2176,
+    "losses": 2037,
+    "pushes": 112,
+    "roi": 0.0027,
+    "roi_ci": [
+     -0.0276,
+     0.0312
+    ],
+    "profit_units": 11.566,
+    "deflated_sharpe_p": 0.9307507530454165,
+    "by_season": {
+     "2006": {
+      "n": 167,
+      "profit": 19.982,
+      "wins": 95,
+      "beats": 95
+     },
+     "2007": {
+      "n": 209,
+      "profit": -6.139,
+      "wins": 104,
+      "beats": 104
+     },
+     "2008": {
+      "n": 160,
+      "profit": 14.492,
+      "wins": 89,
+      "beats": 89
+     },
+     "2009": {
+      "n": 200,
+      "profit": -1.539,
+      "wins": 103,
+      "beats": 103
+     },
+     "2010": {
+      "n": 213,
+      "profit": 9.451,
+      "wins": 113,
+      "beats": 113
+     },
+     "2011": {
+      "n": 207,
+      "profit": -9.352,
+      "wins": 101,
+      "beats": 101
+     },
+     "2012": {
+      "n": 210,
+      "profit": 9.999,
+      "wins": 112,
+      "beats": 112
+     },
+     "2013": {
+      "n": 191,
+      "profit": -10.226,
+      "wins": 93,
+      "beats": 93
+     },
+     "2014": {
+      "n": 216,
+      "profit": -2.36,
+      "wins": 110,
+      "beats": 110
+     },
+     "2015": {
+      "n": 203,
+      "profit": 3.349,
+      "wins": 106,
+      "beats": 106
+     },
+     "2016": {
+      "n": 210,
+      "profit": -14.978,
+      "wins": 100,
+      "beats": 100
+     },
+     "2017": {
+      "n": 202,
+      "profit": -15.547,
+      "wins": 96,
+      "beats": 96
+     },
+     "2018": {
+      "n": 213,
+      "profit": 8.003,
+      "wins": 114,
+      "beats": 114
+     },
+     "2019": {
+      "n": 216,
+      "profit": 4.435,
+      "wins": 114,
+      "beats": 114
+     },
+     "2020": {
+      "n": 218,
+      "profit": 19.411,
+      "wins": 123,
+      "beats": 123
+     },
+     "2021": {
+      "n": 227,
+      "profit": -2.785,
+      "wins": 116,
+      "beats": 116
+     },
+     "2022": {
+      "n": 210,
+      "profit": 22.465,
+      "wins": 120,
+      "beats": 120
+     },
+     "2023": {
+      "n": 208,
+      "profit": -14.342,
+      "wins": 101,
+      "beats": 101
+     },
+     "2024": {
+      "n": 215,
+      "profit": -28.312,
+      "wins": 97,
+      "beats": 97
+     },
+     "2025": {
+      "n": 229,
+      "profit": 2.376,
+      "wins": 121,
+      "beats": 121
+     },
+     "2026": {
+      "n": 89,
+      "profit": 3.182,
+      "wins": 48,
+      "beats": 48
+     }
+    },
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": true,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 5,
+   "verdict": "REJECTED",
+   "status_detail": "all inputs present",
+   "rank": 4,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S04",
+   "name": "Rest mismatch of 3+ days",
+   "family": "single / spread",
+   "rule": "home_days_rest - away_days_rest >= 3: take home; <= -3: take away.",
+   "needs": [
+    "spread",
+    "price",
+    "rest"
+   ],
+   "signal": {
+    "n_graded": 1098,
+    "n_price_missing": 252,
+    "hit_rate": 0.515,
+    "hit_ci": [
+     0.485,
+     0.5448
+    ],
+    "hit_p": 0.32794,
+    "bh_q": 0.5247,
+    "bonferroni_p": 1.0,
+    "beat_close_rate": 0.5018,
+    "beat_close_ci": [
+     0.4723,
+     0.5313
+    ],
+    "beat_close_p": 0.90392,
+    "edge_points_mean": 0.0,
+    "n_beat": 1098,
+    "permutation_p": 0.451959
+   },
+   "staking": {
+    "n_bets": 1070,
+    "wins": 551,
+    "losses": 519,
+    "pushes": 28,
+    "roi": 0.0033,
+    "roi_ci": [
+     -0.0555,
+     0.0627
+    ],
+    "profit_units": 3.514,
+    "deflated_sharpe_p": 0.9399932884736233,
+    "by_season": {
+     "2006": {
+      "n": 40,
+      "profit": 5.356,
+      "wins": 23,
+      "beats": 23
+     },
+     "2007": {
+      "n": 44,
+      "profit": -1.366,
+      "wins": 22,
+      "beats": 22
+     },
+     "2008": {
+      "n": 35,
+      "profit": 12.08,
+      "wins": 24,
+      "beats": 24
+     },
+     "2009": {
+      "n": 40,
+      "profit": -2.425,
+      "wins": 19,
+      "beats": 19
+     },
+     "2010": {
+      "n": 43,
+      "profit": 4.162,
+      "wins": 24,
+      "beats": 24
+     },
+     "2011": {
+      "n": 49,
+      "profit": -0.018,
+      "wins": 25,
+      "beats": 25
+     },
+     "2012": {
+      "n": 58,
+      "profit": -0.991,
+      "wins": 29,
+      "beats": 29
+     },
+     "2013": {
+      "n": 62,
+      "profit": -5.343,
+      "wins": 29,
+      "beats": 29
+     },
+     "2014": {
+      "n": 51,
+      "profit": -15.536,
+      "wins": 18,
+      "beats": 18
+     },
+     "2015": {
+      "n": 56,
+      "profit": 6.671,
+      "wins": 32,
+      "beats": 32
+     },
+     "2016": {
+      "n": 60,
+      "profit": 10.376,
+      "wins": 36,
+      "beats": 36
+     },
+     "2017": {
+      "n": 55,
+      "profit": -1.88,
+      "wins": 27,
+      "beats": 27
+     },
+     "2018": {
+      "n": 55,
+      "profit": -3.849,
+      "wins": 26,
+      "beats": 26
+     },
+     "2019": {
+      "n": 59,
+      "profit": -6.519,
+      "wins": 27,
+      "beats": 27
+     },
+     "2020": {
+      "n": 54,
+      "profit": -3.149,
+      "wins": 26,
+      "beats": 26
+     },
+     "2021": {
+      "n": 55,
+      "profit": 3.387,
+      "wins": 30,
+      "beats": 30
+     },
+     "2022": {
+      "n": 54,
+      "profit": 2.37,
+      "wins": 29,
+      "beats": 29
+     },
+     "2023": {
+      "n": 54,
+      "profit": 7.429,
+      "wins": 32,
+      "beats": 32
+     },
+     "2024": {
+      "n": 65,
+      "profit": -9.66,
+      "wins": 29,
+      "beats": 29
+     },
+     "2025": {
+      "n": 58,
+      "profit": -4.859,
+      "wins": 28,
+      "beats": 28
+     },
+     "2026": {
+      "n": 23,
+      "profit": 7.277,
+      "wins": 16,
+      "beats": 16
+     }
+    },
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": true,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 5,
+   "verdict": "REJECTED",
+   "status_detail": "all inputs present",
+   "rank": 5,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S03",
+   "name": "Road favourite off a short week",
+   "family": "single / spread",
+   "rule": "Away favourite with away_rest <= 6 days: take away.",
+   "needs": [
+    "spread",
+    "price",
+    "rest"
+   ],
+   "signal": {
+    "n_graded": 388,
+    "n_price_missing": 96,
+    "hit_rate": 0.4934,
+    "hit_ci": [
+     0.4434,
+     0.5436
+    ],
+    "hit_p": 0.79731,
+    "bh_q": 0.79731,
+    "bonferroni_p": 1.0,
+    "beat_close_rate": 0.482,
+    "beat_close_ci": [
+     0.4327,
+     0.5316
+    ],
+    "beat_close_p": 0.47724,
+    "edge_points_mean": 0.0,
+    "n_beat": 388,
+    "permutation_p": 0.776803
+   },
+   "staking": {
+    "n_bets": 379,
+    "wins": 187,
+    "losses": 192,
+    "pushes": 9,
+    "roi": -0.0366,
+    "roi_ci": [
+     -0.1374,
+     0.0609
+    ],
+    "profit_units": -13.889,
+    "deflated_sharpe_p": 0.9916340861879664,
+    "by_season": {
+     "2006": {
+      "n": 12,
+      "profit": 4.015,
+      "wins": 8,
+      "beats": 8
+     },
+     "2007": {
+      "n": 10,
+      "profit": -2.175,
+      "wins": 4,
+      "beats": 4
+     },
+     "2008": {
+      "n": 13,
+      "profit": 0.802,
+      "wins": 7,
+      "beats": 7
+     },
+     "2009": {
+      "n": 9,
+      "profit": 0.704,
+      "wins": 5,
+      "beats": 5
+     },
+     "2010": {
+      "n": 16,
+      "profit": -4.111,
+      "wins": 6,
+      "beats": 6
+     },
+     "2011": {
+      "n": 16,
+      "profit": 5.641,
+      "wins": 11,
+      "beats": 11
+     },
+     "2012": {
+      "n": 14,
+      "profit": 1.927,
+      "wins": 8,
+      "beats": 8
+     },
+     "2013": {
+      "n": 15,
+      "profit": 8.591,
+      "wins": 12,
+      "beats": 12
+     },
+     "2014": {
+      "n": 25,
+      "profit": -7.232,
+      "wins": 9,
+      "beats": 9
+     },
+     "2015": {
+      "n": 25,
+      "profit": 0.317,
+      "wins": 13,
+      "beats": 13
+     },
+     "2016": {
+      "n": 25,
+      "profit": -7.57,
+      "wins": 9,
+      "beats": 9
+     },
+     "2017": {
+      "n": 20,
+      "profit": -8.318,
+      "wins": 6,
+      "beats": 6
+     },
+     "2018": {
+      "n": 19,
+      "profit": -3.471,
+      "wins": 8,
+      "beats": 8
+     },
+     "2019": {
+      "n": 16,
+      "profit": 1.56,
+      "wins": 9,
+      "beats": 9
+     },
+     "2020": {
+      "n": 20,
+      "profit": 6.872,
+      "wins": 14,
+      "beats": 14
+     },
+     "2021": {
+      "n": 16,
+      "profit": 3.698,
+      "wins": 10,
+      "beats": 10
+     },
+     "2022": {
+      "n": 28,
+      "profit": -6.361,
+      "wins": 11,
+      "beats": 11
+     },
+     "2023": {
+      "n": 24,
+      "profit": -6.836,
+      "wins": 9,
+      "beats": 9
+     },
+     "2024": {
+      "n": 25,
+      "profit": -1.845,
+      "wins": 12,
+      "beats": 12
+     },
+     "2025": {
+      "n": 24,
+      "profit": 3.085,
+      "wins": 14,
+      "beats": 14
+     },
+     "2026": {
+      "n": 7,
+      "profit": -3.181,
+      "wins": 2,
+      "beats": 2
+     }
+    },
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": true,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 5,
+   "verdict": "REJECTED",
+   "status_detail": "all inputs present",
+   "rank": 6,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S02",
+   "name": "Home divisional underdog",
+   "family": "single / spread",
+   "rule": "Home team is the underdog (spread_line < 0), game is a divisional game: take home.",
+   "needs": [
+    "spread",
+    "price"
+   ],
+   "signal": {
+    "n_graded": 721,
+    "n_price_missing": 279,
+    "hit_rate": 0.4929,
+    "hit_ci": [
+     0.456,
+     0.5298
+    ],
+    "hit_p": 0.70586,
+    "bh_q": 0.79731,
+    "bonferroni_p": 1.0,
+    "beat_close_rate": 0.4799,
+    "beat_close_ci": [
+     0.4436,
+     0.5164
+    ],
+    "beat_close_p": 0.28013,
+    "edge_points_mean": 0.0,
+    "n_beat": 721,
+    "permutation_p": 0.868065
+   },
+   "staking": {
+    "n_bets": 702,
+    "wins": 346,
+    "losses": 356,
+    "pushes": 19,
+    "roi": -0.0417,
+    "roi_ci": [
+     -0.1167,
+     0.0311
+    ],
+    "profit_units": -29.242,
+    "deflated_sharpe_p": 0.9974181590789112,
+    "by_season": {
+     "2006": {
+      "n": 20,
+      "profit": 7.514,
+      "wins": 14,
+      "beats": 14
+     },
+     "2007": {
+      "n": 38,
+      "profit": -10.757,
+      "wins": 14,
+      "beats": 14
+     },
+     "2008": {
+      "n": 18,
+      "profit": -8.248,
+      "wins": 5,
+      "beats": 5
+     },
+     "2009": {
+      "n": 39,
+      "profit": -5.76,
+      "wins": 17,
+      "beats": 17
+     },
+     "2010": {
+      "n": 37,
+      "profit": 2.362,
+      "wins": 20,
+      "beats": 20
+     },
+     "2011": {
+      "n": 30,
+      "profit": -0.893,
+      "wins": 15,
+      "beats": 15
+     },
+     "2012": {
+      "n": 36,
+      "profit": 0.048,
+      "wins": 18,
+      "beats": 18
+     },
+     "2013": {
+      "n": 30,
+      "profit": -0.53,
+      "wins": 15,
+      "beats": 15
+     },
+     "2014": {
+      "n": 29,
+      "profit": 0.168,
+      "wins": 15,
+      "beats": 15
+     },
+     "2015": {
+      "n": 30,
+      "profit": -4.526,
+      "wins": 13,
+      "beats": 13
+     },
+     "2016": {
+      "n": 34,
+      "profit": 1.32,
+      "wins": 18,
+      "beats": 18
+     },
+     "2017": {
+      "n": 40,
+      "profit": -5.111,
+      "wins": 18,
+      "beats": 18
+     },
+     "2018": {
+      "n": 34,
+      "profit": -2.781,
+      "wins": 16,
+      "beats": 16
+     },
+     "2019": {
+      "n": 42,
+      "profit": -9.02,
+      "wins": 17,
+      "beats": 17
+     },
+     "2020": {
+      "n": 42,
+      "profit": 8.31,
+      "wins": 26,
+      "beats": 26
+     },
+     "2021": {
+      "n": 37,
+      "profit": -0.626,
+      "wins": 19,
+      "beats": 19
+     },
+     "2022": {
+      "n": 32,
+      "profit": 0.915,
+      "wins": 17,
+      "beats": 17
+     },
+     "2023": {
+      "n": 39,
+      "profit": -8.495,
+      "wins": 16,
+      "beats": 16
+     },
+     "2024": {
+      "n": 40,
+      "profit": 4.226,
+      "wins": 23,
+      "beats": 23
+     },
+     "2025": {
+      "n": 41,
+      "profit": 1.103,
+      "wins": 22,
+      "beats": 22
+     },
+     "2026": {
+      "n": 14,
+      "profit": 1.541,
+      "wins": 8,
+      "beats": 8
+     }
+    },
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": true,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 5,
+   "verdict": "REJECTED",
+   "status_detail": "all inputs present",
+   "rank": 7,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S12",
+   "name": "Undefeated-in-division signal",
+   "family": "single / spread",
+   "rule": "Home team on a 2+ game win streak and favoured by < 3: take home.",
+   "needs": [
+    "spread",
+    "price",
+    "form"
+   ],
+   "signal": {
+    "n_graded": 157,
+    "n_price_missing": 44,
+    "hit_rate": 0.4679,
+    "hit_ci": [
+     0.3914,
+     0.5461
+    ],
+    "hit_p": 0.42334,
+    "bh_q": 0.56445,
+    "bonferroni_p": 1.0,
+    "beat_close_rate": 0.465,
+    "beat_close_ci": [
+     0.3887,
+     0.5429
+    ],
+    "beat_close_p": 0.38,
+    "edge_points_mean": 0.0,
+    "n_beat": 157,
+    "permutation_p": 0.830882
+   },
+   "staking": {
+    "n_bets": 156,
+    "wins": 73,
+    "losses": 83,
+    "pushes": 1,
+    "roi": -0.1079,
+    "roi_ci": [
+     -0.2541,
+     0.0435
+    ],
+    "profit_units": -16.826,
+    "deflated_sharpe_p": 0.9989161779771023,
+    "by_season": {
+     "2006": {
+      "n": 4,
+      "profit": -0.083,
+      "wins": 2,
+      "beats": 2
+     },
+     "2007": {
+      "n": 1,
+      "profit": 0.917,
+      "wins": 1,
+      "beats": 1
+     },
+     "2008": {
+      "n": 5,
+      "profit": 0.779,
+      "wins": 3,
+      "beats": 3
+     },
+     "2009": {
+      "n": 6,
+      "profit": 1.555,
+      "wins": 4,
+      "beats": 4
+     },
+     "2010": {
+      "n": 12,
+      "profit": -0.794,
+      "wins": 6,
+      "beats": 6
+     },
+     "2011": {
+      "n": 7,
+      "profit": 0.558,
+      "wins": 4,
+      "beats": 4
+     },
+     "2012": {
+      "n": 7,
+      "profit": -1.279,
+      "wins": 3,
+      "beats": 3
+     },
+     "2013": {
+      "n": 6,
+      "profit": 1.544,
+      "wins": 4,
+      "beats": 4
+     },
+     "2014": {
+      "n": 9,
+      "profit": 0.701,
+      "wins": 5,
+      "beats": 5
+     },
+     "2015": {
+      "n": 9,
+      "profit": -7.029,
+      "wins": 1,
+      "beats": 1
+     },
+     "2016": {
+      "n": 6,
+      "profit": 1.68,
+      "wins": 4,
+      "beats": 4
+     },
+     "2017": {
+      "n": 7,
+      "profit": 0.653,
+      "wins": 4,
+      "beats": 4
+     },
+     "2018": {
+      "n": 9,
+      "profit": -1.329,
+      "wins": 4,
+      "beats": 4
+     },
+     "2019": {
+      "n": 9,
+      "profit": -1.319,
+      "wins": 4,
+      "beats": 4
+     },
+     "2020": {
+      "n": 9,
+      "profit": -1.361,
+      "wins": 4,
+      "beats": 4
+     },
+     "2021": {
+      "n": 6,
+      "profit": -2.095,
+      "wins": 2,
+      "beats": 2
+     },
+     "2022": {
+      "n": 8,
+      "profit": -2.366,
+      "wins": 3,
+      "beats": 3
+     },
+     "2023": {
+      "n": 8,
+      "profit": 1.431,
+      "wins": 5,
+      "beats": 5
+     },
+     "2024": {
+      "n": 14,
+      "profit": -2.562,
+      "wins": 6,
+      "beats": 6
+     },
+     "2025": {
+      "n": 11,
+      "profit": -3.429,
+      "wins": 4,
+      "beats": 4
+     },
+     "2026": {
+      "n": 3,
+      "profit": -3.0,
+      "wins": 0,
+      "beats": 0
+     }
+    },
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": false,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 4,
+   "verdict": "REJECTED",
+   "status_detail": "all inputs present",
+   "rank": 8,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S01",
+   "name": "Fade the biggest market move",
+   "family": "single / spread",
+   "rule": "Take the side the closing line moved AWAY from, when |move| >= 1.5 pts (2021 only, where an early snapshot exists).",
+   "needs": [
+    "early_snapshot"
+   ],
+   "signal": {
+    "n_graded": 0,
+    "n_price_missing": 0,
+    "hit_rate": null,
+    "hit_ci": null,
+    "hit_p": null,
+    "bh_q": null,
+    "bonferroni_p": null,
+    "beat_close_rate": null,
+    "beat_close_ci": null,
+    "beat_close_p": null,
+    "edge_points_mean": null,
+    "n_beat": 0,
+    "permutation_p": null
+   },
+   "staking": {
+    "n_bets": 0,
+    "wins": 0,
+    "losses": 0,
+    "pushes": 0,
+    "roi": null,
+    "roi_ci": null,
+    "profit_units": null,
+    "deflated_sharpe_p": null,
+    "by_season": {},
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": false,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 4,
+   "verdict": "REJECTED",
+   "status_detail": "all inputs present",
+   "rank": 9,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S09",
+   "name": "Two independent spread legs",
+   "family": "parlay (2-leg)",
+   "rule": "Pair DA-S08 legs from different games in the same week; price at the product of the two prices.",
+   "needs": [
+    "spread",
+    "price",
+    "model",
+    "cross_game_prices"
+   ],
+   "signal": {
+    "n_graded": 0,
+    "n_price_missing": 0,
+    "hit_rate": null,
+    "hit_ci": null,
+    "hit_p": null,
+    "bh_q": null,
+    "bonferroni_p": null,
+    "beat_close_rate": null,
+    "beat_close_ci": null,
+    "beat_close_p": null,
+    "edge_points_mean": null,
+    "n_beat": 0,
+    "permutation_p": null
+   },
+   "staking": {
+    "n_bets": 0,
+    "wins": 0,
+    "losses": 0,
+    "pushes": 0,
+    "roi": null,
+    "roi_ci": null,
+    "profit_units": null,
+    "deflated_sharpe_p": null,
+    "by_season": {},
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": false,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": false
+   },
+   "gates_passed": 3,
+   "verdict": "REJECTED",
+   "status_detail": "needs a prop price feed this repository does not have",
+   "rank": 10,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S10",
+   "name": "Receptions + receiving yards",
+   "family": "prop combo (same player)",
+   "rule": "Price a same-player combo at the measured joint rate (r = 0.84), not the independent product.",
+   "needs": [
+    "prop_prices"
+   ],
+   "signal": {
+    "n_graded": 0,
+    "n_price_missing": 0,
+    "hit_rate": null,
+    "hit_ci": null,
+    "hit_p": null,
+    "bh_q": null,
+    "bonferroni_p": null,
+    "beat_close_rate": null,
+    "beat_close_ci": null,
+    "beat_close_p": null,
+    "edge_points_mean": null,
+    "n_beat": 0,
+    "permutation_p": null
+   },
+   "staking": {
+    "n_bets": 0,
+    "wins": 0,
+    "losses": 0,
+    "pushes": 0,
+    "roi": null,
+    "roi_ci": null,
+    "profit_units": null,
+    "deflated_sharpe_p": null,
+    "by_season": {},
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": false,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": false
+   },
+   "gates_passed": 3,
+   "verdict": "REJECTED",
+   "status_detail": "needs a prop price feed this repository does not have",
+   "rank": 11,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S11",
+   "name": "QB yards + WR1 yards",
+   "family": "prop combo (same game)",
+   "rule": "Price a same-game QB/WR1 combo at the measured joint rate (r = 0.56).",
+   "needs": [
+    "prop_prices"
+   ],
+   "signal": {
+    "n_graded": 0,
+    "n_price_missing": 0,
+    "hit_rate": null,
+    "hit_ci": null,
+    "hit_p": null,
+    "bh_q": null,
+    "bonferroni_p": null,
+    "beat_close_rate": null,
+    "beat_close_ci": null,
+    "beat_close_p": null,
+    "edge_points_mean": null,
+    "n_beat": 0,
+    "permutation_p": null
+   },
+   "staking": {
+    "n_bets": 0,
+    "wins": 0,
+    "losses": 0,
+    "pushes": 0,
+    "roi": null,
+    "roi_ci": null,
+    "profit_units": null,
+    "deflated_sharpe_p": null,
+    "by_season": {},
+    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
+   },
+   "gates": {
+    "DA-G1": true,
+    "DA-G2": false,
+    "DA-G3": true,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": false
+   },
+   "gates_passed": 3,
+   "verdict": "REJECTED",
+   "status_detail": "needs a prop price feed this repository does not have",
+   "rank": 12,
+   "newly_live": []
+  },
+  {
+   "id": "DA-S01",
+   "name": "Fade the biggest market move",
+   "family": "single / spread",
+   "rule": "Take the side the closing line moved AWAY from when |move| >= 1.5 pts (2021 only).",
+   "needs": [
+    "early_snapshot",
+    "spread",
+    "price"
+   ],
+   "signal": {
+    "n_graded": 46,
+    "n_price_missing": 0,
+    "hit_rate": 0.4565,
+    "hit_ci": [
+     0.3215,
+     0.5982
+    ],
+    "hit_p": 0.55535,
+    "bh_q": null,
+    "bonferroni_p": null,
+    "beat_close_rate": 0.4565,
+    "beat_close_ci": [
+     0.3215,
+     0.5982
+    ],
+    "beat_close_p": 0.55535,
+    "edge_points_mean": 0.0,
+    "n_beat": 46,
+    "permutation_p": 0.769304
+   },
+   "staking": {
+    "n_bets": 46,
+    "wins": 21,
+    "losses": 25,
+    "pushes": 0,
+    "roi": -0.1227,
+    "roi_ci": [
+     -0.3778,
+     0.161
+    ],
+    "profit_units": -5.645,
+    "deflated_sharpe_p": 0.9939853084118757,
+    "by_season": {
+     "2021": {
+      "n": 46,
+      "profit": -5.645,
+      "wins": 21,
+      "beats": 21
+     }
+    },
+    "note": "Fixed 1-unit stakes, real prices only."
+   },
+   "gates": {
+    "DA-G1": false,
+    "DA-G2": false,
+    "DA-G3": false,
+    "DA-G4": false,
+    "DA-G5": false,
+    "DA-G6": false,
+    "DA-G7": true,
+    "DA-G8": false,
+    "DA-G9": true
+   },
+   "gates_passed": 2,
+   "verdict": "REJECTED",
+   "status_detail": "the only early-snapshot file in the repository is undocumented and unofficially timed, so G1 and G3 cannot pass",
+   "rank": 13,
+   "newly_live": []
+  }
+ ],
+ "family_counts": {
+  "single": 10,
+  "parlay": 1,
+  "prop_combo": 2
+ },
+ "verdict_counts": {
+  "LIVE": 0,
+  "PAPER": 0,
+  "REJECTED": 13
+ },
+ "rewards": {
+  "tiers": [
+   {
+    "tier": "Tier 1 - LIVE allocation",
+    "requirement": "10/10 gates, including DA-G9 execution",
+    "reward": "Listed as a live signal; staking size capped by the demotion rule",
+    "awarded_to": [],
+    "n": 0
+   },
+   {
+    "tier": "Tier 2 - PAPER only",
+    "requirement": "9/10 gates with execution satisfied",
+    "reward": "Paper-traded, published, eligible for promotion after the paper window",
+    "awarded_to": [],
+    "n": 0
+   },
+   {
+    "tier": "Tier 3 - none",
+    "requirement": "anything else",
+    "reward": "No allocation; retained in the record with the exact failing gate",
+    "awarded_to": [],
+    "n": 13
+   }
+  ],
+  "funding": {
+   "prize_pool": null,
+   "currency": null,
+   "status": "UNFUNDED",
+   "note": "No prize money exists. Publishing a currency figure would be an invented number; the tiers are a ranking rule until a sponsor and a funded pool are named."
+  },
+  "promotion": "A Tier 1 entry that fails the demotion gate returns to Tier 2 automatically. Tiers are computed, never granted by hand."
+ },
+ "honest_note": "No strategy is LIVE and none is PAPER: every family fails the sample floor, the significance bar, or the execution gate. The leaderboard is therefore published as a ranking of measured evidence, not of winners."
+}
