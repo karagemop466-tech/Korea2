@@ -68,6 +68,7 @@ td.cen { text-align: center; }
 .badge.ok { background: var(--bg-ok); color: var(--ok); border: 1px solid #b9d8c9; }
 .badge.warn { background: var(--bg-warn); color: var(--warn); border: 1px solid #f0c996; }
 .badge.blank { background: #e9eef3; color: var(--muted); }
+.banner { border: 1px solid var(--warn); background: var(--bg-warn); color: #5a3d12; padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.82rem; margin: 0 0 1rem; }
 
 .empty { text-align: center; color: var(--muted); padding: 2rem; }
 .kicker { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 0.25rem; }
