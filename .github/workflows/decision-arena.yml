@@ -1,0 +1,119 @@
+name: decision-arena
+
+# Builds the Decision Arena and its verification suite.
+#
+# WHY A WORKFLOW AND NOT JUST A LOCAL BUILD
+# -----------------------------------------
+# Three of the feeds this hub needs are GitHub *release assets*. They redirect to
+# release-assets.githubusercontent.com, which the authoring sandbox cannot reach (TLS reset on
+# every attempt). A runner can reach them, so on a runner the depth page upgrades itself from
+# BLOCKED to MEASURED with no code change, and the price/result pages pick up a fresher snapshot.
+#
+# The job is fail-closed in two places:
+#   * fetch_inputs.py exits non-zero if any feed fails, so a half-fetched snapshot is never built;
+#   * verify.py exits non-zero if any check fails, a row loses its source cell, a link breaks, or
+#     the wording policy is violated.
+#
+# It never writes to main. It commits the derived JSON (a few hundred KB, no raw feeds) to the
+# branch it was dispatched on, so the published numbers always match a build that passed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: 'Season to refresh'
+        required: false
+        default: '2026'
+  schedule:
+    # Tuesdays after the Monday game, and Saturdays after the final injury report. UTC.
+    - cron: '0 14 * * 2'
+    - cron: '0 14 * * 6'
+  push:
+    branches: ['main', 'arena/**']
+    paths:
+      - 'decision-arena/scripts/**'
+      - 'decision-arena/data/sources.json'
+      - 'decision-arena/data/suggestions.json'
+      - 'decision-arena/data/questions.json'
+      - '.github/workflows/decision-arena.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: decision-arena-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  SEASON: ${{ github.event.inputs.season || '2026' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          # No dependencies: the build is stdlib-only on purpose, so a runner needs no wheels
+          # and a rebuild years from now still works.
+
+      - name: Fetch inputs (fail-closed)
+        run: |
+          set -euo pipefail
+          python decision-arena/scripts/fetch_inputs.py --season "$SEASON"
+
+      - name: Build and verify
+        run: |
+          set -euo pipefail
+          python decision-arena/scripts/run_all.py
+
+      - name: Report what the build measured
+        if: always()
+        run: |
+          python - <<'EOF' >> "$GITHUB_STEP_SUMMARY" || true
+          import json
+          def load(p):
+              try:
+                  return json.load(open(p))
+              except Exception:
+                  return {}
+          st = load("decision-arena/data/strategies.json")
+          pr = load("decision-arena/data/price_snapshots.json")
+          dp = load("decision-arena/data/depth.json")
+          ve = load("decision-arena/data/verification.json")
+          print("## Decision Arena build")
+          print(f"- strategies: {st.get('verdict_counts')}")
+          print(f"- price snapshots: {pr.get('n_snapshots')}, grades: {pr.get('grades')}")
+          print(f"- replacement depth: {dp.get('depth', {}).get('status')} "
+                f"({dp.get('depth', {}).get('events_total', 'n/a')} events)")
+          print(f"- checks: {ve.get('summary', {}).get('passed')}/{ve.get('summary', {}).get('total')}")
+          failed = ve.get("summary", {}).get("failed") or []
+          if failed:
+              print("\n### FAILED CHECKS")
+              for f in failed:
+                  print(f"- {f}")
+          EOF
+
+      - name: Commit the derived JSON (never the raw downloads)
+        run: |
+          set -euo pipefail
+          git config user.name  "decision-arena-bot"
+          git config user.email "decision-arena-bot@users.noreply.github.com"
+          git add decision-arena/data decision-arena/pages decision-arena/assets
+          if git diff --cached --quiet; then
+            echo "no change in the Decision Arena build - nothing to commit"
+            exit 0
+          fi
+          git commit -m "data(decision-arena): rebuild from fetched inputs + verification suite"
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            BRANCH="decision-arena-refresh/run-${GITHUB_RUN_ID}"
+            git checkout -b "$BRANCH"
+            git push origin "$BRANCH"
+            echo "::notice title=Refresh branch pushed::Merge $BRANCH after review; this workflow never writes to main."
+          else
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi

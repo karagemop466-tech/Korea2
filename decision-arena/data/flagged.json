@@ -1,0 +1,121 @@
+{
+ "generated_utc": "2026-11-14T20:18:23Z",
+ "policy": "A flag is not a blocker to publication; it is a blocker to trusting the affected number without reading it. Flags are closed only when a source exists.",
+ "items": [
+  {
+   "id": "DA-F01",
+   "title": "No price has a published sampling time, so opening and closing cannot be distinguished",
+   "severity": "high",
+   "affects": "price snapshots, CLV, line-move signals, demotion DM-1",
+   "evidence": "7,103 of 7,103 snapshots are graded unattributed_single_observation.",
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "id": "DA-F02",
+   "title": "The opening-number study covers one season and rests on an undocumented file",
+   "severity": "high",
+   "affects": "any claim about how lines move",
+   "evidence": "Only the 2021 early snapshot separates from a close (n=67 matched); its publisher does not document the columns or the sampling time.",
+   "source": "SRC-NFLVERSE-SC-LINES-DOC"
+  },
+  {
+   "id": "DA-F03",
+   "title": "The results snapshot is stale by at least one completed week",
+   "severity": "high",
+   "affects": "current-slate scoring, 'live' strategy status",
+   "evidence": "Feed frozen at 2026-11-01; the official Week 10 Thursday game is absent from it.",
+   "source": "SRC-NFL-SCHED-10"
+  },
+  {
+   "id": "DA-F04",
+   "title": "No historical player-prop prices exist, so prop combos cannot be tested",
+   "severity": "high",
+   "affects": "DA-S10, DA-S11, prop-combo ROI",
+   "evidence": "0 priced prop bets across every registered prop family; the correlations are measured but unpriceable.",
+   "source": "SRC-NFLVERSE-STATS"
+  },
+  {
+   "id": "DA-F05",
+   "title": "No official depth chart exists to cite",
+   "severity": "high",
+   "affects": "starter/backup claims, injury-adjusted signals",
+   "evidence": "NFL.com's depth-chart path returns 404 and the official injury report carries no depth column.",
+   "source": "SRC-NFL-DEPTH-404"
+  },
+  {
+   "id": "DA-F06",
+   "title": "Replacement depth cannot be measured in this build environment",
+   "severity": "medium",
+   "affects": "the depth page's central question",
+   "evidence": "Snap-count release assets are unreachable from the build sandbox (TLS reset); the CI workflow is the fix.",
+   "source": "SRC-NFLVERSE-SNAP"
+  },
+  {
+   "id": "DA-F07",
+   "title": "The prize pool is unfunded, so the reward tiers do not pay",
+   "severity": "medium",
+   "affects": "the leaderboard's reward language",
+   "evidence": "prize_pool is null and status is UNFUNDED; no sponsor or currency appears anywhere in the repository.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "id": "DA-F08",
+   "title": "No strategy clears the sample floor, so every family is untested rather than disproven",
+   "severity": "medium",
+   "affects": "any statement that a strategy 'does not work'",
+   "evidence": "5 of 12 fail DA-G2; the honest verdict is UNTESTED, which the gate reports separately from REJECTED.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "id": "DA-F09",
+   "title": "Staking history covers 73% of spread legs and less of nothing else",
+   "severity": "medium",
+   "affects": "every ROI figure",
+   "evidence": "10,402 of 14,206 spread legs carry a price; unpriced legs are excluded rather than filled.",
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "id": "DA-F10",
+   "title": "The official injury report is a point-in-time snapshot that changes before kickoff",
+   "severity": "medium",
+   "affects": "any injury feature used in a model",
+   "evidence": "Statuses move between the Wednesday, Friday and Saturday reports; the capture time is not part of the official page.",
+   "source": "SRC-NFL-INJ-10"
+  },
+  {
+   "id": "DA-F11",
+   "title": "The demotion rules have never fired",
+   "severity": "medium",
+   "affects": "confidence in the demotion gate",
+   "evidence": "No strategy has ever been live, so no demotion transition has been exercised in operation.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "id": "DA-F12",
+   "title": "No executable price, venue, limit or jurisdiction is held",
+   "severity": "medium",
+   "affects": "whether any positive-EV figure is actionable",
+   "evidence": "No account, venue or stake limit is recorded anywhere; a positive expected value is therefore hypothetical.",
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "id": "DA-F13",
+   "title": "Twelve open decision questions remain unanswered",
+   "severity": "low",
+   "affects": "every suggestion on the register",
+   "evidence": "12 open, 2 partially answered, 0 closed.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "id": "DA-F14",
+   "title": "Third-party redistributors are the only source for box scores and lines",
+   "severity": "low",
+   "affects": "every correlation and every price on the site",
+   "evidence": "The NFL publishes no machine-readable historical odds or box-score archive; nflverse redistributes it and is marked 3P on every page.",
+   "source": "SRC-NFLVERSE-STATS"
+  }
+ ],
+ "blanked_value_count": 22,
+ "blanked_note": "Counted from the built output: markets on the originated slate with no line or price, Week 9 games absent from the snapshot, and strategies with no measurable signal or staking value.",
+ "open_questions": 12
+}

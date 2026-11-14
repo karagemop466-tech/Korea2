@@ -1,0 +1,151 @@
+{
+ "purpose": "These are the questions a reviewer must answer before the site's numbers can reasonably drive a decision. Each has: what we HAVE (with the source), what we DO NOT HAVE, how to discover the missing part, and what decision it blocks. A question with a complete answer is marked answered; nothing here is inferred.",
+ "legend": {
+  "have": "the evidence actually held in the repository or read from an official source this session",
+  "missing": "what is not held, stated precisely",
+  "discovery": "a concrete, checkable way to obtain it",
+  "blocks": "the suggestion ids that may not proceed until this is answered"
+ },
+ "questions": [
+  {
+   "id": "Q-01",
+   "question": "Where can a timestamped opening and closing price be obtained, for which seasons and markets, and under what licence?",
+   "status": "open",
+   "have": "One price per market in the schedules feed with no sampling time (7,103 games). A separate early snapshot for 2021 with 272 games quoted (n=67 matched to a close).",
+   "missing": "A publisher that states when each price was taken. No licence terms for redistribution are held.",
+   "discovery": "Ask each candidate archive for a sample with timestamps; verify two known closes independently; record the licence in data/sources.json before ingesting.",
+   "blocks": ["SUG-01"],
+   "answer": null
+  },
+  {
+   "id": "Q-02",
+   "question": "How current must the results feed be for a decision, and who runs the refresh?",
+   "status": "open",
+   "have": "Weekly scheduled workflows exist and are green on main. Official Week 9 finals read from NFL.com; Week 10 Thursday result read from NFL.com.",
+   "missing": "A defined freshness SLA and an automated official reconciliation step.",
+   "discovery": "Decide the maximum acceptable lag (e.g. 24h after the last game), then encode it as a check that fails the build when exceeded.",
+   "blocks": ["SUG-02"],
+   "answer": null
+  },
+  {
+   "id": "Q-03",
+   "question": "Is the rating model meant to beat the closing line, or only to describe a team?",
+   "status": "open",
+   "have": "Walk-forward error worse than the market in all four evaluated seasons; ATS win rate on its own side 43.8%-48.9%.",
+   "missing": "An explicit objective. Both are legitimate; publishing both without choosing invites misreading.",
+   "discovery": "State the objective in one sentence on the methods page and make the gate test that objective.",
+   "blocks": ["SUG-03"],
+   "answer": null
+  },
+  {
+   "id": "Q-04",
+   "question": "What price is actually available to the account, and is it the same price the model is scored against?",
+   "status": "open",
+   "have": "Feed prices for 73.2% of spread legs; no account, venue, limit or jurisdiction is held or stated anywhere.",
+   "missing": "Verified executable prices and stake limits. Without them a positive-EV number is hypothetical.",
+   "discovery": "Record the venue, the observed price at a stated time, and the maximum stake for a sample of bets, and re-price the model against that.",
+   "blocks": ["SUG-04"],
+   "answer": null
+  },
+  {
+   "id": "Q-05",
+   "question": "Can the build reach the third-party release assets it depends on for snap counts and depth charts?",
+   "status": "partially answered",
+   "have": "No from this sandbox (TLS reset on all four feeds). Yes from a GitHub runner: the repository's existing fetch workflow has succeeded repeatedly.",
+   "missing": "A committed run of THIS hub's fetch step inside CI.",
+   "discovery": "Add the workflow, dispatch it once, and confirm the manifest hashes land in data/inputs/manifest.json.",
+   "blocks": ["SUG-05"],
+   "answer": "Yes on CI, no locally; the workflow is the discovery mechanism."
+  },
+  {
+   "id": "Q-06",
+   "question": "What weighting makes 'depth lost' comparable across positions and clubs?",
+   "status": "open",
+   "have": "66 players Out across 28 clubs in the official Week 10 report; per-club counts by status.",
+   "missing": "Any official depth rank (the NFL publishes none machine-readable) and an agreed weighting.",
+   "discovery": "Pre-register the formula in this file, then evaluate it on a holdout season before it enters any strategy.",
+   "blocks": ["SUG-06"],
+   "answer": null
+  },
+  {
+   "id": "Q-07",
+   "question": "Is there any prop-price history available at all, and at what cost?",
+   "status": "open",
+   "have": "Measured correlations with large n (e.g. receptions vs yards r=0.80, n=45,315).",
+   "missing": "Every historical prop price. n=0 priced prop bets.",
+   "discovery": "Request a sample of prop prices for one week from a provider; if none is obtainable, retire the prop family from the competition rather than leaving it looking merely untested.",
+   "blocks": ["SUG-07"],
+   "answer": null
+  },
+  {
+   "id": "Q-08",
+   "question": "Would you rather have a lower statistical bar or a longer wait?",
+   "status": "open",
+   "have": "A sample floor of n>=300 graded / n>=100 priced that no strategy currently meets.",
+   "missing": "A decision on whether the floor is right, given that most families have 9 seasons of data at most.",
+   "discovery": "Compute the power curve for the observed effect sizes and choose the floor from the power analysis, not from impatience.",
+   "blocks": ["SUG-08"],
+   "answer": null
+  },
+  {
+   "id": "Q-09",
+   "question": "Is the competition funded, and if so by whom, in what currency, with what rules?",
+   "status": "open",
+   "have": "Three published tiers; prize_pool null; status UNFUNDED.",
+   "missing": "Any funding, sponsor, or payment mechanism, and any legal review of paying contest participants.",
+   "discovery": "Either name a funded pool and its rules, or drop the word reward.",
+   "blocks": ["SUG-09"],
+   "answer": null
+  },
+  {
+   "id": "Q-10",
+   "question": "What is the minimum evidence before a strategy may be called live, and who signs it off?",
+   "status": "open",
+   "have": "Ten gates, six demotion triggers, two promotion rules, all published and computed in code.",
+   "missing": "A named accountable owner and a tested transition (no strategy has ever been live, so no demotion has ever fired).",
+   "discovery": "Run one strategy through SIMULATED live and paper states on historical data to prove the transition code works before it matters.",
+   "blocks": ["SUG-10"],
+   "answer": null
+  },
+  {
+   "id": "Q-11",
+   "question": "Does the same-game correlation structure hold across positions and seasons, or is one number being over-generalised?",
+   "status": "partially answered",
+   "have": "Pooled coefficients with confidence intervals; e.g. QB yards vs WR1 yards r=0.55 (n=5,893, CI 0.533-0.569).",
+   "missing": "Stability by season and by team. A pooled r can hide a regime change.",
+   "discovery": "Publish the coefficient by season with its own n and interval; a signal that only holds in one era is a warning, not an edge.",
+   "blocks": [],
+   "answer": "Partially: pooled values are measured and stable in sign, but a per-season stability table is not yet published."
+  },
+  {
+   "id": "Q-12",
+   "question": "Is the official injury report the right input for a pre-kickoff decision, given that statuses change on Saturday and again before kickoff?",
+   "status": "open",
+   "have": "The Week 10 report as read on 2026-11-14, with practice and game status per player.",
+   "missing": "A defined snapshot time for the report used as a feature, and confirmation of how quickly statuses change.",
+   "discovery": "Capture the report at a fixed clock time each week (e.g. Saturday 21:00 UTC) and store the capture time as part of the record.",
+   "blocks": [],
+   "answer": null
+  },
+  {
+   "id": "Q-13",
+   "question": "Should the site publish a single composite score, or only the separate signal and staking columns?",
+   "status": "open",
+   "have": "Signal and staking are published separately and the ranking uses signal first.",
+   "missing": "A decision on whether a composite (currently 0.6 signal / 0.4 staking) helps or obscures.",
+   "discovery": "Test whether the composite changes the ranking under reasonable weight changes; if it does, it is not a summary, it is an opinion.",
+   "blocks": [],
+   "answer": null
+  },
+  {
+   "id": "Q-14",
+   "question": "What does a reviewer do with a 'flagged' item - is it a request to fix, or a note to self?",
+   "status": "open",
+   "have": "A flagged page with every unverifiable value and its reason.",
+   "missing": "A workflow that assigns an owner and a state to each flag.",
+   "discovery": "Add an owner and a state to every flag row, mirroring the suggestions register, and confirm the fix in the next build.",
+   "blocks": [],
+   "answer": null
+  }
+ ]
+}

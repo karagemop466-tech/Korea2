@@ -1,11 +1,11 @@
 {
- "generated_utc": "2026-11-14T20:08:39Z",
+ "generated_utc": "2026-11-14T20:18:19Z",
  "inputs": {
   "games_path": "data/derived/games.csv.gz",
   "games_sha256": "ccbca2cb34ec44d0eb1c500ec33cfd638e57bbbe8ff72020d9289845f98ae6db",
   "source": "SRC-NFLVERSE-SCHED"
  },
- "spec_sha256": "736dfa9a90aac1f8dc644c21e5b991d51dd3980d5f9555db4c09c90369ada96e",
+ "spec_sha256": "5738b8ee65ce87920306ab24a27bc673fd581cdcbc7e784806b65895c16b259e",
  "ranking_rule": "Rank by gates passed, then by beat-the-close rate (signal), then by ROI (staking). A strategy with a lucky staking run but a negative signal cannot rise: the signal column breaks ties and carries 0.6 of the composite shown below.",
  "composite": {
   "signal_weight": 0.6,
@@ -15,9 +15,9 @@
  "multiple_testing": {
   "method": "Benjamini-Hochberg",
   "q": 0.1,
-  "tests": 12,
-  "bonferroni_alpha": 0.004167,
-  "n_trials": 12
+  "tests": 11,
+  "bonferroni_alpha": 0.004545,
+  "n_trials": 11
  },
  "gates": [
   {
@@ -121,7 +121,7 @@
      0.0106
     ],
     "profit_units": -126.709,
-    "deflated_sharpe_p": 0.9992961181835152,
+    "deflated_sharpe_p": 0.9991848860328191,
     "by_season": {
      "2006": {
       "n": 133,
@@ -289,7 +289,7 @@
     ],
     "hit_p": 0.037,
     "bh_q": 0.09867,
-    "bonferroni_p": 0.444,
+    "bonferroni_p": 0.407,
     "beat_close_rate": 0.5442,
     "beat_close_ci": [
      0.4969,
@@ -311,7 +311,7 @@
      0.1642
     ],
     "profit_units": 30.714,
-    "deflated_sharpe_p": 0.5531465057038706,
+    "deflated_sharpe_p": 0.5362552955405457,
     "by_season": {
      "2006": {
       "n": 20,
@@ -495,7 +495,7 @@
      0.0522
     ],
     "profit_units": -0.284,
-    "deflated_sharpe_p": 0.9528067429070515,
+    "deflated_sharpe_p": 0.9484585741414431,
     "by_season": {
      "2006": {
       "n": 40,
@@ -663,7 +663,7 @@
     ],
     "hit_p": 0.03223,
     "bh_q": 0.09867,
-    "bonferroni_p": 0.38676,
+    "bonferroni_p": 0.35453,
     "beat_close_rate": 0.5031,
     "beat_close_ci": [
      0.4882,
@@ -685,7 +685,7 @@
      0.0312
     ],
     "profit_units": 11.566,
-    "deflated_sharpe_p": 0.9307507530454165,
+    "deflated_sharpe_p": 0.9248956469050391,
     "by_season": {
      "2006": {
       "n": 167,
@@ -875,7 +875,7 @@
      0.0627
     ],
     "profit_units": 3.514,
-    "deflated_sharpe_p": 0.9399932884736233,
+    "deflated_sharpe_p": 0.9347465783701113,
     "by_season": {
      "2006": {
       "n": 40,
@@ -1065,7 +1065,7 @@
      0.0609
     ],
     "profit_units": -13.889,
-    "deflated_sharpe_p": 0.9916340861879664,
+    "deflated_sharpe_p": 0.9906117111371113,
     "by_season": {
      "2006": {
       "n": 12,
@@ -1254,7 +1254,7 @@
      0.0311
     ],
     "profit_units": -29.242,
-    "deflated_sharpe_p": 0.9974181590789112,
+    "deflated_sharpe_p": 0.9970566841972583,
     "by_season": {
      "2006": {
       "n": 20,
@@ -1444,7 +1444,7 @@
      0.0435
     ],
     "profit_units": -16.826,
-    "deflated_sharpe_p": 0.9989161779771023,
+    "deflated_sharpe_p": 0.9987512147798099,
     "by_season": {
      "2006": {
       "n": 4,
@@ -1593,58 +1593,6 @@
    "newly_live": []
   },
   {
-   "id": "DA-S01",
-   "name": "Fade the biggest market move",
-   "family": "single / spread",
-   "rule": "Take the side the closing line moved AWAY from, when |move| >= 1.5 pts (2021 only, where an early snapshot exists).",
-   "needs": [
-    "early_snapshot"
-   ],
-   "signal": {
-    "n_graded": 0,
-    "n_price_missing": 0,
-    "hit_rate": null,
-    "hit_ci": null,
-    "hit_p": null,
-    "bh_q": null,
-    "bonferroni_p": null,
-    "beat_close_rate": null,
-    "beat_close_ci": null,
-    "beat_close_p": null,
-    "edge_points_mean": null,
-    "n_beat": 0,
-    "permutation_p": null
-   },
-   "staking": {
-    "n_bets": 0,
-    "wins": 0,
-    "losses": 0,
-    "pushes": 0,
-    "roi": null,
-    "roi_ci": null,
-    "profit_units": null,
-    "deflated_sharpe_p": null,
-    "by_season": {},
-    "note": "Fixed 1-unit stakes, real prices only. This column can be lucky; the signal column above is what the ranking uses."
-   },
-   "gates": {
-    "DA-G1": true,
-    "DA-G2": false,
-    "DA-G3": true,
-    "DA-G4": false,
-    "DA-G5": false,
-    "DA-G6": false,
-    "DA-G7": true,
-    "DA-G8": false,
-    "DA-G9": true
-   },
-   "gates_passed": 4,
-   "verdict": "REJECTED",
-   "status_detail": "all inputs present",
-   "rank": 9,
-   "newly_live": []
-  },
-  {
    "id": "DA-S09",
    "name": "Two independent spread legs",
    "family": "parlay (2-leg)",
@@ -1696,7 +1644,7 @@
    "gates_passed": 3,
    "verdict": "REJECTED",
    "status_detail": "needs a prop price feed this repository does not have",
-   "rank": 10,
+   "rank": 9,
    "newly_live": []
   },
   {
@@ -1748,7 +1696,7 @@
    "gates_passed": 3,
    "verdict": "REJECTED",
    "status_detail": "needs a prop price feed this repository does not have",
-   "rank": 11,
+   "rank": 10,
    "newly_live": []
   },
   {
@@ -1800,7 +1748,7 @@
    "gates_passed": 3,
    "verdict": "REJECTED",
    "status_detail": "needs a prop price feed this repository does not have",
-   "rank": 12,
+   "rank": 11,
    "newly_live": []
   },
   {
@@ -1845,7 +1793,7 @@
      0.161
     ],
     "profit_units": -5.645,
-    "deflated_sharpe_p": 0.9939853084118757,
+    "deflated_sharpe_p": 0.9932191921352991,
     "by_season": {
      "2021": {
       "n": 46,
@@ -1870,19 +1818,19 @@
    "gates_passed": 2,
    "verdict": "REJECTED",
    "status_detail": "the only early-snapshot file in the repository is undocumented and unofficially timed, so G1 and G3 cannot pass",
-   "rank": 13,
+   "rank": 12,
    "newly_live": []
   }
  ],
  "family_counts": {
-  "single": 10,
+  "single": 9,
   "parlay": 1,
   "prop_combo": 2
  },
  "verdict_counts": {
   "LIVE": 0,
   "PAPER": 0,
-  "REJECTED": 13
+  "REJECTED": 12
  },
  "rewards": {
   "tiers": [
@@ -1905,7 +1853,7 @@
     "requirement": "anything else",
     "reward": "No allocation; retained in the record with the exact failing gate",
     "awarded_to": [],
-    "n": 13
+    "n": 12
    }
   ],
   "funding": {

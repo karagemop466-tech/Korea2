@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary | Decision Arena</title>
+<meta name="description" content="Independent NFL line origination, price snapshots, verified results and a gated signal competition.">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../index.html"><span class="mark">DA</span><span>DECISION ARENA<small>NFL SIGNAL RESEARCH</small></span></a>
+  <div class="nav-label">Workspace</div>
+  <nav aria-label="Main navigation"><a href="../index.html">Overview</a><a href="../pages/executive.html" class="active" aria-current="page">Executive summary</a><a href="../pages/prices.html">Price snapshots</a><a href="../pages/results.html">Results feed</a><a href="../pages/origination.html">Origination</a><a href="../pages/leaderboard.html">Leaderboard</a><a href="../pages/strategies.html">Strategy lab</a><a href="../pages/gates.html">Gates &amp; demotion</a><a href="../pages/correlation.html">Correlation</a><a href="../pages/depth.html">Injuries &amp; depth</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Decision questions</a><a href="../pages/verification.html">Verification</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Source register</a><a href="../pages/methods.html">Methods</a></nav>
+  <div class="side-note"><span class="dot"></span><strong>No strategy is live.</strong>
+  <div>Signals and staking are reported separately; every value is blank unless a source states it.</div></div>
+</aside>
+<main id="main">
+<header class="topbar"><span class="crumb">EXECUTIVE SUMMARY</span>
+<a class="review-link" href="../pages/flagged.html">Flagged for review &nearr;</a></header>
+
+<div class="hero"><div class="eyebrow">Executive summary</div>
+<h1>What this build establishes, and what it refuses to claim</h1>
+<p class="lede">One page for a reader who has five minutes. Every statement below is produced by the
+build; the source next to each is the page it can be checked against.</p></div>
+
+<section class="block"><h2>1. The line-origination pipeline works end to end</h2>
+<p>The model produces a side, then a total, then a moneyline for 15 games in Week 9 of 2026,
+trained on 7,087 games strictly before the slate's first kickoff. The ordering is enforced in code: the
+total is emitted only after the side exists, and the moneyline only after the side distribution exists.</p>
+<div class="table-wrap"><table class=""><caption class="caption">First six of the originated slate. The fair line is the model's expected home margin; the market line is the feed's own number in the same convention.</caption><thead><tr><th>Fixture</th><th>Fair number</th><th>Market number</th><th>Difference</th><th>Source</th></tr></thead><tbody><tr><td class="">JAX at BAL &middot; side</td><td class="num">-5.57</td><td class="num">-8.50</td><td class="num">2.93</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/schedules" rel="noopener">nflverse schedules feed (games.csv) — results and one prega...</a></td></tr><tr><td class="">ARI at SEA &middot; side</td><td class="num">11.33</td><td class="num">11.50</td><td class="num">-0.17</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/schedules" rel="noopener">nflverse schedules feed (games.csv) — results and one prega...</a></td></tr><tr><td class="">CIN at ATL &middot; side</td><td class="num">-3.68</td><td class="num">-3.00</td><td class="num">-0.68</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/schedules" rel="noopener">nflverse schedules feed (games.csv) — results and one prega...</a></td></tr><tr><td class="">CLE at NO &middot; side</td><td class="num">2.08</td><td class="num">2.50</td><td class="num">-0.42</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/schedules" rel="noopener">nflverse schedules feed (games.csv) — results and one prega...</a></td></tr><tr><td class="">DAL at IND &middot; side</td><td class="num">0.08</td><td class="num">-6.00</td><td class="num">6.08</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/schedules" rel="noopener">nflverse schedules feed (games.csv) — results and one prega...</a></td></tr><tr><td class="">DEN at CAR &middot; side</td><td class="num">-4.09</td><td class="num">-3.00</td><td class="num">-1.09</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/schedules" rel="noopener">nflverse schedules feed (games.csv) — results and one prega...</a></td></tr></tbody></table></div>
+</section>
+
+<section class="block"><h2>2. The market is still better than the model</h2>
+<div class="table-wrap"><table class=""><caption class="caption">Model versus closing market on the verified slate.</caption><thead><tr><th>Measure</th><th>Model</th><th>Market</th><th>Reading</th><th>Source</th></tr></thead><tbody><tr><td class="">Side error on the scored slate (MAE, pts)</td><td class="num">9.17</td><td class="num">8.37</td><td class="">The market's number is closer to the result than the model's.</td><td class="src"><a href="https://www.nfl.com/schedules/2026/by-week/week-9" rel="noopener">NFL 2026 Week 9 schedule and final scores</a></td></tr><tr><td class="">Total error on the scored slate (MAE, pts)</td><td class="num">11.00</td><td class="num">10.23</td><td class="">Same verdict on totals.</td><td class="src"><a href="https://www.nfl.com/schedules/2026/by-week/week-9" rel="noopener">NFL 2026 Week 9 schedule and final scores</a></td></tr><tr><td class="">Model ATS record on its own side</td><td class="">4-11</td><td class="">&mdash;</td><td class="">Under half the time on a slate of 15 games. Small n; reported, not generalised.</td><td class="src"><a href="https://www.nfl.com/schedules/2026/by-week/week-9" rel="noopener">NFL 2026 Week 9 schedule and final scores</a></td></tr></tbody></table></div>
+</section>
+
+<section class="block"><h2>3. Signal and staking are separate, and both are mostly empty</h2>
+<p>Ranking is by gates, then by beat-the-close rate, then by ROI. A lucky staking run cannot lift a
+strategy with a negative signal because signal sorts first. The best-ranked strategy is
+<strong>Model-edge moneyline</strong> with 6 of 10 gates and a beat-the-close rate of &mdash;.</p>
+<div class="table-wrap"><table class=""><caption class="caption">Verdict counts across all registered strategies.</caption><thead><tr><th>Verdict</th><th>Count</th><th>Meaning</th><th>Source</th></tr></thead><tbody><tr><td class="">LIVE</td><td class="num">0</td><td class="">All ten gates, execution included. Nothing qualifies.</td><td class="src"><a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm" rel="noopener">Multiple comparisons / Bonferroni-type adjustments</a></td></tr><tr><td class="">PAPER</td><td class="num">0</td><td class="">Nine of ten gates with execution satisfied. Nothing qualifies.</td><td class="src"><a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm" rel="noopener">Multiple comparisons / Bonferroni-type adjustments</a></td></tr><tr><td class="">REJECTED</td><td class="num">12</td><td class="">At least two gates fail. This is every registered strategy.</td><td class="src"><a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm" rel="noopener">Multiple comparisons / Bonferroni-type adjustments</a></td></tr></tbody></table></div>
+</section>
+
+<section class="block"><h2>4. What the data does support: large, stable same-game correlation</h2>
+<div class="table-wrap"><table class=""><caption class="caption">Correlations computed from box scores only, with the control pair that tests the pipeline.</caption><thead><tr><th>Pair</th><th>r</th><th>n</th><th>95% interval</th><th>Use</th><th>Source</th></tr></thead><tbody><tr><td class="">QB passing yards &harr; WR1 receiving yards</td><td class="num">0.551</td><td class="num">5,893</td><td class="">0.533 &ndash; 0.569</td><td class="">Do not price these legs independently.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/stats_player" rel="noopener">nflverse player and team weekly box scores</a></td></tr><tr><td class="">Receptions &harr; receiving yards (same player)</td><td class="num">0.799</td><td class="num">45,315</td><td class="">0.796 &ndash; 0.803</td><td class="">Near-substitutes: a combo of them is not two independent chances.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/stats_player" rel="noopener">nflverse player and team weekly box scores</a></td></tr><tr><td class="">Receptions &harr; targets (control)</td><td class="num">0.892</td><td class="num">50,587</td><td class="">0.891 &ndash; 0.894</td><td class="">A mechanical relation that must be high if the pipeline is sane; it is.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/stats_player" rel="noopener">nflverse player and team weekly box scores</a></td></tr></tbody></table></div>
+</section>
+
+<section class="block"><h2>5. The five gaps that block the next step</h2>
+<div class="table-wrap"><table class=""><caption class="caption">The gaps that cap what the site may claim, each with its evidence.</caption><thead><tr><th>Gap</th><th>Evidence</th><th>What it blocks</th><th>Source</th></tr></thead><tbody><tr><td class="">No timestamped prices</td><td class="">7,103 of 7,103 snapshots are unattributed</td><td class="">Closing-line value, line-move signals, demotion trigger DM-1, any claim about beating the close</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/schedules" rel="noopener">nflverse schedules feed (games.csv) — results and one prega...</a></td></tr><tr><td class="">No prop prices</td><td class="">2 prop families with zero priced bets</td><td class="">Prop-combo ROI; the family is EXECUTION_BLOCKED</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/stats_player" rel="noopener">nflverse player and team weekly box scores</a></td></tr><tr><td class="">No official depth chart</td><td class="">NFL.com's depth-chart path returns 404</td><td class="">Any official starter/backup rank; depth is measured from snap share instead</td><td class="src"><a href="https://www.nfl.com/teams/kansas-city-chiefs/depth-chart/" rel="noopener">NFL.com team depth-chart path (checked: 404)</a></td></tr><tr><td class="">No funded prize pool</td><td class="">The pool field is null; status UNFUNDED</td><td class="">Rewards; the tiers rank only</td><td class="src"><a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm" rel="noopener">Multiple comparisons / Bonferroni-type adjustments</a></td></tr><tr><td class="">Snapshot staleness</td><td class="">Feed frozen at 2026-11-01</td><td class="">Scoring the live slate; Week 10's Thursday result is official but absent from the snapshot</td><td class="src"><a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">NFL 2026 Week 10 schedule, times and final score of the Thu...</a></td></tr></tbody></table></div>
+</section>
+
+<section class="block"><h2>6. What a reader should do with this</h2>
+<ul class="ticks">
+  <li>Treat the correlation page as usable measurement with a stated n.</li>
+  <li>Treat the leaderboard as an honest null: nothing qualifies, and the failing gate is named.</li>
+  <li>Treat the origination page as a fair-line description, not a betting recommendation.</li>
+  <li>Read the suggestions page before changing anything; each item names the question that blocks it.</li>
+</ul>
+</section>
+
+<footer>
+  <p>Research and measurement, not betting advice. Values are computed by the code in this repository
+  from the sources on the <a href="../pages/sources.html">source register</a>;
+  anything that could not be confirmed from a source is left blank and listed on
+  <a href="../pages/flagged.html">Flagged for review</a>.</p>
+</footer>
+</main></div></body></html>

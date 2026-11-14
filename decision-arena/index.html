@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview | Decision Arena</title>
+<meta name="description" content="Independent NFL line origination, price snapshots, verified results and a gated signal competition.">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="index.html"><span class="mark">DA</span><span>DECISION ARENA<small>NFL SIGNAL RESEARCH</small></span></a>
+  <div class="nav-label">Workspace</div>
+  <nav aria-label="Main navigation"><a href="index.html" class="active" aria-current="page">Overview</a><a href="pages/executive.html">Executive summary</a><a href="pages/prices.html">Price snapshots</a><a href="pages/results.html">Results feed</a><a href="pages/origination.html">Origination</a><a href="pages/leaderboard.html">Leaderboard</a><a href="pages/strategies.html">Strategy lab</a><a href="pages/gates.html">Gates &amp; demotion</a><a href="pages/correlation.html">Correlation</a><a href="pages/depth.html">Injuries &amp; depth</a><a href="pages/suggestions.html">Suggestions</a><a href="pages/questions.html">Decision questions</a><a href="pages/verification.html">Verification</a><a href="pages/flagged.html">Flagged for review</a><a href="pages/sources.html">Source register</a><a href="pages/methods.html">Methods</a></nav>
+  <div class="side-note"><span class="dot"></span><strong>No strategy is live.</strong>
+  <div>Signals and staking are reported separately; every value is blank unless a source states it.</div></div>
+</aside>
+<main id="main">
+<header class="topbar"><span class="crumb">OVERVIEW</span>
+<a class="review-link" href="pages/flagged.html">Flagged for review &nearr;</a></header>
+
+<div class="hero">
+  <div class="eyebrow">Independent NFL signal research</div>
+  <h1>Originate the line.<br><em>Then prove it, or say you cannot.</em></h1>
+  <p class="lede">This workspace prices its own side, total and moneyline in that order, keeps the
+  model's fair number, the market's number and the difference in separate columns, records what it can
+  and cannot know about each price, and runs every candidate strategy through ten gates that separate
+  <strong>signal</strong> from <strong>staking</strong>. Where an input is missing, the value is blank
+  and the reason is published.</p>
+</div>
+<div class="notice warn"><span class="dot"></span><div><strong>Nothing here is live and no value is invented.</strong> 12 of 12 strategies are REJECTED, 0 are PAPER and 0 are LIVE. Of 7,103 price snapshots, <strong>7,103</strong> cannot be called opening or closing because the feed states no sampling time.</div><a href="pages/prices.html">How each price is graded &rarr;</a></div>
+<div class="kpis"><article class="kpi"><span class="kpi-label">Settled results verified</span><strong>7,087</strong><p>Regular-season games with both scores, re-derived from the scores themselves.</p><a class="card-link" href="pages/results.html">Results feed &rarr;</a></article><article class="kpi"><span class="kpi-label">Week 9 slate scored</span><strong>15/15</strong><p>Originated lines graded against the official NFL.com finals, one observation per game.</p><a class="card-link" href="pages/origination.html">See the board &rarr;</a></article><article class="kpi"><span class="kpi-label">Model side error</span><strong>9.17 pts</strong><p>Market error on the same games: 8.37 pts. The market is still better.</p><a class="card-link" href="pages/origination.html">Walk-forward &rarr;</a></article><article class="kpi"><span class="kpi-label">Strategies LIVE</span><strong>0</strong><p>All ten gates, including execution. No strategy currently qualifies.</p><a class="card-link" href="pages/leaderboard.html">Leaderboard &rarr;</a></article><article class="kpi"><span class="kpi-label">Largest measured correlation</span><strong>0.551</strong><p>QB passing yards vs WR1 receiving yards, from box scores only, with n and an interval.</p><a class="card-link" href="pages/correlation.html">Correlation &rarr;</a></article><article class="kpi"><span class="kpi-label">Demotion triggers</span><strong>6</strong><p>Each is a numeric trigger that returns a live strategy to paper without a judgement call.</p><a class="card-link" href="pages/gates.html">Gates &rarr;</a></article></div>
+<section class="block">
+  <div class="eyebrow">At a glance</div>
+  <h2>The five things that decide how this site should be read</h2>
+  <div class="table-wrap"><table class=""><caption class="caption">Headline results. Every row is computed by the build in this repository.</caption><thead><tr><th>Finding</th><th>Measured value</th><th>Why it matters</th><th>Source</th></tr></thead><tbody><tr><td class="">A single unattributed price is not an opening line</td><td class="">0 snapshots carry a published open timestamp</td><td class="">So the open-to-close study exists for one season only and the page says so.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/schedules" rel="noopener">nflverse schedules feed (games.csv) — results and one prega...</a></td></tr><tr><td class="">The market still beats the model</td><td class="">model MAE 9.17 vs market 8.37 on the scored slate</td><td class="">A fair line that is worse than the close is a description, not an edge.</td><td class="src"><a href="https://www.nfl.com/schedules/2026/by-week/week-9" rel="noopener">NFL 2026 Week 9 schedule and final scores</a></td></tr><tr><td class="">Correlation is large where legs share a game</td><td class="">QB &harr; WR1 r = 0.551 (n = 5,893)</td><td class="">Pricing those legs independently understates the parlay's joint probability; measured, not assumed.</td><td class="src"><a href="https://github.com/nflverse/nflverse-data/releases/tag/stats_player" rel="noopener">nflverse player and team weekly box scores</a></td></tr><tr><td class="">No strategy survives the sample floor</td><td class="">5 of 12 fail the n &ge; 300 / n &ge; 100 floors</td><td class="">The competition is published as a ranking of evidence, not of winners.</td><td class="src"><a href="https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm" rel="noopener">Multiple comparisons / Bonferroni-type adjustments</a></td></tr><tr><td class="">The official depth rank does not exist to cite</td><td class="">NFL.com's depth-chart path returns 404; the injury report has no depth column</td><td class="">Replacement depth is therefore measured from participation, and labelled third-party.</td><td class="src"><a href="https://www.nfl.com/teams/kansas-city-chiefs/depth-chart/" rel="noopener">NFL.com team depth-chart path (checked: 404)</a></td></tr></tbody></table></div>
+</section>
+<div class="grid2">
+  <div class="panel"><h3>What is verified</h3>
+    <ul class="ticks">
+      <li>7,087 settled regular-season games with scores, re-derived from the scores.</li>
+      <li>All 15 Week 9 2026 finals read from NFL.com and reconciled.</li>
+      <li>28 clubs transcribed from the official Week 10 report; zero status disagreements against an independent transcription.</li>
+      <li>Every correlation published with n and a Fisher-z interval.</li>
+    </ul>
+    <a class="card-link" href="pages/verification.html">Verification log &rarr;</a></div>
+  <div class="panel"><h3>What is deliberately blank</h3>
+    <ul class="crosses">
+      <li>No timestamped opening prices, so no per-bet closing-line value and no line-move signal.</li>
+      <li>No historical prop prices, so the prop families are EXECUTION_BLOCKED, not tested.</li>
+      <li>No official depth chart, so no row claims an official depth rank.</li>
+      <li>No funded prize pool, so the tiers rank and do not pay.</li>
+    </ul>
+    <a class="card-link" href="pages/flagged.html">Flagged for review &rarr;</a></div>
+</div>
+<section class="block">
+  <div class="eyebrow">Review before implementing</div>
+  <h2>10 suggestions, gated on 14 open questions</h2>
+  <p class="lede">Every proposal carries a blocking question. A reviewer approves or rejects each one,
+  and nothing is implemented until the blocking answer exists. This is the section to read before
+  changing anything on this site.</p>
+  <div class="tag-row">
+    <a class="badge b-info" href="pages/suggestions.html">Open the suggestion register &rarr;</a>
+    <a class="badge b-warn" href="pages/questions.html">Open the decision questions &rarr;</a>
+  </div>
+</section>
+
+<footer>
+  <p>Research and measurement, not betting advice. Values are computed by the code in this repository
+  from the sources on the <a href="pages/sources.html">source register</a>;
+  anything that could not be confirmed from a source is left blank and listed on
+  <a href="pages/flagged.html">Flagged for review</a>.</p>
+</footer>
+</main></div></body></html>

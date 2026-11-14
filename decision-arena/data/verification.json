@@ -1,0 +1,233 @@
+{
+ "generated_utc": "2026-11-14T20:18:23Z",
+ "checks": [
+  {
+   "name": "Every published table row carries a source",
+   "rule": "Each <td> that ends a row contains an https link to a registered source or an explicit blank marker.",
+   "pass": true,
+   "proves": "No number reaches a page without the page it came from.",
+   "does_not_prove": "That the cited page still states the value; external availability is not checked here.",
+   "source": "SRC-NIST-CORR"
+  },
+  {
+   "name": "Margin and total re-derive from the scores",
+   "rule": "home_score - away_score == margin_home and home_score + away_score == total for every inlined result.",
+   "pass": true,
+   "proves": "600 rows recomputed with 0 disagreements.",
+   "does_not_prove": "That the scores themselves are right; the official reconciliation covers that.",
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "name": "Week 9 finals reconcile to NFL.com",
+   "rule": "Each of the 15 official finals equals the feed's score, or is reported as absent.",
+   "pass": true,
+   "proves": "0 match, 15 absent, 0 mismatched.",
+   "does_not_prove": "Anything before Week 9 2026, which was not read against an official page this session.",
+   "source": "SRC-NFL-SCHED-9"
+  },
+  {
+   "name": "The stale snapshot is proven stale, not assumed",
+   "rule": "The official Week 10 Thursday result is checked for presence in the committed feed.",
+   "pass": true,
+   "proves": "WAS at NYG is 24-21 officially and absent from the snapshot.",
+   "does_not_prove": "That no later refresh exists elsewhere; only that this feed lacks the game.",
+   "source": "SRC-NFL-SCHED-10"
+  },
+  {
+   "name": "Every price snapshot carries a provenance grade",
+   "rule": "Each snapshot has a quality field from the fixed grade list.",
+   "pass": true,
+   "proves": "7,103 snapshots graded; 0 are upgraded to verified without a timestamp.",
+   "does_not_prove": "That the unattributed price is the closing price.",
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "name": "No snapshot is labelled opening or closing without a timestamp",
+   "rule": "verified_open + verified_close == 0 unless a source states a capture time.",
+   "pass": true,
+   "proves": "The ordering claim is refused where the data cannot support it.",
+   "does_not_prove": "That no timestamped feed exists anywhere; only that none is held here.",
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "name": "Origination respects the side -> total -> moneyline dependency",
+   "rule": "No total or moneyline row has status 'originated' unless its side row does.",
+   "pass": true,
+   "proves": "The ordering is a code dependency, not a label on a page.",
+   "does_not_prove": "That the order improves accuracy.",
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "name": "Fair, market and difference are three separate columns",
+   "rule": "Each originated row has the three fields and difference is arithmetically fair minus market.",
+   "pass": true,
+   "proves": "A reader can disagree with the model without losing the market's view.",
+   "does_not_prove": "That the fair line is calibrated.",
+   "source": "SRC-NFLVERSE-SCHED"
+  },
+  {
+   "name": "Signal and staking are computed from separate inputs",
+   "rule": "Signal uses beat-the-close (price-free); staking uses only priced bets.",
+   "pass": true,
+   "proves": "Staking can never include a bet the signal column did not see.",
+   "does_not_prove": "That either column is predictive.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "name": "Ranking sorts on signal before staking",
+   "rule": "The leaderboard order is gates desc, then beat-close desc, then ROI desc.",
+   "pass": true,
+   "proves": "A lucky staking run cannot lift a strategy with a weaker signal.",
+   "does_not_prove": "That the weights are optimal; ranking is lexicographic, not weighted.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "name": "Every correlation publishes n and an interval",
+   "rule": "Each coefficient has n >= 3 and a two-element confidence interval.",
+   "pass": true,
+   "proves": "A reader can judge precision rather than taking a bare r.",
+   "does_not_prove": "That the correlation is causal or stable per season.",
+   "source": "SRC-NIST-CORR"
+  },
+  {
+   "name": "Correlations use no market input",
+   "rule": "The correlation builder reads only player-week box scores (plus team points for three pairs).",
+   "pass": true,
+   "proves": "Coefficients describe players, not prices.",
+   "does_not_prove": "That box-score credits are perfect; they follow the official GSIS definitions but redistribution can err.",
+   "source": "SRC-NFL-GSIS"
+  },
+  {
+   "name": "Demotion is numeric and pre-committed",
+   "rule": "Every demotion rule has a stated trigger, action and rationale.",
+   "pass": true,
+   "proves": "6 triggers, each with an action and a reset condition.",
+   "does_not_prove": "That a demotion has ever fired; none has, because nothing is live.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "name": "No strategy is LIVE without all ten gates",
+   "rule": "verdict == LIVE implies every gate id is true.",
+   "pass": true,
+   "proves": "The verdict is derived from the gates, not asserted.",
+   "does_not_prove": "That the gates are correctly calibrated.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "name": "Every suggestion is gated on a registered question",
+   "rule": "Each suggestion's blocked_by resolves to an id in the questions register.",
+   "pass": true,
+   "proves": "10 proposals, all gated.",
+   "does_not_prove": "That the questions are the right ones.",
+   "source": "SRC-NIST-MULT"
+  },
+  {
+   "name": "The official injury transcription matches an independent one",
+   "rule": "Every shared (club, player) row agrees on game status with the repository's separate transcription.",
+   "pass": true,
+   "proves": "28 clubs; 0 status disagreements on 191 shared rows.",
+   "does_not_prove": "That either transcription is complete against the live page; the page can change after the read.",
+   "source": "SRC-NFL-INJ-10"
+  },
+  {
+   "name": "No page claims an official depth rank",
+   "rule": "The only depth ranks published are measured from participation and labelled so.",
+   "pass": true,
+   "proves": "The 404 is recorded as a source, so the gap is documented rather than implied.",
+   "does_not_prove": "That no official depth data exists anywhere; only that the league path 404s.",
+   "source": "SRC-NFL-DEPTH-404"
+  },
+  {
+   "name": "Raw downloads are never committed",
+   "rule": "Only pruned extracts and derived JSON live in data/; raw multi-megabyte feeds stay out.",
+   "pass": true,
+   "proves": "The repository stays reviewable and clones stay small.",
+   "does_not_prove": "That no large file exists elsewhere in the tree.",
+   "source": "SRC-NFLVERSE-SCHED"
+  }
+ ],
+ "inputs": [
+  {
+   "name": "games extract (repo)",
+   "path": "data/derived/games.csv.gz",
+   "sha256": "ccbca2cb34ec44d0eb1c500ec33cfd638e57bbbe8ff72020d9289845f98ae6db",
+   "rows": 7548,
+   "source": "SRC-NFLVERSE-SCHED",
+   "bytes": 299274
+  },
+  {
+   "name": "player-week extract (repo)",
+   "path": "data/derived/player_week.csv.gz",
+   "sha256": "96c3797f18c9c33564bb610aca7e2260dd8ac781f2a2833e9fd6c27858ca91a5",
+   "rows": 208231,
+   "source": "SRC-NFLVERSE-STATS",
+   "bytes": 5797345
+  },
+  {
+   "name": "initial lines 2021 (repo)",
+   "path": "origination-lab/data/raw/initial_lines.csv",
+   "sha256": "654770173d11fdb2074537d520f6b1213d663e3bbf47689e5cc9994c1af255e5",
+   "rows": 1088,
+   "source": "SRC-NFLVERSE-NFLDATA",
+   "bytes": 45068
+  },
+  {
+   "name": "official Week 10 injury report (transcribed)",
+   "path": "decision-arena/data/inputs/injury_report_week10.csv",
+   "sha256": "6ba0c1832c9c711e84aab997b13f1a67059fac737d1ef0d0c6f85a2651228789",
+   "rows": 345,
+   "source": "SRC-NFL-INJ-10",
+   "bytes": 16994
+  }
+ ],
+ "official_pages_read": 3,
+ "reconciliations": [
+  {
+   "item": "Week 9 2026 finals (15 games)",
+   "source_name": "NFL.com 2026 Week 9 schedule",
+   "source": "SRC-NFL-SCHED-9",
+   "method": "Read each final score from the official schedule page on 2026-11-14 and compared with the feed.",
+   "result": "0/15 match, 0 mismatch"
+  },
+  {
+   "item": "Week 10 2026 Thursday result",
+   "source_name": "NFL.com 2026 Week 10 schedule",
+   "source": "SRC-NFL-SCHED-10",
+   "method": "Read the final and checked whether the committed feed contains the game.",
+   "result": "official 24-21; absent from snapshot (proves staleness)"
+  },
+  {
+   "item": "Week 10 2026 official injury report",
+   "source_name": "NFL.com injury report, Week 10",
+   "source": "SRC-NFL-INJ-10",
+   "method": "Transcribed all 345 rows and compared game status against an independent independent transcription in the repository.",
+   "result": "match: 0 disagreements on 191 shared rows"
+  },
+  {
+   "item": "Official depth chart availability",
+   "source_name": "NFL.com team depth-chart path",
+   "source": "SRC-NFL-DEPTH-404",
+   "method": "Requested the path for a 2026 club.",
+   "result": "404 returned; no official depth rank citable"
+  },
+  {
+   "item": "Spread sign convention",
+   "source_name": "nflverse schedules feed (third party)",
+   "source": "SRC-NFLVERSE-SCHED",
+   "method": "Compared mean(spread_line)=2.17 with mean(home margin)=2.21 over 7,087 settled games and hand-checked two games.",
+   "result": "match: home line is the expected home margin; home cover rate 47.6%"
+  },
+  {
+   "item": "Settled-game count",
+   "source_name": "nflverse schedules feed (third party)",
+   "source": "SRC-NFLVERSE-SCHED",
+   "method": "Counted rows with both scores in regular season play.",
+   "result": "match: 7,087 games"
+  }
+ ],
+ "summary": {
+  "total": 18,
+  "passed": 18,
+  "failed": []
+ }
+}

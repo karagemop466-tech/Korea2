@@ -1,0 +1,7 @@
+{
+ "generated_utc": "2026-11-14T20:00:09Z",
+ "season": "2026",
+ "publisher": "nflverse-data releases (third party; not the league)",
+ "note": "Pruned to the columns the build reads. Raw downloads are never committed. Each sha256 is of the pruned file as committed, and raw_sha256 is of the unpruned download, so either can be re-checked.",
+ "files": []
+}

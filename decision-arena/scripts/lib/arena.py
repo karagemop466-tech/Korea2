@@ -42,6 +42,19 @@ NAV = [
 ]
 
 
+from string import Template as _T
+
+
+def render(tmpl: str, **kw) -> str:
+    """Substitute $name placeholders.
+
+    Pages are built with $name rather than {name} on purpose: HTML and CSS are full of braces,
+    and a template language that shares their syntax produces escaping bugs that look like
+    content bugs. Anything missing from kw raises, so a typo cannot silently blank a section.
+    """
+    return _T(tmpl).substitute(**kw)
+
+
 def esc(v) -> str:
     return html.escape("" if v is None else str(v))
 
@@ -158,23 +171,40 @@ footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:v
 """
 
 
+def write_css() -> None:
+    path = os.path.join(ROOT, "assets", "style.css")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as fh:
+        fh.write("/* Decision Arena - generated from scripts/lib/arena.py; do not edit by hand */\n" + CSS)
+
+
 def shell(title: str, crumb: str, body: str, active: str, subtitle: str = "") -> str:
+    """Render a page through the one shell.
+
+    `active` is the site-relative path of the page being written (e.g. "pages/prices.html"), so the
+    shell can compute how to get back to the root. Nav entries are stored site-relative and are
+    rewritten per page, which is what keeps a link valid from both index.html and pages/*.html.
+    """
+    depth = 0 if "/" not in active else active.count("/")
+    up = "../" * depth
+
+    def href(target: str) -> str:
+        return up + target if target else up
+
     active_attr = ' class="active" aria-current="page"'
-    nav = "".join(
-        f'<a href="{esc(h)}"{active_attr if h == active else ""}>{lab}</a>'
-        for h, lab in NAV
-    )
+    nav = "".join(f'<a href="{href(h)}"{active_attr if h == active else ""}>{lab}</a>'
+                  for h, lab in NAV)
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} | Decision Arena</title>
-<meta name="description" content="{esc(subtitle or 'Independent NFL line origination, price snapshots, verified results and a gated signal competition.')}">
-<link rel="stylesheet" href="{'' if active.startswith('pages/') else 'pages/'}../assets/style.css">
+<meta name="description" content="{esc(subtitle or "Independent NFL line origination, price snapshots, verified results and a gated signal competition.")}">
+<link rel="stylesheet" href="{up}assets/style.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="shell">
 <aside class="sidebar">
-  <a class="brand" href="{'' if active == 'index.html' else '../'}index.html"><span class="mark">DA</span><span>DECISION ARENA<small>NFL SIGNAL RESEARCH</small></span></a>
+  <a class="brand" href="{href("index.html")}"><span class="mark">DA</span><span>DECISION ARENA<small>NFL SIGNAL RESEARCH</small></span></a>
   <div class="nav-label">Workspace</div>
   <nav aria-label="Main navigation">{nav}</nav>
   <div class="side-note"><span class="dot"></span><strong>No strategy is live.</strong>
@@ -182,13 +212,13 @@ def shell(title: str, crumb: str, body: str, active: str, subtitle: str = "") ->
 </aside>
 <main id="main">
 <header class="topbar"><span class="crumb">{crumb}</span>
-<a class="review-link" href="{'../' if active.startswith('pages/') else ''}pages/flagged.html">Flagged for review &nearr;</a></header>
+<a class="review-link" href="{href("pages/flagged.html")}">Flagged for review &nearr;</a></header>
 {body}
 <footer>
   <p>Research and measurement, not betting advice. Values are computed by the code in this repository
-  from the sources on the <a href="{'../' if active.startswith('pages/') else ''}pages/sources.html">source register</a>;
+  from the sources on the <a href="{href("pages/sources.html")}">source register</a>;
   anything that could not be confirmed from a source is left blank and listed on
-  <a href="{'../' if active.startswith('pages/') else ''}pages/flagged.html">Flagged for review</a>.</p>
+  <a href="{href("pages/flagged.html")}">Flagged for review</a>.</p>
 </footer>
 </main></div></body></html>"""
 
