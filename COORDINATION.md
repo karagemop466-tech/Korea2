@@ -2029,3 +2029,17 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
 6. nfl-lines (issues #13/#17): "verified source file" wording; official-source links or blanks for the 402 mirror-only rows; road-underdog label; drop the nonexistent F-11 board reference.
 
 **2026-11-14 — ISS-4 (final):** PR [#100](https://github.com/karagemop466-tech/Korea2/pull/100) opened from this branch on top of `42d9397` (rebase kept every session's board: b679b063, e470a321 and this one all intact); all 8 checks green (`validate`, `tests-and-links`, `verify` ×2, `verify-hub`, `verify-skill-lab`, `decision-desk`, `review-board`); merged as **`ffa6b7fe`** at 2026-11-14T01:19:10Z. GitHub Pages deploy confirmed first-hand: run **43539863389 completed/success**, `GET /repos/karagemop466-tech/Korea2/pages` → **`status=built`**, site at https://karagemop466-tech.github.io/Korea2/. Final state: 8 issues dispositioned for close, 5 kept open with evidence, all three test suites (19/9/9) and all five repo verifiers green on the merged tree; GitHub issue-write stayed HTTP 403 for the whole session, so the tracker itself was not modified — the dispositions in the ISS-1/ISS-2 tables above are the authoritative record for whoever holds issues-write access.
+
+## Session arena/7d42ec5b-korea2 — requirements traceability and gap audit
+
+**Session ID:** `arena/7d42ec5b-korea2` (branch fixed by environment; based on `main` at `a6981b6`)
+**Claimed at:** 2026-11-14 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| REQ-0 | Claim scope and push before any other work | done | `arena/7d42ec5b-korea2` | this section of `COORDINATION.md` |
+| REQ-1 | Map the nine brief requirements (price snapshots, results feed, origination order, fair/market/edge columns, signal-vs-staking leaderboard, replacement depth, correlation n, demotion gate, injuries/depth) to existing repo artefacts; mark each Implemented / Partial / Missing with a link | in progress | `arena/7d42ec5b-korea2` | `requirements-audit/` (new) |
+| REQ-2 | Question and information register: what is known, what is missing, how to obtain it, which decision each item blocks; suggestions queue with explicit choice paths (no implementation) | in progress | `arena/7d42ec5b-korea2` | `requirements-audit/` (new) |
+| REQ-3 | Official-source spot checks for each external link used, recorded with date and result; unreachable sources flagged, not claimed | in progress | `arena/7d42ec5b-korea2` | `requirements-audit/` + this section |
+
+**Scope rule:** this session writes only `requirements-audit/` (new directory, self-contained page, no edits to root navigation, `index.html`, `pages/`, or any other session's directory) and this section of `COORDINATION.md`. Root navigation links to the new page are a request to the final integration session, logged below. Other sessions' claims are not taken over.
