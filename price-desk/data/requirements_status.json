@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "title": "Requirements traceability - the nine named requirements",
+    "author": "arena/4a709dd0-korea2",
+    "date": "2026-11-14",
+    "status_values": {
+      "implemented": "exists in the repo and was re-checked in this session",
+      "implemented-this-session": "added by session arena/4a709dd0-korea2 on 2026-11-14",
+      "partial": "partially satisfied; gaps listed per row",
+      "proposed": "specification published; not yet enforced in code"
+    }
+  },
+  "rows": [
+    {
+      "id": "R1",
+      "requirement": "Price-snapshot store that records opening and closing numbers for every market we originate",
+      "status": "implemented-this-session",
+      "where": "price-desk/data/price_snapshots.csv (2,364 rows: every originated SPREAD/TOTAL/MONEYLINE market for both originating engines, 2023 REG - 2026 wk18 slate) + price_snapshots_props.csv (11,370 player-prop markets) + price-desk/pages/price-snapshots.html",
+      "columns_published": "our_fair_line, market_open_line, market_close_line, difference - each with its own *_status field",
+      "gaps": [
+        "Opening numbers: no opening-line source covers the origination window (the only opening archive in the repo is WSGT 2021 spread/total). Open columns are BLANK with status blank-missing-no-source (flag PS-F-01). This is a data-availability gap, not a transcription gap.",
+        "Closing numbers come from a third-party archive (nflverse-derived games.csv.gz) - status archived-unverified. No official body publishes historical odds (flag PS-F-08)."
+      ],
+      "source": "price-desk/scripts/build_store.py (reproducible build from named repo files)"
+    },
+    {
+      "id": "R2",
+      "requirement": "Verified results feed so backtests and ROI can be computed at all",
+      "status": "implemented-this-session (verification coverage partial by design)",
+      "where": "price-desk/data/results_feed.csv (1,088 REG games 2023-2026) + price-desk/data/verified_results_2026.json + price-desk/pages/results-feed.html",
+      "gaps": [
+        "22 of 1,088 rows are verified-official (2026 weeks 8-10, read digit-for-digit from official NFL pages/gamebooks on 2026-11-14). 5 of these were cross-checkable against the archive and all 5 agreed; 17 filled scores the archive did not have at all.",
+        "931 rows are archived-unverified (values retained so backtests compute, never presented as verified).",
+        "135 rows are unsettled or missing (future games).",
+        "8 week-8 games: the official scores page returned 'Hidden Score' at retrieval - recorded without scores (flag PS-F-06). Official gamebooks exist for those games and can resolve them in a later pass.",
+        "Settlement against market prices uses archived third-party lines (line_status archived-unverified) because official odds do not exist (PS-F-08)."
+      ],
+      "source": "https://www.nfl.com/scores/2026/week-9 (and week-8, week-10, game pages, gamebooks - full list in price-desk/data/sources.json)"
+    },
+    {
+      "id": "R3",
+      "requirement": "Originate the side first, then the total, then the moneyline",
+      "status": "implemented (order documented and re-checked)",
+      "where": "origination-lab/scripts/build_lines.py originates SPREAD and TOTAL from the margin/total model first (build order: margin, total), then derives the MONEYLINE from the calibrated win probability (moneyline_calibration); price-desk/store rows are emitted in the same order (SPREAD, TOTAL, MONEYLINE) per game and keyed that way",
+      "gaps": [
+        "The sequencing is a build-order convention, not a validation gate; if a future pipeline originates moneylines independently it must restate the order.",
+        "The root pipeline (data/derived/predictions.csv) originates only side and total - moneyline fair prices exist only on the origination-lab slate (164 games)."
+      ],
+      "source": "https://github.com/karagemop466-tech/Korea2/blob/main/origination-lab/scripts/build_lines.py"
+    },
+    {
+      "id": "R4",
+      "requirement": "Publish the model's fair line, the market line, and the difference as separate columns",
+      "status": "implemented-this-session (and already present on earlier boards)",
+      "where": "price-desk/data/price_snapshots.csv columns our_fair_line | market_close_line | difference (each with status); origination/site_data/current_board.csv already publishes own_spread/own_total | mkt_spread/mkt_total | edge_spread/edge_total as separate columns",
+      "gaps": [
+        "The difference column is computed (our_fair_line - market_close_line) and inherits the archived-unverified status of the market side.",
+        "For the origination-lab slate the published 'our_spread' uses display convention (negative = home favourite); the store converts it to home-margin convention before differencing (conversion verified against our_home_win_prob and edge_home_pts - see price-desk/tests)."
+      ],
+      "source": "price-desk/scripts/build_store.py"
+    },
+    {
+      "id": "R5",
+      "requirement": "Separate 'signal' from 'staking' in the leaderboard so a lucky staking run cannot mask a bad signal",
+      "status": "implemented-this-session",
+      "where": "price-desk/data/leaderboard_split.json + price-desk/pages/leaderboard.html: signal block (flat-stake, luck-controlled: permutation p, deflated Sharpe, season-block CI) ranks strategies; staking block (declared plan + realised plan outcome) is displayed separately and never affects rank",
+      "gaps": [
+        "Realised staking outcomes are blank (no live bankroll ledger exists) - blank by policy, not inferred.",
+        "No strategy currently passes the validation gates (all tiers NEEDS_REVIEW/REJECTED, reward_points 0); the rewards pool is unfunded (flag PS-F-07)."
+      ],
+      "source": "origination/site_data/leaderboard.csv (flat-stake ledger with luck controls), data/strategies.json (declared staking plans)"
+    },
+    {
+      "id": "R6",
+      "requirement": "Track the depth of the replacement, not just the fact of a replacement",
+      "status": "partial (schema + official sources identified; string-depth labels have no official source)",
+      "where": "site/data/injury_depth.json (108 players transcribed from the official Week 10 injury report, replacement-string cells deliberately blank per policy), nfl-command/data/depth.json (per-team starter/2nd/3rd/4th columns, all blank: no official depth chart reachable - FL-15). NEW this session: official NFL gamebooks publish the actual starting lineups plus Did-Not-Play/Not-Active lists per game - demonstrated and transcribed for WAS@NYG 2026 wk10 in price-desk/data/verified_results_2026.json (official_gamebook_discovery)",
+      "gaps": [
+        "No official source labels players as 2nd/3rd/4th string (confirmed: NFL team depth-chart URLs return 404 - FL-15). The gamebook gives WHO started (official fact) but not the depth string of the replacement.",
+        "A gamebook ingestion pipeline is not built yet (suggestion S-02). Until then, replacement depth stays blank rather than inferred."
+      ],
+      "source": "https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf (official gamebook demonstration)"
+    },
+    {
+      "id": "R7",
+      "requirement": "Compute correlations only from officially sourced numbers and publish n with each value",
+      "status": "partial",
+      "where": "correlation tables across the repo publish n with each value (e.g., results/correlations.json publishes n = 6,021 with the headline pair; data/derived/correlation.json and lab pages likewise)",
+      "gaps": [
+        "The correlation INPUTS are third-party archives (nflverse-derived datasets), not officially sourced numbers - every correlation value in the repo is therefore flagged as archive-based. Strictly official recomputation needs the verified results feed to grow (S-02).",
+        "data/correlations.json COR-04 carried a reversed interpretation of positive correlation (issue #16); corrected by this session (PS-6)."
+      ],
+      "source": "results/correlations.json; data/correlations.json (COR-04 fix recorded in COORDINATION.md PS-6)"
+    },
+    {
+      "id": "R8",
+      "requirement": "Define a demotion gate that sends a live strategy back to paper",
+      "status": "proposed (spec complete; no live strategy exists to enforce it on today)",
+      "where": "price-desk/data/demotion_gate.json + price-desk/pages/gates.html (five triggers, evaluation cadence, re-promotion rules, open parameters). quant-lab/leaderboard.html holds the earlier one-line sketch.",
+      "gaps": ["Owner decision needed on the open parameters (window length, p threshold, drawdown cap) - see S-07.", "Not yet wired into code because no strategy has passed the promotion gates."],
+      "source": "price-desk/data/demotion_gate.json"
+    },
+    {
+      "id": "R9",
+      "requirement": "Suggestions section where reviewers choose the best path before implementing, plus a pre-decision Q&A list of questions/information/answers",
+      "status": "implemented-this-session (consolidated) + existing hubs linked",
+      "where": "price-desk/pages/suggestions.html + price-desk/data/suggestions_queue.json (each suggestion carries options, trade-offs, a recommended path and a status field so the owner can choose before anything is implemented); price-desk/pages/questions.html + price-desk/data/questions.json (question / information needed / known answers with sources / what is missing / discovery suggestions). Earlier hubs (suggestions/, decision-desk, decision-hub, review-board) remain live and are cross-linked.",
+      "gaps": ["Duplicate suggestion hubs exist across sessions (flag PS-F-13) - consolidation is itself queued as S-04."],
+      "source": "price-desk/data/suggestions_queue.json; price-desk/data/questions.json"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+ "generated_from": [
+  "data/derived/predictions.csv (root pipeline board A)",
+  "origination-lab/data/derived/lines.json slate (board B)",
+  "origination-lab/data/derived/prop_lines.csv (props)",
+  "data/derived/games.csv.gz (nflverse-derived archive)",
+  "price-desk/data/verified_results_2026.json (official overlay)"
+ ],
+ "slate_asof": "2026-10-29",
+ "spread_convention": "positive spread_line = home team favoured by that many points (verified empirically in results/market.json convention_check)",
+ "games_in_feed": 1088,
+ "feed_by_score_status": {
+  "archived-unverified": 931,
+  "verified-official": 22,
+  "missing": 135
+ },
+ "archive_crosscheck": {
+  "official_rows": 22,
+  "archive_agrees": 5,
+  "archive_disagrees": 0,
+  "official_filled_empty_archive": 17
+ },
+ "settled_games": 952,
+ "snapshot_rows": 2364,
+ "snapshot_by_market_type": {
+  "SPREAD": 1100,
+  "TOTAL": 1100,
+  "MONEYLINE": 164
+ },
+ "snapshot_by_engine": {
+  "root-pipeline": 1872,
+  "origination-lab": 492
+ },
+ "open_column_status": {
+  "status": "blank-missing-no-source",
+  "note": "The only opening-line archive in the repository covers WSGT 2021 spread/total (origination-lab/data/raw/initial_lines.csv), which is outside our 2023-2026 origination window. No official body publishes historical opening odds. Open columns are therefore blank by policy (flag PS-F-01)."
+ },
+ "prop_rows": 11370,
+ "prop_by_settle": {
+  "win": 5704,
+  "loss": 5665,
+  "push": 1
+ },
+ "verification_policy": {
+  "verified-official": "digit-for-digit from an official NFL page/gamebook, with URL and date",
+  "archived-unverified": "third-party archive value retained for computation, never presented as verified",
+  "blank-missing-no-source": "no source exists; value left blank and flagged",
+  "ours-reproducible": "our own model output, reproducible from named repo files",
+  "computed": "arithmetic over stated inputs; inherits weakest input status"
+ }
+}
