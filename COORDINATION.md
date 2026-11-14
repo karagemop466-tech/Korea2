@@ -2540,6 +2540,25 @@ re-running `ingest.py` on the merged tree (the review-board workflow enforces th
 session's authored work is discarded. Logged here per the cross-scope rule.
 
 **2026-11-14 — overlap discovered at rebase (logged per the parallel-session rule):** while this session worked, PRs #104/#105/#106/#107 merged a second price-snapshot store (`results/price_snapshots.json`, `price-store/scripts/gates.py`, G9/G10 text in `data/validation_gates.json`, Signal/Staking column grouping on their leaderboard). File scopes do not overlap (their store lives in `results/` + `price-store/`; this session's in `price-desk/`), so no work was discarded. Differences worth an owner decision (also recorded in their PS-F6 and in this session's S-01): this store adds per-row **official-source verification** (22 rows digit-for-digit from nfl.com/gamebooks), player props, fair/market/difference columns with per-value status, a **signal-only rank** (staking outcomes can never affect rank), and the gamebook discovery; their store adds an executable demotion test (`price-store/scripts/gates.py`) whose CLV rule differs from the DG-1 spec on windowing and drawdown. Recommendation on the suggestions page (S-01 path A now, B later): keep `price-desk/` as the verification-and-audit layer and fold any unique executable pieces (e.g., `gates.py`) into it when the owner chooses the canonical store.
+
+---
+
+## Session arena/7d42ec5b-korea2 — requirements traceability and gap audit
+
+**Session ID:** `arena/7d42ec5b-korea2` (branch fixed by environment; based on `main` at `a6981b6`)
+**Claimed at:** 2026-11-14 UTC
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| REQ-0 | Claim scope and push before any other work | done | `arena/7d42ec5b-korea2` | this section of `COORDINATION.md` |
+| REQ-1 | Map the nine brief requirements (price snapshots, results feed, origination order, fair/market/edge columns, signal-vs-staking leaderboard, replacement depth, correlation n, demotion gate, injuries/depth) to existing repo artefacts; mark each Implemented / Partial / Missing with a link | in progress | `arena/7d42ec5b-korea2` | `requirements-audit/` (new) |
+| REQ-2 | Question and information register: what is known, what is missing, how to obtain it, which decision each item blocks; suggestions queue with explicit choice paths (no implementation) | in progress | `arena/7d42ec5b-korea2` | `requirements-audit/` (new) |
+| REQ-3 | Official-source spot checks for each external link used, recorded with date and result; unreachable sources flagged, not claimed | in progress | `arena/7d42ec5b-korea2` | `requirements-audit/` + this section |
+
+**Scope rule:** this session writes only `requirements-audit/` (new directory, self-contained page, no edits to root navigation, `index.html`, `pages/`, or any other session's directory) and this section of `COORDINATION.md`. Root navigation links to the new page are a request to the final integration session, logged below. Other sessions' claims are not taken over.
+
+---
+
 # Session board — `arena/4a709dd0-korea2` (Requirements closure: price-snapshot store, verified results feed, signal/staking split, demotion gate, decision Q&A, suggestion review queue)
 
 **Session ID:** `arena/4a709dd0-korea2` (branch fixed by environment: `arena/4a709dd0-korea2`, branched from `a6981b6` = merge of PR #101, current `origin/main` tip at claim time)
