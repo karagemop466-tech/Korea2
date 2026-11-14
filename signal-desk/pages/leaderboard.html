@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signal is not staking &middot; Signal Desk</title>
+<meta name="generator" content="signal-desk/scripts/build.py">
+<meta name="description" content="NFL line origination, verification and decision desk: Requirement 5. A lucky staking run must not be able to outrank a real signal.">
+<style>
+:root{--bg:#0e1117;--panel:#161b24;--panel2:#1c2330;--line:#28303d;--txt:#e6e9ee;--dim:#9aa4b2;
+--acc:#4c8dff;--ok:#37b26c;--warn:#e0a83a;--bad:#e5534b;--tp:#8b7ce8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.6 -apple-system,BlinkMacSystemFont,
+"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+header{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.bar{max-width:1240px;margin:0 auto;padding:10px 20px;display:flex;gap:18px;align-items:baseline;
+flex-wrap:wrap}
+.brand{font-weight:700;font-size:16px;letter-spacing:.2px;color:#fff;white-space:nowrap}
+.brand span{color:var(--acc)}
+.stamp{color:var(--dim);font-size:12px;white-space:nowrap}
+nav{max-width:1240px;margin:0 auto;padding:0 20px 10px;display:flex;gap:4px;flex-wrap:wrap}
+nav a{font-size:13px;color:var(--dim);padding:5px 9px;border-radius:6px;border:1px solid transparent}
+nav a:hover{background:var(--panel2);color:var(--txt);text-decoration:none}
+nav a.on{background:var(--panel2);color:#fff;border-color:var(--line)}
+main{max-width:1240px;margin:0 auto;padding:26px 20px 70px}
+h1{font-size:27px;line-height:1.25;margin:6px 0 8px}
+h2{font-size:19px;margin:0 0 12px}
+h3{font-size:15px;margin:22px 0 8px;color:#cfd6e0}
+p{margin:0 0 12px;max-width:78ch}
+.lede{color:var(--dim);font-size:16px;max-width:80ch}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:700}
+.block{margin:30px 0 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:20px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+.kpi .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.kpi .v{font-size:23px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:12px;color:var(--dim);margin-top:2px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+caption{text-align:left;padding:11px 14px 0;color:var(--dim);font-size:12.5px}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+color:var(--dim);position:sticky;top:0;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#1a212c}
+td.src{font-size:12px;max-width:230px}
+td.src a{display:inline-block;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.badge{display:inline-block;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+padding:2px 7px;border-radius:20px;font-weight:700;white-space:nowrap}
+.badge.ok{background:rgba(55,178,108,.16);color:#5ed492;border:1px solid rgba(55,178,108,.35)}
+.badge.tp{background:rgba(139,124,232,.16);color:#a99cf0;border:1px solid rgba(139,124,232,.35)}
+.badge.flag{background:rgba(224,168,58,.14);color:#e8bd63;border:1px solid rgba(224,168,58,.35)}
+.badge.bad{background:rgba(229,83,75,.14);color:#f0837c;border:1px solid rgba(229,83,75,.35)}
+.badge.gray{background:#232b38;color:var(--dim);border:1px solid var(--line)}
+.na{color:#6d7787;font-style:italic}
+.flag{color:var(--warn)}
+.callout{border:1px solid var(--line);border-left:3px solid var(--acc);background:var(--panel);
+border-radius:8px;padding:13px 16px;margin:14px 0}
+.callout.warn{border-left-color:var(--warn)}
+.callout.good{border-left-color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}
+.callout strong{display:block;margin-bottom:4px}
+.callout p{margin:0;color:#cfd6e0;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:14px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:15px;color:#fff}
+.card p{font-size:13.5px;color:var(--dim);margin:0 0 10px}
+.card a{font-size:13px;font-weight:600}
+.tnote{color:var(--dim);font-size:12.5px;margin:8px 0 0;max-width:80ch}
+details{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 16px;
+margin:10px 0}
+summary{cursor:pointer;font-weight:600;font-size:14px}
+details p,details ul{font-size:13.5px;color:#cfd6e0}
+ul{padding-left:20px}li{margin:3px 0;max-width:80ch}
+footer{border-top:1px solid var(--line);color:var(--dim);font-size:12px;padding:22px 20px;
+max-width:1240px;margin:0 auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+</style></head>
+<body>
+<header>
+  <div class="bar">
+    <div class="brand">SIGNAL <span>DESK</span></div>
+    <div class="stamp">Data built committed data through 2026-11-01</div>
+    <div class="stamp" style="margin-left:auto">
+      <a href="../../index.html">Line Lab &rarr;</a>
+    </div>
+  </div>
+  <nav><a href="../index.html">Overview</a><a href="../pages/prices.html">1 &middot; Prices</a><a href="../pages/results.html">2 &middot; Results</a><a href="../pages/order.html">3 &middot; Origination order</a><a href="../pages/gap.html">4 &middot; Fair vs market</a><a href="../pages/leaderboard.html" class="on">5 &middot; Signal vs staking</a><a href="../pages/depth.html">6 &middot; Replacement depth</a><a href="../pages/correlations.html">7 &middot; Correlations</a><a href="../pages/demotion.html">8 &middot; Demotion gate</a><a href="../pages/suggestions.html">Suggestions</a><a href="../pages/questions.html">Questions</a><a href="../pages/summary.html">Executive summary</a><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Sources</a></nav>
+</header>
+<main>
+<h1>Signal is not staking</h1>
+<p class="lede">Requirement 5. A lucky staking run must not be able to outrank a real signal.</p>
+<div class="kpis"><div class="kpi"><div class="k">Strategies</div><div class="v">9</div><div class="s">published</div></div><div class="kpi"><div class="k">Positive ROI</div><div class="v">2</div><div class="s">on the stakes placed</div></div><div class="kpi"><div class="k">Signal distinguishable</div><div class="v">0</div><div class="s">after multiple testing</div></div><div class="kpi"><div class="k">Rewards paid</div><div class="v">0</div><div class="s">the gate paid nothing</div></div></div><div class="callout bad"><strong>Why two tables and not one</strong><p>2 of 9 published strategies show a positive ROI that their own significance test does not support. Under a staking-only ranking those strategies would appear above a genuinely better one with a smaller stake-weighted return; under the signal-first ranking they cannot.</p></div><section class="block"><h2>Table A &mdash; signal</h2><div class="tw"><table class=""><caption>Ranked by whether the edge is distinguishable from zero. This is the table that should decide anything.</caption><thead><tr><th>Rank</th><th>Strategy</th><th>n</th><th>Win rate</th><th>p</th><th>BH q</th><th>Deflated Sharpe p</th><th>Signal verdict</th><th>Gates</th><th>Source</th></tr></thead><tbody><tr><td>1</td><td><strong>Model spread edge &gt;= 3.0 pts</strong><br><span class="tnote">single bet</span></td><td>409</td><td>48.0%</td><td>0.451</td><td>0.985</td><td>0.999</td><td><span class="badge bad">not distinguishable from zero</span></td><td>4/10</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2</td><td><strong>Rest advantage &gt;= 3 days</strong><br><span class="tnote">single bet (situational)</span></td><td>204</td><td>52.5%</td><td>0.525</td><td>0.985</td><td>0.915</td><td><span class="badge bad">not distinguishable from zero</span></td><td>4/10</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>3</td><td><strong>Control - under every game</strong><br><span class="tnote">control</span></td><td>936</td><td>49.2%</td><td>0.646</td><td>0.985</td><td>0.999</td><td><span class="badge bad">not distinguishable from zero</span></td><td>4/10</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>4</td><td><strong>Under when wind &gt;= 15 mph outdoors</strong><br><span class="tnote">single bet (total)</span></td><td>46</td><td>53.3%</td><td>0.766</td><td>0.985</td><td>0.900</td><td><span class="badge bad">not distinguishable from zero</span></td><td>4/10</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>5</td><td><strong>Divisional home underdog</strong><br><span class="tnote">single bet (situational)</span></td><td>137</td><td>51.5%</td><td>0.796</td><td>0.985</td><td>0.937</td><td><span class="badge bad">not distinguishable from zero</span></td><td>5/10</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>6</td><td><strong>Control - back every home team</strong><br><span class="tnote">control</span></td><td>936</td><td>49.6%</td><td>0.842</td><td>0.985</td><td>0.999</td><td><span class="badge bad">not distinguishable from zero</span></td><td>4/10</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>7</td><td><strong>Model spread edge &gt;= 2.0 pts</strong><br><span class="tnote">single bet</span></td><td>572</td><td>49.5%</td><td>0.865</td><td>0.985</td><td>0.996</td><td><span class="badge bad">not distinguishable from zero</span></td><td>4/10</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>8</td><td><strong>Model total edge &gt;= 3.0 pts</strong><br><span class="tnote">single bet (total)</span></td><td>370</td><td>50.5%</td><td>0.875</td><td>0.985</td><td>0.982</td><td><span class="badge bad">not distinguishable from zero</span></td><td>4/10</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>9</td><td><strong>Team coming off a bye (13+ days rest) vs a normal-rest opponent</strong><br><span class="tnote">single bet (situational)</span></td><td>86</td><td>49.4%</td><td>1.000</td><td>1.000</td><td>0.974</td><td><span class="badge bad">not distinguishable from zero</span></td><td>5/10</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr></tbody></table></div></section><section class="block"><h2>Table B &mdash; staking</h2><div class="tw"><table class=""><caption>Ranked by return on the stakes actually placed. The order is different from Table A, and the top row is marked because its return is not supported by any signal test &mdash; the definition of a lucky run.</caption><thead><tr><th>Rank</th><th>Strategy</th><th>ROI</th><th>95% interval</th><th>Staking verdict</th><th>Reward</th><th>Source</th></tr></thead><tbody><tr><td>1</td><td><strong>Under when wind &gt;= 15 mph outdoors</strong></td><td>+1.51%</td><td>-25.8% to 28.5%</td><td><span class="badge bad">lucky run</span></td><td>none - gate failure</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>2</td><td><strong>Rest advantage &gt;= 3 days</strong></td><td>+0.09%</td><td>-12.8% to 12.7%</td><td><span class="badge bad">lucky run</span></td><td>none - gate failure</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>3</td><td><strong>Divisional home underdog</strong></td><td>-1.21%</td><td>-16.8% to 14.6%</td><td><span class="badge gray">staking shows no profit</span></td><td>none - gate failure</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>4</td><td><strong>Model total edge &gt;= 3.0 pts</strong></td><td>-3.53%</td><td>-12.9% to 6.3%</td><td><span class="badge gray">staking shows no profit</span></td><td>none - gate failure</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>5</td><td><strong>Control - back every home team</strong></td><td>-5.19%</td><td>-11.0% to 0.9%</td><td><span class="badge gray">staking shows no profit</span></td><td>none - gate failure</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>6</td><td><strong>Model spread edge &gt;= 2.0 pts</strong></td><td>-5.28%</td><td>-13.0% to 2.6%</td><td><span class="badge gray">staking shows no profit</span></td><td>none - gate failure</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>7</td><td><strong>Team coming off a bye (13+ days rest) vs a normal-rest opponent</strong></td><td>-5.87%</td><td>-26.3% to 14.2%</td><td><span class="badge gray">staking shows no profit</span></td><td>none - gate failure</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>8</td><td><strong>Control - under every game</strong></td><td>-5.95%</td><td>-12.0% to 0.2%</td><td><span class="badge gray">staking shows no profit</span></td><td>none - gate failure</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr><tr><td>9</td><td><strong>Model spread edge &gt;= 3.0 pts</strong></td><td>-8.19%</td><td>-17.2% to 1.1%</td><td><span class="badge gray">staking shows no profit</span></td><td>none - gate failure</td><td class="src"><a href="https://github.com/karagemop466-tech/Korea2/blob/main/data/derived/leaderboard.json" rel="noopener" target="_blank">github.com/karagemop466-tech/Korea2/blob/main/dat&amp;hellip;</a></td></tr></tbody></table></div></section><section class="block"><h2>The rule</h2><div class="callout warn"><strong>Ranking rule</strong><p>Signal first (is the edge distinguishable from zero after multiple testing?), staking second (what did the stakes earn?), reward last (only a lower bound above zero earns anything).</p></div></section>
+</main>
+<footer>
+  Research and measurement, not betting advice. Every number on this page is rendered from
+  <span class="mono">signal-desk/data/*.json</span>; none is typed by hand. A blank cell means the
+  value could not be confirmed from the source named in that row &mdash; it is never inferred.
+  <br>Official figures are transcribed from nfl.com pages read on 2026-11-14; every source is
+  listed on the <a href="../pages/sources.html">Sources</a> page.
+  Third-party figures come from nflverse community data and are labelled as such.
+</footer>
+</body></html>

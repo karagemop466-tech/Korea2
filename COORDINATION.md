@@ -2032,6 +2032,93 @@ generated root page; a nav request is logged below instead. `arena/90e4fdbe-kore
 
 ---
 
+# Session board — arena/afa08e81-korea2 (branch `arena/afa08e81-korea2`)
+
+**Session ID:** arena/afa08e81-korea2
+**Branch:** `arena/afa08e81-korea2`, branched from `a6981b6` of `main` (the branch name is fixed by the environment; other session branches cannot be created by this session).
+**Claim opened:** 2026-11-14 UTC. No other claim was open when this board was written; the last merged work on `main` is PR #101.
+
+## Scope claimed (non-overlapping)
+
+| ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| SD-01 | Price-snapshot store: opening and closing numbers per market, with an explicit blank-and-flag rule where no official source exists | done | arena/afa08e81-korea2 | `signal-desk/data/price_snapshots.json`, `signal-desk/scripts/` |
+| SD-02 | Verified results feed: reconcile committed results against official NFL.com standings | done | arena/afa08e81-korea2 | `signal-desk/data/results_feed.json` |
+| SD-03 | Origination order: side, then total, then moneyline — enforced and evidenced | done | arena/afa08e81-korea2 | `signal-desk/data/origination_order.json` |
+| SD-04 | Fair / market / difference published as three separate numeric columns | done | arena/afa08e81-korea2 | `signal-desk/data/fair_market_gap.json` |
+| SD-05 | Leaderboard split into a signal table and a staking table | done | arena/afa08e81-korea2 | `signal-desk/data/signal_vs_staking.json` |
+| SD-06 | Replacement **depth** tracked, not just the fact of a replacement | done | `signal-desk/data/replacement_depth.json` |
+| SD-07 | Correlations only from officially sourced numbers, with `n` and source class published per value | done | `signal-desk/data/correlation_official.json` |
+| SD-08 | A demotion gate that returns a live strategy to paper | done | `signal-desk/data/demotion_gate.json` |
+| SD-09 | Suggestions register + questions/unknowns + decision paths, reviewable before implementation | done | `signal-desk/pages/suggestions.html`, `signal-desk/pages/questions.html`, `signal-desk/data/suggestions.json` |
+| SD-10 | Executive summary | done | `signal-desk/EXECUTIVE_SUMMARY.md`, `signal-desk/pages/summary.html` |
+| SD-11 | Site: landing page + category pages, table-first, every row sourced or blank-and-flagged | done | `signal-desk/` only (new directory; nothing existing is edited except the board section below) |
+| SD-12 | Integration: re-verify, one nav link from the root site, PR, merge, confirm Pages deploy | done | this board section, `scripts/lib/site.py` (NAV line only), `README.md` (one line) |
+
+**Edits outside `signal-desk/`:** this board section, one `NAV` entry in `scripts/lib/site.py`, one link line in `README.md`, and one workflow file `signal-desk/.github`-free CI hook added to `.github/workflows/signal-desk.yml`. Nothing under `pages/`, `data/`, `pipeline/`, or any other session's lab directory is edited or regenerated.
+
+## Rules this session operates under
+
+- No value is typed by hand into HTML: every number in `signal-desk/` is rendered from `signal-desk/data/*.json` by `signal-desk/scripts/build.py`.
+- A value that cannot be confirmed from an official source is published **blank** with `"status": "unverified"` and appears on the Flagged for Review page.
+- The sandbox cannot download GitHub *release assets* (`objects.githubusercontent.com` is blocked) and cannot `curl` nfl.com, so no upstream data file was re-downloaded. Official NFL.com pages **were** read through the page-retrieval tool on 2026-11-14 and are quoted with their retrieval date.
+- `nflverse` is a third-party community feed, not the league. Any figure derived from it is labelled `source_class: third-party`, never `official`.
+
+## Log
+
+- 2026-11-14 — Board read in full (13 prior session sections). Claimed SD-01…SD-12 above and pushing this claim before starting work, per the standing rule.
+- 2026-11-14 — SD-01…SD-12 **done**. Everything below is in `signal-desk/`; no other session's files were edited or regenerated. Outside `signal-desk/`: this board section, one NAV line in `scripts/lib/site.py` (+ its `../` rewrite for `pages/`), one README section, one new workflow `.github/workflows/signal-desk.yml`, and `signal-desk/data/raw/` added to `.gitignore`.
+
+### Sources used by this session (all opened and read 2026-11-14)
+
+| Source | URL | What it settled |
+|---|---|---|
+| NFL.com division standings 2026 | https://www.nfl.com/standings/division/2026/REG | 32-team W/L/T/PF/PA reconciliation target |
+| NFL.com division standings 2025 | https://www.nfl.com/standings/division/2025/REG | full-season reconciliation + YoY persistence |
+| NFL.com division standings 2020 | https://www.nfl.com/standings/division/2020/REG | independent second-season check of the repo's transcription |
+| NFL.com scores week 8 | https://www.nfl.com/scores/2026/week-8 | 14 final scores (byes HOU/NO/NYG/SF) |
+| NFL.com scores week 9 | https://www.nfl.com/scores/2026/week-9 | 15 final scores (byes PIT/TEN) |
+| NFL.com scores week 10 | https://www.nfl.com/scores/2026/week-10 | 1 final score (WAS@NYG) |
+| NFL.com passing leaders 2026 | https://www.nfl.com/stats/player-stats/category/passing/2026/reg/all/passingyards/desc | official player totals + date-gap check |
+| NFL.com receiving leaders 2026 | https://www.nfl.com/stats/player-stats/category/receiving/2026/reg/all/receivingyards/desc | tested for a computable QB↔WR join (none) |
+| NFL.com injury report (current) | https://www.nfl.com/injuries/ | week-10 report; columns and no depth ordinal |
+| NFL.com injury report week 9 | https://www.nfl.com/injuries/league/2026/reg9 | week-9 report; title/heading contradiction |
+| NFL.com team roster | https://www.nfl.com/teams/arizona-cardinals/roster | tested for a depth ordinal (absent) |
+| nflverse/nfldata initial_lines.csv @ a270278f | https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/initial_lines.csv | opening snapshot: 1 season, 1 book, 0 moneylines |
+| nflverse/nfldata closing_lines.csv @ a270278f | https://github.com/nflverse/nfldata/blob/a270278f3ac4e937295fe6a27814b3c4a2b62645/data/closing_lines.csv | stops at 2018, so no open/close overlap exists |
+| committed extract data/derived/games.csv.gz | nflverse/nfldata games.csv, hashed in data/PROVENANCE.md | closing coverage 2014–2026, results |
+
+### Verification performed
+
+- **32/32 teams** reconcile on W/L/T/PF/PA after adding the transcribed official scores; the same holds for 2020 and 2025. The first attempt failed (6/32) because 13 week-8 games were already in the snapshot and were being counted twice; the double count was found by the test `test_no_game_is_double_counted` and fixed by skipping games the snapshot already carries. 17 games were genuinely new.
+- **Upstream integrity:** the two fetched files hash to `654770173d11…` and `3571e1c9fc8d…`, matching the SHA-256 prefixes already recorded in `data/PROVENANCE.md`. This confirms the pinned files are the ones used.
+- **Origination-order invariant** recomputed independently in `check.py`: worst gap 0.00136 over 15 games, limit 0.002. The build fails above the limit.
+- `signal-desk/scripts/check.py`: 14 pages, 32 tables, 297 rows, every row with a source link, no broken internal links, no off-allowlist external hosts, no placeholder text.
+- `signal-desk/tests/test_artefacts.py`: **18 tests OK**, including byte-for-byte rebuild reproducibility, "an unverified value never carries a number", and "nothing from nflverse is classed official".
+- `scripts/build_site.py` + `tests/check_site.py` still pass after the NAV addition (205 pages / 531 tables / 12,317 links). `pipeline/tests` still pass (17 OK).
+
+### Irregularities found (published on signal-desk/pages/flagged.html)
+
+1. FL-SD-01 no official price source; every price is third-party, so CLV can never be official.
+2. FL-SD-02 no season has both an opening and a closing number (opening 2021 only, closing stops 2018).
+3. FL-SD-03 the opening file has zero moneyline rows, so every opening-moneyline cell is blank.
+4. FL-SD-04 15 finished games absent from the snapshot (weeks 8–10); listed as absent, not back-filled.
+5. FL-SD-05 neither the official roster nor the official injury report publishes a depth ordinal.
+6. FL-SD-06 the QB↔WR per-game join is not obtainable from the official season-leader pages.
+7. FL-SD-07 four of eight demotion rules cannot fire yet (no validated path, no opening prices, no executable prices).
+8. FL-SD-08 the week-9 injury page's title says Week 10 while its heading says WEEK 9 (observed again today).
+9. FL-SD-09 committed player data ends at week 8 while the official leader pages are through week 10; the gaps match the missing games, so the two must never be mixed without a date.
+10. FL-SD-10 nothing is live, so the demotion gate has never fired and its thresholds are untested.
+
+- 2026-11-14 — **Merge note (for the record, nothing was discarded).** `git pull --rebase origin main` was run as the standing rule requires, but `main` had advanced to `3cd5a7e` (PR #104 from `arena/b484601f`) and the rebase stopped on an add/add conflict in this file: session `arena/f9e0aea9-korea2` had appended its board section in the same place. The rebase was **aborted** (`git rebase --abort`), which restored this branch exactly; the earlier `git push` had already published all seven commits to `refs/heads/arena/afa08e81-korea2` at `17ab37a`, so no work was ever at risk. The conflict was then resolved with `git merge origin/main`, keeping **both** sections verbatim — mine first, then `arena/f9e0aea9-korea2`'s untouched — and the only edit anywhere in the file was changing my own task statuses from `in progress` to `done`. No other session's text was altered, reordered or removed.
+
+### Request logged, not actioned (another session's scope)
+
+- **`build-verify` fails on `main`, not on this branch's own work.** On PR #106 the `build-and-verify` job that *this* session owns passes, while `build-verify` fails at its step "Results are reproducible (no diff after rebuild)". I reproduced it locally: `python scripts/analysis/build.py` rewrites the `generated_utc` field of `results/price_snapshots.json` with wall-clock time (`2026-11-14T19:57:20Z` committed vs `2026-11-14T20:11:10Z` on rebuild), so `git diff --quiet -- results` can never be clean. **This is pre-existing on `main`**: run 43635801075 on `3cd5a7e` failed the same way, and the same file is written by `scripts/analysis/pricesnapshots.py:114`, which is outside this session's scope. The other red job, `review-board`, also fails on `3cd5a7e` and is likewise untouched by this PR.
+- **Requested fix (1 line, owner of `scripts/analysis/`):** in `scripts/analysis/pricesnapshots.py`, replace the wall-clock `generated_utc` with a deterministic value derived from the committed data (the newest gameday already used as `data_as_of_gameday`), exactly as this session did for `signal-desk/` in commit `6539491`. That makes the reproducibility gate mean what it claims. I did **not** edit that file or `results/`, per the scope rule; I ran the rebuild locally to diagnose it and then restored `results/` to its committed state (`git checkout -- results/`), so nothing in another session's scope is modified by this PR.
+
+Two **checks that came back clean** and are worth recording because they were suspicions, not assumptions: the committed `spread_line` sign convention (positive = home favoured) holds against results on n=7,087 settled games, and the committed 2020/2025 season tables reconcile 32/32 against NFL.com.
+
 # Session board — `arena/f9e0aea9-korea2` (price-snapshot store, demotion gate, requirements trace)
 
 **Session ID:** `arena/f9e0aea9-korea2` · **Base:** `a6981b6` (main) · **Claimed:** 2026-11-14 UTC
