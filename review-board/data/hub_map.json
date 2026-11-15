@@ -3,11 +3,11 @@
   "code": 6,
   "data register": 1,
   "other": 1,
-  "site hub": 21
+  "site hub": 22
  },
  "history": "shallow",
- "base_commit": "86dbc0a",
- "hub_count": 29,
+ "base_commit": "2fc71fd",
+ "hub_count": 30,
  "nav_target_count": 37,
  "nav_duplicate_labels": [
   {
@@ -236,6 +236,17 @@
    "nav_labels": [
     "Decision hub"
    ]
+  },
+  {
+   "dir": "injury-report-w10",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 1,
+   "data_files": 0,
+   "scripts": 1,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "line-desk",
@@ -580,8 +591,8 @@
    "nav_labels": []
   }
  ],
- "total_pages": 231,
+ "total_pages": 232,
  "total_data_files": 192,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "86dbc0afac5a2f377b0a7bad35544de300cfecb7"
+ "_generated_from_repo_commit": "2fc71fdbac01a14c25c41d6e75e3a9891d2308da"
 }
