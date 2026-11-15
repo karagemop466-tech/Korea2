@@ -1,10 +1,10 @@
 {
  "alarms": [],
  "deltas_appended": 0,
- "new_bodies": 3,
- "run_finished_utc": "2026-11-15T18:20:01Z",
- "run_id": "43746079211",
- "run_started_utc": "2026-11-15T18:19:32Z",
+ "new_bodies": 0,
+ "run_finished_utc": "2026-11-15T18:23:55Z",
+ "run_id": "43746482723",
+ "run_started_utc": "2026-11-15T18:23:32Z",
  "season": 2026,
  "source": "https://www.nfl.com/injuries/league/2026/reg{week}",
  "weeks": {
@@ -28,10 +28,10 @@
     "title_week_static:title says 10, body says 1"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:32Z",
+   "last_fetch_utc": "2026-11-15T18:23:32Z",
    "parsed_file": "parsed/d93a8112f9f3a5860ebece1b9f36fe5d8eb6efbb02ffe8da5bc087a1414d5026.v1.2.json",
    "rows": 182,
-   "sha256": "684485a13057e43213833f0d5221959409bd77fbd0928c1c386be5945ec6f8a5",
+   "sha256": "58a371be3775564ecfab7dcb4bcad4616e31cfdd333e361e9e4abeb9f1dd3463",
    "tables": 32,
    "teams": 32
   },
@@ -59,10 +59,10 @@
     "dnp_without_game_status:WAS:Treylon Burks"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:50Z",
+   "last_fetch_utc": "2026-11-15T18:23:46Z",
    "parsed_file": "parsed/e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f.v1.2.json",
    "rows": 347,
-   "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
+   "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
    "tables": 28,
    "teams": 28
   },
@@ -91,10 +91,10 @@
     "week_mismatch:requested 11 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:51Z",
+   "last_fetch_utc": "2026-11-15T18:23:47Z",
    "parsed_file": null,
    "rows": 347,
-   "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
+   "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
    "tables": 28,
    "teams": 28
   },
@@ -123,16 +123,16 @@
     "week_mismatch:requested 12 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:53Z",
+   "last_fetch_utc": "2026-11-15T18:23:48Z",
    "parsed_file": null,
    "rows": 347,
-   "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
+   "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
    "tables": 28,
    "teams": 28
   },
   "13": {
    "alarm": false,
-   "body_new": true,
+   "body_new": false,
    "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
@@ -155,7 +155,7 @@
     "week_mismatch:requested 13 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:54Z",
+   "last_fetch_utc": "2026-11-15T18:23:49Z",
    "parsed_file": null,
    "rows": 347,
    "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
@@ -187,10 +187,10 @@
     "week_mismatch:requested 14 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:55Z",
+   "last_fetch_utc": "2026-11-15T18:23:50Z",
    "parsed_file": null,
    "rows": 347,
-   "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
+   "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
    "tables": 28,
    "teams": 28
   },
@@ -219,10 +219,10 @@
     "week_mismatch:requested 15 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:57Z",
+   "last_fetch_utc": "2026-11-15T18:23:52Z",
    "parsed_file": null,
    "rows": 347,
-   "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
+   "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
    "tables": 28,
    "teams": 28
   },
@@ -251,10 +251,10 @@
     "week_mismatch:requested 16 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:58Z",
+   "last_fetch_utc": "2026-11-15T18:23:53Z",
    "parsed_file": null,
    "rows": 347,
-   "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
+   "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
    "tables": 28,
    "teams": 28
   },
@@ -283,10 +283,10 @@
     "week_mismatch:requested 17 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:59Z",
+   "last_fetch_utc": "2026-11-15T18:23:54Z",
    "parsed_file": null,
    "rows": 347,
-   "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
+   "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
    "tables": 28,
    "teams": 28
   },
@@ -315,16 +315,16 @@
     "week_mismatch:requested 18 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:20:00Z",
+   "last_fetch_utc": "2026-11-15T18:23:55Z",
    "parsed_file": null,
    "rows": 347,
-   "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
+   "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
    "tables": 28,
    "teams": 28
   },
   "2": {
    "alarm": false,
-   "body_new": true,
+   "body_new": false,
    "content_sha256": "ce8e5e4c2e3b97b593fc62a0fbfb1cd3a375ebfe6e8333ec455dec10b3fadffa",
    "declared_week": 2,
    "flags": [
@@ -347,7 +347,7 @@
     "title_week_static:title says 10, body says 2"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:33Z",
+   "last_fetch_utc": "2026-11-15T18:23:33Z",
    "parsed_file": "parsed/ce8e5e4c2e3b97b593fc62a0fbfb1cd3a375ebfe6e8333ec455dec10b3fadffa.v1.2.json",
    "rows": 251,
    "sha256": "ff3a31d6d8c178b5779664fd0dab6f074d018eddab6b7bd58424beebbadf2a4f",
@@ -373,10 +373,10 @@
     "title_week_static:title says 10, body says 3"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:39Z",
+   "last_fetch_utc": "2026-11-15T18:23:34Z",
    "parsed_file": "parsed/ba5e14f2d96905da15d4d5a2cd92354b6e2a9de610b99f3d027c7e38cfdb7f42.v1.2.json",
    "rows": 301,
-   "sha256": "b66571b849fb9e1c62783afcd5c3e70b126751ee33289a3bf1898cfa059250de",
+   "sha256": "d9f27d8b1e07ddeb1dba9818eaecad6dc233af1340d81d05d5ae92e8da0680cc",
    "tables": 32,
    "teams": 32
   },
@@ -402,10 +402,10 @@
     "title_week_static:title says 10, body says 4"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:41Z",
+   "last_fetch_utc": "2026-11-15T18:23:35Z",
    "parsed_file": "parsed/7291929160d52e1c24ad8d740009938e18f926be5e2dcd30f1b124c89863e622.v1.2.json",
    "rows": 318,
-   "sha256": "5f11645a96448493caf34446af4d1a52be458a59c5e27314395a753bdb08bc56",
+   "sha256": "4916fccefb4c61104632d7ae3b9dc8def35fabe9c3fd9639915467cfa504b2bc",
    "tables": 32,
    "teams": 32
   },
@@ -433,10 +433,10 @@
     "title_week_static:title says 10, body says 5"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:42Z",
+   "last_fetch_utc": "2026-11-15T18:23:37Z",
    "parsed_file": "parsed/faf309af809e530298038d2b51e49ffb36563c7bf6a91c47c04eaaf28fa7ea3c.v1.2.json",
    "rows": 361,
-   "sha256": "68143808e57987239f874d668db23edaba130c68a69cfd28e2af8f72fcbd0f64",
+   "sha256": "ea3be9974f494864979e096471e5109a991ced9947dae623cfc6131f201d4f71",
    "tables": 30,
    "teams": 30
   },
@@ -459,10 +459,10 @@
     "title_week_static:title says 10, body says 6"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:43Z",
+   "last_fetch_utc": "2026-11-15T18:23:38Z",
    "parsed_file": "parsed/6ffb67cb62b04c242a6ed02b05d7475bfb319ac89d58e3bcf4fde0b73d109cec.v1.2.json",
    "rows": 376,
-   "sha256": "b31300b570c00177b97e49643aca4680177ffd612eefd89e04db61630b2eaa7b",
+   "sha256": "1092fa4971ae70b5725771d6af96525716f95b81b3258262e4da4f70a8e8bfff",
    "tables": 28,
    "teams": 28
   },
@@ -492,10 +492,10 @@
     "title_week_static:title says 10, body says 7"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:44Z",
+   "last_fetch_utc": "2026-11-15T18:23:39Z",
    "parsed_file": "parsed/b2201b1c3462abe2f1fdcdf139c43914881a1f8d6010251dc491fac569717d5d.v1.2.json",
    "rows": 350,
-   "sha256": "09f1a4af8265e13b7b7f7a55a127064e25ebe670e54627581d7369b73493f833",
+   "sha256": "dbf757bcd7a5d9ff7e41ff4f264fb6b317431e08b3ab182358ab4a44caeb6e83",
    "tables": 28,
    "teams": 28
   },
@@ -519,16 +519,16 @@
     "title_week_static:title says 10, body says 8"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:45Z",
+   "last_fetch_utc": "2026-11-15T18:23:44Z",
    "parsed_file": "parsed/59008e9bce1898e76d559bbcf5f2343f00ad35b7c1ae916648ce5d030ee6d54f.v1.2.json",
    "rows": 320,
-   "sha256": "a162d31e1c77596062e1c5234a603eaa513d37e7ce300df138432febfa430d01",
+   "sha256": "cd87c6bbeb53d912572ee9fbf1060b08ba34d485341af8c35b901a21e67377d1",
    "tables": 28,
    "teams": 28
   },
   "9": {
    "alarm": false,
-   "body_new": true,
+   "body_new": false,
    "content_sha256": "5ba6b13b683c6f19100af11480723f12850e69dda62364101e564e66d11fa70d",
    "declared_week": 9,
    "flags": [
@@ -556,10 +556,10 @@
     "title_week_static:title says 10, body says 9"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:19:46Z",
+   "last_fetch_utc": "2026-11-15T18:23:45Z",
    "parsed_file": "parsed/5ba6b13b683c6f19100af11480723f12850e69dda62364101e564e66d11fa70d.v1.2.json",
    "rows": 362,
-   "sha256": "6686089c7368e10e0d573a97bcb73cbeda2c7191c6fda8402a3ef9147362f101",
+   "sha256": "6b608e8c2dcf5caab897f2d46dcfff2c646af652dac346cee3b37453e25de186",
    "tables": 30,
    "teams": 30
   }
