@@ -2711,3 +2711,22 @@ The repository already delivers the full charter requested:
 - **GitHub Pages deploy confirmed:** `GET /repos/karagemop466-tech/Korea2/pages` → `status=built`, `build_type=legacy`, `source=branch main path=/`, live at https://karagemop466-tech.github.io/Korea2/.
 - All pre-merge checks green: `validate_data.py` PASS, `check_links.py` PASS (4,635 refs, 0 broken), `check_derived.py` PASS (52 checks, 0 disagreements), `recompute.py` PASS (48 pass, 0 mismatch, 11 expected-to-differ; 32/32 teams vs NFL.com 2020 + 2026).
 - Session complete. All 12 suggestions and 15 questions remain in the review registers awaiting a reviewer; flagged irregularities published non-blocking on Flagged for Review.
+
+**Request to the root-site / integration owner (logged here):** after this session's PR merges and Pages deploys, record the PR link, merge commit and Pages build result in this section.
+
+---
+
+# Session board — `arena/a24825d2-korea2` (Week 10 official injury-report re-verification and immutable row register)
+
+**Session ID:** `arena/a24825d2-korea2` · **Base:** `1d049f9` (main) · **Claimed:** 2026-11-15 UTC · **Status:** in progress
+
+## Scope claimed (non-overlapping)
+
+| ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| W10-1 | Re-read the official NFL.com Week 10 2026 injury report (all 8 fetch chunks), record per-team listed-player counts, and publish row-level evidence for the rows the brief names (Lions ×3 blank-status rows, Seattle 15, Cincinnati 9, reserve-list cases) with source links and timestamps | in progress | `arena/a24825d2-korea2` | `injury-report-w10/` (new directory only) |
+| W10-2 | Add this section to COORDINATION.md (claim, log, release record) | in progress | `arena/a24825d2-korea2` | this section only |
+
+**Explicitly NOT touched:** `decision-hub/`, `review-board/`, `site/`, `signal-desk/`, `price-store/`, root `pages/`, `index.html`, `scripts/build_site.py`, `data/`, workflows. Requests for those owners are logged at the end of this section, not actioned.
+
+**Known limit:** the sandbox's shell cannot reach nfl.com (only the fetch tool can). The page is therefore recorded as text read through the fetch tool, with its chunk index and fetch time — not as a raw byte hash of the NFL response. This is stated on the page.
