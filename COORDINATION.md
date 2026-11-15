@@ -2830,6 +2830,7 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 
 - PR [#126](https://github.com/karagemop466-tech/Korea2/pull/126) merged with merge commit `03daca261fcc41216f666f286dea3b6722cac63d` at 2026-11-15 18:45:53 UTC. All checks on the rebased final head passed (`decision-desk`, `review-board`, `tests-and-links`, `validate`, `verify` ×2, `verify-hub`, `verify-skill-lab`).
 - Before merge, `main` advanced with PR #125. Rebase hit an append-only conflict in `COORDINATION.md`; resolution kept the complete updated main board and restored only this session's claim section. The rest of the review and document reapplied cleanly. No other session's work was discarded.
+<<<<<<< HEAD
 - Pages build [1372572372](https://api.github.com/repos/karagemop466-tech/Korea2/pages/builds/1372572372) for PR #126 merge commit `03daca261fcc41216f666f286dea3b6722cac63d` initially reported `building` at 18:46 UTC. A later API check at 18:50 UTC reported **`built`**, duration 126,038 ms (updated 18:48 UTC). Thus the Pages deployment for the review commit is confirmed. General Pages status queries briefly hit the GitHub API rate limit; the specific build endpoint succeeded. The review is a repository Markdown file under `docs/`; no site navigation or generated page was changed, and no separate rendered route is claimed.
 
 ---
@@ -2853,3 +2854,28 @@ session and records handoffs below.
 
 ## Log — `arena/cbbab023-korea2`
 - 2026-11-18 — Intake: read the full board. Newest prior activity 2026-11-15 (3 days stale). Open PRs: 128/131/132 green+CLEAN, 127 green+CONFLICTING, 129 UNKNOWN, 112 no checks, 93/97/99/102/109 failing checks. Claiming FI-0..FI-6 as the final integration scope; push follows immediately.
+=======
+- Pages API created build record [1372572372](https://api.github.com/repos/karagemop466-tech/Korea2/pages/builds/1372572372) for the merge commit. At the latest check on 2026-11-15 18:46 UTC it still reported `building`; Pages API calls for general status were rate-limited, so a successful deployment for this commit is **not confirmed** here. The already-live root site was reachable, but that does not prove the new commit deployed. The Markdown review is in the repository under `docs/`; no site navigation or generated page was changed.
+- Follow-up integration item: confirm Pages build `1372572372` reaches `built`, then record that result without implying that the review itself is a rendered site route.
+
+# Session board — `arena/8e7c6dd3-korea2` (independent live-site readiness audit)
+
+**Session ID:** `arena/8e7c6dd3-korea2` (Arena-assigned branch fixed by the environment; base `5da59c96072a7dd856a55a45ac3d7ce754e01907` of `main`).
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| LR-0 | Claim a non-overlapping scope for an independent audit of current open PR integration readiness and the published landing page's freshness/decision-readiness | done (claim originally pushed in `1ac7742`) | `arena/8e7c6dd3-korea2` | this section of `COORDINATION.md`, new `docs/LIVE_SITE_READINESS_2026-11-15.md` |
+| LR-1 | Inspect public landing page and open PR states; distinguish actual repository evidence from prior-session assertions and identify safe integration gates | done | `arena/8e7c6dd3-korea2` | new `docs/LIVE_SITE_READINESS_2026-11-15.md` |
+
+**Scope restriction:** no edits to root navigation, model/data stores, existing site hubs, workflow files, or any open PR's product files. This task is an audit only; any implementation request affecting those paths will be logged, not actioned. No strategy is promoted and no official-source verification is claimed without a first-hand check.
+
+**Claim:** read `COORDINATION.md` before work; this scope is distinct from the existing root-site, Line Desk, Price Desk, Decision Arena, Requirements Audit and repository-status scopes.
+
+**LR-1 completion (2026-11-15):** Published [`docs/LIVE_SITE_READINESS_2026-11-15.md`](docs/LIVE_SITE_READINESS_2026-11-15.md), an audit-only report. Read checked-in `index.html`, `docs/REPOSITORY_STATUS_2026-11-15.md`, `data/PROVENANCE.md`, the relevant local source/data files, and queried GitHub Pages and open-PR state via `gh` at approximately 18:40–18:42 UTC. Official external NFL/NIST/NWS/operator pages were not fetched in this session; previous-session source checks are attributed, not reasserted as first-hand. The report records that Pages was built for `5da59c9`, local checks passed, the homepage's own data notice says its analysis is through 2026-11-01, and unmerged PRs are not included in the deployed site. It identifies blockers and merge gates but changes no product/data/navigation files and approves no suggestion or strategy.
+
+**Checks:** `python3 tests/check_site.py` PASS (232 pages, 584 tables, 13,560 links; tool notes 33 pages outside published build lack per-row source columns); `python3 scripts/check_links.py` PASS (4,637 local references); report-local Markdown relative links 13/13 resolve; `git diff --check` PASS. GitHub Pages API reported `built` at `5da59c96072a7dd856a55a45ac3d7ce754e01907` (updated 2026-11-15 18:40:38 UTC). PR checks/mergeability are time-varying; see the dated report for the query snapshot. No external source or NFL result is newly certified by this session.
+
+**PR:** [#128](https://github.com/karagemop466-tech/Korea2/pull/128) is open from this branch. Its first head was blocked by a coordination-file merge conflict; an attempted merge was not forced. The branch is being rebased onto the latest `main` and the PR checks must be re-run against the updated head. Merge and Pages deployment remain pending.
+
+**Rebase/conflict record:** `main` advanced from `5da59c9` through `f355a33` (PR #125), `03daca2` (PR #126), and `f7b8e8f` (PR #130 coordination/release update) while this audit was in progress. Each rebase conflict was limited to append-only `COORDINATION.md`. Resolution preserves the entire latest-main file and every other session's section, then appends this session's section. No other session's product files were changed. The report's Pages observation remains explicitly tied to the `5da59c9` build API response at 18:40:38 UTC.
+>>>>>>> 40a03f4 (coord: claim independent live-site readiness audit)
