@@ -88,7 +88,7 @@ class ParserTests(unittest.TestCase):
 
 class ContentHashTests(unittest.TestCase):
     def test_byte_only_noise_keeps_content_hash(self):
-        noisy = SYNTH_PAGE.replace("<div", "<div data-jsonid=\"0000-1111\"", 1)
+        noisy = SYNTH_PAGE.replace("<body>", "<body><p data-jsonid=\"0000-1111\"></p>", 1)
         a = cap.parse_report(SYNTH_PAGE, 2026, 10)["content_sha256"]
         b = cap.parse_report(noisy, 2026, 10)["content_sha256"]
         self.assertEqual(a, b)
