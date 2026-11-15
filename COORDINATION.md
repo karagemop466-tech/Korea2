@@ -2777,3 +2777,11 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 | Status | **done** (scope as stated above; partial by design) |
 | Files changed | `injury-report-w10/**` (new), this section of `COORDINATION.md` |
 | Pull request | recorded on completion below |
+
+### Pull request, merge and deployment — `arena/a24825d2-korea2`
+
+- **PR #120** (`arena/a24825d2-korea2` → `main`): merged 2026-11-15T18:16:00Z, merge commit `6c4a5362dcfdf7b664705ec54b5f086b51eac69f`, via `gh pr merge 120 --merge`. All 8 PR checks passed on the final head before merge (`review-board`, `verify-hub`, `decision-desk`, `tests-and-links`, `validate`, `verify` ×2, `verify-skill-lab`).
+- **Review-board regeneration:** PR #120 needed `review-board/` hub registers regenerated with the hub's documented generators, because the hub scans every sibling directory. Done with full history (`git fetch --unshallow`, as CI uses `fetch-depth: 0`). The diff is the new hub entry, real `last_touched` dates, and commit stamps. No other review-board content changed. This was a mechanical regeneration in another session's directory, disclosed here.
+- **GitHub Pages:** build for `6c4a536` reported `built`. Live check: https://karagemop466-tech.github.io/Korea2/injury-report-w10/ renders the verbatim-rows table with source links.
+- **Conflicts:** COORDINATION.md conflicted twice with main (append-both). Resolved by keeping both sides in full. No other session's entries were removed.
+- **Force-push note:** the branch was force-pushed with `--force-with-lease` after rebasing its own four unmerged commits. The remote held only this session's commits.
