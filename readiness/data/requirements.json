@@ -1,0 +1,1105 @@
+{
+  "meta": {
+    "title": "Decision readiness: one row per requirement",
+    "session": "arena/a72f5c83-korea2",
+    "prepared_on": "2026-11-15",
+    "basis": "Status is measured against files in this repository on branch arena/a72f5c83-korea2 (base 5da59c9). No external page was fetched from this session: the sandbox shell cannot reach nfl.com. Official sources listed here are the ones already recorded in committed registers; they are linked for manual review and were NOT re-opened in this session.",
+    "status_key": {
+      "Built": "The mechanism exists in the repo and its output is committed.",
+      "Partial": "Some of the requirement exists; the named gap is listed.",
+      "Not built": "No mechanism or output found in the repo.",
+      "Blocked": "Cannot start until the named source or decision exists.",
+      "Not met": "The mechanism exists but its output fails the requirement today.",
+      "Not located": "The input the requirement refers to is not in the repo."
+    },
+    "policy": "Blank or flagged, never inferred. A row whose status is not Built carries the number that would clear it, so the gap is measurable."
+  },
+  "rows": [
+    {
+      "id": "R01",
+      "group": "Prices & origination",
+      "requirement": "Price-snapshot store recording opening and closing numbers for every market originated",
+      "status": "Partial",
+      "evidence": [
+        "results/price_snapshots.json",
+        "price-store/data/snapshots.csv"
+      ],
+      "gate": "G1 data integrity: no permitted source publishing opening prices is recorded; the feed stores one line per market per game.",
+      "now": "Opening values: 0 of 7,548 games (the store has no opening field). Closing values come from the nflverse schedule extract (third-party).",
+      "needed": "Opening and closing numbers, timestamped, from a permitted source, for every originated market.",
+      "official_sources": [],
+      "note": "Store policy text (meta.policy) says opening cells stay blank until a source is added."
+    },
+    {
+      "id": "R02",
+      "group": "Prices & origination",
+      "requirement": "Verified results feed so backtests and ROI can be computed",
+      "status": "Partial",
+      "evidence": [
+        "results/verification.json",
+        "price-store/data/results_feed.csv"
+      ],
+      "gate": "G1: results must come from an official source; the NFL standings reconciliation covers records and points, not a per-game feed.",
+      "now": "Standings reconciliation: 32 of 32 team records match NFL.com (120 games settled, file dated 2026-11-02).",
+      "needed": "Official final score for every game in the backtest corpus. Count not yet pulled from the official schedule.",
+      "official_sources": [
+        "NFL.com 2026 standings (regular season)"
+      ],
+      "note": "The per-game results file is third-party-derived; the reconciliation is the only official check on record."
+    },
+    {
+      "id": "R03",
+      "group": "Prices & origination",
+      "requirement": "Originate the side first, then the total, then the moneyline",
+      "status": "Partial",
+      "evidence": [
+        "line-desk/pages/origination.html"
+      ],
+      "gate": "Canonical originator not selected: two committed originators disagree by 1.5 to 9.0 points on the same 15 Week 9 games.",
+      "now": "2 originators; 0 designated canonical.",
+      "needed": "One canonical originator selected through a walk-forward comparison.",
+      "official_sources": [],
+      "note": "Origination order was not re-verified line by line in this session."
+    },
+    {
+      "id": "R04",
+      "group": "Prices & origination",
+      "requirement": "Publish the model's fair line, the market line and the difference as separate columns",
+      "status": "Partial",
+      "evidence": [
+        "pages/lines.html"
+      ],
+      "gate": "G1: the market column links to nflverse-data, which is community-maintained, not an NFL source.",
+      "now": "Columns present: Mkt spread, Model spread, Edge (model minus market). The model column is labelled Model, not fair. Market links point to github.com/nflverse/nflverse-data.",
+      "needed": "A permitted market source for the market column, and the fair-line label.",
+      "official_sources": [],
+      "note": "Edge arithmetic was spot-checked on the first row (JAX @ BAL: -5.8 minus -8.5 = +2.7)."
+    },
+    {
+      "id": "R05",
+      "group": "Prices & origination",
+      "requirement": "Vig-free market consensus compared with the originated fair-line decomposition",
+      "status": "Not built",
+      "evidence": [
+        "pages/market.html"
+      ],
+      "gate": "No vig-removal decomposition found; the market page reports a single market benchmark.",
+      "now": "0 decompositions computed.",
+      "needed": "Vig-free consensus and fair-line decomposition for every originated game, with the method stated.",
+      "official_sources": [],
+      "note": "Requires more than one permitted price source to measure consensus."
+    },
+    {
+      "id": "R06",
+      "group": "Prices & origination",
+      "requirement": "Price a line ourselves and publish the residual against the market, on a schedule, from day one",
+      "status": "Partial",
+      "evidence": [
+        "pages/lines.html",
+        ".github/workflows/data-pipeline.yml",
+        ".github/workflows/signal-desk.yml"
+      ],
+      "gate": "No schedule trigger: data-pipeline.yml and signal-desk.yml run on push or manual dispatch only.",
+      "now": "Residual columns published on push; scheduled runs per week: 0.",
+      "needed": "A scheduled run every game week with a dated residual history.",
+      "official_sources": [],
+      "note": "The workflow files were read in this session; no cron entry exists in either file."
+    },
+    {
+      "id": "R07",
+      "group": "Prices & origination",
+      "requirement": "Publish every model total twice (two estimators with a gap column) until a walk-forward comparison selects one",
+      "status": "Not built",
+      "evidence": [
+        "data/derived/predictions.csv"
+      ],
+      "gate": "Only one total estimator is stored (model_total).",
+      "now": "Estimators per total: 1. Gap column: 0.",
+      "needed": "Two estimators per total with a gap column, then a walk-forward selection.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R08",
+      "group": "Prices & origination",
+      "requirement": "Store every model output as a probability plus its inputs, not just a pick",
+      "status": "Partial",
+      "evidence": [
+        "data/derived/predictions.csv",
+        "pages/lines.html"
+      ],
+      "gate": "Predictions file stores margins and totals; win probability appears on the page but is not stored with its inputs.",
+      "now": "Stored per game: model_margin, model_total, result. Probability column: 0. Input features beside output: 0.",
+      "needed": "A per-game row with the probability, its input features and the model version.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R09",
+      "group": "Prices & origination",
+      "requirement": "Decide the price-data policy before any backtest is published",
+      "status": "Partial",
+      "evidence": [
+        "results/price_snapshots.json"
+      ],
+      "gate": "Owner decision: policy text exists, but no approval record is in the repo.",
+      "now": "Policy text: present. Approval record: 0.",
+      "needed": "One dated approval by the project owner.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R10",
+      "group": "Fixtures & venue",
+      "requirement": "Transcribe the venue of every fixture from the official NFL game centre and publish it",
+      "status": "Not built",
+      "evidence": [
+        "data/signals.json"
+      ],
+      "gate": "G1: no official game-centre transcription exists in the repo; venue fields come from third-party extracts.",
+      "now": "Official venues transcribed: 0.",
+      "needed": "Every fixture in the corpus with a venue taken from the official game centre, with the link.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R11",
+      "group": "Fixtures & venue",
+      "requirement": "Publish the league's dated schedule announcement beside the live schedule page",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "No dated schedule-announcement capture is in the repo.",
+      "now": "Captures: 0.",
+      "needed": "A dated capture of the announcement, linked from the schedule page.",
+      "official_sources": [
+        "NFL.com 2026 schedule, Week 10"
+      ],
+      "note": "The schedule page was read by another session on 2026-11-15; the announcement was not located."
+    },
+    {
+      "id": "R12",
+      "group": "Fixtures & venue",
+      "requirement": "Fixture-context feature set built only from published schedule facts",
+      "status": "Partial",
+      "evidence": [
+        "data/derived/games.csv.gz"
+      ],
+      "gate": "Features are built on nflverse schedules (third-party). No official schedule cross-check is recorded.",
+      "now": "Feature file present. Official cross-check: 0 games.",
+      "needed": "Cross-check of every fixture against the official schedule, with differences listed.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R13",
+      "group": "Fixtures & venue",
+      "requirement": "Stadium roof and surface overlaid with NWS hourly wind and precipitation",
+      "status": "Not built",
+      "evidence": [
+        "data/sources.json"
+      ],
+      "gate": "No hourly NWS overlay is joined and no official roof-status capture exists.",
+      "now": "Games with official roof status and NWS hourly values: 0.",
+      "needed": "Every game with a roof status at kickoff and the NWS hourly values for that hour.",
+      "official_sources": [
+        "NWS NOWData FAQ"
+      ],
+      "note": ""
+    },
+    {
+      "id": "R14",
+      "group": "Fixtures & venue",
+      "requirement": "2026 kickoff and declared onside-kick regime priors filter",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "No source for declared onside-kick regimes is recorded; no filter exists.",
+      "now": "Filter runs: 0.",
+      "needed": "A source for the regime declarations and a filter run on the 2026 corpus.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R15",
+      "group": "Strategies & leaderboard",
+      "requirement": "Look at single bets, parlays and player-prop combos",
+      "status": "Partial",
+      "evidence": [
+        "pages/strategies.html",
+        "pages/correlation.html",
+        "pages/props.html"
+      ],
+      "gate": "Prop combos cannot be validated: no historical prop prices exist in the feed.",
+      "now": "Single-bet entries: 9. Parlay pricing: modelled. Prop-combo entries with prices: 0.",
+      "needed": "Priced prop lines for the combo families under test.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R16",
+      "group": "Strategies & leaderboard",
+      "requirement": "Each strategy must pass validation gates",
+      "status": "Built",
+      "evidence": [
+        "data/validation_gates.json",
+        "data/derived/strategies.json"
+      ],
+      "gate": "None for the mechanism. Gate outcomes are below.",
+      "now": "Gates G1 to G10 and D1 are defined; 0 of 9 entries approved.",
+      "needed": "At least one entry passing all gates on a prospective window (see R19).",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R17",
+      "group": "Strategies & leaderboard",
+      "requirement": "Determine correlation values, using official numbers only, and publish n with each value",
+      "status": "Partial",
+      "evidence": [
+        "data/correlations.json",
+        "pages/correlation.html"
+      ],
+      "gate": "G1 official-only: the QB and WR1 value (0.562, 7,560 team-games) comes from nflverse, not an NFL source.",
+      "now": "n is published with each value. Official-only coefficients from NFL standings: 8 (per README). Third-party values: the rest.",
+      "needed": "Every correlation used in a parlay price computed from an official source, with n and interval.",
+      "official_sources": [
+        "NFL.com 2025 standings",
+        "NFL.com 2026 standings",
+        "NIST correlation interval reference"
+      ],
+      "note": ""
+    },
+    {
+      "id": "R18",
+      "group": "Strategies & leaderboard",
+      "requirement": "Remove luck from the equation (dashboard panel)",
+      "status": "Built",
+      "evidence": [
+        "pages/luck.html",
+        "data/derived/luck.json"
+      ],
+      "gate": "None for the panel. The panel reports luck; it does not remove it.",
+      "now": "Panel present; computed from committed data.",
+      "needed": "Not applicable.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R19",
+      "group": "Strategies & leaderboard",
+      "requirement": "Build strategies that are selectively skill-based (pass validation)",
+      "status": "Not met",
+      "evidence": [
+        "data/derived/leaderboard.json"
+      ],
+      "gate": "G2 out-of-sample, G4 Benjamini-Hochberg, G8 deflated Sharpe and CLV (not available) all apply.",
+      "now": "Approved: 0 of 9 entries.",
+      "needed": "At least one entry passing all ten gates on a prospective window.",
+      "official_sources": [],
+      "note": "CLV is null on every entry (CLV needs timestamped opening lines, see R01)."
+    },
+    {
+      "id": "R20",
+      "group": "Strategies & leaderboard",
+      "requirement": "Leaderboard competition that rewards top-performing strategies",
+      "status": "Partial",
+      "evidence": [
+        "data/derived/leaderboard.json",
+        "pages/leaderboard.html"
+      ],
+      "gate": "No funded prize pool and no approved reward rule.",
+      "now": "Signal-only ranking implemented. Rewards payable: 0.",
+      "needed": "A funding source and an eligibility rule, both approved by the owner.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R21",
+      "group": "Strategies & leaderboard",
+      "requirement": "Pre-register every strategy; backtest numbers must never appear on the leaderboard",
+      "status": "Not met",
+      "evidence": [
+        "data/derived/strategies.json",
+        "data/derived/leaderboard.json"
+      ],
+      "gate": "Registration must precede the evaluation window. The leaderboard shows historical backtest results.",
+      "now": "Entries with a registration commit: 0 of 9. Entries showing historical backtest results: 9 of 9.",
+      "needed": "Registration commit before the window opens, and a leaderboard built from prospective results only.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R22",
+      "group": "Strategies & leaderboard",
+      "requirement": "Freeze a rule before it sees data: commit the text, sample window and gates; the commit hash is the registration",
+      "status": "Not built",
+      "evidence": [
+        "data/validation_gates.json"
+      ],
+      "gate": "No commit hash is recorded against any strategy.",
+      "now": "Strategy records with a commit hash: 0 of 9.",
+      "needed": "A recorded commit hash for each strategy, dated before its evaluation window.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R23",
+      "group": "Strategies & leaderboard",
+      "requirement": "Two-sided 'what would change our mind' field on every strategy entry",
+      "status": "Not built",
+      "evidence": [
+        "data/derived/strategies.json"
+      ],
+      "gate": "The field is absent from every entry.",
+      "now": "Entries with the field: 0 of 9.",
+      "needed": "A confirm side and a refute side on each of the 9 entries.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R24",
+      "group": "Strategies & leaderboard",
+      "requirement": "Demotion gate that sends a live strategy back to paper",
+      "status": "Built",
+      "evidence": [
+        "data/validation_gates.json",
+        "scripts/lib/backtest.py",
+        "data/derived/leaderboard.json"
+      ],
+      "gate": "None for the rule. No strategy is live, so the rule has not fired on a live book.",
+      "now": "Rule D1: demote when the last 50 decided bets show mean CLV <= 0, or flat-stake ROI below -5%. Live strategies: 0.",
+      "needed": "Not applicable until a strategy goes live.",
+      "official_sources": [],
+      "note": "The rule text is in data/validation_gates.json (row D1)."
+    },
+    {
+      "id": "R25",
+      "group": "Strategies & leaderboard",
+      "requirement": "Control baseline on every leaderboard run: random picks and favourites only",
+      "status": "Partial",
+      "evidence": [
+        "data/derived/strategies.json"
+      ],
+      "gate": "The controls present are all-home and all-under. Random and favourites controls are absent.",
+      "now": "Control entries: 2 (all-home, all-under). Random: 0. Favourites: 0.",
+      "needed": "A random-pick control and a favourites-only control on every run.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R26",
+      "group": "Strategies & leaderboard",
+      "requirement": "Separate signal from staking in the leaderboard, so a lucky staking run cannot mask a bad signal",
+      "status": "Built",
+      "evidence": [
+        "data/derived/leaderboard.json"
+      ],
+      "gate": "None.",
+      "now": "ranking_rule ranks by signal only; staking metrics are reported separately and do not affect rank.",
+      "needed": "Not applicable.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R27",
+      "group": "Strategies & leaderboard",
+      "requirement": "Rank by benchmark-relative Brier skill with a game-cluster lower bound and a multiplicity adjustment",
+      "status": "Partial",
+      "evidence": [
+        "data/derived/model.json",
+        "data/derived/leaderboard.json"
+      ],
+      "gate": "Game-cluster lower bound is not computed for any entry.",
+      "now": "Model Brier 0.23002 against 0.25 for a 50/50 benchmark (model.json). Multiplicity: BH-adjusted p present. Cluster lower bounds: 0 of 9.",
+      "needed": "A game-cluster lower bound for each ranked entry.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R28",
+      "group": "Strategies & leaderboard",
+      "requirement": "Proper-score divisions: singles, game parlays, same-game parlays and prop combos",
+      "status": "Not built",
+      "evidence": [
+        "data/derived/leaderboard.json"
+      ],
+      "gate": "No division field exists; all entries are singles.",
+      "now": "Divisions: 0 of 4.",
+      "needed": "Four divisions, each with its own ranked list.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R29",
+      "group": "Strategies & leaderboard",
+      "requirement": "Parlays and prop combos behind a joint-evidence gate (directly validated joint probability and operator void/push rules)",
+      "status": "Not met",
+      "evidence": [
+        "pages/correlation.html",
+        "data/derived/correlation.json"
+      ],
+      "gate": "Multiplying marginals is invalid under dependence. No joint probability is directly validated, and no void/push rules are recorded.",
+      "now": "Validated joint probabilities: 0. The 4-leg joint of 11.1% is a model estimate, against a product of 5.7%.",
+      "needed": "A validated joint probability and void/push rules for each combo family.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R30",
+      "group": "Strategies & leaderboard",
+      "requirement": "Start with a singles-only shadow baseline; freeze versions and record forecasts before kickoff",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "No frozen forecast file exists.",
+      "now": "Frozen forecasts recorded: 0.",
+      "needed": "A forecast file frozen with a commit hash before the first kickoff of the window.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R31",
+      "group": "Strategies & leaderboard",
+      "requirement": "Split data into train, validation and final holdout seasons",
+      "status": "Partial",
+      "evidence": [
+        "data/validation_gates.json"
+      ],
+      "gate": "G2 defines a time split. A separate final holdout season is not recorded.",
+      "now": "Walk-forward and out-of-sample tests from 2023 onward (README). Final holdout season named: 0.",
+      "needed": "Named train, validation and final holdout seasons, recorded before evaluation.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R32",
+      "group": "Strategies & leaderboard",
+      "requirement": "Two-stage leaderboard: Brier-skill qualification, then prospective CLV and ROI escrow",
+      "status": "Not built",
+      "evidence": [
+        "data/derived/leaderboard.json"
+      ],
+      "gate": "CLV needs timestamped opening and closing lines (R01). The prospective window has not started.",
+      "now": "CLV values: 0 of 9 (all null). Prospective bets: 0.",
+      "needed": "At least one multi-week prospective window with timestamped opening and closing lines.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R33",
+      "group": "Inputs & corpus",
+      "requirement": "Turn the 136-game log into the pre-registered backtest corpus",
+      "status": "Not located",
+      "evidence": [],
+      "gate": "A file called the 136-game log is not in the repo. Searches for '136' match only numeric fields.",
+      "now": "Source file located: 0.",
+      "needed": "The file path or the source of the 136-game log, and its checksum.",
+      "official_sources": [],
+      "note": "Flagged so the owner can supply the file."
+    },
+    {
+      "id": "R34",
+      "group": "Inputs & corpus",
+      "requirement": "Ingest game-level results so the ratings are opponent-aware",
+      "status": "Partial",
+      "evidence": [
+        "scripts/lib/ratings.py",
+        "data/derived/model.json"
+      ],
+      "gate": "A keyword search for 'opponent' did not match in the ratings code. The opponent adjustment has not been confirmed by reading the code.",
+      "now": "Point-ratings model with walk-forward results present. Opponent adjustment: unconfirmed.",
+      "needed": "A code review that confirms the opponent adjustment, with the formula cited.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R35",
+      "group": "Injuries & depth",
+      "requirement": "Injury signal as a surprise (change from expectation), never a level",
+      "status": "Not built",
+      "evidence": [
+        "decision-hub/data/injuries.json"
+      ],
+      "gate": "Requires two or more timestamped reads (R42). Only one read exists.",
+      "now": "Timestamped reads: 1 (2026-11-12, nflverse-derived).",
+      "needed": "At least two timestamped official reads of each report, and a surprise definition recorded before evaluation.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R36",
+      "group": "Injuries & depth",
+      "requirement": "Store every injury-hub read with its clock time and publish the delta, never the level",
+      "status": "Not built",
+      "evidence": [
+        "decision-hub/data/injuries.json"
+      ],
+      "gate": "One read only. A delta needs at least two.",
+      "now": "Reads with clock time: 1. Deltas published: 0.",
+      "needed": "At least two timestamped reads of the same report, and the delta between them.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R37",
+      "group": "Injuries & depth",
+      "requirement": "Immutable, timestamped official snapshots of the injury report, club depth pages and inactive evidence, with raw hashes and conflict flags",
+      "status": "Not built",
+      "evidence": [
+        ".github/workflows/fetch-injuries.yml",
+        "decision-hub/data/injuries.json"
+      ],
+      "gate": "The schedule runs Wednesday and Saturday only. The hashes in the committed file cover nflverse files, not NFL.com pages.",
+      "now": "Raw hashes of NFL.com pages: 0. Scheduled captures per week: 2 (Wed, Sat).",
+      "needed": "Daily captures from Wednesday to kickoff, with raw hashes of the official pages.",
+      "official_sources": [
+        "NFL.com Week 10 2026 injury report"
+      ],
+      "note": "Every file URL in decision-hub/data/injuries.json metadata is an nflverse-data release URL (github.com/nflverse/nflverse-data). None is an NFL.com page."
+    },
+    {
+      "id": "R38",
+      "group": "Injuries & depth",
+      "requirement": "Treat the injury report as a daily timestamped series from Wednesday to kickoff, so designations can be tracked (DNP, LP, FP)",
+      "status": "Not built",
+      "evidence": [
+        "injury-report-w10/data/week10_rows_read.csv"
+      ],
+      "gate": "One Week 10 read exists, taken with a fetch tool and not stored as a raw response.",
+      "now": "Week 10 reads: 1. Raw-response hash: none.",
+      "needed": "A capture per day from Wednesday to kickoff for each game week.",
+      "official_sources": [
+        "NFL.com Week 10 2026 injury report"
+      ],
+      "note": ""
+    },
+    {
+      "id": "R39",
+      "group": "Injuries & depth",
+      "requirement": "Capture official inactive lists and snap counts, so a backup replacing a starter can be confirmed, not only suspected",
+      "status": "Partial",
+      "evidence": [
+        "price-desk/data/questions.json",
+        "decision-hub/data/injuries.json"
+      ],
+      "gate": "Official inactive lists: one Game Book (WAS@NYG) recorded. Official snap counts: none. nflverse snap counts are third-party.",
+      "now": "Game Books recorded: 1. Official snap-count captures: 0. Third-party snap-count file: 1 (2026).",
+      "needed": "Official Game Books for every completed game, and an official snap-count source.",
+      "official_sources": [
+        "NFL Game Book, WAS@NYG (week 10 2026, as cited in the repo)"
+      ],
+      "note": "The Game Book identifies starters and inactives; it does not give depth rank."
+    },
+    {
+      "id": "R40",
+      "group": "Injuries & depth",
+      "requirement": "Use official NFL Game Books for actual starters and game-day status; do not infer depth rank or snaps",
+      "status": "Partial",
+      "evidence": [
+        "price-desk/data/flagged.json",
+        "price-desk/data/questions.json"
+      ],
+      "gate": "One Game Book is parsed (proof of concept). No scheduled ingestion exists.",
+      "now": "Game Books parsed: 1. Scheduled ingestion: none.",
+      "needed": "Scheduled ingestion for every completed game, with a row count check.",
+      "official_sources": [
+        "NFL Game Book, WAS@NYG (week 10 2026, as cited in the repo)"
+      ],
+      "note": ""
+    },
+    {
+      "id": "R41",
+      "group": "Injuries & depth",
+      "requirement": "Resolve the depth-order source (route a: official club depth pages; route b: snap counts) before building the backup-deficiency feature",
+      "status": "Blocked",
+      "evidence": [
+        "price-desk/data/flagged.json"
+      ],
+      "gate": "NFL.com team depth-chart URLs return 404 (checked 2026-11-12, per the flagged register). Route b needs an official snap-count source.",
+      "now": "Clubs verified for route a: 0 of 32.",
+      "needed": "One route verified for all 32 clubs.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R42",
+      "group": "Injuries & depth",
+      "requirement": "Run the 32-team roster and injured-reserve sweep before any team-level model is trusted",
+      "status": "Blocked",
+      "evidence": [
+        "injury-report-w10/data/week10_team_counts_manual.csv"
+      ],
+      "gate": "Week 10 report lists 28 teams. CHI, DEN, PHI and TB are absent and not confirmed as byes. The 32-team roster sweep has not run.",
+      "now": "Teams swept: 0 of 32 for roster and IR. Teams present in the Week 10 report: 28.",
+      "needed": "All 32 clubs swept, with each absence explained.",
+      "official_sources": [
+        "NFL.com Week 10 2026 injury report"
+      ],
+      "note": ""
+    },
+    {
+      "id": "R43",
+      "group": "Injuries & depth",
+      "requirement": "Model depth slots as groups, not as a single starter (ties and empty slots shown faithfully)",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "No depth-slot model exists; depth-order source is blocked (R41).",
+      "now": "Slot groups modelled: 0.",
+      "needed": "All club, unit and position slots represented as groups, including ties and empty slots.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R44",
+      "group": "Injuries & depth",
+      "requirement": "Model depth from playing time, not from jersey order",
+      "status": "Not built",
+      "evidence": [
+        "README.md"
+      ],
+      "gate": "No playing-time depth source is verified (R41, R39).",
+      "now": "Clubs modelled from playing time: 0.",
+      "needed": "A verified playing-time source for all 32 clubs.",
+      "official_sources": [],
+      "note": "The README states that starter status is never inferred."
+    },
+    {
+      "id": "R45",
+      "group": "Injuries & depth",
+      "requirement": "Reject depth order inferred from jersey number, experience or salary",
+      "status": "Partial",
+      "evidence": [
+        "README.md",
+        "line-desk/data/questions.json"
+      ],
+      "gate": "No written rejection of the jersey, experience or salary shortcut is in the repo. The label SG-05 in the Line Desk register refers to choosing a canonical originator, not to depth.",
+      "now": "README states that starter status is never inferred. Written rejection record: 0.",
+      "needed": "A dated rejection entry in the suggestions register, citing the rule.",
+      "official_sources": [],
+      "note": "Mis-reference: 'SG-05' is cited for this rejection in the brief, but the Line Desk register uses that label for a different question."
+    },
+    {
+      "id": "R46",
+      "group": "Injuries & depth",
+      "requirement": "Fix the two depth-parsing failures: strip Packers jersey-number prefixes and keep the raw string; Texans depth image needs an authorised structured source",
+      "status": "Blocked",
+      "evidence": [
+        "data/sources.json"
+      ],
+      "gate": "No Packers parser exists. No structured Texans depth source is recorded; data/sources.json mentions Texans only in a score check.",
+      "now": "Packers rows parsed: 0. Texans depth rows from an authorised source: 0.",
+      "needed": "A parser with a row-count test for the Packers, and an authorised structured source for the Texans.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R47",
+      "group": "Injuries & depth",
+      "requirement": "Official depth-chart register with date and source on every row",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "Depends on R41.",
+      "now": "Rows with date and source: 0.",
+      "needed": "A row for every club, unit and position slot, dated and linked.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R48",
+      "group": "Injuries & depth",
+      "requirement": "Show the depth of the replacement, not just the fact of a replacement",
+      "status": "Blocked",
+      "evidence": [
+        "price-desk/data/flagged.json"
+      ],
+      "gate": "Replacement-depth string columns are blank by policy (flagged register). Depth order is blocked (R41).",
+      "now": "Replacement-depth cells filled: 0.",
+      "needed": "Verified depth order for the replacement, from R41.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R49",
+      "group": "Injuries & depth",
+      "requirement": "Flag stale depth rows against the official transactions log",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "No official transactions log is captured in the repo.",
+      "now": "Transactions captured: 0.",
+      "needed": "A dated transactions log per club, with each depth row checked against it.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R50",
+      "group": "Injuries & depth",
+      "requirement": "Treat roster turnover as a first-class event; version depth and availability against the last official roster event",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "No roster-event log exists (R49).",
+      "now": "Versioned records: 0.",
+      "needed": "Versioned depth and availability records for each club and game week.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R51",
+      "group": "Injuries & depth",
+      "requirement": "Announced-starter evidence field, recorded from dated official news (not inferred)",
+      "status": "Partial",
+      "evidence": [
+        "injury-report-w10/data/week10_reserve_and_news.csv"
+      ],
+      "gate": "Brissett is not recorded in the file. Lock and McCord are.",
+      "now": "Rows in the reserve and news file: 8. Named starter changes recorded: 2 of 3 (Lock, McCord).",
+      "needed": "All three named cases with a dated official source.",
+      "official_sources": [
+        "NFL.com: Drew Lock, no injury designation",
+        "NFL.com: Malik Willis on IR, McCord in line to start"
+      ],
+      "note": ""
+    },
+    {
+      "id": "R52",
+      "group": "Injuries & depth",
+      "requirement": "Capture the reserve list so 'not listed' never means 'available'",
+      "status": "Partial",
+      "evidence": [
+        "injury-report-w10/data/week10_reserve_and_news.csv"
+      ],
+      "gate": "The reserve list is not published in the weekly report. Coverage is limited to cases named in news items.",
+      "now": "Reserve cases recorded from news: 3 (Willis, Henderson, Nacua). Full reserve lists captured: 0 of 32.",
+      "needed": "A full reserve-list capture for all 32 clubs.",
+      "official_sources": [
+        "NFL.com: Malik Willis on IR",
+        "NFL.com: news roundup, Nov 14 (Henderson IR)"
+      ],
+      "note": "Henderson is listed Out in the report while NFL.com news says IR; this conflict is flagged in the source file."
+    },
+    {
+      "id": "R53",
+      "group": "Injuries & depth",
+      "requirement": "Populate the three missing Lions game-status designations (Joseph, Mays, Reed)",
+      "status": "Built",
+      "evidence": [
+        "injury-report-w10/data/week10_rows_read.csv"
+      ],
+      "gate": "None.",
+      "now": "3 of 3 populated as Out (Kerby Joseph, Cade Mays, D.J. Reed), per the official Week 10 page read on 2026-11-15.",
+      "needed": "Not applicable.",
+      "official_sources": [
+        "NFL.com Week 10 2026 injury report"
+      ],
+      "note": ""
+    },
+    {
+      "id": "R54",
+      "group": "Injuries & depth",
+      "requirement": "Re-capture and republish the Week 10 injury tables with reconciled row and team counts",
+      "status": "Partial",
+      "evidence": [
+        "injury-report-w10/index.html",
+        "injury-report-w10/data/week10_team_counts_manual.csv"
+      ],
+      "gate": "Published counts (254 rows, 4 no-injury sections; 279 rows, 2 sections) are not reproduced by script. The manual team count sums to 347 across 28 teams.",
+      "now": "Teams with a manual count: 28 of 32. Reconciled counts: 0.",
+      "needed": "A script count that matches the official page, team by team, for all 32 clubs.",
+      "official_sources": [
+        "NFL.com Week 10 2026 injury report"
+      ],
+      "note": "Cincinnati's live-page count is 9 per the Week 10 session record in COORDINATION.md; the older brief said 4. Not re-counted in this session."
+    },
+    {
+      "id": "R55",
+      "group": "Injuries & depth",
+      "requirement": "Per-team view: starters out, replacements named, net injury count",
+      "status": "Not built",
+      "evidence": [
+        "injury-report-w10/data/week10_team_counts_manual.csv"
+      ],
+      "gate": "Starters are not identified (R41). Replacements are not named by depth.",
+      "now": "Team views: 0 of 32. Team counts available: 28.",
+      "needed": "All 32 team views once R41 and R42 are cleared.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R56",
+      "group": "Injuries & depth",
+      "requirement": "Interactive offense vs. defense matchup deficiency matrix (1st to 4th string)",
+      "status": "Blocked",
+      "evidence": [],
+      "gate": "Depends on verified depth order (R41).",
+      "now": "Matrix cells: 0.",
+      "needed": "Verified depth order for every club, then the matrix.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R57",
+      "group": "Injuries & depth",
+      "requirement": "Injury designation reliability scored before use as a feature (play rate per designation, with confidence intervals)",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "Needs several seasons of official designations joined to official inactive lists (R39).",
+      "now": "Seasons joined: 0.",
+      "needed": "Several seasons of joined official data, then play rates with confidence intervals.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R58",
+      "group": "Injuries & depth",
+      "requirement": "Calibrate what 'Questionable' means empirically instead of using old percentages",
+      "status": "Not built",
+      "evidence": [
+        "data/league_facts.json"
+      ],
+      "gate": "Depends on R57. Official text gives no percentages.",
+      "now": "Calibrations: 0.",
+      "needed": "A calibration from joined official data (R57).",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R59",
+      "group": "Injuries & depth",
+      "requirement": "Archive weekly injury reports for past seasons",
+      "status": "Not built",
+      "evidence": [
+        "decision-hub/data/injuries.json"
+      ],
+      "gate": "Only one season of injury data is present (2026, nflverse). No official archive.",
+      "now": "Seasons archived from official sources: 0. Seasons present from nflverse: 1.",
+      "needed": "Official weekly reports for every past season in the test window.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R60",
+      "group": "Injuries & depth",
+      "requirement": "Injury and personnel ablations: the same model with and without personnel features, reported with uncertainty (replaces fixed penalties)",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "No personnel features are verified (R41, R39). No ablation exists.",
+      "now": "Ablations run: 0.",
+      "needed": "Paired model runs with and without verified features, on a chronological holdout, with intervals.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R61",
+      "group": "Injuries & depth",
+      "requirement": "Use snap counts as the starter proxy only when the depth chart is unavailable",
+      "status": "Not built",
+      "evidence": [
+        "decision-hub/data/injuries.json"
+      ],
+      "gate": "The snap-count file is third-party. Using it as a proxy also needs an official source (R39).",
+      "now": "Starter splits computed: 0.",
+      "needed": "An official snap-count source for every club and game.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R62",
+      "group": "Governance & publishing",
+      "requirement": "Every table row carries a source link to an official site; unverifiable values left blank and flagged",
+      "status": "Not met",
+      "evidence": [
+        "pages/lines.html",
+        "scripts/validate_data.py"
+      ],
+      "gate": "Rows on the Lines page link to nflverse-data, a community source. README: the requirement is not yet met across the repository.",
+      "now": "Third-party source links in published tables: at least 1 page (Lines).",
+      "needed": "Zero third-party links in published tables, or each one relabelled and excluded from official claims.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R63",
+      "group": "Governance & publishing",
+      "requirement": "Unverifiable values left blank and listed on the Flagged for Review page",
+      "status": "Built",
+      "evidence": [
+        "data/flagged.json",
+        "pages/flagged.html"
+      ],
+      "gate": "None for the mechanism.",
+      "now": "Flagged register present and linked.",
+      "needed": "Not applicable.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R64",
+      "group": "Governance & publishing",
+      "requirement": "Executive summary outlining important details",
+      "status": "Built",
+      "evidence": [
+        "EXECUTIVE_SUMMARY.md",
+        "pages/executive.html"
+      ],
+      "gate": "None.",
+      "now": "Present in Markdown and on the site.",
+      "needed": "Not applicable.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R65",
+      "group": "Governance & publishing",
+      "requirement": "Suggestions section, so suggestions can be reviewed and a path chosen before any change is implemented",
+      "status": "Built",
+      "evidence": [
+        "suggestions/data/suggestions.json",
+        "suggestions/pages/suggestions.html"
+      ],
+      "gate": "None for the mechanism. Choices are awaiting the owner.",
+      "now": "Suggestion register present; no suggestion marked implemented by this session.",
+      "needed": "Not applicable.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R66",
+      "group": "Governance & publishing",
+      "requirement": "Questions, information, and answers that must be addressed before a decision, including what is missing and how to discover it",
+      "status": "Built",
+      "evidence": [
+        "suggestions/data/questions.json",
+        "suggestions/pages/questions.html"
+      ],
+      "gate": "None for the mechanism. Many questions remain open.",
+      "now": "Question register present.",
+      "needed": "Not applicable.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R67",
+      "group": "Governance & publishing",
+      "requirement": "Drift alarm on every scraper: pin row counts and required fields; fail the build loudly on a missing field",
+      "status": "Partial",
+      "evidence": [
+        "decision-hub/scripts/audit_root.py",
+        "scripts/validate_data.py"
+      ],
+      "gate": "The drift check covers the verification record. Scrapers with pinned row counts and required fields are not confirmed.",
+      "now": "Scrapers with pinned row counts: 0 confirmed.",
+      "needed": "Each scraper pinned to its expected row count and required fields, with a failing test.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R68",
+      "group": "Governance & publishing",
+      "requirement": "Durable immutable snapshot storage outside the static site, with freshness monitoring and alerts on source or schema changes",
+      "status": "Not built",
+      "evidence": [
+        "decision-hub/data/injuries.json"
+      ],
+      "gate": "Snapshots are committed to git. No freshness monitor or alert rule exists.",
+      "now": "Alert rules: 0. Freshness monitors: 0.",
+      "needed": "A store outside the static site, plus one alert rule per source.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R69",
+      "group": "Governance & publishing",
+      "requirement": "Split the site into a public analysis layer and a private data layer until the terms are read",
+      "status": "Not built",
+      "evidence": [
+        "data/raw"
+      ],
+      "gate": "No private store exists. Raw data is committed under data/raw.",
+      "now": "Private-layer files: 0.",
+      "needed": "Raw row-level data moved to a private store, with the terms read and recorded.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R70",
+      "group": "Governance & publishing",
+      "requirement": "Weekly 'what changed' diff (rank change, rating change, availability change) instead of a static snapshot",
+      "status": "Not built",
+      "evidence": [],
+      "gate": "No weekly snapshots are stored for diffing.",
+      "now": "Weekly diffs: 0.",
+      "needed": "Two consecutive weekly snapshots, then a diff column.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R71",
+      "group": "Governance & publishing",
+      "requirement": "Decision-readiness table on the landing page: one row per requirement, with the gate that blocks it and the number that would clear it",
+      "status": "Partial",
+      "evidence": [
+        "readiness/data/requirements.json",
+        "readiness/scripts/build.py"
+      ],
+      "gate": "Not linked from the landing page. The root index.html is generated by scripts/build_site.py, which is claimed by other open PRs.",
+      "now": "Table published at readiness/index.html (generated by readiness/scripts/build.py). Landing-page link: 0.",
+      "needed": "A link on the landing page, added by the integration owner.",
+      "official_sources": [],
+      "note": "Logged as a request in COORDINATION.md."
+    },
+    {
+      "id": "R72",
+      "group": "Governance & publishing",
+      "requirement": "Line-by-line repository review with links for manual review and flagged irregularities",
+      "status": "Partial",
+      "evidence": [
+        "docs/REPOSITORY_STATUS_2026-11-15.md",
+        "data/flagged.json"
+      ],
+      "gate": "A repository-wide line-by-line review is not complete. The 2026-11-15 audit covers status claims, not every row.",
+      "now": "Audit document present. Rows reviewed line by line: not counted.",
+      "needed": "A line-by-line review record for each table.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R73",
+      "group": "Governance & publishing",
+      "requirement": "Parallel-session coordination: claim, log, scope and handoff in a shared board",
+      "status": "Built",
+      "evidence": [
+        "COORDINATION.md"
+      ],
+      "gate": "None for the mechanism.",
+      "now": "Board present with claims and release records.",
+      "needed": "Not applicable.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R74",
+      "group": "Governance & publishing",
+      "requirement": "Pull request and merge to main with a summary, sources and flagged irregularities; GitHub Pages deploy confirmed",
+      "status": "Built",
+      "evidence": [
+        "COORDINATION.md"
+      ],
+      "gate": "None for the mechanism.",
+      "now": "Recorded in prior sessions' release records; this session's record is in COORDINATION.md.",
+      "needed": "Not applicable.",
+      "official_sources": [],
+      "note": ""
+    },
+    {
+      "id": "R75",
+      "group": "Governance & publishing",
+      "requirement": "Automate multi-day availability snapshots so practice designations can be replayed as they were known",
+      "status": "Not built",
+      "evidence": [
+        ".github/workflows/fetch-injuries.yml"
+      ],
+      "gate": "Same as R37 and R38: scheduled capture is two days a week and stores no raw official response.",
+      "now": "Replayable official snapshots: 0 days.",
+      "needed": "A capture for each day of each game week.",
+      "official_sources": [],
+      "note": ""
+    }
+  ]
+}
