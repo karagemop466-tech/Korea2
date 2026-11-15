@@ -1,16 +1,17 @@
 {
  "alarms": [],
  "deltas_appended": 0,
- "new_bodies": 2,
- "run_finished_utc": "2026-11-15T18:15:43Z",
- "run_id": "43745675705",
- "run_started_utc": "2026-11-15T18:15:18Z",
+ "new_bodies": 3,
+ "run_finished_utc": "2026-11-15T18:20:01Z",
+ "run_id": "43746079211",
+ "run_started_utc": "2026-11-15T18:19:32Z",
  "season": 2026,
  "source": "https://www.nfl.com/injuries/league/2026/reg{week}",
  "weeks": {
   "1": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "d93a8112f9f3a5860ebece1b9f36fe5d8eb6efbb02ffe8da5bc087a1414d5026",
    "declared_week": 1,
    "flags": [
     "dnp_without_game_status:ATL:Jake Matthews",
@@ -27,8 +28,8 @@
     "title_week_static:title says 10, body says 1"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:18Z",
-   "parsed_file": "parsed/684485a13057e43213833f0d5221959409bd77fbd0928c1c386be5945ec6f8a5.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:32Z",
+   "parsed_file": "parsed/d93a8112f9f3a5860ebece1b9f36fe5d8eb6efbb02ffe8da5bc087a1414d5026.v1.2.json",
    "rows": 182,
    "sha256": "684485a13057e43213833f0d5221959409bd77fbd0928c1c386be5945ec6f8a5",
    "tables": 32,
@@ -36,7 +37,8 @@
   },
   "10": {
    "alarm": false,
-   "body_new": true,
+   "body_new": false,
+   "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
     "dnp_without_game_status:ATL:Liam McCullough",
@@ -57,8 +59,8 @@
     "dnp_without_game_status:WAS:Treylon Burks"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:34Z",
-   "parsed_file": "parsed/a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:50Z",
+   "parsed_file": "parsed/e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f.v1.2.json",
    "rows": 347,
    "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
    "tables": 28,
@@ -67,6 +69,7 @@
   "11": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
     "dnp_without_game_status:ATL:Liam McCullough",
@@ -88,7 +91,7 @@
     "week_mismatch:requested 11 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:35Z",
+   "last_fetch_utc": "2026-11-15T18:19:51Z",
    "parsed_file": null,
    "rows": 347,
    "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
@@ -98,6 +101,7 @@
   "12": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
     "dnp_without_game_status:ATL:Liam McCullough",
@@ -119,7 +123,7 @@
     "week_mismatch:requested 12 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:36Z",
+   "last_fetch_utc": "2026-11-15T18:19:53Z",
    "parsed_file": null,
    "rows": 347,
    "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
@@ -128,7 +132,8 @@
   },
   "13": {
    "alarm": false,
-   "body_new": false,
+   "body_new": true,
+   "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
     "dnp_without_game_status:ATL:Liam McCullough",
@@ -150,16 +155,17 @@
     "week_mismatch:requested 13 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:38Z",
+   "last_fetch_utc": "2026-11-15T18:19:54Z",
    "parsed_file": null,
    "rows": 347,
-   "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
+   "sha256": "2f30814cca03f20103b116418d8278ce10a268ae0c2168c74a483777d01d4b9a",
    "tables": 28,
    "teams": 28
   },
   "14": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
     "dnp_without_game_status:ATL:Liam McCullough",
@@ -181,7 +187,7 @@
     "week_mismatch:requested 14 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:39Z",
+   "last_fetch_utc": "2026-11-15T18:19:55Z",
    "parsed_file": null,
    "rows": 347,
    "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
@@ -191,6 +197,7 @@
   "15": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
     "dnp_without_game_status:ATL:Liam McCullough",
@@ -212,7 +219,7 @@
     "week_mismatch:requested 15 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:40Z",
+   "last_fetch_utc": "2026-11-15T18:19:57Z",
    "parsed_file": null,
    "rows": 347,
    "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
@@ -222,6 +229,7 @@
   "16": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
     "dnp_without_game_status:ATL:Liam McCullough",
@@ -243,7 +251,7 @@
     "week_mismatch:requested 16 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:41Z",
+   "last_fetch_utc": "2026-11-15T18:19:58Z",
    "parsed_file": null,
    "rows": 347,
    "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
@@ -253,6 +261,7 @@
   "17": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
     "dnp_without_game_status:ATL:Liam McCullough",
@@ -274,7 +283,7 @@
     "week_mismatch:requested 17 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:42Z",
+   "last_fetch_utc": "2026-11-15T18:19:59Z",
    "parsed_file": null,
    "rows": 347,
    "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
@@ -284,6 +293,7 @@
   "18": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "e59552345a734b481464f1970eb9857174e5a85a7766d683fa707cf622b66b0f",
    "declared_week": 10,
    "flags": [
     "dnp_without_game_status:ATL:Liam McCullough",
@@ -305,7 +315,7 @@
     "week_mismatch:requested 18 page shows 10"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:43Z",
+   "last_fetch_utc": "2026-11-15T18:20:00Z",
    "parsed_file": null,
    "rows": 347,
    "sha256": "a5815d33237ef80d619a37cfea303401a055b0f65bee956a95424408aaa60d22",
@@ -314,7 +324,8 @@
   },
   "2": {
    "alarm": false,
-   "body_new": false,
+   "body_new": true,
+   "content_sha256": "ce8e5e4c2e3b97b593fc62a0fbfb1cd3a375ebfe6e8333ec455dec10b3fadffa",
    "declared_week": 2,
    "flags": [
     "dnp_without_game_status:ATL:Jake Matthews",
@@ -336,16 +347,17 @@
     "title_week_static:title says 10, body says 2"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:19Z",
-   "parsed_file": "parsed/6edcbe3773d0c78cbf4f98b750dadd76a37b5686e879cc47046a37acc193daf8.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:33Z",
+   "parsed_file": "parsed/ce8e5e4c2e3b97b593fc62a0fbfb1cd3a375ebfe6e8333ec455dec10b3fadffa.v1.2.json",
    "rows": 251,
-   "sha256": "6edcbe3773d0c78cbf4f98b750dadd76a37b5686e879cc47046a37acc193daf8",
+   "sha256": "ff3a31d6d8c178b5779664fd0dab6f074d018eddab6b7bd58424beebbadf2a4f",
    "tables": 32,
    "teams": 32
   },
   "3": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "ba5e14f2d96905da15d4d5a2cd92354b6e2a9de610b99f3d027c7e38cfdb7f42",
    "declared_week": 3,
    "flags": [
     "dnp_without_game_status:ATL:A.J. Terrell",
@@ -361,8 +373,8 @@
     "title_week_static:title says 10, body says 3"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:20Z",
-   "parsed_file": "parsed/b66571b849fb9e1c62783afcd5c3e70b126751ee33289a3bf1898cfa059250de.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:39Z",
+   "parsed_file": "parsed/ba5e14f2d96905da15d4d5a2cd92354b6e2a9de610b99f3d027c7e38cfdb7f42.v1.2.json",
    "rows": 301,
    "sha256": "b66571b849fb9e1c62783afcd5c3e70b126751ee33289a3bf1898cfa059250de",
    "tables": 32,
@@ -371,6 +383,7 @@
   "4": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "7291929160d52e1c24ad8d740009938e18f926be5e2dcd30f1b124c89863e622",
    "declared_week": 4,
    "flags": [
     "dnp_without_game_status:ATL:Jake Matthews",
@@ -389,8 +402,8 @@
     "title_week_static:title says 10, body says 4"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:21Z",
-   "parsed_file": "parsed/5f11645a96448493caf34446af4d1a52be458a59c5e27314395a753bdb08bc56.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:41Z",
+   "parsed_file": "parsed/7291929160d52e1c24ad8d740009938e18f926be5e2dcd30f1b124c89863e622.v1.2.json",
    "rows": 318,
    "sha256": "5f11645a96448493caf34446af4d1a52be458a59c5e27314395a753bdb08bc56",
    "tables": 32,
@@ -399,6 +412,7 @@
   "5": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "faf309af809e530298038d2b51e49ffb36563c7bf6a91c47c04eaaf28fa7ea3c",
    "declared_week": 5,
    "flags": [
     "dnp_without_game_status:BAL:Calais Campbell",
@@ -419,8 +433,8 @@
     "title_week_static:title says 10, body says 5"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:22Z",
-   "parsed_file": "parsed/68143808e57987239f874d668db23edaba130c68a69cfd28e2af8f72fcbd0f64.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:42Z",
+   "parsed_file": "parsed/faf309af809e530298038d2b51e49ffb36563c7bf6a91c47c04eaaf28fa7ea3c.v1.2.json",
    "rows": 361,
    "sha256": "68143808e57987239f874d668db23edaba130c68a69cfd28e2af8f72fcbd0f64",
    "tables": 30,
@@ -429,6 +443,7 @@
   "6": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "6ffb67cb62b04c242a6ed02b05d7475bfb319ac89d58e3bcf4fde0b73d109cec",
    "declared_week": 6,
    "flags": [
     "dnp_without_game_status:BAL:Calais Campbell",
@@ -444,8 +459,8 @@
     "title_week_static:title says 10, body says 6"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:23Z",
-   "parsed_file": "parsed/b31300b570c00177b97e49643aca4680177ffd612eefd89e04db61630b2eaa7b.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:43Z",
+   "parsed_file": "parsed/6ffb67cb62b04c242a6ed02b05d7475bfb319ac89d58e3bcf4fde0b73d109cec.v1.2.json",
    "rows": 376,
    "sha256": "b31300b570c00177b97e49643aca4680177ffd612eefd89e04db61630b2eaa7b",
    "tables": 28,
@@ -453,7 +468,8 @@
   },
   "7": {
    "alarm": false,
-   "body_new": true,
+   "body_new": false,
+   "content_sha256": "b2201b1c3462abe2f1fdcdf139c43914881a1f8d6010251dc491fac569717d5d",
    "declared_week": 7,
    "flags": [
     "dnp_without_game_status:AZ:Devin Duvernay",
@@ -476,8 +492,8 @@
     "title_week_static:title says 10, body says 7"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:25Z",
-   "parsed_file": "parsed/09f1a4af8265e13b7b7f7a55a127064e25ebe670e54627581d7369b73493f833.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:44Z",
+   "parsed_file": "parsed/b2201b1c3462abe2f1fdcdf139c43914881a1f8d6010251dc491fac569717d5d.v1.2.json",
    "rows": 350,
    "sha256": "09f1a4af8265e13b7b7f7a55a127064e25ebe670e54627581d7369b73493f833",
    "tables": 28,
@@ -486,6 +502,7 @@
   "8": {
    "alarm": false,
    "body_new": false,
+   "content_sha256": "59008e9bce1898e76d559bbcf5f2343f00ad35b7c1ae916648ce5d030ee6d54f",
    "declared_week": 8,
    "flags": [
     "dnp_without_game_status:ATL:Chris Lindstrom",
@@ -502,8 +519,8 @@
     "title_week_static:title says 10, body says 8"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:32Z",
-   "parsed_file": "parsed/a162d31e1c77596062e1c5234a603eaa513d37e7ce300df138432febfa430d01.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:45Z",
+   "parsed_file": "parsed/59008e9bce1898e76d559bbcf5f2343f00ad35b7c1ae916648ce5d030ee6d54f.v1.2.json",
    "rows": 320,
    "sha256": "a162d31e1c77596062e1c5234a603eaa513d37e7ce300df138432febfa430d01",
    "tables": 28,
@@ -511,7 +528,8 @@
   },
   "9": {
    "alarm": false,
-   "body_new": false,
+   "body_new": true,
+   "content_sha256": "5ba6b13b683c6f19100af11480723f12850e69dda62364101e564e66d11fa70d",
    "declared_week": 9,
    "flags": [
     "dnp_without_game_status:AZ:Jacoby Brissett",
@@ -538,10 +556,10 @@
     "title_week_static:title says 10, body says 9"
    ],
    "http_status": 200,
-   "last_fetch_utc": "2026-11-15T18:15:33Z",
-   "parsed_file": "parsed/f02e64b2077b181636bad019cff9f251ba7b0d031e855504636eab8c3ee2fa76.v1.1.json",
+   "last_fetch_utc": "2026-11-15T18:19:46Z",
+   "parsed_file": "parsed/5ba6b13b683c6f19100af11480723f12850e69dda62364101e564e66d11fa70d.v1.2.json",
    "rows": 362,
-   "sha256": "f02e64b2077b181636bad019cff9f251ba7b0d031e855504636eab8c3ee2fa76",
+   "sha256": "6686089c7368e10e0d573a97bcb73cbeda2c7191c6fda8402a3ef9147362f101",
    "tables": 30,
    "teams": 30
   }
