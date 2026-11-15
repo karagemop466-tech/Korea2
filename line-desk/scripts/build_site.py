@@ -118,6 +118,86 @@ def page(current: str, title: str, body: str) -> str:
 """
 
 
+def readiness_matrix(req: dict, flagged: dict) -> str:
+    """Render one sourced readiness row for every registered requirement."""
+    if not req.get("readiness_matrix_as_of") or not req.get("readiness_matrix_note"):
+        raise SystemExit("requirements.json is missing readiness-matrix date/policy metadata")
+    requirement_rows = req["rows"]
+    ids = [r["id"] for r in requirement_rows]
+    if len(ids) != len(set(ids)):
+        raise SystemExit("requirements.json contains duplicate requirement ids")
+    flag_ids = {r["id"] for r in flagged["rows"]}
+    rows = []
+    for r in requirement_rows:
+        required = ("readiness_state", "blocking_gate", "observed_value",
+                    "observed_as_of", "proposed_clear_threshold", "source_url",
+                    "source_label", "evidence_path", "review_flags")
+        missing = [key for key in required if key not in r]
+        if missing:
+            raise SystemExit(f"{r.get('id', 'unknown')}: readiness fields missing: {missing}")
+        if not r["proposed_clear_threshold"].startswith("Proposal:"):
+            raise SystemExit(f"{r['id']}: threshold must be labelled Proposal:")
+        if not r["source_url"].startswith("https://"):
+            raise SystemExit(f"{r['id']}: readiness source must use https")
+        if not r["source_label"]:
+            raise SystemExit(f"{r['id']}: readiness source label is blank")
+        if not os.path.isfile(os.path.join(ROOT, r["evidence_path"])):
+            raise SystemExit(f"{r['id']}: project evidence does not exist: {r['evidence_path']}")
+        if r["observed_value"] is None and not r.get("observed_blank_reason"):
+            raise SystemExit(f"{r['id']}: blank observed value needs a reason")
+        unknown_flags = set(r["review_flags"]) - flag_ids
+        if unknown_flags:
+            raise SystemExit(f"{r['id']}: unknown review flags: {sorted(unknown_flags)}")
+
+        state = r["readiness_state"]
+        cls = "ok" if state in {"Ready", "Ready for current scope", "Review-ready", "Done"} else "warn"
+        requirement_cell = (
+            f"<td><b>{esc(r['id'])}</b><br>{esc(r['requirement'])}<br>"
+            f"<span class=\"badge {cls}\">{esc(state)}</span><br>"
+            f"<small>Register: {esc(r['status'])}</small></td>"
+        )
+        observed_parts = []
+        if r["observed_value"] is None:
+            reason = esc(r["observed_blank_reason"])
+            observed_parts.append(f'<span class="blank" title="{reason}">&mdash;</span>')
+        else:
+            observed_parts.append(esc(r["observed_value"]))
+        observed_parts.append(f'<br><small>As of {esc(r["observed_as_of"])}</small>')
+        for gap in r.get("observed_missing_fields", []):
+            observed_parts.append(
+                f'<br><small class="blank" title="{esc(gap["reason"])}">'
+                f'{esc(gap["label"])}: &mdash; (unverified)</small>'
+            )
+        if r["review_flags"]:
+            flag_links = ", ".join(
+                f'<a href="pages/flagged.html#{esc(fid)}">{esc(fid)}</a>'
+                for fid in r["review_flags"]
+            )
+            observed_parts.append(f'<br><small>Review: {flag_links}</small>')
+        observed_cell = "<td>" + "".join(observed_parts) + "</td>"
+
+        evidence_url = f"https://github.com/karagemop466-tech/Korea2/blob/main/{r['evidence_path']}"
+        source_links = a(r["source_url"], r["source_label"])
+        if evidence_url != r["source_url"]:
+            evidence_link = a(evidence_url, f"Project evidence: {r['evidence_path']}")
+            source_links += f'<br><small>{evidence_link}</small>'
+        rows.append([
+            requirement_cell,
+            f"<td>{esc(r['blocking_gate'])}</td>",
+            observed_cell,
+            f"<td><strong>PROPOSAL</strong><br>{esc(r['proposed_clear_threshold'])}</td>",
+            f"<td>{source_links}</td>",
+        ])
+    return f"""
+<section class="block" id="readiness-matrix">
+<h2>Decision-readiness matrix</h2>
+<p class="lead">One row per registered requirement. {esc(req['readiness_matrix_note'])}</p>
+{table(["Requirement / state", "Blocking gate", "Verified observation", "Proposed clear-number / threshold", "Official or project-primary source"], rows,
+       f'{len(requirement_rows)} registered requirements; evidence links point to the source and the project record.')}
+</section>
+"""
+
+
 # --------------------------------------------------------------------------- #
 # builders
 # --------------------------------------------------------------------------- #
@@ -130,6 +210,7 @@ def build_index() -> str:
     gates = load("gates.json")
     req = load("requirements.json")
     flagged = load("flagged.json")
+    matrix_html = readiness_matrix(req, flagged)
 
     statuses = [r["status"].lower() for r in req["rows"]]
     built = sum(1 for s in statuses if s.startswith("built"))
@@ -158,7 +239,7 @@ def build_index() -> str:
     kpis = (
         kpi(str(feed["verified_rows"]), "verified results", "NFL.com finals, weeks 7-10 Thu")
         + kpi(str(len(corr["correlations"])), "official correlations", "n = 32 / 32 / 64, CI each")
-        + kpi(f"{snap['coverage']['market_open_captured']}/{snap['coverage']['market_records']}", "market prices captured", "no official price source")
+        + kpi(f"{snap['coverage']['market_open_captured']}/{snap['coverage']['market_records']}", "market prices captured", "no permitted feed registered")
         + kpi(f"{lb['n_qualified']}/{lb['n_candidates']}", "strategies qualified", "10/10 gates required")
         + kpi(f"{depth['coverage']['rows_with_string_tier']}/{depth['coverage']['rows']}", "depth tiers sourced", "official depth chart 404s")
         + kpi(f"{built}/{len(req['rows'])}", "requirements built", f"{partial} partial, {other} other")
@@ -168,16 +249,19 @@ def build_index() -> str:
 <section class="kpis">{kpis}</section>
 <section class="block">
 <h2>What this desk adds</h2>
+<p><a href="#readiness-matrix">Jump to the 19-row decision-readiness matrix</a> ·
+<a href="pages/requirements.html">Open the detailed requirement trace</a></p>
 <div class="cards">{grid}</div>
 </section>
+{matrix_html}
 <section class="block note">
 <h3>Honest state of play</h3>
 <p>The verified results feed and the official-only correlation set are <b>live and sourced</b>.
-The price-snapshot store exists as a contract with <b>0 market captures</b> because no official
-price source exists (the NFL's official betting feed goes to operators via an exclusive
-distributor). Because prices are absent, closing-line value cannot be measured, no strategy can
-be promoted to live, and the demotion gate has no subject &mdash; it is defined, dry-run and
-waiting. {gates['dry_run']['n_stay_paper']} of {gates['dry_run']['n_evaluated']} candidates stay PAPER.
+The price-snapshot store has <b>0 market captures</b>. The NFL describes an official sports-betting
+data feed distributed to operators via an exclusive distributor; no permitted source or captured
+feed is registered in this desk. Without prices, closing-line value cannot be measured, no strategy
+can be promoted to live, and the demotion gate has no live subject &mdash; it is defined and dry-run.
+{gates['dry_run']['n_stay_paper']} of {gates['dry_run']['n_evaluated']} candidates stay PAPER.
 Every blocked value is blank and listed on <a href="pages/flagged.html">Flagged for review</a>.</p>
 </section>
 """
@@ -189,7 +273,7 @@ def build_requirements() -> str:
     rows = []
     for r in req["rows"]:
         rows.append([
-            f"<td><b>{esc(r['id'])}</b></td>",
+            f"<td><span id=\"{esc(r['id'])}\"><b>{esc(r['id'])}</b></span></td>",
             f"<td>{esc(r['requirement'])}</td>",
             f"<td><span class=\"badge {'ok' if r['status'].startswith(('built','done')) else 'warn'}\">{esc(r['status'])}</span></td>",
             f"<td>{esc(r['what_exists'])}</td>",
@@ -662,7 +746,7 @@ def build_flagged() -> str:
     rows = []
     for r in f["rows"]:
         rows.append([
-            f"<td><b>{esc(r['id'])}</b></td>",
+            f"<td><span id=\"{esc(r['id'])}\"><b>{esc(r['id'])}</b></span></td>",
             f"<td><span class=\"badge {'bad' if r['severity']=='high' else 'warn' if r['severity']=='medium' else ''}\">{esc(r['severity'])}</span></td>",
             f"<td>{esc(r['issue'])}</td>",
             f"<td>{esc(r['handling'])}</td>",
