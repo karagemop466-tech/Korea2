@@ -2923,6 +2923,27 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 
 ---
 
+---
+
+# Session board — `arena/830e1add-korea2` (readiness gates + verified Week 10 corrections)
+
+**Session ID:** `arena/830e1add-korea2` (fixed branch supplied by Arena; this session will not create or switch branches).
+**Claimed:** 2026-11-15 UTC. **Base:** `1d049f94b2381ec6f203673c0559ac3db0847898` (`origin/main`).
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| ED-0 | Claim this non-overlapping scope before implementation | done | `arena/830e1add-korea2` | this section of `COORDINATION.md` |
+| ED-1 | Add a decision-readiness matrix to the existing Line Desk landing page: one row per registered requirement; state its blocking gate, observed value (blank unless verified), proposed clear-number/threshold, and an official or project-primary source link. Label all project thresholds as proposals, never as official facts. | in progress | `arena/830e1add-korea2` | `line-desk/data/requirements.json`, `line-desk/scripts/build_site.py`, regenerated `line-desk/index.html`, `line-desk/tests/` |
+| ED-2 | Correct the three blank Detroit Week 10 game-status cells only where directly confirmed by the official NFL report; record the retrieval date/source and preserve the stale-row-count issue as unverified rather than fabricating a new total. | in progress | `arena/830e1add-korea2` | `decision-desk/data/injuries.json`, `decision-desk/data/sources.json`, `decision-desk/data/flagged.json`, `decision-desk/scripts/build_site.py`, regenerated `decision-desk/pages/injuries.html` |
+| ED-3 | Regenerate only the review-board's derived inventory/register outputs required by the ED-1/ED-2 commits, then verify the board; handoff limited to generated artifacts from stale PR #99. | in progress | `arena/830e1add-korea2` | `review-board/data/`, `review-board/pages/hubmap.html` |
+| ED-4 | Re-run focused and repository verification; open/merge this branch's PR only after checks and Pages deploy succeed; record evidence and remaining gaps. | unclaimed | `arena/830e1add-korea2` | this section, PR |
+
+**Coordination and handoff.** Read the full board and inspected the open PR file lists before claiming. PRs #93/#97 own root `index.html`, `pages/`, and `scripts/lib/site.py`; those shared landing/navigation files remain read-only here. The existing `line-desk/` and `decision-desk/` owners have completed their recorded tasks. PR #99's last update was 2026-11-13T23:43:58Z (more than 60 minutes before this claim); taking over only its mechanical generated-register refresh, not its authored review-board implementation, because the repo-wide inventory verifier must see changes under other hubs. No files in PR #93/#97/#102/#109/#112 are edited or merged by this claim. The root-site integration request (link the Line Desk/readiness table from the root navigation) is logged below, not actioned while those root-nav PRs are open.
+
+**Official source checked before the data correction:** NFL.com Week 10, 2026 injury report, retrieved through the page-retrieval tool on 2026-11-15: `https://www.nfl.com/injuries/league/2026/reg10`. The page's Detroit Lions table explicitly lists Kerby Joseph (S), Cade Mays (C), and D.J. Reed (CB) with game status `Out`. This source establishes those three values only; it does not independently establish a complete row count, archive hash, or every other Week 10 field.
+
+---
+
 # Session board — `arena/cbbab023-korea2` (final integration, stale-PR takeover and live re-verification)
 
 **Session ID:** `arena/cbbab023-korea2` (Arena-assigned branch fixed; base `f7b8e8f` of `main`).
