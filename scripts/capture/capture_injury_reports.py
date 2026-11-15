@@ -6,8 +6,11 @@ Source: https://www.nfl.com/injuries/league/<season>/reg<week>  (NFL.com, offici
 Per run, for every regular-season week requested:
 
   1. fetch the page and keep the raw response bytes;
-  2. content-address the bytes by SHA-256 and store them ONCE, gzipped, under bodies/
-     (write-once: an existing body is never overwritten);
+  2. record the raw SHA-256 of every fetch. A body is stored (gzipped, write-once, under
+     bodies/) the first time each CONTENT state is seen for a week. The content hash is the
+     SHA-256 of the parsed rows plus the declared week, so byte-only noise (for example a
+     random data-jsonid in a carousel, seen on 2026-11-15) keeps its raw hash but adds no
+     new body and no delta;
   3. append ONE line to manifest.jsonl for every fetch (the manifest is never rewritten):
      UTC fetch time, the server's Date and Last-Modified headers, HTTP status, byte count,
      SHA-256, whether the body is new, and the parse result with its flags;
