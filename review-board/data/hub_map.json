@@ -3,11 +3,11 @@
   "code": 6,
   "data register": 1,
   "other": 1,
-  "site hub": 22
+  "site hub": 23
  },
  "history": "full",
- "base_commit": "83f9e8f",
- "hub_count": 30,
+ "base_commit": "9c1b3e0",
+ "hub_count": 31,
  "nav_target_count": 37,
  "nav_duplicate_labels": [
   {
@@ -447,6 +447,17 @@
    "nav_labels": []
   },
   {
+   "dir": "readiness",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 1,
+   "data_files": 1,
+   "scripts": 1,
+   "last_touched": "2026-11-15",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
    "dir": "research-desk",
    "kind": "site hub",
    "index_page": true,
@@ -591,8 +602,8 @@
    "nav_labels": []
   }
  ],
- "total_pages": 232,
- "total_data_files": 192,
+ "total_pages": 233,
+ "total_data_files": 193,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "83f9e8f61415a9bc132ac42bf5a4582c5e56d625"
+ "_generated_from_repo_commit": "9c1b3e0c5dffbf6459fa4f877b1537715017637a"
 }
