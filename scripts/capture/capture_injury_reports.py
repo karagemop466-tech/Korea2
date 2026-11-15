@@ -63,7 +63,7 @@ TEAMS = {
 # Abbreviations as the NFL.com page itself uses them in logo paths (observed 2026-11-15:
 # the Cardinals are AZ and the Rams are LA in clubs/logos/...). Aliases map other spellings.
 ALIASES = {"ARI": "AZ", "LAR": "LA"}
-PARSER_VERSION = "1.1"
+PARSER_VERSION = "1.2"
 DECLARED_WEEK_RE = re.compile(r"Injuries\s*-\s*WEEK\s*(\d+)", re.I)
 TITLE_RE = re.compile(r"<title>(.*?)</title>", re.I | re.S)
 LOGO_RE = re.compile(r"clubs/logos/([A-Z]{2,3})(?![A-Za-z])")
@@ -214,6 +214,10 @@ def parse_report(html: str, season: int, week: int) -> dict:
             if practice == "Did Not Participate In Practice" and not game:
                 flags.append(f"dnp_without_game_status:{team}:{player}")
     names = [(r["team"], r["player"]) for r in rows]
+    canon = json.dumps({"declared_week": shown, "rows": sorted(
+        [[r["team"], r["player"], r["position"], r["injuries"], r["practice_status"], r["game_status"]] for r in rows])},
+        ensure_ascii=False, sort_keys=True).encode("utf-8")
+    content_sha = hashlib.sha256(canon).hexdigest()
     for key in sorted({k for k in names if names.count(k) > 1}):
         flags.append(f"duplicate_player:{key[0]}:{key[1]}")
     return {
@@ -221,6 +225,7 @@ def parse_report(html: str, season: int, week: int) -> dict:
         "parser_version": PARSER_VERSION, "tables": len(p.tables),
         "teams": sorted(teams_seen.values(), key=lambda x: x["team"]),
         "rows": rows, "flags": sorted(set(flags)), "alarms": alarms,
+        "content_sha256": content_sha,
     }
 
 
@@ -316,9 +321,12 @@ def main(argv=None) -> int:
     # Latest distinct parsed capture per week, and whether that week has ever carried a table.
     last_parsed: dict[int, dict] = {}
     had_tables: dict[int, bool] = {}
+    stored_content: set[tuple] = set()
     for rec in manifest:
         if rec.get("parsed_file") and rec.get("week") is not None:
             last_parsed[rec["week"]] = rec
+        if rec.get("body_file") and rec.get("content_sha256"):
+            stored_content.add((rec["week"], rec["content_sha256"]))
         if rec.get("tables"):
             had_tables[rec["week"]] = True
 
@@ -348,13 +356,19 @@ def main(argv=None) -> int:
             "tables": 0, "rows": 0, "teams": 0, "flags": [], "alarm": False,
         }
         if status == 200 and body:
-            new_body = write_once(os.path.join(base, "bodies", f"{sha}.html.gz"),
-                                  gzip.compress(body, mtime=0))
-            entry["body_file"] = f"bodies/{sha}.html.gz"
-            entry["body_new"] = new_body
             parsed = parse_report(body.decode("utf-8", errors="replace"), args.season, week)
             entry["declared_week"] = parsed["declared_week"]
             entry["parser_version"] = PARSER_VERSION
+            entry["content_sha256"] = parsed["content_sha256"]
+            # Raw SHA-256 is recorded for every fetch. The raw body is kept the first time each
+            # distinct CONTENT state (parsed rows + declared week) is seen for a week. Byte-only
+            # changes (e.g. a random data-jsonid in a carousel) keep their hash but add no body.
+            key = (week, parsed["content_sha256"])
+            if key not in stored_content or parsed["tables"] == 0:
+                entry["body_new"] = write_once(os.path.join(base, "bodies", f"{sha}.html.gz"),
+                                               gzip.compress(body, mtime=0))
+                entry["body_file"] = f"bodies/{sha}.html.gz"
+                stored_content.add(key)
             entry.update({"tables": parsed["tables"], "rows": len(parsed["rows"]),
                           "teams": len(parsed["teams"]), "flags": list(parsed["flags"])})
             if parsed["tables"] == 0:
@@ -374,12 +388,12 @@ def main(argv=None) -> int:
             # parsed into week N's rows: its content belongs to the week it shows.
             echo = entry.get("declared_week") is not None and entry["declared_week"] != week
             if parsed["tables"] > 0 and not week_alarms and not echo:
-                fname = f"{sha}.v{PARSER_VERSION}.json"
+                fname = f"{parsed['content_sha256']}.v{PARSER_VERSION}.json"
                 entry["parsed_file"] = f"parsed/{fname}"
                 write_once(os.path.join(base, "parsed", fname),
                            (json.dumps(parsed, indent=1, sort_keys=True, ensure_ascii=False) + "\n").encode("utf-8"))
                 prev = last_parsed.get(week)
-                if prev and prev["parsed_file"] != entry["parsed_file"]:
+                if prev and prev["parsed_file"] != entry["parsed_file"] and os.path.exists(os.path.join(base, prev["parsed_file"])):
                     with open(os.path.join(base, prev["parsed_file"]), encoding="utf-8") as fh:
                         old_doc = json.load(fh)
                     for ch in diff_rows(old_doc, parsed):
@@ -395,6 +409,7 @@ def main(argv=None) -> int:
             "last_fetch_utc": t0, "http_status": status, "sha256": sha,
             "rows": entry["rows"], "teams": entry["teams"], "tables": entry["tables"],
             "body_new": entry["body_new"], "parsed_file": entry["parsed_file"],
+            "content_sha256": entry.get("content_sha256"),
             "declared_week": entry.get("declared_week"),
             "flags": entry["flags"], "alarm": entry["alarm"],
         }

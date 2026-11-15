@@ -86,6 +86,21 @@ class ParserTests(unittest.TestCase):
         self.assertNotIn("dnp_without_game_status:WAS:Synth Alpha", doc["flags"])
 
 
+class ContentHashTests(unittest.TestCase):
+    def test_byte_only_noise_keeps_content_hash(self):
+        noisy = SYNTH_PAGE.replace("<div", "<div data-jsonid=\"0000-1111\"", 1)
+        a = cap.parse_report(SYNTH_PAGE, 2026, 10)["content_sha256"]
+        b = cap.parse_report(noisy, 2026, 10)["content_sha256"]
+        self.assertEqual(a, b)
+        self.assertNotEqual(hashlib.sha256(SYNTH_PAGE.encode()).hexdigest(),
+                            hashlib.sha256(noisy.encode()).hexdigest())
+
+    def test_designation_change_changes_content_hash(self):
+        changed = SYNTH_PAGE.replace("<td>Out</td>", "<td>Questionable</td>", 1)
+        self.assertNotEqual(cap.parse_report(SYNTH_PAGE, 2026, 10)["content_sha256"],
+                            cap.parse_report(changed, 2026, 10)["content_sha256"])
+
+
 class AliasAndWeekTests(unittest.TestCase):
     def test_page_abbreviations_AZ_and_LA_map_to_their_clubs(self):
         html = ("<html><body><h3>Injuries - WEEK 10</h3>"
