@@ -72,7 +72,7 @@ The principal blockers are a permitted timestamped price source, a canonical lin
 - `python3 price-desk/scripts/verify.py` and `python3 -m unittest discover -s price-desk/tests -v` — pass: 20,504 register checks, 0 errors; 10 unit tests passed. These check committed records, not external page contents.
 - `python3 review-board/scripts/verify_all.py`, `python3 decision-desk/scripts/verify_all.py`, `python3 verify-hub/scripts/verify.py`, the Verify Hub unit tests and `price-store` tests — pass.
 
-The latest GitHub Pages API check on 2026-11-15 18:20 UTC reported `built` for main commit `a08c249352d2be2028affa1fbb2c13d1b3d93235`. That deployment predates and does not include these unmerged documentation edits; it confirms only the prior site build, not source freshness or correctness.
+GitHub Pages was confirmed `built` for PR #124's merge commit `5da59c96072a7dd856a55a45ac3d7ce754e01907` on 2026-11-15 18:40 UTC. That build included the documentation edits in this audit; it confirms site deployment, not source freshness or correctness.
 
 ## Repository and data policy
 
