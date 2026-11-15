@@ -2810,3 +2810,20 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 **Checks on the combined tree:** 117 local Markdown links across `README.md`, `EXECUTIVE_SUMMARY.md` and the audit resolved; `git diff --check` passed. `python3 tests/check_site.py` passed (232 pages, 584 tables, 13,560 links; 33 non-root pages lack the root table-source column). `python3 scripts/check_links.py` passed (4,637 local references). Root validation/tests passed: 63 sources/0 warnings; 6 result files and 32/32 team records; 11 strict derived JSON files, 52 recorded checks/0 disagreements, 32/32 for 2020 and 25 generated pages linked. Line Desk build/verify passed (15 pages identical; 16 registers). Price Desk verify passed (20,504 checks/0 errors) and its unit suite passed (10 tests); Price Store suite passed (9 tests). Review Board passed 121 checks; Decision Desk and Verify Hub checks passed; Verify Hub unit suite passed 7 tests. The Review Board verifier rewrote only its generated history/commit stamps because this checkout is shallow; the six modified `review-board/data/*.json` files were restored to `HEAD`, so no sibling-hub changes remain. The pre-merge Pages API check returned `built` for `main` at `a08c249352d2be2028affa1fbb2c13d1b3d93235` on 2026-11-15 18:20 UTC; PR #124's post-merge deployment is recorded below.
 
 **RI-4 completed:** [PR #124](https://github.com/karagemop466-tech/Korea2/pull/124) merged on 2026-11-15 18:39:33 UTC as `5da59c96072a7dd856a55a45ac3d7ce754e01907`. All 12 check instances passed on final PR head `49e7fa2`. GitHub Pages build record [1372559447](https://api.github.com/repos/karagemop466-tech/Korea2/pages/builds/1372559447) reported `built` for that merge commit at 18:40:38 UTC (legacy source: `main` `/`).
+
+# Session board — `arena/0cb8a662-korea2` (official Game Book rights gate and safe evidence publication)
+
+**Session ID:** `arena/0cb8a662-korea2` (Arena-assigned branch fixed as `arena/0cb8a662-korea2`; no alternate branch/worktree is permitted).
+**Claimed at:** 2026-11-15 UTC, before implementation. **Base:** `f355a33` (`origin/main` after PR #125).
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| GB-0 | Claim a non-overlapping scope before implementation | in progress | `arena/0cb8a662-korea2` | this section of `COORDINATION.md` |
+| GB-1 | Read the official NFL Game Book use notice and record the source rights/permission blocker before further extraction or publication | in progress | `arena/0cb8a662-korea2` | `price-desk/data/flagged.json`, `price-desk/data/questions.json`, `price-desk/data/suggestions_queue.json`, `price-desk/data/sources.json` |
+| GB-2 | Withhold gamebook-extracted starter/inactive/weather details from the public Price Desk while written reuse permission is unrecorded; retain official source links and blank/withheld status | in progress | `arena/0cb8a662-korea2` | `price-desk/data/verified_results_2026.json`, `price-desk/scripts/build_site.py`, generated `price-desk/pages/results-feed.html` |
+| GB-3 | Add fail-closed verification and regression tests for the permission gate and public redaction | in progress | `arena/0cb8a662-korea2` | `price-desk/scripts/verify.py`, `price-desk/tests/test_store.py` |
+| GB-4 | Rebuild and verify only the claimed scope; open/merge PR from this fixed branch and confirm Pages if all checks pass | unclaimed | `arena/0cb8a662-korea2` | this section, PR |
+
+**Scope rule:** no root navigation, model outputs, injury snapshots, result-feed rows other than the gamebook demonstration record, other hubs, or files claimed by another active session will be changed. PR #112 owns `decision-arena/`; PRs #126/#127 own their respective review/documentation scopes. This task is specifically the first-party Game Book reuse gate in `price-desk/`.
+
+**Evidence rule:** the source statement will be quoted only to the extent needed to show the restriction. No legal conclusion will be asserted. Unless a written permission record is present, detailed Game Book-derived player/status/weather rows will be blank or withheld on the public site and no automated extraction will be introduced.
