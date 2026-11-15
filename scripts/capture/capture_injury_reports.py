@@ -51,7 +51,7 @@ EXPECTED_HEADER = ["Player", "Position", "Injuries", "Practice Status", "Game St
 
 # NFL.com club abbreviation -> nickname as printed in the report.
 TEAMS = {
-    "ARI": "Cardinals", "ATL": "Falcons", "BAL": "Ravens", "BUF": "Bills",
+    "AZ": "Cardinals", "ATL": "Falcons", "BAL": "Ravens", "BUF": "Bills",
     "CAR": "Panthers", "CHI": "Bears", "CIN": "Bengals", "CLE": "Browns",
     "DAL": "Cowboys", "DEN": "Broncos", "DET": "Lions", "GB": "Packers",
     "HOU": "Texans", "IND": "Colts", "JAX": "Jaguars", "KC": "Chiefs",
@@ -60,6 +60,12 @@ TEAMS = {
     "NYJ": "Jets", "PHI": "Eagles", "PIT": "Steelers", "SEA": "Seahawks",
     "SF": "49ers", "TB": "Buccaneers", "TEN": "Titans", "WAS": "Commanders",
 }
+# Abbreviations as the NFL.com page itself uses them in logo paths (observed 2026-11-15:
+# the Cardinals are AZ and the Rams are LA in clubs/logos/...). Aliases map other spellings.
+ALIASES = {"ARI": "AZ", "LAR": "LA"}
+PARSER_VERSION = "1.1"
+DECLARED_WEEK_RE = re.compile(r"Injuries\s*-\s*WEEK\s*(\d+)", re.I)
+TITLE_RE = re.compile(r"<title>(.*?)</title>", re.I | re.S)
 LOGO_RE = re.compile(r"clubs/logos/([A-Z]{2,3})(?![A-Za-z])")
 COMPARED_FIELDS = ("injuries", "practice_status", "game_status")
 ALARM = "DRIFT ALARM"
@@ -95,10 +101,10 @@ class ReportParser(HTMLParser):
         self.skip = 0
 
     def _logo(self, value: str) -> None:
-        for abbr in LOGO_RE.findall(value or ""):
-            if abbr in TEAMS and (not self.pending or self.pending[-1] != abbr):
-                if abbr not in self.pending:
-                    self.pending.append(abbr)
+        for raw in LOGO_RE.findall(value or ""):
+            abbr = ALIASES.get(raw, raw)
+            if abbr in TEAMS and abbr not in self.pending:
+                self.pending.append(abbr)
 
     def handle_starttag(self, tag, attrs):
         if tag in ("script", "style"):
@@ -145,12 +151,29 @@ class ReportParser(HTMLParser):
             self.text_before = (self.text_before + " " + data)[-400:]
 
 
+def declared_week(html: str) -> int | None:
+    """The week the page itself shows in its body heading ('Injuries - WEEK N').
+
+    The <title> is NOT used: on 2026-11-15 every captured body, including the Week 1 body,
+    carried the same <title> ('... Week 10 of the 2026 Season'), so it is a static template.
+    """
+    m = DECLARED_WEEK_RE.search(html)
+    return int(m.group(1)) if m else None
+
+
 def parse_report(html: str, season: int, week: int) -> dict:
     """Turn one report page into normalised rows plus the flags raised while doing so."""
     p = ReportParser()
     p.feed(html)
     p.close()
     flags: list[str] = []
+    shown = declared_week(html)
+    title = norm(TITLE_RE.search(html).group(1)) if TITLE_RE.search(html) else ""
+    if shown is not None and shown != week:
+        flags.append(f"week_mismatch:requested {week} page shows {shown}")
+    tm = re.search(r"Week (\d+) of the (\d{4}) Season", title)
+    if tm and shown is not None and int(tm.group(1)) != shown:
+        flags.append(f"title_week_static:title says {tm.group(1)}, body says {shown}")
     rows: list[dict] = []
     teams_seen: dict[str, dict] = {}
     alarms: list[str] = []
@@ -194,7 +217,8 @@ def parse_report(html: str, season: int, week: int) -> dict:
     for key in sorted({k for k in names if names.count(k) > 1}):
         flags.append(f"duplicate_player:{key[0]}:{key[1]}")
     return {
-        "season": season, "week": week, "tables": len(p.tables),
+        "season": season, "week": week, "declared_week": shown, "title": title,
+        "parser_version": PARSER_VERSION, "tables": len(p.tables),
         "teams": sorted(teams_seen.values(), key=lambda x: x["team"]),
         "rows": rows, "flags": sorted(set(flags)), "alarms": alarms,
     }
@@ -293,7 +317,7 @@ def main(argv=None) -> int:
     last_parsed: dict[int, dict] = {}
     had_tables: dict[int, bool] = {}
     for rec in manifest:
-        if rec.get("parsed_sha") and rec.get("week") is not None:
+        if rec.get("parsed_file") and rec.get("week") is not None:
             last_parsed[rec["week"]] = rec
         if rec.get("tables"):
             had_tables[rec["week"]] = True
@@ -320,7 +344,7 @@ def main(argv=None) -> int:
             "season": args.season, "week": week, "url": url, "http_status": status,
             "bytes": len(body), "sha256": sha,
             "server_date": headers.get("Date"), "last_modified": headers.get("Last-Modified"),
-            "body_file": None, "body_new": False, "parsed_sha": None,
+            "body_file": None, "body_new": False, "parsed_file": None,
             "tables": 0, "rows": 0, "teams": 0, "flags": [], "alarm": False,
         }
         if status == 200 and body:
@@ -329,6 +353,8 @@ def main(argv=None) -> int:
             entry["body_file"] = f"bodies/{sha}.html.gz"
             entry["body_new"] = new_body
             parsed = parse_report(body.decode("utf-8", errors="replace"), args.season, week)
+            entry["declared_week"] = parsed["declared_week"]
+            entry["parser_version"] = PARSER_VERSION
             entry.update({"tables": parsed["tables"], "rows": len(parsed["rows"]),
                           "teams": len(parsed["teams"]), "flags": list(parsed["flags"])})
             if parsed["tables"] == 0:
@@ -342,19 +368,23 @@ def main(argv=None) -> int:
                 entry["alarm"] = True
                 entry["alarm_detail"] = week_alarms
                 alarms += [f"week {week}: {a}" for a in week_alarms]
-            if parsed["tables"] > 0 and not week_alarms:
-                entry["parsed_sha"] = sha
-                write_once(os.path.join(base, "parsed", f"{sha}.json"),
-                           (json.dumps(parsed, indent=1, sort_keys=True, ensure_ascii=False) + "\n").encode("utf-8"))
+            if parsed["tables"] > 0:
                 had_tables[week] = True
+            # An echo (requested week N, page shows another week) is stored and flagged but not
+            # parsed into week N's rows: its content belongs to the week it shows.
+            echo = entry.get("declared_week") is not None and entry["declared_week"] != week
+            if parsed["tables"] > 0 and not week_alarms and not echo:
+                fname = f"{sha}.v{PARSER_VERSION}.json"
+                entry["parsed_file"] = f"parsed/{fname}"
+                write_once(os.path.join(base, "parsed", fname),
+                           (json.dumps(parsed, indent=1, sort_keys=True, ensure_ascii=False) + "\n").encode("utf-8"))
                 prev = last_parsed.get(week)
-                if prev and prev["parsed_sha"] != sha:
-                    with open(os.path.join(base, "parsed", f"{prev['parsed_sha']}.json"), encoding="utf-8") as fh:
+                if prev and prev["parsed_file"] != entry["parsed_file"]:
+                    with open(os.path.join(base, prev["parsed_file"]), encoding="utf-8") as fh:
                         old_doc = json.load(fh)
-                    changes = diff_rows(old_doc, parsed)
-                    for ch in changes:
+                    for ch in diff_rows(old_doc, parsed):
                         new_deltas.append({"captured_at_utc": t0, "season": args.season, "week": week,
-                                           "from_sha256": prev["parsed_sha"], "to_sha256": sha, **ch})
+                                           "from_sha256": prev["sha256"], "to_sha256": sha, **ch})
                 last_parsed[week] = entry
         else:
             entry["flags"].append(f"http_{status}" if status else "fetch_error")
@@ -364,7 +394,8 @@ def main(argv=None) -> int:
         state[str(week)] = {
             "last_fetch_utc": t0, "http_status": status, "sha256": sha,
             "rows": entry["rows"], "teams": entry["teams"], "tables": entry["tables"],
-            "body_new": entry["body_new"], "parsed_sha": entry["parsed_sha"],
+            "body_new": entry["body_new"], "parsed_file": entry["parsed_file"],
+            "declared_week": entry.get("declared_week"),
             "flags": entry["flags"], "alarm": entry["alarm"],
         }
         print(f"week {week:>2}  http {status}  bytes {len(body):>7}  sha {sha[:12]}  "

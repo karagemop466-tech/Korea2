@@ -86,6 +86,32 @@ class ParserTests(unittest.TestCase):
         self.assertNotIn("dnp_without_game_status:WAS:Synth Alpha", doc["flags"])
 
 
+class AliasAndWeekTests(unittest.TestCase):
+    def test_page_abbreviations_AZ_and_LA_map_to_their_clubs(self):
+        html = ("<html><body><h3>Injuries - WEEK 10</h3>"
+                "<img src='https://x/clubs/logos/AZ'><span>Cardinals</span>"
+                "<img src='https://x/clubs/logos/LA'><span>Rams</span>"
+                + team_table(row("Synth Zeta", "QB", "", "Full Participation in Practice", ""))
+                + team_table(row("Synth Eta", "RB", "", "Full Participation in Practice", "")) +
+                "</body></html>")
+        doc = cap.parse_report(html, 2026, 10)
+        self.assertEqual([r["team"] for r in doc["rows"]], ["AZ", "LA"])
+        self.assertEqual(doc["alarms"], [])
+        self.assertEqual(doc["declared_week"], 10)
+
+    def test_week_echo_is_flagged_not_parsed_as_requested_week(self):
+        echo = SYNTH_PAGE.replace("<html>", "<html><h3>Injuries - WEEK 10</h3>", 1)
+        doc = cap.parse_report(echo, 2026, 11)
+        self.assertEqual(doc["declared_week"], 10)
+        self.assertTrue(any(f.startswith("week_mismatch") for f in doc["flags"]), doc["flags"])
+
+    def test_static_title_is_reported_not_trusted(self):
+        html = ("<html><head><title>Official NFL Injury Report for Players - Week 10 of the 2026 Season | NFL.com</title></head>"
+                "<body><h3>Injuries - WEEK 1</h3></body></html>")
+        doc = cap.parse_report(html, 2026, 1)
+        self.assertTrue(any(f.startswith("title_week_static") for f in doc["flags"]), doc["flags"])
+
+
 class DiffTests(unittest.TestCase):
     def test_changed_added_removed(self):
         old = {"rows": [
