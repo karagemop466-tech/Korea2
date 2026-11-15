@@ -2825,3 +2825,37 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 **DR-1 outcome (2026-11-15):** Published `docs/DECISION_READINESS_REVIEW_2026-11-15.md`, a 18-row decision register covering strategy eligibility; price policy and canonical originator; official results; preregistration; proper-score ranking, controls and luck; correlation scope; parlays/props; timestamped availability, starters/inactives and depth; injury ablations; venue/weather facts; reward/legal gates; data terms/retention; and landing-page decision readiness. Each row includes relevant official source links plus repository records where the status is repository-derived. The document makes proposed clearances explicit and labels them as proposals. It records no new independently verified external facts, and it attributes prior source checks to their recorded sessions; no live-source fetch or model recomputation was performed here. Existing suggestion/question pages remain the implementation review queue; this session did not edit shared site navigation or implement any suggestion.
 
 **DR-1 verification:** confirmed 18 numbered decision rows and 64 Markdown links; all 26 relative links resolve. `git diff --check` passed. `python3 tests/check_site.py` passed (232 pages, 584 tables, 13,560 links; the existing note says 33 pages outside the root build lack per-row source columns). `python3 scripts/check_links.py` passed (4,637 local references). These site checks cover HTML/local references, not external URL availability or source content; no deployment is claimed.
+
+
+# Session board — `arena/7b0df217-korea2` (current-branch readiness and verification audit)
+
+**Session ID:** `arena/7b0df217-korea2` · **Base:** `5da59c9` (`main`) · **Claimed:** 2026-11-15 UTC
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| K2-1 | Review the merged repository and existing decision/site outputs; identify current blockers without duplicating or overwriting another session's work | done | `arena/7b0df217-korea2` | this section of `COORDINATION.md` only |
+| K2-2 | Run the current-tree local validators and record exact results and limitations | done | `arena/7b0df217-korea2` | read-only execution; this section only |
+| K2-3 | Assess pending integration PRs and current Pages checks; record whether a safe merge is possible | done — PR #127 checks passed; rebase onto updated main is resolving | `arena/7b0df217-korea2` | this section, PR from this branch |
+
+**Scope boundary:** no changes to site navigation, source registers, model outputs, HTML, data, build scripts or other session-owned files. No other branch was created or checked out. Existing open PRs remain with their owners; no conflicting or failing PR was merged.
+
+## K2-1–K2-3 outcome — `arena/7b0df217-korea2` (2026-11-15)
+
+**Repository review:** this checkout already contains the static NFL research dashboard and specialized Line Desk, Price Desk, Price Store, Review Board, Decision Desk, Verify Hub, injury-report and strategy/research hubs. Requirements, questions, suggestions, flags, executive summaries and validation gates exist in multiple independently built locations. The current README and `docs/REPOSITORY_STATUS_2026-11-15.md` explain that these are not yet a single canonical site. No duplicate hub was created and no site/data outputs were edited in this audit.
+
+**Local validation (run against this checkout):**
+- `python3 tests/check_site.py` — PASS: 232 pages, 584 tables, 13,560 links. The checker explicitly notes that 33 pages outside the root published build lack per-row source columns and are only link-checked.
+- `python3 scripts/check_links.py` — PASS: 4,637 local references across 232 HTML pages and one JS file.
+- Root `scripts/validate_data.py`, `tests/check_data.py`, `tests/check_derived.py` — PASS: 63 registered root sources / zero warnings; 6 result files and 32/32 team records; 11 strict JSON files, 52 checks / 0 disagreements, 32/32 2020 reconciliation, 25 generated pages linked.
+- Line Desk `build_site.py --check` and `verify.py` — PASS: 15 pages byte-identical; 16 registers checked.
+- Price Desk `verify.py` and 10 unit tests — PASS: 20,504 checks / 0 errors; 10 tests.
+- Price Store — PASS: 9 unit tests.
+- Verify Hub — PASS: 7 data files, 152 rows; 9 pages, 181 table rows.
+- Decision Desk — PASS: 50 sources, 270 injury rows, 92 deficiencies, 22 questions, 15 suggestions, 19 flags, 9 pages; deterministic rebuild and source-link checks.
+- Review Board — PASS: 121 checks / 14 pages. Its verifier rewrote generated timestamps/history in six JSON files; those incidental changes were restored. No Review Board files are part of this session's patch.
+
+**Source/claim limit:** local validators prove internal consistency and link presence, not that an external page still supports a claim. This session did not newly fetch NFL/NIST/Game Book primary pages; the existing registers and `docs/REPOSITORY_STATUS_2026-11-15.md` attribute earlier fetches to their respective sessions. Accordingly, no new claim is marked independently source-verified. The current repository audit flags unverified market prices, incomplete official result history, third-party historic price/snap data, no 32-club point-in-time availability graph, no official string-depth measure, inconsistent rankings across hubs, and no qualified strategy/reward pool. These gaps remain blockers, not inferred values.
+
+**PR / publication inspection:** the Pages API reported `built` for main commit `5da59c96072a7dd856a55a45ac3d7ce754e01907`, updated 2026-11-15 18:40 UTC; this does not prove deployment of this audit branch. Existing open PRs #97 and #93 were conflicting with failed checks; #112, #102, and #99 were conflicting; #109 was mergeable but had three failing checks of 13. No conflicting or failing PR was merged. Main advanced again while CI ran, so PR #127 was not mergeable until rebased. The current rebase keeps the full updated main coordination board, including the intervening `arena/46a13cee-korea2` decision-readiness entry, and appends this session's section without deleting or modifying it. This session did not take over that task or edit its new document.
+
+**Outcome:** this is a read-only readiness audit, not a claim that the broader system is fully implemented or decision-ready. The only changed file is this coordination log; no deployment of this branch is claimed.
