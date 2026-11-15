@@ -1,22 +1,34 @@
 # Executive summary — NFL line origination, measurement and validation
 
-**Live site:** <https://karagemop466-tech.github.io/Korea2/>
-**Status:** research complete for this snapshot. **Zero strategies ranked.**
-**Data as of:** gameday 2026-10-29 (108 settled 2026 games; 7,075 settled regular-season games in total, 1999–2026).
-**Revision 2026-11-02b (data refresh 95bbd78 + issues #19, #34):** figures below were regenerated from
-the 2026-11-02 refreshed extracts (Week 9 partially settled). All price-based figures are settled only at
-recorded prices — see the note that follows. **Revision 2026-11-02a (issues #19, #34):** every price-based figure below was recomputed with
-**no −110 imputation** — bets are settled only at prices the feed actually stores, and rows without
-a stored price are excluded and counted (`n_excluded_missing_price` in `results/*.json`). The
-road-favourite angle masks were corrected (positive `spread_line` means the *home* team is
-favoured in this feed). Figures that changed carry the new value; nothing else was edited.
+**Current repository status — 2026-11-15.** Research only; no candidate is approved for live use, no official timestamped market-price archive is captured, and no reward pool is funded. Do not use the committed Week 9 model lines as current recommendations.
 
-> **Which build this file describes.** This summary covers the `pipeline/` + `results/` build of
-> 2026-11-01 (six gates, five strategies). The published dashboard at the link above is the integrated
-> build (ten gates, seven candidate strategies plus two controls); its summary is
-> [`docs/EXECUTIVE_SUMMARY.md`](docs/EXECUTIVE_SUMMARY.md), and the independent re-check of both is on the
-> [Verification page](https://karagemop466-tech.github.io/Korea2/pages/verification.html)
-> (52 checks, 0 mismatches, 2020 season 32/32 vs NFL.com).
+**Live site:** <https://karagemop466-tech.github.io/Korea2/> — the latest Pages API check (2026-11-15 18:20 UTC) reported `built` for main commit `a08c249352d2be2028affa1fbb2c13d1b3d93235`; this predates and does not include the current unmerged documentation edits.
+
+### The decision in brief
+
+- **Skill:** the root/Line Desk lists 7 candidates plus 2 controls; **0/7 candidates qualify**. The Price Desk reports a separate 28 historical entrants, all `NEEDS_REVIEW` or `REJECTED`. Ranking rules and candidate sets differ across hubs, and the reward pool is unfunded.
+- **Prices:** the Price Desk has 2,364 game-market rows: all 2,364 opening lines are blank; 1,956 closing values are `archived-unverified` (nflverse-derived); 408 are blank. Its 11,370 player-prop rows have no market open/close. The official-only `price-store` CSV is empty. Separately, Line Desk has 45 Week 9 model lines, but 0 own closes and 0 official market opens/closes. CLV and official price-based ROI are not established.
+- **Results:** Line Desk lists 44 NFL.com finals for Weeks 7–9 plus the Week 10 Thursday game, with Weeks 1–6 pending. The Price Desk has a different 1,088-game feed: 22 scores marked official, 931 archived-unverified and 135 missing/unsettled; it reports 5/5 archive checks matched and 17 official scores filled blank archive rows. These registers are not yet one unified verified results corpus.
+- **Correlations:** eight coefficients are built from NFL.com standings values only, with *n* and intervals. They describe team standings; they do not validate player-prop or same-game joint probabilities.
+- **Availability:** Line Desk has 11 injury-report rows from four clubs and **zero verified replacement names or string tiers**. Price Desk records a one-game official Game Book demonstration for WAS@NYG (starters, Did-Not-Play, Not-Active and weather) plus a separate Game Book score check; no scheduled all-week capture is built. nflverse depth/roster/snap data in another hub remain third-party.
+- **Governance:** two repository originators differ by 1.5–9.0 points on the same 15 Week 9 games. A canonical line source remains undecided. The Review Board aggregates seven configured suggestion/question registers but omits the newer Line Desk and Price Desk registers; no suggestion is an implementation instruction.
+
+The detailed [Line Desk](line-desk/index.html) carries per-row provenance, blank values, questions and flags. The [Line Desk source register](line-desk/pages/sources.html) and [Price Desk source register](price-desk/pages/sources.html) record NFL/NIST pages and Game Books opened by an earlier session on 2026-11-14; this session did not fetch those external pages. Local Price Desk validation passed (20,504 checks and 10 unit tests), which does not independently verify the linked official pages. The full current repository audit, including the information still missing and the suggested discovery path, is [here](docs/REPOSITORY_STATUS_2026-11-15.md).
+
+**Source and freshness warning:** the root analysis inputs end on gameday 2026-11-01 and include community-maintained nflverse data. That feed is not an official sportsbook archive. The Line Desk's official transcriptions are dated 2026-11-14 and cover only the items stated above. The successful Pages build and local test suite establish build/reproducibility checks—not current source freshness, model skill, or profitability.
+
+---
+
+## Archived root-model analysis — snapshot through 2026-11-01
+
+The report below is retained for reproducibility and historical context. It describes the `pipeline/` + `results/` analysis, not the current project-wide status. Its figures are historical claims from the committed analysis record; this 2026-11-15 audit did not fetch the underlying external NFL pages or independently re-run every calculation. Do not read them as current lines, as fresh official-source verification, or as official-price evidence.
+
+> **Which build this historical section describes.** It covers the `pipeline/` + `results/` build of
+> 2026-11-01 (six gates, five strategies). The published root dashboard is the integrated build (ten
+> gates, seven candidate strategies plus two controls); its historical summary is
+> [`docs/EXECUTIVE_SUMMARY.md`](docs/EXECUTIVE_SUMMARY.md). The independent recomputation is on the
+> [Verification page](https://karagemop466-tech.github.io/Korea2/pages/verification.html) and its
+> committed data register.
 
 ---
 
@@ -152,8 +164,7 @@ including the historical closing prices no league source publishes. `data/proven
 records the SHA-256 of the raw games feed and the exact season list and download URL of
 every per-season extract (no per-file raw hash is recorded for those, and none is claimed).
 
-Every table row on the published site carries an https source link, and
-`tests/check_site.py` fails the build if one does not.
+The archived report claimed every root-site table row had an HTTPS source link. The current audit found that `tests/check_site.py` checks 231 HTML pages, but 33 pages outside the root build do not carry the root table-source column; the checker also does not verify external publisher tier or current page content. See the [2026-11-15 repository audit](docs/REPOSITORY_STATUS_2026-11-15.md).
 
 ---
 
@@ -194,9 +205,9 @@ Every table row on the published site carries an https source link, and
 
 ---
 
-## 7. Additions in this session (arena/cb5b61a7-korea2, 2026-11-12)
+## 7. Earlier additions and verification record (arena/cb5b61a7-korea2, 2026-11-12)
 
-Three reviewable pages were added to keep decisions honest and reversible, without altering the
+An earlier session recorded three reviewable pages added to keep decisions honest and reversible, without altering the
 underlying pipeline or any previously published number:
 
 - **Suggestions** (`pages/suggestions.html`) — a review board of improvement ideas (depth-chart
@@ -208,7 +219,7 @@ underlying pipeline or any previously published number:
   before any capital decision, and a concrete discovery suggestion for each gap.
 - **Injury & depth** (`pages/injuries-depth.html`) — an official NFL injury-report view and a documented depth-data gap. A subsequent source review confirmed that one Colts team-published chart lists ordered players but labels its weekly chart unofficial. It is not an NFL-wide historical source; no complete dated chart archive or replacement-value model is ingested, so depth adjustments remain blocked and values blank. The earlier broad statement that the chart source was absent because of a 404 is superseded.
 
-**Verification performed in this session (live retrieval 2026-11-12):** NFL.com 2026 standings, Week 10 injury report and schedule, and the Colts team-published depth chart were reviewed. The Colts page is explicitly unofficial and team-specific. The DraftKings parlay rules and nflverse feed repo were also reviewed; nflverse is community-maintained, not official NFL. `tests/check_site.py` passes on the full site; subsequent rebase integration checks cover 113 linked pages, 276 tables and 4,838 links. Statistical pipeline values were not recomputed from a fresh upstream feed; `pages/verification.html` describes the committed calculation and its reconciliation scope. Full findings are in `docs/REPO_REVIEW.md` and the site's Flagged for Review page.
+**Earlier-session verification record (reported live retrieval 2026-11-12; not repeated in this audit):** the earlier session reported reviewing NFL.com 2026 standings, Week 10 injury report and schedule, the Colts team-published depth chart, DraftKings parlay rules and nflverse documentation. Its log describes the Colts page as unofficial/team-specific and nflverse as community-maintained. It also recorded passing site/rebase checks at that time. This audit did not re-fetch those sources; statistical pipeline values were not refreshed here. See the historical [verification page](pages/verification.html), [repository review](docs/REPO_REVIEW.md) and site's Flagged for Review page for the original scope.
 
 ---
 
