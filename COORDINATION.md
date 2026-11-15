@@ -2856,6 +2856,31 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 
 ---
 
+
+---
+
+# Session board — `arena/a72f5c83-korea2` (decision-readiness register, requirement-to-evidence audit)
+
+**Session ID:** `arena/a72f5c83-korea2` · **Base:** `5da59c9` (main) · **Claimed:** 2026-11-15 UTC · **Status:** in progress
+
+## Scope claimed (non-overlapping)
+
+| ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| DR-1 | One row per requirement in the latest brief: status measured against repo files, blocking gate, the number that would clear it, official source links where recorded. Generated page + validator (fails on missing evidence path or non-official source). | in progress | `arena/a72f5c83-korea2` | `readiness/**` (new directory only) |
+| DR-2 | Log this claim and the release record | in progress | `arena/a72f5c83-korea2` | this section only |
+
+**Explicitly NOT touched:** root `index.html`, `scripts/build_site.py`, `pages/`, root navigation (claimed by open PR #93 / #97), `data/`, `results/`, `price-store/`, `decision-hub/`, `injury-report-w10/`, workflows. The landing-page link to the readiness table is a request to the integration owner (logged at the end of this section), not an edit.
+
+**Open PRs at claim time that overlap in topic and are not modified here:** #112 (Decision Arena price-snapshot/results feed), #109 (signal-desk), #102 (requirements audit), #99 (review-board), #97 (final integration), #93 (site-wide audit and root nav).
+
+## Log — `arena/a72f5c83-korea2`
+
+- 2026-11-15 — Read `COORDINATION.md`, `README.md`, `data/validation_gates.json`, `data/derived/leaderboard.json`, `data/derived/strategies.json`, `results/price_snapshots.json`, `decision-hub/data/injuries.json`, `injury-report-w10/data/*.csv`, the workflows (`fetch-injuries.yml`, `data-pipeline.yml`, `signal-desk.yml`), and the Lines page. No external fetch was made from this session; the sandbox shell cannot reach nfl.com.
+- Observations that drive the register (all checked against the files above): opening prices are absent for all 7,548 games; the Lines page labels the market price "Market line" with a link to `github.com/nflverse/nflverse-data`, which is third-party; the injury-capture cron runs Wednesday and Saturday only; `data-pipeline.yml` and `signal-desk.yml` have no schedule trigger; the leaderboard has 9 entries, 2 controls (all-home, all-under), 0 approved, and no random or favourite baseline; no strategy record contains a registration commit or a "what would change our mind" field; the Week 10 counts file has 28 team rows and no row for CHI, DEN, PHI or TB.
+
+---
+
 ---
 
 # Session board — `arena/cbbab023-korea2` (final integration, stale-PR takeover and live re-verification)
