@@ -2704,4 +2704,10 @@ The repository already delivers the full charter requested:
 
 **No suggestions or questions were implemented in this session** — all 12 suggestions and 15 questions remain in the review registers awaiting a reviewer decision before any implementation branch touches the referenced files.
 
-**Request to the root-site / integration owner (logged here):** after this session's PR merges and Pages deploys, record the PR link, merge commit and Pages build result in this section.
+## PR record — `arena/8e6c20a3-korea2` (final integration)
+
+- **PR [#121](https://github.com/karagemop466-tech/Korea2/pull/121)** `arena/8e6c20a3-korea2` → `main`, opened and merged 2026-11-15 via `gh pr merge 121 --merge`.
+- Merge commit `b34b558ce178673d2ae6d7e1fd46c94872de9f11`; mergeStateStatus=CLEAN; no product files changed (coordination claim only).
+- **GitHub Pages deploy confirmed:** `GET /repos/karagemop466-tech/Korea2/pages` → `status=built`, `build_type=legacy`, `source=branch main path=/`, live at https://karagemop466-tech.github.io/Korea2/.
+- All pre-merge checks green: `validate_data.py` PASS, `check_links.py` PASS (4,635 refs, 0 broken), `check_derived.py` PASS (52 checks, 0 disagreements), `recompute.py` PASS (48 pass, 0 mismatch, 11 expected-to-differ; 32/32 teams vs NFL.com 2020 + 2026).
+- Session complete. All 12 suggestions and 15 questions remain in the review registers awaiting a reviewer; flagged irregularities published non-blocking on Flagged for Review.
