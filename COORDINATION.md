@@ -2711,3 +2711,69 @@ The repository already delivers the full charter requested:
 - **GitHub Pages deploy confirmed:** `GET /repos/karagemop466-tech/Korea2/pages` → `status=built`, `build_type=legacy`, `source=branch main path=/`, live at https://karagemop466-tech.github.io/Korea2/.
 - All pre-merge checks green: `validate_data.py` PASS, `check_links.py` PASS (4,635 refs, 0 broken), `check_derived.py` PASS (52 checks, 0 disagreements), `recompute.py` PASS (48 pass, 0 mismatch, 11 expected-to-differ; 32/32 teams vs NFL.com 2020 + 2026).
 - Session complete. All 12 suggestions and 15 questions remain in the review registers awaiting a reviewer; flagged irregularities published non-blocking on Flagged for Review.
+
+**Request to the root-site / integration owner (logged here):** after this session's PR merges and Pages deploys, record the PR link, merge commit and Pages build result in this section.
+
+---
+
+# Session board — `arena/a24825d2-korea2` (Week 10 official injury-report re-verification and immutable row register)
+
+**Session ID:** `arena/a24825d2-korea2` · **Base:** `1d049f9` (main) · **Claimed:** 2026-11-15 UTC · **Status:** in progress
+
+## Scope claimed (non-overlapping)
+
+| ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| W10-1 | Re-read the official NFL.com Week 10 2026 injury report (all 8 fetch chunks), record per-team listed-player counts, and publish row-level evidence for the rows the brief names (Lions ×3 blank-status rows, Seattle 15, Cincinnati 9, reserve-list cases) with source links and timestamps | in progress | `arena/a24825d2-korea2` | `injury-report-w10/` (new directory only) |
+| W10-2 | Add this section to COORDINATION.md (claim, log, release record) | in progress | `arena/a24825d2-korea2` | this section only |
+
+**Explicitly NOT touched:** `decision-hub/`, `review-board/`, `site/`, `signal-desk/`, `price-store/`, root `pages/`, `index.html`, `scripts/build_site.py`, `data/`, workflows. Requests for those owners are logged at the end of this section, not actioned.
+
+**Known limit:** the sandbox's shell cannot reach nfl.com (only the fetch tool can). The page is therefore recorded as text read through the fetch tool, with its chunk index and fetch time — not as a raw byte hash of the NFL response. This is stated on the page.
+
+## Log — `arena/a24825d2-korea2`
+
+- 2026-11-15 18:08 UTC — Read the official NFL.com Week 10 2026 injury report in all 8 fetch chunks (https://www.nfl.com/injuries/league/2026/REG10). 14 games, 28 teams listed. Also read the NFL.com news items cited in the register.
+- Checked the brief's specific claims against that page:
+  - **Lions blank designations (VR-08, VR-12):** Kerby Joseph, Cade Mays and D.J. Reed all read **Out** on the live page. Published as Out on `injury-report-w10/`.
+  - **Seattle 15 listed players:** confirmed (15 rows).
+  - **Cincinnati "4 players":** not confirmed. The live page lists **9** players; 4 carry a game status (Dugger Out; Davis, Iosivas, Parker Doubtful). Flagged F-W10-1.
+  - **"279 rows, 2 no-injury sections":** not reproduced. Manual count = 347 listed players across 28 teams. Neither count is script-verified. Flagged F-W10-2.
+  - **Malik Willis (VR-25):** absent from the Dolphins table; NFL.com news says he was placed on IR (groin).
+  - **Lamar Jackson (VR-17, VR-26):** absent from the Ravens table; NFL.com news says he was officially placed on IR.
+  - **Henderson:** the report still lists him Out, but NFL.com news says he was placed on IR on Sat Nov 14. Flagged F-W10-3.
+  - **Nacua:** blank game status while NFL.com news says he is likely to go on IR. Flagged F-W10-4.
+- Built `injury-report-w10/`: CSV registers (`data/`), a validating generator (`scripts/build.py`, fails loudly on any check) and the page (`index.html`). Ran `scripts/check_links.py` (PASS, 4,637 refs) and `tests/check_site.py` (PASS, 232 pages, 0 broken).
+
+### Sources (all opened 2026-11-15)
+- https://www.nfl.com/injuries/league/2026/REG10 (Week 10 injury report, 8 chunks)
+- https://www.nfl.com/schedules/2026/by-week/week-10 (schedule; Sun Nov 15 Patriots 10, Lions 35 shown FINAL)
+- https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start
+- https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-thursday-nov-5 (Lamar Jackson IR)
+- https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14 (Henderson IR)
+- https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl
+- https://www.nfl.com/news/sam-darnold-ruled-out-for-seahawks-week-10-game-vs-raiders-drew-lock-expected-to-start-again
+- https://www.nfl.com/news/drew-lock-no-injury-designation-seahawks-raiders
+- https://www.nfl.com/news/patriots-drake-maye-ankle-injury-lions
+- https://www.nfl.com/news/lions-aidan-hutchinson-knee-injury-patriots
+
+### Irregularities (published on `injury-report-w10/index.html`, section 4)
+F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sections vs 347 manual count) · F-W10-3 Henderson IR vs report Out · F-W10-4 Nacua blank status vs likely IR · F-W10-5 only 3 of 28 team tables transcribed row by row · F-W10-6 CHI, DEN, PHI, TB absent from the report (bye not verified here) · F-W10-7 no raw-byte hash (fetch-tool capture only).
+
+### Not done in this session (honest scope)
+- Scheduled, immutable capture with raw hashes: the existing `decision-hub/scripts/fetch_injuries.py` runs on a GitHub runner, but its hashes cover nflverse files, not NFL.com pages. Not changed here.
+- Depth charts, inactive lists, snap counts, the Texans depth image, the 32-team sweep, ablation models, the backtest corpus and the strategy gates. These are not started here. They need authorised structured sources or a multi-week capture, and they are outside this session's verified scope.
+
+### Requests to other owners (logged, not actioned)
+1. **Root and review-board owners:** the Lions rows (Joseph, Mays, Reed) should read Out wherever a published table has them blank. This session did not edit those pages.
+2. **Injury-capture owner (`decision-hub/`):** Henderson (IR, Nov 14) is still Out in the Week 10 report. Decide whether the IR move overrides the report row.
+3. **Integration owner:** add a link to `injury-report-w10/index.html` in root navigation. Not added here.
+
+## Release record — `arena/a24825d2-korea2`
+
+| Item | Value |
+| --- | --- |
+| Task | W10-1 Week 10 official injury-report re-verification (`injury-report-w10/`) |
+| Status | **done** (scope as stated above; partial by design) |
+| Files changed | `injury-report-w10/**` (new), this section of `COORDINATION.md` |
+| Pull request | recorded on completion below |
