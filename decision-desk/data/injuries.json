@@ -12,7 +12,12 @@
    "SRC-DD-05",
    "SRC-DD-06"
   ],
-  "method": "Every row is transcribed from the official NFL Week 10 injury report page (fetched 2026-11-12). Injury names are added only where an official NFL.com source states them (SRC-DD-03). Deficiency chains pair a starter status (official report/news) with the replacement order published on the team's own depth chart (SRC-DD-10..SRC-DD-37). Blank cells with a flagged note mean no official source confirmed the value — nothing is inferred.",
+  "method": "Base report rows are transcribed from the official NFL Week 10 injury report page (fetched 2026-11-12). Injury names are added only where an official NFL.com source states them (SRC-DD-03). Deficiency chains pair a starter status (official report/news) with the replacement order published on the team's own depth chart (SRC-DD-10..SRC-DD-37). On 2026-11-15, only game_status for IR-038, IR-039 and IR-040 was rechecked against SRC-DD-51; the original 254 report_rows count remains historical metadata and was not recounted. Blank cells with a flagged note mean no official source confirmed the value — nothing is inferred.",
+  "status_refreshes": [
+   {"row_id": "IR-038", "field": "game_status", "previous_value": "", "new_value": "Out", "retrieved_on": "2026-11-15", "source_id": "SRC-DD-51"},
+   {"row_id": "IR-039", "field": "game_status", "previous_value": "", "new_value": "Out", "retrieved_on": "2026-11-15", "source_id": "SRC-DD-51"},
+   {"row_id": "IR-040", "field": "game_status", "previous_value": "", "new_value": "Out", "retrieved_on": "2026-11-15", "source_id": "SRC-DD-51"}
+  ],
   "practice_vocabulary": {
    "Full": "Full Participation in Practice",
    "Limited": "Limited Participation in Practice",
@@ -672,10 +677,11 @@
    "position": "S",
    "injury": "Knee",
    "practice": "Limited",
-   "game_status": "",
+   "game_status": "Out",
    "sources": [
     "SRC-DD-01",
-    "SRC-DD-03"
+    "SRC-DD-03",
+    "SRC-DD-51"
    ]
   },
   {
@@ -685,10 +691,11 @@
    "position": "C",
    "injury": "Ankle",
    "practice": "DNP",
-   "game_status": "",
+   "game_status": "Out",
    "sources": [
     "SRC-DD-01",
-    "SRC-DD-03"
+    "SRC-DD-03",
+    "SRC-DD-51"
    ]
   },
   {
@@ -698,10 +705,11 @@
    "position": "CB",
    "injury": "Hip",
    "practice": "DNP",
-   "game_status": "",
+   "game_status": "Out",
    "sources": [
     "SRC-DD-01",
-    "SRC-DD-03"
+    "SRC-DD-03",
+    "SRC-DD-51"
    ]
   },
   {

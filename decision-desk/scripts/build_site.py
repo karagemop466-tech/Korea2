@@ -78,6 +78,38 @@ def badge(text: str) -> str:
     return f'<span class="badge {cls}">{esc(text)}</span>'
 
 
+def validate_status_refreshes(injuries: dict, sources: dict) -> dict:
+    """Keep the 2026-11-15 correction constrained to its three evidenced fields."""
+    expected = {
+        "IR-038": ("Kerby Joseph", "S"),
+        "IR-039": ("Cade Mays", "C"),
+        "IR-040": ("D.J. Reed", "CB"),
+    }
+    refreshes = injuries["meta"].get("status_refreshes", [])
+    if len(refreshes) != len(expected) or {r.get("row_id") for r in refreshes} != set(expected):
+        raise SystemExit("status refresh log must contain exactly IR-038, IR-039 and IR-040")
+    rows = {r["id"]: r for r in injuries["report_rows"]}
+    for update in refreshes:
+        row_id = update["row_id"]
+        row = rows.get(row_id)
+        if row is None:
+            raise SystemExit(f"status refresh references missing injury row {row_id}")
+        if (row["team"], row["player"], row["position"]) != ("DET", *expected[row_id]):
+            raise SystemExit(f"status refresh identity mismatch for {row_id}")
+        if (update.get("field"), update.get("previous_value"), update.get("new_value"),
+                update.get("retrieved_on"), update.get("source_id")) != (
+                "game_status", "", "Out", "2026-11-15", "SRC-DD-51"):
+            raise SystemExit(f"unexpected status refresh metadata for {row_id}")
+        if row["game_status"] != update["new_value"] or "SRC-DD-51" not in row["sources"]:
+            raise SystemExit(f"status refresh value/source mismatch for {row_id}")
+        if update["source_id"] not in sources or sources[update["source_id"]]["fetched"] != update["retrieved_on"]:
+            raise SystemExit(f"status refresh source/date mismatch for {row_id}")
+    refreshed_rows = {r["id"] for r in injuries["report_rows"] if "SRC-DD-51" in r["sources"]}
+    if refreshed_rows != set(expected):
+        raise SystemExit("SRC-DD-51 must be linked only to the three refreshed Detroit rows")
+    return {r["row_id"]: r for r in refreshes}
+
+
 def link_flags(text: str) -> str:
     """Wrap FL-DD-NN tokens (already escaped) in links to the flagged page."""
     import re
@@ -107,7 +139,7 @@ def page(title: str, body: str, depth: int) -> str:
 </main>
 <footer>
 <p>Decision Desk · session <code>arena/aa66ed82-korea2</code> · every row is source-linked ·
-unverified values are blank and flagged, never inferred · captured 2026-11-12.</p>
+unverified values are blank and flagged, never inferred · base capture 2026-11-12; focused Detroit status recheck 2026-11-15.</p>
 <p>Research and measurement, not betting advice. Every figure is computed from the sources
 listed on the Sources page; nothing is estimated by hand.</p>
 </footer>
@@ -138,13 +170,14 @@ def main() -> None:
     qcount = questions["meta"]["counts"]
     fcount = flagged["meta"]["counts"]
     lbmeta = leaderboard["meta"]
+    status_refresh_by_row = validate_status_refreshes(injuries, sources)
 
     # ---------------- index.html ----------------
     kpis = [
         ("Strategies qualified", f'0 / {lbmeta["totals"]["evaluations"]}',
          f'across {lbmeta["totals"]["labs"]} lab boards'),
-        ("Injury rows tracked", str(icount["report_rows"] + icount["supplemental_rows"]),
-         f'{icount["report_rows"]} official + {icount["supplemental_rows"]} supplemental'),
+        ("Injury rows in base snapshot", str(icount["report_rows"] + icount["supplemental_rows"]),
+         f'{icount["report_rows"]} official + {icount["supplemental_rows"]} supplemental; 2026-11-12 count not revalidated; {len(status_refresh_by_row)} Detroit statuses checked 2026-11-15'),
         ("Deficiency chains", str(icount["deficiencies"]),
          f'{icount["flagged_deficiencies"]} flagged for review'),
         ("Decision questions", str(qcount["total"]),
@@ -176,7 +209,7 @@ Every table row carries a link to the official source it came from.</p>
 <h2>Standing rules on this site</h2>
 <ul class="rules">
 <li>Values that cannot be confirmed from an official source are <strong>left blank and flagged</strong> — never inferred.</li>
-<li>Every data row's last cell links to its source (fetch date 2026-11-12).</li>
+<li>Every data row's last cell links to its source; the Sources page records retrieval dates per source.</li>
 <li>Team depth charts are team-published and mostly labelled <em>Unofficial</em> by the teams themselves.</li>
 <li>Flagged items do not block the merge; they live on the <a href="pages/flagged.html">Flagged for Review</a> page.</li>
 <li>Suggestions are proposals only — the <a href="pages/suggestions.html">Suggestions register</a> waits for a reviewer's decision.</li>
@@ -197,14 +230,23 @@ Every table row carries a link to the official source it came from.</p>
         return game_order.get(g["id"], 99) if g else 99
 
     rows = sorted(injuries["report_rows"], key=lambda r: (row_game(r), r["team"], r["player"]))
+
+    def report_status_cell(r):
+        value = badge(r["game_status"]) if r["game_status"] else '<span class="blank">pending</span>'
+        refresh = status_refresh_by_row.get(r["id"])
+        if refresh:
+            value += f'<br><small>field rechecked {esc(refresh["retrieved_on"])}</small>'
+        return value
+
     report_tbl = table(
         ["Game", "Team", "Player", "Pos", "Injury (official wording)", "Practice", "Game status", "Source"],
         [[esc(row_game_str(r, game_by_team, game_order)), esc(r["team"]), esc(r["player"]), esc(r["position"]),
           esc(r["injury"]) or '<span class="blank">—</span>',
           badge(r["practice"]) if r["practice"] in ("DNP", "Limited", "Full") else esc(r["practice"]),
-          badge(r["game_status"]) if r["game_status"] else '<span class="blank">pending</span>',
+          report_status_cell(r),
           source_links(r["sources"], sources)] for r in rows],
-        f'Official Week 10 injury report — {icount["report_rows"]} rows, fetched 2026-11-12 from nfl.com/injuries/')
+        f'Base Week 10 report capture 2026-11-12; {len(status_refresh_by_row)} Detroit game_status fields rechecked 2026-11-15; '
+        f'original {icount["report_rows"]}-row metadata not recounted (see <a href="flagged.html#FL-DD-20">FL-DD-20</a>).')
 
     supp_tbl = table(
         ["Team", "Player", "Pos", "Injury", "Practice", "Game status", "Note", "Source"],
@@ -245,10 +287,11 @@ Every table row carries a link to the official source it came from.</p>
     body = f"""
 <section>
 <h2>Week 10 2026 — injury tracking &amp; lineup deficiencies</h2>
-<p>Primary source: {source_links(["SRC-DD-01"], sources)} (the official NFL injury report, fetched 2026-11-12),
-cross-checked against {source_links(["SRC-DD-02", "SRC-DD-03"], sources)}.
-Practice vocabulary: <strong>Full/Limited/DNP</strong> = full / limited / did-not-participate in Wednesday practice;
-game statuses (Out / Questionable) are provisional until Sunday inactives.</p>
+<p>Primary source: {source_links(["SRC-DD-01"], sources)} (base report captured 2026-11-12),
+cross-checked against {source_links(["SRC-DD-02", "SRC-DD-03"], sources)}. A focused recheck of the Detroit table on 2026-11-15
+{source_links(["SRC-DD-51"], sources)} updated only IR-038, IR-039 and IR-040 to Out. The original {icount["report_rows"]} report-row count is retained as
+2026-11-12 snapshot metadata; this recheck did not recount the full page (see <a href="flagged.html#FL-DD-20">FL-DD-20</a>). Game statuses are report designations, not actual
+participation or probabilities.</p>
 </section>
 <section>
 <h2>Games on the report</h2>
@@ -259,7 +302,7 @@ game statuses (Out / Questionable) are provisional until Sunday inactives.</p>
        "All 14 Week 10 games")}
 </section>
 <section>
-<h2>Official injury report rows ({icount["report_rows"]})</h2>
+<h2>Official injury report rows in the 2026-11-12 base snapshot ({icount["report_rows"]}; count not revalidated)</h2>
 {report_tbl}
 </section>
 <section>
@@ -282,6 +325,7 @@ elevations (e.g. NE RB Stevenson+Henderson out → 3rd-string Kiner; SEA QB Darn
 <h2>Method</h2>
 <ul class="rules">
 <li>Report rows: transcribed from {source_links(["SRC-DD-01"], sources)}; injury wording added only where an official NFL.com source states it ({source_links(["SRC-DD-03"], sources)}).</li>
+<li>Focused 2026-11-15 refresh: only IR-038, IR-039 and IR-040 game_status cells were updated using {source_links(["SRC-DD-51"], sources)}; the base row count remains historical and was not recounted.</li>
 <li>Replacement order: each team's own depth-chart page (sources {source_links(["SRC-DD-10"], sources)} … {source_links(["SRC-DD-37"], sources)} — full list on the <a href="sources.html">Sources</a> page), fetched 2026-11-12.</li>
 <li>Blank + flagged = no official source confirmed the value (unverifiable chart, missing announcement, empty chart cell).</li>
 </ul>
@@ -450,8 +494,8 @@ each with what was observed, how the site handles it, and which suggestion would
     body = f"""
 <section>
 <h2>Source register</h2>
-<p>All {len(sources_doc["sources"])} sources were fetched and read in this session (2026-11-12).
-Every table row on this site links to one of these.</p>
+<p>{len(sources_doc["sources"])} sources are registered; each row records its own retrieval date.
+The base capture is dated 2026-11-12. {source_links(["SRC-DD-51"], sources)} is a focused 2026-11-15 Detroit status recheck, not a complete report recapture.</p>
 {table(["ID", "Source", "Publisher", "Fetched", "What it is used for", "Note", "Source"],
        src_rows, "Official sources only — no secondary aggregators; every row links to the source itself")}
 </section>
@@ -498,7 +542,7 @@ reviewed {esc(review["meta"]["reviewed_on"])}. {esc(review["meta"]["method"])}</
     body = f"""
 <section>
 <h2>Executive summary — Decision Desk</h2>
-<p><strong>Captured 2026-11-12 · branch {esc(review["meta"]["branch"])} · data as of the dates shown on each page.</strong></p>
+<p><strong>Base capture 2026-11-12 · focused Detroit status recheck 2026-11-15 · branch {esc(review["meta"]["branch"])} · other data as of the dates shown on each page.</strong></p>
 </section>
 <section>
 <h2>Bottom line</h2>
@@ -532,7 +576,7 @@ reviewed {esc(review["meta"]["reviewed_on"])}. {esc(review["meta"]["method"])}</
 <section>
 <h2>What this session produced</h2>
 <ul class="rules">
-<li><strong>Injuries &amp; depth:</strong> {icount["report_rows"]} official Week 10 rows + {icount["supplemental_rows"]} supplemental,
+<li><strong>Injuries &amp; depth:</strong> 2026-11-12 base snapshot ({icount["report_rows"]} official Week 10 rows + {icount["supplemental_rows"]} supplemental; count not revalidated); {len(status_refresh_by_row)} Detroit game_status cells rechecked 2026-11-15.
 {icount["deficiencies"]} starter→backup chains ({icount["flagged_deficiencies"]} flagged), 4 "No Injuries Reported" contradictions exposed.</li>
 <li><strong>Questions:</strong> {qcount["total"]} decision-readiness rows — {qcount["answered"]} answered, {qcount["partial"]} partial,
 {qcount["unanswered"]} unanswered with named gaps.</li>
@@ -555,7 +599,7 @@ plus {icount_correlations(leaderboard)} measured correlation rows.</li>
 <section>
 <h2>Trust statement</h2>
 <p>No number on this site was estimated. If an official source did not state it, the cell is blank and the
-irregularity is on the <a href="flagged.html">Flagged</a> page. Sources: <a href="sources.html">{len(sources)} registered, all fetched 2026-11-12</a>.</p>
+irregularity is on the <a href="flagged.html">Flagged</a> page. Sources: <a href="sources.html">{len(sources)} registered, retrieval dates shown per source</a>.</p>
 </section>
 """
     write("pages/executive.html", page("Executive summary", body, 1))

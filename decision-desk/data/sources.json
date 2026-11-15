@@ -4,7 +4,7 @@
   "session": "arena/aa66ed82-korea2",
   "captured": "2026-11-12",
   "policy": "Sources marked fetched were opened and read in full this session. Team depth charts are labelled 'Unofficial' by the teams themselves (except the Arizona Cardinals page, titled 'Official Depth Chart') — see flagged.json FL-DD-02.",
-  "note": " SRC-DD-50 added after merging origin/main (lineup-lab board)."
+  "note": "SRC-DD-50 was added after merging origin/main (lineup-lab board); SRC-DD-51 is a focused 2026-11-15 Detroit status recheck, not a replacement for the original snapshot."
  },
  "sources": [
   {
@@ -456,6 +456,15 @@
    "fetched": "2026-11-12",
    "use": "Aggregated leaderboard row: lineup-lab/ (8 evaluated, 0 approved) — merged to main after this session's initial capture.",
    "note": "Read locally from lineup-lab/data/leaderboard.json; meta confirms total_evaluated 8, approved_count 0."
+  },
+  {
+   "id": "SRC-DD-51",
+   "title": "NFL.com official Week 10 injury report — focused Detroit status recheck",
+   "url": "https://www.nfl.com/injuries/league/2026/reg10",
+   "publisher": "NFL",
+   "fetched": "2026-11-15",
+   "use": "Focused recheck of Detroit game_status for Kerby Joseph (IR-038), Cade Mays (IR-039) and D.J. Reed (IR-040); each is listed Out. No other report fields or complete row count were refreshed.",
+   "note": "Retrieved via the page-retrieval tool in eight chunks. Supports only these three Detroit designations; not a new complete-report count or raw-byte archive."
   }
  ]
 }

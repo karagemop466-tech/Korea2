@@ -6,7 +6,7 @@
   "site hub": 22
  },
  "history": "full",
- "base_commit": "83f9e8f",
+ "base_commit": "c68106f",
  "hub_count": 30,
  "nav_target_count": 37,
  "nav_duplicate_labels": [
@@ -254,8 +254,8 @@
    "index_page": true,
    "pages": 15,
    "data_files": 16,
-   "scripts": 3,
-   "last_touched": "2026-11-14",
+   "scripts": 4,
+   "last_touched": "2026-11-15",
    "nav_links": [],
    "nav_labels": []
   },
@@ -594,5 +594,5 @@
  "total_pages": 232,
  "total_data_files": 192,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "83f9e8f61415a9bc132ac42bf5a4582c5e56d625"
+ "_generated_from_repo_commit": "c68106f916d90e81f89310ca97879194cfca7e68"
 }

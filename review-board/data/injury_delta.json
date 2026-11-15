@@ -8,10 +8,10 @@
  "counts": {
   "in_previous": 254,
   "in_current": 160,
-  "players_listed_with_a_designation_before": 6,
+  "players_listed_with_a_designation_before": 9,
   "players_listed_with_a_designation_now": 160,
   "added": 31,
-  "changed": 123,
+  "changed": 121,
   "dropped": 0
  },
  "teams_that_said_no_injuries": [
@@ -291,24 +291,10 @@
    "now": "Limited / Questionable"
   },
   {
-   "player": "Cade Mays",
-   "team": "DET",
-   "pos": "C",
-   "was": "DNP",
-   "now": "DNP / Out"
-  },
-  {
-   "player": "D.J. Reed",
-   "team": "DET",
-   "pos": "CB",
-   "was": "DNP",
-   "now": "DNP / Out"
-  },
-  {
    "player": "Kerby Joseph",
    "team": "DET",
    "pos": "S",
-   "was": "Limited",
+   "was": "Limited / Out",
    "now": "DNP / Out"
   },
   {
@@ -464,9 +450,23 @@
    "pos": "T",
    "was": "DNP",
    "now": "DNP / Out"
+  },
+  {
+   "player": "Jaylon Carlies",
+   "team": "IND",
+   "pos": "LB",
+   "was": "DNP",
+   "now": "DNP / Out"
+  },
+  {
+   "player": "Jerry Tillery",
+   "team": "IND",
+   "pos": "DT",
+   "was": "Limited",
+   "now": "DNP / Out"
   }
  ],
  "note": "The sibling capture is the Wednesday practice report; this one is the Friday report that carries game statuses. Designation counts are therefore not comparable as a rate - the point of the row is that the Friday statuses exist only on Friday, which is exactly why an archived point-in-time snapshot (and not a re-read of the live page) is required to backtest any availability signal.",
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "83f9e8f61415a9bc132ac42bf5a4582c5e56d625"
+ "_generated_from_repo_commit": "c68106f916d90e81f89310ca97879194cfca7e68"
 }

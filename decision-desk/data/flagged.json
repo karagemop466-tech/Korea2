@@ -3,9 +3,10 @@
   "title": "Flagged for review — irregularities found this session (none block the merge)",
   "session": "arena/aa66ed82-korea2",
   "captured": "2026-11-12",
+  "updated_on": "2026-11-15",
   "policy": "Per project policy these items are published rather than hidden; they do not block the PR. Each row says what was observed, what the site does about it, and which suggestion would fix it.",
   "counts": {
-   "total": 19,
+   "total": 20,
    "high": 7,
    "carry_forward": 6
   }
@@ -181,6 +182,15 @@
    "status": "Open (carry-forward)",
    "sources": "SRC-DD-48, SRC-DD-38",
    "handling": "Recorded in the repo review; wording is owned by root pages outside this session's file scope — logged as a request in COORDINATION.md rather than edited. Suggested fix: S-13-style doc pass by the owner."
+  },
+  {
+   "id": "FL-DD-20",
+   "title": "Week 10 injury-report row count not revalidated on focused Detroit status refresh",
+   "detail": "The 2026-11-15 retrieval rechecked only Detroit game_status for IR-038, IR-039 and IR-040. The existing 254 report_rows count is from the 2026-11-12 base snapshot and remains unchanged; no complete recount was performed. Do not treat it as a newly verified current total.",
+   "severity": "Medium",
+   "status": "Open",
+   "sources": "SRC-DD-01, SRC-DD-51",
+   "handling": "Preserve 254 as historical snapshot metadata. Only the three source-confirmed status cells were updated; publish a new row count only after a complete, independently checked report capture (suggested fix: S-08)."
   }
  ]
 }
