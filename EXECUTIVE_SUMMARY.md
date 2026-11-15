@@ -2,7 +2,7 @@
 
 **Current repository status — 2026-11-15.** Research only; no candidate is approved for live use, no official timestamped market-price archive is captured, and no reward pool is funded. Do not use the committed Week 9 model lines as current recommendations.
 
-**Live site:** <https://karagemop466-tech.github.io/Korea2/> — the latest Pages API check (2026-11-15 18:20 UTC) reported `built` for main commit `a08c249352d2be2028affa1fbb2c13d1b3d93235`; this predates and does not include the current unmerged documentation edits.
+**Live site:** <https://karagemop466-tech.github.io/Korea2/> — GitHub Pages reported `built` for PR #124's merge commit `5da59c96072a7dd856a55a45ac3d7ce754e01907` on 2026-11-15 18:40 UTC; this deployment includes the documentation edits, but does not establish external-source freshness or correctness.
 
 ### The decision in brief
 
