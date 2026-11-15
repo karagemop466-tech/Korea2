@@ -121,6 +121,17 @@ def check_blank_policy(data: dict) -> None:
                     err(f"depth row {i}: {f} must be null (no official depth source)")
 
 
+def check_readiness_tests() -> None:
+    test_path = os.path.join(LD, "tests", "test_readiness_matrix.py")
+    if not os.path.isfile(test_path):
+        err("readiness matrix tests are missing")
+        return
+    result = subprocess.run([sys.executable, test_path], capture_output=True, text=True)
+    if result.returncode != 0:
+        detail = (result.stdout + result.stderr).strip()
+        err(f"readiness matrix tests failed: {detail[-1200:]}")
+
+
 def check_counts_and_correlations(data: dict) -> None:
     st = data.get("official_standings.json")
     corr = data.get("correlations.json")
@@ -318,6 +329,7 @@ def main() -> int:
     check_blank_policy(data)
     check_counts_and_correlations(data)
     check_html()
+    check_readiness_tests()
     check_determinism()
     if errors:
         print(f"line-desk verify: FAIL ({len(errors)} issue(s))")
@@ -326,7 +338,7 @@ def main() -> int:
         return 1
     print("line-desk verify: PASS "
           f"({len(data)} registers, blank policy ok, correlations recomputed, "
-          "rows sourced, links resolved, outputs deterministic)")
+          "readiness tests pass, rows sourced, links resolved, outputs deterministic)")
     return 0
 
 
