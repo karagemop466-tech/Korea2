@@ -154,6 +154,14 @@ class ReportParser(HTMLParser):
             self.text_before = (self.text_before + " " + data)[-400:]
 
 
+def body_key(requested: int, declared: int | None, content_sha: str) -> tuple:
+    """Identity of a stored body. A page that shows week N when week M was asked is stored once
+    per content state, whichever requested week returned it (the echo is one page, not eight)."""
+    if declared is not None and declared != requested:
+        return ("echo", declared, content_sha)
+    return ("week", requested, content_sha)
+
+
 def declared_week(html: str) -> int | None:
     """The week the page itself shows in its body heading ('Injuries - WEEK N').
 
@@ -329,7 +337,7 @@ def main(argv=None) -> int:
         if rec.get("parsed_file") and rec.get("week") is not None:
             last_parsed[rec["week"]] = rec
         if rec.get("body_file") and rec.get("content_sha256"):
-            stored_content.add((rec["week"], rec["content_sha256"]))
+            stored_content.add(body_key(rec["week"], rec.get("declared_week"), rec["content_sha256"]))
         if rec.get("tables"):
             had_tables[rec["week"]] = True
 
@@ -366,7 +374,7 @@ def main(argv=None) -> int:
             # Raw SHA-256 is recorded for every fetch. The raw body is kept the first time each
             # distinct CONTENT state (parsed rows + declared week) is seen for a week. Byte-only
             # changes (e.g. a random data-jsonid in a carousel) keep their hash but add no body.
-            key = (week, parsed["content_sha256"])
+            key = body_key(week, parsed["declared_week"], parsed["content_sha256"])
             if key not in stored_content or parsed["tables"] == 0:
                 entry["body_new"] = write_once(os.path.join(base, "bodies", f"{sha}.html.gz"),
                                                gzip.compress(body, mtime=0))
