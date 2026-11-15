@@ -5,7 +5,7 @@
 - **Live GitHub Pages site:** [karagemop466-tech.github.io/Korea2](https://karagemop466-tech.github.io/Korea2/)
 - **Current repository-level executive summary:** [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md)
 - **Dated site/repository audit:** [docs/REPOSITORY_STATUS_2026-11-15.md](docs/REPOSITORY_STATUS_2026-11-15.md)
-- **Flagged issues:** [root Flagged for Review](pages/flagged.html) · [Line Desk flags](line-desk/pages/flagged.html)
+- **Flagged issues:** [root Flagged for Review](pages/flagged.html) · [Line Desk flags](line-desk/pages/flagged.html) · [Week 10 injury-report flags](injury-report-w10/index.html)
 
 ## Start here
 
@@ -33,6 +33,7 @@ The repository has several independently built dashboards. They do not yet form 
 ### Injury and replacement evidence
 
 - [Official-only sample and depth limitations](line-desk/pages/depth.html) — 11 Week 10 report rows across four clubs; replacement identity and string tier are blank because this source does not state them.
+- [Week 10 NFL injury-report re-verification](injury-report-w10/index.html) — a different session's 2026-11-15 fetch record covers 14 games/28 listed teams. Only DET/SEA/CIN (3/28 team tables) were transcribed row by row; other counts are manual, four clubs are absent with bye status unverified, and no raw-response hash exists. See its seven flags; this is not a complete 32-team point-in-time archive or a depth source.
 - [Injury/depth research hub](decision-hub/pages/injuries.html) — a separate analysis built partly from nflverse community releases. Treat its depth and snap fields as third-party data, not as official NFL starter or inactive evidence.
 - [Decision Desk injury view](decision-desk/pages/injuries.html) — another independently sourced/compiled view; its flags document chart, roster and report conflicts.
 
@@ -49,7 +50,7 @@ Dates below are not interchangeable. The root analysis and the requirements desk
 - **Availability/depth:** the Line Desk has 11 official-report rows from four clubs, with **0 replacement names and 0 string tiers**. A Price Desk proof-of-concept records one official NFL Game Book (WAS@NYG) for starting lineups, Did-Not-Play, Not-Active and weather, and cites a second Game Book for a score check; a scheduled, all-week ingestion pipeline is not built. The Game Book identifies who started, not an official 2nd/3rd/4th-string depth rank. Another hub uses nflverse depth/roster/snap releases; those remain third-party and do not replace Game Book evidence. See [Line Desk Depth](line-desk/pages/depth.html), [Price Desk results](price-desk/pages/results-feed.html), the [WAS@NYG Game Book PDF](https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf) and the [NFL injury report](https://www.nfl.com/injuries/league/2026/reg10).
 - **Model governance:** two committed originators disagree by 1.5–9.0 points on each of the same 15 Week 9 games. The project has not selected a canonical originator. This is an internal-repository discrepancy, not an NFL fact; see [Origination](line-desk/pages/origination.html).
 
-The Line Desk and Price Desk source registers record NFL/NIST pages and Game Books opened by earlier sessions on **2026-11-14**. This session could run repository checks and inspect those committed records, but did not fetch the external pages itself; see [Line Desk Sources](line-desk/pages/sources.html), [Price Desk Sources](price-desk/pages/sources.html) and the dated [repository audit](docs/REPOSITORY_STATUS_2026-11-15.md). Do not treat an internal source label as a new independent verification. The root analysis still contains tables based on nflverse community data; those rows are labelled third-party, not official NFL facts. The strict requirement that every displayed value be confirmed from an official site is therefore **not yet met across the full repository**.
+The Line Desk and Price Desk source registers record NFL/NIST pages and Game Books opened by earlier sessions on **2026-11-14**. The separate `injury-report-w10/` coordination record reports another session's fetch-tool read of all eight Week 10 report chunks on **2026-11-15**, with partial row transcription and no raw-response hash. This session inspected the committed registers and ran local checks but did not fetch those external pages; see [Line Desk Sources](line-desk/pages/sources.html), [Price Desk Sources](price-desk/pages/sources.html), the [Week 10 re-verification](injury-report-w10/index.html) and the dated [repository audit](docs/REPOSITORY_STATUS_2026-11-15.md). Do not treat an internal source label as a new independent verification. The root analysis still contains tables based on nflverse community data; those rows are labelled third-party, not official NFL facts. The strict requirement that every displayed value be confirmed from an official site is therefore **not yet met across the full repository**.
 
 ## Review before implementation
 
@@ -63,8 +64,8 @@ The principal blockers are a permitted timestamped price source, a canonical lin
 
 ## Verification performed in this session
 
-- `python3 tests/check_site.py` — pass: 231 HTML pages, 581 tables and 13,480 links; 33 pages outside the root published build are link-checked but do not carry the root table-source column.
-- `python3 scripts/check_links.py` — pass: 4,635 local references, no broken internal links.
+- `python3 tests/check_site.py` — pass: 232 HTML pages, 584 tables and 13,560 links; 33 pages outside the root published build are link-checked but do not carry the root table-source column.
+- `python3 scripts/check_links.py` — pass: 4,637 local references, no broken internal links.
 - `python3 scripts/validate_data.py` and `python3 tests/check_data.py` — pass for the root data-validation scope.
 - `python3 tests/check_derived.py` — pass: strict JSON, 52 recorded independent checks with 0 mismatches, 32/32 teams reconciled for 2020, and 25 generated root pages linked.
 - `python3 line-desk/scripts/build_site.py --check` and `python3 line-desk/scripts/verify.py` — pass for the Line Desk deterministic render, blank policy, source links and correlations.
