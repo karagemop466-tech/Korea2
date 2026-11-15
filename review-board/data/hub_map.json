@@ -6,7 +6,7 @@
   "site hub": 22
  },
  "history": "full",
- "base_commit": "c68106f",
+ "base_commit": "469b71a",
  "hub_count": 30,
  "nav_target_count": 37,
  "nav_duplicate_labels": [
@@ -214,7 +214,7 @@
    "pages": 9,
    "data_files": 7,
    "scripts": 2,
-   "last_touched": "2026-11-14",
+   "last_touched": "2026-11-15",
    "nav_links": [
     "decision-desk/index.html"
    ],
@@ -594,5 +594,5 @@
  "total_pages": 232,
  "total_data_files": 192,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "c68106f916d90e81f89310ca97879194cfca7e68"
+ "_generated_from_repo_commit": "469b71a62996dd34d338f1472886f72b32320430"
 }
