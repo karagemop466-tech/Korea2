@@ -2705,3 +2705,24 @@ The repository already delivers the full charter requested:
 **No suggestions or questions were implemented in this session** — all 12 suggestions and 15 questions remain in the review registers awaiting a reviewer decision before any implementation branch touches the referenced files.
 
 **Request to the root-site / integration owner (logged here):** after this session's PR merges and Pages deploys, record the PR link, merge commit and Pages build result in this section.
+---
+
+## Session `arena/fb6de97a-korea2` — immutable official injury-report snapshots (IC)
+
+**Session ID:** `arena/fb6de97a-korea2` (branch fixed by the environment; the branch name is the session ID). **Base:** `1d049f9` (= `origin/main` at intake). **Claimed:** 2026-11-15 UTC, pushed before any implementation.
+
+**Why this scope:** about 30 parallel sessions have each re-run the same 80-item brief (see the board above). The brief's most repeated gap that no session has closed is the *capture*: the repo holds one hand-transcribed injury report (`review-board/data/raw/injury_report_2026-11-13_week10.csv`, 213 data rows) and no scheduled, timestamped, hashed capture. This session claims that gap only.
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| IC-0 | Claim non-overlapping scope and push before any other work | done | `arena/fb6de97a-korea2` | this section |
+| IC-1 | Scheduled immutable capture of the official nfl.com injury-report pages (raw bytes gzipped, SHA-256, UTC fetch time, append-only manifest, body stored once per distinct hash) — runs on a GitHub runner because the sandbox cannot reach nfl.com | in progress | `arena/fb6de97a-korea2` | `scripts/capture/capture_injury_reports.py`, `.github/workflows/capture-injury-reports.yml`, `data/snapshots/injury_report/**` |
+| IC-2 | Parser pinned to expected headers and minimum row/team counts; drift alarm fails the job loudly; conflict flags (blank game status beside a DNP practice status, duplicate player in a team table) | in progress | `arena/fb6de97a-korea2` | same script, `tests/test_capture_parser.py` |
+| IC-3 | Week-10 re-verification from the captured official bytes: row count, sections, teams with no rows, Lions game-status cells; compared with every published figure (254/279 rows, 213 rows in the committed CSV) | unclaimed | `arena/fb6de97a-korea2` | `data/snapshots/injury_report/verification.json` |
+| IC-4 | Publish the capture register and the Week-10 comparison as a root page, add it to navigation, add flagged items | unclaimed | `arena/fb6de97a-korea2` | `scripts/build_site.py` (new page block), `scripts/lib/site.py` (NAV line), `pages/injury-snapshots.html`, `pages/flagged.html`, `index.html` (regenerated) |
+| IC-5 | Integration: run the existing check suite, open PR to `main`, merge, confirm GitHub Pages deploy, record PR and result here | unclaimed | `arena/fb6de97a-korea2` | this section |
+
+**Not claimed (already covered elsewhere or blocked by the sandbox):** depth-chart image sources (Texans), game books and inactive lists (no fetchable source confirmed this session), price capture (no official price source), prop-combo gates, leaderboard divisions. These stay with their existing owners' pages and are listed as open in the readiness table.
+
+### Log — `arena/fb6de97a-korea2`
+- 2026-11-15 UTC — Intake: read the board. `origin/main` = `1d049f9`. Open PRs #93–#112 belong to other sessions; none touches `scripts/capture/` or `data/snapshots/`. Sandbox check: `curl https://www.nfl.com/...` fails at TLS (SSL_ERROR_SYSCALL), while the `fetch_page` tool returns the official page; therefore capture must run on a GitHub runner, as `fetch-injuries.yml` already does.
