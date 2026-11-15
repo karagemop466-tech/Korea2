@@ -1,180 +1,104 @@
-# Line Lab — NFL line origination and strategy validation
+# NFL Line Lab — research, evidence and decision readiness
 
-A reproducible research pipeline that originates NFL spreads, totals, moneylines and player-prop
-lines from community-maintained nflverse game and weekly-stat extracts, measures correlations, and
-runs candidate strategies through ten validation gates. nflverse is not the NFL; selected seasons are
-reconciled against NFL.com, and the precise verification limits are flagged.
+**As of 2026-11-15.** This repository is a research and measurement project, not a live betting service. No candidate strategy is approved for deployment, the reward pool is unfunded, and the displayed Week 9 model lines are historical—not current recommendations.
 
-**Live site:** https://karagemop466-tech.github.io/Korea2/
+- **Live GitHub Pages site:** [karagemop466-tech.github.io/Korea2](https://karagemop466-tech.github.io/Korea2/)
+- **Current repository-level executive summary:** [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md)
+- **Dated site/repository audit:** [docs/REPOSITORY_STATUS_2026-11-15.md](docs/REPOSITORY_STATUS_2026-11-15.md)
+- **Flagged issues:** [root Flagged for Review](pages/flagged.html) · [Line Desk flags](line-desk/pages/flagged.html) · [Week 10 injury-report flags](injury-report-w10/index.html)
 
-## Result of the committed data snapshot
+## Start here
 
-The dataset is through **2026-11-01**; this repository snapshot is not current to the live Week 10 slate checked on 2026-11-12. Do not use its Week 9/next-slate projections as current lines. See [Flagged for review](https://karagemop466-tech.github.io/Korea2/pages/flagged.html).
+The repository has several independently built dashboards. They do not yet form one canonical site; the root navigation omits some recent hubs and repeats the “Suggestions hub” link. These direct links are intentional until the shared-navigation owner integrates them.
 
-| Question | Answer | Evidence |
-|---|---|---|
-| Can the closing line be beaten by this model? | No | model spread MAE 10.38 vs market 9.70; model coefficient on margin after controlling for the close = −0.02 (p = 0.85) |
-| Did any strategy pass the gates? | No, 0 of 7 candidates (2 controls also fail) | see [Leaderboard](https://karagemop466-tech.github.io/Korea2/pages/leaderboard.html) |
-| Are parlay legs independent? | No | QB passing yards ↔ WR1 receiving yards r = +0.561; 4-leg same-team joint 11.1% vs 5.7% under independence |
-| Is a season win-loss record a signal? | Mostly luck | Pythagorean R² = 0.83; year-over-year luck correlation 0.019 |
-| Can prop ROI be measured? | Not here | no historical prop prices in the feed — flagged, not invented |
-| Do the published numbers survive an independent recomputation? | Yes | 48 of 52 checks pass, 0 mismatches (11 expected-to-differ observations); the 2020 and 2026 seasons each reconcile 32/32 teams with NFL.com — [Verification](https://karagemop466-tech.github.io/Korea2/pages/verification.html) |
+### Decision and requirements review
 
-The honest headline is that the market is better than the model, and the gate system rejects
-everything as a result. That is the intended behaviour of the system, not a failure of it.
+- [Line Desk](line-desk/index.html) — latest committed requirements view (as of 2026-11-14): price-snapshot coverage, official results, origination order, signal versus staking, official-only standings correlations, replacement-depth gaps, gates, questions and suggestions.
+- [Line Desk: Requirements](line-desk/pages/requirements.html) — 19 traced requirements; 11 reported built, 5 partial, 3 carried/existing/in-progress.
+- [Line Desk: Questions & answers](line-desk/pages/questions.html) — known information, missing information, discovery route and blocked decision.
+- [Line Desk: Suggestions](line-desk/pages/suggestions.html) — 12 proposed items; all await review. No proposal is auto-implemented.
+- [Price Desk](price-desk/index.html) — larger historical price/result registers, with official rows separated from archive-only values; includes the Game Book demonstration and its own review questions/suggestions.
+- [Price Desk: Results](price-desk/pages/results-feed.html) · [Price snapshots](price-desk/pages/price-snapshots.html) · [Game Book/source register](price-desk/pages/sources.html) · [Suggestions](price-desk/pages/suggestions.html) · [Questions](price-desk/pages/questions.html)
+- [Price Store](price-store/index.html) — strict official-source schema and gate tests; the committed official-price snapshot CSV is empty.
+- [Review Board](review-board/index.html) — cross-hub review queue generated from **seven configured registers**. It does not currently ingest the newer Line Desk or Price Desk suggestion/question registers.
+- [Review Board: Suggestions](review-board/pages/suggestions.html) · [Questions](review-board/pages/questions.html) · [Reconciliation](review-board/pages/reconciliation.html) · [Flagged](review-board/pages/flagged.html) · [Hub map](review-board/pages/hubmap.html)
 
-## Decision hub — read this before changing anything
+### Analysis and validation
 
-The site answers "what is true". It did not answer "what should we do next". That layer now lives
-in [`decision-hub/`](decision-hub/index.html), and it is the place to start:
+- [Root analysis dashboard](index.html) — historical analysis snapshot; the root model inputs end on 2026-11-01.
+- [Originated lines](pages/lines.html) · [Player props](pages/props.html) · [Correlation & parlays](pages/correlation.html) · [Removing luck](pages/luck.html)
+- [Strategy leaderboard](pages/leaderboard.html) · [Validation gates](pages/validation.html) · [Independent verification](pages/verification.html)
+- [Source register](pages/sources.html) · [Archive of sibling dashboards](pages/archive.html)
 
-| Page | What it is for |
-|---|---|
-| [Executive summary](decision-hub/pages/executive-summary.html) | the one-page version, every number classed |
-| [Suggestions](decision-hub/pages/suggestions.html) | 14 proposals, each with impact, cost, risk and the decision it unblocks |
-| [Questions & unknowns](decision-hub/pages/questions.html) | 16 questions split into what we know and what we do not, sorted by how many decisions each blocks |
-| [Decisions](decision-hub/pages/decisions.html) | the three choices that gate everything else, with the evidence for each option |
-| [Strategy framework](decision-hub/pages/strategies.html) | the ten gates, the leaderboard, and why nothing passes |
-| [Injuries & depth](decision-hub/pages/injuries.html) | who is out and how far down the depth chart it reaches — 1st/2nd/3rd string per position |
-| [Line-by-line audit](decision-hub/pages/audit.html) | every published number recomputed by an independent implementation |
-| [Review workflow](decision-hub/pages/workflow.html) | how to choose a path without implementing anything first |
+### Injury and replacement evidence
 
-**One finding from that audit changes a published conclusion:** the headline "ATS coin-flip test —
-50.0%, p = 1.0" is an arithmetic identity, not a test (every game is pooled twice, once per side).
-The honest one-observation-per-game figure is 48.91% home covers, 95% CI 47.73–50.09%, p = 0.073.
-See [FL-DH-01](decision-hub/pages/flagged.html).
+- [Official-only sample and depth limitations](line-desk/pages/depth.html) — 11 Week 10 report rows across four clubs; replacement identity and string tier are blank because this source does not state them.
+- [Week 10 NFL injury-report re-verification](injury-report-w10/index.html) — a different session's 2026-11-15 fetch record covers 14 games/28 listed teams. Only DET/SEA/CIN (3/28 team tables) were transcribed row by row; other counts are manual, four clubs are absent with bye status unverified, and no raw-response hash exists. See its seven flags; this is not a complete 32-team point-in-time archive or a depth source.
+- [Injury/depth research hub](decision-hub/pages/injuries.html) — a separate analysis built partly from nflverse community releases. Treat its depth and snap fields as third-party data, not as official NFL starter or inactive evidence.
+- [Decision Desk injury view](decision-desk/pages/injuries.html) — another independently sourced/compiled view; its flags document chart, roster and report conflicts.
 
-## Signal Desk — the eight requirements, verified one line at a time
+## Current evidence snapshot
 
-[`signal-desk/`](signal-desk/index.html) is the decision desk for this project. It takes the eight
-requirements that were still open — a price-snapshot store, a verified results feed, the origination
-order, fair/market/difference columns, signal separated from staking, replacement *depth*, correlations
-from officially sourced numbers, and a demotion gate — and answers each with a number, a source, or an
-explicit blank.
+Dates below are not interchangeable. The root analysis and the requirements desk use different snapshots; neither provides current live-slate lines.
 
-| Page | What it shows |
-|---|---|
-| [Prices](signal-desk/pages/prices.html) | Opening coverage is one season, one book, and has **no moneyline at all**. No season has both an opening and a closing number. |
-| [Results](signal-desk/pages/results.html) | **32 of 32 teams** reconcile on W/L/T/PF/PA against NFL.com; 15 finished games were absent from the snapshot and are listed, not back-filled. |
-| [Origination order](signal-desk/pages/order.html) | P(home win) reproduces Φ(side/σ) within 0.0014 on every game; the build fails above 0.002. |
-| [Fair vs market](signal-desk/pages/gap.html) | Three separate numeric columns per market, the sign convention, and the 4.22% hold. |
-| [Signal vs staking](signal-desk/pages/leaderboard.html) | Two tables. 2 of 9 strategies have a positive ROI their own test does not support; 0 rewards paid. |
-| [Replacement depth](signal-desk/pages/depth.html) | Depth to the 10th string, and proof that **no official page publishes a depth ordinal**. |
-| [Correlations](signal-desk/pages/correlations.html) | Four official values at n=32; the per-game QB-to-receiver pair is blank because the official pages cannot produce it. |
-| [Demotion gate](signal-desk/pages/demotion.html) | Eight rules, four evaluable today, and no direct route back from demoted to live. |
-| [Suggestions](signal-desk/pages/suggestions.html) / [Questions](signal-desk/pages/questions.html) | 8 proposals and 12 questions. Nothing is implemented; each proposal names the question it waits on. |
+- **Root model data:** the committed analysis snapshot ends on gameday **2026-11-01**. The source manifest identifies nflverse as a community-maintained source and notes that its sportsbook-derived market lines are not an official sportsbook archive. The root result is therefore reproducible research, not an official market feed. See [`data/derived/manifest.json`](data/derived/manifest.json) and the [verification page](pages/verification.html).
+- **Requirement desk:** the Line Desk registers 19 requirements. It reports **11 built, 5 partial and 3 carried/existing/in-progress**; see the status and evidence per row on [Requirements](line-desk/pages/requirements.html).
+- **Results:** two separate registers have different scopes. The Line Desk marks **44 NFL.com finals** for Weeks 7–9 plus Week 10 Thursday; 27 compare with the older snapshot and match, while 17 later finals had blank scores there. The Price Desk has a 1,088-game 2023–2026 feed: 22 scores marked official, 931 archived-unverified and 135 missing/unsettled; of the 22 official scores, 5 could be cross-checked against the archive and matched, while 17 filled blank archive rows. Do not add these counts together or treat the archive-only rows as official. See [Line Desk Results](line-desk/pages/results-feed.html), [Price Desk Results](price-desk/pages/results-feed.html) and the [Price Desk verified-results record](price-desk/data/verified_results_2026.json).
+- **Prices:** there is no official open/close archive. The Price Desk has 2,364 game-market rows: all 2,364 opening fields are blank; 1,956 closing-line values are explicitly `archived-unverified` (nflverse-derived) and 408 are blank. Its 11,370 prop rows have no market open/close. The separate `price-store` official-only snapshot file has 0 rows. The Line Desk's 45 Week 9 model-line rows capture 45/45 of its own initial lines but 0 own closes, 0 official market opens and 0 official market closes. These are different stores, not official quotes; CLV and official price-based ROI are not established. See [Price Desk snapshots](price-desk/pages/price-snapshots.html), [Line Desk snapshots](line-desk/pages/price-snapshots.html), [empty official-only store](price-store/data/snapshots.csv) and the [NFL–Genius Sports announcement](https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports).
+- **Leaderboard:** no strategy is qualified for deployment and no reward is funded. The root/Line Desk lists 7 candidates plus 2 controls; the Price Desk also reports 28 historical entrants, all `NEEDS_REVIEW` or `REJECTED`. Its results use third-party archived closing prices, not official odds. The root leaderboard page, Line Desk and Price Desk do not share one ranking rule or candidate set; do not compare their ranks as if they were a single competition. See [root leaderboard](pages/leaderboard.html), [Line Desk signal/staking](line-desk/pages/leaderboard.html) and [Price Desk leaderboard](price-desk/pages/leaderboard.html).
+- **Official-only correlations:** eight coefficients are calculated from NFL.com 2025/2026 standings transcriptions, each with *n* and an interval (six values have n=32; two pooled values have n=64). This is team-standings evidence, not a verified player-prop or same-game joint-probability matrix. See [Correlations](line-desk/pages/correlations.html), the [2025 standings](https://www.nfl.com/standings/division/2025/REG), the [2026 standings](https://www.nfl.com/standings/division/2026/REG) and [NIST's correlation interval reference](https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm).
+- **Availability/depth:** the Line Desk has 11 official-report rows from four clubs, with **0 replacement names and 0 string tiers**. A Price Desk proof-of-concept records one official NFL Game Book (WAS@NYG) for starting lineups, Did-Not-Play, Not-Active and weather, and cites a second Game Book for a score check; a scheduled, all-week ingestion pipeline is not built. The Game Book identifies who started, not an official 2nd/3rd/4th-string depth rank. Another hub uses nflverse depth/roster/snap releases; those remain third-party and do not replace Game Book evidence. See [Line Desk Depth](line-desk/pages/depth.html), [Price Desk results](price-desk/pages/results-feed.html), the [WAS@NYG Game Book PDF](https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf) and the [NFL injury report](https://www.nfl.com/injuries/league/2026/reg10).
+- **Model governance:** two committed originators disagree by 1.5–9.0 points on each of the same 15 Week 9 games. The project has not selected a canonical originator. This is an internal-repository discrepancy, not an NFL fact; see [Origination](line-desk/pages/origination.html).
 
-Every row carries a source link and a class (`official` or `third-party`); a value that could not be
-confirmed is published blank with the reason. `signal-desk/tests/` holds 18 tests, including a rebuild
-that must reproduce the committed JSON byte for byte. Official NFL.com pages were read on 2026-11-14;
-the register is on the [Sources](signal-desk/pages/sources.html) page.
+The Line Desk and Price Desk source registers record NFL/NIST pages and Game Books opened by earlier sessions on **2026-11-14**. The separate `injury-report-w10/` coordination record reports another session's fetch-tool read of all eight Week 10 report chunks on **2026-11-15**, with partial row transcription and no raw-response hash. This session inspected the committed registers and ran local checks but did not fetch those external pages; see [Line Desk Sources](line-desk/pages/sources.html), [Price Desk Sources](price-desk/pages/sources.html), the [Week 10 re-verification](injury-report-w10/index.html) and the dated [repository audit](docs/REPOSITORY_STATUS_2026-11-15.md). Do not treat an internal source label as a new independent verification. The root analysis still contains tables based on nflverse community data; those rows are labelled third-party, not official NFL facts. The strict requirement that every displayed value be confirmed from an official site is therefore **not yet met across the full repository**.
 
-### Injury and depth data
+## Review before implementation
 
-`decision-hub/data/injuries.json` is built by `.github/workflows/fetch-injuries.yml` from the
-official NFL injury report plus the nflverse depth-chart, roster and snap-count releases. It runs on
-a GitHub runner because release assets redirect to a host the development sandbox cannot reach.
-Refresh locally with an unrestricted network:
+Suggestions are deliberately kept separate from implementation:
 
-```bash
-python decision-hub/scripts/fetch_injuries.py --season 2026
-python decision-hub/scripts/audit_root.py
-python decision-hub/scripts/build_site.py
-python decision-hub/scripts/check_site.py
-```
+1. Compare the [Review Board queue](review-board/pages/suggestions.html) (seven configured source registers) with the [Line Desk queue](line-desk/pages/suggestions.html) (12 items) and [Price Desk queue](price-desk/pages/suggestions.html) (10 items). The Review Board does not yet ingest the latter two registers.
+2. Read [Line Desk questions](line-desk/pages/questions.html) and [Price Desk questions](price-desk/pages/questions.html) for what is known, what is missing and how to discover it.
+3. Keep unsupported values blank and visible on the [Line Desk Flagged for Review](line-desk/pages/flagged.html) and [Price Desk Flagged page](price-desk/pages/flagged.html). No item in these queues has been approved by this README update.
 
-## How it works
+The principal blockers are a permitted timestamped price source, a canonical line originator, full official results history, immutable pre-kickoff availability/inactive evidence, a verified 32-club depth-source route, and an explicit reward/funding policy. These are listed—not silently decided—for review.
 
-```
-scripts/fetch_data.py   download nflverse community extracts (GitHub Actions) -> data/raw/ (gitignored)
-scripts/profile.py      record columns, coverage, nulls                   -> data/derived/profile.json
-scripts/diag_signs.py   prove the spread sign convention from the data    -> data/derived/diag_signs.json
-scripts/analyze_*.py    market, model, correlation, luck, strategies, props -> data/derived/*.json
-scripts/build_site.py   render the dashboard from that JSON               -> index.html, pages/
-tests/check_site.py     link integrity + per-row source discipline
-tests/check_derived.py  strict JSON, verification record, no orphan pages
-verification/recompute.py  independent re-implementation of the headline numbers (imports nothing here)
-```
+## Verification performed in this session
 
-Nothing on the site is typed by hand; every number is read from the committed JSON. Re-running the
-pipeline changes the numbers, not the prose.
+- `python3 tests/check_site.py` — pass: 232 HTML pages, 584 tables and 13,560 links; 33 pages outside the root published build are link-checked but do not carry the root table-source column.
+- `python3 scripts/check_links.py` — pass: 4,637 local references, no broken internal links.
+- `python3 scripts/validate_data.py` and `python3 tests/check_data.py` — pass for the root data-validation scope.
+- `python3 tests/check_derived.py` — pass: strict JSON, 52 recorded independent checks with 0 mismatches, 32/32 teams reconciled for 2020, and 25 generated root pages linked.
+- `python3 line-desk/scripts/build_site.py --check` and `python3 line-desk/scripts/verify.py` — pass for the Line Desk deterministic render, blank policy, source links and correlations.
+- `python3 price-desk/scripts/verify.py` and `python3 -m unittest discover -s price-desk/tests -v` — pass: 20,504 register checks, 0 errors; 10 unit tests passed. These check committed records, not external page contents.
+- `python3 review-board/scripts/verify_all.py`, `python3 decision-desk/scripts/verify_all.py`, `python3 verify-hub/scripts/verify.py`, the Verify Hub unit tests and `price-store` tests — pass.
 
-### Why the pipeline downloads on Actions
+The latest GitHub Pages API check on 2026-11-15 18:20 UTC reported `built` for main commit `a08c249352d2be2028affa1fbb2c13d1b3d93235`. That deployment predates and does not include these unmerged documentation edits; it confirms only the prior site build, not source freshness or correctness.
 
-The development sandbox's shell can only reach a small allowlist of hosts, and GitHub **release
-assets** redirect to `objects.githubusercontent.com`, which is blocked there. The download therefore
-runs on GitHub-hosted runners (`.github/workflows/data-pipeline.yml`) and commits the derived
-artefacts back to the branch. Every published number is reproducible from committed code plus
-`data/derived/manifest.json`, which records each source file's size and SHA-256.
+## Repository and data policy
 
-### Measured pipeline
+- Public pages should contain derived analysis and links to official source pages; raw captures should be retained with capture time, source URL, hash and conflict status in a governed store.
+- nflverse is community-maintained, not the NFL. Values derived from it are labelled third-party and must not be described as officially verified unless a row is separately reconciled against an official source.
+- Never infer starter status, string depth, inactives, snap share, a missing injury designation or price. Preserve blanks and flag the missing source.
+- Parlays and prop combos require directly validated joint probabilities and explicit settlement/void rules; multiplying marginals is not evidence of a joint probability.
+- Strategy registration must precede the evaluation window. Rank skill with proper scores, uncertainty, chronological holdouts and multiplicity controls; report staking outcomes separately.
 
-Bets are settled at the **closing line** reported by the feed, so nothing can hide behind a stale or
-soft price. Spread pushes and total pushes follow the operator rulebook (a tie after the handicap is
-a push and the stake is returned), and pushes are removed from the win-rate denominator.
+## Running the reproducible checks
 
-## Repository layout
-
-| Path | Contents |
-|---|---|
-| `index.html`, `pages/` | the published dashboard (14 pages) |
-| `data/derived/` | committed outputs: profile, manifest, market, model, correlation, luck, strategies, props, predictions |
-| `data/sources.json` | source register, each entry opened and confirmed on 2026-11-01 |
-| `scripts/` | fetch, profile, diagnostics, analysis, site build |
-| `tests/check_site.py` | fails the build on a broken link or a table row without a source |
-| `tests/check_derived.py` | fails the build on non-strict JSON, an orphan page, or a verification disagreement |
-| `verification/` | independent recomputation plus the transcribed NFL.com standings used to reconcile them |
-| `docs/` | executive summary, methodology, requirements matrix |
-| `pipeline/`, `origination/` | session `3f5af27c`: the origination/strategy/gating pipeline and its 13-page site (`origination/index.html`) |
-| sibling labs & hubs | parallel-session dashboards, each a self-contained site (listed below) |
-
-### Parallel-session labs & hubs
-
-Each of these is a self-contained static site (its own `index.html` and navigation), built by a
-parallel session and preserved unchanged. The root [archive page](pages/archive.html) links every lab.
-
-| Lab / hub | Path |
-|---|---|
-| Dashboard | [`dashboard/`](dashboard/) |
-| Decision Desk | [`decision-desk/`](decision-desk/) |
-| Decision Hub | [`decision-hub/`](decision-hub/) |
-| Lineup Lab | [`lineup-lab/`](lineup-lab/) |
-| NFL Command | [`nfl-command/`](nfl-command/) |
-| NFL Lines | [`nfl-lines/`](nfl-lines/) |
-| NFL Research | [`nfl-research/`](nfl-research/) |
-| Origination | [`origination/`](origination/) |
-| Origination Lab | [`origination-lab/`](origination-lab/) |
-| Price Desk | [`price-desk/`](price-desk/) |
-| Quant Lab | [`quant-lab/`](quant-lab/) |
-| Research Desk | [`research-desk/`](research-desk/) |
-| Review Board | [`review-board/`](review-board/) |
-| Skill Lab | [`skill-lab/`](skill-lab/) |
-| Suggestions | [`suggestions/`](suggestions/) |
-| Verify Hub | [`verify-hub/`](verify-hub/) |
-
-## Running it
+Install the repository's pinned dependencies in a clean virtual environment, then run the relevant checkers. The system Python in the development sandbox does not include NumPy; `verification/recompute.py` requires the analysis dependencies from `requirements.txt`.
 
 ```bash
-pip install -r requirements.txt
-python scripts/fetch_data.py     # needs unrestricted outbound HTTPS
-python scripts/profile.py
-python scripts/diag_signs.py
-for s in analyze_market analyze_model analyze_correlation analyze_luck analyze_strategies analyze_props; do python scripts/$s.py; done
-python scripts/build_site.py     # requires Python 3.12+
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements.txt
 python tests/check_site.py
+python scripts/check_links.py
+python scripts/validate_data.py
+python tests/check_data.py
+python tests/check_derived.py
+python verification/recompute.py
+python line-desk/scripts/build_site.py --check
+python line-desk/scripts/verify.py
+python review-board/scripts/verify_all.py
 ```
 
-## Sources
-
-NFL primary sources and regulator/statistical references support rules, definitions and documented cross-checks.
-Historical game/stat inputs come from nflverse community-maintained extracts, not an NFL-published feed;
-selected seasons are reconciled against NFL.com and the limited scope is flagged. The source register is on the
-[Source register page](https://karagemop466-tech.github.io/Korea2/pages/sources.html).
-Unconfirmable items are on the
-[Flagged for review page](https://karagemop466-tech.github.io/Korea2/pages/flagged.html) instead of
-being filled in.
-
-## Scope and disclaimer
-
-Research and measurement, not betting advice. No strategy is approved for capital, no reward pool is
-funded, and no sportbook access, price or limit has been verified.
+For the complete repository inventory, see the [root archive](pages/archive.html) and [Review Board hub map](review-board/pages/hubmap.html).
