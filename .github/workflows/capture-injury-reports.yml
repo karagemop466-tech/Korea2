@@ -1,0 +1,160 @@
+name: capture-injury-reports
+
+# Immutable capture of the official NFL injury-report pages (nfl.com/injuries/league/<season>/reg<week>).
+# Runs on a GitHub runner because the authoring sandbox cannot reach nfl.com.
+#
+# Where captures are stored:
+#   * on a working branch (arena/**): committed to that branch, next to the code;
+#   * on main (the scheduled run): committed to the append-only branch `injury-snapshots`, so
+#     the scheduled job never writes to main. The branch is created on the first run.
+#
+# Every run stores raw bytes once per SHA-256, appends to manifest.jsonl and never rewrites it.
+# A DRIFT ALARM (see scripts/capture/capture_injury_reports.py) fails the job after the raw
+# bytes have been committed, so nothing is lost when the alarm fires.
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: 'Season to capture'
+        required: false
+        default: '2026'
+      weeks:
+        description: 'Week range, e.g. 1-18'
+        required: false
+        default: '1-18'
+  schedule:
+    # Every 6 hours (UTC). The NFL publishes the Wednesday/Thursday/Friday reports in the
+    # afternoon US time, so a 6-hourly capture brackets each publication.
+    - cron: '15 */6 * * *'
+  push:
+    branches: ['arena/**']
+    paths:
+      - 'scripts/capture/**'
+      - '.github/workflows/capture-injury-reports.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capture-injury-reports-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    env:
+      SEASON: ${{ github.event.inputs.season || '2026' }}
+      WEEKS: ${{ github.event.inputs.weeks || '1-18' }}
+      SNAP_BRANCH: injury-snapshots
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Parser and alarm unit tests (must pass before a live capture)
+        shell: bash
+        run: python -m unittest tests.test_capture_parser -v
+
+      - name: Choose where the captures are stored
+        id: where
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$GITHUB_REF_NAME" = "main" ]; then
+            if git ls-remote --exit-code --heads origin "$SNAP_BRANCH" >/dev/null 2>&1; then
+              git fetch origin "$SNAP_BRANCH:$SNAP_BRANCH"
+              git worktree add "$RUNNER_TEMP/snap" "$SNAP_BRANCH"
+            else
+              git worktree add --detach "$RUNNER_TEMP/snap" HEAD
+              (
+                cd "$RUNNER_TEMP/snap"
+                git checkout --orphan "$SNAP_BRANCH"
+                git rm -r -q --cached . || true
+                find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+              )
+              # First run: start from the committed snapshot history shipped on main, if any.
+              if [ -d data/snapshots/injury_report ]; then
+                mkdir -p "$RUNNER_TEMP/snap/data/snapshots"
+                cp -r data/snapshots/injury_report "$RUNNER_TEMP/snap/data/snapshots/"
+              fi
+            fi
+            echo "root=$RUNNER_TEMP/snap" >> "$GITHUB_OUTPUT"
+            echo "branch=$SNAP_BRANCH" >> "$GITHUB_OUTPUT"
+          else
+            echo "root=$GITHUB_WORKSPACE" >> "$GITHUB_OUTPUT"
+            echo "branch=$GITHUB_REF_NAME" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Capture (raw bytes first, then parse, then alarm)
+        id: capture
+        shell: bash
+        env:
+          ROOT: ${{ steps.where.outputs.root }}
+        run: |
+          set +e
+          python scripts/capture/capture_injury_reports.py --root "$ROOT" \
+            --season "$SEASON" --weeks "$WEEKS" > "$RUNNER_TEMP/capture.log" 2>&1
+          rc=$?
+          cat "$RUNNER_TEMP/capture.log"
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+
+      - name: Commit the captures (append-only)
+        shell: bash
+        env:
+          ROOT: ${{ steps.where.outputs.root }}
+          BRANCH: ${{ steps.where.outputs.branch }}
+        run: |
+          set -euo pipefail
+          cd "$ROOT"
+          git config user.name "injury-capture-bot"
+          git config user.email "injury-capture-bot@users.noreply.github.com"
+          git add data/snapshots/injury_report
+          if git diff --cached --quiet; then
+            echo "no new capture data to commit"
+            exit 0
+          fi
+          git commit -q -m "capture(injuries): ${SEASON} weeks ${WEEKS} at $(date -u +%Y-%m-%dT%H:%MZ) run ${GITHUB_RUN_ID}"
+          for attempt in 1 2 3; do
+            if git push origin "HEAD:refs/heads/$BRANCH"; then
+              exit 0
+            fi
+            git pull -q --rebase origin "$BRANCH"
+          done
+          echo "push failed after retries"
+          exit 1
+
+      - name: Summary and alarm
+        if: always()
+        shell: bash
+        env:
+          ROOT: ${{ steps.where.outputs.root }}
+        run: |
+          {
+            echo "## Injury-report capture"
+            echo "- season $SEASON, weeks $WEEKS, storage branch \`${{ steps.where.outputs.branch }}\`"
+            if [ -f "$ROOT/data/snapshots/injury_report/status.json" ]; then
+              python - <<'EOF' || true
+          import json, os
+          d = json.load(open(os.path.join(os.environ["ROOT"], "data/snapshots/injury_report/status.json")))
+          print(f"- fetched HTTP 200 for {d['weeks_with_fetch_200']} weeks; new raw bodies this run: {d['new_bodies']}; deltas appended: {d['deltas_appended']}")
+          print(f"- alarms: {len(d['alarms'])}")
+          for a in d["alarms"][:20]:
+              print(f"  - {a}")
+          EOF
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail loudly on a drift alarm
+        if: always()
+        shell: bash
+        run: |
+          rc="${{ steps.capture.outputs.rc }}"
+          if [ "$rc" != "0" ]; then
+            echo "::error title=Injury capture drift alarm::capture exited $rc; see the log above (DRIFT ALARM lines). Raw bytes were committed before the alarm."
+            exit 1
+          fi
