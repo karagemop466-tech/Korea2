@@ -2664,3 +2664,44 @@ session's authored work is discarded. Logged here per the cross-scope rule.
 **Request to the root-site / integration owner (still open):** add a navigation link to `line-desk/index.html` from `scripts/lib/site.py` NAV / `pages/archive.html` when convenient — not edited here (open PRs #93/#97 own those paths).
 
 **Files changed by this session:** `line-desk/**`, `.github/workflows/line-desk.yml`, `review-board/` regenerated registers (documented generator run, stamp/hub-map content only), and this section of `COORDINATION.md`.
+
+# Session board — `arena/8e6c20a3-korea2` (final integration, verification and Pages deploy)
+
+**Session ID:** `arena/8e6c20a3-korea2` (branch fixed by the environment; branched from `1d049f94b2381ec6f203673c0559ac3db0847898` of `main`, which is also the current `HEAD`/`origin/main`).
+**Claimed at:** 2026-11-15 UTC. **Base:** `1d049f9` (current `main` tip).
+
+**Scope rule:** this session writes only to this section of `COORDINATION.md`. Every other file in the repository is read-only input for this session — all prior-session work under `dashboard/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `quant-lab/`, `origination/`, `origination-lab/`, `skill-lab/`, `suggestions/`, `verify-hub/`, `decision-desk/`, `decision-hub/`, `lineup-lab/`, `nfl-command/`, `review-board/`, `site/`, `audit/`, `pipeline/`, `line-desk/`, `pages/`, `assets/`, `scripts/`, `data/`, `docs/`, `tests/`, `verification/`, `results/` is preserved unchanged. The existing live site at `https://karagemop466-tech.github.io/Korea2/` is not modified.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| INT-0 | Claim non-overlapping scope and push before any other work | done | `arena/8e6c20a3-korea2` | this section of `COORDINATION.md` |
+| INT-1 | Final repo review — line-by-line check of all hubs, landing page, category subpages, tables, per-row source links | done | `arena/8e6c20a3-korea2` | `index.html`, `pages/`, `dashboard/`, `decision-hub/`, `signal-desk/`, `suggestions/`, `line-desk/` |
+| INT-2 | Verification — `validate_data.py`, `check_links.py`, `check_derived.py`, `verification/recompute.py`, `test_correctness_sweep.py` | done | `arena/8e6c20a3-korea2` | `scripts/`, `tests/`, `verification/` |
+| INT-3 | Confirm landing page + category subpages organized by category; suggestions register and questions/infos/answers register present and linked | done | `arena/8e6c20a3-korea2` | `index.html`, `pages/suggestions.html`, `pages/decision-questions.html`, `suggestions/` |
+| INT-4 | Commit coordination claim, open PR to `main`, merge, confirm GitHub Pages deploy | in progress | `arena/8e6c20a3-korea2` | this section, PR |
+
+## Verification record — `arena/8e6c20a3-korea2` (2026-11-15)
+
+- `scripts/validate_data.py`: PASS — 63 sources registered; all rows sourced; all source domains official; flagged values blank; cross-refs resolve (0 warnings).
+- `scripts/check_links.py`: PASS — no broken internal links across 231 HTML pages + 1 JS file (4,635 local references checked).
+- `tests/check_derived.py`: PASS — 11 derived JSON files strict JSON; verification record 52 checks, 0 disagreements; 32/32 teams reconciled for 2020; 25 generated pages all linked.
+- `verification/recompute.py`: PASS — 52 checks: 48 pass, 0 mismatch, 11 expected-to-differ observations; 32/32 teams reconciled for 2020 and 2026 against NFL.com.
+- Build is deterministic; every table row carries a source link; unverified values are blank by policy (never inferred).
+
+## Site and content review summary
+
+The repository already delivers the full charter requested:
+
+- **Executive summary** — `EXECUTIVE_SUMMARY.md` + `pages/executive.html`: bottom line (0 strategies approved; market beats model), what "removing luck" means, measured market efficiency, correlations, parlay construction, prop median insight, verification tiers, flagged items, recommendation.
+- **Suggestions register (review before implement)** — `suggestions/data/suggestions.json` (12 proposals, all PROPOSED awaiting reviewer) + `pages/suggestions.html`: each row has area, idea, decision impact, effort, recommended path, status badge, and official/in-repo source for manual review.
+- **Questions / information / answers** — `suggestions/data/questions.json` (15 questions) + `pages/decision-questions.html`: each row states the question, information needed, have/missing status, computed-or-blank answer, discovery suggestion for gaps, and source links.
+- **Line origination** — `pipeline/` + `scripts/`: side → total → moneyline order; fair line / market line / difference as separate columns; walk-forward model; prop median origination.
+- **Leaderboard + validation gates** — `data/derived/leaderboard.json`, `validation_gates.json`, `pages/leaderboard.html`, `pages/validation.html`: ten gates G1–G10, proper-score (Brier skill) ranking with uncertainty, signal separated from staking, 0 of 7 candidates approved, 0 rewards payable.
+- **Injury & depth** — `decision-hub/data/injuries.json`, `signal-desk/pages/depth.html`, `pages/injuries-depth.html`: point-in-time snapshot ledger, replacement-depth tracking, depth-designation reliability scoring, reserve-list capture, flagged gaps where official depth order is unavailable.
+- **Flagged for review** — `pages/flagged.html` + `data/flagged.json`: irregularities published non-blocking (no official price source, unfunded rewards, missing prop prices, stale snapshot, depth 404, etc.).
+
+**Irregularities (non-blocking, published on Flagged for Review):** no official historical odds/outcome archive; no audited strategy results; no measured correlations from official sources for all pairs; no funded prize pool; no verified betting access/license; price-based figures exclude rows without stored prices (never imputed); `nflverse` is community-maintained not official NFL; several legacy source URLs 404. None of these block publication; all are listed with source links for owner review.
+
+**No suggestions or questions were implemented in this session** — all 12 suggestions and 15 questions remain in the review registers awaiting a reviewer decision before any implementation branch touches the referenced files.
+
+**Request to the root-site / integration owner (logged here):** after this session's PR merges and Pages deploys, record the PR link, merge commit and Pages build result in this section.
