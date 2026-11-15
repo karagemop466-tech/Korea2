@@ -2785,3 +2785,20 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 - **GitHub Pages:** build for `6c4a536` reported `built`. Live check: https://karagemop466-tech.github.io/Korea2/injury-report-w10/ renders the verbatim-rows table with source links.
 - **Conflicts:** COORDINATION.md conflicted twice with main (append-both). Resolved by keeping both sides in full. No other session's entries were removed.
 - **Force-push note:** the branch was force-pushed with `--force-with-lease` after rebasing its own four unmerged commits. The remote held only this session's commits.
+
+# Session board — `arena/78a4e974-korea2` (repository-level status reconciliation and independent integration audit)
+
+**Session ID:** `arena/78a4e974-korea2` (Arena-assigned branch fixed as `arena/78a4e974-korea2`; base `1d049f94b2381ec6f203673c0559ac3db0847898`, `main`).
+**Claimed:** 2026-11-15 UTC, before implementation. Existing main-site/navigation owners and open PRs are respected; no edits to their files.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| RI-0 | Claim a non-overlapping repository-level scope | in progress | `arena/78a4e974-korea2` | this section of `COORDINATION.md` |
+| RI-1 | Reconcile the root README and executive summary against the committed current sites; remove stale or contradictory top-level guidance without inventing results | unclaimed | `arena/78a4e974-korea2` | `README.md`, `EXECUTIVE_SUMMARY.md` |
+| RI-2 | Publish a dated repository/site audit of duplicate hubs, conflicting claims, source-verification limits, and the reviewer decisions that unblock consolidation | unclaimed | `arena/78a4e974-korea2` | `docs/REPOSITORY_STATUS_2026-11-15.md` |
+| RI-3 | Run the applicable local site/data verifiers; record exact command results and source-access limitations | unclaimed | `arena/78a4e974-korea2` | read-only execution; this section only |
+| RI-4 | Submit the current-branch integration PR, merge it, and confirm Pages/build status if checks pass | unclaimed | `arena/78a4e974-korea2` | this section, PR from this branch |
+
+**Scope rule:** this session may edit only this section of `COORDINATION.md`, `README.md`, `EXECUTIVE_SUMMARY.md`, and the new `docs/REPOSITORY_STATUS_2026-11-15.md`. All model data, table data, generated HTML, site index/navigation, and sibling hubs are read-only. Root navigation is explicitly not edited because open PR #93 claims it; open PRs #99, #102, #109, and #112 own their respective workspaces. This branch remains the Arena-assigned branch; no alternate session branch is created.
+
+**Evidence rule:** repository contents, previously committed source registers, and locally runnable validators may be audited here. No new claim is called independently source-verified unless this session can inspect the cited official source. Historical verification recorded by earlier sessions will be attributed to those records, not represented as a fresh read. Values that cannot be established from committed evidence remain blank or are labelled unverified.
