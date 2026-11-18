@@ -79,6 +79,7 @@ HUB_LABELS = {
     "nfl-research": "NFL Research (early draft) &nearr;",
     "research-desk": "Research desk (early draft) &nearr;",
     "readiness": "Readiness hub &nearr;",
+    "requirements-desk": "Requirements Desk &nearr;",
 }
 
 
