@@ -3129,3 +3129,41 @@ checks / 0 errors, `verify-hub` PASS, `decision-desk` PASS, `review-board/script
 120 passed / 1 failed where the failure is its own "commit the regenerated registers" check against HEAD,
 `scripts/test_correctness_sweep.py` 9 tests OK (throwaway venv, see note above), and
 `injury-capture/scripts/check_against_expected.py` 28/28.
+
+---
+
+## Integration session 2026-11-18 (D) - PR #140 merged; deploy confirmed; what the board owes the next session
+
+**PR #140** (`arena/4c90e65f-korea2` → `main`) merged as **`792b5f4`** at 04:25:44Z. GitHub Pages build for
+that exact commit reported **`built`** (71 s), and `origin/main`'s `index.html` was re-read from the tree to
+confirm what is live rather than trusting the badge: all **77** `RR-*` rows render in the landing-page
+decision-readiness table, `pages/readiness.html` (912 KB) and `pages/live-checks.html` carry the capture,
+`n = 32 of 32 clubs` is on the capture page, and the flag register publishes FL-01…FL-24.
+
+CI on the merge commit: `validate` (now including `tests/check_readiness.py`), `review-board`,
+`tests-and-links`, `verify-hub`, `build` and `build-and-verify` all **success**; `check.yml` runs
+`scripts/test_correctness_sweep.py` on the pinned stack, which is the environment that sandbox sessions keep
+missing (9 tests, OK in CI and in a throwaway venv locally).
+
+Three things the next session should know, all discoverable but only from here:
+
+1. **`nfl-injury-capture.yml` triggers on `push: branches: ['arena/**']` and commits a manifest back to the
+   branch that pushed.** Any session whose branch matches will pick up `Capture manifest: …` commits mid
+   work and will need `git fetch` + rebase before its own push; this session hit it twice. It is not a
+   defect in that workflow, but it is an interaction no workflow file documents.
+2. **`review-board/scripts/verify_all.py` compares its registers with `git show HEAD:…`,** so "committed
+   registers … need a rebuild" is a *commit-me* signal, not a defect: run `ingest.py`, `build_site.py`,
+   commit both together, and it reports 121/0 (verified on the merge-base tree before the push). Its
+   page guard requires the committed pages to equal a clean rebuild, so commit registers and pages in the
+   same commit or the hub's CI fails.
+3. **The correlation sample is now n=32 and the guard for it is in the generator, not in a person.**
+   `scripts/official_snapshot.py` keeps per-row read stamps, so a future partial read degrades `n` and
+   labels itself instead of padding; `tests/check_readiness.py` recomputes CR-01 and its Fisher interval
+   independently and fails the build if a rendered page disagrees with the register. If the standings
+   capture is ever moved to a workflow, move those two checks with it.
+
+Standing open items this session did not resolve, each already on a page: no market prices (RR-A1/A9,
+FL-21), no depth rank or snap shares (FL-15, FL-19; the Game Book's own terms block re-hosting, FL-16), the
+two capture jobs not yet consolidated (RR-C11, S12), the suggestion-vocabulary conflict (FL-23, S19), the
+PR #133 duplicate table (FL-24, S18), `results/price_snapshots.json` residuals versus `data/derived/model.json`,
+and tracked `.venv-b6/`.
