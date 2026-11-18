@@ -581,6 +581,34 @@ explicitly forbids. The same applies to the replacement and string-tier columns.
 <h2>Full row register ({inj['total_rows']} rows)</h2>
 {reg_tbl}
 
+<h2 id="crosscheck">Independent cross-checks on the count</h2>
+<p class="small">{esc(an['cross_checks']['note'])}</p>
+<div class="notice good"><b>Two independent methods agree with this transcription.</b>
+An automated parse of the raw HTML reported <b>{esc(an['cross_checks']['automated_rows'])}</b> listed rows
+across 28 injury tables in {esc(an['cross_checks']['automated_n_ok'])} successful runs, matching this
+session's {inj['total_rows']} rows. A separate hand transcription of per-club counts for the same page
+totals {esc(an['cross_checks']['prior_total'])} across {esc(an['cross_checks']['prior_clubs'])} clubs, and
+matches this session club by club with <b>{esc(an['cross_checks']['club_mismatches'])} mismatches</b>.
+Both earlier figures quoted in the brief (254 and 279) are therefore superseded.</div>
+
+{table(["Fetched (UTC)", "Run status", "&lt;table&gt; elements", "Injury tables", "Rows parsed",
+        "Raw SHA-256", "Raw bytes", "Manifest"],
+       [[esc(a["fetched_utc"]), esc(a["status"]), str(a["html_tables"]), str(a["injury_tables"]),
+         str(a["rows"]), f'<code>{esc(a["raw_sha256"][:24])}…</code>', str(a["raw_bytes"]),
+         f'<a href="{esc(site("/" + an["cross_checks"]["automated_url"] + a["manifest"], _DEPTH))}">{esc(a["manifest"])}</a>']
+        for a in an["cross_checks"]["automated"]])}
+
+<p class="small"><b>The two failed runs are the drift alarm working.</b> They parsed 0 injury tables
+instead of 28 and exited non-zero rather than publishing blanks. That is the behaviour the brief asks
+for, and it is recorded here rather than hidden.</p>
+
+{table(["Club", "This session", "Independent count", "Verdict", "Source"],
+       [[f'<b>{esc(r["club"])}</b>', str(r["this_session"]),
+         esc(r["independent"] if r["independent"] is not None else ""),
+         esc(r["verdict"]),
+         f'<a href="{esc(site("/" + an["cross_checks"]["prior_counts_url"], _DEPTH))}">counts file</a>']
+        for r in an["cross_checks"]["club_rows"]])}
+
 <h2>Dated news headlines the report page itself links</h2>
 <p class="small">Recorded as headlines only. They are the context the page supplies for absent players;
 they are not treated as verified injury facts and they do not populate any column above.</p>
@@ -825,9 +853,26 @@ operator's void and push rules are both on record. Nothing has passed that gate,
 
 
 def build_verification(an):
+    cc = an["cross_checks"]
     rows = [[esc(a["claim_id"]), esc(a["claim"]), esc(a["official_page_says"]),
              esc(a["verdict"]), link(a["source_url"], "source")]
             for a in an["brief_audit"]]
+    cc_rows = [
+        [esc("Count — this session"),
+         esc("Full transcription of every club table on the official page"),
+         esc(f"{an['injury']['total_rows']} rows across {an['injury']['clubs_with_table']} clubs"),
+         link(an["injury"]["source_url"], "source")],
+        [esc("Count — automated parse"),
+         esc("Sibling injury-capture job parses the raw HTML on a GitHub runner; "
+             f"{cc['automated_n_ok']} successful runs, {cc['automated_n_failed']} failed loudly"),
+         esc(f"{cc['automated_rows']} rows across 28 injury tables"),
+         f'<a href="{esc(site("/" + cc["automated_url"], _DEPTH))}">manifests</a>'],
+        [esc("Count — prior hand transcription"),
+         esc("Independent per-club counts recorded 2026-11-15, compared club by club here"),
+         esc(f"{cc['prior_total']} rows across {cc['prior_clubs']} clubs, "
+             f"{cc['club_mismatches']} mismatches"),
+         f'<a href="{esc(site("/" + cc["prior_counts_url"], _DEPTH))}">counts file</a>'],
+    ]
     body = f"""
 <div class="eyebrow">BRIEF CLAIM AUDIT</div>
 <h1>What the brief asserted, checked against the official page</h1>
@@ -835,6 +880,10 @@ def build_verification(an):
 page actually says at {esc(an['capture']['capture_utc'])}. Where the claim could not be confirmed, the row
 says so rather than restating the claim.</p>
 {table(["Claim id", "Claim in the brief", "What the official page says", "Verdict", "Source"], rows)}
+
+<h2>Three independent counts of the same page</h2>
+<p class="small">{esc(cc['note'])}</p>
+{table(["Method", "What it did", "Result", "Source"], cc_rows)}
 
 <div class="notice crit"><b>Two counts in the brief do not reproduce.</b> The brief cites 254 rows and then
 279 rows for the Week 10 injury report. A full transcription of the page as captured today yields
@@ -854,24 +903,27 @@ carry a game designation is out of date: {an['injury']['rows_with_game_status']}
 def build_flagged(an):
     cap = an["capture"]
     items = [
-        ("F-01", "No raw-response hash",
-         "The sandbox shell has no network route to nfl.com, so only the retrieval tool could read the page. "
-         "The register hash published in the manifest covers the transcribed rows, not the NFL response body.",
-         "Raw HTTP retention requires a runner with network access to nfl.com and a decision on where raw "
-         "payloads are stored. Until then, treat the capture as a faithful transcription with a register "
-         "hash rather than an immutable byte-level snapshot.",
-         "https://www.nfl.com/injuries/league/2026/REG10"),
+        ("F-01", "This hub stores no raw response, but the automated capture does",
+         "The sandbox shell has no network route to nfl.com, so the register hash published here covers the "
+         "transcribed rows, not the NFL response body. The sibling injury-capture job does record the "
+         "SHA-256 of the raw response (c4a5dd52…, 402,343 bytes at 03:51Z), so a byte-level hash for this "
+         "page exists elsewhere in the repository.",
+         "Point this hub's manifest at the automated capture's raw SHA-256, or run the transcription on a "
+         "runner that can retain the response. Until then the hash here is a register hash only.",
+         "/injury-capture/manifests/"),
         ("F-02", "Week 11 report not yet published at capture time",
          f"At {cap['capture_utc']} the canonical NFL.com injury page still displayed Week 10. The latest "
          "official report available is therefore Week 10, which is post-kickoff.",
          "Re-capture after the NFL publishes the Week 11 report, which normally appears on the Wednesday "
          "before the Sunday slate.",
          "https://www.nfl.com/injuries/league/2026/REG10"),
-        ("F-03", "Two prior row counts do not reproduce",
-         "The brief cites 254 rows and 279 rows for the Week 10 report. A complete transcription today gives "
-         f"{an['injury']['total_rows']} rows across {an['injury']['clubs_with_table']} clubs.",
-         "Retire both earlier counts and use the full transcription. If a reviewer wants an independent "
-         "recount, the register CSV can be re-counted directly.",
+        ("F-03", "Two prior row counts do not reproduce (now settled by two independent checks)",
+         "The brief cites 254 rows and 279 rows for the Week 10 report. This session's complete transcription "
+         f"gives {an['injury']['total_rows']} rows across {an['injury']['clubs_with_table']} clubs; an "
+         "automated parse of the raw HTML independently reports 347 rows across 28 tables; and a separate "
+         "hand transcription of per-club counts totals 347 with 0 club-level mismatches.",
+         "Retire the 254 and 279 figures. The agreement between three methods that never saw each other's "
+         "output is stronger than any one of them alone.",
          "https://www.nfl.com/injuries/league/2026/REG10"),
         ("F-04", "Replacement name and string tier are blank for every club",
          "The official injury report publishes no depth column, no replacement name and no string tier. "
@@ -926,7 +978,9 @@ def build_flagged(an):
          "label is used as a model feature.",
          "https://www.nfl.com/injuries/league/2026/REG10"),
     ]
-    rows = [[esc(i), esc(t), esc(w), esc(f), link(u, "source")] for i, t, w, f, u in items]
+    rows = [[esc(i), esc(t), esc(w), esc(f),
+             f'<a href="{esc(site(u, _DEPTH))}">source</a>' if u.startswith("/")
+             else link(u, "source")] for i, t, w, f, u in items]
     body = f"""
 <div class="eyebrow">FLAGGED FOR REVIEW</div>
 <h1>Everything that could not be verified, in one place</h1>

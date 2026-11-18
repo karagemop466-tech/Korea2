@@ -38,6 +38,26 @@ CAPTURE_METHOD = (
     "on the Flagged for Review page."
 )
 
+# Club code -> the team slug the official site (and the sibling capture hub) uses.
+CLUB_SLUGS = {
+    "washington-commanders": "WAS", "new-york-giants": "NYG",
+    "new-england-patriots": "NE", "detroit-lions": "DET",
+    "kansas-city-chiefs": "KC", "atlanta-falcons": "ATL",
+    "minnesota-vikings": "MIN", "green-bay-packers": "GB",
+    "jacksonville-jaguars": "JAX", "tennessee-titans": "TEN",
+    "buffalo-bills": "BUF", "new-york-jets": "NYJ",
+    "miami-dolphins": "MIA", "indianapolis-colts": "IND",
+    "carolina-panthers": "CAR", "new-orleans-saints": "NO",
+    "houston-texans": "HOU", "cleveland-browns": "CLE",
+    "los-angeles-rams": "LAR", "arizona-cardinals": "AZ",
+    "seattle-seahawks": "SEA", "las-vegas-raiders": "LV",
+    "san-francisco-49ers": "SF", "dallas-cowboys": "DAL",
+    "pittsburgh-steelers": "PIT", "cincinnati-bengals": "CIN",
+    "los-angeles-chargers": "LAC", "baltimore-ravens": "BAL",
+    "chicago-bears": "CHI", "denver-broncos": "DEN",
+    "philadelphia-eagles": "PHI", "tampa-bay-buccaneers": "TB",
+}
+
 SOURCES = {
     "injury_w10": {
         "url": "https://www.nfl.com/injuries/league/2026/REG10",
@@ -437,6 +457,79 @@ INJURY_ROWS = [
 ]
 
 # Clubs with no table on the Week 10 page, with the reason the source gives.
+# --------------------------------------------------------------------------
+# Independent cross-checks on the Week 10 capture.
+#
+# Two other artefacts in this repository counted the same official page without
+# seeing this session's transcription. Neither is used as a source; both are
+# recorded because agreement between independent methods is evidence, and
+# disagreement would be a flag.
+# --------------------------------------------------------------------------
+
+# (a) Automated capture: the sibling `injury-capture/` hub fetches the same page
+#     on a GitHub runner, parses every <table> with a stdlib parser, and commits
+#     a hash/count manifest. Values below are READ FROM THOSE COMMITTED
+#     MANIFESTS at build time - never retyped - so they cannot drift.
+# (b) Prior independent hand transcription of per-club counts, recorded in
+#     injury-capture/expected/ and attributed there to a 2026-11-15 fetch-tool
+#     read. Compared club by club against this session's transcription.
+#
+# Neither artefact is used as a source. Both are recorded because agreement
+# between independent methods is evidence, and disagreement would be a flag.
+
+CAPTURE_MANIFEST_DIR = os.path.join(
+    os.path.dirname(ROOT), "injury-capture", "manifests")
+PRIOR_COUNTS_FILE = os.path.join(
+    os.path.dirname(ROOT), "injury-capture", "expected",
+    "reg10_2026_prior_manual_counts.json")
+PRIOR_COUNTS_SOURCE = "injury-capture/expected/reg10_2026_prior_manual_counts.json"
+AUTOMATED_CAPTURE_URL = "injury-capture/manifests/"
+
+
+def load_automated_captures():
+    """Read every committed injury-capture manifest for the captured week."""
+    out = []
+    if not os.path.isdir(CAPTURE_MANIFEST_DIR):
+        return out
+    for name in sorted(os.listdir(CAPTURE_MANIFEST_DIR)):
+        if not name.endswith(".json"):
+            continue
+        try:
+            d = json.load(open(os.path.join(CAPTURE_MANIFEST_DIR, name)))
+        except (ValueError, OSError):
+            continue
+        if str(d.get("season")) != "2026" or str(d.get("week")) != "10":
+            continue
+        out.append({
+            "manifest": name,
+            "fetched_utc": d.get("fetched_at_utc", ""),
+            "status": d.get("status", ""),
+            "html_tables": d.get("html_tables_total"),
+            "injury_tables": d.get("injury_tables"),
+            "rows": d.get("listed_rows_parsed"),
+            "raw_sha256": d.get("raw_sha256", ""),
+            "raw_bytes": d.get("raw_bytes"),
+            "problems": d.get("problems", []),
+        })
+    return out
+
+
+def load_prior_per_club_counts():
+    """Read the independent per-club count transcription, keyed by club code."""
+    if not os.path.exists(PRIOR_COUNTS_FILE):
+        return {}
+    try:
+        d = json.load(open(PRIOR_COUNTS_FILE))
+    except (ValueError, OSError):
+        return {}
+    out = {}
+    for slug, n in (d.get("counts") or {}).items():
+        code = CLUB_SLUGS.get(slug)
+        if code:
+            out[code] = n
+    return out
+
+
 INJURY_ABSENT_CLUBS = [
     ("CHI", "No table on the Week 10 page. Week 10 schedule page lists Chicago under 'Teams on Bye'.",
      "https://www.nfl.com/schedules/2026/by-week/week-10"),

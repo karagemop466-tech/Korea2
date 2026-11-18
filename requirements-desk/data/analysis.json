@@ -175,6 +175,275 @@
       }
     }
   },
+  "cross_checks": {
+    "automated": [
+      {
+        "fetched_utc": "2026-11-18T03:51:41Z",
+        "html_tables": 28,
+        "injury_tables": 0,
+        "manifest": "reg10_2026_20261118T035141Z.json",
+        "problems": [
+          "no table with required columns injury, player, pos, practice status",
+          "only 0 listed rows parsed (pinned minimum 50)"
+        ],
+        "raw_bytes": 402343,
+        "raw_sha256": "c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12",
+        "rows": 0,
+        "status": "FAILED"
+      },
+      {
+        "fetched_utc": "2026-11-18T03:52:16Z",
+        "html_tables": 28,
+        "injury_tables": 0,
+        "manifest": "reg10_2026_20261118T035216Z.json",
+        "problems": [
+          "no table with required columns injury, player, pos, practice status",
+          "only 0 listed rows parsed (pinned minimum 50)"
+        ],
+        "raw_bytes": 402343,
+        "raw_sha256": "c41ee29b1990aa13b0a4efddc780031e021c50a8ac1ae88a0e2e27466698226c",
+        "rows": 0,
+        "status": "FAILED"
+      },
+      {
+        "fetched_utc": "2026-11-18T03:53:04Z",
+        "html_tables": 28,
+        "injury_tables": 28,
+        "manifest": "reg10_2026_20261118T035304Z.json",
+        "problems": [],
+        "raw_bytes": 402343,
+        "raw_sha256": "c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12",
+        "rows": 347,
+        "status": "OK"
+      },
+      {
+        "fetched_utc": "2026-11-18T03:53:56Z",
+        "html_tables": 28,
+        "injury_tables": 28,
+        "manifest": "reg10_2026_20261118T035356Z.json",
+        "problems": [],
+        "raw_bytes": 402343,
+        "raw_sha256": "c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12",
+        "rows": 347,
+        "status": "OK"
+      },
+      {
+        "fetched_utc": "2026-11-18T03:55:05Z",
+        "html_tables": 28,
+        "injury_tables": 28,
+        "manifest": "reg10_2026_20261118T035505Z.json",
+        "problems": [],
+        "raw_bytes": 402343,
+        "raw_sha256": "c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12",
+        "rows": 347,
+        "status": "OK"
+      },
+      {
+        "fetched_utc": "2026-11-18T03:55:57Z",
+        "html_tables": 28,
+        "injury_tables": 28,
+        "manifest": "reg10_2026_20261118T035557Z.json",
+        "problems": [],
+        "raw_bytes": 402343,
+        "raw_sha256": "c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12",
+        "rows": 347,
+        "status": "OK"
+      },
+      {
+        "fetched_utc": "2026-11-18T04:17:41Z",
+        "html_tables": 28,
+        "injury_tables": 28,
+        "manifest": "reg10_2026_20261118T041741Z.json",
+        "problems": [],
+        "raw_bytes": 402483,
+        "raw_sha256": "dd2425ac60311ef82192ae83369698e88ca449f6a4d52cf8c134b98a34f29fe7",
+        "rows": 347,
+        "status": "OK"
+      }
+    ],
+    "automated_agrees": true,
+    "automated_n_failed": 2,
+    "automated_n_ok": 5,
+    "automated_rows": [
+      347
+    ],
+    "automated_url": "injury-capture/manifests/",
+    "club_mismatches": 0,
+    "club_rows": [
+      {
+        "club": "ATL",
+        "independent": 11,
+        "this_session": 11,
+        "verdict": "match"
+      },
+      {
+        "club": "AZ",
+        "independent": 15,
+        "this_session": 15,
+        "verdict": "match"
+      },
+      {
+        "club": "BAL",
+        "independent": 10,
+        "this_session": 10,
+        "verdict": "match"
+      },
+      {
+        "club": "BUF",
+        "independent": 14,
+        "this_session": 14,
+        "verdict": "match"
+      },
+      {
+        "club": "CAR",
+        "independent": 12,
+        "this_session": 12,
+        "verdict": "match"
+      },
+      {
+        "club": "CIN",
+        "independent": 9,
+        "this_session": 9,
+        "verdict": "match"
+      },
+      {
+        "club": "CLE",
+        "independent": 12,
+        "this_session": 12,
+        "verdict": "match"
+      },
+      {
+        "club": "DAL",
+        "independent": 19,
+        "this_session": 19,
+        "verdict": "match"
+      },
+      {
+        "club": "DET",
+        "independent": 9,
+        "this_session": 9,
+        "verdict": "match"
+      },
+      {
+        "club": "GB",
+        "independent": 17,
+        "this_session": 17,
+        "verdict": "match"
+      },
+      {
+        "club": "HOU",
+        "independent": 16,
+        "this_session": 16,
+        "verdict": "match"
+      },
+      {
+        "club": "IND",
+        "independent": 14,
+        "this_session": 14,
+        "verdict": "match"
+      },
+      {
+        "club": "JAX",
+        "independent": 11,
+        "this_session": 11,
+        "verdict": "match"
+      },
+      {
+        "club": "KC",
+        "independent": 13,
+        "this_session": 13,
+        "verdict": "match"
+      },
+      {
+        "club": "LAC",
+        "independent": 19,
+        "this_session": 19,
+        "verdict": "match"
+      },
+      {
+        "club": "LAR",
+        "independent": 14,
+        "this_session": 14,
+        "verdict": "match"
+      },
+      {
+        "club": "LV",
+        "independent": 5,
+        "this_session": 5,
+        "verdict": "match"
+      },
+      {
+        "club": "MIA",
+        "independent": 11,
+        "this_session": 11,
+        "verdict": "match"
+      },
+      {
+        "club": "MIN",
+        "independent": 13,
+        "this_session": 13,
+        "verdict": "match"
+      },
+      {
+        "club": "NE",
+        "independent": 15,
+        "this_session": 15,
+        "verdict": "match"
+      },
+      {
+        "club": "NO",
+        "independent": 12,
+        "this_session": 12,
+        "verdict": "match"
+      },
+      {
+        "club": "NYG",
+        "independent": 11,
+        "this_session": 11,
+        "verdict": "match"
+      },
+      {
+        "club": "NYJ",
+        "independent": 9,
+        "this_session": 9,
+        "verdict": "match"
+      },
+      {
+        "club": "PIT",
+        "independent": 8,
+        "this_session": 8,
+        "verdict": "match"
+      },
+      {
+        "club": "SEA",
+        "independent": 15,
+        "this_session": 15,
+        "verdict": "match"
+      },
+      {
+        "club": "SF",
+        "independent": 12,
+        "this_session": 12,
+        "verdict": "match"
+      },
+      {
+        "club": "TEN",
+        "independent": 12,
+        "this_session": 12,
+        "verdict": "match"
+      },
+      {
+        "club": "WAS",
+        "independent": 9,
+        "this_session": 9,
+        "verdict": "match"
+      }
+    ],
+    "note": "The automated capture parses the raw HTML on a GitHub runner and commits a hash/count manifest without player names; the prior counts are a separate hand transcription of the same page dated 2026-11-15. This session's rows were typed from the page independently of both.",
+    "prior_clubs": 28,
+    "prior_counts_url": "injury-capture/expected/reg10_2026_prior_manual_counts.json",
+    "prior_total": 347
+  },
   "injury": {
     "clubs_with_table": 28,
     "game_status_counts": {

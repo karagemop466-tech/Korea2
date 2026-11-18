@@ -15,6 +15,8 @@ import os
 import statistics
 from collections import Counter, OrderedDict
 
+import official_capture as oc
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 DATA = os.path.join(ROOT, "data")
@@ -382,6 +384,58 @@ def brief_claim_audit(inj, results, sched):
     return audit
 
 
+
+# ------------------------------------------------------------- cross-checks
+
+
+def cross_checks(inj):
+    """Compare this session's transcription against two independent artefacts.
+
+    Neither artefact is a source. They are recorded because two methods that
+    never saw each other's output agreeing is evidence, and disagreeing is a flag.
+    """
+    auto = oc.load_automated_captures()
+    prior = oc.load_prior_per_club_counts()
+
+    club_rows = []
+    mismatches = 0
+    for club, d in sorted(inj["per_club"].items()):
+        other = prior.get(club)
+        if other is None:
+            verdict = "no independent count"
+        elif other == d["listed"]:
+            verdict = "match"
+        else:
+            verdict = "MISMATCH"
+            mismatches += 1
+        club_rows.append({
+            "club": club,
+            "this_session": d["listed"],
+            "independent": other,
+            "verdict": verdict,
+        })
+
+    ok_runs = [a for a in auto if a["status"] == "OK"]
+    parsed = [a["rows"] for a in ok_runs]
+    return {
+        "automated": auto,
+        "automated_url": oc.AUTOMATED_CAPTURE_URL,
+        "automated_n_ok": len(ok_runs),
+        "automated_n_failed": len(auto) - len(ok_runs),
+        "automated_rows": sorted(set(parsed)),
+        "automated_agrees": bool(parsed) and set(parsed) == {inj["total_rows"]},
+        "prior_counts_url": oc.PRIOR_COUNTS_SOURCE,
+        "prior_total": sum(v for v in prior.values()) if prior else None,
+        "prior_clubs": len(prior),
+        "club_rows": club_rows,
+        "club_mismatches": mismatches,
+        "note": ("The automated capture parses the raw HTML on a GitHub runner and commits a "
+                 "hash/count manifest without player names; the prior counts are a separate hand "
+                 "transcription of the same page dated 2026-11-15. This session's rows were typed "
+                 "from the page independently of both."),
+    }
+
+
 # ----------------------------------------------------------------- assembly
 
 
@@ -407,6 +461,7 @@ def build():
         "schedule": sched,
         "luck": luck_panel(),
         "brief_audit": brief_claim_audit(inj, results, sched),
+        "cross_checks": cross_checks(inj),
         "source_urls": {
             "injury_w10": NFL_INJURY_W10,
             "sched_w10": NFL_SCHED_W10,
