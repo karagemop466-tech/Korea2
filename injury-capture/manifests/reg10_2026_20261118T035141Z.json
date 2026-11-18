@@ -1,0 +1,22 @@
+{
+  "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+  "final_url": "https://www.nfl.com/injuries/league/2026/reg10",
+  "season": 2026,
+  "week": 10,
+  "http_status": 200,
+  "last_modified_header": "",
+  "fetched_at_utc": "2026-11-18T03:51:41Z",
+  "raw_sha256": "c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12",
+  "raw_bytes": 402343,
+  "raw_file_in_artifact": "nfl_injury_2026_reg10_20261118T035141Z.html",
+  "html_tables_total": 28,
+  "injury_tables": 0,
+  "listed_rows_parsed": 0,
+  "week_text_found": true,
+  "problems": [
+    "no table with required columns injury, player, pos, practice status",
+    "only 0 listed rows parsed (pinned minimum 50)"
+  ],
+  "pinned_min_rows": 50,
+  "status": "FAILED"
+}
