@@ -144,3 +144,8 @@ footer p { margin: 4px 0; }
   nav a { border-left: none; border-bottom: 2px solid transparent; }
   nav a.active { border-left: none; border-bottom-color: var(--accent); }
 }
+
+/* Grouped sidebar navigation (integration session arena/4c90e65f-korea2, 2026-11-18) */
+.nav-group { margin: 22px 0 6px; padding-left: 10px; font-size: 10px; letter-spacing: .18em;
+             color: var(--muted); text-transform: uppercase; }
+.nav-group:first-child { margin-top: 0; }

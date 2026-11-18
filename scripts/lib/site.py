@@ -11,10 +11,23 @@ from __future__ import annotations
 import html as _html
 import json
 import os
+import re
 
-NAV = [
+"""Navigation is grouped so the sidebar stays readable while every hub stays reachable.
+
+Integrated by session `arena/4c90e65f-korea2` (2026-11-18): the previous list carried four duplicate
+labels ("Suggestions hub" twice, "Decision desk"/"Decision hub" twice, a stale hub-map page and the
+register page), and the hubs merged after it was written (line-desk, price-desk, price-store,
+review-board, verify-hub, skill-lab, origination, injury-report-w10) were not linked at all. Groups:
+  Analysis            - the measured result, page by page
+  Decision registers  - what is ready, what is blocked, what a reviewer must answer
+  Sibling hubs         - every hub directory that exists on main, discovered at build time
+"""
+
+CORE = [
     ("index.html", "Overview"),
     ("pages/executive.html", "Executive summary"),
+    ("pages/readiness.html", "Decision readiness"),
     ("pages/lines.html", "Originated lines"),
     ("pages/props.html", "Player props"),
     ("pages/correlation.html", "Correlation &amp; parlays"),
@@ -23,32 +36,77 @@ NAV = [
     ("pages/leaderboard.html", "Leaderboard"),
     ("pages/luck.html", "Removing luck"),
     ("pages/market.html", "Market benchmark"),
+]
+REGISTERS = [
+    ("pages/live-checks.html", "Live official checks"),
     ("pages/verification.html", "Verification"),
     ("pages/method.html", "Method &amp; data"),
     ("pages/sources.html", "Source register"),
-    ("pages/flagged.html", "Flagged for review"),
-    ("signal-desk/index.html", "Signal Desk &nearr;"),
-    ("decision-desk/index.html", "Decision Desk"),
-    ("lineup-lab/index.html", "Lineup Lab &nearr;"),
-    ("suggestions/index.html", "Suggestions hub"),
-    ("decision-hub/index.html", "Decision hub &nearr;"),
-    ("nfl-command/index.html", "NFL Command Center"),
-    ("price-desk/index.html", "Price desk"),
-    ("audit/index.html", "Audit"),
-    ("dashboard/index.html", "Dashboard"),
-    ("nfl-lines/index.html", "NFL Lines"),
-    ("nfl-research/index.html", "NFL Research"),
-    ("research-desk/index.html", "Research desk"),
-    ("pages/suggestions.html", "Suggestions hub"),
-    ("pages/decision-hub.html", "Decision desk"),
-    ("pages/decision-suggestions.html", "Suggestion register"),
+    ("pages/suggestions.html", "Suggestion register"),
     ("pages/decision-questions.html", "Open questions"),
-    ("pages/decision-injury-depth.html", "Injury &amp; depth"),
-    ("pages/decision-signals.html", "Signal lab"),
+    ("pages/injuries-depth.html", "Injury &amp; depth"),
     ("pages/decision-parlay.html", "Parlay pricing"),
+    ("pages/decision-signals.html", "Signal lab"),
     ("pages/decision-verify.html", "Re-verify the numbers"),
     ("pages/decision-summary.html", "Decision summary"),
+    ("pages/flagged.html", "Flagged for review"),
+    ("pages/archive.html", "Site archive"),
 ]
+
+# Sibling hubs, labelled with what they hold. The index page is discovered at build time: a hub
+# directory that exists is linked, so the navigation cannot silently lose a merged hub again.
+HUB_LABELS = {
+    "line-desk": "Line Desk &nearr;",
+    "price-desk": "Price Desk &nearr;",
+    "price-store": "Price Store &nearr;",
+    "review-board": "Review Board &nearr;",
+    "verify-hub": "Verify Hub &nearr;",
+    "decision-desk": "Decision Desk &nearr;",
+    "decision-hub": "Decision hub &nearr;",
+    "signal-desk": "Signal Desk &nearr;",
+    "lineup-lab": "Lineup Lab &nearr;",
+    "suggestions": "Suggestions hub &nearr;",
+    "skill-lab": "Skill Lab &nearr;",
+    "origination": "Origination hub &nearr;",
+    "origination-lab": "Origination Lab &nearr;",
+    "quant-lab": "Quant Lab &nearr;",
+    "nfl-command": "NFL Command Center &nearr;",
+    "injury-report-w10": "Week 10 injury re-check &nearr;",
+    "site": "Decision site &nearr;",
+    "audit": "Audit &nearr;",
+    "dashboard": "Dashboard (early draft) &nearr;",
+    "nfl-lines": "NFL Lines (early draft) &nearr;",
+    "nfl-research": "NFL Research (early draft) &nearr;",
+    "research-desk": "Research desk (early draft) &nearr;",
+    "readiness": "Readiness hub &nearr;",
+}
+
+
+def hub_nav(root: str = ".") -> list[tuple[str, str]]:
+    """Hubs present on disk, in the order they are listed in HUB_LABELS, then alphabetically."""
+    found = []
+    for name, label in list(HUB_LABELS.items()):
+        if os.path.exists(os.path.join(root, name, "index.html")):
+            found.append((f"{name}/index.html", label))
+    for name in sorted(os.listdir(root)) if os.path.isdir(root) else []:
+        path = os.path.join(root, name)
+        if (name not in HUB_LABELS and os.path.isdir(path) and not name.startswith((".", "_"))
+                and os.path.exists(os.path.join(path, "index.html"))):
+            found.append((f"{name}/index.html", f"{name} &nearr;"))
+    return found
+
+
+NAV_GROUPS: list[tuple[str, list[tuple[str, str]]]] = [
+    ("Workspace", CORE),
+    ("Decision registers", REGISTERS),
+]
+
+
+def nav_groups(root: str = ".") -> list[tuple[str, list[tuple[str, str]]]]:
+    return NAV_GROUPS + [("Sibling hubs", hub_nav(root))]
+
+
+NAV = [item for _, items in nav_groups() for item in items]
 
 DISCLAIMER = (
     "Research and measurement, not betting advice. Every figure is computed by the code in this "
@@ -151,20 +209,53 @@ def status_note() -> str:
     entries = lb.get("entries", [])
     approved = lb.get("approved_count", 0)
     tested = len([e for e in entries if e.get("family") != "control"])
+    read = official_read_date()
+    ready = readiness_summary()
     if not entries:
-        return '<span class="dot"></span>Pipeline building<br><strong>Awaiting data</strong><span>Run the data-pipeline workflow.</span>'
+        return ('<span class="dot"></span>Pipeline building<br><strong>Awaiting data</strong>'
+                '<span>Run the data-pipeline workflow.</span>')
     stamp = as_of()
     fresh = f"Data through {stamp}. " if stamp else ""
+    if read:
+        fresh += f"Official pages last read {read}. "
     return (f'<span class="dot"></span>Pipeline live<br><strong>{approved} of {tested} strategies approved</strong>'
-            f'<span>{fresh}Rejections are listed with the exact gate that failed.</span>')
+            f"<span>{fresh}{ready}</span>")
+
+
+def official_read_date() -> str:
+    """Date of the newest dated official-source capture committed under data/derived/."""
+    import glob
+
+    found = sorted(glob.glob(os.path.join("data", "derived", "official_capture_*.json")))
+    if not found:
+        return ""
+    try:
+        with open(found[-1]) as fh:
+            meta = (json.load(fh) or {}).get("meta", {})
+    except (OSError, ValueError):
+        return ""
+    return str(meta.get("read_at_utc", ""))[:10]
+
+
+def readiness_summary() -> str:
+    doc = load("readiness.json", {})
+    totals = doc.get("meta", {}).get("status_totals", {})
+    n = doc.get("meta", {}).get("row_count", 0)
+    if not n:
+        return "Decision readiness: register not built yet."
+    parts = ", ".join(f"{v} {k}" for k, v in sorted(totals.items()))
+    return f"Decision readiness: {n} requirements - {parts}."
 
 
 def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
-    nav = []
-    for href, label in NAV:
-        active = ' class="active" aria-current="page"' if href == current else ""
-        nav.append(f'<a href="{href}"{active}>{label[0].upper() + label[1:] if False else label}</a>')
-    navhtml = "".join(nav)
+    parts = []
+    for label, items in nav_groups():
+        links = []
+        for href, text in items:
+            active = ' class="active" aria-current="page"' if href == current else ""
+            links.append(f'<a href="{href}"{active}>{text}</a>')
+        parts.append(f'<span class="nav-group">{label}</span>{"".join(links)}')
+    navhtml = "".join(parts)
     sub = f'<p class="lede">{subtitle}</p>' if subtitle else ""
     doc = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
@@ -198,20 +289,7 @@ def layout(page_title: str, current: str, body: str, subtitle: str = "") -> str:
 </footer>
 </main></div></body></html>"""
     if current.startswith("pages/"):
-        doc = (doc.replace('href="pages/', 'href="../pages/')
-                  .replace('href="decision-hub/', 'href="../decision-hub/')
-                  .replace('href="suggestions/', 'href="../suggestions/')
-                  .replace('href="nfl-command/', 'href="../nfl-command/')
-                  .replace('href="decision-desk/', 'href="../decision-desk/')
-                  .replace('href="lineup-lab/', 'href="../lineup-lab/')
-                  .replace('href="signal-desk/', 'href="../signal-desk/')
-                  .replace('href="price-desk/', 'href="../price-desk/')
-                  .replace('href="audit/', 'href="../audit/')
-                  .replace('href="dashboard/', 'href="../dashboard/')
-                  .replace('href="nfl-lines/', 'href="../nfl-lines/')
-                  .replace('href="nfl-research/', 'href="../nfl-research/')
-                  .replace('href="research-desk/', 'href="../research-desk/')
-                  .replace('href="index.html"', 'href="../index.html"'))
+        doc = re.sub(r'href="(?!#|https?:|mailto:|\.\./)([^"]+)"', r'href="../\1"', doc)
     return doc
 
 
