@@ -1,0 +1,82 @@
+{
+  "capture_method": "Page retrieved with the session's page-retrieval tool; content returned as markdown text. The sandbox shell has no network route to nfl.com, so no raw HTTP response bytes could be retained. The register hash below therefore covers the transcribed register, not the NFL response body. This limitation is published on the Flagged for Review page.",
+  "capture_utc": "2026-11-18T03:52Z",
+  "registers": {
+    "absent_clubs_2026_w10": {
+      "captured_utc": "2026-11-18T03:52Z",
+      "file": "data/absent_clubs_2026_w10.csv",
+      "rows": 4,
+      "sha256": "6dab4bf24b2ec6fbdc2756f377cd48a5426e6c9d5d2d4f4178c0e046e872807c",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+    },
+    "injury_page_news_2026": {
+      "captured_utc": "2026-11-18T03:52Z",
+      "file": "data/injury_page_news_2026.csv",
+      "rows": 20,
+      "sha256": "76f08720c8f19dc65a958dd87b67bf6fb02d9844891dfd7c9b2b12daab3ce68b",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    "injury_report_2026_w10": {
+      "captured_utc": "2026-11-18T03:52Z",
+      "file": "data/injury_report_2026_w10.csv",
+      "rows": 347,
+      "sha256": "b35059aa661a94ac602a9818fd13df0df91b21546efcd09666658444fbad725e",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    "results_2026_w10": {
+      "captured_utc": "2026-11-18T03:52Z",
+      "file": "data/results_2026_w10.csv",
+      "rows": 14,
+      "sha256": "44a1f58e902a3cf3ef7924f58c8d4cc60f6ae1b22b99ef3598e9d24d38d77f7d",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+    },
+    "schedule_2026_w11": {
+      "bye_clubs": [
+        "ATL",
+        "CLE",
+        "GB",
+        "LAR",
+        "NE",
+        "SEA"
+      ],
+      "captured_utc": "2026-11-18T03:52Z",
+      "file": "data/schedule_2026_w11.csv",
+      "rows": 13,
+      "sha256": "5060d57df65f401cf1666723432bb8e9b01827518447598c9d6838c4732a5b93",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+    },
+    "standings_2026": {
+      "captured_utc": "2026-11-18T03:52Z",
+      "file": "data/standings_2026.csv",
+      "rows": 32,
+      "sha256": "71577d78f7ea4400f0eee87d8b5aea7dfb56ccad5a2ea0712c473b38ce1db2dc",
+      "source_url": "https://www.nfl.com/standings/division/2026/REG"
+    }
+  },
+  "sources": {
+    "injury_w10": {
+      "captured_utc": "2026-11-18T03:52Z",
+      "chunks": 8,
+      "title": "Official NFL Injury Report for Players - Week 10 of the 2026 Season",
+      "url": "https://www.nfl.com/injuries/league/2026/REG10"
+    },
+    "sched_w10": {
+      "captured_utc": "2026-11-18T03:52Z",
+      "chunks": 2,
+      "title": "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+    },
+    "sched_w11": {
+      "captured_utc": "2026-11-18T03:52Z",
+      "chunks": 3,
+      "title": "NFL Week 11 Schedule 2026: Games, Times, Matchups & Tickets",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+    },
+    "standings": {
+      "captured_utc": "2026-11-18T03:52Z",
+      "chunks": 2,
+      "title": "2026 NFL Division Standings",
+      "url": "https://www.nfl.com/standings/division/2026/REG"
+    }
+  }
+}

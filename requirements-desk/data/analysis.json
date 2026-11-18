@@ -1,0 +1,1356 @@
+{
+  "absent_clubs": [
+    {
+      "club": "CHI",
+      "reason_as_published": "No table on the Week 10 page. Week 10 schedule page lists Chicago under 'Teams on Bye'.",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+    },
+    {
+      "club": "DEN",
+      "reason_as_published": "No table on the Week 10 page. Week 10 schedule page lists Denver under 'Teams on Bye'.",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+    },
+    {
+      "club": "PHI",
+      "reason_as_published": "No table on the Week 10 page. Week 10 schedule page lists Philadelphia under 'Teams on Bye'.",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+    },
+    {
+      "club": "TB",
+      "reason_as_published": "No table on the Week 10 page. Week 10 schedule page lists Tampa Bay under 'Teams on Bye'.",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+    }
+  ],
+  "brief_audit": [
+    {
+      "claim": "Lions' Kerby Joseph, Cade Mays and D.J. Reed are published with a blank game-status cell; the official article lists all three as Out.",
+      "claim_id": "VR-08 / VR-12",
+      "official_page_says": "Kerby Joseph: practice='Did Not Participate In Practice', game status='Out'; Cade Mays: practice='Did Not Participate In Practice', game status='Out'; D.J. Reed: practice='Did Not Participate In Practice', game status='Out'",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "verdict": "CONFIRMED as Out on the captured page"
+    },
+    {
+      "claim": "Seattle (15) and Cincinnati (4) player counts in the published Week 10 tables.",
+      "claim_id": "VR-05 / VR-06",
+      "official_page_says": "Seattle table has 15 rows; Cincinnati table has 9 rows.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "verdict": "Seattle CONFIRMED at 15; Cincinnati is 9, NOT 4"
+    },
+    {
+      "claim": "Published counts are stale: 254 rows and 4 no-injury sections versus 279 rows and 2 sections live.",
+      "claim_id": "VR-04 / VR-07",
+      "official_page_says": "347 listed-player rows across 28 club tables; every club table on the page has at least one row.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "verdict": "NEITHER COUNT REPRODUCED; this capture counts 347 rows and 0 club tables without rows"
+    },
+    {
+      "claim": "Only 6 of 254 report rows carry a game designation.",
+      "claim_id": "brief: 6 of 254 rows carry a game designation",
+      "official_page_says": "171 of 347 rows carry a game status; 176 are blank.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "verdict": "UPDATED \u2014 designation coverage is far higher than 6"
+    },
+    {
+      "claim": "Malik Willis is absent from the weekly report because he is on injured reserve, not because he is healthy.",
+      "claim_id": "VR-25 / VQ-06",
+      "official_page_says": "Malik Willis IS NOT present in the MIA table on the captured page. The report page itself does not state injured-reserve status.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "verdict": "ABSENCE CONFIRMED \u2014 reason (IR) is NOT stated by the report page; it comes from a linked NFL.com news headline"
+    },
+    {
+      "claim": "Lamar Jackson is absent from the weekly report because he is on injured reserve, not because he is healthy.",
+      "claim_id": "VR-17 / VR-26 / VQ-07",
+      "official_page_says": "Lamar Jackson IS NOT present in the BAL table on the captured page. The report page itself does not state injured-reserve status.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "verdict": "ABSENCE CONFIRMED \u2014 reason (IR) is NOT stated by the report page; it comes from a linked NFL.com news headline"
+    },
+    {
+      "claim": "CHI, DEN, PHI and TB are absent from the Week 10 report; bye status unverified.",
+      "claim_id": "F-W10-6 (prior session)",
+      "official_page_says": "The official Week 10 schedule page lists CHI, DEN, PHI and TB under 'Teams on Bye'.",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "verdict": "RESOLVED \u2014 bye status now verified from the official schedule page"
+    },
+    {
+      "claim": "Seattle puts two players in one slot and Washington leaves a slot empty (depth-chart structure).",
+      "claim_id": "VR-21 / VR-23 / VQ-08",
+      "official_page_says": "The NFL.com injury report does not publish a depth chart or depth slots.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "verdict": "NOT TESTABLE on this source \u2014 depth structure requires the club depth-chart page"
+    },
+    {
+      "claim": "A verified results feed is needed before backtests and ROI can be computed.",
+      "claim_id": "results feed",
+      "official_page_says": "14 of 14 Week 10 games are printed FINAL with both scores on the official schedule page.",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "verdict": "PARTIAL \u2014 one week captured; a multi-season official results archive is still missing"
+    },
+    {
+      "claim": "Transcribe the venue of every fixture from the official game centre and publish it.",
+      "claim_id": "venue transcription",
+      "official_page_says": "All 13 Week 11 fixtures carry a stadium string published by the official schedule page; the Vikings-49ers fixture is labelled Mexico City.",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+      "verdict": "PARTIAL \u2014 venue string transcribed from the schedule page, not yet from each game centre"
+    }
+  ],
+  "capture": {
+    "capture_method": "Page retrieved with the session's page-retrieval tool; content returned as markdown text. The sandbox shell has no network route to nfl.com, so no raw HTTP response bytes could be retained. The register hash below therefore covers the transcribed register, not the NFL response body. This limitation is published on the Flagged for Review page.",
+    "capture_utc": "2026-11-18T03:52Z",
+    "registers": {
+      "absent_clubs_2026_w10": {
+        "captured_utc": "2026-11-18T03:52Z",
+        "file": "data/absent_clubs_2026_w10.csv",
+        "rows": 4,
+        "sha256": "6dab4bf24b2ec6fbdc2756f377cd48a5426e6c9d5d2d4f4178c0e046e872807c",
+        "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+      },
+      "injury_page_news_2026": {
+        "captured_utc": "2026-11-18T03:52Z",
+        "file": "data/injury_page_news_2026.csv",
+        "rows": 20,
+        "sha256": "76f08720c8f19dc65a958dd87b67bf6fb02d9844891dfd7c9b2b12daab3ce68b",
+        "source_url": "https://www.nfl.com/injuries/league/2026/REG10"
+      },
+      "injury_report_2026_w10": {
+        "captured_utc": "2026-11-18T03:52Z",
+        "file": "data/injury_report_2026_w10.csv",
+        "rows": 347,
+        "sha256": "b35059aa661a94ac602a9818fd13df0df91b21546efcd09666658444fbad725e",
+        "source_url": "https://www.nfl.com/injuries/league/2026/REG10"
+      },
+      "results_2026_w10": {
+        "captured_utc": "2026-11-18T03:52Z",
+        "file": "data/results_2026_w10.csv",
+        "rows": 14,
+        "sha256": "44a1f58e902a3cf3ef7924f58c8d4cc60f6ae1b22b99ef3598e9d24d38d77f7d",
+        "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+      },
+      "schedule_2026_w11": {
+        "bye_clubs": [
+          "ATL",
+          "CLE",
+          "GB",
+          "LAR",
+          "NE",
+          "SEA"
+        ],
+        "captured_utc": "2026-11-18T03:52Z",
+        "file": "data/schedule_2026_w11.csv",
+        "rows": 13,
+        "sha256": "5060d57df65f401cf1666723432bb8e9b01827518447598c9d6838c4732a5b93",
+        "source_url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+      },
+      "standings_2026": {
+        "captured_utc": "2026-11-18T03:52Z",
+        "file": "data/standings_2026.csv",
+        "rows": 32,
+        "sha256": "71577d78f7ea4400f0eee87d8b5aea7dfb56ccad5a2ea0712c473b38ce1db2dc",
+        "source_url": "https://www.nfl.com/standings/division/2026/REG"
+      }
+    },
+    "sources": {
+      "injury_w10": {
+        "captured_utc": "2026-11-18T03:52Z",
+        "chunks": 8,
+        "title": "Official NFL Injury Report for Players - Week 10 of the 2026 Season",
+        "url": "https://www.nfl.com/injuries/league/2026/REG10"
+      },
+      "sched_w10": {
+        "captured_utc": "2026-11-18T03:52Z",
+        "chunks": 2,
+        "title": "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+      },
+      "sched_w11": {
+        "captured_utc": "2026-11-18T03:52Z",
+        "chunks": 3,
+        "title": "NFL Week 11 Schedule 2026: Games, Times, Matchups & Tickets",
+        "url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+      },
+      "standings": {
+        "captured_utc": "2026-11-18T03:52Z",
+        "chunks": 2,
+        "title": "2026 NFL Division Standings",
+        "url": "https://www.nfl.com/standings/division/2026/REG"
+      }
+    }
+  },
+  "injury": {
+    "clubs_with_table": 28,
+    "game_status_counts": {
+      "(blank)": 176,
+      "Doubtful": 11,
+      "Out": 70,
+      "Questionable": 90
+    },
+    "per_club": {
+      "ATL": {
+        "Doubtful": 1,
+        "Out": 1,
+        "Questionable": 3,
+        "listed": 11,
+        "no_game_status": 6
+      },
+      "AZ": {
+        "Doubtful": 0,
+        "Out": 3,
+        "Questionable": 6,
+        "listed": 15,
+        "no_game_status": 6
+      },
+      "BAL": {
+        "Doubtful": 0,
+        "Out": 1,
+        "Questionable": 1,
+        "listed": 10,
+        "no_game_status": 8
+      },
+      "BUF": {
+        "Doubtful": 1,
+        "Out": 0,
+        "Questionable": 4,
+        "listed": 14,
+        "no_game_status": 9
+      },
+      "CAR": {
+        "Doubtful": 2,
+        "Out": 1,
+        "Questionable": 4,
+        "listed": 12,
+        "no_game_status": 5
+      },
+      "CIN": {
+        "Doubtful": 3,
+        "Out": 1,
+        "Questionable": 0,
+        "listed": 9,
+        "no_game_status": 5
+      },
+      "CLE": {
+        "Doubtful": 0,
+        "Out": 2,
+        "Questionable": 1,
+        "listed": 12,
+        "no_game_status": 9
+      },
+      "DAL": {
+        "Doubtful": 1,
+        "Out": 5,
+        "Questionable": 5,
+        "listed": 19,
+        "no_game_status": 8
+      },
+      "DET": {
+        "Doubtful": 0,
+        "Out": 3,
+        "Questionable": 2,
+        "listed": 9,
+        "no_game_status": 4
+      },
+      "GB": {
+        "Doubtful": 1,
+        "Out": 4,
+        "Questionable": 7,
+        "listed": 17,
+        "no_game_status": 5
+      },
+      "HOU": {
+        "Doubtful": 0,
+        "Out": 5,
+        "Questionable": 6,
+        "listed": 16,
+        "no_game_status": 5
+      },
+      "IND": {
+        "Doubtful": 0,
+        "Out": 6,
+        "Questionable": 1,
+        "listed": 14,
+        "no_game_status": 7
+      },
+      "JAX": {
+        "Doubtful": 0,
+        "Out": 3,
+        "Questionable": 1,
+        "listed": 11,
+        "no_game_status": 7
+      },
+      "KC": {
+        "Doubtful": 0,
+        "Out": 3,
+        "Questionable": 3,
+        "listed": 13,
+        "no_game_status": 7
+      },
+      "LAC": {
+        "Doubtful": 1,
+        "Out": 3,
+        "Questionable": 6,
+        "listed": 19,
+        "no_game_status": 9
+      },
+      "LAR": {
+        "Doubtful": 0,
+        "Out": 2,
+        "Questionable": 5,
+        "listed": 14,
+        "no_game_status": 7
+      },
+      "LV": {
+        "Doubtful": 0,
+        "Out": 0,
+        "Questionable": 2,
+        "listed": 5,
+        "no_game_status": 3
+      },
+      "MIA": {
+        "Doubtful": 1,
+        "Out": 2,
+        "Questionable": 1,
+        "listed": 11,
+        "no_game_status": 7
+      },
+      "MIN": {
+        "Doubtful": 0,
+        "Out": 5,
+        "Questionable": 3,
+        "listed": 13,
+        "no_game_status": 5
+      },
+      "NE": {
+        "Doubtful": 0,
+        "Out": 3,
+        "Questionable": 9,
+        "listed": 15,
+        "no_game_status": 3
+      },
+      "NO": {
+        "Doubtful": 0,
+        "Out": 4,
+        "Questionable": 2,
+        "listed": 12,
+        "no_game_status": 6
+      },
+      "NYG": {
+        "Doubtful": 0,
+        "Out": 0,
+        "Questionable": 1,
+        "listed": 11,
+        "no_game_status": 10
+      },
+      "NYJ": {
+        "Doubtful": 0,
+        "Out": 1,
+        "Questionable": 8,
+        "listed": 9,
+        "no_game_status": 0
+      },
+      "PIT": {
+        "Doubtful": 0,
+        "Out": 0,
+        "Questionable": 1,
+        "listed": 8,
+        "no_game_status": 7
+      },
+      "SEA": {
+        "Doubtful": 0,
+        "Out": 4,
+        "Questionable": 0,
+        "listed": 15,
+        "no_game_status": 11
+      },
+      "SF": {
+        "Doubtful": 0,
+        "Out": 1,
+        "Questionable": 7,
+        "listed": 12,
+        "no_game_status": 4
+      },
+      "TEN": {
+        "Doubtful": 0,
+        "Out": 5,
+        "Questionable": 1,
+        "listed": 12,
+        "no_game_status": 6
+      },
+      "WAS": {
+        "Doubtful": 0,
+        "Out": 2,
+        "Questionable": 0,
+        "listed": 9,
+        "no_game_status": 7
+      }
+    },
+    "practice_status_counts": {
+      "Did Not Participate In Practice": 94,
+      "Full Participation in Practice": 180,
+      "Limited Participation in Practice": 73
+    },
+    "rows_with_game_status": 171,
+    "rows_without_game_status": 176,
+    "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+    "total_rows": 347
+  },
+  "luck": {
+    "correlations": [
+      {
+        "ci95": "[+0.400, +0.818]",
+        "method_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+        "n": 32,
+        "pair": "Win pct vs points for",
+        "r": "+0.657",
+        "source_url": "https://www.nfl.com/standings/division/2026/REG"
+      },
+      {
+        "ci95": "[-0.826, -0.419]",
+        "method_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+        "n": 32,
+        "pair": "Win pct vs points against",
+        "r": "-0.670",
+        "source_url": "https://www.nfl.com/standings/division/2026/REG"
+      },
+      {
+        "ci95": "[+0.758, +0.938]",
+        "method_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+        "n": 32,
+        "pair": "Win pct vs net points",
+        "r": "+0.875",
+        "source_url": "https://www.nfl.com/standings/division/2026/REG"
+      },
+      {
+        "ci95": "[+0.752, +0.936]",
+        "method_url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+        "n": 32,
+        "pair": "Win pct vs Pythagorean expected wins",
+        "r": "+0.872",
+        "source_url": "https://www.nfl.com/standings/division/2026/REG"
+      }
+    ],
+    "exponent": 2.65,
+    "luck_max": 2.13,
+    "luck_mean": 0.023,
+    "luck_min": -2.25,
+    "luck_most_negative": [
+      {
+        "club": "TB",
+        "conference": "NFC",
+        "division": "NFC South",
+        "l": 6,
+        "luck_wins": -2.25,
+        "net": 24,
+        "pa": 178,
+        "pct": 0.333,
+        "pf": 202,
+        "pythag_wins": 5.25,
+        "t": 0,
+        "w": 3
+      },
+      {
+        "club": "HOU",
+        "conference": "AFC",
+        "division": "AFC South",
+        "l": 6,
+        "luck_wins": -1.87,
+        "net": 14,
+        "pa": 219,
+        "pct": 0.333,
+        "pf": 233,
+        "pythag_wins": 4.87,
+        "t": 0,
+        "w": 3
+      },
+      {
+        "club": "TEN",
+        "conference": "AFC",
+        "division": "AFC South",
+        "l": 8,
+        "luck_wins": -1.51,
+        "net": -72,
+        "pa": 239,
+        "pct": 0.111,
+        "pf": 167,
+        "pythag_wins": 2.51,
+        "t": 0,
+        "w": 1
+      },
+      {
+        "club": "NYJ",
+        "conference": "AFC",
+        "division": "AFC East",
+        "l": 8,
+        "luck_wins": -1.29,
+        "net": -60,
+        "pa": 254,
+        "pct": 0.2,
+        "pf": 194,
+        "pythag_wins": 3.29,
+        "t": 0,
+        "w": 2
+      },
+      {
+        "club": "MIA",
+        "conference": "AFC",
+        "division": "AFC East",
+        "l": 8,
+        "luck_wins": -1.25,
+        "net": -76,
+        "pa": 224,
+        "pct": 0.111,
+        "pf": 148,
+        "pythag_wins": 2.25,
+        "t": 0,
+        "w": 1
+      }
+    ],
+    "luck_most_positive": [
+      {
+        "club": "DEN",
+        "conference": "AFC",
+        "division": "AFC West",
+        "l": 2,
+        "luck_wins": 2.13,
+        "net": 12,
+        "pa": 186,
+        "pct": 0.778,
+        "pf": 198,
+        "pythag_wins": 4.87,
+        "t": 0,
+        "w": 7
+      },
+      {
+        "club": "CLE",
+        "conference": "AFC",
+        "division": "AFC North",
+        "l": 4,
+        "luck_wins": 2.03,
+        "net": -32,
+        "pa": 220,
+        "pct": 0.6,
+        "pf": 188,
+        "pythag_wins": 3.97,
+        "t": 0,
+        "w": 6
+      },
+      {
+        "club": "SF",
+        "conference": "NFC",
+        "division": "NFC West",
+        "l": 1,
+        "luck_wins": 1.5,
+        "net": 85,
+        "pa": 196,
+        "pct": 0.889,
+        "pf": 281,
+        "pythag_wins": 6.5,
+        "t": 0,
+        "w": 8
+      },
+      {
+        "club": "BUF",
+        "conference": "AFC",
+        "division": "AFC East",
+        "l": 1,
+        "luck_wins": 1.47,
+        "net": 88,
+        "pa": 199,
+        "pct": 0.889,
+        "pf": 287,
+        "pythag_wins": 6.53,
+        "t": 0,
+        "w": 8
+      },
+      {
+        "club": "DET",
+        "conference": "NFC",
+        "division": "NFC North",
+        "l": 2,
+        "luck_wins": 1.03,
+        "net": 58,
+        "pa": 199,
+        "pct": 0.778,
+        "pf": 257,
+        "pythag_wins": 5.97,
+        "t": 0,
+        "w": 7
+      }
+    ],
+    "luck_sd": 1.076,
+    "n": 32,
+    "source_url": "https://www.nfl.com/standings/division/2026/REG",
+    "table": [
+      {
+        "club": "BUF",
+        "conference": "AFC",
+        "division": "AFC East",
+        "l": 1,
+        "luck_wins": 1.47,
+        "net": 88,
+        "pa": 199,
+        "pct": 0.889,
+        "pf": 287,
+        "pythag_wins": 6.53,
+        "t": 0,
+        "w": 8
+      },
+      {
+        "club": "NE",
+        "conference": "AFC",
+        "division": "AFC East",
+        "l": 5,
+        "luck_wins": 0.6,
+        "net": -21,
+        "pa": 242,
+        "pct": 0.5,
+        "pf": 221,
+        "pythag_wins": 4.4,
+        "t": 0,
+        "w": 5
+      },
+      {
+        "club": "NYJ",
+        "conference": "AFC",
+        "division": "AFC East",
+        "l": 8,
+        "luck_wins": -1.29,
+        "net": -60,
+        "pa": 254,
+        "pct": 0.2,
+        "pf": 194,
+        "pythag_wins": 3.29,
+        "t": 0,
+        "w": 2
+      },
+      {
+        "club": "MIA",
+        "conference": "AFC",
+        "division": "AFC East",
+        "l": 8,
+        "luck_wins": -1.25,
+        "net": -76,
+        "pa": 224,
+        "pct": 0.111,
+        "pf": 148,
+        "pythag_wins": 2.25,
+        "t": 0,
+        "w": 1
+      },
+      {
+        "club": "CIN",
+        "conference": "AFC",
+        "division": "AFC North",
+        "l": 2,
+        "luck_wins": 0.48,
+        "net": 85,
+        "pa": 193,
+        "pct": 0.778,
+        "pf": 278,
+        "pythag_wins": 6.52,
+        "t": 0,
+        "w": 7
+      },
+      {
+        "club": "PIT",
+        "conference": "AFC",
+        "division": "AFC North",
+        "l": 3,
+        "luck_wins": 1.0,
+        "net": 16,
+        "pa": 182,
+        "pct": 0.667,
+        "pf": 198,
+        "pythag_wins": 5.0,
+        "t": 0,
+        "w": 6
+      },
+      {
+        "club": "CLE",
+        "conference": "AFC",
+        "division": "AFC North",
+        "l": 4,
+        "luck_wins": 2.03,
+        "net": -32,
+        "pa": 220,
+        "pct": 0.6,
+        "pf": 188,
+        "pythag_wins": 3.97,
+        "t": 0,
+        "w": 6
+      },
+      {
+        "club": "BAL",
+        "conference": "AFC",
+        "division": "AFC North",
+        "l": 6,
+        "luck_wins": 0.38,
+        "net": -50,
+        "pa": 259,
+        "pct": 0.4,
+        "pf": 209,
+        "pythag_wins": 3.62,
+        "t": 0,
+        "w": 4
+      },
+      {
+        "club": "JAX",
+        "conference": "AFC",
+        "division": "AFC South",
+        "l": 2,
+        "luck_wins": -0.56,
+        "net": 125,
+        "pa": 144,
+        "pct": 0.778,
+        "pf": 269,
+        "pythag_wins": 7.56,
+        "t": 0,
+        "w": 7
+      },
+      {
+        "club": "HOU",
+        "conference": "AFC",
+        "division": "AFC South",
+        "l": 6,
+        "luck_wins": -1.87,
+        "net": 14,
+        "pa": 219,
+        "pct": 0.333,
+        "pf": 233,
+        "pythag_wins": 4.87,
+        "t": 0,
+        "w": 3
+      },
+      {
+        "club": "IND",
+        "conference": "AFC",
+        "division": "AFC South",
+        "l": 7,
+        "luck_wins": -0.32,
+        "net": -63,
+        "pa": 271,
+        "pct": 0.3,
+        "pf": 208,
+        "pythag_wins": 3.32,
+        "t": 0,
+        "w": 3
+      },
+      {
+        "club": "TEN",
+        "conference": "AFC",
+        "division": "AFC South",
+        "l": 8,
+        "luck_wins": -1.51,
+        "net": -72,
+        "pa": 239,
+        "pct": 0.111,
+        "pf": 167,
+        "pythag_wins": 2.51,
+        "t": 0,
+        "w": 1
+      },
+      {
+        "club": "KC",
+        "conference": "AFC",
+        "division": "AFC West",
+        "l": 2,
+        "luck_wins": 0.23,
+        "net": 81,
+        "pa": 156,
+        "pct": 0.778,
+        "pf": 237,
+        "pythag_wins": 6.77,
+        "t": 0,
+        "w": 7
+      },
+      {
+        "club": "DEN",
+        "conference": "AFC",
+        "division": "AFC West",
+        "l": 2,
+        "luck_wins": 2.13,
+        "net": 12,
+        "pa": 186,
+        "pct": 0.778,
+        "pf": 198,
+        "pythag_wins": 4.87,
+        "t": 0,
+        "w": 7
+      },
+      {
+        "club": "LV",
+        "conference": "AFC",
+        "division": "AFC West",
+        "l": 6,
+        "luck_wins": -0.08,
+        "net": -38,
+        "pa": 289,
+        "pct": 0.4,
+        "pf": 251,
+        "pythag_wins": 4.08,
+        "t": 0,
+        "w": 4
+      },
+      {
+        "club": "LAC",
+        "conference": "AFC",
+        "division": "AFC West",
+        "l": 8,
+        "luck_wins": -0.86,
+        "net": -95,
+        "pa": 239,
+        "pct": 0.111,
+        "pf": 144,
+        "pythag_wins": 1.86,
+        "t": 0,
+        "w": 1
+      },
+      {
+        "club": "NYG",
+        "conference": "NFC",
+        "division": "NFC East",
+        "l": 3,
+        "luck_wins": 0.79,
+        "net": 7,
+        "pa": 196,
+        "pct": 0.611,
+        "pf": 203,
+        "pythag_wins": 4.71,
+        "t": 1,
+        "w": 5
+      },
+      {
+        "club": "DAL",
+        "conference": "NFC",
+        "division": "NFC East",
+        "l": 6,
+        "luck_wins": -1.09,
+        "net": 4,
+        "pa": 282,
+        "pct": 0.4,
+        "pf": 286,
+        "pythag_wins": 5.09,
+        "t": 0,
+        "w": 4
+      },
+      {
+        "club": "WAS",
+        "conference": "NFC",
+        "division": "NFC East",
+        "l": 5,
+        "luck_wins": -0.24,
+        "net": -27,
+        "pa": 223,
+        "pct": 0.389,
+        "pf": 196,
+        "pythag_wins": 3.74,
+        "t": 1,
+        "w": 3
+      },
+      {
+        "club": "PHI",
+        "conference": "NFC",
+        "division": "NFC East",
+        "l": 7,
+        "luck_wins": -0.31,
+        "net": -73,
+        "pa": 221,
+        "pct": 0.222,
+        "pf": 148,
+        "pythag_wins": 2.31,
+        "t": 0,
+        "w": 2
+      },
+      {
+        "club": "DET",
+        "conference": "NFC",
+        "division": "NFC North",
+        "l": 2,
+        "luck_wins": 1.03,
+        "net": 58,
+        "pa": 199,
+        "pct": 0.778,
+        "pf": 257,
+        "pythag_wins": 5.97,
+        "t": 0,
+        "w": 7
+      },
+      {
+        "club": "MIN",
+        "conference": "NFC",
+        "division": "NFC North",
+        "l": 2,
+        "luck_wins": 0.63,
+        "net": 50,
+        "pa": 126,
+        "pct": 0.778,
+        "pf": 176,
+        "pythag_wins": 6.37,
+        "t": 0,
+        "w": 7
+      },
+      {
+        "club": "CHI",
+        "conference": "NFC",
+        "division": "NFC North",
+        "l": 2,
+        "luck_wins": 0.96,
+        "net": 57,
+        "pa": 184,
+        "pct": 0.778,
+        "pf": 241,
+        "pythag_wins": 6.04,
+        "t": 0,
+        "w": 7
+      },
+      {
+        "club": "GB",
+        "conference": "NFC",
+        "division": "NFC North",
+        "l": 4,
+        "luck_wins": 0.85,
+        "net": 5,
+        "pa": 221,
+        "pct": 0.6,
+        "pf": 226,
+        "pythag_wins": 5.15,
+        "t": 0,
+        "w": 6
+      },
+      {
+        "club": "CAR",
+        "conference": "NFC",
+        "division": "NFC South",
+        "l": 5,
+        "luck_wins": -0.06,
+        "net": -17,
+        "pa": 236,
+        "pct": 0.444,
+        "pf": 219,
+        "pythag_wins": 4.06,
+        "t": 0,
+        "w": 4
+      },
+      {
+        "club": "TB",
+        "conference": "NFC",
+        "division": "NFC South",
+        "l": 6,
+        "luck_wins": -2.25,
+        "net": 24,
+        "pa": 178,
+        "pct": 0.333,
+        "pf": 202,
+        "pythag_wins": 5.25,
+        "t": 0,
+        "w": 3
+      },
+      {
+        "club": "NO",
+        "conference": "NFC",
+        "division": "NFC South",
+        "l": 6,
+        "luck_wins": -0.59,
+        "net": -34,
+        "pa": 236,
+        "pct": 0.333,
+        "pf": 202,
+        "pythag_wins": 3.59,
+        "t": 0,
+        "w": 3
+      },
+      {
+        "club": "ATL",
+        "conference": "NFC",
+        "division": "NFC South",
+        "l": 7,
+        "luck_wins": -0.4,
+        "net": -57,
+        "pa": 258,
+        "pct": 0.3,
+        "pf": 201,
+        "pythag_wins": 3.4,
+        "t": 0,
+        "w": 3
+      },
+      {
+        "club": "SF",
+        "conference": "NFC",
+        "division": "NFC West",
+        "l": 1,
+        "luck_wins": 1.5,
+        "net": 85,
+        "pa": 196,
+        "pct": 0.889,
+        "pf": 281,
+        "pythag_wins": 6.5,
+        "t": 0,
+        "w": 8
+      },
+      {
+        "club": "SEA",
+        "conference": "NFC",
+        "division": "NFC West",
+        "l": 4,
+        "luck_wins": -0.55,
+        "net": 48,
+        "pa": 175,
+        "pct": 0.6,
+        "pf": 223,
+        "pythag_wins": 6.55,
+        "t": 0,
+        "w": 6
+      },
+      {
+        "club": "LAR",
+        "conference": "NFC",
+        "division": "NFC West",
+        "l": 4,
+        "luck_wins": -0.79,
+        "net": 61,
+        "pa": 187,
+        "pct": 0.6,
+        "pf": 248,
+        "pythag_wins": 6.79,
+        "t": 0,
+        "w": 6
+      },
+      {
+        "club": "AZ",
+        "conference": "NFC",
+        "division": "NFC West",
+        "l": 7,
+        "luck_wins": 0.68,
+        "net": -105,
+        "pa": 289,
+        "pct": 0.3,
+        "pf": 184,
+        "pythag_wins": 2.32,
+        "t": 0,
+        "w": 3
+      }
+    ]
+  },
+  "results": {
+    "games": [
+      {
+        "away": "WAS",
+        "away_points": 24,
+        "date": "2026-11-12",
+        "home": "NYG",
+        "home_points": 21,
+        "margin": -3,
+        "source_url": "https://www.nfl.com/games/commanders-at-giants-2026-reg-10",
+        "total": 45
+      },
+      {
+        "away": "NE",
+        "away_points": 10,
+        "date": "2026-11-15",
+        "home": "DET",
+        "home_points": 35,
+        "margin": 25,
+        "source_url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
+        "total": 45
+      },
+      {
+        "away": "KC",
+        "away_points": 35,
+        "date": "2026-11-15",
+        "home": "ATL",
+        "home_points": 13,
+        "margin": -22,
+        "source_url": "https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10",
+        "total": 48
+      },
+      {
+        "away": "HOU",
+        "away_points": 24,
+        "date": "2026-11-15",
+        "home": "CLE",
+        "home_points": 27,
+        "margin": 3,
+        "source_url": "https://www.nfl.com/games/texans-at-browns-2026-reg-10",
+        "total": 51
+      },
+      {
+        "away": "MIN",
+        "away_points": 30,
+        "date": "2026-11-15",
+        "home": "GB",
+        "home_points": 10,
+        "margin": -20,
+        "source_url": "https://www.nfl.com/games/vikings-at-packers-2026-reg-10",
+        "total": 40
+      },
+      {
+        "away": "MIA",
+        "away_points": 22,
+        "date": "2026-11-15",
+        "home": "IND",
+        "home_points": 24,
+        "margin": 2,
+        "source_url": "https://www.nfl.com/games/dolphins-at-colts-2026-reg-10",
+        "total": 46
+      },
+      {
+        "away": "CAR",
+        "away_points": 20,
+        "date": "2026-11-15",
+        "home": "NO",
+        "home_points": 17,
+        "margin": -3,
+        "source_url": "https://www.nfl.com/games/panthers-at-saints-2026-reg-10",
+        "total": 37
+      },
+      {
+        "away": "BUF",
+        "away_points": 31,
+        "date": "2026-11-15",
+        "home": "NYJ",
+        "home_points": 12,
+        "margin": -19,
+        "source_url": "https://www.nfl.com/games/bills-at-jets-2026-reg-10",
+        "total": 43
+      },
+      {
+        "away": "JAX",
+        "away_points": 40,
+        "date": "2026-11-15",
+        "home": "TEN",
+        "home_points": 23,
+        "margin": -17,
+        "source_url": "https://www.nfl.com/games/jaguars-at-titans-2026-reg-10",
+        "total": 63
+      },
+      {
+        "away": "LAR",
+        "away_points": 34,
+        "date": "2026-11-15",
+        "home": "AZ",
+        "home_points": 6,
+        "margin": -28,
+        "source_url": "https://www.nfl.com/games/rams-at-cardinals-2026-reg-10",
+        "total": 40
+      },
+      {
+        "away": "SEA",
+        "away_points": 21,
+        "date": "2026-11-15",
+        "home": "LV",
+        "home_points": 13,
+        "margin": -8,
+        "source_url": "https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10",
+        "total": 34
+      },
+      {
+        "away": "SF",
+        "away_points": 46,
+        "date": "2026-11-15",
+        "home": "DAL",
+        "home_points": 40,
+        "margin": -6,
+        "source_url": "https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10",
+        "total": 86
+      },
+      {
+        "away": "PIT",
+        "away_points": 18,
+        "date": "2026-11-15",
+        "home": "CIN",
+        "home_points": 38,
+        "margin": 20,
+        "source_url": "https://www.nfl.com/games/steelers-at-bengals-2026-reg-10",
+        "total": 56
+      },
+      {
+        "away": "LAC",
+        "away_points": 23,
+        "date": "2026-11-16",
+        "home": "BAL",
+        "home_points": 20,
+        "margin": -3,
+        "source_url": "https://www.nfl.com/games/chargers-at-ravens-2026-reg-10",
+        "total": 43
+      }
+    ],
+    "home_losses": 10,
+    "home_ties": 0,
+    "home_win_rate": 0.286,
+    "home_wins": 4,
+    "max_total": 86,
+    "mean_abs_margin": 12.79,
+    "mean_total": 48.36,
+    "median_total": 45.0,
+    "min_total": 34,
+    "n_final": 14,
+    "n_games": 14,
+    "notes": {
+      "NE@DET": "Official page labels this an International Game in Munich."
+    },
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10"
+  },
+  "schedule": {
+    "bye": [
+      "ATL",
+      "CLE",
+      "GB",
+      "LAR",
+      "NE",
+      "SEA"
+    ],
+    "clubs_covered": 26,
+    "clubs_total": 32,
+    "games": [
+      {
+        "away": "IND",
+        "date": "2026-11-19",
+        "home": "HOU",
+        "kickoff_et": "8:15 PM",
+        "network": "Prime Video",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/colts-at-texans-2026-reg-11",
+        "venue": "NRG Stadium"
+      },
+      {
+        "away": "MIA",
+        "date": "2026-11-22",
+        "home": "BUF",
+        "kickoff_et": "1:00 PM",
+        "network": "CBS",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/dolphins-at-bills-2026-reg-11",
+        "venue": "Highmark Stadium"
+      },
+      {
+        "away": "BAL",
+        "date": "2026-11-22",
+        "home": "CAR",
+        "kickoff_et": "1:00 PM",
+        "network": "FOX",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/ravens-at-panthers-2026-reg-11",
+        "venue": "Bank of America Stadium"
+      },
+      {
+        "away": "NO",
+        "date": "2026-11-22",
+        "home": "CHI",
+        "kickoff_et": "1:00 PM",
+        "network": "FOX",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/saints-at-bears-2026-reg-11",
+        "venue": "Soldier Field"
+      },
+      {
+        "away": "TEN",
+        "date": "2026-11-22",
+        "home": "DAL",
+        "kickoff_et": "1:00 PM",
+        "network": "FOX",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/titans-at-cowboys-2026-reg-11",
+        "venue": "AT&T Stadium"
+      },
+      {
+        "away": "TB",
+        "date": "2026-11-22",
+        "home": "DET",
+        "kickoff_et": "1:00 PM",
+        "network": "FOX",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11",
+        "venue": "Ford Field"
+      },
+      {
+        "away": "AZ",
+        "date": "2026-11-22",
+        "home": "KC",
+        "kickoff_et": "1:00 PM",
+        "network": "CBS",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11",
+        "venue": "GEHA Field at Arrowhead Stadium"
+      },
+      {
+        "away": "PIT",
+        "date": "2026-11-22",
+        "home": "PHI",
+        "kickoff_et": "1:00 PM",
+        "network": "CBS",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/steelers-at-eagles-2026-reg-11",
+        "venue": "Lincoln Financial Field"
+      },
+      {
+        "away": "NYJ",
+        "date": "2026-11-22",
+        "home": "LAC",
+        "kickoff_et": "4:05 PM",
+        "network": "FOX",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/jets-at-chargers-2026-reg-11",
+        "venue": "SoFi Stadium"
+      },
+      {
+        "away": "JAX",
+        "date": "2026-11-22",
+        "home": "NYG",
+        "kickoff_et": "4:25 PM",
+        "network": "CBS",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/jaguars-at-giants-2026-reg-11",
+        "venue": "MetLife Stadium"
+      },
+      {
+        "away": "LV",
+        "date": "2026-11-22",
+        "home": "DEN",
+        "kickoff_et": "4:25 PM",
+        "network": "CBS",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/raiders-at-broncos-2026-reg-11",
+        "venue": "Empower Field at Mile High"
+      },
+      {
+        "away": "MIN",
+        "date": "2026-11-22",
+        "home": "SF",
+        "kickoff_et": "8:20 PM",
+        "network": "NBC",
+        "neutral_site": true,
+        "source_url": "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11",
+        "venue": "Mexico City"
+      },
+      {
+        "away": "CIN",
+        "date": "2026-11-23",
+        "home": "WAS",
+        "kickoff_et": "8:15 PM",
+        "network": "ESPN",
+        "neutral_site": false,
+        "source_url": "https://www.nfl.com/games/bengals-at-commanders-2026-reg-11",
+        "venue": "FedEx Field"
+      }
+    ],
+    "n_games": 13,
+    "neutral_site_games": [
+      {
+        "away": "MIN",
+        "date": "2026-11-22",
+        "home": "SF",
+        "kickoff_et": "8:20 PM",
+        "network": "NBC",
+        "neutral_site": true,
+        "source_url": "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11",
+        "venue": "Mexico City"
+      }
+    ],
+    "source_url": "https://www.nfl.com/schedules/2026/by-week/week-11"
+  },
+  "source_urls": {
+    "injury_w10": "https://www.nfl.com/injuries/league/2026/REG10",
+    "nist_corr": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+    "nist_dependence": "https://www.itl.nist.gov/div898/possolo/TutorialWEBServer/TutorialMetrologists2011Nov09.xht",
+    "sched_w10": "https://www.nfl.com/schedules/2026/by-week/week-10",
+    "sched_w11": "https://www.nfl.com/schedules/2026/by-week/week-11",
+    "standings": "https://www.nfl.com/standings/division/2026/REG"
+  }
+}
