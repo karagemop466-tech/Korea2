@@ -5,8 +5,8 @@
   "other": 1,
   "site hub": 24
  },
- "history": "full",
- "base_commit": "3787620",
+ "history": "shallow",
+ "base_commit": "bb7323e",
  "hub_count": 33,
  "nav_target_count": 27,
  "nav_duplicate_labels": [],
@@ -128,7 +128,7 @@
    "pages": 1,
    "data_files": 0,
    "scripts": 2,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -139,7 +139,7 @@
    "pages": 4,
    "data_files": 1,
    "scripts": 2,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -150,7 +150,7 @@
    "pages": 11,
    "data_files": 0,
    "scripts": 0,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -161,7 +161,7 @@
    "pages": 0,
    "data_files": 25,
    "scripts": 3,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -172,7 +172,7 @@
    "pages": 9,
    "data_files": 7,
    "scripts": 2,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -183,7 +183,7 @@
    "pages": 12,
    "data_files": 6,
    "scripts": 4,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -194,7 +194,7 @@
    "pages": 0,
    "data_files": 9,
    "scripts": 2,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -205,7 +205,7 @@
    "pages": 1,
    "data_files": 0,
    "scripts": 1,
-   "last_touched": "2026-11-15",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -216,7 +216,7 @@
    "pages": 15,
    "data_files": 16,
    "scripts": 3,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -227,7 +227,7 @@
    "pages": 12,
    "data_files": 14,
    "scripts": 7,
-   "last_touched": "2026-11-12",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -238,7 +238,7 @@
    "pages": 14,
    "data_files": 11,
    "scripts": 2,
-   "last_touched": "2026-11-12",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -249,7 +249,7 @@
    "pages": 6,
    "data_files": 0,
    "scripts": 0,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -260,7 +260,7 @@
    "pages": 6,
    "data_files": 0,
    "scripts": 4,
-   "last_touched": "2026-11-01",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -271,7 +271,7 @@
    "pages": 13,
    "data_files": 8,
    "scripts": 0,
-   "last_touched": "2026-11-01",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -282,7 +282,7 @@
    "pages": 15,
    "data_files": 9,
    "scripts": 14,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -293,7 +293,7 @@
    "pages": 26,
    "data_files": 0,
    "scripts": 0,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [
     "pages/archive.html",
     "pages/correlation.html",
@@ -352,7 +352,7 @@
    "pages": 0,
    "data_files": 0,
    "scripts": 16,
-   "last_touched": "2026-11-01",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -363,7 +363,7 @@
    "pages": 10,
    "data_files": 10,
    "scripts": 5,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -374,7 +374,7 @@
    "pages": 1,
    "data_files": 2,
    "scripts": 4,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -385,7 +385,7 @@
    "pages": 12,
    "data_files": 23,
    "scripts": 8,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -396,7 +396,7 @@
    "pages": 14,
    "data_files": 2,
    "scripts": 6,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -407,7 +407,7 @@
    "pages": 6,
    "data_files": 0,
    "scripts": 2,
-   "last_touched": "2026-11-01",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -418,7 +418,7 @@
    "pages": 0,
    "data_files": 7,
    "scripts": 0,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -427,9 +427,9 @@
    "kind": "site hub",
    "index_page": true,
    "pages": 14,
-   "data_files": 9,
-   "scripts": 4,
-   "last_touched": "2026-11-18",
+   "data_files": 11,
+   "scripts": 6,
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -440,7 +440,7 @@
    "pages": 0,
    "data_files": 0,
    "scripts": 34,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -451,7 +451,7 @@
    "pages": 14,
    "data_files": 10,
    "scripts": 6,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -462,7 +462,7 @@
    "pages": 1,
    "data_files": 6,
    "scripts": 7,
-   "last_touched": "2026-11-13",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -473,7 +473,7 @@
    "pages": 12,
    "data_files": 10,
    "scripts": 9,
-   "last_touched": "2026-11-02",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -484,7 +484,7 @@
    "pages": 13,
    "data_files": 11,
    "scripts": 1,
-   "last_touched": "2026-11-12",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -495,7 +495,7 @@
    "pages": 0,
    "data_files": 0,
    "scripts": 5,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -506,7 +506,7 @@
    "pages": 0,
    "data_files": 0,
    "scripts": 3,
-   "last_touched": "2026-11-01",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -517,7 +517,7 @@
    "pages": 0,
    "data_files": 4,
    "scripts": 1,
-   "last_touched": "2026-11-13",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -528,13 +528,13 @@
    "pages": 9,
    "data_files": 7,
    "scripts": 4,
-   "last_touched": "2026-11-12",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   }
  ],
  "total_pages": 252,
- "total_data_files": 207,
+ "total_data_files": 209,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "37876206a91267c3591326b2b657c378c8239ad6"
+ "_generated_from_repo_commit": "bb7323e586e5bdbc6ee3b31edc5b7084d88b9d0c"
 }
