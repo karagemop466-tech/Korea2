@@ -4,177 +4,177 @@
       2012,
       2026
     ],
-    "team_games": 7566,
-    "player_games": 249814,
+    "team_games": 7626,
+    "player_games": 251897,
     "definition": "Pearson correlation between same-game quantities. Legs are counted per team-game (two observations per game) so both sides of a game are included."
   },
   "home_points_vs_away_points": {
     "label": "Home points vs away points (pace coupling)",
-    "n": 7087,
-    "r": -0.03094474843066658,
-    "p": 0.009181340983870225,
-    "ci_low": -0.054188245422220546,
-    "ci_high": -0.007667734700455031,
-    "r2": 0.0009575774554372418,
+    "n": 7117,
+    "r": -0.03166301748364082,
+    "p": 0.007554323338977856,
+    "ci_low": -0.054856075464472805,
+    "ci_high": -0.00843581090217666,
+    "r2": 0.0010025466761693445,
     "status": "measured",
     "note": "Negative and tiny: once the shared game environment is netted out the two scores move slightly in opposite directions. Do not treat this pair as positively coupled."
   },
   "margin_vs_total": {
     "label": "Winning margin vs game total",
-    "n": 7087,
-    "r": 0.017041303599265086,
-    "p": 0.15144055682025503,
-    "ci_low": -0.006243711806356945,
-    "ci_high": 0.04030784898414901,
-    "r2": 0.0002904060283623252,
+    "n": 7117,
+    "r": 0.01639727069443694,
+    "p": 0.1666152906836162,
+    "ci_low": -0.0068387469266021255,
+    "ci_high": 0.03961559085955541,
+    "r2": 0.0002688704862266405,
     "status": "measured",
     "note": "Blowouts and high totals are mildly linked; weak but non-zero."
   },
   "qb_yards_vs_team_points": {
     "label": "QB passing yards vs own team points",
-    "n": 7560,
-    "r": 0.40045031360961597,
-    "p": 3.212823813636474e-289,
-    "ci_low": 0.38135042171745415,
-    "ci_high": 0.41920845708530396,
-    "r2": 0.1603604536700398,
+    "n": 7620,
+    "r": 0.4032182050809873,
+    "p": 6.864218805363806e-296,
+    "ci_low": 0.384243556412015,
+    "ci_high": 0.42185235718855596,
+    "r2": 0.16258492090873314,
     "status": "measured",
     "note": ""
   },
   "qb_yards_vs_wr1_yards": {
     "label": "QB passing yards vs WR1 receiving yards",
-    "n": 7560,
-    "r": 0.5616429882050581,
+    "n": 7620,
+    "r": 0.561777242457186,
     "p": 0.0,
-    "ci_low": 0.5460135588954433,
-    "ci_high": 0.5768816042718529,
-    "r2": 0.31544284619990703,
+    "ci_low": 0.546213641247426,
+    "ci_high": 0.5769531010948991,
+    "r2": 0.31559367014279993,
     "status": "measured",
     "note": "The core same-game-parlay pair: same passing volume drives both legs."
   },
   "qb_yards_vs_wr2_yards": {
     "label": "QB passing yards vs WR2 receiving yards",
-    "n": 7560,
-    "r": 0.5055746897259744,
+    "n": 7620,
+    "r": 0.5052240904945918,
     "p": 0.0,
-    "ci_low": 0.48860082199727245,
-    "ci_high": 0.5221660196744767,
-    "r2": 0.2556057668915153,
+    "ci_low": 0.4883100399645584,
+    "ci_high": 0.5217586986144593,
+    "r2": 0.2552513816160875,
     "status": "measured",
     "note": ""
   },
   "wr1_vs_wr2_yards": {
     "label": "WR1 receiving yards vs WR2 receiving yards",
-    "n": 7566,
-    "r": 0.11986967543067413,
-    "p": 1.2826610888792093e-25,
-    "ci_low": 0.09759985893272806,
-    "ci_high": 0.1420195110599651,
-    "r2": 0.01436873908785516,
+    "n": 7626,
+    "r": 0.11995940421437597,
+    "p": 7.610176576359065e-26,
+    "ci_low": 0.09777804956627284,
+    "ci_high": 0.14202163553719754,
+    "r2": 0.014390258659468042,
     "status": "measured",
     "note": "Positive, not negative: both receivers ride the same passing volume, and target competition is the smaller effect. The clearly negative team-mate pair is RB1 rushing vs QB passing yards."
   },
   "rb_yards_vs_team_points": {
     "label": "RB1 rushing yards vs own team points",
-    "n": 7566,
-    "r": 0.3005196157531825,
-    "p": 1.035941817544459e-157,
-    "ci_low": 0.2798814593672888,
-    "ci_high": 0.3208801396913203,
-    "r2": 0.09031203945244044,
+    "n": 7626,
+    "r": 0.30113985696562307,
+    "p": 1.2595938019084122e-159,
+    "ci_low": 0.28059175134389913,
+    "ci_high": 0.32141205940735174,
+    "r2": 0.09068521345327592,
     "status": "measured",
     "note": ""
   },
   "rb_yards_vs_qb_yards": {
     "label": "RB1 rushing yards vs QB passing yards",
-    "n": 7560,
-    "r": -0.1270774733524963,
-    "p": 1.3667581026182617e-28,
-    "ci_low": -0.14919247402608865,
-    "ci_high": -0.10483540613960841,
-    "r2": 0.01614868423365441,
+    "n": 7620,
+    "r": -0.12456986335238077,
+    "p": 9.796469351888212e-28,
+    "ci_low": -0.14661323439220833,
+    "ci_high": -0.10240283478996137,
+    "r2": 0.015517650855630817,
     "status": "measured",
     "note": "Game script: trailing teams abandon the run."
   },
   "qb_yards_vs_opp_points": {
     "label": "QB passing yards vs opponent points",
-    "n": 7560,
-    "r": 0.18275962912018037,
-    "p": 8.810090944491593e-58,
-    "ci_low": 0.16088004699436598,
-    "ci_high": 0.2044596702872178,
-    "r2": 0.033401082036145884,
+    "n": 7620,
+    "r": 0.18109282753486314,
+    "p": 3.4849331125876414e-57,
+    "ci_low": 0.1592870623773261,
+    "ci_high": 0.20272197941123535,
+    "r2": 0.032794612184571685,
     "status": "measured",
     "note": ""
   },
   "team_points_vs_opp_points": {
     "label": "Team points vs opponent points",
-    "n": 7566,
-    "r": -0.0416660848972692,
-    "p": 0.00028873083530392126,
-    "ci_low": -0.06413930692898685,
-    "ci_high": -0.019150623878551074,
-    "r2": 0.0017360626306664447,
+    "n": 7626,
+    "r": -0.042495811644096805,
+    "p": 0.00020554753076818268,
+    "ci_low": -0.064878546799258,
+    "ci_high": -0.020070338321411026,
+    "r2": 0.0018058940072905535,
     "status": "measured",
     "note": ""
   },
   "wr1_yards_vs_team_points": {
     "label": "WR1 receiving yards vs own team points",
-    "n": 7566,
-    "r": 0.2797498486918204,
-    "p": 4.6157880764662786e-136,
-    "ci_low": 0.258848115320289,
-    "ci_high": 0.3003897151689202,
-    "r2": 0.0782599778430964,
+    "n": 7626,
+    "r": 0.28068126710034785,
+    "p": 4.587030088941537e-138,
+    "ci_low": 0.2598737992882366,
+    "ci_high": 0.3012282110761282,
+    "r2": 0.07878197370105681,
     "status": "measured",
     "note": ""
   },
   "qb_yards_vs_opp_qb_yards": {
     "label": "QB passing yards vs opposing QB passing yards",
-    "n": 7158,
-    "r": 0.16709697337532914,
-    "p": 5.56009809738341e-46,
-    "ci_low": 0.14448953266141326,
-    "ci_high": 0.1895300578119233,
-    "r2": 0.027921398511195454,
+    "n": 7218,
+    "r": 0.16573069105429997,
+    "p": 1.2903174112157605e-45,
+    "ci_low": 0.14320796050653903,
+    "ci_high": 0.18808184838443573,
+    "r2": 0.02746666195733582,
     "status": "measured",
     "note": "Shared game environment: weather, pace and shootout dynamics."
   },
   "receptions_vs_receiving_yards": {
     "label": "Receptions vs receiving yards (same player-game)",
-    "n": 44059,
-    "r": 0.8403968469430251,
+    "n": 44414,
+    "r": 0.8403794560115578,
     "p": 0.0,
-    "ci_low": 0.8376324058338405,
-    "ci_high": 0.8431182393587213,
-    "r2": 0.7062668603517783,
+    "ci_low": 0.8376258988986638,
+    "ci_high": 0.8430903051767755,
+    "r2": 0.7062376300862818,
     "status": "measured",
     "note": "Two props on the same player are near-substitutes: do not price them as independent."
   },
   "carries_vs_rushing_yards": {
     "label": "Carries vs rushing yards (same player-game)",
-    "n": 17969,
-    "r": 0.8483605798607123,
+    "n": 18109,
+    "r": 0.8484010745222217,
     "p": 0.0,
-    "ci_low": 0.8442109337614829,
-    "ci_high": 0.8524085404665501,
-    "r2": 0.719715673461604,
+    "ci_low": 0.8442687121880316,
+    "ci_high": 0.8524325575471157,
+    "r2": 0.7197843832504603,
     "status": "measured",
     "note": ""
   },
   "pass_yards_vs_pass_tds": {
     "label": "Passing yards vs passing TDs (same QB-game)",
-    "n": 7803,
-    "r": 0.5151040131194645,
+    "n": 7864,
+    "r": 0.5165407364519768,
     "p": 0.0,
-    "ci_low": 0.4986143090596427,
-    "ci_high": 0.5312210409371004,
-    "r2": 0.2653321443317775,
+    "ci_low": 0.5001484632530109,
+    "ci_high": 0.532562941195878,
+    "r2": 0.2668143324143506,
     "status": "measured",
     "note": ""
   },
   "sgp_4leg_same_team": {
-    "n": 7560,
+    "n": 7620,
     "legs": [
       "qb_pass_yds",
       "wr1_yards",
@@ -182,20 +182,20 @@
       "team_points"
     ],
     "marginal_rates": [
-      0.4985,
-      0.4947,
-      0.4946,
-      0.4663
+      0.4983,
+      0.4948,
+      0.4944,
+      0.4659
     ],
     "empirical_joint": 0.1114,
-    "independent_product": 0.0569,
-    "joint_minus_product": 0.0545,
+    "independent_product": 0.0568,
+    "joint_minus_product": 0.0546,
     "joint_ci": [
-      0.1043,
+      0.1044,
       0.1185
     ],
-    "fair_odds_empirical": 8.979,
-    "fair_odds_independent": 17.582,
+    "fair_odds_empirical": 8.975,
+    "fair_odds_independent": 17.612,
     "status": "measured",
     "correlation_matrix": {
       "legs": [
@@ -208,92 +208,92 @@
         [
           1.0,
           0.562,
-          -0.127,
-          0.4
+          -0.125,
+          0.403
         ],
         [
           0.562,
           1.0,
-          -0.038,
-          0.279
+          -0.037,
+          0.28
         ],
         [
-          -0.127,
-          -0.038,
+          -0.125,
+          -0.037,
           1.0,
           0.302
         ],
         [
-          0.4,
-          0.279,
+          0.403,
+          0.28,
           0.302,
           1.0
         ]
       ]
     },
-    "copula_joint": 0.1231,
-    "copula_fair_odds": 8.126,
-    "pricing_error_pct": 96.9
+    "copula_joint": 0.1234,
+    "copula_fair_odds": 8.103,
+    "pricing_error_pct": 97.4
   },
   "sgp_variants": {
     "2leg_qb_wr1": {
-      "n": 7560,
+      "n": 7620,
       "legs": [
         "qb_pass_yds",
         "wr1_yards"
       ],
       "marginal_rates": [
-        0.4985,
-        0.4947
+        0.4983,
+        0.4948
       ],
-      "empirical_joint": 0.3402,
-      "independent_product": 0.2466,
-      "joint_minus_product": 0.0936,
+      "empirical_joint": 0.34,
+      "independent_product": 0.2465,
+      "joint_minus_product": 0.0935,
       "joint_ci": [
-        0.3295,
-        0.3509
+        0.3294,
+        0.3507
       ],
-      "fair_odds_empirical": 2.939,
-      "fair_odds_independent": 4.055,
+      "fair_odds_empirical": 2.941,
+      "fair_odds_independent": 4.056,
       "status": "measured"
     },
     "3leg_qb_wr1_teampoints": {
-      "n": 7560,
+      "n": 7620,
       "legs": [
         "qb_pass_yds",
         "wr1_yards",
         "team_points"
       ],
       "marginal_rates": [
-        0.4985,
-        0.4947,
-        0.4663
+        0.4983,
+        0.4948,
+        0.4659
       ],
       "empirical_joint": 0.2093,
-      "independent_product": 0.115,
-      "joint_minus_product": 0.0943,
+      "independent_product": 0.1149,
+      "joint_minus_product": 0.0945,
       "joint_ci": [
-        0.2001,
-        0.2184
+        0.2002,
+        0.2185
       ],
-      "fair_odds_empirical": 4.779,
-      "fair_odds_independent": 8.696,
+      "fair_odds_empirical": 4.777,
+      "fair_odds_independent": 8.707,
       "status": "measured"
     }
   },
   "cross_game_control": {
-    "n": 7560,
-    "r": -0.02994393269734659,
-    "p": 0.009221640614693286,
-    "ci_low": -0.05245090968541279,
-    "ci_high": -0.007406550426158454,
-    "r2": 0.0008966391053832222,
+    "n": 7620,
+    "r": 0.009295237801191377,
+    "p": 0.41719915649863304,
+    "ci_low": -0.013160960713630432,
+    "ci_high": 0.03174206459783663,
+    "r2": 8.64014457806971e-05,
     "status": "measured",
     "label": "Placebo: QB yards in unrelated team-games. Should be ~0, which validates the measurement method."
   },
   "pricing_notes": {
-    "independent_fair_odds": 17.582,
-    "correlation_aware_fair_odds": 8.126,
+    "independent_fair_odds": 17.612,
+    "correlation_aware_fair_odds": 8.103,
     "message": "Correlated legs that all lean the same way make the true joint probability materially HIGHER than the product when the legs share a driver, so a book pricing legs independently overprices the parlay in the bettor's favour - and that is exactly why books cap or reprice same-game parlays."
   }
 }
