@@ -1449,16 +1449,22 @@ def page_live_checks() -> str:
     for c in corrs.get("rows", []):
         corr_rows.append([
             esc(c["id"]), esc(c["pair"]), f'{esc(c["r"])}', f'n = {esc(c["n"])}',
-            f'[{esc(c["ci95_low"])}, {esc(c["ci95_high"])}]', esc(c["excluded_note"]),
+            f'[{esc(c["ci95_low"])}, {esc(c["ci95_high"])}]',
+            esc(c.get("sample_note") or c.get("excluded_note", "")),
             f'<a href="{esc(c["source_url"])}" rel="noopener">standings table</a> &middot; '
             f'<a href="{esc(corrs.get("meta", {}).get("interval_reference", ""))}" rel="noopener">interval method</a>'])
 
+    st_n, corr_n_all = len(standings), len(corr_rows)
     lions = injury.get("lions_blank_cells_now_published", {})
+    second_read = meta.get("second_read_at_utc")
+    read_clause = (f", with one re-read of the standings chunk that failed at {esc(second_read)}, recorded "
+                   "per row; " if second_read else "; ")
     notice = (
         '<div class="notice warn"><span class="dot"></span><div>'
         f"<strong>This is a capture, not a pipeline run.</strong><br> "
-        f"Read at {esc(meta.get('read_at_utc', ''))} with the platform retrieval tool; "
-        f"{esc(meta.get('method', ''))} {esc(meta.get('blank_policy', ''))} "
+        f"Read at {esc(meta.get('read_at_utc', ''))} with the platform retrieval tool"
+        + read_clause
+        + f"{esc(meta.get('method', ''))} {esc(meta.get('blank_policy', ''))} "
         f"The committed model still ends at the 2026-11-01 extract, so the diff between the two is "
         f"reported here rather than silently reconciled. <a href=\"pages/verification.html\">Pipeline "
         f"verification &rarr;</a></div></div>")
@@ -1508,16 +1514,23 @@ def page_live_checks() -> str:
            + section("Standings rows used by the correlation table", table(
                ["Club", "Division", "W-L-T", "Games", "Points for", "Points against", "Differential",
                 "Source and fields read"], st_rows,
-               caption="Blank points cells are a read failure at this capture, not a source gap: the columns "
-                       "exist on the page, but the chunk carrying them was not returned. They are excluded "
-                       "from n rather than filled in."))
+               caption="No points cell is blank at this build. The 8 clubs in NFC South and NFC West had "
+                       "them missing at the 03:55:00Z read, when the retrieval chunk carrying those divisions "
+                       "was not returned; a re-read of the same URL at 04:21:00Z produced them, and those rows "
+                       "keep the later stamp and a read_note saying which field came from which read. A blank "
+                       "at an earlier read stays in the flag register (FL-18) rather than being quietly "
+                       "forgotten."))
            + "</section>")
         + ('<section class="block" id="correlations">'
            + section("Correlations from official numbers only", table(
                ["ID", "Pair", "r", "n", "95% interval", "Sample scope", "Source"], corr_rows,
-               caption="Computed by scripts/official_snapshot.py from the standings rows above. n is 24, not "
-                       "32, because 8 clubs' point columns were not read at this capture; the exclusion is "
-                       "stated on every row."))
+               caption="Computed by scripts/official_snapshot.py from the standings rows above, on "
+                       + ("n = 32 of 32 clubs: the 8 whose points chunk failed at the 03:55:00Z read were "
+                          "re-read at 04:21:00Z from the same URL, and both read times stay on their rows."
+                          if corr_n_all == st_n else
+                          f"n = {corr_n_all} of {st_n} clubs, because the point columns of "
+                          f"{st_n - corr_n_all} clubs were not read at this capture; the exclusion is "
+                          "stated on every row and nothing is padded in.")))
            + "</section>")
         + section("Availability rows, verbatim",
                   table(["Club", "Player", "Pos", "Injury", "Practice status", "Game status",

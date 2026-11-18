@@ -187,7 +187,7 @@
       "id": "FL-18",
       "item": "Points for and points against, NFC South and NFC West clubs (8 rows)",
       "value": "",
-      "reason": "The standings chunk carrying those two divisions failed to retrieve at this capture, and copying them from another page or deriving them from scores would be inference. The eight clubs are recorded with W-L-T only and excluded from the correlation sample, which is therefore n=24 and labelled as such.",
+      "reason": "The standings chunk carrying those two divisions failed to retrieve at this capture, and copying them from another page or deriving them from scores would be inference. The eight clubs are recorded with W-L-T only and excluded from the correlation sample, which is therefore n=24 and labelled as such. RESOLVED by a second read at 2026-11-18T04:21:00Z, same URL: the chunk came back and all 32 clubs now carry points for and against in data/derived/official_capture_2026-11-18.json, each row stamped with the read that produced it, and the official-only correlations moved from n=24 to n=32. The row stays in this register as the record of the failed read, because the value is still not what the root model uses and the check that refuses to publish a short read is the point.",
       "sources": [
         "SRC-NFL-STANDINGS-W10-REREAD"
       ]

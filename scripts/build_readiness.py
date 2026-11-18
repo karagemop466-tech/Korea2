@@ -850,12 +850,18 @@ def rows(m: dict) -> list[dict]:
         "Nothing blocks the rule; the sample is limited by what the league publishes in a table, and the "
         "limit is stated rather than papered over.",
         f"Every coefficient shows n and an interval. This capture: {m['n_corrs_official']} coefficients on "
-        f"n={m['corr_n']} official standings rows with 95% Fisher-z intervals; 8 clubs excluded because the "
-        f"points columns were not readable in the chunk that failed, so n is {m['corr_n']} and not 32.",
+        f"n={m['corr_n']} official standings rows with 95% Fisher-z intervals; "
+        + ("the sample is the whole 32-club table - the 8 clubs whose points chunk failed at the "
+           "03:55:00Z read were re-read at 04:21:00Z from the same URL."
+           if m['corr_n'] == 32 else
+           f"{32 - int(m['corr_n'] or 0)} clubs excluded because the points columns were not readable in "
+           f"the chunk that failed, so n is {m['corr_n']} and not 32."),
         f"Headline: point differential versus wins r = {m['corr_headline']} (n={m['corr_n']}). Line Desk "
         f"publishes {m['ld_corr_values']} coefficients on n={m['ld_corr_n']} official standings rows.",
         E("capture", "nist", "ld_corr"),
-        "Re-read the second standings chunk to reach n=32 and drop the exclusion note.")
+        "Done at 04:21:00Z on 2026-11-18: the second standings chunk was re-read and n moved 24 to 32. "
+        "What is left is the guard - keep the check that refuses to publish a short read, and re-read both "
+        "chunks each time the capture runs so n cannot silently drop.")
 
     add("RR-D2", "Correlations, parlays and props",
         "Keep parlays and prop combos behind a joint-evidence gate (no multiplying marginals; operator "

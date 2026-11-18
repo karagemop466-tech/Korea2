@@ -3076,3 +3076,56 @@ Environment note for anyone re-running checks here: `scripts/test_correctness_sw
 stack, which the sandbox interpreter lacks (`ModuleNotFoundError: numpy`). It was run in a throwaway venv
 (`/tmp/venv`, numpy 2.4.6 / scipy 1.17.1 / pandas from PyPI): **9 tests, OK**. Nothing in the repository
 depends on that venv.
+
+---
+
+## Integration session 2026-11-18 (C) - PR #140 rebased twice; the official correlation sample reaches n=32
+
+`main` moved twice while PR #140 was open (PR #137 = injury-capture hub, PR #138 = availability-sweep hub).
+Both rebases resolved by keeping both sides; `data/flagged.json` collided a second way, since the
+availability-sweep session registered its own flags - the register now runs FL-01…FL-24 with no duplicate
+id, and every row this session added kept its text and gained a note where an id moved. `data/sources.json`
+is the union of both sessions' ids (71 rows; two rows describe the same Game Book PDF, registered
+independently at 03:51Z and 03:55Z).
+
+**The n=24 limitation is closed.** The standings retrieval chunk carrying NFC South and NFC West failed at
+the 03:55:00Z read, so those 8 clubs were stored with W-L-T only and the official-only correlations ran at
+n=24. A re-read of the same URL at **04:21:00Z** returned the chunk. The capture, the generator and the
+register were updated rather than the page being re-typed:
+
+| Coefficient | n=24 (03:55Z read) | n=32 (with the 04:21Z read) | Reading |
+| --- | --- | --- | --- |
+| CR-01 point differential vs wins | 0.8738 [0.7265, 0.9443] | **0.8597 [0.7297, 0.9297]** | holds; the interval barely moves, which is the honest answer to "was the exclusion hiding something" |
+| CR-02 points for vs wins | 0.6304 [0.3044, 0.8242] | **0.6750 [0.4268, 0.8287]** | stronger and tighter |
+| CR-03 points against vs wins | -0.6402 [-0.8294, -0.3192] | **-0.6285 [-0.8015, -0.3583]** | holds |
+| CR-04 differential vs win% | 0.8959 [0.7713, 0.9544] | **0.8756 [0.7584, 0.9379]** | holds |
+| CR-05 points for vs points against | -0.0565 [-0.4497, 0.3550] | **-0.1483 [-0.4725, 0.2113]** | still indistinguishable from zero at 32 clubs |
+
+Provenance discipline kept intact while doing it: the 8 rows carry `read_at_utc` 04:21:00Z, a `read_note`
+saying their W-L-T came from the 03:55Z schedule read and their points from the 04:21Z standings read, and
+the capture's `pages_read` now records "2 of 2 - chunk 2 failed at 03:55:00Z and was retrieved at
+04:21:00Z". The correlations state in their own `sample_note` that the sample was n=24 for part of the
+session, so no one can read the register as though the first read had produced 32. Flag **FL-18** stays in
+the register with the resolution written into it, because the point of the flag is the failed read, not the
+number. Suggestion **S14** was the same discovery action; it was executed by the capture owner and is
+marked done with its timestamp, and the page's intro now states that one exception in its own words instead
+of claiming nothing is ever built from a suggestion.
+
+Consolidated evidence from the two merged hubs, cited not re-hosted: `availability-sweep/data/delta_20261115_20261118.csv`
+publishes per-player changes between two dated reads (field-level `value_20261115` / `value_20261118` /
+`changed`), which is the delta form the brief asks for, and its `week10_rows_20261118.csv` holds the full
+32-team 347-row Week-10 register; `injury-capture/manifests/` holds 7 raw-hash manifests from the same
+morning, the newest 04:18:40Z. Their own `check_against_expected.py` matches 28 of 28 expected teams. Both
+hubs independently recorded the same Week-11 finding as flag FL-17 (the reg11 URL serving the Week 10
+report at 03:55Z), which is why that row stays a source-state note rather than a parser bug. Readiness rows
+RR-C11/RR-C12 and `pages/live-checks.html` now cite them; the register still reports one dated capture
+*published at root*, because neither hub's series feeds the root build yet - that is a decision (which
+capture job is canonical), not a discovery.
+
+Verification on this exact tree: `tests/check_readiness.py` PASS (12 capture checks, 77 register rows,
+byte-reproducible), `tests/check_site.py` PASS, `scripts/check_links.py` PASS, `scripts/validate_data.py`
+PASS, `tests/check_derived.py` PASS, `tests/check_data.py` PASS, `line-desk` PASS, `price-desk` 20,504
+checks / 0 errors, `verify-hub` PASS, `decision-desk` PASS, `review-board/scripts/verify_all.py`
+120 passed / 1 failed where the failure is its own "commit the regenerated registers" check against HEAD,
+`scripts/test_correctness_sweep.py` 9 tests OK (throwaway venv, see note above), and
+`injury-capture/scripts/check_against_expected.py` 28/28.

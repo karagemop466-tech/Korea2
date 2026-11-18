@@ -39,10 +39,20 @@ INJURY_W11_URL = "https://www.nfl.com/injuries/league/2026/reg11"
 
 # --------------------------------------------------------------------------- standings
 # (team, abbr, conference, division, W, L, T, points_for, points_against)
-# The 24 complete rows were read from STANDINGS_URL, which prints W/L/T, PF and PA per club.
-# The final 8 rows are the W-L-T records that SCHEDULE_URL prints next to each club logo; the
-# standings table for those two divisions sat in a second retrieval chunk that failed at this
-# capture, so PF/PA are None (blank) rather than copied from another source or inferred.
+# 24 rows were read from STANDINGS_URL at 03:55:00Z, which prints W/L/T, PF and PA per club. The
+# final 8 clubs (NFC South, NFC West) sat in a second retrieval chunk that failed at that read, so
+# they were stored with the W-L-T records SCHEDULE_URL prints beside each logo and PF/PA left None
+# rather than copied from another source or inferred.
+#
+# SECOND READ, 2026-11-18T04:21:00Z: re-reading the same URL returned the chunk that had failed, and
+# the eight point totals below are transcribed from it. Nothing else about those rows is upgraded -
+# their W-L-T still comes from the 03:55:00Z schedule read, which is recorded per row in read_note,
+# and the flag the gap raised (FL-18) stays in the register with the resolution written into it.
+READ2_AT_UTC = "2026-11-18T04:21:00Z"
+STANDINGS_POINTS_CHUNK2 = {          # abbr -> (points_for, points_against), as the table prints them
+    "NO": (202, 236), "TB": (202, 178), "ATL": (201, 258), "CAR": (219, 236),
+    "LA": (248, 187), "SF": (281, 196), "SEA": (223, 175), "AZ": (184, 289),
+}
 STANDINGS = [
     ("Buffalo Bills", "BUF", "AFC", "East", 8, 1, 0, 287, 199),
     ("New England Patriots", "NE", "AFC", "East", 5, 5, 0, 221, 242),
@@ -174,16 +184,33 @@ def fisher_ci(r: float, n: int, z_crit: float = 1.959963985) -> tuple[float, flo
 def build_capture() -> dict:
     standings = []
     for name, abbr, conf, div, w, l, t, pf, pa in STANDINGS:
+        read_at, read_note = READ_AT_UTC, None
+        fields = "W, L, T, points for, points against"
+        source = STANDINGS_URL
+        status = "verified"
+        if pf is None:
+            if abbr in STANDINGS_POINTS_CHUNK2:
+                pf, pa = STANDINGS_POINTS_CHUNK2[abbr]
+                read_at = READ2_AT_UTC
+                status = "verified (points from a second read of the same URL)"
+                read_note = (f"points read {READ2_AT_UTC}; W-L-T read {READ_AT_UTC} from "
+                             f"{SCHEDULE_URL}; the standings chunk carrying this division failed to "
+                             "retrieve at the first read")
+            else:
+                source = SCHEDULE_URL
+                fields = "W, L, T only"
+                status = "partial - points columns not read"
         standings.append({
             "team": name, "abbr": abbr, "conference": conf, "division": div,
             "wins": w, "losses": l, "ties": t,
             "games_played": w + l + t,
             "points_for": pf, "points_against": pa,
             "point_differential": (pf - pa) if (pf is not None and pa is not None) else None,
-            "source_url": STANDINGS_URL if pf is not None else SCHEDULE_URL,
-            "field_read": "W, L, T, points for, points against" if pf is not None else "W, L, T only",
-            "read_at_utc": READ_AT_UTC,
-            "status": "verified" if pf is not None else "partial - points columns not read",
+            "source_url": source,
+            "field_read": fields,
+            "read_at_utc": read_at,
+            "read_note": read_note,
+            "status": status,
         })
     games = []
     for date, away, ap, home, hp, slug, dual in GAMES:
@@ -220,8 +247,15 @@ def build_capture() -> dict:
                             "as blank with an unverified marker. No value is carried over, "
                             "averaged, or inferred from jersey order, salary or experience.",
             "immutable": True,
+            "second_read_at_utc": READ2_AT_UTC,
+            "second_read_note": "the standings chunk carrying NFC South and NFC West failed to retrieve at "
+                                f"{READ_AT_UTC} and was read at {READ2_AT_UTC} from the same URL; the eight "
+                                "rows carry that later stamp and a read_note saying which field came from "
+                                "which read",
             "pages_read": [
-                {"url": STANDINGS_URL, "title": "2026 NFL Division Standings", "chunks_read": "1 of 2 (chunk 2 failed to retrieve)"},
+                {"url": STANDINGS_URL, "title": "2026 NFL Division Standings",
+                 "chunks_read": "2 of 2 - chunk 1 read at 03:55:00Z, chunk 2 (NFC South, NFC West) failed "
+                                "at that read and was retrieved at 04:21:00Z"},
                 {"url": SCHEDULE_URL, "title": "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets", "chunks_read": "2 of 2"},
                 {"url": INJURY_W10_URL, "title": INJURY_PAGE["title_observed"], "chunks_read": "1 of 8"},
                 {"url": INJURY_W11_URL, "title": "resolved to the Week 10 report (see injury_report.week11_behaviour)", "chunks_read": "n/a"},
@@ -344,16 +378,19 @@ def build_correlations(capture: dict) -> dict:
             "id": cid, "pair": label, "interpretation": why,
             "r": round(r, 4), "n": n,
             "ci95_low": round(lo, 4), "ci95_high": round(hi, 4),
-            "input": "official 2026 standings rows read 2026-11-18 (points columns only where printed)",
+            "input": "official 2026 standings rows read 2026-11-18; every point total comes from the "
+                     "standings table, none from a third party",
             "source_url": STANDINGS_URL, "read_at_utc": READ_AT_UTC,
-            "excluded_note": "8 clubs (NFC South, NFC West) are excluded because the points columns "
-                             "were not read at this capture; the register is n=24, not n=32, and is "
-                             "labelled accordingly rather than padded.",
+            "sample_note": f"n = {len(rows)} of 32 clubs, the whole readable table. 24 clubs' points were "
+                           f"read at {READ_AT_UTC}; the 8 in NFC South and NFC West at {READ2_AT_UTC}, when "
+                           "the retrieval chunk that had failed was re-read from the same URL. The sample was "
+                           "n=24 for four minutes of this session and the register says so rather than "
+                           "back-dating the second read onto the first.",
         })
     return {
         "meta": {
             "title": "Official-only correlations - computed from the 2026-11-18 standings capture",
-            "computed_at_utc": READ_AT_UTC,
+            "computed_at_utc": READ2_AT_UTC,
             "method": "Pearson r on club-level season totals taken from the NFL's own standings "
                       "table; 95 % interval by Fisher's z transform (NIST Dataplot reference). "
                       "No third-party or nflverse number enters any coefficient.",

@@ -1052,8 +1052,8 @@
    "requirement": "Compute correlations only from officially sourced numbers and publish n with each value",
    "status": "BUILT",
    "blocking_gate": "Nothing blocks the rule; the sample is limited by what the league publishes in a table, and the limit is stated rather than papered over.",
-   "clears_when": "Every coefficient shows n and an interval. This capture: 5 coefficients on n=24 official standings rows with 95% Fisher-z intervals; 8 clubs excluded because the points columns were not readable in the chunk that failed, so n is 24 and not 32.",
-   "measured_now": "Headline: point differential versus wins r = 0.8738 (n=24). Line Desk publishes 8 coefficients on n=64 official standings rows.",
+   "clears_when": "Every coefficient shows n and an interval. This capture: 5 coefficients on n=32 official standings rows with 95% Fisher-z intervals; the sample is the whole 32-club table - the 8 clubs whose points chunk failed at the 03:55:00Z read were re-read at 04:21:00Z from the same URL.",
+   "measured_now": "Headline: point differential versus wins r = 0.8597 (n=32). Line Desk publishes 8 coefficients on n=64 official standings rows.",
    "evidence": [
     {
      "label": "This capture - dated official-source register",
@@ -1068,7 +1068,7 @@
      "url": "line-desk/pages/correlations.html"
     }
    ],
-   "next_action": "Re-read the second standings chunk to reach n=32 and drop the exclusion note."
+   "next_action": "Done at 04:21:00Z on 2026-11-18: the second standings chunk was re-read and n moved 24 to 32. What is left is the guard - keep the check that refuses to publish a short read, and re-read both chunks each time the capture runs so n cannot silently drop."
   },
   {
    "id": "RR-D2",
@@ -1606,7 +1606,7 @@
  "measures": {
   "capture_read_at": "2026-11-18T03:55:00Z",
   "standings_rows": 32,
-  "standings_complete": 24,
+  "standings_complete": 32,
   "finals_verified": 14,
   "checks": 12,
   "byes": 4,
@@ -1616,8 +1616,8 @@
   "game_books": 1,
   "venues": 1,
   "n_corrs_official": 5,
-  "corr_n": 24,
-  "corr_headline": 0.8738,
+  "corr_n": 32,
+  "corr_headline": 0.8597,
   "ld_market_records": 45,
   "ld_our_open": 45,
   "ld_our_close": 0,

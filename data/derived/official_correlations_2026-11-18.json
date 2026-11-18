@@ -1,7 +1,7 @@
 {
  "meta": {
   "title": "Official-only correlations - computed from the 2026-11-18 standings capture",
-  "computed_at_utc": "2026-11-18T03:55:00Z",
+  "computed_at_utc": "2026-11-18T04:21:00Z",
   "method": "Pearson r on club-level season totals taken from the NFL's own standings table; 95 % interval by Fisher's z transform (NIST Dataplot reference). No third-party or nflverse number enters any coefficient.",
   "sample": "2026 regular season through Week 10, one observation per club",
   "interval_reference": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm"
@@ -11,66 +11,66 @@
    "id": "CR-01",
    "pair": "Point differential vs wins",
    "interpretation": "Does the league table reward net points, i.e. is net points a usable team-strength signal?",
-   "r": 0.8738,
-   "n": 24,
-   "ci95_low": 0.7265,
-   "ci95_high": 0.9443,
-   "input": "official 2026 standings rows read 2026-11-18 (points columns only where printed)",
+   "r": 0.8597,
+   "n": 32,
+   "ci95_low": 0.7297,
+   "ci95_high": 0.9297,
+   "input": "official 2026 standings rows read 2026-11-18; every point total comes from the standings table, none from a third party",
    "source_url": "https://www.nfl.com/standings/division/2026/REG",
    "read_at_utc": "2026-11-18T03:55:00Z",
-   "excluded_note": "8 clubs (NFC South, NFC West) are excluded because the points columns were not read at this capture; the register is n=24, not n=32, and is labelled accordingly rather than padded."
+   "sample_note": "n = 32 of 32 clubs, the whole readable table. 24 clubs' points were read at 2026-11-18T03:55:00Z; the 8 in NFC South and NFC West at 2026-11-18T04:21:00Z, when the retrieval chunk that had failed was re-read from the same URL. The sample was n=24 for four minutes of this session and the register says so rather than back-dating the second read onto the first."
   },
   {
    "id": "CR-02",
    "pair": "Points for vs wins",
    "interpretation": "Scoring volume alone, without the defence side.",
-   "r": 0.6304,
-   "n": 24,
-   "ci95_low": 0.3044,
-   "ci95_high": 0.8242,
-   "input": "official 2026 standings rows read 2026-11-18 (points columns only where printed)",
+   "r": 0.675,
+   "n": 32,
+   "ci95_low": 0.4268,
+   "ci95_high": 0.8287,
+   "input": "official 2026 standings rows read 2026-11-18; every point total comes from the standings table, none from a third party",
    "source_url": "https://www.nfl.com/standings/division/2026/REG",
    "read_at_utc": "2026-11-18T03:55:00Z",
-   "excluded_note": "8 clubs (NFC South, NFC West) are excluded because the points columns were not read at this capture; the register is n=24, not n=32, and is labelled accordingly rather than padded."
+   "sample_note": "n = 32 of 32 clubs, the whole readable table. 24 clubs' points were read at 2026-11-18T03:55:00Z; the 8 in NFC South and NFC West at 2026-11-18T04:21:00Z, when the retrieval chunk that had failed was re-read from the same URL. The sample was n=24 for four minutes of this session and the register says so rather than back-dating the second read onto the first."
   },
   {
    "id": "CR-03",
    "pair": "Points against vs wins",
    "interpretation": "Expect negative: giving up points tracks losses.",
-   "r": -0.6402,
-   "n": 24,
-   "ci95_low": -0.8294,
-   "ci95_high": -0.3192,
-   "input": "official 2026 standings rows read 2026-11-18 (points columns only where printed)",
+   "r": -0.6285,
+   "n": 32,
+   "ci95_low": -0.8015,
+   "ci95_high": -0.3583,
+   "input": "official 2026 standings rows read 2026-11-18; every point total comes from the standings table, none from a third party",
    "source_url": "https://www.nfl.com/standings/division/2026/REG",
    "read_at_utc": "2026-11-18T03:55:00Z",
-   "excluded_note": "8 clubs (NFC South, NFC West) are excluded because the points columns were not read at this capture; the register is n=24, not n=32, and is labelled accordingly rather than padded."
+   "sample_note": "n = 32 of 32 clubs, the whole readable table. 24 clubs' points were read at 2026-11-18T03:55:00Z; the 8 in NFC South and NFC West at 2026-11-18T04:21:00Z, when the retrieval chunk that had failed was re-read from the same URL. The sample was n=24 for four minutes of this session and the register says so rather than back-dating the second read onto the first."
   },
   {
    "id": "CR-04",
    "pair": "Point differential vs win percentage",
    "interpretation": "Same relationship on a per-game scale, ties weighted at one half.",
-   "r": 0.8959,
-   "n": 24,
-   "ci95_low": 0.7713,
-   "ci95_high": 0.9544,
-   "input": "official 2026 standings rows read 2026-11-18 (points columns only where printed)",
+   "r": 0.8756,
+   "n": 32,
+   "ci95_low": 0.7584,
+   "ci95_high": 0.9379,
+   "input": "official 2026 standings rows read 2026-11-18; every point total comes from the standings table, none from a third party",
    "source_url": "https://www.nfl.com/standings/division/2026/REG",
    "read_at_utc": "2026-11-18T03:55:00Z",
-   "excluded_note": "8 clubs (NFC South, NFC West) are excluded because the points columns were not read at this capture; the register is n=24, not n=32, and is labelled accordingly rather than padded."
+   "sample_note": "n = 32 of 32 clubs, the whole readable table. 24 clubs' points were read at 2026-11-18T03:55:00Z; the 8 in NFC South and NFC West at 2026-11-18T04:21:00Z, when the retrieval chunk that had failed was re-read from the same URL. The sample was n=24 for four minutes of this session and the register says so rather than back-dating the second read onto the first."
   },
   {
    "id": "CR-05",
    "pair": "Points for vs points against",
    "interpretation": "Schedule/strength coupling: do high-scoring teams also concede more?",
-   "r": -0.0565,
-   "n": 24,
-   "ci95_low": -0.4497,
-   "ci95_high": 0.355,
-   "input": "official 2026 standings rows read 2026-11-18 (points columns only where printed)",
+   "r": -0.1483,
+   "n": 32,
+   "ci95_low": -0.4725,
+   "ci95_high": 0.2113,
+   "input": "official 2026 standings rows read 2026-11-18; every point total comes from the standings table, none from a third party",
    "source_url": "https://www.nfl.com/standings/division/2026/REG",
    "read_at_utc": "2026-11-18T03:55:00Z",
-   "excluded_note": "8 clubs (NFC South, NFC West) are excluded because the points columns were not read at this capture; the register is n=24, not n=32, and is labelled accordingly rather than padded."
+   "sample_note": "n = 32 of 32 clubs, the whole readable table. 24 clubs' points were read at 2026-11-18T03:55:00Z; the 8 in NFC South and NFC West at 2026-11-18T04:21:00Z, when the retrieval chunk that had failed was re-read from the same URL. The sample was n=24 for four minutes of this session and the register says so rather than back-dating the second read onto the first."
   }
  ]
 }
