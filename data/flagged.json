@@ -161,6 +161,16 @@
         "SRC-NFL-STANDINGS",
         "SRC-COLTS-DEPTH-CHART"
       ]
+    },
+    {
+      "id": "FL-16",
+      "item": "Official NFL Game Book route and reuse permission for row-level data",
+      "value": "",
+      "reason": "The generic NFL Operations Game Book URL returned an NFL 404 on 2026-11-18. One official NFL.com game centre links a game-specific Game Book PDF. The PDF states that use beyond assisting media coverage is prohibited without written NFL permission. The checked route proves only one game's availability and does not grant this project a right to copy, retain or republish raw rows. Keep raw Game Book capture blocked until source-specific terms or written permission is resolved.",
+      "sources": [
+        "SRC-NFL-GAMECENTER-W10",
+        "SRC-NFL-GAMEBOOK-W10"
+      ]
     }
   ]
 }
