@@ -181,6 +181,14 @@ def build_delta_page(rows: list[dict[str, str]], log: list[dict[str, str]], delt
                      f'<td class="num">{esc(c["rows_captured"])}</td><td class="num">{esc(c["teams_captured"])}</td>'
                      f'<td>{esc(c["raw_bytes_hash"])}</td></tr>')
     parts.append('</tbody></table>')
+    parts.append('<p class="mut">Independent corroboration: the concurrent <code>injury-capture/</code> scope '
+                 '(session arena/6a80f2cf-korea2, PR #135) fetched the same Week 10 page on a GitHub runner at '
+                 '2026-11-18T03:55:57Z — 20 seconds after this session&#x27;s read completed — retaining the raw bytes '
+                 '(402,343 bytes, SHA-256 <code>c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12</code>) '
+                 'and script-counted 28 injury tables / 347 listed rows, matching this hub&#x27;s per-team transcription '
+                 '28/28 and its 347-row total. That capture&#x27;s hash covers the raw bytes this fetch-tool read could not retain '
+                 '(AV-F6). See <a href="../../injury-capture/README.md">injury-capture README</a> and its '
+                 '<a href="../../injury-capture/manifests/reg10_2026_20261118T035557Z.json">manifest</a>.</p>')
     parts.append(f'<h3>Delta: capture 2026-11-15 → capture {CAPTURE_STAMP} (33 overlapping rows: DET, SEA, CIN)</h3>')
     if changed:
         parts.append(f'<p class="out">{len(changed)} row(s) changed between captures:</p>')
@@ -291,6 +299,9 @@ def build_index(rows: list[dict[str, str]], counts: list[dict[str, str]], byes: 
                  '(all 28 teams match; totals both 347).</li>'
                  '<li>32/32 clubs accounted for: 28 report tables + 4 official "Teams on Bye" entries.</li>'
                  '<li>Delta computed programmatically against the committed 2026-11-15 register (33 rows, 0 changes).</li>'
+                 '<li>Independent raw-byte corroboration: the concurrent injury-capture runner scope counted the same page '
+                 '(28 tables / 347 rows, SHA-256-retained) 20 seconds after this read — see '
+                 '<a href="../injury-capture/README.md">injury-capture</a> and <a href="pages/deltas.html">captures &amp; deltas</a>.</li>'
                  '<li><code>scripts/verify.py</code> enforces schema, counts, domains, status vocabularies and delta integrity.</li>'
                  '</ul></div>')
     return page("Availability Sweep — 32-team Week 10 register", "\n".join(parts), "index", depth)

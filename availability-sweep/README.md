@@ -40,3 +40,7 @@ python3 availability-sweep/scripts/verify.py
 python3 tests/check_site.py
 python3 scripts/check_links.py
 ```
+
+## Cross-corroboration (2026-11-18)
+
+The concurrent `injury-capture/` scope (session `arena/6a80f2cf-korea2`, PR #135) fetched the same Week 10 page on a GitHub runner at `2026-11-18T03:55:57Z`, retaining the raw bytes (402,343 bytes, SHA-256 `c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12`) and script-counting 28 injury tables / 347 listed rows. That matches this hub's row-by-row transcription (28/28 teams, 347 total). The runner capture's hash covers the raw bytes the fetch-tool read could not retain (AV-F6); the two scopes are complementary (manifest counts vs per-player rows). Their IC-F3 (byes unverified) is closed by this hub's AV-2.
