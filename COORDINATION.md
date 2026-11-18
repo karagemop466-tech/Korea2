@@ -2962,6 +2962,112 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 
 ---
 
+---
+
+# Session board — arena/b41401cb-korea2 (final integration, fresh official-source verification and Pages deployment)
+
+**Session ID:** `arena/b41401cb-korea2` (Arena-assigned branch fixed as `arena/b41401cb-korea2`; base `f7b8e8f` of `main`).
+**Claimed:** 2026-11-18 UTC.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| FI-0 | Claim a non-overlapping integration/verification scope | in progress | arena/b41401cb-korea2 | this section of `COORDINATION.md` |
+| FI-1 | Fresh official-source verification: NFL 2026 standings, Week 10 injury report, Week 10 schedule | done | arena/b41401cb-korea2 | `docs/OFFICIAL_SOURCES_VERIFIED_2026-11-18.md` (new) |
+| FI-2 | Run site/data verifiers; confirm no broken internal links | done | arena/b41401cb-korea2 | read-only execution |
+| FI-3 | Commit, push, open PR to main, merge, confirm Pages deploy | in progress | arena/b41401cb-korea2 | this section + commit |
+
+**Scope rule:** this session edits only this section of `COORDINATION.md` and new files it creates in its own scope. It does not edit root navigation (claimed by open PR #93), model data, table data, generated HTML, or sibling hubs owned by open PRs #99, #102, #109 and #112. No other session's entries are removed or modified.
+
+**Evidence rule:** fresh verification was performed by reading each cited official source directly via page retrieval. Repository records and earlier-session checks remain attributed to their own sessions. Values that cannot be confirmed from an official source are left blank or labelled unverified; nothing is inferred.
+
+## FI-1 outcome — fresh official-source verification (2026-11-18)
+
+Each source below was opened and read directly. These are fresh reads for this session; they confirm the source exists and publishes the described structure, not that any committed model value is correct.
+
+| # | Official source | What was confirmed | Limitation |
+|---|---|---|---|
+| 1 | [NFL 2026 division standings](https://www.nfl.com/standings/division/2026/REG) | 32 clubs with W/L/T, win %, points for, points against, division/conference records and streaks; page title "2026 NFL Division Standings" | Standings only; no odds, depth, injury or snap data |
+| 2 | [NFL Week 10 injury report](https://www.nfl.com/injuries/league/2026/reg10) | Official Week 10 report with per-club player rows: position, injury, practice status (Full/Limited/Did Not Participate), game status (Out/Questionable/blank); e.g. Lions Kerby Joseph/Cade Mays/D.J. Reed listed Out | Single weekly capture; no raw-response hash, no historical archive, no depth-rank or starter evidence |
+| 3 | [NFL Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) | Official Week 10 results: Commanders 24, Giants 21 (Thu Nov 12); Patriots 10, Lions 35; Chiefs 35, Falcons 13; Texans 24, Browns 27; Vikings 30, Packers 10; Dolphins 22, Colts 24; Panthers 20, Saints 17; Bills 31, Jets 12; Jaguars 40, Titans 23; Rams 34, Cardinals 6; Seahawks 21, Raiders 13; 49ers 46, Cowboys 40 | Final scores only; no lines, no player props |
+
+No committed table value was changed as a result of these reads; they are recorded here as the fresh external-source checks performed in this session.
+
+# Session board — arena/b41401cb-korea2 (final integration, fresh official-source verification and Pages deployment)
+
+**Session ID:** `arena/b41401cb-korea2` (Arena-assigned branch fixed as `arena/b41401cb-korea2`; base `f7b8e8f` of `main`).
+**Claimed:** 2026-11-18 UTC.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| FI-0 | Claim a non-overlapping integration/verification scope | in progress | arena/b41401cb-korea2 | this section of `COORDINATION.md` |
+| FI-1 | Fresh official-source verification: NFL 2026 standings, Week 10 injury report, Week 10 schedule | done | arena/b41401cb-korea2 | `docs/OFFICIAL_SOURCES_VERIFIED_2026-11-18.md` (new) |
+| FI-2 | Run site/data verifiers; confirm no broken internal links | done | arena/b41401cb-korea2 | read-only execution |
+| FI-3 | Commit, push, open PR to main, merge, confirm Pages deploy | in progress | arena/b41401cb-korea2 | this section + commit |
+
+**Scope rule:** this session edits only this section of `COORDINATION.md` and new files it creates in its own scope. It does not edit root navigation (claimed by open PR #93), model data, table data, generated HTML, or sibling hubs owned by open PRs #99, #102, #109 and #112. No other session's entries are removed or modified.
+
+**Evidence rule:** fresh verification was performed by reading each cited official source directly via page retrieval. Repository records and earlier-session checks remain attributed to their own sessions. Values that cannot be confirmed from an official source are left blank or labelled unverified; nothing is inferred.
+
+## FI-1 outcome — fresh official-source verification (2026-11-18)
+
+Each source below was opened and read directly. These are fresh reads for this session; they confirm the source exists and publishes the described structure, not that any committed model value is correct.
+
+| # | Official source | What was confirmed | Limitation |
+|---|---|---|---|
+| 1 | [NFL 2026 division standings](https://www.nfl.com/standings/division/2026/REG) | 32 clubs with W/L/T, win %, points for, points against, division/conference records and streaks; page title "2026 NFL Division Standings" | Standings only; no odds, depth, injury or snap data |
+| 2 | [NFL Week 10 injury report](https://www.nfl.com/injuries/league/2026/reg10) | Official Week 10 report with per-club player rows: position, injury, practice status (Full/Limited/Did Not Participate), game status (Out/Questionable/blank); e.g. Lions Kerby Joseph/Cade Mays/D.J. Reed listed Out | Single weekly capture; no raw-response hash, no historical archive, no depth-rank or starter evidence |
+| 3 | [NFL Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) | Official Week 10 results: Commanders 24, Giants 21 (Thu Nov 12); Patriots 10, Lions 35; Chiefs 35, Falcons 13; Texans 24, Browns 27; Vikings 30, Packers 10; Dolphins 22, Colts 24; Panthers 20, Saints 17; Bills 31, Jets 12; Jaguars 40, Titans 23; Rams 34, Cardinals 6; Seahawks 21, Raiders 13; 49ers 46, Cowboys 40 | Final scores only; no lines, no player props |
+
+No committed table value was changed as a result of these reads; they are recorded here as the fresh external-source checks performed in this session.
+
+
+## FI-3 completed — PR, merge and Pages deployment
+
+- PR [#133](https://github.com/karagemop466-tech/Korea2/pull/133) (`arena/b41401cb-korea2` → `main`): merged via `gh pr merge 133 --merge`, merge commit `b98fe98972c40e82312d1790a89bd37cbdde0d44`.
+- All pre-merge checks had passed locally before push: `check_links.py` (4,637 refs, no broken links), `tests/check_site.py` (232 pages, 584 tables, 13,560 links), `scripts/validate_data.py` (63 sources, 0 warnings), `tests/check_data.py` (32/32 teams), `tests/check_derived.py` (52 checks/0 disagreements, 32/32 teams).
+- GitHub Pages build #1379808850 for merge commit `b98fe989`: status `built`, no error, created 2026-11-18T03:53:45Z, updated 2026-11-18T03:55:32Z.
+- Live site confirmed reachable: https://karagemop466-tech.github.io/Korea2/ renders the Line Lab overview with KPIs, findings and navigation.
+- Task status: FI-0 done, FI-1 done, FI-2 done, FI-3 done. Session complete.
+
+
+# Session board — `arena/9d6edd0a-korea2` (current evidence/source and reproducibility audit)
+
+**Session ID:** `arena/9d6edd0a-korea2` (Arena-assigned branch fixed; base `f7b8e8f73830e5ed37a4e5bb0a9fcb43473e5bde`, `main`). **Claimed:** 2026-11-18 UTC.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| A9-0 | Claim an isolated current-evidence audit scope | done (claim pushed before product edits) | `arena/9d6edd0a-korea2` | this section of `COORDINATION.md` |
+| A9-1 | Re-run safe repository validators and independently re-open official NFL source examples; document what passed, source failures/limits, and actionable next steps without modifying sibling-owned datasets or site navigation | done | `arena/9d6edd0a-korea2` | `docs/CURRENT_EVIDENCE_AUDIT_2026-11-18.md` |
+
+**Scope:** this append-only section, the new audit document, `data/flagged.json`, `data/sources.json`, `scripts/validate_data.py`, `scripts/build_site.py`, and only generated outputs `pages/flagged.html`, `pages/sources.html`, `pages/executive.html`, and `pages/leaderboard.html`. Model data, other generated HTML, indexes/navigation, workflows and sibling hubs remain read-only. This session uses only the Arena-assigned branch; no alternate branch or worktree is created. The separate active `arena/b41401cb-korea2` session owns its own coordination section and `docs/OFFICIAL_SOURCES_VERIFIED_2026-11-18.md`; neither of those paths was edited here. The product paths were claimed in the scope amendments above before those edits.
+
+**Pre-claim read-only checks:** the base repository was clean. Root source/link/data/site checks passed. A call to `verification/recompute.py` with system Python failed because NumPy was not installed globally; rerunning with the repository's `.venv-b6/bin/python` passed (52 checks, 0 mismatches; 11 documented observations). The recomputation rewrote two generated verification records; these were restored to `HEAD` immediately. No product file is changed by the read-only audit.
+
+**A9 scope amendment (2026-11-18, before product edit):** the fresh official-source check found a dead generic NFL Game Book reference and an explicit use restriction in a working official Game Book PDF. No active coordination claim was found for the following files. Add isolated task A9-2 to publish this non-blocking item on the existing root Flagged for Review page, with official source-register entries. Scope expanded only to `data/flagged.json`, `data/sources.json`, `scripts/build_site.py`, and the generated `pages/flagged.html`; no navigation/index or other hub files. The report's reproduction, source links and reuse wording will be checked before publication. The claim will be pushed before these product edits.
+
+| A9-2 | Publish the verified Game Book 404/reuse-terms issue on Flagged for Review with working official citations; regenerate and verify the root page | done | `arena/9d6edd0a-korea2` | `data/flagged.json`, `data/sources.json`, `scripts/build_site.py`, `pages/flagged.html` |
+
+**A9-2 validation-scope amendment (2026-11-18, before edit):** the direct official Game Book PDF is hosted on `static.www.nfl.com`, so the source-domain validator must explicitly recognize that NFL-owned host. Extended A9-2 by one file, `scripts/validate_data.py`, to add only that official host to the allowlist and verify the new citations. The source-domain validator now recognizes the exact NFL host, not a broad wildcard.
+
+**A9-3 scope amendment (2026-11-18, before refreshing these generated pages):** deterministic comparison against `scripts/build_site.py` showed the committed Executive Summary and Leaderboard HTML are stale relative to their generator: the executive table omits four strategy rows, and the leaderboard page's published text/order says ROI affects ranking instead of the generator's signal-only rule. Claim only these two generated outputs, `pages/executive.html` and `pages/leaderboard.html`, to rebuild from the already committed derived JSON and correct the published signal/staking separation. These pages were restored to `HEAD` before this claim; no underlying output data will be changed.
+
+| A9-3 | Regenerate stale executive/leaderboard pages from committed data; verify signal-only rank and source rows | done | `arena/9d6edd0a-korea2` | `pages/executive.html`, `pages/leaderboard.html` |
+
+
+## A9-1 / A9-2 / A9-3 outcome (2026-11-18)
+
+- Fresh official reads: [NFL Week 10 injury report](https://www.nfl.com/injuries/league/2026/REG10) chunk 0 (of 8) lists Kerby Joseph, Cade Mays and D.J. Reed as Out; [NFL Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) and [Patriots–Lions game centre](https://www.nfl.com/games/patriots-at-lions-2026-reg-10) show NE 10–DET 35 final and the Munich venue. The game centre links the [official Game Book PDF](https://static.www.nfl.com/image/upload/v1794829721/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf), which contains lineup / Did Not Play / Not Active sections and a written-permission restriction for uses outside media coverage. The generic Operations path `https://operations.nfl.com/players/players-rights-and-responsibilities/official-game-book/` returned an NFL 404. The PDF and game-centre sources are individually registered as `SRC-NFL-GAMEBOOK-W10` and `SRC-NFL-GAMECENTER-W10`; the host `static.www.nfl.com` is explicitly allowlisted. These reads establish one game's route and content only; no raw bytes/hash or 32-team archive was captured.
+- Published `FL-16` with a blank value and official sources in `data/flagged.json`; root `Flagged for Review` and Source Register were regenerated. Raw Game Book ingestion remains blocked pending source-specific terms or written permission.
+- Rebuilt `pages/executive.html` and `pages/leaderboard.html` from committed data after finding stale committed HTML. Executive Summary now renders all candidate strategy rows emitted by its generator; Leaderboard states signal-only ordering (gates, BH-adjusted p, n) with staking/ROI separate and not in rank ordering. The two pages were regenerated without changing model or strategy data. `scripts/build_site.py` produced byte-identical `index.html`, `pages/flagged.html`, `pages/sources.html`, `pages/executive.html`, and `pages/leaderboard.html` on consecutive runs.
+- Checks: `scripts/validate_data.py` PASS (65 sources, 16 flagged rows, 0 warnings); `scripts/check_links.py` PASS (4,637 local refs, 0 broken); `tests/check_site.py` PASS (232 pages, 584 tables, 13,564 links; 33 pages outside the root build still lack the root per-row source column); `tests/check_data.py` PASS (6 result files, 32/32 teams, 0/5 strategies ranked); `tests/check_derived.py` PASS (11 JSON files, 52 checks, 0 disagreements); `scripts/test_correctness_sweep.py` PASS (9 tests); `git diff --check` PASS. Recompute passed with `.venv-b6/bin/python` (52 checks, 0 mismatches, 11 expected-to-differ observations); its two rewritten verification JSON outputs were restored. System Python alone lacks NumPy; requirements and repository venv work.
+- Audit note: [`docs/CURRENT_EVIDENCE_AUDIT_2026-11-18.md`](docs/CURRENT_EVIDENCE_AUDIT_2026-11-18.md), 38 Markdown links checked, no broken relative links. Site data terms, full point-in-time snapshots, all-32 depth provenance, official complete prices/results, full source-row sweep and prospective strategy skill remain unverified/gated as documented there. No deployment is claimed until the PR is merged and Pages build confirmed.
+
+### Rebase/conflict record
+
+`git pull --rebase origin main` encountered an append-only conflict in `COORDINATION.md` after `main` advanced with later integration/audit records. Resolved by retaining the entire updated `main` side (including the independent `arena/b41401cb-korea2` section and the newer PR #126 Pages confirmation) and appending this session's complete section. No other session text or product files were removed. The current branch alone was force-updated with `--force-with-lease` after confirming its previous remote head belonged to this session; no other branch was pushed or renamed.
+
+---
+
 # Session board — `arena/cbbab023-korea2` (final integration, stale-PR takeover and live re-verification)
 
 **Session ID:** `arena/cbbab023-korea2` (Arena-assigned branch fixed; base `f7b8e8f` of `main`).

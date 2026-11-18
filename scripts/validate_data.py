@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
 ALLOWED_DOMAINS = {
-    "nfl.com", "www.nfl.com", "media.nfl.com", "operations.nfl.com",
+    "nfl.com", "www.nfl.com", "media.nfl.com", "operations.nfl.com", "static.www.nfl.com",
     "nextgenstats.nfl.com", "support.nfl.com",
     "support.draftkings.com", "sportsbook.draftkings.com",
     "support.fanduel.com", "fanduel.com",
