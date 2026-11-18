@@ -1,0 +1,886 @@
+{
+  "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+  "final_url": "https://www.nfl.com/injuries/league/2026/reg10",
+  "season": 2026,
+  "week": 10,
+  "http_status": 200,
+  "last_modified_header": "",
+  "fetched_at_utc": "2026-11-18T03:55:57Z",
+  "raw_sha256": "c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12",
+  "raw_bytes": 402343,
+  "raw_file_in_artifact": "nfl_injury_2026_reg10_20261118T035557Z.html",
+  "html_tables_total": 28,
+  "injury_tables": 28,
+  "listed_rows_parsed": 347,
+  "week_text_found": true,
+  "problems": [],
+  "pinned_min_rows": 50,
+  "diagnostics": {
+    "markers": {
+      "<table": 28,
+      "<thead": 28,
+      "<th": 168,
+      "<tr": 375,
+      "__NEXT_DATA__": 0,
+      "application/ld+json": 0,
+      "Practice Status": 28,
+      "Game Status": 28,
+      "Did Not Participate": 94,
+      "Injury Report": 3
+    },
+    "tables": [
+      {
+        "heading": "THURSDAY, NOVEMBER 12TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 9,
+        "hints_before": [
+          "href:/teams/washington-commanders/",
+          "href:/teams/washington-commanders/",
+          "href:/teams/new-york-giants/",
+          "href:/teams/new-york-giants/"
+        ],
+        "first_row_cells": [
+          "John Bates",
+          "TE",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "THURSDAY, NOVEMBER 12TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 11,
+        "hints_before": [
+          "href:/teams/washington-commanders/",
+          "href:/teams/washington-commanders/",
+          "href:/teams/new-york-giants/",
+          "href:/teams/new-york-giants/"
+        ],
+        "first_row_cells": [
+          "Abdul Carter",
+          "LB",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 15,
+        "hints_before": [
+          "href:/teams/new-england-patriots/",
+          "href:/teams/new-england-patriots/",
+          "href:/teams/detroit-lions/",
+          "href:/teams/detroit-lions/"
+        ],
+        "first_row_cells": [
+          "Ben Brown",
+          "C",
+          "Knee",
+          "Did Not Participate In Practice",
+          "Out"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 9,
+        "hints_before": [
+          "href:/teams/new-england-patriots/",
+          "href:/teams/new-england-patriots/",
+          "href:/teams/detroit-lions/",
+          "href:/teams/detroit-lions/"
+        ],
+        "first_row_cells": [
+          "Brian Branch",
+          "S",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 13,
+        "hints_before": [
+          "href:/teams/kansas-city-chiefs/",
+          "href:/teams/kansas-city-chiefs/",
+          "href:/teams/atlanta-falcons/",
+          "href:/teams/atlanta-falcons/"
+        ],
+        "first_row_cells": [
+          "Jeffrey Bassa",
+          "LB",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 11,
+        "hints_before": [
+          "href:/teams/kansas-city-chiefs/",
+          "href:/teams/kansas-city-chiefs/",
+          "href:/teams/atlanta-falcons/",
+          "href:/teams/atlanta-falcons/"
+        ],
+        "first_row_cells": [
+          "Zachariah Branch",
+          "WR",
+          "Hamstring",
+          "Did Not Participate In Practice",
+          "Out"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 13,
+        "hints_before": [
+          "href:/teams/minnesota-vikings/",
+          "href:/teams/minnesota-vikings/",
+          "href:/teams/green-bay-packers/",
+          "href:/teams/green-bay-packers/"
+        ],
+        "first_row_cells": [
+          "Jordan Addison",
+          "WR",
+          "Thumb",
+          "Limited Participation in Practice",
+          "Questionable"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 17,
+        "hints_before": [
+          "href:/teams/minnesota-vikings/",
+          "href:/teams/minnesota-vikings/",
+          "href:/teams/green-bay-packers/",
+          "href:/teams/green-bay-packers/"
+        ],
+        "first_row_cells": [
+          "Aaron Banks",
+          "G",
+          "",
+          "Limited Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 11,
+        "hints_before": [
+          "href:/teams/jacksonville-jaguars/",
+          "href:/teams/jacksonville-jaguars/",
+          "href:/teams/tennessee-titans/",
+          "href:/teams/tennessee-titans/"
+        ],
+        "first_row_cells": [
+          "Jessie Bates",
+          "S",
+          "Not injury related - resting player",
+          "Limited Participation in Practice",
+          "Out"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 12,
+        "hints_before": [
+          "href:/teams/jacksonville-jaguars/",
+          "href:/teams/jacksonville-jaguars/",
+          "href:/teams/tennessee-titans/",
+          "href:/teams/tennessee-titans/"
+        ],
+        "first_row_cells": [
+          "Cody Barton",
+          "LB",
+          "Concussion",
+          "Did Not Participate In Practice",
+          "Out"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 14,
+        "hints_before": [
+          "href:/teams/buffalo-bills/",
+          "href:/teams/buffalo-bills/",
+          "href:/teams/new-york-jets/",
+          "href:/teams/new-york-jets/"
+        ],
+        "first_row_cells": [
+          "Alec Anderson",
+          "G",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 9,
+        "hints_before": [
+          "href:/teams/buffalo-bills/",
+          "href:/teams/buffalo-bills/",
+          "href:/teams/new-york-jets/",
+          "href:/teams/new-york-jets/"
+        ],
+        "first_row_cells": [
+          "Jarvis Brownlee Jr.",
+          "CB",
+          "Illness",
+          "Limited Participation in Practice",
+          "Questionable"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 11,
+        "hints_before": [
+          "href:/teams/miami-dolphins/",
+          "href:/teams/miami-dolphins/",
+          "href:/teams/indianapolis-colts/",
+          "href:/teams/indianapolis-colts/"
+        ],
+        "first_row_cells": [
+          "Tucker Addington",
+          "LS",
+          "",
+          "Limited Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 14,
+        "hints_before": [
+          "href:/teams/miami-dolphins/",
+          "href:/teams/miami-dolphins/",
+          "href:/teams/indianapolis-colts/",
+          "href:/teams/indianapolis-colts/"
+        ],
+        "first_row_cells": [
+          "Mo Alie-Cox",
+          "TE",
+          "Groin",
+          "Did Not Participate In Practice",
+          "Out"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 12,
+        "hints_before": [
+          "href:/teams/carolina-panthers/",
+          "href:/teams/carolina-panthers/",
+          "href:/teams/new-orleans-saints/",
+          "href:/teams/new-orleans-saints/"
+        ],
+        "first_row_cells": [
+          "Jonathon Brooks",
+          "RB",
+          "Groin",
+          "Limited Participation in Practice",
+          "Doubtful"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 12,
+        "hints_before": [
+          "href:/teams/carolina-panthers/",
+          "href:/teams/carolina-panthers/",
+          "href:/teams/new-orleans-saints/",
+          "href:/teams/new-orleans-saints/"
+        ],
+        "first_row_cells": [
+          "Kelvin Banks Jr.",
+          "T",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 16,
+        "hints_before": [
+          "href:/teams/houston-texans/",
+          "href:/teams/houston-texans/",
+          "href:/teams/cleveland-browns/",
+          "href:/teams/cleveland-browns/"
+        ],
+        "first_row_cells": [
+          "Azeez Al-Shaair",
+          "LB",
+          "Groin, Not injury related - personal matter",
+          "Did Not Participate In Practice",
+          "Out"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 12,
+        "hints_before": [
+          "href:/teams/houston-texans/",
+          "href:/teams/houston-texans/",
+          "href:/teams/cleveland-browns/",
+          "href:/teams/cleveland-browns/"
+        ],
+        "first_row_cells": [
+          "Austin Barber",
+          "T",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 14,
+        "hints_before": [
+          "href:/teams/los-angeles-rams/",
+          "href:/teams/los-angeles-rams/",
+          "href:/teams/arizona-cardinals/",
+          "href:/teams/arizona-cardinals/"
+        ],
+        "first_row_cells": [
+          "Davis Allen",
+          "TE",
+          "Oblique",
+          "Limited Participation in Practice",
+          "Questionable"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 15,
+        "hints_before": [
+          "href:/teams/los-angeles-rams/",
+          "href:/teams/los-angeles-rams/",
+          "href:/teams/arizona-cardinals/",
+          "href:/teams/arizona-cardinals/"
+        ],
+        "first_row_cells": [
+          "Budda Baker",
+          "S",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 15,
+        "hints_before": [
+          "href:/teams/seattle-seahawks/",
+          "href:/teams/seattle-seahawks/",
+          "href:/teams/las-vegas-raiders/",
+          "href:/teams/las-vegas-raiders/"
+        ],
+        "first_row_cells": [
+          "AJ Barner",
+          "TE",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 5,
+        "hints_before": [
+          "href:/teams/seattle-seahawks/",
+          "href:/teams/seattle-seahawks/",
+          "href:/teams/las-vegas-raiders/",
+          "href:/teams/las-vegas-raiders/"
+        ],
+        "first_row_cells": [
+          "Thomas Booker",
+          "DT",
+          "Ankle",
+          "Full Participation in Practice",
+          "Questionable"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 12,
+        "hints_before": [
+          "href:/teams/san-francisco-49ers/",
+          "href:/teams/san-francisco-49ers/",
+          "href:/teams/dallas-cowboys/",
+          "href:/teams/dallas-cowboys/"
+        ],
+        "first_row_cells": [
+          "Mike Evans",
+          "WR",
+          "Achilles",
+          "Did Not Participate In Practice",
+          "Out"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 19,
+        "hints_before": [
+          "href:/teams/san-francisco-49ers/",
+          "href:/teams/san-francisco-49ers/",
+          "href:/teams/dallas-cowboys/",
+          "href:/teams/dallas-cowboys/"
+        ],
+        "first_row_cells": [
+          "DaRon Bland",
+          "CB",
+          "Ankle",
+          "Limited Participation in Practice",
+          "Questionable"
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 8,
+        "hints_before": [
+          "href:/teams/pittsburgh-steelers/",
+          "href:/teams/pittsburgh-steelers/",
+          "href:/teams/cincinnati-bengals/",
+          "href:/teams/cincinnati-bengals/"
+        ],
+        "first_row_cells": [
+          "Brandin Echols",
+          "CB",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "SUNDAY, NOVEMBER 15TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 9,
+        "hints_before": [
+          "href:/teams/pittsburgh-steelers/",
+          "href:/teams/pittsburgh-steelers/",
+          "href:/teams/cincinnati-bengals/",
+          "href:/teams/cincinnati-bengals/"
+        ],
+        "first_row_cells": [
+          "Jonathan Allen",
+          "DT",
+          "",
+          "Limited Participation in Practice",
+          ""
+        ]
+      },
+      {
+        "heading": "MONDAY, NOVEMBER 16TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 19,
+        "hints_before": [
+          "href:/teams/los-angeles-chargers/",
+          "href:/teams/los-angeles-chargers/",
+          "href:/teams/baltimore-ravens/",
+          "href:/teams/baltimore-ravens/"
+        ],
+        "first_row_cells": [
+          "Kayode Awosika",
+          "G",
+          "Fibula",
+          "Full Participation in Practice",
+          "Questionable"
+        ]
+      },
+      {
+        "heading": "MONDAY, NOVEMBER 16TH",
+        "header_cells": [
+          "Player",
+          "Position",
+          "Injuries",
+          "Practice Status",
+          "Game Status"
+        ],
+        "n_rows": 10,
+        "hints_before": [
+          "href:/teams/los-angeles-chargers/",
+          "href:/teams/los-angeles-chargers/",
+          "href:/teams/baltimore-ravens/",
+          "href:/teams/baltimore-ravens/"
+        ],
+        "first_row_cells": [
+          "Rasheen Ali",
+          "RB",
+          "",
+          "Full Participation in Practice",
+          ""
+        ]
+      }
+    ]
+  },
+  "team_hints_in_document_sample": [
+    "href:/teams/washington-commanders/",
+    "href:/teams/washington-commanders/",
+    "href:/teams/new-york-giants/",
+    "href:/teams/new-york-giants/",
+    "href:/teams/new-england-patriots/",
+    "href:/teams/new-england-patriots/"
+  ],
+  "per_table": [
+    {
+      "table_index": 0,
+      "team_slug": "washington-commanders",
+      "rows": 9,
+      "rows_with_game_status": 2
+    },
+    {
+      "table_index": 1,
+      "team_slug": "new-york-giants",
+      "rows": 11,
+      "rows_with_game_status": 1
+    },
+    {
+      "table_index": 2,
+      "team_slug": "new-england-patriots",
+      "rows": 15,
+      "rows_with_game_status": 12
+    },
+    {
+      "table_index": 3,
+      "team_slug": "detroit-lions",
+      "rows": 9,
+      "rows_with_game_status": 5
+    },
+    {
+      "table_index": 4,
+      "team_slug": "kansas-city-chiefs",
+      "rows": 13,
+      "rows_with_game_status": 6
+    },
+    {
+      "table_index": 5,
+      "team_slug": "atlanta-falcons",
+      "rows": 11,
+      "rows_with_game_status": 5
+    },
+    {
+      "table_index": 6,
+      "team_slug": "minnesota-vikings",
+      "rows": 13,
+      "rows_with_game_status": 8
+    },
+    {
+      "table_index": 7,
+      "team_slug": "green-bay-packers",
+      "rows": 17,
+      "rows_with_game_status": 12
+    },
+    {
+      "table_index": 8,
+      "team_slug": "jacksonville-jaguars",
+      "rows": 11,
+      "rows_with_game_status": 4
+    },
+    {
+      "table_index": 9,
+      "team_slug": "tennessee-titans",
+      "rows": 12,
+      "rows_with_game_status": 6
+    },
+    {
+      "table_index": 10,
+      "team_slug": "buffalo-bills",
+      "rows": 14,
+      "rows_with_game_status": 5
+    },
+    {
+      "table_index": 11,
+      "team_slug": "new-york-jets",
+      "rows": 9,
+      "rows_with_game_status": 9
+    },
+    {
+      "table_index": 12,
+      "team_slug": "miami-dolphins",
+      "rows": 11,
+      "rows_with_game_status": 4
+    },
+    {
+      "table_index": 13,
+      "team_slug": "indianapolis-colts",
+      "rows": 14,
+      "rows_with_game_status": 7
+    },
+    {
+      "table_index": 14,
+      "team_slug": "carolina-panthers",
+      "rows": 12,
+      "rows_with_game_status": 7
+    },
+    {
+      "table_index": 15,
+      "team_slug": "new-orleans-saints",
+      "rows": 12,
+      "rows_with_game_status": 6
+    },
+    {
+      "table_index": 16,
+      "team_slug": "houston-texans",
+      "rows": 16,
+      "rows_with_game_status": 11
+    },
+    {
+      "table_index": 17,
+      "team_slug": "cleveland-browns",
+      "rows": 12,
+      "rows_with_game_status": 3
+    },
+    {
+      "table_index": 18,
+      "team_slug": "los-angeles-rams",
+      "rows": 14,
+      "rows_with_game_status": 7
+    },
+    {
+      "table_index": 19,
+      "team_slug": "arizona-cardinals",
+      "rows": 15,
+      "rows_with_game_status": 9
+    },
+    {
+      "table_index": 20,
+      "team_slug": "seattle-seahawks",
+      "rows": 15,
+      "rows_with_game_status": 4
+    },
+    {
+      "table_index": 21,
+      "team_slug": "las-vegas-raiders",
+      "rows": 5,
+      "rows_with_game_status": 2
+    },
+    {
+      "table_index": 22,
+      "team_slug": "san-francisco-49ers",
+      "rows": 12,
+      "rows_with_game_status": 8
+    },
+    {
+      "table_index": 23,
+      "team_slug": "dallas-cowboys",
+      "rows": 19,
+      "rows_with_game_status": 11
+    },
+    {
+      "table_index": 24,
+      "team_slug": "pittsburgh-steelers",
+      "rows": 8,
+      "rows_with_game_status": 1
+    },
+    {
+      "table_index": 25,
+      "team_slug": "cincinnati-bengals",
+      "rows": 9,
+      "rows_with_game_status": 4
+    },
+    {
+      "table_index": 26,
+      "team_slug": "los-angeles-chargers",
+      "rows": 19,
+      "rows_with_game_status": 10
+    },
+    {
+      "table_index": 27,
+      "team_slug": "baltimore-ravens",
+      "rows": 10,
+      "rows_with_game_status": 2
+    }
+  ],
+  "tables_with_team_slug": 28,
+  "status": "OK"
+}

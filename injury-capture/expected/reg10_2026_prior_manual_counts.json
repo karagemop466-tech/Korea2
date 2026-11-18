@@ -1,0 +1,22 @@
+{
+  "_note": "Per-team listed-player counts transcribed BY HAND from the Week 10 2026 page in injury-report-w10/index.html (fetch-tool read, 2026-11-15). Used only as a cross-check against the script's per-table counts. They are not a verified source. Week-specific: do not reuse for other weeks.",
+  "season": 2026,
+  "week": 10,
+  "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+  "counts": {
+    "washington-commanders": 9, "new-york-giants": 11,
+    "new-england-patriots": 15, "detroit-lions": 9,
+    "kansas-city-chiefs": 13, "atlanta-falcons": 11,
+    "minnesota-vikings": 13, "green-bay-packers": 17,
+    "jacksonville-jaguars": 11, "tennessee-titans": 12,
+    "buffalo-bills": 14, "new-york-jets": 9,
+    "miami-dolphins": 11, "indianapolis-colts": 14,
+    "carolina-panthers": 12, "new-orleans-saints": 12,
+    "houston-texans": 16, "cleveland-browns": 12,
+    "los-angeles-rams": 14, "arizona-cardinals": 15,
+    "seattle-seahawks": 15, "las-vegas-raiders": 5,
+    "san-francisco-49ers": 12, "dallas-cowboys": 19,
+    "pittsburgh-steelers": 8, "cincinnati-bengals": 9,
+    "los-angeles-chargers": 19, "baltimore-ravens": 10
+  }
+}
