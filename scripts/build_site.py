@@ -1120,6 +1120,16 @@ def page_flagged() -> str:
          "(entries 26-45 were not returned).",
          "nflreadr-dictionary", "The convention is proven empirically from the data instead (both cover rates "
          "and the moneyline cross-check); the citation stays for the field definitions it does support."),
+        ("NFL Game Book source route and reuse terms require review", "high",
+         "The generic operations.nfl.com/players/players-rights-and-responsibilities/official-game-book/ "
+         "path returned an NFL 404 on 2026-11-18. The official NFL.com Patriots-Lions game centre links "
+         "a game-specific PDF containing starters, substitutions, Did Not Play and Not Active sections. "
+         "That PDF states that any other use beyond assisting media coverage is prohibited without written "
+         "NFL permission. This proves one official retrieval route, not universal coverage or permission "
+         "to copy, retain or republish raw rows.",
+         ["SRC-NFL-GAMECENTER-W10", "SRC-NFL-GAMEBOOK-W10"],
+         "Do not ingest/re-host raw Game Book rows until source-specific terms or written permission is resolved; "
+         "use the game-centre URL as the checked discovery route and verify coverage per game."),
         ("URLs that no longer resolve", "medium",
          "operations.nfl.com/the-rules/2025-nfl-rulebook returns 404 (superseded by "
          "/rules-officiating/2026-nfl-rulebook, which does resolve). nflreadr dictionary_games.html and "

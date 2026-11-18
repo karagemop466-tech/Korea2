@@ -734,6 +734,29 @@
       "note": "Official AGLC standards document issued 2026-01-14. The indexed location requirements state registered operators must ensure play is provided within Alberta and describe controls for location verification. This is a regulatory source for review, not a complete legal opinion or verification of this project’s user/operator access.",
       "verified_by": "Arena web search result 1, fetched 2026-11-12; relevant extract covers location and operator requirements",
       "limitation": "Does not itself confirm user eligibility, a current operator account, specific NFL market availability, or legal treatment of a particular product; obtain current regulator/operator review before any deployment."
+    },
+    {
+      "id": "SRC-NFL-GAMECENTER-W10",
+      "label": "NFL.com — New England Patriots at Detroit Lions 2026 REG 10 Game Center",
+      "title": "New England Patriots at Detroit Lions 2026 REG 10 - Game Center",
+      "short": "NFL official game centre — Patriots at Lions, Week 10",
+      "url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10",
+      "org": "NFL (nfl.com)",
+      "type": "league official game centre",
+      "note": "Opened and read 2026-11-18. Shows Patriots 10, Lions 35, final; identifies Munich and FC Bayern Munich Stadium; links a game-specific Download Game Book (PDF). This is one postgame example, not proof of all-game archive coverage or pregame availability history.",
+      "verified_by": "arena/9d6edd0a-korea2 — opened and read 2026-11-18"
+    },
+    {
+      "id": "SRC-NFL-GAMEBOOK-W10",
+      "label": "NFL official Game Book PDF — Patriots at Lions, Week 10, 2026",
+      "title": "New England Patriots vs Detroit Lions — National Football League Game Summary",
+      "short": "NFL official Game Book PDF — Patriots at Lions, Week 10",
+      "url": "https://static.www.nfl.com/image/upload/v1794829721/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf",
+      "org": "NFL (static.www.nfl.com)",
+      "type": "league official game summary PDF",
+      "note": "Opened and read 2026-11-18. The PDF includes lineups, substitutions, Did Not Play, Not Active, game information and individual statistics for this fixture. Its opening notice states that the summary/play-by-play is for assisting media coverage and that any other use is prohibited without written NFL permission.",
+      "verified_by": "arena/9d6edd0a-korea2 — PDF opened and read 2026-11-18",
+      "limitation": "One game only. Availability of the PDF does not establish permission for this project to copy, retain or republish raw rows; do not ingest/re-host pending source-specific terms or written permission."
     }
   ]
 }
