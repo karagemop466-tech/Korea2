@@ -1,0 +1,719 @@
+{
+ "title": "Originated-line residual, cross-checked across the two price stores",
+ "question": "The 2026-11-18 integration session left open whether the residual published in data/derived/model.json agrees with the price-snapshot store in results/price_snapshots.json. This register reads both committed files and answers it with field-level comparisons.",
+ "stores": {
+  "model": {
+   "file": "data/derived/model.json",
+   "season": 2026,
+   "week": 9,
+   "games": 15,
+   "market_source": "nflverse schedules feed (third-party closing lines, not an official book archive)",
+   "generated_from": "games through week 8 of 2026",
+   "url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+  },
+  "prices": {
+   "file": "results/price_snapshots.json",
+   "n_games": 7548,
+   "data_as_of_gameday": "2026-11-01",
+   "source_label": "nflverse schedules extract (games.csv) \u2014 community-maintained, not an NFL-published feed",
+   "url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+  }
+ },
+ "provenance_warning": "Both stores carry the same third-party provenance: the model's market columns and the price store's closing lines are nflverse schedules-feed values, not official book quotes. Agreement between the two stores is a consistency result inside one lineage, NOT official-market verification. Flag FL-21 (no opening or closing official price for any originated market) is unchanged by this register.",
+ "field_comparison": {
+  "rows_checked": 45,
+  "non_null_checked": 45,
+  "null_on_both_sides": 0,
+  "mismatches": 0,
+  "result": "45/45 field comparisons agree; 0 are null on both sides; 0 disagree.",
+  "rows": [
+   {
+    "game_id": "2026_09_JAX_BAL",
+    "market": "spread",
+    "model_store": -8.5,
+    "price_store": -8.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_JAX_BAL",
+    "market": "total",
+    "model_store": 43.5,
+    "price_store": 43.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_JAX_BAL",
+    "market": "home moneyline",
+    "model_store": 330.0,
+    "price_store": 330.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_CIN_ATL",
+    "market": "spread",
+    "model_store": -3.0,
+    "price_store": -3.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_CIN_ATL",
+    "market": "total",
+    "model_store": 51.5,
+    "price_store": 51.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_CIN_ATL",
+    "market": "home moneyline",
+    "model_store": 140.0,
+    "price_store": 140.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_DEN_CAR",
+    "market": "spread",
+    "model_store": -3.0,
+    "price_store": -3.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_DEN_CAR",
+    "market": "total",
+    "model_store": 43.5,
+    "price_store": 43.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_DEN_CAR",
+    "market": "home moneyline",
+    "model_store": 124.0,
+    "price_store": 124.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_DAL_IND",
+    "market": "spread",
+    "model_store": -6.0,
+    "price_store": -6.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_DAL_IND",
+    "market": "total",
+    "model_store": 51.5,
+    "price_store": 51.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_DAL_IND",
+    "market": "home moneyline",
+    "model_store": 210.0,
+    "price_store": 210.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_NYJ_KC",
+    "market": "spread",
+    "model_store": 10.0,
+    "price_store": 10.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_NYJ_KC",
+    "market": "total",
+    "model_store": 46.5,
+    "price_store": 46.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_NYJ_KC",
+    "market": "home moneyline",
+    "model_store": -500.0,
+    "price_store": -500.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_DET_MIA",
+    "market": "spread",
+    "model_store": -7.0,
+    "price_store": -7.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_DET_MIA",
+    "market": "total",
+    "model_store": 49.5,
+    "price_store": 49.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_DET_MIA",
+    "market": "home moneyline",
+    "model_store": 295.0,
+    "price_store": 295.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_CLE_NO",
+    "market": "spread",
+    "model_store": 2.5,
+    "price_store": 2.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_CLE_NO",
+    "market": "total",
+    "model_store": 43.5,
+    "price_store": 43.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_CLE_NO",
+    "market": "home moneyline",
+    "model_store": -142.0,
+    "price_store": -142.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_NYG_PHI",
+    "market": "spread",
+    "model_store": -3.5,
+    "price_store": -3.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_NYG_PHI",
+    "market": "total",
+    "model_store": 40.5,
+    "price_store": 40.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_NYG_PHI",
+    "market": "home moneyline",
+    "model_store": 140.0,
+    "price_store": 140.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_LA_WAS",
+    "market": "spread",
+    "model_store": -5.5,
+    "price_store": -5.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_LA_WAS",
+    "market": "total",
+    "model_store": 47.5,
+    "price_store": 47.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_LA_WAS",
+    "market": "home moneyline",
+    "model_store": 180.0,
+    "price_store": 180.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_HOU_LAC",
+    "market": "spread",
+    "model_store": -4.5,
+    "price_store": -4.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_HOU_LAC",
+    "market": "total",
+    "model_store": 40.5,
+    "price_store": 40.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_HOU_LAC",
+    "market": "home moneyline",
+    "model_store": 180.0,
+    "price_store": 180.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_LV_SF",
+    "market": "spread",
+    "model_store": 9.5,
+    "price_store": 9.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_LV_SF",
+    "market": "total",
+    "model_store": 51.5,
+    "price_store": 51.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_LV_SF",
+    "market": "home moneyline",
+    "model_store": -500.0,
+    "price_store": -500.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_GB_NE",
+    "market": "spread",
+    "model_store": 3.0,
+    "price_store": 3.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_GB_NE",
+    "market": "total",
+    "model_store": 47.5,
+    "price_store": 47.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_GB_NE",
+    "market": "home moneyline",
+    "model_store": -155.0,
+    "price_store": -155.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_ARI_SEA",
+    "market": "spread",
+    "model_store": 11.5,
+    "price_store": 11.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_ARI_SEA",
+    "market": "total",
+    "model_store": 44.5,
+    "price_store": 44.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_ARI_SEA",
+    "market": "home moneyline",
+    "model_store": -700.0,
+    "price_store": -700.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_TB_CHI",
+    "market": "spread",
+    "model_store": 5.5,
+    "price_store": 5.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_TB_CHI",
+    "market": "total",
+    "model_store": 47.5,
+    "price_store": 47.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_TB_CHI",
+    "market": "home moneyline",
+    "model_store": -238.0,
+    "price_store": -238.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_BUF_MIN",
+    "market": "spread",
+    "model_store": -2.5,
+    "price_store": -2.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_BUF_MIN",
+    "market": "total",
+    "model_store": 46.5,
+    "price_store": 46.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   },
+   {
+    "game_id": "2026_09_BUF_MIN",
+    "market": "home moneyline",
+    "model_store": 130.0,
+    "price_store": 130.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/results/price_snapshots.json"
+   }
+  ]
+ },
+ "edge_arithmetic": {
+  "rows_checked": 30,
+  "mismatches": 0,
+  "tolerance": 0.0501,
+  "result": "30/30 published edge columns equal fair minus market within the rounding tolerance.",
+  "rows": [
+   {
+    "game_id": "2026_09_JAX_BAL",
+    "edge_column": "edge_vs_market_spread",
+    "fair": -5.8,
+    "market": -8.5,
+    "published_edge": 2.7,
+    "recomputed": 2.7,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_JAX_BAL",
+    "edge_column": "edge_vs_market_total",
+    "fair": 46.6,
+    "market": 43.5,
+    "published_edge": 3.1,
+    "recomputed": 3.1,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_CIN_ATL",
+    "edge_column": "edge_vs_market_spread",
+    "fair": -4.1,
+    "market": -3.0,
+    "published_edge": -1.1,
+    "recomputed": -1.1,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_CIN_ATL",
+    "edge_column": "edge_vs_market_total",
+    "fair": 43.8,
+    "market": 51.5,
+    "published_edge": -7.7,
+    "recomputed": -7.7,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_DEN_CAR",
+    "edge_column": "edge_vs_market_spread",
+    "fair": 0.4,
+    "market": -3.0,
+    "published_edge": 3.4,
+    "recomputed": 3.4,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_DEN_CAR",
+    "edge_column": "edge_vs_market_total",
+    "fair": 43.5,
+    "market": 43.5,
+    "published_edge": -0.0,
+    "recomputed": 0.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_DAL_IND",
+    "edge_column": "edge_vs_market_spread",
+    "fair": -0.0,
+    "market": -6.0,
+    "published_edge": 6.0,
+    "recomputed": 6.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_DAL_IND",
+    "edge_column": "edge_vs_market_total",
+    "fair": 52.5,
+    "market": 51.5,
+    "published_edge": 1.0,
+    "recomputed": 1.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_NYJ_KC",
+    "edge_column": "edge_vs_market_spread",
+    "fair": 7.3,
+    "market": 10.0,
+    "published_edge": -2.7,
+    "recomputed": -2.7,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_NYJ_KC",
+    "edge_column": "edge_vs_market_total",
+    "fair": 44.5,
+    "market": 46.5,
+    "published_edge": -2.0,
+    "recomputed": -2.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_DET_MIA",
+    "edge_column": "edge_vs_market_spread",
+    "fair": -2.2,
+    "market": -7.0,
+    "published_edge": 4.8,
+    "recomputed": 4.8,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_DET_MIA",
+    "edge_column": "edge_vs_market_total",
+    "fair": 49.9,
+    "market": 49.5,
+    "published_edge": 0.4,
+    "recomputed": 0.4,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_CLE_NO",
+    "edge_column": "edge_vs_market_spread",
+    "fair": 1.6,
+    "market": 2.5,
+    "published_edge": -0.9,
+    "recomputed": -0.9,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_CLE_NO",
+    "edge_column": "edge_vs_market_total",
+    "fair": 42.1,
+    "market": 43.5,
+    "published_edge": -1.4,
+    "recomputed": -1.4,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_NYG_PHI",
+    "edge_column": "edge_vs_market_spread",
+    "fair": 3.4,
+    "market": -3.5,
+    "published_edge": 6.9,
+    "recomputed": 6.9,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_NYG_PHI",
+    "edge_column": "edge_vs_market_total",
+    "fair": 43.3,
+    "market": 40.5,
+    "published_edge": 2.8,
+    "recomputed": 2.8,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_LA_WAS",
+    "edge_column": "edge_vs_market_spread",
+    "fair": 0.5,
+    "market": -5.5,
+    "published_edge": 6.0,
+    "recomputed": 6.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_LA_WAS",
+    "edge_column": "edge_vs_market_total",
+    "fair": 47.8,
+    "market": 47.5,
+    "published_edge": 0.3,
+    "recomputed": 0.3,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_HOU_LAC",
+    "edge_column": "edge_vs_market_spread",
+    "fair": -2.7,
+    "market": -4.5,
+    "published_edge": 1.8,
+    "recomputed": 1.8,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_HOU_LAC",
+    "edge_column": "edge_vs_market_total",
+    "fair": 37.5,
+    "market": 40.5,
+    "published_edge": -3.0,
+    "recomputed": -3.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_LV_SF",
+    "edge_column": "edge_vs_market_spread",
+    "fair": 8.5,
+    "market": 9.5,
+    "published_edge": -1.0,
+    "recomputed": -1.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_LV_SF",
+    "edge_column": "edge_vs_market_total",
+    "fair": 49.4,
+    "market": 51.5,
+    "published_edge": -2.1,
+    "recomputed": -2.1,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_GB_NE",
+    "edge_column": "edge_vs_market_spread",
+    "fair": 4.8,
+    "market": 3.0,
+    "published_edge": 1.8,
+    "recomputed": 1.8,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_GB_NE",
+    "edge_column": "edge_vs_market_total",
+    "fair": 46.1,
+    "market": 47.5,
+    "published_edge": -1.4,
+    "recomputed": -1.4,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_ARI_SEA",
+    "edge_column": "edge_vs_market_spread",
+    "fair": 11.2,
+    "market": 11.5,
+    "published_edge": -0.3,
+    "recomputed": -0.3,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_ARI_SEA",
+    "edge_column": "edge_vs_market_total",
+    "fair": 43.0,
+    "market": 44.5,
+    "published_edge": -1.5,
+    "recomputed": -1.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_TB_CHI",
+    "edge_column": "edge_vs_market_spread",
+    "fair": -1.5,
+    "market": 5.5,
+    "published_edge": -7.0,
+    "recomputed": -7.0,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_TB_CHI",
+    "edge_column": "edge_vs_market_total",
+    "fair": 45.4,
+    "market": 47.5,
+    "published_edge": -2.1,
+    "recomputed": -2.1,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_BUF_MIN",
+    "edge_column": "edge_vs_market_spread",
+    "fair": 1.4,
+    "market": -2.5,
+    "published_edge": 3.9,
+    "recomputed": 3.9,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   },
+   {
+    "game_id": "2026_09_BUF_MIN",
+    "edge_column": "edge_vs_market_total",
+    "fair": 48.0,
+    "market": 46.5,
+    "published_edge": 1.5,
+    "recomputed": 1.5,
+    "agree": true,
+    "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+   }
+  ]
+ },
+ "residual_distribution": {
+  "spread": {
+   "n": 15,
+   "mean": 1.62,
+   "mean_abs": 3.3533,
+   "min": -7.0,
+   "max": 6.9
+  },
+  "total": {
+   "n": 15,
+   "mean": -0.8067,
+   "mean_abs": 2.02,
+   "min": -7.700000000000003,
+   "max": 3.1000000000000014
+  },
+  "reading": "The residual exists only against third-party archived closes. Its mean and spread describe how far this originator sat from that feed on one slate; it is not a CLV measurement and not an official-market residual.",
+  "source_url": "https://github.com/karagemop466-tech/Korea2/tree/main/data/derived/model.json"
+ },
+ "_generated_by": "review-board/scripts/crosscheck_prices.py"
+}
