@@ -155,6 +155,9 @@ def main():
     if not injury_tables:
         problems.append("no table with required columns " + ", ".join(sorted(REQUIRED_COLS)))
 
+    def rows_out_for(t):
+        return [r for r in rows_out if r["table_index"] == injury_tables.index(t)]
+
     rows_out = []
     for t in injury_tables:
         idx = {c: i for i, c in enumerate(t["cols"])}
@@ -192,7 +195,14 @@ def main():
         "html_tables_total": len(tables), "injury_tables": len(injury_tables),
         "listed_rows_parsed": len(rows_out), "week_text_found": week_ok,
         "problems": problems, "pinned_min_rows": a.min_rows, "diagnostics": diagnostics,
-        "team_hints_in_document_sample": p._hints[:40],
+        "team_hints_in_document_sample": p._hints[:6],
+        # Per-table counts only (no player names): team slug from the nearest team link before the table.
+        "per_table": [{"table_index": i,
+                       "team_slug": next((h.split("/teams/")[1].strip("/") for h in t["hints"][::-1]
+                                          if "/teams/" in h), ""),
+                       "rows": len(rows_out_for(t)),
+                       "rows_with_game_status": sum(1 for r in rows_out_for(t) if r["game_status"])}
+                      for i, t in enumerate(injury_tables)],
         "tables_with_team_hint": sum(1 for t in injury_tables if t["hints"]),
         "status": "FAILED" if problems else "OK",
     }
