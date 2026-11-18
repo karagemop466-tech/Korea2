@@ -259,11 +259,22 @@
         "raw_sha256": "dd2425ac60311ef82192ae83369698e88ca449f6a4d52cf8c134b98a34f29fe7",
         "rows": 347,
         "status": "OK"
+      },
+      {
+        "fetched_utc": "2026-11-18T04:18:40Z",
+        "html_tables": 28,
+        "injury_tables": 28,
+        "manifest": "reg10_2026_20261118T041840Z.json",
+        "problems": [],
+        "raw_bytes": 402343,
+        "raw_sha256": "7ca69d9bab8cf9bdd76a2d5621455eb6b6c56872a4ace9539a3e7426ba7427f4",
+        "rows": 347,
+        "status": "OK"
       }
     ],
     "automated_agrees": true,
     "automated_n_failed": 2,
-    "automated_n_ok": 5,
+    "automated_n_ok": 6,
     "automated_rows": [
       347
     ],
