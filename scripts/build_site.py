@@ -1519,13 +1519,24 @@ def page_live_checks() -> str:
                        "32, because 8 clubs' point columns were not read at this capture; the exclusion is "
                        "stated on every row."))
            + "</section>")
-        + section("Availability rows, verbatim", table(
-            ["Club", "Player", "Pos", "Injury", "Practice status", "Game status", "Depth rank / snaps / replacement",
-             "Source"], inj_rows,
-            caption="The final column is empty on the official page, so it is empty here. The three Lions rows "
-                    "the brief lists as blank cells all read Out at this capture: "
-                    + esc(", ".join(lions.get("players", []))) + " &mdash; "
-                    + esc(lions.get("official_game_status_at_this_read", "")) + "."), "AVAILABILITY")
+        + section("Availability rows, verbatim",
+                  table(["Club", "Player", "Pos", "Injury", "Practice status", "Game status",
+                         "Depth rank / snaps / replacement", "Source"], inj_rows,
+                        caption="The final column is empty on the official page, so it is empty here. The "
+                                "three Lions rows the brief lists as blank cells all read Out at this "
+                                "capture: "
+                                + esc(", ".join(lions.get("players", []))) + " &mdash; "
+                                + esc(lions.get("official_game_status_at_this_read", "")) + ".")
+                  + '<p><strong>Corroboration from an independent same-minute read.</strong> A sibling '
+                    "session captured the same Week-10 report at "
+                    '<a href="../injury-capture/manifests/reg10_2026_20261118T035557Z.json">'
+                    "03:55:57Z</a>, one minute after this capture's read stamp: its manifest parses 347 rows "
+                    "across 28 clubs, and its own row-count assertion "
+                    "(<code>injury-capture/scripts/check_against_expected.py</code>) matches 28 of 28 "
+                    "expected teams. That agreement is why the Week-10 report is treated as published for "
+                    "this slate, while the Week-11 row above stays flagged: their manifest covers the same "
+                    "Week-10 table, not a newer one. This build does not restate their per-team counts as its "
+                    "own finding.</p>", "AVAILABILITY")
         + section("Game-centre probe (venue and Game Book evidence)", table(
             ["Field", "Value read", "Meaning", "Source"],
             [["Venue", esc(probe.get("location", "")),

@@ -630,7 +630,8 @@ def rows(m: dict) -> list[dict]:
         "holds 1 dated capture, which cannot support a series or a backtest.",
         "One canonical capture job whose manifests land in the site's register, with 3 reads in a kickoff week "
         "(Wed/Thu/Fri), each carrying row counts, a raw-response hash and a fetch timestamp. Today: 2 capture "
-        "workflows, 5 capture days per week between them, 1 dated capture published.",
+        "workflows, 5 capture days per week between them, 1 dated capture published, and 1 independent "
+        "same-minute capture of 347 rows over 28 clubs whose own assertion matches 28 of 28 teams.",
         "Workflow fetch-injuries.yml plus injury-capture/manifests (6 manifests, 2026-11-18T03:51Z to "
         "03:55Z); this capture adds an independently dated read with per-row clock times.",
         E("capture", "injury", "rb_injuries"),
