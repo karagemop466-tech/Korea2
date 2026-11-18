@@ -3279,3 +3279,8 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 - R1: The verify-hub register's meta counts (10 recommended / 3 alternatives / 1 do-not-implement) disagree with per-row `status` values (all 'proposed - awaiting owner approval'); recorded in the FL-23 table as vocabulary drift.
 - R2: FL-23's recorded ACCEPTED/PENDING/NOT-ADOPTED split no longer matches any committed file; flagged as a stale flag reason (root owner request above).
 - R3: `data/derived/verification.json` carries a `generated_utc` stamp that changes on every local `verification/recompute.py` run; it is excluded from my commits and the root owner may want it excluded or refreshed in CI to avoid perpetual dirty-tree states.
+
+**A8 — PR, merge and Pages confirmation (done).**
+- **PR #144** (`arena/a09e4528-korea2` → `main`): https://github.com/karagemop466-tech/Korea2/pull/144. All 8 CI checks passed before merge (`validate`, `review-board`, `tests-and-links`, `verify-hub`, `decision-desk`, `verify`, `verify-skill-lab`, `verify`). Merged (regular merge, no auto) as **b1d1478** at 2026-11-18T05:08:40Z.
+- **GitHub Pages**: "pages build and deployment" for the merge commit b1d14784 reported **success**. The live tree was then re-read rather than trusted from the badge: https://karagemop466-tech.github.io/Korea2/review-board/pages/injuries.html serves the 2026-11-18 re-read (347 rows / 171 designated, 28/28 double-entry section) and https://karagemop466-tech.github.io/Korea2/review-board/pages/reconciliation.html serves the field-level price cross-check (45/45 agree rows). Site confirmed live, not broken.
+- This follow-up commit records the merge result only; it contains no data or page change.
