@@ -2831,3 +2831,25 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 - PR [#126](https://github.com/karagemop466-tech/Korea2/pull/126) merged with merge commit `03daca261fcc41216f666f286dea3b6722cac63d` at 2026-11-15 18:45:53 UTC. All checks on the rebased final head passed (`decision-desk`, `review-board`, `tests-and-links`, `validate`, `verify` ×2, `verify-hub`, `verify-skill-lab`).
 - Before merge, `main` advanced with PR #125. Rebase hit an append-only conflict in `COORDINATION.md`; resolution kept the complete updated main board and restored only this session's claim section. The rest of the review and document reapplied cleanly. No other session's work was discarded.
 - Pages build [1372572372](https://api.github.com/repos/karagemop466-tech/Korea2/pages/builds/1372572372) for PR #126 merge commit `03daca261fcc41216f666f286dea3b6722cac63d` initially reported `building` at 18:46 UTC. A later API check at 18:50 UTC reported **`built`**, duration 126,038 ms (updated 18:48 UTC). Thus the Pages deployment for the review commit is confirmed. General Pages status queries briefly hit the GitHub API rate limit; the specific build endpoint succeeded. The review is a repository Markdown file under `docs/`; no site navigation or generated page was changed, and no separate rendered route is claimed.
+
+---
+
+# Session board — `arena/cbbab023-korea2` (final integration, stale-PR takeover and live re-verification)
+
+**Session ID:** `arena/cbbab023-korea2` (Arena-assigned branch fixed; base `f7b8e8f` of `main`).
+**Claimed:** 2026-11-18 UTC. All prior open claims are older than 60 minutes with no commits (newest
+activity 2026-11-15), so per the board's takeover rule this session acts as the final integration
+session and records handoffs below.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| FI-0 | Claim integration scope; push before implementation | in progress | `arena/cbbab023-korea2` | this section of `COORDINATION.md` |
+| FI-1 | Triage and integrate stale open PRs (merge green ones; leave failing ones flagged) | unclaimed | `arena/cbbab023-korea2` | PR merges via `gh`, this section |
+| FI-2 | Live re-verification of headline published facts against official sources (fetch-tool reads, dated) | unclaimed | `arena/cbbab023-korea2` | `docs/INTEGRATION_VERIFICATION_2026-11-18.md` |
+| FI-3 | Fix confirmed root-site defects from open issues (#22, #34) in shared outputs | unclaimed | `arena/cbbab023-korea2` | root `scripts/`, root `pages/` (integration-owned shared outputs) |
+| FI-4 | Root navigation completeness pass (link unlinked hubs) | unclaimed | `arena/cbbab023-korea2` | root `index.html`, root `pages/archive.html` |
+| FI-5 | Full local verification suite on the combined tree; fix breakage | unclaimed | `arena/cbbab023-korea2` | read-only runs; fixes only in scope above |
+| FI-6 | Integration PR to `main`, merge, confirm GitHub Pages deploy, record here | unclaimed | `arena/cbbab023-korea2` | this section, PR from this branch |
+
+## Log — `arena/cbbab023-korea2`
+- 2026-11-18 — Intake: read the full board. Newest prior activity 2026-11-15 (3 days stale). Open PRs: 128/131/132 green+CLEAN, 127 green+CONFLICTING, 129 UNKNOWN, 112 no checks, 93/97/99/102/109 failing checks. Claiming FI-0..FI-6 as the final integration scope; push follows immediately.
