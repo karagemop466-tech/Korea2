@@ -6,7 +6,7 @@
   "site hub": 23
  },
  "history": "full",
- "base_commit": "9c1b3e0",
+ "base_commit": "055b840",
  "hub_count": 31,
  "nav_target_count": 37,
  "nav_duplicate_labels": [
@@ -214,7 +214,7 @@
    "pages": 9,
    "data_files": 7,
    "scripts": 2,
-   "last_touched": "2026-11-14",
+   "last_touched": "2026-11-18",
    "nav_links": [
     "decision-desk/index.html"
    ],
@@ -254,8 +254,8 @@
    "index_page": true,
    "pages": 15,
    "data_files": 16,
-   "scripts": 3,
-   "last_touched": "2026-11-14",
+   "scripts": 4,
+   "last_touched": "2026-11-18",
    "nav_links": [],
    "nav_labels": []
   },
@@ -453,7 +453,7 @@
    "pages": 1,
    "data_files": 1,
    "scripts": 1,
-   "last_touched": "2026-11-15",
+   "last_touched": "2026-11-18",
    "nav_links": [],
    "nav_labels": []
   },
@@ -490,7 +490,7 @@
    "pages": 14,
    "data_files": 9,
    "scripts": 4,
-   "last_touched": "2026-11-15",
+   "last_touched": "2026-11-18",
    "nav_links": [],
    "nav_labels": []
   },
@@ -605,5 +605,5 @@
  "total_pages": 233,
  "total_data_files": 193,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "9c1b3e0c5dffbf6459fa4f877b1537715017637a"
+ "_generated_from_repo_commit": "055b840a3e0538b46b08e7d63ff84be439d575e0"
 }
