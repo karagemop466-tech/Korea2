@@ -2889,3 +2889,12 @@ Each source below was opened and read directly. These are fresh reads for this s
 
 No committed table value was changed as a result of these reads; they are recorded here as the fresh external-source checks performed in this session.
 
+
+## FI-3 completed — PR, merge and Pages deployment
+
+- PR [#133](https://github.com/karagemop466-tech/Korea2/pull/133) (`arena/b41401cb-korea2` → `main`): merged via `gh pr merge 133 --merge`, merge commit `b98fe98972c40e82312d1790a89bd37cbdde0d44`.
+- All pre-merge checks had passed locally before push: `check_links.py` (4,637 refs, no broken links), `tests/check_site.py` (232 pages, 584 tables, 13,560 links), `scripts/validate_data.py` (63 sources, 0 warnings), `tests/check_data.py` (32/32 teams), `tests/check_derived.py` (52 checks/0 disagreements, 32/32 teams).
+- GitHub Pages build #1379808850 for merge commit `b98fe989`: status `built`, no error, created 2026-11-18T03:53:45Z, updated 2026-11-18T03:55:32Z.
+- Live site confirmed reachable: https://karagemop466-tech.github.io/Korea2/ renders the Line Lab overview with KPIs, findings and navigation.
+- Task status: FI-0 done, FI-1 done, FI-2 done, FI-3 done. Session complete.
+
