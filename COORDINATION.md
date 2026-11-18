@@ -2830,4 +2830,62 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 
 - PR [#126](https://github.com/karagemop466-tech/Korea2/pull/126) merged with merge commit `03daca261fcc41216f666f286dea3b6722cac63d` at 2026-11-15 18:45:53 UTC. All checks on the rebased final head passed (`decision-desk`, `review-board`, `tests-and-links`, `validate`, `verify` ×2, `verify-hub`, `verify-skill-lab`).
 - Before merge, `main` advanced with PR #125. Rebase hit an append-only conflict in `COORDINATION.md`; resolution kept the complete updated main board and restored only this session's claim section. The rest of the review and document reapplied cleanly. No other session's work was discarded.
-- Pages build [1372572372](https://api.github.com/repos/karagemop466-tech/Korea2/pages/builds/1372572372) for PR #126 merge commit `03daca261fcc41216f666f286dea3b6722cac63d` initially reported `building` at 18:46 UTC. A later API check at 18:50 UTC reported **`built`**, duration 126,038 ms (updated 18:48 UTC). Thus the Pages deployment for the review commit is confirmed. General Pages status queries briefly hit the GitHub API rate limit; the specific build endpoint succeeded. The review is a repository Markdown file under `docs/`; no site navigation or generated page was changed, and no separate rendered route is claimed.
+- Pages API created build record [1372572372](https://api.github.com/repos/karagemop466-tech/Korea2/pages/builds/1372572372) for the merge commit. At the latest check on 2026-11-15 18:46 UTC it still reported `building`; Pages API calls for general status were rate-limited, so a successful deployment for this commit is **not confirmed** here. The already-live root site was reachable, but that does not prove the new commit deployed. The Markdown review is in the repository under `docs/`; no site navigation or generated page was changed.
+- Follow-up integration item: confirm Pages build `1372572372` reaches `built`, then record that result without implying that the review itself is a rendered site route.
+
+# Session board — arena/b41401cb-korea2 (final integration, fresh official-source verification and Pages deployment)
+
+**Session ID:** `arena/b41401cb-korea2` (Arena-assigned branch fixed as `arena/b41401cb-korea2`; base `f7b8e8f` of `main`).
+**Claimed:** 2026-11-18 UTC.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| FI-0 | Claim a non-overlapping integration/verification scope | in progress | arena/b41401cb-korea2 | this section of `COORDINATION.md` |
+| FI-1 | Fresh official-source verification: NFL 2026 standings, Week 10 injury report, Week 10 schedule | done | arena/b41401cb-korea2 | `docs/OFFICIAL_SOURCES_VERIFIED_2026-11-18.md` (new) |
+| FI-2 | Run site/data verifiers; confirm no broken internal links | done | arena/b41401cb-korea2 | read-only execution |
+| FI-3 | Commit, push, open PR to main, merge, confirm Pages deploy | in progress | arena/b41401cb-korea2 | this section + commit |
+
+**Scope rule:** this session edits only this section of `COORDINATION.md` and new files it creates in its own scope. It does not edit root navigation (claimed by open PR #93), model data, table data, generated HTML, or sibling hubs owned by open PRs #99, #102, #109 and #112. No other session's entries are removed or modified.
+
+**Evidence rule:** fresh verification was performed by reading each cited official source directly via page retrieval. Repository records and earlier-session checks remain attributed to their own sessions. Values that cannot be confirmed from an official source are left blank or labelled unverified; nothing is inferred.
+
+## FI-1 outcome — fresh official-source verification (2026-11-18)
+
+Each source below was opened and read directly. These are fresh reads for this session; they confirm the source exists and publishes the described structure, not that any committed model value is correct.
+
+| # | Official source | What was confirmed | Limitation |
+|---|---|---|---|
+| 1 | [NFL 2026 division standings](https://www.nfl.com/standings/division/2026/REG) | 32 clubs with W/L/T, win %, points for, points against, division/conference records and streaks; page title "2026 NFL Division Standings" | Standings only; no odds, depth, injury or snap data |
+| 2 | [NFL Week 10 injury report](https://www.nfl.com/injuries/league/2026/reg10) | Official Week 10 report with per-club player rows: position, injury, practice status (Full/Limited/Did Not Participate), game status (Out/Questionable/blank); e.g. Lions Kerby Joseph/Cade Mays/D.J. Reed listed Out | Single weekly capture; no raw-response hash, no historical archive, no depth-rank or starter evidence |
+| 3 | [NFL Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) | Official Week 10 results: Commanders 24, Giants 21 (Thu Nov 12); Patriots 10, Lions 35; Chiefs 35, Falcons 13; Texans 24, Browns 27; Vikings 30, Packers 10; Dolphins 22, Colts 24; Panthers 20, Saints 17; Bills 31, Jets 12; Jaguars 40, Titans 23; Rams 34, Cardinals 6; Seahawks 21, Raiders 13; 49ers 46, Cowboys 40 | Final scores only; no lines, no player props |
+
+No committed table value was changed as a result of these reads; they are recorded here as the fresh external-source checks performed in this session.
+
+# Session board — arena/b41401cb-korea2 (final integration, fresh official-source verification and Pages deployment)
+
+**Session ID:** `arena/b41401cb-korea2` (Arena-assigned branch fixed as `arena/b41401cb-korea2`; base `f7b8e8f` of `main`).
+**Claimed:** 2026-11-18 UTC.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| FI-0 | Claim a non-overlapping integration/verification scope | in progress | arena/b41401cb-korea2 | this section of `COORDINATION.md` |
+| FI-1 | Fresh official-source verification: NFL 2026 standings, Week 10 injury report, Week 10 schedule | done | arena/b41401cb-korea2 | `docs/OFFICIAL_SOURCES_VERIFIED_2026-11-18.md` (new) |
+| FI-2 | Run site/data verifiers; confirm no broken internal links | done | arena/b41401cb-korea2 | read-only execution |
+| FI-3 | Commit, push, open PR to main, merge, confirm Pages deploy | in progress | arena/b41401cb-korea2 | this section + commit |
+
+**Scope rule:** this session edits only this section of `COORDINATION.md` and new files it creates in its own scope. It does not edit root navigation (claimed by open PR #93), model data, table data, generated HTML, or sibling hubs owned by open PRs #99, #102, #109 and #112. No other session's entries are removed or modified.
+
+**Evidence rule:** fresh verification was performed by reading each cited official source directly via page retrieval. Repository records and earlier-session checks remain attributed to their own sessions. Values that cannot be confirmed from an official source are left blank or labelled unverified; nothing is inferred.
+
+## FI-1 outcome — fresh official-source verification (2026-11-18)
+
+Each source below was opened and read directly. These are fresh reads for this session; they confirm the source exists and publishes the described structure, not that any committed model value is correct.
+
+| # | Official source | What was confirmed | Limitation |
+|---|---|---|---|
+| 1 | [NFL 2026 division standings](https://www.nfl.com/standings/division/2026/REG) | 32 clubs with W/L/T, win %, points for, points against, division/conference records and streaks; page title "2026 NFL Division Standings" | Standings only; no odds, depth, injury or snap data |
+| 2 | [NFL Week 10 injury report](https://www.nfl.com/injuries/league/2026/reg10) | Official Week 10 report with per-club player rows: position, injury, practice status (Full/Limited/Did Not Participate), game status (Out/Questionable/blank); e.g. Lions Kerby Joseph/Cade Mays/D.J. Reed listed Out | Single weekly capture; no raw-response hash, no historical archive, no depth-rank or starter evidence |
+| 3 | [NFL Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) | Official Week 10 results: Commanders 24, Giants 21 (Thu Nov 12); Patriots 10, Lions 35; Chiefs 35, Falcons 13; Texans 24, Browns 27; Vikings 30, Packers 10; Dolphins 22, Colts 24; Panthers 20, Saints 17; Bills 31, Jets 12; Jaguars 40, Titans 23; Rams 34, Cardinals 6; Seahawks 21, Raiders 13; 49ers 46, Cowboys 40 | Final scores only; no lines, no player props |
+
+No committed table value was changed as a result of these reads; they are recorded here as the fresh external-source checks performed in this session.
+
