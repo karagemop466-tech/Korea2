@@ -62,8 +62,8 @@ jobs:
           retention-days: 90
           if-no-files-found: warn
 
-      - name: Commit hash manifest
-        if: github.event_name != 'pull_request'
+      - name: Commit hash manifest (also on failure, so every attempt is recorded)
+        if: always() && github.event_name != 'pull_request'
         run: |
           set -euo pipefail
           git config user.name "injury-capture-bot"
