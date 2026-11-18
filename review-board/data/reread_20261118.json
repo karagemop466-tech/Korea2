@@ -1,0 +1,394 @@
+{
+ "title": "Second dated read of the Week 10 official injury report (2026-11-18)",
+ "method": "All 8 chunks of the official Week 10 report were fetched in sequence at the window shown; every club's row count and game-status split was tallied from the fetched text. The tally was then cross-checked against the availability-sweep hub's independent full capture taken earlier the same morning. An initial tally error at three chunk boundaries was corrected during the cross-check; the final numbers below are the corrected ones, and the correction is recorded rather than hidden.",
+ "read": {
+  "url": "https://www.nfl.com/injuries/league/2026/reg10",
+  "window_utc": "2026-11-18T04:54Z-05:12Z (8 chunks fetched in sequence)",
+  "chunks_fetched": 8,
+  "chunks_total": 8,
+  "games_on_page": 14,
+  "clubs_listed": 28,
+  "clubs_absent": [
+   "CHI",
+   "DEN",
+   "PHI",
+   "TB"
+  ],
+  "absent_note": "The four clubs above print no table on the report at this read; the availability-sweep bye register (week10_byes.csv, official schedule page, 03:55:37Z) lists the same four as the Week 10 byes.",
+  "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+ },
+ "totals_this_read": {
+  "rows": 347,
+  "Out": 70,
+  "Doubtful": 11,
+  "Questionable": 90,
+  "no_designation": 176,
+  "designated": 171
+ },
+ "double_entry": {
+  "sibling_register": "availability-sweep/data/week10_rows_20261118.csv",
+  "sibling_capture_id": "20261118-9fa8ea61",
+  "sibling_fetched_utc": [
+   "2026-11-18T03:55:37Z"
+  ],
+  "sibling_source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+  "sibling_rows": 347,
+  "per_club": [
+   {
+    "club": "ATL",
+    "rows_this_read": 11,
+    "rows_sibling_capture": 11,
+    "designated_this_read": 5,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "AZ",
+    "rows_this_read": 15,
+    "rows_sibling_capture": 15,
+    "designated_this_read": 9,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "BAL",
+    "rows_this_read": 10,
+    "rows_sibling_capture": 10,
+    "designated_this_read": 2,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "BUF",
+    "rows_this_read": 14,
+    "rows_sibling_capture": 14,
+    "designated_this_read": 5,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "CAR",
+    "rows_this_read": 12,
+    "rows_sibling_capture": 12,
+    "designated_this_read": 7,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "CIN",
+    "rows_this_read": 9,
+    "rows_sibling_capture": 9,
+    "designated_this_read": 4,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "CLE",
+    "rows_this_read": 12,
+    "rows_sibling_capture": 12,
+    "designated_this_read": 3,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "DAL",
+    "rows_this_read": 19,
+    "rows_sibling_capture": 19,
+    "designated_this_read": 11,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "DET",
+    "rows_this_read": 9,
+    "rows_sibling_capture": 9,
+    "designated_this_read": 5,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "GB",
+    "rows_this_read": 17,
+    "rows_sibling_capture": 17,
+    "designated_this_read": 12,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "HOU",
+    "rows_this_read": 16,
+    "rows_sibling_capture": 16,
+    "designated_this_read": 11,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "IND",
+    "rows_this_read": 14,
+    "rows_sibling_capture": 14,
+    "designated_this_read": 7,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "JAX",
+    "rows_this_read": 11,
+    "rows_sibling_capture": 11,
+    "designated_this_read": 4,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "KC",
+    "rows_this_read": 13,
+    "rows_sibling_capture": 13,
+    "designated_this_read": 6,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "rows_this_read": 19,
+    "rows_sibling_capture": 19,
+    "designated_this_read": 10,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAR",
+    "rows_this_read": 14,
+    "rows_sibling_capture": 14,
+    "designated_this_read": 7,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LV",
+    "rows_this_read": 5,
+    "rows_sibling_capture": 5,
+    "designated_this_read": 2,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "MIA",
+    "rows_this_read": 11,
+    "rows_sibling_capture": 11,
+    "designated_this_read": 4,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "MIN",
+    "rows_this_read": 13,
+    "rows_sibling_capture": 13,
+    "designated_this_read": 8,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "NE",
+    "rows_this_read": 15,
+    "rows_sibling_capture": 15,
+    "designated_this_read": 12,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "NO",
+    "rows_this_read": 12,
+    "rows_sibling_capture": 12,
+    "designated_this_read": 6,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "NYG",
+    "rows_this_read": 11,
+    "rows_sibling_capture": 11,
+    "designated_this_read": 1,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "NYJ",
+    "rows_this_read": 9,
+    "rows_sibling_capture": 9,
+    "designated_this_read": 9,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "PIT",
+    "rows_this_read": 8,
+    "rows_sibling_capture": 8,
+    "designated_this_read": 1,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "SEA",
+    "rows_this_read": 15,
+    "rows_sibling_capture": 15,
+    "designated_this_read": 4,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "SF",
+    "rows_this_read": 12,
+    "rows_sibling_capture": 12,
+    "designated_this_read": 8,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "TEN",
+    "rows_this_read": 12,
+    "rows_sibling_capture": 12,
+    "designated_this_read": 6,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "WAS",
+    "rows_this_read": 9,
+    "rows_sibling_capture": 9,
+    "designated_this_read": 2,
+    "agree": true,
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   }
+  ],
+  "per_club_agree": "28/28 clubs",
+  "status_split": {
+   "Out": {
+    "this_read": 70,
+    "sibling": 70
+   },
+   "Doubtful": {
+    "this_read": 11,
+    "sibling": 11
+   },
+   "Questionable": {
+    "this_read": 90,
+    "sibling": 90
+   },
+   "no_designation": {
+    "this_read": 176,
+    "sibling": 176
+   }
+  },
+  "status_split_agree": true,
+  "conclusion": "Two independent reads of the same official page, 74 minutes apart (03:50:00Z-03:55:37Z and 04:54Z-05:12Z), agree on every club's row count and on the full status split."
+ },
+ "reg11_recheck": {
+  "url": "https://www.nfl.com/injuries/league/2026/reg11",
+  "observed": "GET reg11 resolved to the Week 10 report again at this read (title: 'Official NFL Injury Report for Players - Week 10 of the 2026 Season'); the week selector lists WEEK 11 but no Week-11 report was published yet. This is the second dated observation of the behaviour recorded as flag FL-17.",
+  "root_flag": "FL-17",
+  "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+ },
+ "delta_vs_2026_11_13": {
+  "previous_register": "review-board/data/injuries.json (captured 2026-11-13)",
+  "designated_previous": 160,
+  "designated_now": 171,
+  "added": [
+   {
+    "club": "BAL",
+    "player": "Adam Randall",
+    "status": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "BAL",
+    "player": "Jaylinn Hawkins",
+    "status": "Out",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "HOU",
+    "player": "Jacob Hummel",
+    "status": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "Branson Taylor",
+    "status": "Out",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "Brenen Thompson",
+    "status": "Doubtful",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "David Njoku",
+    "status": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "Denzel Perryman",
+    "status": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "Isas Waxter",
+    "status": "Out",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "Justin Eboigbe",
+    "status": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "Kayode Awosika",
+    "status": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "Kendall Williamson",
+    "status": "Out",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "Ladd McConkey",
+    "status": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "LAC",
+    "player": "Trey Pipkins",
+    "status": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   }
+  ],
+  "dropped": [
+   {
+    "club": "HOU",
+    "player": "Jake Hummel",
+    "was": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   },
+   {
+    "club": "IND",
+    "player": "Arden Key",
+    "was": "Questionable",
+    "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+   }
+  ],
+  "changed": [],
+  "attribution": "Of the 13 added designations, 12 belong to the two Monday-game clubs (LAC 10, BAL 2), whose Nov 13 transcription listed players with practice marks but no game status - consistent with the final pre-Monday report update, but the Nov 13 transcription's per-club listed counts are lower than the page's current counts nearly everywhere, so transcription coverage and page evolution cannot be fully separated. The two clean page-level observations are the HOU player the page now prints as 'Jacob Hummel' (was 'Jake Hummel') and IND's Arden Key (Questionable) no longer being listed.",
+  "coverage_caveat": "Per-club listed counts: 2026-11-13 register 213 rows total vs 347 at this read; the gap is spread across clubs (e.g. NYG 1 vs 11, PIT 1 vs 8), so the earlier register is not row-complete and row-level counts are not comparable between the two.",
+  "source_url": "https://www.nfl.com/injuries/league/2026/reg10"
+ },
+ "_generated_by": "review-board/scripts/reread_delta.py"
+}

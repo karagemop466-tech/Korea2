@@ -13,6 +13,8 @@ from __future__ import annotations
 import html
 import json
 import os
+import re
+from collections import Counter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 HUB = os.path.dirname(HERE)
@@ -218,7 +220,7 @@ Nothing here has been implemented on a reviewer's behalf: every proposal is awai
 
 def refresh_registers() -> None:
     for name in ("queue", "readiness", "injuries", "injury_delta", "hub_map", "reconciliation",
-                 "program", "sources", "flags"):
+                 "program", "sources", "flags", "reread_20261118", "price_crosscheck"):
         REGISTERS[name] = load(f"{name}.json")
 
 
@@ -470,6 +472,60 @@ def page_executive() -> str:
     return layout("Executive summary", "pages/executive.html", body)
 
 
+def suggestion_register_state() -> list[list[str]]:
+    """Read the three suggestion registers as they are committed and report their vocabulary as-is.
+
+    This is the FL-23 discovery action: one table that shows, for each register, what lifecycle
+    vocabulary it actually prints today, so the conflict (or its decay) is visible instead of argued.
+    """
+    repo_root = REPO
+    rows = []
+    targets = [
+        ("root page", "pages/suggestions.html",
+         REPO_TREE + "pages/suggestions.html"),
+        ("verify-hub", "verify-hub/data/suggestions.json",
+         REPO_TREE + "verify-hub/data/suggestions.json"),
+        ("suggestions hub", "suggestions/data/suggestions.json",
+         REPO_TREE + "suggestions/data/suggestions.json"),
+        ("this hub's queue", "review-board/data/queue.json",
+         REPO_TREE + "review-board/data/queue.json"),
+    ]
+    for label, rel, url in targets:
+        path = os.path.join(repo_root, rel)
+        vocab: str = ""
+        count: str = ""
+        try:
+            if rel.endswith(".json"):
+                with open(path) as fh:
+                    doc = json.load(fh)
+                rows_ = doc.get("rows")
+                if rows_ is None:
+                    # queue.json publishes proposal_rows as a count, not a list
+                    count = str(doc.get("proposal_rows", "")) or "(count not published)"
+                    vocab = f"proposal_rows published as a count: {count}; no per-row state field"
+                    count = count if count != "(count not published)" else ""
+                    rows.append([f'<strong>{esc(label)}</strong>', f'<code>{esc(rel)}</code>', esc(count),
+                                 esc(vocab), link(url, "open register")])
+                    continue
+                states = Counter(str(r.get("status") or r.get("disposition") or "(blank)") for r in rows_)
+                count = str(len(rows_))
+                vocab = ", ".join(f"{k} x{v}" for k, v in states.most_common()) or "no status field"
+            else:
+                text = open(path).read()
+                # the root page renders one badge per suggestion row (S01..S19)
+                badges = re.findall(r'<span class="badge[^"]*">([^<]+)</span>', text)
+                states = Counter(b.strip() for b in badges)
+                count = str(len(re.findall(r"<tr><td>S\d+", text)))
+                vocab = ", ".join(f"{k} x{v}" for k, v in states.most_common(4)) or "no badges"
+        except (OSError, ValueError):
+            vocab = ""
+            count = ""
+        rows.append([f'<strong>{esc(label)}</strong>', f'<code>{esc(rel)}</code>', esc(count),
+                     esc(vocab) or blank("register unreadable at build time"),
+                     link(url, "open register")])
+    return rows
+
+
 def page_suggestions() -> str:
     q = REGISTERS["queue"]
     clusters = q["clusters"]
@@ -527,6 +583,16 @@ def page_suggestions() -> str:
                                [[esc(x["hub"]), esc(x["hub_id"]), esc(x["text"])] for x in q["untriaged"]],
                                "Rows the classifier could not place. Should be empty; a new hub row that matches "
                                "no rule lands here instead of being dropped."), "Classifier coverage"))
+    # FL-23 discovery action: what each register's vocabulary actually is, read at build time
+    vocab_rows = suggestion_register_state()
+    vocab = section("One disposition vocabulary? (flag FL-23, re-read at build time)", table(
+        ["Register", "File", "Suggestion rows", "Lifecycle vocabulary it prints today", "Source"],
+        vocab_rows,
+        "Flag FL-23 recorded a vocabulary conflict between these registers. This table reads each "
+        "register as committed and prints the vocabulary it actually carries, so the conflict (or its "
+        "decay) is a measurement rather than a claim. A single canonical set - PROPOSED, CHOSEN, "
+        "REJECTED, with DEFERRED optional - is proposed here; no register has adopted it yet, and no "
+        "row anywhere currently records an implemented suggestion."), "Register vocabularies as read")
     body = f"""
 <div class="hero small">
   <div class="eyebrow">SUGGESTION REVIEW QUEUE</div>
@@ -538,6 +604,7 @@ def page_suggestions() -> str:
          "stays 'awaiting owner' until a reviewer chooses."), "One row per decision")}
 {''.join(blocks)}
 {untriaged}
+{vocab}
 """
     return layout("Suggestion review queue", "pages/suggestions.html", body)
 
@@ -776,6 +843,26 @@ def page_reconciliation() -> str:
                link(s["source_url"], "open file")] for s in rec["stamps"]]
     numbers = [[esc(n["quantity"]), esc(n["values"]), esc(n["file"]), link(n["source_url"], "open file")]
                for n in rec["published_numbers"]]
+    # cross-store price residual check (open item from the 2026-11-18 integration session)
+    pc = REGISTERS["price_crosscheck"]
+    fc = pc["field_comparison"]
+    def pcval(v):
+        return '<span class="blank">null</span>' if v is None else esc(v)
+    pc_field_rows = [[f'<code>{esc(r["game_id"])}</code>', esc(r["market"]), pcval(r["model_store"]),
+                      pcval(r["price_store"]), badge("agree" if r["agree"] else "MISMATCH",
+                                                   "ok" if r["agree"] else "bad"),
+                      link(r["source_url"], "open price store")] for r in fc["rows"]]
+    pc_edge_rows = [[f'<code>{esc(r["game_id"])}</code>', f'<code>{esc(r["edge_column"])}</code>',
+                     pcval(r["fair"]), pcval(r["market"]), pcval(r["published_edge"]), pcval(r["recomputed"]),
+                     badge("agree" if r["agree"] else "MISMATCH", "ok" if r["agree"] else "bad"),
+                     link(r["source_url"], "open model store")] for r in pc["edge_arithmetic"]["rows"]]
+    pc_dist = pc["residual_distribution"]
+    pc_dist_rows = [["Spread (fair − market)", esc(pc_dist["spread"]["n"]), esc(pc_dist["spread"]["mean"]),
+                     esc(pc_dist["spread"]["mean_abs"]), esc(pc_dist["spread"]["min"]),
+                     esc(pc_dist["spread"]["max"]), link(pc_dist["source_url"], "open model store")],
+                    ["Total (fair − market)", esc(pc_dist["total"]["n"]), esc(pc_dist["total"]["mean"]),
+                     esc(pc_dist["total"]["mean_abs"]), esc(pc_dist["total"]["min"]),
+                     esc(pc_dist["total"]["max"]), link(pc_dist["source_url"], "open model store")]]
     body = f"""
 <div class="hero small">
   <div class="eyebrow">CROSS-HUB RECONCILIATION</div>
@@ -785,6 +872,15 @@ def page_reconciliation() -> str:
   print only a season/week window - so no single "as of" applies to the repository.</p>
   <p class="lede">{esc(rec["method"])}</p>
 </div>
+{section("Originated-line residual, cross-checked across both price stores", table(
+    ["Game", "Market", "Model store value", "Price store value", "Cross-check", "Source"], pc_field_rows,
+    f'{esc(fc["result"])} {esc(pc["provenance_warning"])}'), "Field-level cross-check")}
+{section("Published edge columns vs their own arithmetic", table(
+    ["Game", "Edge column", "Fair", "Market", "Published edge", "Fair − market", "Cross-check", "Source"],
+    pc_edge_rows, f'{esc(pc["edge_arithmetic"]["result"])}'), "Edge arithmetic")}
+{section("Residual distribution (Week 9 originated lines)", table(
+    ["Market", "n", "Mean", "Mean |residual|", "Min", "Max", "Source"], pc_dist_rows,
+    f'{esc(pc_dist["reading"])}'), "What the residual looks like")}
 {section("Conflicting values", table(["Quantity (canonical)", "Value here", "All values seen", "Published in",
                                      "Source"], conf,
          "Two hubs publishing different numbers under one label is a definition problem, not a measurement "
@@ -805,7 +901,7 @@ def page_reconciliation() -> str:
 
 
 def page_injuries() -> str:
-    inj, delta = REGISTERS["injuries"], REGISTERS["injury_delta"]
+    inj, idelta = REGISTERS["injuries"], REGISTERS["injury_delta"]
     team_rows = [[f'<strong>{esc(t["team"])}</strong>', esc(t["opponent"]), esc(t["slot"]), esc(t["listed"]),
                   esc(t["out"]), esc(t["doubtful"]), esc(t["questionable"]), esc(t["no_designation"]),
                   f'<code>{esc(t["qb_out"])}</code>' if t["qb_out"] else '<span class="sub">none</span>',
@@ -816,16 +912,44 @@ def page_injuries() -> str:
                    for p in inj["players"]]
     game_rows = [[esc(g["slot"]), f'{esc(g["away"])} at {esc(g["home"])}', esc(g["note"]) if g.get("note")
                   else "listed on the report page", link(inj["source_url"], "report")] for g in inj["games"]]
-    delta_rows = [[esc(d["player"]), esc(d["team"]), esc(d["pos"]), esc(d["was"]) or "not listed",
-                   esc(d["now"]), link(inj["source_url"], "Friday report")] for d in delta["changed"][:60]]
+    idelta_rows = [[esc(d["player"]), esc(d["team"]), esc(d["pos"]), esc(d["was"]) or "not listed",
+                   esc(d["now"]), link(inj["source_url"], "Friday report")] for d in idelta["changed"][:60]]
     noreport_rows = [[f'<strong>{esc(x["team"])}</strong>', esc(x["page_says"]),
                       esc(clip(x["contradicted_by"], 220)), badge("contradiction between official surfaces", "bad"),
-                      link(delta["previous_source_url"], "midweek register")]
-                     for x in delta["teams_that_said_no_injuries"]]
+                      link(idelta["previous_source_url"], "midweek register")]
+                     for x in idelta["teams_that_said_no_injuries"]]
+
+    # second dated read (2026-11-18): per-club counts, double-entry result and the reg11 recheck
+    reread = REGISTERS["reread_20261118"]
+    rr_read = reread["read"]
+    rr_de = reread["double_entry"]
+    rr_club_rows = [[f'<strong>{esc(c["club"])}</strong>', esc(c["rows_this_read"]),
+                     esc(c["rows_sibling_capture"]), esc(c["designated_this_read"]),
+                     badge("agree" if c["agree"] else "DISAGREE", "ok" if c["agree"] else "bad"),
+                     link(c["source_url"], "official report")] for c in rr_de["per_club"]]
+    rr_status_rows = [[esc(k), esc(v["this_read"]), esc(v["sibling"]),
+                       badge("agree" if v["this_read"] == v["sibling"] else "DISAGREE",
+                             "ok" if v["this_read"] == v["sibling"] else "bad"),
+                       link(rr_read["source_url"], "official report")]
+                      for k, v in rr_de["status_split"].items()]
+    rr_delta = reread["delta_vs_2026_11_13"]
+    rr_delta_rows = []
+    for a in rr_delta["added"]:
+        rr_delta_rows.append([badge("designated", "bad"), f'<strong>{esc(a["club"])}</strong>',
+                              esc(a["player"]), "no game status on the earlier read", esc(a["status"]),
+                              link(a["source_url"], "official report")])
+    for d in rr_delta["dropped"]:
+        rr_delta_rows.append([badge("no longer listed", "warn"), f'<strong>{esc(d["club"])}</strong>',
+                              esc(d["player"]), esc(d["was"]), "absent at this read",
+                              link(d["source_url"], "official report")])
+    for c in rr_delta["changed"]:
+        rr_delta_rows.append([badge("status changed", "warn"), f'<strong>{esc(c["club"])}</strong>',
+                              esc(c["player"]), esc(c["was"]), esc(c["now"]),
+                              link(c["source_url"], "official report")])
     body = f"""
 <div class="hero small">
-  <div class="eyebrow">INJURY TRACKING &middot; CAPTURED {esc(inj["captured"])}</div>
-  <h1>The live slate, as the league published it on Friday.</h1>
+  <div class="eyebrow">INJURY TRACKING &middot; CAPTURED {esc(inj["captured"])} &middot; RE-READ {esc(rr_read["window_utc"])}</div>
+  <h1>The live slate, as the league published it on Friday - and as a second dated read confirmed it.</h1>
   <p class="lede">{esc(inj["scope_rule"])}</p>
 </div>
 {notice("info", f'Season {esc(inj["season"])}, Week {esc(inj["week"])}',
@@ -833,7 +957,9 @@ def page_injuries() -> str:
         f'{inj["totals"]["rows_transcribed"]} rows, {inj["totals"]["teams_represented"]} clubs, '
         f'{inj["totals"]["games"]} game blocks - {inj["totals"]["out"]} Out, {inj["totals"]["doubtful"]} '
         f'Doubtful, {inj["totals"]["questionable"]} Questionable, {inj["totals"]["no_designation_but_limited"]} '
-        "carrying a practice mark only.", inj["source_url"], "Open the official report")}
+        "carrying a practice mark only. A second dated read on 2026-11-18 counted "
+        f'{esc(reread["totals_this_read"]["rows"])} rows ({esc(reread["totals_this_read"]["designated"])} '
+        "designated) - see the re-read section below.", inj["source_url"], "Open the official report")}
 {section("Slate", table(["Slot", "Matchup", "Note", "Source"], game_rows,
          "Slots and pairings exactly as printed on the report page. The Thursday game had already been played "
          "when this snapshot was taken, which is itself a trap for anyone scraping the page - see flag RB-09."),
@@ -847,13 +973,26 @@ def page_injuries() -> str:
          f'{len(inj["players"])} rows carrying a game status. Injury text is copied exactly; a blank means the '
          "report prints no injury for that row, which is not evidence of health."), "Full designation list")}
 {section("What changed between the midweek and Friday reports", table(
-    ["Player", "Club", "Pos", "Midweek", "Friday", "Source"], delta_rows,
-    f'{esc(delta["note"])} Previous capture: {esc(delta["previous_capture"])}; this one: '
-    f'{esc(delta["current_capture"])}.'), "Day-over-day delta")}
+    ["Player", "Club", "Pos", "Midweek", "Friday", "Source"], idelta_rows,
+    f'{esc(idelta["note"])} Previous capture: {esc(idelta["previous_capture"])}; this one: '
+    f'{esc(idelta["current_capture"])}.'), "Day-over-day delta")}
 {section('Clubs that printed "No Injuries Reported" midweek', table(
     ["Club", "Report said", "Official news for the same period", "Class", "Source"], noreport_rows,
     "Recorded so the next session does not re-discover it: an empty report block is not a clean bill of health."),
      "Coverage trap")}
+{section(f'Second dated read: {esc(rr_read["window_utc"])}', table(
+    ["Club", "Rows at this read", "Rows in the sibling capture", "Designated at this read", "Double entry", "Source"],
+    rr_club_rows,
+    f'{esc(reread["method"])} Result: {esc(rr_de["per_club_agree"])} on row counts '
+    f'({esc(reread["totals_this_read"]["rows"])} rows total). Four clubs ({esc(", ".join(rr_read["clubs_absent"]))}) '
+    "print no table and match the official bye list."), "Re-read 2026-11-18: row counts per club")}
+{section("Re-read 2026-11-18: status split and the reg11 recheck", table(
+    ["Status class", "This read", "Sibling capture", "Double entry", "Source"], rr_status_rows,
+    f'{esc(rr_de["conclusion"])} The same read re-observed the reg11 behaviour behind flag FL-17: '
+    f'{esc(reread["reg11_recheck"]["observed"])}'), "Re-read 2026-11-18: totals and the Week 11 state")}
+{section("What changed between the 2026-11-13 transcription and the 2026-11-18 read", table(
+    ["Kind", "Club", "Player", "Earlier", "At this read", "Source"], rr_delta_rows,
+    f'{esc(rr_delta["attribution"])} {esc(rr_delta["coverage_caveat"])}'), "Designated-set delta")}
 """
     return layout("Injury tracking", "pages/injuries.html", body)
 

@@ -16,6 +16,7 @@ import os
 import re
 import subprocess
 import sys
+from collections import Counter
 from html.parser import HTMLParser
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -193,6 +194,45 @@ def main() -> int:
     target_exists = os.path.exists(os.path.join(REPO, "review-board", "index.html"))
     check("the hub is linked from the shared root navigation (integration decision 2026-11-18)",
           linked and target_exists, f"linked={linked}, target exists={target_exists}")
+
+    # ---------------------------------------------------------------- 3.5 the 2026-11-18 registers
+    # reread_20261118.json and price_crosscheck.json are pure functions of committed inputs (the sibling
+    # capture CSV, this hub's injuries.json, the two price stores). Re-run their builders and demand a
+    # byte-identical register, then demand the pages publish the headline numbers.
+    for script, reg in (("reread_delta.py", "reread_20261118.json"),
+                        ("crosscheck_prices.py", "price_crosscheck.json")):
+        pre = jload(reg)
+        rr = subprocess.run([sys.executable, os.path.join(HERE, script)], capture_output=True, text=True,
+                            cwd=REPO)
+        check(f"{script} exits 0", rr.returncode == 0, (rr.stderr or rr.stdout).strip()[-300:])
+        check(f"{reg} is a pure function of committed inputs (rebuild byte-identical)",
+              json.dumps(pre, sort_keys=True) == json.dumps(jload(reg), sort_keys=True))
+    rr_data = jload("reread_20261118.json")
+    pc_data = jload("price_crosscheck.json")
+    inj_page = read(os.path.join(HUB, "pages", "injuries.html"))
+    rec_page = read(os.path.join(HUB, "pages", "reconciliation.html"))
+    sug_page = read(os.path.join(HUB, "pages", "suggestions.html"))
+    tt = rr_data["totals_this_read"]
+    check("injuries page publishes the re-read row and designation totals",
+          str(tt["rows"]) in inj_page and str(tt["designated"]) in inj_page)
+    check("injuries page publishes the double-entry result",
+          rr_data["double_entry"]["per_club_agree"] in inj_page)
+    check("injuries page records the reg11 recheck", "FL-17" in inj_page)
+    check("reconciliation page publishes the price cross-check result",
+          pc_data["field_comparison"]["result"].split(";")[0].strip() in rec_page
+          and pc_data["edge_arithmetic"]["result"].split(";")[0].strip() in rec_page)
+    check("suggestions page reads the sibling vocabularies at build time (FL-23)",
+          "verify-hub/data/suggestions.json" in sug_page
+          and "suggestions/data/suggestions.json" in sug_page)
+    # the double-entry claim must still hold against the sibling capture it cites
+    with open(os.path.join(REPO, "availability-sweep", "data", "week10_rows_20261118.csv")) as fh:
+        sib = list(csv.DictReader(fh))
+    per_club = Counter(x["team"] for x in sib)
+    obs = {c["club"]: c["rows_this_read"] for c in rr_data["double_entry"]["per_club"]}
+    check("the recorded double-entry agreement is still true against the sibling CSV",
+          len(sib) == rr_data["double_entry"]["sibling_rows"]
+          and all(per_club[c] == n for c, n in obs.items()),
+          f"csv rows={len(sib)}")
 
     # ---------------------------------------------------------------- 4. the registers reconcile
     q, r_ = data["queue"], data["readiness"]
