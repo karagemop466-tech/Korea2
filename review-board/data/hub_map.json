@@ -1,13 +1,13 @@
 {
  "kind_totals": {
-  "code": 6,
+  "code": 7,
   "data register": 1,
   "other": 1,
   "site hub": 22
  },
  "history": "full",
- "base_commit": "83f9e8f",
- "hub_count": 30,
+ "base_commit": "89de11c",
+ "hub_count": 31,
  "nav_target_count": 37,
  "nav_duplicate_labels": [
   {
@@ -236,6 +236,17 @@
    "nav_labels": [
     "Decision hub"
    ]
+  },
+  {
+   "dir": "injury-capture",
+   "kind": "code",
+   "index_page": false,
+   "pages": 0,
+   "data_files": 7,
+   "scripts": 2,
+   "last_touched": "2026-11-18",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "injury-report-w10",
@@ -592,7 +603,7 @@
   }
  ],
  "total_pages": 232,
- "total_data_files": 192,
+ "total_data_files": 199,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "83f9e8f61415a9bc132ac42bf5a4582c5e56d625"
+ "_generated_from_repo_commit": "89de11cda7ddea9e0a5683f6027d9e4b15c6b856"
 }
