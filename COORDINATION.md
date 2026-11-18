@@ -3029,3 +3029,50 @@ No committed table value was changed as a result of these reads; they are record
 | RR-6 | Re-run every repo verifier, PR to `main`, merge, confirm GitHub Pages, close the outstanding Pages-build follow-up left by `arena/46a13cee-korea2` | unclaimed → claimed here | `arena/4c90e65f-korea2` | read-only execution; this section; PR |
 
 **Overlap note for reviewers.** Open PR #131 (`readiness/` hub + `review-board/` regeneration, from `arena/a72f5c83-korea2`, last touched 2026-11-15) builds a one-row-per-requirement register in a *sibling hub*; this session builds the same register class **on the landing page**, which is where the owner brief places it ("Put a decision-readiness table on the landing page"). Statuses here are aggregated from the committed hub registers (`line-desk/data/requirements.json`, `price-desk/data/requirements_status.json`, `review-board/data/*`) and from first-hand source reads dated 2026-11-18; no status is invented. Both can coexist; if the reviewer prefers PR #131's hub, the landing table can link to it instead of carrying rows. **This session does not edit `readiness/`, `review-board/` or any sibling hub.**
+
+---
+
+## Integration session 2026-11-18 (B) - merge of the 2026-11-18 sibling work into the readiness build
+
+Scope: `main` moved while this session's commits were open (PR #135 and PR #137 merged the injury-capture
+hub and its evidence audit). Rebased `arena/4c90e65f-korea2` onto `cb8e4b9`. Three collisions, all resolved
+by keeping both sides:
+
+- `COORDINATION.md` - append-only, both sections kept (usual).
+- `data/flagged.json` - the injury-capture session added **FL-16** (official Game Book reuse terms: the PDF
+  prohibits use beyond assisting media coverage without written NFL permission). My same-morning rows also
+  started at FL-16. Their row keeps FL-16; my eight rows were renumbered **FL-17 to FL-24** and the
+  renumbering is stated in the first moved row's reason rather than silently re-written. Cross-references
+  on `pages/suggestions.html` were updated to the new ids. Register now 24 rows.
+- `data/sources.json` - union by id: their 65 plus my 6 dated re-read ids = **71**, no id collision
+  (their `SRC-NFL-GAMEBOOK-W10` and my `SRC-NFL-GAMEBOOK-NEDET-W10` are two rows for the same PDF).
+
+Same-day convergence worth recording: two sessions read the same Patriots at Lions game centre and the same
+Game Book PDF URL minutes apart, independently. Neither parsed the PDF, and this build now cites their
+reuse-terms finding as the reason the unparsed state is a policy position, not only a scope limit
+(`pages/live-checks.html`).
+
+Stale claims corrected rather than left published:
+- Readiness row **RR-C11** said the capture cadence "misses Thursday and Friday". Their new
+  `nfl-injury-capture.yml` runs `cron: '0 14 * * 3,4,5,6,0'`. The row now records both workflows, the
+  cadence each keeps, and the real remaining gap: 2 capture jobs, 5 capture days/week between them,
+  **1** dated capture published, and no path from `injury-capture/manifests` into the site register.
+- Suggestion **S12** said "add Thursday and Friday to the schedule"; it now says "pick one canonical capture
+  job", which is what is actually undecided.
+
+New review-queue rows (PROPOSED only, nothing implemented from them): **S18** idempotency guard for
+append-only registers (the PR #133 duplicate table, finding FI-0, flag FL-24) and **S19** one disposition
+vocabulary across the three suggestion registers (flag FL-23). `pages/suggestions.html` gains the
+questions/information/answers queue with the 14 review-board verdicts and the per-register row counts.
+
+`review-board/scripts/verify_all.py`: 119 passed / 2 failed against the tree as found. Both were the hub's
+own "commit me / rebuild me" guards; running its documented generators (`ingest.py`, `build_site.py`) and
+committing the result gives **121 passed, 0 failed**, which is committed here together with the regenerated
+registers and pages so its CI page guard stays exact. One assertion of that verifier was inverted by this
+session (it required the hub to stay out of the root navigation, which the integration brief contradicts) -
+logged as flag **FL-22** with the reason, not quietly.
+
+Environment note for anyone re-running checks here: `scripts/test_correctness_sweep.py` needs the pinned
+stack, which the sandbox interpreter lacks (`ModuleNotFoundError: numpy`). It was run in a throwaway venv
+(`/tmp/venv`, numpy 2.4.6 / scipy 1.17.1 / pandas from PyPI): **9 tests, OK**. Nothing in the repository
+depends on that venv.

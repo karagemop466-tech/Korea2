@@ -1537,7 +1537,10 @@ def page_live_checks() -> str:
               f'<a href="{esc(probe.get("url", ""))}" rel="noopener">game centre</a>'],
              ["Game Book", f'<a href="{esc(probe.get("game_book_pdf", ""))}" rel="noopener">official Game Book PDF</a>',
               "This is the structured source for starters, inactives and snaps. The link is verified; the "
-              "document was not opened at this capture, so no starter or snap value is claimed anywhere.",
+              "document was not opened at this capture, so no starter or snap value is claimed anywhere. The "
+              "injury-capture session read the same PDF the same morning and records that its own terms "
+              "prohibit use beyond assisting media coverage without written NFL permission (flag FL-16), so "
+              "leaving it unparsed is a policy position as well as a scope limit.",
               f'<a href="{esc(probe.get("url", ""))}" rel="noopener">game centre</a>'],
              ["Quarter scores", esc("NE " + "/".join(str(x) for x in probe.get("quarters", {}).get("NE", []))
                                     + " ; DET " + "/".join(str(x) for x in probe.get("quarters", {}).get("DET", []))),
@@ -1556,7 +1559,10 @@ def page_live_checks() -> str:
             '<div class="grid2"><div class="panel"><h3>Out of scope of these reads</h3><ul class="crosses">'
             "<li>No price, line, odds or settlement value: the official pages read here publish none, and the "
             "league's betting feed goes to operators through an exclusive distributor.</li>"
-            "<li>No starter, inactive or snap-share value: the Game Book link is recorded, not parsed.</li>"
+            "<li>No starter, inactive or snap-share value: the Game Book link is recorded, not parsed, and "
+            "the document's own terms restrict reuse without written league permission (flag FL-16).</li>",
+            "<li>No claim about the injury-capture hub's manifests: they are a second same-day read of the same "
+            "report and are cited as such, not reconciled row by row here.</li>"
             "<li>No depth rank: the report table has no such column, which was re-confirmed by this read.</li>"
             "<li>No claim that any committed model value, correlation or strategy result is correct.</li>"
             "</ul><a class=\"panel-link\" href=\"pages/flagged.html\">Flagged for review &rarr;</a></div>"

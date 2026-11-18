@@ -623,15 +623,19 @@ def rows(m: dict) -> list[dict]:
     add("RR-C11", "Availability and depth",
         "Snapshot the nfl.com injury report every Wednesday, Thursday and Friday and keep a dated history",
         "PARTIAL",
-        "A scheduled capture exists, but its cadence is Wednesday and Saturday (cron '30 21 * * 3' and "
-        "'30 21 * * 6'), which misses Thursday and Friday - the days on which most game-status changes are "
-        "made. The published site holds one capture, which cannot support a backtest.",
-        "3 captures in the kickoff week (Wed/Thu/Fri), each with row counts, a raw-response hash and a fetch "
-        "timestamp. Today: 2 capture days per week; 1 dated capture on the site.",
-        "Workflow fetch-injuries.yml drives the derived snapshot; this capture adds an independently dated "
-        "read with per-row clock times.",
+        "Two scheduled captures now exist and disagree about cadence: fetch-injuries.yml runs Wednesday and "
+        "Saturday (cron '30 21 * * 3', '30 21 * * 6') while nfl-injury-capture.yml, merged 2026-11-18, runs "
+        "14:00 UTC on Wed/Thu/Fri/Sat/Sun (cron '0 14 * * 3,4,5,6,0') into its own manifest set. Thursday and "
+        "Friday are therefore covered, by one of the two, and neither feeds the published site: the site still "
+        "holds 1 dated capture, which cannot support a series or a backtest.",
+        "One canonical capture job whose manifests land in the site's register, with 3 reads in a kickoff week "
+        "(Wed/Thu/Fri), each carrying row counts, a raw-response hash and a fetch timestamp. Today: 2 capture "
+        "workflows, 5 capture days per week between them, 1 dated capture published.",
+        "Workflow fetch-injuries.yml plus injury-capture/manifests (6 manifests, 2026-11-18T03:51Z to "
+        "03:55Z); this capture adds an independently dated read with per-row clock times.",
         E("capture", "injury", "rb_injuries"),
-        "Add Thursday and Friday to the schedule and retain the raw hash, which RR-C13 and RR-F1 also need.")
+        "Decide which capture workflow is canonical, publish its manifests into the site register, and retain "
+        "the raw hash, which RR-C13 and RR-F1 also need.")
 
     add("RR-C12", "Availability and depth",
         "Treat the injury report as a timestamped series, not a weekly snapshot; publish the delta",
@@ -1034,7 +1038,7 @@ def rows(m: dict) -> list[dict]:
         f"Today: window = 1 root read ({m['capture_read_at']}) plus hub reads dated 2026-11-12 and 2026-11-14.",
         "The root capture register is append-only, dated and per-row sourced, which is the ledger row format.",
         E("capture", "ld_flag"),
-        "Add the Wed/Thu/Fri reads (RR-C11) and the ledger becomes usable for point-in-time joins.")
+        "Point the register at the canonical capture job (RR-C11) and the ledger becomes usable for point-in-time joins.")
 
     # ---- G. site, decision support and process ---------------------------------------------
     add("RR-G1", "Site and decision support",
