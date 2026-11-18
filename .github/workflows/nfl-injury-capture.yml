@@ -1,0 +1,78 @@
+name: nfl-injury-capture
+
+# Captures the official nfl.com weekly injury report on a GitHub runner, keeps the raw bytes as a
+# workflow artifact (outside the static site), and commits only a hash/count manifest.
+# Fails loudly on a missing table, missing column, wrong week, or row count below the pinned minimum.
+# The sandbox cannot reach nfl.com, so this runs here, not locally.
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: 'Season (e.g. 2026)'
+        required: false
+        default: '2026'
+      week:
+        description: 'Regular-season week number'
+        required: false
+        default: '10'
+  schedule:
+    # Daily (UTC) during the week. Scheduled runs use the week input default below; update it per week.
+    - cron: '0 14 * * 3,4,5,6,0'
+  push:
+    branches: ['arena/**']
+    paths:
+      - 'injury-capture/scripts/capture_injury_report.py'
+      - '.github/workflows/nfl-injury-capture.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nfl-injury-capture-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    env:
+      SEASON: ${{ github.event.inputs.season || '2026' }}
+      WEEK: ${{ github.event.inputs.week || '10' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Capture official injury report (fail-closed)
+        run: |
+          set -euo pipefail
+          python3 injury-capture/scripts/capture_injury_report.py \
+            --season "$SEASON" --week "$WEEK" --out-dir "$RUNNER_TEMP/capture"
+
+      - name: Upload raw capture (kept outside the static site)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-injury-capture-${{ env.SEASON }}-reg${{ env.WEEK }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/capture
+          retention-days: 90
+          if-no-files-found: warn
+
+      - name: Commit hash manifest
+        if: github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          git config user.name "injury-capture-bot"
+          git config user.email "injury-capture-bot@users.noreply.github.com"
+          git add injury-capture/manifests
+          if git diff --cached --quiet; then
+            echo "No new manifest."
+          else
+            git commit -m "Capture manifest: NFL injury report ${SEASON} reg${WEEK} (${GITHUB_RUN_ID})"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
