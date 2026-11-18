@@ -2,6 +2,8 @@ name: nfl-injury-capture
 
 # Captures the official nfl.com weekly injury report on a GitHub runner, keeps the raw bytes as a
 # workflow artifact (outside the static site), and commits only a hash/count manifest.
+# Manifests are committed only from arena/** branches. Runs on main keep artifacts only: no bot
+# writes to main (see COORDINATION.md, IC-1 notes).
 # Fails loudly on a missing table, missing column, wrong week, or row count below the pinned minimum.
 # The sandbox cannot reach nfl.com, so this runs here, not locally.
 
@@ -63,7 +65,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Commit hash manifest (also on failure, so every attempt is recorded)
-        if: always() && github.event_name != 'pull_request'
+        if: always() && startsWith(github.ref_name, 'arena/')
         run: |
           set -euo pipefail
           git config user.name "injury-capture-bot"
