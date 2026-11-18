@@ -28,33 +28,33 @@
   "entries": [
     {
       "rank": 1,
-      "id": "S6_divisional_home_dog",
-      "name": "Divisional home underdog",
+      "id": "S5_bye_week_team",
+      "name": "Team coming off a bye (13+ days rest) vs a normal-rest opponent",
       "family": "single bet (situational)",
       "verdict": "REJECTED",
       "gates_passed": "5/10",
       "signal": {
         "gates_passed": "5/10",
-        "win_rate": 0.5149,
+        "win_rate": 0.4945,
         "win_rate_ci": [
-          0.4311,
-          0.5979
+          0.3941,
+          0.5954
         ],
-        "p_value": 0.795629,
-        "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.937314,
-        "n_bets": 137,
-        "decided": 134,
+        "p_value": 1.0,
+        "bh_adjusted_p": 1.0,
+        "deflated_sharpe_p": 0.975137,
+        "n_bets": 92,
+        "decided": 91,
         "clv": null
       },
       "staking": {
-        "roi": -0.0121,
+        "roi": -0.0578,
         "roi_ci": [
-          -0.1677,
-          0.1465
+          -0.2526,
+          0.138
         ],
-        "profit_units": -1.626,
-        "units_staked": 134.0
+        "profit_units": -5.262,
+        "units_staked": 91.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -65,17 +65,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 137,
-      "decided": 134,
-      "roi": -0.0121,
+      "n_bets": 92,
+      "decided": 91,
+      "roi": -0.0578,
       "roi_ci": [
-        -0.1677,
-        0.1465
+        -0.2526,
+        0.138
       ],
-      "win_rate": 0.5149,
-      "p_value": 0.795629,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.937314,
+      "win_rate": 0.4945,
+      "p_value": 1.0,
+      "bh_adjusted_p": 1.0,
+      "deflated_sharpe_p": 0.975137,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -87,65 +87,6 @@
     },
     {
       "rank": 2,
-      "id": "S5_bye_week_team",
-      "name": "Team coming off a bye (13+ days rest) vs a normal-rest opponent",
-      "family": "single bet (situational)",
-      "verdict": "REJECTED",
-      "gates_passed": "5/10",
-      "signal": {
-        "gates_passed": "5/10",
-        "win_rate": 0.4941,
-        "win_rate_ci": [
-          0.3904,
-          0.5983
-        ],
-        "p_value": 1.0,
-        "bh_adjusted_p": 1.0,
-        "deflated_sharpe_p": 0.974492,
-        "n_bets": 86,
-        "decided": 85,
-        "clv": null
-      },
-      "staking": {
-        "roi": -0.0587,
-        "roi_ci": [
-          -0.263,
-          0.1421
-        ],
-        "profit_units": -4.99,
-        "units_staked": 85.0
-      },
-      "demotion_gate": {
-        "gate": "D1",
-        "name": "Demotion gate (live -> paper)",
-        "window_decided": 50,
-        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
-        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
-        "status": "dormant",
-        "reason": "strategy is not live; D1 applies only after promotion"
-      },
-      "n_bets": 86,
-      "decided": 85,
-      "roi": -0.0587,
-      "roi_ci": [
-        -0.263,
-        0.1421
-      ],
-      "win_rate": 0.4941,
-      "p_value": 1.0,
-      "bh_adjusted_p": 1.0,
-      "deflated_sharpe_p": 0.974492,
-      "reward": "none - gate failure",
-      "failed_gates": [
-        "G2",
-        "G4",
-        "G5",
-        "G8",
-        "G9"
-      ]
-    },
-    {
-      "rank": 3,
       "id": "C1_all_home_control",
       "name": "Control - back every home team",
       "family": "control",
@@ -153,26 +94,26 @@
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.4962,
+        "win_rate": 0.4878,
         "win_rate_ci": [
-          0.4638,
-          0.5286
+          0.456,
+          0.5197
         ],
-        "p_value": 0.842442,
+        "p_value": 0.473282,
         "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.998759,
-        "n_bets": 936,
-        "decided": 911,
+        "deflated_sharpe_p": 0.999824,
+        "n_bets": 966,
+        "decided": 941,
         "clv": null
       },
       "staking": {
-        "roi": -0.0519,
+        "roi": -0.0682,
         "roi_ci": [
-          -0.1102,
-          0.0095
+          -0.127,
+          -0.0075
         ],
-        "profit_units": -47.31,
-        "units_staked": 911.0
+        "profit_units": -64.137,
+        "units_staked": 941.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -183,17 +124,77 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 936,
-      "decided": 911,
-      "roi": -0.0519,
+      "n_bets": 966,
+      "decided": 941,
+      "roi": -0.0682,
       "roi_ci": [
-        -0.1102,
-        0.0095
+        -0.127,
+        -0.0075
       ],
-      "win_rate": 0.4962,
-      "p_value": 0.842442,
+      "win_rate": 0.4878,
+      "p_value": 0.473282,
       "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.998759,
+      "deflated_sharpe_p": 0.999824,
+      "reward": "none - gate failure",
+      "failed_gates": [
+        "G2",
+        "G4",
+        "G5",
+        "G6",
+        "G8",
+        "G9"
+      ]
+    },
+    {
+      "rank": 3,
+      "id": "C2_all_under_control",
+      "name": "Control - under every game",
+      "family": "control",
+      "verdict": "REJECTED",
+      "gates_passed": "4/10",
+      "signal": {
+        "gates_passed": "4/10",
+        "win_rate": 0.4901,
+        "win_rate_ci": [
+          0.4586,
+          0.5217
+        ],
+        "p_value": 0.561502,
+        "bh_adjusted_p": 0.984847,
+        "deflated_sharpe_p": 0.999694,
+        "n_bets": 966,
+        "decided": 961,
+        "clv": null
+      },
+      "staking": {
+        "roi": -0.0629,
+        "roi_ci": [
+          -0.1218,
+          -0.0026
+        ],
+        "profit_units": -60.478,
+        "units_staked": 961.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
+      "n_bets": 966,
+      "decided": 961,
+      "roi": -0.0629,
+      "roi_ci": [
+        -0.1218,
+        -0.0026
+      ],
+      "win_rate": 0.4901,
+      "p_value": 0.561502,
+      "bh_adjusted_p": 0.984847,
+      "deflated_sharpe_p": 0.999694,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -206,33 +207,33 @@
     },
     {
       "rank": 4,
-      "id": "C2_all_under_control",
-      "name": "Control - under every game",
-      "family": "control",
+      "id": "S1_model_edge_2",
+      "name": "Model spread edge >= 2.0 pts",
+      "family": "single bet",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.4919,
+        "win_rate": 0.4913,
         "win_rate_ci": [
-          0.4599,
-          0.524
+          0.4506,
+          0.5321
         ],
-        "p_value": 0.646379,
+        "p_value": 0.70721,
         "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.999491,
-        "n_bets": 936,
-        "decided": 931,
+        "deflated_sharpe_p": 0.998199,
+        "n_bets": 589,
+        "decided": 574,
         "clv": null
       },
       "staking": {
-        "roi": -0.0595,
+        "roi": -0.0609,
         "roi_ci": [
-          -0.1199,
-          0.0024
+          -0.1357,
+          0.016
         ],
-        "profit_units": -55.418,
-        "units_staked": 931.0
+        "profit_units": -34.946,
+        "units_staked": 574.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -243,17 +244,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 936,
-      "decided": 931,
-      "roi": -0.0595,
+      "n_bets": 589,
+      "decided": 574,
+      "roi": -0.0609,
       "roi_ci": [
-        -0.1199,
-        0.0024
+        -0.1357,
+        0.016
       ],
-      "win_rate": 0.4919,
-      "p_value": 0.646379,
+      "win_rate": 0.4913,
+      "p_value": 0.70721,
       "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.999491,
+      "deflated_sharpe_p": 0.998199,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -266,33 +267,33 @@
     },
     {
       "rank": 5,
-      "id": "S1_model_edge_2",
-      "name": "Model spread edge >= 2.0 pts",
+      "id": "S2_model_edge_3",
+      "name": "Model spread edge >= 3.0 pts",
       "family": "single bet",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.4955,
+        "win_rate": 0.4767,
         "win_rate_ci": [
-          0.4542,
-          0.5369
+          0.4286,
+          0.5252
         ],
-        "p_value": 0.865434,
+        "p_value": 0.372292,
         "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.99642,
-        "n_bets": 572,
-        "decided": 557,
+        "deflated_sharpe_p": 0.999417,
+        "n_bets": 420,
+        "decided": 407,
         "clv": null
       },
       "staking": {
-        "roi": -0.0528,
+        "roi": -0.0883,
         "roi_ci": [
-          -0.1299,
-          0.0259
+          -0.176,
+          0.0066
         ],
-        "profit_units": -29.42,
-        "units_staked": 557.0
+        "profit_units": -35.918,
+        "units_staked": 407.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -303,17 +304,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 572,
-      "decided": 557,
-      "roi": -0.0528,
+      "n_bets": 420,
+      "decided": 407,
+      "roi": -0.0883,
       "roi_ci": [
-        -0.1299,
-        0.0259
+        -0.176,
+        0.0066
       ],
-      "win_rate": 0.4955,
-      "p_value": 0.865434,
+      "win_rate": 0.4767,
+      "p_value": 0.372292,
       "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.99642,
+      "deflated_sharpe_p": 0.999417,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -326,33 +327,33 @@
     },
     {
       "rank": 6,
-      "id": "S2_model_edge_3",
-      "name": "Model spread edge >= 3.0 pts",
-      "family": "single bet",
+      "id": "S3_model_total_edge",
+      "name": "Model total edge >= 3.0 pts",
+      "family": "single bet (total)",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.4798,
+        "win_rate": 0.5093,
         "win_rate_ci": [
-          0.431,
-          0.529
+          0.459,
+          0.5594
         ],
-        "p_value": 0.451024,
+        "p_value": 0.757357,
         "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.998996,
-        "n_bets": 409,
-        "decided": 396,
+        "deflated_sharpe_p": 0.974614,
+        "n_bets": 381,
+        "decided": 377,
         "clv": null
       },
       "staking": {
-        "roi": -0.0819,
+        "roi": -0.0279,
         "roi_ci": [
-          -0.1717,
-          0.0114
+          -0.1218,
+          0.0685
         ],
-        "profit_units": -32.44,
-        "units_staked": 396.0
+        "profit_units": -10.514,
+        "units_staked": 377.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -363,17 +364,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 409,
-      "decided": 396,
-      "roi": -0.0819,
+      "n_bets": 381,
+      "decided": 377,
+      "roi": -0.0279,
       "roi_ci": [
-        -0.1717,
-        0.0114
+        -0.1218,
+        0.0685
       ],
-      "win_rate": 0.4798,
-      "p_value": 0.451024,
+      "win_rate": 0.5093,
+      "p_value": 0.757357,
       "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.998996,
+      "deflated_sharpe_p": 0.974614,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -386,33 +387,33 @@
     },
     {
       "rank": 7,
-      "id": "S3_model_total_edge",
-      "name": "Model total edge >= 3.0 pts",
-      "family": "single bet (total)",
+      "id": "S4_rest_advantage",
+      "name": "Rest advantage >= 3 days",
+      "family": "single bet (situational)",
       "verdict": "REJECTED",
       "gates_passed": "4/10",
       "signal": {
         "gates_passed": "4/10",
-        "win_rate": 0.5055,
+        "win_rate": 0.5238,
         "win_rate_ci": [
-          0.4545,
-          0.5564
+          0.4564,
+          0.5903
         ],
-        "p_value": 0.87542,
+        "p_value": 0.534662,
         "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.981829,
-        "n_bets": 370,
-        "decided": 366,
+        "deflated_sharpe_p": 0.918179,
+        "n_bets": 214,
+        "decided": 210,
         "clv": null
       },
       "staking": {
-        "roi": -0.0353,
+        "roi": -0.0004,
         "roi_ci": [
-          -0.129,
-          0.0629
+          -0.1279,
+          0.1264
         ],
-        "profit_units": -12.914,
-        "units_staked": 366.0
+        "profit_units": -0.085,
+        "units_staked": 210.0
       },
       "demotion_gate": {
         "gate": "D1",
@@ -423,17 +424,17 @@
         "status": "dormant",
         "reason": "strategy is not live; D1 applies only after promotion"
       },
-      "n_bets": 370,
-      "decided": 366,
-      "roi": -0.0353,
+      "n_bets": 214,
+      "decided": 210,
+      "roi": -0.0004,
       "roi_ci": [
-        -0.129,
-        0.0629
+        -0.1279,
+        0.1264
       ],
-      "win_rate": 0.5055,
-      "p_value": 0.87542,
+      "win_rate": 0.5238,
+      "p_value": 0.534662,
       "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.981829,
+      "deflated_sharpe_p": 0.918179,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
@@ -446,66 +447,6 @@
     },
     {
       "rank": 8,
-      "id": "S4_rest_advantage",
-      "name": "Rest advantage >= 3 days",
-      "family": "single bet (situational)",
-      "verdict": "REJECTED",
-      "gates_passed": "4/10",
-      "signal": {
-        "gates_passed": "4/10",
-        "win_rate": 0.525,
-        "win_rate_ci": [
-          0.456,
-          0.5931
-        ],
-        "p_value": 0.524622,
-        "bh_adjusted_p": 0.984847,
-        "deflated_sharpe_p": 0.915114,
-        "n_bets": 204,
-        "decided": 200,
-        "clv": null
-      },
-      "staking": {
-        "roi": 0.0009,
-        "roi_ci": [
-          -0.1275,
-          0.1274
-        ],
-        "profit_units": 0.187,
-        "units_staked": 200.0
-      },
-      "demotion_gate": {
-        "gate": "D1",
-        "name": "Demotion gate (live -> paper)",
-        "window_decided": 50,
-        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
-        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
-        "status": "dormant",
-        "reason": "strategy is not live; D1 applies only after promotion"
-      },
-      "n_bets": 204,
-      "decided": 200,
-      "roi": 0.0009,
-      "roi_ci": [
-        -0.1275,
-        0.1274
-      ],
-      "win_rate": 0.525,
-      "p_value": 0.524622,
-      "bh_adjusted_p": 0.984847,
-      "deflated_sharpe_p": 0.915114,
-      "reward": "none - gate failure",
-      "failed_gates": [
-        "G2",
-        "G4",
-        "G5",
-        "G6",
-        "G8",
-        "G9"
-      ]
-    },
-    {
-      "rank": 9,
       "id": "S7_wind_under",
       "name": "Under when wind >= 15 mph outdoors",
       "family": "single bet (total)",
@@ -554,6 +495,66 @@
       "p_value": 0.765992,
       "bh_adjusted_p": 0.984847,
       "deflated_sharpe_p": 0.899929,
+      "reward": "none - gate failure",
+      "failed_gates": [
+        "G2",
+        "G4",
+        "G5",
+        "G6",
+        "G8",
+        "G9"
+      ]
+    },
+    {
+      "rank": 9,
+      "id": "S6_divisional_home_dog",
+      "name": "Divisional home underdog",
+      "family": "single bet (situational)",
+      "verdict": "REJECTED",
+      "gates_passed": "4/10",
+      "signal": {
+        "gates_passed": "4/10",
+        "win_rate": 0.5,
+        "win_rate_ci": [
+          0.4177,
+          0.5823
+        ],
+        "p_value": 1.0,
+        "bh_adjusted_p": 1.0,
+        "deflated_sharpe_p": 0.970211,
+        "n_bets": 141,
+        "decided": 138,
+        "clv": null
+      },
+      "staking": {
+        "roi": -0.0408,
+        "roi_ci": [
+          -0.1992,
+          0.1117
+        ],
+        "profit_units": -5.626,
+        "units_staked": 138.0
+      },
+      "demotion_gate": {
+        "gate": "D1",
+        "name": "Demotion gate (live -> paper)",
+        "window_decided": 50,
+        "thresholds_status": "PROPOSED - thresholds (50-bet window, ROI floor -5%, CLV floor 0) are not yet calibrated on live data; D1 is armed but dormant while no strategy is live. Calibration is a prerequisite for the first promotion, not after it.",
+        "data_limitation": "CLV requires an opening price and a taken price. The committed feed stores closing-type prices only (opening prices exist for 2021), so condition (a) evaluates only when a bet carries a measured CLV; strategies without opening prices are judged on (b) alone and the gap is disclosed.",
+        "status": "dormant",
+        "reason": "strategy is not live; D1 applies only after promotion"
+      },
+      "n_bets": 141,
+      "decided": 138,
+      "roi": -0.0408,
+      "roi_ci": [
+        -0.1992,
+        0.1117
+      ],
+      "win_rate": 0.5,
+      "p_value": 1.0,
+      "bh_adjusted_p": 1.0,
+      "deflated_sharpe_p": 0.970211,
       "reward": "none - gate failure",
       "failed_gates": [
         "G2",
