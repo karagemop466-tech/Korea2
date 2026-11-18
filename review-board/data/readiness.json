@@ -3065,5 +3065,5 @@
  ],
  "method": "Each hub's own decision-readiness register is read as-is and normalised to three states: answered (the hub records an answer and no gap), partially answered (an answer and a stated gap), unanswered (a stated gap and no answer). A cluster is only 'closed' when no hub has an open item in it; disagreement between hubs is shown side by side, never averaged.",
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "5fa89bb23efb604481fca73e0e51571ea6cb14c9"
+ "_generated_from_repo_commit": "6832ee24b1bbc7c7641bc02c2c1ce8f79d05b578"
 }

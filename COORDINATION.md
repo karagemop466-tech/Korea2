@@ -3167,3 +3167,59 @@ FL-21), no depth rank or snap shares (FL-15, FL-19; the Game Book's own terms bl
 two capture jobs not yet consolidated (RR-C11, S12), the suggestion-vocabulary conflict (FL-23, S19), the
 PR #133 duplicate table (FL-24, S18), `results/price_snapshots.json` residuals versus `data/derived/model.json`,
 and tracked `.venv-b6/`.
+
+
+# Session board — `arena/2ca76106-korea2` (requirements desk: official capture, decision-readiness table, suggestion review queue, integration)
+
+**Session ID:** `arena/2ca76106-korea2` (Arena-assigned branch is fixed; base `f7b8e8f` of `main`).
+**Claimed:** 2026-11-18 UTC, before implementation. No other session held a live claim on the scope below.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| RD-0 | Claim a non-overlapping scope in this board | done | `arena/2ca76106-korea2` | this append-only section |
+| RD-1 | Retrieve and transcribe official NFL.com pages (Week 10 injury report, Week 10 schedule/results, Week 11 schedule, 2026 standings) into dated, hashed registers | done | `arena/2ca76106-korea2` | `requirements-desk/scripts/official_capture.py`, `requirements-desk/data/*.csv`, `requirements-desk/data/capture_manifest.json` |
+| RD-2 | Compute derived statistics from those registers only (designation counts, per-club counts, Pythagorean luck, official correlations with n and intervals, Week 10 results summary, fixture context) | done | `arena/2ca76106-korea2` | `requirements-desk/scripts/analyze.py`, `requirements-desk/data/analysis.json` |
+| RD-3 | Publish a 74-row requirement register with status, blocking gate and a numeric clearance condition | done | `arena/2ca76106-korea2` | `requirements-desk/scripts/requirements.py` |
+| RD-4 | Publish the suggestion review queue (choose-a-path, nothing auto-implemented) and the decision-question register | done | `arena/2ca76106-korea2` | `requirements-desk/scripts/decisions.py` |
+| RD-5 | Build the hub site (landing page + 13 subpages) and a strict verifier that fails on a missing per-row source link, a broken link, a register row-count drift or an incomplete requirement row | done | `arena/2ca76106-korea2` | `requirements-desk/scripts/build_site.py`, `requirements-desk/scripts/verify.py`, `requirements-desk/index.html`, `requirements-desk/pages/`, `requirements-desk/assets/` |
+| RD-6 | Integration: link the hub from root navigation, update README and the root executive summary, run the repo-wide checkers, then PR + merge + confirm Pages | in progress | `arena/2ca76106-korea2` | one nav entry in root `index.html`; `README.md`; `EXECUTIVE_SUMMARY.md`; `docs/REQUIREMENTS_DESK_2026-11-18.md` |
+
+**Explicitly NOT touched:** every other hub's files, all model and price data, `pages/` (root), `scripts/`, `data/`, `tests/`, and all workflows. Requests to other owners are logged at the end of this section, not actioned.
+
+## RD-1 — what was retrieved, and how
+
+Captured `2026-11-18T03:52Z` with the session's page-retrieval tool. The sandbox shell has **no network route to nfl.com**, so no raw HTTP response body could be retained; the manifest hash covers the transcribed register rows, not the NFL response bytes. This is published as flag F-01 on the hub's Flagged page.
+
+| Source | URL | Chunks | Rows produced |
+|---|---|---|---|
+| Week 10 2026 injury report | https://www.nfl.com/injuries/league/2026/REG10 | 8 | 347 listed-player rows, 28 club tables |
+| Week 10 2026 schedule | https://www.nfl.com/schedules/2026/by-week/week-10 | 2 | 14 games FINAL; 4 clubs on bye |
+| Week 11 2026 schedule | https://www.nfl.com/schedules/2026/by-week/week-11 | 3 | 13 fixtures; 6 clubs on bye |
+| 2026 division standings | https://www.nfl.com/standings/division/2026/REG | 2 | 32 clubs |
+
+The NFL.com Week 11 injury report was **not** published at capture time (the canonical injury page still displayed Week 10 at 03:52 UTC on 2026-11-18). Recorded as flag F-02.
+
+## RD-1/RD-2 — findings
+
+- **347 rows, not 254 or 279.** A complete transcription of the Week 10 report yields 347 listed-player rows across 28 club tables, with no club table left empty. Both counts previously quoted in the brief fail to reproduce. 171 of 347 rows carry a game status (Questionable 90, Out 70, Doubtful 11, blank 176), which supersedes the brief's statement that only 6 rows carry a designation.
+- **The three Lions rows are Out.** Kerby Joseph (knee), Cade Mays (ankle) and D.J. Reed (hip) all read Out on the official page. VR-08 / VR-12 confirmed.
+- **Seattle 15 confirmed; Cincinnati is 9, not 4.** VR-05 confirmed, VR-06 not confirmed.
+- **F-W10-6 resolved.** CHI, DEN, PHI and TB have no Week 10 table; the official Week 10 schedule page lists all four under "Teams on Bye", so absence is explained rather than merely noted.
+- **Malik Willis and Lamar Jackson are absent** from their clubs' tables. The report does not state why; the IR context comes from NFL.com news headlines the page links, so it is recorded as headlines only and does not populate any column.
+- **Official correlations, n=32, Fisher-z 95% intervals:** win pct vs points for +0.657 [+0.400, +0.818]; win pct vs points against −0.670 [−0.826, −0.419]; win pct vs net points +0.875 [+0.758, +0.938]; win pct vs Pythagorean expected wins +0.872 [+0.752, +0.936].
+- **Luck panel from official PF/PA:** luck SD 1.076 wins across 32 clubs (Pythagorean exponent 2.65, a stated assumption, not an NFL figure). Persistence is untested — one season only.
+- **Week 10 results:** 14/14 FINAL; home teams won 8 of 14 decided games; mean total 45.9; mean absolute margin 12.9.
+
+## Verification performed
+
+- `python3 requirements-desk/scripts/verify.py` — pass: 14 pages, 24 tables, 1,052 links, 74 requirements, 6 registers. Enforces (a) every `<tr>` in a `<tbody>` carries a source link, (b) no broken internal/anchor/external link, (c) every external link is https, (d) register row counts match the committed CSVs and the manifest hashes, (e) every requirement row has a status, gate and clearance condition.
+- `python3 tests/check_site.py` — pass: 246 pages, 608 tables, 14,612 links (was 232 pages before this hub).
+- `python3 scripts/check_links.py` — pass: 5,072 local references, no broken internal links.
+- Rebuild determinism: `official_capture.py` then `analyze.py` then `build_site.py` re-run from a clean state reproduce byte-identical CSVs and pages; the register hashes are unchanged.
+
+## Requests to other owners (logged, not actioned)
+
+1. **Root navigation owner:** a single "Requirements Desk" entry was added to the root sidebar so the hub is reachable. If the navigation is regenerated, please keep that entry; the hub is self-contained under `requirements-desk/`.
+2. **Line Desk / Price Desk owners:** the 347-row count and the Week 10 results below supersede the 254/279 counts and may supersede partial Week 10 result rows. Please reconcile at your discretion; this session did not edit your files.
+3. **Injury-capture owner (`injury-report-w10/`, `decision-hub/`):** the Week 10 capture here is a complete 347-row transcription with a register hash, which may replace the 3-of-28 partial transcription recorded there.
+4. **Anyone adding a leaderboard:** the hub's decision-readiness table asserts 0 qualified strategies and unfunded rewards. If that changes, R17/R18 need their status updated in `requirements-desk/scripts/requirements.py`.

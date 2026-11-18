@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Official correlations | NFL Requirements Desk</title>
+<meta name="generator" content="requirements-desk/scripts/build_site.py">
+<link rel="stylesheet" href="../../requirements-desk/assets/style.css">
+</head><body>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../../requirements-desk/index.html">
+    <strong>REQUIREMENTS DESK</strong><span>NFL research · verified rows only</span></a>
+  <nav aria-label="Main navigation"><a class="" href="../../requirements-desk/index.html">Overview</a><a class="" href="../../requirements-desk/pages/executive.html">Executive summary</a><a class="" href="../../requirements-desk/pages/requirements.html">Requirements register</a><a class="" href="../../requirements-desk/index.html#readiness">Decision readiness</a><a class="sep">— Evidence —</a><a class="" href="../../requirements-desk/pages/injuries.html">Availability register</a><a class="" href="../../requirements-desk/pages/results.html">Verified results</a><a class="" href="../../requirements-desk/pages/schedule.html">Fixture & venue</a><a class="" href="../../requirements-desk/pages/standings.html">Standings & luck</a><a class="" href="../../requirements-desk/pages/luck.html">Removal of luck</a><a class="active" href="../../requirements-desk/pages/correlations.html">Official correlations</a><a class="sep">— Review —</a><a class="" href="../../requirements-desk/pages/suggestions.html">Suggestion review queue</a><a class="" href="../../requirements-desk/pages/questions.html">Decision questions</a><a class="" href="../../requirements-desk/pages/verification.html">Brief claim audit</a><a class="" href="../../requirements-desk/pages/flagged.html">Flagged for review</a><a class="" href="../../requirements-desk/pages/sources.html">Source register</a></nav>
+</aside>
+<main>
+<div class="crumb">Official correlations</div>
+
+<div class="eyebrow">CORRELATIONS · OFFICIAL NUMBERS ONLY, n ALWAYS PUBLISHED</div>
+<h1>Four coefficients we can stand behind, and the ones we cannot</h1>
+<p class="lede">Every coefficient below is computed only from numbers transcribed from an official NFL.com
+page. Each carries its sample size and a Fisher-z 95% interval. Coefficients that cannot be computed from
+an official source are listed as missing rather than estimated.</p>
+
+<h2>Published correlations (team-standings family)</h2>
+<div class="tw"><table class=""><thead><tr><th>Pair</th><th>Pearson r</th><th>95% CI (Fisher z)</th><th>n</th><th>Input</th><th>Data source</th><th>Method</th></tr></thead><tbody><tr><td>Win pct vs points for</td><td>+0.657</td><td>[+0.400, +0.818]</td><td>32</td><td>Official NFL.com standings (2026)</td><td><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener" target="_blank">data</a></td><td><a href="https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm" rel="noopener" target="_blank">method</a></td></tr><tr><td>Win pct vs points against</td><td>-0.670</td><td>[-0.826, -0.419]</td><td>32</td><td>Official NFL.com standings (2026)</td><td><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener" target="_blank">data</a></td><td><a href="https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm" rel="noopener" target="_blank">method</a></td></tr><tr><td>Win pct vs net points</td><td>+0.875</td><td>[+0.758, +0.938]</td><td>32</td><td>Official NFL.com standings (2026)</td><td><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener" target="_blank">data</a></td><td><a href="https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm" rel="noopener" target="_blank">method</a></td></tr><tr><td>Win pct vs Pythagorean expected wins</td><td>+0.872</td><td>[+0.752, +0.936]</td><td>32</td><td>Official NFL.com standings (2026)</td><td><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener" target="_blank">data</a></td><td><a href="https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm" rel="noopener" target="_blank">method</a></td></tr></tbody></table></div>
+
+<div class="notice"><b>Family boundary.</b> These are team-standings relationships over 32 clubs. They are
+not player-prop, injury or parlay-leg correlations and must not be transferred to those uses. The
+Line Desk register elsewhere adds eight standings coefficients at n=32 and two pooled at n=64; those are
+the same family and the same boundary applies.</div>
+
+<h2>Correlations that do not exist yet, and what would produce them</h2>
+<div class="tw"><table class=""><thead><tr><th>Coefficient needed</th><th>Why it is missing</th><th>What would produce it</th><th>Source to capture</th></tr></thead><tbody><tr><td>QB passing yards to WR1 receiving yards (same game)</td><td>No official player-game joint distribution has been captured</td><td>≥500 paired player-game observations from an official source, with n and interval published</td><td><a href="https://www.nfl.com/stats/player-stats/" rel="noopener" target="_blank">route</a></td></tr><tr><td>Any same-game parlay leg pair</td><td>Requires observed joint outcomes; a marginal correlation does not determine a joint distribution</td><td>Directly validated joint probabilities over ≥2 seasons plus the operator&#x27;s void/push rules</td><td><a href="https://www.itl.nist.gov/div898/possolo/TutorialWEBServer/TutorialMetrologists2011Nov09.xht" rel="noopener" target="_blank">route</a></td></tr><tr><td>Injury designation to actual play</td><td>No official inactives list has been captured, so no play rate per designation exists</td><td>≥1,000 designation-to-outcome pairs over ≥2 seasons with a 95% interval per designation</td><td><a href="https://operations.nfl.com/players/players-rights-and-responsibilities/official-game-book/" rel="noopener" target="_blank">route</a></td></tr><tr><td>Depth tier to performance</td><td>No official source states string tier for any club</td><td>A depth register verified for all 32 clubs before any slot is used as a feature</td><td><a href="https://www.nfl.com/teams/" rel="noopener" target="_blank">route</a></td></tr></tbody></table></div>
+
+<h2>Why parlays stay behind a joint-evidence gate</h2>
+<p>Multiplying marginal probabilities assumes the legs are independent. Within a single NFL game they are
+not — the same game script drives both. A marginal correlation does not determine a joint distribution
+either. A combo is therefore ranked only when a directly validated joint probability exists and the
+operator's void and push rules are both on record. Nothing has passed that gate, so no combo is ranked.</p>
+
+<footer>
+  <p>Research and measurement, not betting advice. Every number on these pages is computed by the code in
+  this repository from the official pages listed in the <a href="../../requirements-desk/pages/sources.html">source register</a>.
+  Values that cannot be confirmed from an official source are left blank and listed on
+  <a href="../../requirements-desk/pages/flagged.html">Flagged for review</a>.</p>
+  <p><a href="../../index.html">Main site</a> ·
+     <a href="../../line-desk/index.html">Line Desk</a> ·
+     <a href="../../price-desk/index.html">Price Desk</a> ·
+     <a href="../../injury-report-w10/index.html">Week 10 re-verification</a></p>
+</footer>
+</main></div></body></html>

@@ -1,6 +1,6 @@
 {
- "hubs_scanned": 21,
- "files_scanned": 196,
+ "hubs_scanned": 22,
+ "files_scanned": 199,
  "published_numbers": [
   {
    "hub": "decision-desk",
@@ -2381,5 +2381,5 @@
  ],
  "method": "Each hub's own committed JSON is read; a value counts as published only when the file carries it under a recognised field name (r / pearson_r / coefficient / correlation) with a label. Values are shown exactly as stored, rounded to three decimals. A quantity is a conflict when two or more hubs publish different numbers for the same label - the board shows both and links both files. Nothing is averaged and nothing is re-derived here.",
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "5fa89bb23efb604481fca73e0e51571ea6cb14c9"
+ "_generated_from_repo_commit": "37876206a91267c3591326b2b657c378c8239ad6"
 }
