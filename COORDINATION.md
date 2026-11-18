@@ -2832,3 +2832,13 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 - Before merge, `main` advanced with PR #125. Rebase hit an append-only conflict in `COORDINATION.md`; resolution kept the complete updated main board and restored only this session's claim section. The rest of the review and document reapplied cleanly. No other session's work was discarded.
 - Pages API created build record [1372572372](https://api.github.com/repos/karagemop466-tech/Korea2/pages/builds/1372572372) for the merge commit. At the latest check on 2026-11-15 18:46 UTC it still reported `building`; Pages API calls for general status were rate-limited, so a successful deployment for this commit is **not confirmed** here. The already-live root site was reachable, but that does not prove the new commit deployed. The Markdown review is in the repository under `docs/`; no site navigation or generated page was changed.
 - Follow-up integration item: confirm Pages build `1372572372` reaches `built`, then record that result without implying that the review itself is a rendered site route.
+
+# Session `arena/6a80f2cf-korea2` — official injury-report capture (claim)
+
+**Session ID:** `arena/6a80f2cf-korea2` (Arena-assigned branch is fixed; base `f7b8e8f` of `main`). **Claimed:** 2026-11-18 UTC. Branch names `session-<id>/<task>` cannot be created in this environment; the claim is pushed on this branch.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| IC-0 | Claim: scheduled, hash-stamped capture of the official nfl.com weekly injury report, run on a GitHub runner (the sandbox cannot reach nfl.com) | in progress (claim pushed before implementation) | `arena/6a80f2cf-korea2` | `injury-capture/`, `.github/workflows/nfl-injury-capture.yml`, this section of `COORDINATION.md` |
+
+Scope: no edits to root site pages, navigation, shared data, or other sessions' hubs. Raw captures go to a workflow artifact (outside the static site); only a hash manifest and script-counted row counts are committed. Any item beyond this (team-depth, inactives, snap counts, 32-team sweep, backtests, merge to main) is out of scope for this session and is logged as not done.
