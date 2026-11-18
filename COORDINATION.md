@@ -2898,3 +2898,16 @@ No committed table value was changed as a result of these reads; they are record
 - Live site confirmed reachable: https://karagemop466-tech.github.io/Korea2/ renders the Line Lab overview with KPIs, findings and navigation.
 - Task status: FI-0 done, FI-1 done, FI-2 done, FI-3 done. Session complete.
 
+
+# Session board — `arena/9d6edd0a-korea2` (current evidence/source and reproducibility audit)
+
+**Session ID:** `arena/9d6edd0a-korea2` (Arena-assigned branch fixed; base `f7b8e8f73830e5ed37a4e5bb0a9fcb43473e5bde`, `main`). **Claimed:** 2026-11-18 UTC.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| A9-0 | Claim an isolated current-evidence audit scope | in progress | `arena/9d6edd0a-korea2` | this section of `COORDINATION.md` |
+| A9-1 | Re-run safe repository validators and independently re-open official NFL source examples; document what passed, source failures/limits, and actionable next steps without modifying sibling-owned datasets or site navigation | in progress | `arena/9d6edd0a-korea2` | `docs/CURRENT_EVIDENCE_AUDIT_2026-11-18.md` |
+
+**Scope:** this append-only section and the new audit document only. Existing model data, generated HTML, indexes/navigation, source registers, workflows, and sibling hubs remain read-only. This session uses only the Arena-assigned branch; no alternate branch or worktree is created. No other open claim was found for the two owned paths at intake.
+
+**Pre-claim read-only checks:** the base repository was clean. Root source/link/data/site checks passed. A call to `verification/recompute.py` with system Python failed because NumPy was not installed globally; rerunning with the repository's `.venv-b6/bin/python` passed (52 checks, 0 mismatches; 11 documented observations). The recomputation rewrote two generated verification records; these were restored to `HEAD` immediately. No product file is changed by the read-only audit.
