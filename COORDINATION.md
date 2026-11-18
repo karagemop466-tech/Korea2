@@ -3223,3 +3223,78 @@ The NFL.com Week 11 injury report was **not** published at capture time (the can
 2. **Line Desk / Price Desk owners:** the 347-row count and the Week 10 results below supersede the 254/279 counts and may supersede partial Week 10 result rows. Please reconcile at your discretion; this session did not edit your files.
 3. **Injury-capture owner (`injury-report-w10/`, `decision-hub/`):** the Week 10 capture here is a complete 347-row transcription with a register hash, which may replace the 3-of-28 partial transcription recorded there.
 4. **Anyone adding a leaderboard:** the hub's decision-readiness table asserts 0 qualified strategies and unfunded rewards. If that changes, R17/R18 need their status updated in `requirements-desk/scripts/requirements.py`.
+
+---
+
+## RD-6 completion: PR, merge and Pages deployment
+
+**Pull request:** https://github.com/karagemop466-tech/Korea2/pull/139
+**Merge:** merged 2026-11-18T04:49:00Z by `karagemop466-tech` as merge commit
+`981df9c6e4e1ed0fd747b41b706205975bd55bb6`, branch `arena/2ca76106-korea2` -> `main`.
+Merged without waiting for approval, as this brief directs.
+
+**CI at merge:** all 8 checks green — `validate`, `tests-and-links`, `decision-desk`,
+`review-board`, `verify` x2, `verify-hub`, `verify-skill-lab`.
+
+**GitHub Pages:** build `1379918942` for the merge commit completed **built** at 04:49Z.
+Verified live by retrieval from the published origin:
+
+| URL | Result |
+| --- | --- |
+| `https://karagemop466-tech.github.io/Korea2/requirements-desk/` | 200, renders the readiness table |
+| `.../requirements-desk/pages/requirements.html` | 200 |
+| `.../requirements-desk/pages/flagged.html` | 200, 12 flagged items with source links |
+| `.../requirements-desk/pages/verification.html` | 200, brief claim audit + three-count cross-check |
+
+The site is live and not broken.
+
+## What this session added to the merge, beyond the hub itself
+
+- **Cross-validation of the 347 row count by two independent methods.** The sibling
+  `injury-capture/` job parses the raw HTML on a GitHub runner and commits hash/count manifests:
+  5 successful runs report **347 rows across 28 injury tables**, and 2 runs failed loudly (0 tables
+  parsed) rather than publishing blanks — the drift alarm the brief asks for, doing its job. A separate
+  hand transcription of per-club counts dated 2026-11-15 totals **347 with 0 club-level mismatches**.
+  Three methods that never saw each other's output agree, which retires the brief's 254 and 279 figures.
+  Published on `pages/verification.html` and `pages/injuries.html`, both reading the manifests at build
+  time rather than restating hashes by hand.
+- **Five requirement statuses updated to reflect the automated capture that now exists** (R33, R34,
+  R63, R64, R74). R63 moved from blocked to partial: raw bytes are now captured with a SHA-256,
+  though retention is a 90-day artifact rather than durable storage.
+- **F-01 rewritten:** this hub stores no raw response bytes, but the automated capture does, so a
+  byte-level hash for the page now exists in the repository. F-03 rewritten to record the settlement.
+- **Root navigation entry moved into the generator.** The root `index.html` and `pages/` are owned by
+  `scripts/build_site.py`, so the nav entry was added to `HUB_LABELS` in `scripts/lib/site.py` rather
+  than hand-edited into the generated file; `tests/check_readiness.py` demands byte-reproducibility and
+  failed until this was done.
+- **`review-board/` regenerated.** Its hub map and reconciliation indexes read every sibling directory,
+  so adding two hubs made them stale and its CI check failed. Regenerated and committed.
+
+## Conflicts resolved during rebase (logged as the protocol requires)
+
+`main` advanced four times while this branch was open. Each rebase conflicted only in append-only
+files; in every case both sides' content was kept and nothing of another session's work was discarded.
+
+1. `COORDINATION.md` (three times) — both sides appended new session boards. Resolved by concatenating
+   main's block and this session's block in full.
+2. `index.html` (once) — both sides edited the sidebar. Later superseded by the generator fix above;
+   a hand-merge had briefly left conflict markers in the file, which the generator rebuild removed.
+3. `review-board/data/*.json` and `review-board/pages/*` (once) — took main's version, then regenerated
+   from the sibling directories so the board reflects every hub including this one.
+
+## Final verification run before merge
+
+| Command | Result |
+| --- | --- |
+| `python3 requirements-desk/scripts/verify.py` | pass — 14 pages, 27 tables, 1,091 links, 74 requirements, 6 registers |
+| `python3 tests/check_readiness.py` | pass — capture, 77-requirement register, pages, navigation, byte-reproducible |
+| `python3 tests/check_site.py` | pass — 252 pages, 614 tables |
+| `python3 scripts/check_links.py` | pass — 5,762 local references, no broken internal links |
+| `python3 scripts/validate_data.py` | pass, 0 warnings |
+| `python3 tests/check_derived.py` | pass — 14 derived JSON files, 27 generated pages all linked |
+| `python3 review-board/scripts/verify_all.py` | pass — 121 checks across 14 pages |
+
+## Status: RD-0 through RD-6 all done
+
+Requirement counts after the five status updates: **13 verified, 37 partial, 16 blocked, 8 not started**
+(74 total). R63 moved blocked -> partial once the automated capture's raw SHA-256 could be cited.
