@@ -1,0 +1,86 @@
+{
+  "as_of": "2026-11-18T03:55:37Z",
+  "owner": "arena/9fa8ea61-korea2",
+  "flags": [
+    {
+      "id": "AV-F1",
+      "title": "Week 11 report not published at capture time",
+      "detail": "A read of https://www.nfl.com/injuries/league/2026/REG11 at 2026-11-18T03:55:37Z served the Week 10 report (page title 'Week 10 of the 2026 Season', canonical link reg10, content 'Injuries - WEEK 10'). The requested Week 11 URL did not yet contain a Week 11 report. No Week 11 rows were invented. Next read should occur after the first Week 11 practice report is published (typically Wednesday afternoon/evening ET).",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG11",
+      "severity": "informational"
+    },
+    {
+      "id": "AV-F2",
+      "title": "Report table shows Questionable for Kenneth Walker III; official news article says the Chiefs downgraded him to Out",
+      "detail": "The Week 10 report table lists KC RB Kenneth Walker III (Groin, Did Not Participate, Questionable). An official NFL.com news article on the same player's page states 'The Chiefs downgraded Kenneth Walker III (groin) to out for Sunday's game' vs. Atlanta. The frozen table was not updated with the game-day downgrade. The player page confirms his club is Kansas City (active), so the row's team placement is correct.",
+      "source_urls": [
+        "https://www.nfl.com/injuries/league/2026/REG10",
+        "https://www.nfl.com/news/chiefs-rb-kenneth-walker-groin-downgraded-to-out-for-sunday-s-game-vs-falcons",
+        "https://www.nfl.com/players/kenneth-walker-iii/"
+      ],
+      "severity": "conflict"
+    },
+    {
+      "id": "AV-F3",
+      "title": "TreVeyon Henderson IR conflict persists in this capture",
+      "detail": "The Week 10 report still lists NE RB TreVeyon Henderson (Illness, Did Not Participate, Out) while the report page's own news list carries 'NFL news roundup: Patriots place RB TreVeyon Henderson (illness) on injured reserve' (Saturday, Nov. 14). The report row does not reflect the reserve move. Carried from flag F-W10-3 of injury-report-w10.",
+      "source_urls": [
+        "https://www.nfl.com/injuries/league/2026/REG10",
+        "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14"
+      ],
+      "severity": "conflict"
+    },
+    {
+      "id": "AV-F4",
+      "title": "Puka Nacua game-status cell remains blank in this capture",
+      "detail": "LAR WR Puka Nacua is listed (Did Not Participate, game status blank) while the report page's news list carries 'Rams WR Puka Nacua likely to be placed on injured reserve with turf toe, sprained MCL and PCL'. IR is not confirmed in that article headline, so the blank cell is transcribed as-is and not inferred. Carried from flag F-W10-4 of injury-report-w10.",
+      "source_urls": [
+        "https://www.nfl.com/injuries/league/2026/REG10",
+        "https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl"
+      ],
+      "severity": "conflict"
+    },
+    {
+      "id": "AV-F5",
+      "title": "The 279-row figure in the earlier brief remains unexplained; two independent counts agree on 347",
+      "detail": "An earlier session's brief reported 279 rows across 2 no-injury sections; its counting definition was never published. A manual count on 2026-11-15 gave 347 listed players across 28 teams (flag F-W10-2), and this session's row-by-row transcription of all 28 team tables on 2026-11-18 also totals 347 rows. The register uses 347; the 279 figure stays unverified and unexplained.",
+      "source_urls": [
+        "https://www.nfl.com/injuries/league/2026/REG10",
+        "injury-report-w10/index.html"
+      ],
+      "severity": "review"
+    },
+    {
+      "id": "AV-F6",
+      "title": "No raw-response hash for this capture",
+      "detail": "The sandbox shell cannot reach nfl.com; pages were read through the page-retrieval tool, so no raw HTTP bytes or hash were retained. Clock time is recorded; the byte-level immutability requirement of the availability-snapshot requirement remains unmet for this capture. Same limitation as the 2026-11-15 capture.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "severity": "limitation"
+    },
+    {
+      "id": "AV-F7",
+      "title": "The official page exposes only the final weekly report, not the daily practice-report history",
+      "detail": "The live page shows one final table per team; Wednesday/Thursday/Friday practice-status states (e.g., DNP to LP to FP trends) are not retrievable from it after the fact. A timestamped series therefore requires scheduled daily reads going forward; only two dated points exist today (2026-11-15 partial, 2026-11-18 full).",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "severity": "limitation"
+    },
+    {
+      "id": "AV-F8",
+      "title": "Drake Maye report row predates a post-game injury",
+      "detail": "The Week 10 report lists NE QB Drake Maye (Full Participation, no game status). The report page's news list carries 'Patriots QB Drake Maye suffers ankle injury early in loss to Lions' and 'NFL Network: Patriots QB Drake Maye could miss rest of 2026 season'. These describe an in-game injury after the report window, not a contradiction of the practice report; recorded so later readers do not treat the row as a post-game availability statement.",
+      "source_urls": [
+        "https://www.nfl.com/injuries/league/2026/REG10",
+        "https://www.nfl.com/news/patriots-drake-maye-ankle-injury-lions",
+        "https://www.nfl.com/news/nfl-network-patriots-qb-drake-maye-could-miss-rest-of-2026-season"
+      ],
+      "severity": "informational"
+    },
+    {
+      "id": "AV-F9",
+      "title": "Multi-injury text separator transformed for CSV safety",
+      "detail": "The page renders a player's injuries as a comma-separated list (e.g., 'Ankle, Knee'). The CSV stores the same text with '; ' as the separator (e.g., 'Ankle; Knee') because the CSV field is itself comma-delimited; no other characters were changed. The HTML tables render the text with the original comma form.",
+      "source_url": "https://www.nfl.com/injuries/league/2026/REG10",
+      "severity": "informational"
+    }
+  ]
+}

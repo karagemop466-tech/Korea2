@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for review — Availability Sweep</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f5f7fa;color:#15202b}
+  main{max-width:1180px;margin:0 auto;padding:24px 16px 60px}
+  header.site{background:#0b2340;color:#fff;padding:18px 16px}
+  header.site .inner{max-width:1180px;margin:0 auto}
+  header.site h1{margin:0;font-size:1.35rem}
+  header.site .stamp{font-size:.85rem;opacity:.85;margin-top:4px}
+  nav.hub{margin-top:10px;display:flex;flex-wrap:wrap;gap:12px}
+  nav.hub a{color:#9cc3ff;text-decoration:none;font-size:.95rem}
+  nav.hub a:hover{text-decoration:underline}
+  .card{background:#fff;border:1px solid #dbe2ea;border-radius:10px;padding:16px 18px;margin:18px 0}
+  .card h2{margin:0 0 10px;font-size:1.15rem}
+  .card h3{margin:16px 0 8px;font-size:1.02rem}
+  .note{background:#fff8e6;border:1px solid #e8d9a0;border-radius:8px;padding:10px 14px;font-size:.92rem;margin:12px 0}
+  .flaginfo{background:#eef4ff}
+  table{border-collapse:collapse;width:100%;font-size:.9rem}
+  th,td{border:1px solid #d7dde5;padding:5px 8px;text-align:left;vertical-align:top}
+  th{background:#eef2f7;position:sticky;top:0}
+  tr:nth-child(even) td{background:#fafbfd}
+  .num{text-align:right}
+  a{color:#0b52c4}
+  .mut{color:#5a6b7f}
+  .out{color:#a30000;font-weight:600}
+  .quest{color:#8a6d00;font-weight:600}
+  .doubt{color:#a34d00;font-weight:600}
+  .ok{color:#0a7d33}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+<h1>Availability Sweep — official injury-report register</h1>
+<div class="stamp">Week 10 capture of 2026-11-18T03:55:37Z · sources: <a style="color:#9cc3ff" href="https://www.nfl.com/injuries/league/2026/REG10">NFL.com Week 10 injury report</a> · <a style="color:#9cc3ff" href="https://www.nfl.com/schedules/2026/by-week/week-10">NFL.com Week 10 schedule</a> · session owner: arena/9fa8ea61-korea2</div>
+<nav class="hub">
+<a href="../index.html">Overview</a><a href="week10.html">Week 10 rows (347)</a><a href="deltas.html">Captures &amp; deltas</a><a href="flags.html" class="active">Flagged for review</a><a href="../../index.html">Repo root site</a>
+</nav>
+</div></header>
+<main>
+<div class="card"><h2>Flagged for review — availability sweep</h2>
+<p class="mut">Conflicts, limitations and unverified items found during the sweep. Nothing here was silently corrected; values stay as published and the conflict is recorded.</p>
+<table><thead><tr><th>ID</th><th>Severity</th><th>Finding</th><th>Sources</th></tr></thead><tbody>
+<tr><td>AV-F1</td><td>informational</td><td><strong>Week 11 report not published at capture time</strong> — A read of https://www.nfl.com/injuries/league/2026/REG11 at 2026-11-18T03:55:37Z served the Week 10 report (page title &#x27;Week 10 of the 2026 Season&#x27;, canonical link reg10, content &#x27;Injuries - WEEK 10&#x27;). The requested Week 11 URL did not yet contain a Week 11 report. No Week 11 rows were invented. Next read should occur after the first Week 11 practice report is published (typically Wednesday afternoon/evening ET).</td><td><a href="https://www.nfl.com/injuries/league/2026/REG11" rel="noopener">1</a></td></tr>
+<tr><td>AV-F2</td><td>conflict</td><td><strong>Report table shows Questionable for Kenneth Walker III; official news article says the Chiefs downgraded him to Out</strong> — The Week 10 report table lists KC RB Kenneth Walker III (Groin, Did Not Participate, Questionable). An official NFL.com news article on the same player&#x27;s page states &#x27;The Chiefs downgraded Kenneth Walker III (groin) to out for Sunday&#x27;s game&#x27; vs. Atlanta. The frozen table was not updated with the game-day downgrade. The player page confirms his club is Kansas City (active), so the row&#x27;s team placement is correct.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">1</a>, <a href="https://www.nfl.com/news/chiefs-rb-kenneth-walker-groin-downgraded-to-out-for-sunday-s-game-vs-falcons" rel="noopener">2</a>, <a href="https://www.nfl.com/players/kenneth-walker-iii/" rel="noopener">3</a></td></tr>
+<tr><td>AV-F3</td><td>conflict</td><td><strong>TreVeyon Henderson IR conflict persists in this capture</strong> — The Week 10 report still lists NE RB TreVeyon Henderson (Illness, Did Not Participate, Out) while the report page&#x27;s own news list carries &#x27;NFL news roundup: Patriots place RB TreVeyon Henderson (illness) on injured reserve&#x27; (Saturday, Nov. 14). The report row does not reflect the reserve move. Carried from flag F-W10-3 of injury-report-w10.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">1</a>, <a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14" rel="noopener">2</a></td></tr>
+<tr><td>AV-F4</td><td>conflict</td><td><strong>Puka Nacua game-status cell remains blank in this capture</strong> — LAR WR Puka Nacua is listed (Did Not Participate, game status blank) while the report page&#x27;s news list carries &#x27;Rams WR Puka Nacua likely to be placed on injured reserve with turf toe, sprained MCL and PCL&#x27;. IR is not confirmed in that article headline, so the blank cell is transcribed as-is and not inferred. Carried from flag F-W10-4 of injury-report-w10.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">1</a>, <a href="https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl" rel="noopener">2</a></td></tr>
+<tr><td>AV-F5</td><td>review</td><td><strong>The 279-row figure in the earlier brief remains unexplained; two independent counts agree on 347</strong> — An earlier session&#x27;s brief reported 279 rows across 2 no-injury sections; its counting definition was never published. A manual count on 2026-11-15 gave 347 listed players across 28 teams (flag F-W10-2), and this session&#x27;s row-by-row transcription of all 28 team tables on 2026-11-18 also totals 347 rows. The register uses 347; the 279 figure stays unverified and unexplained.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">1</a>, <a href="../../injury-report-w10/index.html" rel="noopener">2</a></td></tr>
+<tr><td>AV-F6</td><td>limitation</td><td><strong>No raw-response hash for this capture</strong> — The sandbox shell cannot reach nfl.com; pages were read through the page-retrieval tool, so no raw HTTP bytes or hash were retained. Clock time is recorded; the byte-level immutability requirement of the availability-snapshot requirement remains unmet for this capture. Same limitation as the 2026-11-15 capture.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">1</a></td></tr>
+<tr><td>AV-F7</td><td>limitation</td><td><strong>The official page exposes only the final weekly report, not the daily practice-report history</strong> — The live page shows one final table per team; Wednesday/Thursday/Friday practice-status states (e.g., DNP to LP to FP trends) are not retrievable from it after the fact. A timestamped series therefore requires scheduled daily reads going forward; only two dated points exist today (2026-11-15 partial, 2026-11-18 full).</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">1</a></td></tr>
+<tr><td>AV-F8</td><td>informational</td><td><strong>Drake Maye report row predates a post-game injury</strong> — The Week 10 report lists NE QB Drake Maye (Full Participation, no game status). The report page&#x27;s news list carries &#x27;Patriots QB Drake Maye suffers ankle injury early in loss to Lions&#x27; and &#x27;NFL Network: Patriots QB Drake Maye could miss rest of 2026 season&#x27;. These describe an in-game injury after the report window, not a contradiction of the practice report; recorded so later readers do not treat the row as a post-game availability statement.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">1</a>, <a href="https://www.nfl.com/news/patriots-drake-maye-ankle-injury-lions" rel="noopener">2</a>, <a href="https://www.nfl.com/news/nfl-network-patriots-qb-drake-maye-could-miss-rest-of-2026-season" rel="noopener">3</a></td></tr>
+<tr><td>AV-F9</td><td>informational</td><td><strong>Multi-injury text separator transformed for CSV safety</strong> — The page renders a player&#x27;s injuries as a comma-separated list (e.g., &#x27;Ankle, Knee&#x27;). The CSV stores the same text with &#x27;; &#x27; as the separator (e.g., &#x27;Ankle; Knee&#x27;) because the CSV field is itself comma-delimited; no other characters were changed. The HTML tables render the text with the original comma form.</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">1</a></td></tr>
+</tbody></table></div>
+</main>
+</body>
+</html>
