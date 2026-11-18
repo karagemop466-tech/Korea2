@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Captures &amp; deltas — Availability Sweep</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f5f7fa;color:#15202b}
+  main{max-width:1180px;margin:0 auto;padding:24px 16px 60px}
+  header.site{background:#0b2340;color:#fff;padding:18px 16px}
+  header.site .inner{max-width:1180px;margin:0 auto}
+  header.site h1{margin:0;font-size:1.35rem}
+  header.site .stamp{font-size:.85rem;opacity:.85;margin-top:4px}
+  nav.hub{margin-top:10px;display:flex;flex-wrap:wrap;gap:12px}
+  nav.hub a{color:#9cc3ff;text-decoration:none;font-size:.95rem}
+  nav.hub a:hover{text-decoration:underline}
+  .card{background:#fff;border:1px solid #dbe2ea;border-radius:10px;padding:16px 18px;margin:18px 0}
+  .card h2{margin:0 0 10px;font-size:1.15rem}
+  .card h3{margin:16px 0 8px;font-size:1.02rem}
+  .note{background:#fff8e6;border:1px solid #e8d9a0;border-radius:8px;padding:10px 14px;font-size:.92rem;margin:12px 0}
+  .flaginfo{background:#eef4ff}
+  table{border-collapse:collapse;width:100%;font-size:.9rem}
+  th,td{border:1px solid #d7dde5;padding:5px 8px;text-align:left;vertical-align:top}
+  th{background:#eef2f7;position:sticky;top:0}
+  tr:nth-child(even) td{background:#fafbfd}
+  .num{text-align:right}
+  a{color:#0b52c4}
+  .mut{color:#5a6b7f}
+  .out{color:#a30000;font-weight:600}
+  .quest{color:#8a6d00;font-weight:600}
+  .doubt{color:#a34d00;font-weight:600}
+  .ok{color:#0a7d33}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+<h1>Availability Sweep — official injury-report register</h1>
+<div class="stamp">Week 10 capture of 2026-11-18T03:55:37Z · sources: <a style="color:#9cc3ff" href="https://www.nfl.com/injuries/league/2026/REG10">NFL.com Week 10 injury report</a> · <a style="color:#9cc3ff" href="https://www.nfl.com/schedules/2026/by-week/week-10">NFL.com Week 10 schedule</a> · session owner: arena/9fa8ea61-korea2</div>
+<nav class="hub">
+<a href="../index.html">Overview</a><a href="week10.html">Week 10 rows (347)</a><a href="deltas.html" class="active">Captures &amp; deltas</a><a href="flags.html">Flagged for review</a><a href="../../index.html">Repo root site</a>
+</nav>
+</div></header>
+<main>
+<div class="card"><h2>Capture series and row-level deltas</h2>
+<p class="mut">Store the read with its clock time and publish the delta, never just the level. Two dated captures of the same Week 10 report exist; the first covered 3 of 28 teams row by row, the second covers all 28. No raw response hash was retained for either read (fetch-tool limitation).</p>
+<h3>Capture log</h3>
+<table><thead><tr><th>Capture</th><th>Week</th><th>URL</th><th>Fetched (UTC)</th><th>Scope</th><th>Rows</th><th>Teams</th><th>Raw hash</th></tr></thead><tbody>
+<tr><td>20261115-a24825d2</td><td>10</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">https://www.nfl.com/injuries/league/2026/REG10</a></td><td>2026-11-15T18:08:20Z</td><td>partial: DET/SEA/CIN transcribed row by row; 25 teams counted manually</td><td class="num">33</td><td class="num">3</td><td>not retained</td></tr>
+<tr><td>20261118-9fa8ea61</td><td>10</td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">https://www.nfl.com/injuries/league/2026/REG10</a></td><td>2026-11-18T03:55:37Z</td><td>full: all 28 listed teams transcribed row by row</td><td class="num">347</td><td class="num">28</td><td>not retained</td></tr>
+<tr><td>20261118-9fa8ea61-reg11-attempt</td><td>11</td><td><a href="https://www.nfl.com/injuries/league/2026/REG11" rel="noopener">https://www.nfl.com/injuries/league/2026/REG11</a></td><td>2026-11-18T03:55:37Z</td><td>attempt: URL served the Week 10 report (canonical reg10); Week 11 report not published at capture time</td><td class="num">0</td><td class="num">0</td><td>not retained</td></tr>
+</tbody></table>
+<h3>Delta: capture 2026-11-15 → capture 2026-11-18T03:55:37Z (33 overlapping rows: DET, SEA, CIN)</h3>
+<p class="ok">No field changed across all 33 overlapping rows between 2026-11-15T18:08:20Z and 2026-11-18T03:55:37Z — the report is frozen at its final weekly state after game day. The full per-row comparison is committed at <code>data/delta_20261115_20261118.csv</code>.</p>
+<h3>Week 11 attempt</h3>
+<div class="note">A read of https://www.nfl.com/injuries/league/2026/REG11 at 2026-11-18T03:55:37Z served the Week 10 report (page title &#x27;Week 10 of the 2026 Season&#x27;, canonical link reg10, content &#x27;Injuries - WEEK 10&#x27;). The requested Week 11 URL did not yet contain a Week 11 report. No Week 11 rows were invented. Next read should occur after the first Week 11 practice report is published (typically Wednesday afternoon/evening ET). <a href="https://www.nfl.com/injuries/league/2026/REG11" rel="noopener">Source</a></div>
+<h3>Fixture context officially published with the Week 10 report</h3>
+<p class="mut">Game dates, slots and results read from the official schedule page. Venue is recorded only where the schedule page states it (the Munich International Game); other venues are left blank rather than inferred — per-game game-centre venue transcription is a separate pending task.</p>
+<table><thead><tr><th>Date</th><th>Matchup</th><th>Final</th><th>Slot</th><th>Venue</th><th>Source</th></tr></thead><tbody>
+<tr><td>2026-11-12</td><td>WAS at NYG</td><td>24–21 (FINAL)</td><td>Thursday 8:15 PM EST (Prime Video)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/commanders-at-giants-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>NE at DET</td><td>10–35 (FINAL)</td><td>Sunday 9:30 AM EST (FOX, FOX Deportes; Munich International Game)</td><td>Munich (International Game)</td><td><a href="https://www.nfl.com/games/patriots-at-lions-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>KC at ATL</td><td>35–13 (FINAL)</td><td>Sunday 1:00 PM EST (CBS)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/chiefs-at-falcons-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>HOU at CLE</td><td>24–27 (FINAL)</td><td>Sunday 1:00 PM EST (CBS)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/texans-at-browns-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>MIN at GB</td><td>30–10 (FINAL)</td><td>Sunday 1:00 PM EST (FOX)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/vikings-at-packers-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>MIA at IND</td><td>22–24 (FINAL)</td><td>Sunday 1:00 PM EST (CBS)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/dolphins-at-colts-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>CAR at NO</td><td>20–17 (FINAL)</td><td>Sunday 1:00 PM EST (FOX)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/panthers-at-saints-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>BUF at NYJ</td><td>31–12 (FINAL)</td><td>Sunday 1:00 PM EST (CBS)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/bills-at-jets-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>JAX at TEN</td><td>40–23 (FINAL)</td><td>Sunday 1:00 PM EST (FOX)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/jaguars-at-titans-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>LAR at AZ</td><td>34–6 (FINAL)</td><td>Sunday 4:05 PM EST (CBS)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/rams-at-cardinals-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>SEA at LV</td><td>21–13 (FINAL)</td><td>Sunday 4:05 PM EST (CBS)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/seahawks-at-raiders-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>SF at DAL</td><td>46–40 (FINAL)</td><td>Sunday 4:25 PM EST (FOX, FOX Deportes)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/49ers-at-cowboys-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-15</td><td>PIT at CIN</td><td>18–38 (FINAL)</td><td>Sunday 8:20 PM EST (NBC, Universo)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/steelers-at-bengals-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+<tr><td>2026-11-16</td><td>LAC at BAL</td><td>23–20 (FINAL)</td><td>Monday 8:15 PM EST (ESPN, ABC, ESPN2, ESPN Deportes)</td><td><span class="mut">blank</span></td><td><a href="https://www.nfl.com/games/chargers-at-ravens-2026-reg-10" rel="noopener">Game centre</a>, <a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">schedule</a></td></tr>
+</tbody></table></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,4 @@
+capture_id,week,url,fetched_utc_start,fetched_utc_end,method,scope,rows_captured,teams_captured,raw_bytes_hash,source_url
+20261115-a24825d2,10,https://www.nfl.com/injuries/league/2026/REG10,2026-11-15T18:08:20Z,2026-11-15T18:08:20Z,fetch-tool read (8 chunks),partial: DET/SEA/CIN transcribed row by row; 25 teams counted manually,33,3,not retained,https://www.nfl.com/injuries/league/2026/REG10
+20261118-9fa8ea61,10,https://www.nfl.com/injuries/league/2026/REG10,2026-11-18T03:50:00Z,2026-11-18T03:55:37Z,fetch-tool read (8 chunks),full: all 28 listed teams transcribed row by row,347,28,not retained,https://www.nfl.com/injuries/league/2026/REG10
+20261118-9fa8ea61-reg11-attempt,11,https://www.nfl.com/injuries/league/2026/REG11,2026-11-18T03:55:37Z,2026-11-18T03:55:37Z,fetch-tool read (1 chunk),attempt: URL served the Week 10 report (canonical reg10); Week 11 report not published at capture time,0,0,not retained,https://www.nfl.com/injuries/league/2026/REG11
