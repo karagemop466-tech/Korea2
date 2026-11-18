@@ -2839,6 +2839,23 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 
 | Task ID | Task | Status | Owner | File scope |
 | --- | --- | --- | --- | --- |
-| IC-0 | Claim: scheduled, hash-stamped capture of the official nfl.com weekly injury report, run on a GitHub runner (the sandbox cannot reach nfl.com) | in progress (claim pushed before implementation) | `arena/6a80f2cf-korea2` | `injury-capture/`, `.github/workflows/nfl-injury-capture.yml`, this section of `COORDINATION.md` |
+| IC-0 | Claim: scheduled, hash-stamped capture of the official nfl.com weekly injury report, run on a GitHub runner (the sandbox cannot reach nfl.com) | done (scope as claimed; see IC-1 record) | `arena/6a80f2cf-korea2` | `injury-capture/`, `.github/workflows/nfl-injury-capture.yml`, this section of `COORDINATION.md` |
 
 Scope: no edits to root site pages, navigation, shared data, or other sessions' hubs. Raw captures go to a workflow artifact (outside the static site); only a hash manifest and script-counted row counts are committed. Any item beyond this (team-depth, inactives, snap counts, 32-team sweep, backtests, merge to main) is out of scope for this session and is logged as not done.
+
+### IC-1 — record (`arena/6a80f2cf-korea2`, 2026-11-18 UTC)
+
+| Item | Value |
+| --- | --- |
+| Status | done for the claimed scope (one week, one source, Week 10 2026). Not a 32-club depth, inactives, snap-count or backtest deliverable. |
+| Source captured | https://www.nfl.com/injuries/league/2026/reg10 (HTTP 200, 402,343 bytes, runner fetch 2026-11-18T03:55:57Z) |
+| Raw SHA-256 (stable across the last runs) | `c4a5dd5253de90e26364bfb81725435b4ad3d6d1f7480773fb44b7b320bbba12` |
+| Parsed result | 28 injury tables (one per club), **347 listed-player rows**, all 28 team slugs assigned, 0 blank-column structural failures |
+| Cross-check | `injury-capture/scripts/check_against_expected.py` vs the hand-counted per-team numbers in `injury-report-w10/index.html` (2026-11-15): **28/28 teams match exactly**; the total matches 347. The hand count is a consistency check, not a verification source. |
+| Manifests (committed hash/count records, no player names) | `injury-capture/manifests/reg10_2026_*.json` (2 FAILED attempts kept as audit trail, 4 OK captures) |
+| Workflow runs | 44233239366, 44233304543, 44233379974 (failed: structure/column-label bugs, found and fixed from the manifest diagnostics); 44233466900, 44233560617, 44233684396, 44233788788 (success) |
+| Flags for review | IC-F1: the Week 10 brief figures "279 rows / 2 no-injury sections" are **not reproduced**: the live capture gives 347 rows and 0 empty club sections. IC-F2: the per-club team mapping relies on the page's team-link block before each game's two tables; it is consistent with the hand counts for all 28 clubs but has not been checked against a published team-to-table mapping. IC-F3: the four clubs absent from the report (CHI, DEN, PHI, TB) are not explained by this capture; bye status is not verified here. IC-F4: the `injury-report-w10` page's "Malik Willis / TreVeyon Henderson / Puka Nacua" rows are not changed by this capture; they still need the reserve/news sources. |
+| Known limits | Scheduled trigger keeps `WEEK=10` as its default and must be updated each week (open). Raw bytes live only in a 90-day workflow artifact; a durable raw store outside the static site is an open decision (the bot writes manifests only on `arena/**`, never to `main`). The artifact could not be downloaded from the authoring sandbox, so the raw bytes were not re-read locally. |
+| Not done | depth charts, inactive lists, snap counts, reserve-list capture, roster-transaction versioning, Texans depth image, 32-club sweep, models, backtests, leaderboard, correlations, site pages. None of these is claimed by this session. |
+
+**Request to the root-site/integration owner:** the `injury-report-w10` page's "279 rows" headline and its "3 of 28 team tables" limitation are superseded by the script count above. Please consider linking `injury-capture/README.md` from that page; this session did not edit it.
