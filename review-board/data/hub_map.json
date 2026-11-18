@@ -3,11 +3,11 @@
   "code": 6,
   "data register": 1,
   "other": 1,
-  "site hub": 23
+  "site hub": 24
  },
  "history": "full",
- "base_commit": "055b840",
- "hub_count": 31,
+ "base_commit": "ce5e949",
+ "hub_count": 32,
  "nav_target_count": 37,
  "nav_duplicate_labels": [
   {
@@ -203,7 +203,7 @@
    "pages": 0,
    "data_files": 22,
    "scripts": 3,
-   "last_touched": "2026-11-14",
+   "last_touched": "2026-11-18",
    "nav_links": [],
    "nav_labels": []
   },
@@ -348,7 +348,7 @@
    "pages": 24,
    "data_files": 0,
    "scripts": 0,
-   "last_touched": "2026-11-14",
+   "last_touched": "2026-11-18",
    "nav_links": [
     "pages/correlation.html",
     "pages/decision-hub.html",
@@ -458,6 +458,17 @@
    "nav_labels": []
   },
   {
+   "dir": "requirements-audit",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 5,
+   "data_files": 1,
+   "scripts": 1,
+   "last_touched": "2026-11-18",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
    "dir": "research-desk",
    "kind": "site hub",
    "index_page": true,
@@ -501,7 +512,7 @@
    "pages": 0,
    "data_files": 0,
    "scripts": 32,
-   "last_touched": "2026-11-14",
+   "last_touched": "2026-11-18",
    "nav_links": [],
    "nav_labels": []
   },
@@ -512,7 +523,7 @@
    "pages": 14,
    "data_files": 10,
    "scripts": 6,
-   "last_touched": "2026-11-14",
+   "last_touched": "2026-11-18",
    "nav_links": [
     "signal-desk/index.html"
    ],
@@ -602,8 +613,8 @@
    "nav_labels": []
   }
  ],
- "total_pages": 233,
- "total_data_files": 193,
+ "total_pages": 238,
+ "total_data_files": 194,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "055b840a3e0538b46b08e7d63ff84be439d575e0"
+ "_generated_from_repo_commit": "ce5e949e5764efcb87e09f1c2c2c0f46048f5642"
 }
