@@ -23,7 +23,10 @@ import argparse, csv, datetime as dt, hashlib, json, os, re, sys, urllib.request
 from html.parser import HTMLParser
 
 UA = "injury-capture/1.0 (+https://github.com/karagemop466-tech/Korea2)"
-REQUIRED_COLS = {"player", "pos", "injury", "practice status"}  # game status checked separately
+# Column labels as the live page prints them (verified by a runner capture, 2026-11-18):
+# "Player | Position | Injuries | Practice Status | Game Status". Synonyms are normalised below.
+ALIASES = {"position": "pos", "injuries": "injury", "injury": "injury", "pos": "pos"}
+REQUIRED_COLS = {"player", "pos", "injury", "practice status", "game status"}
 
 
 class TableParser(HTMLParser):
@@ -39,13 +42,19 @@ class TableParser(HTMLParser):
         self._row = None       # list of cell strings for the open <tr>
         self._row_is_th = False
         self._cell = None      # list of text fragments for the open cell
+        self._hints = []       # team-like hints (img alt, links to team pages) in document order
 
     def handle_starttag(self, tag, attrs):
+        ad = dict(attrs)
+        if tag == "img" and ad.get("alt"):
+            self._hints.append("alt:" + ad["alt"][:80])
+        if tag == "a" and "/team" in (ad.get("href") or "").lower():
+            self._hints.append("href:" + ad["href"][:80])
         if tag in ("h1", "h2", "h3", "h4", "h5"):
             self._h_buf = []
         elif tag == "table":
             self._open.append({"headings_before": self._headings[-3:], "header": None,
-                               "rows": [], "in_thead": False})
+                               "rows": [], "in_thead": False, "hints_before": self._hints[-4:]})
         elif tag == "thead" and self._open:
             self._open[-1]["in_thead"] = True
         elif tag == "tr" and self._open:
@@ -126,8 +135,9 @@ def main():
     for t in p.tables:
         if not t["header"]:
             continue
-        cols = [c.strip().lower().rstrip(".") for c in t["header"]]
-        tables.append({"heading": (t["headings_before"] or [""])[-1], "cols": cols, "rows": t["rows"]})
+        cols = [ALIASES.get(c.strip().lower().rstrip("."), c.strip().lower().rstrip(".")) for c in t["header"]]
+        tables.append({"heading": (t["headings_before"] or [""])[-1], "cols": cols, "rows": t["rows"],
+                       "hints": t.get("hints_before", [])})
 
     # Structural diagnostic (page markup only, no row content beyond the first row's cells).
     diagnostics = {
@@ -137,6 +147,7 @@ def main():
         "tables": [{"heading": (t["headings_before"] or [""])[-1][:120],
                     "header_cells": (t["header"] or [])[:12],
                     "n_rows": len(t["rows"]),
+                    "hints_before": t.get("hints_before", []),
                     "first_row_cells": [c[:60] for c in (t["rows"][0] if t["rows"] else [])][:12]}
                    for t in p.tables[:40]],
     }
@@ -149,10 +160,12 @@ def main():
         idx = {c: i for i, c in enumerate(t["cols"])}
         for r in t["rows"]:
             if len(r) != len(t["cols"]):
-                problems.append(f"row width {len(r)} != header width {len(t['cols'])} in '{t['heading']}'")
+                problems.append(f"row width {len(r)} != header width {len(t['cols'])} in table {injury_tables.index(t)}")
                 continue
             rows_out.append({
-                "team_heading": t["heading"],
+                "day_heading": t["heading"],
+                "table_index": injury_tables.index(t),
+                "team_hint": (t["hints"][-1] if t["hints"] else ""),
                 "player": r[idx["player"]],
                 "pos": r[idx["pos"]],
                 "injury": r[idx["injury"]] if "injury" in idx else "",
@@ -167,7 +180,7 @@ def main():
 
     csv_path = os.path.join(a.out_dir, base + ".rows.csv")
     with open(csv_path, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(rows_out[0].keys()) if rows_out else ["team_heading"])
+        w = csv.DictWriter(fh, fieldnames=list(rows_out[0].keys()) if rows_out else ["day_heading"])
         w.writeheader()
         for r in rows_out:
             w.writerow(r)
@@ -179,6 +192,8 @@ def main():
         "html_tables_total": len(tables), "injury_tables": len(injury_tables),
         "listed_rows_parsed": len(rows_out), "week_text_found": week_ok,
         "problems": problems, "pinned_min_rows": a.min_rows, "diagnostics": diagnostics,
+        "team_hints_in_document_sample": p._hints[:40],
+        "tables_with_team_hint": sum(1 for t in injury_tables if t["hints"]),
         "status": "FAILED" if problems else "OK",
     }
     mpath = os.path.join(a.manifest_dir, f"reg{a.week}_{a.season}_{stamp}.json")
