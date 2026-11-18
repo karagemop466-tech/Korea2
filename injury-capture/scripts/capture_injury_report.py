@@ -129,6 +129,17 @@ def main():
         cols = [c.strip().lower().rstrip(".") for c in t["header"]]
         tables.append({"heading": (t["headings_before"] or [""])[-1], "cols": cols, "rows": t["rows"]})
 
+    # Structural diagnostic (page markup only, no row content beyond the first row's cells).
+    diagnostics = {
+        "markers": {m: text.count(m) for m in ["<table", "<thead", "<th", "<tr", "__NEXT_DATA__",
+                                               "application/ld+json", "Practice Status",
+                                               "Game Status", "Did Not Participate", "Injury Report"]},
+        "tables": [{"heading": (t["headings_before"] or [""])[-1][:120],
+                    "header_cells": (t["header"] or [])[:12],
+                    "n_rows": len(t["rows"]),
+                    "first_row_cells": [c[:60] for c in (t["rows"][0] if t["rows"] else [])][:12]}
+                   for t in p.tables[:40]],
+    }
     injury_tables = [t for t in tables if REQUIRED_COLS.issubset(set(t["cols"]))]
     if not injury_tables:
         problems.append("no table with required columns " + ", ".join(sorted(REQUIRED_COLS)))
@@ -167,7 +178,7 @@ def main():
         "raw_sha256": sha, "raw_bytes": len(raw), "raw_file_in_artifact": os.path.basename(raw_path),
         "html_tables_total": len(tables), "injury_tables": len(injury_tables),
         "listed_rows_parsed": len(rows_out), "week_text_found": week_ok,
-        "problems": problems, "pinned_min_rows": a.min_rows,
+        "problems": problems, "pinned_min_rows": a.min_rows, "diagnostics": diagnostics,
         "status": "FAILED" if problems else "OK",
     }
     mpath = os.path.join(a.manifest_dir, f"reg{a.week}_{a.season}_{stamp}.json")
