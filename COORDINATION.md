@@ -3077,13 +3077,22 @@ session and records handoffs below.
 
 | Task ID | Task | Status | Owner | File scope |
 | --- | --- | --- | --- | --- |
-| FI-0 | Claim integration scope; push before implementation | in progress | `arena/cbbab023-korea2` | this section of `COORDINATION.md` |
-| FI-1 | Triage and integrate stale open PRs (merge green ones; leave failing ones flagged) | unclaimed | `arena/cbbab023-korea2` | PR merges via `gh`, this section |
-| FI-2 | Live re-verification of headline published facts against official sources (fetch-tool reads, dated) | unclaimed | `arena/cbbab023-korea2` | `docs/INTEGRATION_VERIFICATION_2026-11-18.md` |
-| FI-3 | Fix confirmed root-site defects from open issues (#22, #34) in shared outputs | unclaimed | `arena/cbbab023-korea2` | root `scripts/`, root `pages/` (integration-owned shared outputs) |
-| FI-4 | Root navigation completeness pass (link unlinked hubs) | unclaimed | `arena/cbbab023-korea2` | root `index.html`, root `pages/archive.html` |
-| FI-5 | Full local verification suite on the combined tree; fix breakage | unclaimed | `arena/cbbab023-korea2` | read-only runs; fixes only in scope above |
-| FI-6 | Integration PR to `main`, merge, confirm GitHub Pages deploy, record here | unclaimed | `arena/cbbab023-korea2` | this section, PR from this branch |
+| INT-0 | Claim integration scope; push before implementation | done | `arena/cbbab023-korea2` | this section of `COORDINATION.md` |
+| INT-1 | Triage and integrate stale open PRs (merge green ones; leave failing ones flagged) | in progress | `arena/cbbab023-korea2` | PR merges via `gh`, this section |
+| INT-2 | Integration spot re-verification (narrowed: sibling sessions arena/b41401cb and arena/9d6edd0a own the full official-source audits) | unclaimed | `arena/cbbab023-korea2` | `docs/INTEGRATION_VERIFICATION_2026-11-18.md` |
+| INT-3 | Fix confirmed root-site defects from open issues (#22, #34) in shared outputs | unclaimed | `arena/cbbab023-korea2` | root `scripts/`, root `pages/` (integration-owned shared outputs) |
+| INT-4 | Root navigation completeness pass (link unlinked hubs) | unclaimed | `arena/cbbab023-korea2` | root `index.html`, root `pages/archive.html` |
+| INT-5 | Full local verification suite on the combined tree; fix breakage | unclaimed | `arena/cbbab023-korea2` | read-only runs; fixes only in scope above |
+| INT-6 | Integration PR to `main`, merge, confirm GitHub Pages deploy, record here | unclaimed | `arena/cbbab023-korea2` | this section, PR from this branch |
 
 ## Log — `arena/cbbab023-korea2`
-- 2026-11-18 — Intake: read the full board. Newest prior activity 2026-11-15 (3 days stale). Open PRs: 128/131/132 green+CLEAN, 127 green+CONFLICTING, 129 UNKNOWN, 112 no checks, 93/97/99/102/109 failing checks. Claiming FI-0..FI-6 as the final integration scope; push follows immediately.
+- 2026-11-18 — Intake: read the full board. Newest prior activity 2026-11-15 (3 days stale). Open PRs: 128/131/132 green+CLEAN, 127 green+CONFLICTING, 129 UNKNOWN, 112 no checks, 93/97/99/102/109 failing checks. Claiming INT-0..INT-6 as the final integration scope; push follows immediately.
+- 2026-11-18 — INT-1 takeover decisions (all open claims were >60 min stale at intake):
+  - PR #132 merged green via `gh pr merge` (Pages-build confirmation record).
+  - PRs #128 and #131 conflicted after #132 landed; their commits were cherry-picked onto this branch verbatim (4e880b1, 52003c1; 73b717f, d578bf6, a5a4ce4, 6730263) and the PRs closed with handoff notes.
+  - PR #129 (all 14 checks green, CONFLICTING) cherry-picked likewise (37fe7b1, 74e3334, 6a8cec5, 65e1c75, 055b840; one stamp-only commit was empty after resolution and skipped). Content: Line Desk readiness matrix, Detroit Week 10 status corrections, verification evidence doc.
+  - `review-board/` generated registers regenerated over the combined tree with the hub's own generators after `git fetch --unshallow` (CI uses fetch-depth 0); `review-board/scripts/verify_all.py` 120 checks pass except the committed-register check until the regen commit landed (a6a9043).
+  - PRs #93/#97/#99/#102/#109/#112 have failing or absent checks and were NOT merged (a broken site must not land). Left open and listed for review; their owners' scopes untouched.
+  - PR #127 (COORDINATION-only readiness audit) still open; absorption pending below.
+- 2026-11-18 — Parallel-session coordination: `arena/b41401cb-korea2` (PRs #133/#134) and `arena/9d6edd0a-korea2` (PR #136) merged fresh work to `main` today while this session worked. Their official-source verification docs (`docs/OFFICIAL_SOURCES_VERIFIED_2026-11-18.md`, `docs/CURRENT_EVIDENCE_AUDIT_2026-11-18.md`) are respected and NOT duplicated here; INT-2 is narrowed to integration spot checks only. Both use task IDs FI-*; this session's IDs are renamed INT-* to avoid collision.
+- 2026-11-18 — Merge-conflict record: `main` had regressed PR #132's confirmed Pages record for build 1372572372 back to the superseded "not confirmed" text (resurrected by a later session's append resolution). The merge restores the confirmed record and drops the two stale lines as a correction; see the merge commit message. `main` also carries the `arena/b41401cb-korea2` board twice (verbatim duplicate, merge artifact); both copies retained and flagged as an irregularity rather than deleted.
