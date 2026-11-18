@@ -43,18 +43,26 @@ class TableParser(HTMLParser):
         self._row_is_th = False
         self._cell = None      # list of text fragments for the open cell
         self._hints = []       # team-like hints (img alt, links to team pages) in document order
+        self._block = []       # hints since the last table (a game's team-header block)
+        self._after_table = False
 
     def handle_starttag(self, tag, attrs):
         ad = dict(attrs)
+        hint = None
         if tag == "img" and ad.get("alt"):
-            self._hints.append("alt:" + ad["alt"][:80])
+            hint = "alt:" + ad["alt"][:80]
         if tag == "a" and "/team" in (ad.get("href") or "").lower():
-            self._hints.append("href:" + ad["href"][:80])
+            hint = "href:" + ad["href"][:80]
+        if hint:
+            self._hints.append(hint)
+            if self._after_table:
+                self._block, self._after_table = [], False
+            self._block.append(hint)
         if tag in ("h1", "h2", "h3", "h4", "h5"):
             self._h_buf = []
         elif tag == "table":
             self._open.append({"headings_before": self._headings[-3:], "header": None,
-                               "rows": [], "in_thead": False, "hints_before": self._hints[-4:]})
+                               "rows": [], "in_thead": False, "hints_before": list(self._block)})
         elif tag == "thead" and self._open:
             self._open[-1]["in_thead"] = True
         elif tag == "tr" and self._open:
@@ -86,6 +94,7 @@ class TableParser(HTMLParser):
             self._open[-1]["in_thead"] = False
         elif tag == "table" and self._open:
             self.tables.append(self._open.pop())
+            self._after_table = True
 
     def handle_data(self, data):
         if self._cell is not None:
@@ -152,6 +161,23 @@ def main():
                    for t in p.tables[:40]],
     }
     injury_tables = [t for t in tables if REQUIRED_COLS.issubset(set(t["cols"]))]
+    # Team assignment: each game block lists both teams (each linked twice) before its two tables,
+    # in the same order as the tables. The k-th table of a block gets the k-th distinct team slug.
+    def block_slugs(hints):
+        out = []
+        for h in hints:
+            if "/teams/" in h:
+                slug = h.split("/teams/")[1].strip("/")
+                if slug not in out:
+                    out.append(slug)
+        return out
+    prev_key, k = None, 0
+    for t in injury_tables:
+        key = tuple(t["hints"])
+        k = k + 1 if key == prev_key else 0
+        prev_key = key
+        slugs = block_slugs(t["hints"])
+        t["team_slug"] = slugs[k] if k < len(slugs) else ""
     if not injury_tables:
         problems.append("no table with required columns " + ", ".join(sorted(REQUIRED_COLS)))
 
@@ -168,7 +194,7 @@ def main():
             rows_out.append({
                 "day_heading": t["heading"],
                 "table_index": injury_tables.index(t),
-                "team_hint": (t["hints"][-1] if t["hints"] else ""),
+                "team_slug": t["team_slug"],
                 "player": r[idx["player"]],
                 "pos": r[idx["pos"]],
                 "injury": r[idx["injury"]] if "injury" in idx else "",
@@ -198,12 +224,11 @@ def main():
         "team_hints_in_document_sample": p._hints[:6],
         # Per-table counts only (no player names): team slug from the nearest team link before the table.
         "per_table": [{"table_index": i,
-                       "team_slug": next((h.split("/teams/")[1].strip("/") for h in t["hints"][::-1]
-                                          if "/teams/" in h), ""),
+                       "team_slug": t["team_slug"],
                        "rows": len(rows_out_for(t)),
                        "rows_with_game_status": sum(1 for r in rows_out_for(t) if r["game_status"])}
                       for i, t in enumerate(injury_tables)],
-        "tables_with_team_hint": sum(1 for t in injury_tables if t["hints"]),
+        "tables_with_team_slug": sum(1 for t in injury_tables if t["team_slug"]),
         "status": "FAILED" if problems else "OK",
     }
     mpath = os.path.join(a.manifest_dir, f"reg{a.week}_{a.season}_{stamp}.json")
