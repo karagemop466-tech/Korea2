@@ -221,6 +221,56 @@ underlying pipeline or any previously published number:
 
 **Earlier-session verification record (reported live retrieval 2026-11-12; not repeated in this audit):** the earlier session reported reviewing NFL.com 2026 standings, Week 10 injury report and schedule, the Colts team-published depth chart, DraftKings parlay rules and nflverse documentation. Its log describes the Colts page as unofficial/team-specific and nflverse as community-maintained. It also recorded passing site/rebase checks at that time. This audit did not re-fetch those sources; statistical pipeline values were not refreshed here. See the historical [verification page](pages/verification.html), [repository review](docs/REPO_REVIEW.md) and site's Flagged for Review page for the original scope.
 
+## 8. Requirements Desk — official capture and decision readiness (arena/2ca76106-korea2, 2026-11-18)
+
+A new hub at [`requirements-desk/`](requirements-desk/index.html) was added to close the gap between the
+brief's requirement list and what the repository can actually evidence. It is built on four official NFL.com
+pages retrieved and transcribed at **2026-11-18T03:52Z**, and it publishes only values those pages print.
+
+**What was captured**
+
+| Source | Rows produced |
+|---|---|
+| [Week 10 2026 injury report](https://www.nfl.com/injuries/league/2026/REG10) | 347 listed-player rows across 28 club tables |
+| [Week 10 2026 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) | 14/14 games FINAL with both scores; 4 clubs confirmed on bye |
+| [Week 11 2026 schedule](https://www.nfl.com/schedules/2026/by-week/week-11) | 13 fixtures with kickoff, network and venue; 6 clubs on bye |
+| [2026 division standings](https://www.nfl.com/standings/division/2026/REG) | 32 clubs with points for and against |
+
+**Three brief claims checked, with different outcomes**
+
+- **Confirmed.** Kerby Joseph, Cade Mays and D.J. Reed all read **Out** on the official Week 10 report, so the
+  "three missing Lions designations" item is closed. Seattle's 15 listed players is confirmed.
+- **Corrected.** Cincinnati's table has **9** rows, not 4. The report contains **347** rows, not the 254 or
+  279 quoted earlier in the brief, and **171** of them carry a game designation — not the 6 previously stated.
+  Coverage is Questionable 90, Out 70, Doubtful 11, blank 176.
+- **Resolved.** CHI, DEN, PHI and TB have no Week 10 table because they are on bye; the official Week 10
+  schedule page lists all four, which closes the earlier flag where bye status was unverified.
+
+**What the official data now supports**
+
+- Four correlations from official standings, each with n=32 and a Fisher-z 95% interval: win pct vs points
+  for +0.657 [+0.400, +0.818]; vs points against −0.670 [−0.826, −0.419]; vs net points +0.875
+  [+0.758, +0.938]; vs Pythagorean expected wins +0.872 [+0.752, +0.936].
+- A luck panel computed from official points for and against: luck SD **1.076 wins** across 32 clubs.
+  Persistence is **not** tested — one season cannot show whether luck repeats.
+- Week 10 results: home teams won 8 of 14; mean total 45.9; mean absolute margin 12.9.
+
+**Decision readiness.** The landing page carries one row for each of the **74** requirements in the brief,
+with the gate that blocks it and the number that would clear it: 13 verified, 36 partial, 17 blocked,
+8 not started. The twelve suggestions and twelve decision questions are separate review queues; nothing in
+either is auto-implemented.
+
+**Limits stated on the hub itself.** The sandbox shell has no network route to nfl.com, so no raw HTTP
+response could be retained — the published hash covers the transcribed register, not the NFL response body
+(flag F-01). The Week 11 injury report was not yet published at capture time (F-02). The injury report
+publishes no depth column, no replacement name and no string tier, so those columns are blank for every
+club rather than inferred (F-04). Full list: [`requirements-desk/pages/flagged.html`](requirements-desk/pages/flagged.html).
+
+**Verification run for this hub:** `python3 requirements-desk/scripts/verify.py` — pass (14 pages, 24 tables,
+1,052 links, 74 requirements, 6 registers), enforcing a source link on every table row, no broken links,
+https-only external links, and register row counts matching the committed CSVs and their hashes. Repository-wide
+`tests/check_site.py` (246 pages, 14,612 links) and `scripts/check_links.py` (5,072 references) also pass.
+
 ---
 
 *Research, not betting advice. Wager only where legal and only if of age. Free,

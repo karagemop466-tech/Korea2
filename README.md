@@ -11,6 +11,34 @@
 
 The repository has several independently built dashboards. They do not yet form one canonical site; the root navigation omits some recent hubs and repeats the “Suggestions hub” link. These direct links are intentional until the shared-navigation owner integrates them.
 
+### Requirements Desk — new 2026-11-18 (official capture, decision readiness, review queues)
+
+- [Requirements Desk](requirements-desk/index.html) — landing page: one row per brief requirement with the
+  gate that blocks it and the number that would clear it. 74 requirements: 13 verified, 36 partial,
+  17 blocked, 8 not started.
+- [Requirements register](requirements-desk/pages/requirements.html) — the same 74 rows, full width.
+- [Availability register](requirements-desk/pages/injuries.html) — **347** Week 10 injury-report rows across
+  28 club tables, transcribed verbatim, plus per-club counts, the game-status distribution, the four absent
+  clubs and the dated news headlines the report page itself links.
+- [Verified results](requirements-desk/pages/results.html) — Week 10: 14/14 games FINAL from the official
+  schedule page.
+- [Fixture & venue](requirements-desk/pages/schedule.html) — Week 11: 13 fixtures with kickoff, network and
+  venue, 6 clubs on bye, 1 neutral-site game.
+- [Standings & luck](requirements-desk/pages/standings.html) · [Removal of luck](requirements-desk/pages/luck.html) ·
+  [Official correlations](requirements-desk/pages/correlations.html) — four coefficients at n=32 with
+  Fisher-z 95% intervals; luck SD 1.076 wins.
+- [Suggestion review queue](requirements-desk/pages/suggestions.html) — 12 prioritised proposals, each with
+  the paths a reviewer can choose between. Nothing is auto-implemented.
+- [Decision questions](requirements-desk/pages/questions.html) — 12 questions, each with what is known,
+  what is missing, how to discover it and which decision stays blocked.
+- [Brief claim audit](requirements-desk/pages/verification.html) · [Flagged for review](requirements-desk/pages/flagged.html) ·
+  [Source register](requirements-desk/pages/sources.html)
+
+Three brief claims were checked against the official page and came out differently: the three Lions rows are
+**Out** (confirmed); Cincinnati has **9** listed players, not 4 (corrected); and the report holds **347** rows
+with **171** game designations, not 254/279 with 6 (corrected). CHI, DEN, PHI and TB are absent because they
+are on bye, which the official Week 10 schedule page confirms.
+
 ### Decision and requirements review
 
 - [Line Desk](line-desk/index.html) — latest committed requirements view (as of 2026-11-14): price-snapshot coverage, official results, origination order, signal versus staking, official-only standings correlations, replacement-depth gaps, gates, questions and suggestions.
