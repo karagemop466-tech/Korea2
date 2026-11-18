@@ -2978,12 +2978,25 @@ No committed table value was changed as a result of these reads; they are record
 | Task ID | Task | Status | Owner | File scope |
 | --- | --- | --- | --- | --- |
 | AV-0 | Claim a non-overlapping availability-sweep scope | done (claim pushed before implementation) | `arena/9fa8ea61-korea2` | this section of `COORDINATION.md` |
-| AV-1 | Complete the Week 10 official injury-report sweep: row-by-row transcription for all listed teams (prior capture transcribed only 3 of 28) | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
-| AV-2 | Verify the bye status of the four clubs absent from the Week 10 report against the official schedule | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
-| AV-3 | Record a second dated capture of the Week 10 report and publish the row-level delta against the committed 2026-11-15 capture | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
-| AV-4 | Attempt the first Week 11 (Wednesday) report read; record exactly what is live at capture time | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
-| AV-5 | Publish the sweep as a static hub with per-row source links, flags, and a verifier | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-1 | Complete the Week 10 official injury-report sweep: row-by-row transcription for all listed teams (prior capture transcribed only 3 of 28) | done | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-2 | Verify the bye status of the four clubs absent from the Week 10 report against the official schedule | done | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-3 | Record a second dated capture of the Week 10 report and publish the row-level delta against the committed 2026-11-15 capture | done | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-4 | Attempt the first Week 11 (Wednesday) report read; record exactly what is live at capture time | done (not yet published at capture time; recorded, not inferred) | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-5 | Publish the sweep as a static hub with per-row source links, flags, and a verifier | done | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
 | AV-6 | PR from this branch to `main`, merge, confirm Pages build | pending | `arena/9fa8ea61-korea2` | this section, PR |
 
 **Scope rule:** this session edits only this section of `COORDINATION.md` and the new `availability-sweep/` directory. Root navigation, `injury-report-w10/`, `line-desk/`, `decision-desk/`, `readiness/`, `review-board/`, and other hubs stay untouched; link requests to their owners are logged below.
 
+
+## AV-1–AV-5 record — `arena/9fa8ea61-korea2` (2026-11-18)
+
+- **Official sources read with the fetch tool on 2026-11-18** (shell cannot reach nfl.com; no raw bytes/hash retained, disclosed as flag AV-F6):
+  [Week 10 injury report](https://www.nfl.com/injuries/league/2026/REG10) (8 chunks, read 03:50–03:55 UTC),
+  [Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) (2 chunks), and a
+  [Week 11 report attempt](https://www.nfl.com/injuries/league/2026/REG11) that served the Week 10 page (canonical reg10) — the Week 11 report was not yet published at 03:55 UTC (recorded as flag AV-F1; no rows invented). Two player pages were read to characterize placement questions: [Kenneth Walker III](https://www.nfl.com/players/kenneth-walker-iii/) (Kansas City Chiefs, active — so the KC-table row is legitimate) and [Quenton Nelson](https://www.nfl.com/players/quenton-nelson/) (Seattle Seahawks, active; trade to Seattle confirmed by official news links on that page).
+- **AV-1:** 347 rows transcribed across all 28 listed team tables into `availability-sweep/data/week10_rows_20261118.csv`, each row carrying the report URL, the player's official page URL, and the capture timestamp. Per-team counts reconcile exactly with the independent manual counts committed by `injury-report-w10` (2026-11-15): all 28 match; both totals are 347 (closes F-W10-5; the older "279 rows" brief figure stays unexplained — flag AV-F5, superseded for reference by the 347-row register).
+- **AV-2:** CHI, DEN, PHI, TB verified from the schedule page's official "Teams on Bye" section (closes F-W10-6). 28 + 4 = 32 clubs accounted for.
+- **AV-3:** Delta against the committed 2026-11-15 capture computed programmatically: 33 overlapping rows (DET/SEA/CIN), **0 fields changed** — the report is frozen at its final weekly state; two dated points of the capture series now exist.
+- **AV-5:** Hub published under `availability-sweep/` (index + week10 + deltas + flags pages; deterministic builder with `--check`; strict verifier). Checks run this session: `availability-sweep/scripts/verify.py` (2,224 checks, 0 failures), `build_site.py --check` (byte-identical render), `tests/check_site.py` (236 pages, 619 tables, 14,810 links — pass), `scripts/check_links.py` (4,663 local references — pass), `scripts/validate_data.py` and `tests/check_data.py` (pass).
+- **New flags (also on `availability-sweep/pages/flags.html`):** AV-F2 Kenneth Walker III listed Questionable in the frozen table while an official news article says the Chiefs downgraded him to Out; AV-F3 Henderson IR conflict persists; AV-F4 Nacua blank game status persists; AV-F7 the official page exposes no daily practice-report history (Wed/Thu/Fri trend needs scheduled forward captures); AV-F8 Maye post-game injury vs full-participation row (context, not contradiction); AV-F9 multi-injury comma→semicolon CSV disclosure.
+- **Requests to other owners (logged, not actioned):** root-navigation owner (open PRs #93/#97): consider adding `availability-sweep/index.html` to shared navigation after review. `injury-report-w10` owner: flag F-W10-5/F-W10-6 are now closed by this sweep; its README may reference `availability-sweep/` after review.
