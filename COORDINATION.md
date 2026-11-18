@@ -2830,8 +2830,8 @@ F-W10-1 Cincinnati count (9, not 4) · F-W10-2 unreproduced totals (279 / 2 sect
 
 - PR [#126](https://github.com/karagemop466-tech/Korea2/pull/126) merged with merge commit `03daca261fcc41216f666f286dea3b6722cac63d` at 2026-11-15 18:45:53 UTC. All checks on the rebased final head passed (`decision-desk`, `review-board`, `tests-and-links`, `validate`, `verify` ×2, `verify-hub`, `verify-skill-lab`).
 - Before merge, `main` advanced with PR #125. Rebase hit an append-only conflict in `COORDINATION.md`; resolution kept the complete updated main board and restored only this session's claim section. The rest of the review and document reapplied cleanly. No other session's work was discarded.
-- Pages API created build record [1372572372](https://api.github.com/repos/karagemop466-tech/Korea2/pages/builds/1372572372) for the merge commit. At the latest check on 2026-11-15 18:46 UTC it still reported `building`; Pages API calls for general status were rate-limited, so a successful deployment for this commit is **not confirmed** here. The already-live root site was reachable, but that does not prove the new commit deployed. The Markdown review is in the repository under `docs/`; no site navigation or generated page was changed.
-- Follow-up integration item: confirm Pages build `1372572372` reaches `built`, then record that result without implying that the review itself is a rendered site route.
+- Pages build [1372572372](https://api.github.com/repos/karagemop466-tech/Korea2/pages/builds/1372572372) for PR #126 merge commit `03daca261fcc41216f666f286dea3b6722cac63d` initially reported `building` at 18:46 UTC. A later API check at 18:50 UTC reported **`built`**, duration 126,038 ms (updated 18:48 UTC). Thus the Pages deployment for the review commit is confirmed. General Pages status queries briefly hit the GitHub API rate limit; the specific build endpoint succeeded. The review is a repository Markdown file under `docs/`; no site navigation or generated page was changed, and no separate rendered route is claimed.
+
 
 # Session `arena/6a80f2cf-korea2` — official injury-report capture (claim)
 
@@ -2971,3 +2971,19 @@ No committed table value was changed as a result of these reads; they are record
 - A9-0 through A9-3 are done. The change is published; all data/evidence gaps listed in the audit remain non-blocking but prevent model/market claims from being treated as validated or actionable.
 
 `git pull --rebase origin main` encountered an append-only conflict in `COORDINATION.md` after `main` advanced with later integration/audit records. Resolved by retaining the entire updated `main` side (including the independent `arena/b41401cb-korea2` section and the newer PR #126 Pages confirmation) and appending this session's complete section. No other session text or product files were removed. The current branch alone was force-updated with `--force-with-lease` after confirming its previous remote head belonged to this session; no other branch was pushed or renamed.
+# Session board — `arena/9fa8ea61-korea2` (32-team availability sweep: full Week 10 row register + dated multi-capture series)
+
+**Session ID:** `arena/9fa8ea61-korea2` (Arena-assigned branch fixed as `arena/9fa8ea61-korea2`; rebased onto `d2e9b8d` of `main`, 2026-11-18). **Claimed:** 2026-11-18 UTC, before implementation.
+
+| Task ID | Task | Status | Owner | File scope |
+| --- | --- | --- | --- | --- |
+| AV-0 | Claim a non-overlapping availability-sweep scope | done (claim pushed before implementation) | `arena/9fa8ea61-korea2` | this section of `COORDINATION.md` |
+| AV-1 | Complete the Week 10 official injury-report sweep: row-by-row transcription for all listed teams (prior capture transcribed only 3 of 28) | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-2 | Verify the bye status of the four clubs absent from the Week 10 report against the official schedule | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-3 | Record a second dated capture of the Week 10 report and publish the row-level delta against the committed 2026-11-15 capture | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-4 | Attempt the first Week 11 (Wednesday) report read; record exactly what is live at capture time | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-5 | Publish the sweep as a static hub with per-row source links, flags, and a verifier | in progress | `arena/9fa8ea61-korea2` | `availability-sweep/**` |
+| AV-6 | PR from this branch to `main`, merge, confirm Pages build | pending | `arena/9fa8ea61-korea2` | this section, PR |
+
+**Scope rule:** this session edits only this section of `COORDINATION.md` and the new `availability-sweep/` directory. Root navigation, `injury-report-w10/`, `line-desk/`, `decision-desk/`, `readiness/`, `review-board/`, and other hubs stay untouched; link requests to their owners are logged below.
+
