@@ -183,8 +183,16 @@ def main() -> int:
     check("every navigation target exists",
           all(os.path.exists(os.path.join(HUB, t)) for t in nav_links),
           ", ".join(sorted(t for t in nav_links if not os.path.exists(os.path.join(HUB, t)))))
-    check("the hub stays out of the shared root navigation",
-          "review-board" not in read(os.path.join(REPO, "scripts", "lib", "site.py")))
+    # Integration session arena/4c90e65f-korea2 (2026-11-18) linked the sibling hubs from the shared root
+    # navigation, which is the integration owner's decision to make. The guard was written while root nav
+    # belonged to another session and asserted the OPPOSITE (that review-board stayed out). It now asserts
+    # what the brief asks for: a hub that exists on main is reachable from the published navigation, and
+    # the link is real.
+    nav_src = read(os.path.join(REPO, "scripts", "lib", "site.py"))
+    linked = '"review-board": "Review Board' in nav_src or "review-board/index.html" in nav_src
+    target_exists = os.path.exists(os.path.join(REPO, "review-board", "index.html"))
+    check("the hub is linked from the shared root navigation (integration decision 2026-11-18)",
+          linked and target_exists, f"linked={linked}, target exists={target_exists}")
 
     # ---------------------------------------------------------------- 4. the registers reconcile
     q, r_ = data["queue"], data["readiness"]

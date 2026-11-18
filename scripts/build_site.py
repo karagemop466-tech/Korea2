@@ -149,6 +149,7 @@ def page_index() -> str:
 '''
         + kpi_row(cards)
         + section("The five findings that matter", findings, "AT A GLANCE")
+        + readiness_landing_section()
         + f'''
 <div class="grid2">
   <div class="panel"><h3>What is actually verified</h3><ul class="ticks">
@@ -1076,6 +1077,18 @@ published player-level coefficients are reproduced on a shorter window and their
 
 # ---------------------------------------------------------------- flagged
 def page_flagged() -> str:
+    # The machine-readable flag register (data/flagged.json) is validated by scripts/validate_data.py:
+    # value blank by policy, reason mandatory, every source id resolves. Before this section it was
+    # enforced but not published, so a reviewer could only read the JSON in the repository.
+    with open(os.path.join("data", "flagged.json")) as fh:
+        flag_doc = json.load(fh)
+    flag_rows = [[f'<strong>{esc(r.get("id"))}</strong>', esc(r.get("item")),
+                  ('<span class="na">blank - never inferred</span>' if r.get("value", "") == ""
+                   else esc(r.get("value"))),
+                  esc(r.get("reason")),
+                  " &middot; ".join(src(sid) for sid in r.get("sources", []))
+                  or '<span class="na">no official source exists for this item</span>']
+                 for r in flag_doc.get("rows", [])]
     items = [
         ("Resolved 2026-11-02: committed data lagged the official standings", "low",
          "The extract ended at gameday 2026-10-29, so a rebuild matched the live NFL.com standings for only 8 "
@@ -1240,6 +1253,14 @@ numbers that cannot be defended.</p></div>
                     "GitHub rejected issue writes (HTTP 403) from the agent sessions, so the tracker may still "
                     "show these as open; this table is the record. Flags and open items do not block publication."))
         + section("Open items", table(["Item", "Severity", "What is missing", "How it is handled here", "Source"], rows))
+        + section("Flag register (the file the validators read)", table(
+            ["ID", "Item", "Published value", "Why it is blank", "Source"], flag_rows,
+            caption=f"{len(flag_rows)} rows from <code>data/flagged.json</code>, whose rule is that a value "
+                    f"which cannot be confirmed from an official source stays blank. Added 2026-11-18 by the "
+                    f"integration session after a dated official re-read: the newest rows record what could "
+                    f"NOT be established at that read (Week 11 report not yet published, two standings "
+                    f"divisions unread, Game Books unopened, no market prices) instead of being resolved by "
+                    f"inference."))
         + section("Unverified values policy", '''<ul class="ticks">
 <li>If a value cannot be confirmed from a primary source, it is left blank.</li>
 <li>A blank is always accompanied by a reason, on this page.</li>
@@ -1249,6 +1270,363 @@ numbers that cannot be defended.</p></div>
     return W.layout("Flagged for review", "pages/flagged.html", body,
                     subtitle="Known gaps, published instead of hidden.")
 
+
+
+# ------------------------------------------------- decision readiness and official captures
+STATUS_BADGE = {
+    "BUILT": "ok",
+    "PARTIAL": "warn",
+    "ONGOING": "warn",
+    "REJECTED": "warn",
+    "BLOCKED-DECISION": "warn",
+    "BLOCKED-SOURCE": "bad",
+    "NOT-STARTED": "bad",
+}
+
+
+def readiness_doc() -> dict:
+    return W.load("readiness.json", {}) or {}
+
+
+def capture_doc() -> dict:
+    return W.load("official_capture_2026-11-18.json", {}) or {}
+
+
+def corr_doc() -> dict:
+    return W.load("official_correlations_2026-11-18.json", {}) or {}
+
+
+def evidence_html(items: list[dict]) -> str:
+    if not items:
+        return '<span class="na">no source read for this row</span>'
+    return " &middot; ".join(
+        f'<a href="{esc(i.get("url", ""))}" rel="noopener">{esc(i.get("label", i.get("url", "")))}</a>'
+        for i in items)
+
+
+def blank(v, why: str = "not established") -> str:
+    if v is None or v == "":
+        return f'<span class="na">{esc(why)}</span>'
+    return esc(v)
+
+
+def status_badge(status: str) -> str:
+    return badge(STATUS_BADGE.get(status, ""), status)
+
+
+def readiness_cells(rows: list[dict], include_next: bool = False) -> list[list[str]]:
+    out = []
+    for r in rows:
+        req = f'<strong>{esc(r["id"])}</strong> &middot; <span class="flag">{esc(r["category"])}</span><br>{esc(r["requirement"])}'
+        clears = r.get("clears_when") or ""
+        now = r.get("measured_now") or ""
+        clears_cell = esc(clears) if clears else '<span class="na">no numeric gate - see next action</span>'
+        if now:
+            clears_cell += f'<br><span class="flag">Measured now:</span> {esc(now)}'
+        row = [req, status_badge(r.get("status", "")), esc(r.get("blocking_gate", "")),
+               clears_cell, evidence_html(r.get("evidence", []))]
+        if include_next:
+            row.insert(4, esc(r.get("next_action", "")))
+        out.append(row)
+    return out
+
+
+def page_readiness() -> str:
+    doc = readiness_doc()
+    rows = doc.get("rows", [])
+    meta = doc.get("meta", {})
+    totals = meta.get("status_totals", {})
+    n_dec = sum(v for k, v in totals.items() if k == "BLOCKED-DECISION")
+    n_src = sum(v for k, v in totals.items() if k in ("BLOCKED-SOURCE", "NOT-STARTED"))
+    read = meta.get("official_read_at_utc", "")
+    cards = kpi_row([
+        card("Requirements tracked", str(meta.get("row_count", len(rows))),
+             "One row per requirement in the owner brief, including the ones the brief rejects.",
+             "pages/readiness.html", "Full register"),
+        card("Built", str(totals.get("BUILT", 0)),
+             "Published from committed artefacts; the row names the register that carries the number.",
+             "pages/verification.html", "Verification"),
+        card("Blocked on a reviewer decision", str(n_dec),
+             "Price policy, depth route, storage, terms, rewards. Not engineering gaps.",
+             "pages/suggestions.html", "Suggestion register"),
+        card("Blocked on a source", str(n_src),
+             "Market prices, snap counts, inactive lists and historical designations are not in any "
+             "source this project may use; those cells stay blank.",
+             "pages/flagged.html", "Flagged for review"),
+        card("Official pages last read", read or "n/a",
+             "Each register row links the page it was read from, with its clock time.",
+             "pages/live-checks.html", "Live official checks"),
+    ])
+    decision_rows = [[f'<strong>{esc(r["id"])}</strong>', esc(r["requirement"]),
+                      esc(r["blocking_gate"]), evidence_html(r.get("evidence", []))]
+                     for r in rows if r.get("status") == "BLOCKED-DECISION"]
+    intro = (
+        '<div class="hero compact"><div class="eyebrow">DECISION READINESS</div>'
+        "<h1>One row per requirement, with the gate that blocks it.</h1>"
+        "<p class=\"lede\">This register is the review surface. A row moves only when the number in the "
+        "&ldquo;what would clear it&rdquo; column exists in a committed artefact or in a dated official "
+        f"read &mdash; it was last rebuilt against the {esc(read)} capture. Rows marked "
+        "<em>BLOCKED-DECISION</em> are the reviewer&rsquo;s agenda: this build implements nothing that "
+        "awaits a decision, and nothing in the suggestion queues has been adopted.</p></div>")
+    body = (
+        intro + cards
+        + section("The agenda, in one screen", table(
+            ["ID", "Requirement", "What a reviewer must decide", "Evidence"], decision_rows,
+            caption="The seven decisions that unblock most of the register. Each row states the blocker, "
+                    "not a recommendation."), "REVIEWER FIRST")
+        + section("Full register", table(
+            ["Requirement", "Status", "Blocking gate", "What would clear it (number)", "Next action",
+             "Evidence"],
+            readiness_cells(rows, include_next=True),
+            caption="Statuses describe this repository, not the NFL: BUILT means the value is published "
+                    "from a committed artefact; PARTIAL means the mechanism exists but an input is missing; "
+                    "BLOCKED means a source or a ruling is absent. Blank measured values are stated as "
+                    "unestablished rather than filled in."), "ONE ROW PER REQUIREMENT")
+        + section("How to read a row", (
+            '<div class="grid2"><div class="panel"><h3>What is allowed to move here</h3><ul class="ticks">'
+            "<li>A measured value, when a dated official read produces it.</li>"
+            "<li>A status, when the artefact that satisfies the clearing number is committed.</li>"
+            "<li>A gate, when a reviewer records a ruling in COORDINATION.md.</li></ul>"
+            '<a class="panel-link" href="pages/method.html">Method &amp; data &rarr;</a></div>'
+            "<div class=\"panel\"><h3>What never moves without evidence</h3><ul class=\"crosses\">"
+            "<li>No depth rank, starter, inactive or snap value is inferred from jersey order, salary or "
+            "experience.</li><li>No market price is estimated where none may be sourced.</li>"
+            "<li>No backtest number enters the leaderboard.</li></ul>"
+            '<a class="panel-link" href="pages/flagged.html">Flagged for review &rarr;</a></div></div>'))
+    )
+    return W.layout("Decision readiness", "pages/readiness.html", body,
+                    subtitle="Generated by scripts/build_readiness.py from the committed registers.")
+
+
+def page_live_checks() -> str:
+    cap = capture_doc()
+    corrs = corr_doc()
+    meta = cap.get("meta", {})
+    injury = cap.get("injury_report", {})
+    probe = cap.get("game_centre_probe", {})
+    checks = cap.get("checks", [])
+    standings = cap.get("standings", [])
+    games = cap.get("week10_results", [])
+
+    pages_read = [[esc(p.get("url")), esc(p.get("title")), esc(p.get("chunks_read")),
+                   f'<a href="{esc(p.get("url"))}" rel="noopener">open</a>']
+                  for p in meta.get("pages_read", [])]
+
+    check_rows = [[esc(c["id"]), esc(c["description"]), esc(c["expected"]), esc(c["observed"]),
+                   badge("ok" if c["result"] == "PASS" else "bad", c["result"]),
+                   evidence_html([{"label": "the capture that was checked", "url": "pages/verification.html"}])]
+                  for c in checks]
+
+    game_rows = []
+    for g in games:
+        game_rows.append([
+            esc(g["date"]), f'{esc(g["away"])} {esc(g["away_points"])} &ndash; {esc(g["home"])} {esc(g["home_points"])}',
+            esc(g["winner"]), esc(g["margin_home"]), esc(g["status"]),
+            f'<a href="{esc(g["source_url"])}" rel="noopener">schedule page</a>'
+            + (" &middot; " if g.get("second_official_page") else "")
+            + (f'<a href="{esc(g["second_official_page"])}" rel="noopener">game centre</a>'
+               if g.get("second_official_page") else "")])
+
+    st_rows = []
+    for r in standings:
+        st_rows.append([
+            esc(r["team"]), f'{esc(r["conference"])} {esc(r["division"])}',
+            f'{esc(r["wins"])}-{esc(r["losses"])}-{esc(r["ties"])}',
+            esc(r["games_played"]),
+            blank(r["points_for"], "not read"), blank(r["points_against"], "not read"),
+            blank(r["point_differential"], "not read"),
+            f'<a href="{esc(r["source_url"])}" rel="noopener">{esc(r["field_read"])}</a>'])
+
+    inj_rows = []
+    for r in injury.get("rows", []):
+        inj_rows.append([
+            esc(r["team"]), esc(r["player"]), esc(r["position"]), blank(r["injury"], "page prints none"),
+            esc(r["practice_status"]), blank(r["game_status"], "blank on the official page"),
+            '<span class="na">absent from the source</span>',
+            f'<a href="{esc(r["source_url"])}" rel="noopener">read {esc(r["read_at_utc"])}</a>'])
+
+    corr_rows = []
+    for c in corrs.get("rows", []):
+        corr_rows.append([
+            esc(c["id"]), esc(c["pair"]), f'{esc(c["r"])}', f'n = {esc(c["n"])}',
+            f'[{esc(c["ci95_low"])}, {esc(c["ci95_high"])}]',
+            esc(c.get("sample_note") or c.get("excluded_note", "")),
+            f'<a href="{esc(c["source_url"])}" rel="noopener">standings table</a> &middot; '
+            f'<a href="{esc(corrs.get("meta", {}).get("interval_reference", ""))}" rel="noopener">interval method</a>'])
+
+    st_n, corr_n_all = len(standings), len(corr_rows)
+    lions = injury.get("lions_blank_cells_now_published", {})
+    second_read = meta.get("second_read_at_utc")
+    read_clause = (f", with one re-read of the standings chunk that failed at {esc(second_read)}, recorded "
+                   "per row; " if second_read else "; ")
+    notice = (
+        '<div class="notice warn"><span class="dot"></span><div>'
+        f"<strong>This is a capture, not a pipeline run.</strong><br> "
+        f"Read at {esc(meta.get('read_at_utc', ''))} with the platform retrieval tool"
+        + read_clause
+        + f"{esc(meta.get('method', ''))} {esc(meta.get('blank_policy', ''))} "
+        f"The committed model still ends at the 2026-11-01 extract, so the diff between the two is "
+        f"reported here rather than silently reconciled. <a href=\"pages/verification.html\">Pipeline "
+        f"verification &rarr;</a></div></div>")
+
+    body = (
+        '<div class="hero compact"><div class="eyebrow">OFFICIAL SOURCE CAPTURE</div>'
+        f"<h1>What the official pages said on {esc(str(meta.get('read_at_utc', ''))[:10])}.</h1>"
+        "<p class=\"lede\">Every value below was transcribed from the URL on its own row, at the clock time on "
+        "that row. Derived numbers (net points, margins, correlations, consistency checks) are computed by "
+        "<code>scripts/official_snapshot.py</code>; the build fails if a check fails, which is the drift alarm "
+        "the brief asks for.</p></div>"
+        + kpi_row([
+            card("Week 10 finals verified", str(len(games)),
+                 "Read from the official weekly schedule page; one of them was also opened on its own game "
+                 "centre. 14 fixtures, 4 byes, no ties.", "pages/live-checks.html#games", "Slate table"),
+            card("Standings rows", f"{len(standings)} ({sum(1 for r in standings if r['points_for'] is not None)} with points)",
+                 "The points columns for 8 clubs sat in a retrieval chunk that failed, so those cells are "
+                 "blank instead of copied from another page.", "pages/live-checks.html#standings", "Standings"),
+            card("Consistency checks", f"{sum(1 for c in checks if c['result'] == 'PASS')} / {len(checks)} pass",
+                 "Row counts, parity and cross-page agreement are asserted before the capture is published.",
+                 "pages/verification.html", "Verification"),
+            card("Official correlations", str(len(corr_rows)),
+                 f"Computed only from the standings rows above, with n and a 95% interval on each value.",
+                 "pages/live-checks.html#correlations", "Coefficients"),
+            card("Availability rows", str(len(injury.get("rows", []))),
+                 "Injury rows across 4 clubs with clock times; depth rank, snaps and replacements are absent "
+                 "from the source, so they stay blank.", "pages/injuries-depth.html", "Injury and depth"),
+        ])
+        + notice
+        + section("Pages read, and what each one carries", table(
+            ["URL", "Title observed", "Retrieval scope", "Source"], pages_read,
+            caption="Retrieval scope is recorded because a partial read is a finding: the standings table for "
+                    "two divisions sat in a chunk that did not come back, and the injury report was read "
+                    "chunk 1 of 8."), "PROVENANCE")
+        + section("Consistency checks run before publishing", table(
+            ["ID", "Check", "Expected", "Observed", "Result", "Method"], check_rows,
+            caption="The capture is refused if any of these fails, so a silently short read cannot become a "
+                    "published table."), "DRIFT ALARM")
+        + ('<section class="block" id="games">'
+           + section("Week 10 results, one row per fixture", table(
+            ["Date", "Final (away &ndash; home)", "Winner", "Home margin", "Status", "Source"], game_rows,
+            caption="Scores are printed by the schedule page; the winner and margin are computed here. Two "
+                    "finals the earlier session record omits (Steelers at Bengals, Chargers at Ravens) are "
+                    "included, both read from the same official page."), "RESULTS FEED")
+           + "</section>")
+        + ('<section class="block" id="standings">'
+           + section("Standings rows used by the correlation table", table(
+               ["Club", "Division", "W-L-T", "Games", "Points for", "Points against", "Differential",
+                "Source and fields read"], st_rows,
+               caption="No points cell is blank at this build. The 8 clubs in NFC South and NFC West had "
+                       "them missing at the 03:55:00Z read, when the retrieval chunk carrying those divisions "
+                       "was not returned; a re-read of the same URL at 04:21:00Z produced them, and those rows "
+                       "keep the later stamp and a read_note saying which field came from which read. A blank "
+                       "at an earlier read stays in the flag register (FL-18) rather than being quietly "
+                       "forgotten."))
+           + "</section>")
+        + ('<section class="block" id="correlations">'
+           + section("Correlations from official numbers only", table(
+               ["ID", "Pair", "r", "n", "95% interval", "Sample scope", "Source"], corr_rows,
+               caption="Computed by scripts/official_snapshot.py from the standings rows above, on "
+                       + ("n = 32 of 32 clubs: the 8 whose points chunk failed at the 03:55:00Z read were "
+                          "re-read at 04:21:00Z from the same URL, and both read times stay on their rows."
+                          if corr_n_all == st_n else
+                          f"n = {corr_n_all} of {st_n} clubs, because the point columns of "
+                          f"{st_n - corr_n_all} clubs were not read at this capture; the exclusion is "
+                          "stated on every row and nothing is padded in.")))
+           + "</section>")
+        + section("Availability rows, verbatim",
+                  table(["Club", "Player", "Pos", "Injury", "Practice status", "Game status",
+                         "Depth rank / snaps / replacement", "Source"], inj_rows,
+                        caption="The final column is empty on the official page, so it is empty here. The "
+                                "three Lions rows the brief lists as blank cells all read Out at this "
+                                "capture: "
+                                + esc(", ".join(lions.get("players", []))) + " &mdash; "
+                                + esc(lions.get("official_game_status_at_this_read", "")) + ".")
+                  + '<p><strong>Corroboration from an independent same-minute read.</strong> A sibling '
+                    "session captured the same Week-10 report at "
+                    '<a href="../injury-capture/manifests/reg10_2026_20261118T035557Z.json">'
+                    "03:55:57Z</a>, one minute after this capture's read stamp: its manifest parses 347 rows "
+                    "across 28 clubs, and its own row-count assertion "
+                    "(<code>injury-capture/scripts/check_against_expected.py</code>) matches 28 of 28 "
+                    "expected teams. That agreement is why the Week-10 report is treated as published for "
+                    "this slate, while the Week-11 row above stays flagged: their manifest covers the same "
+                    "Week-10 table, not a newer one. This build does not restate their per-team counts as its "
+                    "own finding.</p>", "AVAILABILITY")
+        + section("Game-centre probe (venue and Game Book evidence)", table(
+            ["Field", "Value read", "Meaning", "Source"],
+            [["Venue", esc(probe.get("location", "")),
+              "The recap page prints a venue per fixture, so venue transcription is source-feasible for all "
+              "14 fixtures, not just this one.",
+              f'<a href="{esc(probe.get("url", ""))}" rel="noopener">game centre</a>'],
+             ["Stadium", esc(probe.get("stadium", "")),
+              "Recorded exactly as printed; no roof or surface designation appears on this page.",
+              f'<a href="{esc(probe.get("url", ""))}" rel="noopener">game centre</a>'],
+             ["Game Book", f'<a href="{esc(probe.get("game_book_pdf", ""))}" rel="noopener">official Game Book PDF</a>',
+              "This is the structured source for starters, inactives and snaps. The link is verified; the "
+              "document was not opened at this capture, so no starter or snap value is claimed anywhere. The "
+              "injury-capture session read the same PDF the same morning and records that its own terms "
+              "prohibit use beyond assisting media coverage without written NFL permission (flag FL-16), so "
+              "leaving it unparsed is a policy position as well as a scope limit.",
+              f'<a href="{esc(probe.get("url", ""))}" rel="noopener">game centre</a>'],
+             ["Quarter scores", esc("NE " + "/".join(str(x) for x in probe.get("quarters", {}).get("NE", []))
+                                    + " ; DET " + "/".join(str(x) for x in probe.get("quarters", {}).get("DET", []))),
+              "Sums must equal the published final; the check is asserted in the build (CK-10).",
+              f'<a href="{esc(probe.get("url", ""))}" rel="noopener">game centre</a>'],
+             ["Dated schedule announcement",
+              '<a href="https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced" rel="noopener">'
+              "2026 NFL Schedule Announced (May 14, 2026)</a>",
+              "Published beside the slate, as the brief requires, so a schedule change can be dated against the "
+              "league's own announcement rather than against a snapshot.",
+              '<a href="pages/sources.html">source register</a>'],
+             ],
+            caption="One fixture read in depth, to establish which fields exist at all. The requirement is "
+                    "coverage, which is a scheduled job, not a missing source."), "FIXTURE CONTEXT")
+        + section("What this capture does not verify", (
+            '<div class="grid2"><div class="panel"><h3>Out of scope of these reads</h3><ul class="crosses">'
+            "<li>No price, line, odds or settlement value: the official pages read here publish none, and the "
+            "league's betting feed goes to operators through an exclusive distributor.</li>"
+            "<li>No starter, inactive or snap-share value: the Game Book link is recorded, not parsed, and "
+            "the document's own terms restrict reuse without written league permission (flag FL-16).</li>",
+            "<li>No claim about the injury-capture hub's manifests: they are a second same-day read of the same "
+            "report and are cited as such, not reconciled row by row here.</li>"
+            "<li>No depth rank: the report table has no such column, which was re-confirmed by this read.</li>"
+            "<li>No claim that any committed model value, correlation or strategy result is correct.</li>"
+            "</ul><a class=\"panel-link\" href=\"pages/flagged.html\">Flagged for review &rarr;</a></div>"
+            "<div class=\"panel\"><h3>What it does establish</h3><ul class=\"ticks\">"
+            "<li>A dated, per-row, immutable capture register at root, with clock times and source URLs.</li>"
+            f"<li>{len(games)} official finals added to the results feed, including two the earlier record omitted.</li>"
+            f"<li>{len(corr_rows)} correlations computed only from official standings numbers, each with n.</li>"
+            "<li>12 consistency checks that refuse to publish a short read.</li>"
+            "<li>The Week-11 report is not yet published: the URL resolves to Week 10, which is the freshness "
+            "state of the source, not a parser failure.</li>"
+            "</ul><a class=\"panel-link\" href=\"pages/live-checks.html#standings\">Standings rows &rarr;</a></div></div>"))
+    )
+    return W.layout("Live official checks", "pages/live-checks.html", body,
+                    subtitle="Dated official-source capture, with the checks that gate it.")
+
+
+def readiness_landing_section() -> str:
+    """The decision-readiness table itself, on the landing page (owner requirement)."""
+    doc = readiness_doc()
+    rows = doc.get("rows", [])
+    meta = doc.get("meta", {})
+    if not rows:
+        return ('<section class="block"><div class="eyebrow">DECISION READINESS</div>'
+                "<h2>Register not built</h2>"
+                '<div class="notice warn"><span class="dot"></span><div>Run '
+                "<code>python3 scripts/build_readiness.py --write</code>; the landing table is generated "
+                "from its output and nothing is typed in its place.</div></div></section>")
+    totals = meta.get("status_totals", {})
+    chips = " &middot; ".join(f"{v} {esc(k)}" for k, v in sorted(totals.items()))
+    return section(
+        "Decision readiness: one row per requirement",
+        (f'<p class="lede">{esc(meta.get("row_count", len(rows)))} requirements, {chips}. Each row names '
+         f"the gate that blocks it and the number that would clear it, read from the committed registers and "
+         f"the {esc(meta.get('official_read_at_utc', ''))} official capture. "
+         f'<a href="pages/readiness.html">Full register with the next action per row &rarr;</a></p>')
+        + table(["Requirement", "Status", "Blocking gate", "What would clear it (number)", "Evidence"],
+                readiness_cells(rows),
+                caption="Nothing here is inferred: a blank measured value means the source does not publish it, "
+                        "and the reason is stated in the row."),
+        "DECISION READINESS")
 
 
 def archive_dirs() -> list[tuple[str, str]]:
@@ -1273,7 +1651,9 @@ def archive_dirs() -> list[tuple[str, str]]:
 def page_archive() -> str:
     dirs = archive_dirs()
     rows = [[esc(label), f'<a href="../{esc(d)}/index.html">{esc(d)}/</a>',
-             "Preserved unchanged; not part of the published navigation", "Sibling session artefact"]
+             ("Linked from the sidebar under Sibling hubs; content preserved unchanged"
+              if d in W.HUB_LABELS else "Preserved unchanged; not part of the published navigation"),
+             "Sibling session artefact"]
             for d, label in dirs]
     body = (
         '<div class="hero compact"><div class="eyebrow">ARCHIVE</div>'
@@ -1292,6 +1672,8 @@ def page_archive() -> str:
 def main() -> None:
     pages = {
         "pages/executive.html": page_executive,
+        "pages/readiness.html": page_readiness,
+        "pages/live-checks.html": page_live_checks,
         "pages/lines.html": page_lines,
         "pages/props.html": page_props,
         "pages/correlation.html": page_correlation,

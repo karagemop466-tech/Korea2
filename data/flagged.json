@@ -1,8 +1,9 @@
 {
   "meta": {
-    "title": "Flagged for Review \u2014 items that could NOT be confirmed from an official verified source",
-    "verified_on": "2026-11-13",
-    "policy": "Per project rules, any value that cannot be confirmed from an official source is left BLANK in the data tables and listed here with the reason. Nothing is inferred or filled in. These items do not block publication; they are published on the \u2018Flagged for Review\u2019 page for manual review."
+    "title": "Flagged for Review — items that could NOT be confirmed from an official verified source",
+    "verified_on": "2026-11-18",
+    "policy": "Per project rules, any value that cannot be confirmed from an official source is left BLANK in the data tables and listed here with the reason. Nothing is inferred or filled in. These items do not block publication; they are published on the ‘Flagged for Review’ page for manual review.",
+    "note": "Rows above FL-16 are the 2026-11-18 dated official re-read and the register-level conflicts it found; they were renumbered from FL-16..FL-23 to FL-17..FL-24 on that date so both sessions' rows survive the merge (the earlier FL-16, Game Book reuse permission, came from the injury-capture session)."
   },
   "rows": [
     {
@@ -17,16 +18,16 @@
     },
     {
       "id": "FL-02",
-      "item": "Numeric home-field-advantage point value used in our own spread model (commonly cited as ~2.5\u20133 points in non-official commentary)",
+      "item": "Numeric home-field-advantage point value used in our own spread model (commonly cited as ~2.5–3 points in non-official commentary)",
       "value": "",
-      "reason": "No NFL/official source publishes a single HFA constant; the value must be estimated from our own historical data and validated through gates G2\u2013G5 before use. Not filled in.",
+      "reason": "No NFL/official source publishes a single HFA constant; the value must be estimated from our own historical data and validated through gates G2–G5 before use. Not filled in.",
       "sources": [
         "SRC-PIN-ORIGINATOR"
       ]
     },
     {
       "id": "FL-03",
-      "item": "Historical backtest performance (win rate, ROI, CLV) of strategies ST-01\u2026ST-09",
+      "item": "Historical backtest performance (win rate, ROI, CLV) of strategies ST-01…ST-09",
       "value": "",
       "reason": "No performance numbers are published because none have been computed yet from official data through the validation gates; any number here would be a hallucination. Cells intentionally blank.",
       "sources": [
@@ -39,7 +40,7 @@
       "id": "FL-04",
       "item": "Exact vig/overround percentage for each specific market at each specific sportsbook",
       "value": "",
-      "reason": "Prices move continuously and books do not publish their margin per market (Pinnacle: \u2018few, if any, bookmakers publicly share it\u2019). Only the standard -110 = 52.38% implied per side (11-to-10) is verified; per-market vig must be computed at bet time from posted odds via the official implied-probability formulas.",
+      "reason": "Prices move continuously and books do not publish their margin per market (Pinnacle: ‘few, if any, bookmakers publicly share it’). Only the standard -110 = 52.38% implied per side (11-to-10) is verified; per-market vig must be computed at bet time from posted odds via the official implied-probability formulas.",
       "sources": [
         "SRC-FD-TERMS",
         "SRC-PIN-AMER-IP",
@@ -48,7 +49,7 @@
     },
     {
       "id": "FL-05",
-      "item": "\u2018Sharpest book\u2019 / specific CLV benchmark percentages quoted by non-official blogs (e.g., \u2018+2% CLV is excellent\u2019)",
+      "item": "‘Sharpest book’ / specific CLV benchmark percentages quoted by non-official blogs (e.g., ‘+2% CLV is excellent’)",
       "value": "",
       "reason": "Such thresholds appear only on third-party sites, not on official sources; our leaderboard uses mean CLV > 0 plus statistical testing rather than a magic number.",
       "sources": [
@@ -70,7 +71,7 @@
       "id": "FL-07",
       "item": "Which U.S. states currently license online sportsbooks / where each user may legally bet",
       "value": "",
-      "reason": "Licensing varies by state and changes; Nevada Regulation 22 is cited as the regulatory model for grading/house rules, but a 50-state legality list is not maintained here \u2014 users must check their own state regulator. Not filled in to avoid stale/incorrect claims.",
+      "reason": "Licensing varies by state and changes; Nevada Regulation 22 is cited as the regulatory model for grading/house rules, but a 50-state legality list is not maintained here — users must check their own state regulator. Not filled in to avoid stale/incorrect claims.",
       "sources": [
         "SRC-NV-REG22"
       ]
@@ -79,7 +80,7 @@
       "id": "FL-08",
       "item": "NFL Next Gen Stats raw tracking data access for the public",
       "value": "",
-      "reason": "NFL publishes aggregated NGS metrics/charts publicly; raw per-play tracking is released only to clubs and via Big Data Bowl competitions (per NFL Football Operations). Raw-data API access terms are not published on an official public page \u2014 flagged rather than assumed.",
+      "reason": "NFL publishes aggregated NGS metrics/charts publicly; raw per-play tracking is released only to clubs and via Big Data Bowl competitions (per NFL Football Operations). Raw-data API access terms are not published on an official public page — flagged rather than assumed.",
       "sources": [
         "SRC-NFL-NGS-TECH",
         "SRC-NFL-NGS",
@@ -144,7 +145,7 @@
       "id": "FL-14",
       "item": "Current 2026 model/prop slate outputs are older than the live NFL schedule",
       "value": "",
-      "reason": "The committed data manifest reports data_as_of_gameday 2026-11-01. On 2026-11-12 the official NFL Week 10 schedule page showed the Nov 12 Commanders\u2013Giants game and Nov 15 games. The repository has not refreshed its model/prop outputs to that schedule in this branch. Treat any Week 9/next-slate projections as stale historical research, not current lines or picks; refresh the data and rerun all checks before presenting a live slate.",
+      "reason": "The committed data manifest reports data_as_of_gameday 2026-11-01. On 2026-11-12 the official NFL Week 10 schedule page showed the Nov 12 Commanders–Giants game and Nov 15 games. The repository has not refreshed its model/prop outputs to that schedule in this branch. Treat any Week 9/next-slate projections as stale historical research, not current lines or picks; refresh the data and rerun all checks before presenting a live slate.",
       "sources": [
         "SRC-NFL-SCHED-W10",
         "nflverse-data"
@@ -170,6 +171,82 @@
       "sources": [
         "SRC-NFL-GAMECENTER-W10",
         "SRC-NFL-GAMEBOOK-W10"
+      ]
+    },
+    {
+      "id": "FL-17",
+      "item": "Week 11 official injury report (2026 season)",
+      "value": "",
+      "reason": "Not published at the 2026-11-18T03:55Z read: the /2026/reg11 URL served the Week 10 report while the week selector listed WEEK 11. Left blank rather than assumed to be unchanged from Week 10. Discovery action: re-read after the Wednesday 4:30 PM ET deadline and record the fetch time. (Row id FL-16 was taken by the Game Book permission flag from the injury-capture session, so the 2026-11-18 re-read rows start at FL-17.)",
+      "sources": [
+        "SRC-NFL-INJURY-W11-NOT-PUBLISHED",
+        "SRC-NFL-INJURY-W10-REREAD"
+      ]
+    },
+    {
+      "id": "FL-18",
+      "item": "Points for and points against, NFC South and NFC West clubs (8 rows)",
+      "value": "",
+      "reason": "The standings chunk carrying those two divisions failed to retrieve at this capture, and copying them from another page or deriving them from scores would be inference. The eight clubs are recorded with W-L-T only and excluded from the correlation sample, which is therefore n=24 and labelled as such. RESOLVED by a second read at 2026-11-18T04:21:00Z, same URL: the chunk came back and all 32 clubs now carry points for and against in data/derived/official_capture_2026-11-18.json, each row stamped with the read that produced it, and the official-only correlations moved from n=24 to n=32. The row stays in this register as the record of the failed read, because the value is still not what the root model uses and the check that refuses to publish a short read is the point.",
+      "sources": [
+        "SRC-NFL-STANDINGS-W10-REREAD"
+      ]
+    },
+    {
+      "id": "FL-19",
+      "item": "Game-day starters, inactive lists and snap shares for the Week 10 slate",
+      "value": "",
+      "reason": "The official game centre publishes a per-fixture Game Book PDF and the link was verified for one fixture, but the document was not opened at this capture. No starter, inactive or snap value is published from it; the depth and replacement columns therefore stay blank across the availability registers.",
+      "sources": [
+        "SRC-NFL-GAMECENTRE-NEDET-W10",
+        "SRC-NFL-GAMEBOOK-NEDET-W10"
+      ]
+    },
+    {
+      "id": "FL-20",
+      "item": "Reconciliation of the root model outputs against the 2026-11-18 official read",
+      "value": "",
+      "reason": "The committed root analysis ends at the 2026-11-01 nflverse extract while the official pages were re-read 2026-11-18; the 17-day gap is reported rather than back-filled, so root model rows stay labelled third-party and are not upgraded to official by this capture.",
+      "sources": [
+        "SRC-NFL-SCHED-W10-REREAD",
+        "nflverse-data"
+      ]
+    },
+    {
+      "id": "FL-21",
+      "item": "Opening and closing market prices for originated markets",
+      "value": "",
+      "reason": "Unchanged by this capture: 0 of 45 Line Desk market rows carry a market open or close, and the Price Store official-only file holds 0 rows. The residual column cannot exist until the price-data policy is decided (decision-readiness row RR-A9).",
+      "sources": [
+        "SRC-NFL-GAMECENTRE-NEDET-W10",
+        "SRC-NFL-STANDINGS-W10-REREAD"
+      ]
+    },
+    {
+      "id": "FL-22",
+      "item": "One assertion in review-board/scripts/verify_all.py was inverted by the integration session",
+      "value": "",
+      "reason": "The check read 'the hub stays out of the shared root navigation', written while root navigation belonged to another session. Root navigation is now owned by this integration build, which links every hub directory that exists; the check was changed to assert the link exists instead. The hub's registers and pages were regenerated with its own documented generator. Logged here so the hub owner can review the edit.",
+      "sources": [
+        "SRC-GH-REPO"
+      ]
+    },
+    {
+      "id": "FL-23",
+      "item": "Vocabulary conflict between the two suggestion registers",
+      "value": "",
+      "reason": "pages/suggestions.html states that no suggestion has been authorised or implemented, while verify-hub/data/suggestions.json records 14 rows with dispositions ACCEPTED (3), PENDING (6) and NOT-ADOPTED (5), and suggestions/data/suggestions.json records 12 rows all dispositioned 'proposed'. The three registers use different vocabularies for the same object and have not been reconciled; nothing here adopts either reading. Discovery action: one disposition vocabulary, then re-state the page's claim to match it.",
+      "sources": [
+        "SRC-GH-REPO"
+      ]
+    },
+    {
+      "id": "FL-24",
+      "item": "Duplicate history table in review-board/pages/injuries.html (merged PR #133)",
+      "value": "",
+      "reason": "An append-only generator emitted the same table twice with different row counts (4 and 3), so the page's own count is self-contradictory. Recorded at the hub as review-board reconciliation finding FI-0 and left unfixed here: the file belongs to the injury-hub session, and the table's data columns are blank in both copies. The row count therefore stays blank in this register rather than picking one of the two copies.",
+      "sources": [
+        "SRC-GH-REPO"
       ]
     }
   ]

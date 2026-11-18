@@ -5,16 +5,11 @@
   "other": 1,
   "site hub": 23
  },
- "history": "full",
- "base_commit": "497327b",
+ "history": "shallow",
+ "base_commit": "5fa89bb",
  "hub_count": 32,
- "nav_target_count": 37,
- "nav_duplicate_labels": [
-  {
-   "label": "Suggestions hub",
-   "count": 2
-  }
- ],
+ "nav_target_count": 27,
+ "nav_duplicate_labels": [],
  "nav": [
   {
    "href": "index.html",
@@ -23,6 +18,10 @@
   {
    "href": "pages/executive.html",
    "label": "Executive summary"
+  },
+  {
+   "href": "pages/readiness.html",
+   "label": "Decision readiness"
   },
   {
    "href": "pages/lines.html",
@@ -57,6 +56,10 @@
    "label": "Market benchmark"
   },
   {
+   "href": "pages/live-checks.html",
+   "label": "Live official checks"
+  },
+  {
    "href": "pages/verification.html",
    "label": "Verification"
   },
@@ -69,67 +72,7 @@
    "label": "Source register"
   },
   {
-   "href": "pages/flagged.html",
-   "label": "Flagged for review"
-  },
-  {
-   "href": "signal-desk/index.html",
-   "label": "Signal Desk"
-  },
-  {
-   "href": "decision-desk/index.html",
-   "label": "Decision Desk"
-  },
-  {
-   "href": "lineup-lab/index.html",
-   "label": "Lineup Lab"
-  },
-  {
-   "href": "suggestions/index.html",
-   "label": "Suggestions hub"
-  },
-  {
-   "href": "decision-hub/index.html",
-   "label": "Decision hub"
-  },
-  {
-   "href": "nfl-command/index.html",
-   "label": "NFL Command Center"
-  },
-  {
-   "href": "price-desk/index.html",
-   "label": "Price desk"
-  },
-  {
-   "href": "audit/index.html",
-   "label": "Audit"
-  },
-  {
-   "href": "dashboard/index.html",
-   "label": "Dashboard"
-  },
-  {
-   "href": "nfl-lines/index.html",
-   "label": "NFL Lines"
-  },
-  {
-   "href": "nfl-research/index.html",
-   "label": "NFL Research"
-  },
-  {
-   "href": "research-desk/index.html",
-   "label": "Research desk"
-  },
-  {
    "href": "pages/suggestions.html",
-   "label": "Suggestions hub"
-  },
-  {
-   "href": "pages/decision-hub.html",
-   "label": "Decision desk"
-  },
-  {
-   "href": "pages/decision-suggestions.html",
    "label": "Suggestion register"
   },
   {
@@ -137,16 +80,16 @@
    "label": "Open questions"
   },
   {
-   "href": "pages/decision-injury-depth.html",
+   "href": "pages/injuries-depth.html",
    "label": "Injury &amp; depth"
-  },
-  {
-   "href": "pages/decision-signals.html",
-   "label": "Signal lab"
   },
   {
    "href": "pages/decision-parlay.html",
    "label": "Parlay pricing"
+  },
+  {
+   "href": "pages/decision-signals.html",
+   "label": "Signal lab"
   },
   {
    "href": "pages/decision-verify.html",
@@ -155,6 +98,18 @@
   {
    "href": "pages/decision-summary.html",
    "label": "Decision summary"
+  },
+  {
+   "href": "pages/flagged.html",
+   "label": "Flagged for review"
+  },
+  {
+   "href": "pages/archive.html",
+   "label": "Site archive"
+  },
+  {
+   "href": ".",
+   "label": "_"
   },
   {
    "href": "data",
@@ -173,13 +128,9 @@
    "pages": 1,
    "data_files": 0,
    "scripts": 2,
-   "last_touched": "2026-11-14",
-   "nav_links": [
-    "audit/index.html"
-   ],
-   "nav_labels": [
-    "Audit"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "availability-sweep",
@@ -188,7 +139,7 @@
    "pages": 4,
    "data_files": 1,
    "scripts": 2,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -199,22 +150,18 @@
    "pages": 11,
    "data_files": 0,
    "scripts": 0,
-   "last_touched": "2026-11-14",
-   "nav_links": [
-    "dashboard/index.html"
-   ],
-   "nav_labels": [
-    "Dashboard"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "data",
    "kind": "code",
    "index_page": false,
    "pages": 0,
-   "data_files": 22,
+   "data_files": 25,
    "scripts": 3,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -225,13 +172,9 @@
    "pages": 9,
    "data_files": 7,
    "scripts": 2,
-   "last_touched": "2026-11-14",
-   "nav_links": [
-    "decision-desk/index.html"
-   ],
-   "nav_labels": [
-    "Decision Desk"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "decision-hub",
@@ -240,22 +183,18 @@
    "pages": 12,
    "data_files": 6,
    "scripts": 4,
-   "last_touched": "2026-11-14",
-   "nav_links": [
-    "decision-hub/index.html"
-   ],
-   "nav_labels": [
-    "Decision hub"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "injury-capture",
    "kind": "code",
    "index_page": false,
    "pages": 0,
-   "data_files": 7,
+   "data_files": 8,
    "scripts": 2,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -266,7 +205,7 @@
    "pages": 1,
    "data_files": 0,
    "scripts": 1,
-   "last_touched": "2026-11-15",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -277,7 +216,7 @@
    "pages": 15,
    "data_files": 16,
    "scripts": 3,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -288,13 +227,9 @@
    "pages": 12,
    "data_files": 14,
    "scripts": 7,
-   "last_touched": "2026-11-12",
-   "nav_links": [
-    "lineup-lab/index.html"
-   ],
-   "nav_labels": [
-    "Lineup Lab"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "nfl-command",
@@ -303,13 +238,9 @@
    "pages": 14,
    "data_files": 11,
    "scripts": 2,
-   "last_touched": "2026-11-12",
-   "nav_links": [
-    "nfl-command/index.html"
-   ],
-   "nav_labels": [
-    "NFL Command Center"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "nfl-lines",
@@ -318,13 +249,9 @@
    "pages": 6,
    "data_files": 0,
    "scripts": 0,
-   "last_touched": "2026-11-14",
-   "nav_links": [
-    "nfl-lines/index.html"
-   ],
-   "nav_labels": [
-    "NFL Lines"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "nfl-research",
@@ -333,13 +260,9 @@
    "pages": 6,
    "data_files": 0,
    "scripts": 4,
-   "last_touched": "2026-11-01",
-   "nav_links": [
-    "nfl-research/index.html"
-   ],
-   "nav_labels": [
-    "NFL Research"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "origination",
@@ -348,7 +271,7 @@
    "pages": 13,
    "data_files": 8,
    "scripts": 0,
-   "last_touched": "2026-11-01",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -359,7 +282,7 @@
    "pages": 15,
    "data_files": 9,
    "scripts": 14,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -367,28 +290,29 @@
    "dir": "pages",
    "kind": "other",
    "index_page": false,
-   "pages": 24,
+   "pages": 26,
    "data_files": 0,
    "scripts": 0,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [
+    "pages/archive.html",
     "pages/correlation.html",
-    "pages/decision-hub.html",
-    "pages/decision-injury-depth.html",
     "pages/decision-parlay.html",
     "pages/decision-questions.html",
     "pages/decision-signals.html",
-    "pages/decision-suggestions.html",
     "pages/decision-summary.html",
     "pages/decision-verify.html",
     "pages/executive.html",
     "pages/flagged.html",
+    "pages/injuries-depth.html",
     "pages/leaderboard.html",
     "pages/lines.html",
+    "pages/live-checks.html",
     "pages/luck.html",
     "pages/market.html",
     "pages/method.html",
     "pages/props.html",
+    "pages/readiness.html",
     "pages/sources.html",
     "pages/strategies.html",
     "pages/suggestions.html",
@@ -397,6 +321,7 @@
    ],
    "nav_labels": [
     "Executive summary",
+    "Decision readiness",
     "Originated lines",
     "Player props",
     "Correlation &amp; parlays",
@@ -405,19 +330,19 @@
     "Leaderboard",
     "Removing luck",
     "Market benchmark",
+    "Live official checks",
     "Verification",
     "Method &amp; data",
     "Source register",
-    "Flagged for review",
-    "Suggestions hub",
-    "Decision desk",
     "Suggestion register",
     "Open questions",
     "Injury &amp; depth",
-    "Signal lab",
     "Parlay pricing",
+    "Signal lab",
     "Re-verify the numbers",
-    "Decision summary"
+    "Decision summary",
+    "Flagged for review",
+    "Site archive"
    ]
   },
   {
@@ -427,7 +352,7 @@
    "pages": 0,
    "data_files": 0,
    "scripts": 16,
-   "last_touched": "2026-11-01",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -438,13 +363,9 @@
    "pages": 10,
    "data_files": 10,
    "scripts": 5,
-   "last_touched": "2026-11-14",
-   "nav_links": [
-    "price-desk/index.html"
-   ],
-   "nav_labels": [
-    "Price desk"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "price-store",
@@ -453,7 +374,7 @@
    "pages": 1,
    "data_files": 2,
    "scripts": 4,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -464,7 +385,7 @@
    "pages": 12,
    "data_files": 23,
    "scripts": 8,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -475,13 +396,9 @@
    "pages": 6,
    "data_files": 0,
    "scripts": 2,
-   "last_touched": "2026-11-01",
-   "nav_links": [
-    "research-desk/index.html"
-   ],
-   "nav_labels": [
-    "Research desk"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "results",
@@ -490,7 +407,7 @@
    "pages": 0,
    "data_files": 7,
    "scripts": 0,
-   "last_touched": "2026-11-14",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -501,7 +418,7 @@
    "pages": 14,
    "data_files": 9,
    "scripts": 4,
-   "last_touched": "2026-11-18",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -511,8 +428,8 @@
    "index_page": false,
    "pages": 0,
    "data_files": 0,
-   "scripts": 32,
-   "last_touched": "2026-11-18",
+   "scripts": 34,
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -523,13 +440,9 @@
    "pages": 14,
    "data_files": 10,
    "scripts": 6,
-   "last_touched": "2026-11-14",
-   "nav_links": [
-    "signal-desk/index.html"
-   ],
-   "nav_labels": [
-    "Signal Desk"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "site",
@@ -538,7 +451,7 @@
    "pages": 1,
    "data_files": 6,
    "scripts": 7,
-   "last_touched": "2026-11-13",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -549,7 +462,7 @@
    "pages": 12,
    "data_files": 10,
    "scripts": 9,
-   "last_touched": "2026-11-02",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -560,13 +473,9 @@
    "pages": 13,
    "data_files": 11,
    "scripts": 1,
-   "last_touched": "2026-11-12",
-   "nav_links": [
-    "suggestions/index.html"
-   ],
-   "nav_labels": [
-    "Suggestions hub"
-   ]
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   },
   {
    "dir": "tests",
@@ -574,8 +483,8 @@
    "index_page": false,
    "pages": 0,
    "data_files": 0,
-   "scripts": 4,
-   "last_touched": "2026-11-14",
+   "scripts": 5,
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -586,7 +495,7 @@
    "pages": 0,
    "data_files": 0,
    "scripts": 3,
-   "last_touched": "2026-11-01",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -597,7 +506,7 @@
    "pages": 0,
    "data_files": 4,
    "scripts": 1,
-   "last_touched": "2026-11-13",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   },
@@ -608,13 +517,13 @@
    "pages": 9,
    "data_files": 7,
    "scripts": 4,
-   "last_touched": "2026-11-12",
+   "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
   }
  ],
- "total_pages": 236,
- "total_data_files": 200,
+ "total_pages": 238,
+ "total_data_files": 204,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "497327b86577af6e541ef9b1cc867fa71a0219d7"
+ "_generated_from_repo_commit": "5fa89bb23efb604481fca73e0e51571ea6cb14c9"
 }

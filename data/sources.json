@@ -4,7 +4,8 @@
     "verified_on": "2026-11-01",
     "verification_method": "Most inherited registry entries were checked by the sessions and dates recorded in each entry. This integration session opened AGLC, the NFL weekly injury page, the NFL roster page, the NFL injury-policy explainer, and cited NIST/Kaggle/NFL distribution references on 2026-11-12. Dynamic pages are cited with retrieval dates; the source type and verification scope are stated per entry.",
     "policy": "Primary references are the NFL and its official properties, regulators, government/academic statistical sources, platform and operator documentation. Historical game/stat inputs are downloaded from the community-maintained nflverse repository, not directly published by the NFL; the source and verification limits are explicitly flagged. Third-party blogs are not used as primary sources; unconfirmed values are left blank and listed in data/flagged.json.",
-    "integration_note": "This registry combines multiple sessions. Per-source verified_by fields identify the session/date; the source list is not a claim that every historical data value was independently checked against an official NFL record."
+    "integration_note": "This registry combines multiple sessions. Per-source verified_by fields identify the session/date; the source list is not a claim that every historical data value was independently checked against an official NFL record.",
+    "integration_recheck_2026-11-18": "Session arena/4c90e65f-korea2 opened the 2026 Week 10 injury report, the Week 10 schedule page, the 2026 division standings and one game centre on 2026-11-18 and added the dated entries above. Entries verified_by other sessions keep their own dates; nothing here re-dates an earlier read."
   },
   "sources": [
     {
@@ -757,6 +758,74 @@
       "note": "Opened and read 2026-11-18. The PDF includes lineups, substitutions, Did Not Play, Not Active, game information and individual statistics for this fixture. Its opening notice states that the summary/play-by-play is for assisting media coverage and that any other use is prohibited without written NFL permission.",
       "verified_by": "arena/9d6edd0a-korea2 — PDF opened and read 2026-11-18",
       "limitation": "One game only. Availability of the PDF does not establish permission for this project to copy, retain or republish raw rows; do not ingest/re-host pending source-specific terms or written permission."
+    },
+    {
+      "id": "SRC-NFL-INJURY-W10-REREAD",
+      "label": "NFL.com - Official injury report, Week 10 of the 2026 season (re-read 2026-11-18)",
+      "title": "Official NFL Injury Report for Players - Week 10 of the 2026 Season",
+      "short": "NFL injury report W10 (re-read 2026-11-18)",
+      "url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "org": "NFL (nfl.com)",
+      "type": "league official",
+      "note": "Opened with the platform retrieval tool at 2026-11-18T03:55Z (chunk 1 of 8). The per-club tables print exactly five columns: Player, Position, Injuries, Practice Status, Game Status. There is no depth rank, no snap count, no inactive list and no replacement name, for any club. Detroit rows read at this time: Kerby Joseph (S, Knee, DNP, Out), Cade Mays (C, Ankle, DNP, Out), D.J. Reed (CB, Hip, DNP, Out), Amon-Ra St. Brown (WR, Rib, Limited, Questionable).",
+      "verified_by": "arena/4c90e65f-korea2 - page opened and transcribed 2026-11-18"
+    },
+    {
+      "id": "SRC-NFL-INJURY-W11-NOT-PUBLISHED",
+      "label": "NFL.com - Week 11 report URL, which resolved to the Week 10 report at this read",
+      "title": "Official NFL Injury Report (Week 11 URL)",
+      "short": "Week 11 URL resolved to Week 10 (2026-11-18)",
+      "url": "https://www.nfl.com/injuries/league/2026/reg11",
+      "org": "NFL (nfl.com)",
+      "type": "league official",
+      "note": "At 2026-11-18T03:55Z the Week 11 URL served the Week 10 report (title and body both read WEEK 10), while the page's week selector listed WEEK 11. Recorded as a freshness observation, not a parser failure: the Wednesday report deadline had not passed at the read.",
+      "verified_by": "arena/4c90e65f-korea2 - redirect observed during the 2026-11-18 read"
+    },
+    {
+      "id": "SRC-NFL-SCHED-W10-REREAD",
+      "label": "NFL.com - Week 10 2026 schedule and final scores (re-read 2026-11-18)",
+      "title": "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets",
+      "short": "NFL Week 10 results (re-read 2026-11-18)",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "org": "NFL (nfl.com)",
+      "type": "league official",
+      "note": "Both retrieval chunks read 2026-11-18: 14 finals (WAS 24 NYG 21; NE 10 DET 35 at Munich; KC 35 ATL 13; HOU 24 CLE 27; MIN 30 GB 10; MIA 22 IND 24; CAR 20 NO 17; BUF 31 NYJ 12; JAX 40 TEN 23; LA 34 AZ 6; SEA 21 LV 13; SF 46 DAL 40; PIT 18 CIN 38; LAC 23 BAL 20), four bye clubs (CHI, DEN, PHI, TB) with their records, a per-fixture weather string, and the flexible-scheduling notice for Weeks 16-18.",
+      "verified_by": "arena/4c90e65f-korea2 - page opened and transcribed 2026-11-18"
+    },
+    {
+      "id": "SRC-NFL-STANDINGS-W10-REREAD",
+      "label": "NFL.com - 2026 division standings, points columns (re-read 2026-11-18)",
+      "title": "2026 NFL Division Standings",
+      "short": "NFL 2026 standings (re-read 2026-11-18)",
+      "url": "https://www.nfl.com/standings/division/2026/REG",
+      "org": "NFL (nfl.com)",
+      "type": "league official",
+      "note": "Chunk 1 of 2 read 2026-11-18: all 16 AFC clubs plus NFC East and NFC North, each with W, L, T, win percentage, points for, points against and differential. The NFC South and NFC West rows sat in chunk 2, which the retrieval tool failed to return at this capture, so those eight clubs are recorded with W-L-T only and are excluded from the point-differential correlations (n=24, not 32).",
+      "verified_by": "arena/4c90e65f-korea2 - page opened and transcribed 2026-11-18",
+      "limitation": "Partial read: 24 of 32 club rows carry the points columns."
+    },
+    {
+      "id": "SRC-NFL-GAMECENTRE-NEDET-W10",
+      "label": "NFL.com - game centre, Patriots at Lions, Week 10 2026 (read 2026-11-18)",
+      "title": "New England Patriots at Detroit Lions 2026 REG 10 - Game Center",
+      "short": "Game centre NE@DET W10 (read 2026-11-18)",
+      "url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10?tab=recap",
+      "org": "NFL (nfl.com)",
+      "type": "league official",
+      "note": "Prints the final (10-35), quarter-by-quarter scores that sum to it, the standings widget (BUF 8-1-0, NE 5-5-0, NYJ 2-8-0, MIA 1-8-0 - agreeing with the standings page), the venue fields (Location: MUNICH; Stadium: FC Bayern Munich Stadium) and a 'Download Game Book (PDF)' link. Venue fields per fixture make the venue-transcription requirement source-feasible.",
+      "verified_by": "arena/4c90e65f-korea2 - page opened and transcribed 2026-11-18"
+    },
+    {
+      "id": "SRC-NFL-GAMEBOOK-NEDET-W10",
+      "label": "NFL - official Game Book PDF for Patriots at Lions, Week 10 2026 (link verified, contents unread)",
+      "title": "NFL Game Book - NE@DET 2026 REG Week 10",
+      "short": "Game Book PDF NE@DET (link verified 2026-11-18)",
+      "url": "https://static.www.nfl.com/image/upload/v1794829721/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf",
+      "org": "NFL (static.www.nfl.com)",
+      "type": "league official document",
+      "note": "The link is published by the game-centre page above. Its contents were NOT opened at this capture, so this entry supports only the statement that a per-fixture Game Book exists and is reachable; no starter, inactive or snap-share value in this repository is derived from it.",
+      "verified_by": "arena/4c90e65f-korea2 - link recorded from the 2026-11-18 game-centre read",
+      "limitation": "Unparsed. The document is the structured source the availability requirements need; parsing it is an open task (see the decision-readiness register rows RR-C5 and RR-C6)."
     }
   ]
 }
