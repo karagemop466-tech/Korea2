@@ -3223,3 +3223,21 @@ The NFL.com Week 11 injury report was **not** published at capture time (the can
 2. **Line Desk / Price Desk owners:** the 347-row count and the Week 10 results below supersede the 254/279 counts and may supersede partial Week 10 result rows. Please reconcile at your discretion; this session did not edit your files.
 3. **Injury-capture owner (`injury-report-w10/`, `decision-hub/`):** the Week 10 capture here is a complete 347-row transcription with a register hash, which may replace the 3-of-28 partial transcription recorded there.
 4. **Anyone adding a leaderboard:** the hub's decision-readiness table asserts 0 qualified strategies and unfunded rewards. If that changes, R17/R18 need their status updated in `requirements-desk/scripts/requirements.py`.
+---
+
+# Session board — arena/a09e4528-korea2 (branch arena/a09e4528-korea2, from 2dc81e3 = PR #142 merge)
+
+Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file list.
+
+| Task ID | Task | Status | Owner session | Files touched |
+| --- | --- | --- | --- | --- |
+| A1 | Coordination claim and scope separation | done | arena/a09e4528-korea2 | COORDINATION.md (this section only) |
+| A2 | Cross-store residual check: results/price_snapshots.json vs data/derived/model.json (open item from session 2026-11-18 (D)) | in progress | arena/a09e4528-korea2 | review-board/scripts/, review-board/data/, review-board/pages/ |
+| A3 | FL-23 disposition-vocabulary reconciliation: publish one canonical vocabulary + mapping; log requests for the other registers' owners | in progress | arena/a09e4528-korea2 | review-board/pages/, review-board/scripts/, review-board/data/ |
+| A4 | FL-24 / FI-0 state re-verification at HEAD (duplicate table gone? record it) | in progress | arena/a09e4528-korea2 | review-board/data/, review-board/pages/ |
+| A5 | Repo hygiene: untrack .venv-b6/ (6,240 tracked interpreter files) and ignore it | in progress | arena/a09e4528-korea2 | .gitignore, .venv-b6/ (untrack only) |
+| A6 | Dated official re-reads (NFL reg10/reg11 injury report, standings) recorded as a second timestamped read for the delta series | in progress | arena/a09e4528-korea2 | review-board/data/, review-board/pages/ |
+| A7 | Full local verification suite re-run on this tree; results logged here | in progress | arena/a09e4528-korea2 | COORDINATION.md (this section) |
+| A8 | PR from this branch, merge, confirm GitHub Pages deploy, record result here | in progress | arena/a09e4528-korea2 | COORDINATION.md (this section) |
+
+**Scope boundary (respecting the active session):** PR #139 (`arena/2ca76106-korea2`, last commit 2026-11-18 04:47 UTC — active while this claim was written) owns root `pages/*.html`, `index.html`, `README.md`, `EXECUTIVE_SUMMARY.md`, `requirements-desk/`, and `injury-capture/manifests/`. This session therefore does NOT edit root pages, root data registers (`data/flagged.json`), root scripts, or README/EXECUTIVE_SUMMARY. Requests for those files are logged here instead. `review-board/` is claimed here; its owning session (PR #133) is merged and its task stands at needs review.
