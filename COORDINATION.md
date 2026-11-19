@@ -3302,6 +3302,35 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 
 **Rules honoured:** every published table row carries a source link; unverified values stay blank and flagged; no inference of starters/depth/inactives/prices; suggestions stay PROPOSED until a reviewer chooses; flagged items do not block merge.
 
+---
+# Session board — arena/875a7b96-korea2 (official-source verification hub)
+
+**Session ID:** `arena/875a7b96-korea2` (Arena-assigned branch fixed as `arena/875a7b96-korea2`; base `1d56d09` of `main`, rebased onto `cd8caf6` = PR #146 merge). **Claimed:** 2026-11-19 UTC.
+
+**Goal:** independently re-read the official NFL sources the site cites and publish a verification report stating, for each published value, whether it is confirmed from an official source, blank by policy, or flagged irregular. This is the gap the brief emphasizes most: "verify line by line from official verified trusted sources... If a value can't be confirmed from an official source, leave it blank and flag it as unverified. Never infer or fill in values."
+
+**Scope rule:** this session writes only inside the new `official-verification/` directory (landing page + category subpages + verification data + generator) and this section of `COORDINATION.md`. Every other file — root `index.html`, `pages/*.html`, `README.md`, `EXECUTIVE_SUMMARY.md`, `scripts/`, `data/`, and all sibling hubs (`dashboard/`, `line-desk/`, `price-desk/`, `price-store/`, `review-board/`, `verify-hub/`, `suggestions/`, `decision-desk/`, `decision-hub/`, `lineup-lab/`, `nfl-command/`, `site/`, `audit/`, `pipeline/`, `requirements-desk/`, `skill-lab/`, `quant-lab/`, `origination-lab/`, `origination/`, `nfl-lines/`, `nfl-research/`, `research-desk/`, `injury-report-w10/`, `injury-capture/`, `availability-sweep/`) — is read-only input. Root navigation is intentionally not edited; open PRs #93, #97, #112 and #143 own root nav/pages/README. A link request to `official-verification/index.html` is logged below for the root-site owner. This hub references (does not duplicate) the existing root suggestions register (`pages/suggestions.html`), open questions (`pages/decision-questions.html`) and executive summary (`pages/executive.html`).
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| OV-0 | Claim non-overlapping scope and push before any other work | done | arena/875a7b96-korea2 | this section of COORDINATION.md |
+| OV-1 | Independent official-source verification of the site's published values (2026 standings, Week 10 injury report, Week 10 schedule/results, NE@DET venue, 2026 schedule announcement date) with fetch timestamps | done | arena/875a7b96-korea2 | `official-verification/data/`, `official-verification/scripts/` |
+| OV-2 | Publish the verification report: per-value verified / blank / flagged table with official source links | done | arena/875a7b96-korea2 | `official-verification/pages/verification-report.html` |
+| OV-3 | Publish the executive summary of what is verified vs blank, with irregularity flags | done | arena/875a7b96-korea2 | `official-verification/pages/executive-summary.html`, `official-verification/index.html` |
+| OV-4 | Local verification: link check, no broken internal links, every row sourced or blank | done | arena/875a7b96-korea2 | `official-verification/scripts/` |
+| OV-6 | PR to main, merge, confirm GitHub Pages deploy, record result here | in progress | arena/875a7b96-korea2 | this section, PR |
+
+**Request to the root-site / integration owner (logged, not actioned):** after this session's PR merges, please add a navigation link to `official-verification/index.html` from the root `index.html` sidebar when convenient. Open PRs #93/#97 own root nav; this session does not edit it.
+
+## Session log — arena/875a7b96-korea2 (2026-11-19)
+
+- **OV-0..OV-4 done.** Created the `official-verification/` hub: landing page (`index.html`), verification report (`pages/verification-report.html`), executive summary (`pages/executive-summary.html`), verified data register (`data/official-verification.json`) and generator (`scripts/verify_official.py`).
+- **OV-1 — 19 official-source checks completed 2026-11-19:** 11 VERIFIED (NE@DET score 10-35 and Munich venue; Lions Joseph/Mays/Reed and Patriots Henderson Out; Bills/Patriots/Lions 2026 standings; schedule announcement May 14, 2026, 18 weeks/272 games, kickoff Sept 9 Seattle vs New England), 5 BLANK by policy (market open/close, prop prices, depth rank, snap counts — no official source publishes them), 3 FLAGGED (injury-report title/body week mismatch OV-17; stale site snapshot vs official Week 10 results OV-18; partial standings read OV-19). Zero values inferred.
+- **Sources opened first-hand 2026-11-19:** NFL.com 2026 division standings, NFL.com Week 10 injury report (reg10), NFL.com Week 10 schedule, NFL.com NE@DET game centre (links Game Book PDF static.www.nfl.com/...ab582c2f...pdf), NFL Media 2026 schedule announcement.
+- **Local checks:** `scripts/check_links.py` PASS (5,817 local refs, 255 pages, 0 broken); `tests/check_site.py` PASS (255 pages, 669 tables, 16,973 links); `scripts/verify_official.py` PASS (committed summary matches recomputation).
+- **Irregularities published:** OV-17, OV-18, OV-19 on the Verification report and Executive summary pages; each links to its official source.
+- **Links to existing root registers:** suggestions (`pages/suggestions.html`), open questions (`pages/decision-questions.html`), executive summary (`pages/executive.html`), flagged (`pages/flagged.html`), sources (`pages/sources.html`), readiness (`pages/readiness.html`) are referenced, not duplicated.
+
 
 # Session board — `arena/5d001552-korea2` (Week 11 official availability capture + delta series)
 
