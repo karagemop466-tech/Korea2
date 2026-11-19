@@ -275,8 +275,8 @@ def parse_schedule(html: str, season: str, week: str) -> list[dict]:
     for sm in SCORE_RE.finditer(plain):
         away_txt, home_txt = sm.group("away"), sm.group("home")
         for game in games.values():
-            away_full = SLUG_TO_FULL.get(game["away_team"], "")
-            home_full = SLUG_TO_FULL.get(game["home_team"], "")
+            away_full = ABBR_TO_FULL.get(game["away_team"], "")
+            home_full = ABBR_TO_FULL.get(game["home_team"], "")
             if not away_full or not home_full:
                 continue
             away_last = away_full.split()[-1].lower()
@@ -415,6 +415,67 @@ def parse_lineups(text: str) -> dict:
     result["ok"] = len(result["rows"]) >= 20
     result["note"] = f"{len(body)} lineup rows"
     return result
+
+
+TOKEN_KIND_NUM = "num"
+TOKEN_KIND_POS = "pos"
+TOKEN_KIND_NAME = "name"
+
+
+def token_signature(line: str) -> list[dict]:
+    """Describe each token of a line by its offset, length and kind.
+
+    Player names are never written out: a name token is reported as its length only. The offsets
+    are what a fixed-width parser needs, and they are enough to repair the parser without
+    republishing the Game Book.
+    """
+    out = []
+    for m in re.finditer(r"\S+", line):
+        tok = m.group(0)
+        if re.fullmatch(r"\d{1,2}", tok):
+            kind = TOKEN_KIND_NUM
+        elif len(tok) <= 12 and tok.isupper() and re.fullmatch(r"[A-Z][A-Z0-9./&'-]*", tok):
+            kind = TOKEN_KIND_POS
+        else:
+            kind = TOKEN_KIND_NAME
+        out.append({"offset": m.start(), "length": len(tok), "kind": kind,
+                    "text": tok if kind in (TOKEN_KIND_NUM, TOKEN_KIND_POS) else ""})
+    return out
+
+
+def diagnose_lineup_region(text: str, limit: int = 60) -> dict:
+    """Describe the *shape* of the extracted lineup rows.
+
+    The Game Book is a copyrighted document, so the diagnostic records the structure of the
+    extracted rows (token offsets, lengths and kinds) and not the player names. It is enough to
+    repair the parser without republishing the document.
+    """
+    lines = text.splitlines()
+    start, end = find_section(lines, "Lineups")
+    out = {"section_found": start >= 0, "region_lines": []}
+    if start < 0:
+        return out
+    header_idx = -1
+    for i in range(start, min(end, start + 12)):
+        low = norm_line(lines[i]).lower()
+        if low.count("offense") >= 2 and low.count("defense") >= 2:
+            header_idx = i
+            break
+    out["header_index"] = header_idx
+    if header_idx < 0:
+        return out
+    for line in lines[max(0, header_idx - 2): header_idx + 1 + limit]:
+        if not line.strip():
+            continue
+        cells = split_cells(line)
+        out["region_lines"].append({
+            "cell_count": len(cells),
+            "cell_lengths": [len(c) for c in cells],
+            "cell_kinds": [("pos/num/name" if parse_cell(c) else "text") for c in cells],
+            "starts_with_pipe": line.lstrip().startswith("|"),
+            "tokens": token_signature(line),
+        })
+    return out
 
 
 def parse_player_list(block: str) -> list[dict]:
@@ -607,9 +668,137 @@ def classify_depth_page(html: str) -> dict:
         "table_header_cells": headers,
         "image_count": len(image_srcs),
         "image_srcs": image_srcs[:12],
-        "mentions_unofficial": "unofficial depth chart" in text.lower(),
+        "mentions_unofficial": "unofficial" in text.lower(),
         "text_sample": text[:400],
     }
+
+
+RANK_WORD = {1: "1st", 2: "2nd", 3: "3rd", 4: "4th", 5: "5th"}
+
+
+class DepthChartParser(HTMLParser):
+    """Collect depth-chart tables together with the heading that introduces them."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.tables: list[dict] = []
+        self._heading = ""
+        self._in_heading = False
+        self._hbuf: list[str] = []
+        self._table = None
+        self._row = None
+        self._cell = None
+        self._in_cell = False
+
+    def handle_starttag(self, tag, attrs):
+        if tag in ("h1", "h2", "h3", "h4", "h5", "h6"):
+            self._in_heading = True
+            self._hbuf = []
+        elif tag == "table":
+            self._table = {"heading": self._heading, "rows": []}
+            self.tables.append(self._table)
+        elif tag == "tr" and self._table is not None:
+            self._row = []
+        elif tag in ("td", "th") and self._row is not None:
+            self._cell = []
+            self._in_cell = True
+
+    def handle_endtag(self, tag):
+        if tag in ("h1", "h2", "h3", "h4", "h5", "h6"):
+            self._heading = " ".join("".join(self._hbuf).split())
+            self._in_heading = False
+        elif tag in ("td", "th") and self._row is not None and self._cell is not None:
+            self._row.append(" ".join("".join(self._cell).split()))
+            self._cell = None
+            self._in_cell = False
+        elif tag == "tr" and self._table is not None and self._row is not None:
+            if self._row:
+                self._table["rows"].append(self._row)
+            self._row = None
+        elif tag == "table":
+            self._table = None
+
+    def handle_data(self, data):
+        if self._in_heading:
+            self._hbuf.append(data)
+        if self._in_cell and self._cell is not None:
+            self._cell.append(data)
+
+
+def parse_depth_chart(html: str):
+    """Parse a club depth chart into slots and depth ranks.
+
+    A club depth chart is a table whose first column is the position slot and whose remaining
+    columns are the depth ranks (1st, 2nd, 3rd, 4th string). A cell may be empty (an unfilled
+    slot) and a row may leave the position cell empty (a continuation of the slot above, which is
+    how a fourth-string player is published). Both are kept exactly as published.
+
+    Returns (rows, meta). `rows` is empty when the page publishes no machine-readable table (for
+    example when the club publishes the chart as an image).
+    """
+    parser = DepthChartParser()
+    parser.feed(html)
+    text = strip_tags(html)
+    rows: list[dict] = []
+    meta = {
+        "date_label": "",
+        "mentions_unofficial": "unofficial" in text.lower(),
+        "tables": 0,
+    }
+    m = re.search(r"Unofficial[^A-Za-z0-9]{0,4}([A-Z][a-z]{2}\.?\s+\d{1,2},\s*\d{4})", text)
+    if m:
+        meta["date_label"] = m.group(1).strip()
+    elif "unofficial" in text.lower():
+        meta["date_label"] = "Unofficial (no date printed)"
+    for table in parser.tables:
+        table_rows = table["rows"]
+        if len(table_rows) < 2:
+            continue
+        header = [c.strip().lower() for c in table_rows[0]]
+        if not header or header[0] not in ("position", "pos"):
+            continue
+        meta["tables"] += 1
+        unit = (table["heading"] or "").strip().upper()
+        last_position = ""
+        slot_counter: dict[str, int] = {}
+        seen_ranks: dict[tuple, set] = {}
+        for cells in table_rows[1:]:
+            cells = list(cells) + [""] * 6
+            position = cells[0].strip()
+            continuation = not position
+            if position:
+                last_position = position
+                slot_counter[position] = slot_counter.get(position, 0) + 1
+            else:
+                position = last_position
+            if not position:
+                continue
+            # A row with an empty position cell continues the slot above it: it adds a deeper
+            # rank to that slot, it does not open a new slot.
+            slot_ordinal = slot_counter.get(position, 1)
+            for col in range(1, len(cells)):
+                raw = cells[col].strip()
+                if not raw:
+                    continue          # an empty slot stays empty; it is not filled in
+                m2 = re.match(r"^(?P<jersey>\d{1,2})\s+(?P<name>.+)$", raw)
+                jersey = m2.group("jersey") if m2 else ""
+                name = m2.group("name").strip() if m2 else raw
+                used = seen_ranks.setdefault((unit, position, slot_ordinal), set())
+                collision = col in used
+                used.add(col)
+                rows.append({
+                    "unit": unit,
+                    "slot": position,
+                    "slot_ordinal": slot_ordinal,
+                    "rank": col,
+                    "tier": f"{RANK_WORD.get(col, str(col))} string",
+                    "jersey": jersey,
+                    "player": name,
+                    "raw_cell": raw,
+                    "rank_collision": "yes" if collision else "no",
+                    "continuation_row": "yes" if continuation else "no",
+                })
+    return rows, meta
 
 
 # --------------------------------------------------------------------------- main
@@ -703,88 +892,98 @@ def run() -> int:
             failures.append(f"schedule week {week}: no game links found")
             continue
         for game in games:
-            slug = game["slug"]
-            game_url = game["game_url"]
-            rec, body = fetch(game_url, raw_path(f"gamecenter_{slug}.html"))
-            manifest["requests"].append(rec)
-            time.sleep(args.delay)
-            if not body:
-                failures.append(f"game {slug}: {rec.get('error')}")
-                continue
-            ghtml = body.decode("utf-8", "replace")
-            pdfs = GAMEBOOK_PDF_RE.findall(ghtml)
-            if not pdfs:
-                failures.append(f"game {slug}: no Game Book PDF link on the official game centre page")
-                continue
-            pdf_url = pdfs[0]
-            rec, body = fetch(pdf_url, raw_path(f"gamebook_{slug}.pdf"))
-            manifest["requests"].append(rec)
-            time.sleep(args.delay)
-            if not body:
-                failures.append(f"gamebook {slug}: {rec.get('error')}")
-                continue
-            text, method = pdf_to_text(body, raw_path(f"gamebook_{slug}.txt"))
-            if not text.strip():
-                failures.append(f"gamebook {slug}: no extractable text ({method})")
-                continue
-            gb = parse_gamebook(text)
-            away, home = game["away_team"], game["home_team"]
-            log(f"week {week} {slug}: lineups={'ok' if gb['lineups']['ok'] else 'FAILED'} "
-                f"({gb['lineups']['note']}); method={method}")
-            games_rows.append({
-                "season": season, "week": week, "slug": slug,
-                "game_url": game_url, "gamebook_url": pdf_url,
-                "away_team": away, "home_team": home,
-                "away_score": game["away_score"], "home_score": game["home_score"],
-                "status": game["status"], "slot": game["slot"], "broadcast": game["broadcast"],
-                "gamebook_date": gb.get("date_text", ""), "venue_text": gb.get("venue", ""),
-                "start_time": gb.get("start_time", ""),
-                "roof": gb.get("roof", ""), "surface": gb.get("surface", ""),
-                "weather": gb.get("weather", ""), "temp": gb.get("temp", ""),
-                "humidity": gb.get("humidity", ""), "wind": gb.get("wind", ""),
-                "attendance": gb.get("attendance", ""),
-                "pdf_sha256": rec.get("sha256"), "pdf_bytes": rec.get("bytes"),
-                "text_method": method,
-                "lineups_parsed": "yes" if gb["lineups"]["ok"] else "no",
-                "captured_utc": rec.get("fetched_utc"),
-            })
-            if gb["lineups"]["ok"]:
-                for r in gb["lineups"]["rows"]:
-                    team = away if r["col"] in (0, 1) else home
-                    lineup_rows.append({
-                        "season": season, "week": week, "slug": slug, "game_url": game_url,
-                        "team": team, "unit": r["unit"], "slot": r["pos"], "jersey": r["num"],
-                        "player": r["name"], "source_url": pdf_url, "captured_utc": rec.get("fetched_utc"),
-                    })
-            else:
-                failures.append(f"gamebook {slug}: lineups not parsed ({gb['lineups']['note']})")
-            for key in ("did_not_play", "not_active"):
-                sec = gb["sections"][key]
-                if not sec["ok"]:
-                    failures.append(f"gamebook {slug}: {key} section not found")
-                    continue
-                for side, team in ((0, away), (1, home)):
-                    for p in sec[side]:
-                        inactive_rows.append({
-                            "season": season, "week": week, "slug": slug, "game_url": game_url,
-                            "team": team, "category": key, "position": p["pos"], "jersey": p["num"],
-                            "player": p["name"], "source_url": pdf_url,
-                            "captured_utc": rec.get("fetched_utc"),
-                        })
-            sec = gb["sections"]["substitutions"]
-            if sec["ok"]:
-                for side, team in ((0, away), (1, home)):
-                    for p in sec[side]:
-                        sub_rows.append({
-                            "season": season, "week": week, "slug": slug, "game_url": game_url,
-                            "team": team, "position": p["pos"], "jersey": p["num"], "player": p["name"],
-                            "source_url": pdf_url, "captured_utc": rec.get("fetched_utc"),
-                        })
-            else:
-                failures.append(f"gamebook {slug}: substitutions section not found")
+            try:
+              slug = game["slug"]
+              game_url = game["game_url"]
+              rec, body = fetch(game_url, raw_path(f"gamecenter_{slug}.html"))
+              manifest["requests"].append(rec)
+              time.sleep(args.delay)
+              if not body:
+                  failures.append(f"game {slug}: {rec.get('error')}")
+                  continue
+              ghtml = body.decode("utf-8", "replace")
+              pdfs = GAMEBOOK_PDF_RE.findall(ghtml)
+              if not pdfs:
+                  failures.append(f"game {slug}: no Game Book PDF link on the official game centre page")
+                  continue
+              pdf_url = pdfs[0]
+              rec, body = fetch(pdf_url, raw_path(f"gamebook_{slug}.pdf"))
+              manifest["requests"].append(rec)
+              time.sleep(args.delay)
+              if not body:
+                  failures.append(f"gamebook {slug}: {rec.get('error')}")
+                  continue
+              text, method = pdf_to_text(body, raw_path(f"gamebook_{slug}.txt"))
+              if not text.strip():
+                  failures.append(f"gamebook {slug}: no extractable text ({method})")
+                  continue
+              gb = parse_gamebook(text)
+              away, home = game["away_team"], game["home_team"]
+              log(f"week {week} {slug}: lineups={'ok' if gb['lineups']['ok'] else 'FAILED'} "
+                  f"({gb['lineups']['note']}); method={method}")
+              if len(manifest.get("diagnostics", {})) < 2:
+                  manifest.setdefault("diagnostics", {})[slug] = diagnose_lineup_region(text)
+              games_rows.append({
+                  "season": season, "week": week, "slug": slug,
+                  "game_url": game_url, "gamebook_url": pdf_url,
+                  "away_team": away, "home_team": home,
+                  "away_score": game["away_score"], "home_score": game["home_score"],
+                  "status": game["status"], "slot": game["slot"], "broadcast": game["broadcast"],
+                  "gamebook_date": gb.get("date_text", ""), "venue_text": gb.get("venue", ""),
+                  "start_time": gb.get("start_time", ""),
+                  "roof": gb.get("roof", ""), "surface": gb.get("surface", ""),
+                  "weather": gb.get("weather", ""), "temp": gb.get("temp", ""),
+                  "humidity": gb.get("humidity", ""), "wind": gb.get("wind", ""),
+                  "attendance": gb.get("attendance", ""),
+                  "pdf_sha256": rec.get("sha256"), "pdf_bytes": rec.get("bytes"),
+                  "text_method": method,
+                  "lineups_parsed": "yes" if gb["lineups"]["ok"] else "no",
+                  "captured_utc": rec.get("fetched_utc"),
+              })
+              if gb["lineups"]["ok"]:
+                  for r in gb["lineups"]["rows"]:
+                      team = away if r["col"] in (0, 1) else home
+                      lineup_rows.append({
+                          "season": season, "week": week, "slug": slug, "game_url": game_url,
+                          "team": team, "unit": r["unit"], "slot": r["pos"], "jersey": r["num"],
+                          "player": r["name"], "source_url": pdf_url, "captured_utc": rec.get("fetched_utc"),
+                      })
+              else:
+                  failures.append(f"gamebook {slug}: lineups not parsed ({gb['lineups']['note']})")
+                  manifest.setdefault("diagnostics", {})[slug] = diagnose_lineup_region(text)
+              for key in ("did_not_play", "not_active"):
+                  sec = gb["sections"][key]
+                  if not sec["ok"]:
+                      failures.append(f"gamebook {slug}: {key} section not found")
+                      continue
+                  for side, team in (("away", away), ("home", home)):
+                      for p in sec[side]:
+                          inactive_rows.append({
+                              "season": season, "week": week, "slug": slug, "game_url": game_url,
+                              "team": team, "category": key, "position": p["pos"], "jersey": p["num"],
+                              "player": p["name"], "source_url": pdf_url,
+                              "captured_utc": rec.get("fetched_utc"),
+                          })
+              sec = gb["sections"]["substitutions"]
+              if sec["ok"]:
+                  for side, team in (("away", away), ("home", home)):
+                      for p in sec[side]:
+                          sub_rows.append({
+                              "season": season, "week": week, "slug": slug, "game_url": game_url,
+                              "team": team, "position": p["pos"], "jersey": p["num"], "player": p["name"],
+                              "source_url": pdf_url, "captured_utc": rec.get("fetched_utc"),
+                          })
+              else:
+                  failures.append(f"gamebook {slug}: substitutions section not found")
+            except Exception as exc:                      # noqa: BLE001
+                # One unreadable game book must not abort the whole capture: the failure is
+                # recorded and the capture continues with the next game.
+                failures.append(f"game {game.get('slug', '?')}: capture error {exc}")
+                log(f"game {game.get('slug', '?')}: ERROR {exc}")
 
     roster_rows: list[dict] = []
     depth_rows: list[dict] = []
+    depth_chart_rows: list[dict] = []
     if not args.skip_rosters:
         for slug, (abbr, _full) in CLUBS.items():
             url = f"https://www.nfl.com/teams/{slug}/roster"
@@ -798,7 +997,8 @@ def run() -> int:
                     "depth_http_status": None, "depth_sha256": None, "depth_has_table": None,
                     "depth_table_headers": "", "depth_image_count": None,
                     "depth_mentions_unofficial": None, "depth_text_sample": "",
-                    "depth_image_srcs": "", "roster_rows": 0,
+                    "depth_image_srcs": "", "depth_date_label": "", "depth_parsed_rows": 0,
+                    "roster_rows": 0,
                     "captured_utc": rec.get("fetched_utc"),
                     "note": f"roster fetch failed: {rec.get('error')}",
                 })
@@ -821,7 +1021,8 @@ def run() -> int:
                 "depth_http_status": None, "depth_sha256": None, "depth_has_table": None,
                 "depth_table_headers": "", "depth_image_count": None,
                 "depth_mentions_unofficial": None, "depth_text_sample": "",
-                "depth_image_srcs": "", "roster_rows": len(rows),
+                "depth_image_srcs": "", "depth_date_label": "", "depth_parsed_rows": 0,
+                "roster_rows": len(rows),
                 "captured_utc": rec.get("fetched_utc"),
                 "note": "" if depth_url else "no depth-chart link found on the NFL.com roster page",
             })
@@ -840,12 +1041,29 @@ def run() -> int:
             if body:
                 html = body.decode("utf-8", "replace")
                 info = classify_depth_page(html)
-                row["depth_has_table"] = "yes" if info["has_depth_table"] else "no"
+                drows, dmeta = parse_depth_chart(html)
+                row["depth_has_table"] = "yes" if drows else "no"
                 row["depth_table_headers"] = " | ".join(info["table_header_cells"])[:400]
                 row["depth_image_count"] = info["image_count"]
-                row["depth_mentions_unofficial"] = "yes" if info["mentions_unofficial"] else "no"
+                row["depth_mentions_unofficial"] = "yes" if dmeta["mentions_unofficial"] else "no"
                 row["depth_text_sample"] = info["text_sample"]
                 row["depth_image_srcs"] = " | ".join(info["image_srcs"])[:600]
+                row["depth_date_label"] = dmeta["date_label"]
+                row["depth_parsed_rows"] = len(drows)
+                for d in drows:
+                    depth_chart_rows.append({
+                        "season": season, "club": row["club"], "club_slug": row["club_slug"],
+                        "unit": d["unit"], "slot": d["slot"], "slot_ordinal": d["slot_ordinal"],
+                        "rank": d["rank"], "tier": d["tier"], "jersey": d["jersey"],
+                        "player": d["player"], "raw_cell": d["raw_cell"],
+                        "rank_collision": d["rank_collision"],
+                        "continuation_row": d["continuation_row"],
+                        "chart_date_label": dmeta["date_label"],
+                        "chart_labelled_unofficial": "yes" if dmeta["mentions_unofficial"] else "no",
+                        "source_url": depth_url, "captured_utc": rec.get("fetched_utc"),
+                    })
+                log(f"depth {row['club']}: {len(drows)} rows parsed; "
+                    f"date label={dmeta['date_label'] or '(none)'}")
             else:
                 row["note"] = (row["note"] + "; " if row["note"] else "") + \
                     f"depth page fetch failed: {rec.get('error')}"
@@ -856,11 +1074,14 @@ def run() -> int:
     write_csv(os.path.join(args.data_dir, "substitutions.csv"), sub_rows)
     write_csv(os.path.join(args.data_dir, "roster_status.csv"), roster_rows)
     write_csv(os.path.join(args.data_dir, "depth_sources.csv"), depth_rows)
+    write_csv(os.path.join(args.data_dir, "depth_chart.csv"), depth_chart_rows)
 
     manifest["counts"].update({
         "gamebooks": len(games_rows), "lineup_rows": len(lineup_rows),
         "inactive_rows": len(inactive_rows), "substitution_rows": len(sub_rows),
         "roster_rows": len(roster_rows), "depth_rows": len(depth_rows),
+        "depth_chart_rows": len(depth_chart_rows),
+        "clubs_with_parsed_depth": len({r["club"] for r in depth_chart_rows}),
     })
     manifest["failures"] = failures
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")

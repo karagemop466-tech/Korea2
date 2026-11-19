@@ -133,3 +133,56 @@ class SectionTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class DepthChartTests(unittest.TestCase):
+    """The Packers depth chart is the named parsing case: jersey numbers are prepended to the
+    name, one slot continues on a second row and one slot is published empty."""
+
+    def setUp(self):
+        html = read(os.path.join(FIX, "packers_depth_chart.html"))
+        self.rows, self.meta = cap.parse_depth_chart(html)
+
+    def _find(self, unit, slot, ordinal, rank):
+        for r in self.rows:
+            if (r["unit"], r["slot"], r["slot_ordinal"], r["rank"]) == (unit, slot, ordinal, rank):
+                return r
+        return None
+
+    def test_metadata(self):
+        self.assertTrue(self.meta["mentions_unofficial"])
+        self.assertEqual(self.meta["date_label"], "Nov. 10, 2026")
+        self.assertEqual(self.meta["tables"], 3)
+
+    def test_jersey_number_is_split_off_but_kept(self):
+        r = self._find("OFFENSE", "WR", 1, 1)
+        self.assertIsNotNone(r)
+        self.assertEqual(r["player"], "Christian Watson")
+        self.assertEqual(r["jersey"], "9")
+        self.assertEqual(r["raw_cell"], "9 Christian Watson")
+        self.assertEqual(r["tier"], "1st string")
+
+    def test_shared_slot_is_kept_as_two_slots(self):
+        # The club publishes three receiver rows; they are three slots, not one slot with three
+        # names, and they must not be collapsed.
+        self.assertIsNotNone(self._find("OFFENSE", "WR", 1, 1))
+        self.assertIsNotNone(self._find("OFFENSE", "WR", 2, 1))
+        self.assertIsNotNone(self._find("OFFENSE", "WR", 3, 1))
+        self.assertEqual(self._find("OFFENSE", "WR", 3, 1)["player"], "Savion Williams")
+
+    def test_continuation_row_keeps_the_slot_and_adds_a_fourth_rank(self):
+        r = self._find("OFFENSE", "RB", 1, 4)
+        self.assertIsNotNone(r)
+        self.assertEqual(r["player"], "Kaleb Johnson")
+        self.assertEqual(r["tier"], "4th string")
+
+    def test_empty_slot_stays_empty(self):
+        # The returner row publishes no first-string player; the cell is not filled in.
+        self.assertIsNone(self._find("SPECIAL TEAMS", "PR", 1, 1))
+        r = self._find("SPECIAL TEAMS", "PR", 1, 2)
+        self.assertIsNotNone(r)
+        self.assertEqual(r["player"], "Matthew Golden")
+
+    def test_no_rank_is_invented_for_an_empty_cell(self):
+        self.assertIsNone(self._find("OFFENSE", "LT", 1, 3))
+        self.assertIsNone(self._find("DEFENSE", "S", 1, 3))
