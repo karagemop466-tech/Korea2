@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Findings — Week 11 desk</title>
+<style>
+:root{--ink:#14202b;--mut:#5b6b7d;--line:#d9e0e8;--bg:#f4f6f9;--card:#fff;
+--accent:#0b3d70;--accent2:#0b52c4;--ok:#0a7d33;--warn:#8a5a00;--bad:#a30000}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header.site{background:var(--accent);color:#fff;padding:16px}
+header.site .inner{max-width:1200px;margin:0 auto}
+header.site h1{margin:0;font-size:1.3rem;font-weight:650}
+header.site .stamp{font-size:.85rem;opacity:.9;margin-top:4px}
+nav.hub{background:#0a2f56;padding:0 16px}
+nav.hub .inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2px}
+nav.hub a{color:#cfe0f5;text-decoration:none;font-size:.9rem;padding:10px 12px;display:block;border-bottom:3px solid transparent}
+nav.hub a:hover{background:#0d3a68;color:#fff}
+nav.hub a.active{color:#fff;border-bottom-color:#7fb2f0;font-weight:600}
+main{max-width:1200px;margin:0 auto;padding:20px 16px 64px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:16px 0}
+.card h2{margin:0 0 12px;font-size:1.12rem}
+.card h3{margin:18px 0 8px;font-size:1rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px}
+.kpi .n{font-size:1.7rem;font-weight:700;line-height:1.1}
+.kpi .l{font-size:.8rem;color:var(--mut);margin-top:4px}
+table{border-collapse:collapse;width:100%;font-size:.88rem;background:#fff}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#eef2f7;font-weight:600;position:sticky;top:0;z-index:1}
+tbody tr:nth-child(even) td{background:#fafbfd}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+a{color:var(--accent2)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.pill{display:inline-block;padding:1px 7px;border-radius:99px;font-size:.75rem;font-weight:600;border:1px solid}
+.p-out{color:#fff;background:#a30000;border-color:#a30000}
+.p-q{color:#5a4200;background:#ffe9a8;border-color:#e0c266}
+.p-d{color:#fff;background:#a34d00;border-color:#a34d00}
+.p-none{color:var(--mut);background:#f0f2f5;border-color:#dde2e8}
+.p-fp{color:#0a5c2a;background:#dff3e5;border-color:#a9d9ba}
+.p-lp{color:#7a5000;background:#fdf0d5;border-color:#e6cf9b}
+.p-dnp{color:#8a1c1c;background:#fbe3e3;border-color:#e8b4b4}
+.note{background:#fff8e6;border:1px solid #e8d9a0;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.alert{background:#fdecec;border:1px solid #e9b5b5;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.good{background:#e9f7ee;border:1px solid #b6dfc3;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.mut{color:var(--mut)}
+.small{font-size:.84rem}
+code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:.85em}
+footer{border-top:1px solid var(--line);margin-top:28px;padding:18px 0;color:var(--mut);font-size:.84rem}
+h1.page{font-size:1.35rem;margin:6px 0 4px}
+.lede{color:var(--mut);margin:0 0 14px}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+<h1>Week 11 desk — official availability capture</h1>
+<div class="stamp">Read 2026-11-19T19:54:00Z from <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">the official NFL Week 11 injury report</a>
+· register manifest <code>c1f1a66cc67d44cd</code>
+· session <code>arena/5d001552-korea2</code></div>
+</div></header>
+<nav class="hub"><div class="inner"><a href="../index.html">Overview</a><a href="report.html">Week 11 report</a><a href="delta.html">Week 10 → 11 delta</a><a href="fixtures.html">Fixtures &amp; venues</a><a href="absence.html">Not listed ≠ available</a><a href="findings.html" class="active">Findings</a><a href="flagged.html">Flagged for review</a><a href="method.html">Method &amp; limits</a></div></nav>
+<main>
+
+<h1 class="page">Findings</h1>
+<p class="lede">What this capture changes about claims already on this site, and what it newly
+establishes. Every item names the artefact and the official page behind it.</p>
+
+<div class="card"><h2>1. The Week 11 report is now published — an existing flag can be closed</h2>
+<p>Root flag <code>FL-17</code> and the availability-sweep capture log both record that at
+<code>2026-11-18T03:55Z</code> the <code>/2026/reg11</code> URL served the Week 10 report and that
+no Week 11 report existed. Reading the same URL at <strong>2026-11-19T19:54:00Z</strong> returns
+a report whose own heading is <code>Injuries - WEEK 11</code> and whose fixtures begin
+Thursday 2026-11-19 (IND at HOU). The flag's <em>value</em> can now be filled for this read; its
+history should stay as the record of the earlier failed read. This session did not edit
+<code>data/flagged.json</code> (owned elsewhere); it logs the request in
+<code>COORDINATION.md</code>.</p>
+<p class="small mut">Sources: <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">NFL.com</a> · prior state in
+<code>availability-sweep/data/capture_log.csv</code> row <code>20261118-9fa8ea61-reg11-attempt</code>.</p></div>
+
+<div class="card"><h2>2. The title/body week mismatch is not fixed</h2>
+<p>Both injury-report URLs return the document title <em>“Official NFL Injury Report for Players
+- Week 11 of the 2026 Season”</em> at this read, while
+<a href="https://www.nfl.com/injuries/league/2026/reg10" rel="noopener">NFL.com</a> prints <code>Injuries - WEEK 10</code> in
+its body with Week 10 fixtures, and <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">NFL.com</a> prints
+<code>Injuries - WEEK 11</code>. Earlier sessions flagged this; it is still live. Practical
+consequence, which is the part that matters: <strong>a scraper that pins to the document title
+will read the wrong week.</strong> Any capture job must pin to the body heading and to the
+fixtures, which is what this desk's verifier checks.</p></div>
+
+<div class="card"><h2>3. 4 of 13 Week 11 venues on the site are wrong or stale</h2>
+<p>Read from each fixture's own game centre, not from the schedule page's city label:</p>
+<div class="scroll"><table>
+<thead><tr><th>Fixture</th><th>Official game centre</th><th>Value in the prior register</th><th>Source</th></tr></thead>
+<tbody><tr><td>IND @ HOU</td><td><strong>Reliant Stadium</strong></td><td>NRG Stadium</td><td><a href="https://www.nfl.com/games/colts-at-texans-2026-reg-11" rel="noopener">game centre</a></td></tr><tr><td>AZ @ KC</td><td><strong>Arrowhead Stadium</strong></td><td>GEHA Field at Arrowhead Stadium</td><td><a href="https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11" rel="noopener">game centre</a></td></tr><tr><td>MIN @ SF</td><td><strong>Estadio Banorte</strong></td><td>Mexico City</td><td><a href="https://www.nfl.com/games/vikings-at-49ers-2026-reg-11" rel="noopener">game centre</a></td></tr><tr><td>CIN @ WAS</td><td><strong>Northwest Stadium</strong></td><td>FedEx Field</td><td><a href="https://www.nfl.com/games/bengals-at-commanders-2026-reg-11" rel="noopener">game centre</a></td></tr></tbody></table></div>
+<p class="small mut">Independence, Houston and Washington have all had their stadium naming
+change in reality; the register used the names the desk's own brief quotes. Recording them
+as-is would have been the easy path and the wrong one.</p></div>
+
+<div class="card"><h2>4. The game-status column is per-fixture, not per-week</h2>
+<p>At 2026-11-19T19:54:00Z exactly one fixture — IND at HOU, the Thursday night game — had a
+populated game-status column. The other twelve published practice status only. This single fact
+explains most of the noise in any naive week-over-week comparison:</p>
+<ul>
+<li>15 of 253 rows (6%) carry a
+designation at this read.</li>
+<li>The Week 10 register, read after that week's games were designated, carries 171 of 347.</li>
+<li>A raw comparison would therefore show ~150 players “losing” their designation — a
+91% drop in one week with no football explanation whatsoever.</li>
+</ul>
+<p><strong>This is the finding with the most modelling consequence.</strong> Any feature built on
+“has a game designation” is a clock, not a player state, unless it is timestamped against the
+fixture's own designation deadline. The desk's delta encodes that rule explicitly: game status is
+compared for 2 clubs, practice status only for the rest.</p></div>
+
+<div class="card"><h2>5. Injury descriptions and designations travel together</h2>
+<p>15 rows carry an injury description (“Calf”, “Concussion”, “Foot, Illness”)
+and every one of them also carries a game designation; no row with a designation lacks an injury
+string. This is a useful structural invariant for a parser — and it is now an enforced build
+check (<code>verify.py</code> R5), not a hope.</p></div>
+
+<div class="card"><h2>6. What these findings do <em>not</em> license</h2>
+<ul>
+<li>They do not support a “backup deficiency” feature. The official pages used here publish no
+depth rank, no starter designation and no snap share, so a second- or third-string replacement
+cannot be identified from them. That requirement stays blocked on a source, exactly as
+<code>FL-15</code>/<code>FL-19</code> record.</li>
+<li>They do not support pricing anything. Two reads of one page, one week apart, cannot estimate
+the effect of an absence on a score. No ablation is possible without outcomes linked to these
+snapshots, and no outcomes are linked yet.</li>
+<li>They do not show the Week 10 register was wrong. That register was a correct read of a page
+that had fully designated its week. The two reads are of the same page at different points in
+the league's weekly cycle.</li>
+</ul></div>
+
+<footer>
+<p>Every table row on this site links the official NFL.com page it was transcribed from.
+Values the official page does not publish are left blank and labelled; nothing is inferred.
+Generated by <code>week11-desk/scripts/build_site.py</code> from
+<code>week11-desk/data/</code>. Register manifest
+<code>c1f1a66cc67d44cd8d71d06bbda35efb0938aed8fc978190242cefcd29ee2e49</code>.</p>
+<p>This desk measures and publishes availability data. It contains no betting recommendation,
+no model output and no strategy result.</p>
+</footer>
+</main>
+</body>
+</html>

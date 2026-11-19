@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not listed ≠ available — Week 11 desk</title>
+<style>
+:root{--ink:#14202b;--mut:#5b6b7d;--line:#d9e0e8;--bg:#f4f6f9;--card:#fff;
+--accent:#0b3d70;--accent2:#0b52c4;--ok:#0a7d33;--warn:#8a5a00;--bad:#a30000}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header.site{background:var(--accent);color:#fff;padding:16px}
+header.site .inner{max-width:1200px;margin:0 auto}
+header.site h1{margin:0;font-size:1.3rem;font-weight:650}
+header.site .stamp{font-size:.85rem;opacity:.9;margin-top:4px}
+nav.hub{background:#0a2f56;padding:0 16px}
+nav.hub .inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2px}
+nav.hub a{color:#cfe0f5;text-decoration:none;font-size:.9rem;padding:10px 12px;display:block;border-bottom:3px solid transparent}
+nav.hub a:hover{background:#0d3a68;color:#fff}
+nav.hub a.active{color:#fff;border-bottom-color:#7fb2f0;font-weight:600}
+main{max-width:1200px;margin:0 auto;padding:20px 16px 64px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:16px 0}
+.card h2{margin:0 0 12px;font-size:1.12rem}
+.card h3{margin:18px 0 8px;font-size:1rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px}
+.kpi .n{font-size:1.7rem;font-weight:700;line-height:1.1}
+.kpi .l{font-size:.8rem;color:var(--mut);margin-top:4px}
+table{border-collapse:collapse;width:100%;font-size:.88rem;background:#fff}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#eef2f7;font-weight:600;position:sticky;top:0;z-index:1}
+tbody tr:nth-child(even) td{background:#fafbfd}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+a{color:var(--accent2)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.pill{display:inline-block;padding:1px 7px;border-radius:99px;font-size:.75rem;font-weight:600;border:1px solid}
+.p-out{color:#fff;background:#a30000;border-color:#a30000}
+.p-q{color:#5a4200;background:#ffe9a8;border-color:#e0c266}
+.p-d{color:#fff;background:#a34d00;border-color:#a34d00}
+.p-none{color:var(--mut);background:#f0f2f5;border-color:#dde2e8}
+.p-fp{color:#0a5c2a;background:#dff3e5;border-color:#a9d9ba}
+.p-lp{color:#7a5000;background:#fdf0d5;border-color:#e6cf9b}
+.p-dnp{color:#8a1c1c;background:#fbe3e3;border-color:#e8b4b4}
+.note{background:#fff8e6;border:1px solid #e8d9a0;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.alert{background:#fdecec;border:1px solid #e9b5b5;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.good{background:#e9f7ee;border:1px solid #b6dfc3;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.mut{color:var(--mut)}
+.small{font-size:.84rem}
+code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:.85em}
+footer{border-top:1px solid var(--line);margin-top:28px;padding:18px 0;color:var(--mut);font-size:.84rem}
+h1.page{font-size:1.35rem;margin:6px 0 4px}
+.lede{color:var(--mut);margin:0 0 14px}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+<h1>Week 11 desk — official availability capture</h1>
+<div class="stamp">Read 2026-11-19T19:54:00Z from <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">the official NFL Week 11 injury report</a>
+· register manifest <code>c1f1a66cc67d44cd</code>
+· session <code>arena/5d001552-korea2</code></div>
+</div></header>
+<nav class="hub"><div class="inner"><a href="../index.html">Overview</a><a href="report.html">Week 11 report</a><a href="delta.html">Week 10 → 11 delta</a><a href="fixtures.html">Fixtures &amp; venues</a><a href="absence.html" class="active">Not listed ≠ available</a><a href="findings.html">Findings</a><a href="flagged.html">Flagged for review</a><a href="method.html">Method &amp; limits</a></div></nav>
+<main>
+
+<h1 class="page">Not listed ≠ available</h1>
+<p class="lede">The owner brief is explicit: <em>“Capture the reserve list so 'not listed' never
+means 'available'”</em>, and <em>“Malik Willis is absent from the weekly report because he is on
+injured reserve, not because he is healthy.”</em> This page is the concrete check.</p>
+
+<div class="alert"><strong>The mechanism.</strong> The weekly injury report lists players with a
+practice or game designation. It does not list players on injured reserve, and it prints no
+“reason for absence” column. So a player missing from the table is <em>unaccounted for</em>, not
+cleared. This desk can therefore only publish two things: (1) that a named player is absent from
+the Week 11 table, and (2) the official nfl.com headline the report page itself links, which is
+the only published explanation available. It does not convert either into an availability flag.</div>
+
+<div class="card"><h2>Named players checked against the Week 11 tables</h2>
+<div class="scroll"><table>
+<thead><tr><th>Club</th><th>Player</th><th>In Week 11 table?</th><th>What that does and does not mean</th>
+<th>Headline the official page links</th><th>Sources</th></tr></thead>
+<tbody><tr><td>BAL</td><td>Lamar Jackson</td><td><span class="pill p-out">no</span></td><td>not listed in the Week 11 table; the page does not print a reason. Absence is NOT evidence of availability</td><td>NFL news roundup: Ravens confirm Lamar Jackson expected to miss 6-10 weeks; Kenneth Walker questionable</td><td><a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-nov-13" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr><tr><td>MIA</td><td>Malik Willis</td><td><span class="pill p-out">no</span></td><td>not listed in the Week 11 table; the page does not print a reason. Absence is NOT evidence of availability</td><td>Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start</td><td><a href="https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr><tr><td>MIA</td><td>Kyle McCord</td><td><span class="pill p-out">no</span></td><td>not listed in the Week 11 table; the page does not print a reason. Absence is NOT evidence of availability</td><td>Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start</td><td><a href="https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr><tr><td>MIN</td><td>Jordan Addison</td><td><span class="pill p-fp">yes</span></td><td></td><td>NFL news roundup: Vikings WR Jordan Addison needs thumb surgery, could go to IR; Buccaneers add QB</td><td><a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-16" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr><tr><td>DET</td><td>Aidan Hutchinson</td><td><span class="pill p-out">no</span></td><td>not listed in the Week 11 table; the page does not print a reason. Absence is NOT evidence of availability</td><td>NFL Network: Lions&#x27; Aidan Hutchinson feared to have suffered significant knee injury on sack celebration</td><td><a href="https://www.nfl.com/news/lions-aidan-hutchinson-knee-injury-patriots" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr><tr><td>TB</td><td>Baker Mayfield</td><td><span class="pill p-fp">yes</span></td><td></td><td>NFL Network: Buccaneers QB Baker Mayfield dealing with lower leg injury ahead of Week 11</td><td><a href="https://www.nfl.com/news/buccaneers-qb-baker-mayfield-injury-week-11" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr><tr><td>NE</td><td>Drake Maye</td><td><span class="pill p-out">no</span></td><td>club is on bye in Week 11, so it publishes no game-status column at all; absence here carries no availability information</td><td>NFL Network: Patriots QB Drake Maye could miss rest of 2026 season</td><td><a href="https://www.nfl.com/news/nfl-network-patriots-qb-drake-maye-could-miss-rest-of-2026-season" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr><tr><td>NE</td><td>TreVeyon Henderson</td><td><span class="pill p-out">no</span></td><td>club is on bye in Week 11, so it publishes no game-status column at all; absence here carries no availability information</td><td>NFL news roundup: Patriots place RB TreVeyon Henderson (illness) on injured reserve</td><td><a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr><tr><td>LAR</td><td>Puka Nacua</td><td><span class="pill p-out">no</span></td><td>club is on bye in Week 11, so it publishes no game-status column at all; absence here carries no availability information</td><td>Rams WR Puka Nacua likely to be placed on injured reserve with turf toe, sprained MCL and PCL</td><td><a href="https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr><tr><td>GB</td><td>Josh Jacobs</td><td><span class="pill p-out">no</span></td><td>club is on bye in Week 11, so it publishes no game-status column at all; absence here carries no availability information</td><td>Packers RB Josh Jacobs to undergo surgery on finger this week; timeline to return TBD</td><td><a href="https://www.nfl.com/news/packers-rb-josh-jacobs-to-undergo-surgery-on-finger-this-week" rel="noopener">headline</a> · <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">table</a></td></tr></tbody></table></div>
+<p class="small mut">The headline names are transcribed from the news block on
+<a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">NFL.com</a>, which lists those articles. The headlines are
+nfl.com editorial text, not a league roster designation, and are labelled as such.</p></div>
+
+<div class="card"><h2>Two rows that make the point</h2>
+<p><strong>Lamar Jackson (BAL)</strong> appears nowhere in the Ravens' Week 11 table. Neither does
+a reason. A reader who treats “absent from the injury report” as “available” would have to
+conclude Baltimore's starting quarterback is fine — while an official nfl.com headline linked
+from the very same page reads <em>“Ravens confirm Lamar Jackson expected to miss 6-10 weeks”</em>.
+The report cannot tell you which. That is why this desk leaves availability blank.</p>
+<p><strong>Malik Willis (MIA)</strong> is likewise absent from the Dolphins' table, and the page
+links <em>“Dolphins place QB Malik Willis (groin) on injured reserve”</em>. Absent-from-table and
+healthy are different things.</p>
+<p class="small mut">Both players' absence and both headlines are recorded above with their own
+source links. Neither is asserted as the reason for absence in any model column, because the
+injury report does not publish that link — the headline does, and it is editorial.</p></div>
+
+<footer>
+<p>Every table row on this site links the official NFL.com page it was transcribed from.
+Values the official page does not publish are left blank and labelled; nothing is inferred.
+Generated by <code>week11-desk/scripts/build_site.py</code> from
+<code>week11-desk/data/</code>. Register manifest
+<code>c1f1a66cc67d44cd8d71d06bbda35efb0938aed8fc978190242cefcd29ee2e49</code>.</p>
+<p>This desk measures and publishes availability data. It contains no betting recommendation,
+no model output and no strategy result.</p>
+</footer>
+</main>
+</body>
+</html>

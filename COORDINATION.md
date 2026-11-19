@@ -3392,3 +3392,117 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 - **Conflicts resolved during the session:** `main` advanced three times (PR #146, #147, #151) while PR #148 was open. Each time, `main` was merged into the branch. COORDINATION.md conflicts were resolved by keeping both sides. Generated root navigation pages and review-board registers were regenerated with the repo's generators, not hand-edited. The `validate` check failed once on the PR merge ref because `main` had a new hub; it was reproduced in a fresh clone of that merge ref, fixed by regeneration, and passes again.
 - **Pages:** the GitHub Pages API was rate-limited for this session, so the build status for `06fff6f` could not be read from the API. Instead, the live pages were read directly: https://karagemop466-tech.github.io/Korea2/availability-w11/index.html (253 rows, 24 of 26 clubs, CIN/WAS flagged, 6 byes) and https://karagemop466-tech.github.io/Korea2/availability-w11/pages/clubs.html (32 rows, totals match the manifest). The root navigation regenerated on `main` includes the hub.
 - **Not done:** the NFL terms decision (W11-F04), venue transcription, depth and starter evidence, and all items in the "Not done in this session" list above remain open and are flagged on the hub.
+
+
+# Session board — `arena/5d001552-korea2` (Week 11 official availability capture + delta series)
+
+**Session ID:** `arena/5d001552-korea2`. Branch assigned by the environment (fixed; not renamable).
+**Base:** `1d56d09` (= PR #145 merge on `main`).
+**Claimed:** 2026-11-19 UTC, before any product edit.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| W11-0 | Claim a non-overlapping scope on this board | done | `arena/5d001552-korea2` | this append-only section of `COORDINATION.md` |
+| W11-1 | Capture the official Week 11 2026 injury report row by row, with read clock times, register hash and per-row source URLs | in progress | `arena/5d001552-korea2` | `week11-desk/data/` |
+| W11-2 | Capture the official Week 11 2026 schedule/fixture register (13 fixtures, venues, status) | in progress | `arena/5d001552-korea2` | `week11-desk/data/` |
+| W11-3 | Compute the Week 10 -> Week 11 delta series (newly listed, cleared, designation changes, practice trend) and publish the delta, not the level | in progress | `arena/5d001552-korea2` | `week11-desk/data/`, `week11-desk/scripts/deltas.py` |
+| W11-4 | Resolve or re-open the FL-17 / FL-02 "Week 11 report not published" flag with the dated read that now succeeds; log the correction as a request to the root flag owner (do not edit `data/flagged.json`) | in progress | `arena/5d001552-korea2` | `week11-desk/data/`, this section |
+| W11-5 | Publish a strict verifier: every register row carries an https official source link, row counts match the committed CSVs and the manifest hash, delta arithmetic recomputes, no claim without a source | in progress | `arena/5d001552-korea2` | `week11-desk/scripts/verify.py` |
+| W11-6 | Build the hub site (landing + subpages) and link it from root navigation | in progress | `arena/5d001552-korea2` | `week11-desk/index.html`, `week11-desk/pages/`, `week11-desk/scripts/build_site.py`, one nav entry in root `index.html` |
+| W11-7 | PR from this branch, merge, confirm GitHub Pages deploy, record the result here | in progress | `arena/5d001552-korea2` | this section |
+
+**Scope boundary.** This session creates and edits only `week11-desk/` (new, unclaimed directory) plus
+exactly one navigation entry in root `index.html`, and appends only to its own section of this board.
+It does **not** edit `data/`, `pages/`, `scripts/`, `results/`, `requirements-desk/`, `availability-sweep/`,
+`review-board/`, `injury-capture/`, any other hub, or any workflow. Requests concerning those files are
+logged in this section, not actioned.
+
+**Why this scope and not another.** At the time of claiming, the newest merged work on `main` records
+that the Week 11 official injury report was *not* published at the 2026-11-18T03:55Z read (root flag
+`FL-17`, `availability-sweep/data/capture_log.csv` row `20261118-9fa8ea61-reg11-attempt`, 0 rows). This
+session re-read the URL on 2026-11-19 and it now serves the Week 11 report, so a dated Week 11 capture
+plus a Week 10 -> Week 11 delta is the unmet requirement with live official evidence behind it. The
+owner brief requires the injury report to be "a timestamped series, not a weekly snapshot", to "publish
+the delta, never the level", and to keep immutable per-read clock times; no hub on `main` yet holds a
+Week 11 register.
+
+## Completion record — `arena/5d001552-korea2` (2026-11-19)
+
+**W11-1 done.** Full Week 11 2026 injury report transcribed, `2026-11-19T19:54:00Z`, 8 chunks, from
+https://www.nfl.com/injuries/league/2026/reg11. **253 player rows, 24 clubs with rows, 2 clubs printing
+the literal block "No Injuries Reported" (CIN, WAS), 13 fixtures, 6 bye clubs.** Game-status split:
+Out 9, Doubtful 0, Questionable 6, no designation 238. Register at `week11-desk/data/week11_rows.csv`,
+per-row source URL and read clock time; manifest hash chain at `week11-desk/data/week11_register.json`.
+
+**W11-2 done.** 13 fixtures captured with the venue **each fixture's own game centre prints**, not the
+schedule page's city label. `week11-desk/data/week11_fixtures.csv`.
+
+**W11-3 done.** Week 10 -> Week 11 delta, `week11-desk/data/delta_week10_week11.csv`, 280 change rows
+across the 22 clubs listed in both weeks: 84 newly listed, 129 no longer listed, 59 practice change,
+5 practice + game-status change, 3 designation withdrawn.
+
+**W11-4 done (as a request, not an edit).** The Week 11 report **is now published**, which falsifies the
+2026-11-18 statement recorded in root `FL-17` and in
+`availability-sweep/data/capture_log.csv` row `20261118-9fa8ea61-reg11-attempt`. `data/flagged.json` is
+outside this session's scope; the request is logged below.
+
+**W11-5 done.** `week11-desk/scripts/verify.py`: **3,754 checks, 0 failures.** Enforces per-row official
+https source, manifest hash recomputation, count recomputation, closed status vocabulary, injury/designation
+co-occurrence, fixture source and venue presence, delta recomputation, the publication-cycle guard, a ban on
+the words "cleared"/"healthy", and for all 8 pages: no broken local link and no table row without a source link.
+
+**W11-6 done.** 8-page hub at `week11-desk/` (overview, report, delta, fixtures, absence, findings,
+flagged, method) plus exactly one root nav entry. Where to look: `week11-desk/index.html`.
+
+**Verification run on the rebased tree (after PR #146 merged into main):**
+- `python3 week11-desk/scripts/verify.py` — PASS, 3,754 checks.
+- `python3 tests/check_site.py` — PASS, 260 pages, 699 tables, 17,866 links.
+- `python3 scripts/check_links.py` — PASS, 5,839 local refs, 0 broken.
+- `python3 scripts/validate_data.py` — PASS, 0 warnings.
+- `build_register.py` re-run from clean: byte-identical registers, unchanged manifest hash.
+
+### Findings this session publishes (all with source links on the site)
+
+1. **The Week 11 report now exists.** Read at 2026-11-19T19:54Z it serves a Week 11 body heading and
+   Week 11 fixtures (first game IND at HOU, Thu 2026-11-19). FL-17's blank value is satisfyable for this read.
+2. **The reg10/reg11 title mismatch is still live.** Both URLs return the document title "Week 11 of the
+   2026 Season"; reg10's body still prints `Injuries - WEEK 10` with Week 10 fixtures. A parser pinned to
+   the title reads the wrong week.
+3. **4 of 13 venues in the committed register are contradicted by the official game centre:**
+   IND@HOU — official "RELIANT STADIUM" vs register "NRG Stadium"; MIN@SF — official "ESTADIO BANORTE" vs
+   register "Mexico City"; CIN@WAS — official "NORTHWEST STADIUM" vs register "FedEx Field"; AZ@KC —
+   official "ARROWHEAD STADIUM" vs register "GEHA Field at Arrowhead Stadium".
+4. **The game-status column is per-fixture, not per-week.** At this read only the Thursday fixture had
+   designations (15/253 rows); the other twelve published practice status only. A naive week-over-week
+   comparison would show ~150 players "losing" a designation in one week with no football cause. This is
+   the finding with the most modelling consequence and it is why the delta compares game status for
+   IND/HOU only and practice status elsewhere.
+5. **"Not listed" is not "available", demonstrated.** Lamar Jackson and Malik Willis are absent from their
+   clubs' Week 11 tables, and the page links headlines that say both are on injured reserve / out 6-10
+   weeks. Published as absence + headline, never as availability (`week11-desk/data/week11_absence_check.csv`).
+
+### Flagged (published on `week11-desk/pages/flagged.html`, none blocking)
+
+W11-F01 no raw response bytes retained (sandbox has no route to nfl.com — `curl` exits 35 on the CONNECT
+tunnel; hash covers transcribed rows, not NFL bytes) · W11-F02 the title/body week mismatch · W11-F03 CIN
+and WAS print "No Injuries Reported" (a week-in-progress artifact; published as printed) · W11-F04 the four
+venue contradictions · W11-F05 Week 10 register is a complete transcript of a different point in the week
+· W11-F06 practice status published with no injury text on 238 rows (rest days vs injuries are
+indistinguishable there) · W11-F07 headlines are editorial, not roster designations · W11-F08 no depth,
+snap or starter evidence exists in any source used, so every replacement-depth requirement stays blocked
+on source.
+
+### Requests to other owners (logged, not actioned)
+
+1. **Root flagged-page owner (`data/flagged.json`, `pages/flagged.html`):** FL-17 can record that the
+   Week 11 report was published by 2026-11-19T19:54Z, keeping its failure history. FL-02's neighbours
+   should carry the same note. Sources: `week11-desk/data/week11_register.json`,
+   `week11-desk/data/capture_log.csv`.
+2. **`requirements-desk` owner (`data/schedule_2026_w11.csv`):** four venue values are contradicted by the
+   official game centres — see `week11-desk/data/week11_fixtures.csv`, column `venue_prior_register` beside
+   `venue_official`. This session did not edit that file.
+3. **Root readiness owner (`pages/readiness.html`, RR-C12/RR-C23):** a second dated read series now exists
+   one week after the 2026-11-18 capture; the Week 11 register is a candidate input.
+4. **Anyone building an availability feature:** the "has a game designation" flag is a clock, not a player
+   state, unless timestamped against that fixture's designation deadline (finding 4 above). Two official
+   reads one week apart cannot support an effect estimate, so no ablation is claimed here.

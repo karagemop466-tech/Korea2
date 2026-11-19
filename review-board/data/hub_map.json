@@ -3,11 +3,11 @@
   "code": 7,
   "data register": 1,
   "other": 1,
-  "site hub": 26
+  "site hub": 27
  },
  "history": "shallow",
- "base_commit": "c9786e0",
- "hub_count": 35,
+ "base_commit": "f6a41dd",
+ "hub_count": 36,
  "nav_target_count": 27,
  "nav_duplicate_labels": [],
  "nav": [
@@ -203,7 +203,7 @@
    "kind": "code",
    "index_page": false,
    "pages": 0,
-   "data_files": 11,
+   "data_files": 12,
    "scripts": 2,
    "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
@@ -553,10 +553,21 @@
    "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
+  },
+  {
+   "dir": "week11-desk",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 8,
+   "data_files": 1,
+   "scripts": 4,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   }
  ],
- "total_pages": 260,
- "total_data_files": 214,
+ "total_pages": 268,
+ "total_data_files": 216,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "c9786e0f353a20dd534ae4f720ce3f5802a953c9"
+ "_generated_from_repo_commit": "f6a41dd199431fd98fb241f7e61a6a1ed790087e"
 }

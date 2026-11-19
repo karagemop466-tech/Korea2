@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for review — Week 11 desk</title>
+<style>
+:root{--ink:#14202b;--mut:#5b6b7d;--line:#d9e0e8;--bg:#f4f6f9;--card:#fff;
+--accent:#0b3d70;--accent2:#0b52c4;--ok:#0a7d33;--warn:#8a5a00;--bad:#a30000}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header.site{background:var(--accent);color:#fff;padding:16px}
+header.site .inner{max-width:1200px;margin:0 auto}
+header.site h1{margin:0;font-size:1.3rem;font-weight:650}
+header.site .stamp{font-size:.85rem;opacity:.9;margin-top:4px}
+nav.hub{background:#0a2f56;padding:0 16px}
+nav.hub .inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2px}
+nav.hub a{color:#cfe0f5;text-decoration:none;font-size:.9rem;padding:10px 12px;display:block;border-bottom:3px solid transparent}
+nav.hub a:hover{background:#0d3a68;color:#fff}
+nav.hub a.active{color:#fff;border-bottom-color:#7fb2f0;font-weight:600}
+main{max-width:1200px;margin:0 auto;padding:20px 16px 64px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:16px 0}
+.card h2{margin:0 0 12px;font-size:1.12rem}
+.card h3{margin:18px 0 8px;font-size:1rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px}
+.kpi .n{font-size:1.7rem;font-weight:700;line-height:1.1}
+.kpi .l{font-size:.8rem;color:var(--mut);margin-top:4px}
+table{border-collapse:collapse;width:100%;font-size:.88rem;background:#fff}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#eef2f7;font-weight:600;position:sticky;top:0;z-index:1}
+tbody tr:nth-child(even) td{background:#fafbfd}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+a{color:var(--accent2)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.pill{display:inline-block;padding:1px 7px;border-radius:99px;font-size:.75rem;font-weight:600;border:1px solid}
+.p-out{color:#fff;background:#a30000;border-color:#a30000}
+.p-q{color:#5a4200;background:#ffe9a8;border-color:#e0c266}
+.p-d{color:#fff;background:#a34d00;border-color:#a34d00}
+.p-none{color:var(--mut);background:#f0f2f5;border-color:#dde2e8}
+.p-fp{color:#0a5c2a;background:#dff3e5;border-color:#a9d9ba}
+.p-lp{color:#7a5000;background:#fdf0d5;border-color:#e6cf9b}
+.p-dnp{color:#8a1c1c;background:#fbe3e3;border-color:#e8b4b4}
+.note{background:#fff8e6;border:1px solid #e8d9a0;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.alert{background:#fdecec;border:1px solid #e9b5b5;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.good{background:#e9f7ee;border:1px solid #b6dfc3;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.mut{color:var(--mut)}
+.small{font-size:.84rem}
+code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:.85em}
+footer{border-top:1px solid var(--line);margin-top:28px;padding:18px 0;color:var(--mut);font-size:.84rem}
+h1.page{font-size:1.35rem;margin:6px 0 4px}
+.lede{color:var(--mut);margin:0 0 14px}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+<h1>Week 11 desk — official availability capture</h1>
+<div class="stamp">Read 2026-11-19T19:54:00Z from <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">the official NFL Week 11 injury report</a>
+· register manifest <code>c1f1a66cc67d44cd</code>
+· session <code>arena/5d001552-korea2</code></div>
+</div></header>
+<nav class="hub"><div class="inner"><a href="../index.html">Overview</a><a href="report.html">Week 11 report</a><a href="delta.html">Week 10 → 11 delta</a><a href="fixtures.html">Fixtures &amp; venues</a><a href="absence.html">Not listed ≠ available</a><a href="findings.html">Findings</a><a href="flagged.html" class="active">Flagged for review</a><a href="method.html">Method &amp; limits</a></div></nav>
+<main>
+
+<h1 class="page">Flagged for review</h1>
+<p class="lede">Irregularities found while verifying this capture. None of them blocks
+publication and none is hidden: each names the artefact, the official page, and what would
+resolve it. Per the brief, flagged items do not block the merge — they are published here so
+they can be reviewed after the site is live.</p>
+<div class="card">
+<h3>W11-F01 — No raw response bytes retained for the official pages <span class="pill p-q">open</span></h3>
+<p>The sandbox shell has no network route to nfl.com — verified with <code>curl</code>, which exits 35 on the CONNECT tunnel. Pages were read with the platform page-retrieval tool, so the register hash covers the transcribed rows as committed, not the NFL response body. A capture job on a network-enabled runner is the fix; this desk does not have one.</p>
+<p class="small mut">Sources: <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">www.nfl.com/…/reg11</a></p>
+
+<h3>W11-F02 — reg10 and reg11 both return a “Week 11” document title <span class="pill p-q">open</span></h3>
+<p>The two URL slugs disagree with the document title on reg10, whose body still prints WEEK 10. Recorded at 2026-11-19T19:56Z. Do not pin a parser to the title.</p>
+<p class="small mut">Sources: <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">www.nfl.com/…/reg11</a> · <a href="https://www.nfl.com/injuries/league/2026/reg10" rel="noopener">www.nfl.com/…/reg10</a></p>
+
+<h3>W11-F03 — The CIN and WAS tables print “No Injuries Reported” <span class="pill p-q">monitor</span></h3>
+<p>Both Monday fixtures show the literal block with no player rows. That is the page's statement, not an omission. It is almost certainly a week-in-progress artifact — a club does not report zero injuries in week 11 — but the desk publishes what the page prints and does not substitute a later read it did not make.</p>
+<p class="small mut">Sources: <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">www.nfl.com/…/reg11</a></p>
+
+<h3>W11-F04 — Prior register records 4 venues the official game centre contradicts <span class="pill p-q">reported to owner</span></h3>
+<p>IND@HOU (Reliant Stadium), MIN@SF (Estadio Banorte), CIN@WAS (Northwest Stadium) and AZ@KC (Arrowhead Stadium). The register at <code>requirements-desk/data/schedule_2026_w11.csv</code> is owned by another session and was not edited. Request logged in COORDINATION.md.</p>
+<p class="small mut">Sources: <a href="https://www.nfl.com/games/colts-at-texans-2026-reg-11" rel="noopener">www.nfl.com/…/colts-at-texans-2026-reg-11</a> · <a href="https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11" rel="noopener">www.nfl.com/…/cardinals-at-chiefs-2026-reg-11</a> · <a href="https://www.nfl.com/games/vikings-at-49ers-2026-reg-11" rel="noopener">www.nfl.com/…/vikings-at-49ers-2026-reg-11</a> · <a href="https://www.nfl.com/games/bengals-at-commanders-2026-reg-11" rel="noopener">www.nfl.com/…/bengals-at-commanders-2026-reg-11</a></p>
+
+<h3>W11-F05 — The Week 10 comparison register is not row-complete by construction <span class="pill p-q">accepted limitation</span></h3>
+<p>It contains 347 rows, a complete transcript of the Week 10 page as read on 2026-11-18. It is used here only for clubs that appear in both weeks. A player who moved between weeks is reported as listed/not-listed, never as injured/recovered.</p>
+<p class="small mut">Sources: <a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">www.nfl.com/…/REG10</a></p>
+
+<h3>W11-F06 — Practice status is published for players with no injury description <span class="pill p-q">open</span></h3>
+<p>Of 253 rows, 238 carry a practice status but no injury text (e.g. BAL Mike Green, Full Participation). The page does not explain this. It may be a veteran rest day or a routine listing; the desk does not guess. Consequence: a “did not practice” flag alone cannot be read as an injury.</p>
+<p class="small mut">Sources: <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">www.nfl.com/…/reg11</a></p>
+
+<h3>W11-F07 — Headlines are editorial, not roster designations <span class="pill p-q">accepted limitation</span></h3>
+<p>The absence page cites nfl.com headlines (injured-reserve, surgery, expectations). They are nfl.com editorial copy linked from the official report page, not a league roster feed. They explain an absence; they are not used to populate any column.</p>
+<p class="small mut">Sources: <a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-nov-13" rel="noopener">www.nfl.com/…/nfl-news-roundup-latest-league-updates-from-friday-nov-13</a> · <a href="https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start" rel="noopener">www.nfl.com/…/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start</a> · <a href="https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start" rel="noopener">www.nfl.com/…/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start</a> · <a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-16" rel="noopener">www.nfl.com/…/nfl-news-roundup-latest-league-updates-from-monday-nov-16</a> · <a href="https://www.nfl.com/news/lions-aidan-hutchinson-knee-injury-patriots" rel="noopener">www.nfl.com/…/lions-aidan-hutchinson-knee-injury-patriots</a> · <a href="https://www.nfl.com/news/buccaneers-qb-baker-mayfield-injury-week-11" rel="noopener">www.nfl.com/…/buccaneers-qb-baker-mayfield-injury-week-11</a> · <a href="https://www.nfl.com/news/nfl-network-patriots-qb-drake-maye-could-miss-rest-of-2026-season" rel="noopener">www.nfl.com/…/nfl-network-patriots-qb-drake-maye-could-miss-rest-of-2026-season</a> · <a href="https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14" rel="noopener">www.nfl.com/…/nfl-news-roundup-latest-league-updates-from-saturday-nov-14</a> · <a href="https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl" rel="noopener">www.nfl.com/…/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl</a> · <a href="https://www.nfl.com/news/packers-rb-josh-jacobs-to-undergo-surgery-on-finger-this-week" rel="noopener">www.nfl.com/…/packers-rb-josh-jacobs-to-undergo-surgery-on-finger-this-week</a></p>
+
+<h3>W11-F08 — No depth, snap or starter evidence exists in any source used here <span class="pill p-q">blocked on source</span></h3>
+<p>The official injury report, schedule and game centres publish no depth rank, no snap count and no confirmed starter. Every requirement that needs a replacement-depth signal therefore remains blocked on source — the finding, not a defect of this desk.</p>
+<p class="small mut">Sources: <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">www.nfl.com/…/reg11</a></p>
+</div>
+<div class="card"><h2>Not flagged, but worth stating</h2>
+<p>No claim on this site asserts that any strategy, model or price is correct, and none could:
+this desk contains no odds, no outcomes and no model output. It publishes what two official
+pages said, when they said it, and what changed between them.</p></div>
+
+<footer>
+<p>Every table row on this site links the official NFL.com page it was transcribed from.
+Values the official page does not publish are left blank and labelled; nothing is inferred.
+Generated by <code>week11-desk/scripts/build_site.py</code> from
+<code>week11-desk/data/</code>. Register manifest
+<code>c1f1a66cc67d44cd8d71d06bbda35efb0938aed8fc978190242cefcd29ee2e49</code>.</p>
+<p>This desk measures and publishes availability data. It contains no betting recommendation,
+no model output and no strategy result.</p>
+</footer>
+</main>
+</body>
+</html>
