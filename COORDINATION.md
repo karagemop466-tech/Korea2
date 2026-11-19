@@ -3558,3 +3558,35 @@ Method reference: [NIST DATAPLOT correlation confidence limits](https://www.itl.
 None outstanding for this pass. The open evidence gaps (official price archive, 32-club depth source,
 136-game corpus, funded reward) remain published on each hub's Flagged for Review page and do not
 block publication.
+
+## I-6 — PR #149 merge, review-board CI fix and Pages deployment (recorded 2026-11-19T21:10Z)
+
+- **Root cause of the review-board CI failure, fixed:** `review-board/scripts/ingest.py::repo_json_files()`
+  walked dot-directories, so a local `.venv-final` virtualenv's scipy test fixture
+  (`.venv-final/lib/python3.11/site-packages/scipy/stats/tests/data/studentized_range_mpmath_ref.json`)
+  was counted as a repository register. The committed `reconciliation.json` therefore said 23 hubs /
+  200 files while CI's fresh clone (no venv) recomputed 22 / 199, failing "re-running ingest changes no
+  register content" and "committed registers match the sibling inputs". The scanner now skips
+  dot-directories, matching the hub-map walk (line 457). This closes the request logged by
+  `arena/1c8ea23f-korea2` (their irregularity 1: add `.venv*` to IGNORE_DIRS) — implemented as a
+  dot-directory skip rather than a name list, so any venv name is covered.
+- **PR #149:** https://github.com/karagemop466-tech/Korea2/pull/149 — merged with a regular merge as
+  `5df7beb` at 2026-11-19T21:06:51Z (base `56b8a68`, head `1f7970b`). All 14 checks passed on the head
+  before merge (`build-and-verify`, `check`, `decision-desk`, `review-board` x2, `tests-and-links`,
+  `validate`, `verify-hub` x2, `verify-skill-lab`, `verify` x4); `mergeable_state` was `clean`.
+- **Post-merge on main (`5df7beb`):** every workflow green — `build-verify`, `checks`, `validate`,
+  `signal-desk`, `decision-desk`, `review-board`, `verify-hub` and **`pages build and deployment`:
+  completed success**. Live site confirmed at https://karagemop466-tech.github.io/Korea2/ (landing page
+  serves the merged decision-readiness table).
+- **Rebase log (no other session's work discarded):** the branch was rebased onto `d73b5b4`, then
+  `88413b7` (PR #153), then `56b8a68` (PR #154). COORDINATION.md conflicts were resolved by keeping both
+  session boards (incoming block first, then this one). The two requirements-desk pages conflicted on
+  `[347]` vs `347` and were resolved by re-running `requirements-desk/scripts/build_site.py` on the
+  merged tree (generator output: `347`). review-board and decision-hub generated files were taken from
+  main during each conflict and regenerated afterwards with this session's scripts.
+- **Automated commits on the branch:** the `nfl-injury-capture` bot pushed manifest
+  `reg11_2026_20261119T205652Z.json` onto this branch mid-flight (`24f4391`); it was rebased along
+  (`0323368`) and review-board was rescanned for it (207 files) before the merge.
+- **Reproducing the fix locally:** CI's review-board job is two steps — `build_site.py` + `git diff` on
+  `review-board/index.html` and `review-board/pages`, then `verify_all.py`. Both pass in a fresh
+  `git worktree` at any pushed head; `verify_all.py` reports 131 passed / 0 failed.
