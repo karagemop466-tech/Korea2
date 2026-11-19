@@ -1,15 +1,16 @@
 # NFL Line Lab — research, evidence and decision readiness
 
-**As of 2026-11-15.** This repository is a research and measurement project, not a live betting service. No candidate strategy is approved for deployment, the reward pool is unfunded, and the displayed Week 9 model lines are historical—not current recommendations.
+**As of 2026-11-19** (final integration re-verification; previous state: 2026-11-15). This repository is a research and measurement project, not a live betting service. No candidate strategy is approved for deployment, the reward pool is unfunded, and the displayed Week 9 model lines are historical—not current recommendations.
 
 - **Live GitHub Pages site:** [karagemop466-tech.github.io/Korea2](https://karagemop466-tech.github.io/Korea2/)
 - **Current repository-level executive summary:** [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md)
+- **Dated official re-read (2026-11-19):** [docs/OFFICIAL_REREAD_2026-11-19.md](docs/OFFICIAL_REREAD_2026-11-19.md) — the final integration session re-read the Week 10/11 injury reports, Week 10/11 schedules and 2026 standings against the committed registers (0 mismatches) and re-ran every verification suite.
 - **Dated site/repository audit:** [docs/REPOSITORY_STATUS_2026-11-15.md](docs/REPOSITORY_STATUS_2026-11-15.md)
 - **Flagged issues:** [root Flagged for Review](pages/flagged.html) · [Line Desk flags](line-desk/pages/flagged.html) · [Week 10 injury-report flags](injury-report-w10/index.html)
 
 ## Start here
 
-The repository has several independently built dashboards. They do not yet form one canonical site; the root navigation omits some recent hubs and repeats the “Suggestions hub” link. These direct links are intentional until the shared-navigation owner integrates them.
+The repository has several independently built dashboards. As of 2026-11-19 the root navigation links **all 24** hub directories that have an `index.html`, with no duplicate or dead hub links (verified programmatically during integration). These direct links are intentional; each hub keeps its own navigation and verification suite.
 
 ### Requirements Desk — new 2026-11-18 (official capture, decision readiness, review queues)
 
@@ -78,7 +79,7 @@ Dates below are not interchangeable. The root analysis and the requirements desk
 - **Availability/depth:** the Line Desk has 11 official-report rows from four clubs, with **0 replacement names and 0 string tiers**. A Price Desk proof-of-concept records one official NFL Game Book (WAS@NYG) for starting lineups, Did-Not-Play, Not-Active and weather, and cites a second Game Book for a score check; a scheduled, all-week ingestion pipeline is not built. The Game Book identifies who started, not an official 2nd/3rd/4th-string depth rank. Another hub uses nflverse depth/roster/snap releases; those remain third-party and do not replace Game Book evidence. See [Line Desk Depth](line-desk/pages/depth.html), [Price Desk results](price-desk/pages/results-feed.html), the [WAS@NYG Game Book PDF](https://static.www.nfl.com/image/upload/v1794570519/gamecenter/ab5828d9-4feb-11f1-abca-2c54536568a9.pdf) and the [NFL injury report](https://www.nfl.com/injuries/league/2026/reg10).
 - **Model governance:** two committed originators disagree by 1.5–9.0 points on each of the same 15 Week 9 games. The project has not selected a canonical originator. This is an internal-repository discrepancy, not an NFL fact; see [Origination](line-desk/pages/origination.html).
 
-The Line Desk and Price Desk source registers record NFL/NIST pages and Game Books opened by earlier sessions on **2026-11-14**. The separate `injury-report-w10/` coordination record reports another session's fetch-tool read of all eight Week 10 report chunks on **2026-11-15**, with partial row transcription and no raw-response hash. This session inspected the committed registers and ran local checks but did not fetch those external pages; see [Line Desk Sources](line-desk/pages/sources.html), [Price Desk Sources](price-desk/pages/sources.html), the [Week 10 re-verification](injury-report-w10/index.html) and the dated [repository audit](docs/REPOSITORY_STATUS_2026-11-15.md). Do not treat an internal source label as a new independent verification. The root analysis still contains tables based on nflverse community data; those rows are labelled third-party, not official NFL facts. The strict requirement that every displayed value be confirmed from an official site is therefore **not yet met across the full repository**.
+The Line Desk and Price Desk source registers record NFL/NIST pages and Game Books opened by earlier sessions on **2026-11-14**. The separate `injury-report-w10/` coordination record reports another session's fetch-tool read of all eight Week 10 report chunks on **2026-11-15**, with partial row transcription and no raw-response hash. This session inspected the committed registers and ran local checks but did not fetch those external pages; see [Line Desk Sources](line-desk/pages/sources.html), [Price Desk Sources](price-desk/pages/sources.html), the [Week 10 re-verification](injury-report-w10/index.html) and the dated [repository audit](docs/REPOSITORY_STATUS_2026-11-15.md). On **2026-11-19** the integration session re-fetched the Week 10 and Week 11 injury reports, both weekly schedules, the 2026 standings and the policy pages, and compared them against the committed registers with 0 mismatches; see [docs/OFFICIAL_REREAD_2026-11-19.md](docs/OFFICIAL_REREAD_2026-11-19.md). Do not treat an internal source label as a new independent verification. The root analysis still contains tables based on nflverse community data; those rows are labelled third-party, not official NFL facts. The strict requirement that every displayed value be confirmed from an official site is therefore **not yet met across the full repository**.
 
 ## Review before implementation
 
@@ -90,17 +91,21 @@ Suggestions are deliberately kept separate from implementation:
 
 The principal blockers are a permitted timestamped price source, a canonical line originator, full official results history, immutable pre-kickoff availability/inactive evidence, a verified 32-club depth-source route, and an explicit reward/funding policy. These are listed—not silently decided—for review.
 
-## Verification performed in this session
+## Verification performed 2026-11-19 (integration re-run)
 
-- `python3 tests/check_site.py` — pass: 232 HTML pages, 584 tables and 13,560 links; 33 pages outside the root published build are link-checked but do not carry the root table-source column.
-- `python3 scripts/check_links.py` — pass: 4,637 local references, no broken internal links.
-- `python3 scripts/validate_data.py` and `python3 tests/check_data.py` — pass for the root data-validation scope.
-- `python3 tests/check_derived.py` — pass: strict JSON, 52 recorded independent checks with 0 mismatches, 32/32 teams reconciled for 2020, and 25 generated root pages linked.
-- `python3 line-desk/scripts/build_site.py --check` and `python3 line-desk/scripts/verify.py` — pass for the Line Desk deterministic render, blank policy, source links and correlations.
-- `python3 price-desk/scripts/verify.py` and `python3 -m unittest discover -s price-desk/tests -v` — pass: 20,504 register checks, 0 errors; 10 unit tests passed. These check committed records, not external page contents.
-- `python3 review-board/scripts/verify_all.py`, `python3 decision-desk/scripts/verify_all.py`, `python3 verify-hub/scripts/verify.py`, the Verify Hub unit tests and `price-store` tests — pass.
+- `python3 tests/check_site.py` — pass: 252 HTML pages, 666 tables and 16,877 links; every published table row carries a source link.
+- `python3 scripts/check_links.py` — pass: 5,762 local references, no broken internal links.
+- `python3 scripts/validate_data.py` — pass: every data row carries official-source citations; flagged values blank.
+- `python3 tests/check_data.py` — pass: 6 result files consistent, 32/32 teams verified.
+- `python3 tests/check_derived.py` — pass: strict JSON, 52 recorded independent checks with 0 mismatches, 32/32 teams reconciled for 2020, generated pages linked.
+- `python3 requirements-desk/scripts/verify.py` — pass: 14 pages, 27 tables, 1,090 links, 74 requirements, 6 registers; requirement summary {partial 37, blocked 16, verified 13, not started 8}.
+- `python3 line-desk/scripts/build_site.py --check` and `python3 line-desk/scripts/verify.py` — pass: 15 pages byte-identical to a fresh render; 16 registers, blank policy, correlations recomputed.
+- `python3 price-desk/scripts/verify.py` — pass: 20,504 checks, 0 errors. `python3 review-board/scripts/verify_all.py` — pass: 131 checks across 14 pages. `python3 decision-desk/scripts/verify_all.py` — pass (50 sources, 19 flags). `python3 verify-hub/scripts/verify.py` — pass (152 data rows, 9 pages, 181 table rows).
+- `python3 scripts/build_site.py --check` and `python3 requirements-desk/scripts/build_site.py --check` — pass: deterministic renders reproduced byte-identically.
 
-GitHub Pages was confirmed `built` for PR #124's merge commit `5da59c96072a7dd856a55a45ac3d7ce754e01907` on 2026-11-15 18:40 UTC. That build included the documentation edits in this audit; it confirms site deployment, not source freshness or correctness.
+The previous session record (2026-11-15: 232 pages, 584 tables, 13,560 links; 4,637 references) is superseded by the counts above; the historical audit remains at [docs/REPOSITORY_STATUS_2026-11-15.md](docs/REPOSITORY_STATUS_2026-11-15.md).
+
+GitHub Pages status `built` was confirmed via the GitHub API on 2026-11-19 for the legacy `main` root build. The merge that preceded it (PR #145, commit `1d56d09`) is the latest state this verification covers; the integration PR that follows this session will be recorded in `COORDINATION.md` with its own deploy confirmation.
 
 ## Repository and data policy
 
