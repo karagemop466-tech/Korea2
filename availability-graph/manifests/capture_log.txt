@@ -1,0 +1,13 @@
+20:01:10 week 9: 15 official games on the schedule page
+20:01:10 week 9: 15 official games on the schedule page
+20:01:12 week 9 jaguars-at-ravens-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:01:12 week 9 jaguars-at-ravens-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+Traceback (most recent call last):
+  File "/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py", line 629, in main
+    return run()
+           ^^^^^
+  File "/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py", line 767, in run
+    for p in sec[side]:
+             ~~~^^^^^^
+KeyError: 0
+capture failed; diagnostics written to availability-graph/manifests/capture_error_20261119T200112Z.json

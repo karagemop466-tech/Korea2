@@ -1,0 +1,5 @@
+{
+  "generated_utc": "2026-11-19T20:01:12Z",
+  "status": "error",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py\", line 629, in main\n    return run()\n           ^^^^^\n  File \"/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py\", line 767, in run\n    for p in sec[side]:\n             ~~~^^^^^^\nKeyError: 0\n"
+}
