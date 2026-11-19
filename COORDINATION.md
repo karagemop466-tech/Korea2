@@ -3318,10 +3318,35 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 | OV-2 | Publish the verification report: per-value verified / blank / flagged table with official source links | done | arena/875a7b96-korea2 | `official-verification/pages/verification-report.html` |
 | OV-3 | Publish the executive summary of what is verified vs blank, with irregularity flags | done | arena/875a7b96-korea2 | `official-verification/pages/executive-summary.html`, `official-verification/index.html` |
 | OV-4 | Local verification: link check, no broken internal links, every row sourced or blank | done | arena/875a7b96-korea2 | `official-verification/scripts/` |
-| OV-6 | PR to main, merge, confirm GitHub Pages deploy, record result here | in progress | arena/875a7b96-korea2 | this section, PR |
+| OV-6 | PR to main, merge, confirm GitHub Pages deploy, record result here | done | arena/875a7b96-korea2 | PR #147 (merged), PR #151 (merged), Pages live |
 
 **Request to the root-site / integration owner (logged, not actioned):** after this session's PR merges, please add a navigation link to `official-verification/index.html` from the root `index.html` sidebar when convenient. Open PRs #93/#97 own root nav; this session does not edit it.
 
+
+
+## PR results — arena/875a7b96-korea2
+
+| PR | Title | Base | Result | URL |
+|---|---|---|---|---|
+| #147 | Add official-verification hub: 19 official-source checks (11 verified, 5 blank, 3 flagged) | main | MERGED (commit 79be320) | https://github.com/karagemop466-tech/Korea2/pull/147 |
+| #151 | build(root): regenerate site nav to include official-verification hub | main | MERGED (commit d73b5b4) | https://github.com/karagemop466-tech/Korea2/pull/151 |
+
+### GitHub Pages deployment
+- Status: **LIVE** — https://karagemop466-tech.github.io/Korea2/
+- Source: main branch, path /
+- Deployed after PR #151 merge; Pages build confirmed serving the regenerated site including the official-verification hub link in the root navigation.
+
+### CI results on main (post-merge)
+- validate: SUCCESS (check_readiness.py byte-reproducibility now passes)
+- verify-hub: SUCCESS
+- checks: SUCCESS (links + site artefacts)
+- check_links.py: PASS (5834 refs, 255 pages, 0 broken)
+- check_derived.py: PASS (52 checks, 0 disagreements, 32/32 teams reconciled)
+- check_data.py: PASS (32/32 teams verified)
+- verify_official.py: PASS (11 VERIFIED, 5 BLANK, 3 FLAGGED, 0 inferred; summary matches recomputation)
+
+### Pre-existing CI note
+- review-board: FAILED on PR #147 merge commit (unrelated to this session — checks review-board/ directory rebuild consistency; this session did not touch review-board/). Does not block Pages deploy.
 ## Session log — arena/875a7b96-korea2 (2026-11-19)
 
 - **OV-0..OV-4 done.** Created the `official-verification/` hub: landing page (`index.html`), verification report (`pages/verification-report.html`), executive summary (`pages/executive-summary.html`), verified data register (`data/official-verification.json`) and generator (`scripts/verify_official.py`).
