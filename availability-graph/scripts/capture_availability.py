@@ -531,24 +531,37 @@ def parse_gamebook(text: str) -> dict:
 
 # --------------------------------------------------------------------------- club pages
 def parse_roster(html: str) -> list[dict]:
-    """Parse the official NFL.com team roster table: player, jersey, position, status, ..."""
+    """Parse the official NFL.com team roster table.
+
+    The table is printed as: player | jersey | position | status | height (in inches) | weight |
+    experience | college. A row is accepted only when the whole signature matches, so that no
+    other table on the page can be mistaken for a roster row. The status is kept as printed
+    (ACTIVE, RES, IR, DEV, PUP, RSR, TRD, TRT, TRC, ...); it is never translated.
+    """
     parser = TableParser()
     parser.feed(html)
     rows = []
     for table in parser.tables:
         for cells in table["rows"]:
-            if len(cells) < 4:
+            if len(cells) < 6:
                 continue
-            status = cells[3].strip().upper()
-            if status not in ROSTER_STATUS:
+            jersey, position, status = cells[1].strip(), cells[2].strip(), cells[3].strip()
+            height, weight = cells[4].strip(), cells[5].strip()
+            if jersey and not jersey.isdigit():
+                continue
+            if not re.fullmatch(r"[A-Z]{1,3}", position):
+                continue
+            if not re.fullmatch(r"[A-Z]{2,4}", status):
+                continue
+            if not height.isdigit() or not weight.isdigit():
                 continue
             rows.append({
                 "player": cells[0].strip(),
-                "jersey": cells[1].strip(),
-                "position": cells[2].strip(),
+                "jersey": jersey,
+                "position": position,
                 "status": status,
-                "height": cells[4].strip() if len(cells) > 4 else "",
-                "weight": cells[5].strip() if len(cells) > 5 else "",
+                "height": height,
+                "weight": weight,
             })
     return rows
 
@@ -612,6 +625,30 @@ def write_csv(path: str, rows: list[dict]) -> None:
 
 
 def main() -> int:
+    try:
+        return run()
+    except Exception:                                            # noqa: BLE001
+        import traceback
+        stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        args = sys.argv[1:]
+        manifest_dir = "availability-graph/manifests"
+        for i, a in enumerate(args):
+            if a == "--manifest-dir" and i + 1 < len(args):
+                manifest_dir = args[i + 1]
+        os.makedirs(manifest_dir, exist_ok=True)
+        path = os.path.join(manifest_dir, f"capture_error_{stamp}.json")
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump({
+                "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "status": "error",
+                "traceback": traceback.format_exc(),
+            }, fh, indent=2)
+        traceback.print_exc()
+        print(f"capture failed; diagnostics written to {path}", file=sys.stderr)
+        return 2
+
+
+def run() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", default="2026")
     ap.add_argument("--weeks", default="9,10")
@@ -639,6 +676,13 @@ def main() -> int:
         "counts": {},
     }
     failures: list[str] = []
+    log_path = os.path.join(args.manifest_dir, "capture_log.txt")
+
+    def log(message: str) -> None:
+        line = f"{dt.datetime.now(dt.timezone.utc).strftime('%H:%M:%S')} {message}"
+        print(line, flush=True)
+        with open(log_path, "a", encoding="utf-8") as fh:
+            fh.write(line + "\n")
 
     games_rows, lineup_rows, inactive_rows, sub_rows = [], [], [], []
 
@@ -654,6 +698,7 @@ def main() -> int:
             continue
         games = parse_schedule(body.decode("utf-8", "replace"), season, week)
         manifest["counts"][f"week{week}_games"] = len(games)
+        log(f"week {week}: {len(games)} official games on the schedule page")
         if not games:
             failures.append(f"schedule week {week}: no game links found")
             continue
@@ -684,6 +729,8 @@ def main() -> int:
                 continue
             gb = parse_gamebook(text)
             away, home = game["away_team"], game["home_team"]
+            log(f"week {week} {slug}: lineups={'ok' if gb['lineups']['ok'] else 'FAILED'} "
+                f"({gb['lineups']['note']}); method={method}")
             games_rows.append({
                 "season": season, "week": week, "slug": slug,
                 "game_url": game_url, "gamebook_url": pdf_url,
@@ -759,6 +806,7 @@ def main() -> int:
             html = body.decode("utf-8", "replace")
             depth_url = find_depth_url(html)
             rows = parse_roster(html)
+            log(f"roster {abbr}: {len(rows)} players parsed; depth url={depth_url or '(none)'}")
             for r in rows:
                 roster_rows.append({
                     "season": season, "club": abbr, "club_slug": slug, "player": r["player"],
@@ -788,6 +836,7 @@ def main() -> int:
             time.sleep(args.delay)
             row["depth_http_status"] = rec.get("status")
             row["depth_sha256"] = rec.get("sha256")
+            log(f"depth {row['club']}: {rec.get('status')} {depth_url}")
             if body:
                 html = body.decode("utf-8", "replace")
                 info = classify_depth_page(html)

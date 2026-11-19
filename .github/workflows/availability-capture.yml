@@ -63,25 +63,28 @@ jobs:
 
       - name: Install poppler (pdftotext -layout for the official Game Books)
         run: |
-          set -euo pipefail
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq poppler-utils
-          pdftotext -v 2>&1 | head -1
+          set -uo pipefail
+          sudo apt-get update -qq || echo "apt-get update failed; continuing"
+          sudo apt-get install -y -qq poppler-utils || echo "poppler install failed; using pypdf"
+          (pdftotext -v 2>&1 | head -1) || echo "pdftotext unavailable"
+          pip install --quiet pypdf || echo "pypdf install failed"
 
       - name: Capture official availability evidence (fail-closed)
         run: |
-          set -euo pipefail
+          set -uo pipefail
           ARGS=""
           if [ "$SKIP_ROSTERS" = "true" ]; then
             ARGS="--skip-rosters --skip-depth"
           fi
+          mkdir -p availability-graph/manifests
           python3 availability-graph/scripts/capture_availability.py \
             --season "$SEASON" \
             --weeks "$WEEKS" \
             --raw-dir "$RUNNER_TEMP/capture" \
             --data-dir availability-graph/data \
             --manifest-dir availability-graph/manifests \
-            $ARGS
+            $ARGS 2>&1 | tee -a availability-graph/manifests/capture_log.txt
+          exit "${PIPESTATUS[0]}"
 
       - name: Upload raw capture (kept outside the static site)
         if: always()
