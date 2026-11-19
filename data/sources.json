@@ -782,6 +782,17 @@
       "verified_by": "arena/4c90e65f-korea2 - redirect observed during the 2026-11-18 read"
     },
     {
+      "id": "SRC-NFL-INJURY-W11-REREAD",
+      "label": "NFL.com - Official injury report, Week 11 of the 2026 season (re-read 2026-11-19)",
+      "title": "Official NFL Injury Report for Players - Week 11 of the 2026 Season",
+      "short": "NFL injury report W11 (re-read 2026-11-19)",
+      "url": "https://www.nfl.com/injuries/league/2026/REG11",
+      "org": "NFL (nfl.com)",
+      "type": "league official",
+      "note": "Opened with the platform retrieval tool on 2026-11-19 (chunk 0 of 7 read in full). The page now serves the Week 11 report: title and body both read WEEK 11, first block THURSDAY, NOVEMBER 19TH, 8:15 PM EST, Prime Video, IND (3-7) vs HOU (3-6). This resolves the 2026-11-18 observation that the URL still served Week 10. No Week 11 register was transcribed at this read, so no Week 11 injury values are published from it (FL-17).",
+      "verified_by": "arena/b245e313-korea2 - page opened 2026-11-19 (integration re-read)"
+    },
+    {
       "id": "SRC-NFL-SCHED-W10-REREAD",
       "label": "NFL.com - Week 10 2026 schedule and final scores (re-read 2026-11-18)",
       "title": "NFL Week 10 Schedule 2026: Games, Times, Matchups & Tickets",

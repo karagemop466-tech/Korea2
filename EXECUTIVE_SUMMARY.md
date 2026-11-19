@@ -271,6 +271,35 @@ club rather than inferred (F-04). Full list: [`requirements-desk/pages/flagged.h
 https-only external links, and register row counts matching the committed CSVs and their hashes. Repository-wide
 `tests/check_site.py` (246 pages, 14,612 links) and `scripts/check_links.py` (5,072 references) also pass.
 
+## 9. Integration verification — 2026-11-19 (arena/b245e313-korea2)
+
+The final integration session re-read the official pages on **2026-11-19**, re-ran every verification suite in
+the repository, and confirmed the combined state. Full detail: [`docs/OFFICIAL_REREAD_2026-11-19.md`](docs/OFFICIAL_REREAD_2026-11-19.md).
+
+**Official re-read result (all against the committed registers):**
+
+| Official page | Re-read finding | Register check |
+|---|---|---|
+| [Week 10 injury report](https://www.nfl.com/injuries/league/2026/REG10) | Still serves WEEK 10; Lions Joseph/Mays/Reed **Out** re-confirmed | 347-row register stands |
+| [Week 11 injury report](https://www.nfl.com/injuries/league/2026/REG11) | Now serves Week 11 (IND @ HOU, Thu Nov 19) — the 2026-11-18 "served Week 10" observation is resolved | No Week 11 register transcribed yet; rows stay unpublished |
+| [Week 10 schedule](https://www.nfl.com/schedules/2026/by-week/week-10) | 14/14 FINAL; byes CHI/DEN/PHI/TB | matches `results_2026_w10.csv` |
+| [Week 11 schedule](https://www.nfl.com/schedules/2026/by-week/week-11) | 13 fixtures, 6 byes (ATL/CLE/GB/LA/NE/SEA), MIN @ SF in Mexico City | matches `schedule_2026_w11.csv` |
+| [2026 standings](https://www.nfl.com/standings/division/2026/REG) | All 32 clubs re-read | matches `standings_2026.csv` |
+| [Genius Sports announcement](https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports), [NWS API](https://www.weather.gov/documentation/services-web-api), [NIST](https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm), [NFL Terms](https://www.nfl.com/legal/terms/) | Re-confirmed: licensed official feed, open weather route, Fisher-z interval formula, §1.3 systematic-retrieval prohibition | policy blockers unchanged |
+| [Official Game Book hub](https://operations.nfl.com/players/players-rights-and-responsibilities/official-game-book/) | **Fetch failed this session**; prior Game Book links unchanged | flagged, non-blocking |
+
+**Irregularities recorded (non-blocking):** the Week 10 report URL's `<title>` reads "Week 11" while the body
+reads WEEK 10 (the REG10 half of the earlier title/body mismatch persists; the REG11 half is resolved); the
+Game Book hub fetch failed; no Week 11 injury register exists yet, so Week 11 availability columns stay blank.
+
+**Verification suites re-run 2026-11-19 — all pass.** Root: `tests/check_site.py` (252 pages, 666 tables,
+16,877 links), `scripts/check_links.py` (5,762 local references, 0 broken), `scripts/validate_data.py`,
+`tests/check_data.py` (32/32 teams), `tests/check_derived.py` (52 checks, 0 disagreements), both
+`build_site.py --check` runs. Hubs: requirements-desk (74 requirements, 6 registers), line-desk (16 registers,
+deterministic render), price-desk (20,504 checks, 0 errors), review-board (131 checks/14 pages), decision-desk
+(50 sources, 19 flags), verify-hub (152 data rows, 181 table rows). GitHub Pages status `built` confirmed via
+API on 2026-11-19 for the `main` legacy build from the repository root.
+
 ---
 
 *Research, not betting advice. Wager only where legal and only if of age. Free,

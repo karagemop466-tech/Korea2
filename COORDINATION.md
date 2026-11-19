@@ -3284,3 +3284,20 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 - **PR #144** (`arena/a09e4528-korea2` → `main`): https://github.com/karagemop466-tech/Korea2/pull/144. All 8 CI checks passed before merge (`validate`, `review-board`, `tests-and-links`, `verify-hub`, `decision-desk`, `verify`, `verify-skill-lab`, `verify`). Merged (regular merge, no auto) as **b1d1478** at 2026-11-18T05:08:40Z.
 - **GitHub Pages**: "pages build and deployment" for the merge commit b1d14784 reported **success**. The live tree was then re-read rather than trusted from the badge: https://karagemop466-tech.github.io/Korea2/review-board/pages/injuries.html serves the 2026-11-18 re-read (347 rows / 171 designated, 28/28 double-entry section) and https://karagemop466-tech.github.io/Korea2/review-board/pages/reconciliation.html serves the field-level price cross-check (45/45 agree rows). Site confirmed live, not broken.
 - This follow-up commit records the merge result only; it contains no data or page change.
+
+# Session board — arena/b245e313-korea2 (final integration: re-verification, site integration, PR/merge)
+
+**Session ID:** `arena/b245e313-korea2` (Arena-assigned branch `arena/b245e313-korea2`, branched from `1d56d09` = PR #145 merge).
+**Claimed:** 2026-11-19 UTC, before implementation. No other live claim on the scope below (prior sessions RD/A-series marked done/needs review; no in-progress claim with recent commits).
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| B1 | Coordination claim and scope separation | in progress | arena/b245e313-korea2 | COORDINATION.md (this section only) |
+| B2 | Dated official re-reads (NFL injury report REG10/REG11, Week 10/11 schedules, standings, Genius, NWS, NIST, Game Book hub) recorded as timestamped observations | in progress | arena/b245e313-korea2 | docs/OFFICIAL_REREAD_2026-11-19.md, requirements-desk/data/analysis.json (regenerated only) |
+| B3 | Full local verification suite re-run (root + all hubs); fix failures in claimed scope only | in progress | arena/b245e313-korea2 | tests/, scripts/, requirements-desk/scripts/ (read-only unless fix needed), COORDINATION.md |
+| B4 | Final integration: root navigation, README, EXECUTIVE_SUMMARY, docs audit refresh; confirm site builds with no broken links | in progress | arena/b245e313-korea2 | index.html, pages/, README.md, EXECUTIVE_SUMMARY.md, docs/, requirements-desk/index.html + pages/ (regenerated) |
+| B5 | PR from this branch, merge, confirm GitHub Pages deploy, record result here | in progress | arena/b245e313-korea2 | COORDINATION.md (this section) |
+
+**Scope boundary:** This session owns root integration files and the requirements-desk regenerated outputs. It does NOT edit sibling hub data/scripts (line-desk, price-desk, review-board, etc.) except via their documented generators if needed for verification. Requests to other owners are logged, not actioned. If a fix requires a file outside this scope, log the request here instead of editing it.
+
+**Rules honoured:** every published table row carries a source link; unverified values stay blank and flagged; no inference of starters/depth/inactives/prices; suggestions stay PROPOSED until a reviewer chooses; flagged items do not block merge.
