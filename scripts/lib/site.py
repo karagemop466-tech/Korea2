@@ -80,6 +80,7 @@ HUB_LABELS = {
     "research-desk": "Research desk (early draft) &nearr;",
     "readiness": "Readiness hub &nearr;",
     "requirements-desk": "Requirements Desk &nearr;",
+    "availability-w11": "Week 11 availability &nearr;",
 }
 
 

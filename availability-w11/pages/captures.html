@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Captures | Week 11 availability</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<header><h1>Week 11 availability</h1><p class="sub">Official NFL injury report, captured by a scheduled runner. Counts only; every figure links to its official source.</p><nav><a href="../index.html">Home</a><a href="../pages/clubs.html">Clubs</a><a href="../pages/schedule.html">Schedule &amp; byes</a><a href="../pages/captures.html">Captures</a><a href="../pages/flagged.html">Flagged for Review</a></nav></header>
+<main>
+<h2>Immutable capture record</h2>
+<p class="note">Each read is a GitHub Actions run on a hosted runner. The raw HTML is kept as a run artifact (90-day retention) and is not committed. The committed manifest holds the hash, time and counts only.</p>
+<div class='tw'><table><thead><tr><th>Read</th><th>Fetched (UTC)</th><th>HTTP</th><th>Raw bytes</th><th>Raw SHA-256</th><th>Injury tables</th><th>Listed rows</th><th>Status</th><th>Manifest</th><th>Source</th></tr></thead><tbody><tr><td>1</td><td>2026-11-19T19:51:12Z</td><td class='n'>200</td><td class='n'>374,003</td><td><code>880c96c904796b7f6ccc039c7dd574882424cc9b0493bca11c14d53fff06512d</code></td><td class='n'>24</td><td class='n'>253</td><td>OK</td><td><a href="../../injury-capture/manifests/reg11_2026_20261119T195112Z.json">manifest (no names)</a></td><td><a href="https://www.nfl.com/injuries/league/2026/reg11">official report</a></td></tr><tr><td>2</td><td>2026-11-19T19:52:41Z</td><td class='n'>200</td><td class='n'>374,003</td><td><code>880c96c904796b7f6ccc039c7dd574882424cc9b0493bca11c14d53fff06512d</code></td><td class='n'>24</td><td class='n'>253</td><td>OK</td><td><a href="../../injury-capture/manifests/reg11_2026_20261119T195241Z.json">manifest (no names)</a></td><td><a href="https://www.nfl.com/injuries/league/2026/reg11">official report</a></td></tr></tbody></table></div>
+<h2>How the counts were checked</h2>
+<ul>
+  <li>Both reads have the same raw SHA-256 and identical per-club row and game-status counts. The first read's manifest (19:51:12Z) predates the per-label counts, so the practice and label breakdowns come from the second read (19:52:41Z) alone.</li>
+  <li>Four clubs (Colts, Texans, Steelers, Eagles) were read by hand from the official page text. Their row counts, practice-status counts and game-status counts match the manifest exactly. The other 20 clubs were not re-read by hand (W11-F09).</li>
+  <li>Parsing enforces: the week text is present, each table has the required columns, every row has the same cell count as the header, and at least 50 rows are parsed.</li>
+</ul>
+</main>
+<footer>Derived from official NFL.com pages. Not an NFL product. Blank cells are unverified, not healthy. Terms: see Flagged W11-F04.</footer>
+</body></html>

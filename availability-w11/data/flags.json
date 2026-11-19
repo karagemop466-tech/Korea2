@@ -1,0 +1,128 @@
+{
+  "_note": "Flags for review. None blocks publication. Each states what is known, what is not, and the official source to check.",
+  "flags": [
+    {
+      "id": "W11-F01",
+      "severity": "high",
+      "title": "Two playing clubs have no injury table in either Week 11 capture",
+      "detail": "Cincinnati and Washington play Monday, Nov 23 (official schedule). Neither club has a table in the two Week 11 captures taken 2026-11-19 at 19:51:12Z and 19:52:41Z. The report does not state why. Absence is recorded as 'not listed', not as 'healthy'. Re-capture before each weekly decision.",
+      "known": "Both clubs are on the official schedule for Week 11 and are not on the official Teams on Bye list.",
+      "unknown": "Whether the report publishes these clubs later in the week or they had no listed players at capture time.",
+      "discover": "Repeat the capture on Friday Nov 20 and Saturday Nov 21; compare table presence and row counts.",
+      "sources": [
+        "https://www.nfl.com/injuries/league/2026/reg11",
+        "https://www.nfl.com/schedules/2026/by-week/week-11"
+      ]
+    },
+    {
+      "id": "W11-F02",
+      "severity": "high",
+      "title": "Game status is blank for 22 of 24 club tables",
+      "detail": "Only Indianapolis (8 of 11 rows) and Houston (7 of 15 rows) carry a printed game status. Every other row has a blank Game Status cell. A blank cell means no designation was printed at capture. It does not mean the player is available.",
+      "known": "Printed Week 11 game statuses: Out 9 and Questionable 6, all on the Thursday game (IND-HOU).",
+      "unknown": "Game statuses for the other 13 games.",
+      "discover": "Track the report each day from Wednesday to kickoff; a designation first appears as a change of state.",
+      "sources": [
+        "https://www.nfl.com/injuries/league/2026/reg11"
+      ]
+    },
+    {
+      "id": "W11-F03",
+      "severity": "medium",
+      "title": "Stadium venue not transcribed for 12 of 13 fixtures",
+      "detail": "The schedule page gives teams, day, kickoff and network but not stadium names in the text read. The Vikings-49ers game is headed 'International Game' with Mexico City in the heading. The stadium is not transcribed and no venue has been inferred.",
+      "known": "Kickoff time and network for every fixture, from the official schedule text.",
+      "unknown": "Stadium for every fixture, which must come from each official game centre page.",
+      "discover": "Read each game centre page at https://www.nfl.com/games/<away>-at-<home>-2026-reg-11 and transcribe the venue field.",
+      "sources": [
+        "https://www.nfl.com/schedules/2026/by-week/week-11"
+      ]
+    },
+    {
+      "id": "W11-F04",
+      "severity": "high",
+      "title": "Terms of use restrict systematic retrieval; owner decision required before scaling the capture",
+      "detail": "NFL.com Terms and Conditions (https://www.nfl.com/legal/terms/, updated May 16, 2024) state in section 1.3 that 'systematic retrieval of data or other content from the Services, whether to create or compile, directly or indirectly, a collection, compilation, database, or directory, is prohibited absent our express prior written consent', and in section 1.1 that copying or reproducing the Services or their contents is prohibited except as expressly provided. The scheduled capture is systematic retrieval of the injury-report page, so it is in tension with section 1.3 unless written consent exists. This session found no written consent in the repository. The public page therefore shows aggregate counts only, with no player names. Whether to continue capture, seek consent, or stop is a decision for the reviewer; this session did not resolve it.",
+      "known": "Section 1.3 and section 1.1 text read on 2026-11-19. Counts by club and label are derived from the runner capture manifests.",
+      "unknown": "Whether any written consent from NFL Enterprises exists, and whether section 1.3 covers a read-only capture for internal analysis.",
+      "discover": "Owner or counsel to review the terms and any consent; record the decision in COORDINATION.md before the next scheduled capture or any public row-level release.",
+      "sources": [
+        "https://www.nfl.com/legal/terms/",
+        "https://www.nfl.com/injuries/league/2026/reg11"
+      ]
+    },
+    {
+      "id": "W11-F05",
+      "severity": "high",
+      "title": "No starter, depth-rank or replacement fields are published",
+      "detail": "The brief asks for starters out and replacements named. No verified official Week 11 depth-chart source or Game Book was read, so these fields are blank. No starter has been inferred from jersey number, roster order, experience or salary.",
+      "known": "Listed players and printed practice and game statuses only.",
+      "unknown": "Who the club named as starter, and the depth-chart order behind it.",
+      "discover": "Read the official per-club depth-chart pages and official Game Books for each game; verify 32 of 32 clubs before any depth-based output.",
+      "sources": [
+        "https://www.nfl.com/injuries/league/2026/reg11"
+      ]
+    },
+    {
+      "id": "W11-F06",
+      "severity": "medium",
+      "title": "'Net injury count' has no defined formula",
+      "detail": "The brief asks for a net injury count per team but does not define it. This page shows counts by printed label (Out, Questionable, Doubtful, blank) and does not invent a net figure.",
+      "known": "Per-club counts by label for the 24 clubs with tables.",
+      "unknown": "The definition the brief intends.",
+      "discover": "Decision for the reviewer: choose a definition, then publish it with its formula on this page.",
+      "sources": [
+        "https://www.nfl.com/injuries/league/2026/reg11"
+      ]
+    },
+    {
+      "id": "W11-F07",
+      "severity": "medium",
+      "title": "No earlier Week 11 read exists, so no delta can be published",
+      "detail": "The brief asks for deltas rather than levels for injury reads. This is the first Week 11 read in the repository, so the level is shown with its timestamp. Deltas start at the next read.",
+      "known": "Two reads on 2026-11-19 at 19:51:12Z and 19:52:41Z gave the same raw SHA-256 and the same per-club counts.",
+      "unknown": "Any change in designations between reads.",
+      "discover": "Keep the scheduled capture running Wednesday to Sunday; compare each read with the previous one.",
+      "sources": [
+        "https://www.nfl.com/injuries/league/2026/reg11"
+      ]
+    },
+    {
+      "id": "W11-F08",
+      "severity": "low",
+      "title": "Capture was triggered by a push, not a dispatch",
+      "detail": "Dispatching the workflow returned HTTP 403 for this session's token. The Week 11 capture was triggered by pushing a change to the workflow file on the arena/d1fe94e9-korea2 branch. That change sets the default week to 11 on this branch only. The scheduled run on main still defaults to week 10 until this branch is merged.",
+      "known": "Run 44602578755 and run 44602832312 both succeeded on the branch.",
+      "unknown": "Whether scheduled runs on main will pick up week 11 after the merge.",
+      "discover": "After the merge, check the next scheduled run of nfl-injury-capture on main.",
+      "sources": [
+        "https://www.nfl.com/injuries/league/2026/reg11"
+      ]
+    },
+    {
+      "id": "W11-F09",
+      "severity": "low",
+      "title": "Row-level artifact could not be downloaded from the sandbox",
+      "detail": "The sandbox cannot reach the Azure blob host that serves artifacts, so the parsed row file was not read here. The published counts come from the runner's manifest, which records the per-table counts. As an independent check, the Colts, Texans, Steelers and Eagles tables were read by hand from the official page text. Those four clubs match the manifest on row count, practice-status counts and game-status counts.",
+      "known": "The manifest is the source for every count on this site.",
+      "unknown": "Row-level equality for the other 20 clubs, which was not re-read by hand.",
+      "discover": "Download the run artifact from a runner with access, or re-capture on the next scheduled run.",
+      "sources": [
+        "https://www.nfl.com/injuries/league/2026/reg11"
+      ]
+    },
+    {
+      "id": "W11-F10",
+      "severity": "medium",
+      "title": "Week 10 row-level transcription is already public elsewhere in the repo",
+      "detail": "The requirements-desk hub publishes Week 10 row-level transcription (347 rows) on a public page. This conflicts with the brief's public/private split until the terms are read. This session did not edit that page, which belongs to another owner. The NFL terms in W11-F04 apply to this page as well.",
+      "known": "The row-level page exists in the repo today.",
+      "unknown": "Whether the NFL terms permit it.",
+      "discover": "Owner decision after W11-F04 is resolved.",
+      "sources": [
+        "https://www.nfl.com/injuries/league/2026/reg10",
+        "https://www.nfl.com/legal/terms/"
+      ]
+    }
+  ]
+}

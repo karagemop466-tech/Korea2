@@ -1,0 +1,37 @@
+{
+  "_source_note": "Transcribed from the official NFL Week 11 schedule page, read on 2026-11-19 after the 19:51Z injury capture. The fetch tool does not return a clock time, so only the read date is recorded. Each fixture links to the official NFL game page as printed in that schedule text.",
+  "source_url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+  "read_date_utc": "2026-11-19",
+  "fixtures": [
+    {"away": "IND", "home": "HOU", "away_name": "Colts", "home_name": "Texans", "day": "Thursday, Nov 19", "kickoff_et": "8:15 PM", "network": "PRIME (Prime Video)", "venue": "", "game_url": "https://www.nfl.com/games/colts-at-texans-2026-reg-11"},
+    {"away": "MIA", "home": "BUF", "away_name": "Dolphins", "home_name": "Bills", "day": "Sunday, Nov 22", "kickoff_et": "1:00 PM", "network": "CBS", "venue": "", "game_url": "https://www.nfl.com/games/dolphins-at-bills-2026-reg-11"},
+    {"away": "BAL", "home": "CAR", "away_name": "Ravens", "home_name": "Panthers", "day": "Sunday, Nov 22", "kickoff_et": "1:00 PM", "network": "FOX", "venue": "", "game_url": "https://www.nfl.com/games/ravens-at-panthers-2026-reg-11"},
+    {"away": "NO", "home": "CHI", "away_name": "Saints", "home_name": "Bears", "day": "Sunday, Nov 22", "kickoff_et": "1:00 PM", "network": "FOX", "venue": "", "game_url": "https://www.nfl.com/games/saints-at-bears-2026-reg-11"},
+    {"away": "TEN", "home": "DAL", "away_name": "Titans", "home_name": "Cowboys", "day": "Sunday, Nov 22", "kickoff_et": "1:00 PM", "network": "FOX", "venue": "", "game_url": "https://www.nfl.com/games/titans-at-cowboys-2026-reg-11"},
+    {"away": "TB", "home": "DET", "away_name": "Buccaneers", "home_name": "Lions", "day": "Sunday, Nov 22", "kickoff_et": "1:00 PM", "network": "FOX", "venue": "", "game_url": "https://www.nfl.com/games/buccaneers-at-lions-2026-reg-11"},
+    {"away": "PIT", "home": "PHI", "away_name": "Steelers", "home_name": "Eagles", "day": "Sunday, Nov 22", "kickoff_et": "1:00 PM", "network": "CBS", "venue": "", "game_url": "https://www.nfl.com/games/steelers-at-eagles-2026-reg-11"},
+    {"away": "ARI", "home": "KC", "away_name": "Cardinals", "home_name": "Chiefs", "day": "Sunday, Nov 22", "kickoff_et": "1:00 PM", "network": "CBS", "venue": "", "game_url": "https://www.nfl.com/games/cardinals-at-chiefs-2026-reg-11"},
+    {"away": "NYJ", "home": "LAC", "away_name": "Jets", "home_name": "Chargers", "day": "Sunday, Nov 22", "kickoff_et": "4:05 PM", "network": "FOX", "venue": "", "game_url": "https://www.nfl.com/games/jets-at-chargers-2026-reg-11"},
+    {"away": "JAX", "home": "NYG", "away_name": "Jaguars", "home_name": "Giants", "day": "Sunday, Nov 22", "kickoff_et": "4:25 PM", "network": "CBS", "venue": "", "game_url": "https://www.nfl.com/games/jaguars-at-giants-2026-reg-11"},
+    {"away": "LV", "home": "DEN", "away_name": "Raiders", "home_name": "Broncos", "day": "Sunday, Nov 22", "kickoff_et": "4:25 PM", "network": "CBS", "venue": "", "game_url": "https://www.nfl.com/games/raiders-at-broncos-2026-reg-11"},
+    {"away": "MIN", "home": "SF", "away_name": "Vikings", "home_name": "49ers", "day": "Sunday, Nov 22 (International Game)", "kickoff_et": "8:20 PM", "network": "NBC", "venue": "Mexico City (International Game heading on the schedule page; stadium not transcribed)", "game_url": "https://www.nfl.com/games/vikings-at-49ers-2026-reg-11"},
+    {"away": "CIN", "home": "WAS", "away_name": "Bengals", "home_name": "Commanders", "day": "Monday, Nov 23", "kickoff_et": "8:15 PM", "network": "ESPN", "venue": "", "game_url": "https://www.nfl.com/games/bengals-at-commanders-2026-reg-11"}
+  ],
+  "teams_on_bye": [
+    {"abbr": "ATL", "name": "Atlanta Falcons"},
+    {"abbr": "CLE", "name": "Cleveland Browns"},
+    {"abbr": "GB", "name": "Green Bay Packers"},
+    {"abbr": "LAR", "name": "Los Angeles Rams"},
+    {"abbr": "NE", "name": "New England Patriots"},
+    {"abbr": "SEA", "name": "Seattle Seahawks"}
+  ],
+  "bye_source_url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+  "club_slugs": {
+    "indianapolis-colts": "IND", "houston-texans": "HOU", "pittsburgh-steelers": "PIT", "philadelphia-eagles": "PHI",
+    "arizona-cardinals": "ARI", "kansas-city-chiefs": "KC", "baltimore-ravens": "BAL", "carolina-panthers": "CAR",
+    "tampa-bay-buccaneers": "TB", "detroit-lions": "DET", "miami-dolphins": "MIA", "buffalo-bills": "BUF",
+    "tennessee-titans": "TEN", "dallas-cowboys": "DAL", "new-orleans-saints": "NO", "chicago-bears": "CHI",
+    "new-york-jets": "NYJ", "los-angeles-chargers": "LAC", "jacksonville-jaguars": "JAX", "new-york-giants": "NYG",
+    "las-vegas-raiders": "LV", "denver-broncos": "DEN", "minnesota-vikings": "MIN", "san-francisco-49ers": "SF"
+  }
+}
