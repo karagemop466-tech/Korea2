@@ -3,11 +3,11 @@
   "code": 7,
   "data register": 1,
   "other": 1,
-  "site hub": 24
+  "site hub": 25
  },
  "history": "shallow",
- "base_commit": "cf66f4c",
- "hub_count": 33,
+ "base_commit": "72eabfb",
+ "hub_count": 34,
  "nav_target_count": 27,
  "nav_duplicate_labels": [],
  "nav": [
@@ -531,10 +531,21 @@
    "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
+  },
+  {
+   "dir": "week11-desk",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 8,
+   "data_files": 1,
+   "scripts": 4,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
   }
  ],
- "total_pages": 252,
- "total_data_files": 209,
+ "total_pages": 260,
+ "total_data_files": 210,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "cf66f4cdc2f36f2484eb7340bd65acb18983fbe3"
+ "_generated_from_repo_commit": "72eabfbbbe993d6be05033897d4c40f59256927a"
 }
