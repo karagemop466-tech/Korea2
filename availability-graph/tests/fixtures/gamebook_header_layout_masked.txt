@@ -1,0 +1,25 @@
+Masked header sample of an official NFL Game Book.
+
+Source: the official NFL Game Book of the Cincinnati Bengals at Atlanta Falcons game (2026 REG 9,
+Bernabeu Stadium, Madrid), captured on a GitHub runner on 2026-11-19 with `pdftotext -layout`
+(capture workflow `.github/workflows/availability-capture.yml`, run 44607921365).
+
+The copyright notice is dropped and the officials' names are masked. Everything else is the
+official header: the date, the two club names, the venue, the kickoff time, the game-day weather
+and the roof and surface. This is the layout the runner really produces, and the parser is pinned
+to it.
+
+                                                             2026 Madrid Game
+                                           National Football League Game Summary
+[copyright notice removed]
+[copyright notice removed]
+
+Date: Sunday, 11/8/2026                                   Cincinnati Bengals at Atlanta Falcons                                             Start Time: 3:34 PM CET
+                                                                 at Bernabéu Stadium, Madrid, Spain
+                                                                        Game Day Weather
+Game Weather:                                                                                                                                    Wind: mph
+Retractable Roof - Closed on Natural Grass                                                         Outdoor Weather: 60 deg F, Winds NE at 4mph, Humidity 66%
+
+                                                                             Officials
+          Referee: [official] (4)                              Umpire: [official] (22)                        Down Judge: [official] (13)
+       Line Judge: [official] (21)                            Field Judge: [official] (60)                           Side Judge: [official] (132)

@@ -324,3 +324,41 @@ class ScheduleParseTests(unittest.TestCase):
             '<a href="/games/steelers-at-bengals-2026-reg-10">Steelers 18, Bengals 38</a>'
             '<a href="/games/bills-at-jets-2026-reg-9">Bills 20, Jets 17</a>', "2026", "9")
         self.assertEqual([g["slug"] for g in games], ["bills-at-jets-2026-reg-9"])
+
+
+class RealRunnerHeaderTests(unittest.TestCase):
+    """The masked header sample is the real `pdftotext -layout` output of an official game book.
+
+    It is the layout the capture runner produces, with the copyright notice dropped and the
+    officials' names masked.
+    """
+
+    def setUp(self):
+        text = read(os.path.join(FIX, "gamebook_header_layout_masked.txt"))
+        self.h = cap.parse_gamebook_header("\n".join(text.splitlines()[:60]))
+
+    def test_the_official_facts_are_read(self):
+        self.assertEqual(self.h["date_text"], "Sunday, 11/8/2026")
+        self.assertEqual(self.h["away_printed"], "Cincinnati Bengals")
+        self.assertEqual(self.h["home_printed"], "Atlanta Falcons")
+        self.assertEqual(self.h["venue"], "Bernabéu Stadium, Madrid, Spain")
+        self.assertEqual(self.h["start_time"], "3:34 PM CET")
+        self.assertEqual(self.h["temp"], "60 deg F")
+        self.assertEqual(self.h["humidity"], "66%")
+        self.assertEqual(self.h["wind"], "NE at 4mph")
+        self.assertEqual(self.h["surface"], "Natural Grass")
+        self.assertEqual(self.h["roof"], "Retractable Roof - Closed")
+
+    def test_a_venue_on_the_next_line_is_read(self):
+        # The game book prints "at <venue>" on the line below the date line.
+        self.assertTrue(self.h["venue"])
+
+    def test_a_blank_official_value_stays_blank(self):
+        # The game weather cell of this game book is empty: it stays blank, it is not filled
+        # from the outdoor-weather line.
+        self.assertEqual(self.h["weather"], "")
+        self.assertTrue(self.h["outdoor_weather"])
+
+    def test_the_club_names_are_the_official_ones(self):
+        self.assertEqual(cap.cap_abbr(self.h["away_printed"]), "CIN")
+        self.assertEqual(cap.cap_abbr(self.h["home_printed"]), "ATL")

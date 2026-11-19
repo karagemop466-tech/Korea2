@@ -748,6 +748,547 @@ def split_two_columns(block_lines: list[str]):
     return " ".join(left), " ".join(right)
 
 
+# The official club names, longest first, so that a full club name is matched before a shorter
+# one that is a suffix of it ("Miami Dolphins" before "Dolphins", "Tampa Bay Buccaneers" before
+# "Buccaneers").
+CLUB_FULL_NAMES = sorted((full for _, full in CLUBS.values()), key=len, reverse=True)
+CLUB_NAME_RE = "|".join(re.escape(n) for n in CLUB_FULL_NAMES)
+
+DATE_RE = re.compile(r"Date:\s*(?P<date>[A-Za-z]+,\s*\d{1,2}/\d{1,2}/\d{4})")
+CLUBS_AT_RE = re.compile(
+    rf"(?P<away>{CLUB_NAME_RE})\s+at\s+(?P<home>{CLUB_NAME_RE})(?P<rest>.*)", re.S)
+ROOF_RE = re.compile(
+    r"(?P<roof>[A-Za-z][A-Za-z0-9 '\-/]*?)\s+on\s+(?P<surface>Natural Grass|Artificial Turf)")
+OUTDOOR_RE = re.compile(r"Outdoor Weather:\s*(?P<outdoor>[^|\n]+)")
+# Every labelled fact of the header, longest label first so that "Outdoor Weather" is not read
+# as "Weather".
+FIELD_LABEL_RE = re.compile(
+    r"(?P<label>Start Time|Game Weather|Outdoor Weather|Paid Attendance|Temp|Humidity|Wind)"
+    r"\s*:")
+
+
+def _clean(value: str) -> str:
+    return " ".join((value or "").replace("|", " ").split())
+
+
+def _header_fields(text: str) -> dict:
+    """Read every "Label: value" fact of the header.
+
+    The header of a game book is printed in columns, so a value runs from its label to the next
+    label on the same line. The value is also cut at a wide gap that is followed by another label.
+    """
+    out: dict = {}
+    for line in text.splitlines():
+        labels = list(FIELD_LABEL_RE.finditer(line))
+        for i, lm in enumerate(labels):
+            stop = labels[i + 1].start() if i + 1 < len(labels) else len(line)
+            value = line[lm.end():stop].strip()
+            value = re.split(r"\s{2,}(?=[A-Za-z][A-Za-z ]*:)", value)[0].strip()
+            key = lm.group("label").lower().replace(" ", "_")
+            if key not in out or not out[key]:
+                out[key] = value
+    return out
+
+
+def parse_gamebook_header(head: str) -> dict:
+    """Read the official game-book header: date, clubs, venue, roof, surface and weather.
+
+    The header of a game book is printed in columns, so a fact is not always on the same line as
+    its label, and the venue is sometimes printed on the line below the date. The facts are read
+    by their own pattern instead of by position.
+    """
+    out = {"date_text": "", "away_printed": "", "home_printed": "", "venue": "",
+           "start_time": "", "weather": "", "outdoor_weather": "", "temp": "", "humidity": "",
+           "wind": "", "roof": "", "surface": ""}
+
+    # The markdown rendering of the same document separates the cells with pipes; the pipes are
+    # turned into wide gaps so that one set of patterns reads both renderings.
+    head = head.replace("|", "    ")
+
+    dm = DATE_RE.search(head)
+    if dm:
+        out["date_text"] = dm.group("date").strip()
+
+    # The clubs: "New England Patriots at Detroit Lions at Allianz Arena, Munich, Germany".
+    # The official club names are matched literally, so no club can be confused with another.
+    # The search starts at the date line: an official game book prints the date and the two clubs
+    # on one line, with the venue either on that line or on the next one.
+    head_lines = head.splitlines()[:40]
+    date_line = 0
+    for i, line in enumerate(head_lines):
+        if DATE_RE.search(line):
+            date_line = i
+            break
+    for line in head_lines[date_line:date_line + 3]:
+        cm = CLUBS_AT_RE.search(line)
+        if not cm:
+            continue
+        out["away_printed"] = cm.group("away").strip()
+        out["home_printed"] = cm.group("home").strip()
+        rest = re.split(r"Start Time:", cm.group("rest"))[0]
+        venue = re.sub(r"^\s*at\s+", "", rest.strip()).strip()
+        venue = re.split(r"\s{2,}", venue)[0].strip()
+        out["venue"] = venue
+        break
+    if not out["venue"]:
+        # The venue is sometimes printed on the next line: "at Bernabeu Stadium, Madrid, Spain".
+        for line in head_lines[date_line:date_line + 3]:
+            vm = re.match(r"\s*at\s+(?P<venue>[^\n]+?)\s*$", line)
+            if vm:
+                out["venue"] = vm.group("venue").strip()
+                break
+
+    fields = _header_fields(head)
+    out["start_time"] = _clean(fields.get("start_time", ""))
+    out["weather"] = _clean(fields.get("game_weather", ""))
+    out["outdoor_weather"] = _clean(fields.get("outdoor_weather", ""))
+    out["temp"] = _clean(fields.get("temp", ""))
+    out["humidity"] = _clean(fields.get("humidity", "")).rstrip(",").strip()
+    wind = _clean(fields.get("wind", ""))
+    out["wind"] = wind if re.search(r"\d", wind) else ""
+
+    # The outdoor-weather line of a roofed venue carries the game-day conditions:
+    # "60 deg F, Winds NE at 4mph, Humidity 66%".
+    if out["outdoor_weather"]:
+        for part in out["outdoor_weather"].split(","):
+            part = part.strip()
+            low = part.lower()
+            if not out["temp"] and ("deg" in low or "\u00b0" in part):
+                out["temp"] = part
+            elif not out["humidity"] and "humidity" in low:
+                hm = re.search(r"(\d{1,3}%)", part)
+                out["humidity"] = hm.group(1) if hm else part
+            elif not out["wind"] and "wind" in low:
+                wm = re.search(r"Winds?:?\s*(?P<w>[A-Za-z0-9 ]+\d+\s*mph.*)$", part, re.I)
+                out["wind"] = _clean(wm.group("w")) if wm else part
+
+    rm = ROOF_RE.search(head)
+    if rm:
+        out["roof"] = _clean(rm.group("roof"))
+        out["surface"] = rm.group("surface").strip()
+    return out
+
+
+def parse_gamebook(text: str) -> dict:
+    """Extract everything this project needs from one official Game Book."""
+    lines = text.splitlines()
+    out: dict = {"sections": {}, "attendance": ""}
+    out.update(parse_gamebook_header("\n".join(lines[:60])))
+    am = re.search(r"Paid Attendance:\s*(?P<a>[\d,]+)", text)
+    out["attendance"] = am.group("a").strip() if am else ""
+    for section, key in (("Substitutions", "substitutions"), ("Did Not Play", "did_not_play"),
+                         ("Not Active", "not_active")):
+        s, e = find_section(lines, section)
+        if s < 0:
+            out["sections"][key] = {"ok": False, "note": f"no {section} section", "away": [], "home": []}
+            continue
+        block = [ln for ln in lines[s:e] if ln.strip()]
+        left, right = split_two_columns(block)
+        out["sections"][key] = {
+            "ok": True,
+            "note": f"{len(block)} lines",
+            "away": parse_player_list(left),
+            "home": parse_player_list(right),
+            "raw_left": " ".join(left)[:900],
+            "raw_right": " ".join(right)[:900],
+        }
+    out["lineups"] = parse_lineups(text)
+    return out
+
+
+# --------------------------------------------------------------------------- game book parse
+def split_cells(line: str) -> list[str]:
+    """Split a table line into its columns.
+
+    Handles the two shapes an extracted game-book row can take:
+      * a markdown row  ``| LT | 66 W.Campbell | OLB | 5 Dr.Jones |``  (position and number/name
+        are separate cells);
+      * a layout row    ``LT 66 W.Campbell     OLB 5 Dr.Jones``       (cells separated by 2+ spaces).
+    Empty markdown cells are preserved so that a two-club row keeps its alignment.
+    """
+    if "|" in line:
+        return [p.strip() for p in line.strip().strip("|").split("|")]
+    return [p.strip() for p in re.split(r"\s{2,}", line.strip())]
+
+
+def logical_columns(cells: list[str]) -> list[str] | None:
+    """Return the four logical lineup columns (away off, away def, home off, home def).
+
+    A game-book lineup row can be extracted as 4 cells (one per column), as 8 cells (position and
+    number/name separate) or as 12 cells (position, number and name separate).
+    """
+    cells = list(cells)
+    while cells and cells[-1] == "":
+        cells.pop()
+    if len(cells) == 4:
+        return cells
+    if len(cells) == 8:
+        return [f"{cells[0]} {cells[1]}".strip(), f"{cells[2]} {cells[3]}".strip(),
+                f"{cells[4]} {cells[5]}".strip(), f"{cells[6]} {cells[7]}".strip()]
+    if len(cells) == 12:
+        return [" ".join(cells[i:i + 3]).strip() for i in range(0, 12, 3)]
+    return None
+
+
+def parse_cell(cell: str):
+    cell = cell.strip()
+    m = CELL_RE.match(cell)
+    if not m:
+        return None
+    return {"pos": m.group("pos"), "num": m.group("num"), "name": m.group("name").strip()}
+
+
+def norm_line(line: str) -> str:
+    """A table line reduced to its text (markdown pipes removed)."""
+    return line.strip().strip("|").strip()
+
+
+def find_section(lines: list[str], header: str):
+    """Return (start, end) line indexes of a game-book section."""
+    start = None
+    for i, line in enumerate(lines):
+        if norm_line(line).lower().startswith(header.lower()):
+            start = i + 1
+            break
+    if start is None:
+        return -1, -1
+    end = len(lines)
+    for j in range(start, len(lines)):
+        low = norm_line(lines[j]).lower()
+        if low.startswith(("substitutions", "did not play", "not active", "field goals",
+                           "scoring plays", "paid attendance", "final individual statistics",
+                           "individual statistics")):
+            end = j
+            break
+    return start, end
+
+
+# --------------------------------------------------------------------------- fixed-width lineup parse
+TOKEN_RE = re.compile(r"\S+")
+
+
+def _looks_position(tok: str) -> bool:
+    """A position label is one to three capital letters (LT, OLB, WR, DB, K, P ...)."""
+    return len(tok) <= 3 and tok.isalpha() and tok.isupper()
+
+
+def _looks_number(tok: str) -> bool:
+    """A jersey number is one or two digits."""
+    return tok.isdigit() and len(tok) <= 2
+
+
+def _looks_name(tok: str) -> bool:
+    """A player name starts with a capital and is not a bare capital label."""
+    if len(tok) < 2 or not tok[0].isupper():
+        return False
+    return any(c.islower() for c in tok) or "." in tok or "-" in tok
+
+
+def _line_tokens(line: str):
+    return [(m.group(0), m.start(), m.end()) for m in TOKEN_RE.finditer(line)]
+
+
+def masked_header_sample(text: str, limit: int = 14) -> list[str]:
+    """Return the first lines of the game book with the copyright notice and the officials'
+    names removed.
+
+    The header carries the official facts this project publishes (date, kickoff, venue, roof,
+    surface, game-day weather) and no play-by-play. The copyright notice is dropped and the
+    officials' names are masked, so the diagnostic can be committed without republishing the
+    document.
+    """
+    out: list[str] = []
+    for line in text.splitlines()[:limit]:
+        if "Copyright" in line or "written permission" in line:
+            out.append("[copyright notice removed]")
+            continue
+        if re.match(r"\s*(Referee|Umpire|Down Judge|Head Linesman|Line Judge|Field Judge|"
+                    r"Back Judge|Side Judge|Scrambler)\s*:", line):
+            out.append(re.sub(r"\b[A-Z][a-z]+,\s+[A-Z][a-z]+\b", "[official]", line))
+            continue
+        out.append(line.rstrip())
+    return out
+
+
+def masked_layout_sample(text: str, limit: int = 14) -> list[str]:
+    """Return the real fixed-width lineup rows with every player name masked.
+
+    The Game Book is a copyrighted document, so the committed sample keeps the geometry (the
+    column offsets, the position labels and the jersey numbers are the official ones) and
+    replaces each name with a mask of the same length. It is enough to test the fixed-width
+    parser against the real runner output without republishing the document.
+    """
+    lines = text.splitlines()
+    start, end = find_section(lines, "Lineups")
+    out: list[str] = []
+    if start < 0:
+        return out
+    header_idx = -1
+    for i in range(start, min(end, start + 12)):
+        low = norm_line(lines[i]).lower()
+        if low.count("offense") >= 2 and low.count("defense") >= 2:
+            header_idx = i
+            break
+    if header_idx < 0:
+        return out
+    for line in lines[header_idx + 1: header_idx + 1 + limit]:
+        if not line.strip():
+            continue
+        pieces = []
+        cursor = 0
+        for tok, start_off, end_off in _line_tokens(line):
+            if _looks_position(tok) or _looks_number(tok):
+                piece = tok
+            elif _looks_name(tok):
+                piece = "#" * len(tok)
+            else:
+                piece = tok
+            pieces.append(" " * (start_off - cursor) + piece)
+            cursor = end_off
+        out.append("".join(pieces).rstrip())
+    return out
+
+
+def parse_layout_lineups(lines: list[str], start: int, end: int) -> list[list[dict]]:
+    """Parse the official starting lineups out of a `pdftotext -layout` game book.
+
+    The official game book prints four columns side by side (away offense, away defense, home
+    offense, home defense). Each cell holds a position label, a jersey number and a player name.
+    The columns are separated by a wide gap and the cells inside a column are not aligned, so the
+    parse is driven by the content of the row (position, number, name) and by the horizontal
+    position of the first full row, not by fixed column widths.
+
+    Returns a list of rows; each row is a list of cells with a "col" key (0 = away offense,
+    1 = away defense, 2 = home offense, 3 = home defense).
+    """
+    anchors: list[int] | None = None
+    out: list[list[dict]] = []
+    for line in lines[start:end]:
+        if not line.strip():
+            continue
+        toks = _line_tokens(line)
+        groups: list[tuple[int, int]] = []
+        i = 0
+        while i + 2 < len(toks):
+            if (_looks_position(toks[i][0]) and _looks_number(toks[i + 1][0])
+                    and _looks_name(toks[i + 2][0])):
+                groups.append((i, toks[i][1]))
+                i += 3
+            else:
+                i += 1
+        if not groups:
+            if out:
+                break
+            continue
+        if len(groups) > 4:
+            break                                   # the row has left the starting-lineup table
+        if anchors is None:
+            if len(groups) != 4:
+                continue                           # wait for a full row to fix the columns
+            anchors = [g[1] for g in groups]
+        cells = []
+        for gi, (ti, xpos) in enumerate(groups):
+            name_start = toks[ti + 2][1]
+            name_end = toks[groups[gi + 1][0]][1] if gi + 1 < len(groups) else len(line)
+            name = " ".join(line[name_start:name_end].split())
+            col = min(range(4), key=lambda c: abs(anchors[c] - xpos))
+            cells.append({"col": col, "pos": toks[ti][0], "num": toks[ti + 1][0], "name": name})
+        out.append(cells)
+    return out
+
+
+def parse_lineups(text: str) -> dict:
+    """Parse the official starting lineups of both clubs out of the game-book text.
+
+    Two official shapes are supported: the fixed-width layout that `pdftotext -layout` produces
+    (four side-by-side columns) and the markdown table rendering of the same document.
+    """
+    lines = text.splitlines()
+    start, end = find_section(lines, "Lineups")
+    result = {"ok": False, "rows": [], "note": "", "per_column": [], "teams_printed": ""}
+    if start < 0:
+        result["note"] = "no Lineups section"
+        return result
+    header_idx = -1
+    for i in range(start, min(end, start + 12)):
+        low = norm_line(lines[i]).lower()
+        if low.count("offense") >= 2 and low.count("defense") >= 2:
+            header_idx = i
+            break
+    if header_idx < 0:
+        result["note"] = "no Offense/Defense header row"
+        return result
+    # The row above the header prints the two club names in the order of the columns.
+    for j in range(header_idx - 1, start - 1, -1):
+        cand = norm_line(lines[j]).strip()
+        if cand:
+            result["teams_printed"] = cand
+            break
+
+    body = parse_layout_lineups(lines, header_idx + 1, end)
+    if body:
+        per_column = [0, 0, 0, 0]
+        for cells in body:
+            for cell in cells:
+                per_column[cell["col"]] += 1
+        result["per_column"] = per_column
+        total = sum(per_column)
+        if min(per_column) < 10:
+            result["note"] = (f"fixed-width layout read {per_column} players per column; "
+                              f"a starting lineup needs at least ten per unit")
+            return result
+        for cells in body:
+            for cell in cells:
+                col = cell["col"]
+                result["rows"].append({
+                    "col": col,             # 0 away off, 1 away def, 2 home off, 3 home def
+                    "unit": "offense" if col % 2 == 0 else "defense",
+                    "pos": cell["pos"], "num": cell["num"], "name": cell["name"],
+                })
+        result["ok"] = len(result["rows"]) >= 40
+        result["note"] = f"{len(body)} fixed-width lineup rows, {total} players"
+        return result
+
+    # Fallback: the markdown table rendering of the same official document.
+    body = []
+    for line in lines[header_idx + 1: end]:
+        if not line.strip():
+            continue
+        cols = logical_columns(split_cells(line))
+        if cols and all(parse_cell(c) for c in cols):
+            body.append(cols)
+        elif body:
+            break
+    if len(body) < 10:
+        result["note"] = f"only {len(body)} four-column lineup rows parsed"
+        return result
+    for row in body[:22]:
+        for col, cell_text in enumerate(row):
+            cell = parse_cell(cell_text)
+            result["rows"].append({
+                "col": col,
+                "unit": "offense" if col % 2 == 0 else "defense",
+                "pos": cell["pos"], "num": cell["num"], "name": cell["name"],
+            })
+    result["ok"] = len(result["rows"]) >= 20
+    result["note"] = f"{len(body)} markdown lineup rows"
+    return result
+
+
+TOKEN_KIND_NUM = "num"
+TOKEN_KIND_POS = "pos"
+TOKEN_KIND_NAME = "name"
+
+
+def token_signature(line: str) -> list[dict]:
+    """Describe each token of a line by its offset, length and kind.
+
+    Player names are never written out: a name token is reported as its length only. The offsets
+    are what a fixed-width parser needs, and they are enough to repair the parser without
+    republishing the Game Book.
+    """
+    out = []
+    for m in re.finditer(r"\S+", line):
+        tok = m.group(0)
+        if re.fullmatch(r"\d{1,2}", tok):
+            kind = TOKEN_KIND_NUM
+        elif len(tok) <= 12 and tok.isupper() and re.fullmatch(r"[A-Z][A-Z0-9./&'-]*", tok):
+            kind = TOKEN_KIND_POS
+        else:
+            kind = TOKEN_KIND_NAME
+        out.append({"offset": m.start(), "length": len(tok), "kind": kind,
+                    "text": tok if kind in (TOKEN_KIND_NUM, TOKEN_KIND_POS) else ""})
+    return out
+
+
+def diagnose_lineup_region(text: str, limit: int = 60) -> dict:
+    """Describe the *shape* of the extracted lineup rows.
+
+    The Game Book is a copyrighted document, so the diagnostic records the structure of the
+    extracted rows (token offsets, lengths and kinds) and not the player names. It is enough to
+    repair the parser without republishing the document.
+    """
+    lines = text.splitlines()
+    start, end = find_section(lines, "Lineups")
+    out = {"section_found": start >= 0, "region_lines": []}
+    if start < 0:
+        return out
+    header_idx = -1
+    for i in range(start, min(end, start + 12)):
+        low = norm_line(lines[i]).lower()
+        if low.count("offense") >= 2 and low.count("defense") >= 2:
+            header_idx = i
+            break
+    out["header_index"] = header_idx
+    if header_idx < 0:
+        return out
+    for line in lines[max(0, header_idx - 2): header_idx + 1 + limit]:
+        if not line.strip():
+            continue
+        cells = split_cells(line)
+        out["region_lines"].append({
+            "cell_count": len(cells),
+            "cell_lengths": [len(c) for c in cells],
+            "cell_kinds": [("pos/num/name" if parse_cell(c) else "text") for c in cells],
+            "starts_with_pipe": line.lstrip().startswith("|"),
+            "tokens": token_signature(line),
+        })
+    return out
+
+
+def parse_player_list(block: str) -> list[dict]:
+    """Parse a comma separated 'POS NUM Name' list (substitutions / did not play / not active)."""
+    entries = []
+    for chunk in re.split(r",(?=\s)", block or ""):
+        chunk = chunk.strip()
+        if not chunk:
+            continue
+        m = ENTRY_RE.match(chunk)
+        if not m:
+            continue
+        entries.append({"pos": m.group("pos"), "num": m.group("num"), "name": m.group("name").strip()})
+    return entries
+
+
+def split_two_columns(block_lines: list[str]):
+    """Split a two-column block (one column per club) into its two texts.
+
+    A markdown row keeps its alignment (``| left |  | right |``); a layout row is split on the
+    widest run of whitespace.
+    """
+    if any("|" in ln for ln in block_lines):
+        lefts, rights = [], []
+        for line in block_lines:
+            if not line.strip() or "|" not in line:
+                continue
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            if len(cells) >= 3:
+                lefts.append(cells[0])
+                rights.append(cells[2])
+        if lefts:
+            return " ".join(x for x in lefts if x), " ".join(x for x in rights if x)
+    best_idx, best_gap = None, 0
+    for line in block_lines:
+        if not line.strip():
+            continue
+        for m in re.finditer(r"\s{2,}", line):
+            if m.end() - m.start() > best_gap:
+                best_gap = m.end() - m.start()
+                best_idx = m.start()
+        if best_gap:
+            break
+    if best_idx is None:
+        return "\n".join(block_lines), ""
+    left, right = [], []
+    for line in block_lines:
+        if not line.strip():
+            continue
+        cut = min(best_idx, len(line))
+        left.append(line[:cut])
+        right.append(line[cut:])
+    return " ".join(left), " ".join(right)
+
+
 HEADER_FIELD_RE = re.compile(
     r"(?P<label>Start Time|Game Weather|Temp|Humidity|Wind|Paid Attendance)\s*:")
 VENUE_RE = re.compile(
@@ -1205,6 +1746,7 @@ def run() -> int:
                     f"({gb['lineups']['note']}); method={method}")
                 if len(manifest.get("diagnostics", {})) < 2:
                     manifest.setdefault("diagnostics", {})[slug] = diagnose_lineup_region(text)
+                    manifest.setdefault("layout_samples", {})[slug] = masked_layout_sample(text)
                     dump_partial()
                 if len(manifest.get("layout_samples", {})) < 2:
                     manifest.setdefault("layout_samples", {})[slug] = masked_layout_sample(text)
@@ -1242,6 +1784,7 @@ def run() -> int:
                 else:
                     failures.append(f"gamebook {slug}: lineups not parsed ({gb['lineups']['note']})")
                     manifest.setdefault("diagnostics", {})[slug] = diagnose_lineup_region(text)
+                    manifest.setdefault("layout_samples", {})[slug] = masked_layout_sample(text)
                     dump_partial()
                 for key in ("did_not_play", "not_active"):
                     sec = gb["sections"][key]
