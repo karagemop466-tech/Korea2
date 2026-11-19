@@ -110,6 +110,14 @@ def fetch(url):
         return r.status, r.geturl(), r.headers.get("Last-Modified", ""), r.read(), fetched_at
 
 
+def _tally(values):
+    """Count printed labels; blank cells are counted under the empty string '' (never inferred)."""
+    out = {}
+    for v in values:
+        out[v] = out.get(v, 0) + 1
+    return dict(sorted(out.items()))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--season", type=int, required=True)
@@ -226,7 +234,10 @@ def main():
         "per_table": [{"table_index": i,
                        "team_slug": t["team_slug"],
                        "rows": len(rows_out_for(t)),
-                       "rows_with_game_status": sum(1 for r in rows_out_for(t) if r["game_status"])}
+                       "rows_with_game_status": sum(1 for r in rows_out_for(t) if r["game_status"]),
+                       # Aggregates only (no player names): distribution of the printed labels.
+                       "practice_status_counts": _tally(r["practice_status"] for r in rows_out_for(t)),
+                       "game_status_counts": _tally(r["game_status"] or "" for r in rows_out_for(t))}
                       for i, t in enumerate(injury_tables)],
         "tables_with_team_slug": sum(1 for t in injury_tables if t["team_slug"]),
         "status": "FAILED" if problems else "OK",
