@@ -11,3 +11,171 @@ Traceback (most recent call last):
              ~~~^^^^^^
 KeyError: 0
 capture failed; diagnostics written to availability-graph/manifests/capture_error_20261119T200112Z.json
+20:06:58 week 9: 15 official games on the schedule page
+20:06:58 week 9: 15 official games on the schedule page
+20:07:00 week 9 jaguars-at-ravens-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:00 week 9 jaguars-at-ravens-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:02 week 9 bengals-at-falcons-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:02 week 9 bengals-at-falcons-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:03 week 9 broncos-at-panthers-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:03 week 9 broncos-at-panthers-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:05 week 9 cowboys-at-colts-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:05 week 9 cowboys-at-colts-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:07 week 9 jets-at-chiefs-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:07 week 9 jets-at-chiefs-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:08 week 9 lions-at-dolphins-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:08 week 9 lions-at-dolphins-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:10 week 9 browns-at-saints-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:10 week 9 browns-at-saints-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:12 week 9 giants-at-eagles-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:12 week 9 giants-at-eagles-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:13 week 9 rams-at-commanders-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:13 week 9 rams-at-commanders-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:15 week 9 texans-at-chargers-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:15 week 9 texans-at-chargers-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:17 week 9 raiders-at-49ers-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:17 week 9 raiders-at-49ers-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:19 week 9 packers-at-patriots-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:19 week 9 packers-at-patriots-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:20 week 9 cardinals-at-seahawks-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:20 week 9 cardinals-at-seahawks-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:22 week 9 buccaneers-at-bears-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:22 week 9 buccaneers-at-bears-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:24 week 9 bills-at-vikings-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:24 week 9 bills-at-vikings-2026-reg-9: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:24 week 10: 14 official games on the schedule page
+20:07:24 week 10: 14 official games on the schedule page
+20:07:26 week 10 commanders-at-giants-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:26 week 10 commanders-at-giants-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:28 week 10 patriots-at-lions-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:28 week 10 patriots-at-lions-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:29 week 10 chiefs-at-falcons-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:29 week 10 chiefs-at-falcons-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:31 week 10 texans-at-browns-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:31 week 10 texans-at-browns-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:33 week 10 vikings-at-packers-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:33 week 10 vikings-at-packers-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:35 week 10 dolphins-at-colts-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:35 week 10 dolphins-at-colts-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:36 week 10 panthers-at-saints-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:36 week 10 panthers-at-saints-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:38 week 10 bills-at-jets-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:38 week 10 bills-at-jets-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:41 week 10 jaguars-at-titans-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:41 week 10 jaguars-at-titans-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:42 week 10 rams-at-cardinals-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:42 week 10 rams-at-cardinals-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:44 week 10 seahawks-at-raiders-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:44 week 10 seahawks-at-raiders-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:46 week 10 49ers-at-cowboys-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:46 week 10 49ers-at-cowboys-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:48 week 10 steelers-at-bengals-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:48 week 10 steelers-at-bengals-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:49 week 10 chargers-at-ravens-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:49 week 10 chargers-at-ravens-2026-reg-10: lineups=FAILED (only 0 four-column lineup rows parsed); method=pdftotext-layout
+20:07:50 roster AZ: 101 players parsed; depth url=(none)
+20:07:50 roster AZ: 101 players parsed; depth url=(none)
+20:07:51 roster ATL: 91 players parsed; depth url=(none)
+20:07:51 roster ATL: 91 players parsed; depth url=(none)
+20:07:52 roster BAL: 91 players parsed; depth url=(none)
+20:07:52 roster BAL: 91 players parsed; depth url=(none)
+20:07:52 roster BUF: 80 players parsed; depth url=(none)
+20:07:52 roster BUF: 80 players parsed; depth url=(none)
+20:07:53 roster CAR: 96 players parsed; depth url=(none)
+20:07:53 roster CAR: 96 players parsed; depth url=(none)
+20:07:54 roster CHI: 89 players parsed; depth url=(none)
+20:07:54 roster CHI: 89 players parsed; depth url=(none)
+20:07:55 roster CIN: 79 players parsed; depth url=(none)
+20:07:55 roster CIN: 79 players parsed; depth url=(none)
+20:07:55 roster CLE: 98 players parsed; depth url=(none)
+20:07:55 roster CLE: 98 players parsed; depth url=(none)
+20:07:56 roster DAL: 85 players parsed; depth url=(none)
+20:07:56 roster DAL: 85 players parsed; depth url=(none)
+20:07:57 roster DEN: 83 players parsed; depth url=(none)
+20:07:57 roster DEN: 83 players parsed; depth url=(none)
+20:07:58 roster DET: 90 players parsed; depth url=(none)
+20:07:58 roster DET: 90 players parsed; depth url=(none)
+20:07:58 roster GB: 96 players parsed; depth url=(none)
+20:07:58 roster GB: 96 players parsed; depth url=(none)
+20:07:59 roster HOU: 98 players parsed; depth url=(none)
+20:07:59 roster HOU: 98 players parsed; depth url=(none)
+20:08:00 roster IND: 90 players parsed; depth url=(none)
+20:08:00 roster IND: 90 players parsed; depth url=(none)
+20:08:01 roster JAX: 86 players parsed; depth url=(none)
+20:08:01 roster JAX: 86 players parsed; depth url=(none)
+20:08:02 roster KC: 87 players parsed; depth url=(none)
+20:08:02 roster KC: 87 players parsed; depth url=(none)
+20:08:02 roster LV: 89 players parsed; depth url=(none)
+20:08:02 roster LV: 89 players parsed; depth url=(none)
+20:08:03 roster LAC: 86 players parsed; depth url=(none)
+20:08:03 roster LAC: 86 players parsed; depth url=(none)
+20:08:04 roster LAR: 89 players parsed; depth url=(none)
+20:08:04 roster LAR: 89 players parsed; depth url=(none)
+20:08:05 roster MIA: 92 players parsed; depth url=(none)
+20:08:05 roster MIA: 92 players parsed; depth url=(none)
+20:08:05 roster MIN: 98 players parsed; depth url=(none)
+20:08:05 roster MIN: 98 players parsed; depth url=(none)
+20:08:06 roster NE: 92 players parsed; depth url=(none)
+20:08:06 roster NE: 92 players parsed; depth url=(none)
+20:08:07 roster NO: 90 players parsed; depth url=(none)
+20:08:07 roster NO: 90 players parsed; depth url=(none)
+20:08:08 roster NYG: 94 players parsed; depth url=(none)
+20:08:08 roster NYG: 94 players parsed; depth url=(none)
+20:08:08 roster NYJ: 90 players parsed; depth url=(none)
+20:08:08 roster NYJ: 90 players parsed; depth url=(none)
+20:08:09 roster PHI: 96 players parsed; depth url=(none)
+20:08:09 roster PHI: 96 players parsed; depth url=(none)
+20:08:10 roster PIT: 85 players parsed; depth url=(none)
+20:08:10 roster PIT: 85 players parsed; depth url=(none)
+20:08:11 roster SF: 97 players parsed; depth url=(none)
+20:08:11 roster SF: 97 players parsed; depth url=(none)
+20:08:11 roster SEA: 92 players parsed; depth url=(none)
+20:08:11 roster SEA: 92 players parsed; depth url=(none)
+20:08:12 roster TB: 79 players parsed; depth url=(none)
+20:08:12 roster TB: 79 players parsed; depth url=(none)
+20:08:13 roster TEN: 90 players parsed; depth url=(none)
+20:08:13 roster TEN: 90 players parsed; depth url=(none)
+20:08:14 roster WAS: 87 players parsed; depth url=(none)
+20:08:14 roster WAS: 87 players parsed; depth url=(none)
+FAILURES (29):
+  - gamebook jaguars-at-ravens-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook bengals-at-falcons-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook broncos-at-panthers-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook cowboys-at-colts-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook jets-at-chiefs-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook lions-at-dolphins-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook browns-at-saints-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook giants-at-eagles-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook rams-at-commanders-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook texans-at-chargers-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook raiders-at-49ers-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook packers-at-patriots-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook cardinals-at-seahawks-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook buccaneers-at-bears-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook bills-at-vikings-2026-reg-9: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook commanders-at-giants-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook patriots-at-lions-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook chiefs-at-falcons-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook texans-at-browns-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook vikings-at-packers-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook dolphins-at-colts-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook panthers-at-saints-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook bills-at-jets-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook jaguars-at-titans-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook rams-at-cardinals-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook seahawks-at-raiders-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook 49ers-at-cowboys-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook steelers-at-bengals-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+  - gamebook chargers-at-ravens-2026-reg-10: lineups not parsed (only 0 four-column lineup rows parsed)
+{
+  "week9_games": 15,
+  "week10_games": 14,
+  "gamebooks": 29,
+  "lineup_rows": 0,
+  "inactive_rows": 412,
+  "substitution_rows": 1315,
+  "roster_rows": 2886,
+  "depth_rows": 32,
+  "depth_chart_rows": 0,
+  "clubs_with_parsed_depth": 0
+}
