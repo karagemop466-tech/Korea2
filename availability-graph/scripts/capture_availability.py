@@ -111,10 +111,15 @@ ROSTER_STATUS = {
 
 GAMEBOOK_PDF_RE = re.compile(r"https://static\.www\.nfl\.com/image/upload/[^\"'\s<>]+?\.pdf", re.I)
 GAME_URL_RE = re.compile(r"/games/([a-z0-9\-]+-at-[a-z0-9\-]+-\d{4}-reg-\d+)", re.I)
+# The printed club name: a capitalised word ("Steelers", "Cowboys") or a name that starts with
+# digits ("49ers"). The schedule page prints "Steelers 18, Bengals 38, FINAL".
+CLUB_NAME = r"[0-9]{0,2}[A-Za-z][A-Za-z'&.]{1,20}"
 SCORE_RE = re.compile(
-    r"(?P<away>[A-Z][A-Za-z'&.]{1,20}(?:\s+[A-Z][A-Za-z'&.]{1,20})?)\s+(?P<ascore>\d{1,3}),\s+"
-    r"(?P<home>[A-Z][A-Za-z'&.]{1,20}(?:\s+[A-Z][A-Za-z'&.]{1,20})?)\s+(?P<hscore>\d{1,3}),\s+"
-    r"(?P<status>FINAL|Final|SCHEDULED|Scheduled|POSTPONED|Postponed)"
+    rf"(?<![A-Za-z0-9])(?P<away>{CLUB_NAME}(?:\s+{CLUB_NAME})?)\s+"
+    rf"(?P<ascore>\d{{1,3}}),\s+"
+    rf"(?P<home>{CLUB_NAME}(?:\s+{CLUB_NAME})?)\s+"
+    rf"(?P<hscore>\d{{1,3}}),\s+"
+    rf"(?P<status>FINAL|Final|SCHEDULED|Scheduled|POSTPONED|Postponed)"
 )
 SLOT_RE = re.compile(
     r"(?P<day>Thursday|Friday|Saturday|Sunday|Monday|Tuesday|Wednesday)[^|]{0,24}?"
@@ -290,46 +295,53 @@ def cap_abbr(printed_name: str) -> str:
 def parse_schedule(html: str, season: str, week: str) -> list[dict]:
     """Extract the official games of one week from the official schedule page.
 
-    The official page prints, for every game, the short club names and the official score in the
-    same anchor as the game link: "Steelers 18, Bengals 38, FINAL, Sunday, November 15th". The
-    score is read from that anchor only, so a score can never be attached to the wrong game.
+    The official game URL carries the short club names ("steelers-at-bengals-2026-reg-10"), which
+    map to a club through the official club names. The official score is printed on the same page
+    as "Steelers 18, Bengals 38, FINAL"; a score is accepted only when the printed club names
+    match the game, so a score can never be attached to the wrong game.
     """
     games: dict[str, dict] = {}
-    for m in ANCHOR_RE.finditer(html):
-        slug = m.group("slug")
+    for m in GAME_URL_RE.finditer(html):
+        slug = m.group(1)
         if not slug.endswith(f"-reg-{week}"):
             continue
-        inner = strip_tags(m.group("inner"))
-        inner = " ".join(inner.split())
         if slug in games:
-            # A second anchor for the same game (the replay link) carries no score.
-            if games[slug]["away_score"]:
-                continue
-        sm = SCORE_INNER_RE.search(inner)
-        dsm = DATE_INNER_RE.search(inner)
-        away_txt = sm.group("away") if sm else (dsm.group("away") if dsm else "")
-        home_txt = sm.group("home") if sm else (dsm.group("home") if dsm else "")
-        away_abbr = NICKNAME_TO_ABBR.get(away_txt.strip().lower(), "")
-        home_abbr = NICKNAME_TO_ABBR.get(home_txt.strip().lower(), "")
+            continue
+        parts = slug.split("-at-")
+        away_slug = parts[0]
+        home_slug = parts[1].rsplit(f"-{season}-reg-{week}", 1)[0]
         games[slug] = {
             "slug": slug,
             "game_url": f"https://www.nfl.com/games/{slug}",
-            "away_team": away_abbr,
-            "home_team": home_abbr,
-            "away_team_printed": away_txt.strip(),
-            "home_team_printed": home_txt.strip(),
-            "away_score": sm.group("ascore") if sm else "",
-            "home_score": sm.group("hscore") if sm else "",
-            "status": sm.group("status").upper() if sm else "",
-            "date_text": (dsm.group("away") and "") or "",
+            "away_team": NICKNAME_TO_ABBR.get(away_slug.lower(), ""),
+            "home_team": NICKNAME_TO_ABBR.get(home_slug.lower(), ""),
+            "away_team_printed": "",
+            "home_team_printed": "",
+            "away_score": "", "home_score": "", "status": "", "date_text": "",
             "slot": "", "broadcast": "",
             "source_url": f"https://www.nfl.com/schedules/{season}/by-week/week-{week}",
         }
     if not games:
         return []
-    # Kickoff slot: "Sunday 8:20 PM EST (NBC, Universo)" printed near the game.
-    plain = strip_tags(html)
-    plain = " ".join(plain.split())
+    plain = " ".join(strip_tags(html).split())
+    for sm in SCORE_RE.finditer(plain):
+        away_txt, home_txt = sm.group("away").strip(), sm.group("home").strip()
+        away_abbr = NICKNAME_TO_ABBR.get(away_txt.lower(), "")
+        home_abbr = NICKNAME_TO_ABBR.get(home_txt.lower(), "")
+        if not away_abbr or not home_abbr:
+            continue
+        for game in games.values():
+            if game["away_team"] != away_abbr or game["home_team"] != home_abbr:
+                continue
+            if game["away_score"]:
+                continue
+            game["away_score"] = sm.group("ascore")
+            game["home_score"] = sm.group("hscore")
+            game["status"] = sm.group("status").upper()
+            game["away_team_printed"] = away_txt
+            game["home_team_printed"] = home_txt
+            break
+    # Kickoff slot: "Sunday 8:20 PM EST (NBC, Universo)" printed next to the game.
     for km in SLOT_RE.finditer(plain):
         window = plain[max(0, km.start() - 300): km.end() + 300]
         for game in games.values():

@@ -272,3 +272,55 @@ class ClubNicknameTests(unittest.TestCase):
         self.assertEqual(cap.NICKNAME_TO_ABBR["49ers"], "SF")
         self.assertEqual(cap.NICKNAME_TO_ABBR["commanders"], "WAS")
         self.assertEqual(cap.NICKNAME_TO_ABBR["buccaneers"], "TB")
+
+
+class ScheduleParseTests(unittest.TestCase):
+    """The official schedule page prints the short club names and the official score."""
+
+    def _one(self, html, season="2026", week="10"):
+        games = cap.parse_schedule(html, season, week)
+        self.assertEqual(len(games), 1)
+        return games[0]
+
+    def test_the_official_score_is_attached_to_the_right_game(self):
+        g = self._one(
+            '<a href="/games/steelers-at-bengals-2026-reg-10">'
+            'Steelers 18, Bengals 38, FINAL, Sunday, November 15th</a>')
+        self.assertEqual(g["away_team"], "PIT")
+        self.assertEqual(g["home_team"], "CIN")
+        self.assertEqual(g["away_score"], "18")
+        self.assertEqual(g["home_score"], "38")
+        self.assertEqual(g["status"], "FINAL")
+
+    def test_a_club_name_that_starts_with_digits(self):
+        g = self._one(
+            '<a href="/games/49ers-at-cowboys-2026-reg-10">'
+            '49ers 10, Cowboys 27, FINAL, Sunday, November 15th</a>')
+        self.assertEqual(g["away_team"], "SF")
+        self.assertEqual(g["home_team"], "DAL")
+        self.assertEqual(g["away_score"], "10")
+
+    def test_a_score_is_never_attached_to_the_wrong_game(self):
+        games = cap.parse_schedule(
+            '<a href="/games/steelers-at-bengals-2026-reg-10">'
+            'Steelers 18, Bengals 38, FINAL</a>'
+            '<a href="/games/chargers-at-ravens-2026-reg-10">'
+            'Chargers 23, Ravens 20, FINAL</a>', "2026", "10")
+        self.assertEqual(len(games), 2)
+        for g in games:
+            self.assertTrue(g["away_score"], f"{g['slug']} has no score")
+            self.assertTrue(g["home_score"], f"{g['slug']} has no score")
+
+    def test_an_unfinished_game_has_no_score(self):
+        g = self._one('<a href="/games/bills-at-jets-2026-reg-10">'
+                      'Bills at Jets, Sunday, November 15th</a>')
+        self.assertEqual(g["away_team"], "BUF")
+        self.assertEqual(g["home_team"], "NYJ")
+        self.assertEqual(g["away_score"], "")
+        self.assertEqual(g["home_score"], "")
+
+    def test_the_week_filter_is_applied(self):
+        games = cap.parse_schedule(
+            '<a href="/games/steelers-at-bengals-2026-reg-10">Steelers 18, Bengals 38</a>'
+            '<a href="/games/bills-at-jets-2026-reg-9">Bills 20, Jets 17</a>', "2026", "9")
+        self.assertEqual([g["slug"] for g in games], ["bills-at-jets-2026-reg-9"])
