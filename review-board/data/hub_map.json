@@ -3,11 +3,11 @@
   "code": 7,
   "data register": 1,
   "other": 1,
-  "site hub": 25
+  "site hub": 26
  },
  "history": "shallow",
- "base_commit": "8798427",
- "hub_count": 34,
+ "base_commit": "7083eab",
+ "hub_count": 35,
  "nav_target_count": 27,
  "nav_duplicate_labels": [],
  "nav": [
@@ -260,6 +260,17 @@
    "pages": 6,
    "data_files": 0,
    "scripts": 4,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "official-verification",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 3,
+   "data_files": 1,
+   "scripts": 1,
    "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
@@ -544,8 +555,8 @@
    "nav_labels": []
   }
  ],
- "total_pages": 260,
- "total_data_files": 210,
+ "total_pages": 263,
+ "total_data_files": 211,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "87984273adb3f8dc2c069349ae534394d65e7a53"
+ "_generated_from_repo_commit": "7083eab1edc2eadeaff7530180822032c969f184"
 }
