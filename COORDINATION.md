@@ -3385,7 +3385,14 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 - **Irregularities published:** OV-17, OV-18, OV-19 on the Verification report and Executive summary pages; each links to its official source.
 - **Links to existing root registers:** suggestions (`pages/suggestions.html`), open questions (`pages/decision-questions.html`), executive summary (`pages/executive.html`), flagged (`pages/flagged.html`), sources (`pages/sources.html`), readiness (`pages/readiness.html`) are referenced, not duplicated.
 
-<<<<<<< HEAD
+## Release record — `arena/d1fe94e9-korea2` (2026-11-19 UTC)
+
+- **PR #148** (`arena/d1fe94e9-korea2` → `main`): https://github.com/karagemop466-tech/Korea2/pull/148. Merged with a regular merge commit (`--merge`, no auto-merge) at 2026-11-19T20:10:25Z as **`06fff6f`**.
+- **Checks before merge** (head `a59b637`): decision-desk, review-board, tests-and-links, validate, verify (×2), verify-hub and verify-skill-lab all **pass**.
+- **Conflicts resolved during the session:** `main` advanced three times (PR #146, #147, #151) while PR #148 was open. Each time, `main` was merged into the branch. COORDINATION.md conflicts were resolved by keeping both sides. Generated root navigation pages and review-board registers were regenerated with the repo's generators, not hand-edited. The `validate` check failed once on the PR merge ref because `main` had a new hub; it was reproduced in a fresh clone of that merge ref, fixed by regeneration, and passes again.
+- **Pages:** the GitHub Pages API was rate-limited for this session, so the build status for `06fff6f` could not be read from the API. Instead, the live pages were read directly: https://karagemop466-tech.github.io/Korea2/availability-w11/index.html (253 rows, 24 of 26 clubs, CIN/WAS flagged, 6 byes) and https://karagemop466-tech.github.io/Korea2/availability-w11/pages/clubs.html (32 rows, totals match the manifest). The root navigation regenerated on `main` includes the hub.
+- **Not done:** the NFL terms decision (W11-F04), venue transcription, depth and starter evidence, and all items in the "Not done in this session" list above remain open and are flagged on the hub.
+
 
 # Session board — `arena/5d001552-korea2` (Week 11 official availability capture + delta series)
 
@@ -3499,12 +3506,3 @@ on source.
 4. **Anyone building an availability feature:** the "has a game designation" flag is a clock, not a player
    state, unless timestamped against that fixture's designation deadline (finding 4 above). Two official
    reads one week apart cannot support an effect estimate, so no ablation is claimed here.
-=======
-## Release record — `arena/d1fe94e9-korea2` (2026-11-19 UTC)
-
-- **PR #148** (`arena/d1fe94e9-korea2` → `main`): https://github.com/karagemop466-tech/Korea2/pull/148. Merged with a regular merge commit (`--merge`, no auto-merge) at 2026-11-19T20:10:25Z as **`06fff6f`**.
-- **Checks before merge** (head `a59b637`): decision-desk, review-board, tests-and-links, validate, verify (×2), verify-hub and verify-skill-lab all **pass**.
-- **Conflicts resolved during the session:** `main` advanced three times (PR #146, #147, #151) while PR #148 was open. Each time, `main` was merged into the branch. COORDINATION.md conflicts were resolved by keeping both sides. Generated root navigation pages and review-board registers were regenerated with the repo's generators, not hand-edited. The `validate` check failed once on the PR merge ref because `main` had a new hub; it was reproduced in a fresh clone of that merge ref, fixed by regeneration, and passes again.
-- **Pages:** the GitHub Pages API was rate-limited for this session, so the build status for `06fff6f` could not be read from the API. Instead, the live pages were read directly: https://karagemop466-tech.github.io/Korea2/availability-w11/index.html (253 rows, 24 of 26 clubs, CIN/WAS flagged, 6 byes) and https://karagemop466-tech.github.io/Korea2/availability-w11/pages/clubs.html (32 rows, totals match the manifest). The root navigation regenerated on `main` includes the hub.
-- **Not done:** the NFL terms decision (W11-F04), venue transcription, depth and starter evidence, and all items in the "Not done in this session" list above remain open and are flagged on the hub.
->>>>>>> origin/main
