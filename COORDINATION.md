@@ -3338,3 +3338,20 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 - Capture-job owner: scheduled capture runs on `main` only as artifacts; a durable committed store is still undecided (RR-C11, S12).
 
 **Not done in this session (blocked, with the gate that blocks each):** depth-chart register and 32-club depth verification (no verified official source route read this session); Game Book starters and inactives; snap counts; official market open/close and CLV (no official price source); pre-registered strategies and leaderboard divisions; what-changed diff (needs two weekly snapshots); announced-starter evidence; injury designation reliability study; roster-turnover versioning; matchup matrix; stadium/NWS overlay.
+
+# Session board — arena/b245e313-korea2 (final integration: re-verification, site integration, PR/merge)
+
+**Session ID:** `arena/b245e313-korea2` (Arena-assigned branch `arena/b245e313-korea2`, branched from `1d56d09` = PR #145 merge).
+**Claimed:** 2026-11-19 UTC, before implementation. No other live claim on the scope below (prior sessions RD/A-series marked done/needs review; no in-progress claim with recent commits).
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| B1 | Coordination claim and scope separation | in progress | arena/b245e313-korea2 | COORDINATION.md (this section only) |
+| B2 | Dated official re-reads (NFL injury report REG10/REG11, Week 10/11 schedules, standings, Genius, NWS, NIST, Game Book hub) recorded as timestamped observations | in progress | arena/b245e313-korea2 | docs/OFFICIAL_REREAD_2026-11-19.md, requirements-desk/data/analysis.json (regenerated only) |
+| B3 | Full local verification suite re-run (root + all hubs); fix failures in claimed scope only | in progress | arena/b245e313-korea2 | tests/, scripts/, requirements-desk/scripts/ (read-only unless fix needed), COORDINATION.md |
+| B4 | Final integration: root navigation, README, EXECUTIVE_SUMMARY, docs audit refresh; confirm site builds with no broken links | in progress | arena/b245e313-korea2 | index.html, pages/, README.md, EXECUTIVE_SUMMARY.md, docs/, requirements-desk/index.html + pages/ (regenerated) |
+| B5 | PR from this branch, merge, confirm GitHub Pages deploy, record result here | in progress | arena/b245e313-korea2 | COORDINATION.md (this section) |
+
+**Scope boundary:** This session owns root integration files and the requirements-desk regenerated outputs. It does NOT edit sibling hub data/scripts (line-desk, price-desk, review-board, etc.) except via their documented generators if needed for verification. Requests to other owners are logged, not actioned. If a fix requires a file outside this scope, log the request here instead of editing it.
+
+**Rules honoured:** every published table row carries a source link; unverified values stay blank and flagged; no inference of starters/depth/inactives/prices; suggestions stay PROPOSED until a reviewer chooses; flagged items do not block merge.

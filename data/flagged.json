@@ -177,10 +177,11 @@
       "id": "FL-17",
       "item": "Week 11 official injury report (2026 season)",
       "value": "",
-      "reason": "Not published at the 2026-11-18T03:55Z read: the /2026/reg11 URL served the Week 10 report while the week selector listed WEEK 11. Left blank rather than assumed to be unchanged from Week 10. Discovery action: re-read after the Wednesday 4:30 PM ET deadline and record the fetch time. (Row id FL-16 was taken by the Game Book permission flag from the injury-capture session, so the 2026-11-18 re-read rows start at FL-17.)",
+      "reason": "Not published at the 2026-11-18T03:55Z read: the /2026/reg11 URL served the Week 10 report while the week selector listed WEEK 11. Left blank rather than assumed to be unchanged from Week 10. Discovery action: re-read after the Wednesday 4:30 PM ET deadline and record the fetch time. (Row id FL-16 was taken by the Game Book permission flag from the injury-capture session, so the 2026-11-18 re-read rows start at FL-17.) RESOLVED at the 2026-11-19 integration re-read: /2026/REG11 now serves the Week 11 report (title and body both read WEEK 11; first block IND @ HOU, Thu Nov 19, 8:15 PM EST). No Week 11 register has been transcribed yet, so no Week 11 injury rows are published anywhere in the repository and the site's Week 11 availability columns stay blank by policy; a full transcription plus hash is a separate claimed task. The REG10 half of the title/body mismatch (its <title> reads 'Week 11' while the body reads WEEK 10) remains.",
       "sources": [
         "SRC-NFL-INJURY-W11-NOT-PUBLISHED",
-        "SRC-NFL-INJURY-W10-REREAD"
+        "SRC-NFL-INJURY-W10-REREAD",
+        "SRC-NFL-INJURY-W11-REREAD"
       ]
     },
     {
