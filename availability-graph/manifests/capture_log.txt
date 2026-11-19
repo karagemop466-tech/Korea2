@@ -347,3 +347,229 @@ FAILURES (29):
   "depth_chart_rows": 0,
   "clubs_with_parsed_depth": 0
 }
+20:12:51 week 9: 15 official games on the schedule page
+20:12:51 week 9: 15 official games on the schedule page
+20:12:53 week 9 jaguars-at-ravens-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:53 week 9 jaguars-at-ravens-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:53 game jaguars-at-ravens-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:12:53 game jaguars-at-ravens-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:12:54 week 9 bengals-at-falcons-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:54 week 9 bengals-at-falcons-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:54 game bengals-at-falcons-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:12:54 game bengals-at-falcons-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:12:55 week 9 broncos-at-panthers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:55 week 9 broncos-at-panthers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:55 game broncos-at-panthers-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:12:55 game broncos-at-panthers-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:12:57 week 9 cowboys-at-colts-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:57 week 9 cowboys-at-colts-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:57 game cowboys-at-colts-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:12:57 game cowboys-at-colts-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:12:58 week 9 jets-at-chiefs-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:58 week 9 jets-at-chiefs-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:12:58 game jets-at-chiefs-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:12:58 game jets-at-chiefs-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:00 week 9 lions-at-dolphins-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:00 week 9 lions-at-dolphins-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:00 game lions-at-dolphins-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:00 game lions-at-dolphins-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:01 week 9 browns-at-saints-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:01 week 9 browns-at-saints-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:01 game browns-at-saints-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:01 game browns-at-saints-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:03 week 9 giants-at-eagles-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:03 week 9 giants-at-eagles-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:03 game giants-at-eagles-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:03 game giants-at-eagles-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:04 week 9 rams-at-commanders-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:04 week 9 rams-at-commanders-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:04 game rams-at-commanders-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:04 game rams-at-commanders-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:06 week 9 texans-at-chargers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:06 week 9 texans-at-chargers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:06 game texans-at-chargers-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:06 game texans-at-chargers-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:07 week 9 raiders-at-49ers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:07 week 9 raiders-at-49ers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:07 game raiders-at-49ers-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:07 game raiders-at-49ers-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:09 week 9 packers-at-patriots-2026-reg-9: lineups=FAILED (fixed-width layout read [10, 9, 9, 10] players per column; a starting lineup needs at least ten per unit); method=pdftotext-layout
+20:13:09 week 9 packers-at-patriots-2026-reg-9: lineups=FAILED (fixed-width layout read [10, 9, 9, 10] players per column; a starting lineup needs at least ten per unit); method=pdftotext-layout
+20:13:09 game packers-at-patriots-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:09 game packers-at-patriots-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:10 week 9 cardinals-at-seahawks-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:10 week 9 cardinals-at-seahawks-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:10 game cardinals-at-seahawks-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:10 game cardinals-at-seahawks-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:12 week 9 buccaneers-at-bears-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:12 week 9 buccaneers-at-bears-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:12 game buccaneers-at-bears-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:12 game buccaneers-at-bears-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:13 week 9 bills-at-vikings-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:13 week 9 bills-at-vikings-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:13 game bills-at-vikings-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:13 game bills-at-vikings-2026-reg-9: ERROR name 'masked_layout_sample' is not defined
+20:13:13 week 10: 14 official games on the schedule page
+20:13:13 week 10: 14 official games on the schedule page
+20:13:15 week 10 commanders-at-giants-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:15 week 10 commanders-at-giants-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:15 game commanders-at-giants-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:15 game commanders-at-giants-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:16 week 10 patriots-at-lions-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:16 week 10 patriots-at-lions-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:16 game patriots-at-lions-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:16 game patriots-at-lions-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:18 week 10 chiefs-at-falcons-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:18 week 10 chiefs-at-falcons-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:18 game chiefs-at-falcons-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:18 game chiefs-at-falcons-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:19 week 10 texans-at-browns-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:19 week 10 texans-at-browns-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:19 game texans-at-browns-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:19 game texans-at-browns-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:21 week 10 vikings-at-packers-2026-reg-10: lineups=FAILED (fixed-width layout read [10, 10, 10, 9] players per column; a starting lineup needs at least ten per unit); method=pdftotext-layout
+20:13:21 week 10 vikings-at-packers-2026-reg-10: lineups=FAILED (fixed-width layout read [10, 10, 10, 9] players per column; a starting lineup needs at least ten per unit); method=pdftotext-layout
+20:13:21 game vikings-at-packers-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:21 game vikings-at-packers-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:22 week 10 dolphins-at-colts-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:22 week 10 dolphins-at-colts-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:22 game dolphins-at-colts-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:22 game dolphins-at-colts-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:23 week 10 panthers-at-saints-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:23 week 10 panthers-at-saints-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:23 game panthers-at-saints-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:23 game panthers-at-saints-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:25 week 10 bills-at-jets-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:25 week 10 bills-at-jets-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:25 game bills-at-jets-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:25 game bills-at-jets-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:26 week 10 jaguars-at-titans-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:26 week 10 jaguars-at-titans-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:26 game jaguars-at-titans-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:26 game jaguars-at-titans-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:28 week 10 rams-at-cardinals-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:28 week 10 rams-at-cardinals-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:28 game rams-at-cardinals-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:28 game rams-at-cardinals-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:29 week 10 seahawks-at-raiders-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:29 week 10 seahawks-at-raiders-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:29 game seahawks-at-raiders-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:29 game seahawks-at-raiders-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:31 week 10 49ers-at-cowboys-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:31 week 10 49ers-at-cowboys-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:31 game 49ers-at-cowboys-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:31 game 49ers-at-cowboys-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:32 week 10 steelers-at-bengals-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:32 week 10 steelers-at-bengals-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:32 game steelers-at-bengals-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:32 game steelers-at-bengals-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:33 week 10 chargers-at-ravens-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:33 week 10 chargers-at-ravens-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:13:33 game chargers-at-ravens-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:33 game chargers-at-ravens-2026-reg-10: ERROR name 'masked_layout_sample' is not defined
+20:13:34 roster AZ: 101 players parsed; depth url=(none)
+20:13:34 roster AZ: 101 players parsed; depth url=(none)
+20:13:35 roster ATL: 91 players parsed; depth url=(none)
+20:13:35 roster ATL: 91 players parsed; depth url=(none)
+20:13:35 roster BAL: 91 players parsed; depth url=(none)
+20:13:35 roster BAL: 91 players parsed; depth url=(none)
+20:13:36 roster BUF: 80 players parsed; depth url=(none)
+20:13:36 roster BUF: 80 players parsed; depth url=(none)
+20:13:37 roster CAR: 96 players parsed; depth url=(none)
+20:13:37 roster CAR: 96 players parsed; depth url=(none)
+20:13:37 roster CHI: 89 players parsed; depth url=(none)
+20:13:37 roster CHI: 89 players parsed; depth url=(none)
+20:13:38 roster CIN: 79 players parsed; depth url=(none)
+20:13:38 roster CIN: 79 players parsed; depth url=(none)
+20:13:39 roster CLE: 98 players parsed; depth url=(none)
+20:13:39 roster CLE: 98 players parsed; depth url=(none)
+20:13:39 roster DAL: 85 players parsed; depth url=(none)
+20:13:39 roster DAL: 85 players parsed; depth url=(none)
+20:13:40 roster DEN: 83 players parsed; depth url=(none)
+20:13:40 roster DEN: 83 players parsed; depth url=(none)
+20:13:41 roster DET: 90 players parsed; depth url=(none)
+20:13:41 roster DET: 90 players parsed; depth url=(none)
+20:13:42 roster GB: 96 players parsed; depth url=(none)
+20:13:42 roster GB: 96 players parsed; depth url=(none)
+20:13:42 roster HOU: 98 players parsed; depth url=(none)
+20:13:42 roster HOU: 98 players parsed; depth url=(none)
+20:13:43 roster IND: 90 players parsed; depth url=(none)
+20:13:43 roster IND: 90 players parsed; depth url=(none)
+20:13:44 roster JAX: 86 players parsed; depth url=(none)
+20:13:44 roster JAX: 86 players parsed; depth url=(none)
+20:13:44 roster KC: 87 players parsed; depth url=(none)
+20:13:44 roster KC: 87 players parsed; depth url=(none)
+20:13:45 roster LV: 89 players parsed; depth url=(none)
+20:13:45 roster LV: 89 players parsed; depth url=(none)
+20:13:46 roster LAC: 86 players parsed; depth url=(none)
+20:13:46 roster LAC: 86 players parsed; depth url=(none)
+20:13:46 roster LAR: 89 players parsed; depth url=(none)
+20:13:46 roster LAR: 89 players parsed; depth url=(none)
+20:13:47 roster MIA: 92 players parsed; depth url=(none)
+20:13:47 roster MIA: 92 players parsed; depth url=(none)
+20:13:48 roster MIN: 98 players parsed; depth url=(none)
+20:13:48 roster MIN: 98 players parsed; depth url=(none)
+20:13:48 roster NE: 92 players parsed; depth url=(none)
+20:13:48 roster NE: 92 players parsed; depth url=(none)
+20:13:49 roster NO: 90 players parsed; depth url=(none)
+20:13:49 roster NO: 90 players parsed; depth url=(none)
+20:13:50 roster NYG: 94 players parsed; depth url=(none)
+20:13:50 roster NYG: 94 players parsed; depth url=(none)
+20:13:50 roster NYJ: 90 players parsed; depth url=(none)
+20:13:50 roster NYJ: 90 players parsed; depth url=(none)
+20:13:51 roster PHI: 96 players parsed; depth url=(none)
+20:13:51 roster PHI: 96 players parsed; depth url=(none)
+20:13:52 roster PIT: 85 players parsed; depth url=(none)
+20:13:52 roster PIT: 85 players parsed; depth url=(none)
+20:13:52 roster SF: 97 players parsed; depth url=(none)
+20:13:52 roster SF: 97 players parsed; depth url=(none)
+20:13:53 roster SEA: 92 players parsed; depth url=(none)
+20:13:53 roster SEA: 92 players parsed; depth url=(none)
+20:13:54 roster TB: 79 players parsed; depth url=(none)
+20:13:54 roster TB: 79 players parsed; depth url=(none)
+20:13:54 roster TEN: 90 players parsed; depth url=(none)
+20:13:54 roster TEN: 90 players parsed; depth url=(none)
+20:13:55 roster WAS: 87 players parsed; depth url=(none)
+20:13:55 roster WAS: 87 players parsed; depth url=(none)
+FAILURES (29):
+  - game jaguars-at-ravens-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game bengals-at-falcons-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game broncos-at-panthers-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game cowboys-at-colts-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game jets-at-chiefs-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game lions-at-dolphins-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game browns-at-saints-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game giants-at-eagles-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game rams-at-commanders-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game texans-at-chargers-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game raiders-at-49ers-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game packers-at-patriots-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game cardinals-at-seahawks-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game buccaneers-at-bears-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game bills-at-vikings-2026-reg-9: capture error name 'masked_layout_sample' is not defined
+  - game commanders-at-giants-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game patriots-at-lions-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game chiefs-at-falcons-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game texans-at-browns-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game vikings-at-packers-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game dolphins-at-colts-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game panthers-at-saints-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game bills-at-jets-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game jaguars-at-titans-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game rams-at-cardinals-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game seahawks-at-raiders-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game 49ers-at-cowboys-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game steelers-at-bengals-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+  - game chargers-at-ravens-2026-reg-10: capture error name 'masked_layout_sample' is not defined
+{
+  "week9_games": 15,
+  "week10_games": 14,
+  "gamebooks": 0,
+  "lineup_rows": 0,
+  "inactive_rows": 0,
+  "substitution_rows": 0,
+  "roster_rows": 2886,
+  "depth_rows": 32,
+  "depth_chart_rows": 0,
+  "clubs_with_parsed_depth": 0
+}
