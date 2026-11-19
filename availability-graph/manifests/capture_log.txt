@@ -878,3 +878,272 @@ FAILURES (2):
   "depth_chart_rows": 1817,
   "clubs_with_parsed_depth": 31
 }
+20:28:59 week 9: 15 official games on the schedule page
+20:28:59 week 9: 15 official games on the schedule page
+20:29:01 week 9 jaguars-at-ravens-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:01 week 9 jaguars-at-ravens-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:02 week 9 bengals-at-falcons-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:02 week 9 bengals-at-falcons-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:04 week 9 broncos-at-panthers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:04 week 9 broncos-at-panthers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:05 week 9 cowboys-at-colts-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:05 week 9 cowboys-at-colts-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:06 week 9 jets-at-chiefs-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:06 week 9 jets-at-chiefs-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:08 week 9 lions-at-dolphins-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:08 week 9 lions-at-dolphins-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:09 week 9 browns-at-saints-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:09 week 9 browns-at-saints-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:10 week 9 giants-at-eagles-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:10 week 9 giants-at-eagles-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:12 week 9 rams-at-commanders-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:12 week 9 rams-at-commanders-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:13 week 9 texans-at-chargers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:13 week 9 texans-at-chargers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:15 week 9 raiders-at-49ers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:15 week 9 raiders-at-49ers-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:16 week 9 packers-at-patriots-2026-reg-9: lineups=FAILED (fixed-width layout read [10, 9, 9, 10] players per column; a starting lineup needs at least ten per unit); method=pdftotext-layout
+20:29:16 week 9 packers-at-patriots-2026-reg-9: lineups=FAILED (fixed-width layout read [10, 9, 9, 10] players per column; a starting lineup needs at least ten per unit); method=pdftotext-layout
+20:29:17 week 9 cardinals-at-seahawks-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:17 week 9 cardinals-at-seahawks-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:19 week 9 buccaneers-at-bears-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:19 week 9 buccaneers-at-bears-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:20 week 9 bills-at-vikings-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:20 week 9 bills-at-vikings-2026-reg-9: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:20 week 10: 14 official games on the schedule page
+20:29:20 week 10: 14 official games on the schedule page
+20:29:22 week 10 commanders-at-giants-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:22 week 10 commanders-at-giants-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:23 week 10 patriots-at-lions-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:23 week 10 patriots-at-lions-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:24 week 10 chiefs-at-falcons-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:24 week 10 chiefs-at-falcons-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:26 week 10 texans-at-browns-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:26 week 10 texans-at-browns-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:27 week 10 vikings-at-packers-2026-reg-10: lineups=FAILED (fixed-width layout read [10, 10, 10, 9] players per column; a starting lineup needs at least ten per unit); method=pdftotext-layout
+20:29:27 week 10 vikings-at-packers-2026-reg-10: lineups=FAILED (fixed-width layout read [10, 10, 10, 9] players per column; a starting lineup needs at least ten per unit); method=pdftotext-layout
+20:29:28 week 10 dolphins-at-colts-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:28 week 10 dolphins-at-colts-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:30 week 10 panthers-at-saints-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:30 week 10 panthers-at-saints-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:31 week 10 bills-at-jets-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:31 week 10 bills-at-jets-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:32 week 10 jaguars-at-titans-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:32 week 10 jaguars-at-titans-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:34 week 10 rams-at-cardinals-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:34 week 10 rams-at-cardinals-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:35 week 10 seahawks-at-raiders-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:35 week 10 seahawks-at-raiders-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:36 week 10 49ers-at-cowboys-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:36 week 10 49ers-at-cowboys-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:38 week 10 steelers-at-bengals-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:38 week 10 steelers-at-bengals-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:39 week 10 chargers-at-ravens-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:39 week 10 chargers-at-ravens-2026-reg-10: lineups=ok (11 fixed-width lineup rows, 44 players); method=pdftotext-layout
+20:29:40 roster AZ: 101 players parsed; depth url=https://www.azcardinals.com/team/depth-chart
+20:29:40 roster AZ: 101 players parsed; depth url=https://www.azcardinals.com/team/depth-chart
+20:29:41 roster ATL: 91 players parsed; depth url=https://www.atlantafalcons.com/team/depth-chart
+20:29:41 roster ATL: 91 players parsed; depth url=https://www.atlantafalcons.com/team/depth-chart
+20:29:41 roster BAL: 91 players parsed; depth url=https://www.baltimoreravens.com/team/depth-chart
+20:29:41 roster BAL: 91 players parsed; depth url=https://www.baltimoreravens.com/team/depth-chart
+20:29:42 roster BUF: 80 players parsed; depth url=https://www.buffalobills.com/team/depth-chart
+20:29:42 roster BUF: 80 players parsed; depth url=https://www.buffalobills.com/team/depth-chart
+20:29:43 roster CAR: 96 players parsed; depth url=https://www.panthers.com/team/depth-chart
+20:29:43 roster CAR: 96 players parsed; depth url=https://www.panthers.com/team/depth-chart
+20:29:43 roster CHI: 89 players parsed; depth url=https://www.chicagobears.com/team/depth-chart
+20:29:43 roster CHI: 89 players parsed; depth url=https://www.chicagobears.com/team/depth-chart
+20:29:44 roster CIN: 79 players parsed; depth url=https://www.bengals.com/team/depth-chart
+20:29:44 roster CIN: 79 players parsed; depth url=https://www.bengals.com/team/depth-chart
+20:29:45 roster CLE: 98 players parsed; depth url=https://www.clevelandbrowns.com/team/depth-chart
+20:29:45 roster CLE: 98 players parsed; depth url=https://www.clevelandbrowns.com/team/depth-chart
+20:29:46 roster DAL: 85 players parsed; depth url=https://www.dallascowboys.com/team/depth-chart
+20:29:46 roster DAL: 85 players parsed; depth url=https://www.dallascowboys.com/team/depth-chart
+20:29:46 roster DEN: 83 players parsed; depth url=https://www.denverbroncos.com/team/depth-chart
+20:29:46 roster DEN: 83 players parsed; depth url=https://www.denverbroncos.com/team/depth-chart
+20:29:47 roster DET: 90 players parsed; depth url=https://www.detroitlions.com/team/depth-chart
+20:29:47 roster DET: 90 players parsed; depth url=https://www.detroitlions.com/team/depth-chart
+20:29:48 roster GB: 96 players parsed; depth url=https://www.packers.com/team/depth-chart
+20:29:48 roster GB: 96 players parsed; depth url=https://www.packers.com/team/depth-chart
+20:29:48 roster HOU: 98 players parsed; depth url=https://www.houstontexans.com/team/depth-chart
+20:29:48 roster HOU: 98 players parsed; depth url=https://www.houstontexans.com/team/depth-chart
+20:29:49 roster IND: 90 players parsed; depth url=https://www.colts.com/team/depth-chart
+20:29:49 roster IND: 90 players parsed; depth url=https://www.colts.com/team/depth-chart
+20:29:50 roster JAX: 86 players parsed; depth url=https://www.jaguars.com/team/depth-chart
+20:29:50 roster JAX: 86 players parsed; depth url=https://www.jaguars.com/team/depth-chart
+20:29:50 roster KC: 87 players parsed; depth url=https://www.chiefs.com/team/depth-chart
+20:29:50 roster KC: 87 players parsed; depth url=https://www.chiefs.com/team/depth-chart
+20:29:51 roster LV: 89 players parsed; depth url=https://www.raiders.com/team/depth-chart
+20:29:51 roster LV: 89 players parsed; depth url=https://www.raiders.com/team/depth-chart
+20:29:52 roster LAC: 86 players parsed; depth url=https://www.chargers.com/team/depth-chart
+20:29:52 roster LAC: 86 players parsed; depth url=https://www.chargers.com/team/depth-chart
+20:29:52 roster LAR: 89 players parsed; depth url=https://www.therams.com/team/depth-chart
+20:29:52 roster LAR: 89 players parsed; depth url=https://www.therams.com/team/depth-chart
+20:29:53 roster MIA: 92 players parsed; depth url=https://www.miamidolphins.com/team/depth-chart
+20:29:53 roster MIA: 92 players parsed; depth url=https://www.miamidolphins.com/team/depth-chart
+20:29:54 roster MIN: 98 players parsed; depth url=https://www.vikings.com/team/depth-chart
+20:29:54 roster MIN: 98 players parsed; depth url=https://www.vikings.com/team/depth-chart
+20:29:54 roster NE: 92 players parsed; depth url=https://www.patriots.com/team/depth-chart
+20:29:54 roster NE: 92 players parsed; depth url=https://www.patriots.com/team/depth-chart
+20:29:55 roster NO: 90 players parsed; depth url=https://www.neworleanssaints.com/team/depth-chart
+20:29:55 roster NO: 90 players parsed; depth url=https://www.neworleanssaints.com/team/depth-chart
+20:29:56 roster NYG: 94 players parsed; depth url=https://www.giants.com/team/depth-chart
+20:29:56 roster NYG: 94 players parsed; depth url=https://www.giants.com/team/depth-chart
+20:29:56 roster NYJ: 90 players parsed; depth url=https://www.newyorkjets.com/team/depth-chart
+20:29:56 roster NYJ: 90 players parsed; depth url=https://www.newyorkjets.com/team/depth-chart
+20:29:57 roster PHI: 96 players parsed; depth url=https://www.philadelphiaeagles.com/team/depth-chart
+20:29:57 roster PHI: 96 players parsed; depth url=https://www.philadelphiaeagles.com/team/depth-chart
+20:29:58 roster PIT: 85 players parsed; depth url=https://www.steelers.com/team/depth-chart
+20:29:58 roster PIT: 85 players parsed; depth url=https://www.steelers.com/team/depth-chart
+20:29:58 roster SF: 97 players parsed; depth url=https://www.49ers.com/team/depth-chart
+20:29:58 roster SF: 97 players parsed; depth url=https://www.49ers.com/team/depth-chart
+20:29:59 roster SEA: 92 players parsed; depth url=https://www.seahawks.com/team/depth-chart
+20:29:59 roster SEA: 92 players parsed; depth url=https://www.seahawks.com/team/depth-chart
+20:30:00 roster TB: 79 players parsed; depth url=https://www.buccaneers.com/team/depth-chart
+20:30:00 roster TB: 79 players parsed; depth url=https://www.buccaneers.com/team/depth-chart
+20:30:00 roster TEN: 90 players parsed; depth url=https://www.tennesseetitans.com/team/depth-chart
+20:30:00 roster TEN: 90 players parsed; depth url=https://www.tennesseetitans.com/team/depth-chart
+20:30:01 roster WAS: 87 players parsed; depth url=https://www.commanders.com/team/depth-chart
+20:30:01 roster WAS: 87 players parsed; depth url=https://www.commanders.com/team/depth-chart
+20:30:02 depth AZ: 200 https://www.azcardinals.com/team/depth-chart
+20:30:02 depth AZ: 200 https://www.azcardinals.com/team/depth-chart
+20:30:02 depth AZ: 57 rows parsed; date label=(none)
+20:30:02 depth AZ: 57 rows parsed; date label=(none)
+20:30:03 depth ATL: 200 https://www.atlantafalcons.com/team/depth-chart
+20:30:03 depth ATL: 200 https://www.atlantafalcons.com/team/depth-chart
+20:30:03 depth ATL: 59 rows parsed; date label=(none)
+20:30:03 depth ATL: 59 rows parsed; date label=(none)
+20:30:03 depth BAL: 200 https://www.baltimoreravens.com/team/depth-chart
+20:30:03 depth BAL: 200 https://www.baltimoreravens.com/team/depth-chart
+20:30:03 depth BAL: 61 rows parsed; date label=(none)
+20:30:03 depth BAL: 61 rows parsed; date label=(none)
+20:30:04 depth BUF: 200 https://www.buffalobills.com/team/depth-chart
+20:30:04 depth BUF: 200 https://www.buffalobills.com/team/depth-chart
+20:30:04 depth BUF: 63 rows parsed; date label=(none)
+20:30:04 depth BUF: 63 rows parsed; date label=(none)
+20:30:05 depth CAR: 200 https://www.panthers.com/team/depth-chart
+20:30:05 depth CAR: 200 https://www.panthers.com/team/depth-chart
+20:30:05 depth CAR: 58 rows parsed; date label=(none)
+20:30:05 depth CAR: 58 rows parsed; date label=(none)
+20:30:05 depth CHI: 200 https://www.chicagobears.com/team/depth-chart
+20:30:05 depth CHI: 200 https://www.chicagobears.com/team/depth-chart
+20:30:05 depth CHI: 58 rows parsed; date label=(none)
+20:30:05 depth CHI: 58 rows parsed; date label=(none)
+20:30:06 depth CIN: 200 https://www.bengals.com/team/depth-chart
+20:30:06 depth CIN: 200 https://www.bengals.com/team/depth-chart
+20:30:06 depth CIN: 57 rows parsed; date label=(none)
+20:30:06 depth CIN: 57 rows parsed; date label=(none)
+20:30:07 depth CLE: 200 https://www.clevelandbrowns.com/team/depth-chart
+20:30:07 depth CLE: 200 https://www.clevelandbrowns.com/team/depth-chart
+20:30:07 depth CLE: 58 rows parsed; date label=(none)
+20:30:07 depth CLE: 58 rows parsed; date label=(none)
+20:30:07 depth DAL: 200 https://www.dallascowboys.com/team/depth-chart
+20:30:07 depth DAL: 200 https://www.dallascowboys.com/team/depth-chart
+20:30:07 depth DAL: 58 rows parsed; date label=Unofficial (no date printed)
+20:30:07 depth DAL: 58 rows parsed; date label=Unofficial (no date printed)
+20:30:08 depth DEN: 200 https://www.denverbroncos.com/team/depth-chart
+20:30:08 depth DEN: 200 https://www.denverbroncos.com/team/depth-chart
+20:30:08 depth DEN: 60 rows parsed; date label=(none)
+20:30:08 depth DEN: 60 rows parsed; date label=(none)
+20:30:09 depth DET: 200 https://www.detroitlions.com/team/depth-chart
+20:30:09 depth DET: 200 https://www.detroitlions.com/team/depth-chart
+20:30:09 depth DET: 57 rows parsed; date label=Unofficial (no date printed)
+20:30:09 depth DET: 57 rows parsed; date label=Unofficial (no date printed)
+20:30:09 depth GB: 200 https://www.packers.com/team/depth-chart
+20:30:09 depth GB: 200 https://www.packers.com/team/depth-chart
+20:30:09 depth GB: 55 rows parsed; date label=Nov. 10, 2026
+20:30:09 depth GB: 55 rows parsed; date label=Nov. 10, 2026
+20:30:10 depth HOU: 200 https://www.houstontexans.com/team/depth-chart
+20:30:10 depth HOU: 200 https://www.houstontexans.com/team/depth-chart
+20:30:10 depth HOU: 0 rows parsed; date label=Unofficial (no date printed)
+20:30:10 depth HOU: 0 rows parsed; date label=Unofficial (no date printed)
+20:30:11 depth IND: 200 https://www.colts.com/team/depth-chart
+20:30:11 depth IND: 200 https://www.colts.com/team/depth-chart
+20:30:11 depth IND: 57 rows parsed; date label=Unofficial (no date printed)
+20:30:11 depth IND: 57 rows parsed; date label=Unofficial (no date printed)
+20:30:12 depth JAX: 200 https://www.jaguars.com/team/depth-chart
+20:30:12 depth JAX: 200 https://www.jaguars.com/team/depth-chart
+20:30:12 depth JAX: 56 rows parsed; date label=(none)
+20:30:12 depth JAX: 56 rows parsed; date label=(none)
+20:30:12 depth KC: 200 https://www.chiefs.com/team/depth-chart
+20:30:12 depth KC: 200 https://www.chiefs.com/team/depth-chart
+20:30:12 depth KC: 60 rows parsed; date label=Unofficial (no date printed)
+20:30:12 depth KC: 60 rows parsed; date label=Unofficial (no date printed)
+20:30:13 depth LV: 200 https://www.raiders.com/team/depth-chart
+20:30:13 depth LV: 200 https://www.raiders.com/team/depth-chart
+20:30:13 depth LV: 57 rows parsed; date label=(none)
+20:30:13 depth LV: 57 rows parsed; date label=(none)
+20:30:14 depth LAC: 200 https://www.chargers.com/team/depth-chart
+20:30:14 depth LAC: 200 https://www.chargers.com/team/depth-chart
+20:30:14 depth LAC: 63 rows parsed; date label=(none)
+20:30:14 depth LAC: 63 rows parsed; date label=(none)
+20:30:14 depth LAR: 200 https://www.therams.com/team/depth-chart
+20:30:14 depth LAR: 200 https://www.therams.com/team/depth-chart
+20:30:14 depth LAR: 55 rows parsed; date label=Unofficial (no date printed)
+20:30:14 depth LAR: 55 rows parsed; date label=Unofficial (no date printed)
+20:30:15 depth MIA: 200 https://www.miamidolphins.com/team/depth-chart
+20:30:15 depth MIA: 200 https://www.miamidolphins.com/team/depth-chart
+20:30:15 depth MIA: 56 rows parsed; date label=(none)
+20:30:15 depth MIA: 56 rows parsed; date label=(none)
+20:30:16 depth MIN: 200 https://www.vikings.com/team/depth-chart
+20:30:16 depth MIN: 200 https://www.vikings.com/team/depth-chart
+20:30:16 depth MIN: 60 rows parsed; date label=Unofficial (no date printed)
+20:30:16 depth MIN: 60 rows parsed; date label=Unofficial (no date printed)
+20:30:17 depth NE: 200 https://www.patriots.com/team/depth-chart
+20:30:17 depth NE: 200 https://www.patriots.com/team/depth-chart
+20:30:17 depth NE: 62 rows parsed; date label=Unofficial (no date printed)
+20:30:17 depth NE: 62 rows parsed; date label=Unofficial (no date printed)
+20:30:17 depth NO: 200 https://www.neworleanssaints.com/team/depth-chart
+20:30:17 depth NO: 200 https://www.neworleanssaints.com/team/depth-chart
+20:30:17 depth NO: 61 rows parsed; date label=Unofficial (no date printed)
+20:30:17 depth NO: 61 rows parsed; date label=Unofficial (no date printed)
+20:30:18 depth NYG: 200 https://www.giants.com/team/depth-chart
+20:30:18 depth NYG: 200 https://www.giants.com/team/depth-chart
+20:30:18 depth NYG: 60 rows parsed; date label=(none)
+20:30:18 depth NYG: 60 rows parsed; date label=(none)
+20:30:19 depth NYJ: 200 https://www.newyorkjets.com/team/depth-chart
+20:30:19 depth NYJ: 200 https://www.newyorkjets.com/team/depth-chart
+20:30:19 depth NYJ: 57 rows parsed; date label=Unofficial (no date printed)
+20:30:19 depth NYJ: 57 rows parsed; date label=Unofficial (no date printed)
+20:30:19 depth PHI: 200 https://www.philadelphiaeagles.com/team/depth-chart
+20:30:19 depth PHI: 200 https://www.philadelphiaeagles.com/team/depth-chart
+20:30:19 depth PHI: 53 rows parsed; date label=Unofficial (no date printed)
+20:30:19 depth PHI: 53 rows parsed; date label=Unofficial (no date printed)
+20:30:20 depth PIT: 200 https://www.steelers.com/team/depth-chart
+20:30:20 depth PIT: 200 https://www.steelers.com/team/depth-chart
+20:30:20 depth PIT: 58 rows parsed; date label=(none)
+20:30:20 depth PIT: 58 rows parsed; date label=(none)
+20:30:21 depth SF: 200 https://www.49ers.com/team/depth-chart
+20:30:21 depth SF: 200 https://www.49ers.com/team/depth-chart
+20:30:21 depth SF: 58 rows parsed; date label=(none)
+20:30:21 depth SF: 58 rows parsed; date label=(none)
+20:30:22 depth SEA: 200 https://www.seahawks.com/team/depth-chart
+20:30:22 depth SEA: 200 https://www.seahawks.com/team/depth-chart
+20:30:22 depth SEA: 62 rows parsed; date label=(none)
+20:30:22 depth SEA: 62 rows parsed; date label=(none)
+20:30:23 depth TB: 200 https://www.buccaneers.com/team/depth-chart
+20:30:23 depth TB: 200 https://www.buccaneers.com/team/depth-chart
+20:30:23 depth TB: 60 rows parsed; date label=(none)
+20:30:23 depth TB: 60 rows parsed; date label=(none)
+20:30:23 depth TEN: 200 https://www.tennesseetitans.com/team/depth-chart
+20:30:23 depth TEN: 200 https://www.tennesseetitans.com/team/depth-chart
+20:30:23 depth TEN: 62 rows parsed; date label=Unofficial (no date printed)
+20:30:23 depth TEN: 62 rows parsed; date label=Unofficial (no date printed)
+20:30:24 depth WAS: 200 https://www.commanders.com/team/depth-chart
+20:30:24 depth WAS: 200 https://www.commanders.com/team/depth-chart
+20:30:24 depth WAS: 59 rows parsed; date label=Unofficial (no date printed)
+20:30:24 depth WAS: 59 rows parsed; date label=Unofficial (no date printed)
+FAILURES (2):
+  - gamebook packers-at-patriots-2026-reg-9: lineups not parsed (fixed-width layout read [10, 9, 9, 10] players per column; a starting lineup needs at least ten per unit)
+  - gamebook vikings-at-packers-2026-reg-10: lineups not parsed (fixed-width layout read [10, 10, 10, 9] players per column; a starting lineup needs at least ten per unit)
+{
+  "week9_games": 15,
+  "week10_games": 14,
+  "gamebooks": 29,
+  "lineup_rows": 1188,
+  "inactive_rows": 412,
+  "substitution_rows": 1315,
+  "roster_rows": 2886,
+  "depth_rows": 32,
+  "depth_chart_rows": 1817,
+  "clubs_with_parsed_depth": 31
+}
