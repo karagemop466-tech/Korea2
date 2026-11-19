@@ -3490,3 +3490,71 @@ Requirement counts after the five status updates: **13 verified, 37 partial, 16 
 - **Merged** as commit `88413b7a` at 2026-11-19T20:42:21Z (regular merge, no --auto). PR #143 closed as superseded by this PR; stale PRs #93/#97/#112 closed with reasons (branches preserved).
 - **GitHub Pages:** "pages build and deployment" for `88413b7a` completed **success** (run started 20:42:24Z). Live tree re-read rather than trusted: `pages/flagged.html` serves the updated FL-21 (45/45 + residual distribution + provenance warning), FL-23 (2026-11-19 re-read, zero-ACCEPTED count, panel conclusion) and FL-24 (8 section tables render exactly once); `pages/readiness.html` serves RR-C12 (second dated read, 347 rows, 28/28 double-entry), RR-C23 and RR-F5 (delta 160 -> 171 in the review-board register) with the new evidence links. Site live and not broken.
 - Session complete: H1, F1, F2, F3 all done. No other session's content was edited except via documented generators under CI pressure (logged above); the W11 capture scope (arena/d1fe94e9-korea2) and the official-verification hub (arena/875a7b96-korea2) were left untouched.
+
+
+
+# Session board — `arena/995191cd-korea2` (final integration: line-by-line verification, register rebuild, publish)
+
+**Session ID:** `arena/995191cd-korea2` (Arena-assigned branch is fixed; base `1d56d09` = PR #145 merge of `main`).
+**Claimed:** 2026-11-19 UTC. No other session held a live claim on the scope below; all prior sessions'
+work is merged into the base. This is the final integration pass.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| I-1 | Claim the final-integration scope in this board | done | `arena/995191cd-korea2` | this append-only section |
+| I-2 | Line-by-line re-verification of the official NFL.com pages and the committed registers | done | `arena/995191cd-korea2` | `docs/INTEGRATION_VERIFICATION_2026-11-19.md` (new) |
+| I-3 | Rebuild stale derived registers (`requirements-desk` analysis + pages; `review-board` ingest + pages) | done | `arena/995191cd-korea2` | `requirements-desk/data/analysis.json`, `requirements-desk/pages/injuries.html`, `requirements-desk/pages/verification.html`, `review-board/data/*`, `review-board/pages/hubmap.html`, `review-board/pages/reconciliation.html` |
+| I-4 | Correct stale documentation counts (37 partial / 16 blocked) | done | `arena/995191cd-korea2` | `README.md`, `EXECUTIVE_SUMMARY.md` |
+| I-5 | Run the full local verification suite on the final tree | done | `arena/995191cd-korea2` | (no file changes) |
+| I-6 | PR to main, merge, confirm GitHub Pages, record result | in progress | `arena/995191cd-korea2` | `COORDINATION.md` (this section) |
+
+**Explicitly NOT touched:** all model, price and hub data values; every other hub's pages; the
+requirement definitions in `requirements-desk/scripts/requirements.py`; workflows. Only the
+stale derived registers above were regenerated, plus the two documentation lines.
+
+## I-2 — what was verified, and against what
+
+All four official pages were re-read live on 2026-11-19 (page-retrieval tool; the sandbox shell has
+no route to nfl.com, so no raw HTTP body was retained — the committed register hashes cover the
+transcribed rows, flag F-01 stands):
+
+- **Week 10 injury report** — 347 rows / 28 clubs / 171 designated (Out 70, Questionable 90,
+  Doubtful 11, blank 176); DET's Kerby Joseph, Cade Mays and D.J. Reed all **Out**; CIN = 9,
+  SEA = 15; CHI/DEN/PHI/TB absent and confirmed on bye. Matches `requirements-desk/data/injury_report_2026_w10.csv`
+  club by club.
+- **Week 10 schedule** — 14/14 FINAL with scores; 4 byes. Matches `results_2026_w10.csv`.
+- **Week 11 schedule** — 13 fixtures, kickoffs/networks/venues, 6 byes, 1 neutral site.
+  Matches `schedule_2026_w11.csv`.
+- **2026 standings** — 32 clubs; matches `standings_2026.csv`.
+
+The four official correlations and the luck SD were recomputed from `standings_2026.csv` and
+reproduce `analysis.json` exactly (+0.657 / −0.670 / +0.875 / +0.872; luck SD 1.076, n=32).
+Method reference: [NIST DATAPLOT correlation confidence limits](https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm).
+
+## I-3 / I-4 — irregularities found and fixed
+
+1. `requirements-desk/data/analysis.json` was stale: it recorded 5 successful automated injury
+   captures; a sixth manifest (`reg10_2026_20261118T041840Z.json`) had been committed since.
+   Regenerated; the correlation/luck values were already correct.
+2. `review-board` registers (`reconciliation.json`, `hub_map.json`, `queue.json`, `readiness.json`,
+   `injuries.json`, `injury_delta.json`) were stale against sibling inputs; re-ran `ingest.py` +
+   `build_site.py`. `verify_all.py` now passes 131/0.
+3. `README.md` and `EXECUTIVE_SUMMARY.md` quoted 36 partial / 17 blocked; the rendered register
+   already showed 37 partial / 16 blocked. Updated both to match the register.
+4. Recorded (not hidden): `data/derived/verification.json` and `verification/recompute.json` carry a
+   run timestamp that changes on every local run; the carried values are unchanged.
+
+## I-5 — full suite (all green on the final tree)
+
+`tests/check_site.py` (252 pages / 16,877 links), `scripts/check_links.py` (5,762 refs),
+`scripts/validate_data.py`, `tests/check_data.py`, `tests/check_derived.py`, `verification/recompute.py`
+(52 checks, 0 mismatches), `requirements-desk` verify (74 requirements / 6 registers),
+`line-desk` build --check + verify, `price-desk` verify (20,504 checks) + 10 tests,
+`review-board` verify_all (131/0), `decision-desk`, `verify-hub` (7 tests), `price-store` (9 tests),
+`availability-sweep` (2,224 checks), `injury-capture` check (28/28 teams, 347 rows).
+
+## Requests to owners (logged, not actioned)
+
+None outstanding for this pass. The open evidence gaps (official price archive, 32-club depth source,
+136-game corpus, funded reward) remain published on each hub's Flagged for Review page and do not
+block publication.
