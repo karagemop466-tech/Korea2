@@ -585,3 +585,15 @@ Traceback (most recent call last):
                   ^^^^^^^^^
 AttributeError: 'NoneType' object has no attribute 'group'
 capture failed; diagnostics written to availability-graph/manifests/capture_error_20261119T201617Z.json
+Traceback (most recent call last):
+  File "/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py", line 1040, in main
+    return run()
+           ^^^^^
+  File "/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py", line 1120, in run
+    games = parse_schedule(body.decode("utf-8", "replace"), season, week)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py", line 324, in parse_schedule
+    "date_text": (dsm.group("away") and "") or "",
+                  ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'group'
+capture failed; diagnostics written to availability-graph/manifests/capture_error_20261119T201825Z.json
