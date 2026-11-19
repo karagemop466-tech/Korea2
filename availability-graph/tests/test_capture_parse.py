@@ -227,3 +227,48 @@ class FixedWidthLineupTests(unittest.TestCase):
     def test_a_row_that_leaves_the_table_stops_the_parse(self):
         # The fixture ends with a trailing row that is not a lineup row.
         self.assertEqual(len(self.result["rows"]), 44)
+
+
+class GameBookHeaderTests(unittest.TestCase):
+    """The header fields of the official game book: date, venue, roof, surface and weather."""
+
+    def setUp(self):
+        self.md = cap.parse_gamebook(read(os.path.join(FIX, "ne_det_2026_reg10_gamebook.md")))
+        self.txt = cap.parse_gamebook(read(os.path.join(FIX, "ne_det_2026_reg10_gamebook_layout.txt")))
+
+    def test_the_two_official_renderings_agree(self):
+        for key in ("date_text", "away_printed", "home_printed", "venue", "start_time",
+                    "weather", "temp", "humidity", "wind", "roof", "surface"):
+            self.assertEqual(self.md[key], self.txt[key], f"{key} differs between the renderings")
+
+    def test_the_verified_header_values(self):
+        self.assertEqual(self.md["date_text"], "Sunday, 11/15/2026")
+        self.assertEqual(self.md["away_printed"], "New England Patriots")
+        self.assertEqual(self.md["home_printed"], "Detroit Lions")
+        self.assertEqual(self.md["venue"], "Allianz Arena, Munich, Germany")
+        self.assertEqual(self.md["start_time"], "3:33 PM CET")
+        self.assertEqual(self.md["weather"], "Cloudy")
+        self.assertEqual(self.md["temp"], "52° F (11.1° C)")
+        self.assertEqual(self.md["humidity"], "51%")
+        self.assertEqual(self.md["wind"], "SE 3 mph")
+        self.assertEqual(self.md["roof"], "Open Stadium")
+        self.assertEqual(self.md["surface"], "Natural Grass")
+
+    def test_no_field_is_invented(self):
+        for value in (self.md["weather"], self.md["temp"], self.md["humidity"], self.md["wind"]):
+            self.assertNotIn("TBD", value)
+            self.assertNotIn("N/A", value)
+
+
+class ClubNicknameTests(unittest.TestCase):
+    """The official schedule page and the official game URL use the short club name."""
+
+    def test_every_club_has_a_unique_nickname(self):
+        self.assertEqual(len(cap.NICKNAME_TO_ABBR), 32)
+        self.assertEqual(len(set(cap.NICKNAME_TO_ABBR.values())), 32)
+
+    def test_the_nickname_is_the_last_word_of_the_official_name(self):
+        self.assertEqual(cap.NICKNAME_TO_ABBR["steelers"], "PIT")
+        self.assertEqual(cap.NICKNAME_TO_ABBR["49ers"], "SF")
+        self.assertEqual(cap.NICKNAME_TO_ABBR["commanders"], "WAS")
+        self.assertEqual(cap.NICKNAME_TO_ABBR["buccaneers"], "TB")

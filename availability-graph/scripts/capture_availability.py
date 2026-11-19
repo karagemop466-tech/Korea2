@@ -88,6 +88,17 @@ CLUBS = {
     "tennessee-titans": ("TEN", "Tennessee Titans"),
     "washington-commanders": ("WAS", "Washington Commanders"),
 }
+# The official NFL game URL uses a short club name ("steelers-at-bengals-2026-reg-10"), and the
+# official schedule page prints the same short name next to the score ("Steelers 18, Bengals 38").
+# The nickname of a club is the last word of its official full name; that word is unique across the
+# 32 clubs, so it maps a printed club name to the club's abbreviation without guessing.
+NICKNAME_TO_ABBR = {}
+for _slug, (_abbr, _full) in CLUBS.items():
+    _nick = _full.split()[-1].lower()
+    if _nick in NICKNAME_TO_ABBR:
+        raise SystemExit(f"club nickname collision: {_nick}")
+    NICKNAME_TO_ABBR[_nick] = _abbr
+
 SLUG_TO_ABBR = {slug: abbr for slug, (abbr, _) in CLUBS.items()}
 ABBR_TO_FULL = {abbr: full for _, (abbr, full) in CLUBS.items()}
 SLUG_TO_FULL = {slug: full for slug, (_, full) in CLUBS.items()}
@@ -247,63 +258,87 @@ def strip_tags(html: str) -> str:
 
 
 # --------------------------------------------------------------------------- schedule parse
+ANCHOR_RE = re.compile(
+    r"<a[^>]*href=\"/games/(?P<slug>[a-z0-9\-]+-at-[a-z0-9\-]+-\d{4}-reg-\d+)\"[^>]*>"
+    r"(?P<inner>.*?)</a>", re.S | re.I)
+SCORE_INNER_RE = re.compile(
+    r"(?P<away>[A-Z][A-Za-z'&.]{1,20})\s+(?P<ascore>\d{1,3})\s*,\s*"
+    r"(?P<home>[A-Z][A-Za-z'&.]{1,20})\s+(?P<hscore>\d{1,3})\s*,\s*"
+    r"(?P<status>FINAL|Final|SCHEDULED|Scheduled|POSTPONED|Postponed)"
+)
+DATE_INNER_RE = re.compile(
+    r"(?P<away>[A-Z][A-Za-z'&.]{1,20}(?:\s+[A-Z][A-Za-z'&.]{1,20})?)\s+at\s+"
+    r"(?P<home>[A-Z][A-Za-z'&.]{1,20}(?:\s+[A-Z][A-Za-z'&.]{1,20})?)\s+at\s+"
+    r"(?P<venue>[^|]+?)(?:,|\s{2,}|$)")
+
+
+def cap_abbr(printed_name: str) -> str:
+    """Map a club name printed by an official source to the club's abbreviation."""
+    name = " ".join((printed_name or "").replace(".", " ").split())
+    if not name:
+        return ""
+    last = name.split()[-1].lower()
+    if last in NICKNAME_TO_ABBR:
+        return NICKNAME_TO_ABBR[last]
+    full = name.lower()
+    for _abbr, _full in ABBR_TO_FULL.items():
+        if _full.lower() == full:
+            return _abbr
+    return ""
+
+
 def parse_schedule(html: str, season: str, week: str) -> list[dict]:
-    """Extract the official games of one week from the official schedule page."""
+    """Extract the official games of one week from the official schedule page.
+
+    The official page prints, for every game, the short club names and the official score in the
+    same anchor as the game link: "Steelers 18, Bengals 38, FINAL, Sunday, November 15th". The
+    score is read from that anchor only, so a score can never be attached to the wrong game.
+    """
     games: dict[str, dict] = {}
-    for m in GAME_URL_RE.finditer(html):
-        slug = m.group(1)
+    for m in ANCHOR_RE.finditer(html):
+        slug = m.group("slug")
         if not slug.endswith(f"-reg-{week}"):
             continue
+        inner = strip_tags(m.group("inner"))
+        inner = " ".join(inner.split())
         if slug in games:
-            continue
-        parts = slug.split("-at-")
-        away_slug = parts[0]
-        home_slug = parts[1].rsplit(f"-{season}-reg-{week}", 1)[0]
+            # A second anchor for the same game (the replay link) carries no score.
+            if games[slug]["away_score"]:
+                continue
+        sm = SCORE_INNER_RE.search(inner)
+        dsm = DATE_INNER_RE.search(inner)
+        away_txt = sm.group("away") if sm else (dsm.group("away") if dsm else "")
+        home_txt = sm.group("home") if sm else (dsm.group("home") if dsm else "")
+        away_abbr = NICKNAME_TO_ABBR.get(away_txt.strip().lower(), "")
+        home_abbr = NICKNAME_TO_ABBR.get(home_txt.strip().lower(), "")
         games[slug] = {
             "slug": slug,
             "game_url": f"https://www.nfl.com/games/{slug}",
-            "away_team": SLUG_TO_ABBR.get(away_slug, away_slug),
-            "home_team": SLUG_TO_ABBR.get(home_slug, home_slug),
-            "away_score": "", "home_score": "", "status": "", "slot": "", "broadcast": "",
-            "date_text": "", "source_url": f"https://www.nfl.com/schedules/{season}/by-week/week-{week}",
+            "away_team": away_abbr,
+            "home_team": home_abbr,
+            "away_team_printed": away_txt.strip(),
+            "home_team_printed": home_txt.strip(),
+            "away_score": sm.group("ascore") if sm else "",
+            "home_score": sm.group("hscore") if sm else "",
+            "status": sm.group("status").upper() if sm else "",
+            "date_text": (dsm.group("away") and "") or "",
+            "slot": "", "broadcast": "",
+            "source_url": f"https://www.nfl.com/schedules/{season}/by-week/week-{week}",
         }
     if not games:
         return []
-    # Scores: the page prints "Steelers 18, Bengals 38, FINAL, Sunday, November 15th" next to the
-    # game link. A score is only accepted when the printed club names match the game slug.
+    # Kickoff slot: "Sunday 8:20 PM EST (NBC, Universo)" printed near the game.
     plain = strip_tags(html)
-    for sm in SCORE_RE.finditer(plain):
-        away_txt, home_txt = sm.group("away"), sm.group("home")
-        for game in games.values():
-            away_full = ABBR_TO_FULL.get(game["away_team"], "")
-            home_full = ABBR_TO_FULL.get(game["home_team"], "")
-            if not away_full or not home_full:
-                continue
-            away_last = away_full.split()[-1].lower()
-            home_last = home_full.split()[-1].lower()
-            if away_last not in away_txt.lower() or home_last not in home_txt.lower():
-                continue
-            if game["away_score"]:
-                continue
-            game["away_score"] = sm.group("ascore")
-            game["home_score"] = sm.group("hscore")
-            game["status"] = sm.group("status").upper()
-            break
-    # Kickoff slot: "Sunday 8:20 PM EST (NBC, Universo)".
+    plain = " ".join(plain.split())
     for km in SLOT_RE.finditer(plain):
-        window = plain[max(0, km.start() - 400): km.end() + 400]
+        window = plain[max(0, km.start() - 300): km.end() + 300]
         for game in games.values():
-            if game["slot"] or game["away_team"] not in window:
+            if game["slot"] or not game["away_team_printed"]:
+                continue
+            if game["away_team_printed"].lower() not in window.lower():
                 continue
             game["slot"] = f"{km.group('day')} {km.group('tz')}"
             game["broadcast"] = km.group("broadcast").strip()
-            break
-    # Date: "Nov 15" style text next to the game.
-    for game in games.values():
-        m = re.search(r"(January|February|March|April|May|June|July|August|September|October|"
-                      r"November|December)\s+(\d{1,2})", plain)
-        if m:
-            game["date_text"] = f"{m.group(1)} {m.group(2)}"
             break
     return list(games.values())
 
@@ -640,45 +675,66 @@ def split_two_columns(block_lines: list[str]):
     return " ".join(left), " ".join(right)
 
 
+HEADER_FIELD_RE = re.compile(
+    r"(?P<label>Start Time|Game Weather|Temp|Humidity|Wind|Paid Attendance)\s*:")
+VENUE_RE = re.compile(
+    r"(?P<away>[A-Z][A-Za-z'.&\- ]{1,40}?)\s+at\s+"
+    r"(?P<home>[A-Z][A-Za-z'.&\- ]{1,40}?)\s+at\s+"
+    r"(?P<venue>[^|]+?)(?=\s{2,}\S|\s+Start Time:|\s*$|$)")
+
+
 def parse_gamebook(text: str) -> dict:
-    """Extract everything this project needs from one official Game Book."""
+    """Extract everything this project needs from one official Game Book.
+
+    The header fields of a game book are printed as "Label: value". A field value ends at the
+    pipe of the next table cell or at the end of the line, and the game-book extraction puts the
+    columns of the header side by side, so a value is trimmed at a run of two or more spaces when
+    that run is followed by another labelled field.
+    """
     lines = text.splitlines()
-    out: dict = {"sections": {}, "date_text": "", "venue": "", "start_time": "", "weather": "",
-                 "temp": "", "humidity": "", "wind": "", "roof": "", "surface": "", "attendance": ""}
+    out: dict = {"sections": {}, "date_text": "", "venue": "", "away_printed": "", "home_printed": "",
+                 "start_time": "", "weather": "", "temp": "", "humidity": "", "wind": "",
+                 "roof": "", "surface": "", "attendance": ""}
     head = "\n".join(lines[:60])
     m = re.search(r"Date:\s*(?P<date>[A-Za-z]+,\s*\d{1,2}/\d{1,2}/\d{4})(?P<rest>[^\n|]*)", head)
     if m:
         out["date_text"] = m.group("date").strip()
-        rest = re.split(r"\s{2,}", m.group("rest").strip())[0]
-        out["venue"] = rest.rsplit(" at ", 1)[-1].strip() if " at " in rest else rest
-    else:
-        out["date_text"] = ""
-        out["venue"] = ""
+        rest = m.group("rest").strip()
+        vm = VENUE_RE.search(rest)
+        if vm:
+            out["away_printed"] = vm.group("away").strip()
+            out["home_printed"] = vm.group("home").strip()
+            out["venue"] = vm.group("venue").strip()
     # Head fields are read cell by cell: a game book prints one fact per line or per table cell.
     for line in lines[:60]:
         for cell in line.split("|"):
             raw = cell.strip()
             if not raw:
                 continue
-            if "Start Time:" in raw:
-                out["start_time"] = raw.split("Start Time:", 1)[1].strip().rstrip("|").strip()
-            if "Game Weather:" in raw:
-                out["weather"] = raw.split("Game Weather:", 1)[1].strip().rstrip("|").strip()
-            mm = re.search(r"Temp:\s*(.+?)(?:\s+Humidity:|$)", raw)
-            if mm:
-                out["temp"] = mm.group(1).strip().rstrip("|").strip()
-            mm = re.search(r"Humidity:\s*([^,|]+)", raw)
-            if mm:
-                out["humidity"] = mm.group(1).strip()
-            mm = re.search(r"Wind:\s*(.+?)(?:\s*\||$)", raw)
-            if mm:
-                out["wind"] = mm.group(1).strip()
+            fields = list(HEADER_FIELD_RE.finditer(raw))
+            for idx, fm in enumerate(fields):
+                label = fm.group("label")
+                # The value of a field runs to the next labelled field on the same line.
+                stop = fields[idx + 1].start() if idx + 1 < len(fields) else len(raw)
+                value = raw[fm.end():stop].strip()
+                value = re.split(r"\s{2,}(?=[A-Z][A-Za-z ]+:)", value)[0].strip()
+                if label == "Start Time":
+                    out["start_time"] = value
+                elif label == "Game Weather":
+                    out["weather"] = value
+                elif label == "Temp":
+                    out["temp"] = value
+                elif label == "Humidity":
+                    out["humidity"] = value.rstrip(",").strip()
+                elif label == "Wind":
+                    out["wind"] = value.rstrip(",").strip()
+                elif label == "Paid Attendance":
+                    am = re.match(r"(?P<a>[\d,]+)", value)
+                    out["attendance"] = am.group("a").strip() if am else ""
     rm = re.search(r"(?P<roof>[A-Z][A-Za-z ]*?Stadium)\s+on\s+(?P<surface>Natural Grass|Artificial Turf)",
                    head)
     out["roof"] = rm.group("roof").strip() if rm else ""
     out["surface"] = rm.group("surface").strip() if rm else ""
-    am = re.search(r"Paid Attendance:\s*(?P<a>[\d,]+)", text)
-    out["attendance"] = am.group("a").strip() if am else ""
     out["lineups"] = parse_lineups(text)
     for section, key in (("Substitutions", "substitutions"), ("Did Not Play", "did_not_play"),
                          ("Not Active", "not_active")):
@@ -1038,6 +1094,22 @@ def run() -> int:
                     continue
                 gb = parse_gamebook(text)
                 away, home = game["away_team"], game["home_team"]
+                # The official game book prints both club names. They are the authority for
+                # which club a lineup column belongs to; the schedule page is only a cross-check.
+                book_away = cap_abbr(gb.get("away_printed", ""))
+                book_home = cap_abbr(gb.get("home_printed", ""))
+                if book_away and book_home:
+                    if away and book_away != away:
+                        failures.append(
+                            f"gamebook {slug}: prints {book_away} as the visiting club but the "
+                            f"schedule page says {away}")
+                    if home and book_home != home:
+                        failures.append(
+                            f"gamebook {slug}: prints {book_home} as the home club but the "
+                            f"schedule page says {home}")
+                    away, home = book_away, book_home
+                elif not away or not home:
+                    failures.append(f"gamebook {slug}: the club names could not be resolved")
                 log(f"week {week} {slug}: lineups={'ok' if gb['lineups']['ok'] else 'FAILED'} "
                     f"({gb['lineups']['note']}); method={method}")
                 if len(manifest.get("diagnostics", {})) < 2:
@@ -1049,6 +1121,10 @@ def run() -> int:
                     "season": season, "week": week, "slug": slug,
                     "game_url": game_url, "gamebook_url": pdf_url,
                     "away_team": away, "home_team": home,
+                "away_team_printed": game.get("away_team_printed", ""),
+                "home_team_printed": game.get("home_team_printed", ""),
+                "gamebook_away_printed": gb.get("away_printed", ""),
+                "gamebook_home_printed": gb.get("home_printed", ""),
                     "away_score": game["away_score"], "home_score": game["home_score"],
                     "status": game["status"], "slot": game["slot"], "broadcast": game["broadcast"],
                     "gamebook_date": gb.get("date_text", ""), "venue_text": gb.get("venue", ""),

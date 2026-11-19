@@ -1,0 +1,43 @@
+name: availability-graph
+
+# Verifies and rebuilds the availability-graph hub.
+#
+# The capture itself runs in `.github/workflows/availability-capture.yml` on a runner (the
+# authoring sandbox cannot reach nfl.com). This workflow only checks what is committed:
+#   * the parser test suite (official Game Book rows, the real runner geometry, the club depth
+#     chart, the roster rows and the availability-graph schema);
+#   * the strict verifier of the published registers;
+#   * the site build is reproducible (the committed HTML matches a fresh build).
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - 'availability-graph/**'
+  pull_request:
+    paths:
+      - 'availability-graph/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  availability-graph:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Parser and schema tests
+        run: python -m unittest discover -s availability-graph/tests -t availability-graph/tests -v
+
+      - name: Strict verifier of the published registers
+        run: python availability-graph/scripts/verify.py
+
+      - name: The committed site matches a fresh build
+        run: python availability-graph/scripts/build_site.py --check
