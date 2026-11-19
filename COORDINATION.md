@@ -3284,3 +3284,36 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 - **PR #144** (`arena/a09e4528-korea2` → `main`): https://github.com/karagemop466-tech/Korea2/pull/144. All 8 CI checks passed before merge (`validate`, `review-board`, `tests-and-links`, `verify-hub`, `decision-desk`, `verify`, `verify-skill-lab`, `verify`). Merged (regular merge, no auto) as **b1d1478** at 2026-11-18T05:08:40Z.
 - **GitHub Pages**: "pages build and deployment" for the merge commit b1d14784 reported **success**. The live tree was then re-read rather than trusted from the badge: https://karagemop466-tech.github.io/Korea2/review-board/pages/injuries.html serves the 2026-11-18 re-read (347 rows / 171 designated, 28/28 double-entry section) and https://karagemop466-tech.github.io/Korea2/review-board/pages/reconciliation.html serves the field-level price cross-check (45/45 agree rows). Site confirmed live, not broken.
 - This follow-up commit records the merge result only; it contains no data or page change.
+
+
+# Session board — `arena/5d001552-korea2` (Week 11 official availability capture + delta series)
+
+**Session ID:** `arena/5d001552-korea2`. Branch assigned by the environment (fixed; not renamable).
+**Base:** `1d56d09` (= PR #145 merge on `main`).
+**Claimed:** 2026-11-19 UTC, before any product edit.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| W11-0 | Claim a non-overlapping scope on this board | done | `arena/5d001552-korea2` | this append-only section of `COORDINATION.md` |
+| W11-1 | Capture the official Week 11 2026 injury report row by row, with read clock times, register hash and per-row source URLs | in progress | `arena/5d001552-korea2` | `week11-desk/data/` |
+| W11-2 | Capture the official Week 11 2026 schedule/fixture register (13 fixtures, venues, status) | in progress | `arena/5d001552-korea2` | `week11-desk/data/` |
+| W11-3 | Compute the Week 10 -> Week 11 delta series (newly listed, cleared, designation changes, practice trend) and publish the delta, not the level | in progress | `arena/5d001552-korea2` | `week11-desk/data/`, `week11-desk/scripts/deltas.py` |
+| W11-4 | Resolve or re-open the FL-17 / FL-02 "Week 11 report not published" flag with the dated read that now succeeds; log the correction as a request to the root flag owner (do not edit `data/flagged.json`) | in progress | `arena/5d001552-korea2` | `week11-desk/data/`, this section |
+| W11-5 | Publish a strict verifier: every register row carries an https official source link, row counts match the committed CSVs and the manifest hash, delta arithmetic recomputes, no claim without a source | in progress | `arena/5d001552-korea2` | `week11-desk/scripts/verify.py` |
+| W11-6 | Build the hub site (landing + subpages) and link it from root navigation | in progress | `arena/5d001552-korea2` | `week11-desk/index.html`, `week11-desk/pages/`, `week11-desk/scripts/build_site.py`, one nav entry in root `index.html` |
+| W11-7 | PR from this branch, merge, confirm GitHub Pages deploy, record the result here | in progress | `arena/5d001552-korea2` | this section |
+
+**Scope boundary.** This session creates and edits only `week11-desk/` (new, unclaimed directory) plus
+exactly one navigation entry in root `index.html`, and appends only to its own section of this board.
+It does **not** edit `data/`, `pages/`, `scripts/`, `results/`, `requirements-desk/`, `availability-sweep/`,
+`review-board/`, `injury-capture/`, any other hub, or any workflow. Requests concerning those files are
+logged in this section, not actioned.
+
+**Why this scope and not another.** At the time of claiming, the newest merged work on `main` records
+that the Week 11 official injury report was *not* published at the 2026-11-18T03:55Z read (root flag
+`FL-17`, `availability-sweep/data/capture_log.csv` row `20261118-9fa8ea61-reg11-attempt`, 0 rows). This
+session re-read the URL on 2026-11-19 and it now serves the Week 11 report, so a dated Week 11 capture
+plus a Week 10 -> Week 11 delta is the unmet requirement with live official evidence behind it. The
+owner brief requires the injury report to be "a timestamped series, not a weekly snapshot", to "publish
+the delta, never the level", and to keep immutable per-read clock times; no hub on `main` yet holds a
+Week 11 register.
