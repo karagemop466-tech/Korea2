@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="generator" content="official-verification/scripts/verify_official.py">
+<meta name="description" content="Executive summary of the official-source verification: what is verified, what is blank and why, plus the irregularity flags.">
+<link rel="stylesheet" href="../assets/style.css">
+<title>Executive summary | Official Verification</title>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<aside class="sidebar">
+  <a class="brand" href="../../index.html">
+    <span class="mark">OV</span><span>OFFICIAL VERIFICATION<small>NFL LINE LAB RESEARCH</small></span></a>
+  <div class="nav-label">Workspace</div>
+  <nav aria-label="Main navigation">
+    <a href="../../index.html">Verification overview</a>
+    <a href="verification-report.html">Verification report</a>
+    <a href="executive-summary.html" class="active" aria-current="page">Executive summary</a>
+    <span class="nav-group">Source evidence (root site)</span>
+    <a href="../../pages/sources.html">Source register</a>
+    <a href="../../pages/flagged.html">Flagged for review</a>
+    <a href="../../pages/suggestions.html">Suggestion register</a>
+    <a href="../../pages/decision-questions.html">Open questions</a>
+    <a href="../../pages/executive.html">Root executive summary</a>
+    <a href="../../pages/readiness.html">Decision readiness</a>
+  </nav>
+  <div class="sidebar-note"><span class="dot"></span>Capture 2026-11-19<br>
+    <strong>Executive readout</strong><span>11 verified &bull; 5 blank &bull; 3 flagged &bull; 0 inferred.</span></div>
+</aside>
+<main id="main">
+<header class="topbar">
+  <span class="crumb">EXECUTIVE SUMMARY</span>
+  <a class="review-link" href="../../pages/flagged.html">Flagged for review &nearr;</a>
+</header>
+
+<div class="hero compact">
+  <div class="eyebrow">ONE-PAGE READOUT</div>
+  <h1>Executive summary &mdash; official-source verification</h1>
+  <p class="lede">This workspace originates its own NFL lines and measures strategy skill, but it does not
+  publish picks. The single most important finding of this verification capture: most of what the site
+  can verify <em>is</em> verified against official NFL pages, and the rest is deliberately left blank
+  because no official source publishes it.</p>
+</div>
+
+<div class="kpis">
+  <article class="kpi"><span class="kpi-label">Checks run</span><strong>19</strong>
+    <p>Standings, injuries, schedule results, venue, schedule announcement, prices, depth, source integrity.</p></article>
+  <article class="kpi"><span class="kpi-label">Verified vs official NFL source</span><strong>11</strong>
+    <p>Includes NE@DET score (10-35), Munich venue, three Lions Out designations, and the May 14, 2026 schedule announcement.</p></article>
+  <article class="kpi"><span class="kpi-label">Blank by policy</span><strong>5</strong>
+    <p>Market prices, prop prices, depth ranks, snap counts - no official source publishes them.</p></article>
+  <article class="kpi"><span class="kpi-label">Flagged (caveats)</span><strong>3</strong>
+    <p>Injury-report week mismatch, stale site snapshot, partial standings read.</p></article>
+  <article class="kpi"><span class="kpi-label">Values estimated or filled in</span><strong>0</strong>
+    <p>Every blank states its reason; nothing is inferred.</p></article>
+</div>
+
+<section class="block">
+  <h2>Bottom line</h2>
+  <div class="grid2">
+    <div class="panel"><h3>What holds up</h3>
+      <ul class="ticks">
+        <li>NE@DET Week 10: Patriots 10, Lions 35, Final &mdash; confirmed on the schedule page and the game centre.</li>
+        <li>NE@DET venue: Munich, FC Bayern Munich Stadium &mdash; confirmed on the game centre Game Info block.</li>
+        <li>Lions Kerby Joseph, Cade Mays and D.J. Reed are all <strong>Out</strong> on the official Week 10 injury report (resolves VR-08/VR-12).</li>
+        <li>2026 standings sample (Bills 8-1 PF287/PA199; Patriots 5-5 PF221/PA242; Lions 7-2 PF257/PA199) matches NFL.com.</li>
+        <li>Schedule announcement dated May 14, 2026; 18 weeks, 272 games; kickoff Sept 9, 2026 Seattle vs New England.</li>
+      </ul></div>
+    <div class="panel"><h3>What is deliberately blank</h3>
+      <ul class="crosses">
+        <li>Market open and close lines &mdash; NFL.com publishes no odds; the official betting feed goes to operators via Genius Sports.</li>
+        <li>Player-prop prices &mdash; no historical prop prices in any source held; no prop ROI is published.</li>
+        <li>Official depth-chart rank (1st/2nd/3rd/4th string) &mdash; no league-official depth chart exists; club pages are inconsistent or self-labelled unofficial.</li>
+        <li>Snap counts / snap share &mdash; not a published column of the weekly report.</li>
+      </ul></div>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Irregularity flags</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Flag</th><th>Finding</th><th>Disposition</th><th>Source</th></tr></thead>
+    <tbody>
+    <tr><td>OV-17</td>
+        <td>Injury-report page shell is titled &ldquo;Week 11&rdquo; while its content is &ldquo;Injuries - WEEK 10&rdquo;</td>
+        <td>Source caveat; content treated as Week 10. Previously logged as FL-17.</td>
+        <td class="src"><a href="https://www.nfl.com/injuries/league/2026/reg10" rel="noopener">NFL.com injury report</a></td></tr>
+    <tr><td>OV-18</td>
+        <td>Root analysis snapshot ends gameday 2026-11-01, but official Week 10 results (Nov 12-15) are now published</td>
+        <td>Snapshot labelled historical; not a current recommendation. Readiness rows reflect the gap.</td>
+        <td class="src"><a href="https://www.nfl.com/schedules/2026/by-week/week-10" rel="noopener">NFL.com Week 10 schedule</a></td></tr>
+    <tr><td>OV-19</td>
+        <td>A single standings retrieval captured 24 of 32 clubs before chunk truncation</td>
+        <td>Individually checked clubs (BUF, NE, DET) are confirmed; full-table reads should retry both chunks.</td>
+        <td class="src"><a href="https://www.nfl.com/standings/division/2026/REG" rel="noopener">NFL.com 2026 standings</a></td></tr>
+    </tbody>
+  </table>
+  <p class="small">Full detail with read timestamps: <a href="verification-report.html">Verification report &rarr;</a></p>
+</section>
+
+<section class="block">
+  <h2>Decision implications</h2>
+  <div class="grid2">
+    <div class="panel"><h3>No price-based claims can be made yet</h3>
+      <p>Without a permitted market-price source (RR-A9 open), closing-line value cannot be measured, no
+      strategy can be promoted to live, and the demotion gate (RR-B5) has no subject &mdash; all 7
+      candidates stay PAPER. This is a source limit, not a modelling choice.</p></div>
+    <div class="panel"><h3>Depth and injury features remain blocked</h3>
+      <p>No official depth rank, snap count, inactive list or reserve list is captured, so replacement
+      depth, injury ablations and the O vs D deficiency matrix cannot be computed from official evidence
+      (RR-C2, RR-C5, RR-C15, RR-C27). Game Books are the structured source but are not yet ingested per fixture (S13).</p></div>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Related registers</h2>
+  <div class="grid2">
+    <div class="panel"><h3>Verification report</h3>
+      <p>Per-check detail, source URLs and read timestamps.</p>
+      <a class="card-link" href="verification-report.html">Read report &rarr;</a></div>
+    <div class="panel"><h3>Suggestions (review before implementing)</h3>
+      <p>Proposals to improve decision-making; nothing is implemented until a reviewer chooses a path.</p>
+      <a class="card-link" href="../../pages/suggestions.html">Suggestion register &rarr;</a></div>
+    <div class="panel"><h3>Open questions</h3>
+      <p>What must be answered before a decision is reasonable.</p>
+      <a class="card-link" href="../../pages/decision-questions.html">Open questions &rarr;</a></div>
+    <div class="panel"><h3>Flagged for review</h3>
+      <p>Irregularities published non-blocking, each with a source.</p>
+      <a class="card-link" href="../../pages/flagged.html">Flagged page &rarr;</a></div>
+  </div>
+</section>
+
+<footer>
+  <p>Official Verification &mdash; research and measurement, not betting advice. Every figure is checked
+  against the official NFL source linked on the Verification report page; nothing is estimated by hand.</p>
+  <p><a href="../../index.html">Verification overview</a> &middot;
+     <a href="verification-report.html">Verification report</a> &middot;
+     <a href="../../pages/flagged.html">Flagged for review</a></p>
+</footer>
+</main>
+</div>
+</body>
+</html>
