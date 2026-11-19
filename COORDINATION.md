@@ -3307,7 +3307,7 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 
 ## Log — `arena/d1fe94e9-korea2` (2026-11-19 UTC)
 
-**Official sources read (2026-11-19).** https://www.nfl.com/injuries/league/2026/reg11 (Week 11 report: 8 chunk reads by the fetch tool, plus the runner capture); https://www.nfl.com/schedules/2026/by-week/week-11 (3 chunks: 13 fixtures, "Teams on Bye" list, game-page links); https://www.nfl.com/legal/terms/ (NFL.com Terms and Conditions, updated May 16, 2024, sections 1.1 and 1.3). The runner capture (GitHub Actions) fetched the report page itself at 19:51:12Z and 19:52:41Z.
+**Official sources read (2026-11-19).** https://www.nfl.com/injuries/league/2026/reg11 (Week 11 report: chunk 0 of 7 read by hand with the fetch tool, covering the IND, HOU, PIT and PHI tables; the full page was captured by the runner, not transcribed by hand); https://www.nfl.com/schedules/2026/by-week/week-11 (3 chunks: 13 fixtures, "Teams on Bye" list, game-page links); https://www.nfl.com/legal/terms/ (NFL.com Terms and Conditions, updated May 16, 2024, sections 1.1 and 1.3). The runner capture (GitHub Actions) fetched the report page itself at 19:51:12Z and 19:52:41Z.
 
 **Result.**
 - Week 11 report: 24 club tables, **253 listed rows** (DNP 83, LP 87, FP 83). Printed game status only for IND (8 of 11 rows) and HOU (7 of 15): Out 9, Questionable 6.
