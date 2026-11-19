@@ -2381,5 +2381,5 @@
  ],
  "method": "Each hub's own committed JSON is read; a value counts as published only when the file carries it under a recognised field name (r / pearson_r / coefficient / correlation) with a label. Values are shown exactly as stored, rounded to three decimals. A quantity is a conflict when two or more hubs publish different numbers for the same label - the board shows both and links both files. Nothing is averaged and nothing is re-derived here.",
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "a24bfc976a1b9291969ea24a462cfe91c380a535"
+ "_generated_from_repo_commit": "c9786e0f353a20dd534ae4f720ce3f5802a953c9"
 }
