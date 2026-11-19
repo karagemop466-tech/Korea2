@@ -435,6 +435,28 @@ def _line_tokens(line: str):
     return [(m.group(0), m.start(), m.end()) for m in TOKEN_RE.finditer(line)]
 
 
+def masked_header_sample(text: str, limit: int = 14) -> list[str]:
+    """Return the first lines of the game book with the copyright notice and the officials'
+    names removed.
+
+    The header carries the official facts this project publishes (date, kickoff, venue, roof,
+    surface, game-day weather) and no play-by-play. The copyright notice is dropped and the
+    officials' names are masked, so the diagnostic can be committed without republishing the
+    document.
+    """
+    out: list[str] = []
+    for line in text.splitlines()[:limit]:
+        if "Copyright" in line or "written permission" in line:
+            out.append("[copyright notice removed]")
+            continue
+        if re.match(r"\s*(Referee|Umpire|Down Judge|Head Linesman|Line Judge|Field Judge|"
+                    r"Back Judge|Side Judge|Scrambler)\s*:", line):
+            out.append(re.sub(r"\b[A-Z][a-z]+,\s+[A-Z][a-z]+\b", "[official]", line))
+            continue
+        out.append(line.rstrip())
+    return out
+
+
 def masked_layout_sample(text: str, limit: int = 14) -> list[str]:
     """Return the real fixed-width lineup rows with every player name masked.
 
@@ -1174,6 +1196,8 @@ def run() -> int:
                     dump_partial()
                 if len(manifest.get("layout_samples", {})) < 2:
                     manifest.setdefault("layout_samples", {})[slug] = masked_layout_sample(text)
+                if len(manifest.get("header_samples", {})) < 2:
+                    manifest.setdefault("header_samples", {})[slug] = masked_header_sample(text)
                 games_rows.append({
                     "season": season, "week": week, "slug": slug,
                     "game_url": game_url, "gamebook_url": pdf_url,
