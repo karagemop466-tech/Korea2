@@ -1,0 +1,108 @@
+name: availability-capture
+
+# Captures official NFL availability evidence on a GitHub runner (the authoring sandbox cannot
+# reach nfl.com):
+#   * the official Game Book of every game of the requested week (official starting lineups,
+#     substitutions, Did Not Play, Not Active, venue, roof/surface, game-day weather);
+#   * the official NFL.com team roster page of all 32 clubs (official roster status per player and
+#     the club's own official depth-chart URL);
+#   * each club depth-chart page (what it actually publishes: table, image, or "unofficial").
+#
+# Raw bytes are uploaded as a workflow artifact and are kept OUTSIDE the static site. Only the
+# parsed registers and the hash/count manifests are committed, and only from an arena/** branch.
+# The run fails loudly on a missing section, a missing row or a wrong week.
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: 'Season (e.g. 2026)'
+        required: false
+        default: '2026'
+      weeks:
+        description: 'Comma separated regular-season week numbers'
+        required: false
+        default: '9,10'
+      skip_rosters:
+        description: 'Skip the 32 club roster pages and depth-chart pages'
+        required: false
+        default: 'false'
+  schedule:
+    # Daily (UTC) from Wednesday to Sunday during the season. The WEEK input below must be moved
+    # forward each week (same convention as .github/workflows/nfl-injury-capture.yml).
+    - cron: '0 13 * * 3,4,5,6'
+  push:
+    branches: ['arena/**']
+    paths:
+      - 'availability-graph/scripts/capture_availability.py'
+      - '.github/workflows/availability-capture.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: availability-capture-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    env:
+      SEASON: ${{ github.event.inputs.season || '2026' }}
+      WEEKS: ${{ github.event.inputs.weeks || '9,10' }}
+      SKIP_ROSTERS: ${{ github.event.inputs.skip_rosters || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install poppler (pdftotext -layout for the official Game Books)
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+          pdftotext -v 2>&1 | head -1
+
+      - name: Capture official availability evidence (fail-closed)
+        run: |
+          set -euo pipefail
+          ARGS=""
+          if [ "$SKIP_ROSTERS" = "true" ]; then
+            ARGS="--skip-rosters --skip-depth"
+          fi
+          python3 availability-graph/scripts/capture_availability.py \
+            --season "$SEASON" \
+            --weeks "$WEEKS" \
+            --raw-dir "$RUNNER_TEMP/capture" \
+            --data-dir availability-graph/data \
+            --manifest-dir availability-graph/manifests \
+            $ARGS
+
+      - name: Upload raw capture (kept outside the static site)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: availability-capture-${{ env.SEASON }}-wk${{ env.WEEKS }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/capture
+          retention-days: 90
+          if-no-files-found: warn
+
+      - name: Commit registers and manifests (arena/** branches only)
+        if: always() && startsWith(github.ref_name, 'arena/')
+        run: |
+          set -euo pipefail
+          git config user.name "availability-capture-bot"
+          git config user.email "availability-capture-bot@users.noreply.github.com"
+          git add availability-graph/data availability-graph/manifests
+          if git diff --cached --quiet; then
+            echo "No new register or manifest."
+          else
+            git commit -m "Capture manifest: official availability evidence ${SEASON} wk${WEEKS} (${GITHUB_RUN_ID})"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

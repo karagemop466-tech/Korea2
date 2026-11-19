@@ -19,3 +19,7 @@ signal-desk/data/raw/
 # Session a09e4528: pinned interpreter stack is reproducible from requirements.txt; never commit a venv
 .venv-b6/
 .venv*/
+
+# availability-graph: raw official captures (game books, roster pages, depth pages) are uploaded
+# as a workflow artifact and are never committed; only the parsed registers and hash manifests are.
+availability-graph/raw/

@@ -1,0 +1,49 @@
+Fixed-width rendering of the official NFL Game Book "National Football League Game Summary"
+for New England Patriots at Detroit Lions, 2026 REG 10 (Sunday 11/15/2026, Allianz Arena, Munich).
+
+Official source:
+  https://www.nfl.com/games/patriots-at-lions-2026-reg-10
+  -> Game Book PDF:
+     https://static.www.nfl.com/image/upload/v1794829721/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf
+Read first-hand on 2026-11-19 with the page-retrieval tool. The rows below are the SAME official
+rows as in fixtures/ne_det_2026_reg10_gamebook.md, re-flowed into the fixed-width layout that
+`pdftotext -layout` produces on a runner. It is a parser fixture, not a second source.
+
+National Football League Game Summary
+
+NFL Copyright (c) 2026 by The National Football League. All rights reserved. This summary and
+play-by-play is for the express purpose of assisting media in their coverage of the game; any
+other use of this material is prohibited without the written permission of the National Football
+League.
+Date: Sunday, 11/15/2026 New England Patriots at Detroit Lions at Allianz Arena, Munich, Germany    Start Time: 3:33 PM CET
+Game Day Weather
+Game Weather: Cloudy
+Temp: 52° F (11.1° C)   Humidity: 51%,   Wind: SE 3 mph
+Open Stadium on Natural Grass
+Officials
+Referee: Martin, Clay (19)   Umpire: Woods, Steven (54)   Down Judge: Phillips, Jerod (6)
+Lineups
+New England Patriots                                                    Detroit Lions
+Offense              Defense                Offense              Defense
+LT 66 W.Campbell         OLB 5 Dr.Jones             WR 18 I.TeSlaa           DE 97 A.Hutchinson
+LG 70 G.Van Roten        DT 97 M.Williams           TE 87 S.LaPorta          DL 54 A.McNeill
+C 55 J.Wilson            DT 94 C.Durden             LT 58 P.Sewell           DL 91 T.Williams
+RG 65 M.Pryor            OLB 91 E.Ponder            LG 73 C.Mahogany         DL 93 T.Lacy
+RT 76 M.Moses            LB 14 R.Spillane           C 70 J.Scruggs           LB 53 T.Nowaske
+TE 85 H.Henry            LB 53 C.Elliss             RG 69 T.Ratledge         LB 44 M.Rodriguez
+TE 82 E.Raridon          CB 0 C.Gonzalez            RT 76 B.Miller           LB 55 D.Barnes
+QB 10 D.Maye             CB 25 M.Jones              WR 1 J.Williams          DB 32 B.Branch
+RB 38 R.Stevenson        CB 22 C.Woods              WR 14 A.St. Brown        CB 23 R.Ya-Sin
+WR 1 A.Brown             S 4 C.Woodson              QB 16 J.Goff             CB 21 R.McCreary
+WR 13 M.Hollins          S 31 K.Byard               RB 0 J.Gibbs             S 36 C.Clark
+
+Substitutions
+WR 3 D.Douglas, K 8 A.Borregales, RB 9 K.Kiner, QB 16 T.DeVito, WR 18 K.Williams, P 19 M.Wishnowsky, CB 21 K.Prunty, S 23 J.Reed, CB 29 C.Canada, S 33 M.Brown, RB 34 L.Larison, TE 36 C.Latu, FB 44 R.Gilliam, LS 47 J.Ashby, LB 48 N.Obiazor, LB 49 E.Hunter, LB 50 G.Jacas, T 52 M.Bryant, LB 54 D.Muasau, G 67 A.Rupcich, T 74 C.Lomu, WR 86 E.Chism, DT 90 C.Barmore, DT 92 J.Farmer, DL 93 L.Taylor, DT 99 Da.Jones   CB 2 E.Rakestraw, P 3 J.Fox, DB 5 C.Izien, DE 8 D.Moore, QB 11 J.Dobbs, WR 17 T.Martin, RB 25 J.Saylors, S 28 A.Cisco, CB 30 K.Dorsey, RB 33 S.Vaki, LB 35 J.Bachie, CB 38 N.Whiteside, K 39 J.Bates, LB 40 B.Britt, LS 49 H.Hatten, DL 50 S.Gill-Howard, LB 51 O.Pappoe, C 65 S.McLaughlin, DE 66 E.O'Neill, OL 71 M.Frazier, OL 79 L.Borom, TE 83 T.Conklin, WR 86 D.Carter, TE 89 B.Wright, DL 95 L.Onwuzurike, DE 98 D.Wonnum
+
+Did Not Play
+
+Not Active
+CB 7 C.Davis, 3QB 15 B.Morton, S 41 B.Schooler, T 68 D.Crownover, OL 72 W.Rouse, C 77 B.Brown     CB 4 D.Reed, CB 6 K.Abney, LB 57 A.Ogbongbemiga, C 64 C.Mays, DL 94 M.Wingo, DE 99 A.Hassanein
+
+Field Goals (made ( ) & missed)
+A.Borregales (33)
