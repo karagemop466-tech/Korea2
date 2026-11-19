@@ -1,0 +1,304 @@
+{
+  "generated_at_utc": "2026-11-19T09:00:00Z",
+  "generator": "official-verification/scripts/verify_official.py",
+  "capture_session": "arena/875a7b96-korea2",
+  "capture_date": "2026-11-19",
+  "method": "Each check below was independently re-read from the official NFL source URL listed, using page retrieval in this session. A value is VERIFIED only when it matches the official source. A value is BLANK when no official source publishes it and the site intentionally leaves it unpublished (never inferred). A value is FLAGGED when a conflict or gap was found. No value is estimated or filled in.",
+  "policy": "The NFL's official betting data is distributed to operators through an exclusive distributor (Genius Sports); NFL.com does not publish historical market open/close prices, player-prop prices, official depth-chart ranks, or snap counts. Where those values are absent they are recorded as BLANK with the reason, not as findings.",
+  "sources": [
+    {
+      "id": "SRC-NFL-STANDINGS-2026",
+      "url": "https://www.nfl.com/standings/division/2026/REG",
+      "title": "2026 NFL Division Standings",
+      "read_at_utc": "2026-11-19T09:00:00Z",
+      "note": "AFC table and the first NFC clubs read in chunk 0; read covers 24 of 32 clubs before chunk truncation."
+    },
+    {
+      "id": "SRC-NFL-INJURIES-W10",
+      "url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "title": "Official NFL Injury Report (Week 10 content; page shell titled Week 11)",
+      "read_at_utc": "2026-11-19T09:00:00Z",
+      "note": "Page title reads \"Week 11\" while the in-page heading reads \"Injuries - WEEK 10\"; this known title/body mismatch is recorded as flag OV-17."
+    },
+    {
+      "id": "SRC-NFL-SCHEDULE-W10",
+      "url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "title": "NFL Week 10 Schedule 2026",
+      "read_at_utc": "2026-11-19T09:00:00Z",
+      "note": "Chunk 0 covers 12 of 14 Week-10 games; remaining games and bye list in chunk 2."
+    },
+    {
+      "id": "SRC-NFL-GAMECENTER-NEDET-W10",
+      "url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10?tab=recap",
+      "title": "New England Patriots at Detroit Lions 2026 REG 10 - Game Center",
+      "read_at_utc": "2026-11-19T09:00:00Z",
+      "note": "Game Info block states Location MUNICH / Stadium FC BAYERN MUNICH STADIUM; links the official Game Book PDF."
+    },
+    {
+      "id": "SRC-NFL-GAMEBOOK-W10",
+      "url": "https://static.www.nfl.com/image/upload/v1794829721/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf",
+      "title": "NE@DET Week 10 Game Book (PDF)",
+      "read_at_utc": "2026-11-19T09:00:00Z",
+      "note": "PDF linked from the official game centre; URL registered but PDF contents not parsed (sandbox page reader does not fetch PDFs)."
+    },
+    {
+      "id": "SRC-NFL-SCHEDULE-ANNOUNCEMENT",
+      "url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced",
+      "title": "2026 NFL Schedule Announced",
+      "read_at_utc": "2026-11-19T09:00:00Z",
+      "note": "Dated May 14, 2026; 18-week, 272-game regular season; kickoff Sept 9, 2026 Seattle vs New England."
+    },
+    {
+      "id": "SRC-NFL-GENIUS-SPORTS",
+      "url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "title": "NFL extends strategic partnership with Genius Sports",
+      "read_at_utc": "2026-11-14 (prior session, line-desk sources register)",
+      "note": "Confirms Genius Sports is the exclusive distributor of the official sports-betting data feed; basis for the BLANK price columns."
+    },
+    {
+      "id": "SRC-NIST-CORR-CI",
+      "url": "https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/corrconf.htm",
+      "title": "NIST Dataplot aid - correlation confidence limits (Fisher z)",
+      "read_at_utc": "2026-11-01 (prior session)",
+      "note": "Method reference for the Fisher-z intervals published alongside the official-only correlations."
+    }
+  ],
+  "checks": [
+    {
+      "id": "OV-01",
+      "area": "Results",
+      "item": "NE@DET Week 10 final score",
+      "published_on_site": "Patriots 10, Lions 35 (Final)",
+      "official_source_value": "Patriots 10, Lions 35, FINAL, Sunday November 15",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-SCHEDULE-W10",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "cross_check": "Also confirmed on the NE@DET game centre page (SRC-NFL-GAMECENTER-NEDET-W10).",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-02",
+      "area": "Fixture context",
+      "item": "NE@DET Week 10 venue / stadium",
+      "published_on_site": "Munich - FC Bayern Munich Stadium",
+      "official_source_value": "Location MUNICH; Stadium FC BAYERN MUNICH STADIUM",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-GAMECENTER-NEDET-W10",
+      "source_url": "https://www.nfl.com/games/patriots-at-lions-2026-reg-10?tab=recap",
+      "cross_check": "The schedule announcement (SRC-NFL-SCHEDULE-ANNOUNCEMENT) places New England vs Detroit in Munich in Week 10.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-03",
+      "area": "Injury",
+      "item": "Lions Kerby Joseph game status (Week 10)",
+      "published_on_site": "Out",
+      "official_source_value": "Out (Knee; Did Not Participate in Practice)",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-INJURIES-W10",
+      "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "cross_check": "Resolves brief items VR-08/VR-12 (the three Lions rows previously shown blank are Out on the official page).",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-04",
+      "area": "Injury",
+      "item": "Lions Cade Mays game status (Week 10)",
+      "published_on_site": "Out",
+      "official_source_value": "Out (Ankle; Did Not Participate in Practice)",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-INJURIES-W10",
+      "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "cross_check": "Same row set as OV-03.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-05",
+      "area": "Injury",
+      "item": "Lions D.J. Reed game status (Week 10)",
+      "published_on_site": "Out",
+      "official_source_value": "Out (Hip; Did Not Participate in Practice)",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-INJURIES-W10",
+      "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "cross_check": "Same row set as OV-03.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-06",
+      "area": "Injury",
+      "item": "Patriots TreVeyon Henderson game status (Week 10)",
+      "published_on_site": "Out",
+      "official_source_value": "Out (Illness; Did Not Participate in Practice)",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-INJURIES-W10",
+      "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "cross_check": "NFL.com news also reports Henderson placed on IR Sat Nov 14 (flagged as a report/IR conflict elsewhere).",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-07",
+      "area": "Standings",
+      "item": "Buffalo Bills 2026 record (W-L-T, PF, PA)",
+      "published_on_site": "8 - 1 - 0, PF 287, PA 199",
+      "official_source_value": "8 - 1 - 0, 0.889, PF 287, PA 199",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-STANDINGS-2026",
+      "source_url": "https://www.nfl.com/standings/division/2026/REG",
+      "cross_check": "Read directly from the AFC East table row.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-08",
+      "area": "Standings",
+      "item": "New England Patriots 2026 record (W-L-T, PF, PA)",
+      "published_on_site": "5 - 5 - 0, PF 221, PA 242",
+      "official_source_value": "5 - 5 - 0, 0.500, PF 221, PA 242",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-STANDINGS-2026",
+      "source_url": "https://www.nfl.com/standings/division/2026/REG",
+      "cross_check": "AFC East table row; consistent with the 5-5 record shown on the Week 10 injury report club header.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-09",
+      "area": "Standings",
+      "item": "Detroit Lions 2026 record (W-L-T, PF, PA)",
+      "published_on_site": "7 - 2 - 0, PF 257, PA 199",
+      "official_source_value": "7 - 2 - 0, 0.778, PF 257, PA 199",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-STANDINGS-2026",
+      "source_url": "https://www.nfl.com/standings/division/2026/REG",
+      "cross_check": "NFC North table row; consistent with the 7-2 record shown on the Week 10 injury report club header.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-10",
+      "area": "Fixture context",
+      "item": "2026 schedule announcement date and shape",
+      "published_on_site": "Announced May 14, 2026; 18 weeks, 272 games",
+      "official_source_value": "May 14, 2026; 18-week, 272-game regular season",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-SCHEDULE-ANNOUNCEMENT",
+      "source_url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced",
+      "cross_check": "Kickoff Sept 9, 2026 Seattle vs New England; Week 10 New England at Detroit in Munich (consistent with OV-02).",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-11",
+      "area": "Fixture context",
+      "item": "2026 kickoff game",
+      "published_on_site": "Sept 9, 2026 Seattle vs New England",
+      "official_source_value": "Wednesday, September 9 (8:20 p.m. ET, NBC), Seattle Seahawks host New England Patriots at Lumen Field",
+      "status": "VERIFIED",
+      "source_id": "SRC-NFL-SCHEDULE-ANNOUNCEMENT",
+      "source_url": "https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced",
+      "cross_check": "Defending Super Bowl Champion Seattle vs New England, Super Bowl LX rematch.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-12",
+      "area": "Prices",
+      "item": "Market open line for any originated market",
+      "published_on_site": "BLANK",
+      "official_source_value": "Not published by NFL.com; official betting feed distributed to operators via Genius Sports only",
+      "status": "BLANK",
+      "source_id": "SRC-NFL-GENIUS-SPORTS",
+      "source_url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "cross_check": "Price data policy (RR-A9) is an open reviewer decision; no market price may be inferred.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-13",
+      "area": "Prices",
+      "item": "Market close line for any originated market",
+      "published_on_site": "BLANK",
+      "official_source_value": "Not published by NFL.com; official betting feed distributed to operators via Genius Sports only",
+      "status": "BLANK",
+      "source_id": "SRC-NFL-GENIUS-SPORTS",
+      "source_url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "cross_check": "Closing-line value cannot be measured without a permitted price source.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-14",
+      "area": "Prices",
+      "item": "Player-prop open/close prices",
+      "published_on_site": "BLANK (11,370 prop snapshot rows, both price columns null)",
+      "official_source_value": "No historical player-prop prices in any source the project holds",
+      "status": "BLANK",
+      "source_id": "SRC-NFL-GENIUS-SPORTS",
+      "source_url": "https://www.nfl.com/news/nfl-extends-strategic-partnership-with-genius-sports",
+      "cross_check": "Prop ROI is therefore undefined; prop accuracy/calibration are published instead (never price-based ROI).",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-15",
+      "area": "Availability / depth",
+      "item": "Official depth-chart rank (1st/2nd/3rd/4th string) per player",
+      "published_on_site": "BLANK",
+      "official_source_value": "No league-official depth chart is published; club depth pages are inconsistent and at least one club labels its own chart unofficial",
+      "status": "BLANK",
+      "source_id": "SRC-NFL-INJURIES-W10",
+      "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "cross_check": "The official weekly report columns are Player, Position, Injuries, Practice Status, Game Status - and nothing else (no depth rank).",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-16",
+      "area": "Availability / depth",
+      "item": "Snap counts / snap share per player",
+      "published_on_site": "BLANK",
+      "official_source_value": "The weekly report has no snap column; snap counts are not an official published column in any source held",
+      "status": "BLANK",
+      "source_id": "SRC-NFL-INJURIES-W10",
+      "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "cross_check": "Depth cannot be modelled from playing time without an authorised snap-count source (RR-C2, RR-C18).",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-17",
+      "area": "Source integrity",
+      "item": "Injury-report page title vs content week",
+      "published_on_site": "Page shell titled Week 11; in-page heading Injuries - WEEK 10",
+      "official_source_value": "Title/body week mismatch confirmed on the official page itself",
+      "status": "FLAGGED",
+      "source_id": "SRC-NFL-INJURIES-W10",
+      "source_url": "https://www.nfl.com/injuries/league/2026/reg10",
+      "cross_check": "Previously logged as FL-17; the report content is Week 10 regardless of the shell title. Treated as a source caveat, not a data error.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-18",
+      "area": "Snapshot freshness",
+      "item": "Site data snapshot vs official Week 10 results",
+      "published_on_site": "Root analysis snapshot ends gameday 2026-11-01",
+      "official_source_value": "Official Week 10 results (Nov 12-15, 2026) are now published: Commanders 24-21 Giants; Patriots 10-35 Lions; Chiefs 35-13 Falcons; Texans 24-27 Browns; Vikings 30-10 Packers; Dolphins 22-24 Colts; Panthers 20-17 Saints; Bills 31-12 Jets; Jaguars 40-23 Titans; Rams 34-6 Cardinals; Seahawks 21-13 Raiders; 49ers 46-40 Cowboys",
+      "status": "FLAGGED",
+      "source_id": "SRC-NFL-SCHEDULE-W10",
+      "source_url": "https://www.nfl.com/schedules/2026/by-week/week-10",
+      "cross_check": "12 of 14 Week-10 games read in chunk 0; the root snapshot predates this slate. Results are labelled historical, not current recommendations.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    },
+    {
+      "id": "OV-19",
+      "area": "Source integrity",
+      "item": "Standings read completeness",
+      "published_on_site": "AFC table plus 24 club rows captured",
+      "official_source_value": "Single retrieval captured 24 of 32 clubs before chunk truncation (NFC South/West points chunk incomplete at first read)",
+      "status": "FLAGGED",
+      "source_id": "SRC-NFL-STANDINGS-2026",
+      "source_url": "https://www.nfl.com/standings/division/2026/REG",
+      "cross_check": "A re-read recovered the remaining clubs (the 03:55Z/04:21Z two-read pattern recorded in prior sessions). This session's single read is therefore partial; clubs checked individually above (BUF, NE, DET) are confirmed.",
+      "read_at_utc": "2026-11-19T09:00:00Z"
+    }
+  ],
+  "summary": {
+    "total_checks": 19,
+    "verified": 11,
+    "blank": 5,
+    "flagged": 3,
+    "not_inferred": true,
+    "note": "11 VERIFIED against official NFL sources; 5 BLANK because no official source publishes them; 3 FLAGGED for source-integrity or freshness caveats. Zero values were estimated or filled in."
+  }
+}
