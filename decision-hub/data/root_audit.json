@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_utc": "2026-11-14T20:46:06+00:00",
+  "generated_utc": "2026-11-19T20:37:30+00:00",
   "auditor": "decision-hub/scripts/audit_root.py",
   "rule": "A published number is PASS only if this independent implementation reproduces it from committed inputs within tolerance. Anything else is FAIL, BLANK or OBSERVATION."
  },
@@ -296,12 +296,12 @@
   {
    "id": "rows.source_coverage",
    "claim": "table rows carrying a source link",
-   "published": 873,
-   "recomputed": 873,
+   "published": 1172,
+   "recomputed": 1172,
    "tolerance": 0,
    "abs_diff": 0,
    "verdict": "PASS",
-   "method": "7 of 880 rows have no link in the final cell",
+   "method": "7 of 1179 rows have no link in the final cell",
    "source_id": "nflverse-data",
    "class": "count"
   }
@@ -425,9 +425,9 @@
  ],
  "rows": {
   "index.html": {
-   "table_rows": 5,
+   "table_rows": 82,
    "rows_without_source_cell": 0,
-   "tables": 1
+   "tables": 2
   },
   "pages/archive.html": {
    "table_rows": 7,
@@ -485,9 +485,9 @@
    "tables": 3
   },
   "pages/flagged.html": {
-   "table_rows": 32,
+   "table_rows": 57,
    "rows_without_source_cell": 0,
-   "tables": 2
+   "tables": 3
   },
   "pages/injuries-depth.html": {
    "table_rows": 12,
@@ -503,6 +503,11 @@
    "table_rows": 68,
    "rows_without_source_cell": 0,
    "tables": 6
+  },
+  "pages/live-checks.html": {
+   "table_rows": 85,
+   "rows_without_source_cell": 0,
+   "tables": 7
   },
   "pages/luck.html": {
    "table_rows": 25,
@@ -524,8 +529,13 @@
    "rows_without_source_cell": 0,
    "tables": 6
   },
+  "pages/readiness.html": {
+   "table_rows": 84,
+   "rows_without_source_cell": 0,
+   "tables": 2
+  },
   "pages/sources.html": {
-   "table_rows": 63,
+   "table_rows": 72,
    "rows_without_source_cell": 0,
    "tables": 2
   },
@@ -535,9 +545,9 @@
    "tables": 2
   },
   "pages/suggestions.html": {
-   "table_rows": 10,
+   "table_rows": 29,
    "rows_without_source_cell": 0,
-   "tables": 1
+   "tables": 3
   },
   "pages/validation.html": {
    "table_rows": 43,
@@ -1146,8 +1156,8 @@
   }
  },
  "rows_totals": {
-  "pages": 25,
-  "table_rows": 880,
+  "pages": 27,
+  "table_rows": 1179,
   "rows_without_source_cell": 7
  },
  "summary": {

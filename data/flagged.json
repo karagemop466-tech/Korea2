@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "Flagged for Review — items that could NOT be confirmed from an official verified source",
-    "verified_on": "2026-11-18",
+    "verified_on": "2026-11-19",
     "policy": "Per project rules, any value that cannot be confirmed from an official source is left BLANK in the data tables and listed here with the reason. Nothing is inferred or filled in. These items do not block publication; they are published on the ‘Flagged for Review’ page for manual review.",
-    "note": "Rows above FL-16 are the 2026-11-18 dated official re-read and the register-level conflicts it found; they were renumbered from FL-16..FL-23 to FL-17..FL-24 on that date so both sessions' rows survive the merge (the earlier FL-16, Game Book reuse permission, came from the injury-capture session)."
+    "note": "Rows above FL-16 are the 2026-11-18 dated official re-read and the register-level conflicts it found; they were renumbered from FL-16..FL-23 to FL-17..FL-24 on that date so both sessions' rows survive the merge (the earlier FL-16, Game Book reuse permission, came from the injury-capture session). 2026-11-19 (session arena/1c8ea23f-korea2): FL-21/FL-23/FL-24 reasons updated to cite the committed review-board registers, as that session logged; FL-17 was resolved separately by the same-day integration re-read (PR #146). Each row's verification date remains its own capture date, recorded in its reason."
   },
   "rows": [
     {
@@ -217,7 +217,7 @@
       "id": "FL-21",
       "item": "Opening and closing market prices for originated markets",
       "value": "",
-      "reason": "Unchanged by this capture: 0 of 45 Line Desk market rows carry a market open or close, and the Price Store official-only file holds 0 rows. The residual column cannot exist until the price-data policy is decided (decision-readiness row RR-A9).",
+      "reason": "Unchanged by this capture: 0 of 45 Line Desk market rows carry a market open or close, and the Price Store official-only file holds 0 rows. The residual column cannot exist until the price-data policy is decided (decision-readiness row RR-A9). 2026-11-19 citation added per the review-board session's logged request: review-board/data/price_crosscheck.json (rendered on review-board/pages/reconciliation.html) reads both committed stores field by field and measures 45/45 spread/total/home-moneyline closing comparisons agree, 0 null on either side, 30/30 published edge_vs_market columns equal fair minus market within the 0.0501 rounding tolerance; residual distribution against third-party closes: spread mean +1.62, mean |res| 3.35, n=15; total mean -0.81, mean |res| 2.02, n=15. The register itself carries the provenance warning that both stores are nflverse-schedules-derived (one lineage), so this is a consistency result, not official-market verification - the flag stands until a permitted official price source exists (RR-A9).",
       "sources": [
         "SRC-NFL-GAMECENTRE-NEDET-W10",
         "SRC-NFL-STANDINGS-W10-REREAD"
@@ -236,7 +236,7 @@
       "id": "FL-23",
       "item": "Vocabulary conflict between the two suggestion registers",
       "value": "",
-      "reason": "pages/suggestions.html states that no suggestion has been authorised or implemented, while verify-hub/data/suggestions.json records 14 rows with dispositions ACCEPTED (3), PENDING (6) and NOT-ADOPTED (5), and suggestions/data/suggestions.json records 12 rows all dispositioned 'proposed'. The three registers use different vocabularies for the same object and have not been reconciled; nothing here adopts either reading. Discovery action: one disposition vocabulary, then re-state the page's claim to match it.",
+      "reason": "pages/suggestions.html states that no suggestion has been authorised or implemented, while verify-hub/data/suggestions.json records 14 rows with dispositions ACCEPTED (3), PENDING (6) and NOT-ADOPTED (5), and suggestions/data/suggestions.json records 12 rows all dispositioned 'proposed'. The three registers use different vocabularies for the same object and have not been reconciled; nothing here adopts either reading. Discovery action: one disposition vocabulary, then re-state the page's claim to match it. 2026-11-19 re-read (root owner, per the review-board session's logged request): the quoted ACCEPTED(3)/PENDING(6)/NOT-ADOPTED(5) split exists in no committed register - a substring count of verify-hub/data/suggestions.json, suggestions/data/suggestions.json and review-board/data/queue.json finds zero 'ACCEPTED' dispositions. The review-board panel 'One disposition vocabulary?' (review-board/pages/suggestions.html, re-read at build time) prints each register's vocabulary as committed and its own conclusion: 'no register has adopted it yet, and no row anywhere currently records an implemented suggestion.' The conflict has decayed into vocabulary drift; the panel proposes one canonical set (PROPOSED / CHOSEN / REJECTED, DEFERRED optional). Adoption per hub remains a logged request, not a unilateral edit, so this flag stays open until each register carries one vocabulary.",
       "sources": [
         "SRC-GH-REPO"
       ]
@@ -245,7 +245,7 @@
       "id": "FL-24",
       "item": "Duplicate history table in review-board/pages/injuries.html (merged PR #133)",
       "value": "",
-      "reason": "An append-only generator emitted the same table twice with different row counts (4 and 3), so the page's own count is self-contradictory. Recorded at the hub as review-board reconciliation finding FI-0 and left unfixed here: the file belongs to the injury-hub session, and the table's data columns are blank in both copies. The row count therefore stays blank in this register rather than picking one of the two copies.",
+      "reason": "An append-only generator emitted the same table twice with different row counts (4 and 3), so the page's own count is self-contradictory. Recorded at the hub as review-board reconciliation finding FI-0 and left unfixed here: the file belongs to the injury-hub session, and the table's data columns are blank in both copies. The row count therefore stays blank in this register rather than picking one of the two copies. Re-verified at HEAD on 2026-11-18 and again on the 2026-11-19 tree: review-board/pages/injuries.html renders each of its section tables exactly once (Slate; Availability by club; Designated players; midweek/Friday delta; No Injuries Reported; Second dated read; status-split recheck; 2026-11-13 to 2026-11-18 delta) - the duplicated history table is absent. The historical finding FI-0 stays in the hub's reconciliation register as the record of the incident; this wording update is applied by the register's owner as the hub requested.",
       "sources": [
         "SRC-GH-REPO"
       ]

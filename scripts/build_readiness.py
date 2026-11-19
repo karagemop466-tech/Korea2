@@ -87,6 +87,8 @@ HUB = {
     "pd_sugg": ("Price Desk - suggestion queue", "price-desk/pages/suggestions.html"),
     "rb_queue": ("Review Board - consolidated suggestion queue", "review-board/pages/suggestions.html"),
     "rb_injuries": ("Review Board - injury delta", "review-board/pages/injuries.html"),
+    "rb_reread": ("Review Board - second dated read register reread_20261118.json (rendered on the injury page)", "review-board/pages/injuries.html"),
+    "rb_crosscheck": ("Review Board - price-store cross-check register price_crosscheck.json (rendered on the reconciliation page)", "review-board/pages/reconciliation.html"),
     "rb_flags": ("Review Board - flags", "review-board/pages/flagged.html"),
     "vh_q": ("Verify Hub - question register", "verify-hub/pages/questions.html"),
     "vh_sugg": ("Verify Hub - suggestion queue", "verify-hub/pages/suggestions.html"),
@@ -641,13 +643,18 @@ def rows(m: dict) -> list[dict]:
     add("RR-C12", "Availability and depth",
         "Treat the injury report as a timestamped series, not a weekly snapshot; publish the delta",
         "PARTIAL",
-        "Rows carry clock times now, but a delta needs two dated reads; the review registers carry one "
-        "comparison point only.",
+        "Rows carry clock times now. A second dated read exists in the review-board register "
+        "(all 8 chunks re-read 2026-11-18T04:54-05:12Z, 347 rows tallied across 28 listed clubs, agreeing "
+        "28/28 with the sibling availability-sweep capture taken 74 minutes earlier), but this page's own "
+        "availability tables still render one capture, so the delta is published there and not here.",
         f"Every published row shows (status, previous status, delta, both timestamps). This capture stamps "
-        f"{m['injury_rows']} rows at {m['capture_read_at']}; the delta requires the next dated read.",
+        f"{m['injury_rows']} rows at {m['capture_read_at']}; the review-board register now supplies the "
+        f"second timestamped read (347 rows, 28/28 club-level double-entry), so the series has two points "
+        f"for the clubs that register covers.",
         "",
-        E("rb_injuries", "injury"),
-        "Land the second dated capture, then switch the injury page from level to delta.")
+        E("rb_reread", "rb_injuries", "injury"),
+        "Regenerate this page's injury table from both dated reads so the (previous, current, delta) "
+        "columns render here; the review-board register is the interim delta surface.")
 
     add("RR-C13", "Availability and depth",
         "Automate immutable multi-day availability snapshots with retained hashes, so practice designations "
@@ -773,11 +780,15 @@ def rows(m: dict) -> list[dict]:
         "PARTIAL",
         "A full re-capture needs every report chunk read in one pass with per-club counts. This capture read "
         f"1 of 8 chunks and published {m['injury_rows']} rows verbatim across {m['injury_clubs']} clubs, so "
-        "the club-count comparison the brief asks for is still open.",
+        "the club-count comparison the brief asks for is still open on this page. An independent full pass "
+        "now exists in the review-board register: all 8 chunks re-read 2026-11-18 with per-club counts "
+        "(347 rows, 28 listed clubs, CHI/DEN/PHI/TB absent as byes), agreeing 28/28 with the "
+        "availability-sweep capture - this page has not been regenerated from it.",
         "One dated pass over all 8 chunks with a row count per club (32/32), reproducing the two club counts "
-        "the brief names. Today: 1/8 chunks, 4/32 clubs.",
+        "the brief names. Today on this page: 1/8 chunks, 4/32 clubs; the full-pass register "
+        "(347 rows, 28/28 double-entry) exists and awaits adoption into this page.",
         "",
-        E("ir", "capture"),
+        E("ir", "capture", "rb_reread"),
         "Run the capture as a single job with a per-club count assertion, so a short read fails loudly instead "
         "of publishing a partial table (RR-F3).")
 
@@ -1029,11 +1040,15 @@ def rows(m: dict) -> list[dict]:
         "Store every injury-hub read with its clock time and publish the delta, never the level",
         "PARTIAL",
         f"Clock times are stored: every row in this capture carries read_at_utc = {m['capture_read_at']} and a "
-        "source URL. The delta still needs the second read (RR-C12).",
+        "source URL. The second dated read is landed in the review-board register (window "
+        "2026-11-18T04:54-05:12Z), whose delta section shows designated players 160 -> 171 against its own "
+        "2026-11-13 transcription, with the chunk-boundary correction recorded rather than hidden; this "
+        "page's tables still publish levels only.",
         f"read_at_utc on 100% of published availability rows: {m['injury_rows']}/{m['injury_rows']} in this "
-        f"capture. Delta: 0 rows, because 1 read is not a series.",
+        f"capture. Delta: 0 rows here; the two-read delta (171 vs 160 designated players) is published in "
+        f"the review-board register, which is where the series currently lives.",
         "",
-        E("capture", "injury"),
+        E("capture", "injury", "rb_reread"),
         "Fold the clock time into the hub registers too, so every read in the tree is dated.")
 
     add("RR-F6", "Data operations",

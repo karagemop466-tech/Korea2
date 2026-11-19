@@ -584,7 +584,7 @@ explicitly forbids. The same applies to the replacement and string-tier columns.
 <h2 id="crosscheck">Independent cross-checks on the count</h2>
 <p class="small">{esc(an['cross_checks']['note'])}</p>
 <div class="notice good"><b>Two independent methods agree with this transcription.</b>
-An automated parse of the raw HTML reported <b>{esc(an['cross_checks']['automated_rows'])}</b> listed rows
+An automated parse of the raw HTML reported <b>{esc(" / ".join(str(r) for r in an['cross_checks']['automated_rows']))}</b> listed rows
 across 28 injury tables in {esc(an['cross_checks']['automated_n_ok'])} successful runs, matching this
 session's {inj['total_rows']} rows. A separate hand transcription of per-club counts for the same page
 totals {esc(an['cross_checks']['prior_total'])} across {esc(an['cross_checks']['prior_clubs'])} clubs, and
@@ -865,7 +865,7 @@ def build_verification(an):
         [esc("Count — automated parse"),
          esc("Sibling injury-capture job parses the raw HTML on a GitHub runner; "
              f"{cc['automated_n_ok']} successful runs, {cc['automated_n_failed']} failed loudly"),
-         esc(f"{cc['automated_rows']} rows across 28 injury tables"),
+         esc(" / ".join(str(r) for r in cc['automated_rows']) + " rows across 28 injury tables"),
          f'<a href="{esc(site("/" + cc["automated_url"], _DEPTH))}">manifests</a>'],
         [esc("Count — prior hand transcription"),
          esc("Independent per-club counts recorded 2026-11-15, compared club by club here"),

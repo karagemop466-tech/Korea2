@@ -727,10 +727,14 @@
    "category": "Availability and depth",
    "requirement": "Treat the injury report as a timestamped series, not a weekly snapshot; publish the delta",
    "status": "PARTIAL",
-   "blocking_gate": "Rows carry clock times now, but a delta needs two dated reads; the review registers carry one comparison point only.",
-   "clears_when": "Every published row shows (status, previous status, delta, both timestamps). This capture stamps 12 rows at 2026-11-18T03:55:00Z; the delta requires the next dated read.",
+   "blocking_gate": "Rows carry clock times now. A second dated read exists in the review-board register (all 8 chunks re-read 2026-11-18T04:54-05:12Z, 347 rows tallied across 28 listed clubs, agreeing 28/28 with the sibling availability-sweep capture taken 74 minutes earlier), but this page's own availability tables still render one capture, so the delta is published there and not here.",
+   "clears_when": "Every published row shows (status, previous status, delta, both timestamps). This capture stamps 12 rows at 2026-11-18T03:55:00Z; the review-board register now supplies the second timestamped read (347 rows, 28/28 club-level double-entry), so the series has two points for the clubs that register covers.",
    "measured_now": "",
    "evidence": [
+    {
+     "label": "Review Board - second dated read register reread_20261118.json (rendered on the injury page)",
+     "url": "review-board/pages/injuries.html"
+    },
     {
      "label": "Review Board - injury delta",
      "url": "review-board/pages/injuries.html"
@@ -740,7 +744,7 @@
      "url": "https://www.nfl.com/injuries/league/2026/reg10"
     }
    ],
-   "next_action": "Land the second dated capture, then switch the injury page from level to delta."
+   "next_action": "Regenerate this page's injury table from both dated reads so the (previous, current, delta) columns render here; the review-board register is the interim delta surface."
   },
   {
    "id": "RR-C13",
@@ -939,8 +943,8 @@
    "category": "Availability and depth",
    "requirement": "Re-capture and republish the Week 10 injury tables (row and section counts are stale)",
    "status": "PARTIAL",
-   "blocking_gate": "A full re-capture needs every report chunk read in one pass with per-club counts. This capture read 1 of 8 chunks and published 12 rows verbatim across 4 clubs, so the club-count comparison the brief asks for is still open.",
-   "clears_when": "One dated pass over all 8 chunks with a row count per club (32/32), reproducing the two club counts the brief names. Today: 1/8 chunks, 4/32 clubs.",
+   "blocking_gate": "A full re-capture needs every report chunk read in one pass with per-club counts. This capture read 1 of 8 chunks and published 12 rows verbatim across 4 clubs, so the club-count comparison the brief asks for is still open on this page. An independent full pass now exists in the review-board register: all 8 chunks re-read 2026-11-18 with per-club counts (347 rows, 28 listed clubs, CHI/DEN/PHI/TB absent as byes), agreeing 28/28 with the availability-sweep capture - this page has not been regenerated from it.",
+   "clears_when": "One dated pass over all 8 chunks with a row count per club (32/32), reproducing the two club counts the brief names. Today on this page: 1/8 chunks, 4/32 clubs; the full-pass register (347 rows, 28/28 double-entry) exists and awaits adoption into this page.",
    "measured_now": "",
    "evidence": [
     {
@@ -950,6 +954,10 @@
     {
      "label": "This capture - dated official-source register",
      "url": "pages/live-checks.html"
+    },
+    {
+     "label": "Review Board - second dated read register reread_20261118.json (rendered on the injury page)",
+     "url": "review-board/pages/injuries.html"
     }
    ],
    "next_action": "Run the capture as a single job with a per-club count assertion, so a short read fails loudly instead of publishing a partial table (RR-F3)."
@@ -1331,8 +1339,8 @@
    "category": "Data operations",
    "requirement": "Store every injury-hub read with its clock time and publish the delta, never the level",
    "status": "PARTIAL",
-   "blocking_gate": "Clock times are stored: every row in this capture carries read_at_utc = 2026-11-18T03:55:00Z and a source URL. The delta still needs the second read (RR-C12).",
-   "clears_when": "read_at_utc on 100% of published availability rows: 12/12 in this capture. Delta: 0 rows, because 1 read is not a series.",
+   "blocking_gate": "Clock times are stored: every row in this capture carries read_at_utc = 2026-11-18T03:55:00Z and a source URL. The second dated read is landed in the review-board register (window 2026-11-18T04:54-05:12Z), whose delta section shows designated players 160 -> 171 against its own 2026-11-13 transcription, with the chunk-boundary correction recorded rather than hidden; this page's tables still publish levels only.",
+   "clears_when": "read_at_utc on 100% of published availability rows: 12/12 in this capture. Delta: 0 rows here; the two-read delta (171 vs 160 designated players) is published in the review-board register, which is where the series currently lives.",
    "measured_now": "",
    "evidence": [
     {
@@ -1342,6 +1350,10 @@
     {
      "label": "NFL.com official injury report Week 10 - read 2026-11-18",
      "url": "https://www.nfl.com/injuries/league/2026/reg10"
+    },
+    {
+     "label": "Review Board - second dated read register reread_20261118.json (rendered on the injury page)",
+     "url": "review-board/pages/injuries.html"
     }
    ],
    "next_action": "Fold the clock time into the hub registers too, so every read in the tree is dated."
