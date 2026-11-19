@@ -3284,3 +3284,61 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 - **PR #144** (`arena/a09e4528-korea2` → `main`): https://github.com/karagemop466-tech/Korea2/pull/144. All 8 CI checks passed before merge (`validate`, `review-board`, `tests-and-links`, `verify-hub`, `decision-desk`, `verify`, `verify-skill-lab`, `verify`). Merged (regular merge, no auto) as **b1d1478** at 2026-11-18T05:08:40Z.
 - **GitHub Pages**: "pages build and deployment" for the merge commit b1d14784 reported **success**. The live tree was then re-read rather than trusted from the badge: https://karagemop466-tech.github.io/Korea2/review-board/pages/injuries.html serves the 2026-11-18 re-read (347 rows / 171 designated, 28/28 double-entry section) and https://karagemop466-tech.github.io/Korea2/review-board/pages/reconciliation.html serves the field-level price cross-check (45/45 agree rows). Site confirmed live, not broken.
 - This follow-up commit records the merge result only; it contains no data or page change.
+
+---
+
+# Session board — `arena/cda79caf-korea2` (official availability graph: Game Book starters, inactive lists, roster status, depth-source audit)
+
+**Session ID:** `arena/cda79caf-korea2` (Arena-assigned branch is fixed; base `1d56d09b769a14d799bd2574fad9b5b4e9a29134` = current `main` tip at claim time).
+**Claimed:** 2026-11-19 UTC, before implementation.
+
+**Why this scope.** The single hardest gate in the owner brief is the *availability* chain: "build the
+availability graph as a first-class dataset (who was expected to start, who actually did)", "use official
+NFL Game Books for actual starters and game-day status; do not infer depth rank or snaps", "capture official
+inactive lists and snap counts", "track the depth of the replacement, not just the fact of a replacement",
+and "capture the reserve list so 'not listed' never means 'available'". Every one of those is blocked today
+because no official *game-day roster* evidence is stored: the repo has the weekly injury report (a
+pre-game designation), but nothing that records who actually started, who was inactive, or who is on
+injured reserve. This session captures that evidence from the official sources.
+
+**Sources verified first-hand by this session (2026-11-19, page-retrieval tool):**
+`https://www.nfl.com/games/patriots-at-lions-2026-reg-10` (game centre: final score, **Location MUNICH**,
+**Stadium FC BAYERN MUNICH STADIUM**, Game Book PDF link), the linked official
+`https://static.www.nfl.com/image/upload/v1794829721/gamecenter/ab582c2f-4feb-11f1-abca-2c54536568a9.pdf`
+(**official Lineups, Substitutions, Did Not Play, Not Active, Game Day Weather, roof/surface line
+"Open Stadium on Natural Grass", venue "Allianz Arena, Munich, Germany"**),
+`https://www.nfl.com/teams/houston-texans/roster` (official per-player **roster status** column:
+ACT/RES/IR/DEV/PUP/RSR/TRD/TRT, and the club's official depth-chart link),
+`https://www.houstontexans.com/team/depth-chart` (club depth chart is published as an **image** under the
+heading "**Unofficial** Depth Chart"), `https://nextgenstats.nfl.com/` (official NGS landing; a route for
+snap counts, not yet exercised).
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| AG-0 | Claim non-overlapping scope, push before any other work | in progress | arena/cda79caf-korea2 | this section of `COORDINATION.md` |
+| AG-1 | Runner capture of the official Game Books (2026 Weeks 9 and 10): raw hashes, venue, roof/surface, game-day weather, **official starting lineups**, substitutions, **Did Not Play**, **Not Active** — fail-closed, no inferred values | unclaimed | arena/cda79caf-korea2 | `availability-graph/`, `.github/workflows/availability-capture.yml` |
+| AG-2 | Official club roster-status register for all 32 clubs (ACTIVE/RES/IR/DEV/PUP/RSR/TRD/TRT + depth-chart URL per club) so "not listed in the weekly report" can never be read as "available" | unclaimed | arena/cda79caf-korea2 | `availability-graph/` |
+| AG-3 | Depth-order source resolution, route (a) first: per-club official depth-chart pages verified club by club (URL, HTTP status, machine-readable or image-only, whether the club labels it "unofficial"), and the two named parsing failures checked first-hand (Texans image, Packers jersey-number prefix) | unclaimed | arena/cda79caf-korea2 | `availability-graph/` |
+| AG-4 | Availability graph as a first-class dataset: expected starter (official Week 9 Game Book) vs actual starter (official Week 10 Game Book), replacement named, net injury count per club | unclaimed | arena/cda79caf-korea2 | `availability-graph/` |
+| AG-5 | Hub site: landing page + category subpages, every table row carrying an official source link, blank-by-policy for anything unconfirmed; strict verifier; CI workflow | unclaimed | arena/cda79caf-korea2 | `availability-graph/**`, `.github/workflows/availability-capture.yml` |
+| AG-6 | Root navigation label for the new hub (one line in `scripts/lib/site.py`) + README pointer | unclaimed | arena/cda79caf-korea2 | `scripts/lib/site.py`, `README.md` |
+| AG-7 | Re-run every repo verifier; PR to `main`; merge; confirm the GitHub Pages deployment; record results | unclaimed | arena/cda79caf-korea2 | this section, PR |
+
+**Scope rule.** This session writes only: the new `availability-graph/` directory, the new
+`.github/workflows/availability-capture.yml`, one `HUB_LABELS` line in `scripts/lib/site.py`, one README
+paragraph, and this section of `COORDINATION.md`. Every other directory (`dashboard/`, `nfl-lines/`,
+`nfl-research/`, `research-desk/`, `quant-lab/`, `origination/`, `origination-lab/`, `skill-lab/`,
+`suggestions/`, `verify-hub/`, `decision-desk/`, `decision-hub/`, `signal-desk/`, `lineup-lab/`,
+`nfl-command/`, `review-board/`, `site/`, `audit/`, `pipeline/`, `price-desk/`, `price-store/`,
+`line-desk/`, `requirements-desk/`, `readiness/`, `injury-report-w10/`, `injury-capture/`,
+`availability-sweep/`, root `pages/`, root `index.html`, `scripts/` other than the one label, `data/`,
+`tests/`, `results/`) is read-only input.
+
+**Overlap notice.** Open PR #93 (`arena/e0d1c5c8-korea2`) claims the root navigation; it has had no commit
+since 2026-11-13 (outside the 60-minute handoff window) and is already CONFLICTING. This session edits
+`scripts/lib/site.py` for exactly one added label and nothing else; the #93 owner must rebase.
+
+**Evidence rule.** Every published row carries the official URL it came from and the capture timestamp.
+A value that cannot be read from an official source stays blank and is listed as unverified. No depth
+rank, snap count, replacement tier or starter is inferred from a roster listing, a jersey number, an
+experience count or a salary.
