@@ -3285,6 +3285,60 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 - **GitHub Pages**: "pages build and deployment" for the merge commit b1d14784 reported **success**. The live tree was then re-read rather than trusted from the badge: https://karagemop466-tech.github.io/Korea2/review-board/pages/injuries.html serves the 2026-11-18 re-read (347 rows / 171 designated, 28/28 double-entry section) and https://karagemop466-tech.github.io/Korea2/review-board/pages/reconciliation.html serves the field-level price cross-check (45/45 agree rows). Site confirmed live, not broken.
 - This follow-up commit records the merge result only; it contains no data or page change.
 
+---
+
+# Session board — `arena/d1fe94e9-korea2` (Week 11 official availability capture, per-team view, flags; branch from `1d56d09` = PR #145 merge)
+
+**Session ID:** `arena/d1fe94e9-korea2` (Arena fixes the branch name; the session-&lt;id&gt;/&lt;task&gt; branch convention in the brief cannot be used here — see the note under Scope). **Claimed:** 2026-11-19 UTC, before any capture or edit.
+
+**Scope note.** The brief asks for ~80 requirements across parallel sessions. Most are blocked by missing official inputs that this sandbox cannot reach (per-club depth charts, Game Books, official snap counts, official market prices, official inactives). This session claims only what is reachable and verifiable today, and records every other requirement as blocked with the gate that blocks it. No other session holds a live claim on the paths below as of this commit.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| W11-0 | Claim this scope on the board, push before work | done | `arena/d1fe94e9-korea2` | this section |
+| W11-1 | Capture the official NFL injury report for **Week 11 2026** on a GitHub runner (`nfl-injury-capture.yml`; workflow_dispatch returned 403 for this token, so the capture was triggered by a push of the workflow file on this branch) | done — two reads, runs 44602578755 and 44602832312, identical raw SHA-256 `880c96c9…` (374,003 bytes) | `arena/d1fe94e9-korea2` | `injury-capture/manifests/` (bot-committed) |
+| W11-2 | Week 11 availability hub: per-club counts (no player names on the public site — see W11-F04), 13 fixtures, 6 byes, captures, flags | done — `availability-w11/` | `arena/d1fe94e9-korea2` | `availability-w11/` (new) |
+| W11-3 | Per-team view by label counts. **Starters out and replacements are NOT published** (no verified official depth source). "Net injury count" is not defined in the brief, so it is not invented (W11-F06) | done (partial by design) | `arena/d1fe94e9-korea2` | `availability-w11/` |
+| W11-4 | Verify: every table row has an NFL.com source link; counts equal the manifests; no player names in output; `availability-w11/scripts/verify.py`, `tests/check_site.py`, `scripts/check_links.py`, `pipeline/check_links.py`, `tests/check_readiness.py`, `tests/check_derived.py`, `scripts/validate_data.py`, `review-board/scripts/verify_all.py` (131/0), `requirements-desk/scripts/verify.py` | done — all pass locally | `arena/d1fe94e9-korea2` | `availability-w11/`, `tests/` (read only) |
+| W11-5 | PR → `main`, merge (`--merge`, no `--auto`), confirm GitHub Pages build, record PR and merge result here | in progress | `arena/d1fe94e9-korea2` | this section |
+
+**Not claimed (blocked; logged in the final answer):** depth-chart register, Game Book starters/inactives, snap counts, official market open/close and CLV, pre-registered strategies, what-changed diff over time, announced-starter evidence, injury-designation reliability study.
+
+
+## Log — `arena/d1fe94e9-korea2` (2026-11-19 UTC)
+
+**Official sources read (2026-11-19).** https://www.nfl.com/injuries/league/2026/reg11 (Week 11 report: chunk 0 of 7 read by hand with the fetch tool, covering the IND, HOU, PIT and PHI tables; the full page was captured by the runner, not transcribed by hand); https://www.nfl.com/schedules/2026/by-week/week-11 (3 chunks: 13 fixtures, "Teams on Bye" list, game-page links); https://www.nfl.com/legal/terms/ (NFL.com Terms and Conditions, updated May 16, 2024, sections 1.1 and 1.3). The runner capture (GitHub Actions) fetched the report page itself at 19:51:12Z and 19:52:41Z.
+
+**Result.**
+- Week 11 report: 24 club tables, **253 listed rows** (DNP 83, LP 87, FP 83). Printed game status only for IND (8 of 11 rows) and HOU (7 of 15): Out 9, Questionable 6.
+- Playing clubs: 26 (13 fixtures). Clubs with a table: 24. **CIN and WAS (Monday game) have no table in either read**; the page does not say why. Recorded as not listed, not healthy (W11-F01).
+- Byes (official): ATL, CLE, GB, LAR, NE, SEA.
+- Hand cross-check of IND, HOU, PIT and PHI against the page text: row counts, practice counts and game-status counts all match the runner manifest.
+
+**Irregularities (all on the hub's Flagged for Review page, none blocking):**
+1. W11-F01 — CIN and WAS have no injury table in either read.
+2. W11-F02 — 22 of 24 tables print a blank game status; blank is not "available".
+3. W11-F03 — stadium venues not transcribed (game-centre pages not read).
+4. **W11-F04 — the NFL.com terms (section 1.3) prohibit systematic retrieval to create a compilation without written consent, and section 1.1 restricts copying of Services content.** The scheduled capture is systematic retrieval of the report page. This session did not resolve it and did not publish row-level names. This is an owner or counsel decision, and it affects the existing Week 10 row-level page on requirements-desk too (W11-F10).
+5. W11-F05 — no starter, depth or replacement fields (no verified official Week 11 depth source).
+6. W11-F06 — "net injury count" undefined in the brief.
+7. W11-F07 — no earlier Week 11 read, so no delta yet; deltas start at the next read.
+8. W11-F08 — workflow_dispatch returned HTTP 403 for this token; the capture ran via a push. The workflow default week was changed to 11 on this branch only; scheduled runs on `main` still default to 10 until this branch is merged.
+9. W11-F09 — the sandbox could not download the run artifact (blob host unreachable), so row-level equality for 20 clubs was not re-read by hand; counts come from the manifest.
+
+**Shared-file changes (logged, minimal):**
+- `.github/workflows/nfl-injury-capture.yml`: default week 10 → 11 (this branch).
+- `injury-capture/scripts/capture_injury_report.py`: adds per-club practice-status and game-status **label counts** to the manifest (aggregates only). The first Week 11 read predates this change and carries no label counts; the second read carries them.
+- `scripts/lib/site.py`: one label for the new hub in the root navigation map. Root navigation pages and `review-board` registers were regenerated with the repo's own generators (nav entry only, plus stamps and the hub map). `review-board/scripts/verify_all.py` passes 131/0 at the hub commit. Its `_generated_from_repo_commit` stamps change on every run; those stamp-only edits were discarded, not committed.
+- `README.md`: one "Start here" entry.
+
+**Requests to other owners (logged, not actioned):**
+- Root flagged-page owner: add W11-F04 (terms) to the root Flagged for Review page; it affects every public row-level page.
+- Requirements-desk owner: the Week 10 row-level page (347 rows) conflicts with the public/private split until the terms decision is made.
+- Capture-job owner: scheduled capture runs on `main` only as artifacts; a durable committed store is still undecided (RR-C11, S12).
+
+**Not done in this session (blocked, with the gate that blocks each):** depth-chart register and 32-club depth verification (no verified official source route read this session); Game Book starters and inactives; snap counts; official market open/close and CLV (no official price source); pre-registered strategies and leaderboard divisions; what-changed diff (needs two weekly snapshots); announced-starter evidence; injury designation reliability study; roster-turnover versioning; matchup matrix; stadium/NWS overlay.
+
 # Session board — arena/b245e313-korea2 (final integration: re-verification, site integration, PR/merge)
 
 **Session ID:** `arena/b245e313-korea2` (Arena-assigned branch `arena/b245e313-korea2`, branched from `1d56d09` = PR #145 merge).

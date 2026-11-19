@@ -3,11 +3,11 @@
   "code": 7,
   "data register": 1,
   "other": 1,
-  "site hub": 24
+  "site hub": 26
  },
  "history": "shallow",
- "base_commit": "cf66f4c",
- "hub_count": 33,
+ "base_commit": "c9786e0",
+ "hub_count": 35,
  "nav_target_count": 27,
  "nav_duplicate_labels": [],
  "nav": [
@@ -144,6 +144,17 @@
    "nav_labels": []
   },
   {
+   "dir": "availability-w11",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 5,
+   "data_files": 2,
+   "scripts": 2,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
    "dir": "dashboard",
    "kind": "site hub",
    "index_page": true,
@@ -192,7 +203,7 @@
    "kind": "code",
    "index_page": false,
    "pages": 0,
-   "data_files": 9,
+   "data_files": 11,
    "scripts": 2,
    "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
@@ -260,6 +271,17 @@
    "pages": 6,
    "data_files": 0,
    "scripts": 4,
+   "last_touched": "(history not fetched in this checkout)",
+   "nav_links": [],
+   "nav_labels": []
+  },
+  {
+   "dir": "official-verification",
+   "kind": "site hub",
+   "index_page": true,
+   "pages": 3,
+   "data_files": 1,
+   "scripts": 1,
    "last_touched": "(history not fetched in this checkout)",
    "nav_links": [],
    "nav_labels": []
@@ -533,8 +555,8 @@
    "nav_labels": []
   }
  ],
- "total_pages": 252,
- "total_data_files": 209,
+ "total_pages": 260,
+ "total_data_files": 214,
  "_generated_by": "review-board/scripts/ingest.py",
- "_generated_from_repo_commit": "cf66f4cdc2f36f2484eb7340bd65acb18983fbe3"
+ "_generated_from_repo_commit": "c9786e0f353a20dd534ae4f720ce3f5802a953c9"
 }
