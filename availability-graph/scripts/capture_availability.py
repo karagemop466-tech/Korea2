@@ -873,6 +873,16 @@ def run() -> int:
         with open(log_path, "a", encoding="utf-8") as fh:
             fh.write(line + "\n")
 
+    partial_path = os.path.join(args.manifest_dir, "capture_partial.json")
+
+    def dump_partial() -> None:
+        """Write the manifest as it stands, so a crash still leaves the evidence behind."""
+        try:
+            with open(partial_path, "w", encoding="utf-8") as fh:
+                json.dump(manifest, fh, indent=2, sort_keys=True)
+        except Exception:                                       # noqa: BLE001
+            pass
+
     games_rows, lineup_rows, inactive_rows, sub_rows = [], [], [], []
 
     def raw_path(name: str) -> str:
@@ -893,88 +903,90 @@ def run() -> int:
             continue
         for game in games:
             try:
-              slug = game["slug"]
-              game_url = game["game_url"]
-              rec, body = fetch(game_url, raw_path(f"gamecenter_{slug}.html"))
-              manifest["requests"].append(rec)
-              time.sleep(args.delay)
-              if not body:
-                  failures.append(f"game {slug}: {rec.get('error')}")
-                  continue
-              ghtml = body.decode("utf-8", "replace")
-              pdfs = GAMEBOOK_PDF_RE.findall(ghtml)
-              if not pdfs:
-                  failures.append(f"game {slug}: no Game Book PDF link on the official game centre page")
-                  continue
-              pdf_url = pdfs[0]
-              rec, body = fetch(pdf_url, raw_path(f"gamebook_{slug}.pdf"))
-              manifest["requests"].append(rec)
-              time.sleep(args.delay)
-              if not body:
-                  failures.append(f"gamebook {slug}: {rec.get('error')}")
-                  continue
-              text, method = pdf_to_text(body, raw_path(f"gamebook_{slug}.txt"))
-              if not text.strip():
-                  failures.append(f"gamebook {slug}: no extractable text ({method})")
-                  continue
-              gb = parse_gamebook(text)
-              away, home = game["away_team"], game["home_team"]
-              log(f"week {week} {slug}: lineups={'ok' if gb['lineups']['ok'] else 'FAILED'} "
-                  f"({gb['lineups']['note']}); method={method}")
-              if len(manifest.get("diagnostics", {})) < 2:
-                  manifest.setdefault("diagnostics", {})[slug] = diagnose_lineup_region(text)
-              games_rows.append({
-                  "season": season, "week": week, "slug": slug,
-                  "game_url": game_url, "gamebook_url": pdf_url,
-                  "away_team": away, "home_team": home,
-                  "away_score": game["away_score"], "home_score": game["home_score"],
-                  "status": game["status"], "slot": game["slot"], "broadcast": game["broadcast"],
-                  "gamebook_date": gb.get("date_text", ""), "venue_text": gb.get("venue", ""),
-                  "start_time": gb.get("start_time", ""),
-                  "roof": gb.get("roof", ""), "surface": gb.get("surface", ""),
-                  "weather": gb.get("weather", ""), "temp": gb.get("temp", ""),
-                  "humidity": gb.get("humidity", ""), "wind": gb.get("wind", ""),
-                  "attendance": gb.get("attendance", ""),
-                  "pdf_sha256": rec.get("sha256"), "pdf_bytes": rec.get("bytes"),
-                  "text_method": method,
-                  "lineups_parsed": "yes" if gb["lineups"]["ok"] else "no",
-                  "captured_utc": rec.get("fetched_utc"),
-              })
-              if gb["lineups"]["ok"]:
-                  for r in gb["lineups"]["rows"]:
-                      team = away if r["col"] in (0, 1) else home
-                      lineup_rows.append({
-                          "season": season, "week": week, "slug": slug, "game_url": game_url,
-                          "team": team, "unit": r["unit"], "slot": r["pos"], "jersey": r["num"],
-                          "player": r["name"], "source_url": pdf_url, "captured_utc": rec.get("fetched_utc"),
-                      })
-              else:
-                  failures.append(f"gamebook {slug}: lineups not parsed ({gb['lineups']['note']})")
-                  manifest.setdefault("diagnostics", {})[slug] = diagnose_lineup_region(text)
-              for key in ("did_not_play", "not_active"):
-                  sec = gb["sections"][key]
-                  if not sec["ok"]:
-                      failures.append(f"gamebook {slug}: {key} section not found")
-                      continue
-                  for side, team in (("away", away), ("home", home)):
-                      for p in sec[side]:
-                          inactive_rows.append({
-                              "season": season, "week": week, "slug": slug, "game_url": game_url,
-                              "team": team, "category": key, "position": p["pos"], "jersey": p["num"],
-                              "player": p["name"], "source_url": pdf_url,
-                              "captured_utc": rec.get("fetched_utc"),
-                          })
-              sec = gb["sections"]["substitutions"]
-              if sec["ok"]:
-                  for side, team in (("away", away), ("home", home)):
-                      for p in sec[side]:
-                          sub_rows.append({
-                              "season": season, "week": week, "slug": slug, "game_url": game_url,
-                              "team": team, "position": p["pos"], "jersey": p["num"], "player": p["name"],
-                              "source_url": pdf_url, "captured_utc": rec.get("fetched_utc"),
-                          })
-              else:
-                  failures.append(f"gamebook {slug}: substitutions section not found")
+                slug = game["slug"]
+                game_url = game["game_url"]
+                rec, body = fetch(game_url, raw_path(f"gamecenter_{slug}.html"))
+                manifest["requests"].append(rec)
+                time.sleep(args.delay)
+                if not body:
+                    failures.append(f"game {slug}: {rec.get('error')}")
+                    continue
+                ghtml = body.decode("utf-8", "replace")
+                pdfs = GAMEBOOK_PDF_RE.findall(ghtml)
+                if not pdfs:
+                    failures.append(f"game {slug}: no Game Book PDF link on the official game centre page")
+                    continue
+                pdf_url = pdfs[0]
+                rec, body = fetch(pdf_url, raw_path(f"gamebook_{slug}.pdf"))
+                manifest["requests"].append(rec)
+                time.sleep(args.delay)
+                if not body:
+                    failures.append(f"gamebook {slug}: {rec.get('error')}")
+                    continue
+                text, method = pdf_to_text(body, raw_path(f"gamebook_{slug}.txt"))
+                if not text.strip():
+                    failures.append(f"gamebook {slug}: no extractable text ({method})")
+                    continue
+                gb = parse_gamebook(text)
+                away, home = game["away_team"], game["home_team"]
+                log(f"week {week} {slug}: lineups={'ok' if gb['lineups']['ok'] else 'FAILED'} "
+                    f"({gb['lineups']['note']}); method={method}")
+                if len(manifest.get("diagnostics", {})) < 2:
+                    manifest.setdefault("diagnostics", {})[slug] = diagnose_lineup_region(text)
+                    dump_partial()
+                games_rows.append({
+                    "season": season, "week": week, "slug": slug,
+                    "game_url": game_url, "gamebook_url": pdf_url,
+                    "away_team": away, "home_team": home,
+                    "away_score": game["away_score"], "home_score": game["home_score"],
+                    "status": game["status"], "slot": game["slot"], "broadcast": game["broadcast"],
+                    "gamebook_date": gb.get("date_text", ""), "venue_text": gb.get("venue", ""),
+                    "start_time": gb.get("start_time", ""),
+                    "roof": gb.get("roof", ""), "surface": gb.get("surface", ""),
+                    "weather": gb.get("weather", ""), "temp": gb.get("temp", ""),
+                    "humidity": gb.get("humidity", ""), "wind": gb.get("wind", ""),
+                    "attendance": gb.get("attendance", ""),
+                    "pdf_sha256": rec.get("sha256"), "pdf_bytes": rec.get("bytes"),
+                    "text_method": method,
+                    "lineups_parsed": "yes" if gb["lineups"]["ok"] else "no",
+                    "captured_utc": rec.get("fetched_utc"),
+                })
+                if gb["lineups"]["ok"]:
+                    for r in gb["lineups"]["rows"]:
+                        team = away if r["col"] in (0, 1) else home
+                        lineup_rows.append({
+                            "season": season, "week": week, "slug": slug, "game_url": game_url,
+                            "team": team, "unit": r["unit"], "slot": r["pos"], "jersey": r["num"],
+                            "player": r["name"], "source_url": pdf_url, "captured_utc": rec.get("fetched_utc"),
+                        })
+                else:
+                    failures.append(f"gamebook {slug}: lineups not parsed ({gb['lineups']['note']})")
+                    manifest.setdefault("diagnostics", {})[slug] = diagnose_lineup_region(text)
+                    dump_partial()
+                for key in ("did_not_play", "not_active"):
+                    sec = gb["sections"][key]
+                    if not sec["ok"]:
+                        failures.append(f"gamebook {slug}: {key} section not found")
+                        continue
+                    for side, team in (("away", away), ("home", home)):
+                        for p in sec[side]:
+                            inactive_rows.append({
+                                "season": season, "week": week, "slug": slug, "game_url": game_url,
+                                "team": team, "category": key, "position": p["pos"], "jersey": p["num"],
+                                "player": p["name"], "source_url": pdf_url,
+                                "captured_utc": rec.get("fetched_utc"),
+                            })
+                sec = gb["sections"]["substitutions"]
+                if sec["ok"]:
+                    for side, team in (("away", away), ("home", home)):
+                        for p in sec[side]:
+                            sub_rows.append({
+                                "season": season, "week": week, "slug": slug, "game_url": game_url,
+                                "team": team, "position": p["pos"], "jersey": p["num"], "player": p["name"],
+                                "source_url": pdf_url, "captured_utc": rec.get("fetched_utc"),
+                            })
+                else:
+                    failures.append(f"gamebook {slug}: substitutions section not found")
             except Exception as exc:                      # noqa: BLE001
                 # One unreadable game book must not abort the whole capture: the failure is
                 # recorded and the capture continues with the next game.
@@ -1084,6 +1096,7 @@ def run() -> int:
         "clubs_with_parsed_depth": len({r["club"] for r in depth_chart_rows}),
     })
     manifest["failures"] = failures
+    dump_partial()
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     path = os.path.join(args.manifest_dir, f"capture_{season}_wk{'-'.join(weeks)}_{stamp}.json")
     with open(path, "w", encoding="utf-8") as fh:
