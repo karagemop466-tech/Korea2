@@ -11,6 +11,11 @@
 
 The repository has several independently built dashboards. They do not yet form one canonical site; the root navigation omits some recent hubs and repeats the “Suggestions hub” link. These direct links are intentional until the shared-navigation owner integrates them.
 
+### Week 11 availability — new 2026-11-19 (official capture, per-club counts, flags)
+
+- [Week 11 availability hub](availability-w11/index.html) — two official reads of the Week 11 NFL injury report on 2026-11-19 (identical raw SHA-256): **253** listed rows, **24 of 26** playing clubs with a table, CIN and WAS with **no table** (flagged, not treated as healthy), 6 byes, 13 official fixtures. Starters, depth, replacements, venues and deltas are blank and flagged. [Clubs](availability-w11/pages/clubs.html) · [Schedule & byes](availability-w11/pages/schedule.html) · [Captures](availability-w11/pages/captures.html) · [Flagged for Review (10 items)](availability-w11/pages/flagged.html).
+- **Terms:** the NFL.com terms (section 1.3) prohibit systematic retrieval to build a compilation without written consent. This is an open owner decision (W11-F04) that gates any public row-level release.
+
 ### Requirements Desk — new 2026-11-18 (official capture, decision readiness, review queues)
 
 - [Requirements Desk](requirements-desk/index.html) — landing page: one row per brief requirement with the
