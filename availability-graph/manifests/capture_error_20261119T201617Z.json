@@ -1,0 +1,5 @@
+{
+  "generated_utc": "2026-11-19T20:16:17Z",
+  "status": "error",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py\", line 983, in main\n    return run()\n           ^^^^^\n  File \"/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py\", line 1063, in run\n    games = parse_schedule(body.decode(\"utf-8\", \"replace\"), season, week)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/Korea2/Korea2/availability-graph/scripts/capture_availability.py\", line 324, in parse_schedule\n    \"date_text\": (dsm.group(\"away\") and \"\") or \"\",\n                  ^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'group'\n"
+}
