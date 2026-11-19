@@ -176,6 +176,28 @@ if summary_html:
     check("arena/5d001552-korea2" in summary_html, "week11.html does not name its session owner")
     check(reg["meta"]["read_at_utc"] in summary_html, "week11.html omits the read clock time")
 
+# --- R9b every page: local links resolve, every tbody row carries a source link -------
+import re  # noqa: E402
+
+ALL_PAGES = ["index.html"] + [f"pages/{n}.html" for n in
+                              ("report", "delta", "fixtures", "absence", "findings",
+                               "flagged", "method")]
+for pg in ALL_PAGES:
+    path = os.path.join(DESK, pg)
+    check(os.path.exists(path), f"missing page {pg}")
+    if not os.path.exists(path):
+        continue
+    h = open(path, encoding="utf-8").read()
+    for href in re.findall(r'href="([^"]+)"', h):
+        if href.startswith(("http", "#", "mailto")):
+            continue
+        t = os.path.normpath(os.path.join(DESK, os.path.dirname(pg), href))
+        check(os.path.exists(t), f"{pg}: broken local link {href}")
+    for tb in re.findall(r"<tbody>(.*?)</tbody>", h, re.S):
+        for tr in re.findall(r"<tr>(.*?)</tr>", tb, re.S):
+            check("<a " in tr, f"{pg}: table row without a source link: {tr[:70]!r}")
+    check("arena/5d001552-korea2" in h, f"{pg}: does not name its owning session")
+
 # --- R10 week heading ---------------------------------------------------------------
 check(reg["meta"]["page_heading"] == "Injuries - WEEK 11", "page heading not recorded as WEEK 11")
 check("reg11" in reg["meta"]["source_url"], "source URL is not the reg11 injury report")

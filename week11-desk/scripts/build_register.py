@@ -91,6 +91,77 @@ BYES = [
     ("LAR", "6-4", SCHEDULE_URL), ("NE", "5-5", SCHEDULE_URL), ("SEA", "6-4", SCHEDULE_URL),
 ]
 
+# ---------------------------------------------------------------------------------------
+# Named-absence check. The Week 11 injury page prints a "NEWS" block whose headlines are
+# published on nfl.com and are linked from the page itself. Those headlines name players who
+# are NOT in the weekly report tables. This register records, for each such player, whether
+# the Week 11 table lists them. It exists to make one thing impossible: reading "not listed"
+# as "available". A player on injured reserve is not listed because he is unavailable, not
+# because he is healthy. The report tables alone cannot distinguish the two, so the headline
+# that explains the absence is carried beside the observation, labelled as a news headline.
+ABSENCE_CHECK = [
+    # (club, player, page_headline, headline_url)
+    ("BAL", "Lamar Jackson",
+     "NFL news roundup: Ravens confirm Lamar Jackson expected to miss 6-10 weeks; Kenneth Walker questionable",
+     "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-friday-nov-13"),
+    ("MIA", "Malik Willis",
+     "Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start",
+     "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start"),
+    ("MIA", "Kyle McCord",
+     "Dolphins place QB Malik Willis (groin) on injured reserve; Kyle McCord in line for first start",
+     "https://www.nfl.com/news/dolphins-place-qb-malik-willis-groin-on-injured-reserve-kyle-mccord-in-line-for-first-start"),
+    ("MIN", "Jordan Addison",
+     "NFL news roundup: Vikings WR Jordan Addison needs thumb surgery, could go to IR; Buccaneers add QB",
+     "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-monday-nov-16"),
+    ("DET", "Aidan Hutchinson",
+     "NFL Network: Lions' Aidan Hutchinson feared to have suffered significant knee injury on sack celebration",
+     "https://www.nfl.com/news/lions-aidan-hutchinson-knee-injury-patriots"),
+    ("TB", "Baker Mayfield",
+     "NFL Network: Buccaneers QB Baker Mayfield dealing with lower leg injury ahead of Week 11",
+     "https://www.nfl.com/news/buccaneers-qb-baker-mayfield-injury-week-11"),
+    ("NE", "Drake Maye",
+     "NFL Network: Patriots QB Drake Maye could miss rest of 2026 season",
+     "https://www.nfl.com/news/nfl-network-patriots-qb-drake-maye-could-miss-rest-of-2026-season"),
+    ("NE", "TreVeyon Henderson",
+     "NFL news roundup: Patriots place RB TreVeyon Henderson (illness) on injured reserve",
+     "https://www.nfl.com/news/nfl-news-roundup-latest-league-updates-from-saturday-nov-14"),
+    ("LAR", "Puka Nacua",
+     "Rams WR Puka Nacua likely to be placed on injured reserve with turf toe, sprained MCL and PCL",
+     "https://www.nfl.com/news/rams-wr-puka-nacua-likely-to-be-placed-on-injured-reserve-with-turf-toe-sprained-mcl-and-pcl"),
+    ("GB", "Josh Jacobs",
+     "Packers RB Josh Jacobs to undergo surgery on finger this week; timeline to return TBD",
+     "https://www.nfl.com/news/packers-rb-josh-jacobs-to-undergo-surgery-on-finger-this-week"),
+]
+
+
+def build_absence(rows: list[dict]) -> list[dict]:
+    """Present/absent in the Week 11 table, for players named in the page's own news block."""
+    listed = {(r["club"], r["player"]) for r in rows}
+    bye_clubs = {c for (c, _rec, _u) in BYES}
+    out = []
+    for club, player, headline, url in ABSENCE_CHECK:
+        present = (club, player)
+        in_table = present in listed
+        if in_table:
+            why = ""
+        elif club in bye_clubs:
+            why = ("club is on bye in Week 11, so it publishes no game-status column at all; "
+                   "absence here carries no availability information")
+        else:
+            why = ("not listed in the Week 11 table; the page does not print a reason. "
+                   "Absence is NOT evidence of availability")
+        out.append(OrderedDict([
+            ("club", club), ("player", player),
+            ("listed_in_week11_table", "yes" if in_table else "no"),
+            ("practical_reading", why),
+            ("news_headline_on_official_page", headline),
+            ("headline_url", url),
+            ("table_source_url", SOURCE_URL),
+            ("read_at_utc", READ_AT_UTC),
+        ]))
+    return out
+
+
 PRACTICE_OK = {"Full Participation in Practice", "Limited Participation in Practice",
                "Did Not Participate In Practice", ""}
 GAME_OK = {"Out", "Doubtful", "Questionable", ""}
@@ -305,6 +376,7 @@ def main(argv: list[str]) -> int:
     counts = club_counts(rows)
     tot = totals(rows)
     delta, dsum = build_delta(rows)
+    absence = build_absence(rows)
 
     # --- internal consistency (drift alarms) -------------------------------------------
     if tot["clubs_with_rows"] + tot["clubs_no_report"] != 26:
@@ -391,6 +463,10 @@ def main(argv: list[str]) -> int:
                                           ["club", "record_w11", "source_url"])
     hashes["delta_week10_week11.csv"] = write_csv(
         os.path.join(DATA, "delta_week10_week11.csv"), delta, cols_delta)
+    hashes["week11_absence_check.csv"] = write_csv(
+        os.path.join(DATA, "week11_absence_check.csv"), absence,
+        ["club", "player", "listed_in_week11_table", "practical_reading",
+         "news_headline_on_official_page", "headline_url", "table_source_url", "read_at_utc"])
 
     payload["register_sha256"] = hashes
     payload["register_manifest_sha256"] = hashlib.sha256(

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method &amp; limits — Week 11 desk</title>
+<style>
+:root{--ink:#14202b;--mut:#5b6b7d;--line:#d9e0e8;--bg:#f4f6f9;--card:#fff;
+--accent:#0b3d70;--accent2:#0b52c4;--ok:#0a7d33;--warn:#8a5a00;--bad:#a30000}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header.site{background:var(--accent);color:#fff;padding:16px}
+header.site .inner{max-width:1200px;margin:0 auto}
+header.site h1{margin:0;font-size:1.3rem;font-weight:650}
+header.site .stamp{font-size:.85rem;opacity:.9;margin-top:4px}
+nav.hub{background:#0a2f56;padding:0 16px}
+nav.hub .inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2px}
+nav.hub a{color:#cfe0f5;text-decoration:none;font-size:.9rem;padding:10px 12px;display:block;border-bottom:3px solid transparent}
+nav.hub a:hover{background:#0d3a68;color:#fff}
+nav.hub a.active{color:#fff;border-bottom-color:#7fb2f0;font-weight:600}
+main{max-width:1200px;margin:0 auto;padding:20px 16px 64px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:16px 0}
+.card h2{margin:0 0 12px;font-size:1.12rem}
+.card h3{margin:18px 0 8px;font-size:1rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px}
+.kpi .n{font-size:1.7rem;font-weight:700;line-height:1.1}
+.kpi .l{font-size:.8rem;color:var(--mut);margin-top:4px}
+table{border-collapse:collapse;width:100%;font-size:.88rem;background:#fff}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#eef2f7;font-weight:600;position:sticky;top:0;z-index:1}
+tbody tr:nth-child(even) td{background:#fafbfd}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+a{color:var(--accent2)}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+.pill{display:inline-block;padding:1px 7px;border-radius:99px;font-size:.75rem;font-weight:600;border:1px solid}
+.p-out{color:#fff;background:#a30000;border-color:#a30000}
+.p-q{color:#5a4200;background:#ffe9a8;border-color:#e0c266}
+.p-d{color:#fff;background:#a34d00;border-color:#a34d00}
+.p-none{color:var(--mut);background:#f0f2f5;border-color:#dde2e8}
+.p-fp{color:#0a5c2a;background:#dff3e5;border-color:#a9d9ba}
+.p-lp{color:#7a5000;background:#fdf0d5;border-color:#e6cf9b}
+.p-dnp{color:#8a1c1c;background:#fbe3e3;border-color:#e8b4b4}
+.note{background:#fff8e6;border:1px solid #e8d9a0;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.alert{background:#fdecec;border:1px solid #e9b5b5;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.good{background:#e9f7ee;border:1px solid #b6dfc3;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+.mut{color:var(--mut)}
+.small{font-size:.84rem}
+code{background:#eef2f7;padding:1px 5px;border-radius:4px;font-size:.85em}
+footer{border-top:1px solid var(--line);margin-top:28px;padding:18px 0;color:var(--mut);font-size:.84rem}
+h1.page{font-size:1.35rem;margin:6px 0 4px}
+.lede{color:var(--mut);margin:0 0 14px}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+<h1>Week 11 desk — official availability capture</h1>
+<div class="stamp">Read 2026-11-19T19:54:00Z from <a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">the official NFL Week 11 injury report</a>
+· register manifest <code>c1f1a66cc67d44cd</code>
+· session <code>arena/5d001552-korea2</code></div>
+</div></header>
+<nav class="hub"><div class="inner"><a href="../index.html">Overview</a><a href="report.html">Week 11 report</a><a href="delta.html">Week 10 → 11 delta</a><a href="fixtures.html">Fixtures &amp; venues</a><a href="absence.html">Not listed ≠ available</a><a href="findings.html">Findings</a><a href="flagged.html">Flagged for review</a><a href="method.html" class="active">Method &amp; limits</a></div></nav>
+<main>
+
+<h1 class="page">Method &amp; limits</h1>
+<p class="lede">How to replay this capture, and the honest boundary of what it establishes.</p>
+
+<div class="card"><h2>Reads</h2>
+<div class="scroll"><table>
+<thead><tr><th>Started (UTC)</th><th>Finished (UTC)</th><th>Chunks</th><th>What was done</th><th>Source</th></tr></thead>
+<tbody><tr><td>2026-11-19T19:44:00Z</td><td>2026-11-19T19:52:00Z</td><td>0-7</td><td>full read, all 8 chunks, row-by-row transcription at read 1</td><td><a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">Week 11 report</a></td></tr><tr><td>2026-11-19T19:53:30Z</td><td>2026-11-19T19:54:33Z</td><td>0</td><td>second read of chunk 0 to confirm the Colts/Texans block and the page title (Week 11, 2026) after the Week 10 -&gt; Week 11 changeover</td><td><a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">Week 11 report</a></td></tr></tbody></table></div>
+<p class="small mut">Each read is listed with its clock time, per the brief's requirement to store
+every injury-hub read with its clock time. The transcription records the second read as its
+<code>read_at_utc</code>.</p></div>
+
+<div class="card"><h2>Capture log</h2>
+<div class="scroll"><table>
+<thead><tr><th>Capture ID</th><th>Week</th><th>Fetched from</th><th>Fetched to</th>
+<th>Rows</th><th>Clubs</th><th>Raw bytes</th><th>Source</th></tr></thead>
+<tbody><tr><td>20261119-5d001552</td><td>11</td><td>2026-11-19T19:44:00Z</td><td>2026-11-19T19:54:33Z</td><td>253</td><td>24</td><td>not retained</td><td><a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">source</a></td></tr></tbody></table></div></div>
+
+<div class="card"><h2>Reproduce the register</h2>
+<pre><code>cd /home/user/Korea2
+python3 week11-desk/scripts/build_register.py --write   # CSV + JSON registers and the manifest
+python3 week11-desk/scripts/verify.py                   # strict checks; non-zero exit on drift
+python3 week11-desk/scripts/build_site.py               # this site
+</code></pre>
+<p class="small mut">The register is deterministic: the manifest hash is a SHA-256 of the five
+data files, and <code>verify.py</code> recomputes it. Re-running the builder on this tree
+reproduces identical files.</p></div>
+
+<div class="card"><h2>Verification rules this build enforces</h2>
+<ol class="small">
+<li>Every register row carries an official https source URL and its read clock time.</li>
+<li>The committed register hashes match the published manifest.</li>
+<li>Row counts, per-club counts and the game-status split recompute from the CSV.</li>
+<li>Practice and game statuses are a closed vocabulary taken from the page.</li>
+<li>Injury text and game designation co-occur on every row.</li>
+<li>Every fixture carries a game-centre URL and a non-empty official venue.</li>
+<li>Every delta row's two sources are the two official weekly report URLs, and the delta counts
+sum to the CSV.</li>
+<li>No delta row claims a game-status comparison for a club that published no designation, and
+no row uses the words “cleared” or “healthy”.</li>
+<li>The built pages print the computed values, the session owner and the read time.</li>
+</ol></div>
+
+<div class="card"><h2>What this cannot establish</h2>
+<ul>
+<li><strong>Availability.</strong> A blank game-status cell is not availability. Nothing here
+should be used as a “player is playing” flag.</li>
+<li><strong>Replacement depth.</strong> No source used here publishes depth rank, starter status
+or snap share. Any 2nd/3rd/4th-string claim would be invention.</li>
+<li><strong>Predictive value.</strong> Practice-status transitions are published; whether they
+predict anything is untested and this desk makes no claim about it. That requires linked
+outcomes and a pre-registered evaluation, neither of which exists.</li>
+<li><strong>Historical replay.</strong> This is the first dated Week 11 capture. A series begins
+here; it does not yet exist.</li>
+<li><strong>Completeness.</strong> The page at this read lists 26 of 32 clubs because six are on
+bye. It does not list players on injured reserve, and it does not say why.</li>
+</ul></div>
+
+<div class="card"><h2>Sources used</h2>
+<div class="scroll"><table>
+<thead><tr><th>Source</th><th>What was taken from it</th><th>Link</th></tr></thead>
+<tbody>
+<tr><td><a href="https://www.nfl.com/injuries/league/2026/reg11" rel="noopener">Week 11 injury report</a></td><td>253 player rows, 2 “No Injuries Reported” blocks, the news headlines on the absence page</td></tr>
+<tr><td><a href="https://www.nfl.com/schedules/2026/by-week/week-11" rel="noopener">Week 11 schedule</a></td><td>13 fixtures, kickoff times, networks, the six bye clubs</td></tr>
+<tr><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Week 10 injury report</a></td><td>Re-read at 2026-11-19T19:56Z to test the title/body mismatch</td></tr>
+<tr><td>Each fixture's own game centre</td><td>Stadium name and location per fixture</td><td><a href="https://www.nfl.com/games/colts-at-texans-2026-reg-11" rel="noopener">first game centre</a> … <a href="https://www.nfl.com/games/bengals-at-commanders-2026-reg-11" rel="noopener">last game centre</a></td></tr>
+<tr><td>Week 10 register (another session, read only)</td><td>The Week 10 side of the delta: <code>availability-sweep/data/week10_rows_20261118.csv</code></td><td><a href="https://www.nfl.com/injuries/league/2026/REG10" rel="noopener">Week 10 report</a></td></tr>
+</tbody></table></div></div>
+
+<footer>
+<p>Every table row on this site links the official NFL.com page it was transcribed from.
+Values the official page does not publish are left blank and labelled; nothing is inferred.
+Generated by <code>week11-desk/scripts/build_site.py</code> from
+<code>week11-desk/data/</code>. Register manifest
+<code>c1f1a66cc67d44cd8d71d06bbda35efb0938aed8fc978190242cefcd29ee2e49</code>.</p>
+<p>This desk measures and publishes availability data. It contains no betting recommendation,
+no model output and no strategy result.</p>
+</footer>
+</main>
+</body>
+</html>
