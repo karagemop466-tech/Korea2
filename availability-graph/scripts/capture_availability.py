@@ -435,6 +435,45 @@ def _line_tokens(line: str):
     return [(m.group(0), m.start(), m.end()) for m in TOKEN_RE.finditer(line)]
 
 
+def masked_layout_sample(text: str, limit: int = 14) -> list[str]:
+    """Return the real fixed-width lineup rows with every player name masked.
+
+    The Game Book is a copyrighted document, so the committed sample keeps the geometry (the
+    column offsets, the position labels and the jersey numbers are the official ones) and
+    replaces each name with a mask of the same length. It is enough to test the fixed-width
+    parser against the real runner output without republishing the document.
+    """
+    lines = text.splitlines()
+    start, end = find_section(lines, "Lineups")
+    out: list[str] = []
+    if start < 0:
+        return out
+    header_idx = -1
+    for i in range(start, min(end, start + 12)):
+        low = norm_line(lines[i]).lower()
+        if low.count("offense") >= 2 and low.count("defense") >= 2:
+            header_idx = i
+            break
+    if header_idx < 0:
+        return out
+    for line in lines[header_idx + 1: header_idx + 1 + limit]:
+        if not line.strip():
+            continue
+        pieces = []
+        cursor = 0
+        for tok, start_off, end_off in _line_tokens(line):
+            if _looks_position(tok) or _looks_number(tok):
+                piece = tok
+            elif _looks_name(tok):
+                piece = "#" * len(tok)
+            else:
+                piece = tok
+            pieces.append(" " * (start_off - cursor) + piece)
+            cursor = end_off
+        out.append("".join(pieces).rstrip())
+    return out
+
+
 def parse_layout_lineups(lines: list[str], start: int, end: int) -> list[list[dict]]:
     """Parse the official starting lineups out of a `pdftotext -layout` game book.
 
@@ -792,8 +831,18 @@ def parse_roster(html: str) -> list[dict]:
     return rows
 
 
+DEPTH_URL_RE = re.compile(
+    r"https?://(?:www\.)?[a-z0-9.\-]+\.[a-z]{2,}/[^\s\"'<>]*depth[^\s\"'<>]*", re.I)
+
+
 def find_depth_url(html: str) -> str:
-    """The club's own official depth-chart URL, as linked from the NFL.com roster page."""
+    """The club's own official depth-chart URL, as linked from the NFL.com roster page.
+
+    The NFL.com roster page is a client-rendered page, so the link may appear only in the
+    embedded page data rather than in an anchor. Three strategies are used in order:
+    an anchor whose link text mentions the depth chart, any anchor whose URL mentions the depth
+    chart, and finally any absolute depth-chart URL printed in the page data.
+    """
     parser = TableParser()
     parser.feed(html)
     best = ""
@@ -806,6 +855,14 @@ def find_depth_url(html: str) -> str:
             if "depth" in href.lower():
                 best = href
                 break
+    if not best:
+        for m in DEPTH_URL_RE.finditer(html):
+            cand = m.group(0).rstrip("\"'\\")
+            # The NFL.com own pages are not the club's depth chart.
+            if "nfl.com" in cand.lower() and "static." not in cand.lower():
+                continue
+            best = cand
+            break
     if best.startswith("/"):
         return "https://www.nfl.com" + best
     return best

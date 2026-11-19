@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Availability graph — Availability Graph</title>
+<style>  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f5f7fa;color:#15202b}
+  main{max-width:1240px;margin:0 auto;padding:24px 16px 60px}
+  header.site{background:#0b2340;color:#fff;padding:18px 16px}
+  header.site .inner{max-width:1240px;margin:0 auto}
+  header.site h1{margin:0;font-size:1.35rem}
+  header.site .stamp{font-size:.85rem;opacity:.85;margin-top:4px}
+  nav.hub{margin-top:10px;display:flex;flex-wrap:wrap;gap:12px}
+  nav.hub a{color:#9cc3ff;text-decoration:none;font-size:.95rem}
+  nav.hub a:hover{text-decoration:underline}
+  .card{background:#fff;border:1px solid #dbe2ea;border-radius:10px;padding:16px 18px;margin:18px 0}
+  .card h2{margin:0 0 10px;font-size:1.15rem}
+  .card h3{margin:16px 0 8px;font-size:1.02rem}
+  .note{background:#fff8e6;border:1px solid #e8d9a0;border-radius:8px;padding:10px 14px;font-size:.92rem;margin:12px 0}
+  .flaginfo{background:#eef4ff}
+  .kpis{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+  .kpi{background:#fff;border:1px solid #dbe2ea;border-radius:10px;padding:12px 16px;min-width:150px}
+  .kpi .v{font-size:1.5rem;font-weight:700;color:#0b2340}
+  .kpi .l{font-size:.82rem;color:#5a6b7f;text-transform:uppercase;letter-spacing:.03em}
+  table{border-collapse:collapse;width:100%;font-size:.9rem}
+  th,td{border:1px solid #d7dde5;padding:5px 8px;text-align:left;vertical-align:top}
+  th{background:#eef2f7;position:sticky;top:0}
+  tr:nth-child(even) td{background:#fafbfd}
+  .num{text-align:right}
+  a{color:#0b52c4}
+  .mut{color:#5a6b7f}
+  .out{color:#a30000;font-weight:600}
+  .quest{color:#8a6d00;font-weight:600}
+  .doubt{color:#a34d00;font-weight:600}
+  .ok{color:#0a7d33}
+  .changed{background:#fff3f3 !important}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+<h1>Availability graph</h1>
+<div class="stamp">Official availability evidence — every row links the official page it was read from</div>
+<nav class="hub"><a href="../index.html">Home</a><a href="gamebooks.html">Game Books</a><a href="lineups.html">Official starters</a><a href="inactives.html">Inactive lists</a><a href="availability-graph.html" class="active">Availability graph</a><a href="teams.html">Per-club view</a><a href="roster-status.html">Roster status</a><a href="depth-sources.html">Depth-order source audit</a><a href="method.html">Method</a><a href="sources.html">Sources</a><a href="flags.html">Flagged for review</a></nav>
+</div></header>
+<main>
+
+<div class="card">
+<h2>Availability graph — expected starter vs actual starter</h2>
+<p>For every position slot of every club, the official starting lineup of week  (the
+player who was expected to start) is set against the official starting lineup of week
+ (the player who actually started). The designation of each player is the official
+weekly injury report; the roster status is the official club roster page.</p>
+<p><strong>The depth tier column is blank unless the club publishes the depth order itself.</strong>
+A tier (1st string, 2nd string, ...) is published only where the club publishes a depth chart on
+its own official site &mdash; see <a href="depth-sources.html">the depth-order source audit</a>. The chart's date
+and the club's own "unofficial" label travel with the tier. No tier is inferred from a jersey
+number, an experience count, a salary or the order of a roster listing.</p>
+</div>
+<table><thead><tr><th>Club</th><th>Unit</th><th>Slot</th><th>#</th><th>Expected starter (wk )</th><th>Designation</th><th>Roster status</th><th>Actual starter (wk )</th><th>Designation</th><th>Roster status</th><th>Change</th><th>Depth tier</th><th>Source</th><th>Injury report</th></tr></thead><tbody></tbody></table>
+
+</main>
+</body>
+</html>

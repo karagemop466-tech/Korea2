@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method — Availability Graph</title>
+<style>  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f5f7fa;color:#15202b}
+  main{max-width:1240px;margin:0 auto;padding:24px 16px 60px}
+  header.site{background:#0b2340;color:#fff;padding:18px 16px}
+  header.site .inner{max-width:1240px;margin:0 auto}
+  header.site h1{margin:0;font-size:1.35rem}
+  header.site .stamp{font-size:.85rem;opacity:.85;margin-top:4px}
+  nav.hub{margin-top:10px;display:flex;flex-wrap:wrap;gap:12px}
+  nav.hub a{color:#9cc3ff;text-decoration:none;font-size:.95rem}
+  nav.hub a:hover{text-decoration:underline}
+  .card{background:#fff;border:1px solid #dbe2ea;border-radius:10px;padding:16px 18px;margin:18px 0}
+  .card h2{margin:0 0 10px;font-size:1.15rem}
+  .card h3{margin:16px 0 8px;font-size:1.02rem}
+  .note{background:#fff8e6;border:1px solid #e8d9a0;border-radius:8px;padding:10px 14px;font-size:.92rem;margin:12px 0}
+  .flaginfo{background:#eef4ff}
+  .kpis{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+  .kpi{background:#fff;border:1px solid #dbe2ea;border-radius:10px;padding:12px 16px;min-width:150px}
+  .kpi .v{font-size:1.5rem;font-weight:700;color:#0b2340}
+  .kpi .l{font-size:.82rem;color:#5a6b7f;text-transform:uppercase;letter-spacing:.03em}
+  table{border-collapse:collapse;width:100%;font-size:.9rem}
+  th,td{border:1px solid #d7dde5;padding:5px 8px;text-align:left;vertical-align:top}
+  th{background:#eef2f7;position:sticky;top:0}
+  tr:nth-child(even) td{background:#fafbfd}
+  .num{text-align:right}
+  a{color:#0b52c4}
+  .mut{color:#5a6b7f}
+  .out{color:#a30000;font-weight:600}
+  .quest{color:#8a6d00;font-weight:600}
+  .doubt{color:#a34d00;font-weight:600}
+  .ok{color:#0a7d33}
+  .changed{background:#fff3f3 !important}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+<h1>Method</h1>
+<div class="stamp">Official availability evidence — every row links the official page it was read from</div>
+<nav class="hub"><a href="../index.html">Home</a><a href="gamebooks.html">Game Books</a><a href="lineups.html">Official starters</a><a href="inactives.html">Inactive lists</a><a href="availability-graph.html">Availability graph</a><a href="teams.html">Per-club view</a><a href="roster-status.html">Roster status</a><a href="depth-sources.html">Depth-order source audit</a><a href="method.html" class="active">Method</a><a href="sources.html">Sources</a><a href="flags.html">Flagged for review</a></nav>
+</div></header>
+<main>
+
+<div class="card">
+<h2>How this evidence is produced</h2>
+<ol>
+<li><strong>Capture.</strong> <code>availability-graph/scripts/capture_availability.py</code> runs on
+a GitHub runner. It reads the official week schedule page, the official game centre page of every
+game, the official Game Book PDF it links to, the official NFL.com team roster page of all 32
+clubs and the club depth-chart page each of those roster pages links to. Every response is hashed
+(SHA-256) and timestamped; the raw bytes are uploaded as a workflow artifact and are kept outside
+this site.</li>
+<li><strong>Parse.</strong> The game-book reader is pinned by unit tests to the official rows of the
+New England Patriots at Detroit Lions game book (2026 REG 10), which was read first-hand:
+<code>availability-graph/tests/test_capture_parse.py</code>. A section that cannot be parsed is a
+failed capture, not a blank cell.</li>
+<li><strong>Join.</strong> <code>availability-graph/scripts/analyze.py</code> joins the official
+starting lineups of two captured weeks, the official weekly injury report and the official roster
+status into the availability graph.</li>
+<li><strong>Publish.</strong> <code>availability-graph/scripts/build_site.py</code> renders these
+pages from the committed registers, and <code>availability-graph/scripts/verify.py</code> fails the
+build if any table row loses its source link or if a register drifts from the published counts.</li>
+</ol>
+</div>
+<div class="card">
+<h2>What this evidence cannot support yet</h2>
+<ul>
+<li><strong>No depth tier.</strong> The depth-order source audit records what each club publishes;
+a tier is published only for a club whose official depth order is verified. Nothing is inferred from
+a jersey number, experience, salary or a roster listing.</li>
+<li><strong>No snap counts.</strong> A game book prints participation, not snaps. Snap counts are a
+separate official source (Next Gen Stats) and are not captured here.</li>
+<li><strong>One capture series.</strong> The registers hold the weeks that have been captured. The
+graph compares the earliest and the latest captured week, so the comparison window is a capture
+window, not a season.</li>
+<li><strong>Game Book reuse terms.</strong> The official Game Book carries a written notice that the
+summary and play-by-play are for assisting media coverage and that any other use needs the written
+permission of the NFL. The links are published; the reuse position is a decision for the owner and
+is flagged on the Flagged for review page.</li>
+</ul>
+</div>
+<div class="card">
+<h2>Comparison window</h2>
+<p class="mut">Weeks captured: .
+Compared: week  (expected) against week  (actual). Slot key: club, unit,
+slot label and the ordinal of that slot inside the unit's lineup, as printed by the game book.</p>
+</div>
+
+</main>
+</body>
+</html>

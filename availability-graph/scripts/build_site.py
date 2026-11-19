@@ -221,7 +221,8 @@ this site; the parsed registers and the hash manifests are committed. Last captu
 
     # ---------------------------------------------------------------- game books
     rows = []
-    for g in sorted(gamebooks, key=lambda r: (int(r["week"]), r["game_date"], r["slug"])):
+    for g in sorted(gamebooks, key=lambda r: (int(r["week"]), r.get("gamebook_date", ""),
+                                               r.get("slug", ""))):
         rows.append([
             esc(g["week"]), esc(g["gamebook_date"]), esc(g["away_team"]), esc(g["home_team"]),
             blank(g["away_score"]), blank(g["home_score"]),
