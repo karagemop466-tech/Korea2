@@ -1,0 +1,31 @@
+Masked fixed-width sample of the official NFL Game Book starting-lineup table.
+
+Source: the official NFL Game Book of a 2026 regular-season game, captured on a GitHub runner on
+2026-11-19 with `pdftotext -layout` (capture workflow `.github/workflows/availability-capture.yml`,
+run 44604867560).
+
+Every player name is replaced by a mask that keeps the character class of each character (a
+capital stays a capital, a small letter stays a small letter, a digit stays a digit) but never the
+character itself. The file therefore keeps the real geometry - the column offsets, the official
+position labels and the official jersey numbers - without republishing the copyrighted document.
+The real names are read by the capture script itself and are published only in the parsed
+registers, where every row carries its official source link.
+
+The rows below are the four side-by-side columns of the official game book:
+away offense | away defense | home offense | home defense.
+
+Lineups
+                             Xxx Xxxxxxxxx Xxxxx                                                                    Xxxxxx Xxxxxxx
+                Offense                                    Defense                                     Offense                                 Defense
+     WR     19 Xxxxxxxx                            DL   97 Xxxxxx                           WR    88   Xxxxxx                        OLB   40 Xxxxxxxx
+     FB     44 Xxxxxxxxxx                          DL   99 Xxxxxxxxx                        WR    19   Xxxxxxxxxx                     DT   92 Xxxxxxxxxx
+     TE     85 Xxxxxxxx                            DL   92 Xxxxxxxxxxxx                      LT   60   Xxxxxxxx                       DT   97 Xxxxxxx
+      LT    71 Xxxxxxxxxx                          DL   56 Xxxxxxx                          LG    73   Xxxxxxx                       OLB    7 Xxxxxx
+     LG     75 Xxxxxxx                             LB   57 Xxxxxxxxxx                         C   56   Xxxxxxx                        LB   53 Xxxxxxxxx
+       C    64 Xxxxxxxxx                           LB   54 Xxxxxxxx                         RG    52   Xxxxxxxx                       LB   50 Xxxxxxx
+     RG     77 Xxxxxx                              DB    2 Xxxxxxxx                         RT    78   Xxxxxxxx                       DB   13 Xxxxxxx
+     RT     68 Xxxxxxxxxx                          CB   20 Xxxxxxx                          TE    89   Xxxxxxxxxxxx                   CB   25 Xxxxxxxx
+     WR     17 Xxxxxxxxx                           CB    0 Xxxxxxx                          WR     3   Xxxxxxxxx                      CB   26 Xxxxxxx
+     QB     13 Xxxxxxx                              S   27 Xxxxxxx                          QB     4   Xxxxxxxxxx                      S   14 Xxxxxx
+     RB     23 Xxxxxxxxxxx                          S    6 Xxxxxxxxxx                       RB    33   Xxxxxxxxxx                      S   24 Xxxxxxxx
+                                  Xxxxxxxxxxxxx                                                                       Xxxxxxxxxxxxx

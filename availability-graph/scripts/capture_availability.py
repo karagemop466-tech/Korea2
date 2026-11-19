@@ -375,11 +375,88 @@ def find_section(lines: list[str], header: str):
     return start, end
 
 
+# --------------------------------------------------------------------------- fixed-width lineup parse
+TOKEN_RE = re.compile(r"\S+")
+
+
+def _looks_position(tok: str) -> bool:
+    """A position label is one to three capital letters (LT, OLB, WR, DB, K, P ...)."""
+    return len(tok) <= 3 and tok.isalpha() and tok.isupper()
+
+
+def _looks_number(tok: str) -> bool:
+    """A jersey number is one or two digits."""
+    return tok.isdigit() and len(tok) <= 2
+
+
+def _looks_name(tok: str) -> bool:
+    """A player name starts with a capital and is not a bare capital label."""
+    if len(tok) < 2 or not tok[0].isupper():
+        return False
+    return any(c.islower() for c in tok) or "." in tok or "-" in tok
+
+
+def _line_tokens(line: str):
+    return [(m.group(0), m.start(), m.end()) for m in TOKEN_RE.finditer(line)]
+
+
+def parse_layout_lineups(lines: list[str], start: int, end: int) -> list[list[dict]]:
+    """Parse the official starting lineups out of a `pdftotext -layout` game book.
+
+    The official game book prints four columns side by side (away offense, away defense, home
+    offense, home defense). Each cell holds a position label, a jersey number and a player name.
+    The columns are separated by a wide gap and the cells inside a column are not aligned, so the
+    parse is driven by the content of the row (position, number, name) and by the horizontal
+    position of the first full row, not by fixed column widths.
+
+    Returns a list of rows; each row is a list of cells with a "col" key (0 = away offense,
+    1 = away defense, 2 = home offense, 3 = home defense).
+    """
+    anchors: list[int] | None = None
+    out: list[list[dict]] = []
+    for line in lines[start:end]:
+        if not line.strip():
+            continue
+        toks = _line_tokens(line)
+        groups: list[tuple[int, int]] = []
+        i = 0
+        while i + 2 < len(toks):
+            if (_looks_position(toks[i][0]) and _looks_number(toks[i + 1][0])
+                    and _looks_name(toks[i + 2][0])):
+                groups.append((i, toks[i][1]))
+                i += 3
+            else:
+                i += 1
+        if not groups:
+            if out:
+                break
+            continue
+        if len(groups) > 4:
+            break                                   # the row has left the starting-lineup table
+        if anchors is None:
+            if len(groups) != 4:
+                continue                           # wait for a full row to fix the columns
+            anchors = [g[1] for g in groups]
+        cells = []
+        for gi, (ti, xpos) in enumerate(groups):
+            name_start = toks[ti + 2][1]
+            name_end = toks[groups[gi + 1][0]][1] if gi + 1 < len(groups) else len(line)
+            name = " ".join(line[name_start:name_end].split())
+            col = min(range(4), key=lambda c: abs(anchors[c] - xpos))
+            cells.append({"col": col, "pos": toks[ti][0], "num": toks[ti + 1][0], "name": name})
+        out.append(cells)
+    return out
+
+
 def parse_lineups(text: str) -> dict:
-    """Parse the official starting lineups of both clubs out of the game-book text."""
+    """Parse the official starting lineups of both clubs out of the game-book text.
+
+    Two official shapes are supported: the fixed-width layout that `pdftotext -layout` produces
+    (four side-by-side columns) and the markdown table rendering of the same document.
+    """
     lines = text.splitlines()
     start, end = find_section(lines, "Lineups")
-    result = {"ok": False, "rows": [], "note": ""}
+    result = {"ok": False, "rows": [], "note": "", "per_column": [], "teams_printed": ""}
     if start < 0:
         result["note"] = "no Lineups section"
         return result
@@ -392,6 +469,38 @@ def parse_lineups(text: str) -> dict:
     if header_idx < 0:
         result["note"] = "no Offense/Defense header row"
         return result
+    # The row above the header prints the two club names in the order of the columns.
+    for j in range(header_idx - 1, start - 1, -1):
+        cand = norm_line(lines[j]).strip()
+        if cand:
+            result["teams_printed"] = cand
+            break
+
+    body = parse_layout_lineups(lines, header_idx + 1, end)
+    if body:
+        per_column = [0, 0, 0, 0]
+        for cells in body:
+            for cell in cells:
+                per_column[cell["col"]] += 1
+        result["per_column"] = per_column
+        total = sum(per_column)
+        if min(per_column) < 10:
+            result["note"] = (f"fixed-width layout read {per_column} players per column; "
+                              f"a starting lineup needs at least ten per unit")
+            return result
+        for cells in body:
+            for cell in cells:
+                col = cell["col"]
+                result["rows"].append({
+                    "col": col,             # 0 away off, 1 away def, 2 home off, 3 home def
+                    "unit": "offense" if col % 2 == 0 else "defense",
+                    "pos": cell["pos"], "num": cell["num"], "name": cell["name"],
+                })
+        result["ok"] = len(result["rows"]) >= 40
+        result["note"] = f"{len(body)} fixed-width lineup rows, {total} players"
+        return result
+
+    # Fallback: the markdown table rendering of the same official document.
     body = []
     for line in lines[header_idx + 1: end]:
         if not line.strip():
@@ -408,12 +517,12 @@ def parse_lineups(text: str) -> dict:
         for col, cell_text in enumerate(row):
             cell = parse_cell(cell_text)
             result["rows"].append({
-                "col": col,                     # 0 away off, 1 away def, 2 home off, 3 home def
+                "col": col,
                 "unit": "offense" if col % 2 == 0 else "defense",
                 "pos": cell["pos"], "num": cell["num"], "name": cell["name"],
             })
     result["ok"] = len(result["rows"]) >= 20
-    result["note"] = f"{len(body)} lineup rows"
+    result["note"] = f"{len(body)} markdown lineup rows"
     return result
 
 
@@ -934,6 +1043,8 @@ def run() -> int:
                 if len(manifest.get("diagnostics", {})) < 2:
                     manifest.setdefault("diagnostics", {})[slug] = diagnose_lineup_region(text)
                     dump_partial()
+                if len(manifest.get("layout_samples", {})) < 2:
+                    manifest.setdefault("layout_samples", {})[slug] = masked_layout_sample(text)
                 games_rows.append({
                     "season": season, "week": week, "slug": slug,
                     "game_url": game_url, "gamebook_url": pdf_url,

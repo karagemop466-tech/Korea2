@@ -186,3 +186,44 @@ class DepthChartTests(unittest.TestCase):
     def test_no_rank_is_invented_for_an_empty_cell(self):
         self.assertIsNone(self._find("OFFENSE", "LT", 1, 3))
         self.assertIsNone(self._find("DEFENSE", "S", 1, 3))
+
+
+class FixedWidthLineupTests(unittest.TestCase):
+    """The masked fixture is the real runner output of `pdftotext -layout`.
+
+    It keeps the official column offsets, position labels and jersey numbers of a real NFL Game
+    Book and masks only the player names.
+    """
+
+    def setUp(self):
+        text = read(os.path.join(FIX, "gamebook_lineups_layout_masked.txt"))
+        self.result = cap.parse_lineups(text)
+
+    def test_the_fixed_width_layout_is_parsed(self):
+        self.assertTrue(self.result["ok"], self.result["note"])
+        self.assertEqual(self.result["per_column"], [11, 11, 11, 11])
+
+    def test_every_cell_is_a_position_a_number_and_a_name(self):
+        for r in self.result["rows"]:
+            self.assertTrue(r["pos"], "cell without a position")
+            self.assertTrue(r["num"].isdigit(), f"cell with a bad jersey number {r['num']!r}")
+            self.assertTrue(r["name"], "cell without a name")
+
+    def test_the_four_columns_map_to_the_four_units(self):
+        units = {}
+        for r in self.result["rows"]:
+            units.setdefault(r["col"], set()).add(r["unit"])
+        self.assertEqual(units[0], {"offense"})
+        self.assertEqual(units[1], {"defense"})
+        self.assertEqual(units[2], {"offense"})
+        self.assertEqual(units[3], {"defense"})
+
+    def test_the_official_positions_and_numbers_are_kept(self):
+        qb = [r for r in self.result["rows"] if r["col"] == 2 and r["pos"] == "QB"]
+        self.assertEqual(len(qb), 1)
+        self.assertEqual(qb[0]["num"], "4")
+        self.assertEqual(len(qb[0]["name"]), 10)          # the mask keeps the official length
+
+    def test_a_row_that_leaves_the_table_stops_the_parse(self):
+        # The fixture ends with a trailing row that is not a lineup row.
+        self.assertEqual(len(self.result["rows"]), 44)

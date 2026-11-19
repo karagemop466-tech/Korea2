@@ -324,11 +324,11 @@ suspected.</p>
 player who was expected to start) is set against the official starting lineup of week
 {esc(later)} (the player who actually started). The designation of each player is the official
 weekly injury report; the roster status is the official club roster page.</p>
-<p><strong>The depth tier column is blank on purpose.</strong> A tier (1st string, 2nd string, ...)
-may only be published where an official depth order has been verified for that club &mdash; see
-<a href="depth-sources.html">the depth-order source audit</a>. No tier is inferred from a jersey
-number, an experience count, a salary or a roster listing.</p>
-<p class="mut">{len(graph)} slots compared; {summary.get('slots_changed', 0)} slots changed.</p>
+<p><strong>The depth tier column is blank unless the club publishes the depth order itself.</strong>
+A tier (1st string, 2nd string, ...) is published only where the club publishes a depth chart on
+its own official site &mdash; see <a href="depth-sources.html">the depth-order source audit</a>. The chart's date
+and the club's own "unofficial" label travel with the tier. No tier is inferred from a jersey
+number, an experience count, a salary or the order of a roster listing.</p>
 </div>
 {table(["Club", "Unit", "Slot", "#", f"Expected starter (wk {esc(early)})", "Designation",
         "Roster status", f"Actual starter (wk {esc(later)})", "Designation", "Roster status",
