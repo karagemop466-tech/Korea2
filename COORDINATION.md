@@ -3292,12 +3292,28 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 
 | Task ID | Task | Status | Owner | File scope |
 |---|---|---|---|---|
-| B1 | Coordination claim and scope separation | in progress | arena/b245e313-korea2 | COORDINATION.md (this section only) |
-| B2 | Dated official re-reads (NFL injury report REG10/REG11, Week 10/11 schedules, standings, Genius, NWS, NIST, Game Book hub) recorded as timestamped observations | in progress | arena/b245e313-korea2 | docs/OFFICIAL_REREAD_2026-11-19.md, requirements-desk/data/analysis.json (regenerated only) |
-| B3 | Full local verification suite re-run (root + all hubs); fix failures in claimed scope only | in progress | arena/b245e313-korea2 | tests/, scripts/, requirements-desk/scripts/ (read-only unless fix needed), COORDINATION.md |
-| B4 | Final integration: root navigation, README, EXECUTIVE_SUMMARY, docs audit refresh; confirm site builds with no broken links | in progress | arena/b245e313-korea2 | index.html, pages/, README.md, EXECUTIVE_SUMMARY.md, docs/, requirements-desk/index.html + pages/ (regenerated) |
-| B5 | PR from this branch, merge, confirm GitHub Pages deploy, record result here | in progress | arena/b245e313-korea2 | COORDINATION.md (this section) |
+| B1 | Coordination claim and scope separation | done | arena/b245e313-korea2 | COORDINATION.md (this section only) |
+| B2 | Dated official re-reads (NFL injury report REG10/REG11, Week 10/11 schedules, standings, Genius, NWS, NIST, Game Book hub) recorded as timestamped observations | done | arena/b245e313-korea2 | docs/OFFICIAL_REREAD_2026-11-19.md |
+| B3 | Full local verification suite re-run (root + all hubs); fix failures in claimed scope only | done | arena/b245e313-korea2 | read-only verification; no fixes needed |
+| B4 | Final integration: root navigation, README, EXECUTIVE_SUMMARY, docs audit refresh; confirm site builds with no broken links | done | arena/b245e313-korea2 | README.md, EXECUTIVE_SUMMARY.md, docs/, data/flagged.json, data/sources.json, pages/flagged.html, pages/sources.html (regenerated) |
+| B5 | PR from this branch, merge, confirm GitHub Pages deploy, record result here | done | arena/b245e313-korea2 | COORDINATION.md (this section) |
 
 **Scope boundary:** This session owns root integration files and the requirements-desk regenerated outputs. It does NOT edit sibling hub data/scripts (line-desk, price-desk, review-board, etc.) except via their documented generators if needed for verification. Requests to other owners are logged, not actioned. If a fix requires a file outside this scope, log the request here instead of editing it.
 
 **Rules honoured:** every published table row carries a source link; unverified values stay blank and flagged; no inference of starters/depth/inactives/prices; suggestions stay PROPOSED until a reviewer chooses; flagged items do not block merge.
+
+## Completion record — arena/b245e313-korea2 (2026-11-19)
+
+**B1 — done.** Claim committed (`a64f921`) and pushed before implementation; scopes non-overlapping; no sibling-hub data or scripts edited. Generator side-effects from verification runs (requirements-desk, review-board regenerated files) were reverted rather than committed, keeping the tree to claimed files only.
+
+**B2 — done.** Official re-reads performed 2026-11-19 with the platform retrieval tool and recorded in `docs/OFFICIAL_REREAD_2026-11-19.md`: REG10 (8 chunks), REG11 (7 chunks), Week 10 + Week 11 schedules, 2026 standings, Genius Sports announcement, NWS API docs, NIST correlation reference, NFL Terms (§1.3). Result: 14/14 Week 10 finals, 13/13 Week 11 fixtures + 6 byes + 1 neutral-site, 32/32 standings rows, and the three Lions "Out" designations all match the committed registers — **0 mismatches**. Sources: all URLs listed in the doc.
+
+**B3 — done.** Full suite re-run 2026-11-19, all pass: root `tests/check_site.py` (252 pages / 666 tables / 16,877 links), `scripts/check_links.py` (5,762 refs, 0 broken), `scripts/validate_data.py`, `tests/check_data.py` (32/32 teams), `tests/check_derived.py` (52 checks, 0 disagreements), both `build_site.py --check`; hub suites requirements-desk (74 reqs / 6 registers), line-desk (byte-identical render), price-desk (20,504 checks / 0 errors), review-board (131 checks), decision-desk, verify-hub. No failures; nothing fixed outside scope.
+
+**B4 — done.** Integration edits (commit `a299890`): `docs/OFFICIAL_REREAD_2026-11-19.md` added; `data/flagged.json` FL-17 updated (value stays blank; REG11 now serves Week 11; no Week 11 register transcribed so Week 11 availability stays blank by policy); `data/sources.json` gained `SRC-NFL-INJURY-W11-REREAD`; README "As of" → 2026-11-19 with the stale "root navigation omits hubs / repeats Suggestions link" claim corrected (nav verified programmatically: 24/24 hub dirs with `index.html` linked, 0 duplicates, 0 dead links) and the verification section refreshed with 2026-11-19 counts; EXECUTIVE_SUMMARY section 9 "Integration verification — 2026-11-19" appended. Root site rebuilt (`index.html` + 16 pages) and every check re-run on the result: no broken links, all rows source-linked.
+
+**B5 — done.**
+- **PR #146** (`arena/b245e313-korea2` → `main`): https://github.com/karagemop466-tech/Korea2/pull/146. All 8 CI checks passed before merge (`validate`, `review-board`, `tests-and-links`, `verify-hub`, `decision-desk`, `verify` ×2, `verify-skill-lab`). Merged (regular merge, no auto) as **cd8caf6** at 2026-11-19T19:55:50Z.
+- **GitHub Pages**: pages build for merge commit `cd8caf6` reported **built** (error: null), confirmed via the Pages API. The live site was then re-read rather than trusted from the badge: https://karagemop466-tech.github.io/Korea2/pages/flagged.html serves FL-17 with the 2026-11-19 resolution text and the new W11 re-read source link, and https://karagemop466-tech.github.io/Korea2/docs/OFFICIAL_REREAD_2026-11-19.md serves the dated re-read doc. Site confirmed live, not broken.
+- **Flagged irregularities carried (non-blocking, published on the Flagged for Review page):** IR-1 — REG10 `<title>`/body week mismatch persists (REG11 half resolved); IR-2 — operations.nfl.com Game Book hub fetch failed this session, prior Game Book links unchanged; IR-3 — no Week 11 injury register exists yet, so Week 11 availability stays blank rather than inferred.
+- This follow-up commit records the merge result only; it contains no data or page change.
