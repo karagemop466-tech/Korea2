@@ -3284,3 +3284,23 @@ Claimed 2026-11-18 04:52 UTC after reading the board and PR #139's live file lis
 - **PR #144** (`arena/a09e4528-korea2` → `main`): https://github.com/karagemop466-tech/Korea2/pull/144. All 8 CI checks passed before merge (`validate`, `review-board`, `tests-and-links`, `verify-hub`, `decision-desk`, `verify`, `verify-skill-lab`, `verify`). Merged (regular merge, no auto) as **b1d1478** at 2026-11-18T05:08:40Z.
 - **GitHub Pages**: "pages build and deployment" for the merge commit b1d14784 reported **success**. The live tree was then re-read rather than trusted from the badge: https://karagemop466-tech.github.io/Korea2/review-board/pages/injuries.html serves the 2026-11-18 re-read (347 rows / 171 designated, 28/28 double-entry section) and https://karagemop466-tech.github.io/Korea2/review-board/pages/reconciliation.html serves the field-level price cross-check (45/45 agree rows). Site confirmed live, not broken.
 - This follow-up commit records the merge result only; it contains no data or page change.
+
+---
+
+# Session board — `arena/d1fe94e9-korea2` (Week 11 official availability capture, per-team view, flags; branch from `1d56d09` = PR #145 merge)
+
+**Session ID:** `arena/d1fe94e9-korea2` (Arena fixes the branch name; the session-&lt;id&gt;/&lt;task&gt; branch convention in the brief cannot be used here — see the note under Scope). **Claimed:** 2026-11-19 UTC, before any capture or edit.
+
+**Scope note.** The brief asks for ~80 requirements across parallel sessions. Most are blocked by missing official inputs that this sandbox cannot reach (per-club depth charts, Game Books, official snap counts, official market prices, official inactives). This session claims only what is reachable and verifiable today, and records every other requirement as blocked with the gate that blocks it. No other session holds a live claim on the paths below as of this commit.
+
+| Task ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| W11-0 | Claim this scope on the board, push before work | done | `arena/d1fe94e9-korea2` | this section |
+| W11-1 | Dispatch the official NFL injury-report capture for **Week 11 2026** (`nfl-injury-capture.yml`, `ref=arena/d1fe94e9-korea2`) so raw bytes are hashed on a runner that can reach nfl.com | in progress | `arena/d1fe94e9-korea2` | `injury-capture/manifests/` (bot-committed) |
+| W11-2 | Build a Week 11 availability register from the runner artifact: one row per listed player, source link per row, per-club counts, game-status split; blanks stay blank | pending | `arena/d1fe94e9-korea2` | `availability-w11/` (new) |
+| W11-3 | Per-team view (listed players, Out, Doubtful, Questionable, net Out count). **Starters out and replacements are NOT published** — no official starter or depth source is verified | pending | `arena/d1fe94e9-korea2` | `availability-w11/` |
+| W11-4 | Verify: every row linked to the NFL page; row count matches the artifact; `tests/check_site.py` and `scripts/check_links.py` pass | pending | `arena/d1fe94e9-korea2` | `availability-w11/`, `tests/` (read only) |
+| W11-5 | PR → `main`, merge (`--merge`, no `--auto`), confirm GitHub Pages build, record PR and merge result here | pending | `arena/d1fe94e9-korea2` | this section |
+
+**Not claimed (blocked; logged in the final answer):** depth-chart register, Game Book starters/inactives, snap counts, official market open/close and CLV, pre-registered strategies, what-changed diff over time, announced-starter evidence, injury-designation reliability study.
+
