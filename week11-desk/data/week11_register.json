@@ -1,0 +1,192 @@
+{
+ "meta": {
+  "title": "Week 11 (2026) official availability register and Week 10 -> 11 delta series",
+  "generated_by": "week11-desk/scripts/build_register.py",
+  "session": "arena/5d001552-korea2",
+  "season": 2026,
+  "week": 11,
+  "source_url": "https://www.nfl.com/injuries/league/2026/reg11",
+  "source_title": "Official NFL Injury Report for Players - Week 11 of the 2026 Season",
+  "page_heading": "Injuries - WEEK 11",
+  "read_at_utc": "2026-11-19T19:54:00Z",
+  "reads": [
+   {
+    "started_utc": "2026-11-19T19:44:00Z",
+    "finished_utc": "2026-11-19T19:52:00Z",
+    "chunks": "0-7",
+    "note": "full read, all 8 chunks, row-by-row transcription at read 1"
+   },
+   {
+    "started_utc": "2026-11-19T19:53:30Z",
+    "finished_utc": "2026-11-19T19:54:33Z",
+    "chunks": "0",
+    "note": "second read of chunk 0 to confirm the Colts/Texans block and the page title (Week 11, 2026) after the Week 10 -> Week 11 changeover"
+   }
+  ],
+  "week10_comparison_url": "https://www.nfl.com/injuries/league/2026/REG10",
+  "week10_read_at_utc": "2026-11-18T03:55:37Z",
+  "week11_schedule_url": "https://www.nfl.com/schedules/2026/by-week/week-11",
+  "totals": {
+   "rows": 253,
+   "clubs_with_rows": 24,
+   "clubs_no_report": 2,
+   "injury_named": 15,
+   "out": 9,
+   "doubtful": 0,
+   "questionable": 6,
+   "no_designation": 238,
+   "designated": 15
+  },
+  "fixtures": 13,
+  "byes": 6,
+  "delta": {
+   "week10_rows": 347,
+   "week11_rows": 253,
+   "week10_clubs": 28,
+   "week11_clubs": 26,
+   "clubs_in_both": 22,
+   "clubs_only_week10": [
+    "ATL",
+    "CLE",
+    "GB",
+    "LAR",
+    "NE",
+    "SEA"
+   ],
+   "clubs_only_week11": [
+    "CHI",
+    "DEN",
+    "PHI",
+    "TB"
+   ],
+   "clubs_excluded_from_delta": [
+    "CHI",
+    "DEN",
+    "PHI",
+    "TB"
+   ],
+   "clubs_excluded_reason": "These clubs published no table in Week 10 (bye week: CHI, DEN, PHI, TB), so no per-player comparison is possible. Their Week 11 rows are published in full but excluded from the delta; calling them 'newly listed' would be inference.",
+   "clubs_game_status_comparable": [
+    "HOU",
+    "IND"
+   ],
+   "clubs_game_status_not_comparable": [
+    "AZ",
+    "BAL",
+    "BUF",
+    "CAR",
+    "CIN",
+    "DAL",
+    "DET",
+    "JAX",
+    "KC",
+    "LAC",
+    "LV",
+    "MIA",
+    "MIN",
+    "NO",
+    "NYG",
+    "NYJ",
+    "PIT",
+    "SF",
+    "TEN",
+    "WAS"
+   ],
+   "game_status_rule": "Game status is compared only for clubs whose Week 11 rows already carry at least one official game designation at the read time (here: IND and HOU, the Thursday fixture). For every later fixture the Week 11 game-status column was still empty at the read, so those rows are compared on practice status only and their week-11 game value prints '(no designation published)' instead of a blank that could be mistaken for 'cleared'.",
+   "players_compared": 347,
+   "change_rows": 280,
+   "by_change": {
+    "no longer listed": 129,
+    "practice change": 59,
+    "newly listed": 84,
+    "designation withdrawn (blank at this read)": 3,
+    "practice and game-status change": 5
+   }
+  },
+  "raw_bytes_retained": false,
+  "raw_bytes_note": "The sandbox shell has no network route to nfl.com (verified with curl, exit 35 CONNECT tunnel failure), so no HTTP response body could be stored. The register hash below covers the transcribed rows as committed, not the NFL response bytes. This is flag W11-F01 on the Flagged page."
+ },
+ "totals": {
+  "rows": 253,
+  "clubs_with_rows": 24,
+  "clubs_no_report": 2,
+  "injury_named": 15,
+  "out": 9,
+  "doubtful": 0,
+  "questionable": 6,
+  "no_designation": 238,
+  "designated": 15
+ },
+ "delta_summary": {
+  "week10_rows": 347,
+  "week11_rows": 253,
+  "week10_clubs": 28,
+  "week11_clubs": 26,
+  "clubs_in_both": 22,
+  "clubs_only_week10": [
+   "ATL",
+   "CLE",
+   "GB",
+   "LAR",
+   "NE",
+   "SEA"
+  ],
+  "clubs_only_week11": [
+   "CHI",
+   "DEN",
+   "PHI",
+   "TB"
+  ],
+  "clubs_excluded_from_delta": [
+   "CHI",
+   "DEN",
+   "PHI",
+   "TB"
+  ],
+  "clubs_excluded_reason": "These clubs published no table in Week 10 (bye week: CHI, DEN, PHI, TB), so no per-player comparison is possible. Their Week 11 rows are published in full but excluded from the delta; calling them 'newly listed' would be inference.",
+  "clubs_game_status_comparable": [
+   "HOU",
+   "IND"
+  ],
+  "clubs_game_status_not_comparable": [
+   "AZ",
+   "BAL",
+   "BUF",
+   "CAR",
+   "CIN",
+   "DAL",
+   "DET",
+   "JAX",
+   "KC",
+   "LAC",
+   "LV",
+   "MIA",
+   "MIN",
+   "NO",
+   "NYG",
+   "NYJ",
+   "PIT",
+   "SF",
+   "TEN",
+   "WAS"
+  ],
+  "game_status_rule": "Game status is compared only for clubs whose Week 11 rows already carry at least one official game designation at the read time (here: IND and HOU, the Thursday fixture). For every later fixture the Week 11 game-status column was still empty at the read, so those rows are compared on practice status only and their week-11 game value prints '(no designation published)' instead of a blank that could be mistaken for 'cleared'.",
+  "players_compared": 347,
+  "change_rows": 280,
+  "by_change": {
+   "no longer listed": 129,
+   "practice change": 59,
+   "newly listed": 84,
+   "designation withdrawn (blank at this read)": 3,
+   "practice and game-status change": 5
+  }
+ },
+ "register_sha256": {
+  "week11_rows.csv": "2e4865654e38f1f69c90297eeb68b1a8e918067a9089437a30ef588b9db84fdb",
+  "week11_team_counts.csv": "77c80aa3876c58566015f827ed89da95c9d35a584642b61ba1bae40230c6a668",
+  "week11_fixtures.csv": "9905ed9b34fd8cebafd257eaf660d1432ca4acad58fb15d5a14a3d744ab6599a",
+  "week11_byes.csv": "00d8a211feb01461679e081a7eca358b61c5744ac91dd0b3dea49561738ce646",
+  "delta_week10_week11.csv": "0beb7108ced815a7a757e6ac1fd8d4a89e02aa880857c00d6516c7e93eae8189"
+ },
+ "register_manifest_sha256": "041b10f216e0abcc5fcb304d77fba4704719c9495ff5b419eec2e92812afacbb"
+}

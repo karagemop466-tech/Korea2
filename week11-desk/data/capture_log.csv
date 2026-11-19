@@ -1,0 +1,2 @@
+capture_id,week,url,fetched_utc_start,fetched_utc_end,method,scope,rows_captured,teams_captured,raw_bytes_hash,source_url
+20261119-5d001552,11,https://www.nfl.com/injuries/league/2026/reg11,2026-11-19T19:44:00Z,2026-11-19T19:54:33Z,page-retrieval tool read (8 chunks),full: all 24 listed clubs transcribed row by row; 2 clubs print 'No Injuries Reported',253,24,not retained,https://www.nfl.com/injuries/league/2026/reg11
