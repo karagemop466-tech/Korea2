@@ -256,7 +256,7 @@ pages retrieved and transcribed at **2026-11-18T03:52Z**, and it publishes only 
 - Week 10 results: home teams won 8 of 14; mean total 45.9; mean absolute margin 12.9.
 
 **Decision readiness.** The landing page carries one row for each of the **74** requirements in the brief,
-with the gate that blocks it and the number that would clear it: 13 verified, 36 partial, 17 blocked,
+with the gate that blocks it and the number that would clear it: 13 verified, 37 partial, 16 blocked,
 8 not started. The twelve suggestions and twelve decision questions are separate review queues; nothing in
 either is auto-implemented.
 

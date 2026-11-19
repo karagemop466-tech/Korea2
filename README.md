@@ -6,6 +6,7 @@
 - **Current repository-level executive summary:** [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md)
 - **Dated official re-read (2026-11-19):** [docs/OFFICIAL_REREAD_2026-11-19.md](docs/OFFICIAL_REREAD_2026-11-19.md) — the final integration session re-read the Week 10/11 injury reports, Week 10/11 schedules and 2026 standings against the committed registers (0 mismatches) and re-ran every verification suite.
 - **Dated site/repository audit:** [docs/REPOSITORY_STATUS_2026-11-15.md](docs/REPOSITORY_STATUS_2026-11-15.md)
+- **Final integration verification (2026-11-19):** [docs/INTEGRATION_VERIFICATION_2026-11-19.md](docs/INTEGRATION_VERIFICATION_2026-11-19.md)
 - **Flagged issues:** [root Flagged for Review](pages/flagged.html) · [Line Desk flags](line-desk/pages/flagged.html) · [Week 10 injury-report flags](injury-report-w10/index.html)
 
 ## Start here
@@ -20,8 +21,8 @@ The repository has several independently built dashboards. As of 2026-11-19 the 
 ### Requirements Desk — new 2026-11-18 (official capture, decision readiness, review queues)
 
 - [Requirements Desk](requirements-desk/index.html) — landing page: one row per brief requirement with the
-  gate that blocks it and the number that would clear it. 74 requirements: 13 verified, 36 partial,
-  17 blocked, 8 not started.
+  gate that blocks it and the number that would clear it. 74 requirements: 13 verified, 37 partial,
+  16 blocked, 8 not started.
 - [Requirements register](requirements-desk/pages/requirements.html) — the same 74 rows, full width.
 - [Availability register](requirements-desk/pages/injuries.html) — **347** Week 10 injury-report rows across
   28 club tables, transcribed verbatim, plus per-club counts, the game-status distribution, the four absent
