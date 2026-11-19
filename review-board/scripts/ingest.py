@@ -566,10 +566,16 @@ ALIAS_TABLE = {
 
 
 def repo_json_files() -> list[str]:
-    """Every committed JSON register in the repository, excluding this hub's own output."""
+    """Every committed JSON register in the repository, excluding this hub's own output.
+
+    Dot-directories are skipped exactly as the hub-map walk does: a local virtualenv (``.venv-final``)
+    ships test fixtures that end in ``.json``, and scanning them made the register count depend on
+    whether the checkout had an venv - CI's fresh clone never does, so the committed register could
+    not be reproduced there."""
     out = []
     for base, dirs, files in os.walk(REPO):
-        dirs[:] = [d for d in sorted(dirs) if d not in IGNORE_DIRS and d != "review-board"]
+        dirs[:] = [d for d in sorted(dirs)
+                   if d not in IGNORE_DIRS and d != "review-board" and not d.startswith(".")]
         for f in sorted(files):
             if f.endswith(".json"):
                 rel = os.path.relpath(os.path.join(base, f), REPO).replace(os.sep, "/")
