@@ -17,7 +17,7 @@ on:
       week:
         description: 'Regular-season week number'
         required: false
-        default: '10'
+        default: '11'
   schedule:
     # Daily (UTC) during the week. Scheduled runs use the week input default below; update it per week.
     - cron: '0 14 * * 3,4,5,6,0'
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SEASON: ${{ github.event.inputs.season || '2026' }}
-      WEEK: ${{ github.event.inputs.week || '10' }}
+      WEEK: ${{ github.event.inputs.week || '11' }}
     steps:
       - uses: actions/checkout@v4
         with:
